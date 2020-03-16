@@ -1,0 +1,50 @@
+@import '~@micromag/core/src/styles/variables';
+@import '~@micromag/core/src/styles/placeholders';
+
+.container {
+    position: relative;
+    overflow: hidden;
+    background-color: $black;
+
+    .controls {
+        position: absolute;
+        z-index: 2;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    .playerContainer {
+        @extend %fullscreen;
+    }
+
+    .poster,
+    .player,
+    .iframe,
+    .blockButton {
+        @extend %fullscreen;
+    }
+
+    .player,
+    .iframe {
+        z-index: 1;
+    }
+
+    .blockButton {
+        @extend %reset-button;
+        display: block;
+        z-index: 3;
+    }
+
+    .poster {
+        z-index: 2;
+        transition: opacity 0.2s ease-out;
+        opacity: 1;
+    }
+
+    &.hasPlayed {
+        .poster {
+            opacity: 0;
+        }
+    }
+}

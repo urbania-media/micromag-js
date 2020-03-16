@@ -1,0 +1,30 @@
+{
+    "extends": ["stylelint-config-sass-guidelines", "stylelint-config-property-sort-order-smacss"],
+    "rules": {
+        "indentation": 4,
+        "order/properties-alphabetical-order": null,
+        "max-nesting-depth": 4,
+        "selector-class-pattern": [
+            "^[a-z][a-z0-9A-Z]+$",
+            {
+                "message": "Selector should be written in camel-case (selector-class-pattern)"
+            }
+        ]
+    },
+    "overrides": [
+        {
+            "files": [
+                "*.module.css",
+                "*.module.scss"
+            ],
+            "rules": {
+                "selector-class-pattern": [
+                    "^[a-z][a-z0-9A-Z]+$",
+                    {
+                        "message": "Selector should be written in camel-case (selector-class-pattern)"
+                    }
+                ]
+            }
+        }
+    ]
+}

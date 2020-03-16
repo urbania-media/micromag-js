@@ -1,0 +1,10 @@
+@import '~@micromag/core/src/styles/variables';
+
+.container {
+    position: relative;
+    overflow: hidden;
+    background-color: $black;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}

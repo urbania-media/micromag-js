@@ -1,0 +1,12 @@
+@import '../variables';
+
+.container {
+    width: 100%;
+    height: 1rem;
+    margin-bottom: 0.5em;
+    background: rgba($black, 0.25);
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}

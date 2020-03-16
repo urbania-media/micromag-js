@@ -1,0 +1,40 @@
+{
+    "extends": ["airbnb", "prettier", "prettier/react"],
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true,
+        "node": true,
+        "commonjs": true,
+        "jest": true
+    },
+    "rules": {
+        "react/jsx-indent": ["error", 4],
+        "react/jsx-indent-props": ["error", 4],
+        "no-console": ["error", { "allow": ["warn", "error"] }]
+    },
+    "overrides": [
+        {
+            "files": [
+                "*.config.js",
+                "scripts/**",
+                ".storybook/**",
+                "packages/*/scripts/**",
+                "**/__tests__/**"
+            ],
+            "rules": {
+                "import/no-extraneous-dependencies": [
+                    "error",
+                    {
+                        "devDependencies": true
+                    }
+                ],
+                "global-require": 0,
+                "import/no-dynamic-require": 0,
+                "no-console": 0
+            }
+        }
+    ],
+    "globals": {
+        "__DEV__": true
+    }
+}

@@ -1,0 +1,12 @@
+.img {
+    display: block;
+}
+
+.container {
+    position: relative;
+    overflow: hidden;
+
+    .img {
+        position: absolute;
+    }
+}
