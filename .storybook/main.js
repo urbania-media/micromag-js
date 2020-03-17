@@ -5,4 +5,5 @@ module.exports = {
     stories: getPackagesPaths().map(packagePath =>
         path.join('../', packagePath, './**/*.stories.jsx'),
     ),
+    addons: ['@storybook/addon-viewport/register'],
 };

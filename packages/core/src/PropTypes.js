@@ -35,6 +35,8 @@ export const ref = PropTypes.oneOfType([
     PropTypes.func,
 ]);
 
+export const target = PropTypes.oneOf(['_blank', '_self', '_parent']);
+
 /**
  * Site
  */
@@ -257,6 +259,15 @@ export const deviceScreens = PropTypes.arrayOf(deviceScreen);
 export const screenSize = PropTypes.shape({
     screen: PropTypes.string,
     screens: PropTypes.arrayOf(PropTypes.string),
+    width: PropTypes.number,
+    height: PropTypes.number,
+});
+
+/**
+ * Screens
+ */
+
+export const adFormats = PropTypes.shape({
     width: PropTypes.number,
     height: PropTypes.number,
 });

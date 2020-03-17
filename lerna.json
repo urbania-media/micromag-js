@@ -1,4 +1,4 @@
 {
-    "packages": ["components/*", "screens/*", "packages/*"],
+    "packages": ["components/*", "packages/*", "screens/*"],
     "version": "0.1.0"
 }

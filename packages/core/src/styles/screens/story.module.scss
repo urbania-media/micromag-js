@@ -1,0 +1,15 @@
+@import '../variables';
+@import '../placeholders';
+@import '../mixins';
+
+.container {
+    @extend %fullscreen;
+}
+
+.screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    user-select: none;
+}
