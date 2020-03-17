@@ -9,7 +9,7 @@ export default {
 };
 
 export const normal = () => (
-    <GoogleApiClientProvider apiKey="AIzaSyCoC7aDPZjftszKCQ42S1Vmm9Sti4SXYZM">
+    <GoogleApiClientProvider apiKey={process.env.GOOGLE_API_KEY}>
         <Video url="https://www.youtube.com/watch?v=AfeAhCWaMD0" width={640} height={480} />
     </GoogleApiClientProvider>
 );
