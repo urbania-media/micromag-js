@@ -37,7 +37,7 @@ const Story = ({ screen, width, height, deviceScreens, className, children }) =>
         height,
         screens: deviceScreens,
     });
-    // console.log(styles, screenSize, refContainer);
+    console.log(screenSize, refContainer);
     return (
         <div
             className={styles.container}

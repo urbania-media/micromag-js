@@ -1,0 +1,71 @@
+@import '~@micromag/core/src/styles/placeholders';
+@import '~@micromag/core/src/styles/variables';
+@import '~@micromag/core/src/styles/mixins';
+
+.container {
+    @extend %fullscreen;
+    color: $color-disabled;
+
+    &.split {
+        .inner {
+            justify-content: space-between;
+        }
+    }
+
+    .inner {
+        @extend %fullscreen;
+        display: flex;
+        z-index: 2;
+        flex-direction: column;
+        padding: 20px 10px;
+    }
+
+    .top,
+    .bottom {
+        width: 100%;
+    }
+
+    .title,
+    .subtitle,
+    .description {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .background {
+        @extend %fullscreen;
+        z-index: 1;
+    }
+
+    &.isPlaceholder {
+        .title,
+        .subtitle,
+        .description {
+            margin: 0 auto;
+            margin-bottom: 1rem;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        .title {
+            width: 80%;
+        }
+
+        .subtitle {
+            width: 70%;
+        }
+
+        .description {
+            width: 60%;
+        }
+    }
+}
+
+@include match-story-screen('medium') {
+    .middle {
+        max-width: 30rem;
+    }
+}

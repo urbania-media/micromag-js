@@ -1,10 +1,12 @@
 import React from 'react';
 import { Story } from '@micromag/core';
+import { withKnobs, boolean } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
 import Ad from './Ad';
 
 export default {
     component: Ad,
     title: 'Screens/Ad',
+    decorators: [withKnobs],
 };
 
 export const MediumRectangle = () => (
@@ -14,6 +16,7 @@ export const MediumRectangle = () => (
             height={250}
             image="https://picsum.photos/300/250"
             url="https://www.urbania.ca"
+            isPlaceholder={boolean('isPlaceholder', false)}
         />
     </Story>
 );
@@ -25,6 +28,7 @@ export const LargeRectangle = () => (
             height={280}
             image="https://picsum.photos/336/280"
             url="https://www.urbania.ca"
+            isPlaceholder={boolean('isPlaceholder', false)}
         />
     </Story>
 );
@@ -36,6 +40,7 @@ export const Skyscraper = () => (
             height={600}
             image="https://picsum.photos/300/600"
             url="https://www.urbania.ca"
+            isPlaceholder={boolean('isPlaceholder', false)}
         />
     </Story>
 );
@@ -47,6 +52,7 @@ export const MobilePortrait = () => (
             height={480}
             image="https://picsum.photos/320/480"
             url="https://www.urbania.ca"
+            isPlaceholder={boolean('isPlaceholder', false)}
         />
     </Story>
 );

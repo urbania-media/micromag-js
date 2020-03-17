@@ -1,4 +1,13 @@
 import '../packages/core/src/styles/vendor.scss';
+import '../packages/core/assets/styles.css';
+
+import '../components/background/assets/styles.css';
+import '../components/grid/assets/styles.css';
+import '../components/heading/assets/styles.css';
+import '../components/image/assets/styles.css';
+import '../components/text/assets/styles.css';
+import '../components/video/assets/styles.css';
+
 import { addParameters } from '@storybook/react';
 
 addParameters({
