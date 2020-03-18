@@ -3,7 +3,9 @@
 @import '../mixins';
 
 .container {
-    @extend %fullscreen;
+    &.isFullScreen {
+        @extend %fullscreen;
+    }
 }
 
 .screen {

@@ -17,6 +17,7 @@ const propTypes = {
     subtitle: MicromagPropTypes.headingComponent,
     description: MicromagPropTypes.textComponent,
     isPlaceholder: PropTypes.bool,
+    split: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -26,6 +27,7 @@ const defaultProps = {
     subtitle: null,
     description: null,
     isPlaceholder: false,
+    split: false,
     className: null,
 };
 
@@ -35,6 +37,7 @@ const DefaultTitleScreen = ({
     subtitle,
     description,
     isPlaceholder,
+    split,
     className,
 }) => {
     const { width, height } = useScreenSize();
@@ -44,32 +47,33 @@ const DefaultTitleScreen = ({
                 styles.container,
                 {
                     [styles.isPlaceholder]: isPlaceholder,
+                    [styles.split]: split,
                     [className]: className,
                 },
             ])}
         >
             <div className={styles.inner}>
-                <div className={styles.middle}>
-                    {isPlaceholder ? (
-                        <>
-                            <Placeholder height={3} className={styles.title} />
-                            <Placeholder height={2} lines={2} className={styles.subtitle} />
-                            <Placeholder height={1} lines={3} className={styles.description} />
-                        </>
-                    ) : (
-                        <>
+                {isPlaceholder ? (
+                    <>
+                        <Placeholder height={1} className={styles.title} />
+                        <Placeholder height={0.5} lines={2} className={styles.subtitle} />
+                        <Placeholder height={0.2} lines={4} className={styles.description} />
+                    </>
+                ) : (
+                    <>
+                        <div>
                             {title !== null ? (
                                 <Heading {...title} size={1} className={styles.title} />
                             ) : null}
                             {subtitle !== null ? (
                                 <Heading {...subtitle} size={2} className={styles.subtitle} />
                             ) : null}
-                            {description !== null ? (
-                                <Text {...description} className={styles.description} />
-                            ) : null}
-                        </>
-                    )}
-                </div>
+                        </div>
+                        {description !== null ? (
+                            <Text {...description} className={styles.description} />
+                        ) : null}
+                    </>
+                )}
             </div>
             <Background
                 {...background}

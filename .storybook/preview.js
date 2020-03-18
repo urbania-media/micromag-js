@@ -8,6 +8,7 @@ import '../components/image/assets/styles.css';
 import '../components/text/assets/styles.css';
 import '../components/video/assets/styles.css';
 
+import '@storybook/addon-console';
 import { addParameters } from '@storybook/react';
 
 addParameters({

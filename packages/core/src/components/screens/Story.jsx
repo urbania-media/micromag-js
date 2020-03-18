@@ -37,12 +37,31 @@ const Story = ({ screen, width, height, deviceScreens, className, children }) =>
         height,
         screens: deviceScreens,
     });
-    console.log(screenSize, refContainer);
+    const isFullScreen = width === null || height === null;
+    const containerStyle = !isFullScreen
+        ? { width: `${width}px`, height: `${height}px` }
+        : { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' };
+
+    // console.log(
+    //     'core/story',
+    //     isFullScreen,
+    //     width,
+    //     height,
+    //     screenSize,
+    //     refContainer,
+    //     containerStyle,
+    // );
+
     return (
         <div
-            className={styles.container}
+            className={classNames([
+                styles.container,
+                {
+                    [styles.isFullScreen]: isFullScreen,
+                },
+            ])}
             ref={refContainer}
-            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+            style={containerStyle}
         >
             <ScreenSizeProvider size={screenSize}>
                 <Screen

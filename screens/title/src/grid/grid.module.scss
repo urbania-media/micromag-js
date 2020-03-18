@@ -1,0 +1,122 @@
+@import '~@micromag/core/src/styles/placeholders';
+@import '~@micromag/core/src/styles/variables';
+@import '~@micromag/core/src/styles/mixins';
+
+.container {
+    @extend %fullscreen;
+    color: $color-disabled;
+
+    .inner {
+        @extend %fullscreen;
+        display: flex;
+        z-index: 2;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 10px;
+    }
+
+    .grid {
+        width: 100%;
+        height: 100%;
+    }
+
+    .group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .title,
+    .subtitle,
+    .description {
+        display: block;
+        width: 100%;
+    }
+
+    .background {
+        @extend %fullscreen;
+        z-index: 1;
+    }
+
+    &.center {
+        text-align: center;
+    }
+
+    &.left {
+        text-align: left;
+    }
+
+    &.right {
+        text-align: right;
+    }
+
+    &.reverse {
+        .inner {
+            flex-direction: column-reverse;
+        }
+    }
+
+    &.isPlaceholder {
+        &.center {
+            .title,
+            .subtitle,
+            .description {
+                margin: 0 auto;
+                margin-bottom: 3px;
+            }
+        }
+
+        &.left {
+            .title,
+            .subtitle,
+            .description {
+                float: left;
+                clear: both;
+            }
+        }
+
+        &.right {
+            .title,
+            .subtitle,
+            .description {
+                float: right;
+                clear: both;
+            }
+        }
+
+        .title,
+        .subtitle,
+        .description {
+            display: block;
+            position: static;
+            top: auto;
+            left: auto;
+            margin-bottom: 3px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        .title {
+            width: 80%;
+        }
+
+        .subtitle {
+            width: 70%;
+        }
+
+        .description {
+            width: 60%;
+        }
+    }
+}
+
+@include match-story-screen('medium') {
+    .middle {
+        max-width: 30rem;
+    }
+}
