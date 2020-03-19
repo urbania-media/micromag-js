@@ -1,0 +1,46 @@
+@import '~@micromag/core/src/styles/variables';
+@import '~@micromag/core/src/styles/placeholders';
+
+.container {
+    @extend %screen;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+
+    .inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    &.center {
+        text-align: center;
+
+        .placeholder {
+            @extend %placeholder-center;
+        }
+    }
+
+    &.left {
+        text-align: left;
+
+        .placeholder {
+            @extend %placeholder-left;
+        }
+    }
+
+    &.right {
+        text-align: right;
+
+        .placeholder {
+            @extend %placeholder-right;
+        }
+    }
+
+    &.reverse {
+        .inner {
+            flex-direction: column-reverse;
+        }
+    }
+}
