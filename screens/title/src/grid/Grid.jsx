@@ -1,4 +1,4 @@
-/* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -7,7 +7,8 @@ import Background from '@micromag/component-background';
 import Heading from '@micromag/component-heading';
 import Text from '@micromag/component-text';
 import Grid from '@micromag/component-grid';
-import { PropTypes as MicromagPropTypes, Placeholder } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
+import { getComponentFromName } from '@micromag/core/utils';
 import { useScreenSize } from '@micromag/core/contexts';
 
 import styles from './grid.module.scss';
@@ -15,12 +16,6 @@ import styles from './grid.module.scss';
 const HEADING_SIZES = {
     title: { size: 1 },
     subtitle: { size: 2 },
-};
-
-const PLACEHOLDER_SIZES = {
-    title: { height: 1, lines: 1, lineMargin: 1 },
-    subtitle: { height: 0.5, lines: 1 },
-    description: { height: 0.2, lines: 4 },
 };
 
 const propTypes = {
@@ -94,8 +89,8 @@ const Grouped = ({
                 const value = options[name] || null;
 
                 if (isPlaceholder && value !== null) {
-                    const props = PLACEHOLDER_SIZES[name] || null;
-                    return <Placeholder {...props} className={styles[name]} key={key} />;
+                    const Placeholder = getComponentFromName(name, Placeholders);
+                    return <Placeholder className={styles.placeholder} key={key} />;
                 }
 
                 if (name === 'description') {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { PropTypes as MicromagPropTypes, Placeholder } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 // import { useScreenSize } from '@micromag/core/contexts';
 
 import styles from './styles.module.scss';
@@ -67,12 +67,13 @@ const Ad = ({
                 styles.container,
                 {
                     [styles.isFullScreen]: isFullScreen,
+                    [styles.isPlaceholder]: isPlaceholder,
                     [className]: className !== null,
                 },
             ])}
         >
-            <div className={styles.inner} style={!isPlaceholder ? innerStyle : null}>
-                {isPlaceholder ? <Placeholder className={styles.placeholder} /> : content}
+            <div className={styles.inner} style={isPlaceholder ? null : innerStyle}>
+                {isPlaceholder ? <Placeholders.Image className={styles.placeholder} /> : content}
             </div>
         </div>
     );

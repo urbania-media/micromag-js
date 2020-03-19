@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import Background from '@micromag/component-background';
 import Grid from '@micromag/component-grid';
 import Image from '@micromag/component-image';
-import { PropTypes as MicromagPropTypes, Placeholder } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 
 import styles from './grid.module.scss';
@@ -75,7 +75,7 @@ const GalleryGridLayout = ({
                         isPlaceholder
                             ? layout
                                   .reduce((map, row) => [...map, ...row.columns], [])
-                                  .map(() => <Placeholder className={styles.placeholder} />)
+                                  .map(() => <Placeholders.Image className={styles.placeholder} />)
                             : (images || []).map(it => <Image {...it} className={styles.image} />)
                     }
                     className={styles.grid}

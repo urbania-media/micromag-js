@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import Background from '@micromag/component-background';
 import Heading from '@micromag/component-heading';
 import Text from '@micromag/component-text';
-import { PropTypes as MicromagPropTypes, Placeholder } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 
 import styles from './title.module.scss';
@@ -16,8 +16,9 @@ const propTypes = {
     title: MicromagPropTypes.headingComponent,
     subtitle: MicromagPropTypes.headingComponent,
     description: MicromagPropTypes.textComponent,
-    isPlaceholder: PropTypes.bool,
     split: PropTypes.bool,
+    isPlaceholder: PropTypes.bool,
+    isPreview: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -26,8 +27,9 @@ const defaultProps = {
     title: null,
     subtitle: null,
     description: null,
-    isPlaceholder: false,
     split: false,
+    isPlaceholder: false,
+    isPreview: false,
     className: null,
 };
 
@@ -36,8 +38,9 @@ const DefaultTitleScreen = ({
     title,
     subtitle,
     description,
-    isPlaceholder,
     split,
+    isPlaceholder,
+    isPreview,
     className,
 }) => {
     const { width, height } = useScreenSize();
@@ -47,6 +50,7 @@ const DefaultTitleScreen = ({
                 styles.container,
                 {
                     [styles.isPlaceholder]: isPlaceholder,
+                    [styles.isPreview]: isPreview,
                     [styles.split]: split,
                     [className]: className,
                 },
@@ -55,9 +59,9 @@ const DefaultTitleScreen = ({
             <div className={styles.inner}>
                 {isPlaceholder ? (
                     <>
-                        <Placeholder height={1} className={styles.title} />
-                        <Placeholder height={0.5} lines={2} className={styles.subtitle} />
-                        <Placeholder height={0.2} lines={4} className={styles.description} />
+                        <Placeholders.Title />
+                        <Placeholders.Subtitle />
+                        <Placeholders.Description />
                     </>
                 ) : (
                     <>

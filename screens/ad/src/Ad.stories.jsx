@@ -1,5 +1,5 @@
 import React from 'react';
-import { Story } from '@micromag/core';
+import { Story, StoryByArrangement } from '@micromag/core';
 import { withKnobs, boolean } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
 import Ad from './Ad';
 
@@ -8,6 +8,16 @@ export default {
     title: 'Screens/Ad',
     decorators: [withKnobs],
 };
+
+export const Placeholders = () => (
+    <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <StoryByArrangement
+            arrangement={{ name: 'default' }}
+            component={Ad}
+            itemProps={{ isPlaceholder: true }}
+        />
+    </div>
+);
 
 export const MediumRectangle = () => (
     <Story>

@@ -11,7 +11,7 @@ import { useScreenSizeFromElement } from '../../hooks/useScreenSize';
 import { ScreenSizeProvider } from '../../contexts/ScreenSizeContext';
 import * as AppPropTypes from '../../PropTypes';
 
-import styles from '../../styles/screens/story.module.scss';
+import styles from '../../styles/screens/story.scss';
 
 const propTypes = {
     screen: AppPropTypes.component,
@@ -31,7 +31,7 @@ const defaultProps = {
     children: null,
 };
 
-const Story = ({ screen, width, height, deviceScreens, className, children }) => {
+const ScreenStory = ({ screen, width, height, deviceScreens, className, children }) => {
     const { ref: refContainer, screenSize } = useScreenSizeFromElement({
         width,
         height,
@@ -57,6 +57,7 @@ const Story = ({ screen, width, height, deviceScreens, className, children }) =>
             className={classNames([
                 styles.container,
                 {
+                    [styles.withBorder]: !isFullScreen,
                     [styles.isFullScreen]: isFullScreen,
                 },
             ])}
@@ -82,7 +83,7 @@ const Story = ({ screen, width, height, deviceScreens, className, children }) =>
     );
 };
 
-Story.propTypes = propTypes;
-Story.defaultProps = defaultProps;
+ScreenStory.propTypes = propTypes;
+ScreenStory.defaultProps = defaultProps;
 
-export default Story;
+export default ScreenStory;

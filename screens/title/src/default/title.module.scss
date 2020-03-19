@@ -39,30 +39,6 @@
         @extend %fullscreen;
         z-index: 1;
     }
-
-    &.isPlaceholder {
-        .title,
-        .subtitle,
-        .description {
-            position: static;
-            top: auto;
-            left: auto;
-            margin: 0 auto;
-            margin-bottom: 2px;
-        }
-
-        .title {
-            width: 80%;
-        }
-
-        .subtitle {
-            width: 70%;
-        }
-
-        .description {
-            width: 60%;
-        }
-    }
 }
 
 @include match-story-screen('medium') {

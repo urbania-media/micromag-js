@@ -78,3 +78,22 @@
         padding-left: 1em;
     }
 }
+
+%placeholder-full {
+    width: 100%;
+}
+
+%placeholder-center {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+%placeholder-left {
+    float: left;
+    clear: both;
+}
+
+%placeholder-right {
+    float: right;
+    clear: both;
+}

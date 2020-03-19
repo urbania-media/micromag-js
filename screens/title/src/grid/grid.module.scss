@@ -43,74 +43,31 @@
 
     &.center {
         text-align: center;
+
+        .placeholder {
+            @extend %placeholder-center;
+        }
     }
 
     &.left {
         text-align: left;
+
+        .placeholder {
+            @extend %placeholder-left;
+        }
     }
 
     &.right {
         text-align: right;
+
+        .placeholder {
+            @extend %placeholder-right;
+        }
     }
 
     &.reverse {
         .inner {
             flex-direction: column-reverse;
-        }
-    }
-
-    &.isPlaceholder {
-        &.center {
-            .title,
-            .subtitle,
-            .description {
-                margin: 0 auto;
-                margin-bottom: 3px;
-            }
-        }
-
-        &.left {
-            .title,
-            .subtitle,
-            .description {
-                float: left;
-                clear: both;
-            }
-        }
-
-        &.right {
-            .title,
-            .subtitle,
-            .description {
-                float: right;
-                clear: both;
-            }
-        }
-
-        .title,
-        .subtitle,
-        .description {
-            display: block;
-            position: static;
-            top: auto;
-            left: auto;
-            margin-bottom: 3px;
-
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-
-        .title {
-            width: 80%;
-        }
-
-        .subtitle {
-            width: 70%;
-        }
-
-        .description {
-            width: 60%;
         }
     }
 }
