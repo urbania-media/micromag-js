@@ -15,7 +15,7 @@ export default [
             {
                 file: 'es/components.js',
             },
-        ]
+        ],
     },
     {
         ...baseConfig,
@@ -28,7 +28,20 @@ export default [
             {
                 file: 'es/contexts.js',
             },
-        ]
+        ],
+    },
+    {
+        ...baseConfig,
+        input: 'src/hooks.js',
+        output: [
+            {
+                file: 'lib/hooks.js',
+                format: 'cjs',
+            },
+            {
+                file: 'es/hooks.js',
+            },
+        ],
     },
     {
         ...baseConfig,
@@ -41,6 +54,6 @@ export default [
             {
                 file: 'es/utils.js',
             },
-        ]
-    }
+        ],
+    },
 ];

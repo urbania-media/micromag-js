@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -13,6 +12,7 @@ const propTypes = {
     color: MicromagPropTypes.color,
     image: MicromagPropTypes.image,
     className: PropTypes.string,
+    children: PropTypes.node,
 };
 
 const defaultProps = {
@@ -21,16 +21,22 @@ const defaultProps = {
     color: null,
     image: null,
     className: null,
+    children: null,
 };
 
-const Background = ({ width, height, color, image, className }) => {
+const Background = ({ width, height, color, image, className, children }) => {
+    let containerStyle = {};
     let finalStyle = {
         width,
         height,
     };
+
     if (color !== null) {
         finalStyle = {
             ...finalStyle,
+            ...getStyleFromColor(color, 'backgroundColor'),
+        };
+        containerStyle = {
             ...getStyleFromColor(color, 'backgroundColor'),
         };
     }
@@ -48,8 +54,12 @@ const Background = ({ width, height, color, image, className }) => {
                     [className]: className !== null,
                 },
             ])}
-            style={finalStyle}
-        />
+            style={containerStyle}
+        >
+            <div className={styles.inner} style={finalStyle}>
+                {children}
+            </div>
+        </div>
     );
 };
 

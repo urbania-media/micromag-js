@@ -6,4 +6,4 @@ export default {
     title: 'Components/Background',
 };
 
-export const normal = () => <Background width={200} height={200} color="#000" />;
+export const normal = () => <Background width={200} height={200} color="#ccc" />;

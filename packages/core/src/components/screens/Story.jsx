@@ -11,7 +11,7 @@ import { useScreenSizeFromElement } from '../../hooks/useScreenSize';
 import { ScreenSizeProvider } from '../../contexts/ScreenSizeContext';
 import * as AppPropTypes from '../../PropTypes';
 
-import styles from '../../styles/screens/story.scss';
+import styles from '../../styles/screens/story.module.scss';
 
 const propTypes = {
     screen: AppPropTypes.component,
@@ -38,12 +38,11 @@ const ScreenStory = ({ screen, width, height, deviceScreens, className, children
         screens: deviceScreens,
     });
     const isFullScreen = width === null || height === null;
-    const containerStyle = !isFullScreen
-        ? { width: `${width}px`, height: `${height}px` }
-        : { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' };
+    const containerStyle = !isFullScreen ? { width: `${width}px`, height: `${height}px` } : null;
 
     // console.log(
     //     'core/story',
+    //     styles,
     //     isFullScreen,
     //     width,
     //     height,
@@ -69,8 +68,6 @@ const ScreenStory = ({ screen, width, height, deviceScreens, className, children
                     screen={screen}
                     component={children}
                     isPlaceholder
-                    width={screenSize.width}
-                    height={screenSize.height}
                     className={classNames([
                         styles.screen,
                         {

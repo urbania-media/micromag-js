@@ -216,6 +216,19 @@ export const backgroundComponent = PropTypes.shape({
     image,
 });
 
+export const flexDirection = PropTypes.oneOf(['row', 'column']);
+
+export const axisAlign = PropTypes.oneOf(['top', 'center', 'bottom', 'between', 'around', 'even']);
+
+export const crossAlign = PropTypes.oneOf(['top', 'center', 'bottom', 'stretch']);
+
+export const box = PropTypes.shape({
+    direction: flexDirection,
+    axisAlign,
+    crossAlign,
+    spacing: PropTypes.number,
+});
+
 /**
  * Story
  */
@@ -271,3 +284,7 @@ export const adFormats = PropTypes.shape({
     width: PropTypes.number,
     height: PropTypes.number,
 });
+
+export const fieldType = PropTypes.oneOf(['text', 'heading', 'image', 'audio', 'video', 'map']);
+
+export const fieldTypes = PropTypes.arrayOf(fieldType);

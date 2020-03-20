@@ -34,11 +34,30 @@ const Subtitle = props => (
 );
 
 const Image = props => (
-    <Placeholder {...props} className={classNames([props.className, styles.image])} />
+    <Placeholder
+        {...props}
+        className={classNames([props.className, styles.image])}
+        height={2}
+        lines={1}
+    />
 );
-const Video = props => <Placeholder {...props} />;
-const Map = props => <Placeholder {...props} />;
-const Timeline = props => <Placeholder {...props} />;
+
+const Video = props => (
+    <Placeholder
+        {...props}
+        className={classNames([props.className, styles.video])}
+        height={2}
+        lines={1}
+    />
+);
+
+const Map = props => (
+    <Placeholder {...props} className={classNames([props.className, styles.map])} />
+);
+
+const Timeline = props => (
+    <Placeholder {...props} className={classNames([props.className, styles.timeline])} />
+);
 
 export default {
     Text,

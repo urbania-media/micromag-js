@@ -6,7 +6,7 @@ export default {
     title: 'Core/Story',
 };
 
-export const MetaStory = () => (
+export const Default = () => (
     <Story>
         <p>Hello</p>
     </Story>

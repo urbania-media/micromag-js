@@ -7,7 +7,7 @@ import * as AppPropTypes from '../../PropTypes';
 import { ScreenSizeProvider } from '../../contexts/ScreenSizeContext';
 import Screen from './Screen';
 
-import styles from '../../styles/screens/preview.scss';
+import styles from '../../styles/screens/preview.module.scss';
 
 const propTypes = {
     screen: AppPropTypes.component.isRequired,

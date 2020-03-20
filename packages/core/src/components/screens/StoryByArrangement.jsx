@@ -6,21 +6,29 @@ import Story from './Story';
 const placeholderSize = { width: 100, height: 150 };
 const previewSize = { width: 320, height: 480 };
 
-const cardProps = { spacing: 4 };
-
-const getComponentByArrangement = (arrangement, component, props = {}) => {
+const getComponentByArrangement = (arrangement, component, props = {}, layoutProps = {}) => {
     const arrangementProps = arrangement.props || {};
     const Component = component || null;
-    const gridProps = arrangementProps.grid || null;
+    let otherProps = {};
+    if (layoutProps && arrangementProps.grid) {
+        otherProps = {
+            grid: {
+                ...arrangementProps.grid,
+                ...layoutProps,
+            },
+        };
+    }
+    if (layoutProps && arrangementProps.box) {
+        otherProps = {
+            box: {
+                ...arrangementProps.box,
+                ...layoutProps,
+            },
+        };
+    }
+
     return Component !== null ? (
-        <Component
-            {...arrangementProps}
-            {...props}
-            grid={{
-                ...gridProps,
-                ...cardProps,
-            }}
-        />
+        <Component {...arrangementProps} {...props} {...otherProps} />
     ) : null;
 };
 
@@ -35,6 +43,9 @@ const propTypes = {
         isPlaceholder: PropTypes.bool,
         isPreview: PropTypes.bool,
     }),
+    layoutProps: PropTypes.shape({
+        spacing: PropTypes.number,
+    }),
 };
 
 const defaultProps = {
@@ -43,14 +54,14 @@ const defaultProps = {
         isPlaceholder: false,
         isPreview: false,
     },
+    layoutProps: null,
 };
 
-const StoryByArrangement = ({ arrangement, component, itemProps }) => {
+const StoryByArrangement = ({ arrangement, component, itemProps, layoutProps }) => {
     const { isPlaceholder, isPreview } = itemProps;
-    // console.log(arrangement, 'ip', itemProps);
     return (
         <Story {...(isPlaceholder ? placeholderSize : null)} {...(isPreview ? previewSize : null)}>
-            {getComponentByArrangement(arrangement, component, itemProps)}
+            {getComponentByArrangement(arrangement, component, itemProps, layoutProps)}
         </Story>
     );
 };

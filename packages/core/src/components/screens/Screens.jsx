@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import * as AppPropTypes from '../../PropTypes';
 import Screen from './Screen';
 
-import styles from '../../styles/screens/screens.scss';
+import styles from '../../styles/screens/screens.module.scss';
 
 const propTypes = {
     screens: AppPropTypes.components.isRequired,

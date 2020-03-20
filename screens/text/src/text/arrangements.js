@@ -1,40 +1,31 @@
 export default [
     {
-        name: 'Default',
+        name: 'Top',
         props: {
-            grid: {
-                layout: [
-                    {
-                        rows: 1,
-                        columns: [1],
-                    },
-                ],
+            box: {
+                direction: null,
+                axisAlign: 'top',
+                crossAlign: null,
+                spacing: 10,
             },
         },
     },
     {
-        name: 'SplitLeft',
+        name: 'Center',
         props: {
-            grid: {
-                layout: [
-                    {
-                        rows: 1,
-                        columns: [1, 1],
-                    },
-                ],
+            box: {
+                spacing: 10,
             },
         },
     },
     {
-        name: 'SplitRight',
+        name: 'Bottom',
         props: {
-            grid: {
-                layout: [
-                    {
-                        rows: 1,
-                        columns: [1, 1],
-                    },
-                ],
+            box: {
+                direction: null,
+                axisAlign: 'bottom',
+                crossAlign: null,
+                spacing: 10,
             },
         },
     },
