@@ -16,6 +16,7 @@ export default {
 };
 
 const props = {
+    items: [{ text: { body: 'Allo' } }, { text: { body: 'Allo' } }, { text: { body: 'Allo' } }],
     text: { body: `<p>${lorem.paragraphs()}</p>` },
     background: {
         image: {
