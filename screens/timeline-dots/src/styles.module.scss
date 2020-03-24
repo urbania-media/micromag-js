@@ -4,4 +4,14 @@
 
 .container {
     @extend %screen;
+
+    @include match-screen('medium') {
+        .top {
+            display: block;
+        }
+
+        .bottom {
+            padding: 40px 20px;
+        }
+    }
 }

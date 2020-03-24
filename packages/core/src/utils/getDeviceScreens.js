@@ -14,6 +14,10 @@ const deviceScreens = [
         name: 'large',
         mediaQuery: 'only screen and (min-width: 1000px)',
     },
+    {
+        name: 'very-large',
+        mediaQuery: 'only screen and (min-width: 1600px)',
+    },
 ];
 
 // eslint-disable-next-line import/prefer-default-export

@@ -1,6 +1,6 @@
 export { default as Placeholder } from './partials/Placeholder';
 export { default as Placeholders } from './partials/Placeholders';
-export { default as Field } from './partials/Field';
+export { default as Element } from './partials/Element';
 export { default as LinkStyle } from './utils/LinkStyle';
 export { default as Screen } from './screens/Screen';
 export { default as Story } from './screens/Story';

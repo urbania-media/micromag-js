@@ -31,17 +31,18 @@ const defaultProps = {
 
 const TimelineDots = ({ text, background, isPreview, isPlaceholder, className }) => {
     // Gives you the story width / height if necessary
-    const { width, height } = useScreenSize();
+    const { width, height, screen, screens } = useScreenSize();
     // const innerStyle = {
     //     width,
     //     height,
     // };
-    console.log(width, height);
+    console.log(width, height, screen, screens);
 
     return (
         <div
             className={classNames([
                 styles.container,
+                screens.map(screenName => styles[`screen-${screenName}`]),
                 {
                     [styles.isPreview]: isPreview,
                     [styles.isPlaceholder]: isPlaceholder,
