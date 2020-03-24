@@ -16,8 +16,8 @@ const propTypes = {
 };
 
 const defaultProps = {
-    width: null,
-    height: null,
+    width: '100%',
+    height: '100%',
     color: null,
     image: null,
     className: null,

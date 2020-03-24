@@ -8,18 +8,20 @@ import styles from './styles.module.scss';
 const propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
+    withScroll: PropTypes.bool,
     className: PropTypes.string,
     children: PropTypes.node,
 };
 
 const defaultProps = {
-    width: null,
-    height: null,
+    width: '100%',
+    height: '100%',
+    withScroll: false,
     className: null,
     children: null,
 };
 
-const Frame = ({ width, height, className, children }) => {
+const Frame = ({ width, height, withScroll, className, children }) => {
     const finalStyle = {
         width,
         height,
@@ -29,6 +31,7 @@ const Frame = ({ width, height, className, children }) => {
             className={classNames([
                 styles.container,
                 {
+                    [styles.withScroll]: withScroll !== null,
                     [className]: className !== null,
                 },
             ])}

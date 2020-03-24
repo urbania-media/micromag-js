@@ -3,24 +3,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { pascalCase } from 'change-case';
 
-import { Placeholders } from '@micromag/core';
-
-import Text from '@micromag/component-text';
-import Heading from '@micromag/component-heading';
-import Video from '@micromag/component-video';
-import Image from '@micromag/component-image';
+import Placeholders from './Placeholders';
 
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-const components = {
-    Text,
-    Heading,
-    Image,
-    Video,
-};
-
 const propTypes = {
     name: PropTypes.string.isRequired,
+    components: PropTypes.object.isRequired, // eslint-disable-line
     props: PropTypes.object, // eslint-disable-line
     isPlaceholder: PropTypes.bool,
     className: PropTypes.string,
@@ -34,7 +23,14 @@ const defaultProps = {
     placeholderClassName: null,
 };
 
-const FieldComponent = ({ name, props, isPlaceholder, className, placeholderClassName }) => {
+const FieldComponent = ({
+    name,
+    components,
+    props,
+    isPlaceholder,
+    className,
+    placeholderClassName,
+}) => {
     // console.log(name, props, isPlaceholder, className, placeholderClassName);
     if (!name) {
         return 'Bad component name';

@@ -6,34 +6,32 @@ import Story from './Story';
 const placeholderSize = { width: 100, height: 150 };
 const previewSize = { width: 320, height: 480 };
 
-const getComponentByArrangement = (arrangement, component, props = {}, layoutProps = {}) => {
-    const arrangementProps = arrangement.props || {};
+const getComponentByLayout = (layout, component, props = {}, customLayoutProps = {}) => {
+    const layoutProps = layout.props || {};
     const Component = component || null;
     let otherProps = {};
-    if (layoutProps && arrangementProps.grid) {
+    if (customLayoutProps && layoutProps.grid) {
         otherProps = {
             grid: {
-                ...arrangementProps.grid,
-                ...layoutProps,
+                ...layoutProps.grid,
+                ...customLayoutProps,
             },
         };
     }
-    if (layoutProps && arrangementProps.box) {
+    if (customLayoutProps && layoutProps.box) {
         otherProps = {
             box: {
-                ...arrangementProps.box,
-                ...layoutProps,
+                ...layoutProps.box,
+                ...customLayoutProps,
             },
         };
     }
 
-    return Component !== null ? (
-        <Component {...arrangementProps} {...props} {...otherProps} />
-    ) : null;
+    return Component !== null ? <Component {...layoutProps} {...props} {...otherProps} /> : null;
 };
 
 const propTypes = {
-    arrangement: PropTypes.shape({
+    layout: PropTypes.shape({
         name: PropTypes.string,
         props: PropTypes.object,
     }),
@@ -49,7 +47,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    arrangement: {},
+    layout: {},
     itemProps: {
         isPlaceholder: false,
         isPreview: false,
@@ -57,16 +55,16 @@ const defaultProps = {
     layoutProps: null,
 };
 
-const StoryByArrangement = ({ arrangement, component, itemProps, layoutProps }) => {
+const StoryByLayout = ({ layout, component, itemProps, layoutProps }) => {
     const { isPlaceholder, isPreview } = itemProps;
     return (
         <Story {...(isPlaceholder ? placeholderSize : null)} {...(isPreview ? previewSize : null)}>
-            {getComponentByArrangement(arrangement, component, itemProps, layoutProps)}
+            {getComponentByLayout(layout, component, itemProps, layoutProps)}
         </Story>
     );
 };
 
-StoryByArrangement.propTypes = propTypes;
-StoryByArrangement.defaultProps = defaultProps;
+StoryByLayout.propTypes = propTypes;
+StoryByLayout.defaultProps = defaultProps;
 
-export default StoryByArrangement;
+export default StoryByLayout;
