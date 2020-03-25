@@ -1,5 +1,6 @@
 import '../packages/core/src/styles/vendor.scss';
 import '../packages/core/assets/styles.css';
+import '../helpers/storybook/assets/styles.css';
 
 import '../components/background/assets/styles.css';
 import '../components/frame/assets/styles.css';
@@ -38,17 +39,17 @@ addParameters({
                 },
             },
             tabletSmall: {
-                name: 'Medium (iPad)',
+                name: 'Medium (iPad - portrait)',
                 styles: {
                     width: '768px',
                     height: '1024px',
                 },
             },
-            tabletSmall: {
-                name: 'Medium (tablet)',
+            tabletLandscape: {
+                name: 'Medium (iPad - landscape)',
                 styles: {
-                    width: '790px',
-                    height: '460px',
+                    width: '1024px',
+                    height: '768px',
                 },
             },
             desktopSmall: {

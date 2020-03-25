@@ -1,17 +1,16 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { StoryByArrangement } from '@micromag/core';
+import { StoryByLayout } from '@micromag/helper-storybook'; // eslint-disable-line import/no-extraneous-dependencies
 import { lorem } from 'faker'; // eslint-disable-line import/no-extraneous-dependencies
 
-import Text from '../text/Text';
-import { ScreenSize } from './storybook';
+import TextScreen from '../Text';
 import background from './background.jpg';
 
-import arrangements from '../text/arrangements';
+import layouts from '../layouts';
 
-const TopArrangement = arrangements[0];
-const CenterArrangement = arrangements[1];
-const BottomArrangement = arrangements[2];
+const TopArrangement = layouts[0];
+const CenterArrangement = layouts[1];
+const BottomArrangement = layouts[2];
 
 const props = {
     text: { body: `<p>${lorem.paragraphs()}</p>` },
@@ -24,36 +23,62 @@ const props = {
 };
 
 export default {
-    component: Text,
-    title: 'Screens/Text/Text',
-    decorators: [ScreenSize()],
+    component: TextScreen,
+    title: 'Screens/Text',
+    decorators: [],
 };
 
+export const Placeholders = () => (
+    <div style={{ display: 'flex' }}>
+        {layouts.map(layout => (
+            <StoryByLayout
+                key={layout.name}
+                layout={layout}
+                component={TextScreen}
+                storyProps={{ isPlaceholder: true }}
+            />
+        ))}
+    </div>
+);
+
+export const Previews = () => (
+    <div style={{ display: 'flex' }}>
+        {layouts.map(layout => (
+            <StoryByLayout
+                key={layout.name}
+                layout={layout}
+                component={TextScreen}
+                storyProps={{ text: { body: `<p>${lorem.sentences()}</p>` }, isPreview: true }}
+            />
+        ))}
+    </div>
+);
+
 export const Top = () => (
-    <StoryByArrangement
-        arrangement={TopArrangement}
-        component={Text}
-        itemProps={{
+    <StoryByLayout
+        layout={TopArrangement}
+        component={TextScreen}
+        storyProps={{
             ...props,
         }}
     />
 );
 
 export const Center = () => (
-    <StoryByArrangement
-        arrangement={CenterArrangement}
-        component={Text}
-        itemProps={{
+    <StoryByLayout
+        layout={CenterArrangement}
+        component={TextScreen}
+        storyProps={{
             ...props,
         }}
     />
 );
 
 export const Bottom = () => (
-    <StoryByArrangement
-        arrangement={BottomArrangement}
-        component={Text}
-        itemProps={{
+    <StoryByLayout
+        layout={BottomArrangement}
+        component={TextScreen}
+        storyProps={{
             ...props,
         }}
     />

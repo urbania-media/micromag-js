@@ -3,7 +3,7 @@ import Editor from '../Editor';
 
 export default {
     component: Editor,
-    title: 'Editor',
+    title: 'Editor/Editor',
 };
 
 export const normal = () => <Editor />;

@@ -1,3 +1,32 @@
-export { default as Text } from './text/Text';
-export { default as TextImage } from './text-image/TextImage';
-export { default as TextVideo } from './text-video/TextVideo';
+export default [
+    {
+        name: 'Top',
+        props: {
+            box: {
+                direction: null,
+                axisAlign: 'top',
+                crossAlign: null,
+                spacing: 10,
+            },
+        },
+    },
+    {
+        name: 'Center',
+        props: {
+            box: {
+                spacing: 10,
+            },
+        },
+    },
+    {
+        name: 'Bottom',
+        props: {
+            box: {
+                direction: null,
+                axisAlign: 'bottom',
+                crossAlign: null,
+                spacing: 10,
+            },
+        },
+    },
+];
