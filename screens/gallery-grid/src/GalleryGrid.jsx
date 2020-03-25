@@ -20,7 +20,6 @@ const propTypes = {
     }),
     isPlaceholder: PropTypes.bool,
     placeholderLayout: MicromagPropTypes.gridLayout,
-    placeholderSpacing: PropTypes.number,
     className: PropTypes.string,
 };
 
@@ -39,25 +38,18 @@ const defaultProps = {
             columns: [1, 1, 1],
         },
     ],
-    placeholderSpacing: 20,
     className: null,
 };
 
-const GalleryGrid = ({
-    background,
-    images,
-    grid,
-    isPlaceholder,
-    placeholderLayout,
-    placeholderSpacing,
-    className,
-}) => {
+const GalleryGrid = ({ background, images, grid, isPlaceholder, placeholderLayout, className }) => {
     const { width, height } = useScreenSize();
-    // console.log(width, height);
-    const {
-        layout = isPlaceholder ? placeholderLayout : null,
-        spacing = isPlaceholder ? placeholderSpacing : null,
-    } = grid || {};
+    const { layout = isPlaceholder ? placeholderLayout : null } = grid || {};
+    const items = isPlaceholder
+        ? layout
+              .reduce((map, row) => [...map, ...row.columns], [])
+              .map(() => <Placeholders.Image className={styles.placeholder} />)
+        : (images || []).map(it => <Image {...it} className={styles.image} />);
+
     return (
         <div
             className={classNames([
@@ -68,18 +60,7 @@ const GalleryGrid = ({
             ])}
         >
             <div className={styles.images}>
-                <Grid
-                    layout={layout}
-                    spacing={spacing || 0}
-                    items={
-                        isPlaceholder
-                            ? layout
-                                  .reduce((map, row) => [...map, ...row.columns], [])
-                                  .map(() => <Placeholders.Image className={styles.placeholder} />)
-                            : (images || []).map(it => <Image {...it} className={styles.image} />)
-                    }
-                    className={styles.grid}
-                />
+                <Grid layout={layout} items={items} className={styles.grid} />
             </div>
             <Background
                 {...background}
