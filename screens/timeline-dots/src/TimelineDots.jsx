@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Heading from '@micromag/component-heading';
+// import Heading from '@micromag/component-heading';
 import TextComponent from '@micromag/component-text';
 import Background from '@micromag/component-background';
 import Frame from '@micromag/component-frame';
@@ -14,8 +14,6 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     // props from fields
-    heading: MicromagPropTypes.headingComponent,
-    text: MicromagPropTypes.textComponent,
     items: PropTypes.arrayOf(MicromagPropTypes.textComponent),
     background: MicromagPropTypes.backgroundComponent,
     image: MicromagPropTypes.imageComponent,
@@ -26,8 +24,6 @@ const propTypes = {
 
 const defaultProps = {
     // props from fields
-    heading: null,
-    text: null,
     items: null,
     background: null,
     image: null,
@@ -36,23 +32,14 @@ const defaultProps = {
     className: null,
 };
 
-const TimelineDots = ({
-    heading,
-    text,
-    items,
-    background,
-    image,
-    isPreview,
-    isPlaceholder,
-    className,
-}) => {
+const TimelineDots = ({ items, background, isPreview, isPlaceholder, className }) => {
     // Gives you the story width / height if necessary
-    const { width, height, screen, screens } = useScreenSize();
+    const { width, height, screens } = useScreenSize();
     // const innerStyle = {
     //     width,
     //     height,
     // };
-    console.log(width, height, screen, screens);
+    console.log(items, styles);
 
     return (
         <div
@@ -70,28 +57,35 @@ const TimelineDots = ({
                 <Frame width={width} height={height}>
                     <div className={styles.inner}>
                         {items !== null
-                            ? items.map(({ text }) => {
-                                console.log(text)
-                                  isPlaceholder ? (
-                                      <Placeholders.Text className={styles.placeholder} />
+                            ? items.map(({ text: textValue }, index) => {
+                                  return isPlaceholder ? (
+                                      <Placeholders.Text
+                                          key={`item-${index + 1}`}
+                                          className={styles.placeholder}
+                                      />
                                   ) : (
-                                      <TextComponent className={styles.textItem} {...text} />
+                                      <TextComponent
+                                          key={`item-${index + 1}`}
+                                          className={styles.item}
+                                          {...textValue}
+                                      />
                                   );
                               })
                             : null}
-                    </div>
-                    <div className={styles.testText}>
-                        {isPlaceholder ? (
-                            <Placeholders.Text className={styles.placeholder} />
-                        ) : (
-                            <TextComponent className={styles.textItem} {...text} />
-                        )}
                     </div>
                 </Frame>
             </Background>
         </div>
     );
 };
+
+// <div className={styles.inner}>
+//     {isPlaceholder ? (
+//         <Placeholders.Text className={styles.placeholder} />
+//     ) : (
+//         <TextComponent className={styles.item} {...text} />
+//     )}
+// </div>
 
 TimelineDots.propTypes = propTypes;
 TimelineDots.defaultProps = defaultProps;

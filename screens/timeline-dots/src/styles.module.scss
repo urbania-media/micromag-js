@@ -5,6 +5,10 @@
 .container {
     @extend %screen;
 
+    .inner {
+        margin: 20px;
+    }
+
     @include match-screen('medium') {
         .top {
             display: block;
@@ -13,5 +17,9 @@
         .bottom {
             padding: 40px 20px;
         }
+    }
+
+    .item {
+        margin: 10px;
     }
 }

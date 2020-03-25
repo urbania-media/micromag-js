@@ -1,9 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { Story, StoryByLayout } from '@micromag/core';
+import { Story, StoryByLayout } from '@micromag/helper-storybook'; // eslint-disable-line import/no-extraneous-dependencies
 import { withKnobs, boolean } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
 import { lorem } from 'faker'; // eslint-disable-line import/no-extraneous-dependencies
-import { ScreenSize } from './storybook';
 
 import layouts from './layouts';
 
@@ -12,7 +11,7 @@ import TimelineDots from './TimelineDots';
 export default {
     component: TimelineDots,
     title: 'Screens/TimelineDots',
-    decorators: [withKnobs, ScreenSize()],
+    decorators: [withKnobs],
 };
 
 const props = {
@@ -37,7 +36,7 @@ export const Placeholders = () => (
         <StoryByLayout
             layout={firstLayout}
             component={TimelineDots}
-            itemProps={{ isPlaceholder: true, isPreview: false }}
+            storyProps={{ isPlaceholder: true }}
         />
     </div>
 );
