@@ -19,7 +19,7 @@ const propTypes = {
         spacing: PropTypes.number,
     }),
     isPlaceholder: PropTypes.bool,
-    placeholderLayout: MicromagPropTypes.gridLayout,
+    isPreview: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -28,22 +28,13 @@ const defaultProps = {
     images: [],
     grid: null,
     isPlaceholder: false,
-    placeholderLayout: [
-        {
-            rows: 2,
-            columns: [1],
-        },
-        {
-            rows: 1,
-            columns: [1, 1, 1],
-        },
-    ],
+    isPreview: false,
     className: null,
 };
 
-const GalleryGrid = ({ background, images, grid, isPlaceholder, placeholderLayout, className }) => {
+const GalleryGrid = ({ background, images, grid, isPlaceholder, className }) => {
     const { width, height } = useScreenSize();
-    const { layout = isPlaceholder ? placeholderLayout : null } = grid || {};
+    const { layout } = grid;
     const items = isPlaceholder
         ? layout
               .reduce((map, row) => [...map, ...row.columns], [])
@@ -60,7 +51,7 @@ const GalleryGrid = ({ background, images, grid, isPlaceholder, placeholderLayou
             ])}
         >
             <div className={styles.images}>
-                <Grid layout={layout} items={items} className={styles.grid} />
+                <Grid {...grid} items={items} className={styles.grid} />
             </div>
             <Background
                 {...background}

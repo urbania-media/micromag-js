@@ -13,6 +13,7 @@ export default [
                         columns: [1, 1, 1],
                     },
                 ],
+                spacing: 5,
             },
         },
     },
@@ -27,6 +28,7 @@ export default [
                     },
                 ],
             },
+            spacing: 5,
         },
     },
     {
@@ -44,6 +46,7 @@ export default [
                     },
                 ],
             },
+            spacing: 5,
         },
     },
     {
@@ -61,6 +64,7 @@ export default [
                     },
                 ],
             },
+            spacing: 5,
         },
     },
     {
@@ -81,6 +85,7 @@ export default [
                         columns: [1, 1, 1],
                     },
                 ],
+                spacing: 5,
             },
         },
     },
