@@ -4,22 +4,72 @@
 
 .container {
     @extend %screen;
+    margin: 20px 50px;
 
-    .inner {
-        margin: 20px;
+    .title {
+        position: relative;
+        margin: 0 50px;
     }
 
-    @include match-screen('medium') {
-        .top {
-            display: block;
-        }
+    .timelineContainer {
+        position: relative;
+        margin: 0 50px;
 
-        .bottom {
-            padding: 40px 20px;
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            border-left: 5px dashed #000;
         }
     }
 
-    .item {
-        margin: 10px;
+    .timelineBlock {
+        display: flex;
+        position: relative;
+    }
+
+    .dot {
+        position: absolute;
+        top: 0;
+        left: calc(5px / 2 - 30px / 2);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #000;
+    }
+
+    .mainContent {
+        flex-grow: 1;
+        margin-left: 20px;
+    }
+
+    &.withImage {
+        .dot {
+            display: none;
+            visibility: hidden;
+        }
+
+        .timelineContainer {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+
+            .image {
+            }
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                height: 100%;
+                transform: translate(-50%, -50%);
+                border-left: 5px dashed #000;
+            }
+        }
     }
 }
