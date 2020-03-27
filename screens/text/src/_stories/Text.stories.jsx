@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { StoryByLayout } from '@micromag/helper-storybook'; // eslint-disable-line import/no-extraneous-dependencies
-import { lorem } from 'faker'; // eslint-disable-line import/no-extraneous-dependencies
+import { StoryByLayout, StoryData } from '@micromag/helper-storybook'; // eslint-disable-line import/no-extraneous-dependencies
 
 import TextScreen from '../Text';
 import background from './background.jpg';
@@ -13,7 +12,7 @@ const CenterArrangement = layouts[1];
 const BottomArrangement = layouts[2];
 
 const props = {
-    text: { body: `<p>${lorem.paragraphs()}</p>` },
+    text: { body: `<p>${StoryData.description()}</p>` },
     background: {
         image: {
             url: background,
@@ -21,6 +20,8 @@ const props = {
         color: '#ddd',
     },
 };
+
+console.log(props, StoryData.description());
 
 export default {
     component: TextScreen,
@@ -48,7 +49,10 @@ export const Previews = () => (
                 key={layout.name}
                 layout={layout}
                 component={TextScreen}
-                storyProps={{ text: { body: `<p>${lorem.sentences()}</p>` }, isPreview: true }}
+                storyProps={{
+                    text: { body: `<p>${StoryData.description()}</p>` },
+                    isPreview: true,
+                }}
             />
         ))}
     </div>

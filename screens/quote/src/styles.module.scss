@@ -1,0 +1,114 @@
+@import '~@micromag/core/src/styles/placeholders';
+@import '~@micromag/core/src/styles/variables';
+@import '~@micromag/core/src/styles/mixins';
+
+.container {
+    @extend %fullscreen;
+    color: $color-disabled;
+
+    .grid,
+    .box {
+        width: 100%;
+        height: 100%;
+    }
+
+    .figure {
+        margin: 0;
+    }
+
+    .quote {
+        display: inline;
+    }
+
+    .source {
+        //
+    }
+
+    .caption {
+        display: inline-block;
+    }
+
+    .blockquote {
+        quotes: '«' '»' '\2018''\2019';
+        margin: 0;
+
+        &::before {
+            content: open-quote;
+            display: inline;
+            padding: 0 5px;
+        }
+
+        &::after {
+            content: close-quote;
+            display: inline;
+            padding: 0 5px;
+        }
+    }
+
+    .placeholder {
+        width: 100%;
+    }
+
+    .placeholderContainer {
+        quotes: '«' '»' '\2018''\2019';
+        display: inline-block;
+        position: relative;
+
+        width: 60%;
+        margin: 0;
+        padding: 0 15%;
+
+        &::before {
+            content: open-quote;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        &::after {
+            content: close-quote;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    }
+
+    .placeholderInner {
+        margin: 0 auto;
+    }
+
+    .background {
+        @extend %fullscreen;
+        z-index: 1;
+    }
+
+    &.center {
+        text-align: center;
+
+        .placeholder {
+            @extend %placeholder-center;
+        }
+    }
+
+    &.left {
+        text-align: left;
+
+        .placeholder {
+            @extend %placeholder-left;
+        }
+    }
+
+    &.right {
+        text-align: right;
+
+        .placeholder {
+            @extend %placeholder-right;
+        }
+    }
+}
+
+@include match-story-screen('medium') {
+    .middle {
+        max-width: 30rem;
+    }
+}

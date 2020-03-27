@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { StoryByLayout } from '@micromag/helper-storybook'; // eslint-disable-line import/no-extraneous-dependencies
-import { lorem } from 'faker'; // eslint-disable-line import/no-extraneous-dependencies
+import { StoryByLayout, StoryData } from '@micromag/helper-storybook'; // eslint-disable-line import/no-extraneous-dependencies
 
 import TextVideo from '../TextVideo';
 
@@ -12,7 +11,7 @@ const CenterArrangement = layouts[1];
 const BottomArrangement = layouts[2];
 
 const props = {
-    text: { body: `<p>${lorem.paragraphs()}</p>` },
+    text: { body: `<p>${StoryData.description()}</p>` },
     background: {
         color: '#eee',
     },

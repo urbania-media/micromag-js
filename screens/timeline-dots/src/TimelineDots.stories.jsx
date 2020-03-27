@@ -1,8 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { Story, StoryByLayout } from '@micromag/helper-storybook'; // eslint-disable-line import/no-extraneous-dependencies
+import { Story, StoryByLayout, StoryData } from '@micromag/helper-storybook'; // eslint-disable-line import/no-extraneous-dependencies
 import { withKnobs, boolean } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
-import { lorem } from 'faker'; // eslint-disable-line import/no-extraneous-dependencies
 
 import layouts from './layouts';
 
@@ -17,10 +16,10 @@ export default {
 const props = {
     items: [
         { text: { body: 'Allo' } },
-        { text: { body: `<p>${lorem.paragraphs()}</p>` } },
+        { text: { body: `<p>Plusieurs paragraphes</p>` } },
         { text: { body: 'Allo' } },
     ],
-    text: { body: `<p>${lorem.paragraphs()}</p>` },
+    text: { body: `<p>${StoryData.description()}</p>` },
     background: {
         image: {
             url: 'https://picsum.photos/400/600',

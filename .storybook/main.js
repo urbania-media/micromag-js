@@ -9,7 +9,7 @@ module.exports = {
         '@storybook/addon-viewport/register',
         '@storybook/addon-knobs/register',
         '@storybook/addon-docs',
-        '@storybook/addon-a11y/register',
+        // '@storybook/addon-a11y/register',
         '@storybook/addon-actions',
     ],
 };

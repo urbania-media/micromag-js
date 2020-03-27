@@ -33,6 +33,15 @@ const Subtitle = props => (
     />
 );
 
+const Quote = props => (
+    <Placeholder
+        {...props}
+        className={classNames([props.className, styles.subtitle])}
+        height={0.5}
+        lines={1}
+    />
+);
+
 const Image = props => (
     <Placeholder
         {...props}
@@ -64,6 +73,7 @@ export default {
     Description: Text,
     Title,
     Subtitle,
+    Quote,
     Image,
     Video,
     Map,

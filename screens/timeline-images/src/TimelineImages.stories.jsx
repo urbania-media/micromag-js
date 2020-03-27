@@ -1,5 +1,5 @@
 import React from 'react';
-import { Story, StoryByLayout } from '@micromag/core';
+import { Story, StoryByLayout } from '@micromag/helper-storybook'; // eslint-disable-line import/no-extraneous-dependencies
 import { withKnobs, boolean } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
 import TimelineImages from './TimelineImages';
 import { ScreenSize } from './storybook';

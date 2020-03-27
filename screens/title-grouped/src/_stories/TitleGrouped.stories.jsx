@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { withKnobs, boolean, select } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
-import { StoryByLayout } from '@micromag/helper-storybook'; // eslint-disable-line import/no-extraneous-dependencies
+import { Stories, StoryByLayout, StoryData } from '@micromag/helper-storybook'; // eslint-disable-line import/no-extraneous-dependencies
 
 import Title from '../TitleGrouped';
 
@@ -17,16 +17,16 @@ const TopDescriptionBottomSubtitleArrangement = layouts[6];
 const TopDescriptionBottomSubtitleReverseArrangement = layouts[7];
 
 const props = {
-    title: { body: 'Un titre' },
-    subtitle: { body: 'Un sous-titre' },
-    description: { body: 'Une courte description' },
+    title: { body: StoryData.title() },
+    subtitle: { body: StoryData.subtitle() },
+    description: { body: StoryData.description() },
 };
 
 const options = {
-    Centre: 'center',
-    Gauche: 'left',
-    Droite: 'right',
-    Aucun: null,
+    Center: 'center',
+    Left: 'left',
+    Right: 'right',
+    None: null,
 };
 
 export default {
@@ -36,32 +36,54 @@ export default {
 };
 
 export const Placeholders = () => (
-    <div style={{ display: 'flex', flexDirection: 'row' }}>
-        {layouts.map(layout => (
-            <StoryByLayout
-                key={layout.name}
-                layout={layout}
-                component={Title}
-                storyProps={{ ...props, isPlaceholder: true }}
-            />
-        ))}
-    </div>
+    <>
+        <Stories
+            layouts={layouts}
+            component={Title}
+            storyProps={{ ...props, isPlaceholder: true }}
+        />
+        <Stories
+            layouts={layouts}
+            component={Title}
+            storyProps={{ ...props, isPlaceholder: true, textAlign: 'left' }}
+        />
+        <Stories
+            layouts={layouts}
+            component={Title}
+            storyProps={{ ...props, isPlaceholder: true, textAlign: 'right' }}
+        />
+    </>
 );
 
 export const Previews = () => (
-    <div style={{ display: 'flex', flexDirection: 'row' }}>
-        {layouts.map(layout => (
-            <StoryByLayout
-                key={layout.name}
-                layout={layout}
-                component={Title}
-                storyProps={{
-                    ...props,
-                    isPreview: true,
-                }}
-            />
-        ))}
-    </div>
+    <>
+        <Stories
+            layouts={layouts}
+            component={Title}
+            storyProps={{
+                ...props,
+                isPreview: true,
+            }}
+        />
+        <Stories
+            layouts={layouts}
+            component={Title}
+            storyProps={{
+                ...props,
+                isPreview: true,
+                textAlign: 'left',
+            }}
+        />
+        <Stories
+            layouts={layouts}
+            component={Title}
+            storyProps={{
+                ...props,
+                isPreview: true,
+                textAlign: 'right',
+            }}
+        />
+    </>
 );
 
 export const TopTitle = () => (
