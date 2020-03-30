@@ -1,20 +1,32 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { withKnobs, boolean, select } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
-import { Stories, StoryByLayout, StoryData } from '@micromag/helper-storybook'; // eslint-disable-line import/no-extraneous-dependencies
+import { withScreenSize } from '../../../../.storybook/decorators';
+import { quote, author, source } from '../../../../.storybook/data';
 
-import Quote from '../Quote';
-
-import layouts from '../layouts';
-
-const TopLayout = layouts[0];
-const CenterLayout = layouts[1];
-const BottomLayout = layouts[2];
+import Quote from '../index';
+import {
+    QuoteTop,
+    QuoteCenter,
+    QuoteBottom,
+    QuoteTopCentered,
+    QuoteBottomCentered,
+    QuoteSplit,
+} from '../components';
 
 const props = {
-    quote: { body: StoryData.quote() },
-    author: { body: StoryData.author() },
-    source: { body: StoryData.source() },
+    quote: { body: quote() },
+    author: { body: author() },
+    source: { body: source() },
+};
+
+const types = {
+    QuoteTop: 'QuoteTop',
+    QuoteCenter: 'QuoteCenter',
+    QuoteBottom: 'QuoteBottom',
+    QuoteTopCentered: 'QuoteTopCentered',
+    QuoteBottomCentered: 'QuoteBottomCentered',
+    QuoteSplit: 'QuoteSplit',
 };
 
 const options = {
@@ -25,94 +37,57 @@ const options = {
 };
 
 export default {
-    component: Quote,
+    component: QuoteTop,
     title: 'Screens/Quote',
-    decorators: [withKnobs],
+    decorators: [withKnobs, withScreenSize()],
 };
 
-export const Placeholders = () => (
-    <>
-        <Stories
-            layouts={layouts}
-            component={Quote}
-            storyProps={{ ...props, isPlaceholder: true }}
-        />
-        <Stories
-            layouts={layouts}
-            component={Quote}
-            storyProps={{ ...props, isPlaceholder: true, textAlign: 'left' }}
-        />
-        <Stories
-            layouts={layouts}
-            component={Quote}
-            storyProps={{ ...props, isPlaceholder: true, textAlign: 'right' }}
-        />
-    </>
-);
-
-export const Previews = () => (
-    <>
-        <Stories
-            layouts={layouts}
-            component={Quote}
-            storyProps={{
-                ...props,
-                isPreview: true,
-            }}
-        />
-        <Stories
-            layouts={layouts}
-            component={Quote}
-            storyProps={{
-                ...props,
-                isPreview: true,
-                textAlign: 'left',
-            }}
-        />
-        <Stories
-            layouts={layouts}
-            component={Quote}
-            storyProps={{
-                ...props,
-                isPreview: true,
-                textAlign: 'right',
-            }}
-        />
-    </>
-);
+export const Layouts = () => <Quote layout={select('layout', types, 'QuoteTop')} {...props} />;
 
 export const Top = () => (
-    <StoryByLayout
-        layout={TopLayout}
-        component={Quote}
-        storyProps={{
-            ...props,
-            isPlaceholder: boolean('isPlaceholder', false),
-            textAlign: select('textAlign', options, 'center'),
-        }}
+    <QuoteTop
+        {...props}
+        isPreview={boolean('isPreview', false)}
+        textAlign={select('textAlign', options, 'center')}
     />
 );
 
 export const Center = () => (
-    <StoryByLayout
-        layout={CenterLayout}
-        component={Quote}
-        storyProps={{
-            ...props,
-            isPlaceholder: boolean('isPlaceholder', false),
-            textAlign: select('textAlign', options, 'center'),
-        }}
+    <QuoteCenter
+        {...props}
+        isPreview={boolean('isPreview', false)}
+        textAlign={select('textAlign', options, 'center')}
     />
 );
 
 export const Bottom = () => (
-    <StoryByLayout
-        layout={BottomLayout}
-        component={Quote}
-        storyProps={{
-            ...props,
-            isPlaceholder: boolean('isPlaceholder', false),
-            textAlign: select('textAlign', options, 'center'),
-        }}
+    <QuoteBottom
+        {...props}
+        isPreview={boolean('isPreview', false)}
+        textAlign={select('textAlign', options, 'center')}
+    />
+);
+
+export const TopCentered = () => (
+    <QuoteTopCentered
+        {...props}
+        isPreview={boolean('isPreview', false)}
+        textAlign={select('textAlign', options, 'center')}
+    />
+);
+
+export const BottomCentered = () => (
+    <QuoteBottomCentered
+        {...props}
+        isPreview={boolean('isPreview', false)}
+        textAlign={select('textAlign', options, 'center')}
+    />
+);
+
+export const Split = () => (
+    <QuoteSplit
+        {...props}
+        isPreview={boolean('isPreview', false)}
+        textAlign={select('textAlign', options, 'center')}
     />
 );

@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Top"
+    },
+    {
+        "name": "Center"
+    },
+    {
+        "name": "Bottom"
+    },
+    {
+        "name": "TopCentered"
+    },
+    {
+        "name": "BottomCentered"
+    }
+]
