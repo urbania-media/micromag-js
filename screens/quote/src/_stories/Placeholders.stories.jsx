@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { withPlaceholderSize } from '../../../../.storybook/decorators';
 
@@ -8,6 +7,7 @@ import {
     QuoteBottom,
     QuoteTopCentered,
     QuoteBottomCentered,
+    QuoteSplit,
 } from '../components';
 
 export default {
@@ -25,3 +25,5 @@ export const PlaceholderBottom = () => <QuoteBottom isPlaceholder />;
 export const PlaceholderTopCentered = () => <QuoteTopCentered isPlaceholder />;
 
 export const PlaceholderBottomCentered = () => <QuoteBottomCentered isPlaceholder />;
+
+export const PlaceholderSplit = () => <QuoteSplit isPlaceholder />;

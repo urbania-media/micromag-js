@@ -1,89 +1,60 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { StoryByLayout, StoryData } from '@micromag/helper-storybook'; // eslint-disable-line import/no-extraneous-dependencies
+import { withKnobs, boolean, select } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
+import { withScreenSize } from '../../../../.storybook/decorators';
+import { paragraph } from '../../../../.storybook/data';
 
-import TextScreen from '../Text';
-import background from './background.jpg';
+import TextComponent from '../index';
 
-import layouts from '../layouts';
-
-const TopArrangement = layouts[0];
-const CenterArrangement = layouts[1];
-const BottomArrangement = layouts[2];
+import { TextTop, TextCenter, TextBottom } from '../components';
 
 const props = {
-    text: { body: `<p>${StoryData.description()}</p>` },
-    background: {
-        image: {
-            url: background,
-        },
-        color: '#ddd',
-    },
+    text: { body: paragraph() },
 };
 
-console.log(props, StoryData.description());
+const types = {
+    TextTop: 'TextTop',
+    TextCenter: 'TextCenter',
+    TextBottom: 'TextBottom',
+};
+
+const options = {
+    Center: 'center',
+    Left: 'left',
+    Right: 'right',
+    None: null,
+};
 
 export default {
-    component: TextScreen,
+    component: TextTop,
     title: 'Screens/Text',
-    decorators: [],
+    decorators: [withKnobs, withScreenSize()],
 };
 
-export const Placeholders = () => (
-    <div style={{ display: 'flex' }}>
-        {layouts.map(layout => (
-            <StoryByLayout
-                key={layout.name}
-                layout={layout}
-                component={TextScreen}
-                storyProps={{ isPlaceholder: true }}
-            />
-        ))}
-    </div>
-);
-
-export const Previews = () => (
-    <div style={{ display: 'flex' }}>
-        {layouts.map(layout => (
-            <StoryByLayout
-                key={layout.name}
-                layout={layout}
-                component={TextScreen}
-                storyProps={{
-                    text: { body: `<p>${StoryData.description()}</p>` },
-                    isPreview: true,
-                }}
-            />
-        ))}
-    </div>
+export const Layouts = () => (
+    <TextComponent layout={select('layout', types, 'TextTop')} {...props} />
 );
 
 export const Top = () => (
-    <StoryByLayout
-        layout={TopArrangement}
-        component={TextScreen}
-        storyProps={{
-            ...props,
-        }}
+    <TextTop
+        {...props}
+        isPreview={boolean('isPreview', false)}
+        textAlign={select('textAlign', options, 'center')}
     />
 );
 
 export const Center = () => (
-    <StoryByLayout
-        layout={CenterArrangement}
-        component={TextScreen}
-        storyProps={{
-            ...props,
-        }}
+    <TextCenter
+        {...props}
+        isPreview={boolean('isPreview', false)}
+        textAlign={select('textAlign', options, 'center')}
     />
 );
 
 export const Bottom = () => (
-    <StoryByLayout
-        layout={BottomArrangement}
-        component={TextScreen}
-        storyProps={{
-            ...props,
-        }}
+    <TextBottom
+        {...props}
+        isPreview={boolean('isPreview', false)}
+        textAlign={select('textAlign', options, 'center')}
     />
 );

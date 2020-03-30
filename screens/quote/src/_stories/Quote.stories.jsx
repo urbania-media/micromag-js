@@ -11,6 +11,7 @@ import {
     QuoteBottom,
     QuoteTopCentered,
     QuoteBottomCentered,
+    QuoteSplit,
 } from '../components';
 
 const props = {
@@ -23,6 +24,9 @@ const types = {
     QuoteTop: 'QuoteTop',
     QuoteCenter: 'QuoteCenter',
     QuoteBottom: 'QuoteBottom',
+    QuoteTopCentered: 'QuoteTopCentered',
+    QuoteBottomCentered: 'QuoteBottomCentered',
+    QuoteSplit: 'QuoteSplit',
 };
 
 const options = {
@@ -74,6 +78,14 @@ export const TopCentered = () => (
 
 export const BottomCentered = () => (
     <QuoteBottomCentered
+        {...props}
+        isPreview={boolean('isPreview', false)}
+        textAlign={select('textAlign', options, 'center')}
+    />
+);
+
+export const Split = () => (
+    <QuoteSplit
         {...props}
         isPreview={boolean('isPreview', false)}
         textAlign={select('textAlign', options, 'center')}
