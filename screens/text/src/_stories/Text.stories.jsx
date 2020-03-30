@@ -21,8 +21,6 @@ const props = {
     },
 };
 
-console.log(props, StoryData.description());
-
 export default {
     component: TextScreen,
     title: 'Screens/Text',

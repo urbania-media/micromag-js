@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import TextComponent from '@micromag/component-text';
-import Image from '@micromag/component-image';
-import Heading from '@micromag/component-heading';
 import Background from '@micromag/component-background';
 import Frame from '@micromag/component-frame';
+import Image from '@micromag/component-image';
+import Heading from '@micromag/component-heading';
 import { Placeholders, PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 
@@ -34,16 +34,11 @@ const defaultProps = {
     className: null,
 };
 
-const TimelineDots = ({ title, items, background, isPreview, isPlaceholder, className }) => {
+const TimelineCentered = ({ items, background, isPreview, isPlaceholder, className }) => {
+    // Gives you the story width / height if necessary
     const { width, height } = useScreenSize();
 
-    const titleValue = title !== null ? title.text : null;
-
-    const titleType = isPlaceholder ? (
-        <Placeholders.Text className={styles.placeholder} />
-    ) : (
-        <TextComponent {...titleValue} />
-    );
+    console.log(items)
 
     return (
         <div
@@ -60,13 +55,11 @@ const TimelineDots = ({ title, items, background, isPreview, isPlaceholder, clas
             <Background {...background} width={width} height={height}>
                 <Frame withScroll width={width} height={height}>
                     <div className={styles.inner}>
-                        <div className={styles.title}>{titleType}</div>
                         <div className={styles.timelineContainer}>
                             {items !== null
                                 ? items.map(({ text, image, heading }, index) => {
                                       return isPlaceholder ? (
                                           <div className={styles.timelineBlock}>
-                                              <div className={styles.dot} />
                                               <div className={styles.mainContent}>
                                                   {heading !== null ? (
                                                       <Placeholders.Heading
@@ -81,14 +74,13 @@ const TimelineDots = ({ title, items, background, isPreview, isPlaceholder, clas
                                                       />
                                                   ) : null}
                                                   <Placeholders.Text
-                                                      key={`item-${index + 1}`}
+                                                      key={`item-body-${index + 1}`}
                                                       className={styles.placeholder}
                                                   />
                                               </div>
                                           </div>
                                       ) : (
                                           <div className={styles.timelineBlock}>
-                                              <div className={styles.dot} />
                                               <div className={styles.mainContent}>
                                                   {heading !== null ? (
                                                       <Heading
@@ -98,14 +90,16 @@ const TimelineDots = ({ title, items, background, isPreview, isPlaceholder, clas
                                                       />
                                                   ) : null}
                                                   {image !== null ? (
-                                                      <Image
-                                                          key={`item-image-${index + 1}`}
-                                                          className={styles.image}
-                                                          {...image}
-                                                      />
+                                                      <div className={styles.imageContainer}>
+                                                          <Image
+                                                              key={`item-image-${index + 1}`}
+                                                              className={styles.image}
+                                                              {...image}
+                                                          />
+                                                      </div>
                                                   ) : null}
                                                   <TextComponent
-                                                      key={`item-${index + 1}`}
+                                                      key={`item-body-${index + 1}`}
                                                       className={styles.item}
                                                       {...text}
                                                   />
@@ -122,7 +116,7 @@ const TimelineDots = ({ title, items, background, isPreview, isPlaceholder, clas
     );
 };
 
-TimelineDots.propTypes = propTypes;
-TimelineDots.defaultProps = defaultProps;
+TimelineCentered.propTypes = propTypes;
+TimelineCentered.defaultProps = defaultProps;
 
-export default TimelineDots;
+export default TimelineCentered;

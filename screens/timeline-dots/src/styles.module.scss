@@ -4,16 +4,20 @@
 
 .container {
     @extend %screen;
-    margin: 20px 50px;
+
+    .inner {
+        width: 100%;
+        padding: 20px 15px;
+    }
 
     .title {
         position: relative;
-        margin: 0 50px;
+        width: 100%;
     }
 
     .timelineContainer {
         position: relative;
-        margin: 0 50px;
+        margin: 20px 0;
 
         &::before {
             content: '';
@@ -21,21 +25,26 @@
             top: 0;
             left: 0;
             height: 100%;
-            border-left: 5px dashed #000;
+            border-left: 3px dashed #000;
         }
     }
 
     .timelineBlock {
         display: flex;
         position: relative;
+        margin-bottom: 30px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
 
     .dot {
         position: absolute;
         top: 0;
-        left: calc(5px / 2 - 30px / 2);
-        width: 30px;
-        height: 30px;
+        left: calc(3px / 2 - 10px / 2);
+        width: 10px;
+        height: 10px;
         border-radius: 50%;
         background: #000;
     }
@@ -45,31 +54,7 @@
         margin-left: 20px;
     }
 
-    &.withImage {
-        .dot {
-            display: none;
-            visibility: hidden;
-        }
-
-        .timelineContainer {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-
-            .image {
-            }
-
-            &::before {
-                content: '';
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                height: 100%;
-                transform: translate(-50%, -50%);
-                border-left: 5px dashed #000;
-            }
-        }
+    .placeholder {
+        width: 100%;
     }
 }
