@@ -38,8 +38,6 @@ const TimelineCentered = ({ items, background, isPreview, isPlaceholder, classNa
     // Gives you the story width / height if necessary
     const { width, height } = useScreenSize();
 
-    console.log(items)
-
     return (
         <div
             className={classNames([
