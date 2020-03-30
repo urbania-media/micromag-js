@@ -51,5 +51,8 @@
         "stylelint-config-recommended": "^3.0.0",
         "stylelint-config-sass-guidelines": "^7.0.0",
         "stylelint-scss": "^3.14.2"
+    },
+    "dependencies": {
+        "chance": "^1.1.4"
     }
 }
