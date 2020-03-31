@@ -6,16 +6,16 @@ import { paragraph } from '../../../../.storybook/data';
 
 import TextComponent from '../index';
 
-import { TextTop, TextCenter, TextBottom } from '../components';
+import { Top, Center, Bottom } from '../components';
 
 const props = {
     text: { body: paragraph() },
 };
 
 const types = {
-    TextTop: 'TextTop',
-    TextCenter: 'TextCenter',
-    TextBottom: 'TextBottom',
+    Top: 'Top',
+    Center: 'Center',
+    Bottom: 'Bottom',
 };
 
 const options = {
@@ -26,33 +26,31 @@ const options = {
 };
 
 export default {
-    component: TextTop,
+    component: Top,
     title: 'Screens/Text',
     decorators: [withKnobs, withScreenSize()],
 };
 
-export const Layouts = () => (
-    <TextComponent layout={select('layout', types, 'TextTop')} {...props} />
-);
+export const Layouts = () => <TextComponent layout={select('layout', types, 'Top')} {...props} />;
 
-export const Top = () => (
-    <TextTop
+export const TextTop = () => (
+    <Top
         {...props}
         isPreview={boolean('isPreview', false)}
         textAlign={select('textAlign', options, 'center')}
     />
 );
 
-export const Center = () => (
-    <TextCenter
+export const TextCenter = () => (
+    <Center
         {...props}
         isPreview={boolean('isPreview', false)}
         textAlign={select('textAlign', options, 'center')}
     />
 );
 
-export const Bottom = () => (
-    <TextBottom
+export const TextBottom = () => (
+    <Bottom
         {...props}
         isPreview={boolean('isPreview', false)}
         textAlign={select('textAlign', options, 'center')}

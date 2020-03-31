@@ -27,8 +27,7 @@ const propTypes = {
     }),
     textAlign: PropTypes.oneOf(['left', 'right', 'center']),
     position: PropTypes.number,
-    isPlaceholder: PropTypes.bool,
-    isPreview: PropTypes.bool,
+    renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
 
@@ -41,8 +40,7 @@ const defaultProps = {
     box: null,
     textAlign: 'center',
     position: 1,
-    isPlaceholder: false,
-    isPreview: false,
+    renderFormat: 'view',
     className: null,
 };
 
@@ -55,57 +53,55 @@ const QuoteComponent = ({
     box,
     textAlign,
     position,
-    isPlaceholder,
-    isPreview,
+    renderFormat,
     className,
 }) => {
     const { width, height } = useScreenSize();
     const { layout = [] } = grid || {};
 
-    // console.log('size', width, height);
-
-    const item = isPlaceholder ? (
-        <blockquote
-            className={classNames([
-                styles.placeholderContainer,
-                {
-                    [styles.centered]: grid !== null,
-                },
-            ])}
-        >
-            <div className={styles.placeholderInner}>
-                <Placeholders.Text className={styles.placeholder} />
-            </div>
-        </blockquote>
-    ) : (
-        <figure
-            className={classNames([
-                styles.figure,
-                {
-                    [styles.centered]: grid !== null,
-                },
-            ])}
-        >
-            <blockquote className={styles.blockquote}>
-                <Text {...quote} className={styles.quote} />
+    const item =
+        renderFormat === 'placeholder' ? (
+            <blockquote
+                className={classNames([
+                    styles.placeholderContainer,
+                    {
+                        [styles.centered]: grid !== null,
+                    },
+                ])}
+            >
+                <div className={styles.placeholderInner}>
+                    <Placeholders.Text className={styles.placeholder} />
+                </div>
             </blockquote>
-            {author || source ? (
-                <figcaption className={styles.caption}>
-                    {author ? (
-                        <>
-                            <span>&mdash;</span>
-                            <Text {...author} className={styles.author} />
-                        </>
-                    ) : null}{' '}
-                    {source ? (
-                        <cite>
-                            <Text {...source} className={styles.source} />
-                        </cite>
-                    ) : null}
-                </figcaption>
-            ) : null}
-        </figure>
-    );
+        ) : (
+            <figure
+                className={classNames([
+                    styles.figure,
+                    {
+                        [styles.centered]: grid !== null,
+                    },
+                ])}
+            >
+                <blockquote className={styles.blockquote}>
+                    <Text {...quote} className={styles.quote} />
+                </blockquote>
+                {author || source ? (
+                    <figcaption className={styles.caption}>
+                        {author ? (
+                            <>
+                                <span>&mdash;</span>
+                                <Text {...author} className={styles.author} />
+                            </>
+                        ) : null}{' '}
+                        {source ? (
+                            <cite>
+                                <Text {...source} className={styles.source} />
+                            </cite>
+                        ) : null}
+                    </figcaption>
+                ) : null}
+            </figure>
+        );
 
     const itemsArray = Array(layout.length || 1);
     const index = Math.min(position - 1, layout.length - 1);
@@ -118,8 +114,8 @@ const QuoteComponent = ({
             className={classNames([
                 styles.container,
                 {
-                    [styles.isPlaceholder]: isPlaceholder,
-                    [styles.isPreview]: isPreview,
+                    [styles.isPlaceholder]: renderFormat === 'placeholder',
+                    [styles.isPreview]: renderFormat === 'preview',
                     [styles.isGrid]: grid !== null,
                     [styles[textAlign]]: textAlign !== null,
                     [className]: className,

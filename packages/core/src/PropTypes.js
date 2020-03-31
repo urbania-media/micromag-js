@@ -288,3 +288,5 @@ export const adFormats = PropTypes.shape({
 export const fieldType = PropTypes.oneOf(['text', 'heading', 'image', 'audio', 'video', 'map']);
 
 export const fieldTypes = PropTypes.arrayOf(fieldType);
+
+export const renderFormat = PropTypes.oneOf(['view', 'placeholder', 'edit', 'preview']);

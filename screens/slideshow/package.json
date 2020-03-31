@@ -38,7 +38,6 @@
         "prepare": "npm run clean && npm run build"
     },
     "devDependencies": {
-        "@micromag/helper-storybook": "^0.1.0",
         "react": ">=15.0.0 || ^16.0.0",
         "react-dom": ">=15.0.0 || ^16.0.0"
     },
@@ -52,7 +51,6 @@
         "@micromag/component-grid": "^0.1.0",
         "@micromag/component-image": "^0.1.0",
         "@micromag/core": "^0.1.0",
-        "@micromag/helper-storybook": "^0.1.0",
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",
         "prop-types": "^15.7.2",

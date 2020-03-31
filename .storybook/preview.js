@@ -1,6 +1,5 @@
 import '../packages/core/src/styles/vendor.scss';
 import '../packages/core/assets/styles.css';
-import '../helpers/storybook/assets/styles.css';
 
 import '../components/background/assets/styles.css';
 import '../components/frame/assets/styles.css';

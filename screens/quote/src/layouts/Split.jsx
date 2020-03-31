@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import QuoteComponent from './QuoteComponent';
+import QuoteSplitComponent from '../QuoteSplitComponent';
 
 const propTypes = {
     box: PropTypes.shape({
@@ -18,11 +18,11 @@ const defaultProps = {
     },
 };
 
-const QuoteCenter = ({ box, ...otherProps }) => {
-    return <QuoteComponent box={box} {...otherProps} />;
+const QuoteSplit = ({ box, ...otherProps }) => {
+    return <QuoteSplitComponent box={box} {...otherProps} />;
 };
 
-QuoteCenter.propTypes = propTypes;
-QuoteCenter.defaultProps = defaultProps;
+QuoteSplit.propTypes = propTypes;
+QuoteSplit.defaultProps = defaultProps;
 
-export default QuoteCenter;
+export default QuoteSplit;

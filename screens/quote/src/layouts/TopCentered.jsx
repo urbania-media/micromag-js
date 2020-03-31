@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import QuoteComponent from './QuoteComponent';
+import QuoteComponent from '../QuoteComponent';
 
 const propTypes = {
     grid: PropTypes.shape({

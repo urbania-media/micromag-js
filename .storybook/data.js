@@ -37,6 +37,25 @@ export const description = ({ likelyhood = 100, min = 1, max = 3 } = {}) =>
 export const paragraph = ({ likelyhood = 100, min = 3, max = 6 } = {}) =>
     sentences(likelyhood, min, max);
 
+export const image = ({ likelyhood = 100, width = 800, height = 800 } = {}) => ({
+    url: `https://picsum.photos/${width}/${height}`,
+    width,
+    height,
+});
+
+export const video = () => ({
+    url: 'https://www.youtube.com/watch?v=AfeAhCWaMD0',
+    width: 640,
+    height: 480,
+});
+
+export const renderFormats = {
+    View: 'view',
+    Preview: 'preview',
+    Placeholder: 'placeholder',
+    Edit: 'edit',
+};
+
 export default {
     title,
     subtitle,

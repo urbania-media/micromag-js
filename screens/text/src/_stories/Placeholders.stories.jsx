@@ -1,16 +1,16 @@
 import React from 'react';
 import { withPlaceholderSize } from '../../../../.storybook/decorators';
 
-import { TextTop, TextCenter, TextBottom } from '../components';
+import { Top, Center, Bottom } from '../components';
 
 export default {
-    component: TextTop,
+    component: Top,
     title: 'Screens/Text/Placeholders',
     decorators: [withPlaceholderSize()],
 };
 
-export const PlaceholderTop = () => <TextTop isPlaceholder />;
+export const PlaceholderTop = () => <Top isPlaceholder />;
 
-export const PlaceholderCenter = () => <TextCenter isPlaceholder />;
+export const PlaceholderCenter = () => <Center isPlaceholder />;
 
-export const PlaceholderBottom = () => <TextBottom isPlaceholder />;
+export const PlaceholderBottom = () => <Bottom isPlaceholder />;
