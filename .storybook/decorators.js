@@ -9,7 +9,7 @@ export const withScreenSize = (size = null) => storyFn => {
         ...size,
         screens: getDeviceScreens(),
     });
-    console.log('ss', size);
+    // console.log('ss', size);
 
     let style = {};
 
@@ -40,8 +40,8 @@ export const withScreenSize = (size = null) => storyFn => {
     );
 };
 
-export const withPlaceholderSize = () => withScreenSize({ width: 100, height: 150 });
+export const withPlaceholderSize = () => withScreenSize({ width: 80, height: 120 });
 
-export const withPreviewSize = () => withScreenSize({ width: 320, height: 480 });
+export const withPreviewSize = () => withScreenSize({ width: 100, height: 150 });
 
 export default withScreenSize;

@@ -18,9 +18,15 @@
         height: 100%;
     }
 
+    .image {
+        display: inline-block;
+        max-width: 100%;
+    }
+
     .placeholder {
         position: relative;
         width: 50%;
         height: 50%;
+        margin: 0 auto;
     }
 }

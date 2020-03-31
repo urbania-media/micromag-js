@@ -1,6 +1,9 @@
-export { default as QuoteTop } from './QuoteTop';
-export { default as QuoteCenter } from './QuoteCenter';
-export { default as QuoteBottom } from './QuoteBottom';
-export { default as QuoteTopCentered } from './QuoteTopCentered';
-export { default as QuoteBottomCentered } from './QuoteBottomCentered';
-export { default as QuoteSplit } from './QuoteSplit';
+export { default as Default } from './layouts/Center';
+
+export { default as Top } from './layouts/Top';
+export { default as Center } from './layouts/Center';
+export { default as Bottom } from './layouts/Bottom';
+export { default as TopCentered } from './layouts/TopCentered';
+export { default as BottomCentered } from './layouts/BottomCentered';
+export { default as Split } from './layouts/Split';
+export { default as SplitReverse } from './layouts/SplitReverse';

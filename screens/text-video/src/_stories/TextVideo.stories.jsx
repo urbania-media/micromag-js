@@ -1,66 +1,62 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { StoryByLayout, StoryData } from '@micromag/helper-storybook'; // eslint-disable-line import/no-extraneous-dependencies
+import { withKnobs, boolean, select } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
+import { withScreenSize } from '../../../../.storybook/decorators';
+import { paragraph, video } from '../../../../.storybook/data';
 
-import TextVideo from '../TextVideo';
+import TextVideo from '../index';
 
-import layouts from '../layouts';
-
-const TopArrangement = layouts[0];
-const CenterArrangement = layouts[1];
-const BottomArrangement = layouts[2];
+import { Top, Center, Bottom } from '../components';
 
 const props = {
-    text: { body: `<p>${StoryData.description()}</p>` },
-    background: {
-        color: '#eee',
-    },
+    text: { body: paragraph() },
+    video: video(),
+};
+
+const types = {
+    Top: 'Top',
+    Center: 'Center',
+    Bottom: 'Bottom',
+};
+
+const options = {
+    Center: 'center',
+    Left: 'left',
+    Right: 'right',
+    None: null,
 };
 
 export default {
-    component: TextVideo,
+    component: Top,
     title: 'Screens/TextVideo',
+    decorators: [withKnobs, withScreenSize()],
 };
 
-export const TextVideoPlaceholders = () => (
-    <div style={{ display: 'flex' }}>
-        {layouts.map(layout => (
-            <StoryByLayout
-                key={layout.name}
-                layout={layout}
-                component={TextVideo}
-                storyProps={{ isPlaceholder: true }}
-            />
-        ))}
-    </div>
-);
+export const Layouts = () => <TextVideo layout={select('layout', types, 'Top')} {...props} />;
 
-export const Top = () => (
-    <StoryByLayout
-        layout={TopArrangement}
-        component={TextVideo}
-        storyProps={{
-            ...props,
-        }}
+export const TextVideoTop = () => (
+    <Top
+        {...props}
+        isPreview={boolean('isPreview', false)}
+        textAlign={select('textAlign', options, 'left')}
+        reverse={boolean('reverse', false)}
     />
 );
 
-export const Center = () => (
-    <StoryByLayout
-        layout={CenterArrangement}
-        component={TextVideo}
-        storyProps={{
-            ...props,
-        }}
+export const TextVideoCenter = () => (
+    <Center
+        {...props}
+        isPreview={boolean('isPreview', false)}
+        textAlign={select('textAlign', options, 'left')}
+        reverse={boolean('reverse', false)}
     />
 );
 
-export const Bottom = () => (
-    <StoryByLayout
-        layout={BottomArrangement}
-        component={TextVideo}
-        storyProps={{
-            ...props,
-        }}
+export const TextVideoBottom = () => (
+    <Bottom
+        {...props}
+        isPreview={boolean('isPreview', false)}
+        textAlign={select('textAlign', options, 'left')}
+        reverse={boolean('reverse', false)}
     />
 );

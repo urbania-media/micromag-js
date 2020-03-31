@@ -1,88 +1,59 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { StoryByLayout, StoryData } from '@micromag/helper-storybook'; // eslint-disable-line import/no-extraneous-dependencies
+import { withKnobs, boolean, select } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
+import { withScreenSize } from '../../../../.storybook/decorators';
+import { paragraph, image } from '../../../../.storybook/data';
 
-import TextImage from '../TextImage';
-// import background from './background.jpg';
+import TextImage from '../index';
 
-import layouts from '../layouts';
-
-const TopArrangement = layouts[0];
-const CenterArrangement = layouts[1];
-const BottomArrangement = layouts[2];
+import { Top, Center, Bottom } from '../components';
 
 const props = {
-    text: { body: `<p>${StoryData.description()}</p>` },
-    image: {
-        url: 'https://picsum.photos/300/500',
-    },
-    background: {
-        color: '#eee',
-    },
+    text: { body: paragraph() },
+    image: image({ width: 400, height: 400 }),
+};
+
+const types = {
+    Top: 'Top',
+    Center: 'Center',
+    Bottom: 'Bottom',
+};
+
+const options = {
+    Center: 'center',
+    Left: 'left',
+    Right: 'right',
+    None: null,
 };
 
 export default {
-    component: TextImage,
+    component: Top,
     title: 'Screens/TextImage',
-    decorators: [],
+    decorators: [withKnobs, withScreenSize()],
 };
 
-export const Placeholders = () => (
-    <div style={{ display: 'flex', flexDirection: 'row' }}>
-        {layouts.map(arr => (
-            <StoryByLayout
-                key={arr.name}
-                layout={arr}
-                component={TextImage}
-                spacing={4}
-                storyProps={{ isPlaceholder: true }}
-            />
-        ))}
-    </div>
-);
+export const Layouts = () => <TextImage layout={select('layout', types, 'Top')} {...props} />;
 
-export const Previews = () => (
-    <div style={{ display: 'flex', flexDirection: 'row' }}>
-        {layouts.map(arr => (
-            <StoryByLayout
-                key={arr.name}
-                layout={arr}
-                component={TextImage}
-                storyProps={{
-                    text: { body: `<p>${StoryData.description()}</p>` },
-                    isPreview: true,
-                }}
-            />
-        ))}
-    </div>
-);
-
-export const Top = () => (
-    <StoryByLayout
-        layout={TopArrangement}
-        component={TextImage}
-        storyProps={{
-            ...props,
-        }}
+export const TextTop = () => (
+    <Top
+        {...props}
+        textAlign={select('textAlign', options, 'left')}
+        reverse={boolean('reverse', false)}
     />
 );
 
-export const Center = () => (
-    <StoryByLayout
-        layout={CenterArrangement}
-        component={TextImage}
-        storyProps={{
-            ...props,
-        }}
+export const TextCenter = () => (
+    <Center
+        {...props}
+        textAlign={select('textAlign', options, 'left')}
+        reverse={boolean('reverse', false)}
     />
 );
 
-export const Bottom = () => (
-    <StoryByLayout
-        layout={BottomArrangement}
-        component={TextImage}
-        storyProps={{
-            ...props,
-        }}
+export const TextBottom = () => (
+    <Bottom
+        {...props}
+        textAlign={select('textAlign', options, 'left')}
+        reverse={boolean('reverse', false)}
     />
 );

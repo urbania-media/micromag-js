@@ -1,29 +1,22 @@
 import React from 'react';
 import { withPlaceholderSize } from '../../../../.storybook/decorators';
 
-import {
-    QuoteTop,
-    QuoteCenter,
-    QuoteBottom,
-    QuoteTopCentered,
-    QuoteBottomCentered,
-    QuoteSplit,
-} from '../components';
+import { Top, Center, Bottom, TopCentered, BottomCentered, Split } from '../components';
 
 export default {
-    component: QuoteTop,
+    component: Top,
     title: 'Screens/Quote/Placeholders',
     decorators: [withPlaceholderSize()],
 };
 
-export const PlaceholderTop = () => <QuoteTop isPlaceholder />;
+export const PlaceholderTop = () => <Top renderFormat="placeholder" />;
 
-export const PlaceholderCenter = () => <QuoteCenter isPlaceholder />;
+export const PlaceholderCenter = () => <Center renderFormat="placeholder" />;
 
-export const PlaceholderBottom = () => <QuoteBottom isPlaceholder />;
+export const PlaceholderBottom = () => <Bottom renderFormat="placeholder" />;
 
-export const PlaceholderTopCentered = () => <QuoteTopCentered isPlaceholder />;
+export const PlaceholderTopCentered = () => <TopCentered renderFormat="placeholder" />;
 
-export const PlaceholderBottomCentered = () => <QuoteBottomCentered isPlaceholder />;
+export const PlaceholderBottomCentered = () => <BottomCentered renderFormat="placeholder" />;
 
-export const PlaceholderSplit = () => <QuoteSplit isPlaceholder />;
+export const PlaceholderSplit = () => <Split renderFormat="placeholder" />;

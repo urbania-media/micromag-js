@@ -5,7 +5,7 @@ import { Top, Center, Bottom } from '../components';
 
 export default {
     component: Top,
-    title: 'Screens/Text/Placeholders',
+    title: 'Screens/TextImage/Placeholders',
     decorators: [withPlaceholderSize()],
 };
 

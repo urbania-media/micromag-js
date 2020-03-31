@@ -3,7 +3,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import TextComponent from './TextComponent';
+import TextComponent from '../TextComponent';
 
 const propTypes = {
     box: MicromagPropTypes.box,
@@ -11,18 +11,15 @@ const propTypes = {
 
 const defaultProps = {
     box: {
-        direction: null,
-        axisAlign: 'bottom',
-        crossAlign: null,
         spacing: 10,
     },
 };
 
-const TextBottom = ({ box, ...otherProps }) => {
+const TextCenter = ({ box, ...otherProps }) => {
     return <TextComponent box={box} {...otherProps} />;
 };
 
-TextBottom.propTypes = propTypes;
-TextBottom.defaultProps = defaultProps;
+TextCenter.propTypes = propTypes;
+TextCenter.defaultProps = defaultProps;
 
-export default TextBottom;
+export default TextCenter;
