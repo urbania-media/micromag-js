@@ -1,4 +1,5 @@
 export { default as Placeholder } from './partials/Placeholder';
+export { default as PlaceholderBlock } from './partials/PlaceholderBlock';
 export { default as Placeholders } from './partials/Placeholders';
 export { default as Element } from './partials/Element';
 export { default as LinkStyle } from './utils/LinkStyle';

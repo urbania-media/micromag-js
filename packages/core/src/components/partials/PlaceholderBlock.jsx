@@ -1,0 +1,50 @@
+/* eslint-disable react/no-array-index-key */
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+
+import styles from '../../styles/partials/placeholder-block.scss';
+
+const propTypes = {
+    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    className: PropTypes.string,
+    children: PropTypes.node,
+};
+
+const defaultProps = {
+    width: '50%',
+    height: '50%',
+    className: null,
+    children: null,
+};
+
+const PlaceholderBlock = ({ width, height, className, children }) => {
+    return (
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className,
+                },
+            ])}
+        >
+            <div className={styles.inner}>
+                <div
+                    className={styles.box}
+                    style={{
+                        width,
+                        height,
+                    }}
+                >
+                    {children}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+PlaceholderBlock.propTypes = propTypes;
+PlaceholderBlock.defaultProps = defaultProps;
+
+export default PlaceholderBlock;

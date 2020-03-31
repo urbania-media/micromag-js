@@ -49,6 +49,8 @@ export const video = () => ({
     height: 480,
 });
 
+export const background = () => ({ color: { color: chance.color({ format: 'rgb' }) } });
+
 export const renderFormats = {
     View: 'view',
     Preview: 'preview',

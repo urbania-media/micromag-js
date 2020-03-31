@@ -31,6 +31,8 @@ const Background = ({ width, height, color, image, className, children }) => {
         height,
     };
 
+    console.log(color);
+
     if (color !== null) {
         finalStyle = {
             ...finalStyle,

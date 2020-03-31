@@ -1,85 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
-// import { useScreenSize } from '@micromag/core/contexts';
 
-import styles from './styles.module.scss';
+import { createLayoutSwitcher } from '@micromag/core';
+import * as LayoutComponents from './components';
 
-const propTypes = {
-    width: PropTypes.number,
-    height: PropTypes.number,
-    url: PropTypes.string,
-    target: MicromagPropTypes.target,
-    iframe: PropTypes.string,
-    image: MicromagPropTypes.image,
-    isFullScreen: PropTypes.bool,
-    isPlaceholder: PropTypes.bool,
-    className: PropTypes.string,
-};
+const AdScreen = createLayoutSwitcher(LayoutComponents);
 
-const defaultProps = {
-    width: null,
-    height: null,
-    url: null,
-    target: '_blank',
-    iframe: null,
-    image: null,
-    isFullScreen: true,
-    isPlaceholder: false,
-    className: null,
-};
-
-const Ad = ({
-    width,
-    height,
-    url,
-    iframe,
-    image,
-    target,
-    isFullScreen,
-    isPlaceholder,
-    className,
-}) => {
-    // const { width: screenWidth, height: screenHeight } = useScreenSize();
-    const innerStyle = {
-        width,
-        height,
-    };
-    const inner = iframe ? (
-        <iframe className={styles.iframe} src={iframe} title="iframe" />
-    ) : (
-        <img className={styles.content} src={image} alt="Ad" />
-    );
-
-    const content =
-        url !== null ? (
-            <a href={url} target={target} rel="noopener noreferer">
-                {inner}
-            </a>
-        ) : (
-            inner
-        );
-
-    return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [styles.isFullScreen]: isFullScreen,
-                    [styles.isPlaceholder]: isPlaceholder,
-                    [className]: className !== null,
-                },
-            ])}
-        >
-            <div className={styles.inner} style={isPlaceholder ? null : innerStyle}>
-                {isPlaceholder ? <Placeholders.Image className={styles.placeholder} /> : content}
-            </div>
-        </div>
-    );
-};
-
-Ad.propTypes = propTypes;
-Ad.defaultProps = defaultProps;
-
-export default Ad;
+export default React.memo(AdScreen);
