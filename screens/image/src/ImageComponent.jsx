@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
-import TextComponent from '@micromag/component-text';
+// import TextComponent from '@micromag/component-text';
 import ImageComponent from '@micromag/component-image';
 import Background from '@micromag/component-background';
 import Frame from '@micromag/component-frame';
@@ -12,11 +12,7 @@ import { useScreenSize } from '@micromag/core/contexts';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    src: PropTypes.string,
-    track: PropTypes.string,
-    trackLng: PropTypes.string,
-    controls: PropTypes.bool,
-    text: MicromagPropTypes.text,
+    // text: MicromagPropTypes.text,
     image: MicromagPropTypes.image,
     background: MicromagPropTypes.backgroundComponent,
     reverse: PropTypes.bool,
@@ -25,53 +21,22 @@ const propTypes = {
 };
 
 const defaultProps = {
-    src: null,
-    track: null,
-    trackLng: null,
-    controls: true,
     image: null,
-    text: null,
+    // text: null,
     background: null,
     reverse: false,
     renderFormat: 'view',
     className: null,
 };
 
-const Audio = ({
-    src,
-    track,
-    trackLng,
-    controls,
-    image,
-    text,
-    background,
-    renderFormat,
-    className,
-}) => {
+const Audio = ({ image, background, renderFormat, className }) => {
     const { width, height } = useScreenSize();
     const isPlaceholder = renderFormat === 'placeholder';
-    const props = {
-        controls,
-    };
-
-    const textElement = isPlaceholder ? (
-        <Placeholders.Text className={styles.placeholder} />
-    ) : (
-        <TextComponent {...text} className={styles.text} />
-    );
 
     const imageElement = isPlaceholder ? (
         <Placeholders.Image className={styles.placeholder} />
     ) : (
         <ImageComponent {...image} className={styles.image} />
-    );
-
-    const audioElement = (
-        <audio {...props} src={src}>
-            {track !== null ? (
-                <track default kind="captions" srcLang={trackLng} src={track} />
-            ) : null}
-        </audio>
     );
 
     return (
@@ -85,11 +50,7 @@ const Audio = ({
         >
             <Background {...background} width={width} height={height}>
                 <Frame width={width} height={height}>
-                    <div className={styles.inner}>
-                        {textElement}
-                        {imageElement}
-                        {audioElement}
-                    </div>
+                    <div className={styles.inner}>{imageElement}</div>
                 </Frame>
             </Background>
         </div>

@@ -1,0 +1,9 @@
+@import '~@micromag/core/src/styles/placeholders';
+
+.container {
+    @extend %screen;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}

@@ -9,7 +9,6 @@ export const withScreenSize = (size = null) => storyFn => {
         ...size,
         screens: getDeviceScreens(),
     });
-    // console.log('ss', size);
 
     let style = {};
 
