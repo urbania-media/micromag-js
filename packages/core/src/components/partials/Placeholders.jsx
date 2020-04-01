@@ -7,7 +7,7 @@ import { faPlay, faAd } from '@fortawesome/free-solid-svg-icons';
 import Placeholder from './Placeholder';
 import PlaceholderBlock from './PlaceholderBlock';
 
-import styles from '../../styles/partials/placeholders.scss';
+import styles from '../../styles/partials/placeholders.module.scss';
 
 export const Text = props => (
     <Placeholder

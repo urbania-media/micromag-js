@@ -1,0 +1,23 @@
+@import '~@micromag/core/src/styles/variables';
+@import '~@micromag/core/src/styles/placeholders';
+
+.container {
+    position: relative;
+    overflow: hidden;
+    background: $black;
+
+    .top {
+        position: relative;
+        z-index: 2;
+        padding: 10px 0;
+    }
+
+    .content {
+        @extend %fullscreen;
+        z-index: 1;
+    }
+
+    .content {
+        z-index: 1;
+    }
+}

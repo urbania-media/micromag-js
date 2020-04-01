@@ -1,9 +1,14 @@
 const path = require('path');
 const getPackagesPaths = require('../scripts/lib/getPackagesPaths');
+const getPackagesAliases = require('../scripts/lib/getPackagesAliases');
+
+console.log(getPackagesPaths().map(packagePath =>
+    path.join(packagePath, './src/**/*.stories.(jsx|mdx)'),
+));
 
 module.exports = {
     stories: getPackagesPaths().map(packagePath =>
-        path.join('../', packagePath, './**/*.stories.(jsx|mdx)'),
+        path.join(packagePath, './src/**/*.stories.(jsx|mdx)'),
     ),
     addons: [
         '@storybook/addon-viewport/register',
@@ -12,4 +17,12 @@ module.exports = {
         // '@storybook/addon-a11y/register',
         '@storybook/addon-actions',
     ],
+    webpackFinal: async (config, { configType }) => {
+        const packagesAliases = getPackagesAliases();
+        config.resolve.alias = {
+            ...config.resolve.alias,
+            ...packagesAliases,
+        };
+        return config;
+    },
 };

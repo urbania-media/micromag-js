@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import styles from '../../styles/partials/placeholder-block.scss';
+import styles from '../../styles/partials/placeholder-block.module.scss';
 
 const propTypes = {
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

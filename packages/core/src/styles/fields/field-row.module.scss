@@ -1,0 +1,31 @@
+.container {
+    margin: 0;
+
+    .label {
+        padding-top: 0;
+    }
+
+    &.isSection {
+        /* stylelint-disable selector-class-pattern */
+        > .label,
+        > :global(.form-row) > .label {
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        /* stylelint-enable selector-class-pattern */
+    }
+
+    &.isHorizontal {
+        .label {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            width: 100%;
+        }
+    }
+}

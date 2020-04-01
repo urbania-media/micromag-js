@@ -1,3 +1,5 @@
-export * as PropTypes from './PropTypes';
+import * as PropTypes from './PropTypes';
+
+export { PropTypes };
 export * from './contexts/index';
 export * from './components/index';

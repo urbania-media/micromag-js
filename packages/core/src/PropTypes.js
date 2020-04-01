@@ -104,6 +104,9 @@ export const buttonSize = PropTypes.oneOf(['lg', 'sm', null]);
 export const componentNames = Components =>
     PropTypes.oneOf(Object.keys(Components).map(it => snakeCase(it)));
 
+export const component = PropTypes.oneOfType([PropTypes.object, PropTypes.func]);
+export const components = PropTypes.objectOf(component);
+
 /**
  * Forms
  */
@@ -245,13 +248,13 @@ export const componentType = PropTypes.shape({
 });
 export const componentTypes = PropTypes.arrayOf(componentType);
 
-export const component = PropTypes.shape({
+export const storyComponent = PropTypes.shape({
     type: PropTypes.string.isRequired,
 });
-export const components = PropTypes.arrayOf(component);
+export const storyComponents = PropTypes.arrayOf(storyComponent);
 
 export const story = PropTypes.shape({
-    components,
+    components: storyComponents,
 });
 
 export const screenType = PropTypes.shape({

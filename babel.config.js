@@ -5,5 +5,6 @@ module.exports = api => ({
     ].filter(Boolean),
     plugins: [
         api.env('production') && require.resolve('@babel/plugin-transform-runtime'),
+        require.resolve('@babel/plugin-proposal-export-namespace-from'),
     ].filter(Boolean),
 });

@@ -4,7 +4,7 @@
 
 .container {
     @extend %fullscreen;
-    color: $color-disabled;
+    color: $gray-500;
 
     .grid,
     .box {

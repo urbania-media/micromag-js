@@ -1,0 +1,29 @@
+@import '~@micromag/core/src/styles/variables';
+
+.container {
+    position: relative;
+
+    .inner {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dangerZone {
+        margin-top: $spacer * 3;
+        transition: color 0.2s ease-out;
+        color: $gray-500;
+
+        &.opened {
+            color: $black;
+
+            .content {
+                max-height: 100px;
+            }
+        }
+    }
+
+    .deleteButton {
+        display: block;
+        width: 100%;
+    }
+}

@@ -1,0 +1,23 @@
+@import '~@micromag/core/src/styles/variables';
+
+.container {
+    position: relative;
+    padding: $spacer / 2;
+
+    .top {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 10px;
+
+        .title {
+            flex-grow: 1;
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .button {
+            width: 20px;
+        }
+    }
+}
