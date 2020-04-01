@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { pascalCase } from 'change-case';
 
+import { pascalCase } from '../../utils';
 import Placeholders from './Placeholders';
 
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';

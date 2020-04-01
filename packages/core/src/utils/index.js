@@ -5,3 +5,6 @@ export { default as getStyleFromMargin } from './getStyleFromMargin';
 export { default as getDisplayName } from './getDisplayName';
 export { default as getComponentFromName } from './getComponentFromName';
 export { default as getDeviceScreens } from './getDeviceScreens';
+export { default as isMessage } from './isMessage';
+export { default as createNullableOnChange } from './createNullableOnChange';
+export * from './string';

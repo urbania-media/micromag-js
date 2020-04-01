@@ -1,0 +1,53 @@
+@import '~@micromag/core/src/styles/variables';
+@import '~@micromag/core/src/styles/placeholders';
+
+.container {
+    @extend %reset-button;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    background: $gray-200;
+
+    .border {
+        @extend %fullscreen;
+    }
+
+    .screen {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 150%;
+
+        .inner {
+            @extend %fullscreen;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon {
+            display: block;
+            position: relative;
+            flex-grow: 1;
+            width: 100%;
+        }
+
+        .label {
+            display: block;
+            padding: 5px 0;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+    }
+
+    &.active {
+        .border {
+            z-index: 2;
+            border: solid 4px $primary;
+            border-radius: 10px;
+        }
+    }
+}

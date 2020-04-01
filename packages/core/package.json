@@ -57,6 +57,9 @@
         "css-mediaquery": "^0.1.2",
         "lodash": "^4.17.15",
         "prop-types": "^15.7.2",
+        "react-intl": "^4.3.1",
+        "react-router-dom": "^5.1.2",
+        "slugify": "^1.4.0",
         "snake-case": "^3.0.3",
         "tinycolor2": "^1.4.1"
     }

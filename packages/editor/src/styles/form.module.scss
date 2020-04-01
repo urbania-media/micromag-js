@@ -1,0 +1,124 @@
+@import '~@micromag/core/src/styles/variables';
+
+.container {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+
+    .top,
+    .content {
+        width: 100%;
+    }
+
+    .top {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        background: $gray-200;
+    }
+
+    .back {
+        padding: $spacer / 2;
+    }
+
+    .settings {
+        margin-right: $spacer / 2;
+    }
+
+    .breadcrumb {
+        flex-grow: 1;
+        width: 100%;
+        padding: $spacer / 2;
+        padding-left: 0;
+        overflow: hidden;
+        font-size: 0.75rem;
+    }
+
+    .content {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        flex-grow: 1;
+        overflow: hidden;
+    }
+
+    .form {
+        min-height: 100%;
+        padding: $spacer / 2;
+
+        &.enterRight,
+        &.enterLeft,
+        &.enterTop,
+        &.enterBottom {
+            opacity: 0.5;
+        }
+
+        &.enterRight {
+            transform: translate(100%, 0);
+        }
+
+        &.enterLeft {
+            transform: translate(-100%, 0);
+        }
+
+        &.enterTop {
+            transform: translate(0, -100%);
+        }
+
+        &.enterBottom {
+            transform: translate(0, 100%);
+        }
+
+        &.enterActiveHorizontal,
+        &.enterActiveVertical {
+            transform: translate(0, 0);
+            opacity: 1;
+        }
+
+        &.enterActiveHorizontal {
+            transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+        }
+
+        &.enterActiveVertical {
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+        }
+
+        &.leave {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            transform: translate(0, 0);
+            opacity: 1;
+        }
+
+        &.leaveActiveRight,
+        &.leaveActiveLeft {
+            transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+            opacity: 0.5;
+        }
+
+        &.leaveActiveTop,
+        &.leaveActiveBottom {
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+            opacity: 0.5;
+        }
+
+        &.leaveActiveRight {
+            transform: translate(-100%, 0);
+        }
+
+        &.leaveActiveLeft {
+            transform: translate(100%, 0);
+        }
+
+        &.leaveActiveTop {
+            transform: translate(0, 100%);
+        }
+
+        &.leaveActiveBottom {
+            transform: translate(0, -100%);
+        }
+    }
+}

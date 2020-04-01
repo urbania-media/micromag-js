@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import isNumber from 'lodash/isNumber';
 import classNames from 'classnames';
 
-import styles from '../../styles/partials/placeholder.scss';
+import styles from '../../styles/partials/placeholder.module.scss';
 
 const propTypes = {
     lines: PropTypes.number,
