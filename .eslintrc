@@ -17,6 +17,7 @@
             "files": [
                 "*.config.js",
                 "scripts/**",
+                "scripts/lib/**",
                 ".storybook/**",
                 "packages/*/scripts/**",
                 "**/__tests__/**"

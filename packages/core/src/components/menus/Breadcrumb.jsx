@@ -1,0 +1,59 @@
+/* eslint-disable react/no-array-index-key, jsx-a11y/control-has-associated-label */
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { Link } from 'react-router-dom';
+
+import * as MicromagPropTypes from '../../PropTypes';
+
+import styles from '../../styles/menus/breadcrumb.module.scss';
+
+const propTypes = {
+    items: MicromagPropTypes.menuItems,
+    className: PropTypes.string,
+};
+
+const defaultProps = {
+    items: [],
+    className: null,
+};
+
+const Breadcrumb = ({ items, className }) => (
+    <nav
+        className={classNames([
+            styles.container,
+            {
+                [className]: className !== null,
+            },
+        ])}
+    >
+        <ol className={classNames(['breadcrumb', styles.items])}>
+            {items.map(({ url, label, active = false }, index) => (
+                <li
+                    className={classNames([
+                        'breadcrumb-item',
+                        styles.item,
+                        {
+                            active,
+                            [styles.active]: active,
+                        },
+                    ])}
+                    key={`item-${index}`}
+                >
+                    {active ? (
+                        label
+                    ) : (
+                        <Link to={url} className={styles.link}>
+                            {label}
+                        </Link>
+                    )}
+                </li>
+            ))}
+        </ol>
+    </nav>
+);
+
+Breadcrumb.propTypes = propTypes;
+Breadcrumb.defaultProps = defaultProps;
+
+export default Breadcrumb;

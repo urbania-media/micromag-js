@@ -1,0 +1,19 @@
+@import '../variables';
+
+.container {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: dashed 2px rgba($black, 0.2);
+    color: rgba($black, 0.2);
+
+    .middle {
+        text-align: center;
+    }
+
+    &.withoutBorder {
+        border: 0;
+    }
+}

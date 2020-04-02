@@ -1,11 +1,15 @@
 /* eslint-disable react/jsx-props-no-spreading, react/destructuring-assignment, react/prop-types */
 import React from 'react';
 import classNames from 'classnames';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay, faAd } from '@fortawesome/free-solid-svg-icons';
+
 import Placeholder from './Placeholder';
+import PlaceholderBlock from './PlaceholderBlock';
 
-import styles from '../../styles/partials/placeholders.scss';
+import styles from '../../styles/partials/placeholders.module.scss';
 
-const Text = props => (
+export const Text = props => (
     <Placeholder
         {...props}
         className={classNames([props.className, styles.text])}
@@ -14,7 +18,7 @@ const Text = props => (
     />
 );
 
-const Title = props => (
+export const Title = props => (
     <Placeholder
         {...props}
         className={classNames([props.className, styles.title])}
@@ -24,7 +28,7 @@ const Title = props => (
     />
 );
 
-const Subtitle = props => (
+export const Subtitle = props => (
     <Placeholder
         {...props}
         className={classNames([props.className, styles.subtitle])}
@@ -33,7 +37,7 @@ const Subtitle = props => (
     />
 );
 
-const Quote = props => (
+export const Quote = props => (
     <Placeholder
         {...props}
         className={classNames([props.className, styles.subtitle])}
@@ -42,7 +46,7 @@ const Quote = props => (
     />
 );
 
-const Image = props => (
+export const Image = props => (
     <Placeholder
         {...props}
         className={classNames([props.className, styles.image])}
@@ -51,21 +55,29 @@ const Image = props => (
     />
 );
 
-const Video = props => (
-    <Placeholder
+export const Video = props => (
+    <PlaceholderBlock
         {...props}
         className={classNames([props.className, styles.video])}
-        height={2}
-        lines={1}
-    />
+        width="100%"
+        height="50%"
+    >
+        <FontAwesomeIcon icon={faPlay} className={styles.icon} />
+    </PlaceholderBlock>
 );
 
-const Map = props => (
+export const Map = props => (
     <Placeholder {...props} className={classNames([props.className, styles.map])} />
 );
 
-const Timeline = props => (
+export const Timeline = props => (
     <Placeholder {...props} className={classNames([props.className, styles.timeline])} />
+);
+
+export const Ad = props => (
+    <PlaceholderBlock {...props} className={classNames([props.className, styles.ad])}>
+        <FontAwesomeIcon icon={faAd} className={styles.icon} />
+    </PlaceholderBlock>
 );
 
 export default {
@@ -78,4 +90,5 @@ export default {
     Video,
     Map,
     Timeline,
+    Ad,
 };

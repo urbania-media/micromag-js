@@ -1,0 +1,65 @@
+@import '~@micromag/core/src/styles/variables';
+@import '~@micromag/core/src/styles/placeholders';
+
+.items,
+.item {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.container {
+    position: relative;
+
+    .items {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: -5px;
+        padding: 0;
+    }
+
+    .item {
+        display: block;
+        z-index: 2;
+        margin: 5px;
+
+        .button {
+            display: block;
+            width: 100px;
+        }
+
+        .preview,
+        .placeholder {
+            @extend %fullscreen;
+            transform-origin: 0 0;
+        }
+
+        .screen {
+            @extend %fullscreen;
+        }
+
+        .preview {
+            background: $black;
+        }
+    }
+
+    &.noWrap {
+        .items {
+            flex-wrap: nowrap;
+        }
+    }
+
+    &.isVertical {
+        .items {
+            flex-direction: column;
+            flex-wrap: nowrap;
+        }
+
+        .item {
+            .button {
+                width: 100%;
+            }
+        }
+    }
+}

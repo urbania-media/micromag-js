@@ -1,0 +1,11 @@
+@import '~@micromag/core/src/styles/placeholders';
+
+.container {
+    @extend %reset-button;
+    display: inline-block;
+
+    .icon {
+        width: 100%;
+        height: auto;
+    }
+}

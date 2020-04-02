@@ -9,7 +9,7 @@ import Screen from './Screen';
 import styles from '../../styles/screens/screens.module.scss';
 
 const propTypes = {
-    screens: AppPropTypes.components.isRequired,
+    screens: AppPropTypes.storyComponents.isRequired,
     screen: PropTypes.string,
     className: PropTypes.string,
 };

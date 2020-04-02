@@ -47,6 +47,9 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.8.7",
+        "@micromag/component-background": "^0.1.0",
+        "@micromag/component-frame": "^0.1.0",
+        "@micromag/component-image": "^0.1.0",
         "@micromag/core": "^0.1.0",
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",
