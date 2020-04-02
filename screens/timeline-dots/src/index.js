@@ -1,1 +1,1 @@
-export { default } from './TimelineDots';
+export { default } from './TimelineDotsComponent';

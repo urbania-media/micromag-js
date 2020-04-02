@@ -15,6 +15,7 @@ import { useScreenSize } from '@micromag/core/contexts';
 import styles from './styles.module.scss';
 
 const propTypes = {
+    title: MicromagPropTypes.textComponent,
     items: PropTypes.arrayOf(MicromagPropTypes.textComponent),
     background: MicromagPropTypes.backgroundComponent,
     renderFormat: MicromagPropTypes.renderFormat,
@@ -22,20 +23,23 @@ const propTypes = {
 };
 
 const defaultProps = {
+    title: null,
     items: null,
     background: null,
     renderFormat: 'view',
     className: null,
 };
 
-const TimelineCentered = ({ items, background, renderFormat, className }) => {
-  
+const TimelineCentered = ({ title, items, background, renderFormat, className }) => {
     const { width, height } = useScreenSize();
+
+    console.log(title, items);
 
     return (
         <div
             className={classNames([
                 styles.container,
+                // screens.map(screenName => styles[`screen-${screenName}`]),
                 {
                     [styles.isPlaceholder]: renderFormat === 'placeholder',
                     [styles.isPreview]: renderFormat === 'preview',
@@ -46,12 +50,14 @@ const TimelineCentered = ({ items, background, renderFormat, className }) => {
             <Background {...background} width={width} height={height}>
                 <Frame withScroll width={width} height={height}>
                     <div className={styles.inner}>
+                        {title !== null ? <div className={styles.title}>{title.body}</div> : null}
                         <div className={styles.timelineContainer}>
                             {items !== null
                                 ? items.map(({ text, image, heading }, index) => {
                                       return renderFormat === 'placeholder' ? (
                                           <div className={styles.timelineBlock}>
                                               <div className={styles.mainContent}>
+                                                  <div className={styles.dot} />
                                                   {heading !== null ? (
                                                       <Placeholders.Heading
                                                           key={`item-heading-${index + 1}`}
@@ -73,6 +79,7 @@ const TimelineCentered = ({ items, background, renderFormat, className }) => {
                                       ) : (
                                           <div className={styles.timelineBlock}>
                                               <div className={styles.mainContent}>
+                                                  <div className={styles.dot} />
                                                   {heading !== null ? (
                                                       <Heading
                                                           key={`item-heading-${index + 1}`}
