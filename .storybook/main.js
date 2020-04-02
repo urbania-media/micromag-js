@@ -2,10 +2,6 @@ const path = require('path');
 const getPackagesPaths = require('../scripts/lib/getPackagesPaths');
 const getPackagesAliases = require('../scripts/lib/getPackagesAliases');
 
-console.log(getPackagesPaths().map(packagePath =>
-    path.join(packagePath, './src/**/*.stories.(jsx|mdx)'),
-));
-
 module.exports = {
     stories: getPackagesPaths().map(packagePath =>
         path.join(packagePath, './src/**/*.stories.(jsx|mdx)'),
