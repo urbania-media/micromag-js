@@ -17,6 +17,9 @@ module.exports = {
         const packagesAliases = getPackagesAliases();
         config.resolve.alias = {
             ...config.resolve.alias,
+            'react-router': require.resolve('react-router'),
+            'react-router-dom': require.resolve('react-router-dom'),
+            'react-intl': require.resolve('react-intl'),
             ...packagesAliases,
         };
         return config;
