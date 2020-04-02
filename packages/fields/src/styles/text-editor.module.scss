@@ -1,0 +1,11 @@
+@import '~@micromag/core/src/styles/placeholders';
+
+.container {
+    /* stylelint-disable selector-class-pattern */
+    :global {
+        .ck-content {
+            @extend %text-styles;
+        }
+    }
+    /* stylelint-enable selector-class-pattern */
+}

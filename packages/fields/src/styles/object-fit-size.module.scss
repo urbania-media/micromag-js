@@ -1,0 +1,46 @@
+@import '~@micromag/core/src/styles/variables';
+@import '~@micromag/core/src/styles/placeholders';
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    .button {
+        flex-grow: 1;
+        padding: 20px 0;
+    }
+
+    .frame {
+        max-width: 50px;
+        margin: 0 auto;
+        border: solid 1px $gray-400;
+
+        .shape {
+            position: relative;
+            width: 100%;
+            padding-bottom: 150%;
+        }
+
+        .inner {
+            @extend %fullscreen;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2px;
+        }
+
+        .media {
+            width: 100%;
+            height: 50%;
+            background: $gray-400;
+        }
+
+        &.cover {
+            .media {
+                height: 100%;
+            }
+        }
+    }
+}

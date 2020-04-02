@@ -1,0 +1,20 @@
+@import '~@micromag/core/src/styles/variables';
+
+.container {
+    width: 100%;
+
+    .button {
+        padding: 4px;
+    }
+
+    .grid {
+        width: 50px;
+        height: 80px;
+        border: solid 2px $gray-400;
+    }
+
+    .column {
+        border: solid 1px $gray-400;
+        background: $gray-100;
+    }
+}

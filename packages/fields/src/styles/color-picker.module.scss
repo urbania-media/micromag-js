@@ -1,0 +1,15 @@
+.container {
+    .pickers {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 200px;
+    }
+
+    .alpha,
+    .hue {
+        position: relative;
+        width: 20px;
+        height: 100%;
+    }
+}

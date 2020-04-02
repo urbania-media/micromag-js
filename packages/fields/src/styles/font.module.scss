@@ -1,0 +1,41 @@
+@import '~@micromag/core/src/styles/variables';
+
+.container {
+    display: block;
+    width: 100%;
+    font-size: 0.85rem;
+    white-space: nowrap;
+
+    .button {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        width: 100%;
+        white-space: nowrap;
+
+        > * {
+            display: block;
+            margin-right: $spacer / 2;
+            line-height: 1;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    .noValue {
+        color: $gray-400;
+        text-align: right;
+    }
+
+    .name,
+    .size {
+        font-family: $font-family-monospace;
+    }
+
+    .preview {
+        font-size: 1.25rem;
+    }
+}

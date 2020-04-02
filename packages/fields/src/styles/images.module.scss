@@ -1,0 +1,28 @@
+@import '~@micromag/core/src/styles/variables';
+
+.container {
+    display: flex;
+    flex-direction: column;
+
+    .items {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+    .placeholder {
+        margin-bottom: 10px;
+        padding: 10px 0;
+        border-width: 1px;
+    }
+
+    .item {
+        padding: 5px;
+        border: solid 1px $gray-200;
+        border-bottom: 0;
+
+        &:last-child {
+            border-bottom: solid 1px $gray-200;
+        }
+    }
+}

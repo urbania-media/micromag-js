@@ -1,0 +1,16 @@
+@import '~@micromag/core/src/styles/variables';
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+
+    .icon {
+        margin-right: $spacer / 4;
+    }
+
+    .slider {
+        flex-grow: 1;
+    }
+}

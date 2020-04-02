@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSlidersH } from '@fortawesome/free-solid-svg-icons';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { Button, Label } from '@micromag/core/components';
 
-import * as MicromagPropTypes from '../../PropTypes';
-import Button from '../buttons/Button';
-import Label from '../partials/Label';
 
-import styles from '../../styles/fields/field-row.module.scss';
+import styles from '../styles/field-row.module.scss';
 
 const propTypes = {
     label: MicromagPropTypes.label,

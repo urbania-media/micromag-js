@@ -2,15 +2,14 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { getComponentFromName, createNullableOnChange } from '@micromag/core/utils';
+import { useComponents } from '@micromag/core/contexts';
+import { CollapsablePanel, FIELDS_NAMESPACE } from '@micromag/core/components';
 
-import * as MicromagPropTypes from '../../PropTypes';
-import { getComponentFromName, createNullableOnChange } from '../../utils';
-import { useComponents } from '../../contexts/ComponentsContext';
 import FieldRow from './FieldRow';
-import CollapsablePanel from '../partials/CollapsablePanel';
-import { FIELDS_NAMESPACE } from '../namespaces';
 
-import styles from '../../styles/fields/fields.module.scss';
+import styles from '../styles/fields.module.scss';
 
 const propTypes = {
     name: PropTypes.string,
