@@ -3,19 +3,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import TimelineDotsComponent from '../TimelineDotsComponent';
-import { description, title } from '../../../../.storybook/data';
+import TimelineCenteredComponent from './TimelineCenteredComponent';
+import { description } from '../../../.storybook/data';
 
 const propTypes = {
-    title: MicromagPropTypes.textComponent,
-    items: PropTypes.arrayOf(MicromagPropTypes.textComponent),
+    items: PropTypes.shape({
+        direction: MicromagPropTypes.flexDirection,
+    }),
     background: PropTypes.shape({
         image: MicromagPropTypes.image,
     }),
 };
 
 const defaultProps = {
-    title: { body: title() },
     items: [
         { text: { body: description() } },
         { text: { body: description() } },
@@ -29,15 +29,8 @@ const defaultProps = {
     },
 };
 
-const TimelineText = ({ title: titleValue, items, background, ...otherProps }) => {
-    return (
-        <TimelineDotsComponent
-            title={titleValue}
-            items={items}
-            background={background}
-            {...otherProps}
-        />
-    );
+const TimelineText = ({ items, background, ...otherProps }) => {
+    return <TimelineCenteredComponent items={items} background={background} {...otherProps} />;
 };
 
 TimelineText.propTypes = propTypes;

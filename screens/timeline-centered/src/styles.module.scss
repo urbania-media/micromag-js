@@ -63,4 +63,19 @@
     .placeholder {
         width: 100%;
     }
+
+    &.isPlaceholder {
+        .timelineContainer {
+            width: 100%;
+        }
+
+        .timelineBlock {
+            width: 100%;
+        }
+
+        .mainContent {
+            width: 100%;
+            margin-left: 0;
+        }
+    }
 }

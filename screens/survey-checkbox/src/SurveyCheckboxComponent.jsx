@@ -45,7 +45,7 @@ const SurveyCheckbox = ({ items, background, renderFormat, className }) => {
                     <div className={styles.inner}>
                         <div className={styles.timelineContainer}>
                             {items !== null
-                                ? items.map(({ text, image, heading }, index) => {
+                                ? items.map(({ text }, index) => {
                                       return renderFormat === 'placeholder' ? (
                                           <Placeholders.Text
                                               key={`item-body-${index + 1}`}

@@ -2,9 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { title, description } from '../../../../.storybook/data';
+import { title, description } from '../../../.storybook/data';
 
-import TimelineCenteredComponent from '../TimelineCenteredComponent';
+import TimelineCenteredComponent from './TimelineCenteredComponent';
 
 const propTypes = {
     items: PropTypes.shape({
