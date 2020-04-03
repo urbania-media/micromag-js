@@ -120,9 +120,16 @@ const QuoteComponent = ({
             <Background {...background} width={width} height={height} className={styles.background}>
                 <Frame width={width} height={height}>
                     {grid !== null ? (
-                        <Grid {...grid} items={itemsArray} className={styles.grid} />
+                        <Grid
+                            {...grid}
+                            withSmallSpacing={isSimple}
+                            items={itemsArray}
+                            className={styles.grid}
+                        />
                     ) : (
-                        <Box {...box} items={itemsArray} className={styles.box} />
+                        <Box {...box} withSmallSpacing={isSimple} className={styles.box}>
+                            {itemsArray}
+                        </Box>
                     )}
                 </Frame>
             </Background>

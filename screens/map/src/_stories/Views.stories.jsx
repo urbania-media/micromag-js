@@ -1,9 +1,9 @@
 import React from 'react';
-import Map from '../Map';
+import { Center } from '../components';
 
 export default {
-    component: Map,
-    title: 'Screens/Map',
+    component: Center,
+    title: 'Screens/Map/Views',
 };
 
-export const Default = () => <Map />;
+export const MapCentered = () => <Center />;
