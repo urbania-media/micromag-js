@@ -18,6 +18,15 @@ export const Text = props => (
     />
 );
 
+export const ShortText = props => (
+    <Placeholder
+        {...props}
+        className={classNames([props.className, styles.shortText])}
+        height={0.2}
+        lines={2}
+    />
+);
+
 export const Title = props => (
     <Placeholder
         {...props}
@@ -88,6 +97,7 @@ export const Audio = props => (
 
 export default {
     Text,
+    ShortText,
     Description: Text,
     Title,
     Subtitle,

@@ -27,6 +27,12 @@ export const title = ({ likelyhood = 100, min = 1, max = 6 } = {}) => words(like
 export const subtitle = ({ likelyhood = 100, min = 3, max = 9 } = {}) =>
     words(likelyhood, min, max);
 
+export const shortText = ({ likelyhood = 100, min = 10, max = 20 } = {}) =>
+    words(likelyhood, min, max);
+
+export const longText = ({ likelyhood = 100, min = 30, max = 50 } = {}) =>
+    words(likelyhood, min, max);
+
 export const quote = ({ likelyhood = 100, min = 7, max = 20 } = {}) => words(likelyhood, min, max);
 
 export const author = ({ likelyhood = 100 } = {}) => name(likelyhood);
@@ -39,11 +45,30 @@ export const description = ({ likelyhood = 100, min = 1, max = 3 } = {}) =>
 export const paragraph = ({ likelyhood = 100, min = 3, max = 6 } = {}) =>
     sentences(likelyhood, min, max);
 
-export const image = ({ likelyhood = 100, width = 800, height = 800 } = {}) => ({
+export const image = ({ width = 800, height = 800 } = {}) => ({
     url: `https://picsum.photos/${width}/${height}`,
     imageWidth: width,
     imageHeight: height,
 });
+
+export const imageWithRandomSize = ({ min = 100, max = 800 } = {}) => {
+    const width = chance.integer({ min, max });
+    const height = chance.integer({ min, max });
+    return {
+        url: `https://picsum.photos/${width}/${height}`,
+        imageWidth: width,
+        imageHeight: height,
+    };
+};
+
+export const imageSquareWithRandomSize = ({ min = 100, max = 800 } = {}) => {
+    const size = chance.integer({ min, max });
+    return {
+        url: `https://picsum.photos/${size}/${size}`,
+        imageWidth: size,
+        imageHeight: size,
+    };
+};
 
 export const video = () => ({
     url: 'https://www.youtube.com/watch?v=AfeAhCWaMD0',

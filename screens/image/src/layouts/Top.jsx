@@ -14,15 +14,15 @@ const propTypes = {
 const defaultProps = {
     box: {
         direction: 'column',
-        axisAlign: 'center',
+        axisAlign: 'top',
     },
 };
 
-const ImageCenter = ({ box, ...otherProps }) => {
+const ImageTop = ({ box, ...otherProps }) => {
     return <ImageComponent box={box} {...otherProps} />;
 };
 
-ImageCenter.propTypes = propTypes;
-ImageCenter.defaultProps = defaultProps;
+ImageTop.propTypes = propTypes;
+ImageTop.defaultProps = defaultProps;
 
-export default ImageCenter;
+export default ImageTop;

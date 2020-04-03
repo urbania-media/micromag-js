@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Background from '@micromag/component-background';
+import Frame from '@micromag/component-frame';
 import Grid from '@micromag/component-grid';
 import Image from '@micromag/component-image';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
@@ -50,20 +51,18 @@ const GalleryComponent = ({ background, images, grid, renderFormat, className })
                 },
             ])}
         >
-            <div className={styles.images}>
-                <Grid
-                    {...grid}
-                    {...(isSimple ? { spacing: 2 } : { spacing: 5 })}
-                    items={items}
-                    className={styles.grid}
-                />
-            </div>
-            <Background
-                {...background}
-                width={width}
-                height={height}
-                className={styles.background}
-            />
+            <Background {...background} width={width} height={height} className={styles.background}>
+                <Frame width={width} height={height}>
+                    <div className={styles.images}>
+                        <Grid
+                            {...grid}
+                            {...(isSimple ? { spacing: 2 } : { spacing: 5 })}
+                            items={items}
+                            className={styles.grid}
+                        />
+                    </div>
+                </Frame>
+            </Background>
         </div>
     );
 };
