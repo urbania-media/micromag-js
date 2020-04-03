@@ -20,6 +20,7 @@ const propTypes = {
     className: PropTypes.string,
     itemClassName: PropTypes.string,
     indexClassNames: PropTypes.object, // eslint-disable-line
+    children: PropTypes.node,
 };
 
 const defaultProps = {
@@ -35,6 +36,7 @@ const defaultProps = {
     className: null,
     itemClassName: null,
     indexClassNames: {},
+    children: null,
 };
 
 const Box = ({
@@ -50,6 +52,7 @@ const Box = ({
     className,
     itemClassName,
     indexClassNames,
+    children,
 }) => {
     return (
         <div
@@ -70,25 +73,28 @@ const Box = ({
                 padding: spacing !== null && spacing > 0 ? spacing / 2 : null,
             }}
         >
-            {items.map((item, index) => {
-                return (
-                    <div
-                        key={`item-${index}`}
-                        className={classNames([
-                            styles.item,
-                            {
-                                [itemClassName]: itemClassName !== null,
-                                [indexClassNames[index]]: indexClassNames[index],
-                            },
-                        ])}
-                        style={{
-                            padding: spacing !== null && spacing > 0 ? spacing / 2 : null,
-                        }}
-                    >
-                        {item}
-                    </div>
-                );
-            })}
+            {items.length > 0
+                ? items.map((item, index) => {
+                      return (
+                          <div
+                              key={`item-${index}`}
+                              className={classNames([
+                                  styles.item,
+                                  {
+                                      [itemClassName]: itemClassName !== null,
+                                      [indexClassNames[index]]: indexClassNames[index],
+                                  },
+                              ])}
+                              style={{
+                                  padding: spacing !== null && spacing > 0 ? spacing / 2 : null,
+                              }}
+                          >
+                              {item}
+                          </div>
+                      );
+                  })
+                : null}
+            {children}
         </div>
     );
 };

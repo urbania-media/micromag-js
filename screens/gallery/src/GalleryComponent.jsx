@@ -18,8 +18,7 @@ const propTypes = {
         layout: MicromagPropTypes.gridLayout,
         spacing: PropTypes.number,
     }),
-    isPlaceholder: PropTypes.bool,
-    isPreview: PropTypes.bool,
+    renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
 
@@ -27,15 +26,16 @@ const defaultProps = {
     background: null,
     images: [],
     grid: null,
-    isPlaceholder: false,
-    isPreview: false,
+    renderFormat: 'view',
     className: null,
 };
 
-const GalleryGrid = ({ background, images, grid, isPlaceholder, className }) => {
+const GalleryComponent = ({ background, images, grid, renderFormat, className }) => {
     const { width, height } = useScreenSize();
+    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
+
     const { layout } = grid;
-    const items = isPlaceholder
+    const items = isSimple
         ? layout
               .reduce((map, row) => [...map, ...row.columns], [])
               .map(() => <Placeholders.Image className={styles.placeholder} />)
@@ -51,7 +51,12 @@ const GalleryGrid = ({ background, images, grid, isPlaceholder, className }) => 
             ])}
         >
             <div className={styles.images}>
-                <Grid {...grid} items={items} className={styles.grid} />
+                <Grid
+                    {...grid}
+                    {...(isSimple ? { spacing: 2 } : { spacing: 5 })}
+                    items={items}
+                    className={styles.grid}
+                />
             </div>
             <Background
                 {...background}
@@ -63,7 +68,7 @@ const GalleryGrid = ({ background, images, grid, isPlaceholder, className }) => 
     );
 };
 
-GalleryGrid.propTypes = propTypes;
-GalleryGrid.defaultProps = defaultProps;
+GalleryComponent.propTypes = propTypes;
+GalleryComponent.defaultProps = defaultProps;
 
-export default GalleryGrid;
+export default GalleryComponent;

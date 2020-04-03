@@ -5,6 +5,7 @@ import classNames from 'classnames';
 
 import Background from '@micromag/component-background';
 import Frame from '@micromag/component-frame';
+import Box from '@micromag/component-box';
 import Image from '@micromag/component-image';
 
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
@@ -84,9 +85,9 @@ const Ad = ({ ad, background, isFullScreen, renderFormat, className }) => {
                 className={styles.background}
             >
                 <Frame className={styles.frame} width={width} height={height}>
-                    <div className={styles.inner}>
+                    <Box>
                         {isSimple ? <Placeholders.Ad className={styles.placeholder} /> : content}
-                    </div>
+                    </Box>
                 </Frame>
             </Background>
         </div>

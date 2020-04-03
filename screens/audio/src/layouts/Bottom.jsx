@@ -12,15 +12,15 @@ const propTypes = {
 const defaultProps = {
     box: {
         direction: 'column',
-        axisAlign: 'center',
+        axisAlign: 'bottom',
     },
 };
 
-const AudioCenter = ({ box, ...otherProps }) => {
+const AudioBottom = ({ box, ...otherProps }) => {
     return <AudioComponent box={box} {...otherProps} />;
 };
 
-AudioCenter.propTypes = propTypes;
-AudioCenter.defaultProps = defaultProps;
+AudioBottom.propTypes = propTypes;
+AudioBottom.defaultProps = defaultProps;
 
-export default AudioCenter;
+export default AudioBottom;

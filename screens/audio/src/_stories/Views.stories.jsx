@@ -4,7 +4,7 @@ import { withKnobs } from '@storybook/addon-knobs'; // eslint-disable-line impor
 import { withScreenSize } from '../../../../.storybook/decorators';
 import { audio, paragraph, image } from '../../../../.storybook/data';
 
-import { Center } from '../components';
+import { Top, Center, Bottom } from '../components';
 
 const props = {
     audio: audio(),
@@ -18,7 +18,11 @@ export default {
 
 // console.log(audio);
 
-export const Normal = () => <Center {...props} />;
+export const AudioTop = () => <Top {...props} />;
+
+export const AudioNormal = () => <Center {...props} />;
+
+export const AudioBottom = () => <Bottom {...props} />;
 
 export const Album = () => <Center {...props} image={image()} />;
 

@@ -47,11 +47,11 @@ export const Quote = props => (
 );
 
 export const Image = props => (
-    <Placeholder
+    <PlaceholderBlock
         {...props}
         className={classNames([props.className, styles.image])}
-        height={2}
-        lines={1}
+        width="100%"
+        height="100%"
     />
 );
 

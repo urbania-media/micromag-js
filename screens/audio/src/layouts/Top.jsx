@@ -12,7 +12,7 @@ const propTypes = {
 const defaultProps = {
     box: {
         direction: 'column',
-        axisAlign: 'center',
+        axisAlign: 'top',
     },
 };
 
