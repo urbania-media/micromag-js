@@ -17,6 +17,7 @@ const propTypes = {
     spacing: PropTypes.number,
     wrap: PropTypes.bool,
     reverse: PropTypes.bool,
+    withSmallSpacing: PropTypes.bool,
     className: PropTypes.string,
     itemClassName: PropTypes.string,
     indexClassNames: PropTypes.object, // eslint-disable-line
@@ -33,6 +34,7 @@ const defaultProps = {
     spacing: 0,
     wrap: false,
     reverse: false,
+    withSmallSpacing: false,
     className: null,
     itemClassName: null,
     indexClassNames: {},
@@ -46,14 +48,16 @@ const Box = ({
     items,
     width,
     height,
-    spacing,
+    spacing: defaultSpacing,
     wrap,
     reverse,
+    withSmallSpacing,
     className,
     itemClassName,
     indexClassNames,
     children,
 }) => {
+    const spacing = withSmallSpacing ? 10 : defaultSpacing;
     return (
         <div
             className={classNames([

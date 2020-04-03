@@ -172,6 +172,8 @@ export const objectFit = PropTypes.shape({
     size: objectFitSize,
 });
 
+export const textAlign = PropTypes.oneOf(['left', 'right', 'center']);
+
 /**
  * Content
  */

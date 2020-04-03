@@ -56,7 +56,7 @@ const GalleryComponent = ({ background, images, grid, renderFormat, className })
                     <div className={styles.images}>
                         <Grid
                             {...grid}
-                            {...(isSimple ? { spacing: 2 } : { spacing: 5 })}
+                            withSmallSpacing={isSimple}
                             items={items}
                             className={styles.grid}
                         />

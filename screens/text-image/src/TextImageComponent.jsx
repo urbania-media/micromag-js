@@ -17,8 +17,8 @@ const propTypes = {
     text: MicromagPropTypes.text,
     image: MicromagPropTypes.image,
     background: MicromagPropTypes.backgroundComponent,
-    box: MicromagPropTypes.box,
-    grid: MicromagPropTypes.box,
+    box: MicromagPropTypes.boxComponent,
+    grid: MicromagPropTypes.gridComponent,
     textAlign: PropTypes.oneOf(['left', 'right', 'center']),
     reverse: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
@@ -52,18 +52,18 @@ const TextImageScreen = ({
     const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
     const textElement = isSimple ? (
-        <Placeholders.Text className={styles.placeholder} />
+        <Placeholders.ShortText key="text-element" className={styles.placeholder} />
     ) : (
-        <TextComponent {...text} className={styles.text} />
+        <TextComponent {...text} key="text-element" className={styles.text} />
     );
 
     const imageElement = isSimple ? (
-        <Placeholders.Image className={styles.placeholder} />
+        <Placeholders.SmallImage key="image-element" className={styles.placeholderImage} />
     ) : (
-        <ImageComponent {...image} className={styles.image} />
+        <ImageComponent {...image} key="image-element" className={styles.image} />
     );
 
-    const items = reverse ? [imageElement, textElement] : [textElement, imageElement];
+    const items = reverse ? [textElement, imageElement] : [imageElement, textElement];
 
     return (
         <div
@@ -80,9 +80,11 @@ const TextImageScreen = ({
             <Background {...background} width={width} height={height}>
                 <Frame width={width} height={height}>
                     {grid !== null ? (
-                        <Grid {...grid} items={items} className={styles.box} />
+                        <Grid {...grid} withSmallSpacing={isSimple} items={items} />
                     ) : (
-                        <Box {...box} items={items} className={styles.box} />
+                        <Box {...box} withSmallSpacing={isSimple}>
+                            {items}
+                        </Box>
                     )}
                 </Frame>
             </Background>

@@ -9,8 +9,8 @@ export default {
     decorators: [withPreviewSize()],
 };
 
-export const PreviewTop = () => <Top isPreview />;
+export const PreviewTop = () => <Top renderFormat="preview" />;
 
-export const PreviewCenter = () => <Center isPreview />;
+export const PreviewCenter = () => <Center renderFormat="preview" />;
 
-export const PreviewBottom = () => <Bottom isPreview />;
+export const PreviewBottom = () => <Bottom renderFormat="preview" />;

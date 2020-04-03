@@ -63,7 +63,7 @@ const TitleGroupedComponent = ({
                 const key = `group-item-${name}`;
                 const value = options[name] || null;
 
-                if (isSimple && value !== null) {
+                if (isSimple) {
                     const Placeholder = getComponentFromName(name, Placeholders);
                     return <Placeholder className={styles.placeholder} key={key} />;
                 }

@@ -17,8 +17,8 @@ const propTypes = {
     text: MicromagPropTypes.text,
     video: MicromagPropTypes.text,
     background: MicromagPropTypes.backgroundComponent,
-    box: MicromagPropTypes.box,
-    grid: MicromagPropTypes.box,
+    box: MicromagPropTypes.boxComponent,
+    grid: MicromagPropTypes.boxComponent,
     textAlign: PropTypes.oneOf(['left', 'right', 'center']),
     reverse: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
@@ -60,15 +60,15 @@ const TextVideoScreen = ({
     }
 
     const textElement = isSimple ? (
-        <Placeholders.Text className={styles.placeholder} />
+        <Placeholders.Text key="text-element" className={styles.placeholderText} />
     ) : (
-        <TextComponent {...text} className={styles.text} />
+        <TextComponent {...text} key="text-element" className={styles.text} />
     );
 
     const videoElement = isSimple ? (
-        <Placeholders.Video className={styles.placeholder} />
+        <Placeholders.Video key="video-element" className={styles.placeholderVideo} />
     ) : (
-        <Video {...video} {...videoSize} className={styles.video} />
+        <Video {...video} {...videoSize} key="video-element" className={styles.video} />
     );
 
     const items = reverse ? [textElement, videoElement] : [videoElement, textElement];
@@ -86,9 +86,16 @@ const TextVideoScreen = ({
             <Background {...background} width={width} height={height}>
                 <Frame width={width} height={height}>
                     {grid !== null ? (
-                        <Grid {...grid} items={items} className={styles.box} />
+                        <Grid
+                            {...grid}
+                            items={items}
+                            withSmallSpacing={isSimple}
+                            className={styles.box}
+                        />
                     ) : (
-                        <Box {...box} items={items} className={styles.box} />
+                        <Box {...box} withSmallSpacing={isSimple} className={styles.box}>
+                            {items}
+                        </Box>
                     )}
                 </Frame>
             </Background>

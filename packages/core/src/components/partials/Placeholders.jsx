@@ -64,6 +64,15 @@ export const Image = props => (
     />
 );
 
+export const SmallImage = props => (
+    <PlaceholderBlock
+        {...props}
+        className={classNames([props.className, styles.image])}
+        width="50%"
+        height="20%"
+    />
+);
+
 export const Video = props => (
     <PlaceholderBlock
         {...props}
@@ -103,6 +112,7 @@ export default {
     Subtitle,
     Quote,
     Image,
+    SmallImage,
     Video,
     Map,
     Timeline,

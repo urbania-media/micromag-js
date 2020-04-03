@@ -8,7 +8,6 @@ import TitleComponent from '../TitleComponent';
 const propTypes = {
     groups: PropTypes.arrayOf(PropTypes.array),
     grid: MicromagPropTypes.gridComponent,
-    reverse: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -24,12 +23,12 @@ const defaultProps = {
                 columns: [1],
             },
         ],
+        reverse: true,
     },
-    reverse: true,
 };
 
-const TitleOneOneSplit = ({ grid, groups, reverse, ...otherProps }) => {
-    return <TitleComponent grid={grid} groups={groups} reverse={reverse} {...otherProps} />;
+const TitleOneOneSplit = ({ grid, groups, ...otherProps }) => {
+    return <TitleComponent grid={grid} groups={groups} {...otherProps} />;
 };
 
 TitleOneOneSplit.propTypes = propTypes;

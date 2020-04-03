@@ -1,7 +1,7 @@
 import React from 'react';
 import { withPlaceholderSize } from '../../../../.storybook/decorators';
 
-import { Top, Center, Bottom } from '../components';
+import { Top, TopReverse, Center, CenterReverse, Bottom, BottomReverse } from '../components';
 
 export default {
     component: Top,
@@ -9,14 +9,14 @@ export default {
     decorators: [withPlaceholderSize()],
 };
 
-export const PlaceholderTop = () => <Top isPlaceholder />;
+export const PlaceholderTop = () => <Top renderFormat="placeholder" />;
 
-export const PlaceholderCenter = () => <Center isPlaceholder />;
+export const PlaceholderTopReverse = () => <TopReverse renderFormat="placeholder" />;
 
-export const PlaceholderBottom = () => <Bottom isPlaceholder />;
+export const PlaceholderCenter = () => <Center renderFormat="placeholder" />;
 
-// export const PlaceholderTopCentered = () => <TopCentered isPlaceholder />;
-//
-// export const PlaceholderBottomCentered = () => <BottomCentered isPlaceholder />;
-//
-// export const PlaceholderSplit = () => <Split isPlaceholder />;
+export const PlaceholderCenterReverse = () => <CenterReverse renderFormat="placeholder" />;
+
+export const PlaceholderBottom = () => <Bottom renderFormat="placeholder" />;
+
+export const PlaceholderBottomReverse = () => <BottomReverse renderFormat="placeholder" />;

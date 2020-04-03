@@ -24,7 +24,6 @@ const propTypes = {
     title: MicromagPropTypes.headingComponent,
     subtitle: MicromagPropTypes.headingComponent,
     description: MicromagPropTypes.textComponent,
-    reverse: PropTypes.bool,
     groups: PropTypes.arrayOf(PropTypes.array),
     grid: PropTypes.shape({
         layout: MicromagPropTypes.gridLayout,
@@ -40,7 +39,6 @@ const defaultProps = {
     title: null,
     subtitle: null,
     description: null,
-    reverse: false,
     groups: [['title', 'subtitle'], ['description']],
     grid: {
         layout: [
@@ -69,7 +67,6 @@ const TitleComponent = ({
     title,
     subtitle,
     description,
-    reverse,
     groups,
     grid,
     textAlign,
@@ -87,7 +84,7 @@ const TitleComponent = ({
                 const key = `group-item-${name}`;
                 const value = options[name] || null;
 
-                if (isSimple && value !== null) {
+                if (isSimple) {
                     const Placeholder = getComponentFromName(name, Placeholders);
                     return <Placeholder className={styles.placeholder} key={key} />;
                 }
@@ -101,14 +98,11 @@ const TitleComponent = ({
         </div>
     ));
 
-    const blockItems = reverse ? blocks.reverse() : blocks;
-
     return (
         <div
             className={classNames([
                 styles.container,
                 {
-                    [styles.reverse]: reverse,
                     [styles[textAlign]]: textAlign !== null,
                     [className]: className,
                 },
@@ -120,7 +114,8 @@ const TitleComponent = ({
                         <Grid
                             layout={layout}
                             spacing={spacing || 0}
-                            items={blockItems}
+                            items={blocks}
+                            withSmallSpacing={isSimple}
                             className={styles.grid}
                         />
                     </div>

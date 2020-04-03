@@ -10,6 +10,36 @@
         }
     }
 
+    &.center {
+        .textContainer {
+            text-align: center;
+        }
+
+        .placeholder {
+            @extend %placeholder-center;
+        }
+    }
+
+    &.left {
+        .textContainer {
+            text-align: left;
+        }
+
+        .placeholder {
+            @extend %placeholder-left;
+        }
+    }
+
+    &.right {
+        .textContainer {
+            text-align: right;
+        }
+
+        .placeholder {
+            @extend %placeholder-right;
+        }
+    }
+
     .inner {
         position: relative;
     }

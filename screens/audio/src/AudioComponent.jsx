@@ -53,7 +53,7 @@ const Audio = ({ audio, image, text, box, background, renderFormat, className })
         >
             <Background {...background} width={width} height={height}>
                 <Frame width={width} height={height}>
-                    <Box {...box} className={styles.box}>
+                    <Box {...box} withSmallSpacing={isSimple} className={styles.box}>
                         {isSimple && image !== null ? (
                             <Placeholders.Image className={styles.placeholder} />
                         ) : (

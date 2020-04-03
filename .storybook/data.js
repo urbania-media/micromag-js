@@ -3,6 +3,8 @@ import Chance from 'chance';
 import authors from './data/authors';
 import companies from './data/companies';
 import randomWords from './data/words';
+import titles from './data/titles';
+import subtitles from './data/subtitles';
 
 import AudioTest from './data/test.mp3';
 
@@ -22,10 +24,9 @@ const company = (likelyhood = 100) => (likelyhood === 100 ? random(companies) : 
 
 // Methods
 
-export const title = ({ likelyhood = 100, min = 1, max = 6 } = {}) => words(likelyhood, min, max);
+export const title = () => random(titles);
 
-export const subtitle = ({ likelyhood = 100, min = 3, max = 9 } = {}) =>
-    words(likelyhood, min, max);
+export const subtitle = () => random(subtitles);
 
 export const shortText = ({ likelyhood = 100, min = 10, max = 20 } = {}) =>
     words(likelyhood, min, max);

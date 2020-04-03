@@ -85,7 +85,7 @@ const Ad = ({ ad, background, isFullScreen, renderFormat, className }) => {
                 className={styles.background}
             >
                 <Frame className={styles.frame} width={width} height={height}>
-                    <Box>
+                    <Box withSmallSpacing={isSimple}>
                         {isSimple ? <Placeholders.Ad className={styles.placeholder} /> : content}
                     </Box>
                 </Frame>

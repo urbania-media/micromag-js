@@ -1,11 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import TextImageComponent from '../TextImageComponent';
 
 const propTypes = {
     box: MicromagPropTypes.boxComponent,
+    reverse: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -13,13 +15,14 @@ const defaultProps = {
         direction: 'column',
         axisAlign: 'top',
     },
+    reverse: true,
 };
 
-const TextImageTop = ({ box, ...otherProps }) => {
-    return <TextImageComponent box={box} {...otherProps} />;
+const TextImageTopReverse = ({ box, reverse, ...otherProps }) => {
+    return <TextImageComponent box={box} reverse={reverse} {...otherProps} />;
 };
 
-TextImageTop.propTypes = propTypes;
-TextImageTop.defaultProps = defaultProps;
+TextImageTopReverse.propTypes = propTypes;
+TextImageTopReverse.defaultProps = defaultProps;
 
-export default TextImageTop;
+export default TextImageTopReverse;

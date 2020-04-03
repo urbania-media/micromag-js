@@ -18,6 +18,7 @@ const propTypes = {
     text: MicromagPropTypes.textComponent,
     background: MicromagPropTypes.backgroundComponent,
     box: MicromagPropTypes.boxComponent,
+    textAlign: MicromagPropTypes.textAlign,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -27,11 +28,12 @@ const defaultProps = {
     text: null,
     box: null,
     background: null,
+    textAlign: 'center',
     renderFormat: 'view',
     className: null,
 };
 
-const Audio = ({ image, text, box, background, renderFormat, className }) => {
+const Audio = ({ image, text, box, background, textAlign, renderFormat, className }) => {
     const { width, height } = useScreenSize();
     const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
@@ -41,13 +43,14 @@ const Audio = ({ image, text, box, background, renderFormat, className }) => {
                 styles.container,
                 {
                     [styles.isSimple]: isSimple,
+                    [styles[textAlign]]: textAlign !== null,
                     [className]: className !== null,
                 },
             ])}
         >
             <Background {...background} width={width} height={height}>
                 <Frame width={width} height={height}>
-                    <Box {...box} {...(isSimple ? { spacing: 10 } : null)}>
+                    <Box {...box} withSmallSpacing={isSimple}>
                         <div className={styles.inner}>
                             {isSimple ? (
                                 <Placeholders.Image />

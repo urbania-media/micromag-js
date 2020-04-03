@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import TextVideoComponent from '../TextVideoComponent';
 
 const propTypes = {
     box: MicromagPropTypes.boxComponent,
+    reverse: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -14,13 +15,14 @@ const defaultProps = {
         direction: 'column',
         axisAlign: 'center',
     },
+    reverse: true,
 };
 
-const TextCenter = ({ box, ...otherProps }) => {
-    return <TextVideoComponent box={box} {...otherProps} />;
+const TextVideoCenterReverse = ({ box, reverse, ...otherProps }) => {
+    return <TextVideoComponent box={box} reverse={reverse} {...otherProps} />;
 };
 
-TextCenter.propTypes = propTypes;
-TextCenter.defaultProps = defaultProps;
+TextVideoCenterReverse.propTypes = propTypes;
+TextVideoCenterReverse.defaultProps = defaultProps;
 
-export default TextCenter;
+export default TextVideoCenterReverse;

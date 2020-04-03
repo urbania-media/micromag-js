@@ -13,11 +13,11 @@ import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    text: MicromagPropTypes.text,
+    text: MicromagPropTypes.textComponent,
     background: MicromagPropTypes.backgroundComponent,
     box: MicromagPropTypes.boxComponent,
     grid: MicromagPropTypes.gridComponent,
-    textAlign: PropTypes.oneOf(['left', 'right', 'center']),
+    textAlign: MicromagPropTypes.textAlign,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -59,7 +59,9 @@ const TextScreen = ({ text, background, box, grid, textAlign, renderFormat, clas
                     {grid !== null ? (
                         <Grid {...grid} items={[item]} className={styles.box} />
                     ) : (
-                        <Box {...box} items={[item]} className={styles.box} />
+                        <Box {...box} withSmallSpacing={isSimple} className={styles.box}>
+                            {item}
+                        </Box>
                     )}
                 </div>
             </Frame>
