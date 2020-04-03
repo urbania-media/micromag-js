@@ -4,4 +4,8 @@
     max-width: 768px; // Max frame size
     height: 100%;
     margin: 0 auto;
+
+    &.withScroll {
+        overflow-y: scroll;
+    }
 }
