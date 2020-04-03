@@ -2,7 +2,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faAd, faMusic } from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faAd, faMusic, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 
 import Placeholder from './Placeholder';
 import PlaceholderBlock from './PlaceholderBlock';
@@ -77,8 +77,8 @@ export const Video = props => (
     <PlaceholderBlock
         {...props}
         className={classNames([props.className, styles.video])}
-        width="100%"
-        height="50%"
+        width="80%"
+        height="40%"
     >
         <FontAwesomeIcon icon={faPlay} className={styles.icon} />
     </PlaceholderBlock>
@@ -104,6 +104,12 @@ export const Audio = props => (
     </PlaceholderBlock>
 );
 
+export const Slideshow = props => (
+    <PlaceholderBlock {...props} className={classNames([props.className, styles.slideshow])}>
+        <FontAwesomeIcon icon={faAngleDoubleRight} className={styles.icon} />
+    </PlaceholderBlock>
+);
+
 export default {
     Text,
     ShortText,
@@ -118,4 +124,5 @@ export default {
     Timeline,
     Ad,
     Audio,
+    Slideshow,
 };

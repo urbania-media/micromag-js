@@ -5,11 +5,18 @@ import { withScreenSize } from '../../../../.storybook/decorators';
 import { title, subtitle, paragraph } from '../../../../.storybook/data';
 
 import {
-    OneOneSplit,
-    OneOneSplitReverse,
+    Split,
+    SplitReverse,
     ThreeOneSplit,
     ThreeSplit,
     TwoOneSplit,
+    Top,
+    Center,
+    Bottom,
+    TopSubtitle,
+    TopSubtitleReverse,
+    TopDescriptionBottomSubtitle,
+    TopSubtitleBottomDescription,
 } from '../components';
 
 const props = {
@@ -28,17 +35,17 @@ const options = {
 };
 
 export default {
-    component: OneOneSplit,
+    component: Split,
     title: 'Screens/Title/Views',
     decorators: [withKnobs, withScreenSize()],
 };
 
-export const ViewOneOneSplit = () => (
-    <OneOneSplit {...props} textAlign={select('textAlign', options, 'center')} />
+export const ViewSplit = () => (
+    <Split {...props} textAlign={select('textAlign', options, 'center')} />
 );
 
-export const ViewOneOneSplitReverse = () => (
-    <OneOneSplitReverse {...props} textAlign={select('textAlign', options, 'center')} />
+export const ViewSplitReverse = () => (
+    <SplitReverse {...props} textAlign={select('textAlign', options, 'center')} />
 );
 
 export const ViewThreeOneSplit = () => (
@@ -51,4 +58,30 @@ export const ViewThreeSplit = () => (
 
 export const ViewTwoOneSplit = () => (
     <TwoOneSplit {...props} textAlign={select('textAlign', options, 'center')} />
+);
+
+export const ViewTop = () => <Top {...props} textAlign={select('textAlign', options, 'center')} />;
+
+export const ViewCenter = () => (
+    <Center {...props} textAlign={select('textAlign', options, 'center')} />
+);
+
+export const ViewBottom = () => (
+    <Bottom {...props} textAlign={select('textAlign', options, 'center')} />
+);
+
+export const ViewTopSubtitle = () => (
+    <TopSubtitle {...props} textAlign={select('textAlign', options, 'center')} />
+);
+
+export const ViewTopSubtitleReverse = () => (
+    <TopSubtitleReverse {...props} textAlign={select('textAlign', options, 'center')} />
+);
+
+export const ViewTopDescriptionBottomSubtitle = () => (
+    <TopDescriptionBottomSubtitle {...props} textAlign={select('textAlign', options, 'center')} />
+);
+
+export const ViewTopSubtitleBottomDescription = () => (
+    <TopSubtitleBottomDescription {...props} textAlign={select('textAlign', options, 'center')} />
 );

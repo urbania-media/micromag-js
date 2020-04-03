@@ -11,9 +11,13 @@ const propTypes = {
 };
 
 const defaultProps = {
-    groups: [['title', 'subtitle'], ['description']],
+    groups: [['description'], ['title'], ['subtitle']],
     grid: {
         layout: [
+            {
+                rows: 1,
+                columns: [1],
+            },
             {
                 rows: 1,
                 columns: [1],
@@ -26,11 +30,11 @@ const defaultProps = {
     },
 };
 
-const TitleOneOneSplit = ({ grid, groups, ...otherProps }) => {
+const TitleTopDescriptionBottomSubtitle = ({ grid, groups, ...otherProps }) => {
     return <TitleComponent grid={grid} groups={groups} {...otherProps} />;
 };
 
-TitleOneOneSplit.propTypes = propTypes;
-TitleOneOneSplit.defaultProps = defaultProps;
+TitleTopDescriptionBottomSubtitle.propTypes = propTypes;
+TitleTopDescriptionBottomSubtitle.defaultProps = defaultProps;
 
-export default TitleOneOneSplit;
+export default TitleTopDescriptionBottomSubtitle;

@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import TitleGroupedComponent from '../TitleGroupedComponent';
+import TitleComponent from '../TitleComponent';
 
 const propTypes = {
     groups: PropTypes.arrayOf(PropTypes.array),
@@ -26,11 +26,11 @@ const defaultProps = {
     },
 };
 
-const TitleGroupedTop = ({ grid, groups, ...otherProps }) => {
-    return <TitleGroupedComponent grid={grid} groups={groups} {...otherProps} />;
+const TitleSplit = ({ grid, groups, ...otherProps }) => {
+    return <TitleComponent grid={grid} groups={groups} {...otherProps} />;
 };
 
-TitleGroupedTop.propTypes = propTypes;
-TitleGroupedTop.defaultProps = defaultProps;
+TitleSplit.propTypes = propTypes;
+TitleSplit.defaultProps = defaultProps;
 
-export default TitleGroupedTop;
+export default TitleSplit;

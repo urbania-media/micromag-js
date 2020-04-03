@@ -312,3 +312,10 @@ export const audioComponent = PropTypes.shape({
     trackLng: PropTypes.number,
     controls: PropTypes.bool,
 });
+
+export const slide = PropTypes.shape({
+    image,
+    text: textComponent,
+});
+
+export const slides = PropTypes.arrayOf(slide);
