@@ -19,6 +19,7 @@ const propTypes = {
         layout: MicromagPropTypes.gridLayout,
         spacing: PropTypes.number,
     }),
+    defaultSpacing: PropTypes.number,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -27,11 +28,19 @@ const defaultProps = {
     background: null,
     images: [],
     grid: null,
+    defaultSpacing: 10,
     renderFormat: 'view',
     className: null,
 };
 
-const GalleryComponent = ({ background, images, grid, renderFormat, className }) => {
+const GalleryComponent = ({
+    background,
+    images,
+    grid,
+    defaultSpacing,
+    renderFormat,
+    className,
+}) => {
     const { width, height } = useScreenSize();
     const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
@@ -55,6 +64,7 @@ const GalleryComponent = ({ background, images, grid, renderFormat, className })
                 <Frame width={width} height={height}>
                     <div className={styles.images}>
                         <Grid
+                            spacing={defaultSpacing}
                             {...grid}
                             withSmallSpacing={isSimple}
                             items={items}

@@ -2,14 +2,15 @@
 import React from 'react';
 import { withKnobs, select } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
 import { withScreenSize } from '../../../../.storybook/decorators';
-import { quote, author, source, renderFormats } from '../../../../.storybook/data';
+import { quote, author, source, background, renderFormats } from '../../../../.storybook/data';
 
 import { Top, Center, Bottom, TopCentered, BottomCentered, Split } from '../components';
 
 const props = {
-    quote: { body: quote() },
+    quote: { body: quote(), style: { text: { color: '#FFF' } } },
     author: { body: author() },
     source: { body: source() },
+    background: background(),
 };
 
 const options = {
