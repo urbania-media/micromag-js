@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Background from '@micromag/component-background';
+import Frame from '@micromag/component-frame';
 import Heading from '@micromag/component-heading';
 import Text from '@micromag/component-text';
 import Grid from '@micromag/component-grid';
@@ -23,8 +24,6 @@ const propTypes = {
     title: MicromagPropTypes.headingComponent,
     subtitle: MicromagPropTypes.headingComponent,
     description: MicromagPropTypes.textComponent,
-    isPlaceholder: PropTypes.bool,
-    isPreview: PropTypes.bool,
     reverse: PropTypes.bool,
     groups: PropTypes.arrayOf(PropTypes.array),
     grid: PropTypes.shape({
@@ -32,6 +31,7 @@ const propTypes = {
         spacing: PropTypes.number,
     }),
     textAlign: PropTypes.oneOf(['left', 'right', 'center']),
+    renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
 
@@ -40,8 +40,6 @@ const defaultProps = {
     title: null,
     subtitle: null,
     description: null,
-    isPlaceholder: false,
-    isPreview: false,
     reverse: false,
     groups: [['title', 'subtitle'], ['description']],
     grid: {
@@ -62,24 +60,25 @@ const defaultProps = {
         spacing: 2,
     },
     textAlign: 'center',
+    renderFormat: 'view',
     className: null,
 };
 
-const TitleGrid = ({
+const TitleComponent = ({
     background,
     title,
     subtitle,
     description,
-    isPlaceholder,
-    isPreview,
     reverse,
     groups,
     grid,
     textAlign,
+    renderFormat,
     className,
 }) => {
     const { width, height } = useScreenSize();
     const { layout, spacing } = grid;
+    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
     const options = { title, subtitle, description };
     const blocks = groups.map(items => (
@@ -88,7 +87,7 @@ const TitleGrid = ({
                 const key = `group-item-${name}`;
                 const value = options[name] || null;
 
-                if (isPlaceholder && value !== null) {
+                if (isSimple && value !== null) {
                     const Placeholder = getComponentFromName(name, Placeholders);
                     return <Placeholder className={styles.placeholder} key={key} />;
                 }
@@ -109,33 +108,29 @@ const TitleGrid = ({
             className={classNames([
                 styles.container,
                 {
-                    [styles.isPlaceholder]: isPlaceholder,
-                    [styles.isPreview]: isPreview,
                     [styles.reverse]: reverse,
                     [styles[textAlign]]: textAlign !== null,
                     [className]: className,
                 },
             ])}
         >
-            <div className={styles.inner}>
-                <Grid
-                    layout={layout}
-                    spacing={spacing || 0}
-                    items={blockItems}
-                    className={styles.grid}
-                />
-            </div>
-            <Background
-                {...background}
-                width={width}
-                height={height}
-                className={styles.background}
-            />
+            <Background {...background} width={width} height={height}>
+                <Frame width={width} height={height}>
+                    <div className={styles.inner}>
+                        <Grid
+                            layout={layout}
+                            spacing={spacing || 0}
+                            items={blockItems}
+                            className={styles.grid}
+                        />
+                    </div>
+                </Frame>
+            </Background>
         </div>
     );
 };
 
-TitleGrid.propTypes = propTypes;
-TitleGrid.defaultProps = defaultProps;
+TitleComponent.propTypes = propTypes;
+TitleComponent.defaultProps = defaultProps;
 
-export default TitleGrid;
+export default TitleComponent;

@@ -20,9 +20,8 @@ const propTypes = {
     box: MicromagPropTypes.box,
     grid: MicromagPropTypes.box,
     textAlign: PropTypes.oneOf(['left', 'right', 'center']),
-    isPlaceholder: PropTypes.bool,
-    isPreview: PropTypes.bool,
     reverse: PropTypes.bool,
+    renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
 
@@ -33,9 +32,8 @@ const defaultProps = {
     box: null,
     grid: null,
     textAlign: 'center',
-    isPlaceholder: false,
-    isPreview: true,
     reverse: false,
+    renderFormat: 'view',
     className: null,
 };
 
@@ -46,13 +44,13 @@ const TextVideoScreen = ({
     box,
     grid,
     textAlign,
-    isPlaceholder,
-    isPreview,
+    renderFormat,
     reverse,
     className,
 }) => {
     const { width, height } = useScreenSize();
     const { spacing = 0 } = box || {};
+    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
     let videoSize = {};
     if (video && video.width && video.height) {
@@ -61,13 +59,13 @@ const TextVideoScreen = ({
         }
     }
 
-    const textElement = isPlaceholder ? (
+    const textElement = isSimple ? (
         <Placeholders.Text className={styles.placeholder} />
     ) : (
         <TextComponent {...text} className={styles.text} />
     );
 
-    const videoElement = isPlaceholder ? (
+    const videoElement = isSimple ? (
         <Placeholders.Video className={styles.placeholder} />
     ) : (
         <Video {...video} {...videoSize} className={styles.video} />
@@ -76,27 +74,25 @@ const TextVideoScreen = ({
     const items = reverse ? [textElement, videoElement] : [videoElement, textElement];
 
     return (
-        <Background {...background} width={width} height={height}>
-            <Frame width={width} height={height}>
-                <div
-                    className={classNames([
-                        styles.container,
-                        {
-                            [styles.isPlaceholder]: isPlaceholder,
-                            [styles.isPreview]: isPreview,
-                            [styles[textAlign]]: textAlign !== null,
-                            [className]: className !== null,
-                        },
-                    ])}
-                >
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [styles[textAlign]]: textAlign !== null,
+                    [className]: className !== null,
+                },
+            ])}
+        >
+            <Background {...background} width={width} height={height}>
+                <Frame width={width} height={height}>
                     {grid !== null ? (
                         <Grid {...grid} items={items} className={styles.box} />
                     ) : (
                         <Box {...box} items={items} className={styles.box} />
                     )}
-                </div>
-            </Frame>
-        </Background>
+                </Frame>
+            </Background>
+        </div>
     );
 };
 

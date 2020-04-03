@@ -1,1 +1,1 @@
-export { default as Default } from './layouts/Default';
+export { default as Center } from './layouts/Center';

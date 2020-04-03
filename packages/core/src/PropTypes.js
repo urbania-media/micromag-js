@@ -225,10 +225,15 @@ export const axisAlign = PropTypes.oneOf(['top', 'center', 'bottom', 'between', 
 
 export const crossAlign = PropTypes.oneOf(['top', 'center', 'bottom', 'stretch']);
 
-export const box = PropTypes.shape({
+export const boxComponent = PropTypes.shape({
     direction: flexDirection,
     axisAlign,
     crossAlign,
+    spacing: PropTypes.number,
+});
+
+export const gridComponent = PropTypes.shape({
+    layout: PropTypes.array,
     spacing: PropTypes.number,
 });
 
@@ -288,8 +293,20 @@ export const adFormats = PropTypes.shape({
     height: PropTypes.number,
 });
 
-export const fieldType = PropTypes.oneOf(['text', 'heading', 'image', 'audio', 'video', 'map']);
-
-export const fieldTypes = PropTypes.arrayOf(fieldType);
-
 export const renderFormat = PropTypes.oneOf(['view', 'placeholder', 'edit', 'preview']);
+
+export const adFormat = PropTypes.shape({
+    width: PropTypes.number,
+    height: PropTypes.number,
+    url: PropTypes.string,
+    target,
+    iframe: PropTypes.string,
+    image,
+});
+
+export const audioComponent = PropTypes.shape({
+    src: PropTypes.string,
+    track: PropTypes.string,
+    trackLng: PropTypes.number,
+    controls: PropTypes.bool,
+});

@@ -18,13 +18,8 @@ const propTypes = {
     quote: MicromagPropTypes.textComponent,
     source: MicromagPropTypes.textComponent,
     author: MicromagPropTypes.textComponent,
-    grid: PropTypes.shape({
-        layout: MicromagPropTypes.gridLayout,
-        spacing: PropTypes.number,
-    }),
-    box: PropTypes.shape({
-        direction: MicromagPropTypes.flexDirection,
-    }),
+    grid: MicromagPropTypes.gridComponent,
+    box: MicromagPropTypes.boxComponent,
     textAlign: PropTypes.oneOf(['left', 'right', 'center']),
     position: PropTypes.number,
     renderFormat: MicromagPropTypes.renderFormat,
@@ -58,50 +53,50 @@ const QuoteComponent = ({
 }) => {
     const { width, height } = useScreenSize();
     const { layout = [] } = grid || {};
+    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
-    const item =
-        renderFormat === 'placeholder' ? (
-            <blockquote
-                className={classNames([
-                    styles.placeholderContainer,
-                    {
-                        [styles.centered]: grid !== null,
-                    },
-                ])}
-            >
-                <div className={styles.placeholderInner}>
-                    <Placeholders.Text className={styles.placeholder} />
-                </div>
+    const item = isSimple ? (
+        <blockquote
+            className={classNames([
+                styles.placeholderContainer,
+                {
+                    [styles.centered]: grid !== null,
+                },
+            ])}
+        >
+            <div className={styles.placeholderInner}>
+                <Placeholders.Text className={styles.placeholder} />
+            </div>
+        </blockquote>
+    ) : (
+        <figure
+            className={classNames([
+                styles.figure,
+                {
+                    [styles.centered]: grid !== null,
+                },
+            ])}
+        >
+            <blockquote className={styles.blockquote}>
+                <Text {...quote} className={styles.quote} />
             </blockquote>
-        ) : (
-            <figure
-                className={classNames([
-                    styles.figure,
-                    {
-                        [styles.centered]: grid !== null,
-                    },
-                ])}
-            >
-                <blockquote className={styles.blockquote}>
-                    <Text {...quote} className={styles.quote} />
-                </blockquote>
-                {author || source ? (
-                    <figcaption className={styles.caption}>
-                        {author ? (
-                            <>
-                                <span>&mdash;</span>
-                                <Text {...author} className={styles.author} />
-                            </>
-                        ) : null}{' '}
-                        {source ? (
-                            <cite>
-                                <Text {...source} className={styles.source} />
-                            </cite>
-                        ) : null}
-                    </figcaption>
-                ) : null}
-            </figure>
-        );
+            {author || source ? (
+                <figcaption className={styles.caption}>
+                    {author ? (
+                        <>
+                            <span>&mdash;</span>
+                            <Text {...author} className={styles.author} />
+                        </>
+                    ) : null}{' '}
+                    {source ? (
+                        <cite>
+                            <Text {...source} className={styles.source} />
+                        </cite>
+                    ) : null}
+                </figcaption>
+            ) : null}
+        </figure>
+    );
 
     const itemsArray = Array(layout.length || 1);
     const index = Math.min(position - 1, layout.length - 1);

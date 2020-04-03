@@ -5,6 +5,7 @@ import TextComponent from '@micromag/component-text';
 import ImageComponent from '@micromag/component-image';
 import Background from '@micromag/component-background';
 import Frame from '@micromag/component-frame';
+import Box from '@micromag/component-box';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
@@ -12,67 +13,71 @@ import { useScreenSize } from '@micromag/core/contexts';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    src: PropTypes.string,
-    track: PropTypes.string,
-    trackLng: PropTypes.string,
-    controls: PropTypes.bool,
+    audio: MicromagPropTypes.audioComponent,
     text: MicromagPropTypes.text,
     image: MicromagPropTypes.image,
+    box: MicromagPropTypes.box,
     background: MicromagPropTypes.backgroundComponent,
-    reverse: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
 
 const defaultProps = {
-    src: null,
-    track: null,
-    trackLng: null,
-    controls: true,
+    audio: {
+        src: null,
+        track: null,
+        trackLng: null,
+        controls: true,
+    },
     image: null,
     text: null,
+    box: null,
     background: null,
-    reverse: false,
     renderFormat: 'view',
     className: null,
 };
 
-const Audio = ({
-    src,
-    track,
-    trackLng,
-    controls,
-    image,
-    text,
-    background,
-    renderFormat,
-    className,
-}) => {
+const Audio = ({ audio, image, text, box, background, renderFormat, className }) => {
     const { width, height } = useScreenSize();
-    const isPlaceholder = renderFormat === 'placeholder';
-    const props = {
+    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
+    const { src, track, trackLng, controls } = audio;
+    const audioProps = {
+        src,
         controls,
     };
+    const items = [];
 
-    const textElement = isPlaceholder ? (
-        <Placeholders.Text className={styles.placeholder} />
-    ) : (
-        <TextComponent {...text} className={styles.text} />
-    );
+    if (isSimple && image !== null) {
+        items.push(<Placeholders.Image className={styles.placeholder} />);
+    } else if (!isSimple) {
+        items.push(
+            <ImageComponent
+                {...image}
+                maxWidth={Math.min(width, 300)}
+                maxHeight={Math.min(width, 300)}
+                fit={{ size: 'cover' }}
+                className={styles.image}
+            />,
+        );
+    }
 
-    const imageElement = isPlaceholder ? (
-        <Placeholders.Image className={styles.placeholder} />
-    ) : (
-        <ImageComponent {...image} className={styles.image} />
-    );
+    if (isSimple && text !== null) {
+        items.push(<Placeholders.Text className={styles.placeholder} />);
+    } else if (!isSimple) {
+        items.push(<TextComponent {...text} className={styles.text} />);
+    }
 
-    const audioElement = (
-        <audio {...props} src={src}>
-            {track !== null ? (
-                <track default kind="captions" srcLang={trackLng} src={track} />
-            ) : null}
-        </audio>
-    );
+    if (isSimple) {
+        items.push(<Placeholders.Audio className={styles.placeholder} />);
+    } else if (!isSimple) {
+        items.push(
+            <audio className={styles.audio} {...audioProps}>
+                {track !== null ? (
+                    <track default kind="captions" srcLang={trackLng} src={track} />
+                ) : null}
+            </audio>,
+        );
+    }
 
     return (
         <div
@@ -85,11 +90,12 @@ const Audio = ({
         >
             <Background {...background} width={width} height={height}>
                 <Frame width={width} height={height}>
-                    <div className={styles.inner}>
-                        {textElement}
-                        {imageElement}
-                        {audioElement}
-                    </div>
+                    <Box
+                        {...box}
+                        items={items}
+                        className={styles.box}
+                        itemClassName={isSimple ? styles.placeholderItem : null}
+                    />
                 </Frame>
             </Background>
         </div>

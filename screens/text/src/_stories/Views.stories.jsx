@@ -27,7 +27,7 @@ const options = {
 
 export default {
     component: Top,
-    title: 'Screens/Text',
+    title: 'Screens/Text/Views',
     decorators: [withKnobs, withScreenSize()],
 };
 

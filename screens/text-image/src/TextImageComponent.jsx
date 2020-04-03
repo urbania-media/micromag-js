@@ -20,9 +20,8 @@ const propTypes = {
     box: MicromagPropTypes.box,
     grid: MicromagPropTypes.box,
     textAlign: PropTypes.oneOf(['left', 'right', 'center']),
-    isPlaceholder: PropTypes.bool,
-    isPreview: PropTypes.bool,
     reverse: PropTypes.bool,
+    renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
 
@@ -34,8 +33,7 @@ const defaultProps = {
     grid: null,
     textAlign: 'center',
     reverse: false,
-    isPlaceholder: false,
-    isPreview: true,
+    renderFormat: 'view',
     className: null,
 };
 
@@ -47,19 +45,19 @@ const TextImageScreen = ({
     grid,
     textAlign,
     reverse,
-    isPlaceholder,
-    isPreview,
+    renderFormat,
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
-    const textElement = isPlaceholder ? (
+    const textElement = isSimple ? (
         <Placeholders.Text className={styles.placeholder} />
     ) : (
         <TextComponent {...text} className={styles.text} />
     );
 
-    const imageElement = isPlaceholder ? (
+    const imageElement = isSimple ? (
         <Placeholders.Image className={styles.placeholder} />
     ) : (
         <ImageComponent {...image} className={styles.image} />
@@ -68,27 +66,27 @@ const TextImageScreen = ({
     const items = reverse ? [imageElement, textElement] : [textElement, imageElement];
 
     return (
-        <Background {...background} width={width} height={height}>
-            <Frame width={width} height={height}>
-                <div
-                    className={classNames([
-                        styles.container,
-                        {
-                            [styles.isPlaceholder]: isPlaceholder,
-                            [styles.isPreview]: isPreview,
-                            [styles[textAlign]]: textAlign !== null,
-                            [className]: className !== null,
-                        },
-                    ])}
-                >
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [styles.isPlaceholder]: renderFormat === 'placeholder',
+                    [styles.isPreview]: renderFormat === 'preview',
+                    [styles[textAlign]]: textAlign !== null,
+                    [className]: className !== null,
+                },
+            ])}
+        >
+            <Background {...background} width={width} height={height}>
+                <Frame width={width} height={height}>
                     {grid !== null ? (
                         <Grid {...grid} items={items} className={styles.box} />
                     ) : (
                         <Box {...box} items={items} className={styles.box} />
                     )}
-                </div>
-            </Frame>
-        </Background>
+                </Frame>
+            </Background>
+        </div>
     );
 };
 

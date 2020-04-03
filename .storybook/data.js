@@ -4,6 +4,8 @@ import authors from './data/authors';
 import companies from './data/companies';
 import randomWords from './data/words';
 
+import AudioTest from './data/test.mp3';
+
 const chance = new Chance();
 
 const random = array => array[Math.floor(Math.random() * array.length)];
@@ -39,8 +41,8 @@ export const paragraph = ({ likelyhood = 100, min = 3, max = 6 } = {}) =>
 
 export const image = ({ likelyhood = 100, width = 800, height = 800 } = {}) => ({
     url: `https://picsum.photos/${width}/${height}`,
-    width,
-    height,
+    imageWidth: width,
+    imageHeight: height,
 });
 
 export const video = () => ({
@@ -50,6 +52,24 @@ export const video = () => ({
 });
 
 export const background = () => ({ color: { color: chance.color({ format: 'rgb' }) } });
+
+export const backgroundWithImage = () => ({
+    color: { color: chance.color({ format: 'rgb' }) },
+    image: image(),
+});
+
+export const audio = () => ({
+    src: AudioTest,
+    length: '16000',
+    controls: true,
+});
+
+export const advertising = ({ width, height }) => ({
+    width,
+    height,
+    image: { url: `https://picsum.photos/${width}/${height}`, width, height },
+    url: 'https://www.urbania.ca',
+});
 
 export const renderFormats = {
     View: 'view',

@@ -19,7 +19,7 @@ const propTypes = {
     reverse: PropTypes.bool,
     className: PropTypes.string,
     itemClassName: PropTypes.string,
-    exceptionsClassNames: PropTypes.object, // eslint-disable-line
+    indexClassNames: PropTypes.object, // eslint-disable-line
 };
 
 const defaultProps = {
@@ -34,7 +34,7 @@ const defaultProps = {
     reverse: false,
     className: null,
     itemClassName: null,
-    exceptionsClassNames: {},
+    indexClassNames: {},
 };
 
 const Box = ({
@@ -49,7 +49,7 @@ const Box = ({
     reverse,
     className,
     itemClassName,
-    exceptionsClassNames,
+    indexClassNames,
 }) => {
     return (
         <div
@@ -77,8 +77,8 @@ const Box = ({
                         className={classNames([
                             styles.item,
                             {
-                                [exceptionsClassNames[index]]: exceptionsClassNames[index],
                                 [itemClassName]: itemClassName !== null,
+                                [indexClassNames[index]]: indexClassNames[index],
                             },
                         ])}
                         style={{

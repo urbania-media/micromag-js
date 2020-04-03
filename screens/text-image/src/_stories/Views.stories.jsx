@@ -2,15 +2,15 @@
 import React from 'react';
 import { withKnobs, boolean, select } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
 import { withScreenSize } from '../../../../.storybook/decorators';
-import { paragraph, video } from '../../../../.storybook/data';
+import { paragraph, image } from '../../../../.storybook/data';
 
-import TextVideo from '../index';
+import TextImage from '../index';
 
 import { Top, Center, Bottom } from '../components';
 
 const props = {
     text: { body: paragraph() },
-    video: video(),
+    image: image({ width: 400, height: 400 }),
 };
 
 const types = {
@@ -28,34 +28,31 @@ const options = {
 
 export default {
     component: Top,
-    title: 'Screens/TextVideo',
+    title: 'Screens/TextImage/Views',
     decorators: [withKnobs, withScreenSize()],
 };
 
-export const Layouts = () => <TextVideo layout={select('layout', types, 'Top')} {...props} />;
+export const Layouts = () => <TextImage layout={select('layout', types, 'Top')} {...props} />;
 
-export const TextVideoTop = () => (
+export const TextTop = () => (
     <Top
         {...props}
-        isPreview={boolean('isPreview', false)}
         textAlign={select('textAlign', options, 'left')}
         reverse={boolean('reverse', false)}
     />
 );
 
-export const TextVideoCenter = () => (
+export const TextCenter = () => (
     <Center
         {...props}
-        isPreview={boolean('isPreview', false)}
         textAlign={select('textAlign', options, 'left')}
         reverse={boolean('reverse', false)}
     />
 );
 
-export const TextVideoBottom = () => (
+export const TextBottom = () => (
     <Bottom
         {...props}
-        isPreview={boolean('isPreview', false)}
         textAlign={select('textAlign', options, 'left')}
         reverse={boolean('reverse', false)}
     />

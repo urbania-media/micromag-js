@@ -18,11 +18,11 @@ const defaultProps = {
     },
 };
 
-const AudioDefault = ({ box, ...otherProps }) => {
+const AudioCenter = ({ box, ...otherProps }) => {
     return <AudioComponent box={box} {...otherProps} />;
 };
 
-AudioDefault.propTypes = propTypes;
-AudioDefault.defaultProps = defaultProps;
+AudioCenter.propTypes = propTypes;
+AudioCenter.defaultProps = defaultProps;
 
-export default AudioDefault;
+export default AudioCenter;

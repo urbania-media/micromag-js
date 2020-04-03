@@ -2,7 +2,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faAd } from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faAd, faMusic } from '@fortawesome/free-solid-svg-icons';
 
 import Placeholder from './Placeholder';
 import PlaceholderBlock from './PlaceholderBlock';
@@ -80,6 +80,12 @@ export const Ad = props => (
     </PlaceholderBlock>
 );
 
+export const Audio = props => (
+    <PlaceholderBlock {...props} className={classNames([props.className, styles.audio])}>
+        <FontAwesomeIcon icon={faMusic} className={styles.icon} />
+    </PlaceholderBlock>
+);
+
 export default {
     Text,
     Description: Text,
@@ -91,4 +97,5 @@ export default {
     Map,
     Timeline,
     Ad,
+    Audio,
 };

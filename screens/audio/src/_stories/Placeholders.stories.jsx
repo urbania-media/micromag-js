@@ -5,7 +5,7 @@ import { Center } from '../components';
 
 export default {
     component: Center,
-    title: 'Screens/Ad/Placeholders',
+    title: 'Screens/Audio/Placeholders',
     decorators: [withPlaceholderSize()],
 };
 
