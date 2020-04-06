@@ -24,6 +24,12 @@
     }
 
     .placeholderImage {
-        margin-bottom: 5px;
+        margin: 2px;
+    }
+
+    .placeholderContainer {
+        display: inline-block;
+        width: 50%;
+        margin: 2px;
     }
 }

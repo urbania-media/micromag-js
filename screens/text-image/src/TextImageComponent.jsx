@@ -52,7 +52,9 @@ const TextImageScreen = ({
     const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
     const textElement = isSimple ? (
-        <Placeholders.ShortText key="text-element" className={styles.placeholder} />
+        <div className={styles.placeholderContainer}>
+            <Placeholders.ShortText key="text-element" className={styles.placeholder} />
+        </div>
     ) : (
         <TextComponent {...text} key="text-element" className={styles.text} />
     );
