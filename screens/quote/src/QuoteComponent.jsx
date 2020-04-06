@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import Background from '@micromag/component-background';
 import Frame from '@micromag/component-frame';
-import Text from '@micromag/component-text';
+import TextComponent from '@micromag/component-text';
 import Box from '@micromag/component-box';
 import Grid from '@micromag/component-grid';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
@@ -78,19 +78,19 @@ const QuoteComponent = ({
             ])}
         >
             <blockquote className={styles.blockquote}>
-                <Text {...quote} className={styles.quote} />
+                <TextComponent {...quote} className={styles.quote} />
             </blockquote>
             {author || source ? (
                 <figcaption className={styles.caption}>
                     {author ? (
                         <>
                             <span>&mdash;</span>
-                            <Text {...author} className={styles.author} />
+                            <TextComponent {...author} className={styles.author} />
                         </>
                     ) : null}{' '}
                     {source ? (
                         <cite>
-                            <Text {...source} className={styles.source} />
+                            <TextComponent {...source} className={styles.source} />
                         </cite>
                     ) : null}
                 </figcaption>
@@ -120,9 +120,16 @@ const QuoteComponent = ({
             <Background {...background} width={width} height={height} className={styles.background}>
                 <Frame width={width} height={height}>
                     {grid !== null ? (
-                        <Grid {...grid} items={itemsArray} className={styles.grid} />
+                        <Grid
+                            {...grid}
+                            withSmallSpacing={isSimple}
+                            items={itemsArray}
+                            className={styles.grid}
+                        />
                     ) : (
-                        <Box {...box} items={itemsArray} className={styles.box} />
+                        <Box {...box} withSmallSpacing={isSimple} className={styles.box}>
+                            {item}
+                        </Box>
                     )}
                 </Frame>
             </Background>

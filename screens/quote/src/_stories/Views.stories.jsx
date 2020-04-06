@@ -2,25 +2,15 @@
 import React from 'react';
 import { withKnobs, select } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
 import { withScreenSize } from '../../../../.storybook/decorators';
-import { quote, author, source, renderFormats } from '../../../../.storybook/data';
-
-import { Quote } from '../index';
+import { quote, author, source, background, renderFormats } from '../../../../.storybook/data';
 
 import { Top, Center, Bottom, TopCentered, BottomCentered, Split } from '../components';
 
 const props = {
-    quote: { body: quote() },
+    quote: { body: quote(), style: { text: { color: '#FFF' } } },
     author: { body: author() },
     source: { body: source() },
-};
-
-const types = {
-    Top: 'Top',
-    Center: 'Center',
-    Bottom: 'Bottom',
-    TopCentered: 'TopCentered',
-    BottomCentered: 'BottomCentered',
-    Split: 'Split',
+    background: background(),
 };
 
 const options = {
@@ -35,8 +25,6 @@ export default {
     title: 'Screens/Quote/Views',
     decorators: [withKnobs, withScreenSize()],
 };
-
-export const Layouts = () => <Quote layout={select('layout', types, 'Top')} {...props} />;
 
 export const ViewTop = () => (
     <Top

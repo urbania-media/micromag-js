@@ -1,22 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { withKnobs, boolean, select } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
+import { withKnobs, select } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
 import { withScreenSize } from '../../../../.storybook/decorators';
-import { paragraph, image } from '../../../../.storybook/data';
+import { paragraph, imageWithRandomSize } from '../../../../.storybook/data';
 
-import TextImage from '../index';
-
-import { Top, Center, Bottom } from '../components';
+import { Top, TopReverse, Center, CenterReverse, Bottom, BottomReverse } from '../components';
 
 const props = {
     text: { body: paragraph() },
-    image: image({ width: 400, height: 400 }),
-};
-
-const types = {
-    Top: 'Top',
-    Center: 'Center',
-    Bottom: 'Bottom',
+    image: imageWithRandomSize(),
 };
 
 const options = {
@@ -32,28 +24,24 @@ export default {
     decorators: [withKnobs, withScreenSize()],
 };
 
-export const Layouts = () => <TextImage layout={select('layout', types, 'Top')} {...props} />;
+export const ViewTop = () => <Top {...props} textAlign={select('textAlign', options, 'left')} />;
 
-export const TextTop = () => (
-    <Top
-        {...props}
-        textAlign={select('textAlign', options, 'left')}
-        reverse={boolean('reverse', false)}
-    />
+export const ViewTopReverse = () => (
+    <TopReverse {...props} textAlign={select('textAlign', options, 'left')} />
 );
 
-export const TextCenter = () => (
-    <Center
-        {...props}
-        textAlign={select('textAlign', options, 'left')}
-        reverse={boolean('reverse', false)}
-    />
+export const ViewCenter = () => (
+    <Center {...props} textAlign={select('textAlign', options, 'left')} />
 );
 
-export const TextBottom = () => (
-    <Bottom
-        {...props}
-        textAlign={select('textAlign', options, 'left')}
-        reverse={boolean('reverse', false)}
-    />
+export const ViewCenterReverse = () => (
+    <CenterReverse {...props} textAlign={select('textAlign', options, 'left')} />
+);
+
+export const ViewBottom = () => (
+    <Bottom {...props} textAlign={select('textAlign', options, 'left')} />
+);
+
+export const ViewBottomReverse = () => (
+    <BottomReverse {...props} textAlign={select('textAlign', options, 'left')} />
 );

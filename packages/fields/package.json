@@ -1,0 +1,66 @@
+{
+    "name": "@micromag/fields",
+    "version": "0.1.0",
+    "description": "",
+    "keywords": [
+        "javascript"
+    ],
+    "homepage": "https://github.com/urbania-media/micromag-js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/urbania-media/micromag-js.git"
+    },
+    "author": {
+        "name": "Folklore",
+        "email": "info@folklore.email"
+    },
+    "contributors": [
+        {
+            "name": "David Mongeau-Petitpas",
+            "email": "dmp@folklore.email"
+        },
+        {
+            "name": "Nicolas Roy-Bourdages",
+            "email": "nrb@folklore.email"
+        }
+    ],
+    "license": "ISC",
+    "main": "lib/index.js",
+    "module": "es/index.js",
+    "files": [
+        "lib",
+        "es",
+        "assets"
+    ],
+    "scripts": {
+        "clean": "rm -rf assets && rm -rf lib && rm -rf es",
+        "build": "NODE_ENV=production ../../node_modules/.bin/rollup --config ../../rollup.config.js",
+        "prepare": "npm run clean && npm run build",
+        "start": "PUBLIC_URL=http://localhost/ react-scripts start"
+    },
+    "devDependencies": {
+        "react": ">=15.0.0 || ^16.0.0",
+        "react-dom": ">=15.0.0 || ^16.0.0"
+    },
+    "peerDependencies": {
+        "react": ">=15.0.0 || ^16.0.0",
+        "react-dom": ">=15.0.0 || ^16.0.0"
+    },
+    "dependencies": {
+        "@babel/runtime": "^7.8.7",
+        "@ckeditor/ckeditor5-build-classic": "^15.0.0",
+        "@ckeditor/ckeditor5-react": "^2.0.0",
+        "@fortawesome/fontawesome-svg-core": "^1.2.28",
+        "@fortawesome/free-solid-svg-icons": "^5.13.0",
+        "@fortawesome/react-fontawesome": "^0.1.9",
+        "@micromag/component-grid": "^0.1.0",
+        "@micromag/core": "^0.1.0",
+        "classnames": "^2.2.6",
+        "lodash": "^4.17.15",
+        "prop-types": "^15.7.2",
+        "rc-slider": "^8.7.1",
+        "rc-switch": "^1.9.0",
+        "react-color": "^2.18.0",
+        "tinycolor2": "^1.4.1"
+    }
+}

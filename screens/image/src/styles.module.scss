@@ -2,8 +2,59 @@
 
 .container {
     @extend %screen;
-    display: flex;
-    position: relative;
-    align-items: center;
-    justify-content: center;
+
+    &.isSimple {
+        .inner {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &.center {
+        .textContainer {
+            text-align: center;
+        }
+
+        .placeholder {
+            @extend %placeholder-center;
+        }
+    }
+
+    &.left {
+        .textContainer {
+            text-align: left;
+        }
+
+        .placeholder {
+            @extend %placeholder-left;
+        }
+    }
+
+    &.right {
+        .textContainer {
+            text-align: right;
+        }
+
+        .placeholder {
+            @extend %placeholder-right;
+        }
+    }
+
+    .inner {
+        position: relative;
+    }
+
+    .textContainer,
+    .placeholderTextContainer {
+        display: flex;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
 }

@@ -8,6 +8,8 @@ import Frame from '@micromag/component-frame';
 import Heading from '@micromag/component-heading';
 import Text from '@micromag/component-text';
 import Grid from '@micromag/component-grid';
+import Box from '@micromag/component-box';
+
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { getComponentFromName } from '@micromag/core/utils';
 import { useScreenSize } from '@micromag/core/contexts';
@@ -20,74 +22,54 @@ const HEADING_SIZES = {
 };
 
 const propTypes = {
-    background: MicromagPropTypes.backgroundComponent,
     title: MicromagPropTypes.headingComponent,
     subtitle: MicromagPropTypes.headingComponent,
     description: MicromagPropTypes.textComponent,
-    reverse: PropTypes.bool,
     groups: PropTypes.arrayOf(PropTypes.array),
-    grid: PropTypes.shape({
-        layout: MicromagPropTypes.gridLayout,
-        spacing: PropTypes.number,
-    }),
+    grid: MicromagPropTypes.gridComponent,
+    box: MicromagPropTypes.boxComponent,
+    background: MicromagPropTypes.backgroundComponent,
     textAlign: PropTypes.oneOf(['left', 'right', 'center']),
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
 
 const defaultProps = {
-    background: null,
     title: null,
     subtitle: null,
     description: null,
-    reverse: false,
     groups: [['title', 'subtitle'], ['description']],
-    grid: {
-        layout: [
-            {
-                rows: 1,
-                columns: [1],
-            },
-            {
-                rows: 1,
-                columns: [1],
-            },
-            {
-                rows: 1,
-                columns: [1],
-            },
-        ],
-        spacing: 2,
-    },
+    grid: null,
+    box: null,
+    background: null,
     textAlign: 'center',
     renderFormat: 'view',
     className: null,
 };
 
 const TitleComponent = ({
-    background,
     title,
     subtitle,
     description,
-    reverse,
     groups,
     grid,
+    box,
+    background,
     textAlign,
     renderFormat,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { layout, spacing } = grid;
     const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
     const options = { title, subtitle, description };
-    const blocks = groups.map(items => (
-        <div className={styles.group} key={`group-${items.join('-')}`}>
-            {items.map(name => {
+    const items = groups.map(its => (
+        <div className={styles.group} key={`group-${its.join('-')}`}>
+            {its.map(name => {
                 const key = `group-item-${name}`;
                 const value = options[name] || null;
 
-                if (isSimple && value !== null) {
+                if (isSimple) {
                     const Placeholder = getComponentFromName(name, Placeholders);
                     return <Placeholder className={styles.placeholder} key={key} />;
                 }
@@ -101,14 +83,11 @@ const TitleComponent = ({
         </div>
     ));
 
-    const blockItems = reverse ? blocks.reverse() : blocks;
-
     return (
         <div
             className={classNames([
                 styles.container,
                 {
-                    [styles.reverse]: reverse,
                     [styles[textAlign]]: textAlign !== null,
                     [className]: className,
                 },
@@ -117,12 +96,18 @@ const TitleComponent = ({
             <Background {...background} width={width} height={height}>
                 <Frame width={width} height={height}>
                     <div className={styles.inner}>
-                        <Grid
-                            layout={layout}
-                            spacing={spacing || 0}
-                            items={blockItems}
-                            className={styles.grid}
-                        />
+                        {grid !== null ? (
+                            <Grid
+                                {...grid}
+                                items={items}
+                                withSmallSpacing={isSimple}
+                                className={styles.grid}
+                            />
+                        ) : (
+                            <Box {...box} className={styles.box}>
+                                {items}
+                            </Box>
+                        )}
                     </div>
                 </Frame>
             </Background>

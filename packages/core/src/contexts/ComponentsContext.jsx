@@ -6,9 +6,9 @@ import getDisplayName from '../utils/getDisplayName';
 
 const ComponentsContext = React.createContext({});
 
-export const useComponents = (namespace = null) => {
+export const useComponents = (namespace = null, defaultComponents = {}) => {
     const { components } = useContext(ComponentsContext);
-    return namespace !== null ? (components || {})[namespace] : components;
+    return (namespace !== null ? (components || {})[namespace] : components) || defaultComponents;
 };
 
 export const withComponents = WrappedComponent => {

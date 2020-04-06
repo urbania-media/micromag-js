@@ -3,7 +3,8 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Button, Fields, CollapsablePanel } from '@micromag/core/components';
+import { Button, CollapsablePanel } from '@micromag/core/components';
+import { Fields } from '@micromag/fields';
 
 import getFieldsFromScreenType from '../../utils/getFieldsFromScreenType';
 

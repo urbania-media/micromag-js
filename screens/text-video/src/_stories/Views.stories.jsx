@@ -1,22 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { withKnobs, boolean, select } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
+import { withKnobs, select } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
 import { withScreenSize } from '../../../../.storybook/decorators';
 import { paragraph, video } from '../../../../.storybook/data';
 
-import TextVideo from '../index';
-
-import { Top, Center, Bottom } from '../components';
+import { Top, TopReverse, Center, CenterReverse, Bottom, BottomReverse } from '../components';
 
 const props = {
     text: { body: paragraph() },
     video: video(),
-};
-
-const types = {
-    Top: 'Top',
-    Center: 'Center',
-    Bottom: 'Bottom',
 };
 
 const options = {
@@ -32,31 +24,24 @@ export default {
     decorators: [withKnobs, withScreenSize()],
 };
 
-export const Layouts = () => <TextVideo layout={select('layout', types, 'Top')} {...props} />;
+export const ViewTop = () => <Top {...props} textAlign={select('textAlign', options, 'left')} />;
 
-export const TextVideoTop = () => (
-    <Top
-        {...props}
-        isPreview={boolean('isPreview', false)}
-        textAlign={select('textAlign', options, 'left')}
-        reverse={boolean('reverse', false)}
-    />
+export const ViewTopReverse = () => (
+    <TopReverse {...props} textAlign={select('textAlign', options, 'left')} />
 );
 
-export const TextVideoCenter = () => (
-    <Center
-        {...props}
-        isPreview={boolean('isPreview', false)}
-        textAlign={select('textAlign', options, 'left')}
-        reverse={boolean('reverse', false)}
-    />
+export const ViewCenter = () => (
+    <Center {...props} textAlign={select('textAlign', options, 'left')} />
 );
 
-export const TextVideoBottom = () => (
-    <Bottom
-        {...props}
-        isPreview={boolean('isPreview', false)}
-        textAlign={select('textAlign', options, 'left')}
-        reverse={boolean('reverse', false)}
-    />
+export const ViewCenterReverse = () => (
+    <CenterReverse {...props} textAlign={select('textAlign', options, 'left')} />
+);
+
+export const ViewBottom = () => (
+    <Bottom {...props} textAlign={select('textAlign', options, 'left')} />
+);
+
+export const ViewBottomReverse = () => (
+    <BottomReverse {...props} textAlign={select('textAlign', options, 'left')} />
 );

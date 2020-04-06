@@ -101,11 +101,6 @@
         }
     }
 
-    .background {
-        @extend %fullscreen;
-        z-index: 1;
-    }
-
     &.center {
         text-align: center;
 

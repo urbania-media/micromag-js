@@ -17,9 +17,11 @@ const propTypes = {
     spacing: PropTypes.number,
     wrap: PropTypes.bool,
     reverse: PropTypes.bool,
+    withSmallSpacing: PropTypes.bool,
     className: PropTypes.string,
     itemClassName: PropTypes.string,
     indexClassNames: PropTypes.object, // eslint-disable-line
+    children: PropTypes.node,
 };
 
 const defaultProps = {
@@ -32,9 +34,11 @@ const defaultProps = {
     spacing: 0,
     wrap: false,
     reverse: false,
+    withSmallSpacing: false,
     className: null,
     itemClassName: null,
     indexClassNames: {},
+    children: null,
 };
 
 const Box = ({
@@ -44,13 +48,16 @@ const Box = ({
     items,
     width,
     height,
-    spacing,
+    spacing: defaultSpacing,
     wrap,
     reverse,
+    withSmallSpacing,
     className,
     itemClassName,
     indexClassNames,
+    children,
 }) => {
+    const spacing = withSmallSpacing ? 10 : defaultSpacing;
     return (
         <div
             className={classNames([
@@ -70,25 +77,28 @@ const Box = ({
                 padding: spacing !== null && spacing > 0 ? spacing / 2 : null,
             }}
         >
-            {items.map((item, index) => {
-                return (
-                    <div
-                        key={`item-${index}`}
-                        className={classNames([
-                            styles.item,
-                            {
-                                [itemClassName]: itemClassName !== null,
-                                [indexClassNames[index]]: indexClassNames[index],
-                            },
-                        ])}
-                        style={{
-                            padding: spacing !== null && spacing > 0 ? spacing / 2 : null,
-                        }}
-                    >
-                        {item}
-                    </div>
-                );
-            })}
+            {items.length > 0
+                ? items.map((item, index) => {
+                      return (
+                          <div
+                              key={`item-${index}`}
+                              className={classNames([
+                                  styles.item,
+                                  {
+                                      [itemClassName]: itemClassName !== null,
+                                      [indexClassNames[index]]: indexClassNames[index],
+                                  },
+                              ])}
+                              style={{
+                                  padding: spacing !== null && spacing > 0 ? spacing / 2 : null,
+                              }}
+                          >
+                              {item}
+                          </div>
+                      );
+                  })
+                : null}
+            {children}
         </div>
     );
 };

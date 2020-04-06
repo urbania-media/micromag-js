@@ -2,16 +2,21 @@
 import React from 'react';
 import { withKnobs, select } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
 import { withScreenSize } from '../../../../.storybook/decorators';
-import { title, subtitle, paragraph, renderFormats } from '../../../../.storybook/data';
-
-import Title from '../index';
+import { title, subtitle, paragraph } from '../../../../.storybook/data';
 
 import {
-    OneOneSplit,
-    OneOneSplitReverse,
+    Split,
+    SplitReverse,
     ThreeOneSplit,
     ThreeSplit,
     TwoOneSplit,
+    Top,
+    Center,
+    Bottom,
+    TopSubtitle,
+    TopSubtitleReverse,
+    TopDescriptionBottomSubtitle,
+    TopSubtitleBottomDescription,
 } from '../components';
 
 const props = {
@@ -22,15 +27,6 @@ const props = {
     },
 };
 
-const types = {
-    Top: 'Top',
-    Center: 'Center',
-    Bottom: 'Bottom',
-    TopCentered: 'TopCentered',
-    BottomCentered: 'BottomCentered',
-    Split: 'Split',
-};
-
 const options = {
     Center: 'center',
     Left: 'left',
@@ -39,49 +35,53 @@ const options = {
 };
 
 export default {
-    component: OneOneSplit,
+    component: Split,
     title: 'Screens/Title/Views',
     decorators: [withKnobs, withScreenSize()],
 };
 
-export const Layouts = () => <Title layout={select('layout', types, 'Top')} {...props} />;
-
-export const ViewOneOneSplit = () => (
-    <OneOneSplit
-        {...props}
-        renderFormat={select('renderFormat', renderFormats, 'view')}
-        textAlign={select('textAlign', options, 'center')}
-    />
+export const ViewSplit = () => (
+    <Split {...props} textAlign={select('textAlign', options, 'center')} />
 );
 
-export const ViewOneOneSplitReverse = () => (
-    <OneOneSplitReverse
-        {...props}
-        renderFormat={select('renderFormat', renderFormats, 'view')}
-        textAlign={select('textAlign', options, 'center')}
-    />
+export const ViewSplitReverse = () => (
+    <SplitReverse {...props} textAlign={select('textAlign', options, 'center')} />
 );
 
 export const ViewThreeOneSplit = () => (
-    <ThreeOneSplit
-        {...props}
-        renderFormat={select('renderFormat', renderFormats, 'view')}
-        textAlign={select('textAlign', options, 'center')}
-    />
+    <ThreeOneSplit {...props} textAlign={select('textAlign', options, 'center')} />
 );
 
 export const ViewThreeSplit = () => (
-    <ThreeSplit
-        {...props}
-        renderFormat={select('renderFormat', renderFormats, 'view')}
-        textAlign={select('textAlign', options, 'center')}
-    />
+    <ThreeSplit {...props} textAlign={select('textAlign', options, 'center')} />
 );
 
 export const ViewTwoOneSplit = () => (
-    <TwoOneSplit
-        {...props}
-        renderFormat={select('renderFormat', renderFormats, 'view')}
-        textAlign={select('textAlign', options, 'center')}
-    />
+    <TwoOneSplit {...props} textAlign={select('textAlign', options, 'center')} />
+);
+
+export const ViewTop = () => <Top {...props} textAlign={select('textAlign', options, 'center')} />;
+
+export const ViewCenter = () => (
+    <Center {...props} textAlign={select('textAlign', options, 'center')} />
+);
+
+export const ViewBottom = () => (
+    <Bottom {...props} textAlign={select('textAlign', options, 'center')} />
+);
+
+export const ViewTopSubtitle = () => (
+    <TopSubtitle {...props} textAlign={select('textAlign', options, 'center')} />
+);
+
+export const ViewTopSubtitleReverse = () => (
+    <TopSubtitleReverse {...props} textAlign={select('textAlign', options, 'center')} />
+);
+
+export const ViewTopDescriptionBottomSubtitle = () => (
+    <TopDescriptionBottomSubtitle {...props} textAlign={select('textAlign', options, 'center')} />
+);
+
+export const ViewTopSubtitleBottomDescription = () => (
+    <TopSubtitleBottomDescription {...props} textAlign={select('textAlign', options, 'center')} />
 );

@@ -1,14 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import AudioComponent from '../AudioComponent';
 
 const propTypes = {
-    box: PropTypes.shape({
-        direction: MicromagPropTypes.flexDirection,
-    }),
+    box: MicromagPropTypes.boxComponent,
 };
 
 const defaultProps = {
