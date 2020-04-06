@@ -31,7 +31,7 @@ const Frame = ({ width, height, withScroll, className, children }) => {
             className={classNames([
                 styles.container,
                 {
-                    [styles.withScroll]: withScroll !== null,
+                    [styles.withScroll]: withScroll === true,
                     [className]: className !== null,
                 },
             ])}
