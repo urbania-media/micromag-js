@@ -6,20 +6,55 @@
     @extend %screen;
 
     .inner {
-        margin: 20px;
+        width: 100%;
+        padding: 20px 15px;
     }
 
-    @include match-screen('medium') {
-        .top {
-            display: block;
-        }
+    .title {
+        position: relative;
+        width: 100%;
+    }
 
-        .bottom {
-            padding: 40px 20px;
+    .timelineContainer {
+        position: relative;
+        margin: 20px 0;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            border-left: 3px dashed #000;
         }
     }
 
-    .item {
-        margin: 10px;
+    .timelineBlock {
+        display: flex;
+        position: relative;
+        margin-bottom: 30px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .dot {
+        position: absolute;
+        top: 0;
+        left: calc(3px / 2 - 10px / 2);
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #000;
+    }
+
+    .mainContent {
+        flex-grow: 1;
+        margin-left: 20px;
+    }
+
+    .placeholder {
+        width: 100%;
     }
 }

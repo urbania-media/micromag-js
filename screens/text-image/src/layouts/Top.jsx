@@ -1,27 +1,22 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import TextImageComponent from '../TextImageComponent';
 
 const propTypes = {
-    box: MicromagPropTypes.box,
-    reverse: PropTypes.bool,
+    box: MicromagPropTypes.boxComponent,
 };
 
 const defaultProps = {
     box: {
-        direction: null,
+        direction: 'column',
         axisAlign: 'top',
-        crossAlign: null,
-        spacing: 10,
     },
-    reverse: false,
 };
 
-const TextImageTop = ({ box, reverse, ...otherProps }) => {
-    return <TextImageComponent box={box} reverse={reverse} {...otherProps} />;
+const TextImageTop = ({ box, ...otherProps }) => {
+    return <TextImageComponent box={box} {...otherProps} />;
 };
 
 TextImageTop.propTypes = propTypes;

@@ -3,6 +3,6 @@ import React from 'react';
 import { createLayoutSwitcher } from '@micromag/core';
 import * as LayoutComponents from './components';
 
-const ImageScreen = createLayoutSwitcher(LayoutComponents);
+const MapScreen = createLayoutSwitcher(LayoutComponents, LayoutComponents.Center);
 
-export default React.memo(ImageScreen);
+export default React.memo(MapScreen);

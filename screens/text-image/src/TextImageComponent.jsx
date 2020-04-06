@@ -17,12 +17,11 @@ const propTypes = {
     text: MicromagPropTypes.text,
     image: MicromagPropTypes.image,
     background: MicromagPropTypes.backgroundComponent,
-    box: MicromagPropTypes.box,
-    grid: MicromagPropTypes.box,
+    box: MicromagPropTypes.boxComponent,
+    grid: MicromagPropTypes.gridComponent,
     textAlign: PropTypes.oneOf(['left', 'right', 'center']),
-    isPlaceholder: PropTypes.bool,
-    isPreview: PropTypes.bool,
     reverse: PropTypes.bool,
+    renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
 
@@ -34,8 +33,7 @@ const defaultProps = {
     grid: null,
     textAlign: 'center',
     reverse: false,
-    isPlaceholder: false,
-    isPreview: true,
+    renderFormat: 'view',
     className: null,
 };
 
@@ -47,48 +45,50 @@ const TextImageScreen = ({
     grid,
     textAlign,
     reverse,
-    isPlaceholder,
-    isPreview,
+    renderFormat,
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
-    const textElement = isPlaceholder ? (
-        <Placeholders.Text className={styles.placeholder} />
+    const textElement = isSimple ? (
+        <Placeholders.ShortText key="text-element" className={styles.placeholder} />
     ) : (
-        <TextComponent {...text} className={styles.text} />
+        <TextComponent {...text} key="text-element" className={styles.text} />
     );
 
-    const imageElement = isPlaceholder ? (
-        <Placeholders.Image className={styles.placeholder} />
+    const imageElement = isSimple ? (
+        <Placeholders.SmallImage key="image-element" className={styles.placeholderImage} />
     ) : (
-        <ImageComponent {...image} className={styles.image} />
+        <ImageComponent {...image} key="image-element" className={styles.image} />
     );
 
-    const items = reverse ? [imageElement, textElement] : [textElement, imageElement];
+    const items = reverse ? [textElement, imageElement] : [imageElement, textElement];
 
     return (
-        <Background {...background} width={width} height={height}>
-            <Frame width={width} height={height}>
-                <div
-                    className={classNames([
-                        styles.container,
-                        {
-                            [styles.isPlaceholder]: isPlaceholder,
-                            [styles.isPreview]: isPreview,
-                            [styles[textAlign]]: textAlign !== null,
-                            [className]: className !== null,
-                        },
-                    ])}
-                >
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [styles.isPlaceholder]: renderFormat === 'placeholder',
+                    [styles.isPreview]: renderFormat === 'preview',
+                    [styles[textAlign]]: textAlign !== null,
+                    [className]: className !== null,
+                },
+            ])}
+        >
+            <Background {...background} width={width} height={height}>
+                <Frame width={width} height={height}>
                     {grid !== null ? (
-                        <Grid {...grid} items={items} className={styles.box} />
+                        <Grid {...grid} withSmallSpacing={isSimple} items={items} />
                     ) : (
-                        <Box {...box} items={items} className={styles.box} />
+                        <Box {...box} withSmallSpacing={isSimple}>
+                            {items}
+                        </Box>
                     )}
-                </div>
-            </Frame>
-        </Background>
+                </Frame>
+            </Background>
+        </div>
     );
 };
 

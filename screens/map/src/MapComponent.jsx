@@ -23,8 +23,7 @@ const defaultProps = {
 
 const MapComponent = ({ background, renderFormat, className }) => {
     const { width, height } = useScreenSize();
-    const isPlaceholder = renderFormat === 'placeholder';
-
+    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
     return (
         <div
             className={classNames([
@@ -36,7 +35,7 @@ const MapComponent = ({ background, renderFormat, className }) => {
         >
             <Background {...background} width={width} height={height}>
                 <Frame width={width} height={height}>
-                    <div className={styles.inner}>Map {isPlaceholder ? 'placeholder' : null}</div>
+                    <div className={styles.inner}>{isSimple ? 'simple' : 'A map'}</div>
                 </Frame>
             </Background>
         </div>

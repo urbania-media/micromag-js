@@ -17,12 +17,11 @@ const propTypes = {
     text: MicromagPropTypes.text,
     video: MicromagPropTypes.text,
     background: MicromagPropTypes.backgroundComponent,
-    box: MicromagPropTypes.box,
-    grid: MicromagPropTypes.box,
+    box: MicromagPropTypes.boxComponent,
+    grid: MicromagPropTypes.boxComponent,
     textAlign: PropTypes.oneOf(['left', 'right', 'center']),
-    isPlaceholder: PropTypes.bool,
-    isPreview: PropTypes.bool,
     reverse: PropTypes.bool,
+    renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
 
@@ -33,9 +32,8 @@ const defaultProps = {
     box: null,
     grid: null,
     textAlign: 'center',
-    isPlaceholder: false,
-    isPreview: true,
     reverse: false,
+    renderFormat: 'view',
     className: null,
 };
 
@@ -46,13 +44,13 @@ const TextVideoScreen = ({
     box,
     grid,
     textAlign,
-    isPlaceholder,
-    isPreview,
+    renderFormat,
     reverse,
     className,
 }) => {
     const { width, height } = useScreenSize();
     const { spacing = 0 } = box || {};
+    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
     let videoSize = {};
     if (video && video.width && video.height) {
@@ -61,42 +59,47 @@ const TextVideoScreen = ({
         }
     }
 
-    const textElement = isPlaceholder ? (
-        <Placeholders.Text className={styles.placeholder} />
+    const textElement = isSimple ? (
+        <Placeholders.Text key="text-element" className={styles.placeholderText} />
     ) : (
-        <TextComponent {...text} className={styles.text} />
+        <TextComponent {...text} key="text-element" className={styles.text} />
     );
 
-    const videoElement = isPlaceholder ? (
-        <Placeholders.Video className={styles.placeholder} />
+    const videoElement = isSimple ? (
+        <Placeholders.Video key="video-element" className={styles.placeholderVideo} />
     ) : (
-        <Video {...video} {...videoSize} className={styles.video} />
+        <Video {...video} {...videoSize} key="video-element" className={styles.video} />
     );
 
     const items = reverse ? [textElement, videoElement] : [videoElement, textElement];
 
     return (
-        <Background {...background} width={width} height={height}>
-            <Frame width={width} height={height}>
-                <div
-                    className={classNames([
-                        styles.container,
-                        {
-                            [styles.isPlaceholder]: isPlaceholder,
-                            [styles.isPreview]: isPreview,
-                            [styles[textAlign]]: textAlign !== null,
-                            [className]: className !== null,
-                        },
-                    ])}
-                >
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [styles[textAlign]]: textAlign !== null,
+                    [className]: className !== null,
+                },
+            ])}
+        >
+            <Background {...background} width={width} height={height}>
+                <Frame width={width} height={height}>
                     {grid !== null ? (
-                        <Grid {...grid} items={items} className={styles.box} />
+                        <Grid
+                            {...grid}
+                            items={items}
+                            withSmallSpacing={isSimple}
+                            className={styles.box}
+                        />
                     ) : (
-                        <Box {...box} items={items} className={styles.box} />
+                        <Box {...box} withSmallSpacing={isSimple} className={styles.box}>
+                            {items}
+                        </Box>
                     )}
-                </div>
-            </Frame>
-        </Background>
+                </Frame>
+            </Background>
+        </div>
     );
 };
 

@@ -18,11 +18,11 @@ const defaultProps = {
     },
 };
 
-const AudioDefault = ({ box, ...otherProps }) => {
+const ImageCenter = ({ box, ...otherProps }) => {
     return <ImageComponent box={box} {...otherProps} />;
 };
 
-AudioDefault.propTypes = propTypes;
-AudioDefault.defaultProps = defaultProps;
+ImageCenter.propTypes = propTypes;
+ImageCenter.defaultProps = defaultProps;
 
-export default AudioDefault;
+export default ImageCenter;

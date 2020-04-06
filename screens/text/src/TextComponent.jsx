@@ -13,13 +13,12 @@ import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    text: MicromagPropTypes.text,
+    text: MicromagPropTypes.textComponent,
     background: MicromagPropTypes.backgroundComponent,
-    box: MicromagPropTypes.box,
-    grid: MicromagPropTypes.box,
-    textAlign: PropTypes.oneOf(['left', 'right', 'center']),
-    isPlaceholder: PropTypes.bool,
-    isPreview: PropTypes.bool,
+    box: MicromagPropTypes.boxComponent,
+    grid: MicromagPropTypes.gridComponent,
+    textAlign: MicromagPropTypes.textAlign,
+    renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
 
@@ -29,24 +28,15 @@ const defaultProps = {
     box: null,
     grid: null,
     textAlign: 'center',
-    isPlaceholder: false,
-    isPreview: true,
+    renderFormat: 'view',
     className: null,
 };
 
-const TextScreen = ({
-    text,
-    background,
-    box,
-    grid,
-    textAlign,
-    isPlaceholder,
-    isPreview,
-    className,
-}) => {
+const TextScreen = ({ text, background, box, grid, textAlign, renderFormat, className }) => {
     const { width, height } = useScreenSize();
+    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
-    const item = isPlaceholder ? (
+    const item = isSimple ? (
         <Placeholders.Text className={styles.placeholder} />
     ) : (
         <TextComponent {...text} className={styles.text} />
@@ -59,8 +49,8 @@ const TextScreen = ({
                     className={classNames([
                         styles.container,
                         {
-                            [styles.isPlaceholder]: isPlaceholder,
-                            [styles.isPreview]: isPreview,
+                            [styles.isPlaceholder]: renderFormat === 'placeholder',
+                            [styles.isPreview]: renderFormat === 'preview',
                             [styles[textAlign]]: textAlign !== null,
                             [className]: className !== null,
                         },
@@ -69,7 +59,9 @@ const TextScreen = ({
                     {grid !== null ? (
                         <Grid {...grid} items={[item]} className={styles.box} />
                     ) : (
-                        <Box {...box} items={[item]} className={styles.box} />
+                        <Box {...box} withSmallSpacing={isSimple} className={styles.box}>
+                            {item}
+                        </Box>
                     )}
                 </div>
             </Frame>

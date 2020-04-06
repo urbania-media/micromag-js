@@ -1,0 +1,25 @@
+@import '~@micromag/core/src/styles/placeholders';
+@import '~@micromag/core/src/styles/variables';
+@import '~@micromag/core/src/styles/mixins';
+
+.container {
+    @extend %fullscreen;
+
+    .images {
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+
+    .grid {
+        @extend %fullscreen;
+    }
+
+    .background {
+        @extend %fullscreen;
+        z-index: 1;
+    }
+}

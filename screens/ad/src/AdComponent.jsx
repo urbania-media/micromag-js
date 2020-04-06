@@ -5,6 +5,7 @@ import classNames from 'classnames';
 
 import Background from '@micromag/component-background';
 import Frame from '@micromag/component-frame';
+import Box from '@micromag/component-box';
 import Image from '@micromag/component-image';
 
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
@@ -13,12 +14,7 @@ import { useScreenSize } from '@micromag/core/contexts';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    width: PropTypes.number,
-    height: PropTypes.number,
-    url: PropTypes.string,
-    target: MicromagPropTypes.target,
-    iframe: PropTypes.string,
-    image: MicromagPropTypes.image,
+    ad: MicromagPropTypes.adFormat,
     background: MicromagPropTypes.backgroundComponent,
     isFullScreen: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
@@ -26,43 +22,40 @@ const propTypes = {
 };
 
 const defaultProps = {
-    width: null,
-    height: null,
-    url: null,
-    target: '_blank',
-    iframe: null,
-    image: null,
+    ad: {
+        width: null,
+        height: null,
+        url: null,
+        target: '_blank',
+        iframe: null,
+        image: null,
+    },
     background: null,
-    isFullScreen: true,
+    isFullScreen: false,
     renderFormat: 'view',
     className: null,
 };
 
-const Ad = ({
-    width,
-    height,
-    url,
-    iframe,
-    image,
-    target,
-    background,
-    isFullScreen,
-    renderFormat,
-    className,
-}) => {
-    const { width: screenWidth, height: screenHeight } = useScreenSize();
+const Ad = ({ ad, background, isFullScreen, renderFormat, className }) => {
+    const { width, height } = useScreenSize();
+    const { width: adWidth, height: adHeight, url, iframe, image, target } = ad;
+
     const isPlaceholder = renderFormat === 'placeholder';
     const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
-    const innerStyle = {
-        width,
-        height,
-    };
-    let inner = null;
 
+    const adStyle = {
+        width: isFullScreen ? width : adWidth,
+        height: isFullScreen ? height : adHeight,
+    };
+
+    let inner = null;
     inner =
         iframe !== null ? <iframe className={styles.iframe} src={iframe} title="iframe" /> : null;
 
-    inner = image !== null ? <Image className={styles.content} {...image} alt="Ad" /> : null;
+    inner =
+        image !== null ? (
+            <Image className={styles.content} {...image} {...adStyle} alt="Ad" />
+        ) : null;
 
     const content =
         url !== null ? (
@@ -87,14 +80,14 @@ const Ad = ({
         >
             <Background
                 {...(!isPlaceholder ? background : null)}
-                width={screenWidth}
-                height={screenHeight}
+                width={width}
+                height={height}
                 className={styles.background}
             >
-                <Frame className={styles.frame} width={screenWidth} height={screenHeight}>
-                    <div className={styles.inner} style={isSimple ? null : innerStyle}>
+                <Frame className={styles.frame} width={width} height={height}>
+                    <Box withSmallSpacing={isSimple}>
                         {isSimple ? <Placeholders.Ad className={styles.placeholder} /> : content}
-                    </div>
+                    </Box>
                 </Frame>
             </Background>
         </div>

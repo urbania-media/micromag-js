@@ -9,8 +9,8 @@ export default {
     decorators: [withPlaceholderSize()],
 };
 
-export const PlaceholderTop = () => <Top isPlaceholder />;
+export const PlaceholderTop = () => <Top renderFormat="placeholder" />;
 
-export const PlaceholderCenter = () => <Center isPlaceholder />;
+export const PlaceholderCenter = () => <Center renderFormat="placeholder" />;
 
-export const PlaceholderBottom = () => <Bottom isPlaceholder />;
+export const PlaceholderBottom = () => <Bottom renderFormat="placeholder" />;

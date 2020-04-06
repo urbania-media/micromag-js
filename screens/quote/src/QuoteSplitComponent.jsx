@@ -17,10 +17,7 @@ const propTypes = {
     quote: MicromagPropTypes.textComponent,
     source: MicromagPropTypes.textComponent,
     author: MicromagPropTypes.textComponent,
-    grid: PropTypes.shape({
-        layout: MicromagPropTypes.gridLayout,
-        spacing: PropTypes.number,
-    }),
+    grid: MicromagPropTypes.gridComponent,
     textAlign: PropTypes.oneOf(['left', 'right', 'center']),
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
@@ -63,73 +60,70 @@ const QuoteSplitComponent = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-
-    const items =
-        renderFormat === 'placeholder'
-            ? [
-                <div
-                    className={classNames([styles.splitPlaceholder, styles.placeholderContainer])}
-                  >
-                    <Placeholders.Text className={styles.placeholder} />
-                </div>,
-                <div className={styles.splitPlaceholder}>
-                    <Placeholders.Subtitle className={styles.line} />
-                </div>,
-                <div className={styles.splitPlaceholder}>
-                    <Placeholders.Subtitle className={styles.line} />
-                </div>,
-              ]
-            : [
-                <div
-                    className={classNames([
-                          styles.figure,
-                          {
-                              [styles.centered]: grid !== null,
-                          },
-                      ])}
-                  >
-                    <blockquote className={styles.blockquote}>
-                        <Text {...quote} className={styles.quote} />
-                    </blockquote>
-                </div>,
-                <div
-                    className={classNames([
-                          styles.figure,
-                          {
-                              [styles.centered]: grid !== null,
-                          },
-                      ])}
-                  >
-                    {author ? (
-                        <figcaption className={styles.caption}>
-                            {author ? (
-                                <>
-                                    <span>&mdash;</span>
-                                    <Text {...author} className={styles.author} />
-                                </>
-                              ) : null}
-                        </figcaption>
-                      ) : null}
-                </div>,
-                <div
-                    className={classNames([
-                          styles.figure,
-                          {
-                              [styles.centered]: grid !== null,
-                          },
-                      ])}
-                  >
-                    {source ? (
-                        <figcaption className={styles.caption}>
-                            {source ? (
-                                <cite>
-                                    <Text {...source} className={styles.source} />
-                                </cite>
-                              ) : null}
-                        </figcaption>
-                      ) : null}
-                </div>,
-              ];
+    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
+    const items = isSimple
+        ? [
+            <div className={classNames([styles.splitPlaceholder, styles.placeholderContainer])}>
+                <Placeholders.Text className={styles.placeholder} />
+            </div>,
+            <div className={styles.splitPlaceholder}>
+                <Placeholders.Subtitle className={styles.line} />
+            </div>,
+            <div className={styles.splitPlaceholder}>
+                <Placeholders.Subtitle className={styles.line} />
+            </div>,
+          ]
+        : [
+            <div
+                className={classNames([
+                      styles.figure,
+                      {
+                          [styles.centered]: grid !== null,
+                      },
+                  ])}
+              >
+                <blockquote className={styles.blockquote}>
+                    <Text {...quote} className={styles.quote} />
+                </blockquote>
+            </div>,
+            <div
+                className={classNames([
+                      styles.figure,
+                      {
+                          [styles.centered]: grid !== null,
+                      },
+                  ])}
+              >
+                {author ? (
+                    <figcaption className={styles.caption}>
+                        {author ? (
+                            <>
+                                <span>&mdash;</span>
+                                <Text {...author} className={styles.author} />
+                            </>
+                          ) : null}
+                    </figcaption>
+                  ) : null}
+            </div>,
+            <div
+                className={classNames([
+                      styles.figure,
+                      {
+                          [styles.centered]: grid !== null,
+                      },
+                  ])}
+              >
+                {source ? (
+                    <figcaption className={styles.caption}>
+                        {source ? (
+                            <cite>
+                                <Text {...source} className={styles.source} />
+                            </cite>
+                          ) : null}
+                    </figcaption>
+                  ) : null}
+            </div>,
+          ];
 
     return (
         <div

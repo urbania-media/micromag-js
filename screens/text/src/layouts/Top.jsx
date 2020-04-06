@@ -6,15 +6,13 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import TextComponent from '../TextComponent';
 
 const propTypes = {
-    box: MicromagPropTypes.box,
+    box: MicromagPropTypes.boxComponent,
 };
 
 const defaultProps = {
     box: {
-        direction: null,
+        direction: 'column',
         axisAlign: 'top',
-        crossAlign: null,
-        spacing: 10,
     },
 };
 

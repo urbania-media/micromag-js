@@ -1,12 +1,12 @@
 import React from 'react';
 import { withPlaceholderSize } from '../../../../.storybook/decorators';
 
-import { Default } from '../components';
+import { Center } from '../components';
 
 export default {
-    component: Default,
+    component: Center,
     title: 'Screens/Ad/Placeholders',
     decorators: [withPlaceholderSize()],
 };
 
-export const PlaceholderDefault = () => <Default renderFormat="placeholder" />;
+export const PlaceholderCenter = () => <Center renderFormat="placeholder" />;
