@@ -21,6 +21,7 @@ const propTypes = {
     value: MicromagPropTypes.story,
     deviceScreens: MicromagPropTypes.deviceScreens,
     mobileView: PropTypes.oneOf(['screens', 'preview', 'form']),
+    fullscreen: PropTypes.bool,
     onChange: PropTypes.func,
     className: PropTypes.string,
 };
@@ -29,11 +30,19 @@ const defaultProps = {
     value: null,
     deviceScreens: getDeviceScreens(),
     mobileView: 'screens',
+    fullscreen: false,
     onChange: null,
     className: null,
 };
 
-const Editor = ({ value, deviceScreens, mobileView: initialMobileView, onChange, className }) => {
+const Editor = ({
+    value,
+    deviceScreens,
+    mobileView: initialMobileView,
+    onChange,
+    fullscreen,
+    className,
+}) => {
     const history = useHistory();
 
     // Screen size
@@ -67,6 +76,7 @@ const Editor = ({ value, deviceScreens, mobileView: initialMobileView, onChange,
                             ? screenSize.screens.map(screenName => styles[`screen-${screenName}`])
                             : null,
                         {
+                            [styles.fullscreen]: fullscreen,
                             [className]: className,
                         },
                     ])}

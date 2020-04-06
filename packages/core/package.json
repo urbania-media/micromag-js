@@ -30,10 +30,11 @@
     "files": [
         "lib",
         "es",
-        "assets"
+        "assets",
+        "scss"
     ],
     "scripts": {
-        "clean": "rm -rf assets && rm -rf lib && rm -rf es",
+        "clean": "rm -rf assets && rm -rf scss && rm -rf lib && rm -rf es",
         "build": "NODE_ENV=production ../../node_modules/.bin/rollup --config ./rollup.config.js",
         "prepare": "npm run clean && npm run build"
     },

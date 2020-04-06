@@ -20,6 +20,7 @@
                 "scripts/lib/**",
                 ".storybook/**",
                 "packages/*/scripts/**",
+                "packages/*/*.config.js",
                 "**/__tests__/**"
             ],
             "rules": {
