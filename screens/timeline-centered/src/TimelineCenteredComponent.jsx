@@ -49,7 +49,10 @@ const TimelineCentered = ({ items, background, renderFormat, className }) => {
                             {items !== null && renderFormat !== 'placeholder' ? (
                                 items.map(({ text, image, heading }, index) => {
                                     return (
-                                        <div className={styles.timelineBlock}>
+                                        <div
+                                            className={styles.timelineBlock}
+                                            key={`block-${index + 1}`}
+                                        >
                                             <div className={styles.mainContent}>
                                                 {heading !== null ? (
                                                     <Heading

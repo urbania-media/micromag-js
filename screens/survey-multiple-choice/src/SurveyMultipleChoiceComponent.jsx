@@ -13,20 +13,20 @@ import { useScreenSize } from '@micromag/core/contexts';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    items: PropTypes.arrayOf(MicromagPropTypes.textComponent),
+    question: PropTypes.textComponent,
     background: MicromagPropTypes.backgroundComponent,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
 
 const defaultProps = {
-    items: null,
+    question: null,
     background: null,
     renderFormat: 'view',
     className: null,
 };
 
-const SurveyMultipleChoice = ({ items, background, renderFormat, className }) => {
+const SurveyMultipleChoice = ({ question, background, renderFormat, className }) => {
     const { width, height } = useScreenSize();
 
     return (
@@ -43,24 +43,15 @@ const SurveyMultipleChoice = ({ items, background, renderFormat, className }) =>
             <Background {...background} width={width} height={height}>
                 <Frame withScroll width={width} height={height}>
                     <div className={styles.inner}>
-                        <div className={styles.timelineContainer}>
-                            {items !== null
-                                ? items.map(({ text }, index) => {
-                                      return renderFormat === 'placeholder' ? (
-                                          <Placeholders.Text
-                                              key={`item-body-${index + 1}`}
-                                              className={styles.placeholder}
-                                          />
-                                      ) : (
-                                          <TextComponent
-                                              key={`item-body-${index + 1}`}
-                                              className={styles.item}
-                                              {...text}
-                                          />
-                                      );
-                                  })
-                                : null}
+                        <div className={styles.question}>
+                            {question !== null && renderFormat !== 'placeholder' ? (
+                                <TextComponent className={styles.question} {...question} />
+                            ) : (
+                                <Placeholders.Text className={styles.placeholder} />
+                            )}
                         </div>
+                        )
+                        <div className={styles.buttons} />
                     </div>
                 </Frame>
             </Background>

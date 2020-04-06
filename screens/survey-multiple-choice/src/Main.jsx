@@ -2,9 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { title, description } from '../../../../.storybook/data';
+import { title, description } from '../../../.storybook/data';
 
-import SurveyCheckboxComponent from '../SurveyCheckboxComponent';
+import SurveyMultipleChoiceComponent from './SurveyMultipleChoiceComponent';
 
 const propTypes = {
     items: PropTypes.shape({
@@ -30,7 +30,7 @@ const defaultProps = {
 };
 
 const SurveyMain = ({ items, background, ...otherProps }) => {
-    return <SurveyCheckboxComponent items={items} background={background} {...otherProps} />;
+    return <SurveyMultipleChoiceComponent items={items} background={background} {...otherProps} />;
 };
 
 SurveyMain.propTypes = propTypes;

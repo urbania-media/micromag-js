@@ -5,7 +5,7 @@ import { withScreenSize } from '../../../../.storybook/decorators';
 
 import SurveyMultipleChoice from '../index';
 
-import { Main,} from '../components';
+import Main from '../components';
 
 export default {
     component: Main,

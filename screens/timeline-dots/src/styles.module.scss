@@ -25,7 +25,7 @@
             top: 0;
             left: 0;
             height: 100%;
-            border-left: 3px dashed #000;
+            border-left: 2px dashed #000;
         }
     }
 
@@ -42,7 +42,7 @@
     .dot {
         position: absolute;
         top: 0;
-        left: calc(3px / 2 - 10px / 2);
+        left: calc(2px / 2 - 10px / 2);
         width: 10px;
         height: 10px;
         border-radius: 50%;

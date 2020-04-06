@@ -1,7 +1,7 @@
 import React from 'react';
 import { withPlaceholderSize } from '../../../../.storybook/decorators';
 
-import { Main } from '../components';
+import Main from '../components';
 
 export default {
     component: Main,
@@ -9,4 +9,4 @@ export default {
     decorators: [withPlaceholderSize()],
 };
 
-export const PlaceholderText = () => <Main renderFormat="placeholder" />;
+export const PlaceholderMultipleChoice = () => <Main renderFormat="placeholder" />;

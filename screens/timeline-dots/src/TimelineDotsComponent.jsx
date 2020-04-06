@@ -98,7 +98,6 @@ const TimelineCentered = ({ title, items, background, renderFormat, className })
                                         <div className={styles.mainContent}>
                                             <div className={styles.dot} />
                                             <Placeholders.Title className={styles.placeholder} />
-                                            <Placeholders.Image className={styles.placeholder} />
                                             <Placeholders.Text className={styles.placeholder} />
                                         </div>
                                     </div>
