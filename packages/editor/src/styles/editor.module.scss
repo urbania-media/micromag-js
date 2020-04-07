@@ -1,5 +1,110 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/mixins';
+
 .container {
     display: flex;
     position: relative;
-    transform: translate(0, 0);
+    flex-direction: column;
+
+    > .top {
+        display: flex;
+        position: relative;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px;
+        background: $light;
+        text-align: center;
+
+        &.hidden {
+            display: none;
+        }
+    }
+
+    > .inner {
+        position: relative;
+        flex-grow: 1;
+        width: 100%;
+    }
+
+    .left,
+    .center,
+    .right {
+        @extend %fullscreen;
+        display: none;
+        z-index: 1;
+
+        &.visible {
+            display: block;
+        }
+    }
+
+    .left,
+    .right {
+        @extend %hide-scrollbars;
+        overflow-y: auto;
+        background: $white;
+    }
+
+    .center {
+        background: $dark;
+    }
+
+    .right {
+        .placeholder {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            bottom: 10px;
+            left: 10px;
+        }
+    }
+
+    .preview {
+        @extend %fullscreen;
+    }
+
+    .form {
+        min-height: 100%;
+    }
+
+    &.fullscreen {
+        @extend %fullscreen;
+    }
+}
+
+@include match-screen('medium') {
+    > .top {
+        display: none;
+    }
+
+    > .inner {
+        display: flex;
+        position: relative;
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+    }
+
+    .left,
+    .center,
+    .right {
+        position: relative;
+        height: 100%;
+    }
+
+    .left {
+        min-width: 150px;
+        max-width: 200px;
+    }
+
+    .center {
+        flex-grow: 1;
+        width: auto;
+    }
+
+    .right {
+        width: 320px;
+    }
 }

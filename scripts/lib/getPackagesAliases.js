@@ -1,5 +1,5 @@
 const path = require('path');
-const globSync = require('glob').sync;
+const { sync: globSync } = require('glob');
 const getPackagesPaths = require('./getPackagesPaths');
 
 const getPackagesAliases = () =>
@@ -20,6 +20,11 @@ const getPackagesAliases = () =>
                         ),
                     };
                 }, {}),
+            ...(packageName === '@micromag/core'
+                ? {
+                      [`${packageName}/scss`]: path.join(packagePath, './src/styles'),
+                  }
+                : null),
             [`${packageName}$`]: path.join(packagePath, './src/index.js'),
         };
     }, {});

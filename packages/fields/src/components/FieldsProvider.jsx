@@ -14,7 +14,9 @@ const defaultProps = {
     children: null,
 };
 
-const FieldsProvider = props => <ComponentsProvider namespace={FIELDS_NAMESPACE} components={FieldsComponents} {...props} />;
+const FieldsProvider = props => (
+    <ComponentsProvider namespace={FIELDS_NAMESPACE} components={FieldsComponents} {...props} />
+);
 
 FieldsProvider.propTypes = propTypes;
 FieldsProvider.defaultProps = defaultProps;

@@ -51,22 +51,21 @@ const Audio = ({ image, text, box, background, textAlign, renderFormat, classNam
             <Background {...background} width={width} height={height}>
                 <Frame width={width} height={height}>
                     <Box {...box} withSmallSpacing={isSimple}>
-                        <div className={styles.inner}>
-                            {isSimple ? (
-                                <Placeholders.Image />
-                            ) : (
-                                <ImageComponent {...image} className={styles.image} />
-                            )}
-                            {isSimple ? (
-                                <div className={styles.placeholderTextContainer}>
-                                    <Placeholders.ShortText className={styles.placeholder} />
-                                </div>
-                            ) : (
-                                <div className={styles.textContainer}>
-                                    <TextComponent {...text} />
-                                </div>
-                            )}
-                        </div>
+                        {isSimple ? (
+                            <Placeholders.MediumImage className={styles.placeholderImage} />
+                        ) : (
+                            <ImageComponent
+                                {...image}
+                                maxWidth={width}
+                                maxHeight={height}
+                                className={styles.image}
+                            />
+                        )}
+                        {!isSimple ? (
+                            <div className={styles.textContainer}>
+                                <TextComponent {...text} />
+                            </div>
+                        ) : null}
                     </Box>
                 </Frame>
             </Background>

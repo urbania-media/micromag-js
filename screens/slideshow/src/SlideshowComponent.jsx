@@ -77,12 +77,12 @@ const SlideshowComponent = ({ box, items, background, renderFormat, className })
                                         const defaultZIndex = centered ? 1 : 0;
                                         const zIndex = i === index + 1 ? 2 : defaultZIndex;
                                         const display =
-                                            i > index - 2 && i < index + 2 ? 'block' : 'none';
+                                            i > index - 2 && i < index + 2 ? 'flex' : 'none';
 
                                         style = {
                                             ...style,
                                             width: '100%',
-                                            height: '50%',
+                                            height: '100%',
                                             zIndex,
                                             display,
                                             visibility: display === 'none' ? 'hidden' : 'visible',
@@ -97,7 +97,9 @@ const SlideshowComponent = ({ box, items, background, renderFormat, className })
                                                 className={styles.slide}
                                                 style={style}
                                             >
-                                                {item.image ? <Image {...item.image} /> : null}
+                                                {item.image ? (
+                                                    <Image {...item.image} maxWidth={width} />
+                                                ) : null}
                                                 {item.text ? (
                                                     <TextComponent {...item.text} />
                                                 ) : null}

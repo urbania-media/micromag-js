@@ -1,4 +1,4 @@
-@import '~@micromag/core/src/styles/placeholders';
+@import '~@micromag/core/scss/placeholders';
 
 .container {
     @extend %screen;
@@ -13,5 +13,9 @@
         display: block;
         max-width: 300px;
         margin: 0 auto;
+    }
+
+    .placeholder {
+        margin: 2px;
     }
 }

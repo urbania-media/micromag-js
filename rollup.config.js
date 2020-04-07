@@ -34,7 +34,7 @@ export default {
                 generateScopedName,
             },
             autoModules: true,
-            extract: path.join(process.cwd(), 'assets/styles.css'),
+            extract: path.join(process.cwd(), 'assets/css/styles.css'),
             inject: false,
         }),
     ],
