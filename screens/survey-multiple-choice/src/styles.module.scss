@@ -10,12 +10,27 @@
         padding: 20px 15px;
     }
 
+    .questionContainer {
+        width: 100%;
+    }
+
     .question {
         //
     }
 
     .buttons {
-        //
+        width: 100%;
+    }
+
+    .button {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+        text-align: left;
+    }
+
+    .label {
+        display: flex;
     }
 
     .placeholder {
