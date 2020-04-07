@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 
 const eventsMapping = {
+    onClick: ['click', map => map.getCenter()],
     onCenterChanged: ['center_changed', map => map.getCenter()],
     onBoundsChangerd: ['bounds_changed', map => map.getBounds()],
 };

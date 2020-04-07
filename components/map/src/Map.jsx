@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -16,6 +16,7 @@ const propTypes = {
     markers: PropTypes.arrayOf(PropTypes.object),
     layers: PropTypes.arrayOf(PropTypes.string),
     // style: MicromagPropTypes.textStyle,
+    onClickMap: PropTypes.func,
     onClickMarker: PropTypes.func,
     className: PropTypes.string,
 };
@@ -26,12 +27,22 @@ const defaultProps = {
     markers: [],
     layers: [],
     // style: null,
+    onClickMap: null,
     onClickMarker: null,
     className: null,
 };
 
-const Map = ({ zoom, center, markers, layers, onClickMarker, className }) => {
+const Map = ({ zoom, center, markers, layers, onClickMap, onClickMarker, className }) => {
     const { maps: mapsApi } = useGoogleMapsClient() || {};
+
+    const onClick = useCallback(
+        position => {
+            if (onClickMap !== null) {
+                onClickMap(position);
+            }
+        },
+        [onClickMap],
+    );
 
     return (
         <div
@@ -47,7 +58,10 @@ const Map = ({ zoom, center, markers, layers, onClickMarker, className }) => {
                     mapsApi={mapsApi}
                     zoom={zoom}
                     center={center}
-                    events={{ onBoundsChangerd: () => {} }}
+                    events={{
+                        onBoundsChangerd: () => {},
+                        onClick,
+                    }}
                 >
                     <TransitLayer mapsApi={mapsApi} enabled={layers.includes('transit')} />
                     {markers

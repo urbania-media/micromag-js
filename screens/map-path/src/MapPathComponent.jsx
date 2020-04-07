@@ -28,16 +28,37 @@ const defaultProps = {
 
 const MapPath = ({ map, background, renderFormat, className }) => {
     const { width, height } = useScreenSize();
-    const [active, setActive] = useState();
-    const { markers } = map || {};
+    const { markers: mapMarkers = [] } = map || {};
+
+    const [index, setIndex] = useState(0);
+    const markers = mapMarkers || []; // .map((m, i) => ({ ...m })) : [];
+
     const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
     const onClickMarker = useCallback(
         i => {
-            setActive(i);
+            setIndex(i);
         },
-        [setActive],
+        [setIndex],
     );
+
+    const onClickNext = useCallback(() => {
+        if (index < markers.length - 1) {
+            setIndex(index + 1);
+        } else {
+            setIndex(0);
+        }
+    }, [markers, index, setIndex]);
+
+    const onClickPrevious = useCallback(() => {
+        if (index > 0) {
+            setIndex(index - 1);
+        } else {
+            setIndex(markers.length - 1);
+        }
+    }, [markers, index, setIndex]);
+
+    const active = markers.find((m, i) => i === index) || null;
 
     return (
         <div
@@ -53,26 +74,46 @@ const MapPath = ({ map, background, renderFormat, className }) => {
                     {isSimple ? (
                         <Placeholders.Map />
                     ) : (
-                        <MapComponent {...map} onClickMarker={onClickMarker} />
+                        <>
+                            <MapComponent
+                                {...map}
+                                {...(active
+                                    ? { center: { lat: active.lat, lng: active.lng } }
+                                    : null)}
+                                markers={markers}
+                                onClickMap={null}
+                                onClickMarker={onClickMarker}
+                            />
+                            <div className={styles.cards}>
+                                {markers.map((marker, i) => (
+                                    <div
+                                        key={`marker-${i + 1}`}
+                                        className={classNames([
+                                            styles.card,
+                                            {
+                                                [styles.active]: i === index,
+                                            },
+                                        ])}
+                                    >
+                                        <TextComponent {...(marker.text ? marker.text : null)} />
+                                        <ImageComponent {...(marker.image ? marker.image : null)} />
+                                    </div>
+                                ))}
+                            </div>
+                            <div className={styles.controls}>
+                                <button className={styles.next} type="button" onClick={onClickNext}>
+                                    Next
+                                </button>
+                                <button
+                                    className={styles.previous}
+                                    type="button"
+                                    onClick={onClickPrevious}
+                                >
+                                    Previous
+                                </button>
+                            </div>
+                        </>
                     )}
-                    <div className={styles.cards}>
-                        {markers
-                            ? markers.map((marker, i) => (
-                                <div
-                                    key={`marker-${i + 1}`}
-                                    className={classNames([
-                                          styles.card,
-                                          {
-                                              [styles.active]: i === active,
-                                          },
-                                      ])}
-                                  >
-                                    <TextComponent {...(marker.text ? marker.text : null)} />
-                                    <ImageComponent {...(marker.image ? marker.image : null)} />
-                                </div>
-                              ))
-                            : null}
-                    </div>
                 </Frame>
             </Background>
         </div>

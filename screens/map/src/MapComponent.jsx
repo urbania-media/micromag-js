@@ -28,15 +28,20 @@ const defaultProps = {
 
 const MapScreen = ({ map, background, renderFormat, className }) => {
     const { width, height } = useScreenSize();
-    const [active, setActive] = useState();
-    const { markers } = map || {};
+    const [index, setIndex] = useState();
+    const { markers: mapMarkers = [] } = map || {};
+    const markers = mapMarkers.map(m => ({ ...m, active: true }));
     const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
+
+    const onClickMap = useCallback(() => {
+        setIndex(null);
+    }, []);
 
     const onClickMarker = useCallback(
         i => {
-            setActive(i);
+            setIndex(i);
         },
-        [setActive],
+        [setIndex],
     );
 
     return (
@@ -53,32 +58,37 @@ const MapScreen = ({ map, background, renderFormat, className }) => {
                     {isSimple ? (
                         <Placeholders.Map />
                     ) : (
-                        <MapComponent {...map} onClickMarker={onClickMarker} />
+                        <>
+                            <MapComponent
+                                {...map}
+                                markers={markers}
+                                onClickMap={onClickMap}
+                                onClickMarker={onClickMarker}
+                            />
+                            <div className={styles.cards}>
+                                {markers.map((marker, i) => (
+                                    <div
+                                        key={`marker-${i + 1}`}
+                                        className={classNames([
+                                            styles.card,
+                                            {
+                                                [styles.active]: i === index,
+                                            },
+                                        ])}
+                                    >
+                                        <TextComponent
+                                            className={styles.text}
+                                            {...(marker.text ? marker.text : null)}
+                                        />
+                                        <ImageComponent
+                                            className={styles.image}
+                                            {...(marker.image ? marker.image : null)}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        </>
                     )}
-                    <div className={styles.cards}>
-                        {markers
-                            ? markers.map((marker, i) => (
-                                <div
-                                    key={`marker-${i + 1}`}
-                                    className={classNames([
-                                          styles.card,
-                                          {
-                                              [styles.active]: i === active,
-                                          },
-                                      ])}
-                                  >
-                                    <TextComponent
-                                        className={styles.text}
-                                        {...(marker.text ? marker.text : null)}
-                                      />
-                                    <ImageComponent
-                                        className={styles.image}
-                                        {...(marker.image ? marker.image : null)}
-                                      />
-                                </div>
-                              ))
-                            : null}
-                    </div>
                 </Frame>
             </Background>
         </div>

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import useGoogleMapMarker from './useGoogleMapMarker';
 import Pin from './pin.png';
+import PinInactive from './pin-inactive.png';
 
 const propTypes = {
     position: PropTypes.shape({
@@ -37,7 +38,7 @@ const Marker = ({ mapsApi, position, type, map, events, active = false, title })
             if (active) {
                 marker.setIcon(Pin);
             } else {
-                marker.setIcon(Pin);
+                marker.setIcon(PinInactive);
             }
         }
     }, [active]);
