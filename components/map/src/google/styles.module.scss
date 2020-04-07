@@ -1,0 +1,12 @@
+@import '~@micromag/core/scss/placeholders';
+
+.container {
+    @extend %fullscreen;
+    margin: 0;
+    padding: 0;
+}
+
+.map {
+    width: 100%;
+    height: 100%;
+}

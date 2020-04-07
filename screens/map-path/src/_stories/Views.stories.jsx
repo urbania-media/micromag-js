@@ -10,7 +10,7 @@ const props = {
 
 export default {
     component: Center,
-    title: 'Screens/Map/Views',
+    title: 'Screens/MapPath/Views',
     decorators: [withScreenSize(), withGoogleMapsApi],
 };
 

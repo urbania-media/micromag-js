@@ -2,7 +2,17 @@
 import React from 'react';
 import { getDeviceScreens } from '../packages/core/src/utils';
 import { useScreenSizeFromElement } from '../packages/core/src/hooks';
-import { ScreenSizeProvider } from '../packages/core/src/contexts';
+import { ScreenSizeProvider, GoogleMapsClientProvider } from '../packages/core/src/contexts';
+
+import keys from '../keys.json';
+
+const GoogleMapsApiKey = keys && keys.GOOGLE_MAPS_API_KEY ? keys.GOOGLE_MAPS_API_KEY : null;
+
+export const withGoogleMapsApi = storyFn => {
+    return (
+        <GoogleMapsClientProvider apiKey={GoogleMapsApiKey}>{storyFn()}</GoogleMapsClientProvider>
+    );
+};
 
 export const withScreenSize = (size = null) => storyFn => {
     const { ref: refContainer, screenSize } = useScreenSizeFromElement({

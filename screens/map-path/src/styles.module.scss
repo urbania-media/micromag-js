@@ -15,14 +15,12 @@
     width: 100%;
     height: 100%;
 
-    overflow: hidden;
     pointer-events: none;
 }
 
 .card {
     position: absolute;
     z-index: 3;
-
     width: 100%;
     padding: 10px;
     transform: translate3d(0, 100%, 0);
@@ -33,18 +31,5 @@
 
     &.active {
         transform: translate3d(0, 0, 0);
-    }
-
-    > * {
-        display: inline-block;
-        vertical-align: top;
-    }
-
-    .text {
-        width: 70%;
-    }
-
-    .image {
-        width: 30%;
     }
 }

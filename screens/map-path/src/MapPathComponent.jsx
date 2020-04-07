@@ -26,7 +26,7 @@ const defaultProps = {
     className: null,
 };
 
-const MapScreen = ({ map, background, renderFormat, className }) => {
+const MapPath = ({ map, background, renderFormat, className }) => {
     const { width, height } = useScreenSize();
     const [active, setActive] = useState();
     const { markers } = map || {};
@@ -67,14 +67,8 @@ const MapScreen = ({ map, background, renderFormat, className }) => {
                                           },
                                       ])}
                                   >
-                                    <TextComponent
-                                        className={styles.text}
-                                        {...(marker.text ? marker.text : null)}
-                                      />
-                                    <ImageComponent
-                                        className={styles.image}
-                                        {...(marker.image ? marker.image : null)}
-                                      />
+                                    <TextComponent {...(marker.text ? marker.text : null)} />
+                                    <ImageComponent {...(marker.image ? marker.image : null)} />
                                 </div>
                               ))
                             : null}
@@ -85,7 +79,7 @@ const MapScreen = ({ map, background, renderFormat, className }) => {
     );
 };
 
-MapScreen.propTypes = propTypes;
-MapScreen.defaultProps = defaultProps;
+MapPath.propTypes = propTypes;
+MapPath.defaultProps = defaultProps;
 
-export default MapScreen;
+export default MapPath;
