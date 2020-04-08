@@ -12,6 +12,7 @@
 
     .questionContainer {
         width: 100%;
+        margin-bottom: 10px;
     }
 
     .question {
@@ -19,7 +20,9 @@
     }
 
     .buttons {
-        width: 100%;
+        position: relative;
+        width: calc(100% + 30px);
+        margin-left: -15px;
     }
 
     .button {
@@ -31,9 +34,23 @@
 
     .label {
         display: flex;
+        align-items: center;
+    }
+
+    .letter {
+        margin-right: 5px;
     }
 
     .placeholder {
         width: 100%;
+        margin-bottom: 2px;
+    }
+
+    .buttonPlaceholder {
+        display: block;
+        width: 100%;
+        margin-bottom: 2px;
+        border: 2px solid rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.5);
     }
 }

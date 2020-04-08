@@ -6,20 +6,20 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import { description } from '../../../.storybook/data';
 
-import SurveyYesNoComponent from './SurveyCheckboxComponent';
+import SurveyCheckboxComponent from './SurveyCheckboxComponent';
 
 const propTypes = {
-    question: MicromagPropTypes.text,
-    choices: PropTypes.arrayOf(MicromagPropTypes.textComponent)
+    question: MicromagPropTypes.textComponent,
+    choices: PropTypes.arrayOf(MicromagPropTypes.textComponent),
 };
 
 const defaultProps = {
     question: { body: description() },
-    choices: null,
+    choices: [{body: description()}, {body: description()}, {body: description()}],
 };
 
 const SurveyMain = ({ question, choices, ...otherProps }) => {
-    return <SurveyYesNoComponent question={question} {...otherProps} />;
+    return <SurveyCheckboxComponent question={question} choices={choices} {...otherProps} />;
 };
 
 SurveyMain.propTypes = propTypes;

@@ -1,7 +1,12 @@
 @import '~@micromag/core/scss/placeholders';
 
 .container {
-    @extend %text-styles;
-    margin: 0;
-    padding: 0;
+    @extend %reset-button;
+    padding: 5px 10px;
+    border: 2px solid #000;
+    border-radius: 0;
+
+    &.placeholder {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
 }

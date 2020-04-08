@@ -11,11 +11,8 @@
     }
 
     .questionContainer {
-        display: flex;
-        justify-content: center;
         width: 100%;
-        margin-bottom: 30px;
-
+        margin-bottom: 20px;
     }
 
     .buttons {
@@ -24,16 +21,21 @@
         width: 100%;
     }
 
-    .yes,
-    .no {
-        padding: 5px 10px;
-    }
-
-    .yes {
+    .button {
         margin-right: 20px;
+        padding: 5px 10px;
+
+        &:last-child {
+            margin-right: 0;
+        }
     }
 
     .placeholder {
         width: 100%;
+    }
+
+    .buttonPlaceholder {
+        border: 2px solid rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.5);
     }
 }

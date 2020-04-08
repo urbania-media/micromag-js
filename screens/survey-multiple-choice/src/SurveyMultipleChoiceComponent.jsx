@@ -57,13 +57,20 @@ const SurveyMultipleChoice = ({ question, choices, background, renderFormat, cla
                                 choices.map((item, index) => (
                                     <Button className={styles.button}>
                                         <div className={styles.label}>
-                                            {String.fromCharCode(index + 65)}
+                                            <div className={styles.letter}>
+                                                {String.fromCharCode(index + 65)}
+                                            </div>
                                             <TextComponent className={styles.choice} {...item} />
                                         </div>
                                     </Button>
                                 ))
                             ) : (
-                                <Placeholders.Button className={styles.placeholder} />
+                                <>
+                                    <Button className={styles.buttonPlaceholder} />
+                                    <Button className={styles.buttonPlaceholder} />
+                                    <Button className={styles.buttonPlaceholder} />
+                                    <Button className={styles.buttonPlaceholder} />
+                                </>
                             )}
                         </div>
                     </div>

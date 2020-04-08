@@ -55,13 +55,13 @@ const SurveyYesNo = ({ question, background, onClick, renderFormat, className })
                         <div className={styles.buttons}>
                             {renderFormat !== 'placeholder' ? (
                                 <>
-                                    <Button className={styles.yes} onClick={onClick}>Yes</Button>
-                                    <Button className={styles.no} onClick={onClick}>No</Button>
+                                    <Button className={styles.button} onClick={onClick}>Oui</Button>
+                                    <Button className={styles.button} onClick={onClick}>Non</Button>
                                 </>
                             ) : (
                                 <>
-                                    <Placeholders.Button />
-                                    <Placeholders.Button />
+                                    <Button className={styles.buttonPlaceholder} />
+                                    <Button className={styles.buttonPlaceholder} />
                                 </>
                             )}
                         </div>
