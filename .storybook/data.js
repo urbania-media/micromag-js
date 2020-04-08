@@ -7,6 +7,7 @@ import titles from './data/titles';
 import subtitles from './data/subtitles';
 
 import AudioTest from './data/test.mp3';
+import VideoTest from './data/test.mp4';
 
 const chance = new Chance();
 
@@ -70,6 +71,12 @@ export const imageSquareWithRandomSize = ({ min = 100, max = 800 } = {}) => {
         imageHeight: size,
     };
 };
+
+export const videoLocal = () => ({
+    url: VideoTest,
+    width: 1920,
+    height: 1080,
+});
 
 export const video = () => ({
     url: 'https://www.youtube.com/watch?v=AfeAhCWaMD0',

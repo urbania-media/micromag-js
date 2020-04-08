@@ -4,6 +4,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import image from '@rollup/plugin-image';
 import json from '@rollup/plugin-json';
+import url from '@rollup/plugin-url';
 import path from 'path';
 import generateScopedName from './scripts/lib/generateScopedName';
 
@@ -41,6 +42,7 @@ export default {
         }),
         image(),
         json({ compact: true }),
+        url({ include: ['**/*.mp4'] }),
     ],
     // external: ['react', 'prop-types', 'classnames', 'lodash', 'snake-case', /^lodash\//],
 };

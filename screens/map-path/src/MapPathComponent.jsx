@@ -72,7 +72,7 @@ const MapPath = ({ map, background, renderFormat, className }) => {
             <Background {...background} width={width} height={height}>
                 <Frame width={width} height={height}>
                     {isSimple ? (
-                        <Placeholders.Map />
+                        <Placeholders.MapPath />
                     ) : (
                         <>
                             <MapComponent
@@ -81,6 +81,7 @@ const MapPath = ({ map, background, renderFormat, className }) => {
                                     ? { center: { lat: active.lat, lng: active.lng } }
                                     : null)}
                                 markers={markers}
+                                withLine
                                 onClickMap={null}
                                 onClickMarker={onClickMarker}
                             />

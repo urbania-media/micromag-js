@@ -8,6 +8,8 @@ import {
     faMusic,
     faAngleDoubleRight,
     faMapMarkerAlt,
+    faMapMarkedAlt,
+    faRedo,
 } from '@fortawesome/free-solid-svg-icons';
 
 import Placeholder from './Placeholder';
@@ -99,6 +101,29 @@ export const Video = props => (
     </PlaceholderBlock>
 );
 
+export const VideoFull = props => (
+    <PlaceholderBlock
+        {...props}
+        className={classNames([props.className, styles.video])}
+        width="100%"
+        height="100%"
+    >
+        <FontAwesomeIcon icon={faPlay} className={styles.icon} />
+    </PlaceholderBlock>
+);
+
+export const VideoLoop = props => (
+    <PlaceholderBlock
+        {...props}
+        className={classNames([props.className, styles.videoLoop])}
+        width="80%"
+        height="40%"
+    >
+        <FontAwesomeIcon icon={faPlay} className={styles.icon} />
+        <FontAwesomeIcon icon={faRedo} className={styles.icon} />
+    </PlaceholderBlock>
+);
+
 export const Map = props => (
     <PlaceholderBlock
         {...props}
@@ -111,6 +136,17 @@ export const Map = props => (
         <FontAwesomeIcon icon={faMapMarkerAlt} className={styles.icon} />
         <FontAwesomeIcon icon={faMapMarkerAlt} className={styles.icon} />
         <FontAwesomeIcon icon={faMapMarkerAlt} className={styles.icon} />
+    </PlaceholderBlock>
+);
+
+export const MapPath = props => (
+    <PlaceholderBlock
+        {...props}
+        width="100%"
+        height="100%"
+        className={classNames([props.className, styles.mapPath])}
+    >
+        <FontAwesomeIcon icon={faMapMarkedAlt} size="lg" className={styles.icon} />
     </PlaceholderBlock>
 );
 
@@ -131,7 +167,11 @@ export const Audio = props => (
 );
 
 export const Slideshow = props => (
-    <PlaceholderBlock {...props} className={classNames([props.className, styles.slideshow])}>
+    <PlaceholderBlock
+        {...props}
+        width="100%"
+        className={classNames([props.className, styles.slideshow])}
+    >
         <FontAwesomeIcon icon={faAngleDoubleRight} className={styles.icon} />
     </PlaceholderBlock>
 );
@@ -147,7 +187,10 @@ export default {
     SmallImage,
     MediumImage,
     Video,
+    VideoFull,
+    VideoLoop,
     Map,
+    MapPath,
     Timeline,
     Ad,
     Audio,

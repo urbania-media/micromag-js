@@ -44,6 +44,8 @@ const MapScreen = ({ map, background, renderFormat, className }) => {
         [setIndex],
     );
 
+    const center = markers.find((m, i) => i === index) || null;
+
     return (
         <div
             className={classNames([
@@ -61,6 +63,9 @@ const MapScreen = ({ map, background, renderFormat, className }) => {
                         <>
                             <MapComponent
                                 {...map}
+                                {...(center
+                                    ? { center: { lat: center.lat, lng: center.lng } }
+                                    : null)}
                                 markers={markers}
                                 onClickMap={onClickMap}
                                 onClickMarker={onClickMarker}
