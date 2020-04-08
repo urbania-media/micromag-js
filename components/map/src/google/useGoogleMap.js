@@ -1,5 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 
+import styles from './styles.json';
+
 const eventsMapping = {
     onClick: ['click', map => map.getCenter()],
     onCenterChanged: ['center_changed', map => map.getCenter()],
@@ -10,7 +12,7 @@ export default function useGoogleMap({ mapsApi, zoom, center, events }) {
     const [mapState, setMapState] = useState({ loading: true });
     const mapRef = useRef();
     useEffect(() => {
-        const map = new mapsApi.Map(mapRef.current, { zoom, center });
+        const map = new mapsApi.Map(mapRef.current, { zoom, center, styles });
         Object.keys(events).forEach(eventName =>
             map.addListener(eventsMapping[eventName][0], () =>
                 events[eventName](eventsMapping[eventName][1](map)),

@@ -39,4 +39,4 @@ node_modules
 /out*
 /_book
 
-keys.json
+.env

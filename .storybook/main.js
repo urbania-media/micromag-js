@@ -1,6 +1,7 @@
 const path = require('path');
 const getPackagesPaths = require('../scripts/lib/getPackagesPaths');
 const getPackagesAliases = require('../scripts/lib/getPackagesAliases');
+require('dotenv').config();
 
 module.exports = {
     stories: getPackagesPaths().map(packagePath =>
