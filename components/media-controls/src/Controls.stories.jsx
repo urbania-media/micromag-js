@@ -3,7 +3,7 @@ import Controls from './Controls';
 
 export default {
     component: Controls,
-    title: 'Components/Video/Controls',
+    title: 'Components/MediaControls/Controls',
 };
 
 export const normal = () => <Controls />;

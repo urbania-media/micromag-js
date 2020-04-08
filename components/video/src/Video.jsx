@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { getSizeWithinBounds } from '@folklore/size';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import VideoControls from './Controls';
+import VideoControls from '@micromag/component-media-controls';
 
 import styles from './styles/video.module.scss';
 
@@ -78,8 +78,8 @@ const Video = ({
 
     const onPlayerReady = useCallback(() => {
         setPlayerReady(true);
-        setDuration(refPlayer.current.duration());
-        setVideoSize(refPlayer.current.size());
+        setDuration(refPlayer.current.getDuration());
+        setVideoSize(refPlayer.current.getSize());
     }, [setPlayerReady, setDuration, setVideoSize]);
 
     const onPlayerStateChange = useCallback(
@@ -110,6 +110,7 @@ const Video = ({
             : getSizeWithinBounds(videoSize.width, videoSize.height, maxWidth, maxHeight, {
                   cover: size === 'cover',
               });
+
     return (
         <div
             className={classNames([

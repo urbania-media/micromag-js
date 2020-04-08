@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key, jsx-a11y/media-has-caption */
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,7 +7,7 @@ import { faPlay, faPause, faVolumeMute, faVolumeUp } from '@fortawesome/free-sol
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getStyleFromColor } from '@micromag/core/utils';
 
-import styles from './styles/controls.module.scss';
+import styles from './styles.module.scss';
 
 const propTypes = {
     playing: PropTypes.bool,
@@ -18,6 +18,7 @@ const propTypes = {
     duration: PropTypes.number,
     play: PropTypes.func,
     pause: PropTypes.func,
+    seek: PropTypes.func,
     stop: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
     mute: PropTypes.func,
     unMute: PropTypes.func,
@@ -36,6 +37,7 @@ const defaultProps = {
     duration: 0,
     play: () => {},
     pause: () => {},
+    seek: () => {},
     stop: () => {},
     mute: () => {},
     unMute: () => {},
@@ -45,13 +47,14 @@ const defaultProps = {
     className: null,
 };
 
-const VideoControls = ({
+const MediaControls = ({
     playing,
     muted,
     currentTime,
     duration,
     play,
     pause,
+    seek,
     mute,
     unMute,
     progress,
@@ -59,6 +62,7 @@ const VideoControls = ({
     volume,
     className,
 }) => {
+    const seekRef = useRef(null);
     const onClickPlayPause = useCallback(() => {
         if (playing && pause !== null) {
             pause();
@@ -66,6 +70,7 @@ const VideoControls = ({
             play();
         }
     }, [playing, play, pause]);
+
     const onClickMute = useCallback(() => {
         if (muted && unMute !== null) {
             unMute();
@@ -74,9 +79,36 @@ const VideoControls = ({
         }
     }, [muted, mute, unMute]);
 
+    const onSeek = useCallback(
+        e => {
+            let posx = 0;
+            if (e.pageX) {
+                posx = e.pageX;
+            } else if (e.clientX || e.clientY) {
+                posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+            }
+
+            if (seekRef.current) {
+                const rect = seekRef.current.getBoundingClientRect();
+
+                const offset = posx - (rect.left > 0 ? rect.left : 88 / 2); // default gap
+                const max = rect.right - rect.left;
+                const pct = (offset / max) * 100;
+                const time = (pct / 100) * duration;
+
+                if ((time || time === 0) && seek !== null) {
+                    seek(time);
+                }
+            }
+        },
+        [seek, seekRef, duration],
+    );
+
     const { visible: progressVisible = true, color: progressColor = null } = progress || {};
     const { visible: playbackVisible = true, color: playbackColor = null } = playback || {};
     const { visible: volumeVisible = true, color: volumeColor = null } = volume || {};
+
+    const width = duration > 0 ? (currentTime / duration) * 100 : 0;
 
     return (
         <div
@@ -105,7 +137,10 @@ const VideoControls = ({
                 ) : null}
                 <div className={styles.spacer}>
                     {progressVisible ? (
-                        <div
+                        <button
+                            type="button"
+                            ref={seekRef}
+                            onClick={onSeek}
                             className={classNames(['progress', styles.progress])}
                             style={{
                                 ...getStyleFromColor(progressColor, 'borderColor', 0.3),
@@ -114,11 +149,11 @@ const VideoControls = ({
                             <div
                                 className={classNames(['progress-bar', styles.progressBar])}
                                 style={{
-                                    width: `${(currentTime / duration) * 100}%`,
+                                    width: `${width}%`,
                                     ...getStyleFromColor(progressColor, 'backgroundColor'),
                                 }}
                             />
-                        </div>
+                        </button>
                     ) : null}
                 </div>
                 {volumeVisible ? (
@@ -141,7 +176,7 @@ const VideoControls = ({
     );
 };
 
-VideoControls.propTypes = propTypes;
-VideoControls.defaultProps = defaultProps;
+MediaControls.propTypes = propTypes;
+MediaControls.defaultProps = defaultProps;
 
-export default VideoControls;
+export default MediaControls;

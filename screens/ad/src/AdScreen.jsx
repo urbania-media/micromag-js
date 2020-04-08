@@ -36,7 +36,7 @@ const defaultProps = {
     className: null,
 };
 
-const Ad = ({ ad, background, isFullScreen, renderFormat, className }) => {
+const AdScreen = ({ ad, background, isFullScreen, renderFormat, className }) => {
     const { width, height } = useScreenSize();
     const { width: adWidth, height: adHeight, url, iframe, image, target } = ad;
 
@@ -94,7 +94,7 @@ const Ad = ({ ad, background, isFullScreen, renderFormat, className }) => {
     );
 };
 
-Ad.propTypes = propTypes;
-Ad.defaultProps = defaultProps;
+AdScreen.propTypes = propTypes;
+AdScreen.defaultProps = defaultProps;
 
-export default Ad;
+export default AdScreen;

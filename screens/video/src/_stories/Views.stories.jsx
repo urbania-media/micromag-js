@@ -2,12 +2,12 @@
 import React from 'react';
 import { withKnobs } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
 import { withScreenSize } from '../../../../.storybook/decorators';
-import { video, videoLocal, background } from '../../../../.storybook/data';
+import { video, videoFile, background } from '../../../../.storybook/data';
 
 import { Full, Center, Loop } from '../components';
 
 const props = {
-    video: videoLocal(),
+    video: videoFile(),
     background: background(),
 };
 

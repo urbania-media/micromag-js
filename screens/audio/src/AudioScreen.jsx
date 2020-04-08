@@ -29,6 +29,9 @@ const defaultProps = {
         track: null,
         trackLng: null,
         controls: true,
+        loop: false,
+        autoPlay: false,
+        muted: false,
     },
     image: null,
     text: null,
@@ -38,7 +41,7 @@ const defaultProps = {
     className: null,
 };
 
-const Audio = ({ audio, image, text, box, background, renderFormat, className }) => {
+const AudioScreen = ({ audio, image, text, box, background, renderFormat, className }) => {
     const { width, height } = useScreenSize();
     const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
@@ -82,7 +85,7 @@ const Audio = ({ audio, image, text, box, background, renderFormat, className })
     );
 };
 
-Audio.propTypes = propTypes;
-Audio.defaultProps = defaultProps;
+AudioScreen.propTypes = propTypes;
+AudioScreen.defaultProps = defaultProps;
 
-export default Audio;
+export default AudioScreen;

@@ -3,6 +3,6 @@ import React from 'react';
 import { createLayoutSwitcher } from '@micromag/core';
 import * as LayoutComponents from './components';
 
-const ImageScreen = createLayoutSwitcher(LayoutComponents, LayoutComponents.Center);
+const AudioScreen = createLayoutSwitcher(LayoutComponents, LayoutComponents.Center);
 
-export default React.memo(ImageScreen);
+export default React.memo(AudioScreen);

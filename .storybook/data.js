@@ -72,7 +72,7 @@ export const imageSquareWithRandomSize = ({ min = 100, max = 800 } = {}) => {
     };
 };
 
-export const videoLocal = () => ({
+export const videoFile = () => ({
     url: VideoTest,
     width: 1920,
     height: 1080,
