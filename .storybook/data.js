@@ -97,6 +97,25 @@ export const advertising = ({ width, height }) => ({
     url: 'https://www.urbania.ca',
 });
 
+export const markers = ({ count = 3, withText = true, withImage = true } = {}) => {
+    return [...Array(count)].map((j, i) => ({
+        id: i,
+        lat: chance.floating({ min: 45.4, max: 45.6, fixed: 8 }),
+        lng: chance.floating({ min: -74, max: -73, fixed: 8 }),
+        text: withText ? { body: shortText(), style: null } : null,
+        image: withImage ? imageWithRandomSize({ min: 100, max: 120 }) : null,
+    }));
+};
+
+export const map = () => ({
+    zoom: 9,
+    center: {
+        lat: 45.5,
+        lng: -73.56,
+    },
+    markers: markers(),
+});
+
 export const renderFormats = {
     View: 'view',
     Preview: 'preview',

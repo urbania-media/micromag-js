@@ -26,16 +26,14 @@ const defaultProps = {
     className: null,
 };
 
-const MapScreen = ({ map, background, renderFormat, className }) => {
+const MapPath = ({ map, background, renderFormat, className }) => {
     const { width, height } = useScreenSize();
-    const [index, setIndex] = useState();
     const { markers: mapMarkers = [] } = map || {};
-    const markers = mapMarkers.map(m => ({ ...m, active: true }));
-    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
-    const onClickMap = useCallback(() => {
-        setIndex(null);
-    }, []);
+    const [index, setIndex] = useState(0);
+    const markers = mapMarkers || []; // .map((m, i) => ({ ...m })) : [];
+
+    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
     const onClickMarker = useCallback(
         i => {
@@ -43,6 +41,24 @@ const MapScreen = ({ map, background, renderFormat, className }) => {
         },
         [setIndex],
     );
+
+    const onClickNext = useCallback(() => {
+        if (index < markers.length - 1) {
+            setIndex(index + 1);
+        } else {
+            setIndex(0);
+        }
+    }, [markers, index, setIndex]);
+
+    const onClickPrevious = useCallback(() => {
+        if (index > 0) {
+            setIndex(index - 1);
+        } else {
+            setIndex(markers.length - 1);
+        }
+    }, [markers, index, setIndex]);
+
+    const active = markers.find((m, i) => i === index) || null;
 
     return (
         <div
@@ -61,8 +77,11 @@ const MapScreen = ({ map, background, renderFormat, className }) => {
                         <>
                             <MapComponent
                                 {...map}
+                                {...(active
+                                    ? { center: { lat: active.lat, lng: active.lng } }
+                                    : null)}
                                 markers={markers}
-                                onClickMap={onClickMap}
+                                onClickMap={null}
                                 onClickMarker={onClickMarker}
                             />
                             <div className={styles.cards}>
@@ -76,16 +95,22 @@ const MapScreen = ({ map, background, renderFormat, className }) => {
                                             },
                                         ])}
                                     >
-                                        <TextComponent
-                                            className={styles.text}
-                                            {...(marker.text ? marker.text : null)}
-                                        />
-                                        <ImageComponent
-                                            className={styles.image}
-                                            {...(marker.image ? marker.image : null)}
-                                        />
+                                        <TextComponent {...(marker.text ? marker.text : null)} />
+                                        <ImageComponent {...(marker.image ? marker.image : null)} />
                                     </div>
                                 ))}
+                            </div>
+                            <div className={styles.controls}>
+                                <button className={styles.next} type="button" onClick={onClickNext}>
+                                    Next
+                                </button>
+                                <button
+                                    className={styles.previous}
+                                    type="button"
+                                    onClick={onClickPrevious}
+                                >
+                                    Previous
+                                </button>
                             </div>
                         </>
                     )}
@@ -95,7 +120,7 @@ const MapScreen = ({ map, background, renderFormat, className }) => {
     );
 };
 
-MapScreen.propTypes = propTypes;
-MapScreen.defaultProps = defaultProps;
+MapPath.propTypes = propTypes;
+MapPath.defaultProps = defaultProps;
 
-export default MapScreen;
+export default MapPath;

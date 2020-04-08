@@ -22,7 +22,7 @@
 .card {
     position: absolute;
     z-index: 3;
-
+    bottom: 10%;
     width: 100%;
     padding: 10px;
     transform: translate3d(0, 100%, 0);
@@ -34,17 +34,20 @@
     &.active {
         transform: translate3d(0, 0, 0);
     }
+}
 
-    > * {
-        display: inline-block;
-        vertical-align: top;
-    }
+.controls {
+    display: flex;
+    position: absolute;
+    z-index: 4;
+    bottom: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 
-    .text {
-        width: 70%;
-    }
+    width: 100%;
+    height: 10%;
 
-    .image {
-        width: 30%;
-    }
+    background-color: $white;
+    color: $black;
 }

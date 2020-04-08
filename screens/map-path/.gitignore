@@ -30,13 +30,9 @@ intermediate
 publish
 .idea
 
-node_modules
-*.log
-.tmp
-.sass-cache
-.DS_Store
 /coverage
-/out*
-/_book
-
-keys.json
+/lib
+/es
+/dist
+/assets
+/package-lock.json

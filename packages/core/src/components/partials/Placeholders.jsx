@@ -2,7 +2,13 @@
 import React from 'react';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faAd, faMusic, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
+import {
+    faPlay,
+    faAd,
+    faMusic,
+    faAngleDoubleRight,
+    faMapMarkerAlt,
+} from '@fortawesome/free-solid-svg-icons';
 
 import Placeholder from './Placeholder';
 import PlaceholderBlock from './PlaceholderBlock';
@@ -94,7 +100,18 @@ export const Video = props => (
 );
 
 export const Map = props => (
-    <Placeholder {...props} className={classNames([props.className, styles.map])} />
+    <PlaceholderBlock
+        {...props}
+        width="100%"
+        height="100%"
+        className={classNames([props.className, styles.map])}
+    >
+        <FontAwesomeIcon icon={faMapMarkerAlt} className={styles.icon} />
+        <FontAwesomeIcon icon={faMapMarkerAlt} className={styles.icon} />
+        <FontAwesomeIcon icon={faMapMarkerAlt} className={styles.icon} />
+        <FontAwesomeIcon icon={faMapMarkerAlt} className={styles.icon} />
+        <FontAwesomeIcon icon={faMapMarkerAlt} className={styles.icon} />
+    </PlaceholderBlock>
 );
 
 export const Timeline = props => (
