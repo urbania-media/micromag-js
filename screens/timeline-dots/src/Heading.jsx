@@ -12,6 +12,7 @@ const propTypes = {
     }),
     background: PropTypes.shape({
         image: MicromagPropTypes.image,
+        color: MicromagPropTypes.color,
     }),
 };
 
