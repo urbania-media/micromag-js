@@ -20,6 +20,7 @@
         "@folklore/react-scripts": "^3.4.3",
         "@rollup/plugin-commonjs": "^11.0.2",
         "@rollup/plugin-image": "^2.0.4",
+        "@rollup/plugin-json": "^4.0.2",
         "@rollup/plugin-node-resolve": "^7.1.1",
         "@storybook/addon-a11y": "^5.3.17",
         "@storybook/addon-actions": "^5.3.17",

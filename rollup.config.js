@@ -3,6 +3,7 @@ import postcss from 'rollup-plugin-postcss';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import image from '@rollup/plugin-image';
+import json from '@rollup/plugin-json';
 import path from 'path';
 import generateScopedName from './scripts/lib/generateScopedName';
 
@@ -39,6 +40,7 @@ export default {
             inject: false,
         }),
         image(),
+        json({ compact: true }),
     ],
     // external: ['react', 'prop-types', 'classnames', 'lodash', 'snake-case', /^lodash\//],
 };

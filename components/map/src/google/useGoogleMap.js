@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 
-import styles from './styles.json';
+import styles from './styles';
 
 const eventsMapping = {
     onClick: ['click', map => map.getCenter()],
