@@ -59,3 +59,23 @@
         }
     }
 }
+
+.mapPath {
+    .icon {
+        width: 100%;
+    }
+}
+
+.videoLoop {
+    > div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .icon {
+        display: block;
+        margin: 2px;
+    }
+}

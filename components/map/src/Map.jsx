@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { useGoogleMapsClient } from '@micromag/core/contexts';
-import { Map as GoogleMap, Marker, TransitLayer } from './google';
+import { Map as GoogleMap, Marker, TransitLayer, Polyline } from './google';
 
 import styles from './styles.module.scss';
 
@@ -15,7 +15,7 @@ const propTypes = {
     zoom: PropTypes.number,
     markers: PropTypes.arrayOf(PropTypes.object),
     layers: PropTypes.arrayOf(PropTypes.string),
-    // style: MicromagPropTypes.textStyle,
+    withLine: PropTypes.bool,
     onClickMap: PropTypes.func,
     onClickMarker: PropTypes.func,
     className: PropTypes.string,
@@ -26,13 +26,13 @@ const defaultProps = {
     zoom: 10,
     markers: [],
     layers: [],
-    // style: null,
     onClickMap: null,
     onClickMarker: null,
+    withLine: false,
     className: null,
 };
 
-const Map = ({ zoom, center, markers, layers, onClickMap, onClickMarker, className }) => {
+const Map = ({ zoom, center, markers, layers, withLine, onClickMap, onClickMarker, className }) => {
     const { maps: mapsApi } = useGoogleMapsClient() || {};
 
     const onClick = useCallback(
@@ -63,6 +63,10 @@ const Map = ({ zoom, center, markers, layers, onClickMap, onClickMarker, classNa
                         onClick,
                     }}
                 >
+                    <Polyline
+                        mapsApi={mapsApi}
+                        coords={withLine ? markers.map(m => ({ lat: m.lat, lng: m.lng })) : []}
+                    />
                     <TransitLayer mapsApi={mapsApi} enabled={layers.includes('transit')} />
                     {markers
                         ? markers.map((m, index) => (

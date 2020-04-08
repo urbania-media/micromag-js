@@ -15,6 +15,8 @@ const propTypes = {
     zoom: PropTypes.number,
     // Global maps events
     events: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    disableDefaultUI: PropTypes.bool,
+    mapTypeControl: PropTypes.bool,
     className: PropTypes.string,
     children: PropTypes.node,
 };
@@ -23,12 +25,30 @@ const defaultProps = {
     center: { lat: 45.5, lng: -73.56 },
     zoom: 10,
     events: null,
+    disableDefaultUI: true,
+    mapTypeControl: false,
     className: null,
     children: null,
 };
 
-const Map = ({ mapsApi, center, zoom, events, className, children }) => {
-    const { maps, map, mapRef, loading } = useGoogleMap({ mapsApi, zoom, center, events });
+const Map = ({
+    mapsApi,
+    center,
+    zoom,
+    events,
+    disableDefaultUI,
+    mapTypeControl,
+    className,
+    children,
+}) => {
+    const { maps, map, mapRef, loading } = useGoogleMap({
+        mapsApi,
+        zoom,
+        center,
+        events,
+        disableDefaultUI,
+        mapTypeControl,
+    });
 
     useEffect(() => {
         if (map) {

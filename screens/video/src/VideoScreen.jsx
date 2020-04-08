@@ -1,0 +1,102 @@
+/* eslint-disable react/jsx-props-no-spreading */
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import Box from '@micromag/component-box';
+import Background from '@micromag/component-background';
+import Frame from '@micromag/component-frame';
+import VideoComponent from '@micromag/component-video';
+import { useScreenSize } from '@micromag/core/contexts';
+import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
+
+import styles from './styles.module.scss';
+
+const propTypes = {
+    video: MicromagPropTypes.video,
+    background: MicromagPropTypes.backgroundComponent,
+    box: MicromagPropTypes.boxComponent,
+    autoPlay: PropTypes.bool,
+    muted: PropTypes.bool,
+    loop: PropTypes.bool,
+    controls: PropTypes.bool,
+    fit: PropTypes.shape({
+        size: PropTypes.string,
+    }),
+    renderFormat: MicromagPropTypes.renderFormat,
+    className: PropTypes.string,
+};
+
+const defaultProps = {
+    video: null,
+    background: null,
+    box: null,
+    loop: false,
+    autoPlay: false,
+    muted: false,
+    controls: false,
+    fit: false,
+    renderFormat: 'view',
+    className: null,
+};
+
+const VideoScreen = ({
+    video,
+    background,
+    box,
+    autoPlay,
+    muted,
+    loop,
+    controls,
+    fit,
+    renderFormat,
+    className,
+}) => {
+    const { width, height } = useScreenSize();
+    const { size } = fit || {};
+    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
+
+    const placeholderSized = size === 'cover' ? Placeholders.VideoFull : Placeholders.Video;
+    const Placeholder = loop ? Placeholders.VideoLoop : placeholderSized;
+
+    const item = isSimple ? (
+        <Placeholder className={styles.placeholder} />
+    ) : (
+        <VideoComponent
+            {...video}
+            maxWidth={Math.min(width, 768)}
+            maxHeight={height}
+            autoPlay={autoPlay}
+            muted={muted}
+            loop={loop}
+            controlsVisible={controls}
+            fit={fit}
+            className={styles.video}
+        />
+    );
+
+    return (
+        <Background {...background} width={width} height={height}>
+            <Frame width={width} height={height}>
+                <div
+                    className={classNames([
+                        styles.container,
+                        {
+                            [styles.isPlaceholder]: renderFormat === 'placeholder',
+                            [styles.isPreview]: renderFormat === 'preview',
+                            [className]: className !== null,
+                        },
+                    ])}
+                >
+                    <Box {...box} withSmallSpacing={isSimple} className={styles.box}>
+                        {item}
+                    </Box>
+                </div>
+            </Frame>
+        </Background>
+    );
+};
+
+VideoScreen.propTypes = propTypes;
+VideoScreen.defaultProps = defaultProps;
+
+export default VideoScreen;

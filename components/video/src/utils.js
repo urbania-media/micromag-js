@@ -1,5 +1,7 @@
 export const isYouTube = url => url !== null && url.match(/(youtube\.com|youtu\.be)/i) !== null;
 
+export const isFile = url => url !== null && url.match(/(.mp4)/i) !== null;
+
 export const getYouTubeVideoId = url => {
     const videoId = url !== null ? url.match(/(youtu.be\/|v=)([^&?]+)/) : null;
     return videoId !== null ? videoId[2] : url;

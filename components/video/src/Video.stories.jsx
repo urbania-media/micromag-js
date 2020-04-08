@@ -1,7 +1,6 @@
 import React from 'react';
 import { GoogleApiClientProvider } from '@micromag/core/contexts';
 import Video from './Video';
-import './VideoYouTube';
 
 export default {
     component: Video,
