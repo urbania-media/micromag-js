@@ -3,8 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import TimelineDotsComponent from './TimelineDotsComponent';
-import { description, title } from '../../../.storybook/data';
+import TimelineDotsScreen from '../TimelineDotsScreen';
+import { description, title } from '../../../../.storybook/data';
 
 const propTypes = {
     title: MicromagPropTypes.textComponent,
@@ -31,7 +31,7 @@ const defaultProps = {
 
 const TimelineText = ({ title: titleValue, items, background, ...otherProps }) => {
     return (
-        <TimelineDotsComponent
+        <TimelineDotsScreen
             title={titleValue}
             items={items}
             background={background}

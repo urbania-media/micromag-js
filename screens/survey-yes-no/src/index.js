@@ -1,1 +1,1 @@
-export { default } from './SurveyYesNoComponent';
+export { default } from './SurveyYesNoScreen';

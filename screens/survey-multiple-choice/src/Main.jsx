@@ -6,7 +6,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import { description } from '../../../.storybook/data';
 
-import SurveyMultipleChoiceComponent from './SurveyMultipleChoiceComponent';
+import SurveyMultipleChoiceScreen from './SurveyMultipleChoiceScreen';
 
 const propTypes = {
     question: MicromagPropTypes.text,
@@ -24,7 +24,7 @@ const defaultProps = {
 };
 
 const SurveyMain = ({ question, ...otherProps }) => {
-    return <SurveyMultipleChoiceComponent question={question} {...otherProps} />;
+    return <SurveyMultipleChoiceScreen question={question} {...otherProps} />;
 };
 
 SurveyMain.propTypes = propTypes;

@@ -30,7 +30,7 @@ const defaultProps = {
     className: null,
 };
 
-const TimelineCentered = ({ title, items, background, renderFormat, className }) => {
+const TimelineDots = ({ title, items, background, renderFormat, className }) => {
     const { width, height } = useScreenSize();
 
     return (
@@ -111,7 +111,7 @@ const TimelineCentered = ({ title, items, background, renderFormat, className })
     );
 };
 
-TimelineCentered.propTypes = propTypes;
-TimelineCentered.defaultProps = defaultProps;
+TimelineDots.propTypes = propTypes;
+TimelineDots.defaultProps = defaultProps;
 
-export default TimelineCentered;
+export default TimelineDots;

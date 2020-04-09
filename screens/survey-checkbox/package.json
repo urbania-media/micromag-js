@@ -48,6 +48,7 @@
     "dependencies": {
         "@babel/runtime": "^7.8.7",
         "@micromag/component-background": "^0.1.0",
+        "@micromag/component-button": "^0.1.0",
         "@micromag/component-checkbox": "^0.1.0",
         "@micromag/component-frame": "^0.1.0",
         "@micromag/component-heading": "^0.1.0",

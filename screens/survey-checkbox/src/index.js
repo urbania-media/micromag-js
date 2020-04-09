@@ -1,1 +1,1 @@
-export { default } from './SurveyCheckboxComponent';
+export { default } from './SurveyCheckboxScreen';

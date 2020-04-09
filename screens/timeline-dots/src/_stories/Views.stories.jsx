@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { withKnobs, select } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
+import { withKnobs } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
 import { withScreenSize } from '../../../../.storybook/decorators';
 
-import TimelineDots from '../index';
+// import TimelineDots from '../index';
 
 import { Text, Image, Heading } from '../components';
 
@@ -12,8 +12,6 @@ export default {
     title: 'Screens/TimelineDots',
     decorators: [withKnobs, withScreenSize()],
 };
-
-export const Layouts = () => <TimelineDots layout={select('text')} />;
 
 export const TextTimeline = () => <Text renderFormat="view" />;
 

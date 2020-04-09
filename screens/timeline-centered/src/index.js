@@ -1,1 +1,1 @@
-export { default } from './TimelineCenteredComponent';
+export { default } from './TimelineCenteredScreen';

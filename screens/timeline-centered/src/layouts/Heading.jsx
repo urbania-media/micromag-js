@@ -2,9 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { title, description } from '../../../.storybook/data';
+import { title, description } from '../../../../.storybook/data';
 
-import TimelineDotsComponent from './TimelineDotsComponent';
+import TimelineCenteredScreen from '../TimelineCenteredScreen';
 
 const propTypes = {
     items: PropTypes.shape({
@@ -12,7 +12,6 @@ const propTypes = {
     }),
     background: PropTypes.shape({
         image: MicromagPropTypes.image,
-        color: MicromagPropTypes.color,
     }),
 };
 
@@ -31,7 +30,7 @@ const defaultProps = {
 };
 
 const TimelineHeading = ({ items, background, ...otherProps }) => {
-    return <TimelineDotsComponent items={items} background={background} {...otherProps} />;
+    return <TimelineCenteredScreen items={items} background={background} {...otherProps} />;
 };
 
 TimelineHeading.propTypes = propTypes;

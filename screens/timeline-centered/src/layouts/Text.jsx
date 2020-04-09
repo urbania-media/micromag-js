@@ -3,8 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import TimelineCenteredComponent from './TimelineCenteredComponent';
-import { description } from '../../../.storybook/data';
+import TimelineCenteredScreen from '../TimelineCenteredScreen';
+import { description } from '../../../../.storybook/data';
 
 const propTypes = {
     items: PropTypes.shape({
@@ -30,7 +30,7 @@ const defaultProps = {
 };
 
 const TimelineText = ({ items, background, ...otherProps }) => {
-    return <TimelineCenteredComponent items={items} background={background} {...otherProps} />;
+    return <TimelineCenteredScreen items={items} background={background} {...otherProps} />;
 };
 
 TimelineText.propTypes = propTypes;

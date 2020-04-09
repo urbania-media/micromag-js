@@ -15,17 +15,19 @@ const propTypes = {
         color: MicromagPropTypes.color,
         rounded: PropTypes.bool,
     }),
+    onClick: PropTypes.func,
     children: PropTypes.node,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     style: null,
+    onClick: null,
     children: null,
     className: null,
 };
 
-const Button = ({ style, children, className }) => {
+const Button = ({ style, onClick, children, className }) => {
     let finalStyle = null;
 
     const { text: textStyle = null, color: backgroundColor = null, rounded = null } = style || {};
@@ -61,6 +63,7 @@ const Button = ({ style, children, className }) => {
                 },
             ])}
             style={finalStyle}
+            onClick={onClick}
         >
             {children}
         </CoreButton>

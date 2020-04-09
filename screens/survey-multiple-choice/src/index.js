@@ -1,1 +1,1 @@
-export { default } from './SurveyMultipleChoiceComponent';
+export { default } from './SurveyMultipleChoiceScreen';
