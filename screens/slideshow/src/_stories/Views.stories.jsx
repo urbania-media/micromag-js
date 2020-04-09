@@ -9,15 +9,15 @@ import { Center } from '../components';
 const props = {
     items: [
         {
-            image: { url: 'https://picsum.photos/400/180' },
+            image: { url: 'https://picsum.photos/500/300' },
             text: { body: paragraph() },
         },
         {
-            image: { url: 'https://picsum.photos/400/200' },
+            image: { url: 'https://picsum.photos/500/200' },
             text: { body: paragraph() },
         },
         {
-            image: { url: 'https://picsum.photos/400/240' },
+            image: { url: 'https://picsum.photos/500/500' },
             text: { body: paragraph() },
         },
     ],

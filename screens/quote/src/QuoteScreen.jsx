@@ -39,7 +39,7 @@ const defaultProps = {
     className: null,
 };
 
-const QuoteComponent = ({
+const QuoteScreen = ({
     background,
     quote,
     source,
@@ -137,7 +137,7 @@ const QuoteComponent = ({
     );
 };
 
-QuoteComponent.propTypes = propTypes;
-QuoteComponent.defaultProps = defaultProps;
+QuoteScreen.propTypes = propTypes;
+QuoteScreen.defaultProps = defaultProps;
 
-export default QuoteComponent;
+export default QuoteScreen;

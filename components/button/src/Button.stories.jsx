@@ -7,9 +7,9 @@ export default {
 };
 
 const testStyle = {
-  color: '#000'
-}
+    color: '#000',
+};
 
-export const defaultButton = () => <Button>Button</Button>;
+export const Default = () => <Button>Button</Button>;
 
-export const test = () => <Button style={testStyle} />
+export const WithStyle = () => <Button style={testStyle} />;

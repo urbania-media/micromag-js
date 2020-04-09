@@ -8,7 +8,7 @@ import Frame from '@micromag/component-frame';
 import Box from '@micromag/component-box';
 import Image from '@micromag/component-image';
 
-import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, Placeholders, PreviewBlock } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 
 import styles from './styles.module.scss';
@@ -48,14 +48,22 @@ const AdScreen = ({ ad, background, isFullScreen, renderFormat, className }) => 
         height: isFullScreen ? height : adHeight,
     };
 
+    const preview = isSimple ? <PreviewBlock {...adStyle} /> : null;
+
     let inner = null;
     inner =
-        iframe !== null ? <iframe className={styles.iframe} src={iframe} title="iframe" /> : null;
+        iframe !== null && !isSimple ? (
+            <iframe className={styles.iframe} src={iframe} title="iframe" />
+        ) : (
+            preview
+        );
 
     inner =
-        image !== null ? (
+        image !== null && !isSimple ? (
             <Image className={styles.content} {...image} {...adStyle} alt="Ad" />
-        ) : null;
+        ) : (
+            preview
+        );
 
     const content =
         url !== null ? (
@@ -72,7 +80,8 @@ const AdScreen = ({ ad, background, isFullScreen, renderFormat, className }) => 
                 styles.container,
                 {
                     [styles.isFullScreen]: isFullScreen,
-                    [styles.isPlaceholder]: isSimple,
+                    [styles.isPlaceholder]: isPlaceholder,
+                    [styles.disabled]: isSimple,
                     [styles.isPreview]: renderFormat === 'preview',
                     [className]: className !== null,
                 },
@@ -86,7 +95,11 @@ const AdScreen = ({ ad, background, isFullScreen, renderFormat, className }) => 
             >
                 <Frame className={styles.frame} width={width} height={height}>
                     <Box withSmallSpacing={isSimple}>
-                        {isSimple ? <Placeholders.Ad className={styles.placeholder} /> : content}
+                        {isPlaceholder ? (
+                            <Placeholders.Ad className={styles.placeholder} />
+                        ) : (
+                            content
+                        )}
                     </Box>
                 </Frame>
             </Background>

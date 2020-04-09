@@ -85,7 +85,7 @@ export const MediumImage = props => (
     <PlaceholderBlock
         {...props}
         className={classNames([props.className, styles.image])}
-        width="100%"
+        width="80%"
         height="40%"
     />
 );
@@ -155,13 +155,18 @@ export const Timeline = props => (
 );
 
 export const Ad = props => (
-    <PlaceholderBlock {...props} className={classNames([props.className, styles.ad])}>
+    <PlaceholderBlock {...props} width="80%" className={classNames([props.className, styles.ad])}>
         <FontAwesomeIcon icon={faAd} className={styles.icon} />
     </PlaceholderBlock>
 );
 
 export const Audio = props => (
-    <PlaceholderBlock {...props} className={classNames([props.className, styles.audio])}>
+    <PlaceholderBlock
+        {...props}
+        width="80%"
+        height="30%"
+        className={classNames([props.className, styles.audio])}
+    >
         <FontAwesomeIcon icon={faMusic} className={styles.icon} />
     </PlaceholderBlock>
 );

@@ -49,7 +49,7 @@ const defaultProps = {
     className: null,
 };
 
-const QuoteSplitComponent = ({
+const QuoteSplitScreen = ({
     background,
     quote,
     source,
@@ -147,7 +147,7 @@ const QuoteSplitComponent = ({
     );
 };
 
-QuoteSplitComponent.propTypes = propTypes;
-QuoteSplitComponent.defaultProps = defaultProps;
+QuoteSplitScreen.propTypes = propTypes;
+QuoteSplitScreen.defaultProps = defaultProps;
 
-export default QuoteSplitComponent;
+export default QuoteSplitScreen;

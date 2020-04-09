@@ -47,6 +47,31 @@ export const description = ({ likelyhood = 100, min = 1, max = 3 } = {}) =>
 export const paragraph = ({ likelyhood = 100, min = 3, max = 6 } = {}) =>
     sentences(likelyhood, min, max);
 
+export const text = (type = 'normal') => {
+    let body = '';
+    const style = {};
+    switch (length) {
+        case 'short':
+            body = shortText();
+            break;
+        case 'medium':
+            body = shortText();
+            break;
+        case 'long':
+            body = longText();
+            break;
+        case 'verylong':
+            body = paragraph();
+            break;
+        default:
+            body = shortText();
+    }
+    return {
+        style,
+        body,
+    };
+};
+
 export const image = ({ width = 800, height = 800 } = {}) => ({
     url: `https://picsum.photos/${width}/${height}`,
     imageWidth: width,
@@ -72,6 +97,10 @@ export const imageSquareWithRandomSize = ({ min = 100, max = 800 } = {}) => {
     };
 };
 
+export const images = ({ count = 3, width = 200, height = 120 } = {}) => {
+    return [...Array(count)].map(i => ({ url: `https://picsum.photos/${width}/${height}` }));
+};
+
 export const videoFile = () => ({
     url: VideoTest,
     width: 1920,
@@ -86,9 +115,13 @@ export const video = () => ({
 
 export const background = () => ({ color: { color: chance.color({ format: 'rgb' }) } });
 
-export const backgroundWithImage = () => ({
+export const backgroundImage = () => ({
     color: { color: chance.color({ format: 'rgb' }) },
-    image: image(),
+    image: {
+        url: `https://picsum.photos/1000/1000/?blur`,
+        width: 1000,
+        height: 1000,
+    },
 });
 
 export const audio = () => ({

@@ -2,29 +2,13 @@
 import React from 'react';
 import { withKnobs } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
 import { withScreenSize } from '../../../../.storybook/decorators';
-// import { paragraph, image } from '../../../../.storybook/data';
+import { images, background } from '../../../../.storybook/data';
 
 import { Single, Double, Triple, MixedDouble, MixedTriple } from '../components';
 
 const props = {
-    images: [
-        { url: 'https://picsum.photos/800/500' },
-        { url: 'https://picsum.photos/800/500' },
-        { url: 'https://picsum.photos/800/500' },
-        { url: 'https://picsum.photos/800/500' },
-        { url: 'https://picsum.photos/800/500' },
-        { url: 'https://picsum.photos/800/500' },
-        { url: 'https://picsum.photos/800/500' },
-        { url: 'https://picsum.photos/800/500' },
-        { url: 'https://picsum.photos/800/500' },
-        { url: 'https://picsum.photos/800/500' },
-        { url: 'https://picsum.photos/800/500' },
-        { url: 'https://picsum.photos/800/500' },
-        { url: 'https://picsum.photos/800/500' },
-        { url: 'https://picsum.photos/800/500' },
-        { url: 'https://picsum.photos/800/500' },
-        { url: 'https://picsum.photos/800/500' },
-    ],
+    images: images({ count: 20 }),
+    background: background(),
 };
 
 export default {

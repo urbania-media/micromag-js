@@ -24,7 +24,7 @@
     z-index: 3;
 
     width: 100%;
-    padding: 10px;
+
     transform: translate3d(0, 100%, 0);
 
     background-color: $white;
@@ -46,5 +46,9 @@
 
     .image {
         width: 30%;
+    }
+
+    .background {
+        padding: 10px;
     }
 }

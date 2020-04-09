@@ -33,8 +33,9 @@ const defaultProps = {
     className: null,
 };
 
-const Audio = ({ image, text, box, background, textAlign, renderFormat, className }) => {
+const ImageScreen = ({ image, text, box, background, textAlign, renderFormat, className }) => {
     const { width, height } = useScreenSize();
+    const isPlaceholder = renderFormat === 'placeholder';
     const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
     return (
@@ -43,6 +44,7 @@ const Audio = ({ image, text, box, background, textAlign, renderFormat, classNam
                 styles.container,
                 {
                     [styles.isSimple]: isSimple,
+                    [styles.disabled]: isSimple,
                     [styles[textAlign]]: textAlign !== null,
                     [className]: className !== null,
                 },
@@ -51,17 +53,17 @@ const Audio = ({ image, text, box, background, textAlign, renderFormat, classNam
             <Background {...background} width={width} height={height}>
                 <Frame width={width} height={height}>
                     <Box {...box} withSmallSpacing={isSimple}>
-                        {isSimple ? (
+                        {isPlaceholder ? (
                             <Placeholders.MediumImage className={styles.placeholderImage} />
                         ) : (
                             <ImageComponent
                                 {...image}
-                                maxWidth={width}
-                                maxHeight={height}
+                                maxWidth="100%"
+                                maxHeight="100%"
                                 className={styles.image}
                             />
                         )}
-                        {!isSimple ? (
+                        {!isPlaceholder ? (
                             <div className={styles.textContainer}>
                                 <TextComponent {...text} />
                             </div>
@@ -73,7 +75,7 @@ const Audio = ({ image, text, box, background, textAlign, renderFormat, classNam
     );
 };
 
-Audio.propTypes = propTypes;
-Audio.defaultProps = defaultProps;
+ImageScreen.propTypes = propTypes;
+ImageScreen.defaultProps = defaultProps;
 
-export default Audio;
+export default ImageScreen;

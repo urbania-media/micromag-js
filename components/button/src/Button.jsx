@@ -24,6 +24,7 @@ const defaultProps = {
     style: null,
     onClick: null,
     children: null,
+    onClick: null,
     className: null,
 };
 

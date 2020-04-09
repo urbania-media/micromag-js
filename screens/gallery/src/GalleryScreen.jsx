@@ -33,29 +33,34 @@ const defaultProps = {
     className: null,
 };
 
-const GalleryComponent = ({
+const GalleryScreen = ({
     background,
-    images,
+    images: imageList,
     grid,
     defaultSpacing,
     renderFormat,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
+    const isPlaceholder = renderFormat === 'placeholder';
+    const isPreview = renderFormat === 'preview';
+    const isSimple = isPlaceholder || isPreview;
 
     const { layout } = grid;
-    const items = isSimple
+    const images = isPreview ? imageList.slice(0, 16) : imageList || [];
+
+    const items = isPlaceholder
         ? layout
               .reduce((map, row) => [...map, ...row.columns], [])
               .map(() => <Placeholders.Image className={styles.placeholder} />)
-        : (images || []).map(it => <Image {...it} className={styles.image} />);
+        : images.map(it => <Image {...it} className={styles.image} />);
 
     return (
         <div
             className={classNames([
                 styles.container,
                 {
+                    [styles.disabled]: isSimple,
                     [className]: className,
                 },
             ])}
@@ -77,7 +82,7 @@ const GalleryComponent = ({
     );
 };
 
-GalleryComponent.propTypes = propTypes;
-GalleryComponent.defaultProps = defaultProps;
+GalleryScreen.propTypes = propTypes;
+GalleryScreen.defaultProps = defaultProps;
 
-export default GalleryComponent;
+export default GalleryScreen;

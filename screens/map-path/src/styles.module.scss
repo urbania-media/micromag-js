@@ -50,4 +50,9 @@
 
     background-color: $white;
     color: $black;
+
+    .next,
+    .previous {
+        margin: 2px;
+    }
 }

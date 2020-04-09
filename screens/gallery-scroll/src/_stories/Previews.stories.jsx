@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { withPreviewSize } from '../../../../.storybook/decorators';
-import { background } from '../../../../.storybook/data';
+import { images, background } from '../../../../.storybook/data';
 
 import { Single, Double, Triple, MixedDouble, MixedTriple } from '../components';
 
 const props = {
     background: background(),
+    images: images({ count: 10 }),
 };
 
 export default {

@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { withPreviewSize } from '../../../../.storybook/decorators';
-import { background } from '../../../../.storybook/data';
+import { images, background } from '../../../../.storybook/data';
 
 import {
     OnePlusTwo,
@@ -16,6 +16,7 @@ import {
 
 const props = {
     background: background(),
+    images: images({ count: 20 }),
 };
 
 export default {

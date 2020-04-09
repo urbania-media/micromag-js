@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { withPreviewSize } from '../../../../.storybook/decorators';
-import { image, background, backgroundWithImage } from '../../../../.storybook/data';
+import { text, image, background, backgroundImage } from '../../../../.storybook/data';
 
 import { Top, Center, Bottom } from '../components';
 
@@ -18,5 +18,9 @@ export const PreviewCenter = () => <Center background={background()} renderForma
 export const PreviewBottom = () => <Bottom background={background()} renderFormat="preview" />;
 
 export const PreviewWithImage = () => (
-    <Center {...image()} background={backgroundWithImage()} renderFormat="preview" />
+    <Center image={image()} background={backgroundImage()} renderFormat="preview" />
+);
+
+export const PreviewWithTextImage = () => (
+    <Center image={image()} text={text()} background={backgroundImage()} renderFormat="preview" />
 );

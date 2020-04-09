@@ -6,9 +6,12 @@ import Frame from '@micromag/component-frame';
 import MapComponent from '@micromag/component-map';
 import TextComponent from '@micromag/component-text';
 import ImageComponent from '@micromag/component-image';
+import ButtonComponent from '@micromag/component-button';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
+
+import PreviewBackground from './preview.jpg';
 
 import styles from './styles.module.scss';
 
@@ -26,14 +29,15 @@ const defaultProps = {
     className: null,
 };
 
-const MapPath = ({ map, background, renderFormat, className }) => {
+const MapPathScreen = ({ map, background, renderFormat, className }) => {
     const { width, height } = useScreenSize();
     const { markers: mapMarkers = [] } = map || {};
+    const isPlaceholder = renderFormat === 'placeholder';
+    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
     const [index, setIndex] = useState(0);
     const markers = mapMarkers || []; // .map((m, i) => ({ ...m })) : [];
-
-    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
+    const active = markers.find((m, i) => i === index) || null;
 
     const onClickMarker = useCallback(
         i => {
@@ -58,7 +62,11 @@ const MapPath = ({ map, background, renderFormat, className }) => {
         }
     }, [markers, index, setIndex]);
 
-    const active = markers.find((m, i) => i === index) || null;
+    const preview = isPlaceholder ? (
+        <Placeholders.MapPath />
+    ) : (
+        <ImageComponent url={PreviewBackground} width={width} height={height} />
+    );
 
     return (
         <div
@@ -72,7 +80,7 @@ const MapPath = ({ map, background, renderFormat, className }) => {
             <Background {...background} width={width} height={height}>
                 <Frame width={width} height={height}>
                     {isSimple ? (
-                        <Placeholders.MapPath />
+                        preview
                     ) : (
                         <>
                             <MapComponent
@@ -102,16 +110,15 @@ const MapPath = ({ map, background, renderFormat, className }) => {
                                 ))}
                             </div>
                             <div className={styles.controls}>
-                                <button className={styles.next} type="button" onClick={onClickNext}>
+                                <ButtonComponent className={styles.next} onClick={onClickNext}>
                                     Next
-                                </button>
-                                <button
+                                </ButtonComponent>
+                                <ButtonComponent
                                     className={styles.previous}
-                                    type="button"
                                     onClick={onClickPrevious}
                                 >
                                     Previous
-                                </button>
+                                </ButtonComponent>
                             </div>
                         </>
                     )}
@@ -121,7 +128,7 @@ const MapPath = ({ map, background, renderFormat, className }) => {
     );
 };
 
-MapPath.propTypes = propTypes;
-MapPath.defaultProps = defaultProps;
+MapPathScreen.propTypes = propTypes;
+MapPathScreen.defaultProps = defaultProps;
 
-export default MapPath;
+export default MapPathScreen;
