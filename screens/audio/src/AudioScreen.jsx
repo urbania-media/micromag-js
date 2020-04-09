@@ -43,6 +43,7 @@ const defaultProps = {
 
 const AudioScreen = ({ audio, image, text, box, background, renderFormat, className }) => {
     const { width, height } = useScreenSize();
+    const isPlaceholder = renderFormat === 'placeholder';
     const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
     return (
@@ -50,6 +51,7 @@ const AudioScreen = ({ audio, image, text, box, background, renderFormat, classN
             className={classNames([
                 styles.container,
                 {
+                    [styles.disabled]: isSimple,
                     [className]: className !== null,
                 },
             ])}
@@ -57,7 +59,7 @@ const AudioScreen = ({ audio, image, text, box, background, renderFormat, classN
             <Background {...background} width={width} height={height}>
                 <Frame width={width} height={height}>
                     <Box {...box} withSmallSpacing={isSimple} className={styles.box}>
-                        {isSimple && image !== null ? (
+                        {isPlaceholder && image !== null ? (
                             <Placeholders.MediumImage className={styles.placeholder} />
                         ) : (
                             <ImageComponent
@@ -68,12 +70,15 @@ const AudioScreen = ({ audio, image, text, box, background, renderFormat, classN
                                 className={styles.image}
                             />
                         )}
-                        {isSimple ? (
+                        {isPlaceholder ? (
                             <Placeholders.Audio className={styles.placeholder} />
                         ) : (
-                            <AudioComponent className={styles.audio} {...audio} />
+                            <AudioComponent
+                                className={styles.audio}
+                                {...(isSimple ? { ...audio, src: null } : audio)}
+                            />
                         )}
-                        {isSimple && text !== null ? (
+                        {isPlaceholder && text !== null ? (
                             <Placeholders.Text className={styles.placeholder} />
                         ) : (
                             <TextComponent {...text} className={styles.text} />

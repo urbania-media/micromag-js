@@ -35,6 +35,7 @@ const defaultProps = {
 
 const ImageScreen = ({ image, text, box, background, textAlign, renderFormat, className }) => {
     const { width, height } = useScreenSize();
+    const isPlaceholder = renderFormat === 'placeholder';
     const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
     return (
@@ -43,6 +44,7 @@ const ImageScreen = ({ image, text, box, background, textAlign, renderFormat, cl
                 styles.container,
                 {
                     [styles.isSimple]: isSimple,
+                    [styles.disabled]: isSimple,
                     [styles[textAlign]]: textAlign !== null,
                     [className]: className !== null,
                 },
@@ -51,7 +53,7 @@ const ImageScreen = ({ image, text, box, background, textAlign, renderFormat, cl
             <Background {...background} width={width} height={height}>
                 <Frame width={width} height={height}>
                     <Box {...box} withSmallSpacing={isSimple}>
-                        {isSimple ? (
+                        {isPlaceholder ? (
                             <Placeholders.MediumImage className={styles.placeholderImage} />
                         ) : (
                             <ImageComponent
@@ -61,7 +63,7 @@ const ImageScreen = ({ image, text, box, background, textAlign, renderFormat, cl
                                 className={styles.image}
                             />
                         )}
-                        {!isSimple ? (
+                        {!isPlaceholder ? (
                             <div className={styles.textContainer}>
                                 <TextComponent {...text} />
                             </div>

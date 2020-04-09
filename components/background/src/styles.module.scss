@@ -1,16 +1,12 @@
 .container {
     display: flex;
     position: relative;
+    position: relative;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
-
-    .inner {
-        position: absolute;
-        z-index: 0;
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: cover;
-    }
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
 }

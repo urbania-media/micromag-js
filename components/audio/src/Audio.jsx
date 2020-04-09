@@ -113,7 +113,7 @@ const AudioComponent = ({
     }, [setCurrentTime]);
 
     useEffect(() => {
-        if (!native && refAudioElement.current === null) {
+        if (!native && refAudioElement.current === null && src) {
             const audio = new Audio(src);
             audio.addEventListener('loadedmetadata', onLoad);
             audio.addEventListener('durationchanged', onLoad);

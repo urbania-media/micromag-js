@@ -5,7 +5,7 @@ import { withScreenSize } from '../../../../.storybook/decorators';
 import {
     imageWithRandomSize,
     background,
-    backgroundWithImage,
+    backgroundImage,
     shortText,
 } from '../../../../.storybook/data';
 
@@ -51,6 +51,6 @@ export const ViewCenterWithTextAndBackground = () => (
             style: { text: { color: '#999', font: { size: '30px', style: { bold: true } } } },
         }}
         textAlign={select('textAlign', options, 'center')}
-        background={backgroundWithImage()}
+        background={backgroundImage()}
     />
 );

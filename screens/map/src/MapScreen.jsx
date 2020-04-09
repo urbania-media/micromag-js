@@ -10,11 +10,14 @@ import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 
+import PreviewBackground from './preview.jpg';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
     map: MicromagPropTypes.map,
     background: MicromagPropTypes.backgroundComponent,
+    cardBackground: MicromagPropTypes.backgroundComponent,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -22,16 +25,20 @@ const propTypes = {
 const defaultProps = {
     map: null,
     background: null,
+    cardBackground: null,
     renderFormat: 'view',
     className: null,
 };
 
-const MapScreen = ({ map, background, renderFormat, className }) => {
+const MapScreen = ({ map, background, cardBackground, renderFormat, className }) => {
     const { width, height } = useScreenSize();
     const [index, setIndex] = useState();
+    const isPlaceholder = renderFormat === 'placeholder';
+    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
+
     const { markers: mapMarkers = [] } = map || {};
     const markers = mapMarkers.map(m => ({ ...m, active: true }));
-    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
+    const center = markers.find((m, i) => i === index) || null;
 
     const onClickMap = useCallback(() => {
         setIndex(null);
@@ -44,13 +51,18 @@ const MapScreen = ({ map, background, renderFormat, className }) => {
         [setIndex],
     );
 
-    const center = markers.find((m, i) => i === index) || null;
+    const preview = isPlaceholder ? (
+        <Placeholders.Map />
+    ) : (
+        <ImageComponent url={PreviewBackground} width={width} height={height} />
+    );
 
     return (
         <div
             className={classNames([
                 styles.container,
                 {
+                    [styles.disabled]: isSimple,
                     [className]: className !== null,
                 },
             ])}
@@ -58,7 +70,7 @@ const MapScreen = ({ map, background, renderFormat, className }) => {
             <Background {...background} width={width} height={height}>
                 <Frame width={width} height={height}>
                     {isSimple ? (
-                        <Placeholders.Map />
+                        preview
                     ) : (
                         <>
                             <MapComponent
@@ -81,14 +93,19 @@ const MapScreen = ({ map, background, renderFormat, className }) => {
                                             },
                                         ])}
                                     >
-                                        <TextComponent
-                                            className={styles.text}
-                                            {...(marker.text ? marker.text : null)}
-                                        />
-                                        <ImageComponent
-                                            className={styles.image}
-                                            {...(marker.image ? marker.image : null)}
-                                        />
+                                        <Background
+                                            className={styles.background}
+                                            {...cardBackground}
+                                        >
+                                            <TextComponent
+                                                className={styles.text}
+                                                {...(marker.text ? marker.text : null)}
+                                            />
+                                            <ImageComponent
+                                                className={styles.image}
+                                                {...(marker.image ? marker.image : null)}
+                                            />
+                                        </Background>
                                     </div>
                                 ))}
                             </div>

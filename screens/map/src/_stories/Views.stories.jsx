@@ -2,10 +2,11 @@
 import React from 'react';
 import { Center } from '../components';
 import { withGoogleMapsApi, withScreenSize } from '../../../../.storybook/decorators';
-import { map } from '../../../../.storybook/data';
+import { map, background, backgroundImage } from '../../../../.storybook/data';
 
 const props = {
     map: map(),
+    cardBackground: background(),
 };
 
 export default {
@@ -15,3 +16,7 @@ export default {
 };
 
 export const MapCentered = () => <Center {...props} />;
+
+export const MapWithBackground = () => <Center {...props} background={backgroundImage()} />;
+
+export const MapEmpty = () => <Center map={{ ...map, markers: [] }} />;

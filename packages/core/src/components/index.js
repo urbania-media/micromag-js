@@ -14,6 +14,7 @@ export { default as Label } from './partials/Label';
 export { default as Placeholder } from './partials/Placeholder';
 export { default as PlaceholderBlock } from './partials/PlaceholderBlock';
 export { default as Placeholders } from './partials/Placeholders';
+export { default as PreviewBlock } from './partials/PreviewBlock';
 
 export { default as createLayoutSwitcher } from './screens/createLayoutSwitcher';
 export { default as ScreenPlaceholder } from './screens/Placeholder';

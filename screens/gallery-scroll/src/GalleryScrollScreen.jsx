@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import Background from '@micromag/component-background';
 import Frame from '@micromag/component-frame';
 import Image from '@micromag/component-image';
+import Box from '@micromag/component-box';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 
@@ -16,22 +17,37 @@ const propTypes = {
     images: MicromagPropTypes.images,
     box: MicromagPropTypes.boxComponent,
     columns: PropTypes.arrayOf(PropTypes.number),
+    spacing: PropTypes.number,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     background: null,
-    images: [null, null, null, null, null, null, null],
+    images: [],
     box: null,
     columns: [1],
+    spacing: 10,
     renderFormat: 'view',
     className: null,
 };
 
-const GalleryScrollScreen = ({ background, images, columns, renderFormat, className }) => {
+const GalleryScrollScreen = ({
+    background,
+    images: imageList,
+    columns,
+    spacing,
+    renderFormat,
+    className,
+}) => {
     const { width, height } = useScreenSize();
+    const isPlaceholder = renderFormat === 'placeholder';
     const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
+
+    const images =
+        imageList && imageList.length > 0 && !isPlaceholder
+            ? imageList
+            : [...Array(15)].map(() => null);
 
     const groups = [];
     let step = 0;
@@ -57,40 +73,28 @@ const GalleryScrollScreen = ({ background, images, columns, renderFormat, classN
         groups[index].push(image);
     });
 
-    const items = isSimple
-        ? groups.map((its, i) => (
-            <div key={`group-${i + 1}`} className={styles.group}>
-                {its.map((it, j) => (
-                    <div
-                        key={`image-${j + 1}`}
-                        className={classNames([
-                              styles.placeholder,
-                              {
-                                  [styles[`columns${its.length}`]]: columns !== null,
-                              },
-                          ])}
-                      >
-                        <Placeholders.Image />
-                    </div>
-                  ))}
-            </div>
-          ))
-        : groups.map((its, i) => (
-            <div key={`group-${i + 1}`} className={styles.group}>
-                {its.map((it, j) => (
-                    <Image
-                        key={`image-${j + 1}`}
-                        {...it}
-                        className={classNames([
-                              styles.image,
-                              {
-                                  [styles[`columns${its.length}`]]: columns !== null,
-                              },
-                          ])}
-                      />
-                  ))}
-            </div>
-          ));
+    const items = groups.map((its, i) => (
+        <div key={`group-${i + 1}`} className={styles.group}>
+            {its.map((it, j) => (
+                <div
+                    key={`image-${j + 1}`}
+                    className={classNames([
+                        styles.image,
+                        {
+                            [styles[`columns${its.length}`]]: columns !== null,
+                        },
+                    ])}
+                    style={{ padding: isPlaceholder ? 2 : spacing / 2 }}
+                >
+                    {isPlaceholder ? (
+                        <Placeholders.Image key={`image-${j + 1}`} className={styles.placeholder} />
+                    ) : (
+                        <Image className={styles.imageComponent} {...it} />
+                    )}
+                </div>
+            ))}
+        </div>
+    ));
 
     return (
         <div
@@ -104,7 +108,9 @@ const GalleryScrollScreen = ({ background, images, columns, renderFormat, classN
         >
             <Background {...background} width={width} height={height} className={styles.background}>
                 <Frame width={width} height={height} withScroll={!isSimple}>
-                    {items}
+                    <Box axisAlign="top" withSmallSpacing={isSimple} className={styles.box}>
+                        {items}
+                    </Box>
                 </Frame>
             </Background>
         </div>

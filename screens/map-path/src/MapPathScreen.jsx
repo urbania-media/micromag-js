@@ -11,6 +11,8 @@ import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 
+import PreviewBackground from './preview.jpg';
+
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -30,11 +32,12 @@ const defaultProps = {
 const MapPathScreen = ({ map, background, renderFormat, className }) => {
     const { width, height } = useScreenSize();
     const { markers: mapMarkers = [] } = map || {};
+    const isPlaceholder = renderFormat === 'placeholder';
+    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
     const [index, setIndex] = useState(0);
     const markers = mapMarkers || []; // .map((m, i) => ({ ...m })) : [];
-
-    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
+    const active = markers.find((m, i) => i === index) || null;
 
     const onClickMarker = useCallback(
         i => {
@@ -59,7 +62,11 @@ const MapPathScreen = ({ map, background, renderFormat, className }) => {
         }
     }, [markers, index, setIndex]);
 
-    const active = markers.find((m, i) => i === index) || null;
+    const preview = isPlaceholder ? (
+        <Placeholders.MapPath />
+    ) : (
+        <ImageComponent url={PreviewBackground} width={width} height={height} />
+    );
 
     return (
         <div
@@ -73,7 +80,7 @@ const MapPathScreen = ({ map, background, renderFormat, className }) => {
             <Background {...background} width={width} height={height}>
                 <Frame width={width} height={height}>
                     {isSimple ? (
-                        <Placeholders.MapPath />
+                        preview
                     ) : (
                         <>
                             <MapComponent

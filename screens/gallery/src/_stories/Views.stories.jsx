@@ -2,7 +2,7 @@
 import React from 'react';
 import { withKnobs } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
 import { withScreenSize } from '../../../../.storybook/decorators';
-// import { paragraph, image } from '../../../../.storybook/data';
+import { images, backgroundImage } from '../../../../.storybook/data';
 
 import {
     OnePlusTwo,
@@ -16,24 +16,7 @@ import {
 } from '../components';
 
 const props = {
-    images: [
-        { url: 'https://picsum.photos/100/150' },
-        { url: 'https://picsum.photos/100/150' },
-        { url: 'https://picsum.photos/100/150' },
-        { url: 'https://picsum.photos/100/150' },
-        { url: 'https://picsum.photos/100/150' },
-        { url: 'https://picsum.photos/100/150' },
-        { url: 'https://picsum.photos/100/150' },
-        { url: 'https://picsum.photos/100/150' },
-        { url: 'https://picsum.photos/100/150' },
-        { url: 'https://picsum.photos/100/150' },
-        { url: 'https://picsum.photos/100/150' },
-        { url: 'https://picsum.photos/100/150' },
-        { url: 'https://picsum.photos/100/150' },
-        { url: 'https://picsum.photos/100/150' },
-        { url: 'https://picsum.photos/100/150' },
-        { url: 'https://picsum.photos/100/150' },
-    ],
+    images: images({ count: 20 }),
 };
 
 export default {
@@ -52,7 +35,7 @@ export const ViewTwoByTwo = () => <TwoByTwo {...props} />;
 
 export const ViewFourByFour = () => <FourByFour {...props} />;
 
-export const ViewSixByTwo = () => <SixByTwo {...props} />;
+export const ViewSixByTwo = () => <SixByTwo {...props} background={backgroundImage()} />;
 
 export const ViewThreeByThree = () => <ThreeByThree {...props} />;
 

@@ -25,7 +25,6 @@ const defaultProps = {
 };
 
 const Background = ({ width, height, color, image, className, children }) => {
-    let containerStyle = {};
     let finalStyle = {
         width,
         height,
@@ -34,9 +33,6 @@ const Background = ({ width, height, color, image, className, children }) => {
     if (color !== null) {
         finalStyle = {
             ...finalStyle,
-            ...getStyleFromColor(color, 'backgroundColor'),
-        };
-        containerStyle = {
             ...getStyleFromColor(color, 'backgroundColor'),
         };
     }
@@ -55,11 +51,9 @@ const Background = ({ width, height, color, image, className, children }) => {
                     [className]: className !== null,
                 },
             ])}
-            style={containerStyle}
+            style={finalStyle}
         >
-            <div className={styles.inner} style={finalStyle}>
-                {children}
-            </div>
+            {children}
         </div>
     );
 };
