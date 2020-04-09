@@ -10,6 +10,7 @@ import Box from '@micromag/component-box';
 import Grid from '@micromag/component-grid';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
+import { getRenderFormat } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
@@ -52,10 +53,10 @@ const QuoteScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
     const { layout = [] } = grid || {};
-    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
-    const item = isSimple ? (
+    const item = isPlaceholder ? (
         <blockquote
             className={classNames([
                 styles.placeholderContainer,
@@ -109,9 +110,7 @@ const QuoteScreen = ({
             className={classNames([
                 styles.container,
                 {
-                    [styles.isPlaceholder]: renderFormat === 'placeholder',
-                    [styles.isPreview]: renderFormat === 'preview',
-                    [styles.isGrid]: grid !== null,
+                    [styles.disabled]: isSimple,
                     [styles[textAlign]]: textAlign !== null,
                     [className]: className,
                 },

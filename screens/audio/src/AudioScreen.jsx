@@ -10,6 +10,7 @@ import Box from '@micromag/component-box';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
+import { getRenderFormat } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
@@ -43,8 +44,7 @@ const defaultProps = {
 
 const AudioScreen = ({ audio, image, text, box, background, renderFormat, className }) => {
     const { width, height } = useScreenSize();
-    const isPlaceholder = renderFormat === 'placeholder';
-    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
+    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
 
     return (
         <div

@@ -1,11 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { withPreviewSize } from '../../../../.storybook/decorators';
-import { background } from '../../../../.storybook/data';
+import { quote, author, source, background } from '../../../../.storybook/data';
 
 import { Top, Center, Bottom, TopCentered, BottomCentered, Split } from '../components';
 
 const props = {
+    quote: { body: quote(), style: { text: { color: '#FFF' } } },
+    author: { body: author() },
+    source: { body: source() },
     background: background(),
 };
 

@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { withPreviewSize } from '../../../../.storybook/decorators';
-import { background } from '../../../../.storybook/data';
+import { text, imageWithRandomSize, background } from '../../../../.storybook/data';
 import {
     Top,
     TopReverse,
@@ -14,6 +14,8 @@ import {
 } from '../components';
 
 const props = {
+    text: text(),
+    image: imageWithRandomSize(),
     background: background(),
 };
 

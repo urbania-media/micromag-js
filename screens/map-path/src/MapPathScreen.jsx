@@ -10,6 +10,7 @@ import ButtonComponent from '@micromag/component-button';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
+import { getRenderFormat } from '@micromag/core/utils';
 
 import PreviewBackground from './preview.jpg';
 
@@ -32,8 +33,7 @@ const defaultProps = {
 const MapPathScreen = ({ map, background, renderFormat, className }) => {
     const { width, height } = useScreenSize();
     const { markers: mapMarkers = [] } = map || {};
-    const isPlaceholder = renderFormat === 'placeholder';
-    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
+    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
 
     const [index, setIndex] = useState(0);
     const markers = mapMarkers || []; // .map((m, i) => ({ ...m })) : [];

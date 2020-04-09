@@ -8,6 +8,7 @@ export { default as getStyleFromColor } from './getStyleFromColor';
 export { default as getStyleFromFont } from './getStyleFromFont';
 export { default as getStyleFromMargin } from './getStyleFromMargin';
 export { default as getStyleFromRounded } from './getStyleFromRounded';
+export { default as getRenderFormat } from './getRenderFormat';
 export { default as isMessage } from './isMessage';
 export * from './path';
 export * from './string';

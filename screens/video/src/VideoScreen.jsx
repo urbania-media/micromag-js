@@ -7,6 +7,7 @@ import Background from '@micromag/component-background';
 import Frame from '@micromag/component-frame';
 import VideoComponent from '@micromag/component-video';
 import { useScreenSize } from '@micromag/core/contexts';
+import { getRenderFormat } from '@micromag/core/utils';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 
 import styles from './styles.module.scss';
@@ -53,7 +54,7 @@ const VideoScreen = ({
 }) => {
     const { width, height } = useScreenSize();
     const { size } = fit || {};
-    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
+    const { isSimple } = getRenderFormat(renderFormat);
 
     const placeholderSized = size === 'cover' ? Placeholders.VideoFull : Placeholders.Video;
     const Placeholder = loop ? Placeholders.VideoLoop : placeholderSized;
@@ -81,8 +82,7 @@ const VideoScreen = ({
                     className={classNames([
                         styles.container,
                         {
-                            [styles.isPlaceholder]: renderFormat === 'placeholder',
-                            [styles.isPreview]: renderFormat === 'preview',
+                            [styles.disabled]: isSimple,
                             [className]: className !== null,
                         },
                     ])}

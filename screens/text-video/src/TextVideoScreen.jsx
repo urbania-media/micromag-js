@@ -9,6 +9,7 @@ import Background from '@micromag/component-background';
 import Frame from '@micromag/component-frame';
 import TextComponent from '@micromag/component-text';
 import { useScreenSize } from '@micromag/core/contexts';
+import { getRenderFormat } from '@micromag/core/utils';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 
 import styles from './styles.module.scss';
@@ -50,7 +51,7 @@ const TextVideoScreen = ({
 }) => {
     const { width, height } = useScreenSize();
     const { spacing = 0 } = box || {};
-    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
+    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
 
     let videoSize = {};
     if (video && video.width && video.height) {
@@ -59,7 +60,7 @@ const TextVideoScreen = ({
         }
     }
 
-    const textElement = isSimple ? (
+    const textElement = isPlaceholder ? (
         <Placeholders.Text key="text-element" className={styles.placeholderText} />
     ) : (
         <TextComponent {...text} key="text-element" className={styles.text} />
@@ -78,6 +79,7 @@ const TextVideoScreen = ({
             className={classNames([
                 styles.container,
                 {
+                    [styles.disabled]: isSimple,
                     [styles[textAlign]]: textAlign !== null,
                     [className]: className !== null,
                 },

@@ -9,6 +9,7 @@ import Text from '@micromag/component-text';
 import Grid from '@micromag/component-grid';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
+import { getRenderFormat } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
@@ -60,8 +61,9 @@ const QuoteSplitScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
-    const items = isSimple
+    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
+
+    const items = isPlaceholder
         ? [
             <div className={classNames([styles.splitPlaceholder, styles.placeholderContainer])}>
                 <Placeholders.Text className={styles.placeholder} />
@@ -130,9 +132,7 @@ const QuoteSplitScreen = ({
             className={classNames([
                 styles.container,
                 {
-                    [styles.isPlaceholder]: renderFormat === 'placeholder',
-                    [styles.isPreview]: renderFormat === 'preview',
-                    [styles.isGrid]: true,
+                    [styles.disabled]: isSimple,
                     [styles[textAlign]]: textAlign !== null,
                     [className]: className,
                 },

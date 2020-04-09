@@ -2,7 +2,13 @@ import { useRef, useState, useEffect, useCallback } from 'react';
 import clamp from 'lodash/clamp';
 import { useDrag } from 'react-use-gesture';
 
-export const useSwipe = ({ width = null, items = [], display = 'flex', threshold = 3 }) => {
+export const useSwipe = ({
+    width = null,
+    items = [],
+    display = 'flex',
+    threshold = 3,
+    disabled = false,
+}) => {
     const index = useRef(0);
     const currentWidth = width || window.innerWidth;
     const count = items.length;
@@ -34,6 +40,10 @@ export const useSwipe = ({ width = null, items = [], display = 'flex', threshold
     );
 
     const bind = useDrag(({ down, movement: [mx], direction: [xDir], distance, cancel }) => {
+        if (disabled) {
+            return;
+        }
+
         // Block first and last moves
         if (down && index.current === items.length - 1 && xDir < 0) {
             cancel();
@@ -84,8 +94,6 @@ export const useSwipe = ({ width = null, items = [], display = 'flex', threshold
             }),
         );
     }, [width, set]);
-
-    console.log('ok...', currentWidth, itemsWithProps);
 
     return {
         items: itemsWithProps,

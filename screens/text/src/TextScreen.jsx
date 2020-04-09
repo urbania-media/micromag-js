@@ -8,6 +8,7 @@ import Background from '@micromag/component-background';
 import Frame from '@micromag/component-frame';
 import TextComponent from '@micromag/component-text';
 import { useScreenSize } from '@micromag/core/contexts';
+import { getRenderFormat } from '@micromag/core/utils';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 
 import styles from './styles.module.scss';
@@ -34,9 +35,9 @@ const defaultProps = {
 
 const TextScreen = ({ text, background, box, grid, textAlign, renderFormat, className }) => {
     const { width, height } = useScreenSize();
-    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
+    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
 
-    const item = isSimple ? (
+    const item = isPlaceholder ? (
         <Placeholders.Text className={styles.placeholder} />
     ) : (
         <TextComponent {...text} className={styles.text} />
@@ -49,8 +50,7 @@ const TextScreen = ({ text, background, box, grid, textAlign, renderFormat, clas
                     className={classNames([
                         styles.container,
                         {
-                            [styles.isPlaceholder]: renderFormat === 'placeholder',
-                            [styles.isPreview]: renderFormat === 'preview',
+                            [styles.disabled]: isSimple,
                             [styles[textAlign]]: textAlign !== null,
                             [className]: className !== null,
                         },

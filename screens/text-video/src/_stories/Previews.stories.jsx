@@ -1,11 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { withPreviewSize } from '../../../../.storybook/decorators';
-import { background } from '../../../../.storybook/data';
+import { text, video, background } from '../../../../.storybook/data';
 
 import { Top, TopReverse, Center, CenterReverse, Bottom, BottomReverse } from '../components';
 
 const props = {
+    text: text(),
+    video: video(),
     background: background(),
 };
 

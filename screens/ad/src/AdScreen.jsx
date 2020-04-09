@@ -10,6 +10,7 @@ import Image from '@micromag/component-image';
 
 import { PropTypes as MicromagPropTypes, Placeholders, PreviewBlock } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
+import { getRenderFormat } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
@@ -38,10 +39,8 @@ const defaultProps = {
 
 const AdScreen = ({ ad, background, isFullScreen, renderFormat, className }) => {
     const { width, height } = useScreenSize();
+    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
     const { width: adWidth, height: adHeight, url, iframe, image, target } = ad;
-
-    const isPlaceholder = renderFormat === 'placeholder';
-    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
     const adStyle = {
         width: isFullScreen ? width : adWidth,
