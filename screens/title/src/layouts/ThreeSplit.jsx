@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import TitleComponent from '../TitleComponent';
+import TitleScreen from '../TitleScreen';
 
 const propTypes = {
     groups: PropTypes.arrayOf(PropTypes.array),
@@ -31,7 +31,7 @@ const defaultProps = {
 };
 
 const TitleThreeSplit = ({ grid, groups, ...otherProps }) => {
-    return <TitleComponent grid={grid} groups={groups} {...otherProps} />;
+    return <TitleScreen grid={grid} groups={groups} {...otherProps} />;
 };
 
 TitleThreeSplit.propTypes = propTypes;

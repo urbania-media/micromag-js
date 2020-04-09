@@ -33,7 +33,7 @@ const defaultProps = {
     className: null,
 };
 
-const Audio = ({ image, text, box, background, textAlign, renderFormat, className }) => {
+const ImageScreen = ({ image, text, box, background, textAlign, renderFormat, className }) => {
     const { width, height } = useScreenSize();
     const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
@@ -56,8 +56,8 @@ const Audio = ({ image, text, box, background, textAlign, renderFormat, classNam
                         ) : (
                             <ImageComponent
                                 {...image}
-                                maxWidth={width}
-                                maxHeight={height}
+                                maxWidth="100%"
+                                maxHeight="100%"
                                 className={styles.image}
                             />
                         )}
@@ -73,7 +73,7 @@ const Audio = ({ image, text, box, background, textAlign, renderFormat, classNam
     );
 };
 
-Audio.propTypes = propTypes;
-Audio.defaultProps = defaultProps;
+ImageScreen.propTypes = propTypes;
+ImageScreen.defaultProps = defaultProps;
 
-export default Audio;
+export default ImageScreen;

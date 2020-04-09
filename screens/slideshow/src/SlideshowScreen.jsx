@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useState, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -7,10 +7,12 @@ import Background from '@micromag/component-background';
 import Frame from '@micromag/component-frame';
 import Box from '@micromag/component-box';
 import Image from '@micromag/component-image';
+import Button from '@micromag/component-button';
 import TextComponent from '@micromag/component-text';
 
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
+import { useSwipe } from '@micromag/core/hooks';
 
 import styles from './slideshow.module.scss';
 
@@ -30,10 +32,15 @@ const defaultProps = {
     className: null,
 };
 
-const SlideshowComponent = ({ box, items, background, renderFormat, className }) => {
+const SlideshowScreen = ({ box, items: slides, background, renderFormat, className }) => {
     const { width, height, screens } = useScreenSize();
-    const [index, setIndex] = useState(0);
+    const maxWidth = Math.min(width, 500);
     const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
+
+    const { items, bind, index, setIndex } = useSwipe({
+        width: maxWidth,
+        items: slides,
+    });
 
     const onClickNext = useCallback(() => {
         if (index < items.length - 1) {
@@ -62,40 +69,19 @@ const SlideshowComponent = ({ box, items, background, renderFormat, className })
             ])}
         >
             <Background {...background} width={width} height={height} className={styles.background}>
-                <Frame width={width} height={height}>
+                <Frame width={maxWidth} height={height}>
                     <Box {...box} withSmallSpacing={isSimple}>
                         {isSimple ? (
                             <Placeholders.Slideshow />
                         ) : (
                             <>
-                                <div className={styles.slides}>
-                                    {items.map((item, i) => {
-                                        let style = {
-                                            zIndex: i,
-                                        };
-                                        const centered = i === index;
-                                        const defaultZIndex = centered ? 1 : 0;
-                                        const zIndex = i === index + 1 ? 2 : defaultZIndex;
-                                        const display =
-                                            i > index - 2 && i < index + 2 ? 'flex' : 'none';
-
-                                        style = {
-                                            ...style,
-                                            width: '100%',
-                                            height: '100%',
-                                            zIndex,
-                                            display,
-                                            visibility: display === 'none' ? 'hidden' : 'visible',
-                                            transform: `translate3d(${
-                                                centered ? 0 : width
-                                            }px, 0px, 0px)`,
-                                        };
-
+                                <button {...bind()} type="button" className={styles.slides}>
+                                    {items.map(({ display, visibility, transform, item }, i) => {
                                         return (
                                             <div
-                                                key={`slide-${i + 1}`}
+                                                key={i}
+                                                style={{ display, visibility, transform }}
                                                 className={styles.slide}
-                                                style={style}
                                             >
                                                 {item.image ? (
                                                     <Image {...item.image} maxWidth={width} />
@@ -106,22 +92,14 @@ const SlideshowComponent = ({ box, items, background, renderFormat, className })
                                             </div>
                                         );
                                     })}
-                                </div>
+                                </button>
                                 <div className={styles.controls}>
-                                    <button
-                                        className={styles.next}
-                                        type="button"
-                                        onClick={onClickNext}
-                                    >
+                                    <Button className={styles.next} onClick={onClickNext}>
                                         Next
-                                    </button>
-                                    <button
-                                        className={styles.previous}
-                                        type="button"
-                                        onClick={onClickPrevious}
-                                    >
+                                    </Button>
+                                    <Button className={styles.previous} onClick={onClickPrevious}>
                                         Previous
-                                    </button>
+                                    </Button>
                                 </div>
                             </>
                         )}
@@ -132,7 +110,7 @@ const SlideshowComponent = ({ box, items, background, renderFormat, className })
     );
 };
 
-SlideshowComponent.propTypes = propTypes;
-SlideshowComponent.defaultProps = defaultProps;
+SlideshowScreen.propTypes = propTypes;
+SlideshowScreen.defaultProps = defaultProps;
 
-export default SlideshowComponent;
+export default SlideshowScreen;

@@ -1,12 +1,16 @@
 @import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/variables';
 
 .container {
     @extend %reset-button;
     padding: 5px 10px;
-    border: 2px solid #000;
+    border: 2px solid $black;
     border-radius: 0;
 
-    &.placeholder {
-        background-color: rgba(0, 0, 0, 0.5);
+    &:focus,
+    &.focus,
+    &:active,
+    &.active {
+        box-shadow: none !important;
     }
 }

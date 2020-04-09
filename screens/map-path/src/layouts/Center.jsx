@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import MapComponent from '../MapPathComponent';
+import MapPathScreen from '../MapPathScreen';
 
 const propTypes = {
     box: PropTypes.shape({
@@ -19,7 +19,7 @@ const defaultProps = {
 };
 
 const MapCenter = ({ box, ...otherProps }) => {
-    return <MapComponent box={box} {...otherProps} />;
+    return <MapPathScreen box={box} {...otherProps} />;
 };
 
 MapCenter.propTypes = propTypes;

@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import Component from '../SlideshowComponent';
+import SlideshowScreen from '../SlideshowScreen';
 
 const propTypes = {
     box: PropTypes.shape({
@@ -19,7 +19,7 @@ const defaultProps = {
 };
 
 const SlideshowCenter = ({ box, ...otherProps }) => {
-    return <Component box={box} {...otherProps} />;
+    return <SlideshowScreen box={box} {...otherProps} />;
 };
 
 SlideshowCenter.propTypes = propTypes;

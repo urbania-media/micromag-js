@@ -33,14 +33,7 @@ const defaultProps = {
     className: null,
 };
 
-const GalleryComponent = ({
-    background,
-    images,
-    grid,
-    defaultSpacing,
-    renderFormat,
-    className,
-}) => {
+const GalleryScreen = ({ background, images, grid, defaultSpacing, renderFormat, className }) => {
     const { width, height } = useScreenSize();
     const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
@@ -77,7 +70,7 @@ const GalleryComponent = ({
     );
 };
 
-GalleryComponent.propTypes = propTypes;
-GalleryComponent.defaultProps = defaultProps;
+GalleryScreen.propTypes = propTypes;
+GalleryScreen.defaultProps = defaultProps;
 
-export default GalleryComponent;
+export default GalleryScreen;

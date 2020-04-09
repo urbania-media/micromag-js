@@ -6,6 +6,7 @@ import Frame from '@micromag/component-frame';
 import MapComponent from '@micromag/component-map';
 import TextComponent from '@micromag/component-text';
 import ImageComponent from '@micromag/component-image';
+import ButtonComponent from '@micromag/component-button';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
@@ -26,7 +27,7 @@ const defaultProps = {
     className: null,
 };
 
-const MapPath = ({ map, background, renderFormat, className }) => {
+const MapPathScreen = ({ map, background, renderFormat, className }) => {
     const { width, height } = useScreenSize();
     const { markers: mapMarkers = [] } = map || {};
 
@@ -102,16 +103,15 @@ const MapPath = ({ map, background, renderFormat, className }) => {
                                 ))}
                             </div>
                             <div className={styles.controls}>
-                                <button className={styles.next} type="button" onClick={onClickNext}>
+                                <ButtonComponent className={styles.next} onClick={onClickNext}>
                                     Next
-                                </button>
-                                <button
+                                </ButtonComponent>
+                                <ButtonComponent
                                     className={styles.previous}
-                                    type="button"
                                     onClick={onClickPrevious}
                                 >
                                     Previous
-                                </button>
+                                </ButtonComponent>
                             </div>
                         </>
                     )}
@@ -121,7 +121,7 @@ const MapPath = ({ map, background, renderFormat, className }) => {
     );
 };
 
-MapPath.propTypes = propTypes;
-MapPath.defaultProps = defaultProps;
+MapPathScreen.propTypes = propTypes;
+MapPathScreen.defaultProps = defaultProps;
 
-export default MapPath;
+export default MapPathScreen;

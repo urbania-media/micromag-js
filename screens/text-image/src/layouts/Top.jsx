@@ -2,7 +2,7 @@
 import React from 'react';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import TextImageComponent from '../TextImageComponent';
+import TextImageScreen from '../TextImageScreen';
 
 const propTypes = {
     box: MicromagPropTypes.boxComponent,
@@ -16,7 +16,7 @@ const defaultProps = {
 };
 
 const TextImageTop = ({ box, ...otherProps }) => {
-    return <TextImageComponent box={box} {...otherProps} />;
+    return <TextImageScreen box={box} {...otherProps} />;
 };
 
 TextImageTop.propTypes = propTypes;

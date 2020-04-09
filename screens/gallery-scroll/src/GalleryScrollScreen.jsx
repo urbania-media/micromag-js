@@ -29,7 +29,7 @@ const defaultProps = {
     className: null,
 };
 
-const GalleryScroll = ({ background, images, columns, renderFormat, className }) => {
+const GalleryScrollScreen = ({ background, images, columns, renderFormat, className }) => {
     const { width, height } = useScreenSize();
     const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
@@ -111,7 +111,7 @@ const GalleryScroll = ({ background, images, columns, renderFormat, className })
     );
 };
 
-GalleryScroll.propTypes = propTypes;
-GalleryScroll.defaultProps = defaultProps;
+GalleryScrollScreen.propTypes = propTypes;
+GalleryScrollScreen.defaultProps = defaultProps;
 
-export default GalleryScroll;
+export default GalleryScrollScreen;

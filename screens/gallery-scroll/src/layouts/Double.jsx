@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import Component from '../GalleryScrollComponent';
+import GalleryScrollScreen from '../GalleryScrollScreen';
 
 const propTypes = {
     columns: PropTypes.arrayOf(PropTypes.number),
@@ -14,7 +14,7 @@ const defaultProps = {
 };
 
 const GalleryScrollDouble = ({ columns, ...otherProps }) => {
-    return <Component columns={columns} {...otherProps} />;
+    return <GalleryScrollScreen columns={columns} {...otherProps} />;
 };
 
 GalleryScrollDouble.propTypes = propTypes;

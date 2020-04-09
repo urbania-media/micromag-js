@@ -14,22 +14,25 @@ export const withGoogleMapsApi = storyFn => {
     );
 };
 
-export const withScreenSize = (size = null) => storyFn => {
+export const withScreenSize = ({ width = null, height = null, style = null } = {}) => storyFn => {
     const { ref: refContainer, screenSize } = useScreenSizeFromElement({
-        ...size,
+        width,
+        height,
         screens: getDeviceScreens(),
     });
 
-    let style = {};
+    let containerStyle = {
+        ...style,
+    };
 
-    if (size !== null && (size.width || size.height)) {
-        style = {
+    if (width || height) {
+        containerStyle = {
             ...style,
             position: 'relative',
             border: '1px solid #ccc',
             margin: '10px',
-            width: size.width,
-            height: size.height,
+            width,
+            height,
         };
     }
 
@@ -42,7 +45,7 @@ export const withScreenSize = (size = null) => storyFn => {
                 left: 0,
                 width: '100%',
                 height: '100%',
-                ...style,
+                ...containerStyle,
             }}
         >
             <ScreenSizeProvider size={screenSize}>{storyFn()}</ScreenSizeProvider>
@@ -52,6 +55,11 @@ export const withScreenSize = (size = null) => storyFn => {
 
 export const withPlaceholderSize = () => withScreenSize({ width: 80, height: 120 });
 
-export const withPreviewSize = () => withScreenSize({ width: 100, height: 150 });
+export const withPreviewSize = () =>
+    withScreenSize({
+        width: 320,
+        height: 480,
+        style: { transform: 'scale(0.4)', transformOrigin: 'top left' },
+    });
 
 export default withScreenSize;

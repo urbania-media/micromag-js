@@ -2,7 +2,12 @@
 import React from 'react';
 import { withKnobs, select } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
 import { withScreenSize } from '../../../../.storybook/decorators';
-import { imageWithRandomSize, background, shortText } from '../../../../.storybook/data';
+import {
+    imageWithRandomSize,
+    background,
+    backgroundWithImage,
+    shortText,
+} from '../../../../.storybook/data';
 
 import { Top, Center, Bottom } from '../components';
 
@@ -35,5 +40,17 @@ export const ViewCenterWithText = () => (
         {...props}
         text={{ body: shortText() }}
         textAlign={select('textAlign', options, 'center')}
+    />
+);
+
+export const ViewCenterWithTextAndBackground = () => (
+    <Center
+        {...props}
+        text={{
+            body: shortText(),
+            style: { text: { color: '#999', font: { size: '30px', style: { bold: true } } } },
+        }}
+        textAlign={select('textAlign', options, 'center')}
+        background={backgroundWithImage()}
     />
 );

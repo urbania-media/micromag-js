@@ -7,6 +7,7 @@
 }
 
 .slides {
+    @extend %reset-button;
     position: relative;
     width: 100%;
     height: 80%;
@@ -20,6 +21,11 @@
     justify-content: center;
     width: 100%;
     height: 20%;
+
+    .previous,
+    .next {
+        margin: 2px;
+    }
 }
 
 .slide {
@@ -33,6 +39,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    pointer-events: none;
 }
 
 @include match-screen('small') {
@@ -41,8 +48,8 @@
     }
 }
 
-@include match-screen('medium') {
-    .slides {
-        width: 50%;
-    }
-}
+// @include match-screen('medium') {
+//     .slides {
+//         width: 768px;
+//     }
+// }

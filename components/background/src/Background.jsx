@@ -44,6 +44,7 @@ const Background = ({ width, height, color, image, className, children }) => {
         finalStyle = {
             ...finalStyle,
             backgroundImage: `url("${image.url}")`,
+            backgroundSize: 'cover',
         };
     }
     return (

@@ -47,7 +47,7 @@ const defaultProps = {
     className: null,
 };
 
-const TitleComponent = ({
+const TitleScreen = ({
     title,
     subtitle,
     description,
@@ -115,7 +115,7 @@ const TitleComponent = ({
     );
 };
 
-TitleComponent.propTypes = propTypes;
-TitleComponent.defaultProps = defaultProps;
+TitleScreen.propTypes = propTypes;
+TitleScreen.defaultProps = defaultProps;
 
-export default TitleComponent;
+export default TitleScreen;

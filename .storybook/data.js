@@ -91,6 +91,15 @@ export const backgroundWithImage = () => ({
     image: image(),
 });
 
+export const backgroundWithPattern = () => ({
+    color: { color: chance.color({ format: 'rgb' }) },
+    image: {
+        url: `https://picsum.photos/1000/1000/?blur`,
+        width: 1000,
+        height: 1000,
+    },
+});
+
 export const audio = () => ({
     src: AudioTest,
     length: '16000',
