@@ -59,7 +59,6 @@ export const text = (length = 'normal') => {
             body = longText();
             break;
         case 'verylong':
-            console.log('ok');
             body = paragraph();
             break;
         default:

@@ -10,6 +10,7 @@ import {
     faMapMarkerAlt,
     faMapMarkedAlt,
     faRedo,
+    faEye,
 } from '@fortawesome/free-solid-svg-icons';
 
 import Placeholder from './Placeholder';
@@ -32,6 +33,15 @@ export const ShortText = props => (
         className={classNames([props.className, styles.shortText])}
         height={0.2}
         lines={2}
+    />
+);
+
+export const Line = props => (
+    <Placeholder
+        {...props}
+        className={classNames([props.className, styles.shortText])}
+        height={0.2}
+        lines={1}
     />
 );
 
@@ -181,9 +191,20 @@ export const Slideshow = props => (
     </PlaceholderBlock>
 );
 
+export const Panorama = props => (
+    <PlaceholderBlock
+        {...props}
+        width="100%"
+        className={classNames([props.className, styles.slideshow])}
+    >
+        <FontAwesomeIcon icon={faEye} className={styles.icon} />
+    </PlaceholderBlock>
+);
+
 export default {
     Text,
     ShortText,
+    Line,
     Description: Text,
     Title,
     Subtitle,
@@ -200,4 +221,5 @@ export default {
     Ad,
     Audio,
     Slideshow,
+    Panorama,
 };
