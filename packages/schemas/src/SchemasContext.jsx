@@ -5,19 +5,36 @@ import SchemasRepository from './SchemasRepository';
 
 const SchemasContext = React.createContext(null);
 
-export const useSchemas = (namespace) => {
-    const schemas = useContext(SchemasContext) || null;
-    return schemas !== null && namespace !== null ? schemas.getSchemas(namespace) : schemas;
+export const useSchemasRepository = () => {
+    const repository = useContext(SchemasContext) || null;
+    return repository;
 };
 
-export const useSchema = (id) => {
-    const schemas = useSchemas();
-    return schemas !== null ? schemas.getSchema(id) : null;
+export const useSchemas = namespace => {
+    const repository = useSchemasRepository();
+    const schemas = useMemo(() => (repository !== null ? repository.getSchemas(namespace) : null), [
+        repository,
+        namespace,
+    ]);
+    return schemas;
 };
 
-export const useSchemaFields = (id) => {
-    const schemas = useSchemas();
-    return schemas !== null ? schemas.getFieldsFromSchema(id) : null;
+export const useSchema = id => {
+    const repository = useSchemasRepository();
+    const schema = useMemo(() => (repository !== null ? repository.getSchema(id) : null), [
+        repository,
+        id,
+    ]);
+    return schema;
+};
+
+export const useSchemaFields = (id, conditionalData = {}) => {
+    const repository = useSchemasRepository();
+    const fields = useMemo(
+        () => (repository !== null ? repository.getFieldsFromSchema(id, conditionalData) : null),
+        [repository, id, conditionalData],
+    );
+    return fields;
 };
 
 const propTypes = {
@@ -32,10 +49,10 @@ const defaultProps = {
 };
 
 export const SchemasProvider = ({ children, schemas, repository }) => {
-    const finalSchemasRepository = useMemo(
-        () => repository || new SchemasRepository(schemas),
-        [repository, schemas],
-    );
+    const finalSchemasRepository = useMemo(() => repository || new SchemasRepository(schemas), [
+        repository,
+        schemas,
+    ]);
     return (
         <SchemasContext.Provider value={finalSchemasRepository}>{children}</SchemasContext.Provider>
     );
