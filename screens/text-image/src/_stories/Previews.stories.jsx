@@ -1,10 +1,21 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { withPreviewSize } from '../../../../.storybook/decorators';
-import { background } from '../../../../.storybook/data';
-import { Top, TopReverse, Center, CenterReverse, Bottom, BottomReverse } from '../components';
+import { text, imageWithRandomSize, background } from '../../../../.storybook/data';
+import {
+    Top,
+    TopReverse,
+    Center,
+    CenterReverse,
+    Bottom,
+    BottomReverse,
+    Side,
+    SideReverse,
+} from '../components';
 
 const props = {
+    text: text(),
+    image: imageWithRandomSize(),
     background: background(),
 };
 
@@ -25,3 +36,7 @@ export const PreviewCenterReverse = () => <CenterReverse {...props} renderFormat
 export const PreviewBottom = () => <Bottom {...props} renderFormat="preview" />;
 
 export const PreviewBottomReverse = () => <BottomReverse {...props} renderFormat="preview" />;
+
+export const PreviewSide = () => <Side {...props} renderFormat="preview" />;
+
+export const PreviewSideReverse = () => <SideReverse {...props} renderFormat="preview" />;

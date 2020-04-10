@@ -2,23 +2,24 @@
 import React from 'react';
 import { withKnobs, select } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
 import { withScreenSize } from '../../../../.storybook/decorators';
-import { paragraph } from '../../../../.storybook/data';
+import { text, image, background } from '../../../../.storybook/data';
 
 import { Center } from '../components';
 
 const props = {
+    background: background(),
     items: [
         {
-            image: { url: 'https://picsum.photos/400/180' },
-            text: { body: paragraph() },
+            image: image({ width: 500, height: 250 }),
+            text: text(),
         },
         {
-            image: { url: 'https://picsum.photos/400/200' },
-            text: { body: paragraph() },
+            image: image({ width: 500, height: 400 }),
+            text: text(),
         },
         {
-            image: { url: 'https://picsum.photos/400/240' },
-            text: { body: paragraph() },
+            image: image({ width: 500, height: 500 }),
+            text: text(),
         },
     ],
 };

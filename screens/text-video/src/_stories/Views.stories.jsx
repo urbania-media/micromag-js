@@ -2,13 +2,14 @@
 import React from 'react';
 import { withKnobs, select } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
 import { withScreenSize } from '../../../../.storybook/decorators';
-import { paragraph, video } from '../../../../.storybook/data';
+import { text, video, background } from '../../../../.storybook/data';
 
 import { Top, TopReverse, Center, CenterReverse, Bottom, BottomReverse } from '../components';
 
 const props = {
-    text: { body: paragraph() },
+    text: text(),
     video: video(),
+    background: background(),
 };
 
 const options = {

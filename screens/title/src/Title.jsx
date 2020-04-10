@@ -1,8 +1,6 @@
-import React from 'react';
-
 import { createLayoutSwitcher } from '@micromag/core';
 import * as LayoutComponents from './components';
 
-const TitleScreen = createLayoutSwitcher(LayoutComponents, LayoutComponents.SplitReverse);
+const TitleScreen = createLayoutSwitcher(LayoutComponents);
 
-export default React.memo(TitleScreen);
+export default TitleScreen;

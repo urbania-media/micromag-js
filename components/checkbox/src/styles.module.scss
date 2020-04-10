@@ -1,0 +1,18 @@
+@import '~@micromag/core/scss/placeholders';
+
+.container {
+    position: relative;
+
+    .label {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 0;
+    }
+
+    .input {
+        // @extend %reset-input;
+        padding: 10px;
+        // margin-right: 5px;
+        border: 2px solid #000;
+    }
+}

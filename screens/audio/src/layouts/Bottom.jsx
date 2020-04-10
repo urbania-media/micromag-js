@@ -3,7 +3,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import AudioComponent from '../AudioComponent';
+import AudioScreen from '../AudioScreen';
 
 const propTypes = {
     box: MicromagPropTypes.boxComponent,
@@ -17,7 +17,7 @@ const defaultProps = {
 };
 
 const AudioBottom = ({ box, ...otherProps }) => {
-    return <AudioComponent box={box} {...otherProps} />;
+    return <AudioScreen box={box} {...otherProps} />;
 };
 
 AudioBottom.propTypes = propTypes;

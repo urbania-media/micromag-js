@@ -1,11 +1,11 @@
 /* eslint-disable react/no-array-index-key, jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
-import React, { useRef, useState, useCallback } from 'react';
+import React, { useRef, useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getSizeWithinBounds } from '@folklore/size';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import VideoControls from './Controls';
+import VideoControls from '@micromag/component-media-controls';
 
 import styles from './styles/video.module.scss';
 
@@ -14,9 +14,13 @@ const propTypes = {
     players: PropTypes.arrayOf(PropTypes.elementType),
     width: PropTypes.number,
     height: PropTypes.number,
+    maxWidth: PropTypes.number,
+    maxHeight: PropTypes.number,
     autoPlay: PropTypes.bool,
     muted: PropTypes.bool,
+    loop: PropTypes.bool,
     controls: MicromagPropTypes.videoControls,
+    controlsVisible: PropTypes.bool,
     fit: MicromagPropTypes.objectFit,
     className: PropTypes.string,
 };
@@ -26,9 +30,13 @@ const defaultProps = {
     players: null,
     width: null,
     height: null,
+    maxWidth: null,
+    maxHeight: null,
     autoPlay: false,
     muted: true,
+    loop: false,
     controls: null,
+    controlsVisible: true,
     fit: null,
     className: null,
 };
@@ -38,12 +46,19 @@ const Video = ({
     url,
     width,
     height,
+    maxWidth: defaultMaxWidth,
+    maxHeight: defaultMaxHeight,
     autoPlay,
     muted: initialMuted,
+    loop,
     controls,
+    controlsVisible,
     fit,
     className,
 }) => {
+    const maxWidth = defaultMaxWidth || width;
+    const maxHeight = defaultMaxHeight || height;
+    // console.log(width, height);
     const finalPlayers = players || Video.defaultPlayers;
     const PlayerComponent = url !== null ? finalPlayers.find(it => it.testUrl(url)) || null : null;
     const refPlayer = useRef(null);
@@ -60,10 +75,11 @@ const Video = ({
         ended: false,
         muted: initialMuted,
     });
+
     const onPlayerReady = useCallback(() => {
         setPlayerReady(true);
-        setDuration(refPlayer.current.duration());
-        setVideoSize(refPlayer.current.size());
+        setDuration(refPlayer.current.getDuration());
+        setVideoSize(refPlayer.current.getSize());
     }, [setPlayerReady, setDuration, setVideoSize]);
 
     const onPlayerStateChange = useCallback(
@@ -72,12 +88,18 @@ const Video = ({
         },
         [setPlayerState],
     );
+
     const onPlayerCurrentTimeChange = useCallback(
         newCurrentTime => {
             setCurrentTime(newCurrentTime);
         },
         [setCurrentTime],
     );
+
+    useEffect(() => {
+        setVideoSize({ width, height });
+    }, [width, height]);
+
     const { size = 'fit' } = fit || {};
     const playerSize =
         size === 'fit'
@@ -85,9 +107,10 @@ const Video = ({
                   width,
                   height,
               }
-            : getSizeWithinBounds(videoSize.width, videoSize.height, width, height, {
+            : getSizeWithinBounds(videoSize.width, videoSize.height, maxWidth, maxHeight, {
                   cover: size === 'cover',
               });
+
     return (
         <div
             className={classNames([
@@ -98,8 +121,9 @@ const Video = ({
                 },
             ])}
             style={{
-                width,
-                height,
+                width: playerSize.width,
+                height: playerSize.height,
+                overflow: 'hidden',
             }}
         >
             {PlayerComponent !== null ? (
@@ -108,8 +132,8 @@ const Video = ({
                     style={{
                         width: playerSize.width,
                         height: playerSize.height,
-                        top: (height - playerSize.height) / 2,
-                        left: (width - playerSize.width) / 2,
+                        top: size === 'cover' ? -(height - playerSize.height) / 2 : 0,
+                        left: size === 'cover' ? -(width - playerSize.width) / 2 : 0,
                     }}
                 >
                     <PlayerComponent
@@ -118,6 +142,7 @@ const Video = ({
                         height={playerSize.height}
                         autoPlay={autoPlay}
                         muted={initialMuted}
+                        loop={loop}
                         refPlayer={refPlayer}
                         className={styles.player}
                         onReady={onPlayerReady}
@@ -126,7 +151,7 @@ const Video = ({
                     />
                 </div>
             ) : null}
-            {playerReady ? (
+            {playerReady && controlsVisible ? (
                 <VideoControls
                     {...refPlayer.current}
                     {...playerState}

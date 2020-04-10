@@ -1,8 +1,6 @@
-import React from 'react';
-
 import { createLayoutSwitcher } from '@micromag/core';
 import * as LayoutComponents from './components';
 
-const GalleryScrollScreen = createLayoutSwitcher(LayoutComponents, LayoutComponents.Single);
+const GalleryScrollScreen = createLayoutSwitcher(LayoutComponents);
 
-export default React.memo(GalleryScrollScreen);
+export default GalleryScrollScreen;

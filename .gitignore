@@ -38,3 +38,5 @@ node_modules
 /coverage
 /out*
 /_book
+
+.env

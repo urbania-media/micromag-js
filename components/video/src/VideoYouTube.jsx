@@ -148,8 +148,10 @@ const VideoYouTube = ({
 
         return () => {
             canceled = true;
-            player.removeEventListener('onReady', onPlayerReady);
-            player.removeEventListener('onStateChange', onPlayerStateChange);
+            if (player.removeEventListener) {
+                player.removeEventListener('onReady', onPlayerReady);
+                player.removeEventListener('onStateChange', onPlayerStateChange);
+            }
             player.destroy();
             refPlayer.current = null;
             refVideoId.current = null;
@@ -223,10 +225,10 @@ const VideoYouTube = ({
             pause: () => (refPlayer.current !== null ? refPlayer.current.pauseVideo() : null),
             stop: () => (refPlayer.current !== null ? refPlayer.current.stopVideo() : null),
             seek: time => (refPlayer.current !== null ? refPlayer.current.seekTo(time) : null),
-            duration: () => (refPlayer.current !== null ? refPlayer.current.getDuration() : 0),
-            currentTime: () =>
+            getDuration: () => (refPlayer.current !== null ? refPlayer.current.getDuration() : 0),
+            getCurrentTime: () =>
                 refPlayer.current !== null ? refPlayer.current.getCurrentTime() : 0,
-            size: () => videoSize,
+            getSize: () => videoSize,
             mute: () =>
                 updatePlayerState({
                     ...playerState,

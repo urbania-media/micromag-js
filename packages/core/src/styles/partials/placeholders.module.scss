@@ -25,3 +25,57 @@
 .icon {
     color: $white;
 }
+
+.map {
+    position: relative;
+
+    .icon {
+        position: absolute;
+
+        &:first-child {
+            top: 40%;
+            right: 40%;
+        }
+
+        &:nth-child(2) {
+            top: 10%;
+            left: 60%;
+        }
+
+        &:nth-child(3) {
+            top: 20%;
+            left: 20%;
+        }
+
+        &:nth-child(4) {
+            top: 60%;
+            right: 20%;
+        }
+
+        &:last-child {
+            position: absolute;
+            top: 70%;
+            right: 60%;
+        }
+    }
+}
+
+.mapPath {
+    .icon {
+        width: 100%;
+    }
+}
+
+.videoLoop {
+    > div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .icon {
+        display: block;
+        margin: 2px;
+    }
+}

@@ -5,4 +5,4 @@ import * as LayoutComponents from './components';
 
 const TimelineCenteredScreen = createLayoutSwitcher(LayoutComponents);
 
-export default React.memo(TimelineCenteredScreen);
+export default TimelineCenteredScreen;

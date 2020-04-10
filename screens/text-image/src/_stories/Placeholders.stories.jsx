@@ -1,7 +1,16 @@
 import React from 'react';
 import { withPlaceholderSize } from '../../../../.storybook/decorators';
 
-import { Top, TopReverse, Center, CenterReverse, Bottom, BottomReverse } from '../components';
+import {
+    Top,
+    TopReverse,
+    Center,
+    CenterReverse,
+    Bottom,
+    BottomReverse,
+    Side,
+    SideReverse,
+} from '../components';
 
 export default {
     component: Top,
@@ -20,3 +29,7 @@ export const PlaceholderCenterReverse = () => <CenterReverse renderFormat="place
 export const PlaceholderBottom = () => <Bottom renderFormat="placeholder" />;
 
 export const PlaceholderBottomReverse = () => <BottomReverse renderFormat="placeholder" />;
+
+export const PlaceholderSide = () => <Side renderFormat="placeholder" />;
+
+export const PlaceholderSideReverse = () => <SideReverse renderFormat="placeholder" />;

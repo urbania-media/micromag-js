@@ -12,15 +12,18 @@
 
     .questionContainer {
         width: 100%;
-    }
-
-    .question {
-        //
+        margin-bottom: 20px;
     }
 
     .buttons {
         display: flex;
-        margin-right: 30px;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .button {
+        margin-right: 20px;
+        padding: 5px 10px;
 
         &:last-child {
             margin-right: 0;
@@ -29,5 +32,10 @@
 
     .placeholder {
         width: 100%;
+    }
+
+    .buttonPlaceholder {
+        border: 2px solid rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.5);
     }
 }

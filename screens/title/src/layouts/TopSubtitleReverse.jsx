@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import TitleComponent from '../TitleComponent';
+import TitleScreen from '../TitleScreen';
 
 const propTypes = {
     groups: PropTypes.arrayOf(PropTypes.array),
@@ -20,7 +20,7 @@ const defaultProps = {
 };
 
 const TitleTopSubtitleReverse = ({ box, groups, ...otherProps }) => {
-    return <TitleComponent box={box} groups={groups} {...otherProps} />;
+    return <TitleScreen box={box} groups={groups} {...otherProps} />;
 };
 
 TitleTopSubtitleReverse.propTypes = propTypes;

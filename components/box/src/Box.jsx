@@ -31,7 +31,7 @@ const defaultProps = {
     items: [],
     width: null,
     height: null,
-    spacing: 0,
+    spacing: 10,
     wrap: false,
     reverse: false,
     withSmallSpacing: false,
@@ -58,6 +58,8 @@ const Box = ({
     children,
 }) => {
     const spacing = withSmallSpacing ? 10 : defaultSpacing;
+    const containerSpacing =
+        items.length > 0 && spacing !== null && spacing > 0 ? spacing / 2 : spacing;
     return (
         <div
             className={classNames([
@@ -74,7 +76,7 @@ const Box = ({
             style={{
                 width,
                 height,
-                padding: spacing !== null && spacing > 0 ? spacing / 2 : null,
+                padding: containerSpacing || null,
             }}
         >
             {items.length > 0

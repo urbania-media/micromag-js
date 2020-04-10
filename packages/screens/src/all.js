@@ -5,7 +5,6 @@ export { default as GalleryScroll } from '@micromag/screen-gallery-scroll';
 export { default as Image } from '@micromag/screen-image';
 export { default as Map } from '@micromag/screen-map';
 export { default as Panorama } from '@micromag/screen-panorama';
-export { default as Quiz } from '@micromag/screen-quiz';
 export { default as Quote } from '@micromag/screen-quote';
 export { default as Slideshow } from '@micromag/screen-slideshow';
 export { default as SurveyCheckbox } from '@micromag/screen-survey-checkbox';

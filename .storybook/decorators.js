@@ -2,46 +2,77 @@
 import React from 'react';
 import { getDeviceScreens } from '../packages/core/src/utils';
 import { useScreenSizeFromElement } from '../packages/core/src/hooks';
-import { ScreenSizeProvider } from '../packages/core/src/contexts';
+import { ScreenSizeProvider, GoogleMapsClientProvider } from '../packages/core/src/contexts';
 
-export const withScreenSize = (size = null) => storyFn => {
+const GoogleMapsApiKey =
+    process.env && process.env.GOOGLE_MAPS_API_KEY ? process.env.GOOGLE_MAPS_API_KEY : null;
+
+export const withGoogleMapsApi = storyFn => {
+    if (!GoogleMapsApiKey) return <div>Error loading api key</div>;
+    return (
+        <GoogleMapsClientProvider apiKey={GoogleMapsApiKey}>{storyFn()}</GoogleMapsClientProvider>
+    );
+};
+
+export const withScreenSize = ({
+    width = null,
+    height = null,
+    style = null,
+    containerStyle = null,
+} = {}) => storyFn => {
     const { ref: refContainer, screenSize } = useScreenSizeFromElement({
-        ...size,
+        width,
+        height,
         screens: getDeviceScreens(),
     });
 
-    let style = {};
+    let innerStyle = {
+        ...style,
+    };
 
-    if (size !== null && (size.width || size.height)) {
-        style = {
+    let outerStyle = {};
+
+    if (width || height) {
+        innerStyle = {
             ...style,
             position: 'relative',
-            border: '1px solid #ccc',
+            width,
+            height,
+        };
+        outerStyle = {
+            display: 'inline-block',
             margin: '10px',
-            width: size.width,
-            height: size.height,
+            ...containerStyle,
         };
     }
 
     return (
-        <div
-            ref={refContainer}
-            style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                ...style,
-            }}
-        >
-            <ScreenSizeProvider size={screenSize}>{storyFn()}</ScreenSizeProvider>
+        <div style={outerStyle}>
+            <div
+                ref={refContainer}
+                style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    ...innerStyle,
+                }}
+            >
+                <ScreenSizeProvider size={screenSize}>{storyFn()}</ScreenSizeProvider>
+            </div>
         </div>
     );
 };
 
-export const withPlaceholderSize = () => withScreenSize({ width: 80, height: 120 });
+export const withPlaceholderSize = () =>
+    withScreenSize({ width: 80, height: 120, containerStyle: { border: '1px solid #ccc' } });
 
-export const withPreviewSize = () => withScreenSize({ width: 100, height: 150 });
+export const withPreviewSize = () =>
+    withScreenSize({
+        width: 320,
+        height: 480,
+        style: { transform: 'scale(0.4)', transformOrigin: 'top left' },
+    });
 
 export default withScreenSize;

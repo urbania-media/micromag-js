@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import ImageComponent from '../ImageComponent';
+import ImageScreen from '../ImageScreen';
 
 const propTypes = {
     box: PropTypes.shape({
@@ -19,7 +19,7 @@ const defaultProps = {
 };
 
 const ImageBottom = ({ box, ...otherProps }) => {
-    return <ImageComponent box={box} {...otherProps} />;
+    return <ImageScreen box={box} {...otherProps} />;
 };
 
 ImageBottom.propTypes = propTypes;

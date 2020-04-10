@@ -1,9 +1,54 @@
 @import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/variables';
 
 .container {
     @extend %screen;
+}
+
+.cards {
     display: flex;
     position: relative;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.card {
+    position: absolute;
+    z-index: 3;
+
+    width: 100%;
+
+    transform: translate3d(0, 100%, 0);
+
+    background-color: $white;
+    color: $black;
+    text-align: left;
+
+    &.active {
+        transform: translate3d(0, 0, 0);
+    }
+
+    > * {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .text {
+        width: 70%;
+    }
+
+    .image {
+        width: 30%;
+    }
+
+    .background {
+        padding: 10px;
+    }
 }

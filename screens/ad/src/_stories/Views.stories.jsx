@@ -2,7 +2,7 @@
 import React from 'react';
 import { withKnobs } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
 import { withScreenSize } from '../../../../.storybook/decorators';
-import { advertising, background } from '../../../../.storybook/data';
+import { advertising, background, backgroundImage } from '../../../../.storybook/data';
 
 import { Center } from '../components';
 
@@ -24,8 +24,12 @@ export const Skyscraper = () => <Center ad={advertising({ width: 300, height: 60
 
 export const MobilePortrait = () => <Center ad={advertising({ width: 320, height: 480 })} />;
 
-export const MediumRectangleWithBackground = () => (
+export const WithBackgroundColor = () => (
     <Center ad={advertising({ width: 300, height: 250 })} {...props} />
+);
+
+export const WithBackgroundImage = () => (
+    <Center ad={advertising({ width: 300, height: 250 })} background={backgroundImage()} />
 );
 
 export const FullScreen = () => (

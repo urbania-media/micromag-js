@@ -2,12 +2,21 @@
 import React from 'react';
 import { withKnobs, select } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
 import { withScreenSize } from '../../../../.storybook/decorators';
-import { paragraph, imageWithRandomSize } from '../../../../.storybook/data';
+import { text, imageWithRandomSize } from '../../../../.storybook/data';
 
-import { Top, TopReverse, Center, CenterReverse, Bottom, BottomReverse } from '../components';
+import {
+    Top,
+    TopReverse,
+    Center,
+    CenterReverse,
+    Bottom,
+    BottomReverse,
+    Side,
+    SideReverse,
+} from '../components';
 
 const props = {
-    text: { body: paragraph() },
+    text: text(),
     image: imageWithRandomSize(),
 };
 
@@ -44,4 +53,10 @@ export const ViewBottom = () => (
 
 export const ViewBottomReverse = () => (
     <BottomReverse {...props} textAlign={select('textAlign', options, 'left')} />
+);
+
+export const ViewSide = () => <Side {...props} textAlign={select('textAlign', options, 'left')} />;
+
+export const ViewSideReverse = () => (
+    <SideReverse {...props} textAlign={select('textAlign', options, 'left')} />
 );

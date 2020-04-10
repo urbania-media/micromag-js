@@ -15,6 +15,7 @@ import styles from './styles.module.scss';
 const propTypes = {
     question: MicromagPropTypes.textComponent,
     background: MicromagPropTypes.backgroundComponent,
+    onClick: PropTypes.func,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -22,11 +23,12 @@ const propTypes = {
 const defaultProps = {
     question: null,
     background: null,
+    onClick: null,
     renderFormat: 'view',
     className: null,
 };
 
-const SurveyYesNo = ({ question, background, renderFormat, className }) => {
+const SurveyYesNo = ({ question, background, onClick, renderFormat, className }) => {
     const { width, height } = useScreenSize();
 
     return (
@@ -45,14 +47,23 @@ const SurveyYesNo = ({ question, background, renderFormat, className }) => {
                     <div className={styles.inner}>
                         <div className={styles.questionContainer}>
                             {question !== null && renderFormat !== 'placeholder' ? (
-                                <TextComponent className={styles.question} {...question} />
+                                <TextComponent {...question} />
                             ) : (
                                 <Placeholders.Text className={styles.placeholder} />
                             )}
                         </div>
                         <div className={styles.buttons}>
-                            <Button>Yes</Button>
-                            <Button>No</Button>
+                            {renderFormat !== 'placeholder' ? (
+                                <>
+                                    <Button className={styles.button} onClick={onClick}>Oui</Button>
+                                    <Button className={styles.button} onClick={onClick}>Non</Button>
+                                </>
+                            ) : (
+                                <>
+                                    <Button className={styles.buttonPlaceholder} />
+                                    <Button className={styles.buttonPlaceholder} />
+                                </>
+                            )}
                         </div>
                     </div>
                 </Frame>

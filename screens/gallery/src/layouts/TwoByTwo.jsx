@@ -3,7 +3,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import Component from '../GalleryComponent';
+import GalleryScreen from '../GalleryScreen';
 
 const propTypes = {
     grid: MicromagPropTypes.gridComponent,
@@ -25,7 +25,7 @@ const defaultProps = {
 };
 
 const GalleryTwoByTwo = ({ grid, ...otherProps }) => {
-    return <Component grid={grid} {...otherProps} />;
+    return <GalleryScreen grid={grid} {...otherProps} />;
 };
 
 GalleryTwoByTwo.propTypes = propTypes;

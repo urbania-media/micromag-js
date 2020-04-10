@@ -2,7 +2,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import AdComponent from '../AdComponent';
+import AdScreen from '../AdScreen';
 
 const propTypes = {
     box: MicromagPropTypes.boxComponent,
@@ -16,7 +16,7 @@ const defaultProps = {
 };
 
 const AdCenter = ({ ...otherProps }) => {
-    return <AdComponent {...otherProps} />;
+    return <AdScreen {...otherProps} />;
 };
 
 AdCenter.propTypes = propTypes;

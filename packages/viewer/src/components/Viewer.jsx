@@ -1,12 +1,12 @@
-/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useScreenSizeFromElement } from '@micromag/core/hooks';
+import { useScreenSizeFromElement, useSwipe } from '@micromag/core/hooks';
 import { ScreenSizeProvider } from '@micromag/core/contexts';
 import { getDeviceScreens } from '@micromag/core/utils';
-import { Screens } from '@micromag/core/components';
+// import { Screens } from '@micromag/core/components';
 
 import Menu from './menus/Viewer';
 
@@ -18,6 +18,7 @@ const propTypes = {
     height: PropTypes.number,
     screen: PropTypes.string,
     deviceScreens: MicromagPropTypes.deviceScreens,
+    interactions: MicromagPropTypes.interactions,
     className: PropTypes.string,
     onScreenChange: PropTypes.func,
 };
@@ -28,6 +29,7 @@ const defaultProps = {
     screen: null,
     deviceScreens: getDeviceScreens(),
     className: null,
+    interactions: ['swipe', 'tap'],
     onScreenChange: null,
 };
 
@@ -37,6 +39,7 @@ const Viewer = ({
     height,
     screen: screenId,
     deviceScreens,
+    interactions,
     className,
     onScreenChange,
 }) => {
@@ -45,13 +48,39 @@ const Viewer = ({
         height,
         screens: deviceScreens,
     });
+    const { components = [] } = value;
+    const { items, bind, setIndex } = useSwipe({ width: screenSize.width, items: components });
 
     const onClickMenuItem = useCallback(
-        (e, it, index) => (onScreenChange !== null ? onScreenChange(it, index) : null),
+        (e, it, index) => {
+            if (onScreenChange !== null) {
+                onScreenChange(it, index);
+            }
+            if (setIndex !== null) {
+                setIndex(index);
+            }
+        },
         [onScreenChange],
     );
 
-    const { components = [] } = value;
+    const onTap = useCallback(
+        (e, it, index) => {
+            let next = index;
+            if (e.clientX > screenSize.width / 2) {
+                next = index < items.length - 1 ? index + 1 : index;
+            } else {
+                next = index > 0 ? index - 1 : index;
+            }
+            if (onScreenChange !== null) {
+                onScreenChange(it, next);
+            }
+            if (setIndex !== null) {
+                setIndex(next);
+            }
+        },
+        [onScreenChange, items, screenSize],
+    );
+
     const screen = components.find(it => it.id === screenId) || null;
 
     return (
@@ -77,12 +106,35 @@ const Viewer = ({
                     />
                 </div>
                 <div className={styles.content}>
-                    <Screens screens={components} screen={screenId} className={styles.screens} />
+                    {items.map(({ display, visibility, transform, item }, i) => {
+                        const color = (i + 1) * 30;
+                        return (
+                            <div
+                                {...(interactions.includes('swipe') ? bind() : null)}
+                                {...(interactions.includes('tap')
+                                    ? { onClick: e => onTap(e, item, i) }
+                                    : null)}
+                                key={i}
+                                style={{ display, visibility, transform }}
+                                className={styles.screen}
+                            >
+                                <div
+                                    style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        backgroundColor: `rgb(${color}, ${color}, ${color})`,
+                                    }}
+                                />
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </ScreenSizeProvider>
     );
 };
+
+// <Screens screens={components} screen={screenId} className={styles.screens} />
 
 Viewer.propTypes = propTypes;
 Viewer.defaultProps = defaultProps;

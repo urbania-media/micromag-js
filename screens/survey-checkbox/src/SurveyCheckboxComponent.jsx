@@ -7,26 +7,34 @@ import classNames from 'classnames';
 import TextComponent from '@micromag/component-text';
 import Background from '@micromag/component-background';
 import Frame from '@micromag/component-frame';
+import Checkbox from '@micromag/component-checkbox';
 import { Placeholders, PropTypes as MicromagPropTypes } from '@micromag/core';
+// import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
-    items: PropTypes.arrayOf(MicromagPropTypes.textComponent),
+    choices: PropTypes.arrayOf(MicromagPropTypes.textComponent),
+    value: PropTypes.arrayOf(PropTypes.string),
+    onChange: PropTypes.func,
     background: MicromagPropTypes.backgroundComponent,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
 
 const defaultProps = {
-    items: null,
+    choices: null,
+    value: [],
+    onChange: null,
     background: null,
     renderFormat: 'view',
     className: null,
 };
 
-const SurveyCheckbox = ({ items, background, renderFormat, className }) => {
+// @TODO: how to distinguish/separate groups of choices like in model
+
+const SurveyCheckbox = ({ choices, value, onChange, background, renderFormat, className }) => {
     const { width, height } = useScreenSize();
 
     return (
@@ -41,25 +49,36 @@ const SurveyCheckbox = ({ items, background, renderFormat, className }) => {
             ])}
         >
             <Background {...background} width={width} height={height}>
-                <Frame withScroll width={width} height={height}>
+                <Frame width={width} height={height}>
                     <div className={styles.inner}>
-                        <div className={styles.timelineContainer}>
-                            {items !== null
-                                ? items.map(({ text }, index) => {
-                                      return renderFormat === 'placeholder' ? (
-                                          <Placeholders.Text
-                                              key={`item-body-${index + 1}`}
-                                              className={styles.placeholder}
-                                          />
-                                      ) : (
-                                          <TextComponent
-                                              key={`item-body-${index + 1}`}
-                                              className={styles.item}
-                                              {...text}
-                                          />
-                                      );
-                                  })
-                                : null}
+                        <div className={styles.choices}>
+                            {choices.length > 0 && renderFormat !== 'placeholder' ? (
+                                choices.map((item, i) => (
+                                    <Checkbox
+                                        className={styles.choice}
+                                        onChange={onChange}
+                                        key={`checkbox-${i + 1}`}
+                                        option={<TextComponent {...item} />}
+                                        // option={item}
+                                        value={value}
+                                    />
+                                ))
+                            ) : (
+                                <>
+                                    <Checkbox
+                                        className={styles.placeholder}
+                                        option={<Placeholders.Text />}
+                                    />
+                                    <Checkbox
+                                        className={styles.placeholder}
+                                        option={<Placeholders.Text />}
+                                    />
+                                    <Checkbox
+                                        className={styles.placeholder}
+                                        option={<Placeholders.Text />}
+                                    />
+                                </>
+                            )}
                         </div>
                     </div>
                 </Frame>

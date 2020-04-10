@@ -37,6 +37,10 @@ export const ref = PropTypes.oneOfType([
 
 export const target = PropTypes.oneOf(['_blank', '_self', '_parent']);
 
+export const interaction = PropTypes.oneOf(['tap', 'swipe']);
+
+export const interactions = PropTypes.arrayOf(interaction);
+
 /**
  * Site
  */

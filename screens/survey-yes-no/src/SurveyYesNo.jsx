@@ -5,4 +5,4 @@ import * as LayoutComponents from './components';
 
 const SurveyYesNoScreen = createLayoutSwitcher(LayoutComponents);
 
-export default React.memo(SurveyYesNoScreen);
+export default SurveyYesNoScreen;

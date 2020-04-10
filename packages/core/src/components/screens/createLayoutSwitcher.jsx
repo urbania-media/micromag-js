@@ -12,11 +12,14 @@ const createLayoutSwitcher = (components, defaultComponent = null) => {
 
     const defaultProps = {};
 
+    const componentNames = Object.keys(components);
+    const firstComponent = componentNames.length > 0 ? componentNames[0] : null;
+
     const LayoutSwitcher = ({ layout, ...props }) => {
         const LayoutComponent = getComponentFromName(
             layout,
             components,
-            defaultComponent || components.Default || components.Top || null,
+            defaultComponent || components.Default || components[firstComponent] || null,
         );
         return <LayoutComponent {...props} />;
     };

@@ -6,4 +6,10 @@ export default {
     title: 'Components/Button',
 };
 
-export const normal = () => <Button body="This is a text <strong>with bold</string>" />;
+const testStyle = {
+    color: '#000',
+};
+
+export const Default = () => <Button>Button</Button>;
+
+export const WithStyle = () => <Button style={testStyle} />;

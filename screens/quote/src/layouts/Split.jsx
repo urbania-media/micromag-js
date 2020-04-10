@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import QuoteSplitComponent from '../QuoteSplitComponent';
+import QuoteSplitScreen from '../QuoteSplitScreen';
 
 const propTypes = {
     box: PropTypes.shape({
@@ -19,7 +19,7 @@ const defaultProps = {
 };
 
 const QuoteSplit = ({ box, ...otherProps }) => {
-    return <QuoteSplitComponent box={box} {...otherProps} />;
+    return <QuoteSplitScreen box={box} {...otherProps} />;
 };
 
 QuoteSplit.propTypes = propTypes;

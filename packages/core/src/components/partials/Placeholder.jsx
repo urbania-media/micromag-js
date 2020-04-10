@@ -10,6 +10,7 @@ const propTypes = {
     lines: PropTypes.number,
     lineMargin: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    baseSize: PropTypes.number,
     className: PropTypes.string,
 };
 
@@ -17,11 +18,13 @@ const defaultProps = {
     lines: 1,
     lineMargin: null,
     height: null,
+    baseSize: 16,
     className: null,
 };
 
-const Placeholder = ({ lines, lineMargin, height, className }) => {
-    const lineHeight = height !== null && isNumber(height) ? `${height}rem` : height;
+const Placeholder = ({ lines, lineMargin, height, baseSize, className }) => {
+    const lineHeight =
+        height !== null && isNumber(height) ? `${Math.round(height * baseSize)}px` : height;
     const margin = lineMargin !== null && isNumber(lineMargin) ? `${lineMargin}em` : lineMargin;
     return [...Array(lines)].map((e, index) => (
         <div

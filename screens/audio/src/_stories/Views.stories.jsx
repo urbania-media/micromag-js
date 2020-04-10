@@ -16,8 +16,6 @@ export default {
     decorators: [withKnobs, withScreenSize()],
 };
 
-// console.log(audio);
-
 export const AudioTop = () => <Top {...props} />;
 
 export const AudioNormal = () => <Center {...props} />;
@@ -29,3 +27,5 @@ export const Album = () => <Center {...props} image={image()} />;
 export const AlbumWithText = () => (
     <Center {...props} text={{ body: paragraph() }} image={image()} />
 );
+
+export const AudioMuted = () => <Center audio={{ ...audio(), muted: true }} />;

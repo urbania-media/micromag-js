@@ -2,59 +2,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { getStyleFromFont, getStyleFromColor } from '@micromag/core/utils';
+import { Button as CoreButton } from '@micromag/core/components';
+import { getStyleFromFont, getStyleFromColor, getStyleFromRounded } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
-    type: PropTypes.string,
-    href: PropTypes.string,
-    active: PropTypes.bool,
-    children: PropTypes.string,
-    icon: PropTypes.node,
-    iconPosition: PropTypes.oneOf(['left', 'right', 'inline']),
-    style: MicromagPropTypes.textStyle,
+    style: PropTypes.shape({
+        text: MicromagPropTypes.textStyle,
+        color: MicromagPropTypes.color,
+        rounded: PropTypes.bool,
+    }),
+    disabled: PropTypes.bool,
     onClick: PropTypes.func,
-    iconClassName: PropTypes.sring,
-    labelClassName: PropTypes.string,
+    children: PropTypes.node,
     className: PropTypes.string,
 };
 
 const defaultProps = {
-    type: 'button',
-    href: null,
-    active: false,
-    children: null,
-    icon: null,
-    iconPosition: 'inline',
     style: null,
+    disabled: false,
     onClick: null,
-    iconClassName: null,
-    labelClassName: null,
+    children: null,
     className: null,
 };
 
-const Button = ({
-    type,
-    href,
-    active,
-    children,
-    icon,
-    iconPosition,
-    style,
-    onClick,
-    iconClassName,
-    labelClassName,
-    className,
-}) => {
+const Button = ({ style, disabled, onClick, children, className }) => {
     let finalStyle = null;
 
-    const hasIcon = icon !== null;
-    const hasInlineIcon = hasIcon && (iconPosition === 'inline' || children === null);
-    const hasIconColumns = hasIcon && !hasInlineIcon;
-
-    const { text: textStyle = null } = style || {};
+    const { text: textStyle = null, color: backgroundColor = null, rounded = null } = style || {};
     if (textStyle !== null) {
         const { font = null, color = null } = textStyle;
         finalStyle = {
@@ -64,68 +42,34 @@ const Button = ({
         };
     }
 
-    const buttonClassNames = classNames([
-        {
-            active,
-        },
-        styles.container,
-        {
-            [styles.withIcon]: hasIcon,
-            [styles.withIconColumns]: hasIconColumns,
-            [styles.withText]: children !== null,
-            [styles.isLink]: href !== null,
-            [className]: className !== null,
-        },
-    ]);
+    if (backgroundColor !== null) {
+        finalStyle = {
+            ...finalStyle,
+            ...getStyleFromColor(backgroundColor, 'backgroundColor'),
+        };
+    }
 
-    const content = (
-        <>
-            {hasInlineIcon ? (
-                <>
-                    <span
-                        className={classNames([
-                            styles.icon,
-                            {
-                                [iconClassName]: iconClassName !== null,
-                            },
-                        ])}
-                    >
-                        {icon}
-                    </span>
-                    {children !== null ? (
-                        <span
-                            style={finalStyle}
-                            className={classNames([
-                                styles.label,
-                                {
-                                    [labelClassName]: labelClassName !== null,
-                                },
-                            ])}
-                        >
-                            {children}
-                        </span>
-                    ) : null}
-                </>
-            ) : null}
-            {hasIconColumns ? (
-                <>
-                    <span className={classNames([styles.left])}>
-                        {iconPosition === 'left' ? icon : null}
-                    </span>
-                    <span className={classNames([styles.center])}>{children}</span>
-                    <span className={classNames([styles.right])}>
-                        {iconPosition === 'right' ? icon : null}
-                    </span>
-                </>
-            ) : null}
-            {!hasIcon ? children : null}
-        </>
-    );
+    if (rounded !== null) {
+        finalStyle = {
+            ...finalStyle,
+            ...getStyleFromRounded(rounded),
+        };
+    }
 
     return (
-        <button type={type} className={buttonClassNames} onClick={onClick}>
-            {content}
-        </button>
+        <CoreButton
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                },
+            ])}
+            style={finalStyle}
+            disabled={disabled}
+            onClick={onClick}
+        >
+            {children}
+        </CoreButton>
     );
 };
 

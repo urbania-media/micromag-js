@@ -1,7 +1,14 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { withPreviewSize } from '../../../../.storybook/decorators';
+import { map, background, backgroundImage } from '../../../../.storybook/data';
 
 import { Center } from '../components';
+
+const props = {
+    map: map(),
+    background: background(),
+};
 
 export default {
     component: Center,
@@ -9,4 +16,8 @@ export default {
     decorators: [withPreviewSize()],
 };
 
-export const PreviewCenter = () => <Center renderFormat="preview" />;
+export const PreviewCenter = () => <Center {...props} renderFormat="preview" />;
+
+export const PreviewCenterWithBackground = () => (
+    <Center {...props} background={backgroundImage()} renderFormat="preview" />
+);
