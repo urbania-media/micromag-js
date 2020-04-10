@@ -54,19 +54,18 @@ const SurveyCheckbox = ({ choices, value, onChange, background, renderFormat, cl
                         <div className={styles.choices}>
                             {renderFormat !== 'placeholder' &&
                             choices !== null &&
-                            choices.length > 0
-                                ? choices.map((item, i) => (
-                                      <Checkbox
-                                          className={styles.choice}
-                                          onChange={onChange}
-                                          key={`checkbox-${i + 1}`}
-                                          option={<TextComponent {...item} />}
-                                          // option={item}
-                                          value={value}
-                                      />
-                                  ))
-                                : null}
-                            {renderFormat === 'placeholder' ? (
+                            choices.length > 0 ? (
+                                choices.map((item, i) => (
+                                    <Checkbox
+                                        className={styles.choice}
+                                        onChange={onChange}
+                                        key={`checkbox-${i + 1}`}
+                                        option={<TextComponent {...item} />}
+                                        // option={item}
+                                        value={value}
+                                    />
+                                ))
+                            ) : (
                                 <>
                                     <Checkbox
                                         className={styles.placeholder}
@@ -81,7 +80,7 @@ const SurveyCheckbox = ({ choices, value, onChange, background, renderFormat, cl
                                         option={<Placeholders.Text />}
                                     />
                                 </>
-                            ) : null}
+                            )}
                         </div>
                     </div>
                 </Frame>

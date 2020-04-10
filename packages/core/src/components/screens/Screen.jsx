@@ -10,20 +10,18 @@ const propTypes = {
     screen: AppPropTypes.storyComponent.isRequired,
     component: PropTypes.node,
     components: AppPropTypes.components,
-    isPreview: PropTypes.bool,
-    isPlaceholder: PropTypes.bool,
+    renderFormat: AppPropTypes.renderFormat,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     component: null,
     components: null,
-    isPreview: false,
-    isPlaceholder: false,
+    renderFormat: 'view',
     className: null,
 };
 
-const Screen = ({ screen, components, component, isPreview, isPlaceholder, className }) => {
+const Screen = ({ screen, components, component, renderFormat, className }) => {
     const { type } = screen;
     const contextComponents = useScreensComponents();
     const finalComponents = components || contextComponents;
@@ -31,7 +29,7 @@ const Screen = ({ screen, components, component, isPreview, isPlaceholder, class
 
     return ScreenComponent !== null ? (
         <div className={className}>
-            <ScreenComponent {...screen} isPreview={isPreview} isPlaceholder={isPlaceholder} />
+            <ScreenComponent {...screen} renderFormat={renderFormat} />
         </div>
     ) : (
         <div className={className}>{component}</div>
