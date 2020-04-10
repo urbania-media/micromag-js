@@ -1,14 +1,15 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Route, useHistory } from 'react-router';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useModals } from '@micromag/core/contexts';
+import { useSchemasRepository, SCREENS_NAMESPACE } from '@micromag/schemas';
 
 import createScreenFromType from '../utils/createScreenFromType';
 import Screens from './menus/Screens';
 import PlusButton from './buttons/Plus';
+import ScreenTypesModal from './modals/ScreenTypes';
 
 import styles from '../styles/screens.module.scss';
 
@@ -31,13 +32,17 @@ const defaultProps = {
 const EditorScreens = ({ value, isVertical, onClickScreen, onChange, className }) => {
     const { components: screens = [] } = value || {};
 
-    const { openModal } = useModals();
+    const [createModalOpened, setCreateModalOpened] = useState(false);
     const history = useHistory();
+    const repository = useSchemasRepository();
 
     const createScreen = useCallback(
         (type, layout = null) => {
+            const defaultValues = repository.getDefaultValuesFromSchema(
+                `${SCREENS_NAMESPACE}/${type}`,
+            );
             const newScreen = {
-                ...createScreenFromType(type),
+                ...createScreenFromType(type, defaultValues),
                 layout,
             };
             const { components = [], ...currentValue } = value || {};
@@ -75,14 +80,11 @@ const EditorScreens = ({ value, isVertical, onClickScreen, onChange, className }
         [value, onChange],
     );
 
-    const onClickAdd = useCallback(
-        () =>
-            openModal('ScreenTypes', {
-                onClickScreen: (e, { type, layout }) => createScreen(type, layout),
-                closeOnClickScreen: true,
-            }),
-        [createScreen],
-    );
+    const onClickScreenType = useCallback(type => createScreen(type), [createScreen]);
+    const onClickAdd = useCallback(() => setCreateModalOpened(true), [setCreateModalOpened]);
+    const onCreateModalRequestClose = useCallback(() => setCreateModalOpened(false), [
+        setCreateModalOpened,
+    ]);
 
     return (
         <div
@@ -119,6 +121,12 @@ const EditorScreens = ({ value, isVertical, onClickScreen, onChange, className }
                     />
                 )}
             />
+            {createModalOpened ? (
+                <ScreenTypesModal
+                    onClickScreenType={onClickScreenType}
+                    onRequestClose={onCreateModalRequestClose}
+                />
+            ) : null}
         </div>
     );
 };

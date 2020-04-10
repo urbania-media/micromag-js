@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import { Breadcrumb as BaseBreadcrumb } from '@micromag/core/components';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { injectIntl } from 'react-intl';
-
-import getFieldsFromScreenType from '../../utils/getFieldsFromScreenType';
+import { useSchemasRepository, SCREENS_NAMESPACE } from '@micromag/schemas';
 
 import messages from '../../messages';
 
@@ -27,13 +26,14 @@ const defaultProps = {
 
 const Breadcrumb = ({ intl, value, screenId, field, url, className }) => {
     const { components: screens = [] } = value || {};
+    const repository = useSchemasRepository();
 
     const items = useMemo(() => {
         const screenIndex = screens.findIndex(it => it.id === screenId);
         const { type, layout = null } = screens[screenIndex];
         let fieldItems = [];
         if (field !== null) {
-            const fields = getFieldsFromScreenType(type, {
+            const fields = repository.getFieldsFromSchema(`${SCREENS_NAMESPACE}/${type}`, {
                 layout,
             });
             const fieldParts = field.split('/');
@@ -120,7 +120,7 @@ const Breadcrumb = ({ intl, value, screenId, field, url, className }) => {
                   }
                 : it,
         );
-    }, [intl, screens, screenId, field, url]);
+    }, [intl, repository, screens, screenId, field, url]);
 
     return <BaseBreadcrumb items={items} className={className} />;
 };

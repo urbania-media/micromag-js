@@ -1,0 +1,31 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+.container {
+    position: relative;
+}
+
+.row {
+    margin-bottom: $spacer * 2;
+
+    .title {
+        padding-bottom: $spacer / 4;
+        border-bottom: solid 1px $border-color;
+        font-size: 0.85rem;
+    }
+
+    .item {
+        button {
+            background: $gray-200;
+        }
+
+        .icon {
+            @extend %fullscreen;
+            color: $gray-500;
+        }
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}

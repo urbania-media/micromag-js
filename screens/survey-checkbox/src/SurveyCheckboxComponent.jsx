@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/jsx-props-no-spreading, react/jsx-indent */
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -52,18 +52,21 @@ const SurveyCheckbox = ({ choices, value, onChange, background, renderFormat, cl
                 <Frame width={width} height={height}>
                     <div className={styles.inner}>
                         <div className={styles.choices}>
-                            {choices.length > 0 && renderFormat !== 'placeholder' ? (
-                                choices.map((item, i) => (
-                                    <Checkbox
-                                        className={styles.choice}
-                                        onChange={onChange}
-                                        key={`checkbox-${i + 1}`}
-                                        option={<TextComponent {...item} />}
-                                        // option={item}
-                                        value={value}
-                                    />
-                                ))
-                            ) : (
+                            {renderFormat !== 'placeholder' &&
+                            choices !== null &&
+                            choices.length > 0
+                                ? choices.map((item, i) => (
+                                      <Checkbox
+                                          className={styles.choice}
+                                          onChange={onChange}
+                                          key={`checkbox-${i + 1}`}
+                                          option={<TextComponent {...item} />}
+                                          // option={item}
+                                          value={value}
+                                      />
+                                  ))
+                                : null}
+                            {renderFormat === 'placeholder' ? (
                                 <>
                                     <Checkbox
                                         className={styles.placeholder}
@@ -78,7 +81,7 @@ const SurveyCheckbox = ({ choices, value, onChange, background, renderFormat, cl
                                         option={<Placeholders.Text />}
                                     />
                                 </>
-                            )}
+                            ) : null}
                         </div>
                     </div>
                 </Frame>

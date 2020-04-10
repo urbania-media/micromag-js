@@ -1,5 +1,6 @@
 export default {
     $id: 'https://schemas.micromag.ca/0.1/screens/title.json',
+    group: 'Title',
     title: 'Title',
     type: 'object',
     allOf: [

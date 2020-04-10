@@ -15,7 +15,7 @@ const propTypes = {
     children: PropTypes.node,
     footer: PropTypes.node,
     buttons: MicromagPropTypes.buttons,
-    closeModal: PropTypes.func.isRequired,
+    onClickClose: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -25,10 +25,11 @@ const defaultProps = {
     children: null,
     footer: null,
     buttons: null,
+    onClickClose: null,
     className: null,
 };
 
-const ModalDialog = ({ title, header, children, buttons, footer, closeModal, className }) => (
+const ModalDialog = ({ title, header, children, buttons, footer, onClickClose, className }) => (
     <div
         className={classNames([
             'modal-dialog',
@@ -45,7 +46,12 @@ const ModalDialog = ({ title, header, children, buttons, footer, closeModal, cla
                     <h5 className="modal-title">
                         <Label>{title}</Label>
                     </h5>
-                    <button type="button" className="close" aria-label="Close" onClick={closeModal}>
+                    <button
+                        type="button"
+                        className="close"
+                        aria-label="Close"
+                        onClick={onClickClose}
+                    >
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>

@@ -4,6 +4,7 @@ export { schema as Gallery } from '@micromag/screen-gallery';
 export { schema as GalleryScroll } from '@micromag/screen-gallery-scroll';
 export { schema as Image } from '@micromag/screen-image';
 export { schema as Map } from '@micromag/screen-map';
+export { schema as MapPath } from '@micromag/screen-map-path';
 export { schema as Panorama } from '@micromag/screen-panorama';
 export { schema as Quote } from '@micromag/screen-quote';
 export { schema as Slideshow } from '@micromag/screen-slideshow';

@@ -1,5 +1,6 @@
 export default {
     $id: 'https://schemas.micromag.ca/0.1/screens/timeline-dots.json',
+    group: 'Timeline',
     title: 'Timeline Dots',
     type: 'object',
     allOf: [

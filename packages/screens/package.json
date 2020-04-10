@@ -55,6 +55,7 @@
         "@micromag/screen-gallery-scroll": "^0.1.0",
         "@micromag/screen-image": "^0.1.0",
         "@micromag/screen-map": "^0.1.0",
+        "@micromag/screen-map-path": "^0.1.0",
         "@micromag/screen-panorama": "^0.1.0",
         "@micromag/screen-quote": "^0.1.0",
         "@micromag/screen-slideshow": "^0.1.0",

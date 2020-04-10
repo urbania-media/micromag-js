@@ -1,5 +1,6 @@
 export default {
     $id: 'https://schemas.micromag.ca/0.1/screens/quote.json',
+    group: 'Title',
     title: 'Quote',
     type: 'object',
     allOf: [

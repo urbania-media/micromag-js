@@ -1,6 +1,7 @@
 export default {
     $id: 'https://schemas.micromag.ca/0.1/screens/text-video.json',
-    title: 'Map',
+    group: 'Text',
+    title: 'Text and video',
     type: 'object',
     allOf: [
         {

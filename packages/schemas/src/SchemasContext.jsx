@@ -2,6 +2,7 @@
 import React, { useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import SchemasRepository from './SchemasRepository';
+import { SCREENS_NAMESPACE, ELEMENTS_NAMESPACE, FIELDS_NAMESPACE } from './namespaces';
 
 const SchemasContext = React.createContext(null);
 
@@ -36,6 +37,15 @@ export const useSchemaFields = (id, conditionalData = {}) => {
     );
     return fields;
 };
+
+export const useScreenSchemaFields = (id, conditionalData = {}) =>
+    useSchemaFields(`${SCREENS_NAMESPACE}/${id}`, conditionalData);
+
+export const useElementSchemaFields = (id, conditionalData = {}) =>
+    useSchemaFields(`${ELEMENTS_NAMESPACE}/${id}`, conditionalData);
+
+export const useFieldSchemaFields = (id, conditionalData = {}) =>
+    useSchemaFields(`${FIELDS_NAMESPACE}/${id}`, conditionalData);
 
 const propTypes = {
     children: PropTypes.node.isRequired,

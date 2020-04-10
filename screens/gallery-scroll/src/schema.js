@@ -1,5 +1,6 @@
 export default {
     $id: 'https://schemas.micromag.ca/0.1/screens/gallery-scroll.json',
+    group: 'Gallery',
     title: 'Gallery Scroll',
     type: 'object',
     allOf: [

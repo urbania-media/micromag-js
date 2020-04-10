@@ -5,7 +5,9 @@ export { default as Breadcrumb } from './menus/Breadcrumb';
 export { default as Tabs } from './menus/Tabs';
 
 export { default as Modals } from './modals/Modals';
-export { default as Dialog } from './modals/Dialog';
+export { default as Modal } from './modals/Modal';
+export { default as ModalDialog } from './modals/Dialog';
+export { default as ModalPortal } from './modals/Portal';
 
 export { default as CollapsablePanel } from './partials/CollapsablePanel';
 export { default as Element } from './partials/Element';

@@ -1,5 +1,6 @@
 export default {
     $id: 'https://schemas.micromag.ca/0.1/screens/map.json',
+    group: 'Map',
     title: 'Map',
     type: 'object',
     allOf: [

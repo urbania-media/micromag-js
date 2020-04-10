@@ -69,8 +69,7 @@ export const device = PropTypes.shape({
 export const devices = PropTypes.arrayOf(device);
 
 export const modal = PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    props: PropTypes.object,
+    id: PropTypes.string.isRequired,
 });
 
 export const modals = PropTypes.arrayOf(modal);

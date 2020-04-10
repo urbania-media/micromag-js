@@ -1,5 +1,6 @@
 export default {
     $id: 'https://schemas.micromag.ca/0.1/screens/slideshow.json',
+    group: 'Gallery',
     title: 'Slideshow',
     type: 'object',
     allOf: [

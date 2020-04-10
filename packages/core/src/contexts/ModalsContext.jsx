@@ -1,14 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, useState, useCallback, useMemo } from 'react';
+import React, { useContext, useRef, useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import getDisplayName from '../utils/getDisplayName';
 
 const ModalsContext = React.createContext({
-    modals: [],
-    openModal: () => {},
-    updateModal: () => {},
-    closeModal: () => {},
+    containerRef: null,
 });
 
 export const useModals = () => useContext(ModalsContext);
@@ -16,12 +13,12 @@ export const useModals = () => useContext(ModalsContext);
 export const withModals = WrappedComponent => {
     const WithModalsComponent = props => (
         <ModalsContext.Consumer>
-            {({ modals, openModal, updateModal, closeModal }) => (
+            {({ modals, containerRef, register, unregister }) => (
                 <WrappedComponent
+                    modalsContainerRef={containerRef}
                     modals={modals}
-                    openModal={openModal}
-                    updateModal={updateModal}
-                    closeModal={closeModal}
+                    registerModal={register}
+                    unregisterModal={unregister}
                     {...props}
                 />
             )}
@@ -33,66 +30,49 @@ export const withModals = WrappedComponent => {
 
 const propTypes = {
     children: PropTypes.node.isRequired,
+    container: PropTypes.object, // eslint-disable-line
 };
 
-const defaultProps = {};
+const defaultProps = {
+    container: null,
+};
 
-export const ModalsProvider = ({ children }) => {
+export const ModalsProvider = ({ children, container }) => {
+    const containerRef = useRef(container);
     const [modals, setModals] = useState([]);
-
-    const openModal = useCallback(
-        (name, props, options = null) =>
-            setModals([
-                ...modals,
+    const modalsRef = useRef(modals);
+    const register = useCallback(
+        (id, options = null) => {
+            const { current: currentModals } = modalsRef;
+            const newModals = [
+                ...currentModals,
                 {
-                    name,
-                    props,
+                    id,
                     ...options,
                 },
-            ]),
+            ];
+            setModals(newModals);
+            modalsRef.current = newModals;
+        },
         [modals, setModals],
     );
-
-    const updateModal = useCallback(
-        (name, props, options = null) => {
-            const foundIndex = modals.findIndex(({ name: modalName }) => modalName === name);
+    const unregister = useCallback(
+        id => {
+            const { current: currentModals } = modalsRef;
+            const foundIndex = currentModals.findIndex(({ id: modalId }) => modalId === id);
             if (foundIndex !== -1) {
-                const { props: currentProps = null, ...currentOptions } = modals[foundIndex];
-                setModals([
-                    ...modals.slice(0, foundIndex),
-                    {
-                        ...currentOptions,
-                        props: {
-                            ...currentProps,
-                            ...props,
-                        },
-                        ...options,
-                    },
-                    ...modals.slice(foundIndex + 1),
-                ]);
+                const newModals = currentModals.filter(({ id: modalId }) => modalId !== id);
+                setModals(newModals);
+                modalsRef.current = newModals;
             }
         },
         [modals, setModals],
     );
-
-    const closeModal = useCallback(
-        name => {
-            const foundIndex = modals.findIndex(({ name: modalName }) => modalName === name);
-            if (foundIndex !== -1) {
-                setModals(modals.filter(({ name: modalName }) => modalName !== name));
-            }
-        },
-        [modals, setModals],
+    return (
+        <ModalsContext.Provider value={{ modals, containerRef, register, unregister }}>
+            {children}
+        </ModalsContext.Provider>
     );
-
-    const contextValue = useMemo(() => ({ modals, openModal, closeModal, updateModal }), [
-        modals,
-        openModal,
-        closeModal,
-        updateModal,
-    ]);
-
-    return <ModalsContext.Provider value={contextValue}>{children}</ModalsContext.Provider>;
 };
 
 ModalsProvider.propTypes = propTypes;

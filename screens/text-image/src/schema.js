@@ -1,5 +1,6 @@
 export default {
     $id: 'https://schemas.micromag.ca/0.1/screens/text-image.json',
+    group: 'Text',
     title: 'Text and image',
     type: 'object',
     allOf: [

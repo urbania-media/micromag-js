@@ -26,9 +26,12 @@ class SchemasRepository {
 
     getSchemaId(id, namespace = null) {
         const { baseId } = this.options;
+        const [finalId, finalNamespace = null] = Array.isArray(id) ? id : [id, namespace];
         const baseIdMatch = new RegExp(`^${baseId.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'i');
         return !baseIdMatch.test(id)
-            ? `${baseId.replace(/\/$/, '')}/${namespace !== null ? `${namespace}/` : ''}${id}.json`
+            ? `${baseId.replace(/\/$/, '')}/${
+                  finalNamespace !== null ? `${finalNamespace}/` : ''
+              }${finalId}.json`
             : id;
     }
 
@@ -40,6 +43,16 @@ class SchemasRepository {
         return this.schemas.find(it => it.$id === schemaId) || null;
     }
 
+    getSchemas(namespace = null) {
+        if (namespace === null) {
+            return this.schemas;
+        }
+        const { baseId } = this.options;
+        const url = `${baseId.replace(/\/$/, '')}/${namespace}`;
+        const pattern = new RegExp(`^${url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'i');
+        return this.schemas.filter(({ $id: id }) => pattern.test(id));
+    }
+
     getFieldsFromSchema(schemaId, conditionalData) {
         const schema = this.getSchema(schemaId);
         if (schema === null) {
@@ -47,6 +60,15 @@ class SchemasRepository {
         }
         const properties = this.getPropertiesFromSchema(schema, conditionalData);
         return [...this.getFieldsFromProperties(properties)];
+    }
+
+    getDefaultValuesFromSchema(schemaId, conditionalData) {
+        const schema = this.getSchema(schemaId);
+        if (schema === null) {
+            return null;
+        }
+        const properties = this.getPropertiesFromSchema(schema, conditionalData);
+        return { ...this.getDefaultValuesFromProperties(properties) };
     }
 
     getPropertiesFromSchema(schemaId, conditionalData) {
@@ -94,6 +116,31 @@ class SchemasRepository {
             }),
             {},
         );
+    }
+
+    getDefaultValuesFromProperties(properties) {
+        return Object.keys(properties).reduce((values, propertyName) => {
+            const {
+                type = 'object',
+                default: defaultValue = null,
+                properties: subProperties = null,
+            } = properties[propertyName];
+            if (type === 'object' && subProperties !== null) {
+                const objectDefaultValue = this.getDefaultValuesFromProperties(subProperties);
+                return objectDefaultValue !== null
+                    ? {
+                          ...values,
+                          [propertyName]: objectDefaultValue,
+                      }
+                    : values;
+            }
+            return defaultValue !== null
+                ? {
+                      ...values,
+                      [propertyName]: defaultValue,
+                  }
+                : values;
+        }, null);
     }
 
     getFieldsFromProperties(properties) {

@@ -1,7 +1,7 @@
 export default {
-    $id: 'https://schemas.micromag.ca/0.1/screens/gallery.json',
-    group: 'Gallery',
-    title: 'Gallery',
+    $id: 'https://schemas.micromag.ca/0.1/screens/map-path.json',
+    group: 'Map',
+    title: 'Map with path',
     type: 'object',
     allOf: [
         {

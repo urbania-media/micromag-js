@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, CollapsablePanel } from '@micromag/core/components';
 import { Fields } from '@micromag/fields';
-import { useSchemaFields } from '@micromag/schemas';
+import { useScreenSchemaFields } from '@micromag/schemas';
 
 import styles from '../../styles/forms/screen.module.scss';
 
@@ -32,8 +32,7 @@ const ScreenForm = ({ value, className, gotoFieldForm, onChange, onClickDelete }
         }),
         [layout],
     );
-    const fields = useSchemaFields(`screens/${type}`, conditionalData);
-    console.log(fields);
+    const fields = useScreenSchemaFields(type, conditionalData);
     return (
         <div
             className={classNames([

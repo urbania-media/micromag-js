@@ -1,5 +1,6 @@
 export default {
     $id: 'https://schemas.micromag.ca/0.1/screens/survey-checkbox.json',
+    group: 'Survey',
     title: 'Survey Checkbox',
     type: 'object',
     allOf: [

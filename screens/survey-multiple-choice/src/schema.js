@@ -1,5 +1,6 @@
 export default {
     $id: 'https://schemas.micromag.ca/0.1/screens/survey-multiple-choice.json',
+    group: 'Survey',
     title: 'Survey Multiple Choice',
     type: 'object',
     allOf: [

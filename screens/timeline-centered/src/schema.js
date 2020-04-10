@@ -1,5 +1,6 @@
 export default {
     $id: 'https://schemas.micromag.ca/0.1/screens/timeline-centered.json',
+    group: 'Timeline',
     title: 'Timeline Centered',
     type: 'object',
     allOf: [
