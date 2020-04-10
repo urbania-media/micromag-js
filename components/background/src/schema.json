@@ -1,0 +1,33 @@
+{
+    "$id": "https://schemas.micromag.ca/0.1/elements/background.json",
+    "title": "Background",
+    "type": "object",
+
+    "allOf": [
+        {
+            "$ref": "https://schemas.micromag.ca/0.1/elements/component.json"
+        },
+        {
+            "properties": {
+                "color": {
+                    "type": "object",
+                    "title": "Couleur",
+                    "$ref": "https://schemas.micromag.ca/0.1/fields/color.json",
+                    "component": "color",
+                    "componentProps": {
+                        "isHorizontal": true
+                    }
+                },
+                "image": {
+                    "type": "object",
+                    "title": "Image",
+                    "$ref": "https://schemas.micromag.ca/0.1/fields/image.json",
+                    "component": "image",
+                    "componentProps": {
+                        "isHorizontal": true
+                    }
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "$id": "https://schemas.micromag.ca/0.1/fields/object-fit.json",
+    "title": "Object fit field",
+    "type": "object",
+
+    "properties": {
+        "size": {
+            "title": "Espacement",
+            "type": "string",
+            "enum": ["cover", "contain"],
+            "component": "object-fit-size",
+            "componentProps": {
+                "withoutLabel": true
+            }
+        }
+    }
+}

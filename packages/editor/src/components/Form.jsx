@@ -6,8 +6,8 @@ import { useHistory, useRouteMatch } from 'react-router';
 import TransitionGroup from 'react-addons-css-transition-group';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { slug } from '@micromag/core/utils';
-import { useComponents } from '@micromag/core/contexts';
-import { Empty, FIELD_FORMS_NAMESPACE } from '@micromag/core/components';
+import { useFormsComponents } from '@micromag/core/contexts';
+import { Empty } from '@micromag/core/components';
 
 import { updateScreen, duplicateScreen, deleteScreen } from '../utils';
 import useFormTransition from '../hooks/useFormTransition';
@@ -23,20 +23,20 @@ const propTypes = {
     value: MicromagPropTypes.story,
     className: PropTypes.string,
     onChange: PropTypes.func,
-    fieldFormComponents: MicromagPropTypes.components,
+    formComponents: MicromagPropTypes.components,
 };
 
 const defaultProps = {
     value: null,
     className: null,
     onChange: null,
-    fieldFormComponents: null,
+    formComponents: null,
 };
 
-const EditForm = ({ value, className, onChange, fieldFormComponents }) => {
-    const contextFieldFormComponents = useComponents(FIELD_FORMS_NAMESPACE);
-    const finalFieldFormComponents = fieldFormComponents || contextFieldFormComponents;
-    const formRegEx = Object.keys(finalFieldFormComponents)
+const EditForm = ({ value, className, onChange, formComponents }) => {
+    const contextFformComponents = useFormsComponents();
+    const finalFformComponents = formComponents || contextFformComponents;
+    const formRegEx = Object.keys(finalFformComponents)
         .map(name => slug(name))
         .join('|');
 

@@ -34,7 +34,7 @@
     ],
     "scripts": {
         "clean": "rm -rf assets && rm -rf lib && rm -rf es",
-        "build": "NODE_ENV=production ../../node_modules/.bin/rollup --config ../../rollup.config.js",
+        "build": "NODE_ENV=production ../../node_modules/.bin/rollup --config ./rollup.config.js",
         "prepare": "npm run clean && npm run build",
         "start": "PUBLIC_URL=http://localhost/ react-scripts start"
     },

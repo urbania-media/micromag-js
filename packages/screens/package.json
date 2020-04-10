@@ -1,0 +1,76 @@
+{
+    "name": "@micromag/screens",
+    "version": "0.1.0",
+    "description": "",
+    "keywords": [
+        "javascript"
+    ],
+    "homepage": "https://github.com/urbania-media/micromag-js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/urbania-media/micromag-js.git"
+    },
+    "author": {
+        "name": "Folklore",
+        "email": "info@folklore.email"
+    },
+    "contributors": [
+        {
+            "name": "David Mongeau-Petitpas",
+            "email": "dmp@folklore.email"
+        },
+        {
+            "name": "Nicolas Roy-Bourdages",
+            "email": "nrb@folklore.email"
+        }
+    ],
+    "license": "ISC",
+    "main": "lib/index.js",
+    "module": "es/index.js",
+    "files": [
+        "lib",
+        "es",
+        "assets"
+    ],
+    "scripts": {
+        "clean": "rm -rf assets && rm -rf lib && rm -rf es",
+        "build": "NODE_ENV=production ../../node_modules/.bin/rollup --config ./rollup.config.js",
+        "prepare": "npm run clean && npm run build",
+        "start": "PUBLIC_URL=http://localhost/ react-scripts start"
+    },
+    "devDependencies": {
+        "react": ">=15.0.0 || ^16.0.0",
+        "react-dom": ">=15.0.0 || ^16.0.0"
+    },
+    "peerDependencies": {
+        "react": ">=15.0.0 || ^16.0.0",
+        "react-dom": ">=15.0.0 || ^16.0.0"
+    },
+    "dependencies": {
+        "@babel/runtime": "^7.8.7",
+        "@micromag/core": "^0.1.0",
+        "@micromag/screen-ad": "^0.1.0",
+        "@micromag/screen-audio": "^0.1.0",
+        "@micromag/screen-gallery": "^0.1.0",
+        "@micromag/screen-gallery-scroll": "^0.1.0",
+        "@micromag/screen-image": "^0.1.0",
+        "@micromag/screen-map": "^0.1.0",
+        "@micromag/screen-panorama": "^0.1.0",
+        "@micromag/screen-quiz": "^0.1.0",
+        "@micromag/screen-quote": "^0.1.0",
+        "@micromag/screen-slideshow": "^0.1.0",
+        "@micromag/screen-survey-checkbox": "^0.1.0",
+        "@micromag/screen-survey-multiple-choice": "^0.1.0",
+        "@micromag/screen-survey-yes-no": "^0.1.0",
+        "@micromag/screen-text": "^0.1.0",
+        "@micromag/screen-text-image": "^0.1.0",
+        "@micromag/screen-text-video": "^0.1.0",
+        "@micromag/screen-timeline-centered": "^0.1.0",
+        "@micromag/screen-timeline-dots": "^0.1.0",
+        "@micromag/screen-title": "^0.1.0",
+        "@micromag/screen-video": "^0.1.0",
+        "classnames": "^2.2.6",
+        "lodash": "^4.17.15",
+        "prop-types": "^15.7.2"
+    }
+}

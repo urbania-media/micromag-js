@@ -1,0 +1,20 @@
+{
+    "$id": "https://schemas.micromag.ca/0.1/fields/text-style.json",
+    "title": "Text style",
+    "type": "object",
+
+    "properties": {
+        "font": {
+            "type": "object",
+            "title": "Typographie",
+            "$ref": "https://schemas.micromag.ca/0.1/fields/font.json",
+            "component": "font"
+        },
+        "color": {
+            "type": "object",
+            "title": "Couleur",
+            "$ref": "https://schemas.micromag.ca/0.1/fields/color.json",
+            "component": "color"
+        }
+    }
+}
