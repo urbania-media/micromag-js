@@ -12,6 +12,7 @@ import TextComponent from '@micromag/component-text';
 
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
+import { getRenderFormat } from '@micromag/core/utils';
 import { useSwipe } from '@micromag/core/hooks';
 
 import styles from './slideshow.module.scss';
@@ -34,12 +35,13 @@ const defaultProps = {
 
 const SlideshowScreen = ({ box, items: slides, background, renderFormat, className }) => {
     const { width, height, screens } = useScreenSize();
+    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
     const maxWidth = Math.min(width, 500);
-    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
     const { items, bind, index, setIndex } = useSwipe({
         width: maxWidth,
         items: slides,
+        disabled: isSimple,
     });
 
     const onClickNext = useCallback(() => {
@@ -64,6 +66,7 @@ const SlideshowScreen = ({ box, items: slides, background, renderFormat, classNa
                 styles.container,
                 screens.map(size => styles[`screen-${size}`]),
                 {
+                    [styles.disabled]: isSimple,
                     [className]: className,
                 },
             ])}
@@ -71,12 +74,13 @@ const SlideshowScreen = ({ box, items: slides, background, renderFormat, classNa
             <Background {...background} width={width} height={height} className={styles.background}>
                 <Frame width={maxWidth} height={height}>
                     <Box {...box} withSmallSpacing={isSimple}>
-                        {isSimple ? (
+                        {isPlaceholder ? (
                             <Placeholders.Slideshow />
                         ) : (
                             <>
                                 <button {...bind()} type="button" className={styles.slides}>
                                     {items.map(({ display, visibility, transform, item }, i) => {
+                                        if (isSimple && i > 0) return null;
                                         return (
                                             <div
                                                 key={i}
@@ -93,14 +97,24 @@ const SlideshowScreen = ({ box, items: slides, background, renderFormat, classNa
                                         );
                                     })}
                                 </button>
-                                <div className={styles.controls}>
-                                    <Button className={styles.next} onClick={onClickNext}>
-                                        Next
-                                    </Button>
-                                    <Button className={styles.previous} onClick={onClickPrevious}>
-                                        Previous
-                                    </Button>
-                                </div>
+                                {items.length > 1 ? (
+                                    <div className={styles.controls}>
+                                        <Button
+                                            className={styles.next}
+                                            disabled={isSimple}
+                                            onClick={onClickNext}
+                                        >
+                                            Next
+                                        </Button>
+                                        <Button
+                                            className={styles.previous}
+                                            disabled={isSimple}
+                                            onClick={onClickPrevious}
+                                        >
+                                            Previous
+                                        </Button>
+                                    </div>
+                                ) : null}
                             </>
                         )}
                     </Box>

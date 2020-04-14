@@ -2,7 +2,7 @@
 import React from 'react';
 import { withKnobs, select } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
 import { withScreenSize } from '../../../../.storybook/decorators';
-import { title, subtitle, paragraph } from '../../../../.storybook/data';
+import { title, subtitle, text } from '../../../../.storybook/data';
 
 import {
     Split,
@@ -22,9 +22,7 @@ import {
 const props = {
     title: { body: title() },
     subtitle: { body: subtitle() },
-    description: {
-        body: paragraph(),
-    },
+    description: text(),
 };
 
 const options = {

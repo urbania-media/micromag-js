@@ -11,7 +11,7 @@ import Grid from '@micromag/component-grid';
 import Box from '@micromag/component-box';
 
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
-import { getComponentFromName } from '@micromag/core/utils';
+import { getComponentFromName, getRenderFormat } from '@micromag/core/utils';
 import { useScreenSize } from '@micromag/core/contexts';
 
 import styles from './styles.module.scss';
@@ -60,7 +60,7 @@ const TitleScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
+    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
 
     const options = { title, subtitle, description };
     const items = groups.map(its => (
@@ -69,7 +69,7 @@ const TitleScreen = ({
                 const key = `group-item-${name}`;
                 const value = options[name] || null;
 
-                if (isSimple) {
+                if (isPlaceholder) {
                     const Placeholder = getComponentFromName(name, Placeholders);
                     return <Placeholder className={styles.placeholder} key={key} />;
                 }
@@ -88,6 +88,7 @@ const TitleScreen = ({
             className={classNames([
                 styles.container,
                 {
+                    [styles.disabled]: isSimple,
                     [styles[textAlign]]: textAlign !== null,
                     [className]: className,
                 },

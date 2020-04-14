@@ -5,11 +5,13 @@ import classNames from 'classnames';
 
 import Background from '@micromag/component-background';
 import Frame from '@micromag/component-frame';
-import TextComponent from '@micromag/component-text';
 import Box from '@micromag/component-box';
 import Grid from '@micromag/component-grid';
-import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
+import { getRenderFormat } from '@micromag/core/utils';
+
+import QuoteBlock from './QuoteBlock';
 
 import styles from './styles.module.scss';
 
@@ -52,52 +54,18 @@ const QuoteScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
     const { layout = [] } = grid || {};
-    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
-    const item = isSimple ? (
-        <blockquote
-            className={classNames([
-                styles.placeholderContainer,
-                {
-                    [styles.centered]: grid !== null,
-                },
-            ])}
-        >
-            <div className={styles.placeholderInner}>
-                <Placeholders.Text className={styles.placeholder} />
-            </div>
-        </blockquote>
-    ) : (
-        <figure
-            className={classNames([
-                styles.figure,
-                {
-                    [styles.centered]: grid !== null,
-                },
-            ])}
-        >
-            <blockquote className={styles.blockquote}>
-                <TextComponent {...quote} className={styles.quote} />
-            </blockquote>
-            {author || source ? (
-                <figcaption className={styles.caption}>
-                    {author ? (
-                        <>
-                            <span>&mdash;</span>
-                            <TextComponent {...author} className={styles.author} />
-                        </>
-                    ) : null}{' '}
-                    {source ? (
-                        <cite>
-                            <TextComponent {...source} className={styles.source} />
-                        </cite>
-                    ) : null}
-                </figcaption>
-            ) : null}
-        </figure>
+    const item = (
+        <QuoteBlock
+            quote={quote}
+            source={source}
+            author={author}
+            isPlaceholder={isPlaceholder}
+            centered={grid !== null}
+        />
     );
-
     const itemsArray = Array(layout.length || 1);
     const index = Math.min(position - 1, layout.length - 1);
     if (index < itemsArray.length) {
@@ -109,9 +77,7 @@ const QuoteScreen = ({
             className={classNames([
                 styles.container,
                 {
-                    [styles.isPlaceholder]: renderFormat === 'placeholder',
-                    [styles.isPreview]: renderFormat === 'preview',
-                    [styles.isGrid]: grid !== null,
+                    [styles.disabled]: isSimple,
                     [styles[textAlign]]: textAlign !== null,
                     [className]: className,
                 },

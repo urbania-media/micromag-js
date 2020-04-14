@@ -8,8 +8,9 @@ import Frame from '@micromag/component-frame';
 import Box from '@micromag/component-box';
 import Image from '@micromag/component-image';
 
-import { PropTypes as MicromagPropTypes, Placeholders, PreviewBlock } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
+import { getRenderFormat } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
@@ -38,17 +39,15 @@ const defaultProps = {
 
 const AdScreen = ({ ad, background, isFullScreen, renderFormat, className }) => {
     const { width, height } = useScreenSize();
+    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
     const { width: adWidth, height: adHeight, url, iframe, image, target } = ad;
-
-    const isPlaceholder = renderFormat === 'placeholder';
-    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
     const adStyle = {
         width: isFullScreen ? width : adWidth,
         height: isFullScreen ? height : adHeight,
     };
 
-    const preview = isSimple ? <PreviewBlock {...adStyle} /> : null;
+    const preview = isSimple ? <div className={styles.previewBlock} style={adStyle} /> : null;
 
     let inner = null;
     inner =
@@ -79,10 +78,7 @@ const AdScreen = ({ ad, background, isFullScreen, renderFormat, className }) => 
             className={classNames([
                 styles.container,
                 {
-                    [styles.isFullScreen]: isFullScreen,
-                    [styles.isPlaceholder]: isPlaceholder,
                     [styles.disabled]: isSimple,
-                    [styles.isPreview]: renderFormat === 'preview',
                     [className]: className !== null,
                 },
             ])}

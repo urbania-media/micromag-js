@@ -4,10 +4,9 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getComponentFromName } from '@micromag/core/utils';
-import { useComponents } from '@micromag/core/contexts';
-import { FIELD_FORMS_NAMESPACE } from '@micromag/core/components';
+import { useFormsComponents } from '@micromag/core/contexts';
+import { useScreenSchemaFields } from '@micromag/schemas';
 
-import getFieldsFromScreenType from '../../utils/getFieldsFromScreenType';
 import setValue from '../../utils/setFieldValue';
 
 const propTypes = {
@@ -36,16 +35,16 @@ const FieldForm = ({
     gotoFieldForm,
     formComponents,
 }) => {
-    const contextFormComponents = useComponents(FIELD_FORMS_NAMESPACE);
+    const contextFormComponents = useFormsComponents();
     const finalFormComponents = formComponents || contextFormComponents;
     const { type, layout } = value;
-    const fields = useMemo(
-        () =>
-            getFieldsFromScreenType(type, {
-                layout,
-            }),
-        [type, layout],
+    const conditionalData = useMemo(
+        () => ({
+            layout,
+        }),
+        [layout],
     );
+    const fields = useScreenSchemaFields(type, conditionalData);
 
     const field = fieldPath
         .split('.')

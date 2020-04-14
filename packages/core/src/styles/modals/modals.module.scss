@@ -16,22 +16,3 @@
         background-color: rgba($black, 0.2);
     }
 }
-
-.modal {
-    @extend %fullscreen;
-    display: flex;
-    overflow-y: auto;
-
-    &.center {
-        > .inner {
-            margin: auto;
-        }
-    }
-
-    &.top {
-        > .inner {
-            margin: 0 auto;
-            padding: 1.75rem 0;
-        }
-    }
-}

@@ -1,0 +1,50 @@
+{
+    "$id": "https://schemas.micromag.ca/0.1/elements/text.json",
+    "title": "Text",
+    "type": "object",
+
+    "allOf": [
+        {
+            "$ref": "https://schemas.micromag.ca/0.1/elements/element.json"
+        },
+        {
+            "properties": {
+                "body": {
+                    "type": "string",
+                    "component": "text-editor"
+                },
+                "style": {
+                    "type": "object",
+                    "properties": {
+                        "text": {
+                            "title": "Texte",
+                            "$ref": "https://schemas.micromag.ca/0.1/fields/text-style.json",
+                            "componentProps": {
+                                "withBorders": true,
+                                "isSection": true
+                            }
+                        },
+                        "margin": {
+                            "title": "Marges",
+                            "$ref": "https://schemas.micromag.ca/0.1/fields/margin.json",
+                            "componentProps": {
+                                "withBorders": true,
+                                "isSection": true,
+                                "nullEmptyObject": true
+                            }
+                        },
+                        "links": {
+                            "title": "Hyperliens",
+                            "$ref": "https://schemas.micromag.ca/0.1/fields/text-style.json",
+                            "componentProps": {
+                                "withBorders": true,
+                                "isSection": true
+                            }
+                        }
+                    },
+                    "setting": true
+                }
+            }
+        }
+    ]
+}

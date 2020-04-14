@@ -6,7 +6,7 @@ import {
     imageWithRandomSize,
     background,
     backgroundImage,
-    shortText,
+    text,
 } from '../../../../.storybook/data';
 
 import { Top, Center, Bottom } from '../components';
@@ -36,18 +36,14 @@ export const ViewCenter = () => <Center {...props} />;
 export const ViewBottom = () => <Bottom {...props} />;
 
 export const ViewCenterWithText = () => (
-    <Center
-        {...props}
-        text={{ body: shortText() }}
-        textAlign={select('textAlign', options, 'center')}
-    />
+    <Center {...props} text={{ ...text() }} textAlign={select('textAlign', options, 'center')} />
 );
 
 export const ViewCenterWithTextAndBackground = () => (
     <Center
         {...props}
         text={{
-            body: shortText(),
+            ...text(),
             style: { text: { color: '#999', font: { size: '30px', style: { bold: true } } } },
         }}
         textAlign={select('textAlign', options, 'center')}

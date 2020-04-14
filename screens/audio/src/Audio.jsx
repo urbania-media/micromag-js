@@ -1,8 +1,6 @@
-import React from 'react';
-
 import { createLayoutSwitcher } from '@micromag/core';
 import * as LayoutComponents from './components';
 
-const AudioScreen = createLayoutSwitcher(LayoutComponents, LayoutComponents.Center);
+const AudioScreen = createLayoutSwitcher(LayoutComponents);
 
-export default React.memo(AudioScreen);
+export default AudioScreen;

@@ -1,0 +1,22 @@
+{
+    "$id": "https://schemas.micromag.ca/0.1/elements/heading.json",
+    "title": "Heading",
+    "type": "object",
+
+    "allOf": [
+        {
+            "$ref": "https://schemas.micromag.ca/0.1/elements/component.json"
+        },
+        {
+            "$ref": "https://schemas.micromag.ca/0.1/elements/text.json"
+        },
+        {
+            "properties": {
+                "body": {
+                    "type": "string",
+                    "component": "text"
+                }
+            }
+        }
+    ]
+}

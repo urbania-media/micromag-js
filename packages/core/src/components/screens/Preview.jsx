@@ -36,7 +36,7 @@ const ScreenPreview = ({ screen, width, height, className }) => {
         <ScreenSizeProvider size={screenSize}>
             <Screen
                 screen={screen}
-                isPreview
+                renderFormat="preview"
                 className={classNames([
                     styles.container,
                     {

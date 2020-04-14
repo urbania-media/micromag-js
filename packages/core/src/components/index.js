@@ -5,7 +5,9 @@ export { default as Breadcrumb } from './menus/Breadcrumb';
 export { default as Tabs } from './menus/Tabs';
 
 export { default as Modals } from './modals/Modals';
-export { default as Dialog } from './modals/Dialog';
+export { default as Modal } from './modals/Modal';
+export { default as ModalDialog } from './modals/Dialog';
+export { default as ModalPortal } from './modals/Portal';
 
 export { default as CollapsablePanel } from './partials/CollapsablePanel';
 export { default as Element } from './partials/Element';
@@ -14,7 +16,6 @@ export { default as Label } from './partials/Label';
 export { default as Placeholder } from './partials/Placeholder';
 export { default as PlaceholderBlock } from './partials/PlaceholderBlock';
 export { default as Placeholders } from './partials/Placeholders';
-export { default as PreviewBlock } from './partials/PreviewBlock';
 
 export { default as createLayoutSwitcher } from './screens/createLayoutSwitcher';
 export { default as ScreenPlaceholder } from './screens/Placeholder';

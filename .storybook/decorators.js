@@ -14,46 +14,59 @@ export const withGoogleMapsApi = storyFn => {
     );
 };
 
-export const withScreenSize = ({ width = null, height = null, style = null } = {}) => storyFn => {
+export const withScreenSize = ({
+    width = null,
+    height = null,
+    style = null,
+    containerStyle = null,
+} = {}) => storyFn => {
     const { ref: refContainer, screenSize } = useScreenSizeFromElement({
         width,
         height,
         screens: getDeviceScreens(),
     });
 
-    let containerStyle = {
+    let innerStyle = {
         ...style,
     };
 
+    let outerStyle = {};
+
     if (width || height) {
-        containerStyle = {
+        innerStyle = {
             ...style,
             position: 'relative',
-            border: '1px solid #ccc',
-            margin: '10px',
             width,
             height,
+        };
+        outerStyle = {
+            display: 'inline-block',
+            margin: '10px',
+            ...containerStyle,
         };
     }
 
     return (
-        <div
-            ref={refContainer}
-            style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                ...containerStyle,
-            }}
-        >
-            <ScreenSizeProvider size={screenSize}>{storyFn()}</ScreenSizeProvider>
+        <div style={outerStyle}>
+            <div
+                ref={refContainer}
+                style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    ...innerStyle,
+                }}
+            >
+                <ScreenSizeProvider size={screenSize}>{storyFn()}</ScreenSizeProvider>
+            </div>
         </div>
     );
 };
 
-export const withPlaceholderSize = () => withScreenSize({ width: 80, height: 120 });
+export const withPlaceholderSize = () =>
+    withScreenSize({ width: 80, height: 120, containerStyle: { border: '1px solid #ccc' } });
 
 export const withPreviewSize = () =>
     withScreenSize({

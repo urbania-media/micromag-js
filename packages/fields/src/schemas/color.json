@@ -1,0 +1,16 @@
+{
+    "$id": "https://schemas.micromag.ca/0.1/fields/color.json",
+    "title": "Color field",
+    "type": "object",
+
+    "properties": {
+        "color": {
+            "type": "string",
+            "title": "Couleur"
+        },
+        "alpha": {
+            "type": "number",
+            "title": "Transparence"
+        }
+    }
+}

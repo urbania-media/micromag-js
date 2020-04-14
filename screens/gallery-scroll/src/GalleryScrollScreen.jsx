@@ -9,6 +9,7 @@ import Image from '@micromag/component-image';
 import Box from '@micromag/component-box';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
+import { getRenderFormat } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
@@ -41,8 +42,7 @@ const GalleryScrollScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const isPlaceholder = renderFormat === 'placeholder';
-    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
+    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
 
     const images =
         imageList && imageList.length > 0 && !isPlaceholder

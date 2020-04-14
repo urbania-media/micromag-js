@@ -5,4 +5,4 @@ import * as LayoutComponents from './components';
 
 const TimelineDotsScreen = createLayoutSwitcher(LayoutComponents);
 
-export default React.memo(TimelineDotsScreen);
+export default TimelineDotsScreen;

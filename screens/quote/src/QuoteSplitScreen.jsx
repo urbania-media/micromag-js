@@ -9,8 +9,10 @@ import Text from '@micromag/component-text';
 import Grid from '@micromag/component-grid';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
+import { getRenderFormat } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
+import blockStyles from './styles-block.module.scss';
 
 const propTypes = {
     background: MicromagPropTypes.backgroundComponent,
@@ -60,46 +62,52 @@ const QuoteSplitScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
-    const items = isSimple
+    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
+
+    const items = isPlaceholder
         ? [
-            <div className={classNames([styles.splitPlaceholder, styles.placeholderContainer])}>
-                <Placeholders.Text className={styles.placeholder} />
+            <div
+                className={classNames([
+                      blockStyles.splitPlaceholder,
+                      blockStyles.placeholderContainer,
+                  ])}
+              >
+                <Placeholders.Text className={blockStyles.placeholder} />
             </div>,
-            <div className={styles.splitPlaceholder}>
-                <Placeholders.Subtitle className={styles.line} />
+            <div className={blockStyles.splitPlaceholder}>
+                <Placeholders.Line className={blockStyles.line} />
             </div>,
-            <div className={styles.splitPlaceholder}>
-                <Placeholders.Subtitle className={styles.line} />
+            <div className={blockStyles.splitPlaceholder}>
+                <Placeholders.Line className={blockStyles.line} />
             </div>,
           ]
         : [
             <div
                 className={classNames([
-                      styles.figure,
+                      blockStyles.figure,
                       {
-                          [styles.centered]: grid !== null,
+                          [blockStyles.centered]: grid !== null,
                       },
                   ])}
               >
-                <blockquote className={styles.blockquote}>
-                    <Text {...quote} className={styles.quote} />
+                <blockquote className={blockStyles.blockquote}>
+                    <Text {...quote} className={blockStyles.quote} />
                 </blockquote>
             </div>,
             <div
                 className={classNames([
-                      styles.figure,
+                      blockStyles.figure,
                       {
-                          [styles.centered]: grid !== null,
+                          [blockStyles.centered]: grid !== null,
                       },
                   ])}
               >
                 {author ? (
-                    <figcaption className={styles.caption}>
+                    <figcaption className={blockStyles.caption}>
                         {author ? (
                             <>
                                 <span>&mdash;</span>
-                                <Text {...author} className={styles.author} />
+                                <Text {...author} className={blockStyles.author} />
                             </>
                           ) : null}
                     </figcaption>
@@ -107,17 +115,17 @@ const QuoteSplitScreen = ({
             </div>,
             <div
                 className={classNames([
-                      styles.figure,
+                      blockStyles.figure,
                       {
-                          [styles.centered]: grid !== null,
+                          [blockStyles.centered]: grid !== null,
                       },
                   ])}
               >
                 {source ? (
-                    <figcaption className={styles.caption}>
+                    <figcaption className={blockStyles.caption}>
                         {source ? (
                             <cite>
-                                <Text {...source} className={styles.source} />
+                                <Text {...source} className={blockStyles.source} />
                             </cite>
                           ) : null}
                     </figcaption>
@@ -130,9 +138,7 @@ const QuoteSplitScreen = ({
             className={classNames([
                 styles.container,
                 {
-                    [styles.isPlaceholder]: renderFormat === 'placeholder',
-                    [styles.isPreview]: renderFormat === 'preview',
-                    [styles.isGrid]: true,
+                    [styles.disabled]: isSimple,
                     [styles[textAlign]]: textAlign !== null,
                     [className]: className,
                 },

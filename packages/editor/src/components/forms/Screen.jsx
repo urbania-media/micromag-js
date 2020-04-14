@@ -5,8 +5,7 @@ import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, CollapsablePanel } from '@micromag/core/components';
 import { Fields } from '@micromag/fields';
-
-import getFieldsFromScreenType from '../../utils/getFieldsFromScreenType';
+import { useScreenSchemaFields } from '@micromag/schemas';
 
 import styles from '../../styles/forms/screen.module.scss';
 
@@ -27,13 +26,13 @@ const defaultProps = {
 
 const ScreenForm = ({ value, className, gotoFieldForm, onChange, onClickDelete }) => {
     const { type, layout } = value;
-    const fields = useMemo(
-        () =>
-            getFieldsFromScreenType(type, {
-                layout,
-            }),
-        [type, layout],
+    const conditionalData = useMemo(
+        () => ({
+            layout,
+        }),
+        [layout],
     );
+    const fields = useScreenSchemaFields(type, conditionalData);
     return (
         <div
             className={classNames([

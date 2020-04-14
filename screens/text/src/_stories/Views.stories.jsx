@@ -2,12 +2,12 @@
 import React from 'react';
 import { withKnobs, select } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
 import { withScreenSize } from '../../../../.storybook/decorators';
-import { paragraph } from '../../../../.storybook/data';
+import { text } from '../../../../.storybook/data';
 
 import { Top, Center, Bottom } from '../components';
 
 const props = {
-    text: { body: paragraph() },
+    text: text('verylong'),
 };
 
 const options = {

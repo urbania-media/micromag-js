@@ -13,15 +13,19 @@ const chance = new Chance();
 
 const random = array => array[Math.floor(Math.random() * array.length)];
 
-const words = (likelyhood = 100, min = 1, max = 2) =>
+const words = (likelyhood = 100, min = 2, max = 6) =>
     likelyhood === 100 ? randomWords.slice(0, chance.integer({ min, max })).join(' ') : null;
 
-const sentences = (likelyhood = 100, min = 1, max = 2) =>
-    likelyhood === 100 ? randomWords.slice(0, chance.integer({ min, max }) * 5).join(' ') : null;
+const sentences = (likelyhood = 100, min = 30, max = 40) =>
+    likelyhood === 100 ? randomWords.slice(0, chance.integer({ min, max })).join(' ') : null;
 
 const name = (likelyhood = 100) => (likelyhood === 100 ? random(authors) : null);
 
 const company = (likelyhood = 100) => (likelyhood === 100 ? random(companies) : null);
+
+const shortText = ({ likelyhood = 100, min = 10, max = 20 } = {}) => words(likelyhood, min, max);
+
+const longText = ({ likelyhood = 100, min = 30, max = 50 } = {}) => words(likelyhood, min, max);
 
 // Methods
 
@@ -29,25 +33,19 @@ export const title = () => random(titles);
 
 export const subtitle = () => random(subtitles);
 
-export const shortText = ({ likelyhood = 100, min = 10, max = 20 } = {}) =>
-    words(likelyhood, min, max);
-
-export const longText = ({ likelyhood = 100, min = 30, max = 50 } = {}) =>
-    words(likelyhood, min, max);
-
 export const quote = ({ likelyhood = 100, min = 7, max = 20 } = {}) => words(likelyhood, min, max);
 
 export const author = ({ likelyhood = 100 } = {}) => name(likelyhood);
 
 export const source = ({ likelyhood = 100 } = {}) => company(likelyhood);
 
-export const description = ({ likelyhood = 100, min = 1, max = 3 } = {}) =>
+export const description = ({ likelyhood = 100, min = 10, max = 30 } = {}) =>
     sentences(likelyhood, min, max);
 
-export const paragraph = ({ likelyhood = 100, min = 3, max = 6 } = {}) =>
+export const paragraph = ({ likelyhood = 100, min = 30, max = 60 } = {}) =>
     sentences(likelyhood, min, max);
 
-export const text = (type = 'normal') => {
+export const text = (length = 'normal') => {
     let body = '';
     const style = {};
     switch (length) {

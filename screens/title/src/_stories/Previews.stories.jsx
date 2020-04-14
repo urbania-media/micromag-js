@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { withPreviewSize } from '../../../../.storybook/decorators';
-import { background } from '../../../../.storybook/data';
+import { title, subtitle, text, background } from '../../../../.storybook/data';
 
 import {
     Split,
@@ -15,6 +15,9 @@ import {
 } from '../components';
 
 const props = {
+    title: { body: title() },
+    subtitle: { body: subtitle() },
+    description: text(),
     background: background(),
 };
 

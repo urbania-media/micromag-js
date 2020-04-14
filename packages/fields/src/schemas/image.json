@@ -1,0 +1,13 @@
+{
+    "$id": "https://schemas.micromag.ca/0.1/fields/image.json",
+    "title": "Image field",
+    "type": "object",
+
+    "properties": {
+        "url": {
+            "type": "string",
+            "title": "Adresse de l’image",
+            "component": "image-url"
+        }
+    }
+}

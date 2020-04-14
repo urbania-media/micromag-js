@@ -9,6 +9,7 @@ import ImageComponent from '@micromag/component-image';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
+import { getRenderFormat } from '@micromag/core/utils';
 
 import PreviewBackground from './preview.jpg';
 
@@ -32,9 +33,8 @@ const defaultProps = {
 
 const MapScreen = ({ map, background, cardBackground, renderFormat, className }) => {
     const { width, height } = useScreenSize();
+    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
     const [index, setIndex] = useState();
-    const isPlaceholder = renderFormat === 'placeholder';
-    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
 
     const { markers: mapMarkers = [] } = map || {};
     const markers = mapMarkers.map(m => ({ ...m, active: true }));

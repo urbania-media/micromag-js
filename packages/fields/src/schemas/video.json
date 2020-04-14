@@ -1,0 +1,12 @@
+{
+    "$id": "https://schemas.micromag.ca/0.1/fields/video.json",
+    "title": "Video field",
+    "type": "object",
+
+    "properties": {
+        "url": {
+            "type": "string",
+            "title": "URL"
+        }
+    }
+}

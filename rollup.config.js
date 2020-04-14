@@ -20,6 +20,7 @@ export default {
         },
     ],
     plugins: [
+        json(),
         resolve({
             extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
             jail: path.join(process.cwd(), 'src'),
@@ -41,8 +42,6 @@ export default {
             inject: false,
         }),
         image(),
-        json({ compact: true }),
         url({ include: ['**/*.mp4'] }),
     ],
-    // external: ['react', 'prop-types', 'classnames', 'lodash', 'snake-case', /^lodash\//],
 };

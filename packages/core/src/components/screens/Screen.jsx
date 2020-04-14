@@ -3,34 +3,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import * as AppPropTypes from '../../PropTypes';
-import { getComponentFromName } from '../../utils';
-
-// import * as ScreenComponents from './index';
-// TODO: replace this with the real import
-const ScreenComponents = {};
+import getComponentFromName from '../../utils/getComponentFromName';
+import { useScreensComponents } from '../../contexts/ComponentsContext';
 
 const propTypes = {
-    screen: AppPropTypes.component.isRequired,
+    screen: AppPropTypes.storyComponent.isRequired,
     component: PropTypes.node,
-    isPreview: PropTypes.bool,
-    isPlaceholder: PropTypes.bool,
+    components: AppPropTypes.components,
+    renderFormat: AppPropTypes.renderFormat,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     component: null,
-    isPreview: false,
-    isPlaceholder: false,
+    components: null,
+    renderFormat: 'view',
     className: null,
 };
 
-const Screen = ({ screen, component, isPreview, isPlaceholder, className }) => {
+const Screen = ({ screen, components, component, renderFormat, className }) => {
     const { type } = screen;
-    const ScreenComponent = getComponentFromName(type, ScreenComponents) || null;
+    const contextComponents = useScreensComponents();
+    const finalComponents = components || contextComponents;
+    const ScreenComponent = getComponentFromName(type, finalComponents) || null;
 
     return ScreenComponent !== null ? (
         <div className={className}>
-            <ScreenComponent {...screen} isPreview={isPreview} isPlaceholder={isPlaceholder} />
+            <ScreenComponent {...screen} renderFormat={renderFormat} />
         </div>
     ) : (
         <div className={className}>{component}</div>

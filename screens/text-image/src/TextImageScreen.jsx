@@ -9,6 +9,7 @@ import Frame from '@micromag/component-frame';
 import TextComponent from '@micromag/component-text';
 import ImageComponent from '@micromag/component-image';
 import { useScreenSize } from '@micromag/core/contexts';
+import { getRenderFormat } from '@micromag/core/utils';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 
 import styles from './styles.module.scss';
@@ -49,9 +50,9 @@ const TextImageScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const isSimple = renderFormat === 'placeholder' || renderFormat === 'preview';
-
-    const textElement = isSimple ? (
+    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
+    const { direction } = box;
+    const textElement = isPlaceholder ? (
         <div className={styles.placeholderContainer}>
             <Placeholders.ShortText key="text-element" className={styles.placeholder} />
         </div>
@@ -59,7 +60,7 @@ const TextImageScreen = ({
         <TextComponent {...text} key="text-element" className={styles.text} />
     );
 
-    const imageElement = isSimple ? (
+    const imageElement = isPlaceholder ? (
         <Placeholders.SmallImage key="image-element" className={styles.placeholderImage} />
     ) : (
         <ImageComponent {...image} key="image-element" className={styles.image} />
@@ -72,8 +73,8 @@ const TextImageScreen = ({
             className={classNames([
                 styles.container,
                 {
-                    [styles.isPlaceholder]: renderFormat === 'placeholder',
-                    [styles.isPreview]: renderFormat === 'preview',
+                    [styles.disabled]: isSimple,
+                    [styles.sideways]: direction === 'row',
                     [styles[textAlign]]: textAlign !== null,
                     [className]: className !== null,
                 },

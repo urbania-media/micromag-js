@@ -54,6 +54,7 @@
         "@fortawesome/react-fontawesome": "^0.1.9",
         "@micromag/core": "^0.1.0",
         "@micromag/fields": "^0.1.0",
+        "@micromag/schemas": "^0.1.0",
         "@micromag/viewer": "^0.1.0",
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",

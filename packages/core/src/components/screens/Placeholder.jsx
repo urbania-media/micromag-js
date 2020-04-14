@@ -36,7 +36,7 @@ const ScreenPlaceholder = ({ screen, width, height, className }) => {
         <ScreenSizeProvider size={screenSize}>
             <Screen
                 screen={screen}
-                isPlaceholder
+                renderFormat="placeholder"
                 className={classNames([
                     styles.container,
                     {
