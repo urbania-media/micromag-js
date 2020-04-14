@@ -12,7 +12,7 @@
 
     .questionContainer {
         width: 100%;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
 
     .buttons {
@@ -30,12 +30,28 @@
         }
     }
 
+    .submitButton {
+        display: block;
+        margin: 10px auto;
+    }
+
     .placeholder {
         width: 100%;
     }
 
     .buttonPlaceholder {
-        border: 2px solid rgba(0, 0, 0, 0.5);
+        width: 20%;
+        margin-right: 2px;
+        background-color: rgba(0, 0, 0, 0.5);
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    .submitButtonPlaceholder {
+        display: block;
+        margin: 5px auto;
         background-color: rgba(0, 0, 0, 0.5);
     }
 }

@@ -10,12 +10,50 @@
         padding: 20px 15px;
     }
 
-    .choice {
+    .resultContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .choices {
         //
+    }
+
+    .question {
+        padding: 5px 10px;
+        text-align: center;
+    }
+
+    .choice {
+        margin-bottom: 5px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .button {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .questionPlaceholder {
+        width: 100%;
+        margin-bottom: 5px;
+        text-align: center;
     }
 
     .placeholder {
         width: 100%;
         margin: 0;
+    }
+
+    .submitButtonPlaceholder {
+        display: block;
+        width: 20%;
+        margin: 0 auto;
+        margin-top: 5px;
+        background-color: rgba(0, 0, 0, 0.5);
     }
 }

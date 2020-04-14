@@ -1,10 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import TextComponent from '@micromag/component-text';
+import Image from '@micromag/component-image';
 import Background from '@micromag/component-background';
 import Frame from '@micromag/component-frame';
 import Checkbox from '@micromag/component-checkbox';
@@ -17,34 +18,40 @@ import { useScreenSize } from '@micromag/core/contexts';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    choices: PropTypes.arrayOf(MicromagPropTypes.textComponent),
+    question: MicromagPropTypes.textComponent,
+    options: PropTypes.arrayOf(MicromagPropTypes.textComponent),
     result: PropTypes.shape({
         image: MicromagPropTypes.image,
         text: MicromagPropTypes.textComponent,
     }),
-    // value: PropTypes.arrayOf(PropTypes.string),
-    onChange: PropTypes.func,
     background: MicromagPropTypes.backgroundComponent,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
 
 const defaultProps = {
-    choices: null,
+    question: null,
+    options: null,
     result: null,
-    // value: [],
-    onChange: null,
     background: null,
     renderFormat: 'view',
     className: null,
 };
 
-const SurveyCheckbox = ({ choices, result, onChange, background, renderFormat, className }) => {
-    const [value, setValue] = useState([]);
+const SurveyCheckbox = ({ question, options, result, background, renderFormat, className }) => {
+    const [value, setValue] = useState('');
 
     const [answered, setAnswered] = useState(false);
 
     const { width, height } = useScreenSize();
+
+    const { image, text: resultText } = result;
+
+    const onClickSubmit = () => {
+        setAnswered(true);
+    };
+
+    const onChange = useCallback(newValue => setValue(newValue), [value]);
 
     return (
         <div
@@ -61,22 +68,38 @@ const SurveyCheckbox = ({ choices, result, onChange, background, renderFormat, c
                 <Frame width={width} height={height}>
                     <div className={styles.inner}>
                         {answered ? (
+                            <div className={styles.resultContainer}>
+                                <Image className={styles.image} {...image} />
+                                <TextComponent className={styles.result} {...resultText} />
+                            </div>
+                        ) : (
                             <div className={styles.choices}>
-                                {choices.length > 0 && renderFormat !== 'placeholder' ? (
-                                    choices.map((item, i) => (
-                                        <Checkbox
-                                            className={styles.choice}
-                                            onChange={onChange}
-                                            key={`checkbox-${i + 1}`}
-                                            option={<TextComponent {...item} />}
-                                            value={value}
-                                        />
-                                    ))
+                                {options.length > 0 && renderFormat !== 'placeholder' ? (
+                                    <>
+                                        {question !== null ? (
+                                            <TextComponent
+                                                className={styles.question}
+                                                {...question}
+                                            />
+                                        ) : null}
+
+                                        {options.map((item, i) => (
+                                            <Checkbox
+                                                className={styles.choice}
+                                                onChange={onChange}
+                                                key={`checkbox-${i + 1}`}
+                                                option={<TextComponent {...item} />}
+                                                value={value}
+                                            />
+                                        ))}
+                                        <Button className={styles.button} onClick={onClickSubmit}>
+                                            soumettre
+                                        </Button>
+                                    </>
                                 ) : (
                                     <>
-                                        <Checkbox
-                                            className={styles.placeholder}
-                                            option={<Placeholders.Text />}
+                                        <Placeholders.Title
+                                            className={styles.questionPlaceholder}
                                         />
                                         <Checkbox
                                             className={styles.placeholder}
@@ -86,11 +109,14 @@ const SurveyCheckbox = ({ choices, result, onChange, background, renderFormat, c
                                             className={styles.placeholder}
                                             option={<Placeholders.Text />}
                                         />
+                                        <Checkbox
+                                            className={styles.placeholder}
+                                            option={<Placeholders.Text />}
+                                        />
+                                        <Button className={styles.submitButtonPlaceholder} />
                                     </>
                                 )}
                             </div>
-                        ) : (
-                            <TextComponent {...result} />
                         )}
                     </div>
                 </Frame>

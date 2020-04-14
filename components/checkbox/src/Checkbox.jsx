@@ -2,13 +2,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-// import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
-    option: PropTypes.string,
-    value: PropTypes.arrayOf(PropTypes.string),
+    option: MicromagPropTypes.textComponent,
+    value: PropTypes.string,
     onChange: PropTypes.func,
     className: PropTypes.string,
 };
@@ -32,9 +32,9 @@ const Checkbox = ({ option, value, onChange, className }) => {
         >
             <label
                 className={classNames([
-                  styles.label,
+                    styles.label,
                     {
-                        active: value !== null,
+                        active: option.props.body === value,
                     },
                 ])}
             >
@@ -43,8 +43,12 @@ const Checkbox = ({ option, value, onChange, className }) => {
                     type="checkbox"
                     autoComplete="off"
                     value={value}
-                    checked={value !== null}
-                    onChange={onChange}
+                    checked={option.props.body === value}
+                    onChange={e => {
+                        if (e.currentTarget.checked && onChange !== null) {
+                            onChange(option.props.body);
+                        }
+                    }}
                 />
                 {option}
             </label>

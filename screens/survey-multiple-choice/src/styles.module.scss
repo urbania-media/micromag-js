@@ -7,7 +7,7 @@
 
     .inner {
         width: 100%;
-        padding: 20px 15px;
+        padding: 10px 15px;
     }
 
     .questionContainer {
@@ -41,16 +41,28 @@
         margin-right: 5px;
     }
 
+    .submitButton {
+        display: block;
+        width: auto;
+        margin: 0 auto;
+    }
+
     .placeholder {
         width: 100%;
-        margin-bottom: 2px;
+        margin-bottom: 1px;
     }
 
     .buttonPlaceholder {
         display: block;
         width: 100%;
         margin-bottom: 2px;
-        border: 2px solid rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .submitButtonPlaceholder {
+        display: block;
+        margin: 0 auto;
+        width: 20%;
         background-color: rgba(0, 0, 0, 0.5);
     }
 }
