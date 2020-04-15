@@ -61,6 +61,7 @@
         "rc-slider": "^8.7.1",
         "rc-switch": "^1.9.0",
         "react-color": "^2.18.0",
+        "react-select": "^3.1.0",
         "tinycolor2": "^1.4.1"
     }
 }
