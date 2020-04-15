@@ -74,7 +74,7 @@ const SurveyCheckbox = ({ question, options, result, background, renderFormat, c
                             </div>
                         ) : (
                             <div className={styles.choices}>
-                                {options.length > 0 && renderFormat !== 'placeholder' ? (
+                                {options !== null && options.length > 0 && renderFormat !== 'placeholder' ? (
                                     <>
                                         {question !== null ? (
                                             <TextComponent
