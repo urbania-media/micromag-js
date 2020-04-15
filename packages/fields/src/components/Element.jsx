@@ -6,17 +6,18 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import Fields from './Fields';
 
 const propTypes = {
-    fields: MicromagPropTypes.formFields.isRequired,
+    fields: MicromagPropTypes.formFields,
     value: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     onChange: PropTypes.func,
 };
 
 const defaultProps = {
+    fields: [],
     value: null,
     onChange: null,
 };
 
-const ComponentField = ({ fields, value, onChange }) => {
+const ElementField = ({ fields, value, onChange }) => {
     const settingsNames = useMemo(() => fields.filter(({ setting = false }) => setting).map(it => it.name), [fields]);
     const componentFields = useMemo(
         () =>
@@ -55,7 +56,7 @@ const ComponentField = ({ fields, value, onChange }) => {
     return <Fields fields={componentFields} value={componentValue} onChange={componentOnChange} />;
 };
 
-ComponentField.propTypes = propTypes;
-ComponentField.defaultProps = defaultProps;
+ElementField.propTypes = propTypes;
+ElementField.defaultProps = defaultProps;
 
-export default ComponentField;
+export default ElementField;

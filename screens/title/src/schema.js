@@ -15,6 +15,14 @@ export default {
                     enum: ['default', 'split'],
                     default: 'default',
                 },
+                title: {
+                    title: 'Titre',
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/heading.json',
+                    component: 'element',
+                    componentProps: {
+                        isSection: true,
+                    },
+                },
                 background: {
                     title: 'Arrière-Plan',
                     $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
