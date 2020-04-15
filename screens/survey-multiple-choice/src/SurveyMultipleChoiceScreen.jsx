@@ -46,7 +46,7 @@ const SurveyMultipleChoice = ({
 
     const [answered, setAnswered] = useState(false);
 
-    const { image, text: resultText } = result;
+    const { image, text: resultText } = result || {};
 
     const onClickSubmit = () => {
         setAnswered(true);
