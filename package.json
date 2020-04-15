@@ -36,6 +36,7 @@
         "babel-eslint": "10.0.3",
         "babel-plugin-css-modules-transform": "^1.6.2",
         "babel-plugin-react-intl": "^5.1.18",
+        "babel-plugin-static-fs": "^3.0.0",
         "babel-preset-airbnb": "^4.4.0",
         "chance": "^1.1.4",
         "dotenv": "^8.2.0",

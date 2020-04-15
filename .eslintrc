@@ -18,7 +18,7 @@
                 "*.config.js",
                 "scripts/**",
                 "scripts/lib/**",
-                ".storybook/**",
+                ".storybook/*.js",
                 "packages/*/scripts/**",
                 "packages/*/*.config.js",
                 "**/__tests__/**"

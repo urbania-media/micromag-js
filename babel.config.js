@@ -24,5 +24,11 @@ module.exports = api => ({
             },
         ],
         require.resolve('@babel/plugin-proposal-export-namespace-from'),
+        [
+            require.resolve('babel-plugin-static-fs'),
+            {
+                target: 'browser', // defaults to node
+            },
+        ],
     ].filter(Boolean),
 });

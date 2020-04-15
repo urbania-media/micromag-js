@@ -17,7 +17,7 @@ import {
     TopSubtitleReverse,
     TopDescriptionBottomSubtitle,
     TopSubtitleBottomDescription,
-} from '../components';
+} from '../layouts/index';
 
 const props = {
     title: { body: title() },
