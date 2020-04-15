@@ -54,8 +54,9 @@ const EditorScreens = ({ value, isVertical, onClickScreen, onChange, className }
                 onChange(newValue);
             }
             history.push(`/${newScreen.id}`);
+            setCreateModalOpened(false);
         },
-        [value, onChange, history],
+        [value, onChange, history, setCreateModalOpened],
     );
 
     const onOrderChange = useCallback(
@@ -80,7 +81,7 @@ const EditorScreens = ({ value, isVertical, onClickScreen, onChange, className }
         [value, onChange],
     );
 
-    const onClickScreenType = useCallback(type => createScreen(type), [createScreen]);
+    const onClickScreenType = useCallback((e, item) => createScreen(item.type), [createScreen]);
     const onClickAdd = useCallback(() => setCreateModalOpened(true), [setCreateModalOpened]);
     const onCreateModalRequestClose = useCallback(() => setCreateModalOpened(false), [
         setCreateModalOpened,

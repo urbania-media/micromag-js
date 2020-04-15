@@ -6,7 +6,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSizeFromElement, useSwipe } from '@micromag/core/hooks';
 import { ScreenSizeProvider } from '@micromag/core/contexts';
 import { getDeviceScreens } from '@micromag/core/utils';
-// import { Screens } from '@micromag/core/components';
+import { Screen } from '@micromag/core/components';
 
 import Menu from './menus/Viewer';
 
@@ -49,10 +49,12 @@ const Viewer = ({
         screens: deviceScreens,
     });
     const { components = [] } = value;
+
     const { items, bind, setIndex } = useSwipe({ width: screenSize.width, items: components });
 
     const onClickMenuItem = useCallback(
         (e, it, index) => {
+            e.preventDefault();
             if (onScreenChange !== null) {
                 onScreenChange(it, index);
             }
@@ -82,6 +84,9 @@ const Viewer = ({
     );
 
     const screen = components.find(it => it.id === screenId) || null;
+    // console.log('value, components', value, components);
+    // console.log('screen', screen);
+    // console.log(onScreenChange);
 
     return (
         <ScreenSizeProvider size={screenSize}>
@@ -110,21 +115,27 @@ const Viewer = ({
                         const color = (i + 1) * 30;
                         return (
                             <div
-                                {...(interactions.includes('swipe') ? bind() : null)}
-                                {...(interactions.includes('tap')
+                                {...(interactions !== null && interactions.includes('swipe')
+                                    ? bind()
+                                    : null)}
+                                {...(interactions !== null && interactions.includes('tap')
                                     ? { onClick: e => onTap(e, item, i) }
                                     : null)}
                                 key={i}
                                 style={{ display, visibility, transform }}
                                 className={styles.screen}
                             >
-                                <div
-                                    style={{
-                                        width: '100%',
-                                        height: '100%',
-                                        backgroundColor: `rgb(${color}, ${color}, ${color})`,
-                                    }}
-                                />
+                                {screen !== null ? (
+                                    <Screen screen={screen} />
+                                ) : (
+                                    <div
+                                        style={{
+                                            width: '100%',
+                                            height: '100%',
+                                            backgroundColor: `rgb(${color}, ${color}, ${color})`,
+                                        }}
+                                    />
+                                )}
                             </div>
                         );
                     })}

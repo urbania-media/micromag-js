@@ -29,6 +29,7 @@ _notes
 intermediate
 publish
 .idea
+.vscode
 
 node_modules
 *.log
