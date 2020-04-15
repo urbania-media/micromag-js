@@ -1,0 +1,15 @@
+@import '~@micromag/core/scss/variables';
+
+.container {
+    display: flex;
+    position: relative;
+    align-items: center;
+
+    .icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        border-radius: 50%;
+        background-color: grey;
+    }
+}

@@ -1,0 +1,33 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/mixins';
+
+.container {
+    .icon {
+        display: block;
+    }
+
+    &.withoutStyle {
+        @extend %reset-button;
+    }
+
+    &.withIcon {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+
+        .label {
+            margin-left: 0.5em;
+        }
+
+        .right {
+            margin-left: 0.5em;
+        }
+    }
+
+    &.withIconColumns {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+    }
+}

@@ -1,0 +1,42 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/mixins';
+
+.container {
+    position: relative;
+
+    .navBarContainer {
+        justify-content: space-between;
+        padding: 10px 0;
+    }
+
+    ::placeholder {
+        font-size: 1rem;
+    }
+
+    .button {
+        margin-left: 5px;
+    }
+
+    .activeFilters {
+        border-top: solid 1px $border-color;
+    }
+
+    .searchFilter {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    &.filtersOpened {
+        .searchFilter {
+            position: relative;
+        }
+
+        .tags {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+}

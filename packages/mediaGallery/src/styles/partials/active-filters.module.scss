@@ -1,0 +1,31 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/mixins';
+
+.container {
+    position: relative;
+    padding: 10px;
+
+    .heading {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .title {
+        color: $gray-500;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-bold;
+        text-transform: uppercase;
+    }
+
+    .resetButton {
+        outline: none;
+        font-size: $font-size-sm;
+    }
+
+    .activeTag {
+        margin-top: 5px;
+        margin-right: 5px;
+    }
+
+}
