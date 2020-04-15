@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading, react/prop-types */
-import React, { useMemo, useCallback } from 'react';
-import isObject from 'lodash/isObject';
+import React, { useCallback } from 'react';
 import AsyncCreatableSelect from 'react-select/async-creatable';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -26,18 +25,7 @@ const defaultProps = {
     className: null,
 };
 
-export const getOptions = options =>
-    options.map(it =>
-        isObject(it)
-            ? it
-            : {
-                  value: it,
-                  label: it,
-              },
-    );
-
 const Tokens = ({ value, options, onChange, className }) => {
-    const finalOptions = useMemo(() => getOptions(options), [options]);
 
     const loadOptions = useCallback(
         inputValue => {
@@ -65,7 +53,7 @@ const Tokens = ({ value, options, onChange, className }) => {
             <AsyncCreatableSelect
                 isMulti
                 loadOptions={inputValue => loadOptions(inputValue)}
-                defaultOptions={finalOptions}
+                defaultOptions={options}
                 components={{
                     DropdownIndicator: () => null,
                     IndicatorSeparator: () => null,

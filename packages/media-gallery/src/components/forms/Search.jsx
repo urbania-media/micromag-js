@@ -166,19 +166,21 @@ const Search = ({ intl, value, onChange, onFiltersOpened, className }) => {
                     <Button
                         className={styles.button}
                         type="submit"
-                        label="Ajouter"
                         theme="outline-secondary"
                         icon={<FontAwesomeIcon icon={faPlus} />}
-                    />
+                    >
+                        Ajouter
+                    </Button>
                 ) : null}
                 {filtersOpened ? (
                     <Button
                         className={styles.button}
                         type="submit"
-                        label="Annuler"
                         theme="outline-secondary"
                         onClick={resetFilters}
-                    />
+                    >
+                        Annuler
+                    </Button>
                 ) : null}
             </nav>
 

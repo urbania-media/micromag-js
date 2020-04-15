@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useUrlGenerator } from '@folklore/react-container';
 import { useHistory } from 'react-router';
 
 import { Checkboxes } from '@micromag/fields';
@@ -92,7 +91,6 @@ const MediaGallery = ({
     options,
     className,
 }) => {
-    const urlGenerator = useUrlGenerator();
     const history = useHistory();
 
     const [items, setItems] = useState(initialItems);
@@ -139,7 +137,7 @@ const MediaGallery = ({
 
     const onSearchSubmit = useCallback(
         searchingQuery => {
-            history.push(`${urlGenerator.route('search')}?q=${encodeURIComponent(searchingQuery)}`);
+            history.push(`/search?q=${encodeURIComponent(searchingQuery)}`);
         },
         [searchQuery],
     );
