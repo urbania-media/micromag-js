@@ -1,7 +1,7 @@
 export { default as Checkboxes } from './Checkboxes';
 export { default as Color } from './Color';
 export { default as ColorPicker } from './ColorPicker';
-export { default as Component } from './Component';
+export { default as Element } from './Element';
 export { default as Fields } from './Fields';
 export { default as Font } from './Font';
 export { default as FontFamily } from './FontFamily';

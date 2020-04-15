@@ -36,7 +36,7 @@ class SchemasRepository {
     }
 
     getSchema(id, namespace = null) {
-        if (isObject(id)) {
+        if (isObject(id) && !Array.isArray(id)) {
             return id;
         }
         const schemaId = this.getSchemaId(id, namespace);
@@ -51,24 +51,6 @@ class SchemasRepository {
         const url = `${baseId.replace(/\/$/, '')}/${namespace}`;
         const pattern = new RegExp(`^${url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'i');
         return this.schemas.filter(({ $id: id }) => pattern.test(id));
-    }
-
-    getFieldsFromSchema(schemaId, conditionalData) {
-        const schema = this.getSchema(schemaId);
-        if (schema === null) {
-            return null;
-        }
-        const properties = this.getPropertiesFromSchema(schema, conditionalData);
-        return [...this.getFieldsFromProperties(properties)];
-    }
-
-    getDefaultValuesFromSchema(schemaId, conditionalData) {
-        const schema = this.getSchema(schemaId);
-        if (schema === null) {
-            return null;
-        }
-        const properties = this.getPropertiesFromSchema(schema, conditionalData);
-        return { ...this.getDefaultValuesFromProperties(properties) };
     }
 
     getPropertiesFromSchema(schemaId, conditionalData) {
@@ -116,6 +98,24 @@ class SchemasRepository {
             }),
             {},
         );
+    }
+
+    getFieldsFromSchema(schemaId, conditionalData) {
+        const schema = this.getSchema(schemaId);
+        if (schema === null) {
+            return null;
+        }
+        const properties = this.getPropertiesFromSchema(schema, conditionalData);
+        return [...this.getFieldsFromProperties(properties)];
+    }
+
+    getDefaultValuesFromSchema(schemaId, conditionalData) {
+        const schema = this.getSchema(schemaId);
+        if (schema === null) {
+            return null;
+        }
+        const properties = this.getPropertiesFromSchema(schema, conditionalData);
+        return { ...this.getDefaultValuesFromProperties(properties) };
     }
 
     getDefaultValuesFromProperties(properties) {
