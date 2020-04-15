@@ -28,7 +28,7 @@ const propTypes = {
 const defaultProps = {
     question: null,
     options: null,
-    result: null,
+    result: {},
     background: null,
     renderFormat: 'view',
     className: null,

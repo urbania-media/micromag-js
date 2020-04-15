@@ -53,6 +53,7 @@ const Viewer = ({
 
     const onClickMenuItem = useCallback(
         (e, it, index) => {
+            e.preventDefault();
             if (onScreenChange !== null) {
                 onScreenChange(it, index);
             }

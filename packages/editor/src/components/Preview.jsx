@@ -43,6 +43,7 @@ const defaultProps = {
 const EditorPreview = ({ value, devices, device: initialDevice, className, onScreenChange }) => {
     const screen = useScreen();
     const screens = useScreens();
+
     // Get device
     const [deviceId, setDeviceId] = useState(initialDevice || devices[0].id);
     const onClickDeviceItem = useCallback((e, it) => setDeviceId(it.id), [setDeviceId]);
