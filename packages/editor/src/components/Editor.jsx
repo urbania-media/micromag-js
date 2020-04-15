@@ -64,7 +64,13 @@ const Editor = ({
         }
     }, [screenSize.screen]);
 
-    const onPreviewScreenChange = useCallback(it => history.push(`/${it.id}`), [history]);
+    const onPreviewScreenChange = useCallback(
+        it => {
+            onChange(value);
+            history.push(`/${it.id}`);
+        },
+        [value, history],
+    );
 
     return (
         <ModalsProvider>

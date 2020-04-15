@@ -31,7 +31,6 @@ const ElementComponent = ({
     className,
     placeholderClassName,
 }) => {
-    // console.log(name, props, isPlaceholder, className, placeholderClassName);
     if (!name) {
         return 'Bad component name';
     }

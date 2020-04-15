@@ -18,28 +18,15 @@
                     "properties": {
                         "text": {
                             "title": "Texte",
-                            "$ref": "https://schemas.micromag.ca/0.1/fields/text-style.json",
-                            "componentProps": {
-                                "withBorders": true,
-                                "isSection": true
-                            }
+                            "$ref": "https://schemas.micromag.ca/0.1/fields/text-style.json"
                         },
                         "margin": {
                             "title": "Marges",
-                            "$ref": "https://schemas.micromag.ca/0.1/fields/margin.json",
-                            "componentProps": {
-                                "withBorders": true,
-                                "isSection": true,
-                                "nullEmptyObject": true
-                            }
+                            "$ref": "https://schemas.micromag.ca/0.1/fields/margin.json"
                         },
                         "links": {
                             "title": "Hyperliens",
-                            "$ref": "https://schemas.micromag.ca/0.1/fields/text-style.json",
-                            "componentProps": {
-                                "withBorders": true,
-                                "isSection": true
-                            }
+                            "$ref": "https://schemas.micromag.ca/0.1/fields/text-style.json"
                         }
                     },
                     "setting": true

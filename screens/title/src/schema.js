@@ -1,3 +1,5 @@
+import { names } from './layouts/names';
+
 export default {
     $id: 'https://schemas.micromag.ca/0.1/screens/title.json',
     group: 'Title',
@@ -12,24 +14,17 @@ export default {
                 layout: {
                     type: 'string',
                     title: 'Mise en page',
-                    enum: ['default', 'split'],
+                    enum: names,
                     default: 'default',
                 },
                 title: {
                     title: 'Titre',
                     $ref: 'https://schemas.micromag.ca/0.1/elements/heading.json',
-                    component: 'element',
-                    componentProps: {
-                        isSection: true,
-                    },
+                    component: 'element'
                 },
                 background: {
                     title: 'Arrière-Plan',
-                    $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
-                    componentProps: {
-                        withBorders: true,
-                        isSection: true,
-                    },
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/background.json'
                 },
             },
         },
