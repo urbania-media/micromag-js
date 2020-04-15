@@ -32,7 +32,7 @@ const propTypes = {
 const defaultProps = {
     question: null,
     options: null,
-    result: {},
+    result: null,
     background: null,
     renderFormat: 'view',
     className: null,
@@ -45,7 +45,7 @@ const SurveyCheckbox = ({ question, options, result, background, renderFormat, c
 
     const { width, height } = useScreenSize();
 
-    const { image, text: resultText } = result;
+    const { image, text: resultText } = result || {};
 
     const onClickSubmit = () => {
         setAnswered(true);

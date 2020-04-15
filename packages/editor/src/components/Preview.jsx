@@ -106,6 +106,7 @@ const EditorPreview = ({ value, devices, device: initialDevice, className, onScr
                                         value={value}
                                         screen={screenId}
                                         className={styles.story}
+                                        interactions={null}
                                         onScreenChange={onScreenChange}
                                     />
                                 )}

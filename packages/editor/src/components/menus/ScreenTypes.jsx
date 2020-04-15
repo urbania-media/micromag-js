@@ -68,7 +68,6 @@ const ScreenTypes = ({ types, className, onClickItem }) => {
             }, []),
         [finalTypes],
     );
-    console.log(groups);
     return (
         <div
             className={classNames([
@@ -87,6 +86,7 @@ const ScreenTypes = ({ types, className, onClickItem }) => {
                                 items={items}
                                 withPlaceholder
                                 itemClassName={styles.item}
+                                previewMinWidth={120}
                                 onClickItem={onClickItem}
                             />
                         </div>

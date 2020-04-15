@@ -28,7 +28,7 @@ const propTypes = {
 const defaultProps = {
     question: null,
     options: null,
-    result: {},
+    result: null,
     background: null,
     renderFormat: 'view',
     className: null,
@@ -46,7 +46,7 @@ const SurveyMultipleChoice = ({
 
     const [answered, setAnswered] = useState(false);
 
-    const { image, text: resultText } = result;
+    const { image, text: resultText } = result || {};
 
     const onClickSubmit = () => {
         setAnswered(true);
