@@ -71,32 +71,40 @@ export const text = (length = 'normal') => {
 };
 
 export const image = ({ width = 800, height = 800 } = {}) => ({
-    url: `https://picsum.photos/${width}/${height}`,
-    imageWidth: width,
-    imageHeight: height,
+    image: {
+        url: `https://picsum.photos/${width}/${height}`,
+        width,
+        height,
+    },
 });
 
 export const imageWithRandomSize = ({ min = 100, max = 800 } = {}) => {
     const width = chance.integer({ min, max });
     const height = chance.integer({ min, max });
     return {
-        url: `https://picsum.photos/${width}/${height}`,
-        imageWidth: width,
-        imageHeight: height,
+        image: {
+            url: `https://picsum.photos/${width}/${height}`,
+            width,
+            height,
+        },
     };
 };
 
 export const imageSquareWithRandomSize = ({ min = 100, max = 800 } = {}) => {
     const size = chance.integer({ min, max });
     return {
-        url: `https://picsum.photos/${size}/${size}`,
-        imageWidth: size,
-        imageHeight: size,
+        image: {
+            url: `https://picsum.photos/${size}/${size}`,
+            width: size,
+            height: size,
+        },
     };
 };
 
 export const images = ({ count = 3, width = 200, height = 120 } = {}) => {
-    return [...Array(count)].map(i => ({ url: `https://picsum.photos/${width}/${height}` }));
+    return [...Array(count)].map(i => ({
+        image: { url: `https://picsum.photos/${width}/${height}`, width, height },
+    }));
 };
 
 export const videoFile = () => ({

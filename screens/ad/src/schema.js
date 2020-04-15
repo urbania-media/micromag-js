@@ -11,8 +11,8 @@ export default {
                 layout: {
                     type: 'string',
                     title: 'Mise en page',
-                    enum: ['default', 'split'],
-                    default: 'default',
+                    enum: ['center', 'top', 'bottom'],
+                    default: 'center',
                 },
                 background: {
                     title: 'Arrière-Plan',

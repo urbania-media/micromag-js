@@ -6,7 +6,7 @@ const LayoutGrid = ({ layouts, children }) => (
     <div className={styles.container}>
         <div className={styles.items}>
             {layouts.map(layout => (
-                <div className={styles.item}>
+                <div key={`layout-${layout}`} className={styles.item}>
                     <h4>{layout}</h4>
                     <div className={styles.screen}>{children(layout)}</div>
                 </div>

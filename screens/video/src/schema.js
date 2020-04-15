@@ -11,7 +11,7 @@ export default {
                 layout: {
                     type: 'string',
                     title: 'Mise en page',
-                    enum: ['default', 'split'],
+                    enum: ['default'],
                     default: 'default',
                 },
                 background: {
