@@ -5,6 +5,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import image from '@rollup/plugin-image';
 import json from '@rollup/plugin-json';
 import url from '@rollup/plugin-url';
+import replace from '@rollup/plugin-replace';
 import path from 'path';
 import generateScopedName from './scripts/lib/generateScopedName';
 
@@ -43,5 +44,8 @@ export default {
         }),
         image(),
         url({ include: ['**/*.mp4'] }),
+        replace({
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+        }),
     ],
 };
