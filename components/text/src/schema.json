@@ -3,6 +3,8 @@
     "title": "Text",
     "type": "object",
 
+    "component": "element",
+
     "allOf": [
         {
             "$ref": "https://schemas.micromag.ca/0.1/elements/element.json"
