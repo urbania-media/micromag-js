@@ -16,6 +16,7 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     ad: MicromagPropTypes.adFormat,
+    box: MicromagPropTypes.box,
     background: MicromagPropTypes.backgroundComponent,
     isFullScreen: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
@@ -31,13 +32,14 @@ const defaultProps = {
         iframe: null,
         image: null,
     },
+    box: null,
     background: null,
     isFullScreen: false,
     renderFormat: 'view',
     className: null,
 };
 
-const AdScreen = ({ ad, background, isFullScreen, renderFormat, className }) => {
+const AdScreen = ({ ad, box, background, isFullScreen, renderFormat, className }) => {
     const { width, height } = useScreenSize();
     const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
     const { width: adWidth, height: adHeight, url, iframe, image, target } = ad;
@@ -90,7 +92,7 @@ const AdScreen = ({ ad, background, isFullScreen, renderFormat, className }) => 
                 className={styles.background}
             >
                 <Frame className={styles.frame} width={width} height={height}>
-                    <Box withSmallSpacing={isSimple}>
+                    <Box {...box} withSmallSpacing={isSimple}>
                         {isPlaceholder ? (
                             <Placeholders.Ad className={styles.placeholder} />
                         ) : (

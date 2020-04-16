@@ -8,10 +8,13 @@ import { getSizeWithinBounds } from '@folklore/size';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    url: PropTypes.string,
-    imageWidth: PropTypes.number,
-    imageHeight: PropTypes.number,
+    image: PropTypes.shape({
+        url: PropTypes.string,
+        width: PropTypes.number,
+        height: PropTypes.number,
+    }),
     caption: PropTypes.string,
+    credits: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number,
     maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -21,10 +24,13 @@ const propTypes = {
 };
 
 const defaultProps = {
-    url: null,
-    imageWidth: null,
-    imageHeight: null,
+    image: {
+        url: null,
+        width: null,
+        height: null,
+    },
     caption: null,
+    credits: null,
     width: null,
     height: null,
     maxWidth: null,
@@ -33,18 +39,8 @@ const defaultProps = {
     className: null,
 };
 
-const Image = ({
-    url,
-    caption,
-    imageWidth,
-    imageHeight,
-    width,
-    height,
-    maxWidth,
-    maxHeight,
-    fit,
-    className,
-}) => {
+const Image = ({ image, caption, credits, width, height, maxWidth, maxHeight, fit, className }) => {
+    const { url, width: imageWidth, height: imageHeight } = image || {};
     const imgRef = useRef(null);
     const [imageSize, setImageSize] = useState({
         width: imageWidth,
@@ -68,7 +64,7 @@ const Image = ({
     const img = (
         <img
             src={url}
-            alt={caption}
+            alt={caption || credits}
             className={classNames([
                 styles.img,
                 {

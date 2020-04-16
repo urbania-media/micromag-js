@@ -3,6 +3,18 @@
 
 .container {
     @extend %screen;
+
+    &.top {
+        .card {
+            top: 0;
+            bottom: auto;
+            transform: translate3d(0, -100%, 0);
+
+            &.active {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+    }
 }
 
 .cards {

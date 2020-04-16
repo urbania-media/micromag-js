@@ -21,6 +21,7 @@ const propTypes = {
     items: MicromagPropTypes.slides,
     box: MicromagPropTypes.boxComponent,
     background: MicromagPropTypes.backgroundComponent,
+    textAlign: MicromagPropTypes.textAlign,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -29,11 +30,19 @@ const defaultProps = {
     items: [],
     box: null,
     background: null,
+    textAlign: 'left',
     renderFormat: 'view',
     className: null,
 };
 
-const SlideshowScreen = ({ box, items: slides, background, renderFormat, className }) => {
+const SlideshowScreen = ({
+    box,
+    items: slides,
+    background,
+    textAlign,
+    renderFormat,
+    className,
+}) => {
     const { width, height, screens } = useScreenSize();
     const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
     const maxWidth = Math.min(width, 500);
@@ -67,6 +76,7 @@ const SlideshowScreen = ({ box, items: slides, background, renderFormat, classNa
                 screens.map(size => styles[`screen-${size}`]),
                 {
                     [styles.disabled]: isSimple,
+                    [styles[textAlign]]: textAlign !== null,
                     [className]: className,
                 },
             ])}

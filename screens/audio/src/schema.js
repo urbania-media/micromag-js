@@ -14,6 +14,21 @@ export default {
                     enum: ['default', 'split'],
                     default: 'default',
                 },
+                audio: {
+                    title: 'Audio',
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/audio.json',
+                    component: 'element',
+                },
+                image: {
+                    title: 'Image',
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/image.json',
+                    component: 'element',
+                },
+                text: {
+                    title: 'Texte',
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/text.json',
+                    component: 'element',
+                },
                 background: {
                     title: 'Arrière-Plan',
                     $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',

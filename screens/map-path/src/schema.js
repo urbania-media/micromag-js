@@ -15,6 +15,14 @@ export default {
                     enum: ['default', 'split'],
                     default: 'default',
                 },
+                cardBackground: {
+                    title: 'Arrière-Plan',
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
+                    componentProps: {
+                        withBorders: true,
+                        isSection: true,
+                    },
+                },
                 background: {
                     title: 'Arrière-Plan',
                     $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',

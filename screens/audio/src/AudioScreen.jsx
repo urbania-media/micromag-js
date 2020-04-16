@@ -20,6 +20,7 @@ const propTypes = {
     image: MicromagPropTypes.imageComponent,
     box: MicromagPropTypes.boxComponent,
     background: MicromagPropTypes.backgroundComponent,
+    maxWidth: PropTypes.number,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -38,11 +39,21 @@ const defaultProps = {
     text: null,
     box: null,
     background: null,
+    maxWidth: 300,
     renderFormat: 'view',
     className: null,
 };
 
-const AudioScreen = ({ audio, image, text, box, background, renderFormat, className }) => {
+const AudioScreen = ({
+    audio,
+    image,
+    text,
+    box,
+    background,
+    maxWidth,
+    renderFormat,
+    className,
+}) => {
     const { width, height } = useScreenSize();
     const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
 
@@ -64,8 +75,8 @@ const AudioScreen = ({ audio, image, text, box, background, renderFormat, classN
                         ) : (
                             <ImageComponent
                                 {...image}
-                                maxWidth={Math.min(width, 300)}
-                                maxHeight={Math.min(width, 300)}
+                                maxWidth={Math.min(width, maxWidth)}
+                                maxHeight={Math.min(width, maxWidth)}
                                 fit={{ size: 'cover' }}
                                 className={styles.image}
                             />

@@ -12,8 +12,18 @@ export default {
                 layout: {
                     type: 'string',
                     title: 'Mise en page',
-                    enum: ['default', 'split'],
+                    enum: ['default'],
                     default: 'default',
+                },
+                text: {
+                    title: 'Texte',
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/text.json',
+                    component: 'element',
+                },
+                image: {
+                    title: 'Image',
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/image.json',
+                    component: 'element',
                 },
                 background: {
                     title: 'Arrière-Plan',

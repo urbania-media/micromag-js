@@ -3,6 +3,18 @@
 
 .container {
     @extend %screen;
+
+    &.top {
+        .card {
+            top: 0;
+            bottom: auto;
+            transform: translate3d(0, -100%, 0);
+
+            &.active {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+    }
 }
 
 .cards {
@@ -22,11 +34,9 @@
 .card {
     position: absolute;
     z-index: 3;
-
+    bottom: 0;
     width: 100%;
-
     transform: translate3d(0, 100%, 0);
-
     background-color: $white;
     color: $black;
     text-align: left;

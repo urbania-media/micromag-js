@@ -19,6 +19,7 @@ import styles from './styles.module.scss';
 const propTypes = {
     map: MicromagPropTypes.map,
     background: MicromagPropTypes.backgroundComponent,
+    align: PropTypes.string,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -26,11 +27,12 @@ const propTypes = {
 const defaultProps = {
     map: null,
     background: null,
+    align: 'bottom',
     renderFormat: 'view',
     className: null,
 };
 
-const MapPathScreen = ({ map, background, renderFormat, className }) => {
+const MapPathScreen = ({ map, background, align, renderFormat, className }) => {
     const { width, height } = useScreenSize();
     const { markers: mapMarkers = [] } = map || {};
     const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
@@ -73,6 +75,7 @@ const MapPathScreen = ({ map, background, renderFormat, className }) => {
             className={classNames([
                 styles.container,
                 {
+                    [styles[align]]: align !== null,
                     [className]: className !== null,
                 },
             ])}

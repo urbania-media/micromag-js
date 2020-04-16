@@ -12,8 +12,13 @@ export default {
                 layout: {
                     type: 'string',
                     title: 'Mise en page',
-                    enum: ['default', 'split'],
+                    enum: ['default'],
                     default: 'default',
+                },
+                // Complete this
+                images: {
+                    type: 'array',
+                    title: 'Images',
                 },
                 background: {
                     title: 'Arrière-Plan',

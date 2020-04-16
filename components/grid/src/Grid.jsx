@@ -55,7 +55,7 @@ const Grid = ({
     columnClassName,
 }) => {
     const items = reverse && itemList ? itemList.reverse() : itemList;
-    const spacing = withSmallSpacing ? 5 : defaultSpacing;
+    const spacing = withSmallSpacing ? 4 : defaultSpacing;
     let itemIndex = 0;
     const finalLayout = layout || [
         {

@@ -1,5 +1,5 @@
 import { createLayoutSwitcher } from '@micromag/core';
-import * as LayoutComponents from './components';
+import * as LayoutComponents from './layouts';
 
 const QuoteScreen = createLayoutSwitcher(LayoutComponents);
 
