@@ -1,3 +1,5 @@
+import { names } from './layouts/names';
+
 export default {
     $id: 'https://schemas.micromag.ca/0.1/screens/timeline-dots.json',
     group: 'Timeline',
@@ -12,7 +14,7 @@ export default {
                 layout: {
                     type: 'string',
                     title: 'Mise en page',
-                    enum: ['default', 'split'],
+                    enum: names,
                     default: 'default',
                 },
                 background: {
