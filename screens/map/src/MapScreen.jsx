@@ -19,6 +19,7 @@ const propTypes = {
     map: MicromagPropTypes.map,
     background: MicromagPropTypes.backgroundComponent,
     cardBackground: MicromagPropTypes.backgroundComponent,
+    align: PropTypes.string,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -27,11 +28,12 @@ const defaultProps = {
     map: null,
     background: null,
     cardBackground: null,
+    align: 'bottom',
     renderFormat: 'view',
     className: null,
 };
 
-const MapScreen = ({ map, background, cardBackground, renderFormat, className }) => {
+const MapScreen = ({ map, background, cardBackground, align, renderFormat, className }) => {
     const { width, height } = useScreenSize();
     const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
     const [index, setIndex] = useState();
@@ -54,7 +56,7 @@ const MapScreen = ({ map, background, cardBackground, renderFormat, className })
     const preview = isPlaceholder ? (
         <Placeholders.Map />
     ) : (
-        <ImageComponent url={PreviewBackground} width={width} height={height} />
+        <ImageComponent image={{ url: PreviewBackground }} width={width} height={height} />
     );
 
     return (
@@ -62,6 +64,7 @@ const MapScreen = ({ map, background, cardBackground, renderFormat, className })
             className={classNames([
                 styles.container,
                 {
+                    [styles[align]]: align !== null,
                     [styles.disabled]: isSimple,
                     [className]: className !== null,
                 },

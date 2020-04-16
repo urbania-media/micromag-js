@@ -191,6 +191,7 @@ class SchemasRepository {
             component = null,
             componentProps = null,
             title: label = null,
+            enum: enums,
             setting = false,
             advanced = false,
             properties,
@@ -201,6 +202,7 @@ class SchemasRepository {
             label,
             setting,
             advanced,
+            enums,
             ...componentProps,
         };
         return type === 'object'

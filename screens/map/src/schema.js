@@ -12,8 +12,16 @@ export default {
                 layout: {
                     type: 'string',
                     title: 'Mise en page',
-                    enum: ['default', 'split'],
+                    enum: ['default'],
                     default: 'default',
+                },
+                cardBackground: {
+                    title: 'Arrière-Plan',
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
+                    componentProps: {
+                        withBorders: true,
+                        isSection: true,
+                    },
                 },
                 background: {
                     title: 'Arrière-Plan',

@@ -16,6 +16,7 @@ export default {
                     title: 'Mise en page',
                     enum: names,
                     default: 'default',
+                    component: 'layout'
                 },
                 title: {
                     title: 'Titre',
