@@ -11,6 +11,7 @@ export { default as GridLayout } from './GridLayout';
 export { default as Image } from './Image';
 export { default as ImageUrl } from './ImageUrl';
 export { default as Images } from './Images';
+export { default as Layout } from './Layout';
 export { default as Margin } from './Margin';
 export { default as Number } from './Number';
 export { default as ObjectFitSize } from './ObjectFitSize';
