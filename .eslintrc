@@ -16,11 +16,10 @@
         {
             "files": [
                 "*.config.js",
-                "scripts/**",
-                "scripts/lib/**",
-                ".storybook/*.js",
-                "packages/*/scripts/**",
-                "packages/*/*.config.js",
+                "./scripts/**",
+                "./scripts/lib/**",
+                "./packages/*/scripts/**",
+                "./packages/*/*.config.js",
                 "**/__tests__/**"
             ],
             "rules": {
@@ -35,8 +34,5 @@
                 "no-console": 0
             }
         }
-    ],
-    "globals": {
-        "__DEV__": true
-    }
+    ]
 }

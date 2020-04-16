@@ -31,6 +31,7 @@
         "@storybook/addon-console": "^1.2.1",
         "@storybook/addon-docs": "^5.3.17",
         "@storybook/addon-knobs": "^5.3.17",
+        "@storybook/addon-toolbars": "^6.0.0-alpha.27",
         "@storybook/addon-viewport": "^5.3.17",
         "@storybook/preset-create-react-app": "^2.0.0",
         "@storybook/react": "^5.3.18",

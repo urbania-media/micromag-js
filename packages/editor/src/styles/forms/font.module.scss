@@ -1,0 +1,9 @@
+@import '~@micromag/core/scss/variables';
+
+.container {
+    position: relative;
+
+    .button {
+        margin-top: $spacer;
+    }
+}
