@@ -13,6 +13,7 @@ import { FieldsProvider } from '@micromag/fields';
 import Screens from './Screens';
 import EditorPreview from './Preview';
 import EditorForm from './Form';
+import FormsProvider from './forms/FormsProvider';
 
 import styles from '../styles/editor.module.scss';
 import messages from '../messages';
@@ -75,102 +76,104 @@ const Editor = ({
     return (
         <ModalsProvider>
             <FieldsProvider>
-                <ScreenSizeProvider size={screenSize}>
-                    <div
-                        className={classNames([
-                            styles.container,
-                            screenSize !== null
-                                ? screenSize.screens.map(
-                                      screenName => styles[`screen-${screenName}`],
-                                  )
-                                : null,
-                            {
-                                [styles.fullscreen]: fullscreen,
-                                [className]: className,
-                            },
-                        ])}
-                        ref={refContainer}
-                    >
+                <FormsProvider>
+                    <ScreenSizeProvider size={screenSize}>
                         <div
                             className={classNames([
-                                styles.top,
+                                styles.container,
+                                screenSize !== null
+                                    ? screenSize.screens.map(
+                                          screenName => styles[`screen-${screenName}`],
+                                      )
+                                    : null,
                                 {
-                                    [styles.hidden]: isMobile && mobileView === 'screens',
+                                    [styles.fullscreen]: fullscreen,
+                                    [className]: className,
                                 },
                             ])}
+                            ref={refContainer}
                         >
-                            <Button
-                                size="sm"
-                                theme="outline-primary"
-                                className={styles.back}
-                                onClick={onClickScreens}
+                            <div
+                                className={classNames([
+                                    styles.top,
+                                    {
+                                        [styles.hidden]: isMobile && mobileView === 'screens',
+                                    },
+                                ])}
                             >
-                                {messages.screens}
-                            </Button>
-                            {mobileView !== 'form' ? (
-                                <Button size="sm" className={styles.edit} onClick={onClickEdit}>
-                                    {messages.edit}
-                                </Button>
-                            ) : null}
-                            {mobileView === 'form' ? (
                                 <Button
                                     size="sm"
-                                    className={styles.edit}
-                                    onClick={onClickViewScreen}
+                                    theme="outline-primary"
+                                    className={styles.back}
+                                    onClick={onClickScreens}
                                 >
-                                    {messages.viewScreen}
+                                    {messages.screens}
                                 </Button>
-                            ) : null}
+                                {mobileView !== 'form' ? (
+                                    <Button size="sm" className={styles.edit} onClick={onClickEdit}>
+                                        {messages.edit}
+                                    </Button>
+                                ) : null}
+                                {mobileView === 'form' ? (
+                                    <Button
+                                        size="sm"
+                                        className={styles.edit}
+                                        onClick={onClickViewScreen}
+                                    >
+                                        {messages.viewScreen}
+                                    </Button>
+                                ) : null}
+                            </div>
+                            <div className={styles.inner}>
+                                <div
+                                    className={classNames([
+                                        styles.left,
+                                        {
+                                            [styles.visible]: !isMobile || mobileView === 'screens',
+                                        },
+                                    ])}
+                                >
+                                    <Screens
+                                        value={value}
+                                        onChange={onChange}
+                                        onClickScreen={onClickScreen}
+                                        isVertical={!isMobile}
+                                        className={styles.screens}
+                                    />
+                                </div>
+                                <div
+                                    className={classNames([
+                                        styles.center,
+                                        {
+                                            [styles.visible]: !isMobile || mobileView === 'preview',
+                                        },
+                                    ])}
+                                >
+                                    <EditorPreview
+                                        value={value}
+                                        className={styles.preview}
+                                        onScreenChange={onPreviewScreenChange}
+                                    />
+                                </div>
+                                <div
+                                    className={classNames([
+                                        styles.right,
+                                        {
+                                            [styles.visible]: !isMobile || mobileView === 'form',
+                                        },
+                                    ])}
+                                >
+                                    <EditorForm
+                                        value={value}
+                                        onChange={onChange}
+                                        className={styles.form}
+                                    />
+                                </div>
+                            </div>
+                            <Modals />
                         </div>
-                        <div className={styles.inner}>
-                            <div
-                                className={classNames([
-                                    styles.left,
-                                    {
-                                        [styles.visible]: !isMobile || mobileView === 'screens',
-                                    },
-                                ])}
-                            >
-                                <Screens
-                                    value={value}
-                                    onChange={onChange}
-                                    onClickScreen={onClickScreen}
-                                    isVertical={!isMobile}
-                                    className={styles.screens}
-                                />
-                            </div>
-                            <div
-                                className={classNames([
-                                    styles.center,
-                                    {
-                                        [styles.visible]: !isMobile || mobileView === 'preview',
-                                    },
-                                ])}
-                            >
-                                <EditorPreview
-                                    value={value}
-                                    className={styles.preview}
-                                    onScreenChange={onPreviewScreenChange}
-                                />
-                            </div>
-                            <div
-                                className={classNames([
-                                    styles.right,
-                                    {
-                                        [styles.visible]: !isMobile || mobileView === 'form',
-                                    },
-                                ])}
-                            >
-                                <EditorForm
-                                    value={value}
-                                    onChange={onChange}
-                                    className={styles.form}
-                                />
-                            </div>
-                        </div>
-                        <Modals />
-                    </div>
-                </ScreenSizeProvider>
+                    </ScreenSizeProvider>
+                </FormsProvider>
             </FieldsProvider>
         </ModalsProvider>
     );

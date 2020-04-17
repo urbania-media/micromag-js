@@ -4,8 +4,8 @@ import { withKnobs, select } from '@storybook/addon-knobs'; // eslint-disable-li
 import {
     PlaceholderScreen,
     PreviewScreen,
-    LayoutSwitcher,
     LayoutGrid,
+    LayoutSwitcher,
     Screen,
 } from '../../../../.storybook/components';
 import { title, subtitle, text } from '../../../../.storybook/data';
@@ -31,6 +31,7 @@ export default {
     decorators: [withKnobs],
 };
 
+// eslint-disable-next-line
 export const Placeholders = () => (
     <LayoutGrid layouts={layouts}>
         {layout => (

@@ -8,22 +8,25 @@ import Fields from './Fields';
 const propTypes = {
     fields: MicromagPropTypes.formFields,
     value: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    gotoFieldForm: PropTypes.func,
     onChange: PropTypes.func,
 };
 
 const defaultProps = {
     fields: [],
     value: null,
+    gotoFieldForm: null,
     onChange: null,
 };
 
-const ElementField = ({ fields, value, onChange }) => {
-    const settingsNames = useMemo(() => fields.filter(({ setting = false }) => setting).map(it => it.name), [fields]);
-    const componentFields = useMemo(
-        () =>
-            fields.filter(({ setting = false }) => !setting),
+const ElementField = ({ fields, value, gotoFieldForm, onChange }) => {
+    const settingsNames = useMemo(
+        () => fields.filter(({ setting = false }) => setting).map(it => it.name),
         [fields],
     );
+    const componentFields = useMemo(() => fields.filter(({ setting = false }) => !setting), [
+        fields,
+    ]);
     const componentValue = useMemo(() => {
         if (value === null || settingsNames === null) {
             return value;
@@ -53,7 +56,14 @@ const ElementField = ({ fields, value, onChange }) => {
         [value, onChange],
     );
 
-    return <Fields fields={componentFields} value={componentValue} onChange={componentOnChange} />;
+    return (
+        <Fields
+            fields={componentFields}
+            value={componentValue}
+            gotoFieldForm={gotoFieldForm}
+            onChange={componentOnChange}
+        />
+    );
 };
 
 ElementField.propTypes = propTypes;

@@ -34,9 +34,9 @@ const defaultProps = {
 };
 
 const EditForm = ({ value, className, onChange, formComponents }) => {
-    const contextFformComponents = useFormsComponents();
-    const finalFformComponents = formComponents || contextFformComponents;
-    const formRegEx = Object.keys(finalFformComponents)
+    const contextFormComponents = useFormsComponents();
+    const finalFormComponents = formComponents || contextFormComponents;
+    const formRegEx = Object.keys(finalFormComponents)
         .map(name => slug(name))
         .join('|');
 
@@ -97,8 +97,7 @@ const EditForm = ({ value, className, onChange, formComponents }) => {
     const onClickBack = useCallback(() => history.goBack(), [history]);
 
     const gotoFieldForm = useCallback(
-        (field, formName) =>
-            history.push(`/${screenId}/${field.replace(/\./g, '/')}/${slug(formName)}`),
+        (field, formName) => history.push(`/${screenId}/${field.replace(/\./g, '/')}/${slug(formName)}`),
         [history, screenId],
     );
 

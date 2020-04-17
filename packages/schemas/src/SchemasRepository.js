@@ -159,12 +159,21 @@ class SchemasRepository {
             allOf: subAllOf = null,
             ...other
         } = property;
+        const subSchema = subRef !== null ? this.getSchema(subRef) : null;
+        const {
+            $id,
+            type: subType,
+            allOf,
+            properties,
+            ...subOther
+        } = subSchema || {};
         const hasProperties =
             type === 'object' || subProperties !== null || subRef !== null || subAllOf !== null;
         return hasProperties
             ? {
                   type: this.getTypeFromProperty(property),
                   properties: this.getPropertiesFromSchema(property, conditionalData),
+                  ...subOther,
                   ...other,
               }
             : property;

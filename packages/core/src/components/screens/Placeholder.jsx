@@ -51,4 +51,4 @@ const ScreenPlaceholder = ({ screen, width, height, className }) => {
 ScreenPlaceholder.propTypes = propTypes;
 ScreenPlaceholder.defaultProps = defaultProps;
 
-export default ScreenPlaceholder;
+export default React.memo(ScreenPlaceholder);

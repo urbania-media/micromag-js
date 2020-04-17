@@ -51,4 +51,4 @@ const ScreenPreview = ({ screen, width, height, className }) => {
 ScreenPreview.propTypes = propTypes;
 ScreenPreview.defaultProps = defaultProps;
 
-export default ScreenPreview;
+export default React.memo(ScreenPreview);

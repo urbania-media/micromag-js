@@ -13,6 +13,7 @@ module.exports = {
         '@storybook/addon-docs',
         // '@storybook/addon-a11y/register',
         '@storybook/addon-actions',
+        // path.join(__dirname, './addons/layouts/register')
     ],
     webpackFinal: async (config, { configType }) => {
         const packagesAliases = getPackagesAliases();

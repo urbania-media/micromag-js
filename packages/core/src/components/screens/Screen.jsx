@@ -39,4 +39,4 @@ const Screen = ({ screen, components, component, renderFormat, className }) => {
 Screen.propTypes = propTypes;
 Screen.defaultProps = defaultProps;
 
-export default Screen;
+export default React.memo(Screen);

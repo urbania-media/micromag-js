@@ -20,8 +20,15 @@ export default {
                 },
                 title: {
                     title: 'Titre',
-                    $ref: 'https://schemas.micromag.ca/0.1/elements/heading.json',
-                    component: 'element'
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/heading.json'
+                },
+                subtitle: {
+                    title: 'Sous-titre',
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/heading.json'
+                },
+                description: {
+                    title: 'Description',
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/text.json'
                 },
                 background: {
                     title: 'Arrière-Plan',

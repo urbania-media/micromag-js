@@ -1,7 +1,12 @@
 import '../packages/core/src/styles/vendor.scss';
 
 // import '@storybook/addon-console';
-import { addParameters } from '@storybook/react';
+import { addParameters, addDecorator } from '@storybook/react';
+import withScreenLayout from './addons/layouts/withScreenLayout';
+import withScreenLayoutGrid from './addons/layouts/withScreenLayoutGrid';
+
+// addDecorator(withScreenLayout);
+// addDecorator(withScreenLayoutGrid);
 
 addParameters({
     viewport: {
