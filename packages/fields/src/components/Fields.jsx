@@ -89,6 +89,7 @@ const Fields = ({
         );
         const fieldElement = (
             <FieldComponent
+                withBorders={isFields && subFields.length > 1}
                 {...field}
                 name={fieldName}
                 value={value !== null ? value[name] || null : null}
@@ -98,27 +99,41 @@ const Fields = ({
             />
         );
         return !withoutFieldRow ? (
-            <FieldRow
-                key={`field-${name}`}
-                label={label}
-                isHorizontal={FieldComponent.isHorizontal || isHorizontal || false}
-                isSection={isSection || isFields}
-                withoutLabel={withoutLabel || FieldComponent.withoutLabel || false}
-                withSettings={
-                    withSettings || fieldsAsSettings || FieldComponent.withSettings || false
-                }
-                gotoSettings={() => gotoFieldForm(fieldName, 'settings')}
+            <div
                 className={classNames([
-                    styles.row,
+                    styles.field,
+                    {
+                        [styles.isSection]: isSection || isFields,
+                    },
+                ])}
+            >
+                <FieldRow
+                    key={`field-${name}`}
+                    label={label}
+                    isHorizontal={isHorizontal || FieldComponent.isHorizontal || false}
+                    isSection={isSection}
+                    withoutLabel={withoutLabel || FieldComponent.withoutLabel || false}
+                    withSettings={
+                        withSettings || fieldsAsSettings || FieldComponent.withSettings || false
+                    }
+                    withPanel={FieldComponent.withPanel || false}
+                    gotoSettings={() => gotoFieldForm(fieldName, 'settings')}
+                    className={styles.fieldRow}
+                >
+                    {fieldElement}
+                </FieldRow>
+            </div>
+        ) : (
+            <div
+                className={classNames([
+                    styles.field,
                     {
                         [styles.isSection]: isSection || isFields,
                     },
                 ])}
             >
                 {fieldElement}
-            </FieldRow>
-        ) : (
-            fieldElement
+            </div>
         );
     };
 

@@ -1,3 +1,13 @@
+/* stylelint-disable selector-class-pattern */
+@import '~@micromag/core/scss/variables';
+
+@mixin label {
+    > .label,
+    > :global(.form-row) > .label {
+        @content;
+    }
+}
+
 .container {
     margin: 0;
 
@@ -6,19 +16,24 @@
     }
 
     &.isSection {
-        /* stylelint-disable selector-class-pattern */
-        > .label,
-        > :global(.form-row) > .label {
+        @include label {
             font-size: 0.9rem;
             font-weight: bold;
         }
-        /* stylelint-enable selector-class-pattern */
     }
 
     &.isHorizontal {
-        .label {
+        display: flex;
+        flex-wrap: nowrap;
+        width: 100%;
+
+        @include label {
+            max-width: 7em;
             padding-top: 0;
             padding-bottom: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .field {
@@ -26,6 +41,17 @@
             flex-direction: row;
             justify-content: flex-end;
             width: 100%;
+        }
+
+        > :global(.col-auto),
+        > :global(.col) {
+            &:first-child {
+                padding-left: 0;
+            }
+
+            &:last-child {
+                padding-right: 0;
+            }
         }
     }
 }

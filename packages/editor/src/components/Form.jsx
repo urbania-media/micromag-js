@@ -6,8 +6,8 @@ import { useHistory, useRouteMatch } from 'react-router';
 import TransitionGroup from 'react-addons-css-transition-group';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { slug } from '@micromag/core/utils';
-import { useFormsComponents } from '@micromag/core/contexts';
-import { Empty } from '@micromag/core/components';
+import { useFormsComponents, usePanels } from '@micromag/core/contexts';
+import { Empty, Panels } from '@micromag/core/components';
 
 import { updateScreen, duplicateScreen, deleteScreen } from '../utils';
 import useFormTransition from '../hooks/useFormTransition';
@@ -48,6 +48,10 @@ const EditForm = ({ value, className, onChange, formComponents }) => {
     } = useRouteMatch({
         path: [`/:screen/:field+/:form(${formRegEx})`, '/:screen', '*'],
     });
+
+    // Panels
+    const { panels = null } = usePanels();
+    const hasPanels = panels !== null && panels.length > 0;
 
     // Get screen
     const { components: screens = [] } = value || {};
@@ -97,7 +101,8 @@ const EditForm = ({ value, className, onChange, formComponents }) => {
     const onClickBack = useCallback(() => history.goBack(), [history]);
 
     const gotoFieldForm = useCallback(
-        (field, formName) => history.push(`/${screenId}/${field.replace(/\./g, '/')}/${slug(formName)}`),
+        (field, formName) =>
+            history.push(`/${screenId}/${field.replace(/\./g, '/')}/${slug(formName)}`),
         [history, screenId],
     );
 
@@ -118,6 +123,7 @@ const EditForm = ({ value, className, onChange, formComponents }) => {
                         url={url}
                         screenId={screenId}
                         field={fieldParams}
+                        panels={panels}
                         className={styles.breadcrumb}
                     />
                 ) : null}
@@ -127,37 +133,49 @@ const EditForm = ({ value, className, onChange, formComponents }) => {
                     onClickDelete={onClickDelete}
                 />
             </div>
-            <div className={styles.content}>
+            <div
+                className={classNames([
+                    styles.content,
+                    {
+                        [styles.hasPanels]: hasPanels,
+                    },
+                ])}
+            >
+                {screen === null ? (
+                    <Empty className={styles.empty}>Sélectionnez un écran...</Empty>
+                ) : null}
+
                 {screen !== null ? (
-                    <TransitionGroup
-                        transitionName={transitionName}
-                        transitionEnterTimeout={transitionTimeout}
-                        transitionLeaveTimeout={transitionTimeout}
-                    >
-                        {fieldParams !== null ? (
-                            <FieldForm
-                                key={`field-${fieldParams}-${formParams}`}
-                                value={screen}
-                                field={fieldParams.replace(/\//g, '.')}
-                                form={formParams}
-                                className={styles.form}
-                                gotoFieldForm={gotoFieldForm}
-                                onChange={onScreenFormChange}
-                            />
-                        ) : (
-                            <ScreenForm
-                                key={`screen-${screen.id}`}
-                                value={screen}
-                                className={styles.form}
-                                onChange={onScreenFormChange}
-                                gotoFieldForm={gotoFieldForm}
-                                onClickDelete={onClickScreenDelete}
-                            />
-                        )}
-                    </TransitionGroup>
-                ) : (
-                    <Empty className={styles.placeholder}>Ajoutez un écran</Empty>
-                )}
+                    <>
+                        <TransitionGroup
+                            transitionName={transitionName}
+                            transitionEnterTimeout={transitionTimeout}
+                            transitionLeaveTimeout={transitionTimeout}
+                        >
+                            {fieldParams !== null ? (
+                                <FieldForm
+                                    key={`field-${fieldParams}-${formParams}`}
+                                    value={screen}
+                                    field={fieldParams.replace(/\//g, '.')}
+                                    form={formParams}
+                                    className={styles.form}
+                                    gotoFieldForm={gotoFieldForm}
+                                    onChange={onScreenFormChange}
+                                />
+                            ) : (
+                                <ScreenForm
+                                    key={`screen-${screen.id}`}
+                                    value={screen}
+                                    className={styles.form}
+                                    onChange={onScreenFormChange}
+                                    gotoFieldForm={gotoFieldForm}
+                                    onClickDelete={onClickScreenDelete}
+                                />
+                            )}
+                        </TransitionGroup>
+                        <Panels className={styles.panels} />
+                    </>
+                ) : null}
             </div>
         </div>
     );

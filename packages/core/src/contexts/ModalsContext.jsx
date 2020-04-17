@@ -5,17 +5,18 @@ import PropTypes from 'prop-types';
 import getDisplayName from '../utils/getDisplayName';
 
 const ModalsContext = React.createContext({
-    containerRef: null,
+    container: null,
 });
 
-export const useModals = () => useContext(ModalsContext);
+export const useModals = () => useContext(ModalsContext) || {};
 
 export const withModals = WrappedComponent => {
     const WithModalsComponent = props => (
         <ModalsContext.Consumer>
-            {({ modals, containerRef, register, unregister }) => (
+            {({ modals, container, setContainer, register, unregister }) => (
                 <WrappedComponent
-                    modalsContainerRef={containerRef}
+                    modalsContainer={container}
+                    setModalsContainer={setContainer}
                     modals={modals}
                     registerModal={register}
                     unregisterModal={unregister}
@@ -37,18 +38,18 @@ const defaultProps = {
     container: null,
 };
 
-export const ModalsProvider = ({ children, container }) => {
-    const containerRef = useRef(container);
+export const ModalsProvider = ({ children, container: initialContainer }) => {
+    const [container, setContainer] = useState(initialContainer);
     const [modals, setModals] = useState([]);
     const modalsRef = useRef(modals);
     const register = useCallback(
-        (id, options = null) => {
+        (id, data = null) => {
             const { current: currentModals } = modalsRef;
             const newModals = [
                 ...currentModals,
                 {
                     id,
-                    ...options,
+                    ...data,
                 },
             ];
             setModals(newModals);
@@ -69,7 +70,7 @@ export const ModalsProvider = ({ children, container }) => {
         [modals, setModals],
     );
     return (
-        <ModalsContext.Provider value={{ modals, containerRef, register, unregister }}>
+        <ModalsContext.Provider value={{ modals, container, setContainer, register, unregister }}>
             {children}
         </ModalsContext.Provider>
     );

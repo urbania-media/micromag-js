@@ -13,7 +13,8 @@ const useFormTransition = (url, screenIndex, styles) => {
         const currentPartsCount = url.split('/').length;
         const previousPartsCount = lastUrl.split('/').length;
         if (screenIndex !== lastScreenIndex) {
-            return screenIndex > lastScreenIndex ? 'bottom' : 'top';
+            // return screenIndex > lastScreenIndex ? 'bottom' : 'top';
+            return null;
         }
         return currentPartsCount > previousPartsCount ? 'right' : 'left';
     }, [url, screenIndex]);

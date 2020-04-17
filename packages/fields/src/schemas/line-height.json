@@ -1,0 +1,11 @@
+{
+    "$id": "https://schemas.micromag.ca/0.1/fields/line-height.json",
+    "title": "Line height",
+    "type": "number",
+
+    "mininmum": -2,
+    "maximum": 2,
+    "multiplesOf": 1,
+
+    "component": "slider-point"
+}

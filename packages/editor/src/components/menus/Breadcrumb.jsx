@@ -13,6 +13,7 @@ const propTypes = {
     value: MicromagPropTypes.story,
     screenId: PropTypes.string,
     field: PropTypes.string,
+    panels: PropTypes.arrayOf(PropTypes.object),
     url: PropTypes.string.isRequired,
     className: PropTypes.string,
 };
@@ -21,10 +22,11 @@ const defaultProps = {
     value: null,
     screenId: null,
     field: null,
+    panels: null,
     className: null,
 };
 
-const Breadcrumb = ({ intl, value, screenId, field, url, className }) => {
+const Breadcrumb = ({ intl, value, screenId, field, panels, url, className }) => {
     const { components: screens = [] } = value || {};
     const repository = useSchemasRepository();
 
@@ -98,6 +100,12 @@ const Breadcrumb = ({ intl, value, screenId, field, url, className }) => {
             ).items;
         }
 
+        const panelsItems = panels.map(panel => ({
+            label: panel.title,
+            url,
+            active: false,
+        }));
+
         const finalItems = [
             {
                 label: intl.formatMessage(messages.screenIndexName, {
@@ -107,6 +115,7 @@ const Breadcrumb = ({ intl, value, screenId, field, url, className }) => {
                 active: false,
             },
             ...fieldItems,
+            ...panelsItems,
         ].filter(it => it !== null);
 
         const lastItemsIndex = finalItems.length - 1;
@@ -120,7 +129,7 @@ const Breadcrumb = ({ intl, value, screenId, field, url, className }) => {
                   }
                 : it,
         );
-    }, [intl, repository, screens, screenId, field, url]);
+    }, [intl, repository, screens, screenId, field, panels, url]);
 
     return <BaseBreadcrumb items={items} className={className} />;
 };

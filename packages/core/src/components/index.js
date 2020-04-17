@@ -9,6 +9,10 @@ export { default as Modal } from './modals/Modal';
 export { default as ModalDialog } from './modals/Dialog';
 export { default as ModalPortal } from './modals/Portal';
 
+export { default as Panels } from './panels/Panels';
+export { default as Panel } from './panels/Panel';
+export { default as PanelPortal } from './panels/Portal';
+
 export { default as CollapsablePanel } from './partials/CollapsablePanel';
 export { default as Element } from './partials/Element';
 export { default as Empty } from './partials/Empty';

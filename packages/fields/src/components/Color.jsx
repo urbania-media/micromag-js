@@ -1,40 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleRight} from '@fortawesome/free-solid-svg-icons';
-import { Button } from '@micromag/core/components';
+import { Panel } from '@micromag/core/components';
 import { getStyleFromColor } from '@micromag/core/utils';
+
+import ColorPicker from './ColorPicker';
 
 import styles from '../styles/color.module.scss';
 
 const propTypes = {
+    description: PropTypes.string,
     value: PropTypes.shape({
         color: PropTypes.string,
         alpha: PropTypes.number,
     }),
     className: PropTypes.string,
-    gotoForm: PropTypes.func,
+    // closePanel: PropTypes.func,
+    panelOpened: PropTypes.bool,
+    onChange: PropTypes.func,
 };
 
 const defaultProps = {
+    description: null,
     value: null,
     className: null,
-    gotoForm: null,
+    // closePanel: null,
+    panelOpened: false,
+    onChange: null,
 };
 
-const ColorField = ({ value, className, gotoForm }) => {
+const ColorField = ({ description, value, panelOpened, onChange, className }) => {
     const { color = null, alpha = null } = value || {};
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-        >
-            <Button withoutStyle className={styles.button} onClick={() => gotoForm('color')}>
+        <>
+            <div
+                className={classNames([
+                    styles.container,
+                    {
+                        [className]: className !== null,
+                    },
+                ])}
+            >
                 {color !== null || alpha !== null ? (
                     <>
                         <span className={styles.name}>{color}</span>
@@ -50,14 +56,21 @@ const ColorField = ({ value, className, gotoForm }) => {
                 ) : (
                     <span className={styles.noValue}>Sélectionnez une couleur</span>
                 )}
-                <FontAwesomeIcon icon={faAngleRight} className={styles.icon} />
-            </Button>
-        </div>
+            </div>
+            {panelOpened ? (
+                <Panel title={description}>
+                    <div className={styles.picker}>
+                        <ColorPicker value={value} onChange={onChange} />
+                    </div>
+                </Panel>
+            ) : null}
+        </>
     );
 };
 
 ColorField.propTypes = propTypes;
 ColorField.defaultProps = defaultProps;
 ColorField.isHorizontal = true;
+ColorField.withPanel = true;
 
 export default ColorField;

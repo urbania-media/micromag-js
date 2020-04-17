@@ -160,13 +160,7 @@ class SchemasRepository {
             ...other
         } = property;
         const subSchema = subRef !== null ? this.getSchema(subRef) : null;
-        const {
-            $id,
-            type: subType,
-            allOf,
-            properties,
-            ...subOther
-        } = subSchema || {};
+        const { $id, type: subType, allOf, properties, ...subOther } = subSchema || {};
         const hasProperties =
             type === 'object' || subProperties !== null || subRef !== null || subAllOf !== null;
         return hasProperties
@@ -198,21 +192,32 @@ class SchemasRepository {
         const {
             type,
             component = null,
-            componentProps = null,
             title: label = null,
+            description = null,
             enum: enums,
+            minimum,
+            maximum,
+            multiplesOf,
             setting = false,
             advanced = false,
             properties,
+            i18n = null,
         } = property;
+        const numberProps = {
+            min: minimum,
+            max: maximum,
+            steps: multiplesOf,
+        };
         const field = {
             name,
             component: component || (type === 'object' ? 'fields' : type),
             label,
+            description,
             setting,
             advanced,
             enums,
-            ...componentProps,
+            i18n,
+            ...(type === 'number' ? numberProps : null),
         };
         return type === 'object'
             ? {
