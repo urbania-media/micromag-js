@@ -10,10 +10,10 @@ const propTypes = {
     items: PropTypes.shape({
         heading: MicromagPropTypes.text,
     }),
-    background: PropTypes.shape({
-        image: MicromagPropTypes.image,
-        color: MicromagPropTypes.color,
-    }),
+    // background: PropTypes.shape({
+    //     image: MicromagPropTypes.image,
+    //     color: MicromagPropTypes.color,
+    // }),
 };
 
 const defaultProps = {
@@ -22,16 +22,16 @@ const defaultProps = {
         { heading: { body: title() }, text: { body: description() } },
         { heading: { body: title() }, text: { body: description() } },
     ],
-    background: {
-        image: {
-            url: 'https://picsum.photos/400/600',
-        },
-        color: '#ddd',
-    },
+//     background: {
+//         image: {
+//             url: 'https://picsum.photos/400/600',
+//         },
+//         color: '#ddd',
+//     },
 };
 
-const TimelineHeading = ({ items, background, ...otherProps }) => {
-    return <TimelineDotsScreen items={items} background={background} {...otherProps} />;
+const TimelineHeading = ({ items, ...otherProps }) => {
+    return <TimelineDotsScreen items={items} {...otherProps} />;
 };
 
 TimelineHeading.propTypes = propTypes;

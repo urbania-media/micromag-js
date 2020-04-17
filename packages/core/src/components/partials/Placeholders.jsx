@@ -100,6 +100,15 @@ export const MediumImage = props => (
     />
 );
 
+export const Button = props => (
+    <Placeholder
+        {...props}
+        className={classNames([props.className, styles.button])}
+        height={0.3}
+        lines={1}
+    />
+);
+
 export const Video = props => (
     <PlaceholderBlock
         {...props}
@@ -212,6 +221,7 @@ export default {
     Image,
     SmallImage,
     MediumImage,
+    Button,
     Video,
     VideoFull,
     VideoLoop,

@@ -9,9 +9,9 @@ import { description, title } from '../../../../.storybook/data';
 const propTypes = {
     title: MicromagPropTypes.textComponent,
     items: PropTypes.arrayOf(MicromagPropTypes.textComponent),
-    background: PropTypes.shape({
-        image: MicromagPropTypes.image,
-    }),
+    // background: PropTypes.shape({
+    //     image: MicromagPropTypes.image,
+    // }),
 };
 
 const defaultProps = {
@@ -21,20 +21,19 @@ const defaultProps = {
         { text: { body: description() } },
         { text: { body: description() } },
     ],
-    background: {
-        image: {
-            url: 'https://picsum.photos/400/600',
-        },
-        color: '#ddd',
-    },
+    // background: {
+    //     image: {
+    //         url: 'https://picsum.photos/400/600',
+    //     },
+    //     color: '#ddd',
+    // },
 };
 
-const TimelineText = ({ title: titleValue, items, background, ...otherProps }) => {
+const TimelineText = ({ title: titleValue, items, ...otherProps }) => {
     return (
         <TimelineDotsScreen
             title={titleValue}
             items={items}
-            background={background}
             {...otherProps}
         />
     );

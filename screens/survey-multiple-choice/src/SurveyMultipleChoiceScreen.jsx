@@ -97,10 +97,10 @@ const SurveyMultipleChoice = ({
                                         ))
                                     ) : (
                                         <>
-                                            <Button className={styles.buttonPlaceholder} />
-                                            <Button className={styles.buttonPlaceholder} />
-                                            <Button className={styles.buttonPlaceholder} />
-                                            <Button className={styles.buttonPlaceholder} />
+                                            <Placeholders.Button className={styles.buttonPlaceholder} />
+                                            <Placeholders.Button className={styles.buttonPlaceholder} />
+                                            <Placeholders.Button className={styles.buttonPlaceholder} />
+                                            <Placeholders.Button className={styles.buttonPlaceholder} />
                                         </>
                                     )}
                                 </div>
@@ -109,7 +109,7 @@ const SurveyMultipleChoice = ({
                                         soumettre
                                     </Button>
                                 ) : (
-                                    <Button className={styles.submitButtonPlaceholder} />
+                                    <Placeholders.Button className={styles.submitButtonPlaceholder} />
                                 )}
                             </>
                         )}

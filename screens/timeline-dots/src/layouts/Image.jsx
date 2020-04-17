@@ -10,9 +10,9 @@ const propTypes = {
     items: PropTypes.shape({
         direction: MicromagPropTypes.flexDirection,
     }),
-    background: PropTypes.shape({
-        image: MicromagPropTypes.image,
-    }),
+    // background: PropTypes.shape({
+    //     image: MicromagPropTypes.image,
+    // }),
 };
 
 const defaultProps = {
@@ -36,16 +36,16 @@ const defaultProps = {
             text: { body: description() },
         },
     ],
-    background: {
-        image: {
-            url: 'https://picsum.photos/400/600',
-        },
-        color: '#ddd',
-    },
+    // background: {
+    //     image: {
+    //         url: 'https://picsum.photos/400/600',
+    //     },
+    //     color: '#ddd',
+    // },
 };
 
-const TimelineImage = ({ items, background, ...otherProps}) => {
-    return <TimelineDotsScreen items={items} background={background} {...otherProps} />;
+const TimelineImage = ({ items, ...otherProps}) => {
+    return <TimelineDotsScreen items={items} {...otherProps} />;
 };
 
 TimelineImage.propTypes = propTypes;

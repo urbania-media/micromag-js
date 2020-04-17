@@ -85,8 +85,8 @@ const SurveyYesNo = ({ question, background, result, onClick, renderFormat, clas
                                         </>
                                     ) : (
                                         <>
-                                            <Button className={styles.buttonPlaceholder} />
-                                            <Button className={styles.buttonPlaceholder} />
+                                            <Placeholders.Button className={styles.buttonPlaceholder} />
+                                            <Placeholders.Button className={styles.buttonPlaceholder} />
                                         </>
                                     )}
                                 </div>
@@ -95,7 +95,7 @@ const SurveyYesNo = ({ question, background, result, onClick, renderFormat, clas
                                         soumettre
                                     </Button>
                                 ) : (
-                                    <Button className={styles.submitButtonPlaceholder} />
+                                    <Placeholders.Button className={styles.submitButtonPlaceholder} />
                                 )}
                             </>
                         )}

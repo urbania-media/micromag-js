@@ -105,17 +105,17 @@ const SurveyCheckbox = ({ question, options, result, background, renderFormat, c
                                         />
                                         <Checkbox
                                             className={styles.placeholder}
-                                            option={<Placeholders.Text />}
+                                            option={<Placeholders.Subtitle />}
                                         />
                                         <Checkbox
                                             className={styles.placeholder}
-                                            option={<Placeholders.Text />}
+                                            option={<Placeholders.Subtitle />}
                                         />
                                         <Checkbox
                                             className={styles.placeholder}
-                                            option={<Placeholders.Text />}
+                                            option={<Placeholders.Subtitle />}
                                         />
-                                        <Button className={styles.submitButtonPlaceholder} />
+                                        <Placeholders.Button className={styles.submitButtonPlaceholder} />
                                     </>
                                 )}
                             </div>

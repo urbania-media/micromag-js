@@ -10,9 +10,6 @@ const propTypes = {
     items: PropTypes.shape({
         heading: MicromagPropTypes.text,
     }),
-    background: PropTypes.shape({
-        image: MicromagPropTypes.image,
-    }),
 };
 
 const defaultProps = {
@@ -21,16 +18,11 @@ const defaultProps = {
         { heading: { body: title() }, text: { body: description() } },
         { heading: { body: title() }, text: { body: description() } },
     ],
-    background: {
-        image: {
-            url: 'https://picsum.photos/400/600',
-        },
-        color: '#ddd',
-    },
+
 };
 
-const TimelineHeading = ({ items, background, ...otherProps }) => {
-    return <TimelineCenteredScreen items={items} background={background} {...otherProps} />;
+const TimelineHeading = ({ items, ...otherProps }) => {
+    return <TimelineCenteredScreen items={items} {...otherProps} />;
 };
 
 TimelineHeading.propTypes = propTypes;
