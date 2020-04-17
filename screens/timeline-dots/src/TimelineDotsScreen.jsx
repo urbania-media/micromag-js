@@ -47,49 +47,57 @@ const TimelineDots = ({ title, items, background, renderFormat, className }) => 
             <Background {...background} width={width} height={height}>
                 <Frame withScroll width={width} height={height}>
                     <div className={styles.inner}>
-                        {title !== null && renderFormat !== 'placeholder' ? (
-                            <div className={styles.title}>{title.body}</div>
+                        {renderFormat !== 'placeholder' ? (
+                            <>
+                                {title !== null ? (
+                                    <div className={styles.title}>{title.body}</div>
+                                ) : null}
+                                <div className={styles.timelineContainer}>
+                                    {items !== null
+                                        ? items.map(({ text, image, heading }, index) => {
+                                              return (
+                                                  <div className={styles.timelineBlock}>
+                                                      <div className={styles.mainContent}>
+                                                          <div className={styles.dot} />
+                                                          {heading !== null ? (
+                                                              <Heading
+                                                                  key={`item-heading-${index + 1}`}
+                                                                  className={styles.heading}
+                                                                  {...heading}
+                                                              />
+                                                          ) : null}
+                                                          {image !== null ? (
+                                                              <div
+                                                                  className={styles.imageContainer}
+                                                              >
+                                                                  <Image
+                                                                      key={`item-image-${index +
+                                                                          1}`}
+                                                                      className={styles.image}
+                                                                      {...image}
+                                                                  />
+                                                              </div>
+                                                          ) : null}
+                                                          <TextComponent
+                                                              key={`item-body-${index + 1}`}
+                                                              className={styles.item}
+                                                              {...text}
+                                                          />
+                                                      </div>
+                                                  </div>
+                                              );
+                                          })
+                                        : null}
+                                </div>
+                            </>
                         ) : (
-                            <Placeholders.Title className={styles.placeholder} />
-                        )}
-                        <div className={styles.timelineContainer}>
-                            {items !== null && renderFormat !== 'placeholder' ? (
-                                items.map(({ text, image, heading }, index) => {
-                                    return (
-                                        <div className={styles.timelineBlock}>
-                                            <div className={styles.mainContent}>
-                                                <div className={styles.dot} />
-                                                {heading !== null ? (
-                                                    <Heading
-                                                        key={`item-heading-${index + 1}`}
-                                                        className={styles.heading}
-                                                        {...heading}
-                                                    />
-                                                ) : null}
-                                                {image !== null ? (
-                                                    <div className={styles.imageContainer}>
-                                                        <Image
-                                                            key={`item-image-${index + 1}`}
-                                                            className={styles.image}
-                                                            {...image}
-                                                        />
-                                                    </div>
-                                                ) : null}
-                                                <TextComponent
-                                                    key={`item-body-${index + 1}`}
-                                                    className={styles.item}
-                                                    {...text}
-                                                />
-                                            </div>
-                                        </div>
-                                    );
-                                })
-                            ) : (
+                            <>
+                                <Placeholders.Title className={styles.placeholder} />
                                 <div className={styles.timelineContainer}>
                                     <div className={styles.timelineBlock}>
                                         <div className={styles.mainContent}>
                                             <div className={styles.dot} />
-                                            <Placeholders.Title className={styles.placeholder} />
+                                            <Placeholders.Subtitle className={styles.placeholder} />
                                             <Placeholders.Image className={styles.placeholder} />
                                             <Placeholders.Text className={styles.placeholder} />
                                         </div>
@@ -97,13 +105,13 @@ const TimelineDots = ({ title, items, background, renderFormat, className }) => 
                                     <div className={styles.timelineBlock}>
                                         <div className={styles.mainContent}>
                                             <div className={styles.dot} />
-                                            <Placeholders.Title className={styles.placeholder} />
+                                            <Placeholders.Subtitle className={styles.placeholder} />
                                             <Placeholders.Text className={styles.placeholder} />
                                         </div>
                                     </div>
                                 </div>
-                            )}
-                        </div>
+                            </>
+                        )}
                     </div>
                 </Frame>
             </Background>
