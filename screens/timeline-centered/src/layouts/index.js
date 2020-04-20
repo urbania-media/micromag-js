@@ -1,3 +1,2 @@
-export { default as Heading } from './Heading';
-export { default as Image } from './Image';
-export { default as Text } from './Text';
+// eslint-disable-next-line import/prefer-default-export
+export { default as Normal } from './Normal';

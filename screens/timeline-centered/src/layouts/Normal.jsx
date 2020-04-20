@@ -3,7 +3,8 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import TimelineDotsScreen from '../TimelineDotsScreen';
+
+import TimelineCenteredScreen from '../TimelineCenteredScreen';
 
 const propTypes = {
     //
@@ -14,7 +15,7 @@ const defaultProps = {
 };
 
 const TimelineNormal = props => {
-    return <TimelineDotsScreen {...props} />;
+    return <TimelineCenteredScreen {...props} />;
 };
 
 TimelineNormal.propTypes = propTypes;

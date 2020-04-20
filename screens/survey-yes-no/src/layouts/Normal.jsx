@@ -3,7 +3,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import TimelineDotsScreen from '../TimelineDotsScreen';
+import SurveyYesNoScreen from '../SurveyYesNoScreen';
 
 const propTypes = {
     //
@@ -13,11 +13,11 @@ const defaultProps = {
     //
 };
 
-const TimelineNormal = props => {
-    return <TimelineDotsScreen {...props} />;
+const SurveyMain = props => {
+    return <SurveyYesNoScreen {...props} />;
 };
 
-TimelineNormal.propTypes = propTypes;
-TimelineNormal.defaultProps = defaultProps;
+SurveyMain.propTypes = propTypes;
+SurveyMain.defaultProps = defaultProps;
 
-export default TimelineNormal;
+export default SurveyMain;

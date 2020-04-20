@@ -46,41 +46,48 @@ const TimelineCentered = ({ items, background, renderFormat, className }) => {
                 <Frame withScroll width={width} height={height}>
                     <div className={styles.inner}>
                         <div className={styles.timelineContainer}>
-                            {items !== null && renderFormat !== 'placeholder' ? (
-                                items.map(({ text, image, heading }, index) => {
-                                    return (
-                                        <div
-                                            className={styles.timelineBlock}
-                                            key={`block-${index + 1}`}
-                                        >
-                                            <div className={styles.mainContent}>
-                                                {heading !== null ? (
-                                                    <Heading
-                                                        key={`item-heading-${index + 1}`}
-                                                        className={styles.heading}
-                                                        {...heading}
-                                                    />
-                                                ) : null}
-                                                {image !== null ? (
-                                                    <div className={styles.imageContainer}>
-                                                        <Image
-                                                            key={`item-image-${index + 1}`}
-                                                            className={styles.image}
-                                                            {...image}
-                                                        />
-                                                    </div>
-                                                ) : null}
-                                                <TextComponent
-                                                    key={`item-body-${index + 1}`}
-                                                    className={styles.item}
-                                                    {...text}
-                                                />
-                                            </div>
-                                        </div>
-                                    );
-                                })
+                            {renderFormat !== 'placeholder' ? (
+                                <>
+                                    {items !== null
+                                        ? items.map(({ text, image, heading }, index) => {
+                                              return (
+                                                  <div
+                                                      className={styles.timelineBlock}
+                                                      key={`block-${index + 1}`}
+                                                  >
+                                                      <div className={styles.mainContent}>
+                                                          {heading !== null ? (
+                                                              <Heading
+                                                                  key={`item-heading-${index + 1}`}
+                                                                  className={styles.heading}
+                                                                  {...heading}
+                                                              />
+                                                          ) : null}
+                                                          {image !== null ? (
+                                                              <div
+                                                                  className={styles.imageContainer}
+                                                              >
+                                                                  <Image
+                                                                      key={`item-image-${index +
+                                                                          1}`}
+                                                                      className={styles.image}
+                                                                      {...image}
+                                                                  />
+                                                              </div>
+                                                          ) : null}
+                                                          <TextComponent
+                                                              key={`item-body-${index + 1}`}
+                                                              className={styles.item}
+                                                              {...text}
+                                                          />
+                                                      </div>
+                                                  </div>
+                                              );
+                                          })
+                                        : null}
+                                </>
                             ) : (
-                                <div className={styles.timelineContainer}>
+                                <>
                                     <div className={styles.timelineBlock}>
                                         <div className={styles.mainContent}>
                                             <Placeholders.Title className={styles.placeholder} />
@@ -99,7 +106,7 @@ const TimelineCentered = ({ items, background, renderFormat, className }) => {
                                             <Placeholders.Text className={styles.placeholder} />
                                         </div>
                                     </div>
-                                </div>
+                                </>
                             )}
                         </div>
                     </div>

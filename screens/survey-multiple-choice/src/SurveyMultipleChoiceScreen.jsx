@@ -74,33 +74,52 @@ const SurveyMultipleChoice = ({
                         ) : (
                             <>
                                 <div className={styles.questionContainer}>
-                                    {question !== null && renderFormat !== 'placeholder' ? (
-                                        <TextComponent className={styles.question} {...question} />
+                                    {renderFormat !== 'placeholder' ? (
+                                        <>
+                                            {question !== null ? (
+                                                <TextComponent
+                                                    className={styles.question}
+                                                    {...question}
+                                                />
+                                            ) : null}{' '}
+                                        </>
                                     ) : (
                                         <Placeholders.Text className={styles.placeholder} />
                                     )}
                                 </div>
                                 <div className={styles.buttons}>
-                                    {options !== null && renderFormat !== 'placeholder' ? (
-                                        options.map((item, index) => (
-                                            <Button className={styles.button}>
-                                                <div className={styles.label}>
-                                                    <div className={styles.letter}>
-                                                        {String.fromCharCode(index + 65)}
-                                                    </div>
-                                                    <TextComponent
-                                                        className={styles.choice}
-                                                        {...item}
-                                                    />
-                                                </div>
-                                            </Button>
-                                        ))
+                                    {renderFormat !== 'placeholder' ? (
+                                        <>
+                                            {options !== null
+                                                ? options.map((item, index) => (
+                                                    <Button className={styles.button}>
+                                                        <div className={styles.label}>
+                                                            <div className={styles.letter}>
+                                                                {String.fromCharCode(index + 65)}
+                                                            </div>
+                                                            <TextComponent
+                                                                className={styles.choice}
+                                                                {...item}
+                                                              />
+                                                        </div>
+                                                    </Button>
+                                                  ))
+                                                : null}
+                                        </>
                                     ) : (
                                         <>
-                                            <Placeholders.Button className={styles.buttonPlaceholder} />
-                                            <Placeholders.Button className={styles.buttonPlaceholder} />
-                                            <Placeholders.Button className={styles.buttonPlaceholder} />
-                                            <Placeholders.Button className={styles.buttonPlaceholder} />
+                                            <Placeholders.Button
+                                                className={styles.buttonPlaceholder}
+                                            />
+                                            <Placeholders.Button
+                                                className={styles.buttonPlaceholder}
+                                            />
+                                            <Placeholders.Button
+                                                className={styles.buttonPlaceholder}
+                                            />
+                                            <Placeholders.Button
+                                                className={styles.buttonPlaceholder}
+                                            />
                                         </>
                                     )}
                                 </div>
@@ -109,7 +128,9 @@ const SurveyMultipleChoice = ({
                                         soumettre
                                     </Button>
                                 ) : (
-                                    <Placeholders.Button className={styles.submitButtonPlaceholder} />
+                                    <Placeholders.Button
+                                        className={styles.submitButtonPlaceholder}
+                                    />
                                 )}
                             </>
                         )}

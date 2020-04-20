@@ -67,8 +67,12 @@ const SurveyYesNo = ({ question, background, result, onClick, renderFormat, clas
                         ) : (
                             <>
                                 <div className={styles.questionContainer}>
-                                    {question !== null && renderFormat !== 'placeholder' ? (
-                                        <TextComponent {...question} />
+                                    {renderFormat !== 'placeholder' ? (
+                                        <>
+                                            {question !== null ? (
+                                                <TextComponent {...question} />
+                                            ) : null}
+                                        </>
                                     ) : (
                                         <Placeholders.Text className={styles.placeholder} />
                                     )}
@@ -85,8 +89,12 @@ const SurveyYesNo = ({ question, background, result, onClick, renderFormat, clas
                                         </>
                                     ) : (
                                         <>
-                                            <Placeholders.Button className={styles.buttonPlaceholder} />
-                                            <Placeholders.Button className={styles.buttonPlaceholder} />
+                                            <Placeholders.Button
+                                                className={styles.buttonPlaceholder}
+                                            />
+                                            <Placeholders.Button
+                                                className={styles.buttonPlaceholder}
+                                            />
                                         </>
                                     )}
                                 </div>
@@ -95,7 +103,9 @@ const SurveyYesNo = ({ question, background, result, onClick, renderFormat, clas
                                         soumettre
                                     </Button>
                                 ) : (
-                                    <Placeholders.Button className={styles.submitButtonPlaceholder} />
+                                    <Placeholders.Button
+                                        className={styles.submitButtonPlaceholder}
+                                    />
                                 )}
                             </>
                         )}

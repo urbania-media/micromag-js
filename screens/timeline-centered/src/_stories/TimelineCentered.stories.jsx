@@ -9,14 +9,23 @@ import {
     LayoutGrid,
     Screen,
 } from '../../../../.storybook/components';
+import { description, subtitle } from '../../../../.storybook/data';
 
 import layouts from '../layouts/names';
 import TimelineCentered from '../TimelineCentered';
 
 export default {
-    component: Text,
+    // component: Normal,
     title: 'Screens/TimelineCentered',
     decorators: [withKnobs, withScreenSize()],
+};
+
+const props = {
+    items: [
+        { subtitle: { body: subtitle() }, text: { body: description() } },
+        { subtitle: { body: subtitle() }, text: { body: description() } },
+        { subtitle: { body: subtitle() }, text: { body: description() } },
+    ],
 };
 
 export const Placeholders = () => (
@@ -33,7 +42,7 @@ export const Normal = () => (
     <LayoutSwitcher layouts={layouts}>
         {layout => (
             <Screen>
-                <TimelineCentered layout={layout} />
+                <TimelineCentered layout={layout} {...props} />
             </Screen>
         )}
     </LayoutSwitcher>

@@ -73,31 +73,36 @@ const SurveyCheckbox = ({ question, options, result, background, renderFormat, c
                                 <TextComponent className={styles.result} {...resultText} />
                             </div>
                         ) : (
-                            <div className={styles.choices}>
-                                {options !== null &&
-                                options.length > 0 &&
-                                renderFormat !== 'placeholder' ? (
-                                    <>
-                                        {question !== null ? (
-                                            <TextComponent
-                                                className={styles.question}
-                                                {...question}
-                                            />
-                                        ) : null}
+                            <>
+                                {renderFormat !== 'placeholder' ? (
+                                    <div className={styles.choices}>
+                                        {options !== null && options.length > 0 ? (
+                                            <>
+                                                {question !== null ? (
+                                                    <TextComponent
+                                                        className={styles.question}
+                                                        {...question}
+                                                    />
+                                                ) : null}
 
-                                        {options.map((item, i) => (
-                                            <Checkbox
-                                                className={styles.choice}
-                                                onChange={onChange}
-                                                key={`checkbox-${i + 1}`}
-                                                option={<TextComponent {...item} />}
-                                                value={value}
-                                            />
-                                        ))}
-                                        <Button className={styles.button} onClick={onClickSubmit}>
-                                            soumettre
-                                        </Button>
-                                    </>
+                                                {options.map((item, i) => (
+                                                    <Checkbox
+                                                        className={styles.choice}
+                                                        onChange={onChange}
+                                                        key={`checkbox-${i + 1}`}
+                                                        option={<TextComponent {...item} />}
+                                                        value={value}
+                                                    />
+                                                ))}
+                                                <Button
+                                                    className={styles.button}
+                                                    onClick={onClickSubmit}
+                                                >
+                                                    soumettre
+                                                </Button>
+                                            </>
+                                        ) : null}
+                                    </div>
                                 ) : (
                                     <>
                                         <Placeholders.Title
@@ -115,10 +120,12 @@ const SurveyCheckbox = ({ question, options, result, background, renderFormat, c
                                             className={styles.placeholder}
                                             option={<Placeholders.Subtitle />}
                                         />
-                                        <Placeholders.Button className={styles.submitButtonPlaceholder} />
+                                        <Placeholders.Button
+                                            className={styles.submitButtonPlaceholder}
+                                        />
                                     </>
                                 )}
-                            </div>
+                            </>
                         )}
                     </div>
                 </Frame>
