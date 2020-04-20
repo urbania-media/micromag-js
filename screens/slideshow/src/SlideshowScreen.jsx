@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -43,31 +43,33 @@ const SlideshowScreen = ({
     renderFormat,
     className,
 }) => {
+    const [parallelIndex, setParallelIndex] = useState(0);
     const { width, height, screens } = useScreenSize();
     const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
     const maxWidth = Math.min(width, 500);
 
-    const { items, bind, index, setIndex } = useSwipe({
+    const { items, bind, setIndex } = useSwipe({
         width: maxWidth,
         items: slides,
         disabled: isSimple,
+        onIndexChange: setParallelIndex,
     });
 
     const onClickNext = useCallback(() => {
-        if (index < items.length - 1) {
-            setIndex(index + 1);
+        if (parallelIndex < items.length - 1) {
+            setIndex(parallelIndex + 1);
         } else {
             setIndex(0);
         }
-    }, [items, index, setIndex]);
+    }, [items, parallelIndex, setIndex]);
 
     const onClickPrevious = useCallback(() => {
-        if (index > 0) {
-            setIndex(index - 1);
+        if (parallelIndex > 0) {
+            setIndex(parallelIndex - 1);
         } else {
             setIndex(items.length - 1);
         }
-    }, [items, index, setIndex]);
+    }, [items, parallelIndex, setIndex]);
 
     return (
         <div
@@ -89,12 +91,17 @@ const SlideshowScreen = ({
                         ) : (
                             <>
                                 <button {...bind()} type="button" className={styles.slides}>
-                                    {items.map(({ display, visibility, transform, item }, i) => {
+                                    {items.map(({ display, visibility, x }, i) => {
                                         if (isSimple && i > 0) return null;
+                                        const item = slides[i];
                                         return (
                                             <div
                                                 key={i}
-                                                style={{ display, visibility, transform }}
+                                                style={{
+                                                    display: display.get(),
+                                                    visibility: visibility.get(),
+                                                    transform: `translate3d(${x.get()}px, 0px, 0px)`,
+                                                }}
                                                 className={styles.slide}
                                             >
                                                 {item.image ? (

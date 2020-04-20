@@ -63,24 +63,33 @@ const MediaControls = ({
     className,
 }) => {
     const seekRef = useRef(null);
-    const onClickPlayPause = useCallback(() => {
-        if (playing && pause !== null) {
-            pause();
-        } else if (!playing && play !== null) {
-            play();
-        }
-    }, [playing, play, pause]);
+    const onClickPlayPause = useCallback(
+        e => {
+            e.stopPropagation();
+            if (playing && pause !== null) {
+                pause();
+            } else if (!playing && play !== null) {
+                play();
+            }
+        },
+        [playing, play, pause],
+    );
 
-    const onClickMute = useCallback(() => {
-        if (muted && unMute !== null) {
-            unMute();
-        } else if (!muted && mute !== null) {
-            mute();
-        }
-    }, [muted, mute, unMute]);
+    const onClickMute = useCallback(
+        e => {
+            e.stopPropagation();
+            if (muted && unMute !== null) {
+                unMute();
+            } else if (!muted && mute !== null) {
+                mute();
+            }
+        },
+        [muted, mute, unMute],
+    );
 
     const onSeek = useCallback(
         e => {
+            e.stopPropagation();
             let posx = 0;
             if (e.pageX) {
                 posx = e.pageX;

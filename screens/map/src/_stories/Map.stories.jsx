@@ -12,9 +12,7 @@ import { withGoogleMapsApi } from '../../../../.storybook/decorators';
 
 import MapScreen from '../Map';
 
-// import layouts from '../layouts/names'; TODO: figure this out
-
-const layouts = ['top', 'bottom'];
+import layouts from '../layouts/names';
 
 const props = {
     map: map(),

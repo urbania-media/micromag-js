@@ -1,6 +1,9 @@
-import { useRef, useState, useEffect, useCallback } from 'react';
+import { useRef, useEffect, useCallback } from 'react';
+import { useSprings } from 'react-spring';
 import clamp from 'lodash/clamp';
 import { useDrag } from 'react-use-gesture';
+
+// NOTE: without the animated.div simply do: transform: `translate3d(${x}px, 0, 0)`
 
 export const useSwipe = ({
     width = null,
@@ -8,36 +11,29 @@ export const useSwipe = ({
     display = 'flex',
     threshold = 3,
     disabled = false,
+    onIndexChange = null,
 }) => {
     const index = useRef(0);
     const currentWidth = width || window.innerWidth;
     const count = items.length;
 
-    const getItem = useCallback((item, x = 0, hidden = false) => {
-        if (hidden) {
-            return {
-                transform: `translate3d(${x}px, 0, 0)`,
-                display: 'none',
-                visibility: 'hidden',
-                item,
-            };
-        }
+    const getItem = useCallback((item, x = 0, hidden = false, idx = 0) => {
         return {
-            transform: `translate3d(${x}px, 0, 0)`,
-            display,
-            visibility: 'visible',
+            x,
+            display: hidden ? 'none' : display,
+            visibility: hidden ? 'hidden' : 'visible',
             item,
+            zIndex: idx,
         };
     }, []);
 
-    const [itemsWithProps, set] = useState(
-        items.map((item, i) => ({
-            transform: `translate3d(${i * currentWidth}px, 0, 0)`,
-            display,
-            visibility: 'visible',
-            item,
-        })),
-    );
+    const [itemsWithProps, set] = useSprings(items.length, i => ({
+        x: i * currentWidth,
+        display: i >= 2 ? 'none' : display,
+        visibility: i >= 2 ? 'hidden' : 'visible',
+        item: items[i],
+        zIndex: i,
+    }));
 
     const bind = useDrag(({ down, movement: [mx], direction: [xDir], distance, cancel }) => {
         if (disabled) {
@@ -55,13 +51,16 @@ export const useSwipe = ({
 
         if (down && distance > currentWidth / threshold) {
             cancel((index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, count - 1)));
+            if (onIndexChange !== null) {
+                onIndexChange(index.current);
+            }
         }
 
         set(
             items.map((item, i) => {
                 const x = (i - index.current) * currentWidth + (down ? mx : 0);
                 const hidden = i < index.current - 1 || i > index.current + 1;
-                return getItem(item, x, hidden);
+                return getItem(item, x, hidden, i);
             }),
         );
     });
@@ -78,6 +77,9 @@ export const useSwipe = ({
 
     const setIndex = useCallback(
         idx => {
+            if (onIndexChange !== null) {
+                onIndexChange(idx);
+            }
             index.current = idx;
             reset();
         },
@@ -98,7 +100,7 @@ export const useSwipe = ({
     return {
         items: itemsWithProps,
         bind,
-        index: index.current,
+        indexRef: index,
         setIndex,
     };
 };

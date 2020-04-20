@@ -22,4 +22,8 @@
         @extend %fullscreen;
         z-index: 1;
     }
+
+    img {
+        pointer-events: none;
+    }
 }

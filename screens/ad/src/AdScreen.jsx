@@ -61,7 +61,7 @@ const AdScreen = ({ ad, box, background, isFullScreen, renderFormat, className }
 
     inner =
         image !== null && !isSimple ? (
-            <Image className={styles.content} {...image} {...adStyle} alt="Ad" />
+            <Image className={styles.content} image={{ ...image, ...adStyle }} alt="Ad" />
         ) : (
             preview
         );

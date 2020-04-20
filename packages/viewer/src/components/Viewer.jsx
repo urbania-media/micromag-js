@@ -2,13 +2,15 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { animated } from 'react-spring';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSizeFromElement, useSwipe } from '@micromag/core/hooks';
 import { ScreenSizeProvider } from '@micromag/core/contexts';
 import { getDeviceScreens } from '@micromag/core/utils';
 import { Screen } from '@micromag/core/components';
 
-import Menu from './menus/Viewer';
+import Menu from './menus/Menu';
 
 import styles from '../styles/viewer.module.scss';
 
@@ -29,7 +31,7 @@ const defaultProps = {
     screen: null,
     deviceScreens: getDeviceScreens(),
     className: null,
-    interactions: ['swipe', 'tap'],
+    interactions: ['tap'],
     onScreenChange: null,
 };
 
@@ -50,7 +52,20 @@ const Viewer = ({
     });
     const { components = [] } = value;
 
-    const { items, bind, setIndex } = useSwipe({ width: screenSize.width, items: components });
+    const onIndexChange = useCallback(
+        index => {
+            if (onScreenChange !== null) {
+                onScreenChange(components[index], index);
+            }
+        },
+        [onScreenChange],
+    );
+
+    const { items, bind, setIndex } = useSwipe({
+        width: screenSize.width,
+        items: components,
+        onIndexChange,
+    });
 
     const onClickMenuItem = useCallback(
         (e, it, index) => {
@@ -83,10 +98,9 @@ const Viewer = ({
         [onScreenChange, items, screenSize],
     );
 
-    const screen = components.find(it => it.id === screenId) || null;
-    // console.log('value, components', value, components);
-    // console.log('screen', screen);
-    // console.log(onScreenChange);
+    const screen = components.find(it => String(it.id) === String(screenId)) || null;
+
+    // console.log('screen', screenId, screen, onIndexChange);
 
     return (
         <ScreenSizeProvider size={screenSize}>
@@ -111,10 +125,11 @@ const Viewer = ({
                     />
                 </div>
                 <div className={styles.content}>
-                    {items.map(({ display, visibility, transform, item }, i) => {
+                    {items.map(({ display, visibility, x }, i) => {
                         const color = (i + 1) * 30;
+                        const item = components[i];
                         return (
-                            <div
+                            <animated.div
                                 {...(interactions !== null && interactions.includes('swipe')
                                     ? bind()
                                     : null)}
@@ -122,11 +137,11 @@ const Viewer = ({
                                     ? { onClick: e => onTap(e, item, i) }
                                     : null)}
                                 key={i}
-                                style={{ display, visibility, transform }}
+                                style={{ display, visibility, x }}
                                 className={styles.screen}
                             >
-                                {screen !== null ? (
-                                    <Screen screen={screen} />
+                                {item !== null ? (
+                                    <Screen screen={item} />
                                 ) : (
                                     <div
                                         style={{
@@ -136,7 +151,7 @@ const Viewer = ({
                                         }}
                                     />
                                 )}
-                            </div>
+                            </animated.div>
                         );
                     })}
                 </div>
