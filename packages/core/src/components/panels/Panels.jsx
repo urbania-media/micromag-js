@@ -4,26 +4,27 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import * as MicromagPropTypes from '../../PropTypes';
-import { withModals } from '../../contexts/ModalsContext';
+import { withPanels } from '../../contexts/PanelsContext';
 
-import styles from '../../styles/modals/modals.module.scss';
+import styles from '../../styles/panels/panels.module.scss';
 
 const propTypes = {
-    modals: MicromagPropTypes.modals.isRequired,
-    setModalsContainer: PropTypes.func.isRequired,
+    panels: MicromagPropTypes.panels,
+    setPanelsContainer: MicromagPropTypes.func,
     className: PropTypes.string,
 };
 
 const defaultProps = {
+    panels: [],
+    setPanelsContainer: null,
     className: null,
 };
 
-const ModalsContainer = ({ modals, setModalsContainer, className }) => {
+const PanelsContainer = ({ panels, setPanelsContainer, className }) => {
     const containerRef = useRef(null);
     useEffect(() => {
-        setModalsContainer(containerRef.current);
+        setPanelsContainer(containerRef.current);
     }, []);
-
     return (
         <div
             className={classNames([
@@ -35,9 +36,9 @@ const ModalsContainer = ({ modals, setModalsContainer, className }) => {
         >
             <div
                 className={classNames([
-                    styles.modals,
+                    styles.panels,
                     {
-                        [styles.hasModals]: modals.length > 0,
+                        [styles.hasPanels]: panels.length > 0,
                     },
                 ])}
                 ref={containerRef}
@@ -46,7 +47,7 @@ const ModalsContainer = ({ modals, setModalsContainer, className }) => {
     );
 };
 
-ModalsContainer.propTypes = propTypes;
-ModalsContainer.defaultProps = defaultProps;
+PanelsContainer.propTypes = propTypes;
+PanelsContainer.defaultProps = defaultProps;
 
-export default withModals(ModalsContainer);
+export default withPanels(PanelsContainer);

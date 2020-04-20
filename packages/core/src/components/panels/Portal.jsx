@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ElementPortal from '../utils/ElementPortal';
-import { useModals } from '../../contexts/ModalsContext';
+import { usePanels } from '../../contexts/PanelsContext';
 
 const propTypes = {
     id: PropTypes.string,
@@ -17,8 +17,11 @@ const defaultProps = {
     children: null,
 };
 
-const ModalPortal = ({ id, data, children }) => {
-    const { container, register = null, unregister = null } = useModals();
+const PanelPortal = ({ id, data, children }) => {
+    const { panels = null, container, register = null, unregister = null } = usePanels();
+    if (panels === null) {
+        return children;
+    }
     return (
         <ElementPortal
             id={id}
@@ -32,7 +35,7 @@ const ModalPortal = ({ id, data, children }) => {
     );
 };
 
-ModalPortal.propTypes = propTypes;
-ModalPortal.defaultProps = defaultProps;
+PanelPortal.propTypes = propTypes;
+PanelPortal.defaultProps = defaultProps;
 
-export default ModalPortal;
+export default PanelPortal;

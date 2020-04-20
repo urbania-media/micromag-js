@@ -18,6 +18,8 @@ export { default as ObjectFitSize } from './ObjectFitSize';
 export { default as Radios } from './Radios';
 export { default as Select } from './Select';
 export { default as Slider } from './Slider';
+export { default as SliderPixel } from './SliderPixel';
+export { default as SliderPoint } from './SliderPoint';
 export { default as Spacing } from './Spacing';
 export { default as StaticField } from './StaticField';
 export { default as Text } from './Text';

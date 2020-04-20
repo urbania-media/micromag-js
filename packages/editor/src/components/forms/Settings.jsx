@@ -30,9 +30,13 @@ const SettingsForm = ({ field, value, fields, className, gotoFieldForm, onChange
     );
     const settingsFields = useMemo(
         () =>
-            settingsNames !== null
+            (settingsNames !== null
                 ? fields.filter(({ name }) => settingsNames.indexOf(name) !== -1)
-                : fields,
+                : fields
+            ).map(it => ({
+                ...it,
+                isSection: true,
+            })),
         [fields, settingsNames],
     );
 

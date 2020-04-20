@@ -12,20 +12,16 @@
                 "color": {
                     "type": "object",
                     "title": "Couleur",
+                    "description": "Couleur de l’arrière-plan",
                     "$ref": "https://schemas.micromag.ca/0.1/fields/color.json",
-                    "component": "color",
-                    "componentProps": {
-                        "isHorizontal": true
-                    }
+                    "component": "color"
                 },
                 "image": {
                     "type": "object",
                     "title": "Image",
+                    "description": "Image d’arrière-plan",
                     "$ref": "https://schemas.micromag.ca/0.1/fields/image.json",
-                    "component": "image",
-                    "componentProps": {
-                        "isHorizontal": true
-                    }
+                    "component": "image"
                 }
             }
         }

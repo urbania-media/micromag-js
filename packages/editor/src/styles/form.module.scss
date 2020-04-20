@@ -43,6 +43,18 @@
         overflow: hidden;
     }
 
+    .empty {
+        flex-grow: 1;
+        margin: $spacer / 2;
+    }
+
+    %disabled {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
     .form {
         min-height: 100%;
         padding: $spacer / 2;
@@ -85,10 +97,7 @@
         }
 
         &.leave {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
+            @extend %disabled;
             transform: translate(0, 0);
             opacity: 1;
         }
@@ -119,6 +128,30 @@
 
         &.leaveActiveBottom {
             transform: translate(0, -100%);
+        }
+    }
+
+    .content {
+        .form,
+        .panels {
+            transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+        }
+
+        .panels {
+            @extend %disabled;
+            transform: translate(100%, 0);
+        }
+
+        &.hasPanels {
+            .form {
+                @extend %disabled;
+                transform: translate(-100%, 0);
+            }
+
+            .panels {
+                position: relative;
+                transform: translate(0, 0);
+            }
         }
     }
 }

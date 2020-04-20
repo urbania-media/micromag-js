@@ -2,27 +2,21 @@
 @import '~@micromag/core/scss/mixins';
 
 .container {
-    display: block;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
     width: 100%;
     font-size: 0.85rem;
     white-space: nowrap;
 
-    .button {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-end;
-        width: 100%;
-        white-space: nowrap;
+    > * {
+        display: block;
+        margin-right: $spacer / 2;
+        line-height: 1;
 
-        > * {
-            display: block;
-            margin-right: $spacer / 2;
-            line-height: 1;
-
-            &:last-child {
-                margin-right: 0;
-            }
+        &:last-child {
+            margin-right: 0;
         }
     }
 
@@ -45,4 +39,8 @@
             height: 1rem;
         }
     }
+}
+
+.picker {
+    padding: $spacer / 2;
 }

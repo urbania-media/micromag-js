@@ -19,15 +19,7 @@
                     "type": "object",
                     "properties": {
                         "text": {
-                            "title": "Texte",
-                            "$ref": "https://schemas.micromag.ca/0.1/fields/text-style.json"
-                        },
-                        "margin": {
-                            "title": "Marges",
-                            "$ref": "https://schemas.micromag.ca/0.1/fields/margin.json"
-                        },
-                        "links": {
-                            "title": "Hyperliens",
+                            "title": "Typographie",
                             "$ref": "https://schemas.micromag.ca/0.1/fields/text-style.json"
                         }
                     },

@@ -1,7 +1,7 @@
 @import '~@micromag/core/scss/variables';
 
 .container {
-    .row {
+    .field {
         margin-bottom: $spacer;
 
         &.isSection {
@@ -46,17 +46,20 @@
     }
 
     &.withBorders {
-        padding-top: $spacer / 2;
         border-top: solid 1px $border-color;
 
-        .row {
-            margin-bottom: $spacer / 2;
-            padding-bottom: $spacer / 2;
+        .field {
+            margin-bottom: 0;
             border-bottom: solid 1px $border-color;
 
             &:last-child {
                 margin-bottom: 0;
             }
+        }
+
+        .fieldRow {
+            padding-top: $spacer / 2;
+            padding-bottom: $spacer / 2;
         }
     }
 }
