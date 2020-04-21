@@ -3,9 +3,14 @@ import { schemas as messages } from './messages';
 
 export default {
     $id: 'https://schemas.micromag.ca/0.1/screens/title.json',
-    group: 'Title',
     title: 'Title',
+    group: 'Title',
     type: 'object',
+
+    intl: {
+        title: messages.schemaTitle,
+    },
+
     allOf: [
         {
             $ref: 'https://schemas.micromag.ca/0.1/screens/screen.json',
@@ -29,7 +34,7 @@ export default {
                 },
                 subtitle: {
                     $ref: 'https://schemas.micromag.ca/0.1/elements/heading.json',
-                    title: 'Sous-titre',
+                    title: 'Subtitle',
                     intl: {
                         title: messages.subtitle,
                     },

@@ -6,10 +6,6 @@
         "type": {
             "type": "string",
             "title": "Type"
-        },
-        "layout": {
-            "type": "string",
-            "title": "Mise en page"
         }
     },
     "required": ["type"]
