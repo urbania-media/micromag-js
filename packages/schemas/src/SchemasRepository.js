@@ -201,7 +201,7 @@ class SchemasRepository {
             setting = false,
             advanced = false,
             properties,
-            i18n = null,
+            intl = null,
         } = property;
         const numberProps = {
             min: minimum,
@@ -211,12 +211,11 @@ class SchemasRepository {
         const field = {
             name,
             component: component || (type === 'object' ? 'fields' : type),
-            label,
-            description,
+            label: intl !== null ? intl.title || label : label,
+            description: intl !== null ? intl.description || description : description,
             setting,
             advanced,
             enums,
-            i18n,
             ...(type === 'number' ? numberProps : null),
         };
         return type === 'object'

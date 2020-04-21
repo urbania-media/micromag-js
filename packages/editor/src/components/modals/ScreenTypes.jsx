@@ -12,7 +12,7 @@ import styles from '../../styles/modals/screen-types.module.scss';
 const messages = defineMessages({
     title: {
         id: 'modals.screen_types_title',
-        defaultMessage: 'Ajouter un écran',
+        defaultMessage: 'Add a screen',
     },
 });
 

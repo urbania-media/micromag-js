@@ -35,7 +35,8 @@
     "scripts": {
         "clean": "rm -rf assets && rm -rf lib && rm -rf es",
         "build": "NODE_ENV=production ../../node_modules/.bin/rollup --config ../../rollup.config.js",
-        "prepare": "npm run clean && npm run build"
+        "intl": "node ../../scripts/build-package-intl-translations",
+        "prepare": "npm run clean && npm run build && npm run intl"
     },
     "devDependencies": {
         "react": ">=15.0.0 || ^16.0.0",
@@ -47,16 +48,17 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.8.7",
+        "@micromag/core": "^0.1.0",
         "@micromag/element-background": "^0.1.0",
         "@micromag/element-box": "^0.1.0",
         "@micromag/element-frame": "^0.1.0",
         "@micromag/element-grid": "^0.1.0",
         "@micromag/element-heading": "^0.1.0",
         "@micromag/element-text": "^0.1.0",
-        "@micromag/core": "^0.1.0",
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",
         "prop-types": "^15.7.2",
+        "react-intl": "^4.5.0",
         "uuid": "^7.0.2"
     }
 }

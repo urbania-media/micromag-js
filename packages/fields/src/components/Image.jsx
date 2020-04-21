@@ -11,18 +11,31 @@ const propTypes = {
         caption: PropTypes.string,
         credits: PropTypes.string,
     }),
+    isForm: PropTypes.string,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     value: null,
+    isForm: false,
     className: null,
 };
 
-const ImageField = ({ value, className }) => {
+const ImageField = ({ value, isForm, className }) => {
     const { image = null, url = null, caption = null } = value || {};
     const finalUrl = image !== null ? image.url || null : url;
-    return (
+    return isForm ? (
+        <div
+            className={classNames([
+                styles.panel,
+                {
+                    [className]: className !== null,
+                },
+            ])}
+        >
+            Picker
+        </div>
+    ) : (
         <div
             className={classNames([
                 styles.container,
@@ -45,7 +58,6 @@ const ImageField = ({ value, className }) => {
 
 ImageField.propTypes = propTypes;
 ImageField.defaultProps = defaultProps;
-ImageField.isHorizontal = true;
-ImageField.withPanel = true;
+ImageField.withForm = true;
 
 export default ImageField;

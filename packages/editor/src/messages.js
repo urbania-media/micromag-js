@@ -2,19 +2,19 @@ import { defineMessages } from 'react-intl';
 
 const messages = defineMessages({
     edit: {
-        id: 'editor.edit',
+        id: 'buttons.edit',
         defaultMessage: 'Edit',
     },
     screens: {
-        id: 'editor.screens',
+        id: 'buttons.screens',
         defaultMessage: 'Screens',
     },
     viewScreen: {
-        id: 'editor.view_screen',
+        id: 'buttons.view_screen',
         defaultMessage: 'View screen',
     },
     screenIndexName: {
-        id: 'editor.screen_name',
+        id: 'screen_name',
         defaultMessage: 'Screen {index}',
     },
 });

@@ -1,3 +1,9 @@
+@import '~@micromag/core/scss/placeholders';
+
 .container {
-    display: block;
+    @extend %hide-scrollbars;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow: auto;
 }
