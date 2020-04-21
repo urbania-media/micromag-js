@@ -1,23 +1,37 @@
 const path = require('path');
 const fs = require('fs');
-/* eslint-disable import/no-extraneous-dependencies */
 const mkdirp = require('mkdirp');
-/* eslint-enable import/no-extraneous-dependencies */
+const glob = require('glob');
 const getPackagesPaths = require('./lib/getPackagesPaths');
-const getIntlMessages = require('./lib/getIntlMessages');
 const sortIntlMessages = require('./lib/sortIntlMessages');
 
-const langFile = path.join(process.env.PWD, './intl/lang/en.json');
+const globalPath = path.join(__dirname, '../packages/micromag');
 
-const messages = getPackagesPaths().reduce((allMessages, packagePath) => {
-    const messagesPattern = path.join(packagePath, './intl/messages/**/*.json');
+const langFiles = getPackagesPaths()
+    .filter(packagePath => packagePath !== globalPath)
+    .reduce(
+        (allFiles, packagePath) => [
+            ...allFiles,
+            ...glob.sync(path.join(packagePath, './intl/lang/*.json')),
+        ],
+        [],
+    );
+
+const messagesByLocale = langFiles.reduce((map, langFile) => {
+    const locale = path.basename(langFile, '.json');
+    const messages = require(langFile);
     return {
-        ...allMessages,
-        ...getIntlMessages(messagesPattern),
+        ...map,
+        [locale]: {
+            ...(map[locale] || null),
+            ...messages,
+        },
     };
 }, {});
 
-const sortedMessages = sortIntlMessages(messages);
-
-mkdirp.sync(path.dirname(langFile));
-fs.writeFileSync(langFile, JSON.stringify(sortedMessages, null, 4));
+Object.keys(messagesByLocale).forEach(locale => {
+    const langFile = path.join(globalPath, `./intl/lang/${locale}.json`);
+    const sortedMessages = sortIntlMessages(messagesByLocale[locale]);
+    mkdirp.sync(path.dirname(langFile));
+    fs.writeFileSync(langFile, JSON.stringify(sortedMessages, null, 4));
+});
