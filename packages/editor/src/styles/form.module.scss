@@ -51,7 +51,7 @@
         width: 100%;
     }
 
-    .form {
+    .panel {
         position: relative;
         min-height: 100%;
         padding: $spacer / 2;
@@ -131,7 +131,7 @@
     }
 
     .content {
-        .form,
+        .panel,
         .panels {
             transition: transform 0.2s ease-out, opacity 0.2s ease-out;
         }
@@ -142,7 +142,7 @@
         }
 
         &.hasPanels {
-            .form {
+            .panel {
                 @extend %disabled;
                 transform: translate(-100%, 0);
             }

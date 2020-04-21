@@ -152,24 +152,29 @@ const EditForm = ({ value, className, onChange, formComponents }) => {
                             transitionLeaveTimeout={transitionTimeout}
                         >
                             {fieldParams !== null ? (
-                                <FieldForm
+                                <div
+                                    className={styles.panel}
                                     key={`field-${fieldParams}-${formParams}`}
-                                    value={screen}
-                                    field={fieldParams.replace(/\//g, '.')}
-                                    form={formParams}
-                                    className={styles.form}
-                                    gotoFieldForm={gotoFieldForm}
-                                    onChange={onScreenFormChange}
-                                />
+                                >
+                                    <FieldForm
+                                        value={screen}
+                                        field={fieldParams.replace(/\//g, '.')}
+                                        form={formParams}
+                                        className={styles.form}
+                                        gotoFieldForm={gotoFieldForm}
+                                        onChange={onScreenFormChange}
+                                    />
+                                </div>
                             ) : (
-                                <ScreenForm
-                                    key={`screen-${screen.id}`}
-                                    value={screen}
-                                    className={styles.form}
-                                    onChange={onScreenFormChange}
-                                    gotoFieldForm={gotoFieldForm}
-                                    onClickDelete={onClickScreenDelete}
-                                />
+                                <div className={styles.panel} key={`screen-${screen.id}`}>
+                                    <ScreenForm
+                                        value={screen}
+                                        className={styles.form}
+                                        onChange={onScreenFormChange}
+                                        gotoFieldForm={gotoFieldForm}
+                                        onClickDelete={onClickScreenDelete}
+                                    />
+                                </div>
                             )}
                         </TransitionGroup>
                         <Panels className={styles.panels} />
