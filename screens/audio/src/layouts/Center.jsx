@@ -6,7 +6,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import AudioScreen from '../AudioScreen';
 
 const propTypes = {
-    box: MicromagPropTypes.boxComponent,
+    box: MicromagPropTypes.boxElement,
 };
 
 const defaultProps = {

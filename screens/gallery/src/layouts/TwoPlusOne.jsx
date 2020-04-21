@@ -6,7 +6,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import GalleryScreen from '../GalleryScreen';
 
 const propTypes = {
-    grid: MicromagPropTypes.gridComponent,
+    grid: MicromagPropTypes.gridElement,
 };
 
 const defaultProps = {

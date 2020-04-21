@@ -3,10 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Background from '@micromag/component-background';
-import Frame from '@micromag/component-frame';
-import Text from '@micromag/component-text';
-import Grid from '@micromag/component-grid';
+import Background from '@micromag/element-background';
+import Frame from '@micromag/element-frame';
+import Text from '@micromag/element-text';
+import Grid from '@micromag/element-grid';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
@@ -15,11 +15,11 @@ import styles from './styles.module.scss';
 import blockStyles from './styles-block.module.scss';
 
 const propTypes = {
-    background: MicromagPropTypes.backgroundComponent,
-    quote: MicromagPropTypes.textComponent,
-    source: MicromagPropTypes.textComponent,
-    author: MicromagPropTypes.textComponent,
-    grid: MicromagPropTypes.gridComponent,
+    background: MicromagPropTypes.backgroundElement,
+    quote: MicromagPropTypes.textElement,
+    source: MicromagPropTypes.textElement,
+    author: MicromagPropTypes.textElement,
+    grid: MicromagPropTypes.gridElement,
     textAlign: PropTypes.oneOf(['left', 'right', 'center']),
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,

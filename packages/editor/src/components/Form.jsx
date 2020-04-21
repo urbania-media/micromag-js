@@ -11,7 +11,6 @@ import { Empty, Panels } from '@micromag/core/components';
 
 import { updateScreen, duplicateScreen, deleteScreen } from '../utils';
 import useFormTransition from '../hooks/useFormTransition';
-import BackButton from './buttons/Back';
 import SettingsButton from './buttons/Settings';
 import Breadcrumb from './menus/Breadcrumb';
 import ScreenForm from './forms/Screen';
@@ -44,19 +43,17 @@ const EditForm = ({ value, className, onChange, formComponents }) => {
     const history = useHistory();
     const {
         url,
-        params: { screen: screenId = null, field: fieldParams = null, form: formParams },
+        params: { screen: screenId = null, field: fieldParams = null, form: formParams = null },
     } = useRouteMatch({
-        path: [`/:screen/:field+/:form(${formRegEx})`, '/:screen', '*'],
+        path: [`/:screen/:field+/:form(${formRegEx})`, `/:screen/:field+`, '/:screen', '*'],
     });
-
-    // Panels
-    const { panels = null } = usePanels();
-    const hasPanels = panels !== null && panels.length > 0;
 
     // Get screen
     const { components: screens = [] } = value || {};
     const screenIndex = screens.findIndex(it => it.id === screenId);
     const screen = screenIndex !== -1 ? screens[screenIndex] : null;
+
+    const { panels } = usePanels();
 
     // Get transition value
     const { name: transitionName, timeout: transitionTimeout } = useFormTransition(
@@ -98,11 +95,13 @@ const EditForm = ({ value, className, onChange, formComponents }) => {
         }
     }, [value, screenId, triggerOnChange]);
 
-    const onClickBack = useCallback(() => history.goBack(), [history]);
-
     const gotoFieldForm = useCallback(
-        (field, formName) =>
-            history.push(`/${screenId}/${field.replace(/\./g, '/')}/${slug(formName)}`),
+        (field, formName = null) =>
+            history.push(
+                `/${screenId}/${field.replace(/\./g, '/')}${
+                    formName !== null ? `/${slug(formName)}` : ''
+                }`,
+            ),
         [history, screenId],
     );
 
@@ -116,14 +115,14 @@ const EditForm = ({ value, className, onChange, formComponents }) => {
             ])}
         >
             <div className={styles.top}>
-                <BackButton className={styles.back} onClick={onClickBack} />
                 {screenId !== null ? (
                     <Breadcrumb
                         value={value}
                         url={url}
                         screenId={screenId}
                         field={fieldParams}
-                        panels={panels}
+                        form={formParams}
+                        panel={panels !== null && panels.length > 0 ? panels[0] : null}
                         className={styles.breadcrumb}
                     />
                 ) : null}
@@ -137,7 +136,7 @@ const EditForm = ({ value, className, onChange, formComponents }) => {
                 className={classNames([
                     styles.content,
                     {
-                        [styles.hasPanels]: hasPanels,
+                        [styles.hasPanels]: panels !== null && panels.length > 0,
                     },
                 ])}
             >
@@ -153,24 +152,29 @@ const EditForm = ({ value, className, onChange, formComponents }) => {
                             transitionLeaveTimeout={transitionTimeout}
                         >
                             {fieldParams !== null ? (
-                                <FieldForm
+                                <div
+                                    className={styles.panel}
                                     key={`field-${fieldParams}-${formParams}`}
-                                    value={screen}
-                                    field={fieldParams.replace(/\//g, '.')}
-                                    form={formParams}
-                                    className={styles.form}
-                                    gotoFieldForm={gotoFieldForm}
-                                    onChange={onScreenFormChange}
-                                />
+                                >
+                                    <FieldForm
+                                        value={screen}
+                                        field={fieldParams.replace(/\//g, '.')}
+                                        form={formParams}
+                                        className={styles.form}
+                                        gotoFieldForm={gotoFieldForm}
+                                        onChange={onScreenFormChange}
+                                    />
+                                </div>
                             ) : (
-                                <ScreenForm
-                                    key={`screen-${screen.id}`}
-                                    value={screen}
-                                    className={styles.form}
-                                    onChange={onScreenFormChange}
-                                    gotoFieldForm={gotoFieldForm}
-                                    onClickDelete={onClickScreenDelete}
-                                />
+                                <div className={styles.panel} key={`screen-${screen.id}`}>
+                                    <ScreenForm
+                                        value={screen}
+                                        className={styles.form}
+                                        onChange={onScreenFormChange}
+                                        gotoFieldForm={gotoFieldForm}
+                                        onClickDelete={onClickScreenDelete}
+                                    />
+                                </div>
                             )}
                         </TransitionGroup>
                         <Panels className={styles.panels} />

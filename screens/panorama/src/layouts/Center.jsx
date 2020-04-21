@@ -5,7 +5,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import PanoramaScreen from '../PanoramaScreen';
 
 const propTypes = {
-    box: MicromagPropTypes.boxComponent,
+    box: MicromagPropTypes.boxElement,
 };
 
 const defaultProps = {

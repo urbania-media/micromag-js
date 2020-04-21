@@ -1,10 +1,16 @@
 import { names } from './layouts/names';
+import { schemas as messages } from './messages';
 
 export default {
     $id: 'https://schemas.micromag.ca/0.1/screens/title.json',
-    group: 'Title',
     title: 'Title',
+    group: 'Title',
     type: 'object',
+
+    intl: {
+        title: messages.schemaTitle,
+    },
+
     allOf: [
         {
             $ref: 'https://schemas.micromag.ca/0.1/screens/screen.json',
@@ -12,27 +18,40 @@ export default {
         {
             properties: {
                 layout: {
-                    type: 'string',
-                    title: 'Mise en page',
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/screen-layout.json',
+                    title: 'Layout',
                     enum: names,
-                    default: 'default',
-                    component: 'layout'
+                    intl: {
+                        title: messages.layout,
+                    },
                 },
                 title: {
-                    title: 'Titre',
-                    $ref: 'https://schemas.micromag.ca/0.1/elements/heading.json'
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/heading.json',
+                    title: 'Title',
+                    intl: {
+                        title: messages.title,
+                    },
                 },
                 subtitle: {
-                    title: 'Sous-titre',
-                    $ref: 'https://schemas.micromag.ca/0.1/elements/heading.json'
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/heading.json',
+                    title: 'Subtitle',
+                    intl: {
+                        title: messages.subtitle,
+                    },
                 },
                 description: {
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/text.json',
                     title: 'Description',
-                    $ref: 'https://schemas.micromag.ca/0.1/elements/text.json'
+                    intl: {
+                        title: messages.description,
+                    },
                 },
                 background: {
-                    title: 'Arrière-Plan',
-                    $ref: 'https://schemas.micromag.ca/0.1/elements/background.json'
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
+                    title: 'Background',
+                    intl: {
+                        title: messages.background,
+                    },
                 },
             },
         },

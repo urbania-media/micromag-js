@@ -3,15 +3,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import TextComponent from '@micromag/component-text';
+import TextComponent from '@micromag/element-text';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 
 import styles from './styles-block.module.scss';
 
 const propTypes = {
-    quote: MicromagPropTypes.textComponent,
-    source: MicromagPropTypes.textComponent,
-    author: MicromagPropTypes.textComponent,
+    quote: MicromagPropTypes.textElement,
+    source: MicromagPropTypes.textElement,
+    author: MicromagPropTypes.textElement,
     centered: PropTypes.bool,
     isPlaceholder: PropTypes.bool,
     className: PropTypes.string,

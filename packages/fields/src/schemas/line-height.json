@@ -3,9 +3,9 @@
     "title": "Line height",
     "type": "number",
 
-    "mininmum": -2,
+    "minimum": -2,
     "maximum": 2,
-    "multiplesOf": 1,
+    "multiplesOf": 0.1,
 
     "component": "slider-point"
 }

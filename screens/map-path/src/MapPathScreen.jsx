@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
 import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import Background from '@micromag/component-background';
-import Frame from '@micromag/component-frame';
-import MapComponent from '@micromag/component-map';
-import TextComponent from '@micromag/component-text';
-import ImageComponent from '@micromag/component-image';
-import ButtonComponent from '@micromag/component-button';
+import Background from '@micromag/element-background';
+import Frame from '@micromag/element-frame';
+import MapComponent from '@micromag/element-map';
+import TextComponent from '@micromag/element-text';
+import ImageComponent from '@micromag/element-image';
+import ButtonComponent from '@micromag/element-button';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
@@ -18,7 +18,7 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     map: MicromagPropTypes.map,
-    background: MicromagPropTypes.backgroundComponent,
+    background: MicromagPropTypes.backgroundElement,
     align: PropTypes.string,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,

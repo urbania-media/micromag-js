@@ -3,10 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Background from '@micromag/component-background';
-import Frame from '@micromag/component-frame';
-import Grid from '@micromag/component-grid';
-import Image from '@micromag/component-image';
+import Background from '@micromag/element-background';
+import Frame from '@micromag/element-frame';
+import Grid from '@micromag/element-grid';
+import Image from '@micromag/element-image';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
@@ -14,7 +14,7 @@ import { getRenderFormat } from '@micromag/core/utils';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    background: MicromagPropTypes.backgroundComponent,
+    background: MicromagPropTypes.backgroundElement,
     images: MicromagPropTypes.images,
     grid: PropTypes.shape({
         layout: MicromagPropTypes.gridLayout,

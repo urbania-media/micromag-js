@@ -1,0 +1,7 @@
+{
+    "editor.buttons.edit": "Edit",
+    "editor.buttons.screens": "Screens",
+    "editor.buttons.view_screen": "View screen",
+    "editor.modals.screen_types_title": "Add a screen",
+    "editor.screen_name": "Screen {index}"
+}

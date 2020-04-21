@@ -3,12 +3,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Background from '@micromag/component-background';
-import Frame from '@micromag/component-frame';
-import Heading from '@micromag/component-heading';
-import Text from '@micromag/component-text';
-import Grid from '@micromag/component-grid';
-import Box from '@micromag/component-box';
+import Background from '@micromag/element-background';
+import Frame from '@micromag/element-frame';
+import Heading from '@micromag/element-heading';
+import Text from '@micromag/element-text';
+import Grid from '@micromag/element-grid';
+import Box from '@micromag/element-box';
 
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { getComponentFromName, getRenderFormat } from '@micromag/core/utils';
@@ -22,13 +22,13 @@ const HEADING_SIZES = {
 };
 
 const propTypes = {
-    title: MicromagPropTypes.headingComponent,
-    subtitle: MicromagPropTypes.headingComponent,
-    description: MicromagPropTypes.textComponent,
+    title: MicromagPropTypes.headingElement,
+    subtitle: MicromagPropTypes.headingElement,
+    description: MicromagPropTypes.textElement,
     groups: PropTypes.arrayOf(PropTypes.array),
-    grid: MicromagPropTypes.gridComponent,
-    box: MicromagPropTypes.boxComponent,
-    background: MicromagPropTypes.backgroundComponent,
+    grid: MicromagPropTypes.gridElement,
+    box: MicromagPropTypes.boxElement,
+    background: MicromagPropTypes.backgroundElement,
     textAlign: PropTypes.oneOf(['left', 'right', 'center']),
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,

@@ -1,0 +1,22 @@
+@import '~@micromag/core/scss/variables';
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding-left: $spacer / 2;
+
+    .back {
+        margin-right: $spacer / 4;
+        padding: $spacer / 4;
+    }
+
+    .menu {
+        flex-grow: 1;
+    }
+
+    &.withBack {
+        padding-left: 0;
+    }
+}

@@ -7,7 +7,7 @@ import TitleScreen from '../TitleScreen';
 
 const propTypes = {
     groups: PropTypes.arrayOf(PropTypes.array),
-    box: MicromagPropTypes.boxComponent,
+    box: MicromagPropTypes.boxElement,
 };
 
 const defaultProps = {

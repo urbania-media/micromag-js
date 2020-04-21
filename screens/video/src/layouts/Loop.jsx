@@ -6,7 +6,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import VideoScreen from '../VideoScreen';
 
 const propTypes = {
-    box: MicromagPropTypes.boxComponent,
+    box: MicromagPropTypes.boxElement,
     fit: PropTypes.shape({
         size: PropTypes.string,
     }),

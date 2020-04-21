@@ -1,11 +1,11 @@
 {
-    "$id": "https://schemas.micromag.ca/0.1/components/component.json",
-    "title": "Component",
+    "$id": "https://schemas.micromag.ca/0.1/elements/element.json",
+    "title": "Element",
     "type": "object",
     "properties": {
         "type": {
             "type": "string",
-            "title": "Type of the component"
+            "title": "Type of the element"
         }
     },
     "required": ["type"]

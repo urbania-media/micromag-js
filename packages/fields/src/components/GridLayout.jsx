@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Grid from '@micromag/component-grid';
+import Grid from '@micromag/element-grid';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getGridLayoutName } from '@micromag/core/utils';
 

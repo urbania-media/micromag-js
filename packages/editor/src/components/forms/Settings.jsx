@@ -69,6 +69,8 @@ const SettingsForm = ({ field, value, fields, className, gotoFieldForm, onChange
         [value, onChange],
     );
 
+    console.log(settingsFields);
+
     return (
         <div
             className={classNames([

@@ -3,12 +3,12 @@ import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Background from '@micromag/component-background';
-import Frame from '@micromag/component-frame';
-import Box from '@micromag/component-box';
-import Image from '@micromag/component-image';
-import Button from '@micromag/component-button';
-import TextComponent from '@micromag/component-text';
+import Background from '@micromag/element-background';
+import Frame from '@micromag/element-frame';
+import Box from '@micromag/element-box';
+import Image from '@micromag/element-image';
+import Button from '@micromag/element-button';
+import TextComponent from '@micromag/element-text';
 
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
@@ -19,8 +19,8 @@ import styles from './slideshow.module.scss';
 
 const propTypes = {
     items: MicromagPropTypes.slides,
-    box: MicromagPropTypes.boxComponent,
-    background: MicromagPropTypes.backgroundComponent,
+    box: MicromagPropTypes.boxElement,
+    background: MicromagPropTypes.backgroundElement,
     textAlign: MicromagPropTypes.textAlign,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,

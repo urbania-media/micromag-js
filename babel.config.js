@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = api => ({
     presets: [
         api.env('production') && [
@@ -28,6 +30,14 @@ module.exports = api => ({
             require.resolve('babel-plugin-static-fs'),
             {
                 target: 'browser', // defaults to node
+            },
+        ],
+        api.env('production') && [
+            require.resolve('babel-plugin-react-intl'),
+            {
+                messagesDir: path.join(process.cwd(), './intl/messages/'),
+                overrideIdFn: require(path.join(__dirname, './scripts/lib/getIntlMessagesNamespace')),
+                extractSourceLocation: true,
             },
         ],
     ].filter(Boolean),

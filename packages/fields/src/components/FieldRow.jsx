@@ -16,8 +16,10 @@ const propTypes = {
     isHorizontal: PropTypes.bool,
     withoutLabel: PropTypes.bool,
     withSettings: PropTypes.bool,
+    withForm: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     withPanel: PropTypes.bool,
     gotoSettings: PropTypes.func,
+    gotoForm: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -28,8 +30,10 @@ const defaultProps = {
     isHorizontal: false,
     withoutLabel: false,
     withSettings: false,
-    withPanel: null,
+    withForm: false,
+    withPanel: false,
     gotoSettings: null,
+    gotoForm: null,
     className: null,
 };
 
@@ -40,7 +44,9 @@ const FieldRow = ({
     isHorizontal,
     withoutLabel,
     withSettings,
+    withForm,
     withPanel,
+    gotoForm,
     gotoSettings,
     className,
 }) => {
@@ -49,27 +55,27 @@ const FieldRow = ({
 
     const labelElement = <Label>{label}</Label>;
 
-    const openPanel = useCallback(() => setPanelOpened(true), []);
-    const closePanel = useCallback(() => setPanelOpened(false), []);
+    const onClickRow = useCallback(() => {
+        if (withPanel) {
+            setPanelOpened(true);
+        } else if (typeof withForm === 'string') {
+            gotoForm(withForm);
+        } else if (withForm) {
+            gotoForm();
+        }
+    }, [withPanel, withForm, gotoForm, setPanelOpened]);
+    const closePanel = useCallback(() => setPanelOpened(false), [setPanelOpened]);
+    const openPanel = useCallback(() => setPanelOpened(true), [setPanelOpened]);
 
     if (isHorizontal) {
+        const isClickable = withForm || withPanel;
         const rowInner = (
             <>
-                {withLabel ? (
-                    <label className={classNames(['col-auto', 'col-form-label', styles.label])}>
-                        {labelElement}
-                    </label>
-                ) : null}
-                <span className="col">
-                    {withPanel
-                        ? React.cloneElement(children, {
-                              closePanel,
-                              openPanel,
-                              panelOpened,
-                          })
-                        : children}
-                </span>
-                {withPanel ? (
+                <label className={classNames(['col-auto', 'col-form-label', styles.label])}>
+                    {labelElement}
+                </label>
+                <span className="col">{children}</span>
+                {isClickable ? (
                     <span className="col-auto">
                         <FontAwesomeIcon icon={faAngleRight} className={styles.icon} />
                     </span>
@@ -77,25 +83,33 @@ const FieldRow = ({
             </>
         );
 
-        return withPanel ? (
-            <Button
-                withoutStyle
-                className={classNames([
-                    'form-group',
-                    'form-row',
-                    'align-items-center',
-                    styles.container,
-                    styles.isHorizontal,
-                    styles.withPanel,
-                    {
-                        [styles.isSection]: isSection,
-                        [className]: className !== null,
-                    },
-                ])}
-                onClick={openPanel}
-            >
-                {rowInner}
-            </Button>
+        return isClickable ? (
+            <>
+                <Button
+                    withoutStyle
+                    className={classNames([
+                        'form-group',
+                        'form-row',
+                        'align-items-center',
+                        styles.container,
+                        styles.isHorizontal,
+                        {
+                            [styles.isSection]: isSection,
+                            [className]: className !== null,
+                        },
+                    ])}
+                    onClick={onClickRow}
+                >
+                    {rowInner}
+                </Button>
+                {panelOpened
+                    ? React.cloneElement(children, {
+                          panelOpened,
+                          closePanel,
+                          openPanel,
+                      })
+                    : null}
+            </>
         ) : (
             <div
                 className={classNames([

@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getComponentFromName, createNullableOnChange } from '@micromag/core/utils';
 import { useComponents } from '@micromag/core/contexts';
-import { CollapsablePanel, FIELDS_NAMESPACE } from '@micromag/core/components';
+import { FIELDS_NAMESPACE } from '@micromag/core/components';
 
 import FieldRow from './FieldRow';
 
@@ -87,6 +87,8 @@ const Fields = ({
             (asSettings, { setting = false }) => asSettings || setting,
             false,
         );
+        const gotoForm = form => gotoFieldForm(fieldName, form);
+        const gotoSettings = () => gotoForm('settings');
         const fieldElement = (
             <FieldComponent
                 withBorders={isFields && subFields.length > 1}
@@ -95,7 +97,7 @@ const Fields = ({
                 value={value !== null ? value[name] || null : null}
                 onChange={newFieldValue => onFieldChange(name, newFieldValue)}
                 gotoFieldForm={gotoFieldForm}
-                gotoForm={form => gotoFieldForm(fieldName, form)}
+                gotoForm={gotoForm}
             />
         );
         return !withoutFieldRow ? (
@@ -110,14 +112,22 @@ const Fields = ({
                 <FieldRow
                     key={`field-${name}`}
                     label={label}
-                    isHorizontal={isHorizontal || FieldComponent.isHorizontal || false}
+                    isHorizontal={
+                        isHorizontal ||
+                        FieldComponent.isHorizontal ||
+                        FieldComponent.withForm ||
+                        FieldComponent.withPanel ||
+                        false
+                    }
                     isSection={isSection}
                     withoutLabel={withoutLabel || FieldComponent.withoutLabel || false}
                     withSettings={
                         withSettings || fieldsAsSettings || FieldComponent.withSettings || false
                     }
+                    withForm={FieldComponent.withForm || false}
                     withPanel={FieldComponent.withPanel || false}
-                    gotoSettings={() => gotoFieldForm(fieldName, 'settings')}
+                    gotoSettings={gotoSettings}
+                    gotoForm={gotoForm}
                     className={styles.fieldRow}
                 >
                     {fieldElement}
@@ -147,11 +157,11 @@ const Fields = ({
                 },
             ])}
         >
-            {normalFields.map(renderField)}
+            <div className={styles.fields}>{normalFields.map(renderField)}</div>
             {advancedFields.length > 0 ? (
-                <CollapsablePanel title="Réglages avancés" className={styles.advanced}>
-                    {advancedFields.map(renderField)}
-                </CollapsablePanel>
+                <FieldRow label="Réglages avancés" isSection className={styles.advanced}>
+                    <div className={styles.fields}>{advancedFields.map(renderField)}</div>
+                </FieldRow>
             ) : null}
         </div>
     );

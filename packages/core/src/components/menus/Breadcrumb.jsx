@@ -28,7 +28,7 @@ const Breadcrumb = ({ items, className }) => (
         ])}
     >
         <ol className={classNames(['breadcrumb', styles.items])}>
-            {items.map(({ url, label, active = false }, index) => (
+            {items.map(({ url, label, active = false, onClick = null }, index) => (
                 <li
                     className={classNames([
                         'breadcrumb-item',
@@ -43,7 +43,7 @@ const Breadcrumb = ({ items, className }) => (
                     {active ? (
                         label
                     ) : (
-                        <Link to={url} className={styles.link}>
+                        <Link to={url} className={styles.link} onClick={onClick}>
                             {label}
                         </Link>
                     )}

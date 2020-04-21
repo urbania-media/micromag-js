@@ -65,20 +65,22 @@ export const menuItems = PropTypes.arrayOf(menuItem);
 export const device = PropTypes.shape({
     id: PropTypes.string.isRequired,
 });
-
 export const devices = PropTypes.arrayOf(device);
 
 export const modal = PropTypes.shape({
     id: PropTypes.string.isRequired,
 });
-
 export const modals = PropTypes.arrayOf(modal);
+
+export const panel = PropTypes.shape({
+    id: PropTypes.string.isRequired,
+});
+export const panels = PropTypes.arrayOf(panel);
 
 export const button = PropTypes.shape({
     label,
     onClick: PropTypes.func,
 });
-
 export const buttons = PropTypes.arrayOf(button);
 
 export const buttonTheme = PropTypes.oneOf([
@@ -131,14 +133,17 @@ export const formFields = PropTypes.arrayOf(formField);
 /**
  * Style
  */
-export const fontStyle = PropTypes.shape({
-    name: PropTypes.string,
-    size: PropTypes.number,
-    style: PropTypes.shape({
+export const textAlign = PropTypes.oneOf(['left', 'right', 'center']);
+
+export const textStyle = PropTypes.shape({
+    fontFamily: PropTypes.string,
+    fontSize: PropTypes.number,
+    fontStyle: PropTypes.shape({
         bold: PropTypes.bool,
         italic: PropTypes.bool,
         underline: PropTypes.bool,
     }),
+    textAlign,
 });
 
 export const color = PropTypes.shape({
@@ -175,7 +180,11 @@ export const objectFit = PropTypes.shape({
     size: objectFitSize,
 });
 
-export const textAlign = PropTypes.oneOf(['left', 'right', 'center']);
+export const flexDirection = PropTypes.oneOf(['row', 'column']);
+
+export const axisAlign = PropTypes.oneOf(['top', 'center', 'bottom', 'between', 'around', 'even']);
+
+export const crossAlign = PropTypes.oneOf(['top', 'center', 'bottom', 'stretch']);
 
 /**
  * Content
@@ -191,53 +200,35 @@ export const image = PropTypes.shape({
 export const images = PropTypes.arrayOf(image);
 
 /**
- * Components
+ * Elements
  */
-export const headingStyle = PropTypes.shape({
-    font: fontStyle,
-    color,
-    margin,
-});
-
-export const headingComponent = PropTypes.shape({
+export const headingElement = PropTypes.shape({
     body: PropTypes.string,
-    style: headingStyle,
+    textStyle,
 });
 
-export const textStyle = PropTypes.shape({
-    font: fontStyle,
-    color,
-    margin,
-});
-
-export const textComponent = PropTypes.shape({
+export const textElement = PropTypes.shape({
     body: PropTypes.string,
-    style: textStyle,
+    textStyle,
 });
 
-export const imageComponent = PropTypes.shape({
+export const imageElement = PropTypes.shape({
     image,
 });
 
-export const backgroundComponent = PropTypes.shape({
+export const backgroundElement = PropTypes.shape({
     color,
     image,
 });
 
-export const flexDirection = PropTypes.oneOf(['row', 'column']);
-
-export const axisAlign = PropTypes.oneOf(['top', 'center', 'bottom', 'between', 'around', 'even']);
-
-export const crossAlign = PropTypes.oneOf(['top', 'center', 'bottom', 'stretch']);
-
-export const boxComponent = PropTypes.shape({
+export const boxElement = PropTypes.shape({
     direction: flexDirection,
     axisAlign,
     crossAlign,
     spacing: PropTypes.number,
 });
 
-export const gridComponent = PropTypes.shape({
+export const gridElement = PropTypes.shape({
     layout: PropTypes.array,
     spacing: PropTypes.number,
 });
@@ -318,7 +309,7 @@ export const audioComponent = PropTypes.shape({
 
 export const slide = PropTypes.shape({
     image,
-    text: textComponent,
+    text: textElement,
 });
 
 export const slides = PropTypes.arrayOf(slide);

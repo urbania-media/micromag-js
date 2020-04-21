@@ -2,12 +2,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Box from '@micromag/component-box';
-import Grid from '@micromag/component-grid';
-import Background from '@micromag/component-background';
-import Frame from '@micromag/component-frame';
-import TextComponent from '@micromag/component-text';
-import ImageComponent from '@micromag/component-image';
+import Box from '@micromag/element-box';
+import Grid from '@micromag/element-grid';
+import Background from '@micromag/element-background';
+import Frame from '@micromag/element-frame';
+import TextComponent from '@micromag/element-text';
+import ImageComponent from '@micromag/element-image';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
