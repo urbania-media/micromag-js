@@ -15,8 +15,8 @@ import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    text: MicromagPropTypes.text,
-    image: MicromagPropTypes.image,
+    text: MicromagPropTypes.textComponent,
+    image: MicromagPropTypes.imageComponent,
     background: MicromagPropTypes.backgroundComponent,
     box: MicromagPropTypes.boxComponent,
     grid: MicromagPropTypes.gridComponent,

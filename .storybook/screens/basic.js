@@ -16,7 +16,17 @@ export default [
     },
     {
         id: uuid(),
+        type: 'image',
+        layout: 'center',
+        image: image({ width: 300, height: 300 }),
+        background: {
+            color: '#FF00FF',
+        },
+    },
+    {
+        id: uuid(),
         type: 'ad',
+        layout: 'center',
         ad: advertising({ width: 300, height: 250 }),
         background: {
             color: '#00FFFF',

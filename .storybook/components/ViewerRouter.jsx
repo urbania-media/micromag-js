@@ -18,6 +18,7 @@ const ViewerRouter = ({
     const history = useHistory();
     const onScreenChange = useCallback(
         it => {
+            // console.log('router', it);
             history.push(`/${it.id}`);
         },
         [history],

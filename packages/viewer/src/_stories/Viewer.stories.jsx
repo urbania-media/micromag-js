@@ -4,8 +4,7 @@ import { IntlProvider } from 'react-intl'; // eslint-disable-line
 import { MemoryRouter } from 'react-router'; // eslint-disable-line
 import { withKnobs } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
 import { withScreenSize } from '../../../../.storybook/decorators';
-import { Basic } from '../../../../.storybook/screens';
-import ViewerScreen from '../../../../.storybook/components/ViewerScreen';
+import { Basic, Medium } from '../../../../.storybook/screens/index';
 import ViewerRouter from '../../../../.storybook/components/ViewerRouter';
 import ScreensProvider from '../../../screens/src/ScreensProvider';
 
@@ -20,6 +19,13 @@ const props = {
     },
 };
 
+const mediumProps = {
+    screen: Medium[0].id,
+    value: {
+        components: Medium,
+    },
+};
+
 export default {
     component: Viewer,
     title: 'Viewer/Viewer',
@@ -31,9 +37,7 @@ const Frame = ({ children }) => (
     <IntlProvider locale="fr">
         <MemoryRouter>
             <ScreensProvider>
-                <ViewerScreen>
-                    <ViewerRouter>{children}</ViewerRouter>
-                </ViewerScreen>
+                <ViewerRouter>{children}</ViewerRouter>
             </ScreensProvider>
         </MemoryRouter>
     </IntlProvider>
@@ -81,6 +85,19 @@ export const Both = () => (
                 screen={screenId}
                 onScreenChange={onScreenChange}
                 interactions={['swipe', 'tap']}
+            />
+        )}
+    </Frame>
+);
+
+export const SwipeMedium = () => (
+    <Frame>
+        {({ screenId, onScreenChange }) => (
+            <Viewer
+                {...mediumProps}
+                screen={screenId}
+                onScreenChange={onScreenChange}
+                interactions={['swipe']}
             />
         )}
     </Frame>

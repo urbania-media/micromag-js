@@ -13,6 +13,7 @@ const propTypes = {
     loop: PropTypes.bool,
     autoPlay: PropTypes.bool,
     muted: PropTypes.bool,
+    playsInline: PropTypes.bool,
     controls: PropTypes.bool,
 };
 
@@ -24,6 +25,7 @@ const defaultProps = {
     fit: { size: 'contain' },
     loop: true,
     autoPlay: true,
+    playsInline: true,
     muted: true,
     controls: false,
 };

@@ -45,9 +45,18 @@ export const description = ({ likelyhood = 100, min = 10, max = 30 } = {}) =>
 export const paragraph = ({ likelyhood = 100, min = 30, max = 60 } = {}) =>
     sentences(likelyhood, min, max);
 
-export const text = (length = 'normal') => {
+export const textStyle = () => {
+    return {
+        text: {
+            color: chance.color({ format: 'rgb' }),
+            size: chance.integer({ min: 16, max: 32 }),
+        },
+    };
+};
+
+export const text = (length = 'normal', style = 'normal') => {
     let body = '';
-    const style = {};
+    let styleProps = {};
     switch (length) {
         case 'short':
             body = shortText();
@@ -64,8 +73,17 @@ export const text = (length = 'normal') => {
         default:
             body = shortText();
     }
+
+    switch (style) {
+        case 'big':
+            styleProps = textStyle();
+            break;
+        default:
+            styleProps = {};
+    }
+
     return {
-        style,
+        style: styleProps,
         body,
     };
 };
@@ -101,9 +119,13 @@ export const imageSquareWithRandomSize = ({ min = 100, max = 800 } = {}) => {
     };
 };
 
-export const images = ({ count = 3, width = 200, height = 120 } = {}) => {
+export const images = ({ count = 3, width = 200, height = 120, random = false } = {}) => {
     return [...Array(count)].map(i => ({
-        image: { url: `https://picsum.photos/${width}/${height}`, width, height },
+        image: {
+            url: `https://picsum.photos/${width}/${height}?random=${random ? Math.random() : 1}`,
+            width,
+            height,
+        },
     }));
 };
 
@@ -121,10 +143,10 @@ export const video = () => ({
 
 export const background = () => ({ color: { color: chance.color({ format: 'rgb' }) } });
 
-export const backgroundImage = () => ({
+export const backgroundImage = ({ random = false } = {}) => ({
     color: { color: chance.color({ format: 'rgb' }) },
     image: {
-        url: `https://picsum.photos/1000/1000/?blur`,
+        url: `https://picsum.photos/1000/1000/?blur&random=${random ? Math.random() : 1}`,
         width: 1000,
         height: 1000,
     },

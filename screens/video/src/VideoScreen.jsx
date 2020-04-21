@@ -64,7 +64,7 @@ const VideoScreen = ({
     ) : (
         <VideoComponent
             {...video}
-            maxWidth={Math.min(width, 768)}
+            maxWidth={Math.min(width - 40, 768 - 40)}
             maxHeight={height}
             autoPlay={autoPlay}
             muted={muted}

@@ -16,6 +16,7 @@ const propTypes = {
     autoPlay: PropTypes.bool,
     muted: PropTypes.bool,
     loop: PropTypes.bool,
+    playsInline: PropTypes.bool,
     refPlayer: PropTypes.shape({
         current: PropTypes.object,
     }),
@@ -32,6 +33,7 @@ const defaultProps = {
     autoPlay: false,
     muted: true,
     loop: false,
+    playsInline: true,
     refPlayer: null,
     className: null,
     onReady: null,
@@ -46,6 +48,7 @@ const VideoFile = ({
     autoPlay,
     muted: initialMuted,
     loop,
+    playsInline,
     refPlayer: refPlayerExternal,
     className,
     onReady,
@@ -161,6 +164,8 @@ const VideoFile = ({
         }
     }, [playerApi]);
 
+    // console.log(url, autoPlay, loop, playerState.muted, playsInline);
+
     return (
         <div
             className={classNames([
@@ -186,8 +191,9 @@ const VideoFile = ({
                 ref={refVideo}
                 className={styles.videoFile}
                 src={url}
+                playsInline={playsInline}
+                muted={loop || playerState.muted}
                 autoPlay={autoPlay}
-                muted={playerState.muted}
                 loop={loop}
                 style={{ width, height }}
             />

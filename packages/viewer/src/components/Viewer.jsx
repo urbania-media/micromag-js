@@ -50,10 +50,13 @@ const Viewer = ({
         height,
         screens: deviceScreens,
     });
+    const desktop = screenSize.width > screenSize.height;
+
     const { components = [] } = value;
 
     const onIndexChange = useCallback(
         index => {
+            // console.log('onIndexChange', index);
             if (onScreenChange !== null) {
                 onScreenChange(components[index], index);
             }
@@ -64,43 +67,42 @@ const Viewer = ({
     const { items, bind, setIndex } = useSwipe({
         width: screenSize.width,
         items: components,
+        disabled: desktop,
         onIndexChange,
     });
 
     const onClickMenuItem = useCallback(
         (e, it, index) => {
             e.preventDefault();
-            if (onScreenChange !== null) {
-                onScreenChange(it, index);
-            }
-            if (setIndex !== null) {
+            if (!desktop && setIndex !== null) {
                 setIndex(index);
             }
         },
-        [onScreenChange],
+        [onScreenChange, desktop],
     );
 
     const onTap = useCallback(
-        (e, it, index) => {
+        e => {
+            e.stopPropagation();
+            const { index: stringIndex } = e.currentTarget.dataset;
+            const index = parseInt(stringIndex, 10);
+            const it = { ...components[parseInt(index, 10)] };
+            if (!it) return;
+
             let next = index;
             if (e.clientX > screenSize.width / 2) {
                 next = index < items.length - 1 ? index + 1 : index;
             } else {
                 next = index > 0 ? index - 1 : index;
             }
-            if (onScreenChange !== null) {
-                onScreenChange(it, next);
-            }
             if (setIndex !== null) {
                 setIndex(next);
             }
         },
-        [onScreenChange, items, screenSize],
+        [onScreenChange, items, screenSize, components],
     );
 
-    const screen = components.find(it => String(it.id) === String(screenId)) || null;
-
-    // console.log('screen', screenId, screen, onIndexChange);
+    const currentScreen = components.find(it => String(it.id) === String(screenId)) || null;
 
     return (
         <ScreenSizeProvider size={screenSize}>
@@ -109,6 +111,7 @@ const Viewer = ({
                     styles.container,
                     screenSize.screens.map(screenName => `story-screen-${screenName}`),
                     {
+                        [styles.desktop]: desktop,
                         [className]: className,
                     },
                 ])}
@@ -118,30 +121,35 @@ const Viewer = ({
                     <Menu
                         items={components.map(it => ({
                             ...it,
-                            active: screen !== null && it.id === screen.id,
+                            active: currentScreen !== null && it.id === currentScreen.id,
                         }))}
                         className={styles.menu}
                         onClickItem={onClickMenuItem}
                     />
                 </div>
                 <div className={styles.content}>
-                    {items.map(({ display, visibility, x }, i) => {
+                    {components.map((scr, i) => {
                         const color = (i + 1) * 30;
-                        const item = components[i];
+                        const style = { ...items[i] };
                         return (
                             <animated.div
-                                {...(interactions !== null && interactions.includes('swipe')
+                                {...(!desktop &&
+                                interactions !== null &&
+                                interactions.includes('swipe')
                                     ? bind()
                                     : null)}
-                                {...(interactions !== null && interactions.includes('tap')
-                                    ? { onClick: e => onTap(e, item, i) }
+                                {...(!desktop &&
+                                interactions !== null &&
+                                interactions.includes('tap')
+                                    ? { onClick: onTap }
                                     : null)}
-                                key={i}
-                                style={{ display, visibility, x }}
+                                key={`screen-viewer-${scr.id || ''}-${i + 1}`}
+                                data-index={i}
+                                style={style}
                                 className={styles.screen}
                             >
-                                {item !== null ? (
-                                    <Screen screen={item} />
+                                {scr !== null ? (
+                                    <Screen screen={scr} />
                                 ) : (
                                     <div
                                         style={{
@@ -159,8 +167,6 @@ const Viewer = ({
         </ScreenSizeProvider>
     );
 };
-
-// <Screens screens={components} screen={screenId} className={styles.screens} />
 
 Viewer.propTypes = propTypes;
 Viewer.defaultProps = defaultProps;
