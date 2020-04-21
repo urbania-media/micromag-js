@@ -3,22 +3,22 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import TextComponent from '@micromag/component-text';
-import Image from '@micromag/component-image';
-import Background from '@micromag/component-background';
-import Frame from '@micromag/component-frame';
-import Button from '@micromag/component-button';
+import TextComponent from '@micromag/element-text';
+import Image from '@micromag/element-image';
+import Background from '@micromag/element-background';
+import Frame from '@micromag/element-frame';
+import Button from '@micromag/element-button';
 import { Placeholders, PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
-    question: MicromagPropTypes.textComponent,
-    background: MicromagPropTypes.backgroundComponent,
+    question: MicromagPropTypes.textElement,
+    background: MicromagPropTypes.backgroundElement,
     result: PropTypes.shape({
         image: MicromagPropTypes.image,
-        text: MicromagPropTypes.textComponent,
+        text: MicromagPropTypes.textElement,
     }),
     onClick: PropTypes.func,
     renderFormat: MicromagPropTypes.renderFormat,

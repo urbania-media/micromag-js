@@ -7,7 +7,7 @@ import TitleScreen from '../TitleScreen';
 
 const propTypes = {
     groups: PropTypes.arrayOf(PropTypes.array),
-    grid: MicromagPropTypes.gridComponent,
+    grid: MicromagPropTypes.gridElement,
 };
 
 const defaultProps = {

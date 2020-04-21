@@ -4,20 +4,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import TextComponent from '@micromag/component-text';
-import Background from '@micromag/component-background';
-import Frame from '@micromag/component-frame';
-import Image from '@micromag/component-image';
-import Heading from '@micromag/component-heading';
+import TextComponent from '@micromag/element-text';
+import Background from '@micromag/element-background';
+import Frame from '@micromag/element-frame';
+import Image from '@micromag/element-image';
+import Heading from '@micromag/element-heading';
 import { Placeholders, PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
-    title: MicromagPropTypes.textComponent,
-    items: PropTypes.arrayOf(MicromagPropTypes.textComponent),
-    background: MicromagPropTypes.backgroundComponent,
+    title: MicromagPropTypes.textElement,
+    items: PropTypes.arrayOf(MicromagPropTypes.textElement),
+    background: MicromagPropTypes.backgroundElement,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };

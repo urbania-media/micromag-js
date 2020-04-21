@@ -1,10 +1,16 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { useHistory } from 'react-router';
 import { Breadcrumb as BaseBreadcrumb } from '@micromag/core/components';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { injectIntl } from 'react-intl';
 import { useSchemasRepository, SCREENS_NAMESPACE } from '@micromag/schemas';
+
+import BackButton from '../buttons/Back';
+
+import styles from '../../styles/menus/breadcrumb.module.scss';
 
 import messages from '../../messages';
 
@@ -13,7 +19,8 @@ const propTypes = {
     value: MicromagPropTypes.story,
     screenId: PropTypes.string,
     field: PropTypes.string,
-    panels: PropTypes.arrayOf(PropTypes.object),
+    form: PropTypes.string,
+    panel: MicromagPropTypes.panel,
     url: PropTypes.string.isRequired,
     className: PropTypes.string,
 };
@@ -22,89 +29,70 @@ const defaultProps = {
     value: null,
     screenId: null,
     field: null,
-    panels: null,
+    form: null,
+    panel: null,
     className: null,
 };
 
-const Breadcrumb = ({ intl, value, screenId, field, panels, url, className }) => {
+const Breadcrumb = ({ intl, value, screenId, field, form, panel, url, className }) => {
     const { components: screens = [] } = value || {};
     const repository = useSchemasRepository();
+    const history = useHistory();
 
     const items = useMemo(() => {
         const screenIndex = screens.findIndex(it => it.id === screenId);
         const { type, layout = null } = screens[screenIndex];
-        let fieldItems = [];
+        const fieldItems = [];
         if (field !== null) {
             const fields = repository.getFieldsFromSchema(`${SCREENS_NAMESPACE}/${type}`, {
                 layout,
             });
             const fieldParts = field.split('/');
-            const lastIndex = fieldParts.length - 1;
-            fieldItems = fieldParts.reduce(
-                (
-                    {
-                        items: currentItems,
-                        fields: currentFields,
-                        path: currentPath,
-                        url: currentUrl,
-                        settingPath,
-                    },
-                    key,
-                    index,
-                ) => {
-                    const {
-                        name,
-                        label = null,
-                        fields: subFields = [],
-                        // setting = false,
-                    } =
-                        currentFields.find(it => it.name === key) ||
-                        (key.match(/^[0-9]+$/) !== null
-                            ? {
-                                  label: `#${parseInt(key, 10) + 1}`,
-                              }
-                            : null) ||
-                        {};
-                    const subHasSettings = subFields.reduce(
-                        (hasSettings, { setting: subSetting = false }) => hasSettings || subSetting,
-                        false,
-                    );
-                    const path = `${currentPath}/${name}`;
-                    const newSettingPath = subHasSettings ? `${path}/settings` : settingPath;
-                    const newUrl = newSettingPath || path;
-                    return {
-                        path,
-                        url: newUrl,
-                        settingPath: newSettingPath,
-                        items:
-                            label !== null && (newUrl !== currentUrl || index === lastIndex)
-                                ? [
-                                      ...currentItems,
-                                      {
-                                          label,
-                                          url: newUrl,
-                                          active: false,
-                                      },
-                                  ]
-                                : currentItems,
-                        fields: subFields,
-                    };
+            const parentField = fields.find(it => it.name === fieldParts[0]) || null;
+            const currentField = fieldParts.reduce(
+                (foundField, name) => {
+                    if (foundField === null) {
+                        return null;
+                    }
+                    const { setting = false } = foundField;
+                    const newField = (foundField.fields || []).find(it => it.name === name) || null;
+                    return setting
+                        ? {
+                              ...newField,
+                              setting,
+                          }
+                        : newField;
                 },
-                {
-                    items: [],
-                    fields,
-                    url: `/${screenId}`,
-                    path: `/${screenId}`,
-                    settingPath: null,
-                },
-            ).items;
+                { fields },
+            );
+            const isSetting = currentField !== null && currentField.setting === true;
+            if (isSetting && parentField !== null) {
+                fieldItems.push({
+                    label: parentField.label,
+                    url: `/${screenId}/${parentField.name}${isSetting ? '/settings' : ''}`,
+                    active: false,
+                });
+            }
+            if (currentField !== null) {
+                fieldItems.push({
+                    label: currentField.description || currentField.label,
+                    url: `/${screenId}/${field}${form !== null ? `/${form}` : ''}`,
+                    active: false,
+                });
+            }
         }
 
-        const panelsItems = panels.map(panel => ({
-            label: panel.title,
-            url,
-            active: false,
-        }));
+        const panelItems =
+            panel !== null
+                ? [
+                      {
+                          label: panel.title,
+                          url: '',
+                          active: false,
+                          panel: panel.id,
+                      },
+                  ]
+                : [];
 
         const finalItems = [
             {
@@ -115,8 +103,17 @@ const Breadcrumb = ({ intl, value, screenId, field, panels, url, className }) =>
                 active: false,
             },
             ...fieldItems,
-            ...panelsItems,
-        ].filter(it => it !== null);
+            ...panelItems,
+        ]
+            .filter(it => it !== null)
+            .map(it =>
+                panel !== null && typeof it.panel === 'undefined'
+                    ? {
+                          ...it,
+                          onClick: () => console.log('SHOULD CLOSE PANEL'),
+                      }
+                    : it,
+            );
 
         const lastItemsIndex = finalItems.length - 1;
 
@@ -129,9 +126,25 @@ const Breadcrumb = ({ intl, value, screenId, field, panels, url, className }) =>
                   }
                 : it,
         );
-    }, [intl, repository, screens, screenId, field, panels, url]);
+    }, [intl, repository, screens, screenId, field, form, panel, url]);
 
-    return <BaseBreadcrumb items={items} className={className} />;
+    const onClickBack = useCallback(() => history.push(items[items.length - 2].url), [items]);
+    const withBack = items.length > 1;
+
+    return (
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [styles.withBack]: withBack,
+                    [className]: className !== null,
+                },
+            ])}
+        >
+            {withBack ? <BackButton onClick={onClickBack} className={styles.back} /> : null}
+            <BaseBreadcrumb items={items} className={styles.menu} />
+        </div>
+    );
 };
 
 Breadcrumb.propTypes = propTypes;

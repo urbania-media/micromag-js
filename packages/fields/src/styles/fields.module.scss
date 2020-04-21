@@ -14,43 +14,17 @@
     }
 
     .advanced {
-        .top {
-            border-bottom: solid 1px $border-color;
-        }
-
-        .button {
-            display: flex;
-            width: 100%;
-            padding: ($spacer / 4) 0;
-            font-size: 0.9rem;
-            font-weight: bold;
-            text-align: left;
-        }
-
-        .label {
-            flex-grow: 1;
-        }
-
-        .fields {
-            max-height: 0;
-            padding-top: $spacer;
-            overflow: hidden;
-            transition: max-height 0.2s ease-out;
-        }
-
-        &.isOpened {
-            .fields {
-                max-height: 500px;
-            }
-        }
+        margin-top: $spacer * 2;
     }
 
     &.withBorders {
-        border-top: solid 1px $border-color;
+        .fields {
+            border-bottom: solid 1px $border-color;
+        }
 
         .field {
             margin-bottom: 0;
-            border-bottom: solid 1px $border-color;
+            border-top: solid 1px $border-color;
 
             &:last-child {
                 margin-bottom: 0;

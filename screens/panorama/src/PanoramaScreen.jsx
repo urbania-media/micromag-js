@@ -3,10 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Background from '@micromag/component-background';
-import Frame from '@micromag/component-frame';
-import Box from '@micromag/component-box';
-// import Image from '@micromag/component-image';
+import Background from '@micromag/element-background';
+import Frame from '@micromag/element-frame';
+import Box from '@micromag/element-box';
+// import Image from '@micromag/element-image';
 
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
@@ -16,7 +16,7 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     panorama: PropTypes.object, // eslint-disable-line
-    background: MicromagPropTypes.backgroundComponent,
+    background: MicromagPropTypes.backgroundElement,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };

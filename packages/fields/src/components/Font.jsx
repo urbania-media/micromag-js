@@ -1,16 +1,10 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faAngleRight,
-    faAlignLeft,
-    faAlignCenter,
-    faAlignRight,
-} from '@fortawesome/free-solid-svg-icons';
-
-import { Button } from '@micromag/core/components';
-import { getStyleFromFont } from '@micromag/core/utils';
+import { faAlignLeft, faAlignCenter, faAlignRight } from '@fortawesome/free-solid-svg-icons';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { getStyleFromText } from '@micromag/core/utils';
 
 import styles from '../styles/font.module.scss';
 
@@ -21,24 +15,17 @@ const alignIcons = {
 };
 
 const propTypes = {
-    value: PropTypes.shape({
-        name: PropTypes.string,
-        size: PropTypes.number,
-        style: PropTypes.object,
-    }),
-    gotoForm: PropTypes.func,
+    value: MicromagPropTypes.textStyle,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     value: null,
-    gotoForm: null,
     className: null,
 };
 
-const FontField = ({ value, gotoForm, className }) => {
-    const { name = null, size = null, style = null } = value || {};
-    const onClickField = useCallback(() => gotoForm('font'), []);
+const FontField = ({ value, className }) => {
+    const { fontFamily = null, fontSize = null, fontStyle = null } = value || {};
     return (
         <div
             className={classNames([
@@ -48,43 +35,39 @@ const FontField = ({ value, gotoForm, className }) => {
                 },
             ])}
         >
-            <Button withoutStyle className={styles.button} onClick={onClickField}>
-                {name !== null || size !== null || style !== null ? (
-                    <>
-                        <span className={styles.name}>{name}</span>
-                        {size !== null ? <span className={styles.size}>{size}px</span> : null}
-                        {style !== null && Object.keys(style).join(',') !== 'align' ? (
-                            <span
-                                className={styles.preview}
-                                style={{
-                                    ...getStyleFromFont(value),
-                                    lineHeight: 1,
-                                    fontSize: '1.2em',
-                                }}
-                            >
-                                Aa
-                            </span>
-                        ) : null}
-
-                        {style !== null &&
-                        typeof alignIcons[style.align || null] !== 'undefined' ? (
-                            <FontAwesomeIcon
-                                icon={alignIcons[style.align]}
-                                className={styles.icon}
-                            />
-                        ) : null}
-                    </>
-                ) : (
-                    <span className={styles.noValue}>Sélectionnez une police</span>
-                )}
-                <FontAwesomeIcon icon={faAngleRight} className={styles.icon} />
-            </Button>
+            {fontFamily !== null || fontSize !== null || fontStyle !== null ? (
+                <>
+                    <span className={styles.name}>{fontFamily}</span>
+                    {fontSize !== null ? <span className={styles.size}>{fontSize}px</span> : null}
+                    {fontStyle !== null && Object.keys(fontStyle).join(',') !== 'align' ? (
+                        <span
+                            className={styles.preview}
+                            style={{
+                                ...getStyleFromText(value),
+                                lineHeight: 1,
+                                fontSize: '1.2em',
+                            }}
+                        >
+                            Aa
+                        </span>
+                    ) : null}
+                    {fontStyle !== null &&
+                    typeof alignIcons[fontStyle.align || null] !== 'undefined' ? (
+                        <FontAwesomeIcon
+                            icon={alignIcons[fontStyle.align]}
+                            className={styles.icon}
+                        />
+                    ) : null}
+                </>
+            ) : (
+                <span className={styles.noValue}>Sélectionnez une police</span>
+            )}
         </div>
     );
 };
 
 FontField.propTypes = propTypes;
 FontField.defaultProps = defaultProps;
-FontField.isHorizontal = true;
+FontField.withForm = true;
 
 export default FontField;

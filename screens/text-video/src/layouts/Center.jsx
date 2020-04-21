@@ -6,7 +6,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import TextVideoScreen from '../TextVideoScreen';
 
 const propTypes = {
-    box: MicromagPropTypes.boxComponent,
+    box: MicromagPropTypes.boxElement,
 };
 
 const defaultProps = {

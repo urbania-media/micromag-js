@@ -10,7 +10,7 @@ import styles from '../../styles/panels/panels.module.scss';
 
 const propTypes = {
     panels: MicromagPropTypes.panels,
-    setPanelsContainer: MicromagPropTypes.func,
+    setPanelsContainer: PropTypes.func,
     className: PropTypes.string,
 };
 

@@ -15,22 +15,17 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
+        padding: $spacer / 4;
         background: $gray-200;
     }
 
-    .back {
-        padding: $spacer / 2;
-    }
-
     .settings {
-        margin-right: $spacer / 2;
+        margin-left: auto;
     }
 
     .breadcrumb {
         flex-grow: 1;
         width: 100%;
-        padding: $spacer / 2;
-        padding-left: 0;
         overflow: hidden;
         font-size: 0.75rem;
     }
@@ -50,19 +45,23 @@
 
     %disabled {
         position: absolute;
+        z-index: 0;
         top: 0;
         left: 0;
         width: 100%;
     }
 
     .form {
+        position: relative;
         min-height: 100%;
         padding: $spacer / 2;
+        background: $white;
 
         &.enterRight,
         &.enterLeft,
         &.enterTop,
         &.enterBottom {
+            z-index: 1;
             opacity: 0.5;
         }
 

@@ -2,10 +2,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Box from '@micromag/component-box';
-import Background from '@micromag/component-background';
-import Frame from '@micromag/component-frame';
-import VideoComponent from '@micromag/component-video';
+import Box from '@micromag/element-box';
+import Background from '@micromag/element-background';
+import Frame from '@micromag/element-frame';
+import VideoComponent from '@micromag/element-video';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
@@ -14,8 +14,8 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     video: MicromagPropTypes.video,
-    background: MicromagPropTypes.backgroundComponent,
-    box: MicromagPropTypes.boxComponent,
+    background: MicromagPropTypes.backgroundElement,
+    box: MicromagPropTypes.boxElement,
     autoPlay: PropTypes.bool,
     muted: PropTypes.bool,
     loop: PropTypes.bool,

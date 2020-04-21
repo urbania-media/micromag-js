@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
-import AudioComponent from '@micromag/component-audio';
-import TextComponent from '@micromag/component-text';
-import ImageComponent from '@micromag/component-image';
-import Background from '@micromag/component-background';
-import Frame from '@micromag/component-frame';
-import Box from '@micromag/component-box';
+import AudioComponent from '@micromag/element-audio';
+import TextComponent from '@micromag/element-text';
+import ImageComponent from '@micromag/element-image';
+import Background from '@micromag/element-background';
+import Frame from '@micromag/element-frame';
+import Box from '@micromag/element-box';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
@@ -15,11 +15,11 @@ import { getRenderFormat } from '@micromag/core/utils';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    audio: MicromagPropTypes.audioComponent,
-    text: MicromagPropTypes.textComponent,
-    image: MicromagPropTypes.imageComponent,
-    box: MicromagPropTypes.boxComponent,
-    background: MicromagPropTypes.backgroundComponent,
+    audio: MicromagPropTypes.audioElement,
+    text: MicromagPropTypes.textElement,
+    image: MicromagPropTypes.imageElement,
+    box: MicromagPropTypes.boxElement,
+    background: MicromagPropTypes.backgroundElement,
     maxWidth: PropTypes.number,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
