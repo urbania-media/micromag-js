@@ -9,12 +9,15 @@ const localesFiles = locales.map((locale) => ({
     output: [
         {
             file: `locale/${locale}.js`,
+        },
+        {
+            file: `locale/${locale}.cjs.js`,
             format: 'cjs',
         },
     ],
     plugins: [
         replace({
-            'LOCALE': locale,
+            'REPLACE_LOCALE': locale,
         }),
         ...baseConfig.plugins
     ]
@@ -23,19 +26,6 @@ const localesFiles = locales.map((locale) => ({
 export default [
     {
         ...baseConfig,
-    },
-    {
-        ...baseConfig,
-        input: 'src/manager.js',
-        output: [
-            {
-                file: 'lib/manager.js',
-                format: 'cjs',
-            },
-            {
-                file: 'es/manager.js',
-            },
-        ],
     },
     ...localesFiles,
 ];

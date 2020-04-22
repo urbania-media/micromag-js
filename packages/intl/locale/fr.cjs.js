@@ -1,4 +1,8 @@
-import manager from '@micromag/intl';
+'use strict';
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var manager = _interopDefault(require('@micromag/intl'));
 
 var messages = {
   "editor.buttons.edit": "Modifier",
