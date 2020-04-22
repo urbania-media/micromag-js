@@ -42,6 +42,8 @@
         "prepare": "npm run clean && npm run intl && npm run build"
     },
     "devDependencies": {
+        "@micromag/editor": "^0.1.0",
+        "@micromag/elements": "^0.1.0",
         "@micromag/screens": "^0.1.0",
         "react": ">=15.0.0 || ^16.0.0",
         "react-dom": ">=15.0.0 || ^16.0.0"

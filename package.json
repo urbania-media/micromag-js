@@ -6,7 +6,10 @@
     "scripts": {
         "storybook": "start-storybook --port 58800",
         "start": "npm run storybook",
-        "server": "npm run storybook"
+        "server": "npm run storybook",
+        "intl:build": "node ./scripts/build-all-packages-intl-translations.js",
+        "intl:merge": "node ./scripts/merge-all-packages-intl-translations.js",
+        "intl": "npm run intl:build && npm run intl:merge"
     },
     "author": "",
     "license": "ISC",
