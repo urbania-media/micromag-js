@@ -28,6 +28,7 @@
     "main": "lib/index.js",
     "module": "es/index.js",
     "files": [
+        "locale",
         "lib",
         "es",
         "assets"
