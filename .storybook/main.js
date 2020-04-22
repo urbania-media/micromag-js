@@ -24,6 +24,49 @@ module.exports = {
             'react-intl': require.resolve('react-intl'),
             ...packagesAliases,
         };
+
+        // const rules = config.module.rules;
+        // config.module.rules[0].use[0].options.plugins.push([
+        //     require.resolve('babel-plugin-react-intl'),
+        //     {
+        //         overrideIdFn: require(path.join(__dirname, '../scripts/lib/getIntlMessagesNamespace')),
+        //         extractSourceLocation: true,
+        //     },
+        // ]);
+
+        config.module.rules = [
+            ...config.module.rules,
+            ...getPackagesPaths().map(packagePath => {
+                const packageJson = require(path.join(packagePath, './package.json'));
+                const { name = null } = packageJson || {};
+                const namespace =
+                    name !== null
+                        ? name
+                              .replace(/^@micromag\/(screen|element|field)-(.*)$/, '$1s.$2')
+                              .replace(/^@micromag\/(.*)$/, '$1')
+                        : null;
+                return {
+                    loader: require.resolve('babel-loader'),
+                    test: /\.(js|jsx)$/,
+                    include: path.join(packagePath, './src/'),
+                    exclude: /\/node_modules\//,
+                    options: {
+                        babelrc: false,
+                        plugins: [
+                            [
+                                require.resolve('babel-plugin-react-intl'),
+                                {
+                                    overrideIdFn: id =>
+                                        namespace !== null ? `${namespace}.${id}` : id,
+                                    extractSourceLocation: true,
+                                },
+                            ],
+                        ],
+                    },
+                };
+            }),
+        ];
+
         return config;
     },
 };

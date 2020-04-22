@@ -1,5 +1,5 @@
 {
-    "name": "micromag",
+    "name": "@micromag/app",
     "version": "0.1.0",
     "description": "",
     "keywords": [
@@ -29,12 +29,15 @@
     "module": "es/index.js",
     "files": [
         "lib",
-        "es"
+        "es",
+        "assets"
     ],
     "scripts": {
-        "clean": "rm -rf lib && rm -rf es",
+        "clean": "rm -rf assets && rm -rf lib && rm -rf es",
         "build": "NODE_ENV=production ../../node_modules/.bin/rollup --config ../../rollup.config.js",
-        "prepare": "npm run clean && npm run build"
+        "intl": "node ../../scripts/build-package-intl-translations",
+        "prepare": "npm run clean && npm run build && npm run intl",
+        "start": "PUBLIC_URL=http://localhost/ react-scripts start"
     },
     "devDependencies": {
         "react": ">=15.0.0 || ^16.0.0",
@@ -46,6 +49,21 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.8.7",
-        "@micromag/editor": "^0.1.0"
+        "@folklore/size": "^0.1.11",
+        "@fortawesome/fontawesome-svg-core": "^1.2.28",
+        "@fortawesome/free-solid-svg-icons": "^5.13.0",
+        "@fortawesome/react-fontawesome": "^0.1.9",
+        "@micromag/core": "^0.1.0",
+        "@micromag/fields": "^0.1.0",
+        "@micromag/schemas": "^0.1.0",
+        "@micromag/viewer": "^0.1.0",
+        "classnames": "^2.2.6",
+        "lodash": "^4.17.15",
+        "prop-types": "^15.7.2",
+        "react-addons-css-transition-group": "^15.6.2",
+        "react-intl": "^4.3.1",
+        "react-router": "^5.1.2",
+        "react-sortablejs": "^2.0.11",
+        "uuid": "^7.0.3"
     }
 }

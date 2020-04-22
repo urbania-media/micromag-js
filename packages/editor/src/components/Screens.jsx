@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Route, useHistory } from 'react-router';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { Label } from '@micromag/core/components';
 import { useSchemasRepository, SCREENS_NAMESPACE } from '@micromag/schemas';
 
 import createScreenFromType from '../utils/createScreenFromType';
@@ -11,6 +12,7 @@ import Screens from './menus/Screens';
 import PlusButton from './buttons/Plus';
 import ScreenTypesModal from './modals/ScreenTypes';
 
+import messages from '../messages';
 import styles from '../styles/screens.module.scss';
 
 const propTypes = {
@@ -97,7 +99,9 @@ const EditorScreens = ({ value, isVertical, onClickScreen, onChange, className }
             ])}
         >
             <div className={styles.top}>
-                <h4 className={styles.title}>Écrans</h4>
+                <h4 className={styles.title}>
+                    <Label>{messages.screens}</Label>
+                </h4>
                 <PlusButton className={styles.button} onClick={onClickAdd} />
             </div>
             <Route

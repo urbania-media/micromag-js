@@ -5,14 +5,14 @@ const glob = require('glob');
 const getPackagesPaths = require('./lib/getPackagesPaths');
 const sortIntlMessages = require('./lib/sortIntlMessages');
 
-const globalPath = path.join(__dirname, '../packages/micromag');
+const globalPath = path.join(__dirname, '../packages/intl');
 
 const langFiles = getPackagesPaths()
     .filter(packagePath => packagePath !== globalPath)
     .reduce(
         (allFiles, packagePath) => [
             ...allFiles,
-            ...glob.sync(path.join(packagePath, './intl/lang/*.json')),
+            ...glob.sync(path.join(packagePath, './intl/locale/*.json')),
         ],
         [],
     );
@@ -30,7 +30,7 @@ const messagesByLocale = langFiles.reduce((map, langFile) => {
 }, {});
 
 Object.keys(messagesByLocale).forEach(locale => {
-    const langFile = path.join(globalPath, `./intl/lang/${locale}.json`);
+    const langFile = path.join(globalPath, `./locale/messages/${locale}.json`);
     const sortedMessages = sortIntlMessages(messagesByLocale[locale]);
     mkdirp.sync(path.dirname(langFile));
     fs.writeFileSync(langFile, JSON.stringify(sortedMessages, null, 4));

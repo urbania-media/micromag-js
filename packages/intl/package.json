@@ -1,5 +1,5 @@
 {
-    "name": "micromag",
+    "name": "@micromag/intl",
     "version": "0.1.0",
     "description": "",
     "keywords": [
@@ -29,12 +29,15 @@
     "module": "es/index.js",
     "files": [
         "lib",
-        "es"
+        "es",
+        "assets"
     ],
     "scripts": {
-        "clean": "rm -rf lib && rm -rf es",
-        "build": "NODE_ENV=production ../../node_modules/.bin/rollup --config ../../rollup.config.js",
-        "prepare": "npm run clean && npm run build"
+        "clean": "rm -rf assets && rm -rf lib && rm -rf es",
+        "build": "NODE_ENV=production ../../node_modules/.bin/rollup --config ./rollup.config.js",
+        "intl": "node ../../scripts/build-all-packages-intl-translations",
+        "prepare": "npm run clean && npm run build && npm run intl",
+        "start": "PUBLIC_URL=http://localhost/ react-scripts start"
     },
     "devDependencies": {
         "react": ">=15.0.0 || ^16.0.0",
@@ -46,6 +49,9 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.8.7",
-        "@micromag/editor": "^0.1.0"
+        "@micromag/core": "^0.1.0",
+        "lodash": "^4.17.15",
+        "prop-types": "^15.7.2",
+        "react-intl": "^4.3.1"
     }
 }
