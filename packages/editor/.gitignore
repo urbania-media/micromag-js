@@ -36,4 +36,3 @@ publish
 /dist
 /assets
 /package-lock.json
-/intl/messages

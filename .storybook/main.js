@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const path = require('path');
 const getPackagesPaths = require('../scripts/lib/getPackagesPaths');
 const getPackagesAliases = require('../scripts/lib/getPackagesAliases');
@@ -15,8 +16,9 @@ module.exports = {
         '@storybook/addon-actions',
         // path.join(__dirname, './addons/layouts/register')
     ],
-    webpackFinal: async (config, { configType }) => {
+    webpackFinal: async (config) => {
         const packagesAliases = getPackagesAliases();
+
         config.resolve.alias = {
             ...config.resolve.alias,
             'react-router': require.resolve('react-router'),

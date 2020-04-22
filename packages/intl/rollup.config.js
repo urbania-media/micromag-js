@@ -1,8 +1,9 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+import path from 'path';
+import { sync as syncGlob } from 'glob';
 import replace from '@rollup/plugin-replace';
 import baseConfig from '../../rollup.config';
 
-const locales = ['fr', 'en'];
+const locales = syncGlob(path.join(__dirname, './locale/*.json')).map(it => path.basename(it, '.json'));
 const localesFiles = locales.map((locale) => ({
     ...baseConfig,
     input: 'src/lang.js',

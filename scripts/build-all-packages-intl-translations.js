@@ -1,37 +1,9 @@
 const path = require('path');
-const fs = require('fs');
-const mkdirp = require('mkdirp');
-const glob = require('glob');
 const getPackagesPaths = require('./lib/getPackagesPaths');
-const sortIntlMessages = require('./lib/sortIntlMessages');
+const buildIntlTranslations = require('./lib/buildIntlTranslations');
 
-const globalPath = path.join(__dirname, '../packages/intl');
-
-const langFiles = getPackagesPaths()
-    .filter(packagePath => packagePath !== globalPath)
-    .reduce(
-        (allFiles, packagePath) => [
-            ...allFiles,
-            ...glob.sync(path.join(packagePath, './intl/locale/*.json')),
-        ],
-        [],
-    );
-
-const messagesByLocale = langFiles.reduce((map, langFile) => {
-    const locale = path.basename(langFile, '.json');
-    const messages = require(langFile);
-    return {
-        ...map,
-        [locale]: {
-            ...(map[locale] || null),
-            ...messages,
-        },
-    };
-}, {});
-
-Object.keys(messagesByLocale).forEach(locale => {
-    const langFile = path.join(globalPath, `./locale/messages/${locale}.json`);
-    const sortedMessages = sortIntlMessages(messagesByLocale[locale]);
-    mkdirp.sync(path.dirname(langFile));
-    fs.writeFileSync(langFile, JSON.stringify(sortedMessages, null, 4));
+getPackagesPaths().forEach((packagePath) => {
+    const MESSAGES_PATTERN = path.join(packagePath, './intl/messages/**/*.json');
+    const LANG_FILE = path.join(packagePath, './intl/locale/en.json');
+    buildIntlTranslations(MESSAGES_PATTERN, LANG_FILE);
 });

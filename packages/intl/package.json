@@ -34,13 +34,15 @@
         "assets"
     ],
     "scripts": {
-        "clean": "rm -rf assets && rm -rf lib && rm -rf es",
+        "clean": "rm -rf assets && rm -rf lib && rm -rf es && rm -rf locale",
         "build": "NODE_ENV=production ../../node_modules/.bin/rollup --config ./rollup.config.js",
-        "intl": "node ../../scripts/build-all-packages-intl-translations",
-        "prepare": "npm run clean && npm run build && npm run intl",
-        "start": "PUBLIC_URL=http://localhost/ react-scripts start"
+        "intl:build": "node ../../scripts/build-all-packages-intl-translations.js",
+        "intl:merge": "node ../../scripts/merge-all-packages-intl-translations.js",
+        "intl": "npm run intl:build && npm run intl:merge",
+        "prepare": "npm run clean && npm run intl && npm run build"
     },
     "devDependencies": {
+        "@micromag/screens": "^0.1.0",
         "react": ">=15.0.0 || ^16.0.0",
         "react-dom": ">=15.0.0 || ^16.0.0"
     },
