@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { animated } from 'react-spring';
@@ -8,7 +8,8 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSizeFromElement, useSwipe } from '@micromag/core/hooks';
 import { ScreenSizeProvider } from '@micromag/core/contexts';
 import { getDeviceScreens } from '@micromag/core/utils';
-import { Screen } from '@micromag/core/components';
+
+import ViewerScreen from './ViewerScreen';
 
 import Menu from './menus/Menu';
 
@@ -18,17 +19,17 @@ const propTypes = {
     value: MicromagPropTypes.story.isRequired,
     width: PropTypes.number,
     height: PropTypes.number,
-    screen: PropTypes.string,
+    screenId: PropTypes.string,
     deviceScreens: MicromagPropTypes.deviceScreens,
     interactions: MicromagPropTypes.interactions,
-    className: PropTypes.string,
     onScreenChange: PropTypes.func,
+    className: PropTypes.string,
 };
 
 const defaultProps = {
     width: null,
     height: null,
-    screen: null,
+    screenId: null,
     deviceScreens: getDeviceScreens(),
     className: null,
     interactions: ['tap'],
@@ -36,15 +37,19 @@ const defaultProps = {
 };
 
 const Viewer = ({
-    value,
+    value: { components = [] },
     width,
     height,
-    screen: screenId,
+    screenId,
     deviceScreens,
     interactions,
-    className,
     onScreenChange,
+    className,
 }) => {
+    const [menuIndex, setMenuIndex] = useState(
+        components.findIndex(it => String(it.id) === String(screenId)) || 0,
+    );
+    const scrollRef = useRef(null);
     const { ref: refContainer, screenSize } = useScreenSizeFromElement({
         width,
         height,
@@ -52,11 +57,8 @@ const Viewer = ({
     });
     const desktop = screenSize.width > screenSize.height;
 
-    const { components = [] } = value;
-
     const onIndexChange = useCallback(
         index => {
-            // console.log('onIndexChange', index);
             if (onScreenChange !== null) {
                 onScreenChange(components[index], index);
             }
@@ -76,9 +78,11 @@ const Viewer = ({
             e.preventDefault();
             if (!desktop && setIndex !== null) {
                 setIndex(index);
+            } else if (desktop && scrollRef.current) {
+                scrollRef.current.scrollTo({ top: index * screenSize.height, behavior: 'smooth' });
             }
         },
-        [onScreenChange, desktop],
+        [onScreenChange, desktop, scrollRef, screenSize],
     );
 
     const onTap = useCallback(
@@ -102,7 +106,13 @@ const Viewer = ({
         [onScreenChange, items, screenSize, components],
     );
 
-    const currentScreen = components.find(it => String(it.id) === String(screenId)) || null;
+    const onVisible = useCallback(
+        index => {
+            setMenuIndex(index);
+            onIndexChange(index);
+        },
+        [setMenuIndex],
+    );
 
     return (
         <ScreenSizeProvider size={screenSize}>
@@ -119,17 +129,14 @@ const Viewer = ({
             >
                 <div className={styles.top}>
                     <Menu
-                        items={components.map(it => ({
-                            ...it,
-                            active: currentScreen !== null && it.id === currentScreen.id,
-                        }))}
-                        className={styles.menu}
+                        items={components}
+                        current={menuIndex}
                         onClickItem={onClickMenuItem}
+                        className={styles.menu}
                     />
                 </div>
-                <div className={styles.content}>
+                <div ref={scrollRef} className={styles.content}>
                     {components.map((scr, i) => {
-                        const color = (i + 1) * 30;
                         const style = { ...items[i] };
                         return (
                             <animated.div
@@ -148,17 +155,7 @@ const Viewer = ({
                                 style={style}
                                 className={styles.screen}
                             >
-                                {scr !== null ? (
-                                    <Screen screen={scr} />
-                                ) : (
-                                    <div
-                                        style={{
-                                            width: '100%',
-                                            height: '100%',
-                                            backgroundColor: `rgb(${color}, ${color}, ${color})`,
-                                        }}
-                                    />
-                                )}
+                                <ViewerScreen screen={scr} index={i} onVisible={onVisible} />
                             </animated.div>
                         );
                     })}

@@ -144,4 +144,4 @@ const SlideshowScreen = ({
 SlideshowScreen.propTypes = propTypes;
 SlideshowScreen.defaultProps = defaultProps;
 
-export default SlideshowScreen;
+export default React.memo(SlideshowScreen);

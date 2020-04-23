@@ -134,4 +134,4 @@ const MapPathScreen = ({ map, background, align, renderFormat, className }) => {
 MapPathScreen.propTypes = propTypes;
 MapPathScreen.defaultProps = defaultProps;
 
-export default MapPathScreen;
+export default React.memo(MapPathScreen);

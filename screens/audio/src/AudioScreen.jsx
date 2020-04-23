@@ -104,4 +104,4 @@ const AudioScreen = ({
 AudioScreen.propTypes = propTypes;
 AudioScreen.defaultProps = defaultProps;
 
-export default AudioScreen;
+export default React.memo(AudioScreen);

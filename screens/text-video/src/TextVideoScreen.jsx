@@ -108,4 +108,4 @@ const TextVideoScreen = ({
 TextVideoScreen.propTypes = propTypes;
 TextVideoScreen.defaultProps = defaultProps;
 
-export default TextVideoScreen;
+export default React.memo(TextVideoScreen);

@@ -99,4 +99,4 @@ const VideoScreen = ({
 VideoScreen.propTypes = propTypes;
 VideoScreen.defaultProps = defaultProps;
 
-export default VideoScreen;
+export default React.memo(VideoScreen);

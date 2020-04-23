@@ -84,4 +84,4 @@ const GalleryScreen = ({
 GalleryScreen.propTypes = propTypes;
 GalleryScreen.defaultProps = defaultProps;
 
-export default GalleryScreen;
+export default React.memo(GalleryScreen);

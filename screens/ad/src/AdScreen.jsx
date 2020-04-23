@@ -19,6 +19,7 @@ const propTypes = {
     box: MicromagPropTypes.box,
     background: MicromagPropTypes.backgroundElement,
     isFullScreen: PropTypes.bool,
+    visible: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -35,6 +36,7 @@ const defaultProps = {
     box: null,
     background: null,
     isFullScreen: false,
+    visible: true,
     renderFormat: 'view',
     className: null,
 };
@@ -42,6 +44,7 @@ const defaultProps = {
 const AdScreen = ({ ad, box, background, isFullScreen, renderFormat, className }) => {
     const { width, height } = useScreenSize();
     const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
+
     const { width: adWidth, height: adHeight, url, iframe, image, target } = ad;
 
     const adStyle = {
@@ -108,4 +111,4 @@ const AdScreen = ({ ad, box, background, isFullScreen, renderFormat, className }
 AdScreen.propTypes = propTypes;
 AdScreen.defaultProps = defaultProps;
 
-export default AdScreen;
+export default React.memo(AdScreen);

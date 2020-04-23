@@ -120,4 +120,4 @@ const GalleryScrollScreen = ({
 GalleryScrollScreen.propTypes = propTypes;
 GalleryScrollScreen.defaultProps = defaultProps;
 
-export default GalleryScrollScreen;
+export default React.memo(GalleryScrollScreen);

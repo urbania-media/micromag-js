@@ -71,4 +71,4 @@ const PanoramaScreen = ({ background, renderFormat, className }) => {
 PanoramaScreen.propTypes = propTypes;
 PanoramaScreen.defaultProps = defaultProps;
 
-export default PanoramaScreen;
+export default React.memo(PanoramaScreen);

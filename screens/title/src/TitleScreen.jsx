@@ -119,4 +119,4 @@ const TitleScreen = ({
 TitleScreen.propTypes = propTypes;
 TitleScreen.defaultProps = defaultProps;
 
-export default TitleScreen;
+export default React.memo(TitleScreen);

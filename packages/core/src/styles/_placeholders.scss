@@ -52,6 +52,11 @@
         overflow: hidden;
         pointer-events: none;
     }
+
+    &.hidden {
+        display: none;
+        visibility: hidden;
+    }
 }
 
 /* Text styles */

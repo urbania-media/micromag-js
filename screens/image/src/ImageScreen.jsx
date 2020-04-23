@@ -78,4 +78,4 @@ const ImageScreen = ({ image, text, box, background, textAlign, renderFormat, cl
 ImageScreen.propTypes = propTypes;
 ImageScreen.defaultProps = defaultProps;
 
-export default ImageScreen;
+export default React.memo(ImageScreen);

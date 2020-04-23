@@ -123,4 +123,4 @@ const MapScreen = ({ map, background, cardBackground, align, renderFormat, class
 MapScreen.propTypes = propTypes;
 MapScreen.defaultProps = defaultProps;
 
-export default MapScreen;
+export default React.memo(MapScreen);

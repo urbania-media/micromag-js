@@ -9,12 +9,12 @@ export const useSwipe = ({
     items = [],
     display = 'flex',
     threshold = 3,
+    range = 1,
     disabled = false,
     onIndexChange = null,
 }) => {
     const index = useRef(0);
     const currentWidth = width || window.innerWidth;
-    // const currentHeight = height || window.innerCurrentHeight;
     const count = items.length;
 
     const getItem = useCallback((item, x = 0, y = 0, hidden = false, idx = 0) => {
@@ -32,8 +32,9 @@ export const useSwipe = ({
         ({ down = 0, mx = 0 } = {}) => {
             return items.map((item, i) => {
                 const x = disabled ? 0 : (i - index.current) * currentWidth + (down ? mx : 0);
-                const hidden = !disabled && (i < index.current - 1 || i > index.current + 1);
-                return getItem(item, x, 0, hidden);
+                const hidden =
+                    !disabled && (i < index.current - range || i > index.current + range);
+                return getItem(item, x, 0, hidden, i);
             });
         },
         [disabled, items, index, currentWidth],
@@ -42,8 +43,8 @@ export const useSwipe = ({
     // Initial state
     const [itemsWithProps, set] = useSprings(items.length, i => ({
         x: disabled ? 0 : i * currentWidth,
-        display: !disabled && i >= 2 ? 'none' : display,
-        visibility: !disabled && i >= 2 ? 'hidden' : 'visible',
+        display: !disabled && i >= range ? 'none' : display,
+        visibility: !disabled && i >= range ? 'hidden' : 'visible',
         item: items[i],
         zIndex: i,
     }));

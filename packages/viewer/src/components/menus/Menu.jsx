@@ -8,17 +8,19 @@ import styles from '../../styles/menus/viewer.module.scss';
 
 const propTypes = {
     items: MicromagPropTypes.menuItems,
+    current: PropTypes.number,
     onClickItem: PropTypes.func,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     items: [],
+    current: 0,
     onClickItem: null,
     className: null,
 };
 
-const ViewerMenu = ({ items, onClickItem, className }) => (
+const ViewerMenu = ({ items, current, onClickItem, className }) => (
     <nav
         className={classNames([
             styles.container,
@@ -33,7 +35,7 @@ const ViewerMenu = ({ items, onClickItem, className }) => (
                     className={classNames([
                         styles.item,
                         {
-                            [styles.active]: item.active,
+                            [styles.active]: current === index,
                         },
                     ])}
                     key={`item-${index}`}

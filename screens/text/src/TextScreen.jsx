@@ -72,4 +72,4 @@ const TextScreen = ({ text, background, box, grid, textAlign, renderFormat, clas
 TextScreen.propTypes = propTypes;
 TextScreen.defaultProps = defaultProps;
 
-export default TextScreen;
+export default React.memo(TextScreen);

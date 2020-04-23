@@ -98,4 +98,4 @@ const TextImageScreen = ({
 TextImageScreen.propTypes = propTypes;
 TextImageScreen.defaultProps = defaultProps;
 
-export default TextImageScreen;
+export default React.memo(TextImageScreen);
