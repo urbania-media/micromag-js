@@ -49,7 +49,7 @@ const Viewer = ({
     const [menuIndex, setMenuIndex] = useState(
         components.findIndex(it => String(it.id) === String(screenId)) || 0,
     );
-    const [nextIndex, setNextMenuIndex] = useState(menuIndex);
+    // const [nextIndex, setNextMenuIndex] = useState(menuIndex);
     const scrollRef = useRef(null);
     const { ref: refContainer, screenSize } = useScreenSizeFromElement({
         width,
