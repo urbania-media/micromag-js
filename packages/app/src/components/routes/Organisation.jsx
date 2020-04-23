@@ -13,9 +13,11 @@ const defaultProps = {};
 const OrganisationRoutes = () => {
     const routes = useRoutes();
     return (
-        <Switch>
-            <Route path={routes.organisation} exact component={OrganisationPage} />
-        </Switch>
+        <Route path={[routes.organisation]} exact>
+            <Switch>
+                <Route path={routes.organisation} exact component={OrganisationPage} />
+            </Switch>
+        </Route>
     );
 };
 

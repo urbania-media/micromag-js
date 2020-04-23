@@ -8,33 +8,27 @@ import LoginPage from '../pages/auth/Login';
 import ForgotPasswordPage from '../pages/auth/ForgotPassword';
 import ResetPasswordPage from '../pages/auth/ResetPassword';
 
-const propTypes = {
+const propTypes = {};
 
-};
-
-const defaultProps = {
-};
+const defaultProps = {};
 
 const AuthRoutes = () => {
     const routes = useRoutes();
     return (
-        <Switch>
-            <Route
-                path={routes['auth.login']}
-                exact
-                component={LoginPage}
-            />
-            <Route
-                path={routes['auth.forgot_password']}
-                exact
-                component={ForgotPasswordPage}
-            />
-            <Route
-                path={routes['auth.reset_password']}
-                exact
-                component={ResetPasswordPage}
-            />
-        </Switch>
+        <Route
+            path={[
+                routes['auth.login'],
+                routes['auth.forgot_password'],
+                routes['auth.reset_password'],
+            ]}
+            exact
+        >
+            <Switch>
+                <Route path={routes['auth.login']} exact component={LoginPage} />
+                <Route path={routes['auth.forgot_password']} exact component={ForgotPasswordPage} />
+                <Route path={routes['auth.reset_password']} exact component={ResetPasswordPage} />
+            </Switch>
+        </Route>
     );
 };
 

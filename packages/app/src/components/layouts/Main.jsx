@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Navbar from '../partials/Navbar';
+import Footer from '../partials/Footer';
 
 import styles from '../../styles/layouts/main.module.scss';
 
@@ -30,7 +31,9 @@ const MainLayout = ({ children, className }) => (
             <Navbar />
         </header>
         <main className={styles.content}>{children}</main>
-        <footer className={styles.footer}>Footer</footer>
+        <footer className={styles.footer}>
+            <Footer />
+        </footer>
     </div>
 );
 

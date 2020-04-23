@@ -17,9 +17,11 @@ const Routes = () => {
     return (
         <Switch>
             <Route path={routes.home} exact component={HomePage} />
-            <AuthRoutes />
-            <RegisterRoutes />
-            <OrganisationRoutes />
+            <Route path="*">
+                <RegisterRoutes />
+                <AuthRoutes />
+                <OrganisationRoutes />
+            </Route>
         </Switch>
     );
 };
