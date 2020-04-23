@@ -210,7 +210,7 @@ class SchemasRepository {
         };
         const field = {
             name,
-            component: component || (type === 'object' ? 'fields' : type),
+            type: component || (type === 'object' ? 'fields' : type),
             label: intl !== null ? intl.title || label : label,
             description: intl !== null ? intl.description || description : description,
             setting,

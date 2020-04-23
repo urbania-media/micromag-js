@@ -1,11 +1,10 @@
 import React from 'react';
-import App from '../components/App';
+import Container from '../components/Container';
+import '../../../intl/locale/fr';
 
 export default {
-    component: App,
+    component: Container,
     title: 'App/App',
 };
 
-export const normal = () => (
-    <App memoryRouter />
-);
+export const normal = () => <Container memoryRouter />;

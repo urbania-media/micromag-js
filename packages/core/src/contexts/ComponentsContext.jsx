@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import getDisplayName from '../utils/getDisplayName';
+import getComponentFromName from '../utils/getComponentFromName';
 import {
     FIELDS_NAMESPACE,
     SCREENS_NAMESPACE,
@@ -18,14 +19,26 @@ export const useComponents = (namespace = null, defaultComponents = {}) => {
     return (namespace !== null ? (components || {})[namespace] : components) || defaultComponents;
 };
 
+/**
+ * Fields components
+ */
 export const useFieldsComponents = (defaultComponents = {}) =>
     useComponents(FIELDS_NAMESPACE, defaultComponents);
+
+export const useFieldComponent = (name, defaultComponents = {}) => {
+    const components = useComponents(FIELDS_NAMESPACE, defaultComponents);
+    return getComponentFromName(name, components);
+};
+
 export const useScreensComponents = (defaultComponents = {}) =>
     useComponents(SCREENS_NAMESPACE, defaultComponents);
+
 export const useFormsComponents = (defaultComponents = {}) =>
     useComponents(FORMS_NAMESPACE, defaultComponents);
+
 export const useModalsComponents = (defaultComponents = {}) =>
     useComponents(MODALS_NAMESPACE, defaultComponents);
+
 export const useElementsComponents = (defaultComponents = {}) =>
     useComponents(ELEMENTS_NAMESPACE, defaultComponents);
 

@@ -1,4 +1,8 @@
 {
+    "app.menus.guest.login": "Login",
+    "app.menus.guest.register": "Register",
+    "app.menus.main.account": "Account",
+    "core.forms.submit": "Submit",
     "editor.buttons.edit": "Edit",
     "editor.buttons.screens": "Screens",
     "editor.buttons.view_screen": "View screen",
@@ -6,6 +10,7 @@
     "editor.screen_name": "Screen {index}",
     "elements.text.schema.properties.text_style": "Text style",
     "elements.text.schema.title": "Text element",
+    "fields.advanced_fields": "Advanced",
     "media-gallery.content.search_placeholder": "Rechercher ou filter",
     "screens.title.schema.properties.background": "Background",
     "screens.title.schema.properties.description": "Description",

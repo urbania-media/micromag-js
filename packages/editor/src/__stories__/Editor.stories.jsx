@@ -3,10 +3,8 @@ import { MemoryRouter } from 'react-router';
 import { repository, SchemasProvider } from '@micromag/schemas';
 import Editor from '../components/Editor';
 import IntlProvider from '../../../intl/src/IntlProvider';
-import manager from '../../../intl/src/manager';
 import ScreensProvider from '../../../screens/src/ScreensProvider';
 import createDefaultStory from '../utils/createDefaultStory';
-import '../../../intl/locale/en';
 import '../../../intl/locale/fr';
 
 export default {
@@ -15,8 +13,6 @@ export default {
 };
 
 const defaultStory = createDefaultStory();
-
-console.log(manager);
 
 const EditorContainer = () => {
     const [value, setValue] = useState(defaultStory);

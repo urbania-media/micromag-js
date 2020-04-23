@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import styles from '../../styles/pages/login.module.scss';
+import styles from '../../../styles/pages/account/account.module.scss';
 
 const propTypes = {
     className: PropTypes.string,
@@ -13,7 +13,7 @@ const defaultProps = {
     className: null,
 };
 
-const LoginPage = ({ className }) => (
+const AccountPage = ({ className }) => (
     <div
         className={classNames([
             styles.container,
@@ -22,11 +22,11 @@ const LoginPage = ({ className }) => (
             },
         ])}
     >
-        login
+        account
     </div>
 );
 
-LoginPage.propTypes = propTypes;
-LoginPage.defaultProps = defaultProps;
+AccountPage.propTypes = propTypes;
+AccountPage.defaultProps = defaultProps;
 
-export default LoginPage;
+export default AccountPage;

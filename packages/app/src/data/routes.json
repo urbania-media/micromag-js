@@ -1,4 +1,15 @@
 {
     "home": "/",
-    "login": "/login"
+
+    "auth.login": "/login",
+    "auth.logout": "/logout",
+    "auth.forgot_password": "/forgot-password",
+    "auth.reset_password": "/reset-password/:key",
+
+    "register": "/register",
+    "register.confirmation": "/register/thanks",
+
+    "account": "/account",
+
+    "organisation": "/organisation/:organisation"
 }
