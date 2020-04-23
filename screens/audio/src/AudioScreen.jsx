@@ -21,6 +21,7 @@ const propTypes = {
     box: MicromagPropTypes.boxElement,
     background: MicromagPropTypes.backgroundElement,
     maxWidth: PropTypes.number,
+    visible: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -40,6 +41,7 @@ const defaultProps = {
     box: null,
     background: null,
     maxWidth: 300,
+    visible: true,
     renderFormat: 'view',
     className: null,
 };
@@ -51,6 +53,7 @@ const AudioScreen = ({
     box,
     background,
     maxWidth,
+    visible,
     renderFormat,
     className,
 }) => {
@@ -68,7 +71,7 @@ const AudioScreen = ({
             ])}
         >
             <Background {...background} width={width} height={height}>
-                <Frame width={width} height={height}>
+                <Frame width={width} height={height} visible={visible}>
                     <Box {...box} withSmallSpacing={isSimple} className={styles.box}>
                         {isPlaceholder && image !== null ? (
                             <Placeholders.MediumImage className={styles.placeholder} />

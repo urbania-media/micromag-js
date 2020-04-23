@@ -1,0 +1,12 @@
+{
+    "app.forms.login.email_label": "Email",
+    "app.forms.login.password_label": "Password",
+    "app.forms.login.submit": "Log in",
+    "app.menus.guest.login": "Login",
+    "app.menus.guest.register": "Register",
+    "app.menus.main.account": "Account",
+    "app.pages.home.title": "Micromag",
+    "app.pages.login.description": "Please login with your credentials",
+    "app.pages.login.title": "Login",
+    "app.pages.register.title": "Register"
+}

@@ -2,8 +2,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { defineMessages } from 'react-intl';
+
+import PageHeader from '../partials/PageHeader';
 
 import styles from '../../styles/pages/home.module.scss';
+
+const messages = defineMessages({
+    title: {
+        id: 'pages.home.title',
+        defaultMessage: 'Micromag',
+    },
+});
 
 const propTypes = {
     className: PropTypes.string,
@@ -16,13 +26,14 @@ const defaultProps = {
 const HomePage = ({ className }) => (
     <div
         className={classNames([
+            'container',
             styles.container,
             {
                 [className]: className !== null,
             },
         ])}
     >
-        home
+        <PageHeader title={messages.title} />
     </div>
 );
 

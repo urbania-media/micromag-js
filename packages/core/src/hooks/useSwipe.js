@@ -7,11 +7,12 @@ export const useSwipe = ({
     width = null,
     height = null,
     items = [],
-    display = 'flex',
+    // display = 'flex',
     threshold = 3,
-    range = 1,
+    range = 2,
     disabled = false,
-    onIndexChange = null,
+    onChangeStart = null,
+    onChangeEnd = null,
 }) => {
     const index = useRef(0);
     const currentWidth = width || window.innerWidth;
@@ -21,8 +22,8 @@ export const useSwipe = ({
         return {
             x,
             y,
-            display: hidden ? 'none' : display,
-            visibility: hidden ? 'hidden' : 'visible',
+            // display: hidden ? 'none' : display,
+            // visibility: hidden ? 'hidden' : 'visible',
             item,
             zIndex: idx,
         };
@@ -43,8 +44,8 @@ export const useSwipe = ({
     // Initial state
     const [itemsWithProps, set] = useSprings(items.length, i => ({
         x: disabled ? 0 : i * currentWidth,
-        display: !disabled && i >= range ? 'none' : display,
-        visibility: !disabled && i >= range ? 'hidden' : 'visible',
+        // display: !disabled && i >= range ? 'none' : display,
+        // visibility: !disabled && i >= range ? 'hidden' : 'visible',
         item: items[i],
         zIndex: i,
     }));
@@ -52,16 +53,19 @@ export const useSwipe = ({
     const bind = useDrag(
         ({ down, movement: [mx], direction: [xDir, yDir], distance, delta: [xDelta], cancel }) => {
             if (disabled) {
+                cancel();
                 return;
             }
 
             // Block first and last moves
             if (down && index.current === items.length - 1 && xDir < 0) {
                 cancel();
+                return;
             }
 
             if (down && index.current === 0 && xDir > 0) {
                 cancel();
+                return;
             }
 
             if (
@@ -71,12 +75,17 @@ export const useSwipe = ({
                     (Math.abs(xDelta) > 12 && distance > currentWidth / 12)) // Speedy flick, 12 spped and 1/12 of the screen size
             ) {
                 cancel((index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, count - 1)));
-                if (onIndexChange !== null) {
-                    onIndexChange(index.current);
+                if (onChangeEnd !== null) {
+                    onChangeEnd(index.current);
                 }
+                return;
             }
 
             set(getItems({ down, mx }));
+
+            if (onChangeStart !== null) {
+                onChangeStart(index.current);
+            }
         },
     );
 
@@ -86,8 +95,8 @@ export const useSwipe = ({
 
     const setIndex = useCallback(
         idx => {
-            if (onIndexChange !== null) {
-                onIndexChange(idx);
+            if (onChangeEnd !== null) {
+                onChangeEnd(idx);
             }
             index.current = idx;
             reset();

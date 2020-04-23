@@ -22,6 +22,7 @@ const propTypes = {
     grid: MicromagPropTypes.gridComponent,
     textAlign: PropTypes.oneOf(['left', 'right', 'center']),
     reverse: PropTypes.bool,
+    visible: true,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -34,6 +35,7 @@ const defaultProps = {
     grid: null,
     textAlign: 'center',
     reverse: false,
+    visible: true,
     renderFormat: 'view',
     className: null,
 };
@@ -46,6 +48,7 @@ const TextImageScreen = ({
     grid,
     textAlign,
     reverse,
+    visible,
     renderFormat,
     className,
 }) => {
@@ -81,7 +84,7 @@ const TextImageScreen = ({
             ])}
         >
             <Background {...background} width={width} height={height}>
-                <Frame width={width} height={height}>
+                <Frame width={width} height={height} visible={visible}>
                     {grid !== null ? (
                         <Grid {...grid} withSmallSpacing={isSimple} items={items} />
                     ) : (

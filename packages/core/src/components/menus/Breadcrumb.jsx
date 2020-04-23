@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
 import * as MicromagPropTypes from '../../PropTypes';
+import Label from '../partials/Label';
 
 import styles from '../../styles/menus/breadcrumb.module.scss';
 
@@ -41,10 +42,10 @@ const Breadcrumb = ({ items, className }) => (
                     key={`item-${index}`}
                 >
                     {active ? (
-                        label
+                        <Label>label</Label>
                     ) : (
                         <Link to={url} className={styles.link} onClick={onClick}>
-                            {label}
+                            <Label>{label}</Label>
                         </Link>
                     )}
                 </li>

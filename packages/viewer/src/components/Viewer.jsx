@@ -49,6 +49,7 @@ const Viewer = ({
     const [menuIndex, setMenuIndex] = useState(
         components.findIndex(it => String(it.id) === String(screenId)) || 0,
     );
+    const [nextIndex, setNextMenuIndex] = useState(menuIndex);
     const scrollRef = useRef(null);
     const { ref: refContainer, screenSize } = useScreenSizeFromElement({
         width,
@@ -66,16 +67,35 @@ const Viewer = ({
         [onScreenChange],
     );
 
+    const onVisible = useCallback(
+        index => {
+            setMenuIndex(index);
+            if (desktop) {
+                onIndexChange(index);
+            }
+        },
+        [setMenuIndex],
+    );
+
+    // const onFlick = useCallback(
+    //     index => {
+    //         setNextMenuIndex(index);
+    //     },
+    //     [setNextMenuIndex],
+    // );
+
     const { items, bind, setIndex } = useSwipe({
         width: screenSize.width,
         items: components,
         disabled: desktop,
-        onIndexChange,
+        onChangeEnd: onIndexChange,
+        // onChangeStart: onFlick,
     });
 
     const onClickMenuItem = useCallback(
         (e, it, index) => {
             e.preventDefault();
+            setMenuIndex(index);
             if (!desktop && setIndex !== null) {
                 setIndex(index);
             } else if (desktop && scrollRef.current) {
@@ -106,14 +126,6 @@ const Viewer = ({
         [onScreenChange, items, screenSize, components],
     );
 
-    const onVisible = useCallback(
-        index => {
-            setMenuIndex(index);
-            onIndexChange(index);
-        },
-        [setMenuIndex],
-    );
-
     return (
         <ScreenSizeProvider size={screenSize}>
             <div
@@ -138,6 +150,8 @@ const Viewer = ({
                 <div ref={scrollRef} className={styles.content}>
                     {components.map((scr, i) => {
                         const style = { ...items[i] };
+                        const active = i === menuIndex;
+                        const visible = i > menuIndex - 2 && i < menuIndex + 2;
                         return (
                             <animated.div
                                 {...(!desktop &&
@@ -155,7 +169,13 @@ const Viewer = ({
                                 style={style}
                                 className={styles.screen}
                             >
-                                <ViewerScreen screen={scr} index={i} onVisible={onVisible} />
+                                <ViewerScreen
+                                    screen={scr}
+                                    index={i}
+                                    active={active}
+                                    visible={visible}
+                                    onVisible={onVisible}
+                                />
                             </animated.div>
                         );
                     })}

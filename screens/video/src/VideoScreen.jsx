@@ -23,6 +23,7 @@ const propTypes = {
     fit: PropTypes.shape({
         size: PropTypes.string,
     }),
+    visible: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -36,6 +37,7 @@ const defaultProps = {
     muted: false,
     controls: false,
     fit: false,
+    visible: true,
     renderFormat: 'view',
     className: null,
 };
@@ -49,6 +51,7 @@ const VideoScreen = ({
     loop,
     controls,
     fit,
+    visible,
     renderFormat,
     className,
 }) => {
@@ -77,7 +80,7 @@ const VideoScreen = ({
 
     return (
         <Background {...background} width={width} height={height}>
-            <Frame width={width} height={height}>
+            <Frame width={width} height={height} visible={visible}>
                 <div
                     className={classNames([
                         styles.container,

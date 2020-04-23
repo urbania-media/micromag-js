@@ -21,6 +21,7 @@ const propTypes = {
         spacing: PropTypes.number,
     }),
     defaultSpacing: PropTypes.number,
+    visible: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -30,6 +31,7 @@ const defaultProps = {
     images: [],
     grid: null,
     defaultSpacing: 10,
+    visible: true,
     renderFormat: 'view',
     className: null,
 };
@@ -39,6 +41,7 @@ const GalleryScreen = ({
     images: imageList,
     grid,
     defaultSpacing,
+    visible,
     renderFormat,
     className,
 }) => {
@@ -65,7 +68,7 @@ const GalleryScreen = ({
             ])}
         >
             <Background {...background} width={width} height={height} className={styles.background}>
-                <Frame width={width} height={height}>
+                <Frame width={width} height={height} visible={visible}>
                     <div className={styles.images}>
                         <Grid
                             spacing={defaultSpacing}

@@ -1,3 +1,9 @@
+/* stylelint-disable selector-class-pattern */
 @import './variables';
 @import './placeholders';
 @import './mixins';
+
+.container-small {
+    @include make-container();
+    @include make-container-max-widths($container-small-max-widths);
+}

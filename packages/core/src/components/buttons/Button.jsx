@@ -1,4 +1,4 @@
-/* eslint-disable react/button-has-type */
+/* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -13,7 +13,6 @@ const propTypes = {
     type: PropTypes.string,
     theme: AppPropTypes.buttonTheme,
     size: AppPropTypes.buttonSize,
-    withoutStyle: PropTypes.bool,
     href: PropTypes.string,
     external: PropTypes.bool,
     direct: PropTypes.bool,
@@ -29,6 +28,8 @@ const propTypes = {
     small: PropTypes.bool,
     big: PropTypes.bool,
     withShadow: PropTypes.bool,
+    withoutStyle: PropTypes.bool,
+    withoutTheme: PropTypes.bool,
     className: PropTypes.string,
     iconClassName: PropTypes.string,
     labelClassName: PropTypes.string,
@@ -45,7 +46,6 @@ const defaultProps = {
     type: 'button',
     theme: 'primary',
     size: null,
-    withoutStyle: null,
     href: null,
     external: false,
     direct: false,
@@ -61,6 +61,8 @@ const defaultProps = {
     small: false,
     big: false,
     withShadow: false,
+    withoutStyle: false,
+    withoutTheme: false,
     className: null,
     iconClassName: null,
     labelClassName: null,
@@ -72,7 +74,6 @@ const Button = ({
     type,
     theme,
     size,
-    withoutStyle,
     href,
     external,
     direct,
@@ -88,11 +89,14 @@ const Button = ({
     small,
     big,
     withShadow,
+    withoutStyle,
+    withoutTheme,
     onClick,
     className,
     iconClassName,
     labelClassName,
     refButton,
+    ...props
 }) => {
     const finalLabel = label || children;
     const text = finalLabel !== null ? <Label>{finalLabel}</Label> : null;
@@ -170,9 +174,9 @@ const Button = ({
 
     const buttonClassNames = classNames([
         {
-            btn: !withoutStyle && theme !== null,
-            [`btn-${theme}`]: !withoutStyle && theme !== null,
-            [`btn-${size}`]: !withoutStyle && size !== null,
+            btn: !withoutTheme && !withoutStyle && theme !== null,
+            [`btn-${theme}`]: !withoutTheme && !withoutStyle && theme !== null,
+            [`btn-${size}`]: !withoutTheme && !withoutStyle && size !== null,
             active: !withoutStyle && active,
         },
         styles.container,
@@ -193,6 +197,7 @@ const Button = ({
     if (href !== null) {
         return external || direct ? (
             <a
+                {...props}
                 href={href}
                 className={buttonClassNames}
                 onClick={onClick}
@@ -210,6 +215,7 @@ const Button = ({
 
     return (
         <button
+            {...props}
             type={type}
             className={buttonClassNames}
             onClick={onClick}

@@ -85,7 +85,7 @@ const FieldForm = ({
     const FormComponent =
         form !== null
             ? getComponentFromName(form, finalFormComponents)
-            : getComponentFromName(field.component, finalFieldComponents);
+            : getComponentFromName(field.type, finalFieldComponents);
 
     return FormComponent !== null ? (
         <FormComponent

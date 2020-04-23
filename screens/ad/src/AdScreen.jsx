@@ -41,7 +41,7 @@ const defaultProps = {
     className: null,
 };
 
-const AdScreen = ({ ad, box, background, isFullScreen, renderFormat, className }) => {
+const AdScreen = ({ ad, box, background, isFullScreen, visible, renderFormat, className }) => {
     const { width, height } = useScreenSize();
     const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
 
@@ -94,7 +94,7 @@ const AdScreen = ({ ad, box, background, isFullScreen, renderFormat, className }
                 height={height}
                 className={styles.background}
             >
-                <Frame className={styles.frame} width={width} height={height}>
+                <Frame className={styles.frame} width={width} height={height} visible={visible}>
                     <Box {...box} withSmallSpacing={isSimple}>
                         {isPlaceholder ? (
                             <Placeholders.Ad className={styles.placeholder} />

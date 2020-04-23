@@ -17,6 +17,7 @@ import styles from './styles.module.scss';
 const propTypes = {
     panorama: PropTypes.object, // eslint-disable-line
     background: MicromagPropTypes.backgroundElement,
+    visible: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -28,11 +29,12 @@ const defaultProps = {
         image: null,
     },
     background: null,
+    visible: true,
     renderFormat: 'view',
     className: null,
 };
 
-const PanoramaScreen = ({ background, renderFormat, className }) => {
+const PanoramaScreen = ({ background, visible, renderFormat, className }) => {
     const { width, height } = useScreenSize();
     const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
     const content = 'Panorama';
@@ -54,7 +56,7 @@ const PanoramaScreen = ({ background, renderFormat, className }) => {
                 height={height}
                 className={styles.background}
             >
-                <Frame className={styles.frame} width={width} height={height}>
+                <Frame className={styles.frame} width={width} height={height} visible={visible}>
                     <Box withSmallSpacing={isSimple}>
                         {isPlaceholder ? (
                             <Placeholders.Panorama className={styles.placeholder} />

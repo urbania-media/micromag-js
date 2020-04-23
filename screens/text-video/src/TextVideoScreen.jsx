@@ -22,6 +22,7 @@ const propTypes = {
     grid: MicromagPropTypes.boxElement,
     textAlign: PropTypes.oneOf(['left', 'right', 'center']),
     reverse: PropTypes.bool,
+    visible: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -34,6 +35,7 @@ const defaultProps = {
     grid: null,
     textAlign: 'center',
     reverse: false,
+    visible: true,
     renderFormat: 'view',
     className: null,
 };
@@ -45,8 +47,9 @@ const TextVideoScreen = ({
     box,
     grid,
     textAlign,
-    renderFormat,
     reverse,
+    visible,
+    renderFormat,
     className,
 }) => {
     const { width, height } = useScreenSize();
@@ -86,7 +89,7 @@ const TextVideoScreen = ({
             ])}
         >
             <Background {...background} width={width} height={height}>
-                <Frame width={width} height={height}>
+                <Frame width={width} height={height} visible={visible}>
                     {grid !== null ? (
                         <Grid
                             {...grid}

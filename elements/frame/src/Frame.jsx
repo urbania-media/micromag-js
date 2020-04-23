@@ -33,13 +33,14 @@ const Frame = ({ width, height, visible, withScroll, className, children }) => {
             className={classNames([
                 styles.container,
                 {
+                    [styles.hidden]: !visible,
                     [styles.withScroll]: withScroll === true,
                     [className]: className !== null,
                 },
             ])}
             style={finalStyle}
         >
-            {visible ? children : null}
+            {children}
         </div>
     );
 };

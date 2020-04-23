@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import AppComponent from './components/App';
+import Container from './components/Container';
 
 class App {
     constructor(options = {}) {
@@ -30,7 +30,7 @@ class App {
         }
 
         const appProps = this.getProps();
-        const appElement = React.createElement(AppComponent, appProps);
+        const appElement = React.createElement(Container, appProps);
         ReactDOM.render(appElement, this.element);
     }
 }
