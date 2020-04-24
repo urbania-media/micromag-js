@@ -1,7 +1,14 @@
 @import '~@micromag/core/scss/variables';
+@import '../placeholders';
 
 .container {
+    @extend %page-inner;
+
     .description {
-        margin-bottom: $spacer;
+        @extend %form-panel-description;
+    }
+
+    .links {
+        @extend %form-panel-links;
     }
 }

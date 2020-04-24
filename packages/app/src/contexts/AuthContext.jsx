@@ -3,6 +3,7 @@ import React, { useContext, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 import * as AppPropTypes from '../lib/PropTypes';
+import { useApi } from './ApiContext';
 
 const AuthContext = React.createContext(null);
 
@@ -26,7 +27,16 @@ const defaultProps = {
 };
 
 export const AuthProvider = ({ user: initialUser, children }) => {
+    const api = useApi();
     const [user, setUser] = useState(initialUser);
+    const login = useCallback(
+        (email, password) =>
+            api.auth.login(email, password).then(newUser => {
+                setUser(newUser);
+                return newUser;
+            }),
+        [setUser],
+    );
     const logout = useCallback(() => setUser(null), [setUser]);
     return (
         <AuthContext.Provider
@@ -35,6 +45,7 @@ export const AuthProvider = ({ user: initialUser, children }) => {
                 setUser,
                 loggedIn: user !== null,
                 logout,
+                login,
             }}
         >
             {children}

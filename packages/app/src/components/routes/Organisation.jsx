@@ -2,8 +2,8 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router';
+import { useRoutes } from '@micromag/core/contexts';
 
-import { useRoutes } from '../../contexts/RoutesContext';
 import OrganisationPage from '../pages/organisation/Organisation';
 
 const propTypes = {};
@@ -13,11 +13,9 @@ const defaultProps = {};
 const OrganisationRoutes = () => {
     const routes = useRoutes();
     return (
-        <Route path={[routes.organisation]} exact>
-            <Switch>
-                <Route path={routes.organisation} exact component={OrganisationPage} />
-            </Switch>
-        </Route>
+        <Switch>
+            <Route path={routes.organisation} exact component={OrganisationPage} />
+        </Switch>
     );
 };
 

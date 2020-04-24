@@ -2,10 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Menu } from '@micromag/core/components';
 import { defineMessages } from 'react-intl';
-
-import { useUrlGenerator } from '../../contexts/RoutesContext';
+import { Menu } from '@micromag/core/components';
+import { useUrlGenerator } from '@micromag/core/contexts';
 
 import styles from '../../styles/menus/main-guest.module.scss';
 

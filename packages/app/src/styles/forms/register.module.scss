@@ -1,7 +1,7 @@
 @import '~@micromag/core/scss/variables';
-@import '../placeholders';
 
 .container {
-    @extend %page-inner;
-
+    .actions {
+        margin-top: $spacer;
+    }
 }

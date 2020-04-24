@@ -4,12 +4,9 @@ import { snakeCase } from 'snake-case';
 /**
  * Core
  */
-export const urlGenerator = PropTypes.shape({
-    route: PropTypes.func.isRequired,
-});
-
 export const history = PropTypes.shape({
     listen: PropTypes.func.isRequired,
+    push: PropTypes.func.isRequired,
 });
 
 export const intl = PropTypes.shape({

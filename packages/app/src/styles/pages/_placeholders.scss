@@ -1,0 +1,26 @@
+@import '~@micromag/core/scss/variables';
+
+%page-inner {
+    padding-bottom: $spacer;
+}
+
+%form-panel-description {
+    margin-bottom: $spacer;
+}
+
+%form-panel-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: $spacer;
+
+    * {
+        margin-right: $spacer;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}

@@ -27,6 +27,7 @@ const propTypes = {
     submitButtonLabel: MicromagPropTypes.label,
     buttons: MicromagPropTypes.buttons,
     children: PropTypes.node,
+    actionsAlign: PropTypes.oneOf(['left', 'right']),
     withoutActions: PropTypes.bool,
     onComplete: PropTypes.func,
     className: PropTypes.string,
@@ -41,6 +42,7 @@ const defaultProps = {
     submitButtonLabel: messages.submit,
     buttons: null,
     children: null,
+    actionsAlign: 'left',
     withoutActions: false,
     onComplete: null,
     className: null,
@@ -56,6 +58,7 @@ const Form = ({
     submitButtonLabel,
     buttons,
     children,
+    actionsAlign,
     withoutActions,
     onComplete,
     className,
@@ -105,6 +108,7 @@ const Form = ({
                     className={classNames([
                         styles.actions,
                         {
+                            [styles[actionsAlign]]: actionsAlign,
                             [actionsClassName]: actionsClassName !== null,
                         },
                     ])}

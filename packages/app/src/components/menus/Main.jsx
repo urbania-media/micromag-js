@@ -1,11 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Menu } from '@micromag/core/components';
 import { defineMessages } from 'react-intl';
+import { useUrlGenerator } from '@micromag/core/contexts';
 
-import { useUrlGenerator } from '../../contexts/RoutesContext';
+import { useAuth } from '../../contexts/AuthContext';
 
 import styles from '../../styles/menus/main.module.scss';
 
@@ -13,6 +14,10 @@ const messages = defineMessages({
     account: {
         id: 'menus.main.account',
         defaultMessage: 'Account',
+    },
+    logout: {
+        id: 'menus.main.logout',
+        defaultMessage: 'Logout',
     },
 });
 
@@ -30,6 +35,14 @@ const defaultProps = {
 
 const MainMenu = ({ className, itemClassName, linkClassName, ...props }) => {
     const url = useUrlGenerator();
+    const { logout } = useAuth();
+    const onClickLogout = useCallback(
+        e => {
+            e.preventDefault();
+            logout();
+        },
+        [logout],
+    );
     return (
         <Menu
             {...props}
@@ -38,6 +51,12 @@ const MainMenu = ({ className, itemClassName, linkClassName, ...props }) => {
                     id: 'account',
                     href: url('account'),
                     label: messages.account,
+                },
+                {
+                    id: 'logout',
+                    href: url('logout'),
+                    label: messages.logout,
+                    onClick: onClickLogout,
                 },
             ]}
             className={classNames([

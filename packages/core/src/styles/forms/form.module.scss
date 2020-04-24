@@ -5,5 +5,16 @@
 }
 
 .actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     margin-top: $spacer;
+
+    &.left {
+        justify-content: flex-start;
+    }
+
+    &.right {
+        justify-content: flex-end;
+    }
 }

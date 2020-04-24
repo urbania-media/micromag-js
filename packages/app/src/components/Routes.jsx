@@ -1,12 +1,13 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router';
+import { useRoutes } from '@micromag/core/contexts';
 
-import { useRoutes } from '../../contexts/RoutesContext';
-import HomePage from '../pages/Home';
-import AuthRoutes from './Auth';
-import RegisterRoutes from './Register';
-import OrganisationRoutes from './Organisation';
+import HomePage from './pages/Home';
+import AuthRoutes from './routes/Auth';
+import AccountRoutes from './routes/Account';
+import RegisterRoutes from './routes/Register';
+import OrganisationRoutes from './routes/Organisation';
 
 const propTypes = {};
 
@@ -20,6 +21,7 @@ const Routes = () => {
             <Route path="*">
                 <RegisterRoutes />
                 <AuthRoutes />
+                <AccountRoutes />
                 <OrganisationRoutes />
             </Route>
         </Switch>

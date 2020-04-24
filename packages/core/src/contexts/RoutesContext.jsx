@@ -3,8 +3,6 @@ import React, { useContext, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { generatePath } from 'react-router';
 
-import * as AppPropTypes from '../lib/PropTypes';
-
 const RoutesContext = React.createContext(null);
 
 export const useRoutes = () => useContext(RoutesContext);
@@ -20,7 +18,7 @@ export const useUrlGenerator = () => {
 
 const propTypes = {
     children: PropTypes.node.isRequired,
-    routes: AppPropTypes.routes.isRequired,
+    routes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 const defaultProps = {};

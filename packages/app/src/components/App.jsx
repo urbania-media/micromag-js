@@ -4,7 +4,7 @@ import React from 'react';
 
 // import * as AppPropTypes from '../lib/PropTypes';
 import MainLayout from './layouts/Main';
-import Routes from './routes/Routes';
+import Routes from './Routes';
 
 const propTypes = {};
 

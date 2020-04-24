@@ -21,6 +21,7 @@ export { default as CollapsablePanel } from './partials/CollapsablePanel';
 export { default as Element } from './partials/Element';
 export { default as Empty } from './partials/Empty';
 export { default as Label } from './partials/Label';
+export { default as Link } from './partials/Link';
 export { default as Card } from './partials/Card';
 export { default as Placeholder } from './partials/Placeholder';
 export { default as PlaceholderBlock } from './partials/PlaceholderBlock';

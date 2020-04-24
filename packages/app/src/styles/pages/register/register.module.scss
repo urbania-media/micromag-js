@@ -1,3 +1,14 @@
-.container {
+@import '~@micromag/core/scss/variables';
+@import '../placeholders';
 
+.container {
+    @extend %page-inner;
+
+    .description {
+        @extend %form-panel-description;
+    }
+
+    .links {
+        @extend %form-panel-links;
+    }
 }

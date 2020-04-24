@@ -7,4 +7,6 @@ export default {
     title: 'App/App',
 };
 
-export const normal = () => <Container memoryRouter />;
+export const normal = () => (
+    <Container memoryRouter apiBaseUrl={`${window.location.protocol}//${window.location.host}/api`} />
+);

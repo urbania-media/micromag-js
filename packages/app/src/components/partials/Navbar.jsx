@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { Button } from '@micromag/core/components';
+import { useUrlGenerator } from '@micromag/core/contexts';
 
-import { useUrlGenerator } from '../../contexts/RoutesContext';
 import { useLoggedIn } from '../../contexts/AuthContext';
 import MainMenu from '../menus/Main';
 import MainGuestMenu from '../menus/MainGuest';

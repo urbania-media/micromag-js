@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import { IntlProvider } from '@micromag/intl';
 import { MemoryRouter } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
+import { RoutesProvider } from '@micromag/core/contexts';
 import { FieldsProvider } from '@micromag/fields';
 
 import * as AppPropTypes from '../lib/PropTypes';
-import { RoutesProvider } from '../contexts/RoutesContext';
 import { AuthProvider } from '../contexts/AuthContext';
+import { ApiProvider } from '../contexts/ApiContext';
 import App from './App';
 
 import defaultRoutes from '../data/routes.json';
@@ -18,6 +19,7 @@ const propTypes = {
     locale: PropTypes.string,
     memoryRouter: PropTypes.bool,
     basePath: PropTypes.string,
+    apiBaseUrl: PropTypes.string,
 };
 
 const defaultProps = {
@@ -25,19 +27,22 @@ const defaultProps = {
     locale: 'en',
     memoryRouter: false,
     basePath: null,
+    apiBaseUrl: null,
 };
 
-const Container = ({ locale, memoryRouter, basePath, routes }) => {
+const Container = ({ locale, memoryRouter, basePath, apiBaseUrl, routes }) => {
     const Router = memoryRouter ? MemoryRouter : BrowserRouter;
     return (
         <FieldsProvider>
             <IntlProvider locale={locale}>
                 <Router basename={basePath}>
-                    <RoutesProvider routes={routes}>
+                    <ApiProvider baseUrl={apiBaseUrl}>
                         <AuthProvider>
-                            <App />
+                            <RoutesProvider routes={routes}>
+                                <App />
+                            </RoutesProvider>
                         </AuthProvider>
-                    </RoutesProvider>
+                    </ApiProvider>
                 </Router>
             </IntlProvider>
         </FieldsProvider>

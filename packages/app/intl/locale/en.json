@@ -2,9 +2,20 @@
     "app.forms.login.email_label": "Email",
     "app.forms.login.password_label": "Password",
     "app.forms.login.submit": "Log in",
+    "app.forms.register.email_label": "Email",
+    "app.forms.register.name_label": "Name",
+    "app.forms.register.password_confirmation_label": "Confirm password",
+    "app.forms.register.password_label": "Password",
+    "app.forms.register.submit": "Create account",
     "app.menus.guest.login": "Login",
     "app.menus.guest.register": "Register",
     "app.menus.main.account": "Account",
+    "app.pages.home.title": "Micromag",
     "app.pages.login.description": "Please login with your credentials",
-    "app.pages.login.title": "Login"
+    "app.pages.login.forgot_password": "Forgot password?",
+    "app.pages.login.register": "Register",
+    "app.pages.login.title": "Login",
+    "app.pages.register.already_have_account": "Already have an account?",
+    "app.pages.register.description": "Please fill all the fields below.",
+    "app.pages.register.title": "Register"
 }
