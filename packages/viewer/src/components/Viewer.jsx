@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { animated } from 'react-spring';
@@ -19,7 +19,7 @@ const propTypes = {
     value: MicromagPropTypes.story.isRequired,
     width: PropTypes.number,
     height: PropTypes.number,
-    screenId: PropTypes.string,
+    screen: PropTypes.string,
     deviceScreens: MicromagPropTypes.deviceScreens,
     interactions: MicromagPropTypes.interactions,
     onScreenChange: PropTypes.func,
@@ -29,7 +29,7 @@ const propTypes = {
 const defaultProps = {
     width: null,
     height: null,
-    screenId: null,
+    screen: null,
     deviceScreens: getDeviceScreens(),
     className: null,
     interactions: ['tap'],
@@ -40,16 +40,13 @@ const Viewer = ({
     value: { components = [] },
     width,
     height,
-    screenId,
+    screen: screenId,
     deviceScreens,
     interactions,
     onScreenChange,
     className,
 }) => {
-    const [menuIndex, setMenuIndex] = useState(
-        components.findIndex(it => String(it.id) === String(screenId)) || 0,
-    );
-    // const [nextIndex, setNextMenuIndex] = useState(menuIndex);
+    // Size
     const scrollRef = useRef(null);
     const { ref: refContainer, screenSize } = useScreenSizeFromElement({
         width,
@@ -58,7 +55,16 @@ const Viewer = ({
     });
     const desktop = screenSize.width > screenSize.height;
 
-    const onIndexChange = useCallback(
+    // Index
+    const getIndexFromId = useCallback(
+        id => {
+            const idx = components.findIndex(it => String(it.id) === String(id)) || 0;
+            return idx > -1 ? idx : 0;
+        },
+        [components],
+    );
+    const currentIndex = getIndexFromId(screenId);
+    const changeIndex = useCallback(
         index => {
             if (onScreenChange !== null) {
                 onScreenChange(components[index], index);
@@ -67,40 +73,29 @@ const Viewer = ({
         [onScreenChange],
     );
 
-    const onVisible = useCallback(
-        index => {
-            setMenuIndex(index);
-            if (desktop) {
-                onIndexChange(index);
-            }
-        },
-        [setMenuIndex],
-    );
-
-    // const onFlick = useCallback(
-    //     index => {
-    //         setNextMenuIndex(index);
-    //     },
-    //     [setNextMenuIndex],
-    // );
-
+    // Swipe mechanics
     const { items, bind, setIndex } = useSwipe({
         width: screenSize.width,
         items: components,
         disabled: desktop,
-        onChangeEnd: onIndexChange,
-        // onChangeStart: onFlick,
     });
+
+    // Move it to the right place when id changes
+    useEffect(() => {
+        if (!desktop) {
+            setIndex(currentIndex);
+        } else if (desktop && scrollRef.current) {
+            scrollRef.current.scrollTo({
+                top: currentIndex * screenSize.height,
+                behavior: 'smooth',
+            });
+        }
+    }, [screenId, desktop]);
 
     const onClickMenuItem = useCallback(
         (e, it, index) => {
             e.preventDefault();
-            setMenuIndex(index);
-            if (!desktop && setIndex !== null) {
-                setIndex(index);
-            } else if (desktop && scrollRef.current) {
-                scrollRef.current.scrollTo({ top: index * screenSize.height, behavior: 'smooth' });
-            }
+            changeIndex(index);
         },
         [onScreenChange, desktop, scrollRef, screenSize],
     );
@@ -126,6 +121,16 @@ const Viewer = ({
         [onScreenChange, items, screenSize, components],
     );
 
+    // Track the menu cursor on use change
+    const onVisible = useCallback(
+        index => {
+            changeIndex(index);
+        },
+        [changeIndex],
+    );
+
+    // console.log('current index', screenId, currentIndex);
+
     return (
         <ScreenSizeProvider size={screenSize}>
             <div
@@ -142,7 +147,7 @@ const Viewer = ({
                 <div className={styles.top}>
                     <Menu
                         items={components}
-                        current={menuIndex}
+                        current={currentIndex}
                         onClickItem={onClickMenuItem}
                         className={styles.menu}
                     />
@@ -150,8 +155,8 @@ const Viewer = ({
                 <div ref={scrollRef} className={styles.content}>
                     {components.map((scr, i) => {
                         const style = { ...items[i] };
-                        const active = i === menuIndex;
-                        const visible = i > menuIndex - 2 && i < menuIndex + 2;
+                        const active = i === currentIndex;
+                        const visible = i > currentIndex - 2 && i < currentIndex + 2;
                         return (
                             <animated.div
                                 {...(!desktop &&

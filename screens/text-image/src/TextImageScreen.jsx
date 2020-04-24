@@ -22,7 +22,7 @@ const propTypes = {
     grid: MicromagPropTypes.gridComponent,
     textAlign: PropTypes.oneOf(['left', 'right', 'center']),
     reverse: PropTypes.bool,
-    visible: true,
+    visible: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };

@@ -21,26 +21,30 @@ const useFormTransition = (url, screenIndex, styles) => {
 
     const name = useMemo(
         () => ({
-            enter: classNames({
-                [styles.enterRight]: direction === 'right',
-                [styles.enterLeft]: direction === 'left',
-                [styles.enterTop]: direction === 'top',
-                [styles.enterBottom]: direction === 'bottom',
-            }),
-            enterActive: classNames({
-                [styles.enterActiveHorizontal]: direction === 'left' || direction === 'right',
-                [styles.enterActiveVertical]: direction === 'top' || direction === 'bottom',
-            }),
-            leave: styles.leave,
-            leaveActive: classNames({
-                [styles.leaveActiveRight]: direction === 'right',
-                [styles.leaveActiveLeft]: direction === 'left',
-                [styles.leaveActiveTop]: direction === 'top',
-                [styles.leaveActiveBottom]: direction === 'bottom',
-            }),
+            enter:
+                classNames({
+                    [styles.enterRight]: direction === 'right',
+                    [styles.enterLeft]: direction === 'left',
+                    [styles.enterTop]: direction === 'top',
+                    [styles.enterBottom]: direction === 'bottom',
+                }) || 'none',
+            enterActive:
+                classNames({
+                    [styles.enterActiveHorizontal]: direction === 'left' || direction === 'right',
+                    [styles.enterActiveVertical]: direction === 'top' || direction === 'bottom',
+                }) || 'none',
+            leave: styles.leave || 'none',
+            leaveActive:
+                classNames({
+                    [styles.leaveActiveRight]: direction === 'right',
+                    [styles.leaveActiveLeft]: direction === 'left',
+                    [styles.leaveActiveTop]: direction === 'top',
+                    [styles.leaveActiveBottom]: direction === 'bottom',
+                }) || 'none',
         }),
-        [direction],
+        [direction, screenIndex],
     );
+
     return {
         direction,
         name,

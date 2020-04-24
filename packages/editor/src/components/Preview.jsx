@@ -7,7 +7,7 @@ import { getSizeWithinBounds } from '@folklore/size';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useResizeObserver } from '@micromag/core/hooks';
 import { useScreen, useScreens } from '@micromag/core/contexts';
-import Viewer from '@micromag/viewer';
+import { ViewerWithoutRouter as Viewer } from '@micromag/viewer';
 
 import DevicesMenu from './menus/Devices';
 

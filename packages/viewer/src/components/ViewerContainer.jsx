@@ -7,16 +7,16 @@ import { ScreensProvider } from '@micromag/screens';
 import Viewer from './Viewer';
 
 const propTypes = {
-    screenId: PropTypes.string,
+    screen: PropTypes.string,
     children: PropTypes.func,
 };
 
 const defaultProps = {
-    screenId: null,
+    screen: null,
     children: null,
 };
 
-const ViewerContainer = ({ screenId: defaultId, ...otherProps }) => {
+const ViewerContainer = ({ screen: defaultId, ...otherProps }) => {
     const history = useHistory();
     const onScreenChange = useCallback(
         it => {
@@ -33,9 +33,7 @@ const ViewerContainer = ({ screenId: defaultId, ...otherProps }) => {
                     match: {
                         params: { screen: screenId = defaultId || null },
                     },
-                }) => (
-                    <Viewer screenId={screenId} onScreenChange={onScreenChange} {...otherProps} />
-                )}
+                }) => <Viewer screen={screenId} onScreenChange={onScreenChange} {...otherProps} />}
             />
         </ScreensProvider>
     );
