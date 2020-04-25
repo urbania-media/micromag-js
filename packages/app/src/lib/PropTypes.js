@@ -19,6 +19,8 @@ export const routes = PropTypes.shape({
     'organisation.members': PropTypes.string.isRequired,
 
     stories: PropTypes.string.isRequired,
+    'stories.create': PropTypes.string.isRequired,
+    'stories.settings': PropTypes.string.isRequired,
     'stories.editor': PropTypes.string.isRequired,
 });
 

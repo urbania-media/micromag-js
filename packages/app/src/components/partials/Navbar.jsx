@@ -7,9 +7,10 @@ import { Button } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
 import { useAuth } from '../../contexts/AuthContext';
-import MainMenu from '../menus/Main';
-import OrganisationsMenu from '../menus/Organisations';
 import MainGuestMenu from '../menus/MainGuest';
+import MainMenu from '../menus/Main';
+import StoriesMenu from '../menus/Stories';
+import OrganisationMenu from '../menus/Organisation';
 
 import styles from '../../styles/partials/navbar.module.scss';
 
@@ -66,10 +67,15 @@ const Navbar = ({ className }) => {
             >
                 {loggedIn ? (
                     <>
+                        <StoriesMenu
+                            className="navbar-nav"
+                            itemClassName="nav-item"
+                            linkClassName="nav-link"
+                        />
                         {user.organisations.length > 1 ? (
-                            <OrganisationsMenu
+                            <OrganisationMenu
                                 items={user.organisations}
-                                className="navbar-nav mr-auto"
+                                className="navbar-nav"
                                 itemClassName="nav-item"
                                 linkClassName="nav-link"
                             />

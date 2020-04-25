@@ -1,5 +1,6 @@
 import { postJSON, getJSON, getCSRFHeaders } from '@folklore/fetch';
 import { generatePath } from 'react-router';
+import { stringify as stringifyQuery } from 'query-string';
 
 class Base {
     constructor(opts = {}) {
@@ -10,11 +11,17 @@ class Base {
         };
     }
 
-    requestGet(path) {
-        return getJSON(this.getFullUrl(path), {
-            credentials: 'include',
-            headers: getCSRFHeaders(),
-        });
+    requestGet(path, query = null) {
+        const queryString = query !== null ? stringifyQuery(query) : null;
+        return getJSON(
+            `${this.getFullUrl(path)}${
+                queryString !== null && queryString.length > 0 ? `?${queryString}` : null
+            }`,
+            {
+                credentials: 'include',
+                headers: getCSRFHeaders(),
+            },
+        );
     }
 
     requestPost(path, data) {

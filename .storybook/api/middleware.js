@@ -11,6 +11,17 @@ module.exports = () => {
         return globSync(filesPath).map(filePath => require(filePath));
     };
 
+    const getItemsPage = (items, page, count) => {
+        const startIndex = (page - 1) * count;
+        const endIndex = startIndex + count;
+        const total = items.length;
+        const lastPage = Math.ceil(total / count);
+        return {
+            pagination: { page, last_page: lastPage, total },
+            data: items.slice(startIndex, endIndex),
+        };
+    }
+
     router.use(
         '/',
         express.static(dataPath, {
@@ -30,7 +41,12 @@ module.exports = () => {
             res.sendStatus(404);
             return;
         }
-        res.json(items);
+        const { page = null, count = 10 } = req.query;
+        if (page !== null) {
+            res.json(getItemsPage(items, page, count));
+        } else {
+            res.json(items);
+        }
         res.end();
     });
 

@@ -2,6 +2,7 @@ import Base from './Base';
 
 import AuthApi from './Auth';
 import OrganisationsApi from './Organisations';
+import StoriesApi from './Stories';
 
 class Api extends Base {
     constructor(opts = {}) {
@@ -9,6 +10,7 @@ class Api extends Base {
 
         this.auth = new AuthApi(opts);
         this.organisations = new OrganisationsApi(opts);
+        this.stories = new StoriesApi(opts);
     }
 }
 

@@ -17,5 +17,7 @@
     "organisation.members": "/organisation/members",
 
     "stories": "/stories",
+    "stories.create": "/stories/create",
+    "stories.settings": "/stories/:story/settings",
     "stories.editor": "/stories/:story/editor"
 }

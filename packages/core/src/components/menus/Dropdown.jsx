@@ -38,11 +38,14 @@ const Dropdown = ({
     onClickOutside,
 }) => {
     const refContainer = useRef(null);
-    const onDocumentClick = useCallback(e => {
-        if (!refContainer.current.contains(e.currentTarget) && onClickOutside !== null) {
-            onClickOutside(e);
-        }
-    }, [refContainer.current, onClickOutside])
+    const onDocumentClick = useCallback(
+        e => {
+            if (!refContainer.current.contains(e.currentTarget) && onClickOutside !== null) {
+                onClickOutside(e);
+            }
+        },
+        [refContainer.current, onClickOutside],
+    );
     useDocumentEvent('click', onDocumentClick, visible);
     return (
         <div
@@ -59,23 +62,28 @@ const Dropdown = ({
                 ? children
                 : items.map((it, index) => {
                       const {
-                          id,
+                          id = null,
                           type = 'link',
                           className: customClassName = null,
-                          label,
+                          label = null,
                           children: itemChildren = null,
                           onClick: customOnClick = null,
                           active = false,
                           ...itemProps
                       } = it;
-                      const ItemComponent = type === 'link' ? Link : null;
+                      let ItemComponent = 'div';
+                      if (type === 'link') {
+                          ItemComponent = Link;
+                      } else if (type === 'header') {
+                          ItemComponent = 'h6';
+                      }
                       const finalOnClickItem =
-                          customOnClick !== null || onClickItem !== null
+                          customOnClick !== null || (type === 'link' && onClickItem !== null)
                               ? e => {
                                     if (customOnClick !== null) {
                                         customOnClick(e);
                                     }
-                                    if (onClickItem !== null) {
+                                    if (type === 'link' && onClickItem !== null) {
                                         onClickItem(e);
                                     }
                                 }
@@ -86,6 +94,7 @@ const Dropdown = ({
                               className={classNames({
                                   'dropdown-item': type === 'link',
                                   'dropdown-divider': type === 'divider',
+                                  'dropdown-header': type === 'header',
                                   active,
                                   [itemClassName]: itemClassName !== null,
                                   [customClassName]: customClassName !== null,
