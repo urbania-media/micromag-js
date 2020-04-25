@@ -62,9 +62,9 @@ const StoriesPage = ({ count, className }) => {
             <PageHeader title={messages.title} />
 
             <div className="row">
-                <aside className="col-md-4 order-last">
+                <aside className="col-md-4 order-md-last mb-sm-4">
                     <div className={styles.actions}>
-                        <Button theme="primary">{messages.create}</Button>
+                        <Button theme="primary" className={styles.button}>{messages.create}</Button>
                     </div>
                 </aside>
                 <div className="col-md-8">

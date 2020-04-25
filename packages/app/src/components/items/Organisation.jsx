@@ -33,8 +33,8 @@ const OrganisationItem = ({ item, className }) => {
                 },
             ])}
         >
-            <h6 className="mb-0">{item.name}</h6>
-            <div className="flex">
+            <h6 className="mb-1">{item.name}</h6>
+            <div className="d-flex">
                 <small className="mr-2">12 stories</small>
                 <small>2 users</small>
             </div>
