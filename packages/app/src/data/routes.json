@@ -12,9 +12,9 @@
     "account": "/account",
 
     "organisation": "/organisation",
-    "organisation.switch": "/organisation/:organisation",
     "organisation.settings": "/organisation/settings",
     "organisation.members": "/organisation/members",
+    "organisation.switch": "/organisation/:organisation",
 
     "stories": "/stories",
     "stories.create": "/stories/create",

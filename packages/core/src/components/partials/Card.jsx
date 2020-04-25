@@ -86,7 +86,7 @@ const Card = ({
                     },
                 ])}
             >
-                {header}
+                <Label>{header}</Label>
             </div>
         ) : null}
         {typeof image === 'string' ? (
@@ -170,7 +170,7 @@ const Card = ({
                     },
                 ])}
             >
-                {footer}
+                <Label>{footer}</Label>
             </div>
         ) : null}
     </div>

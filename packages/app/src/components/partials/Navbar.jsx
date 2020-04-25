@@ -67,11 +67,6 @@ const Navbar = ({ className }) => {
             >
                 {loggedIn ? (
                     <>
-                        <StoriesMenu
-                            className="navbar-nav"
-                            itemClassName="nav-item"
-                            linkClassName="nav-link"
-                        />
                         {user.organisations.length > 1 ? (
                             <OrganisationMenu
                                 items={user.organisations}
@@ -80,6 +75,11 @@ const Navbar = ({ className }) => {
                                 linkClassName="nav-link"
                             />
                         ) : null}
+                        <StoriesMenu
+                            className="navbar-nav"
+                            itemClassName="nav-item"
+                            linkClassName="nav-link"
+                        />
                         <MainMenu
                             className="navbar-nav ml-auto"
                             itemClassName="nav-item"

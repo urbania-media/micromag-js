@@ -62,6 +62,11 @@ const StoriesPage = ({ count, className }) => {
             <PageHeader title={messages.title} />
 
             <div className="row">
+                <aside className="col-md-4 order-last">
+                    <div className={styles.actions}>
+                        <Button theme="primary">{messages.create}</Button>
+                    </div>
+                </aside>
                 <div className="col-md-8">
                     <AsyncPaginatedList
                         getPage={getPage}
@@ -72,11 +77,6 @@ const StoriesPage = ({ count, className }) => {
                             pageItems !== null ? <StoriesList items={pageItems} /> : 'Loading...'
                         }
                     </AsyncPaginatedList>
-                </div>
-                <div className="col-md-4">
-                    <div className={styles.actions}>
-                        <Button theme="primary">{messages.create}</Button>
-                    </div>
                 </div>
             </div>
         </div>

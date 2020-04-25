@@ -19,21 +19,6 @@ const OrganisationRoutes = () => {
     const organisation = useOrganisation();
     return (
         <Switch>
-            <Route
-                path={routes['organisation.switch']}
-                exact
-                render={({
-                    match: {
-                        params: { organisation: organisationSlug },
-                    },
-                }) => {
-                    return organisation === null || organisation.slug !== organisationSlug ? (
-                        <OrganisationSwitchPage slug={organisationSlug} />
-                    ) : (
-                        <Redirect to={url('home')} />
-                    );
-                }}
-            />
             {organisation === null ? (
                 <Redirect
                     from={[routes['organisation.settings'], routes['organisation.members']]}
@@ -49,6 +34,21 @@ const OrganisationRoutes = () => {
                 path={routes['organisation.members']}
                 exact
                 component={OrganisationMembersPage}
+            />
+            <Route
+                path={routes['organisation.switch']}
+                exact
+                render={({
+                    match: {
+                        params: { organisation: organisationSlug },
+                    },
+                }) => {
+                    return organisation === null || organisation.slug !== organisationSlug ? (
+                        <OrganisationSwitchPage slug={organisationSlug} />
+                    ) : (
+                        <Redirect to={url('home')} />
+                    );
+                }}
             />
         </Switch>
     );
