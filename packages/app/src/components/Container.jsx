@@ -37,11 +37,11 @@ const Container = ({ locale, memoryRouter, basePath, apiBaseUrl, routes }) => {
             <IntlProvider locale={locale}>
                 <Router basename={basePath}>
                     <ApiProvider baseUrl={apiBaseUrl}>
-                        <AuthProvider>
-                            <RoutesProvider routes={routes}>
+                        <RoutesProvider routes={routes}>
+                            <AuthProvider>
                                 <App />
-                            </RoutesProvider>
-                        </AuthProvider>
+                            </AuthProvider>
+                        </RoutesProvider>
                     </ApiProvider>
                 </Router>
             </IntlProvider>

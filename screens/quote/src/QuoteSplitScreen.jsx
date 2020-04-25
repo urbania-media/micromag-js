@@ -21,6 +21,7 @@ const propTypes = {
     author: MicromagPropTypes.textElement,
     grid: MicromagPropTypes.gridElement,
     textAlign: PropTypes.oneOf(['left', 'right', 'center']),
+    visible: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -47,6 +48,7 @@ const defaultProps = {
         ],
     },
     textAlign: 'center',
+    visible: true,
     renderFormat: 'view',
     className: null,
 };
@@ -58,6 +60,7 @@ const QuoteSplitScreen = ({
     author,
     grid,
     textAlign,
+    visible,
     renderFormat,
     className,
 }) => {
@@ -145,7 +148,7 @@ const QuoteSplitScreen = ({
             ])}
         >
             <Background {...background} width={width} height={height} className={styles.background}>
-                <Frame width={width} height={height}>
+                <Frame width={width} height={height} visible={visible}>
                     <Grid {...grid} items={items} className={styles.grid} />
                 </Frame>
             </Background>

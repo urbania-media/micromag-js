@@ -24,6 +24,7 @@ const propTypes = {
     box: MicromagPropTypes.boxElement,
     textAlign: PropTypes.oneOf(['left', 'right', 'center']),
     position: PropTypes.number,
+    visible: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -37,6 +38,7 @@ const defaultProps = {
     box: null,
     textAlign: 'center',
     position: 1,
+    visible: true,
     renderFormat: 'view',
     className: null,
 };
@@ -50,6 +52,7 @@ const QuoteScreen = ({
     box,
     textAlign,
     position,
+    visible,
     renderFormat,
     className,
 }) => {
@@ -84,7 +87,7 @@ const QuoteScreen = ({
             ])}
         >
             <Background {...background} width={width} height={height} className={styles.background}>
-                <Frame width={width} height={height}>
+                <Frame width={width} height={height} visible={visible}>
                     {grid !== null ? (
                         <Grid
                             {...grid}
@@ -106,4 +109,4 @@ const QuoteScreen = ({
 QuoteScreen.propTypes = propTypes;
 QuoteScreen.defaultProps = defaultProps;
 
-export default QuoteScreen;
+export default React.memo(QuoteScreen);

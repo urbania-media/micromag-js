@@ -13,14 +13,14 @@ class AuthApi extends Base {
     }
 
     login(email, password) {
-        return this.requestPost(this.getPath('login'), {
+        return this.requestPost(this.route('login'), {
             email,
             password,
         });
     }
 
     register(data) {
-        return this.requestPost(this.getPath('register'), data);
+        return this.requestPost(this.route('register'), data);
     }
 }
 

@@ -24,6 +24,7 @@
     }
 
     .screen {
+        display: flex;
         position: absolute;
         width: 100%;
         height: 100%;
@@ -37,6 +38,10 @@
             > div {
                 position: relative;
                 scroll-snap-align: start;
+            }
+
+            .screen {
+                position: relative;
             }
         }
     }

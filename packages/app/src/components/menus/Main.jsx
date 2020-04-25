@@ -3,6 +3,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Menu } from '@micromag/core/components';
+import { useLocation } from 'react-router';
 import { defineMessages } from 'react-intl';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
@@ -35,6 +36,7 @@ const defaultProps = {
 
 const MainMenu = ({ className, itemClassName, linkClassName, ...props }) => {
     const url = useUrlGenerator();
+    const { pathname } = useLocation();
     const { logout } = useAuth();
     const onClickLogout = useCallback(
         e => {
@@ -50,6 +52,7 @@ const MainMenu = ({ className, itemClassName, linkClassName, ...props }) => {
                 {
                     id: 'account',
                     href: url('account'),
+                    active: pathname === url('account'),
                     label: messages.account,
                 },
                 {

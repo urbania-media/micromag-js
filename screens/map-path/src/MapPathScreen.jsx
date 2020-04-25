@@ -20,6 +20,7 @@ const propTypes = {
     map: MicromagPropTypes.map,
     background: MicromagPropTypes.backgroundElement,
     align: PropTypes.string,
+    visible: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -28,11 +29,12 @@ const defaultProps = {
     map: null,
     background: null,
     align: 'bottom',
+    visible: true,
     renderFormat: 'view',
     className: null,
 };
 
-const MapPathScreen = ({ map, background, align, renderFormat, className }) => {
+const MapPathScreen = ({ map, background, align, visible, renderFormat, className }) => {
     const { width, height } = useScreenSize();
     const { markers: mapMarkers = [] } = map || {};
     const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
@@ -81,7 +83,7 @@ const MapPathScreen = ({ map, background, align, renderFormat, className }) => {
             ])}
         >
             <Background {...background} width={width} height={height}>
-                <Frame width={width} height={height}>
+                <Frame width={width} height={height} visible={visible}>
                     {isSimple ? (
                         preview
                     ) : (
@@ -134,4 +136,4 @@ const MapPathScreen = ({ map, background, align, renderFormat, className }) => {
 MapPathScreen.propTypes = propTypes;
 MapPathScreen.defaultProps = defaultProps;
 
-export default MapPathScreen;
+export default React.memo(MapPathScreen);

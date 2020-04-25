@@ -1,1 +1,1 @@
-export { default } from './components/Viewer';
+export { default } from './components/ViewerContainer';

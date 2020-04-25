@@ -5,7 +5,16 @@
     height: 100%;
     margin: 0 auto;
 
+    // transition: opacity 0.3s ease-out;
+    // opacity: 1;
+
     &.withScroll {
         overflow-y: scroll;
+    }
+
+    &.hidden {
+        // display: none;
+        // visibility: hidden;
+        // opacity: 0;
     }
 }

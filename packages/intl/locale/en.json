@@ -10,6 +10,7 @@
     "app.menus.guest.login": "Login",
     "app.menus.guest.register": "Register",
     "app.menus.main.account": "Account",
+    "app.menus.main.logout": "Logout",
     "app.pages.home.title": "Micromag",
     "app.pages.login.description": "Please login with your credentials",
     "app.pages.login.forgot_password": "Forgot password?",

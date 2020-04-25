@@ -67,6 +67,7 @@
         "react-use-gesture": "^7.0.11",
         "slugify": "^1.4.0",
         "snake-case": "^3.0.3",
-        "tinycolor2": "^1.4.1"
+        "tinycolor2": "^1.4.1",
+        "wolfy87-eventemitter": "^5.2.9"
     }
 }

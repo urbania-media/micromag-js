@@ -24,7 +24,7 @@ class Base {
         });
     }
 
-    getPath(route, params) {
+    route(route, params) {
         const { routes } = this.options;
         return generatePath(routes[route] || route, params);
     }

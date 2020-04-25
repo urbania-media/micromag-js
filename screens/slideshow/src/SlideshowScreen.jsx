@@ -22,6 +22,7 @@ const propTypes = {
     box: MicromagPropTypes.boxElement,
     background: MicromagPropTypes.backgroundElement,
     textAlign: MicromagPropTypes.textAlign,
+    visible: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -31,6 +32,7 @@ const defaultProps = {
     box: null,
     background: null,
     textAlign: 'left',
+    visible: true,
     renderFormat: 'view',
     className: null,
 };
@@ -40,6 +42,7 @@ const SlideshowScreen = ({
     items: slides,
     background,
     textAlign,
+    visible,
     renderFormat,
     className,
 }) => {
@@ -84,7 +87,7 @@ const SlideshowScreen = ({
             ])}
         >
             <Background {...background} width={width} height={height} className={styles.background}>
-                <Frame width={maxWidth} height={height}>
+                <Frame width={maxWidth} height={height} visible={visible}>
                     <Box {...box} withSmallSpacing={isSimple}>
                         {isPlaceholder ? (
                             <Placeholders.Slideshow />
@@ -144,4 +147,4 @@ const SlideshowScreen = ({
 SlideshowScreen.propTypes = propTypes;
 SlideshowScreen.defaultProps = defaultProps;
 
-export default SlideshowScreen;
+export default React.memo(SlideshowScreen);

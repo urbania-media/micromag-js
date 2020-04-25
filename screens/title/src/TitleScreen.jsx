@@ -30,6 +30,7 @@ const propTypes = {
     box: MicromagPropTypes.boxElement,
     background: MicromagPropTypes.backgroundElement,
     textAlign: PropTypes.oneOf(['left', 'right', 'center']),
+    visible: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -43,6 +44,7 @@ const defaultProps = {
     box: null,
     background: null,
     textAlign: 'center',
+    visible: true,
     renderFormat: 'view',
     className: null,
 };
@@ -56,6 +58,7 @@ const TitleScreen = ({
     box,
     background,
     textAlign,
+    visible,
     renderFormat,
     className,
 }) => {
@@ -95,7 +98,7 @@ const TitleScreen = ({
             ])}
         >
             <Background {...background} width={width} height={height}>
-                <Frame width={width} height={height}>
+                <Frame width={width} height={height} visible={visible}>
                     <div className={styles.inner}>
                         {grid !== null ? (
                             <Grid
@@ -119,4 +122,4 @@ const TitleScreen = ({
 TitleScreen.propTypes = propTypes;
 TitleScreen.defaultProps = defaultProps;
 
-export default TitleScreen;
+export default React.memo(TitleScreen);

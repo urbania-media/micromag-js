@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom';
 import { Button } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
-import { useLoggedIn } from '../../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import MainMenu from '../menus/Main';
+import OrganisationsMenu from '../menus/Organisations';
 import MainGuestMenu from '../menus/MainGuest';
 
 import styles from '../../styles/partials/navbar.module.scss';
@@ -21,7 +22,7 @@ const defaultProps = {
 };
 
 const Navbar = ({ className }) => {
-    const loggedIn = useLoggedIn();
+    const { loggedIn, user } = useAuth();
     const [menuVisible, setMenuVisible] = useState(false);
     const url = useUrlGenerator();
     const onClickMenu = useCallback(() => setMenuVisible(!menuVisible), [
@@ -64,11 +65,21 @@ const Navbar = ({ className }) => {
                 ])}
             >
                 {loggedIn ? (
-                    <MainMenu
-                        className="navbar-nav ml-auto"
-                        itemClassName="nav-item"
-                        linkClassName="nav-link"
-                    />
+                    <>
+                        {user.organisations.length > 1 ? (
+                            <OrganisationsMenu
+                                items={user.organisations}
+                                className="navbar-nav mr-auto"
+                                itemClassName="nav-item"
+                                linkClassName="nav-link"
+                            />
+                        ) : null}
+                        <MainMenu
+                            className="navbar-nav ml-auto"
+                            itemClassName="nav-item"
+                            linkClassName="nav-link"
+                        />
+                    </>
                 ) : (
                     <MainGuestMenu
                         className="navbar-nav ml-auto"

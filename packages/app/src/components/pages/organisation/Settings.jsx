@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import styles from '../../../styles/pages/organisation/organisation.module.scss';
+import styles from '../../../styles/pages/organisation/settings.module.scss';
 
 const propTypes = {
     className: PropTypes.string,
@@ -13,7 +13,7 @@ const defaultProps = {
     className: null,
 };
 
-const OrganisationPage = ({ className }) => (
+const OrganisationSettingsPage = ({ className }) => (
     <div
         className={classNames([
             styles.container,
@@ -22,11 +22,11 @@ const OrganisationPage = ({ className }) => (
             },
         ])}
     >
-        organisation
+        organisation settings
     </div>
 );
 
-OrganisationPage.propTypes = propTypes;
-OrganisationPage.defaultProps = defaultProps;
+OrganisationSettingsPage.propTypes = propTypes;
+OrganisationSettingsPage.defaultProps = defaultProps;
 
-export default OrganisationPage;
+export default OrganisationSettingsPage;

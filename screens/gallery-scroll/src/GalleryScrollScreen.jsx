@@ -19,6 +19,7 @@ const propTypes = {
     box: MicromagPropTypes.boxElement,
     columns: PropTypes.arrayOf(PropTypes.number),
     spacing: PropTypes.number,
+    visible: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -29,6 +30,7 @@ const defaultProps = {
     box: null,
     columns: [1],
     spacing: 10,
+    visible: true,
     renderFormat: 'view',
     className: null,
 };
@@ -38,6 +40,7 @@ const GalleryScrollScreen = ({
     images: imageList,
     columns,
     spacing,
+    visible,
     renderFormat,
     className,
 }) => {
@@ -107,7 +110,7 @@ const GalleryScrollScreen = ({
             ])}
         >
             <Background {...background} width={width} height={height} className={styles.background}>
-                <Frame width={width} height={height} withScroll={!isSimple}>
+                <Frame width={width} height={height} withScroll={!isSimple} visible={visible}>
                     <Box axisAlign="top" withSmallSpacing={isSimple} className={styles.box}>
                         {items}
                     </Box>
@@ -120,4 +123,4 @@ const GalleryScrollScreen = ({
 GalleryScrollScreen.propTypes = propTypes;
 GalleryScrollScreen.defaultProps = defaultProps;
 
-export default GalleryScrollScreen;
+export default React.memo(GalleryScrollScreen);

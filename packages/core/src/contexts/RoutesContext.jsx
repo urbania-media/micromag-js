@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { generatePath } from 'react-router';
+import { generatePath, useHistory } from 'react-router';
 
 const RoutesContext = React.createContext(null);
 
@@ -14,6 +14,16 @@ export const useUrlGenerator = () => {
         routes,
     ]);
     return urlGenerator;
+};
+
+export const useHistoryPush = () => {
+    const url = useUrlGenerator();
+    const history = useHistory();
+    const push = useCallback((route, data, ...args) => history.push(url(route, data), ...args), [
+        history,
+        url,
+    ]);
+    return push;
 };
 
 const propTypes = {

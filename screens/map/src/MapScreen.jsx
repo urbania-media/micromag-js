@@ -20,6 +20,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     cardBackground: MicromagPropTypes.backgroundElement,
     align: PropTypes.string,
+    visible: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -29,11 +30,20 @@ const defaultProps = {
     background: null,
     cardBackground: null,
     align: 'bottom',
+    visible: true,
     renderFormat: 'view',
     className: null,
 };
 
-const MapScreen = ({ map, background, cardBackground, align, renderFormat, className }) => {
+const MapScreen = ({
+    map,
+    background,
+    cardBackground,
+    align,
+    visible,
+    renderFormat,
+    className,
+}) => {
     const { width, height } = useScreenSize();
     const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
     const [index, setIndex] = useState();
@@ -71,7 +81,7 @@ const MapScreen = ({ map, background, cardBackground, align, renderFormat, class
             ])}
         >
             <Background {...background} width={width} height={height}>
-                <Frame width={width} height={height}>
+                <Frame width={width} height={height} visible={visible}>
                     {isSimple ? (
                         preview
                     ) : (
@@ -123,4 +133,4 @@ const MapScreen = ({ map, background, cardBackground, align, renderFormat, class
 MapScreen.propTypes = propTypes;
 MapScreen.defaultProps = defaultProps;
 
-export default MapScreen;
+export default React.memo(MapScreen);
