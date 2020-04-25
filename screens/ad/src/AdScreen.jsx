@@ -16,7 +16,7 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     ad: MicromagPropTypes.adFormat,
-    box: MicromagPropTypes.box,
+    box: MicromagPropTypes.boxElement,
     background: MicromagPropTypes.backgroundElement,
     isFullScreen: PropTypes.bool,
     visible: PropTypes.bool,
