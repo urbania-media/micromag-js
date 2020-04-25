@@ -1,4 +1,10 @@
 {
     "id": "2",
-    "title": "Story 2"
+    "title": "Story 2",
+    "components": [
+        {
+            "id": "1",
+            "type": "title"
+        }
+    ]
 }

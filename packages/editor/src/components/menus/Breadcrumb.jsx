@@ -16,7 +16,7 @@ import messages from '../../messages';
 
 const propTypes = {
     intl: MicromagPropTypes.intl.isRequired,
-    value: MicromagPropTypes.story,
+    story: MicromagPropTypes.story,
     screenId: PropTypes.string,
     field: PropTypes.string,
     form: PropTypes.string,
@@ -26,7 +26,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    value: null,
+    story: null,
     screenId: null,
     field: null,
     form: null,
@@ -34,8 +34,8 @@ const defaultProps = {
     className: null,
 };
 
-const Breadcrumb = ({ intl, value, screenId, field, form, panel, url, className }) => {
-    const { components: screens = [] } = value || {};
+const Breadcrumb = ({ intl, story, screenId, field, form, panel, url, className }) => {
+    const { components: screens = [] } = story || {};
     const repository = useSchemasRepository();
     const history = useHistory();
 
@@ -105,15 +105,7 @@ const Breadcrumb = ({ intl, value, screenId, field, form, panel, url, className 
             ...fieldItems,
             ...panelItems,
         ]
-            .filter(it => it !== null)
-            .map(it =>
-                panel !== null && typeof it.panel === 'undefined'
-                    ? {
-                          ...it,
-                          onClick: () => console.log('SHOULD CLOSE PANEL'),
-                      }
-                    : it,
-            );
+            .filter(it => it !== null);
 
         const lastItemsIndex = finalItems.length - 1;
 

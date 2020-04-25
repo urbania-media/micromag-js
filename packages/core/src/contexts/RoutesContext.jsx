@@ -5,14 +5,22 @@ import { generatePath, useHistory } from 'react-router';
 
 const RoutesContext = React.createContext(null);
 
-export const useRoutes = () => useContext(RoutesContext);
+export const useRoutes = () => {
+    const { routes } = useContext(RoutesContext);
+    return routes;
+};
 
 export const useUrlGenerator = () => {
-    const routes = useRoutes();
-    const urlGenerator = useCallback((key, data) => generatePath(routes[key], data), [
-        generatePath,
-        routes,
-    ]);
+    const { routes, basePath } = useContext(RoutesContext);
+    const urlGenerator = useCallback(
+        (key, data) => {
+            const url = generatePath(routes[key], data);
+            return basePath !== null
+                ? `${basePath.replace(/\/$/, '')}/${url.replace(/^\//, '')}`
+                : url;
+        },
+        [generatePath, routes, basePath],
+    );
     return urlGenerator;
 };
 
@@ -29,12 +37,15 @@ export const useHistoryPush = () => {
 const propTypes = {
     children: PropTypes.node.isRequired,
     routes: PropTypes.objectOf(PropTypes.string).isRequired,
+    basePath: PropTypes.string,
 };
 
-const defaultProps = {};
+const defaultProps = {
+    basePath: null,
+};
 
-export const RoutesProvider = ({ routes, children }) => (
-    <RoutesContext.Provider value={routes}>{children}</RoutesContext.Provider>
+export const RoutesProvider = ({ routes, basePath, children }) => (
+    <RoutesContext.Provider value={{ routes, basePath }}>{children}</RoutesContext.Provider>
 );
 
 RoutesProvider.propTypes = propTypes;

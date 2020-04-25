@@ -1,3 +1,5 @@
 {
-    "core.forms.submit": "Submit"
+    "core.forms.submit": "Submit",
+    "core.menus.pagination.next": "next",
+    "core.menus.pagination.previous": "Previous"
 }

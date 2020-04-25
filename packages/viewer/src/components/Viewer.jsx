@@ -16,7 +16,7 @@ import Menu from './menus/Menu';
 import styles from '../styles/viewer.module.scss';
 
 const propTypes = {
-    value: MicromagPropTypes.story.isRequired,
+    story: MicromagPropTypes.story.isRequired,
     width: PropTypes.number,
     height: PropTypes.number,
     screen: PropTypes.string,
@@ -37,7 +37,7 @@ const defaultProps = {
 };
 
 const Viewer = ({
-    value: { components = [] },
+    story,
     width,
     height,
     screen: screenId,
@@ -46,6 +46,7 @@ const Viewer = ({
     onScreenChange,
     className,
 }) => {
+    const { components = [] } = story || {};
     // Size
     const scrollRef = useRef(null);
     const { ref: refContainer, screenSize } = useScreenSizeFromElement({

@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-import { MemoryRouter } from 'react-router';
-import { repository, SchemasProvider } from '@micromag/schemas';
-import Editor from '../components/Editor';
+import Editor from '../components/Container';
 import IntlProvider from '../../../intl/src/IntlProvider';
 
 // import manager from '../../../intl/src/manager';
 
-import ScreensProvider from '../../../screens/src/ScreensProvider';
 import createDefaultStory from '../utils/createDefaultStory';
 import '../../../intl/locale/fr';
 
@@ -18,16 +15,10 @@ export default {
 const defaultStory = createDefaultStory();
 
 const EditorContainer = () => {
-    const [value, setValue] = useState(defaultStory);
+    const [story, setStory] = useState(defaultStory);
     return (
         <IntlProvider locale="fr">
-            <MemoryRouter>
-                <ScreensProvider>
-                    <SchemasProvider repository={repository}>
-                        <Editor value={value} fullscreen onChange={setValue} />
-                    </SchemasProvider>
-                </ScreensProvider>
-            </MemoryRouter>
+            <Editor story={story} fullscreen onChange={setStory} memoryRouter />
         </IntlProvider>
     );
 };

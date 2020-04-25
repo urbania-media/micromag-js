@@ -1,19 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { useParams } from 'react-router';
+import Editor from '@micromag/editor';
+import { useUrlGenerator } from '@micromag/core/contexts';
 
-import PageHeader from '../../partials/PageHeader';
+import { useApi } from '../../../contexts/ApiContext';
 
 import styles from '../../../styles/pages/stories/editor.module.scss';
-
-const messages = defineMessages({
-    title: {
-        id: 'pages.editor.title',
-        defaultMessage: 'Editor',
-    },
-});
 
 const propTypes = {
     className: PropTypes.string,
@@ -23,19 +18,45 @@ const defaultProps = {
     className: null,
 };
 
-const EditorPage = ({ className }) => (
-    <div
-        className={classNames([
-            'container',
-            styles.container,
-            {
-                [className]: className !== null,
-            },
-        ])}
-    >
-        <PageHeader title={messages.title} />
-    </div>
-);
+const EditorPage = ({ className }) => {
+    const { story: storyId } = useParams();
+    const [story, setStory] = useState(null);
+    const api = useApi();
+    const url = useUrlGenerator();
+    useEffect(() => {
+        let canceled = false;
+        api.stories.find(storyId).then(newStory => {
+            if (!canceled) {
+                setStory(newStory);
+            }
+        });
+        return () => {
+            canceled = true;
+        };
+    }, [storyId, setStory]);
+    return (
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                },
+            ])}
+        >
+            {story !== null ? (
+                <Editor
+                    story={story}
+                    className={styles.editor}
+                    basePath={url('stories.editor', {
+                        story: story.id,
+                    })}
+                    memoryRouter
+                    onChange={setStory}
+                />
+            ) : null}
+        </div>
+    );
+};
 
 EditorPage.propTypes = propTypes;
 EditorPage.defaultProps = defaultProps;

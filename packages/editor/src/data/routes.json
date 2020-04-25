@@ -1,0 +1,6 @@
+{
+    "home": "/",
+    "screen": "/:screen",
+    "screen.field": "/:screen/:field+",
+    "screen.field.form": "/:screen/:field+/:form"
+}

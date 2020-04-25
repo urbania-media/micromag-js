@@ -2,11 +2,11 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useHistory, useRouteMatch } from 'react-router';
+import { useRouteMatch } from 'react-router';
 import TransitionGroup from 'react-addons-css-transition-group';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { slug } from '@micromag/core/utils';
-import { useFormsComponents, usePanels } from '@micromag/core/contexts';
+import { usePanels, useHistoryPush, useRoutes } from '@micromag/core/contexts';
 import { Empty, Panels } from '@micromag/core/components';
 
 import { updateScreen, duplicateScreen, deleteScreen } from '../utils';
@@ -19,37 +19,31 @@ import FieldForm from './forms/Field';
 import styles from '../styles/form.module.scss';
 
 const propTypes = {
-    value: MicromagPropTypes.story,
+    story: MicromagPropTypes.story,
     className: PropTypes.string,
     onChange: PropTypes.func,
-    formComponents: MicromagPropTypes.components,
 };
 
 const defaultProps = {
-    value: null,
+    story: null,
     className: null,
     onChange: null,
-    formComponents: null,
 };
 
-const EditForm = ({ value, className, onChange, formComponents }) => {
-    const contextFormComponents = useFormsComponents();
-    const finalFormComponents = formComponents || contextFormComponents;
-    const formRegEx = Object.keys(finalFormComponents)
-        .map(name => slug(name))
-        .join('|');
-
+const EditForm = ({ story, className, onChange }) => {
     // Match routes
-    const history = useHistory();
+    const push = useHistoryPush();
+    const routes = useRoutes();
     const {
         url,
         params: { screen: screenId = null, field: fieldParams = null, form: formParams = null },
     } = useRouteMatch({
-        path: [`/:screen/:field+/:form(${formRegEx})`, `/:screen/:field+`, '/:screen', '*'],
+        path: [routes['screen.field.form'], routes['screen.field'], routes.screen, '*'],
     });
+    console.log(url, screenId, fieldParams, formParams);
 
     // Get screen
-    const { components: screens = [] } = value || {};
+    const { components: screens = [] } = story || {};
     const screenIndex = screens.findIndex(it => it.id === screenId);
     const screen = screenIndex !== -1 ? screens[screenIndex] : null;
 
@@ -73,17 +67,17 @@ const EditForm = ({ value, className, onChange, formComponents }) => {
     );
 
     const onScreenFormChange = useCallback(
-        newScreenValue => triggerOnChange(updateScreen(value, newScreenValue)),
-        [value, triggerOnChange],
+        newScreenValue => triggerOnChange(updateScreen(story, newScreenValue)),
+        [story, triggerOnChange],
     );
 
     const onClickScreenDelete = useCallback(
-        ({ id: deleteScreenId }) => triggerOnChange(deleteScreen(value, deleteScreenId)),
-        [value, triggerOnChange],
+        ({ id: deleteScreenId }) => triggerOnChange(deleteScreen(story, deleteScreenId)),
+        [story, triggerOnChange],
     );
 
-    const onClickDuplicate = useCallback(() => triggerOnChange(duplicateScreen(value, screenId)), [
-        value,
+    const onClickDuplicate = useCallback(() => triggerOnChange(duplicateScreen(story, screenId)), [
+        story,
         screenId,
         triggerOnChange,
     ]);
@@ -91,18 +85,18 @@ const EditForm = ({ value, className, onChange, formComponents }) => {
     const onClickDelete = useCallback(() => {
         // eslint-disable-next-line no-alert
         if (window.confirm('Êtes-vous certain de vouloir supprimer cet écran?')) {
-            triggerOnChange(deleteScreen(value, screenId));
+            triggerOnChange(deleteScreen(story, screenId));
         }
-    }, [value, screenId, triggerOnChange]);
+    }, [story, screenId, triggerOnChange]);
 
     const gotoFieldForm = useCallback(
         (field, formName = null) =>
-            history.push(
-                `/${screenId}/${field.replace(/\./g, '/')}${
-                    formName !== null ? `/${slug(formName)}` : ''
-                }`,
-            ),
-        [history, screenId],
+            push(formName !== null ? 'screen.field.form' : 'screen.field', {
+                screen: screenId,
+                field: field.split('.'),
+                form: formName !== null ? slug(formName) : null,
+            }),
+        [push, screenId],
     );
 
     return (
@@ -117,7 +111,7 @@ const EditForm = ({ value, className, onChange, formComponents }) => {
             <div className={styles.top}>
                 {screenId !== null ? (
                     <Breadcrumb
-                        value={value}
+                        story={story}
                         url={url}
                         screenId={screenId}
                         field={fieldParams}

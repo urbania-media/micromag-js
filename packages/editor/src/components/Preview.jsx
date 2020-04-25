@@ -6,7 +6,7 @@ import { Route } from 'react-router';
 import { getSizeWithinBounds } from '@folklore/size';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useResizeObserver } from '@micromag/core/hooks';
-import { useScreen, useScreens } from '@micromag/core/contexts';
+import { useScreen, useScreens, useRoutes } from '@micromag/core/contexts';
 import { ViewerWithoutRouter as Viewer } from '@micromag/viewer';
 
 import DevicesMenu from './menus/Devices';
@@ -14,7 +14,7 @@ import DevicesMenu from './menus/Devices';
 import styles from '../styles/preview.module.scss';
 
 const propTypes = {
-    value: MicromagPropTypes.story,
+    story: MicromagPropTypes.story,
     devices: MicromagPropTypes.devices,
     device: PropTypes.string,
     className: PropTypes.string,
@@ -22,7 +22,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    value: null,
+    story: null,
     devices: [
         {
             id: 'mobile',
@@ -40,7 +40,8 @@ const defaultProps = {
     onScreenChange: null,
 };
 
-const EditorPreview = ({ value, devices, device: initialDevice, className, onScreenChange }) => {
+const EditorPreview = ({ story, devices, device: initialDevice, className, onScreenChange }) => {
+    const routes = useRoutes();
     const screen = useScreen();
     const screens = useScreens();
 
@@ -96,14 +97,14 @@ const EditorPreview = ({ value, devices, device: initialDevice, className, onScr
                     <div className={styles.inner} ref={bottomRef}>
                         <div className={styles.preview} style={previewStyle}>
                             <Route
-                                path="/:screen?"
+                                path={[routes.home, routes.screen]}
                                 render={({
                                     match: {
                                         params: { screen: screenId = null },
                                     },
                                 }) => (
                                     <Viewer
-                                        value={value}
+                                        story={story}
                                         screen={screenId}
                                         className={styles.story}
                                         interactions={null}

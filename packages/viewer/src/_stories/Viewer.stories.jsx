@@ -12,14 +12,14 @@ import Viewer from '../index';
 
 const props = {
     screenId: Basic[0].id,
-    value: {
+    story: {
         components: Basic,
     },
 };
 
 const mediumProps = {
     screenId: Medium[0].id,
-    value: {
+    story: {
         components: Medium,
     },
 };

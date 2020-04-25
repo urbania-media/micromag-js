@@ -2,8 +2,9 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Route, useHistory } from 'react-router';
+import { Route } from 'react-router';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useRoutes, useHistoryPush, useUrlGenerator } from '@micromag/core/contexts';
 import { Label } from '@micromag/core/components';
 import { useSchemasRepository, SCREENS_NAMESPACE } from '@micromag/schemas';
 
@@ -16,7 +17,7 @@ import messages from '../messages';
 import styles from '../styles/screens.module.scss';
 
 const propTypes = {
-    value: MicromagPropTypes.story,
+    story: MicromagPropTypes.story,
     isVertical: PropTypes.bool,
     onClickScreen: PropTypes.func,
     onChange: PropTypes.func,
@@ -24,18 +25,20 @@ const propTypes = {
 };
 
 const defaultProps = {
-    value: null,
+    story: null,
     isVertical: false,
     onClickScreen: null,
     onChange: null,
     className: null,
 };
 
-const EditorScreens = ({ value, isVertical, onClickScreen, onChange, className }) => {
-    const { components: screens = [] } = value || {};
+const EditorScreens = ({ story, isVertical, onClickScreen, onChange, className }) => {
+    const { components: screens = [] } = story || {};
 
     const [createModalOpened, setCreateModalOpened] = useState(false);
-    const history = useHistory();
+    const routes = useRoutes();
+    const push = useHistoryPush();
+    const url = useUrlGenerator();
     const repository = useSchemasRepository();
 
     const createScreen = useCallback(
@@ -47,7 +50,7 @@ const EditorScreens = ({ value, isVertical, onClickScreen, onChange, className }
                 ...createScreenFromType(type, defaultValues),
                 layout,
             };
-            const { components = [], ...currentValue } = value || {};
+            const { components = [], ...currentValue } = story || {};
             const newValue = {
                 ...currentValue,
                 components: [...components, newScreen],
@@ -55,16 +58,18 @@ const EditorScreens = ({ value, isVertical, onClickScreen, onChange, className }
             if (onChange !== null) {
                 onChange(newValue);
             }
-            history.push(`/${newScreen.id}`);
+            push('screen', {
+                screen: newScreen.id,
+            });
             setCreateModalOpened(false);
         },
-        [value, onChange, history, setCreateModalOpened],
+        [story, onChange, push, setCreateModalOpened],
     );
 
     const onOrderChange = useCallback(
         listItems => {
             const ids = listItems.map(({ id }) => id);
-            const { components = [], ...currentValue } = value || {};
+            const { components = [], ...currentValue } = story || {};
             const newValue = {
                 ...currentValue,
                 components: [...components].sort(({ id: idA }, { id: idB }) => {
@@ -80,7 +85,7 @@ const EditorScreens = ({ value, isVertical, onClickScreen, onChange, className }
                 onChange(newValue);
             }
         },
-        [value, onChange],
+        [story, onChange],
     );
 
     const onClickScreenType = useCallback((e, item) => createScreen(item.type), [createScreen]);
@@ -88,6 +93,8 @@ const EditorScreens = ({ value, isVertical, onClickScreen, onChange, className }
     const onCreateModalRequestClose = useCallback(() => setCreateModalOpened(false), [
         setCreateModalOpened,
     ]);
+
+    console.log(routes.home, routes.screen);
 
     return (
         <div
@@ -105,7 +112,7 @@ const EditorScreens = ({ value, isVertical, onClickScreen, onChange, className }
                 <PlusButton className={styles.button} onClick={onClickAdd} />
             </div>
             <Route
-                path="/:screen?"
+                path={[routes.screen, routes.home]}
                 render={({
                     match: {
                         params: { screen: screenId = null },
@@ -114,7 +121,9 @@ const EditorScreens = ({ value, isVertical, onClickScreen, onChange, className }
                     <Screens
                         items={screens.map(it => ({
                             ...it,
-                            href: `/${it.id}`,
+                            href: url('screen', {
+                                screen: it.id,
+                            }),
                             active: it.id === screenId,
                         }))}
                         isVertical={isVertical}

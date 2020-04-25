@@ -15,7 +15,7 @@ class Base {
         const queryString = query !== null ? stringifyQuery(query) : null;
         return getJSON(
             `${this.getFullUrl(path)}${
-                queryString !== null && queryString.length > 0 ? `?${queryString}` : null
+                queryString !== null && queryString.length > 0 ? `?${queryString}` : ''
             }`,
             {
                 credentials: 'include',

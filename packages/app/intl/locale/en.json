@@ -8,6 +8,7 @@
     "app.forms.register.password_label": "Password",
     "app.forms.register.submit": "Create account",
     "app.items.story.edit": "Edit",
+    "app.items.story.settings": "Settings",
     "app.menus.guest.login": "Login",
     "app.menus.guest.register": "Register",
     "app.menus.main.account": "Account",
@@ -29,6 +30,7 @@
     "app.pages.register.already_have_account": "Already have an account?",
     "app.pages.register.description": "Please fill all the fields below.",
     "app.pages.register.title": "Register",
+    "app.pages.stories.create": "Create a new story",
     "app.pages.stories.create.title": "Create a story",
     "app.pages.stories.title": "Stories"
 }

@@ -12,7 +12,7 @@ import {
     ELEMENTS_NAMESPACE,
 } from '../components/namespaces';
 
-const ComponentsContext = React.createContext({});
+export const ComponentsContext = React.createContext({});
 
 export const useComponents = (namespace = null, defaultComponents = {}) => {
     const { components } = useContext(ComponentsContext);
