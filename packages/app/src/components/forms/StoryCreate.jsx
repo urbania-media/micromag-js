@@ -40,14 +40,12 @@ const defaultProps = {
 const StoryCreateForm = ({ fields, className, onCreated }) => {
     const url = useUrlGenerator();
     const api = useApi();
-    const user = useUser();
     const postForm = useCallback((action, data) => api.stories.create(data), [api]);
     return (
         <Form
             action={url('stories.create')}
             fields={fields}
             postForm={postForm}
-            initialValue={user}
             submitButtonLabel={messages.submit}
             onComplete={onCreated}
             className={className}

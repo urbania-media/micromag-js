@@ -7,6 +7,10 @@ const { sync: globSync } = require('glob');
 
 module.exports = () => {
     const router = express.Router();
+
+    router.use(express.json());
+    router.use(express.urlencoded());
+
     const dataPath = path.join(__dirname, '/data');
 
     const resourceExists = resource => fs.existsSync(path.join(dataPath, resource));
@@ -125,7 +129,7 @@ module.exports = () => {
         const items = getResourceItems(resource);
         const filteredItems = sortItems(filterItems(items, query), sort, sortDirection);
         if (page !== null) {
-            res.json(getItemsPage(filteredItems, page, count));
+            res.json(getItemsPage(filteredItems, parseInt(page, 10), parseInt(count, 10)));
         } else {
             res.json(count !== null ? filteredItems.slice(0, count - 1) : filteredItems);
         }
