@@ -5,16 +5,14 @@ import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
 
 import MainLayout from '../../layouts/Main';
-import PageHeader from '../../partials/PageHeader';
+import Page from '../../partials/Page';
+import AccountMenu from '../../menus/Account';
 
 import styles from '../../../styles/pages/account/account.module.scss';
 
-const messages = defineMessages({
-    title: {
-        id: 'pages.account.title',
-        defaultMessage: 'Your account',
-    },
-});
+import accountMessages from './messages';
+
+const messages = defineMessages({});
 
 const propTypes = {
     className: PropTypes.string,
@@ -26,22 +24,24 @@ const defaultProps = {
 
 const AccountPage = ({ className }) => (
     <MainLayout>
-        <div
+        <Page
+            title={accountMessages.title}
+            sidebar={
+                <AccountMenu
+                    withoutDropdown
+                    className="list-group"
+                    itemClassName="list-group-item"
+                />
+            }
             className={classNames([
-                'container',
                 styles.container,
                 {
                     [className]: className !== null,
                 },
             ])}
         >
-            <PageHeader title={messages.title} />
-
-            <div className="row">
-                <aside className="col-md-4 order-md-last">Sidebar</aside>
-                <div className="col-md-8">Main</div>
-            </div>
-        </div>
+            Main
+        </Page>
     </MainLayout>
 );
 

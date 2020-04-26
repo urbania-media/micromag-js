@@ -2,4 +2,12 @@
 
 .container {
     padding: $spacer * 2 0 $spacer;
+
+    .title {
+        font-size: 3rem;
+    }
+
+    .section {
+        font-size: 2rem;
+    }
 }

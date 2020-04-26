@@ -2,10 +2,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { defineMessages } from 'react-intl';
 
 import MainLayout from '../../layouts/Main';
+import Page from '../../partials/Page';
 
 import styles from '../../../styles/pages/auth/reset-password.module.scss';
+
+const messages = defineMessages({
+    title: {
+        id: 'pages.auth.reset_password.title',
+        defaultMessage: 'Reset password',
+    },
+});
 
 const propTypes = {
     className: PropTypes.string,
@@ -17,7 +26,9 @@ const defaultProps = {
 
 const ResetPasswordPage = ({ className }) => (
     <MainLayout>
-        <div
+        <Page
+            title={messages.title}
+            small
             className={classNames([
                 styles.container,
                 {
@@ -26,7 +37,7 @@ const ResetPasswordPage = ({ className }) => (
             ])}
         >
             reset password
-        </div>
+        </Page>
     </MainLayout>
 );
 

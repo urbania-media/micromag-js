@@ -8,8 +8,11 @@ export { default as AsyncList } from './lists/Async';
 export { default as AsyncPaginatedList } from './lists/AsyncPaginated';
 
 export { default as Breadcrumb } from './menus/Breadcrumb';
-export { default as Tabs } from './menus/Tabs';
+export { default as DropdownMenu } from './menus/Dropdown';
 export { default as Menu } from './menus/Menu';
+export { default as Navbar } from './menus/Navbar';
+export { default as Pagination } from './menus/Pagination';
+export { default as Tabs } from './menus/Tabs';
 
 export { default as Modals } from './modals/Modals';
 export { default as Modal } from './modals/Modal';

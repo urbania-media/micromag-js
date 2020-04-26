@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import useItems from '../../hooks/useItems';
 import Pagination from '../menus/Pagination';
@@ -12,6 +13,7 @@ const propTypes = {
     paginationUrl: PropTypes.string,
     children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
     withoutPagination: PropTypes.bool,
+    paginationClassName: PropTypes.string,
 };
 
 const defaultProps = {
@@ -21,6 +23,7 @@ const defaultProps = {
     paginationUrl: null,
     children: null,
     withoutPagination: false,
+    paginationClassName: null,
 };
 
 const AsyncPaginatedList = ({
@@ -30,6 +33,7 @@ const AsyncPaginatedList = ({
     paginationUrl,
     children,
     withoutPagination,
+    paginationClassName,
     ...props
 }) => {
     const [page, setPage] = useState(providedPage);
@@ -60,6 +64,12 @@ const AsyncPaginatedList = ({
                     page={page}
                     total={total}
                     onClickPage={onClickPage}
+                    className={classNames([
+                        'mt-2',
+                        {
+                            [paginationClassName]: paginationClassName !== null,
+                        },
+                    ])}
                 />
             ) : null}
         </>

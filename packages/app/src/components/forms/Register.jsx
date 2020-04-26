@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Form } from '@micromag/core/components';
@@ -9,25 +9,9 @@ import { useUrlGenerator } from '@micromag/core/contexts';
 
 import { useApi } from '../../contexts/ApiContext';
 
-import styles from '../../styles/forms/register.module.scss';
+import formMessages from './messages';
 
 const messages = defineMessages({
-    nameLabel: {
-        id: 'forms.register.name_label',
-        defaultMessage: 'Name',
-    },
-    emailLabel: {
-        id: 'forms.register.email_label',
-        defaultMessage: 'Email',
-    },
-    passwordLabel: {
-        id: 'forms.register.password_label',
-        defaultMessage: 'Password',
-    },
-    passwordConfirmationLabel: {
-        id: 'forms.register.password_confirmation_label',
-        defaultMessage: 'Confirm password',
-    },
     submit: {
         id: 'forms.register.submit',
         defaultMessage: 'Create account',
@@ -45,22 +29,22 @@ const defaultProps = {
         {
             name: 'name',
             type: 'text',
-            label: messages.nameLabel,
+            label: formMessages.nameLabel,
         },
         {
             name: 'email',
             type: 'email',
-            label: messages.emailLabel,
+            label: formMessages.emailLabel,
         },
         {
             name: 'password',
             type: 'password',
-            label: messages.passwordLabel,
+            label: formMessages.passwordLabel,
         },
         {
             name: 'password_confirmation',
             type: 'password',
-            label: messages.passwordConfirmationLabel,
+            label: formMessages.passwordConfirmationLabel,
         },
     ],
     className: null,
@@ -78,12 +62,7 @@ const RegisterForm = ({ fields, className, onRegistered }) => {
             postForm={postForm}
             submitButtonLabel={messages.submit}
             onComplete={onRegistered}
-            className={classNames([
-                styles.login,
-                {
-                    [className]: className !== null,
-                },
-            ])}
+            className={className}
         />
     );
 };

@@ -3,8 +3,6 @@
 @import '../placeholders';
 
 .container {
-    @extend %page-inner;
-
     .actions {
         padding: $spacer;
         border-radius: $border-radius;

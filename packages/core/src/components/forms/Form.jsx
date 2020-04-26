@@ -23,8 +23,10 @@ const propTypes = {
     action: PropTypes.string.isRequired,
     method: PropTypes.string,
     fields: MicromagPropTypes.formFields,
+    initialValue: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     postForm: PropTypes.func,
     submitButtonLabel: MicromagPropTypes.label,
+    submitButtonLoadingLabel: MicromagPropTypes.label,
     buttons: MicromagPropTypes.buttons,
     children: PropTypes.node,
     actionsAlign: PropTypes.oneOf(['left', 'right']),
@@ -38,8 +40,10 @@ const propTypes = {
 const defaultProps = {
     method: 'POST',
     fields: [],
+    initialValue: null,
     postForm: null,
     submitButtonLabel: messages.submit,
+    submitButtonLoadingLabel: null,
     buttons: null,
     children: null,
     actionsAlign: 'left',
@@ -54,8 +58,10 @@ const Form = ({
     action,
     method,
     fields: initialFields,
+    initialValue,
     postForm,
     submitButtonLabel,
+    submitButtonLoadingLabel,
     buttons,
     children,
     actionsAlign,
@@ -65,7 +71,8 @@ const Form = ({
     fieldsClassName,
     actionsClassName,
 }) => {
-    const { onSubmit, fields } = useForm({
+    const { onSubmit, fields, status } = useForm({
+        value: initialValue,
         action,
         fields: initialFields,
         postForm,
@@ -116,8 +123,10 @@ const Form = ({
                     {buttons !== null ? (
                         <Buttons buttons={buttons} className={styles.buttons} />
                     ) : (
-                        <Button type="submit" theme="primary">
-                            {submitButtonLabel}
+                        <Button type="submit" theme="primary" disabled={status === 'loading'}>
+                            {status === 'loading'
+                                ? submitButtonLoadingLabel || submitButtonLabel
+                                : submitButtonLabel}
                         </Button>
                     )}
                 </div>

@@ -2,8 +2,6 @@
 @import '../placeholders';
 
 .container {
-    @extend %page-inner;
-
     .description {
         @extend %form-panel-description;
     }

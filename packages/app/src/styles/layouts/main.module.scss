@@ -32,6 +32,26 @@
     .content {
         position: relative;
         flex-grow: 1;
+        width: 100%;
+
+        &.middle,
+        &.bottom {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &.middle {
+            > * {
+                margin-top: auto;
+                margin-bottom: auto;
+            }
+        }
+
+        &.bottom {
+            > * {
+                margin-top: auto;
+            }
+        }
     }
 
     &.fullscreen {

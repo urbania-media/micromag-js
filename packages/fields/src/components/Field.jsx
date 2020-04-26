@@ -90,7 +90,6 @@ const Field = ({
 
     const fieldElement = (
         <FieldComponent
-            withBorders={isFields && fields.length > 1}
             {...props}
             fields={fields}
             name={name}

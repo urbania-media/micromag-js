@@ -135,14 +135,15 @@ module.exports = () => {
     /**
      * Resource by slug
      */
-    router.get('/:resource/:slug', (req, res) => {
+    router.get('/:resource/:id', (req, res) => {
         const { resource } = req.params;
         if (!resourceExists(resource)) {
             res.sendStatus(404);
             return;
         }
+        const { id: itemId } = req.params;
         const items = getResourceItems(resource);
-        const item = items.find(({ slug = null }) => slug === req.params.slug) || null;
+        const item = items.find(({ id, slug = null }) => id === itemId || slug === itemId) || null;
         if (item === null) {
             res.sendStatus(404);
             return;

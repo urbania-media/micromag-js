@@ -22,6 +22,7 @@ const propTypes = {
     dropdownClassName: PropTypes.string,
     dropdownItemClassName: PropTypes.string,
     dropdownLinkClassName: PropTypes.string,
+    dropdownAlign: MicromagPropTypes.dropdownAlign,
 };
 
 const defaultProps = {
@@ -38,6 +39,7 @@ const defaultProps = {
     dropdownClassName: null,
     dropdownItemClassName: null,
     dropdownLinkClassName: null,
+    dropdownAlign: null,
 };
 
 const Menu = ({
@@ -54,6 +56,7 @@ const Menu = ({
     dropdownClassName,
     dropdownItemClassName,
     dropdownLinkClassName,
+    dropdownAlign,
 }) => {
     const [dropdownsVisible, setDropdownsVisible] = useState(items.map(() => false));
     return (
@@ -164,6 +167,7 @@ const Menu = ({
                                               dropdownLinkClassName === null &&
                                               linkClassName !== null,
                                       })}
+                                      align={dropdownAlign}
                                       onClickItem={closeDropdown}
                                       onClickOutside={closeDropdown}
                                   />

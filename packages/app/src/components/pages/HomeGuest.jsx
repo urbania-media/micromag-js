@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
 
 import MainLayout from '../layouts/Main';
-import PageHeader from '../partials/PageHeader';
+import Page from '../partials/Page';
 
 import styles from '../../styles/pages/home-guest.module.scss';
 
@@ -26,7 +26,8 @@ const defaultProps = {
 
 const HomeGuestPage = ({ className }) => (
     <MainLayout>
-        <div
+        <Page
+            title={messages.title}
             className={classNames([
                 'container',
                 styles.container,
@@ -35,8 +36,8 @@ const HomeGuestPage = ({ className }) => (
                 },
             ])}
         >
-            <PageHeader title={messages.title} />
-        </div>
+            Home
+        </Page>
     </MainLayout>
 );
 

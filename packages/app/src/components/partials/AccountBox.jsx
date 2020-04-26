@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Card } from '@micromag/core/components';
+import { useUrlGenerator } from '@micromag/core/contexts';
 
 import { useUser } from '../../contexts/AuthContext';
 
@@ -15,29 +16,53 @@ const messages = defineMessages({
         id: 'account-box.title',
         defaultMessage: 'Account',
     },
+    profile: {
+        id: 'account-box.profile',
+        defaultMessage: 'Profile',
+    },
+    settings: {
+        id: 'account-box.settings',
+        defaultMessage: 'Settings',
+    },
 });
 
 const propTypes = {
+    withoutHeader: PropTypes.bool,
     className: PropTypes.string,
 };
 
 const defaultProps = {
+    withoutHeader: false,
     className: null,
 };
 
-const AccountBox = ({ className }) => {
+const AccountBox = ({ withoutHeader, className }) => {
     const user = useUser();
+    const url = useUrlGenerator();
     return (
         <Card
-            header={messages.title}
+            header={!withoutHeader ? messages.title : null}
             title={user.name}
+            links={[
+                {
+                    label: messages.profile,
+                    href: url('account.profile'),
+                },
+                {
+                    label: messages.settings,
+                    href: url('account.settings'),
+                },
+            ]}
+            linksInSameBody
             className={classNames([
                 styles.container,
                 {
                     [className]: className !== null,
                 },
             ])}
-        />
+        >
+            <p>{user.email}</p>
+        </Card>
     );
 };
 

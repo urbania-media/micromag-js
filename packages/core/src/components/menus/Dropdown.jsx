@@ -12,6 +12,7 @@ const propTypes = {
     items: MicromagPropTypes.menuItems,
     children: PropTypes.node,
     visible: PropTypes.bool,
+    align: MicromagPropTypes.dropdownAlign,
     className: PropTypes.string,
     itemClassName: PropTypes.string,
     onClickItem: PropTypes.func,
@@ -22,6 +23,7 @@ const defaultProps = {
     items: [],
     children: null,
     visible: false,
+    align: null,
     className: null,
     itemClassName: null,
     onClickItem: null,
@@ -32,6 +34,7 @@ const Dropdown = ({
     items,
     children,
     visible,
+    align,
     className,
     itemClassName,
     onClickItem,
@@ -52,6 +55,7 @@ const Dropdown = ({
             className={classNames([
                 'dropdown-menu',
                 {
+                    [`dropdown-menu-${align}`]: align !== null,
                     show: visible,
                     [className]: className !== null,
                 },

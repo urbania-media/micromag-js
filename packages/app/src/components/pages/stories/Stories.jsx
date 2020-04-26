@@ -10,7 +10,7 @@ import { useUrlGenerator } from '@micromag/core/contexts';
 
 import { useApi } from '../../../contexts/ApiContext';
 import MainLayout from '../../layouts/Main';
-import PageHeader from '../../partials/PageHeader';
+import Page from '../../partials/Page';
 import StoriesList from '../../lists/Stories';
 
 import styles from '../../../styles/pages/stories/stories.module.scss';
@@ -52,42 +52,32 @@ const StoriesPage = ({ count, className }) => {
     const paginationUrl = `${url('stories')}${queryString !== null ? `?${queryString}` : ''}`;
     return (
         <MainLayout>
-            <div
+            <Page
+                title={messages.title}
+                sidebar={
+                    <div className={styles.actions}>
+                        <Button href={url('stories.create')} theme="primary" className={styles.button}>
+                            {messages.create}
+                        </Button>
+                    </div>
+                }
                 className={classNames([
-                    'container',
                     styles.container,
                     {
                         [className]: className !== null,
                     },
                 ])}
             >
-                <PageHeader title={messages.title} />
-
-                <div className="row">
-                    <aside className="col-md-4 order-md-last mb-sm-4">
-                        <div className={styles.actions}>
-                            <Button theme="primary" className={styles.button}>
-                                {messages.create}
-                            </Button>
-                        </div>
-                    </aside>
-                    <div className="col-md-8">
-                        <AsyncPaginatedList
-                            getPage={getPage}
-                            page={parseInt(page, 10)}
-                            paginationUrl={paginationUrl}
-                        >
-                            {({ pageItems }) =>
-                                pageItems !== null ? (
-                                    <StoriesList items={pageItems} />
-                                ) : (
-                                    'Loading...'
-                                )
-                            }
-                        </AsyncPaginatedList>
-                    </div>
-                </div>
-            </div>
+                <AsyncPaginatedList
+                    getPage={getPage}
+                    page={parseInt(page, 10)}
+                    paginationUrl={paginationUrl}
+                >
+                    {({ pageItems }) =>
+                        pageItems !== null ? <StoriesList items={pageItems} /> : 'Loading...'
+                    }
+                </AsyncPaginatedList>
+            </Page>
         </MainLayout>
     );
 };

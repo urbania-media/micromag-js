@@ -31,6 +31,12 @@ class Base {
         });
     }
 
+    requestDelete(path) {
+        return this.requestPost(path, {
+            _method: 'DELETE',
+        });
+    }
+
     route(route, params) {
         const { routes } = this.options;
         return generatePath(routes[route] || route, params);

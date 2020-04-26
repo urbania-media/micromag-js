@@ -22,6 +22,7 @@ const propTypes = {
             href: PropTypes.string,
         }),
     ),
+    linksInSameBody: PropTypes.bool,
     footer: PropTypes.node,
     className: PropTypes.string,
     imageClassName: PropTypes.string,
@@ -40,6 +41,7 @@ const defaultProps = {
     children: null,
     header: null,
     links: null,
+    linksInSameBody: false,
     footer: null,
     className: null,
     imageClassName: null,
@@ -58,6 +60,7 @@ const Card = ({
     children,
     header,
     links,
+    linksInSameBody,
     footer,
     className,
     imageClassName,
@@ -66,115 +69,119 @@ const Card = ({
     subtitleClassName,
     bodyClassName,
     footerClassName,
-}) => (
-    <div
-        className={classNames([
-            'card',
-            styles.container,
-            {
-                [className]: className !== null,
-            },
-        ])}
-    >
-        {header !== null ? (
-            <div
+}) => {
+    const linksElements = (links || []).map(
+        ({ label, className: linkClassName = null, ...linkProps }, index) => (
+            <Link
+                key={`link-${label}-${index}`}
                 className={classNames([
-                    'card-header',
-                    styles.header,
+                    'card-link',
+                    styles.link,
                     {
-                        [headerClassName]: headerClassName !== null,
+                        [linkClassName]: linkClassName !== null,
                     },
                 ])}
+                {...linkProps}
             >
-                <Label>{header}</Label>
-            </div>
-        ) : null}
-        {typeof image === 'string' ? (
-            <img
-                src={image}
-                alt={imageAlt}
-                className={classNames([
-                    'card-img-top',
-                    styles.image,
-                    {
-                        [imageClassName]: imageClassName !== null,
-                    },
-                ])}
-            />
-        ) : (
-            image
-        )}
+                {label}
+            </Link>
+        ),
+    );
+    return (
         <div
             className={classNames([
-                'card-body',
-                styles.body,
+                'card',
+                styles.container,
                 {
-                    [bodyClassName]: bodyClassName !== null,
+                    [className]: className !== null,
                 },
             ])}
         >
-            {title !== null ? (
-                <h5
+            {header !== null ? (
+                <div
                     className={classNames([
-                        'card-title',
-                        styles.title,
+                        'card-header',
+                        styles.header,
                         {
-                            [titleClassName]: titleClassName !== null,
+                            [headerClassName]: headerClassName !== null,
                         },
                     ])}
                 >
-                    <Label>{title}</Label>
-                </h5>
+                    <Label>{header}</Label>
+                </div>
             ) : null}
-            {subtitle !== null ? (
-                <h6
+            {typeof image === 'string' ? (
+                <img
+                    src={image}
+                    alt={imageAlt}
                     className={classNames([
-                        'card-subtitle',
-                        styles.subtitle,
+                        'card-img-top',
+                        styles.image,
                         {
-                            [subtitleClassName]: subtitleClassName !== null,
+                            [imageClassName]: imageClassName !== null,
                         },
                     ])}
-                >
-                    <Label>{subtitle}</Label>
-                </h6>
-            ) : null}
-            {children}
-        </div>
-        {links !== null ? (
-            <div className="card-body">
-                {links.map(({ label, className: linkClassName = null, ...linkProps }, index) => (
-                    <Link
-                        key={`link-${label}-${index}`}
-                        className={classNames([
-                            'card-link',
-                            styles.link,
-                            {
-                                [linkClassName]: linkClassName !== null,
-                            },
-                        ])}
-                        {...linkProps}
-                    >
-                        {label}
-                    </Link>
-                ))}
-            </div>
-        ) : null}
-        {footer !== null ? (
+                />
+            ) : (
+                image
+            )}
             <div
                 className={classNames([
-                    'card-footer',
-                    styles.footer,
+                    'card-body',
+                    styles.body,
                     {
-                        [footerClassName]: footerClassName !== null,
+                        [bodyClassName]: bodyClassName !== null,
                     },
                 ])}
             >
-                <Label>{footer}</Label>
+                {title !== null ? (
+                    <h5
+                        className={classNames([
+                            'card-title',
+                            styles.title,
+                            {
+                                [titleClassName]: titleClassName !== null,
+                            },
+                        ])}
+                    >
+                        <Label>{title}</Label>
+                    </h5>
+                ) : null}
+                {subtitle !== null ? (
+                    <h6
+                        className={classNames([
+                            'card-subtitle',
+                            styles.subtitle,
+                            {
+                                [subtitleClassName]: subtitleClassName !== null,
+                            },
+                        ])}
+                    >
+                        <Label>{subtitle}</Label>
+                    </h6>
+                ) : null}
+                {children}
+                {links !== null && linksInSameBody ? <div className="d-flex">{linksElements}</div> : null}
             </div>
-        ) : null}
-    </div>
-);
+            {links !== null && !linksInSameBody ? (
+                <div className="card-body">{linksElements}</div>
+            ) : null}
+            {footer !== null ? (
+                <div
+                    className={classNames([
+                        'card-footer',
+                        styles.footer,
+                        {
+                            [footerClassName]: footerClassName !== null,
+                        },
+                    ])}
+                >
+                    <Label>{footer}</Label>
+                </div>
+            ) : null}
+        </div>
+    );
+};
 
 Card.propTypes = propTypes;
 Card.defaultProps = defaultProps;

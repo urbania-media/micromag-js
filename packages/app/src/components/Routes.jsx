@@ -13,19 +13,24 @@ import HomeGuestPage from './pages/HomeGuest';
 import RegisterPage from './pages/register/Register';
 
 import AccountPage from './pages/account/Account';
+import AccountProfilePage from './pages/account/Profile';
 
 import LoginPage from './pages/auth/Login';
 import ForgotPasswordPage from './pages/auth/ForgotPassword';
 import ResetPasswordPage from './pages/auth/ResetPassword';
 
 import OrganisationSettingsPage from './pages/organisation/Settings';
-import OrganisationTeamPage from './pages/organisation/Team';
 import OrganisationBillingPage from './pages/organisation/Billing';
+import OrganisationTeamPage from './pages/organisation/Team';
+import OrganisationThemesPage from './pages/organisation/Themes';
+import OrganisationMediasPage from './pages/organisation/Medias';
 import OrganisationSwitchPage from './pages/organisation/Switch';
 
 import StoriesPage from './pages/stories/Stories';
-import CreatePage from './pages/stories/Create';
-import EditorPage from './pages/stories/Editor';
+import StoryCreatePage from './pages/stories/Create';
+import StoryPage from './pages/stories/Story';
+import StoryEditorPage from './pages/stories/Editor';
+import StorySettingsPage from './pages/stories/Settings';
 
 const propTypes = {};
 
@@ -68,6 +73,7 @@ const Routes = () => {
                 />
             ) : null}
             <Route path={routes.account} exact component={AccountPage} />
+            <Route path={routes['account.profile']} exact component={AccountProfilePage} />
 
             {/* Organisation routes */}
             {organisation === null ? (
@@ -91,6 +97,8 @@ const Routes = () => {
                 component={OrganisationBillingPage}
             />
             <Route path={routes['organisation.team']} exact component={OrganisationTeamPage} />
+            <Route path={routes['organisation.themes']} exact component={OrganisationThemesPage} />
+            <Route path={routes['organisation.medias']} exact component={OrganisationMediasPage} />
             <Route
                 path={routes['organisation.switch']}
                 exact
@@ -109,8 +117,10 @@ const Routes = () => {
 
             {/* Stories routes */}
             <Route path={routes.stories} exact component={StoriesPage} />
-            <Route path={routes['stories.create']} exact component={CreatePage} />
-            <Route path={routes['stories.editor']} component={EditorPage} />
+            <Route path={routes['stories.create']} exact component={StoryCreatePage} />
+            <Route path={routes['stories.show']} exact component={StoryPage} />
+            <Route path={routes['stories.editor']} component={StoryEditorPage} />
+            <Route path={routes['stories.settings']} component={StorySettingsPage} />
         </Switch>
     );
 };

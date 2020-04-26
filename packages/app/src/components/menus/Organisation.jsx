@@ -24,7 +24,7 @@ const messages = defineMessages({
         id: 'menus.organisation.billing',
         defaultMessage: 'Billing',
     },
-    members: {
+    team: {
         id: 'menus.organisation.team',
         defaultMessage: 'Team',
     },
@@ -39,25 +39,34 @@ const messages = defineMessages({
 });
 
 const propTypes = {
-    items: AppPropTypes.organisations,
+    organisations: AppPropTypes.organisations,
     className: PropTypes.string,
     itemClassName: PropTypes.string,
     linkClassName: PropTypes.string,
+    withoutDropdown: PropTypes.bool,
 };
 
 const defaultProps = {
-    items: [],
+    organisations: [],
     className: null,
     itemClassName: null,
     linkClassName: null,
+    withoutDropdown: false,
 };
 
-const OrganisationsMenu = ({ items, className, itemClassName, linkClassName, ...props }) => {
+const OrganisationsMenu = ({
+    organisations,
+    className,
+    itemClassName,
+    linkClassName,
+    withoutDropdown,
+    ...props
+}) => {
     const url = useUrlGenerator();
     const organisation = useOrganisation();
     const organisationsItems = useMemo(
         () =>
-            items
+            organisations
                 .filter(it => organisation === null || it.id !== organisation.id)
                 .map(it => ({
                     id: it.id,
@@ -67,54 +76,73 @@ const OrganisationsMenu = ({ items, className, itemClassName, linkClassName, ...
                     label: it.name,
                     active: organisation !== null && organisation.id === it.id,
                 })),
-        [items, organisation],
+        [organisations, organisation],
     );
+    const menuItems = [
+        {
+            id: 'settings',
+            href: url('organisation.settings'),
+            label: messages.settings,
+        },
+        {
+            id: 'billing',
+            href: url('organisation.billing'),
+            label: messages.billing,
+        },
+        {
+            id: 'team',
+            href: url('organisation.team'),
+            label: messages.team,
+        },
+        {
+            type: 'divider',
+        },
+        {
+            id: 'themes',
+            href: url('organisation.themes'),
+            label: messages.themes,
+        },
+        {
+            id: 'medias',
+            href: url('organisation.medias'),
+            label: messages.medias,
+        },
+    ];
     return (
         <Menu
             {...props}
-            items={[
-                {
-                    id: 'organisations',
-                    href: url('home'),
-                    label: organisation !== null ? organisation.name : messages.organisations,
-                    dropdown:
-                        organisation !== null
-                            ? [
-                                  {
-                                      href: url('organisation.settings'),
-                                      label: messages.settings,
-                                  },
-                                  {
-                                      href: url('organisation.billing'),
-                                      label: messages.billing,
-                                  },
-                                  {
-                                      href: url('organisation.team'),
-                                      label: messages.team,
-                                  },
-                                  {
-                                      type: 'divider',
-                                  },
-                                  {
-                                      href: url('organisation.themes'),
-                                      label: messages.themes,
-                                  },
-                                  {
-                                      href: url('organisation.medias'),
-                                      label: messages.medias,
-                                  },
-                                  {
-                                      type: 'divider',
-                                  },
-                                  {
-                                      type: 'header',
-                                      label: messages.organisations,
-                                  },
-                                  ...organisationsItems,
-                              ]
-                            : organisationsItems,
-                },
-            ]}
+            items={
+                withoutDropdown
+                    ? menuItems.filter(({ type = 'link' }) => type === 'link')
+                    : [
+                          {
+                              id: 'organisations',
+                              href: url('home'),
+                              label:
+                                  organisation !== null
+                                      ? organisation.name
+                                      : messages.organisations,
+                              dropdown:
+                                  organisation !== null
+                                      ? [
+                                            ...menuItems,
+                                            ...(organisations.length > 1
+                                                ? [
+                                                      {
+                                                          type: 'divider',
+                                                      },
+                                                      {
+                                                          type: 'header',
+                                                          label: messages.organisations,
+                                                      },
+                                                      ...organisationsItems,
+                                                  ]
+                                                : null),
+                                        ]
+                                      : organisationsItems,
+                          },
+                      ]
+            }
             className={classNames([
                 styles.container,
                 {

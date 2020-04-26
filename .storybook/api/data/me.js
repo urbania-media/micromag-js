@@ -3,7 +3,7 @@ const org2 = require('./organisations/2.json');
 
 module.exports = {
     id: '1',
-    name: 'User',
+    name: 'Test user',
     email: 'example@example.com',
     organisations: [org1, org2],
 };

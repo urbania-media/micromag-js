@@ -10,7 +10,8 @@ import { useUser } from '../../contexts/AuthContext';
 import { useOrganisation } from '../../contexts/OrganisationContext';
 import { useApi } from '../../contexts/ApiContext';
 import MainLayout from '../layouts/Main';
-import PageHeader from '../partials/PageHeader';
+import Page from '../partials/Page';
+import OrganisationMenu from '../menus/Organisation';
 import AccountBox from '../partials/AccountBox';
 import OrganisationsList from '../lists/Organisations';
 import StoriesList from '../lists/Stories';
@@ -21,6 +22,10 @@ const messages = defineMessages({
     title: {
         id: 'pages.home.title',
         defaultMessage: 'Micromag',
+    },
+    account: {
+        id: 'pages.home.account',
+        defaultMessage: 'Your account',
     },
     organisations: {
         id: 'pages.home.organisations',
@@ -57,48 +62,54 @@ const HomePage = ({ recentStoriesCount, className }) => {
     ]);
     return (
         <MainLayout>
-            <div
+            <Page
+                title={organisation !== null ? organisation.name : messages.title}
+                sidebar={
+                    <>
+                        {organisation !== null ? (
+                            <section className="mb-4">
+                                <OrganisationMenu
+                                    withoutDropdown
+                                    className="list-group"
+                                    itemClassName="list-group-item"
+                                />
+                            </section>
+                        ) : (
+                            <section className="mb-4">
+                                <AccountBox />
+                            </section>
+                        )}
+                    </>
+                }
                 className={classNames([
-                    'container',
                     styles.container,
                     {
                         [className]: className !== null,
                     },
                 ])}
             >
-                <PageHeader title={organisation !== null ? organisation.name : messages.title} />
-
-                <div className="row">
-                    <aside className="col-md-4 order-last">
-                        <AccountBox />
-                    </aside>
-                    <div className="col-md-8">
-                        {organisation === null ? (
-                            <section className="mb-4">
-                                <h5 className="mb-1">
-                                    <Label>{messages.organisations}</Label>
-                                </h5>
-                                <OrganisationsList items={user.organisations} />
-                            </section>
-                        ) : null}
-                        <section>
-                            <h5 className="mb-1">
-                                <Label>{messages.recentStories}</Label>
-                            </h5>
-                            <AsyncList getItems={getRecentStories}>
-                                {({ items }) =>
-                                    items !== null ? <StoriesList items={items} /> : null
-                                }
-                            </AsyncList>
-                            <div className={classNames(['d-flex', 'mt-2'])}>
-                                <Button href={url('stories')} theme="secondary">
-                                    {messages.viewAllStories}
-                                </Button>
-                            </div>
-                        </section>
+                {organisation === null ? (
+                    <section className="mb-4">
+                        <h5 className="mb-2">
+                            <Label>{messages.organisations}</Label>
+                        </h5>
+                        <OrganisationsList items={user.organisations} />
+                    </section>
+                ) : null}
+                <section>
+                    <h5 className="mb-2">
+                        <Label>{messages.recentStories}</Label>
+                    </h5>
+                    <AsyncList getItems={getRecentStories}>
+                        {({ items }) => (items !== null ? <StoriesList items={items} /> : null)}
+                    </AsyncList>
+                    <div className={classNames(['d-flex', 'mt-2'])}>
+                        <Button href={url('stories')} theme="secondary">
+                            {messages.viewAllStories}
+                        </Button>
                     </div>
-                </div>
-            </div>
+                </section>
+            </Page>
         </MainLayout>
     );
 };

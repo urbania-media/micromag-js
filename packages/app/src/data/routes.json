@@ -10,6 +10,8 @@
     "register.confirmation": "/register/thanks",
 
     "account": "/account",
+    "account.profile": "/account/profile",
+    "account.settings": "/account/settings",
 
     "organisation": "/organisation",
     "organisation.settings": "/organisation/settings",
@@ -21,6 +23,7 @@
 
     "stories": "/stories",
     "stories.create": "/stories/create",
-    "stories.settings": "/stories/:story/settings",
-    "stories.editor": "/stories/:story/editor"
+    "stories.show": "/stories/:story",
+    "stories.editor": "/stories/:story/editor",
+    "stories.settings": "/stories/:story/settings"
 }

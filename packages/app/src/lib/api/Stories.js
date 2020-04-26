@@ -1,12 +1,15 @@
 import Base from './Base';
 
-class OrganisationsApi extends Base {
+class StoriesApi extends Base {
     constructor(opts = {}) {
         super({
             ...opts,
             routes: {
                 index: 'stories',
                 show: 'stories/:story',
+                store: 'stories',
+                update: 'stories/:story',
+                delete: 'stories/:story',
                 ...(opts.routes || null),
             },
         });
@@ -51,6 +54,27 @@ class OrganisationsApi extends Base {
             count,
         );
     }
+
+    create(data) {
+        return this.requestPost(this.route('store'), data);
+    }
+
+    update(id, data) {
+        return this.requestPost(
+            this.route('update', {
+                story: id,
+            }),
+            data,
+        );
+    }
+
+    delete(id) {
+        return this.requestDelete(
+            this.route('delete', {
+                story: id,
+            }),
+        );
+    }
 }
 
-export default OrganisationsApi;
+export default StoriesApi;

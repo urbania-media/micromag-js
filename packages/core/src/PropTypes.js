@@ -103,6 +103,8 @@ export const buttonTheme = PropTypes.oneOf([
 
 export const buttonSize = PropTypes.oneOf(['lg', 'sm', null]);
 
+export const dropdownAlign = PropTypes.oneOf(['left', 'right']);
+
 export const componentNames = Components =>
     PropTypes.oneOf(Object.keys(Components).map(it => snakeCase(it)));
 

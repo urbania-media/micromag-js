@@ -9,7 +9,7 @@ import { FormPanel, Label, Link } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
 import MainLayout from '../../layouts/Main';
-import PageHeader from '../../partials/PageHeader';
+import Page from '../../partials/Page';
 import LoginForm from '../../forms/Login';
 
 import styles from '../../../styles/pages/auth/login.module.scss';
@@ -51,17 +51,16 @@ const LoginPage = ({ className }) => {
     }, [history, url]);
     return (
         <MainLayout>
-            <div
+            <Page
+                title={messages.title}
+                small
                 className={classNames([
-                    'container-small',
                     styles.container,
                     {
                         [className]: className !== null,
                     },
                 ])}
             >
-                <PageHeader title={messages.title} />
-
                 <FormPanel
                     description={
                         <div className={styles.description}>
@@ -76,7 +75,7 @@ const LoginPage = ({ className }) => {
                         <Link href={url('register')}>{messages.register}</Link>
                     </div>
                 </FormPanel>
-            </div>
+            </Page>
         </MainLayout>
     );
 };

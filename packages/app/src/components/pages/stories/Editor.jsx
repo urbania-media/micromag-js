@@ -6,7 +6,8 @@ import { useParams } from 'react-router';
 import Editor from '@micromag/editor';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
-import { useApi } from '../../../contexts/ApiContext';
+import useStory from '../../../hooks/useStory';
+import { StoryProvider } from '../../../contexts/StoryContext';
 import MainLayout from '../../layouts/Main';
 
 import styles from '../../../styles/pages/stories/editor.module.scss';
@@ -21,44 +22,40 @@ const defaultProps = {
 
 const EditorPage = ({ className }) => {
     const { story: storyId } = useParams();
-    const [story, setStory] = useState(null);
-    const api = useApi();
     const url = useUrlGenerator();
+    const { story } = useStory(storyId);
+    const [editorStory, setEditorStory] = useState(story);
     useEffect(() => {
-        let canceled = false;
-        api.stories.find(storyId).then(newStory => {
-            if (!canceled) {
-                setStory(newStory);
-            }
-        });
-        return () => {
-            canceled = true;
-        };
-    }, [storyId, setStory]);
+        if (story !== editorStory) {
+            setEditorStory(story);
+        }
+    }, [story]);
     return (
-        <MainLayout fullscreen>
-            <div
-                className={classNames([
-                    styles.container,
-                    {
-                        [className]: className !== null,
-                    },
-                ])}
-            >
-                {story !== null ? (
-                    <Editor
-                        story={story}
-                        className={styles.editor}
-                        basePath={url('stories.editor', {
-                            story: story.id,
-                        })}
-                        fullscreen
-                        memoryRouter
-                        onChange={setStory}
-                    />
-                ) : null}
-            </div>
-        </MainLayout>
+        <StoryProvider story={editorStory}>
+            <MainLayout isEditor>
+                <div
+                    className={classNames([
+                        styles.container,
+                        {
+                            [className]: className !== null,
+                        },
+                    ])}
+                >
+                    {story !== null ? (
+                        <Editor
+                            story={editorStory}
+                            className={styles.editor}
+                            basePath={url('stories.editor', {
+                                story: story.id,
+                            })}
+                            fullscreen
+                            memoryRouter
+                            onChange={setEditorStory}
+                        />
+                    ) : null}
+                </div>
+            </MainLayout>
+        </StoryProvider>
     );
 };
 

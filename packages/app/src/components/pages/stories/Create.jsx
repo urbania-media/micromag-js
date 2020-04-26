@@ -1,11 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
+import { Label, FormPanel } from '@micromag/core/components';
+import { useHistoryPush } from '@micromag/core/contexts';
 
 import MainLayout from '../../layouts/Main';
-import PageHeader from '../../partials/PageHeader';
+import Page from '../../partials/Page';
+import StoryCreateForm from '../../forms/StoryCreate';
 
 import styles from '../../../styles/pages/stories/create.module.scss';
 
@@ -13,6 +16,10 @@ const messages = defineMessages({
     title: {
         id: 'pages.stories.create.title',
         defaultMessage: 'Create a story',
+    },
+    description: {
+        id: 'pages.stories.create.description',
+        defaultMessage: 'A description',
     },
 });
 
@@ -24,21 +31,41 @@ const defaultProps = {
     className: null,
 };
 
-const StoriesCreatePage = ({ className }) => (
-    <MainLayout>
-        <div
-            className={classNames([
-                'container',
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-        >
-            <PageHeader title={messages.title} />
-        </div>
-    </MainLayout>
-);
+const StoriesCreatePage = ({ className }) => {
+    const push = useHistoryPush();
+    const onCreated = useCallback(
+        story => {
+            push('stories.show', {
+                story: story.id,
+            });
+        },
+        [push],
+    );
+    return (
+        <MainLayout>
+            <Page
+                title={messages.title}
+                small
+                className={classNames([
+                    styles.container,
+                    {
+                        [className]: className !== null,
+                    },
+                ])}
+            >
+                <FormPanel
+                    description={
+                        <div className={styles.description}>
+                            <Label>{messages.description}</Label>
+                        </div>
+                    }
+                >
+                    <StoryCreateForm onCreated={onCreated} />
+                </FormPanel>
+            </Page>
+        </MainLayout>
+    );
+};
 
 StoriesCreatePage.propTypes = propTypes;
 StoriesCreatePage.defaultProps = defaultProps;

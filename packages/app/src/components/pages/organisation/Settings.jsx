@@ -2,10 +2,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { defineMessages } from 'react-intl';
 
 import MainLayout from '../../layouts/Main';
+import Page from '../../partials/Page';
 
 import styles from '../../../styles/pages/organisation/settings.module.scss';
+
+import organisationMessages from './messages';
+
+const messages = defineMessages({
+    title: {
+        id: 'pages.organisation.settings.title',
+        defaultMessage: 'Billing',
+    }
+});
 
 const propTypes = {
     className: PropTypes.string,
@@ -17,7 +28,10 @@ const defaultProps = {
 
 const OrganisationSettingsPage = ({ className }) => (
     <MainLayout>
-        <div
+        <Page
+            section={organisationMessages.title}
+            title={messages.title}
+            sidebar="sidebar"
             className={classNames([
                 styles.container,
                 {
@@ -25,8 +39,8 @@ const OrganisationSettingsPage = ({ className }) => (
                 },
             ])}
         >
-            organisation settings
-        </div>
+            Settings
+        </Page>
     </MainLayout>
 );
 
