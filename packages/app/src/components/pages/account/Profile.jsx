@@ -33,13 +33,7 @@ const AccountProfilePage = ({ className }) => (
         <Page
             section={accountMessages.title}
             title={messages.title}
-            sidebar={
-                <AccountMenu
-                    withoutDropdown
-                    className="list-group"
-                    itemClassName="list-group-item"
-                />
-            }
+            sidebar={<AccountMenu asList />}
             className={classNames([
                 styles.container,
                 {

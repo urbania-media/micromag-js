@@ -8,5 +8,9 @@ export default {
 };
 
 export const normal = () => (
-    <Container memoryRouter apiBaseUrl={`${window.location.protocol}//${window.location.host}/api`} />
+    <Container
+        locale="fr"
+        memoryRouter
+        apiBaseUrl={`${window.location.protocol}//${window.location.host}/api`}
+    />
 );

@@ -26,13 +26,7 @@ const AccountPage = ({ className }) => (
     <MainLayout>
         <Page
             title={accountMessages.title}
-            sidebar={
-                <AccountMenu
-                    withoutDropdown
-                    className="list-group"
-                    itemClassName="list-group-item"
-                />
-            }
+            sidebar={<AccountMenu asList />}
             className={classNames([
                 styles.container,
                 {

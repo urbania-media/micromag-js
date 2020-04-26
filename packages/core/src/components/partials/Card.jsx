@@ -10,12 +10,14 @@ import Link from './Link';
 import styles from '../../styles/partials/card.module.scss';
 
 const propTypes = {
+    header: PropTypes.node,
     image: PropTypes.node,
     imageAlt: PropTypes.string,
+    beforeBody: PropTypes.node,
     title: MicromagPropTypes.label,
     subtitle: MicromagPropTypes.label,
     children: PropTypes.node,
-    header: PropTypes.node,
+    afterBody: PropTypes.node,
     links: PropTypes.arrayOf(
         PropTypes.shape({
             label: MicromagPropTypes.label,
@@ -34,12 +36,14 @@ const propTypes = {
 };
 
 const defaultProps = {
+    header: null,
     image: null,
     imageAlt: null,
+    beforeBody: null,
     title: null,
     subtitle: null,
     children: null,
-    header: null,
+    afterBody: null,
     links: null,
     linksInSameBody: false,
     footer: null,
@@ -53,12 +57,14 @@ const defaultProps = {
 };
 
 const Card = ({
+    header,
     image,
     imageAlt,
+    beforeBody,
     title,
     subtitle,
     children,
-    header,
+    afterBody,
     links,
     linksInSameBody,
     footer,
@@ -125,6 +131,7 @@ const Card = ({
             ) : (
                 image
             )}
+            {beforeBody}
             <div
                 className={classNames([
                     'card-body',
@@ -163,6 +170,7 @@ const Card = ({
                 {children}
                 {links !== null && linksInSameBody ? <div className="d-flex">{linksElements}</div> : null}
             </div>
+            {afterBody}
             {links !== null && !linksInSameBody ? (
                 <div className="card-body">{linksElements}</div>
             ) : null}

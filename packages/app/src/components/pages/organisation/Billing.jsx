@@ -6,6 +6,7 @@ import { defineMessages } from 'react-intl';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
+import OrganisationMenu from '../../menus/Organisation';
 
 import styles from '../../../styles/pages/organisation/billing.module.scss';
 
@@ -31,7 +32,7 @@ const OrganisationBillingPage = ({ className }) => (
         <Page
             section={organisationMessages.title}
             title={messages.title}
-            sidebar="sidebar"
+            sidebar={<OrganisationMenu asList />}
             className={classNames([
                 styles.container,
                 {

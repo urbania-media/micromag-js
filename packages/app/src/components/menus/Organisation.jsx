@@ -2,14 +2,13 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Menu } from '@micromag/core/components';
 import { defineMessages } from 'react-intl';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { Menu } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
 import * as AppPropTypes from '../../lib/PropTypes';
 import { useOrganisation } from '../../contexts/OrganisationContext';
-
-import styles from '../../styles/menus/organisation.module.scss';
 
 const messages = defineMessages({
     organisations: {
@@ -44,6 +43,9 @@ const propTypes = {
     itemClassName: PropTypes.string,
     linkClassName: PropTypes.string,
     withoutDropdown: PropTypes.bool,
+    asList: PropTypes.bool,
+    flush: PropTypes.bool,
+    dropdownAlign: MicromagPropTypes.dropdownAlign,
 };
 
 const defaultProps = {
@@ -52,6 +54,9 @@ const defaultProps = {
     itemClassName: null,
     linkClassName: null,
     withoutDropdown: false,
+    asList: false,
+    flush: false,
+    dropdownAlign: null,
 };
 
 const OrganisationsMenu = ({
@@ -60,96 +65,97 @@ const OrganisationsMenu = ({
     itemClassName,
     linkClassName,
     withoutDropdown,
+    asList,
+    flush,
+    dropdownAlign,
     ...props
 }) => {
     const url = useUrlGenerator();
     const organisation = useOrganisation();
-    const organisationsItems = useMemo(
-        () =>
-            organisations
-                .filter(it => organisation === null || it.id !== organisation.id)
-                .map(it => ({
-                    id: it.id,
-                    href: url('organisation.switch', {
-                        organisation: it.slug,
-                    }),
-                    label: it.name,
-                    active: organisation !== null && organisation.id === it.id,
-                })),
-        [organisations, organisation],
-    );
-    const menuItems = [
-        {
-            id: 'settings',
-            href: url('organisation.settings'),
-            label: messages.settings,
-        },
-        {
-            id: 'billing',
-            href: url('organisation.billing'),
-            label: messages.billing,
-        },
-        {
-            id: 'team',
-            href: url('organisation.team'),
-            label: messages.team,
-        },
-        {
-            type: 'divider',
-        },
-        {
-            id: 'themes',
-            href: url('organisation.themes'),
-            label: messages.themes,
-        },
-        {
-            id: 'medias',
-            href: url('organisation.medias'),
-            label: messages.medias,
-        },
-    ];
+    const finalItems = useMemo(() => {
+        const menuItems = [
+            {
+                id: 'settings',
+                href: url('organisation.settings'),
+                label: messages.settings,
+            },
+            {
+                id: 'billing',
+                href: url('organisation.billing'),
+                label: messages.billing,
+            },
+            {
+                id: 'team',
+                href: url('organisation.team'),
+                label: messages.team,
+            },
+            {
+                type: 'divider',
+            },
+            {
+                id: 'themes',
+                href: url('organisation.themes'),
+                label: messages.themes,
+            },
+            {
+                id: 'medias',
+                href: url('organisation.medias'),
+                label: messages.medias,
+            },
+        ];
+        const organisationsItems = organisations
+            .filter(it => organisation === null || it.id !== organisation.id)
+            .map(it => ({
+                id: it.id,
+                href: url('organisation.switch', {
+                    organisation: it.slug,
+                }),
+                label: it.name,
+                active: organisation !== null && organisation.id === it.id,
+            }));
+        return withoutDropdown || asList
+            ? menuItems.filter(({ type = 'link' }) => type === 'link')
+            : [
+                  {
+                      id: 'organisations',
+                      href: url('home'),
+                      label: organisation !== null ? organisation.name : messages.organisations,
+                      dropdown:
+                          organisation !== null
+                              ? [
+                                    ...menuItems,
+                                    ...(organisations.length > 1
+                                        ? [
+                                              {
+                                                  type: 'divider',
+                                              },
+                                              {
+                                                  type: 'header',
+                                                  label: messages.organisations,
+                                              },
+                                              ...organisationsItems,
+                                          ]
+                                        : null),
+                                ]
+                              : organisationsItems,
+                  },
+              ];
+    }, [url, messages, withoutDropdown, asList, organisations, organisation]);
     return (
         <Menu
             {...props}
-            items={
-                withoutDropdown
-                    ? menuItems.filter(({ type = 'link' }) => type === 'link')
-                    : [
-                          {
-                              id: 'organisations',
-                              href: url('home'),
-                              label:
-                                  organisation !== null
-                                      ? organisation.name
-                                      : messages.organisations,
-                              dropdown:
-                                  organisation !== null
-                                      ? [
-                                            ...menuItems,
-                                            ...(organisations.length > 1
-                                                ? [
-                                                      {
-                                                          type: 'divider',
-                                                      },
-                                                      {
-                                                          type: 'header',
-                                                          label: messages.organisations,
-                                                      },
-                                                      ...organisationsItems,
-                                                  ]
-                                                : null),
-                                        ]
-                                      : organisationsItems,
-                          },
-                      ]
-            }
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-            itemClassName={itemClassName}
+            linkAsItem={asList}
+            items={finalItems}
+            className={classNames({
+                'list-group': asList,
+                'list-group-flush': asList && flush,
+                [className]: className !== null,
+            })}
+            itemClassName={classNames({
+                'list-group-item': asList,
+                'list-group-item-action': asList,
+                [itemClassName]: itemClassName !== null,
+            })}
             linkClassName={linkClassName}
         />
     );

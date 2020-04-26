@@ -11,7 +11,7 @@ import { useOrganisation } from '../../contexts/OrganisationContext';
 import { useApi } from '../../contexts/ApiContext';
 import MainLayout from '../layouts/Main';
 import Page from '../partials/Page';
-import OrganisationMenu from '../menus/Organisation';
+import OrganisationBox from '../partials/OrganisationBox';
 import AccountBox from '../partials/AccountBox';
 import OrganisationsList from '../lists/Organisations';
 import StoriesList from '../lists/Stories';
@@ -30,6 +30,10 @@ const messages = defineMessages({
     organisations: {
         id: 'pages.home.organisations',
         defaultMessage: 'Your organisations',
+    },
+    organisation: {
+        id: 'pages.home.organisation',
+        defaultMessage: 'Organisation',
     },
     recentStories: {
         id: 'pages.home.recent_stories',
@@ -68,17 +72,18 @@ const HomePage = ({ recentStoriesCount, className }) => {
                     <>
                         {organisation !== null ? (
                             <section className="mb-4">
-                                <OrganisationMenu
-                                    withoutDropdown
-                                    className="list-group"
-                                    itemClassName="list-group-item"
-                                />
+                                <h5 className="mb-2">
+                                    <Label>{messages.organisation}</Label>
+                                </h5>
+                                <OrganisationBox organisation={organisation} withoutHeader />
                             </section>
-                        ) : (
-                            <section className="mb-4">
-                                <AccountBox />
-                            </section>
-                        )}
+                        ) : null}
+                        <section className="mb-4">
+                            <h5 className="mb-2">
+                                <Label>{messages.account}</Label>
+                            </h5>
+                            <AccountBox withoutHeader />
+                        </section>
                     </>
                 }
                 className={classNames([
@@ -104,7 +109,7 @@ const HomePage = ({ recentStoriesCount, className }) => {
                         {({ items }) => (items !== null ? <StoriesList items={items} /> : null)}
                     </AsyncList>
                     <div className={classNames(['d-flex', 'mt-2'])}>
-                        <Button href={url('stories')} theme="secondary">
+                        <Button href={url('stories')} theme="secondary" outline>
                             {messages.viewAllStories}
                         </Button>
                     </div>

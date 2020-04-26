@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback } from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-// import classNames from 'classnames';
+import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Menu } from '@micromag/core/components';
 import { defineMessages } from 'react-intl';
@@ -30,6 +30,8 @@ const propTypes = {
     itemClassName: PropTypes.string,
     linkClassName: PropTypes.string,
     withoutDropdown: PropTypes.bool,
+    asList: PropTypes.bool,
+    flush: PropTypes.bool,
     dropdownAlign: MicromagPropTypes.dropdownAlign,
 };
 
@@ -38,6 +40,8 @@ const defaultProps = {
     itemClassName: null,
     linkClassName: null,
     withoutDropdown: false,
+    asList: false,
+    flush: false,
     dropdownAlign: null,
 };
 
@@ -46,48 +50,56 @@ const AccountMenu = ({
     itemClassName,
     linkClassName,
     withoutDropdown,
+    asList,
+    flush,
     dropdownAlign,
     ...props
 }) => {
     const url = useUrlGenerator();
     const { logout } = useAuth();
-    const onClickLogout = useCallback(
-        e => {
-            e.preventDefault();
-            logout();
-        },
-        [logout],
-    );
-    const subMenu = [
-        {
-            id: 'profile',
-            href: url('account.profile'),
-            label: messages.profile,
-        },
-        {
-            id: 'logout',
-            href: url('auth.logout'),
-            label: messages.logout,
-            onClick: onClickLogout,
-        },
-    ];
+    const finalItems = useMemo(() => {
+        const subMenu = [
+            {
+                id: 'profile',
+                href: url('account.profile'),
+                label: messages.profile,
+            },
+            {
+                id: 'logout',
+                href: url('auth.logout'),
+                label: messages.logout,
+                onClick: e => {
+                    e.preventDefault();
+                    logout();
+                },
+            },
+        ];
+        return withoutDropdown || asList
+            ? subMenu
+            : [
+                  {
+                      id: 'account',
+                      href: url('account'),
+                      label: messages.account,
+                      dropdown: subMenu,
+                  },
+              ];
+    }, [url, messages, logout, withoutDropdown, asList]);
     return (
         <Menu
             {...props}
-            items={
-                withoutDropdown
-                    ? subMenu
-                    : [
-                          {
-                              id: 'account',
-                              href: url('account'),
-                              label: messages.account,
-                              dropdown: subMenu,
-                          },
-                      ]
-            }
-            className={className}
-            itemClassName={itemClassName}
+            items={finalItems}
+            linkAsItem={asList}
+            className={classNames({
+                'list-group': asList,
+                'list-group-flush': asList && flush,
+                [className]: className !== null,
+            })}
+            itemClassName={classNames({
+                'list-group-item': asList,
+                'list-group-item-action': asList,
+                [itemClassName]: itemClassName !== null,
+            })}
             linkClassName={linkClassName}
             dropdownAlign={dropdownAlign}
         />

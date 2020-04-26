@@ -30,6 +30,7 @@ const propTypes = {
     withShadow: PropTypes.bool,
     withoutStyle: PropTypes.bool,
     withoutTheme: PropTypes.bool,
+    outline: PropTypes.bool,
     className: PropTypes.string,
     iconClassName: PropTypes.string,
     labelClassName: PropTypes.string,
@@ -63,6 +64,7 @@ const defaultProps = {
     withShadow: false,
     withoutStyle: false,
     withoutTheme: false,
+    outline: false,
     className: null,
     iconClassName: null,
     labelClassName: null,
@@ -91,6 +93,7 @@ const Button = ({
     withShadow,
     withoutStyle,
     withoutTheme,
+    outline,
     onClick,
     className,
     iconClassName,
@@ -175,7 +178,8 @@ const Button = ({
     const buttonClassNames = classNames([
         {
             btn: !withoutTheme && !withoutStyle && theme !== null,
-            [`btn-${theme}`]: !withoutTheme && !withoutStyle && theme !== null,
+            [`btn-${outline ? 'outline-' : ''}${theme}`]:
+                !withoutTheme && !withoutStyle && theme !== null,
             [`btn-${size}`]: !withoutTheme && !withoutStyle && size !== null,
             active: !withoutStyle && active,
         },

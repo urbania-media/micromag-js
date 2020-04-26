@@ -68,18 +68,5 @@
     "app.pages.stories.title": "Documents",
     "app.pages.story.settings.editor": "Lancer l’éditeur",
     "app.pages.story.settings.title": "Paramètres",
-    "app.pages.story.title": "Document",
-    "editor.buttons.edit": "Modifier",
-    "editor.buttons.screens": "Écrans",
-    "editor.buttons.view_screen": "Voir l’écran",
-    "editor.modals.screen_types_title": "Ajouter un écran",
-    "editor.screen_name": "Écran {index}",
-    "elements.text.schema.properties.text_style": "Style du texte",
-    "elements.text.schema.title": "Élément texte",
-    "screens.title.schema.properties.background": "Arrière-plan",
-    "screens.title.schema.properties.description": "Description",
-    "screens.title.schema.properties.layout": "Mise en page",
-    "screens.title.schema.properties.subtitle": "Sous-titre",
-    "screens.title.schema.properties.title": "Titre",
-    "screens.title.schema.title": "Titre"
+    "app.pages.story.title": "Document"
 }

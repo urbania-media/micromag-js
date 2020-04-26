@@ -6,27 +6,28 @@ import { defineMessages } from 'react-intl';
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Card } from '@micromag/core/components';
 
-import { useUser } from '../../contexts/AuthContext';
-import AccountMenu from '../menus/Account';
+import * as AppPropTypes from '../../lib/PropTypes';
+import OrganisationMenu from '../menus/Organisation';
 
-import styles from '../../styles/partials/account-box.module.scss';
+import styles from '../../styles/partials/organisation-box.module.scss';
 
 const messages = defineMessages({
     title: {
-        id: 'account-box.title',
-        defaultMessage: 'Account',
+        id: 'organisation-box.title',
+        defaultMessage: 'Organisation',
     },
     profile: {
-        id: 'account-box.profile',
+        id: 'organisation-box.profile',
         defaultMessage: 'Profile',
     },
     settings: {
-        id: 'account-box.settings',
+        id: 'organisation-box.settings',
         defaultMessage: 'Settings',
     },
 });
 
 const propTypes = {
+    organisation: AppPropTypes.organisation.isRequired,
     withoutHeader: PropTypes.bool,
     className: PropTypes.string,
 };
@@ -36,27 +37,24 @@ const defaultProps = {
     className: null,
 };
 
-const AccountBox = ({ withoutHeader, className }) => {
-    const user = useUser();
+const OrganisationBox = ({ organisation, withoutHeader, className }) => {
     return (
         <Card
             header={!withoutHeader ? messages.title : null}
-            title={user.name}
+            title={organisation.name}
             className={classNames([
                 styles.container,
                 {
                     [className]: className !== null,
                 },
             ])}
-            afterBody={<AccountMenu asList flush />}
+            afterBody={<OrganisationMenu asList flush />}
             bodyClassName={styles.body}
-        >
-            <p className="mb-0">{user.email}</p>
-        </Card>
+        />
     );
 };
 
-AccountBox.propTypes = propTypes;
-AccountBox.defaultProps = defaultProps;
+OrganisationBox.propTypes = propTypes;
+OrganisationBox.defaultProps = defaultProps;
 
-export default AccountBox;
+export default OrganisationBox;

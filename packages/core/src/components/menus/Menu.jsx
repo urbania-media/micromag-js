@@ -10,7 +10,10 @@ import Dropdown from './Dropdown';
 
 const propTypes = {
     items: MicromagPropTypes.menuItems,
+    tagName: PropTypes.string,
+    itemTagName: PropTypes.string,
     children: PropTypes.node,
+    linkAsItem: PropTypes.bool,
     className: PropTypes.string,
     itemClassName: PropTypes.string,
     linkClassName: PropTypes.string,
@@ -27,7 +30,10 @@ const propTypes = {
 
 const defaultProps = {
     items: [],
+    tagName: 'ul',
+    itemTagName: 'li',
     children: null,
+    linkAsItem: false,
     className: null,
     itemClassName: null,
     linkClassName: null,
@@ -44,7 +50,10 @@ const defaultProps = {
 
 const Menu = ({
     items,
+    tagName,
+    itemTagName,
     children,
+    linkAsItem,
     className,
     itemClassName,
     linkClassName,
@@ -59,8 +68,9 @@ const Menu = ({
     dropdownAlign,
 }) => {
     const [dropdownsVisible, setDropdownsVisible] = useState(items.map(() => false));
+    const ListComponent = linkAsItem ? 'div' : tagName;
     return (
-        <ul className={className}>
+        <ListComponent className={className}>
             {children !== null
                 ? children
                 : items.map((it, index) => {
@@ -101,8 +111,26 @@ const Menu = ({
                                     ]);
                                 }
                               : null;
-                      return (
-                          <li
+                      const ItemComponent = itemTagName;
+                      return linkAsItem ? (
+                          <Link
+                              {...itemProps}
+                              key={`item-${id || index}`}
+                              onClick={onClickItem}
+                              href={href}
+                              external={external}
+                              className={classNames({
+                                  active,
+                                  [itemClassName]: itemClassName !== null,
+                                  [customClassName]: customClassName !== null,
+                                  [linkClassName]: linkClassName !== null,
+                                  [customLinkClassName]: customLinkClassName !== null,
+                              })}
+                          >
+                              {label}
+                          </Link>
+                      ) : (
+                          <ItemComponent
                               key={`item-${id || index}`}
                               className={classNames({
                                   dropdown: dropdown !== null,
@@ -172,10 +200,10 @@ const Menu = ({
                                       onClickOutside={closeDropdown}
                                   />
                               ) : null}
-                          </li>
+                          </ItemComponent>
                       );
                   })}
-        </ul>
+        </ListComponent>
     );
 };
 
