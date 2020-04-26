@@ -4,7 +4,7 @@ import React from 'react';
 
 // import * as AppPropTypes from '../lib/PropTypes';
 import { OrganisationProvider } from '../contexts/OrganisationContext';
-import MainLayout from './layouts/Main';
+// import MainLayout from './layouts/Main';
 import Routes from './Routes';
 
 const propTypes = {};
@@ -13,9 +13,7 @@ const defaultProps = {};
 
 const App = () => (
     <OrganisationProvider>
-        <MainLayout>
-            <Routes />
-        </MainLayout>
+        <Routes />
     </OrganisationProvider>
 );
 

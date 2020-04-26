@@ -7,6 +7,7 @@ import Editor from '@micromag/editor';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
 import { useApi } from '../../../contexts/ApiContext';
+import MainLayout from '../../layouts/Main';
 
 import styles from '../../../styles/pages/stories/editor.module.scss';
 
@@ -35,26 +36,29 @@ const EditorPage = ({ className }) => {
         };
     }, [storyId, setStory]);
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-        >
-            {story !== null ? (
-                <Editor
-                    story={story}
-                    className={styles.editor}
-                    basePath={url('stories.editor', {
-                        story: story.id,
-                    })}
-                    memoryRouter
-                    onChange={setStory}
-                />
-            ) : null}
-        </div>
+        <MainLayout fullscreen>
+            <div
+                className={classNames([
+                    styles.container,
+                    {
+                        [className]: className !== null,
+                    },
+                ])}
+            >
+                {story !== null ? (
+                    <Editor
+                        story={story}
+                        className={styles.editor}
+                        basePath={url('stories.editor', {
+                            story: story.id,
+                        })}
+                        fullscreen
+                        memoryRouter
+                        onChange={setStory}
+                    />
+                ) : null}
+            </div>
+        </MainLayout>
     );
 };
 

@@ -29,11 +29,27 @@ class OrganisationsApi extends Base {
     }
 
     get(query = {}, page = 1, count = 10) {
-        return this.requestGet(this.route('index'), {
+        const finalQuery = {
             ...query,
-            page,
+        };
+        if (page !== null) {
+            finalQuery.page = page;
+        }
+        if (count !== null) {
+            finalQuery.count = count;
+        }
+        return this.requestGet(this.route('index'), finalQuery);
+    }
+
+    getRecents(count = 10) {
+        return this.get(
+            {
+                sort: 'updated_at',
+                sort_direction: 'desc',
+            },
+            null,
             count,
-        });
+        );
     }
 }
 

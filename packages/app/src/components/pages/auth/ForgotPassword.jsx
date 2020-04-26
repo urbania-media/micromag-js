@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import MainLayout from '../../layouts/Main';
 import styles from '../../../styles/pages/auth/forgot-password.module.scss';
 
 const propTypes = {
@@ -14,16 +15,18 @@ const defaultProps = {
 };
 
 const ForgotPasswordPage = ({ className }) => (
-    <div
-        className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-            },
-        ])}
-    >
-        forgot password
-    </div>
+    <MainLayout>
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                },
+            ])}
+        >
+            forgot password
+        </div>
+    </MainLayout>
 );
 
 ForgotPasswordPage.propTypes = propTypes;

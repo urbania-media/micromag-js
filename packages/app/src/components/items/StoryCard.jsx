@@ -54,9 +54,7 @@ const StoryCardItem = ({ item, className }) => {
                     [className]: className !== null,
                 },
             ])}
-        >
-            Inner
-        </Card>
+        />
     );
 };
 

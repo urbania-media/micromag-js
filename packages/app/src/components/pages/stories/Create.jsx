@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
 
+import MainLayout from '../../layouts/Main';
 import PageHeader from '../../partials/PageHeader';
 
 import styles from '../../../styles/pages/stories/create.module.scss';
@@ -24,17 +25,19 @@ const defaultProps = {
 };
 
 const StoriesCreatePage = ({ className }) => (
-    <div
-        className={classNames([
-            'container',
-            styles.container,
-            {
-                [className]: className !== null,
-            },
-        ])}
-    >
-        <PageHeader title={messages.title} />
-    </div>
+    <MainLayout>
+        <div
+            className={classNames([
+                'container',
+                styles.container,
+                {
+                    [className]: className !== null,
+                },
+            ])}
+        >
+            <PageHeader title={messages.title} />
+        </div>
+    </MainLayout>
 );
 
 StoriesCreatePage.propTypes = propTypes;

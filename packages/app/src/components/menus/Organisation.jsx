@@ -20,9 +20,21 @@ const messages = defineMessages({
         id: 'menus.organisation.settings',
         defaultMessage: 'Settings',
     },
+    billing: {
+        id: 'menus.organisation.billing',
+        defaultMessage: 'Billing',
+    },
     members: {
-        id: 'menus.organisation.members',
-        defaultMessage: 'Users',
+        id: 'menus.organisation.team',
+        defaultMessage: 'Team',
+    },
+    themes: {
+        id: 'menus.organisation.themes',
+        defaultMessage: 'Themes',
+    },
+    medias: {
+        id: 'menus.organisation.medias',
+        defaultMessage: 'Medias',
     },
 });
 
@@ -73,8 +85,23 @@ const OrganisationsMenu = ({ items, className, itemClassName, linkClassName, ...
                                       label: messages.settings,
                                   },
                                   {
-                                      href: url('organisation.members'),
-                                      label: messages.members,
+                                      href: url('organisation.billing'),
+                                      label: messages.billing,
+                                  },
+                                  {
+                                      href: url('organisation.team'),
+                                      label: messages.team,
+                                  },
+                                  {
+                                      type: 'divider',
+                                  },
+                                  {
+                                      href: url('organisation.themes'),
+                                      label: messages.themes,
+                                  },
+                                  {
+                                      href: url('organisation.medias'),
+                                      label: messages.medias,
                                   },
                                   {
                                       type: 'divider',

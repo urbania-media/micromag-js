@@ -3,6 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import MainLayout from '../../layouts/Main';
+
 import styles from '../../../styles/pages/auth/reset-password.module.scss';
 
 const propTypes = {
@@ -14,16 +16,18 @@ const defaultProps = {
 };
 
 const ResetPasswordPage = ({ className }) => (
-    <div
-        className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-            },
-        ])}
-    >
-        reset password
-    </div>
+    <MainLayout>
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                },
+            ])}
+        >
+            reset password
+        </div>
+    </MainLayout>
 );
 
 ResetPasswordPage.propTypes = propTypes;

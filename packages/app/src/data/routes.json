@@ -13,7 +13,10 @@
 
     "organisation": "/organisation",
     "organisation.settings": "/organisation/settings",
-    "organisation.members": "/organisation/members",
+    "organisation.team": "/organisation/team",
+    "organisation.billing": "/organisation/billing",
+    "organisation.medias": "/organisation/medias",
+    "organisation.themes": "/organisation/themes",
     "organisation.switch": "/organisation/:organisation",
 
     "stories": "/stories",

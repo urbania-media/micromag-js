@@ -6,6 +6,7 @@ import { defineMessages } from 'react-intl';
 import { FormPanel, Label, Link } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
+import MainLayout from '../../layouts/Main';
 import PageHeader from '../../partials/PageHeader';
 import RegisterForm from '../../forms/Register';
 
@@ -23,7 +24,7 @@ const messages = defineMessages({
     alreadyHaveAccount: {
         id: 'pages.register.already_have_account',
         defaultMessage: 'Already have an account?',
-    }
+    },
 });
 
 const propTypes = {
@@ -37,32 +38,33 @@ const defaultProps = {
 const RegisterPage = ({ className }) => {
     const url = useUrlGenerator();
     return (
-        <div
-            className={classNames([
-                'container-small',
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-        >
-            <PageHeader title={messages.title} />
-
-            <FormPanel
-                description={
-                    <div className={styles.description}>
-                        <Label>{messages.description}</Label>
-                    </div>
-                }
+        <MainLayout>
+            <div
+                className={classNames([
+                    'container-small',
+                    styles.container,
+                    {
+                        [className]: className !== null,
+                    },
+                ])}
             >
-                <RegisterForm />
+                <PageHeader title={messages.title} />
 
-                <div className={styles.links}>
-                    <Link href={url('auth.login')}>{messages.alreadyHaveAccount}</Link>
-                </div>
+                <FormPanel
+                    description={
+                        <div className={styles.description}>
+                            <Label>{messages.description}</Label>
+                        </div>
+                    }
+                >
+                    <RegisterForm />
 
-            </FormPanel>
-        </div>
+                    <div className={styles.links}>
+                        <Link href={url('auth.login')}>{messages.alreadyHaveAccount}</Link>
+                    </div>
+                </FormPanel>
+            </div>
+        </MainLayout>
     );
 };
 

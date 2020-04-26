@@ -10,32 +10,55 @@ import styles from '../../styles/layouts/main.module.scss';
 
 const propTypes = {
     children: PropTypes.node,
+    fullscreen: PropTypes.bool,
+    withoutHeader: PropTypes.bool,
+    withoutFooter: PropTypes.bool,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     children: null,
+    fullscreen: false,
+    withoutHeader: false,
+    withoutFooter: false,
     className: null,
 };
 
-const MainLayout = ({ children, className }) => (
-    <div
-        className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-            },
-        ])}
-    >
-        <header className={styles.header}>
-            <Navbar />
-        </header>
-        <main className={styles.content}>{children}</main>
-        <footer className={styles.footer}>
-            <Footer />
-        </footer>
-    </div>
-);
+const MainLayout = ({ children, fullscreen, withoutHeader, withoutFooter, className }) => {
+    return (
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [styles.fullscreen]: fullscreen,
+                    [className]: className !== null,
+                },
+            ])}
+        >
+            <header
+                className={classNames([
+                    styles.header,
+                    {
+                        [styles.hidden]: withoutHeader,
+                    },
+                ])}
+            >
+                <Navbar />
+            </header>
+            <main className={styles.content}>{children}</main>
+            <footer
+                className={classNames([
+                    styles.header,
+                    {
+                        [styles.hidden]: withoutFooter || fullscreen,
+                    },
+                ])}
+            >
+                <Footer />
+            </footer>
+        </div>
+    );
+};
 
 MainLayout.propTypes = propTypes;
 MainLayout.defaultProps = defaultProps;

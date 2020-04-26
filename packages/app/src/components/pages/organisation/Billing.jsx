@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import MainLayout from '../../layouts/Main';
 
-import styles from '../../../styles/pages/organisation/settings.module.scss';
+import styles from '../../../styles/pages/organisation/billing.module.scss';
 
 const propTypes = {
     className: PropTypes.string,
@@ -15,7 +15,7 @@ const defaultProps = {
     className: null,
 };
 
-const OrganisationSettingsPage = ({ className }) => (
+const OrganisationBillingPage = ({ className }) => (
     <MainLayout>
         <div
             className={classNames([
@@ -25,12 +25,12 @@ const OrganisationSettingsPage = ({ className }) => (
                 },
             ])}
         >
-            organisation settings
+            organisation billing
         </div>
     </MainLayout>
 );
 
-OrganisationSettingsPage.propTypes = propTypes;
-OrganisationSettingsPage.defaultProps = defaultProps;
+OrganisationBillingPage.propTypes = propTypes;
+OrganisationBillingPage.defaultProps = defaultProps;
 
-export default OrganisationSettingsPage;
+export default OrganisationBillingPage;

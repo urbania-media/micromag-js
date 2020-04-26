@@ -26,9 +26,7 @@ const StoryListItem = ({ item, className }) => {
                     [className]: className !== null,
                 },
             ])}
-        >
-            Inner
-        </Media>
+        />
     );
 };
 

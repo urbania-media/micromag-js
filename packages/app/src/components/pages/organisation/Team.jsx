@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import MainLayout from '../../layouts/Main';
 
-import styles from '../../../styles/pages/organisation/settings.module.scss';
+import styles from '../../../styles/pages/organisation/team.module.scss';
 
 const propTypes = {
     className: PropTypes.string,
@@ -15,7 +15,7 @@ const defaultProps = {
     className: null,
 };
 
-const OrganisationSettingsPage = ({ className }) => (
+const OrganisationTeamPage = ({ className }) => (
     <MainLayout>
         <div
             className={classNames([
@@ -25,12 +25,12 @@ const OrganisationSettingsPage = ({ className }) => (
                 },
             ])}
         >
-            organisation settings
+            organisation team
         </div>
     </MainLayout>
 );
 
-OrganisationSettingsPage.propTypes = propTypes;
-OrganisationSettingsPage.defaultProps = defaultProps;
+OrganisationTeamPage.propTypes = propTypes;
+OrganisationTeamPage.defaultProps = defaultProps;
 
-export default OrganisationSettingsPage;
+export default OrganisationTeamPage;

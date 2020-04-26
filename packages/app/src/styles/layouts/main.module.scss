@@ -1,3 +1,42 @@
-.container {
+@import '~@micromag/core/scss/placeholders';
 
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    .header {
+        transition: translate 0.2s ease-out;
+
+        &.hidden {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            transform: translate(0, -100%);
+        }
+    }
+
+    .footer {
+        transition: translate 0.2s ease-out;
+
+        &.hidden {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            transform: translate(0, 100%);
+        }
+    }
+
+    .content {
+        position: relative;
+        flex-grow: 1;
+    }
+
+    &.fullscreen {
+        @extend %fullscreen;
+        min-height: none;
+        overflow: hidden;
+    }
 }

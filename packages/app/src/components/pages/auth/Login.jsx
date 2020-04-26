@@ -3,10 +3,12 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
-import { useHistory } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
+import { parse as parseQueryString } from 'query-string';
 import { FormPanel, Label, Link } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
+import MainLayout from '../../layouts/Main';
 import PageHeader from '../../partials/PageHeader';
 import LoginForm from '../../forms/Login';
 
@@ -42,36 +44,40 @@ const defaultProps = {
 const LoginPage = ({ className }) => {
     const url = useUrlGenerator();
     const history = useHistory();
+    const { search } = useLocation();
+    const { next = null } = parseQueryString(search);
     const onLoginComplete = useCallback(() => {
-        history.push(url('account'));
+        history.push(next !== null ? next : url('home'));
     }, [history, url]);
     return (
-        <div
-            className={classNames([
-                'container-small',
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-        >
-            <PageHeader title={messages.title} />
-
-            <FormPanel
-                description={
-                    <div className={styles.description}>
-                        <Label>{messages.description}</Label>
-                    </div>
-                }
+        <MainLayout>
+            <div
+                className={classNames([
+                    'container-small',
+                    styles.container,
+                    {
+                        [className]: className !== null,
+                    },
+                ])}
             >
-                <LoginForm onLoggedIn={onLoginComplete} />
+                <PageHeader title={messages.title} />
 
-                <div className={styles.links}>
-                    <Link href={url('auth.forgot_password')}>{messages.forgotPassword}</Link>
-                    <Link href={url('register')}>{messages.register}</Link>
-                </div>
-            </FormPanel>
-        </div>
+                <FormPanel
+                    description={
+                        <div className={styles.description}>
+                            <Label>{messages.description}</Label>
+                        </div>
+                    }
+                >
+                    <LoginForm onLoggedIn={onLoginComplete} />
+
+                    <div className={styles.links}>
+                        <Link href={url('auth.forgot_password')}>{messages.forgotPassword}</Link>
+                        <Link href={url('register')}>{messages.register}</Link>
+                    </div>
+                </FormPanel>
+            </div>
+        </MainLayout>
     );
 };
 

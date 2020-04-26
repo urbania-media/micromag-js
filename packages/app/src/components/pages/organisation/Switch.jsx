@@ -5,6 +5,7 @@ import classNames from 'classnames';
 
 import { useSetOrganisation } from '../../../contexts/OrganisationContext';
 import { useApi } from '../../../contexts/ApiContext';
+import MainLayout from '../../layouts/Main';
 
 import styles from '../../../styles/pages/organisation/switch.module.scss';
 
@@ -32,16 +33,18 @@ const OrganisationSwitch = ({ slug, className }) => {
         };
     }, [slug]);
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-        >
-            Chargement...
-        </div>
+        <MainLayout>
+            <div
+                className={classNames([
+                    styles.container,
+                    {
+                        [className]: className !== null,
+                    },
+                ])}
+            >
+                Chargement...
+            </div>
+        </MainLayout>
     );
 };
 
