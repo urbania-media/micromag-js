@@ -66,7 +66,7 @@ const MapScreen = ({
     const preview = isPlaceholder ? (
         <Placeholders.Map />
     ) : (
-        <ImageComponent image={{ url: PreviewBackground }} width={width} height={height} />
+        <ImageComponent image={{ url: PreviewBackground, width, height }} />
     );
 
     return (

@@ -12,6 +12,7 @@ const propTypes = {
     index: PropTypes.number,
     active: PropTypes.bool,
     visible: PropTypes.bool,
+    renderFormat: MicromagPropTypes.renderFormat,
     onVisible: PropTypes.func,
 };
 
@@ -20,23 +21,25 @@ const defaultProps = {
     index: 0,
     active: false,
     visible: true,
+    renderFormat: null,
     onVisible: null,
 };
 
-const ViewerScreen = ({ screen, index, visible: isVisible, active, onVisible }) => {
+const ViewerScreen = ({ screen, index, visible: isVisible, active, renderFormat, onVisible }) => {
     const { ref, visible } = useIsVisible();
 
     useEffect(() => {
         if (visible && onVisible !== null) {
-            // console.log('visible', index, screen.type);
             onVisible(index);
         }
     }, [visible]);
-    // console.log(screen.type, visible, active);
 
     return screen !== null ? (
         <div ref={ref} className={styles.container}>
-            <Screen screen={{ ...screen, visible: isVisible, active }} />
+            <Screen
+                screen={{ ...screen, visible: isVisible, active }}
+                renderFormat={renderFormat}
+            />
         </div>
     ) : null;
 };

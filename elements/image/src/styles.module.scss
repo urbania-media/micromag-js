@@ -1,5 +1,14 @@
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/variables';
+
 .img {
     display: block;
+}
+
+.placeholder {
+    width: 300px;
+    height: 200px;
+    border: 2px dashed $gray-200;
 }
 
 .container {
@@ -8,5 +17,17 @@
 
     .img {
         position: absolute;
+    }
+
+    .credits {
+        position: absolute;
+        z-index: 2;
+    }
+
+    .text {
+        display: inline-block;
+        position: absolute;
+        bottom: 5px;
+        left: 5px;
     }
 }

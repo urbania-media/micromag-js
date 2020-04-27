@@ -69,7 +69,7 @@ const MapPathScreen = ({ map, background, align, visible, renderFormat, classNam
     const preview = isPlaceholder ? (
         <Placeholders.MapPath />
     ) : (
-        <ImageComponent url={PreviewBackground} width={width} height={height} />
+        <ImageComponent image={{ url: PreviewBackground, width, height }} />
     );
 
     return (
@@ -115,14 +115,14 @@ const MapPathScreen = ({ map, background, align, visible, renderFormat, classNam
                                 ))}
                             </div>
                             <div className={styles.controls}>
-                                <ButtonComponent className={styles.next} onClick={onClickNext}>
-                                    Next
-                                </ButtonComponent>
                                 <ButtonComponent
                                     className={styles.previous}
                                     onClick={onClickPrevious}
                                 >
                                     Previous
+                                </ButtonComponent>
+                                <ButtonComponent className={styles.next} onClick={onClickNext}>
+                                    Next
                                 </ButtonComponent>
                             </div>
                         </>

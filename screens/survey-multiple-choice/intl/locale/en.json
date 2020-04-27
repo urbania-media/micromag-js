@@ -1,0 +1,4 @@
+{
+    "screens.survey-multiple-choice.schema.properties.background": "Background",
+    "screens.survey-multiple-choice.schema.title": "Survey with multiple choices"
+}

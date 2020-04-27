@@ -108,6 +108,7 @@ const EditorPreview = ({ story, devices, device: initialDevice, className, onScr
                                         screen={screenId}
                                         className={styles.story}
                                         interactions={null}
+                                        renderFormat="edit"
                                         onScreenChange={onScreenChange}
                                     />
                                 )}

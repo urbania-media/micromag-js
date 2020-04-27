@@ -1,26 +1,33 @@
+import { schemas as messages } from './messages';
+// import { names } from './layouts/names';
+
 export default {
     $id: 'https://schemas.micromag.ca/0.1/screens/survey-checkbox.json',
+    title: 'Survey with checkboxes',
     group: 'Survey',
-    title: 'Survey Checkbox',
     type: 'object',
+    intl: {
+        title: messages.schemaTitle,
+    },
     allOf: [
         {
             $ref: 'https://schemas.micromag.ca/0.1/screens/screen.json',
         },
         {
             properties: {
-                layout: {
-                    type: 'string',
-                    title: 'Mise en page',
-                    enum: ['default', 'split'],
-                    default: 'default',
-                },
+                // layout: {
+                //     $ref: 'https://schemas.micromag.ca/0.1/fields/screen-layout.json',
+                //     title: 'Layout',
+                //     enum: names,
+                //     intl: {
+                //         title: messages.layout,
+                //     },
+                // },
                 background: {
-                    title: 'Arrière-Plan',
                     $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
-                    componentProps: {
-                        withBorders: true,
-                        isSection: true,
+                    title: 'Background',
+                    intl: {
+                        title: messages.background,
                     },
                 },
             },

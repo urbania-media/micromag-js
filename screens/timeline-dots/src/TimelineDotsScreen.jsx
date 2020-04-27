@@ -11,6 +11,7 @@ import Image from '@micromag/element-image';
 import Heading from '@micromag/element-heading';
 import { Placeholders, PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
+import { getRenderFormat } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
@@ -32,22 +33,23 @@ const defaultProps = {
 
 const TimelineDots = ({ title, items, background, renderFormat, className }) => {
     const { width, height } = useScreenSize();
+    const { isPlaceholder, isPreview, isSimple } = getRenderFormat(renderFormat);
 
     return (
         <div
             className={classNames([
                 styles.container,
                 {
-                    [styles.isPlaceholder]: renderFormat === 'placeholder',
-                    [styles.isPreview]: renderFormat === 'preview',
+                    [styles.isPlaceholder]: isPlaceholder,
+                    [styles.isPreview]: isPreview,
                     [className]: className !== null,
                 },
             ])}
         >
             <Background {...background} width={width} height={height}>
-                <Frame withScroll width={width} height={height}>
+                <Frame width={width} height={height} withScroll={!isSimple}>
                     <div className={styles.inner}>
-                        {renderFormat !== 'placeholder' ? (
+                        {!isPlaceholder ? (
                             <>
                                 {title !== null ? (
                                     <div className={styles.title}>{title.body}</div>

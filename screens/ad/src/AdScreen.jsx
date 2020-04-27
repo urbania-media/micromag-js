@@ -15,59 +15,62 @@ import { getRenderFormat } from '@micromag/core/utils';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    ad: MicromagPropTypes.adFormat,
+    image: MicromagPropTypes.imageElement,
+    link: MicromagPropTypes.linkElement,
     box: MicromagPropTypes.boxElement,
     background: MicromagPropTypes.backgroundElement,
-    isFullScreen: PropTypes.bool,
+    // isFullScreen: PropTypes.bool,
     visible: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
 
 const defaultProps = {
-    ad: {
+    image: {
         width: null,
         height: null,
         url: null,
+    },
+    link: {
+        url: null,
         target: '_blank',
-        iframe: null,
-        image: null,
     },
     box: null,
     background: null,
-    isFullScreen: false,
+    // isFullScreen: false,
     visible: true,
     renderFormat: 'view',
     className: null,
 };
 
-const AdScreen = ({ ad, box, background, isFullScreen, visible, renderFormat, className }) => {
+const AdScreen = ({
+    image,
+    link,
+    box,
+    background,
+    // isFullScreen,
+    visible,
+    renderFormat,
+    className,
+}) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
 
-    const { width: adWidth, height: adHeight, url, iframe, image, target } = ad;
+    const { image: { url: imageUrl } = {} } = image || {};
+    const { url, target } = link;
 
-    const adStyle = {
-        width: isFullScreen ? width : adWidth,
-        height: isFullScreen ? height : adHeight,
-    };
-
-    const preview = isSimple ? <div className={styles.previewBlock} style={adStyle} /> : null;
-
-    let inner = null;
-    inner =
-        iframe !== null && !isSimple ? (
-            <iframe className={styles.iframe} src={iframe} title="iframe" />
-        ) : (
-            preview
-        );
-
-    inner =
-        image !== null && !isSimple ? (
-            <Image className={styles.content} image={{ ...image, ...adStyle }} alt="Ad" />
-        ) : (
-            preview
-        );
+    const inner =
+        imageUrl || isEditor ? (
+            <Image
+                className={styles.content}
+                caption="Ad"
+                isPlaceholder={isEditor}
+                width={width}
+                height={height}
+                resize={false}
+                {...image}
+            />
+        ) : null;
 
     const content =
         url !== null ? (

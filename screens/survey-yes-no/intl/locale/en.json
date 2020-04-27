@@ -1,0 +1,4 @@
+{
+    "screens.survey-yes-no.schema.properties.background": "Background",
+    "screens.survey-yes-no.schema.title": "Survey with yes or no"
+}

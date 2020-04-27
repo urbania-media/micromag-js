@@ -20,6 +20,7 @@ const propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
     screen: PropTypes.string,
+    renderFormat: MicromagPropTypes.renderFormat,
     deviceScreens: MicromagPropTypes.deviceScreens,
     interactions: MicromagPropTypes.interactions,
     onScreenChange: PropTypes.func,
@@ -30,6 +31,7 @@ const defaultProps = {
     width: null,
     height: null,
     screen: null,
+    renderFormat: null,
     deviceScreens: getDeviceScreens(),
     className: null,
     interactions: ['tap'],
@@ -41,6 +43,7 @@ const Viewer = ({
     width,
     height,
     screen: screenId,
+    renderFormat,
     deviceScreens,
     interactions,
     onScreenChange,
@@ -180,6 +183,7 @@ const Viewer = ({
                                     index={i}
                                     active={active}
                                     visible={visible}
+                                    renderFormat={renderFormat}
                                     onVisible={onVisible}
                                 />
                             </animated.div>

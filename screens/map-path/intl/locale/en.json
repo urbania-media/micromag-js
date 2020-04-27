@@ -1,0 +1,6 @@
+{
+    "screens.map-path.schema.properties.background": "Background",
+    "screens.map-path.schema.properties.cardBackground": "Item background",
+    "screens.map-path.schema.properties.layout": "Layout",
+    "screens.map-path.schema.title": "Map with path"
+}

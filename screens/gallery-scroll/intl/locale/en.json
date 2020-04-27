@@ -1,0 +1,6 @@
+{
+    "screens.gallery-scroll.schema.properties.background": "Background",
+    "screens.gallery-scroll.schema.properties.images": "Images",
+    "screens.gallery-scroll.schema.properties.layout": "Layout",
+    "screens.gallery-scroll.schema.title": "Gallery with scroll"
+}

@@ -20,6 +20,9 @@ const propTypes = {
     maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     fit: MicromagPropTypes.objectFit,
+    resize: PropTypes.bool,
+    isPlaceholder: PropTypes.bool,
+    hasParentContainer: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -36,58 +39,84 @@ const defaultProps = {
     maxWidth: null,
     maxHeight: null,
     fit: null,
+    resize: true,
+    isPlaceholder: false,
+    hasParentContainer: true,
+
     className: null,
 };
 
-const Image = ({ image, caption, credits, width, height, maxWidth, maxHeight, fit, className }) => {
+const Image = ({
+    image,
+    caption,
+    credits,
+    width,
+    height,
+    maxWidth,
+    maxHeight,
+    fit,
+    resize,
+    isPlaceholder,
+    hasParentContainer,
+    className,
+}) => {
     const { url, width: imageWidth, height: imageHeight } = image || {};
+    const imageHasSize = imageWidth && imageHeight;
+
     const imgRef = useRef(null);
     const [imageSize, setImageSize] = useState({
         width: imageWidth,
         height: imageHeight,
+        containerHasSize: !imageHasSize,
     });
     const onLoad = useCallback(() => {
         setImageSize({
             width: imgRef.current.naturalWidth,
             height: imgRef.current.naturalHeight,
+            containerHasSize: !hasParentContainer,
         });
-    }, []);
+    }, [hasParentContainer]);
 
     const { size = 'contain' } = fit || {};
     const imgSize =
-        width !== null && height !== null
+        width !== null && height !== null && !imageHasSize
             ? getSizeWithinBounds(imageSize.width, imageSize.height, width, height, {
                   cover: size === 'cover',
               })
-            : null;
+            : { ...(!resize ? { width: imageWidth, height: imageHeight } : null) };
 
-    const img = (
-        <img
-            src={url}
-            alt={caption || credits}
-            className={classNames([
-                styles.img,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-            style={
-                imgSize !== null
-                    ? {
-                          width: imgSize.width,
-                          height: imgSize.height,
-                          top: (height - imgSize.height) / 2,
-                          left: (width - imgSize.width) / 2,
-                      }
-                    : {
-                          maxWidth,
-                          maxHeight,
-                      }
-            }
-            ref={imgRef}
-            onLoad={onLoad}
-        />
-    );
+    const imgStyle =
+        imgSize !== null
+            ? {
+                  width: imgSize.width,
+                  height: imgSize.height,
+                  top: imageSize.containerHasSize ? (height - imgSize.height) / 2 : null,
+                  left: imageSize.containerHasSize ? (width - imgSize.width) / 2 : null,
+                  position: imageSize.containerHasSize ? 'absolute' : 'relative',
+              }
+            : {
+                  maxWidth,
+                  maxHeight,
+              };
+
+    const img =
+        isPlaceholder && !url ? (
+            <div className={styles.placeholder} ref={imgRef} />
+        ) : (
+            <img
+                src={url}
+                alt={caption || 'Image'}
+                className={classNames([
+                    styles.img,
+                    {
+                        [className]: className !== null,
+                    },
+                ])}
+                style={imgStyle}
+                ref={imgRef}
+                onLoad={imageHasSize ? null : onLoad}
+            />
+        );
 
     return imgSize !== null ? (
         <div
@@ -97,12 +126,21 @@ const Image = ({ image, caption, credits, width, height, maxWidth, maxHeight, fi
                     [className]: className !== null,
                 },
             ])}
-            style={{
-                width,
-                height,
-            }}
+            style={
+                imageSize.containerHasSize
+                    ? {
+                          width,
+                          height,
+                      }
+                    : null
+            }
         >
             {img}
+            {url && credits ? (
+                <div className={styles.credits} style={imgStyle}>
+                    <span className={styles.text}>{credits}</span>
+                </div>
+            ) : null}
         </div>
     ) : (
         img

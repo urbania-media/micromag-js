@@ -1,0 +1,7 @@
+{
+    "screens.text-video.schema.properties.background": "Arrière-plan",
+    "screens.text-video.schema.properties.layout": "Mise en page",
+    "screens.text-video.schema.properties.text": "Texte",
+    "screens.text-video.schema.properties.video": "Vidéo",
+    "screens.text-video.schema.title": "Texte avec vidéo"
+}

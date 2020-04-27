@@ -1,0 +1,7 @@
+{
+    "screens.text-video.schema.properties.background": "Background",
+    "screens.text-video.schema.properties.layout": "Layout",
+    "screens.text-video.schema.properties.text": "Text",
+    "screens.text-video.schema.properties.video": "Video",
+    "screens.text-video.schema.title": "Text with video"
+}

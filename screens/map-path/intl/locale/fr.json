@@ -1,0 +1,6 @@
+{
+    "screens.map-path.schema.properties.background": "Arrière-plan",
+    "screens.map-path.schema.properties.cardBackground": "Arrière-plan d'item",
+    "screens.map-path.schema.properties.layout": "Mise en page",
+    "screens.map-path.schema.title": "Carte avec chemin"
+}

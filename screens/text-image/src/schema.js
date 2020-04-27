@@ -1,8 +1,14 @@
+import { names } from './layouts/names';
+import { schemas as messages } from './messages';
+
 export default {
     $id: 'https://schemas.micromag.ca/0.1/screens/text-image.json',
+    title: 'Text with image',
     group: 'Text',
-    title: 'Text and image',
     type: 'object',
+    intl: {
+        title: messages.schemaTitle,
+    },
     allOf: [
         {
             $ref: 'https://schemas.micromag.ca/0.1/screens/screen.json',
@@ -10,27 +16,32 @@ export default {
         {
             properties: {
                 layout: {
-                    type: 'string',
-                    title: 'Mise en page',
-                    enum: ['default'],
-                    default: 'default',
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/screen-layout.json',
+                    title: 'Layout',
+                    enum: names,
+                    intl: {
+                        title: messages.layout,
+                    },
                 },
                 text: {
-                    title: 'Texte',
                     $ref: 'https://schemas.micromag.ca/0.1/elements/text.json',
-                    component: 'element',
+                    title: 'Text',
+                    intl: {
+                        title: messages.text,
+                    },
                 },
                 image: {
-                    title: 'Image',
                     $ref: 'https://schemas.micromag.ca/0.1/elements/image.json',
-                    component: 'element',
+                    title: 'Image',
+                    intl: {
+                        title: messages.image,
+                    },
                 },
                 background: {
-                    title: 'Arrière-Plan',
                     $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
-                    componentProps: {
-                        withBorders: true,
-                        isSection: true,
+                    title: 'Background',
+                    intl: {
+                        title: messages.background,
                     },
                 },
             },

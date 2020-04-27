@@ -1,8 +1,14 @@
+import { names } from './layouts/names';
+import { schemas as messages } from './messages';
+
 export default {
     $id: 'https://schemas.micromag.ca/0.1/screens/gallery-scroll.json',
+    title: 'Gallery scroll',
     group: 'Gallery',
-    title: 'Gallery Scroll',
     type: 'object',
+    intl: {
+        title: messages.schemaTitle,
+    },
     allOf: [
         {
             $ref: 'https://schemas.micromag.ca/0.1/screens/screen.json',
@@ -10,22 +16,25 @@ export default {
         {
             properties: {
                 layout: {
-                    type: 'string',
-                    title: 'Mise en page',
-                    enum: ['default'],
-                    default: 'default',
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/screen-layout.json',
+                    title: 'Layout',
+                    enum: names,
+                    intl: {
+                        title: messages.layout,
+                    },
                 },
-                // Complete this
                 images: {
-                    type: 'array',
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/images.json',
                     title: 'Images',
+                    intl: {
+                        title: messages.images,
+                    },
                 },
                 background: {
-                    title: 'Arrière-Plan',
                     $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
-                    componentProps: {
-                        withBorders: true,
-                        isSection: true,
+                    title: 'Background',
+                    intl: {
+                        title: messages.background,
                     },
                 },
             },

@@ -28,5 +28,5 @@ export { default as Text } from './Text';
 export { default as TextEditor } from './TextEditor';
 export { default as Toggle } from './Toggle';
 export { default as Tokens } from './Tokens';
-export { default as Video } from './Video';
 export { default as Url } from './Url';
+export { default as Video } from './Video';

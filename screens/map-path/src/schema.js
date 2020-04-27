@@ -1,8 +1,15 @@
+import { names } from './layouts/names';
+import { schemas as messages } from './messages';
+
 export default {
     $id: 'https://schemas.micromag.ca/0.1/screens/map-path.json',
-    group: 'Map',
     title: 'Map with path',
+    group: 'Map',
     type: 'object',
+    intl: {
+        title: messages.schemaTitle,
+    },
+
     allOf: [
         {
             $ref: 'https://schemas.micromag.ca/0.1/screens/screen.json',
@@ -10,25 +17,25 @@ export default {
         {
             properties: {
                 layout: {
-                    type: 'string',
-                    title: 'Mise en page',
-                    enum: ['default', 'split'],
-                    default: 'default',
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/screen-layout.json',
+                    title: 'Layout',
+                    enum: names,
+                    intl: {
+                        title: messages.layout,
+                    },
                 },
                 cardBackground: {
-                    title: 'Arrière-Plan',
+                    title: "Arrière-plan d'item",
                     $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
-                    componentProps: {
-                        withBorders: true,
-                        isSection: true,
+                    intl: {
+                        title: messages.cardBackground,
                     },
                 },
                 background: {
-                    title: 'Arrière-Plan',
                     $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
-                    componentProps: {
-                        withBorders: true,
-                        isSection: true,
+                    title: 'Background',
+                    intl: {
+                        title: messages.background,
                     },
                 },
             },

@@ -1,0 +1,5 @@
+{
+    "screens.title.schema.title": "Image",
+    "screens.ad.schema.properties.background": "Arrière-plan",
+    "screens.ad.schema.properties.layout": "Mise en page"
+}

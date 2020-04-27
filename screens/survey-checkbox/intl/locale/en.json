@@ -1,0 +1,4 @@
+{
+    "screens.survey-checkbox.schema.properties.background": "Background",
+    "screens.survey-checkbox.schema.title": "Survey with checkboxes"
+}

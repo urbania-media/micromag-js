@@ -11,6 +11,7 @@ export { default as margin } from './margin.json';
 export { default as objectFit } from './object-fit.json';
 export { default as screenLayout } from './screen-layout.json';
 export { default as textStyle } from './text-style.json';
+export { default as url } from './url.json';
 export { default as videoControl } from './video-control.json';
 export { default as videoControls } from './video-controls.json';
 export { default as video } from './video.json';

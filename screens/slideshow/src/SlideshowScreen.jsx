@@ -2,6 +2,7 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { animated } from 'react-spring';
 
 import Background from '@micromag/element-background';
 import Frame from '@micromag/element-frame';
@@ -55,7 +56,7 @@ const SlideshowScreen = ({
         width: maxWidth,
         items: slides,
         disabled: isSimple,
-        onIndexChange: setParallelIndex,
+        onChangeEnd: setParallelIndex,
     });
 
     const onClickNext = useCallback(() => {
@@ -98,12 +99,12 @@ const SlideshowScreen = ({
                                         if (isSimple && i > 0) return null;
                                         const item = slides[i];
                                         return (
-                                            <div
+                                            <animated.div
                                                 key={i}
                                                 style={{
-                                                    display: display.get(),
-                                                    visibility: visibility.get(),
-                                                    transform: `translate3d(${x.get()}px, 0px, 0px)`,
+                                                    display,
+                                                    visibility,
+                                                    x,
                                                 }}
                                                 className={styles.slide}
                                             >
@@ -113,25 +114,25 @@ const SlideshowScreen = ({
                                                 {item.text ? (
                                                     <TextComponent {...item.text} />
                                                 ) : null}
-                                            </div>
+                                            </animated.div>
                                         );
                                     })}
                                 </button>
                                 {items.length > 1 ? (
                                     <div className={styles.controls}>
                                         <Button
-                                            className={styles.next}
-                                            disabled={isSimple}
-                                            onClick={onClickNext}
-                                        >
-                                            Next
-                                        </Button>
-                                        <Button
                                             className={styles.previous}
                                             disabled={isSimple}
                                             onClick={onClickPrevious}
                                         >
                                             Previous
+                                        </Button>
+                                        <Button
+                                            className={styles.next}
+                                            disabled={isSimple}
+                                            onClick={onClickNext}
+                                        >
+                                            Next
                                         </Button>
                                     </div>
                                 ) : null}
