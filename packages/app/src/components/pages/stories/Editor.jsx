@@ -6,7 +6,7 @@ import { useParams } from 'react-router';
 import Editor from '@micromag/editor';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
-import useStory from '../../../hooks/useStory';
+import { useStory } from '../../../hooks/useData';
 import { StoryProvider } from '../../../contexts/StoryContext';
 import MainLayout from '../../layouts/Main';
 
@@ -41,7 +41,7 @@ const EditorPage = ({ className }) => {
                         },
                     ])}
                 >
-                    {story !== null ? (
+                    {editorStory !== null ? (
                         <Editor
                             story={editorStory}
                             className={styles.editor}

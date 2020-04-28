@@ -24,7 +24,7 @@ export const useUrlGenerator = () => {
     return urlGenerator;
 };
 
-export const useHistoryPush = () => {
+export const useRoutePush = () => {
     const url = useUrlGenerator();
     const history = useHistory();
     const push = useCallback((route, data, ...args) => history.push(url(route, data), ...args), [

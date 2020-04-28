@@ -6,7 +6,7 @@ import { useRouteMatch } from 'react-router';
 import TransitionGroup from 'react-addons-css-transition-group';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { slug } from '@micromag/core/utils';
-import { usePanels, useHistoryPush, useRoutes } from '@micromag/core/contexts';
+import { usePanels, useRoutePush, useRoutes } from '@micromag/core/contexts';
 import { Empty, Panels } from '@micromag/core/components';
 
 import { updateScreen, duplicateScreen, deleteScreen } from '../utils';
@@ -32,7 +32,7 @@ const defaultProps = {
 
 const EditForm = ({ story, className, onChange }) => {
     // Match routes
-    const push = useHistoryPush();
+    const push = useRoutePush();
     const routes = useRoutes();
     const {
         url,

@@ -6,8 +6,10 @@ import { useParams } from 'react-router';
 import { defineMessages } from 'react-intl';
 import { Button } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
+import { Screens } from '@micromag/editor';
+import { ScreensProvider } from '@micromag/screens';
 
-import useStory from '../../../hooks/useStory';
+import { useStory } from '../../../hooks/useData';
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
 
@@ -37,7 +39,8 @@ const StoryPage = ({ className }) => {
     return (
         <MainLayout>
             <Page
-                title={messages.title}
+                section={messages.title}
+                title={story !== null ? story.title : null}
                 sidebar={
                     story !== null ? (
                         <>
@@ -62,7 +65,9 @@ const StoryPage = ({ className }) => {
                     },
                 ])}
             >
-                Story
+                <ScreensProvider>
+                    {story !== null ? <Screens items={story.components || []} withPreview /> : null}
+                </ScreensProvider>
             </Page>
         </MainLayout>
     );

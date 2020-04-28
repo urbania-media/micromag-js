@@ -5,6 +5,7 @@
         margin-bottom: $spacer;
 
         &.isSection {
+            margin-top: $spacer * 2;
             margin-bottom: $spacer * 2;
         }
 

@@ -7,7 +7,7 @@ import {
     ScreenSizeProvider,
     ModalsProvider,
     PanelsProvider,
-    useHistoryPush,
+    useRoutePush,
 } from '@micromag/core/contexts';
 import { getDeviceScreens } from '@micromag/core/utils';
 import { useScreenSizeFromElement } from '@micromag/core/hooks';
@@ -46,7 +46,7 @@ const Editor = ({
     fullscreen,
     className,
 }) => {
-    const push = useHistoryPush();
+    const push = useRoutePush();
 
     // Screen size
     // Screen size

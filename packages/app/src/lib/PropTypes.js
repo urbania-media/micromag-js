@@ -24,16 +24,29 @@ export const routes = PropTypes.shape({
     'stories.editor': PropTypes.string.isRequired,
 });
 
-export const organisation = PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-});
-
-export const organisations = PropTypes.arrayOf(organisation);
-
-export const user = PropTypes.shape({
+const userShape = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
+};
+
+export const userBasic = PropTypes.shape(userShape);
+
+export const teamMember = PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    email: PropTypes.string,
+    user: userBasic,
+});
+export const team = PropTypes.arrayOf(teamMember);
+
+export const organisation = PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    team,
+});
+export const organisations = PropTypes.arrayOf(organisation);
+
+export const user = PropTypes.shape({
+    ...userShape,
     organisations,
 });

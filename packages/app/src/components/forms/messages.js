@@ -26,6 +26,10 @@ export default defineMessages({
         defaultMessage: 'Title',
     },
 
+    createButton: {
+        id: 'forms.buttons.create',
+        defaultMessage: 'Create',
+    },
     saveButton: {
         id: 'forms.buttons.save',
         defaultMessage: 'Save',

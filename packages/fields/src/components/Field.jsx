@@ -14,6 +14,7 @@ const propTypes = {
     name: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     label: MicromagPropTypes.label,
+    help: MicromagPropTypes.label,
     errors: MicromagPropTypes.errors,
     value: PropTypes.any, // eslint-disable-line react/forbid-prop-types
     fields: MicromagPropTypes.formFields,
@@ -25,12 +26,14 @@ const propTypes = {
     onChange: PropTypes.func,
     gotoFieldForm: PropTypes.func,
     className: PropTypes.string,
+    labelClassName: PropTypes.string,
     fieldRowClassName: PropTypes.string,
     fieldsComponents: MicromagPropTypes.components,
 };
 
 const defaultProps = {
     label: null,
+    help: null,
     value: null,
     errors: null,
     fields: null,
@@ -42,6 +45,7 @@ const defaultProps = {
     onChange: null,
     gotoFieldForm: null,
     className: null,
+    labelClassName: null,
     fieldRowClassName: null,
     fieldsComponents: null,
 };
@@ -50,6 +54,7 @@ const Field = ({
     name,
     type,
     label,
+    help,
     errors,
     fields,
     isHorizontal,
@@ -62,6 +67,7 @@ const Field = ({
     gotoFieldForm,
     fieldsComponents,
     className,
+    labelClassName,
     fieldRowClassName,
     ...props
 }) => {
@@ -81,7 +87,7 @@ const Field = ({
     }
 
     const finalIsHorizontal =
-        isHorizontal ||
+        (isHorizontal && !isFields) ||
         FieldComponent.isHorizontal ||
         FieldComponent.withForm ||
         FieldComponent.withPanel ||
@@ -93,6 +99,11 @@ const Field = ({
 
     const fieldElement = (
         <FieldComponent
+            isHorizontal={isHorizontal && isFields}
+            labelClassName={classNames({
+                'col-sm-3': isHorizontal && isFields,
+                [labelClassName]: labelClassName !== null,
+            })}
             {...props}
             errors={errors}
             fields={fields}
@@ -118,6 +129,7 @@ const Field = ({
                 key={`field-${name}`}
                 label={label}
                 errors={errors}
+                help={help}
                 isHorizontal={finalIsHorizontal}
                 isSection={isSection}
                 withoutLabel={finalWithoutLabel}
@@ -132,6 +144,7 @@ const Field = ({
                         [fieldRowClassName]: fieldRowClassName !== null,
                     },
                 ])}
+                labelClassName={labelClassName}
             >
                 {fieldElement}
             </FieldRow>

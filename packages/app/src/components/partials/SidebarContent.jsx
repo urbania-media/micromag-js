@@ -6,16 +6,18 @@ import classNames from 'classnames';
 const propTypes = {
     sidebar: PropTypes.node,
     children: PropTypes.node,
+    sidebarFirstOnMobile: PropTypes.bool,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     sidebar: null,
     children: null,
+    sidebarFirstOnMobile: false,
     className: null,
 };
 
-const SidebarContent = ({ sidebar, children, className }) => (
+const SidebarContent = ({ sidebar, sidebarFirstOnMobile, children, className }) => (
     <div
         className={classNames([
             'row',
@@ -24,8 +26,17 @@ const SidebarContent = ({ sidebar, children, className }) => (
             },
         ])}
     >
-        <aside className="col-md-4 order-md-last">{sidebar}</aside>
         <div className="col-md-8">{children}</div>
+        <aside
+            className={classNames([
+                'col-md-4',
+                {
+                    'order-xs-first': sidebarFirstOnMobile,
+                },
+            ])}
+        >
+            {sidebar}
+        </aside>
     </div>
 );
 

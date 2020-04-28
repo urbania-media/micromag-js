@@ -7,7 +7,7 @@ import { defineMessages } from 'react-intl';
 import { Button } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
-import useStory from '../../../hooks/useStory';
+import {useStory} from '../../../hooks/useData';
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
 

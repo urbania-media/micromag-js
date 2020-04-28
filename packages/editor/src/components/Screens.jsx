@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Route } from 'react-router';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useRoutes, useHistoryPush, useUrlGenerator } from '@micromag/core/contexts';
+import { useRoutes, useRoutePush, useUrlGenerator } from '@micromag/core/contexts';
 import { Label } from '@micromag/core/components';
 import { useSchemasRepository, SCREENS_NAMESPACE } from '@micromag/schemas';
 
@@ -37,7 +37,7 @@ const EditorScreens = ({ story, isVertical, onClickScreen, onChange, className }
 
     const [createModalOpened, setCreateModalOpened] = useState(false);
     const routes = useRoutes();
-    const push = useHistoryPush();
+    const push = useRoutePush();
     const url = useUrlGenerator();
     const repository = useSchemasRepository();
 

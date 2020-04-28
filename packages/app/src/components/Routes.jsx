@@ -8,6 +8,7 @@ import { useLoggedIn } from '../contexts/AuthContext';
 import { useOrganisation } from '../contexts/OrganisationContext';
 
 import HomePage from './pages/Home';
+import HomeOrganisationPage from './pages/HomeOrganisation';
 import HomeGuestPage from './pages/HomeGuest';
 
 import RegisterPage from './pages/register/Register';
@@ -19,6 +20,7 @@ import LoginPage from './pages/auth/Login';
 import ForgotPasswordPage from './pages/auth/ForgotPassword';
 import ResetPasswordPage from './pages/auth/ResetPassword';
 
+import OrganisationCreatePage from './pages/organisation/Create';
 import OrganisationSettingsPage from './pages/organisation/Settings';
 import OrganisationBillingPage from './pages/organisation/Billing';
 import OrganisationTeamPage from './pages/organisation/Team';
@@ -43,7 +45,15 @@ const Routes = () => {
     const organisation = useOrganisation();
     return (
         <Switch>
-            <Route path={routes.home} exact component={loggedIn ? HomePage : HomeGuestPage} />
+            {organisation !== null ? (
+                <Route
+                    path={routes.home}
+                    exact
+                    component={loggedIn ? HomeOrganisationPage : HomeGuestPage}
+                />
+            ) : (
+                <Route path={routes.home} exact component={loggedIn ? HomePage : HomeGuestPage} />
+            )}
 
             {/* Register routes */}
             <Route path={routes.register} exact component={RegisterPage} />
@@ -80,12 +90,19 @@ const Routes = () => {
                 <Redirect
                     from={[
                         routes['organisation.settings'],
-                        routes['organisation.team'],
                         routes['organisation.billing'],
+                        routes['organisation.team'],
+                        routes['organisation.themes'],
+                        routes['organisation.medias'],
                     ]}
                     to={routes.home}
                 />
             ) : null}
+            <Route
+                path={routes['organisation.create']}
+                exact
+                component={OrganisationCreatePage}
+            />
             <Route
                 path={routes['organisation.settings']}
                 exact
