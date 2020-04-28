@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
-import AudioComponent from '@micromag/element-audio';
-import TextComponent from '@micromag/element-text';
-import ImageComponent from '@micromag/element-image';
+import AudioElement from '@micromag/element-audio';
+import TextElement from '@micromag/element-text';
+import ImageElement from '@micromag/element-image';
 import Background from '@micromag/element-background';
 import Frame from '@micromag/element-frame';
 import Box from '@micromag/element-box';
@@ -58,7 +58,7 @@ const AudioScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
 
     return (
         <div
@@ -76,18 +76,19 @@ const AudioScreen = ({
                         {isPlaceholder && image !== null ? (
                             <Placeholders.MediumImage className={styles.placeholder} />
                         ) : (
-                            <ImageComponent
+                            <ImageElement
                                 {...image}
                                 maxWidth={Math.min(width, maxWidth)}
                                 maxHeight={Math.min(width, maxWidth)}
                                 fit={{ size: 'cover' }}
                                 className={styles.image}
+                                showEmpty={image === null && isEditor}
                             />
                         )}
                         {isPlaceholder ? (
                             <Placeholders.Audio className={styles.placeholder} />
                         ) : (
-                            <AudioComponent
+                            <AudioElement
                                 className={styles.audio}
                                 {...(isSimple ? { ...audio, src: null } : audio)}
                             />
@@ -95,7 +96,11 @@ const AudioScreen = ({
                         {isPlaceholder && text !== null ? (
                             <Placeholders.Text className={styles.placeholder} />
                         ) : (
-                            <TextComponent {...text} className={styles.text} />
+                            <TextElement
+                                {...text}
+                                className={styles.text}
+                                showEmpty={text === null && isEditor}
+                            />
                         )}
                     </Box>
                 </Frame>

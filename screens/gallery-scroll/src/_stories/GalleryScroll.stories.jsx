@@ -13,7 +13,7 @@ import GalleryScroll from '../GalleryScroll';
 import layouts from '../layouts/names';
 
 const props = {
-    images: images({ count: 20 }),
+    images: images({ width: 500, height: 300, count: 20 }),
     background: background(),
 };
 
@@ -42,6 +42,16 @@ export const Previews = () => (
             <PreviewScreen>
                 <GalleryScroll layout={layout} renderFormat="preview" {...props} />
             </PreviewScreen>
+        )}
+    </LayoutSwitcher>
+);
+
+export const Editor = () => (
+    <LayoutSwitcher {...switcherProps}>
+        {layout => (
+            <Screen>
+                <GalleryScroll layout={layout} renderFormat="edit" />
+            </Screen>
         )}
     </LayoutSwitcher>
 );

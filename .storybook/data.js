@@ -91,8 +91,8 @@ export const text = (length = 'normal', style = 'normal') => {
 export const image = ({ width = 800, height = 800 } = {}) => ({
     image: {
         url: `https://picsum.photos/${width}/${height}`,
-        width,
-        height,
+        // width,
+        // height,
     },
 });
 
@@ -102,8 +102,8 @@ export const imageWithRandomSize = ({ min = 100, max = 800 } = {}) => {
     return {
         image: {
             url: `https://picsum.photos/${width}/${height}`,
-            width,
-            height,
+            // width,
+            // height,
         },
     };
 };
@@ -113,18 +113,18 @@ export const imageSquareWithRandomSize = ({ min = 100, max = 800 } = {}) => {
     return {
         image: {
             url: `https://picsum.photos/${size}/${size}`,
-            width: size,
-            height: size,
+            // width: size,
+            // height: size,
         },
     };
 };
 
-export const images = ({ count = 3, width = 200, height = 120, random = false } = {}) => {
-    return [...Array(count)].map(i => ({
+export const images = ({ count = 3, width = 800, height = 800, rand = false } = {}) => {
+    return [...Array(count)].map(() => ({
         image: {
-            url: `https://picsum.photos/${width}/${height}?random=${random ? Math.random() : 1}`,
-            width,
-            height,
+            url: `https://picsum.photos/${width}/${height}?random=${rand ? Math.random() : 1}`,
+            // width,
+            // height,
         },
     }));
 };

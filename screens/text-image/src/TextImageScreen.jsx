@@ -53,20 +53,32 @@ const TextImageScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
     const { direction } = box;
     const textElement = isPlaceholder ? (
         <div className={styles.placeholderContainer}>
             <Placeholders.ShortText key="text-element" className={styles.placeholder} />
         </div>
     ) : (
-        <TextComponent {...text} key="text-element" className={styles.text} />
+        <TextComponent
+            {...text}
+            key="text-element"
+            showEmpty={isEditor && text === null}
+            className={styles.text}
+            emptyClassName={styles.empty}
+        />
     );
 
     const imageElement = isPlaceholder ? (
         <Placeholders.SmallImage key="image-element" className={styles.placeholderImage} />
     ) : (
-        <ImageComponent {...image} key="image-element" className={styles.image} />
+        <ImageComponent
+            {...image}
+            key="image-element"
+            showEmpty={isEditor && text === null}
+            className={styles.image}
+            emptyClassName={styles.empty}
+        />
     );
 
     const items = reverse ? [textElement, imageElement] : [imageElement, textElement];

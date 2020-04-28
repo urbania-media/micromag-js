@@ -14,7 +14,9 @@ const propTypes = {
     textStyle: MicromagPropTypes.textStyle,
     linksStyle: MicromagPropTypes.textStyle,
     margin: MicromagPropTypes.margin,
+    showEmpty: PropTypes.bool,
     className: PropTypes.string,
+    emptyClassName: PropTypes.string,
 };
 
 const defaultProps = {
@@ -22,10 +24,12 @@ const defaultProps = {
     textStyle: null,
     linksStyle: null,
     margin: null,
+    showEmpty: false,
     className: null,
+    emptyClassName: null,
 };
 
-const Text = ({ body, textStyle, linksStyle, margin, className }) => {
+const Text = ({ body, textStyle, linksStyle, margin, showEmpty, className, emptyClassName }) => {
     let finalStyle = null;
     let finalLinkStyle = null;
     if (textStyle !== null) {
@@ -59,6 +63,8 @@ const Text = ({ body, textStyle, linksStyle, margin, className }) => {
                 className={classNames([
                     styles.container,
                     {
+                        [styles.showEmpty]: showEmpty,
+                        [emptyClassName]: showEmpty && emptyClassName !== null,
                         [className]: className !== null,
                     },
                 ])}

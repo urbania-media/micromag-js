@@ -38,11 +38,21 @@ export const Placeholders = () => (
     </LayoutGrid>
 );
 
+export const Editor = () => (
+    <LayoutSwitcher layouts={layouts}>
+        {layout => (
+            <Screen>
+                <SurveyYesNo layout={layout} renderFormat="edit" />
+            </Screen>
+        )}
+    </LayoutSwitcher>
+);
+
 export const Normal = () => (
     <LayoutSwitcher layouts={layouts}>
         {layout => (
             <Screen>
-                <SurveyYesNo layout={layout} {...props}/>
+                <SurveyYesNo layout={layout} {...props} />
             </Screen>
         )}
     </LayoutSwitcher>

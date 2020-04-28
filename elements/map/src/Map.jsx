@@ -79,7 +79,7 @@ const Map = ({ zoom, center, markers, layers, withLine, onClickMap, onClickMarke
                                 events={{
                                       onClick:
                                           onClickMarker !== null
-                                              ? () => onClickMarker(index)
+                                              ? e => onClickMarker(e, index)
                                               : () => console.log(index), // eslint-disable-line no-console
                                   }}
                               />

@@ -46,12 +46,12 @@ const TextScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
 
     const item = isPlaceholder ? (
         <Placeholders.Text className={styles.placeholder} />
     ) : (
-        <TextComponent {...text} className={styles.text} />
+        <TextComponent {...text} className={styles.text} showEmpty={isEditor && text === null} />
     );
 
     return (

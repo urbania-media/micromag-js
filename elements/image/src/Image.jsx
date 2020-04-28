@@ -21,9 +21,11 @@ const propTypes = {
     maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     fit: MicromagPropTypes.objectFit,
     resize: PropTypes.bool,
-    isPlaceholder: PropTypes.bool,
+    showEmpty: PropTypes.bool,
     hasParentContainer: PropTypes.bool,
     className: PropTypes.string,
+    imageClassName: PropTypes.string,
+    emptyClassName: PropTypes.string,
 };
 
 const defaultProps = {
@@ -40,10 +42,11 @@ const defaultProps = {
     maxHeight: null,
     fit: null,
     resize: true,
-    isPlaceholder: false,
+    showEmpty: false,
     hasParentContainer: true,
-
     className: null,
+    imageClassName: null,
+    emptyClassName: null,
 };
 
 const Image = ({
@@ -56,9 +59,11 @@ const Image = ({
     maxHeight,
     fit,
     resize,
-    isPlaceholder,
+    showEmpty,
     hasParentContainer,
     className,
+    imageClassName,
+    emptyClassName,
 }) => {
     const { url, width: imageWidth, height: imageHeight } = image || {};
     const imageHasSize = imageWidth && imageHeight;
@@ -85,6 +90,8 @@ const Image = ({
               })
             : { ...(!resize ? { width: imageWidth, height: imageHeight } : null) };
 
+    // console.log(imgSize);
+
     const imgStyle =
         imgSize !== null
             ? {
@@ -99,9 +106,19 @@ const Image = ({
                   maxHeight,
               };
 
+    // console.log(imgStyle);
+
     const img =
-        isPlaceholder && !url ? (
-            <div className={styles.placeholder} ref={imgRef} />
+        showEmpty && !url ? (
+            <div
+                className={classNames([
+                    styles.showEmpty,
+                    {
+                        [emptyClassName]: emptyClassName !== null,
+                    },
+                ])}
+                ref={imgRef}
+            />
         ) : (
             <img
                 src={url}
@@ -109,7 +126,8 @@ const Image = ({
                 className={classNames([
                     styles.img,
                     {
-                        [className]: className !== null,
+                        [imageClassName]: imageClassName !== null,
+                        [imageClassName]: imageClassName !== null,
                     },
                 ])}
                 style={imgStyle}

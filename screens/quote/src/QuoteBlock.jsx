@@ -14,6 +14,7 @@ const propTypes = {
     author: MicromagPropTypes.textElement,
     centered: PropTypes.bool,
     isPlaceholder: PropTypes.bool,
+    showEmpty: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -23,10 +24,11 @@ const defaultProps = {
     source: null,
     centered: false,
     isPlaceholder: false,
+    showEmpty: false,
     className: null,
 };
 
-const QuoteBlock = ({ quote, source, author, isPlaceholder, centered }) => {
+const QuoteBlock = ({ quote, source, author, isPlaceholder, showEmpty, centered }) => {
     return isPlaceholder ? (
         <blockquote
             className={classNames([
@@ -50,8 +52,20 @@ const QuoteBlock = ({ quote, source, author, isPlaceholder, centered }) => {
                 },
             ])}
         >
-            <blockquote className={styles.blockquote}>
-                <TextComponent {...quote} className={styles.quote} />
+            <blockquote
+                className={classNames([
+                    styles.blockquote,
+                    {
+                        [styles.empty]: showEmpty && quote === null,
+                    },
+                ])}
+            >
+                <TextComponent
+                    {...quote}
+                    showEmpty={showEmpty && quote === null}
+                    className={styles.quote}
+                    emptyClassName={styles.empty}
+                />
             </blockquote>
             {author || source ? (
                 <figcaption className={styles.caption}>

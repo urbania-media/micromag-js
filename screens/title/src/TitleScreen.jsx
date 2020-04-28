@@ -63,28 +63,34 @@ const TitleScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
 
     const options = { title, subtitle, description };
-    const items = groups.map(its => (
-        <div className={styles.group} key={`group-${its.join('-')}`}>
-            {its.map(name => {
-                const key = `group-item-${name}`;
-                const value = options[name] || null;
+    const items = isEditor
+        ? [
+            <Text showEmpty emptyClassName={styles.empty} />,
+            <Text showEmpty emptyClassName={styles.empty} />,
+            <Text showEmpty emptyClassName={styles.empty} />,
+          ]
+        : groups.map(its => (
+            <div className={styles.group} key={`group-${its.join('-')}`}>
+                {its.map(name => {
+                      const key = `group-item-${name}`;
+                      const value = options[name] || null;
 
-                if (isPlaceholder) {
-                    const Placeholder = getComponentFromName(name, Placeholders);
-                    return <Placeholder className={styles.placeholder} key={key} />;
-                }
+                      if (isPlaceholder) {
+                          const Placeholder = getComponentFromName(name, Placeholders);
+                          return <Placeholder className={styles.placeholder} key={key} />;
+                      }
 
-                if (name === 'description') {
-                    return <Text {...value} className={styles[name]} key={key} />;
-                }
-                const props = HEADING_SIZES[name] || null;
-                return <Heading {...props} {...value} className={styles.title} key={key} />;
-            })}
-        </div>
-    ));
+                      if (name === 'description') {
+                          return <Text {...value} className={styles[name]} key={key} />;
+                      }
+                      const props = HEADING_SIZES[name] || null;
+                      return <Heading {...props} {...value} className={styles.title} key={key} />;
+                  })}
+            </div>
+          ));
 
     return (
         <div

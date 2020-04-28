@@ -47,7 +47,7 @@ const ImageScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
 
     return (
         <div
@@ -72,6 +72,7 @@ const ImageScreen = ({
                                 maxWidth="100%"
                                 maxHeight="100%"
                                 className={styles.image}
+                                showEmpty={isEditor && image === null}
                             />
                         )}
                         {!isPlaceholder ? (

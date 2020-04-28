@@ -22,6 +22,7 @@ const propTypes = {
     controls: MicromagPropTypes.videoControls,
     controlsVisible: PropTypes.bool,
     fit: MicromagPropTypes.objectFit,
+    showEmpty: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -38,6 +39,7 @@ const defaultProps = {
     controls: null,
     controlsVisible: true,
     fit: null,
+    showEmpty: false,
     className: null,
 };
 
@@ -54,6 +56,7 @@ const Video = ({
     controls,
     controlsVisible,
     fit,
+    showEmpty,
     className,
 }) => {
     const maxWidth = defaultMaxWidth || width;
@@ -101,7 +104,7 @@ const Video = ({
     }, [width, height]);
 
     const { size = 'fit' } = fit || {};
-    const playerSize =
+    let playerSize =
         size === 'fit'
             ? {
                   width,
@@ -110,6 +113,7 @@ const Video = ({
             : getSizeWithinBounds(videoSize.width, videoSize.height, maxWidth, maxHeight, {
                   cover: size === 'cover',
               });
+    playerSize = showEmpty ? { width: '100%', height: 200 } : playerSize;
 
     return (
         <div
@@ -151,7 +155,7 @@ const Video = ({
                     />
                 </div>
             ) : null}
-            {playerReady && controlsVisible ? (
+            {(playerReady && controlsVisible) || showEmpty ? (
                 <VideoControls
                     {...refPlayer.current}
                     {...playerState}

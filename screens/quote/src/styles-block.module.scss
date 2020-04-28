@@ -49,6 +49,16 @@
         display: inline;
         padding: 0 5px;
     }
+
+    &.empty {
+        &::before {
+            content: '';
+        }
+
+        &::after {
+            content: '';
+        }
+    }
 }
 
 .placeholder {

@@ -46,16 +46,32 @@ const GalleryScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isPreview, isSimple } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isPreview, isSimple, isEditor } = getRenderFormat(renderFormat);
 
     const { layout } = grid;
+    const defaultArray = [
+        ...Array(16).map(i => ({
+            id: `image-${i}`,
+            ...(imageList[i] ? imageList[i] : null),
+        })),
+    ];
     const images = isPreview ? imageList.slice(0, 16) : imageList || [];
+    const currentImages = isEditor ? defaultArray : images;
 
     const items = isPlaceholder
         ? layout
               .reduce((map, row) => [...map, ...row.columns], [])
               .map(() => <Placeholders.Image className={styles.placeholder} />)
-        : images.map(it => <Image {...it} className={styles.image} />);
+        : currentImages.map(it => (
+            <Image
+                {...it}
+                fit={{ size: 'cover' }}
+                hasParentContainer={false}
+                className={styles.image}
+                emptyClassName={styles.empty}
+                showEmpty={isEditor}
+              />
+          ));
 
     return (
         <div

@@ -1,7 +1,7 @@
 import createScreenFromType from './createScreenFromType';
 
 const createDefaultStory = () => ({
-    components: [createScreenFromType('title'), createScreenFromType('video')],
+    components: [createScreenFromType('quote'), createScreenFromType('video')],
 });
 
 export default createDefaultStory;
