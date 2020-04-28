@@ -105,8 +105,27 @@ module.exports = () => {
         }),
     );
 
+    let loggedInUser = require(path.join(dataPath, '/me'));
+
+    router.get('/auth/check', (req, res) => {
+        res.json(loggedInUser);
+        res.end();
+    });
+
     router.post('/auth/login', (req, res) => {
-        res.json(require(path.join(dataPath, '/me')));
+        loggedInUser = require(path.join(dataPath, '/me'));
+        res.json(loggedInUser);
+        res.end();
+    });
+
+    router.post('/auth/logout', (req, res) => {
+        loggedInUser = null;
+        res.json(loggedInUser);
+        res.end();
+    });
+
+    router.get('/csrf-cookie', (req, res) => {
+        res.json(null);
         res.end();
     });
 
