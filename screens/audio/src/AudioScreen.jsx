@@ -81,8 +81,9 @@ const AudioScreen = ({
                                 maxWidth={Math.min(width, maxWidth)}
                                 maxHeight={Math.min(width, maxWidth)}
                                 fit={{ size: 'cover' }}
-                                className={styles.image}
                                 showEmpty={image === null && isEditor}
+                                className={styles.image}
+                                emptyClassName={styles.empty}
                             />
                         )}
                         {isPlaceholder ? (
@@ -98,8 +99,9 @@ const AudioScreen = ({
                         ) : (
                             <TextElement
                                 {...text}
-                                className={styles.text}
                                 showEmpty={text === null && isEditor}
+                                className={styles.text}
+                                emptyClassName={styles.empty}
                             />
                         )}
                     </Box>
