@@ -1,32 +1,28 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, {useCallback } from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
 import { useHistory, useLocation } from 'react-router';
 import { parse as parseQueryString } from 'query-string';
-import { FormPanel, Label, Link } from '@micromag/core/components';
+import { FormPanel, Label } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
-import { useAuth } from '../../../contexts/AuthContext';
+import { useSetOrganisation } from '../../../contexts/OrganisationContext';
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
-import RegisterForm from '../../forms/Register';
+import OrganisationCreateForm from '../../forms/OrganisationCreate';
 
-import styles from '../../../styles/pages/register/register.module.scss';
+import styles from '../../../styles/pages/organisation/create.module.scss';
 
 const messages = defineMessages({
     title: {
-        id: 'pages.register.title',
-        defaultMessage: 'Register',
+        id: 'pages.organisation.create.title',
+        defaultMessage: 'Create an organisation',
     },
     description: {
-        id: 'pages.register.description',
+        id: 'pages.organisation.create.description',
         defaultMessage: 'Please fill all the fields below.',
-    },
-    alreadyHaveAccount: {
-        id: 'pages.register.already_have_account',
-        defaultMessage: 'Already have an account?',
     },
 });
 
@@ -38,16 +34,16 @@ const defaultProps = {
     className: null,
 };
 
-const RegisterPage = ({ className }) => {
+const OrganisationCreatePage = ({ className }) => {
     const url = useUrlGenerator();
     const history = useHistory();
-    const { setUser } = useAuth();
+    const setOrganisation = useSetOrganisation();
     const { search } = useLocation();
     const { next = null } = parseQueryString(search);
-    const onRegistered = useCallback((user) => {
-        setUser(user);
+    const onCreated = useCallback((user) => {
+        setOrganisation(user);
         history.push(next !== null ? next : url('home'));
-    }, [history, url, setUser]);
+    }, [history, url, setOrganisation]);
     return (
         <MainLayout>
             <Page
@@ -67,18 +63,14 @@ const RegisterPage = ({ className }) => {
                         </div>
                     }
                 >
-                    <RegisterForm onRegistered={onRegistered} />
-
-                    <div className={styles.links}>
-                        <Link href={url('auth.login')}>{messages.alreadyHaveAccount}</Link>
-                    </div>
+                    <OrganisationCreateForm onCreated={onCreated} />
                 </FormPanel>
             </Page>
         </MainLayout>
     );
 };
 
-RegisterPage.propTypes = propTypes;
-RegisterPage.defaultProps = defaultProps;
+OrganisationCreatePage.propTypes = propTypes;
+OrganisationCreatePage.defaultProps = defaultProps;
 
-export default RegisterPage;
+export default OrganisationCreatePage;

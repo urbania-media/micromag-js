@@ -29,6 +29,7 @@ const propTypes = {
     isHorizontal: PropTypes.bool,
     onChange: PropTypes.func,
     className: PropTypes.string,
+    labelClassName: PropTypes.string,
     fieldsComponents: MicromagPropTypes.components,
 };
 
@@ -43,6 +44,7 @@ const defaultProps = {
     isHorizontal: false,
     onChange: null,
     className: null,
+    labelClassName: null,
     fieldsComponents: null,
 };
 
@@ -57,6 +59,7 @@ const Fields = ({
     isHorizontal: globalIsHorizontal,
     onChange,
     className,
+    labelClassName,
     fieldsComponents,
 }) => {
     const nullableOnChange = useCallback(
@@ -108,6 +111,7 @@ const Fields = ({
                     errors: customErrors,
                     onChange: customOnChange = null,
                     isHorizontal = globalIsHorizontal,
+                    isSection = false,
                 } = field;
                 const fieldValue = name !== null ? (value || {})[name] || null : value;
                 const fieldOnChange = newFieldValue => onFieldChange(name, newFieldValue);
@@ -122,7 +126,14 @@ const Fields = ({
                         gotoFieldForm={gotoFieldForm}
                         fieldsComponents={fieldsComponents}
                         isHorizontal={isHorizontal}
-                        className={styles.field}
+                        isSection={isSection}
+                        className={classNames([
+                            styles.field,
+                            {
+                                [styles.isSection]: isSection,
+                            },
+                        ])}
+                        labelClassName={labelClassName}
                         fieldRowClassName={styles.fieldRow}
                     />
                 );

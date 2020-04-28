@@ -15,7 +15,7 @@ import { organisation as organisationFields } from './fields';
 
 // const messages = defineMessages({
 //     mainContact: {
-//         id: 'forms.organisation.settings.main_contact',
+//         id: 'forms.organisation.create.main_contact',
 //         defaultMessage: 'Main contact',
 //     },
 // });
@@ -24,36 +24,33 @@ const propTypes = {
     organisation: AppPropTypes.organisation.isRequired,
     fields: MicromagPropTypes.formFields,
     className: PropTypes.string,
-    onUpdated: PropTypes.func,
+    onCreated: PropTypes.func,
 };
 
 const defaultProps = {
     fields: organisationFields,
     className: null,
-    onUpdated: null,
+    onCreated: null,
 };
 
-const OrganisationSettingsForm = ({ organisation, fields, className, onUpdated }) => {
+const OrganisationCreateForm = ({ organisation, fields, className, onCreated }) => {
     const url = useUrlGenerator();
     const api = useApi();
-    const postForm = useCallback((action, data) => api.organisation.update(organisation.id, data), [
-        organisation,
-        api,
-    ]);
+    const postForm = useCallback((action, data) => api.organisations.create(data), [api]);
     return (
         <Form
-            action={url('organisation.settings')}
+            action={url('organisation.create')}
             fields={fields}
             initialValue={organisation}
             postForm={postForm}
-            submitButtonLabel={formMessages.saveButton}
-            onComplete={onUpdated}
+            submitButtonLabel={formMessages.createButton}
+            onComplete={onCreated}
             className={className}
         />
     );
 };
 
-OrganisationSettingsForm.propTypes = propTypes;
-OrganisationSettingsForm.defaultProps = defaultProps;
+OrganisationCreateForm.propTypes = propTypes;
+OrganisationCreateForm.defaultProps = defaultProps;
 
-export default OrganisationSettingsForm;
+export default OrganisationCreateForm;

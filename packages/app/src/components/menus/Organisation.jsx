@@ -7,8 +7,9 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Menu } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
-import * as AppPropTypes from '../../lib/PropTypes';
+// import * as AppPropTypes from '../../lib/PropTypes';
 import { useOrganisation } from '../../contexts/OrganisationContext';
+import { useOrganisations } from '../../hooks/useData';
 
 const messages = defineMessages({
     organisations: {
@@ -38,7 +39,6 @@ const messages = defineMessages({
 });
 
 const propTypes = {
-    organisations: AppPropTypes.organisations,
     className: PropTypes.string,
     itemClassName: PropTypes.string,
     linkClassName: PropTypes.string,
@@ -49,7 +49,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-    organisations: [],
     className: null,
     itemClassName: null,
     linkClassName: null,
@@ -60,7 +59,6 @@ const defaultProps = {
 };
 
 const OrganisationsMenu = ({
-    organisations,
     className,
     itemClassName,
     linkClassName,
@@ -71,6 +69,7 @@ const OrganisationsMenu = ({
     ...props
 }) => {
     const url = useUrlGenerator();
+    const { organisations } = useOrganisations();
     const organisation = useOrganisation();
     const finalItems = useMemo(() => {
         const menuItems = [
@@ -103,16 +102,19 @@ const OrganisationsMenu = ({
                 label: messages.medias,
             },
         ];
-        const organisationsItems = organisations
-            .filter(it => organisation === null || it.id !== organisation.id)
-            .map(it => ({
-                id: it.id,
-                href: url('organisation.switch', {
-                    organisation: it.slug,
-                }),
-                label: it.name,
-                active: organisation !== null && organisation.id === it.id,
-            }));
+        const organisationsItems =
+            organisations !== null
+                ? organisations
+                      .filter(it => organisation === null || it.id !== organisation.id)
+                      .map(it => ({
+                          id: it.id,
+                          href: url('organisation.switch', {
+                              organisation: it.slug,
+                          }),
+                          label: it.name,
+                          active: organisation !== null && organisation.id === it.id,
+                      }))
+                : [];
         return withoutDropdown || asList
             ? menuItems.filter(({ type = 'link' }) => type === 'link')
             : [
@@ -124,7 +126,7 @@ const OrganisationsMenu = ({
                           organisation !== null
                               ? [
                                     ...menuItems,
-                                    ...(organisations.length > 1
+                                    ...(organisationsItems.length > 1
                                         ? [
                                               {
                                                   type: 'divider',
@@ -135,7 +137,7 @@ const OrganisationsMenu = ({
                                               },
                                               ...organisationsItems,
                                           ]
-                                        : null),
+                                        : []),
                                 ]
                               : organisationsItems,
                   },

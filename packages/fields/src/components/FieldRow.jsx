@@ -8,12 +8,14 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, Label } from '@micromag/core/components';
 
 import FieldErrors from './FieldErrors';
+import FieldHelp from './FieldHelp';
 
 import styles from '../styles/field-row.module.scss';
 
 const propTypes = {
     label: MicromagPropTypes.label,
     errors: MicromagPropTypes.errors,
+    help: MicromagPropTypes.label,
     children: PropTypes.node,
     isSection: PropTypes.bool,
     isHorizontal: PropTypes.bool,
@@ -24,11 +26,13 @@ const propTypes = {
     gotoSettings: PropTypes.func,
     gotoForm: PropTypes.func,
     className: PropTypes.string,
+    labelClassName: PropTypes.string,
 };
 
 const defaultProps = {
     label: null,
     errors: null,
+    help: null,
     children: null,
     isSection: false,
     isHorizontal: false,
@@ -39,11 +43,13 @@ const defaultProps = {
     gotoSettings: null,
     gotoForm: null,
     className: null,
+    labelClassName: null,
 };
 
 const FieldRow = ({
     label,
     errors,
+    help,
     children,
     isSection,
     isHorizontal,
@@ -54,6 +60,7 @@ const FieldRow = ({
     gotoForm,
     gotoSettings,
     className,
+    labelClassName,
 }) => {
     const [panelOpened, setPanelOpened] = useState(false);
     const withLabel = !withoutLabel && label !== null;
@@ -76,7 +83,16 @@ const FieldRow = ({
         const isClickable = withForm || withPanel;
         const rowInner = (
             <>
-                <label className={classNames(['col-auto', 'col-form-label', styles.label])}>
+                <label
+                    className={classNames([
+                        'col-auto',
+                        'col-form-label',
+                        styles.label,
+                        {
+                            [labelClassName]: labelClassName !== null,
+                        },
+                    ])}
+                >
                     {labelElement}
                 </label>
                 <span className="col">{children}</span>
@@ -84,6 +100,9 @@ const FieldRow = ({
                     <span className="col-auto">
                         <FontAwesomeIcon icon={faAngleRight} className={styles.icon} />
                     </span>
+                ) : null}
+                {help !== null ? (
+                    <FieldHelp>{help}</FieldHelp>
                 ) : null}
                 {errors !== null && errors.length > 0 ? (
                     <FieldErrors errors={errors} className={styles.errors} />
@@ -151,7 +170,16 @@ const FieldRow = ({
                 <>
                     {withSettings ? (
                         <div className={classNames(['form-row', 'align-items-center'])}>
-                            <label className={classNames(['col', 'col-form-label', styles.label])}>
+                            <label
+                                className={classNames([
+                                    'col',
+                                    'col-form-label',
+                                    styles.label,
+                                    {
+                                        [labelClassName]: labelClassName !== null,
+                                    },
+                                ])}
+                            >
                                 {labelElement}
                             </label>
                             <div className={classNames(['col-auto'])}>
@@ -161,7 +189,16 @@ const FieldRow = ({
                             </div>
                         </div>
                     ) : (
-                        <label className={styles.label}>{labelElement}</label>
+                        <label
+                            className={classNames([
+                                styles.label,
+                                {
+                                    [labelClassName]: labelClassName !== null,
+                                },
+                            ])}
+                        >
+                            {labelElement}
+                        </label>
                     )}
                 </>
             ) : null}

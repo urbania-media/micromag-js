@@ -19,20 +19,17 @@ const defaultProps = {
 };
 
 const MainNavbar = ({ className }) => {
-    const { loggedIn, user } = useAuth();
+    const { loggedIn } = useAuth();
     const url = useUrlGenerator();
     return (
         <Navbar brand="Micromag" brandLink={url('home')} className={className}>
             {loggedIn ? (
                 <>
-                    {user.organisations.length > 1 ? (
-                        <OrganisationMenu
-                            organisations={user.organisations}
-                            className="navbar-nav"
-                            itemClassName="nav-item"
-                            linkClassName="nav-link"
-                        />
-                    ) : null}
+                    <OrganisationMenu
+                        className="navbar-nav"
+                        itemClassName="nav-item"
+                        linkClassName="nav-link"
+                    />
                     <StoriesMenu
                         className="navbar-nav"
                         itemClassName="nav-item"

@@ -14,6 +14,7 @@
     "account.settings": "/account/settings",
 
     "organisation": "/organisation",
+    "organisation.create": "/organisation/create",
     "organisation.settings": "/organisation/settings",
     "organisation.team": "/organisation/team",
     "organisation.billing": "/organisation/billing",

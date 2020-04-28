@@ -32,7 +32,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    count: 1,
+    count: 12,
     className: null,
 };
 

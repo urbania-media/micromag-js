@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
 import { Label } from '@micromag/core/components';
+import { useRoutePush } from '@micromag/core/contexts';
 
 import { useSetOrganisation } from '../../../contexts/OrganisationContext';
-import { useApi } from '../../../contexts/ApiContext';
+import { useOrganisation } from '../../../hooks/useData';
 import MainLayout from '../../layouts/Main';
 
 import styles from '../../../styles/pages/organisation/switch.module.scss';
@@ -30,36 +31,23 @@ const defaultProps = {
 };
 
 const OrganisationSwitch = ({ slug, minimumDelay, className }) => {
-    const api = useApi();
+    const push = useRoutePush();
     const setOrganisation = useSetOrganisation();
+    const { organisation, error } = useOrganisation(slug);
+    const [delayCompleted, setDelayCompleted] = useState(false);
     useEffect(() => {
-        let canceled = false;
-        let delayCompleted = false;
-        let newOrganisation = null;
-        let timeout = null;
-        const checkDone = () => {
-            if (delayCompleted && newOrganisation !== null) {
-                setOrganisation(newOrganisation);
-            }
-            timeout = null;
-        };
-        timeout = setTimeout(() => {
-            delayCompleted = true;
-            checkDone();
-        }, minimumDelay);
-        api.organisations.findBySlug(slug).then(organisation => {
-            if (!canceled) {
-                newOrganisation = organisation;
-                checkDone();
-            }
-        });
+        const timeout = setTimeout(() => setDelayCompleted(true), minimumDelay);
         return () => {
-            canceled = true;
-            if (timeout !== null) {
-                clearTimeout(timeout);
-            }
+            clearTimeout(timeout);
         };
-    }, [slug, minimumDelay]);
+    }, [minimumDelay]);
+    useEffect(() => {
+        if (delayCompleted && organisation !== null) {
+            setOrganisation(organisation);
+        } else if (delayCompleted && error !== null) {
+            push('home');
+        }
+    }, [delayCompleted, organisation, error, setOrganisation]);
     return (
         <MainLayout contentAlign="middle">
             <div

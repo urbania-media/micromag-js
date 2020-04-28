@@ -59,6 +59,7 @@
         "@micromag/fields": "^0.1.0",
         "@micromag/intl": "^0.1.0",
         "@micromag/schemas": "^0.1.0",
+        "@micromag/screens": "^0.1.0",
         "@micromag/viewer": "^0.1.0",
         "bootstrap": "^4.4.1",
         "bootstrap.native": "^2.0.27",

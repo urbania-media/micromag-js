@@ -1,20 +1,17 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
-import { Label, Button, AsyncList } from '@micromag/core/components';
+import { Label, Button } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
-import { useUser } from '../../contexts/AuthContext';
-import { useOrganisation } from '../../contexts/OrganisationContext';
-import { useApi } from '../../contexts/ApiContext';
+import { useOrganisations } from '../../hooks/useData';
 import MainLayout from '../layouts/Main';
 import Page from '../partials/Page';
-import OrganisationBox from '../partials/OrganisationBox';
 import AccountBox from '../partials/AccountBox';
 import OrganisationsList from '../lists/Organisations';
-import StoriesList from '../lists/Stories';
+import RecentStories from '../partials/RecentStories';
 
 import styles from '../../styles/pages/home.module.scss';
 
@@ -31,17 +28,13 @@ const messages = defineMessages({
         id: 'pages.home.organisations',
         defaultMessage: 'Your organisations',
     },
-    organisation: {
-        id: 'pages.home.organisation',
-        defaultMessage: 'Organisation',
+    yourOrganisation: {
+        id: 'pages.home.your_organisation',
+        defaultMessage: 'Your organisation',
     },
-    recentStories: {
-        id: 'pages.home.recent_stories',
-        defaultMessage: 'Recent stories',
-    },
-    viewAllStories: {
-        id: 'pages.home.view_all_stories',
-        defaultMessage: 'View all stories',
+    createOrganisation: {
+        id: 'pages.home.create_organisation',
+        defaultMessage: 'Create an organisation',
     },
 });
 
@@ -56,35 +49,47 @@ const defaultProps = {
 };
 
 const HomePage = ({ recentStoriesCount, className }) => {
-    const user = useUser();
     const url = useUrlGenerator();
-    const api = useApi();
-    const organisation = useOrganisation();
-    const getRecentStories = useCallback(() => api.stories.getRecents(recentStoriesCount), [
-        api,
-        recentStoriesCount,
-    ]);
+    const { organisations } = useOrganisations();
     return (
         <MainLayout>
             <Page
-                title={organisation !== null ? organisation.name : messages.title}
                 sidebar={
-                    <>
-                        {organisation !== null ? (
-                            <section className="mb-4">
-                                <h5 className="mb-2">
-                                    <Label>{messages.organisation}</Label>
-                                </h5>
-                                <OrganisationBox organisation={organisation} withoutHeader />
-                            </section>
-                        ) : null}
+                    <div className="d-flex flex-column">
                         <section className="mb-4">
                             <h5 className="mb-2">
                                 <Label>{messages.account}</Label>
                             </h5>
                             <AccountBox withoutHeader />
                         </section>
-                    </>
+                        {organisations !== null ? (
+                            <section>
+                                {organisations.length > 0 ? (
+                                    <h5 className="mb-2">
+                                        <Label>
+                                            {organisations.length === 1
+                                                ? messages.yourOrganisation
+                                                : messages.organisations}
+                                        </Label>
+                                    </h5>
+                                ) : null}
+                                <OrganisationsList items={organisations} />
+                                <Button
+                                    href={url('organisation.create')}
+                                    theme="secondary"
+                                    outline
+                                    className={classNames([
+                                        'w-100',
+                                        {
+                                            'mt-2': organisations.length > 0,
+                                        },
+                                    ])}
+                                >
+                                    {messages.createOrganisation}
+                                </Button>
+                            </section>
+                        ) : null}
+                    </div>
                 }
                 className={classNames([
                     styles.container,
@@ -93,27 +98,7 @@ const HomePage = ({ recentStoriesCount, className }) => {
                     },
                 ])}
             >
-                {organisation === null ? (
-                    <section className="mb-4">
-                        <h5 className="mb-2">
-                            <Label>{messages.organisations}</Label>
-                        </h5>
-                        <OrganisationsList items={user.organisations} />
-                    </section>
-                ) : null}
-                <section>
-                    <h5 className="mb-2">
-                        <Label>{messages.recentStories}</Label>
-                    </h5>
-                    <AsyncList getItems={getRecentStories}>
-                        {({ items }) => (items !== null ? <StoriesList items={items} /> : null)}
-                    </AsyncList>
-                    <div className={classNames(['d-flex', 'mt-2'])}>
-                        <Button href={url('stories')} theme="secondary" outline>
-                            {messages.viewAllStories}
-                        </Button>
-                    </div>
-                </section>
+                <RecentStories count={recentStoriesCount} />
             </Page>
         </MainLayout>
     );

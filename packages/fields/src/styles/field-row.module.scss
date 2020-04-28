@@ -9,8 +9,6 @@
 }
 
 .container {
-    margin: 0;
-
     .label {
         padding-top: 0;
     }
@@ -40,17 +38,6 @@
             flex-direction: row;
             justify-content: flex-end;
             width: 100%;
-        }
-
-        > :global(.col-auto),
-        > :global(.col) {
-            &:first-child {
-                padding-left: 0;
-            }
-
-            &:last-child {
-                padding-right: 0;
-            }
         }
     }
 }

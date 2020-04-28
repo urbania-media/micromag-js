@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
 import { Label, FormPanel } from '@micromag/core/components';
-import { useHistoryPush } from '@micromag/core/contexts';
+import { useRoutePush } from '@micromag/core/contexts';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
@@ -32,7 +32,7 @@ const defaultProps = {
 };
 
 const StoriesCreatePage = ({ className }) => {
-    const push = useHistoryPush();
+    const push = useRoutePush();
     const onCreated = useCallback(
         story => {
             push('stories.show', {

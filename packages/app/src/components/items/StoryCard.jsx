@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Card } from '@micromag/core/components';
+import { Card, Link } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
 import styles from '../../styles/items/story-card.module.scss';
@@ -33,19 +33,27 @@ const StoryCardItem = ({ item, className }) => {
     const url = useUrlGenerator();
     return (
         <Card
-            title={item.title}
+            title={
+                <Link
+                    to={url('stories.show', {
+                        story: item.id,
+                    })}
+                >
+                    {item.title}
+                </Link>
+            }
             links={[
                 {
                     label: messages.edit,
                     href: url('stories.editor', {
                         story: item.id,
-                    })
+                    }),
                 },
                 {
                     label: messages.settings,
                     href: url('stories.settings', {
                         story: item.id,
-                    })
+                    }),
                 },
             ]}
             className={classNames([
