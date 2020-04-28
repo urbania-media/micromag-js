@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, useState, useCallback } from 'react';
+import React, { useContext, useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import * as AppPropTypes from '../lib/PropTypes';
@@ -20,13 +20,15 @@ export const useLoggedIn = () => {
 const propTypes = {
     children: PropTypes.node.isRequired,
     user: AppPropTypes.user,
+    checkOnMount: PropTypes.bool,
 };
 
 const defaultProps = {
     user: null,
+    checkOnMount: false,
 };
 
-export const AuthProvider = ({ user: initialUser, children }) => {
+export const AuthProvider = ({ user: initialUser, checkOnMount, children }) => {
     const api = useApi();
     const [user, setUser] = useState(initialUser);
     const login = useCallback(
@@ -35,9 +37,18 @@ export const AuthProvider = ({ user: initialUser, children }) => {
                 setUser(newUser);
                 return newUser;
             }),
-        [setUser],
+        [api, setUser],
     );
-    const logout = useCallback(() => setUser(null), [setUser]);
+    const logout = useCallback(() => api.auth.logout().then(() => setUser(null)), [api, setUser]);
+    useEffect(() => {
+        if (checkOnMount) {
+            api.auth.check().then((newUser = null) => {
+                if (newUser !== null) {
+                    setUser(newUser);
+                }
+            });
+        }
+    }, []);
     return (
         <AuthContext.Provider
             value={{

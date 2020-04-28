@@ -12,19 +12,22 @@ const propTypes = {
     children: PropTypes.node.isRequired,
     api: PropTypes.instanceOf(Api),
     baseUrl: PropTypes.string,
+    usesCookie: PropTypes.bool,
 };
 
 const defaultProps = {
     api: null,
     baseUrl: null,
+    usesCookie: false,
 };
 
-export const ApiProvider = ({ api: initialApi, baseUrl, children }) => {
+export const ApiProvider = ({ api: initialApi, baseUrl, usesCookie, children }) => {
     const api = useMemo(
         () =>
             initialApi ||
             new Api({
                 baseUrl,
+                usesCookie,
             }),
         [initialApi, baseUrl],
     );

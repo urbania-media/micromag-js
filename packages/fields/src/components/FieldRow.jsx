@@ -7,10 +7,13 @@ import { faSlidersH, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, Label } from '@micromag/core/components';
 
+import FieldErrors from './FieldErrors';
+
 import styles from '../styles/field-row.module.scss';
 
 const propTypes = {
     label: MicromagPropTypes.label,
+    errors: MicromagPropTypes.errors,
     children: PropTypes.node,
     isSection: PropTypes.bool,
     isHorizontal: PropTypes.bool,
@@ -25,6 +28,7 @@ const propTypes = {
 
 const defaultProps = {
     label: null,
+    errors: null,
     children: null,
     isSection: false,
     isHorizontal: false,
@@ -39,6 +43,7 @@ const defaultProps = {
 
 const FieldRow = ({
     label,
+    errors,
     children,
     isSection,
     isHorizontal,
@@ -79,6 +84,9 @@ const FieldRow = ({
                     <span className="col-auto">
                         <FontAwesomeIcon icon={faAngleRight} className={styles.icon} />
                     </span>
+                ) : null}
+                {errors !== null && errors.length > 0 ? (
+                    <FieldErrors errors={errors} className={styles.errors} />
                 ) : null}
             </>
         );
@@ -158,6 +166,9 @@ const FieldRow = ({
                 </>
             ) : null}
             <div className={styles.field}>{children}</div>
+            {errors !== null && errors.length > 0 ? (
+                <FieldErrors errors={errors} className={styles.errors} />
+            ) : null}
         </div>
     );
 };

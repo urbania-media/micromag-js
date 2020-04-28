@@ -14,6 +14,7 @@ const propTypes = {
     name: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     label: MicromagPropTypes.label,
+    errors: MicromagPropTypes.errors,
     value: PropTypes.any, // eslint-disable-line react/forbid-prop-types
     fields: MicromagPropTypes.formFields,
     isHorizontal: PropTypes.bool,
@@ -31,6 +32,7 @@ const propTypes = {
 const defaultProps = {
     label: null,
     value: null,
+    errors: null,
     fields: null,
     isHorizontal: false,
     isSection: false,
@@ -48,6 +50,7 @@ const Field = ({
     name,
     type,
     label,
+    errors,
     fields,
     isHorizontal,
     isSection,
@@ -91,6 +94,7 @@ const Field = ({
     const fieldElement = (
         <FieldComponent
             {...props}
+            errors={errors}
             fields={fields}
             name={name}
             value={value}
@@ -113,6 +117,7 @@ const Field = ({
             <FieldRow
                 key={`field-${name}`}
                 label={label}
+                errors={errors}
                 isHorizontal={finalIsHorizontal}
                 isSection={isSection}
                 withoutLabel={finalWithoutLabel}

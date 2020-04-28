@@ -20,8 +20,9 @@ const messages = defineMessages({
 
 const propTypes = {
     name: PropTypes.string,
-    value: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     fields: MicromagPropTypes.formFields,
+    value: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    errors: MicromagPropTypes.formErrors,
     withBorders: PropTypes.bool,
     gotoFieldForm: PropTypes.func,
     nullEmptyObject: PropTypes.bool,
@@ -33,8 +34,9 @@ const propTypes = {
 
 const defaultProps = {
     name: null,
-    value: null,
     fields: [],
+    value: null,
+    errors: null,
     withBorders: false,
     gotoFieldForm: null,
     nullEmptyObject: false,
@@ -46,8 +48,9 @@ const defaultProps = {
 
 const Fields = ({
     name: namespace,
-    value,
     fields,
+    value,
+    errors,
     withBorders,
     gotoFieldForm,
     nullEmptyObject,
@@ -63,10 +66,16 @@ const Fields = ({
 
     const onFieldChange = useCallback(
         (key, newFieldValue) => {
-            const newValue = {
-                ...value,
-                [key]: newFieldValue,
-            };
+            const newValue =
+                key !== null
+                    ? {
+                          ...value,
+                          [key]: newFieldValue,
+                      }
+                    : {
+                          ...value,
+                          ...newFieldValue,
+                      };
             if (nullableOnChange !== null) {
                 nullableOnChange(newValue);
             }
@@ -94,28 +103,31 @@ const Fields = ({
         () =>
             fields.map(field => {
                 const {
-                    name,
+                    name = null,
                     value: customValue,
+                    errors: customErrors,
                     onChange: customOnChange = null,
                     isHorizontal = globalIsHorizontal,
                 } = field;
-                const fieldValue = value !== null ? value[name] || null : null;
+                const fieldValue = name !== null ? (value || {})[name] || null : value;
                 const fieldOnChange = newFieldValue => onFieldChange(name, newFieldValue);
+                const fieldErrors = name !== null ? (errors || {})[name] || null : errors;
                 return (
                     <Field
                         {...field}
-                        isHorizontal={isHorizontal}
                         name={namespace !== null ? `${namespace}.${name}` : name}
                         value={typeof customValue !== 'undefined' ? customValue : fieldValue}
+                        errors={typeof customErrors !== 'undefined' ? customErrors : fieldErrors}
                         onChange={customOnChange || fieldOnChange}
                         gotoFieldForm={gotoFieldForm}
+                        fieldsComponents={fieldsComponents}
+                        isHorizontal={isHorizontal}
                         className={styles.field}
                         fieldRowClassName={styles.fieldRow}
-                        fieldsComponents={fieldsComponents}
                     />
                 );
             }),
-        [fields, globalIsHorizontal, value, onFieldChange, gotoFieldForm],
+        [fields, globalIsHorizontal, value, errors, onFieldChange, gotoFieldForm],
     );
 
     return (

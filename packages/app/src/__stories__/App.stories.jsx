@@ -7,10 +7,8 @@ export default {
     title: 'App/App',
 };
 
+const apiBaseUrl = `${window.location.protocol}//${window.location.host}/api`;
+
 export const normal = () => (
-    <Container
-        locale="fr"
-        memoryRouter
-        apiBaseUrl={`${window.location.protocol}//${window.location.host}/api`}
-    />
+    <Container locale="fr" memoryRouter apiBaseUrl={apiBaseUrl} apiUsesCookie authCheckOnMount />
 );

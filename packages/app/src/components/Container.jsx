@@ -20,6 +20,8 @@ const propTypes = {
     memoryRouter: PropTypes.bool,
     basePath: PropTypes.string,
     apiBaseUrl: PropTypes.string,
+    apiUsesCookie: PropTypes.bool,
+    authCheckOnMount: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -28,17 +30,19 @@ const defaultProps = {
     memoryRouter: false,
     basePath: null,
     apiBaseUrl: null,
+    apiUsesCookie: false,
+    authCheckOnMount: false,
 };
 
-const Container = ({ locale, memoryRouter, basePath, apiBaseUrl, routes }) => {
+const Container = ({ locale, memoryRouter, basePath, apiBaseUrl, apiUsesCookie, authCheckOnMount, routes }) => {
     const Router = memoryRouter ? MemoryRouter : BrowserRouter;
     return (
         <FieldsProvider>
             <IntlProvider locale={locale}>
                 <Router basename={basePath}>
-                    <ApiProvider baseUrl={apiBaseUrl}>
+                    <ApiProvider baseUrl={apiBaseUrl} usesCookie={apiUsesCookie}>
                         <RoutesProvider routes={routes}>
-                            <AuthProvider>
+                            <AuthProvider checkOnMount={authCheckOnMount}>
                                 <App />
                             </AuthProvider>
                         </RoutesProvider>

@@ -71,7 +71,7 @@ const Form = ({
     fieldsClassName,
     actionsClassName,
 }) => {
-    const { onSubmit, fields, status } = useForm({
+    const { onSubmit, fields, status, value, setValue, errors } = useForm({
         value: initialValue,
         action,
         fields: initialFields,
@@ -92,6 +92,7 @@ const Form = ({
             className={classNames([
                 styles.container,
                 {
+                    // 'was-validated': status !== null,
                     [className]: className !== null,
                 },
             ])}
@@ -101,6 +102,9 @@ const Form = ({
             {FieldsComponent !== null && fields !== null && fields.length > 0 ? (
                 <FieldsComponent
                     fields={fields}
+                    value={value}
+                    errors={errors}
+                    onChange={setValue}
                     className={classNames([
                         styles.fields,
                         {

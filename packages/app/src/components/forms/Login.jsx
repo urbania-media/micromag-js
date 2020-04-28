@@ -30,11 +30,13 @@ const defaultProps = {
             name: 'email',
             type: 'email',
             label: formMessages.emailLabel,
+            required: true,
         },
         {
             name: 'password',
             type: 'password',
             label: formMessages.passwordLabel,
+            required: true,
         },
     ],
     className: null,

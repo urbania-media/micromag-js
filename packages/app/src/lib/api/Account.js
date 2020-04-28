@@ -5,18 +5,18 @@ class AccountApi extends Base {
         super({
             ...opts,
             routes: {
-                me: 'me',
+                account: 'account',
                 ...opts.routes || null,
             }
         });
     }
 
     get() {
-        return this.requestGet(this.route('me'));
+        return this.requestGet(this.route('account'));
     }
 
     update(data) {
-        return this.requestPost(this.route('me'), data);
+        return this.requestPost(this.route('account'), data);
     }
 }
 

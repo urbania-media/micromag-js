@@ -1,9 +1,9 @@
-[production]
->0.2%
-not dead
-not op_mini all
+[production staging]
+last 20 versions
+> 1%
+ie >= 10
 
 [development]
-last 1 chrome version
-last 1 firefox version
-last 1 safari version
+last 10 versions
+> 1%
+ie >= 10

@@ -1,11 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, {useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
+import { useHistory, useLocation } from 'react-router';
+import { parse as parseQueryString } from 'query-string';
 import { FormPanel, Label, Link } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
+import { useAuth } from '../../../contexts/AuthContext';
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
 import RegisterForm from '../../forms/Register';
@@ -37,6 +40,14 @@ const defaultProps = {
 
 const RegisterPage = ({ className }) => {
     const url = useUrlGenerator();
+    const history = useHistory();
+    const { setUser } = useAuth();
+    const { search } = useLocation();
+    const { next = null } = parseQueryString(search);
+    const onRegistered = useCallback((user) => {
+        setUser();
+        history.push(next !== null ? next : url('home'));
+    }, [history, url, setUser]);
     return (
         <MainLayout>
             <Page
@@ -56,7 +67,7 @@ const RegisterPage = ({ className }) => {
                         </div>
                     }
                 >
-                    <RegisterForm />
+                    <RegisterForm onRegistered={onRegistered} />
 
                     <div className={styles.links}>
                         <Link href={url('auth.login')}>{messages.alreadyHaveAccount}</Link>
