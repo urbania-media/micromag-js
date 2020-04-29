@@ -7,6 +7,7 @@ import Background from '@micromag/element-background';
 import Frame from '@micromag/element-frame';
 import Box from '@micromag/element-box';
 import Image from '@micromag/element-image';
+// import Link from '@micromag/element-link';
 
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
@@ -19,62 +20,57 @@ const propTypes = {
     link: MicromagPropTypes.linkElement,
     box: MicromagPropTypes.boxElement,
     background: MicromagPropTypes.backgroundElement,
-    // isFullScreen: PropTypes.bool,
     visible: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
 
 const defaultProps = {
-    image: {
-        width: null,
-        height: null,
-        url: null,
-    },
-    link: {
-        url: null,
-        target: '_blank',
-    },
+    image: null,
+    link: null,
     box: null,
     background: null,
-    // isFullScreen: false,
     visible: true,
     renderFormat: 'view',
     className: null,
 };
 
 const AdScreen = ({
-    image,
-    link,
+    image: imageElement,
+    link: linkElement,
     box,
     background,
-    // isFullScreen,
     visible,
     renderFormat,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
+    const { isView, isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
 
-    const { image: { url: imageUrl } = {} } = image || {};
-    const { url, target } = link;
+    const { url, target = '_blank', rel = 'noopener noreferer' } = linkElement || {};
+    const { image: { url: imageUrl = null } = {} } = imageElement || {};
+
+    // console.log('ad', linkElement, imageElement);
 
     const inner =
         imageUrl || isEditor ? (
             <Image
                 className={styles.content}
-                showEmpty={isEditor && image === null}
+                emptyClassName={styles.empty}
                 caption="Ad"
-                width={width}
-                height={height}
-                resize={false}
-                {...image}
+                {...imageElement}
+                {...(isEditor && imageUrl === null
+                    ? {
+                          resize: true,
+                          showEmpty: true,
+                      }
+                    : { width, height })}
             />
         ) : null;
 
     const content =
-        url !== null ? (
-            <a href={url} target={target} rel="noopener noreferer">
+        url !== null && isView ? (
+            <a href={url} target={target} rel={rel}>
                 {inner}
             </a>
         ) : (

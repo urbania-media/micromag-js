@@ -7,19 +7,17 @@ import {
     LayoutGrid,
     Screen,
 } from '../../../../.storybook/components';
-import { image, background } from '../../../../.storybook/data';
+import { advertising, image, background } from '../../../../.storybook/data';
 
 import Ad from '../Ad';
 import layouts from '../layouts/names';
 
 const props = {
-    image: { ...image({ width: 300, height: 250 }) },
-    link: {
-        url: null,
-        target: '_blank',
-    },
+    ...advertising({ width: 300, height: 250 }),
     background: background(),
 };
+
+console.log('ad props', props);
 
 const switcherProps = {
     layouts,

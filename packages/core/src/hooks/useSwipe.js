@@ -11,8 +11,8 @@ export const useSwipe = ({
     threshold = 3,
     range = 2,
     disabled = false,
-    onChangeStart = null,
-    onChangeEnd = null,
+    onSwipeStart = null,
+    onSwipeEnd = null,
 }) => {
     const index = useRef(0);
     const currentWidth = width || window.innerWidth;
@@ -75,16 +75,16 @@ export const useSwipe = ({
                     (Math.abs(xDelta) > 12 && distance > currentWidth / 12)) // Speedy flick, 12 spped and 1/12 of the screen size
             ) {
                 cancel((index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, count - 1)));
-                if (onChangeEnd !== null) {
-                    onChangeEnd(index.current);
+                if (onSwipeEnd !== null) {
+                    onSwipeEnd(index.current);
                 }
                 return;
             }
 
             set(getItems({ down, mx }));
 
-            if (onChangeStart !== null) {
-                onChangeStart(index.current);
+            if (onSwipeStart !== null) {
+                onSwipeStart(index.current);
             }
         },
     );
@@ -95,9 +95,9 @@ export const useSwipe = ({
 
     const setIndex = useCallback(
         idx => {
-            if (onChangeEnd !== null) {
-                onChangeEnd(idx);
-            }
+            // if (onSwipeEnd !== null) {
+            //     onSwipeEnd(idx);
+            // }
             index.current = idx;
             reset();
         },

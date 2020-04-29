@@ -15,6 +15,10 @@ export const schemas = defineMessages({
         id: 'schema.properties.image',
         defaultMessage: 'Image',
     },
+    link: {
+        id: 'schema.properties.link',
+        defaultMessage: 'Link',
+    },
     background: {
         id: 'schema.properties.background',
         defaultMessage: 'Background',

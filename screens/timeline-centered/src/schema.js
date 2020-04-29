@@ -18,11 +18,19 @@ export default {
                 // layout: {
                 //     $ref: 'https://schemas.micromag.ca/0.1/fields/screen-layout.json',
                 //     title: 'Layout',
+                //     screenType: 'timeline-centered',
                 //     enum: names,
                 //     intl: {
                 //         title: messages.layout,
                 //     },
                 // },
+                cards: {
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/cards.json',
+                    title: 'Cards',
+                    intl: {
+                        title: messages.cards,
+                    },
+                },
                 background: {
                     $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
                     title: 'Background',

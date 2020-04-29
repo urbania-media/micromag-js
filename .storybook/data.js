@@ -143,10 +143,10 @@ export const video = () => ({
 
 export const background = () => ({ color: { color: chance.color({ format: 'rgb' }) } });
 
-export const backgroundImage = ({ random = false } = {}) => ({
+export const backgroundImage = ({ rand = false } = {}) => ({
     color: { color: chance.color({ format: 'rgb' }) },
     image: {
-        url: `https://picsum.photos/1000/1000/?blur&random=${random ? Math.random() : 1}`,
+        url: `https://picsum.photos/1000/1000/?blur&random=${rand ? Math.random() : 1}`,
         width: 1000,
         height: 1000,
     },
@@ -159,10 +159,8 @@ export const audio = () => ({
 });
 
 export const advertising = ({ width, height }) => ({
-    width,
-    height,
-    image: { url: `https://picsum.photos/${width}/${height}`, width, height },
-    url: 'https://www.urbania.ca',
+    image: { image: { url: `https://picsum.photos/${width}/${height}`, width, height } },
+    url: { url: 'https://www.urbania.ca', target: '_blank', rel: 'noopener noreferer' },
 });
 
 export const markers = ({ count = 3, withText = true, withImage = true } = {}) => {

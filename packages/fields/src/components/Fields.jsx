@@ -104,7 +104,7 @@ const Fields = ({
 
     const fieldsElements = useMemo(
         () =>
-            fields.map(field => {
+            fields.map((field, i) => {
                 const {
                     name = null,
                     value: customValue,
@@ -119,6 +119,7 @@ const Fields = ({
                 return (
                     <Field
                         {...field}
+                        key={`field-${name}-${i + 1}`}
                         name={namespace !== null ? `${namespace}.${name}` : name}
                         value={typeof customValue !== 'undefined' ? customValue : fieldValue}
                         errors={typeof customErrors !== 'undefined' ? customErrors : fieldErrors}

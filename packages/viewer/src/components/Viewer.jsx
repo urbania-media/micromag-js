@@ -70,11 +70,12 @@ const Viewer = ({
     const currentIndex = getIndexFromId(screenId);
     const changeIndex = useCallback(
         index => {
+            // console.log('call', index);
             if (onScreenChange !== null) {
                 onScreenChange(components[index], index);
             }
         },
-        [onScreenChange],
+        [components, onScreenChange],
     );
 
     // Swipe mechanics
@@ -82,6 +83,7 @@ const Viewer = ({
         width: screenSize.width,
         items: components,
         disabled: desktop,
+        // onSwipeEnd: changeIndex,
     });
 
     // Move it to the right place when id changes

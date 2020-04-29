@@ -18,6 +18,7 @@ export default {
                 // layout: {
                 //     $ref: 'https://schemas.micromag.ca/0.1/fields/screen-layout.json',
                 //     title: 'Layout',
+                //     screenType: 'survey-multiple-choice',
                 //     enum: names,
                 //     intl: {
                 //         title: messages.layout,

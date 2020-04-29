@@ -1,4 +1,5 @@
 {
     "screens.timeline-dots.schema.properties.background": "Background",
+    "screens.timeline-dots.schema.properties.cards": "Cards",
     "screens.timeline-dots.schema.title": "Timeline with dots"
 }

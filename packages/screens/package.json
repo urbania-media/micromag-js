@@ -51,6 +51,7 @@
         "@babel/runtime": "^7.8.7",
         "@micromag/core": "^0.1.0",
         "@micromag/screen-ad": "^0.1.0",
+        "@micromag/screen-ad-slot": "^0.1.0",
         "@micromag/screen-audio": "^0.1.0",
         "@micromag/screen-gallery": "^0.1.0",
         "@micromag/screen-gallery-scroll": "^0.1.0",

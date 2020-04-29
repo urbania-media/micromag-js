@@ -3,5 +3,6 @@
     "title": "Screen Layout",
     "type": "string",
     "default": null,
-    "component": "layout"
+    "component": "layout",
+    "screenType": null
 }

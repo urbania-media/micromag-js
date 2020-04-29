@@ -1,4 +1,5 @@
 export { schema as Ad } from '@micromag/screen-ad';
+export { schema as AdSlot } from '@micromag/screen-ad-slot';
 export { schema as Audio } from '@micromag/screen-audio';
 export { schema as Gallery } from '@micromag/screen-gallery';
 export { schema as GalleryScroll } from '@micromag/screen-gallery-scroll';

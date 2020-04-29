@@ -94,7 +94,7 @@ const EditorScreens = ({ story, isVertical, onClickScreen, onChange, className }
         setCreateModalOpened,
     ]);
 
-    console.log(routes.home, routes.screen);
+    // console.log(routes.home, routes.screen);
 
     return (
         <div
