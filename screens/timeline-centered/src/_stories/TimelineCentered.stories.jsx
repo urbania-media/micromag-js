@@ -32,10 +32,20 @@ export const Placeholders = () => (
     <LayoutGrid layouts={layouts}>
         {layout => (
             <PlaceholderScreen>
-                <TimelineCentered layout={layout}  renderFormat="placeholder" />
+                <TimelineCentered layout={layout} renderFormat="placeholder" />
             </PlaceholderScreen>
         )}
     </LayoutGrid>
+);
+
+export const Editor = () => (
+    <LayoutSwitcher layouts={layouts}>
+        {layout => (
+            <Screen>
+                <TimelineCentered layout={layout} renderFormat="edit" />
+            </Screen>
+        )}
+    </LayoutSwitcher>
 );
 
 export const Normal = () => (

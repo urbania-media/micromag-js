@@ -69,6 +69,16 @@ export const Previews = () => (
     </LayoutSwitcher>
 );
 
+export const Editor = () => (
+    <LayoutSwitcher {...switcherProps}>
+        {layout => (
+            <Screen>
+                <Slideshow layout={layout} renderFormat="edit" />
+            </Screen>
+        )}
+    </LayoutSwitcher>
+);
+
 export const Normal = () => (
     <LayoutSwitcher {...switcherProps}>
         {layout => (

@@ -45,19 +45,26 @@ const GalleryScrollScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
 
+    const defaultArray = [
+        ...Array(16).map(i => ({
+            id: `image-${i}`,
+            ...(imageList[i] ? imageList[i] : null),
+        })),
+    ];
     const images =
         imageList && imageList.length > 0 && !isPlaceholder
             ? imageList
-            : [...Array(15)].map(() => null);
+            : [...Array(16)].map(() => null);
+    const currentImages = isEditor ? defaultArray : images;
 
     const groups = [];
     let step = 0;
     let current = 0;
     let index = 0;
 
-    images.forEach(image => {
+    currentImages.forEach(image => {
         const max = columns[step];
         if (current < max) {
             current += 1;
@@ -92,7 +99,14 @@ const GalleryScrollScreen = ({
                     {isPlaceholder ? (
                         <Placeholders.Image key={`image-${j + 1}`} className={styles.placeholder} />
                     ) : (
-                        <Image className={styles.imageComponent} {...it} />
+                        <Image
+                            className={styles.imageComponent}
+                            emptyClassName={styles.empty}
+                            fit={{ size: 'cover' }}
+                            hasParentContainer={false}
+                            showEmpty={isEditor}
+                            {...it}
+                        />
                     )}
                 </div>
             ))}

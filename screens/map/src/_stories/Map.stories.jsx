@@ -49,6 +49,16 @@ export const Previews = () => (
     </LayoutSwitcher>
 );
 
+export const Editor = () => (
+    <LayoutSwitcher {...switcherProps}>
+        {layout => (
+            <Screen>
+                <MapScreen layout={layout} renderFormat="edit" {...props} />
+            </Screen>
+        )}
+    </LayoutSwitcher>
+);
+
 export const Normal = () => (
     <LayoutSwitcher {...switcherProps}>
         {layout => (

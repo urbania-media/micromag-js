@@ -65,7 +65,7 @@ const QuoteSplitScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
 
     const items = isPlaceholder
         ? [
@@ -94,7 +94,12 @@ const QuoteSplitScreen = ({
                   ])}
               >
                 <blockquote className={blockStyles.blockquote}>
-                    <Text {...quote} className={blockStyles.quote} />
+                    <Text
+                        {...quote}
+                        className={blockStyles.quote}
+                        emptyClassName={blockStyles.empty}
+                        showEmpty={isEditor}
+                      />
                 </blockquote>
             </div>,
             <div

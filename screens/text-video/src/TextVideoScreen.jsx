@@ -15,8 +15,8 @@ import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    text: MicromagPropTypes.text,
-    video: MicromagPropTypes.text,
+    text: MicromagPropTypes.textElement,
+    video: MicromagPropTypes.videoElement,
     background: MicromagPropTypes.backgroundElement,
     box: MicromagPropTypes.boxElement,
     grid: MicromagPropTypes.boxElement,
@@ -54,7 +54,7 @@ const TextVideoScreen = ({
 }) => {
     const { width, height } = useScreenSize();
     const { spacing = 0 } = box || {};
-    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
 
     let videoSize = {};
     if (video && video.width && video.height) {
@@ -66,13 +66,26 @@ const TextVideoScreen = ({
     const textElement = isPlaceholder ? (
         <Placeholders.Text key="text-element" className={styles.placeholderText} />
     ) : (
-        <TextComponent {...text} key="text-element" className={styles.text} />
+        <TextComponent
+            {...text}
+            key="text-element"
+            showEmpty={isEditor && text === null}
+            className={styles.text}
+            emptyClassName={styles.empty}
+        />
     );
 
     const videoElement = isSimple ? (
         <Placeholders.Video key="video-element" className={styles.placeholderVideo} />
     ) : (
-        <Video {...video} {...videoSize} key="video-element" className={styles.video} />
+        <Video
+            {...video}
+            {...videoSize}
+            key="video-element"
+            showEmpty={isEditor && video === null}
+            className={styles.video}
+            emptyClassName={styles.empty}
+        />
     );
 
     const items = reverse ? [textElement, videoElement] : [videoElement, textElement];

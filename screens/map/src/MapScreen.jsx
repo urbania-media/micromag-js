@@ -57,7 +57,7 @@ const MapScreen = ({
     }, []);
 
     const onClickMarker = useCallback(
-        i => {
+        (e, i) => {
             setIndex(i);
         },
         [setIndex],

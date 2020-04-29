@@ -47,7 +47,7 @@ const AdSlotScreen = ({ ad, box, background, visible, renderFormat, className })
     const preview = isSimple ? (
         <div className={styles.previewBlock} style={{ width: 300, height: 200 }} />
     ) : (
-        <Image isPlaceholder={isEditor} />
+        <Image showEmpty={isEditor && iframe === null} />
     );
 
     const inner =

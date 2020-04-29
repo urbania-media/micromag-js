@@ -57,7 +57,7 @@ const QuoteScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
     const { layout = [] } = grid || {};
 
     const item = (
@@ -66,6 +66,7 @@ const QuoteScreen = ({
             source={source}
             author={author}
             isPlaceholder={isPlaceholder}
+            showEmpty={isEditor}
             centered={grid !== null}
         />
     );

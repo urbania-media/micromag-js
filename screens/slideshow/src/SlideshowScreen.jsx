@@ -7,9 +7,9 @@ import { animated } from 'react-spring';
 import Background from '@micromag/element-background';
 import Frame from '@micromag/element-frame';
 import Box from '@micromag/element-box';
-import Image from '@micromag/element-image';
-import Button from '@micromag/element-button';
-import TextComponent from '@micromag/element-text';
+import ImageElement from '@micromag/element-image';
+import ButtonElement from '@micromag/element-button';
+import TextElement from '@micromag/element-text';
 
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
@@ -49,7 +49,7 @@ const SlideshowScreen = ({
 }) => {
     const [parallelIndex, setParallelIndex] = useState(0);
     const { width, height, screens } = useScreenSize();
-    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
     const maxWidth = Math.min(width, 500);
 
     const { items, bind, setIndex } = useSwipe({
@@ -75,6 +75,57 @@ const SlideshowScreen = ({
         }
     }, [items, parallelIndex, setIndex]);
 
+    const inner =
+        isEditor && slides.length === 0 ? (
+            <>
+                <ImageElement maxWidth={width} showEmpty emptyClassName={styles.empty} />
+                <TextElement showEmpty emptyClassName={styles.empty} />
+            </>
+        ) : (
+            <>
+                <button {...bind()} type="button" className={styles.slides}>
+                    {items.map(({ display, visibility, x }, i) => {
+                        if (isSimple && i > 0) return null;
+                        const item = slides[i];
+                        return (
+                            <animated.div
+                                key={i}
+                                style={{
+                                    display,
+                                    visibility,
+                                    x,
+                                }}
+                                className={styles.slide}
+                            >
+                                {item.image ? (
+                                    <ImageElement {...item.image} maxWidth={width} />
+                                ) : null}
+                                {item.text ? <TextElement {...item.text} /> : null}
+                            </animated.div>
+                        );
+                    })}
+                </button>
+                {items.length > 1 ? (
+                    <div className={styles.controls}>
+                        <ButtonElement
+                            className={styles.previous}
+                            disabled={isSimple}
+                            onClick={onClickPrevious}
+                        >
+                            Previous
+                        </ButtonElement>
+                        <ButtonElement
+                            className={styles.next}
+                            disabled={isSimple}
+                            onClick={onClickNext}
+                        >
+                            Next
+                        </ButtonElement>
+                    </div>
+                ) : null}
+            </>
+        );
+
     return (
         <div
             className={classNames([
@@ -90,54 +141,7 @@ const SlideshowScreen = ({
             <Background {...background} width={width} height={height} className={styles.background}>
                 <Frame width={maxWidth} height={height} visible={visible}>
                     <Box {...box} withSmallSpacing={isSimple}>
-                        {isPlaceholder ? (
-                            <Placeholders.Slideshow />
-                        ) : (
-                            <>
-                                <button {...bind()} type="button" className={styles.slides}>
-                                    {items.map(({ display, visibility, x }, i) => {
-                                        if (isSimple && i > 0) return null;
-                                        const item = slides[i];
-                                        return (
-                                            <animated.div
-                                                key={i}
-                                                style={{
-                                                    display,
-                                                    visibility,
-                                                    x,
-                                                }}
-                                                className={styles.slide}
-                                            >
-                                                {item.image ? (
-                                                    <Image {...item.image} maxWidth={width} />
-                                                ) : null}
-                                                {item.text ? (
-                                                    <TextComponent {...item.text} />
-                                                ) : null}
-                                            </animated.div>
-                                        );
-                                    })}
-                                </button>
-                                {items.length > 1 ? (
-                                    <div className={styles.controls}>
-                                        <Button
-                                            className={styles.previous}
-                                            disabled={isSimple}
-                                            onClick={onClickPrevious}
-                                        >
-                                            Previous
-                                        </Button>
-                                        <Button
-                                            className={styles.next}
-                                            disabled={isSimple}
-                                            onClick={onClickNext}
-                                        >
-                                            Next
-                                        </Button>
-                                    </div>
-                                ) : null}
-                            </>
-                        )}
+                        {isPlaceholder ? <Placeholders.Slideshow /> : inner}
                     </Box>
                 </Frame>
             </Background>

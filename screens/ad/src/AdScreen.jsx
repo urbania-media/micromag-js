@@ -63,8 +63,8 @@ const AdScreen = ({
         imageUrl || isEditor ? (
             <Image
                 className={styles.content}
+                showEmpty={isEditor && image === null}
                 caption="Ad"
-                isPlaceholder={isEditor}
                 width={width}
                 height={height}
                 resize={false}

@@ -2,5 +2,6 @@
     "screens.image.schema.properties.background": "Background",
     "screens.image.schema.properties.image": "Image",
     "screens.image.schema.properties.layout": "Layout",
+    "screens.image.schema.properties.text": "Text",
     "screens.image.schema.title": "Image"
 }

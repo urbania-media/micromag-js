@@ -57,7 +57,7 @@ const VideoScreen = ({
 }) => {
     const { width, height } = useScreenSize();
     const { size } = fit || {};
-    const { isSimple } = getRenderFormat(renderFormat);
+    const { isSimple, isEditor } = getRenderFormat(renderFormat);
 
     const placeholderSized = size === 'cover' ? Placeholders.VideoFull : Placeholders.Video;
     const Placeholder = loop ? Placeholders.VideoLoop : placeholderSized;
@@ -74,6 +74,7 @@ const VideoScreen = ({
             loop={loop}
             controlsVisible={controls}
             fit={fit}
+            showEmpty={isEditor}
             className={styles.video}
         />
     );

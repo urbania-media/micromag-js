@@ -9,7 +9,6 @@ export default {
     intl: {
         title: messages.schemaTitle,
     },
-
     allOf: [
         {
             $ref: 'https://schemas.micromag.ca/0.1/screens/screen.json',
@@ -29,6 +28,13 @@ export default {
                     title: 'Title',
                     intl: {
                         title: messages.image,
+                    },
+                },
+                text: {
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/text.json',
+                    title: 'Text',
+                    intl: {
+                        title: messages.text,
                     },
                 },
                 background: {
