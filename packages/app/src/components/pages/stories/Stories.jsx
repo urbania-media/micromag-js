@@ -1,14 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
 import { useLocation } from 'react-router';
 import { parse as parseQuery, stringify as stringifyQuery } from 'query-string';
-import { AsyncPaginatedList, Button } from '@micromag/core/components';
+import { Pagination, Button } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
+import { useStories } from '@micromag/data';
 
-import { useApi } from '../../../contexts/ApiContext';
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
 import StoriesList from '../../lists/Stories';
@@ -40,23 +40,25 @@ const StoriesPage = ({ count, className }) => {
     const url = useUrlGenerator();
     const { search } = useLocation();
     const { page = 1, ...query } = useMemo(
-        () => (search !== null && search.length > 0 ? parseQuery(search) : {}),
+        () => (search !== null && search.length > 0 ? parseQuery(search) : null),
         [search],
     );
-    const queryString = Object.keys(query).length > 0 ? `${stringifyQuery(query)}` : null;
-    const api = useApi();
-    const getPage = useCallback(pageRequested => api.stories.get(query, pageRequested, count), [
-        queryString,
-        count,
-    ]);
-    const paginationUrl = `${url('stories')}${queryString !== null ? `?${queryString}` : ''}`;
+    const finalQuery = Object.keys(query).length > 0 ? query : null;
+    const { stories, total } = useStories(finalQuery, page, count);
+    const paginationUrl = `${url('stories')}${
+        finalQuery !== null ? `?${stringifyQuery(finalQuery)}` : ''
+    }`;
     return (
         <MainLayout>
             <Page
                 title={messages.title}
                 sidebar={
                     <div className={styles.actions}>
-                        <Button href={url('stories.create')} theme="primary" className={styles.button}>
+                        <Button
+                            href={url('stories.create')}
+                            theme="primary"
+                            className={styles.button}
+                        >
                             {messages.create}
                         </Button>
                     </div>
@@ -68,15 +70,12 @@ const StoriesPage = ({ count, className }) => {
                     },
                 ])}
             >
-                <AsyncPaginatedList
-                    getPage={getPage}
-                    page={parseInt(page, 10)}
-                    paginationUrl={paginationUrl}
-                >
-                    {({ pageItems }) =>
-                        pageItems !== null ? <StoriesList items={pageItems} /> : 'Loading...'
-                    }
-                </AsyncPaginatedList>
+                {stories !== null ? (
+                    <>
+                        <StoriesList items={stories} />
+                        <Pagination page={parseInt(page, 10)} total={total} url={paginationUrl} />
+                    </>
+                ) : null}
             </Page>
         </MainLayout>
     );

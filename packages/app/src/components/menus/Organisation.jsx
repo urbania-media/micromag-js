@@ -6,10 +6,10 @@ import { defineMessages } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Menu } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
+import { useOrganisations } from '@micromag/data';
 
 // import * as AppPropTypes from '../../lib/PropTypes';
 import { useOrganisation } from '../../contexts/OrganisationContext';
-import { useOrganisations } from '../../hooks/useData';
 
 const messages = defineMessages({
     organisations: {

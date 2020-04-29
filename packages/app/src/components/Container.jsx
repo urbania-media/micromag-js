@@ -5,11 +5,11 @@ import { IntlProvider } from '@micromag/intl';
 import { MemoryRouter } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import { RoutesProvider } from '@micromag/core/contexts';
+import { ApiProvider } from '@micromag/data';
 import { FieldsProvider } from '@micromag/fields';
 
 import * as AppPropTypes from '../lib/PropTypes';
 import { AuthProvider } from '../contexts/AuthContext';
-import { ApiProvider } from '../contexts/ApiContext';
 import App from './App';
 
 import defaultRoutes from '../data/routes.json';

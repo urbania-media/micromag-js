@@ -5,8 +5,8 @@ import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
 import { Label, Button, Card } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
+import { useRecentStories } from '@micromag/data';
 
-import { useRecentStories } from '../../hooks/useData';
 import StoriesList from '../lists/Stories';
 
 const messages = defineMessages({

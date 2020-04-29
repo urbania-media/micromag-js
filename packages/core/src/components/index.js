@@ -4,9 +4,6 @@ export { default as Buttons } from './buttons/Buttons';
 export { default as Form } from './forms/Form';
 export { default as FormPanel } from './forms/FormPanel';
 
-export { default as AsyncList } from './lists/Async';
-export { default as AsyncPaginatedList } from './lists/AsyncPaginated';
-
 export { default as Breadcrumb } from './menus/Breadcrumb';
 export { default as DropdownMenu } from './menus/Dropdown';
 export { default as Menu } from './menus/Menu';

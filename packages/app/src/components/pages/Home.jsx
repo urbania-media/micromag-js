@@ -5,8 +5,8 @@ import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
 import { Label, Button } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
+import { useOrganisations } from '@micromag/data';
 
-import { useOrganisations } from '../../hooks/useData';
 import MainLayout from '../layouts/Main';
 import Page from '../partials/Page';
 import AccountBox from '../partials/AccountBox';

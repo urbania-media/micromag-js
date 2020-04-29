@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Form } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
+import { useApi } from '@micromag/data';
 
 import * as AppPropTypes from '../../lib/PropTypes';
-import { useApi } from '../../contexts/ApiContext';
 
 import formMessages from './messages';
 import { organisation as organisationFields } from './fields';

@@ -1,7 +1,7 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useItems } from '@micromag/core/hooks';
+import { useMedias } from '@micromag/data';
 
 import * as AppPropTypes from '../lib/PropTypes';
 
@@ -14,46 +14,25 @@ import styles from '../styles/media-gallery.module.scss';
 
 const propTypes = {
     items: AppPropTypes.medias,
-    getItems: PropTypes.func,
-    getItemsPage: PropTypes.func,
     isPicker: PropTypes.bool,
     className: PropTypes.string,
     onClickMedia: PropTypes.func,
 };
 
 const defaultProps = {
-    items: [],
-    getItems: null,
-    getItemsPage: null,
+    items: null,
     isPicker: false,
     className: null,
     onClickMedia: null,
 };
 
-const MediaGallery = ({
-    items: initialItems,
-    getItems,
-    getItemsPage,
-    isPicker,
-    className,
-    onClickMedia,
-}) => {
+const MediaGallery = ({ items: initialItems, isPicker, className, onClickMedia }) => {
     // Filters
     const [filtersValue, setFiltersValue] = useState(null);
 
     // Items
-    const getItemsWithFilters = useMemo(
-        () => (getItems !== null ? () => getItems(filtersValue) : null),
-        [filtersValue, getItems],
-    );
-    const getItemsPageWithFilters = useMemo(
-        () => (getItemsPage !== null ? (...args) => getItemsPage(filtersValue, ...args) : null),
-        [filtersValue, getItemsPage],
-    );
-    const { items } = useItems({
+    const { medias } = useMedias(filtersValue, 1, 100, {
         items: initialItems,
-        getItems: getItemsWithFilters,
-        getPage: getItemsPageWithFilters,
     });
 
     // Medias
@@ -75,8 +54,8 @@ const MediaGallery = ({
     // Upload modal
     const [uploadModalOpened, setUploadModalOpened] = useState(false);
     const onClickAdd = useCallback(() => setUploadModalOpened(true), [setUploadModalOpened]);
-    const onUploadCompleted = useCallback(medias => {
-        console.log(medias);
+    const onUploadCompleted = useCallback(newMedias => {
+        console.log(newMedias);
     }, []);
     const onUploadRequestClose = useCallback(() => setUploadModalOpened(false), [
         setUploadModalOpened,
@@ -103,7 +82,7 @@ const MediaGallery = ({
             <div className={styles.content}>
                 <div className={styles.gallery}>
                     <Gallery
-                        items={items}
+                        items={medias}
                         withInfoButton={isPicker}
                         onClickItem={onClickItem}
                         onClickItemInfo={onClickItemInfo}

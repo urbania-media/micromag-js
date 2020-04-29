@@ -5,9 +5,9 @@ import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
 import { Label } from '@micromag/core/components';
 import { useRoutePush } from '@micromag/core/contexts';
+import { useOrganisation } from '@micromag/data';
 
 import { useSetOrganisation } from '../../../contexts/OrganisationContext';
-import { useOrganisation } from '../../../hooks/useData';
 import MainLayout from '../../layouts/Main';
 
 import styles from '../../../styles/pages/organisation/switch.module.scss';

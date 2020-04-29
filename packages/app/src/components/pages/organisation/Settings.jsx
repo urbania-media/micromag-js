@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
 import { FormPanel } from '@micromag/core/components';
+import { useOrganisation } from '@micromag/data';
 
 import { useOrganisation as useContextOrganisation } from '../../../contexts/OrganisationContext';
-import { useOrganisation } from '../../../hooks/useData';
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
 import OrganisationMenu from '../../menus/Organisation';

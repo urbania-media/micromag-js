@@ -3,9 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
-import { AsyncList } from '@micromag/core/components';
+import { useOrganisationTeam } from '@micromag/data';
 
-import { useOrganisationTeam } from '../../../hooks/useData';
 import { useOrganisation } from '../../../contexts/OrganisationContext';
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
@@ -33,9 +32,7 @@ const defaultProps = {
 
 const OrganisationTeamPage = ({ className }) => {
     const organisation = useOrganisation();
-    const { team, load } = useOrganisationTeam(organisation.id, null, {
-        autoload: false,
-    });
+    const { team } = useOrganisationTeam(organisation.id);
     return (
         <MainLayout>
             <Page
@@ -49,9 +46,7 @@ const OrganisationTeamPage = ({ className }) => {
                     },
                 ])}
             >
-                <AsyncList getItems={load} items={team}>
-                    {({ items }) => (items !== null ? <TeamList items={items} /> : null)}
-                </AsyncList>
+                {team !== null ? <TeamList items={team} /> : null}
             </Page>
         </MainLayout>
     );

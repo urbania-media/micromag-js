@@ -2,6 +2,7 @@
 
 .container {
     position: relative;
+    padding: $spacer / 2;
 
     .inner {
         display: flex;

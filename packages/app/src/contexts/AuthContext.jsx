@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext, useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useApi } from '@micromag/data';
 
 import * as AppPropTypes from '../lib/PropTypes';
-import { useApi } from './ApiContext';
 
 const AuthContext = React.createContext(null);
 

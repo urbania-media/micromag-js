@@ -2,7 +2,7 @@
 import React, { useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-import Api from '../lib/api/Api';
+import Api from '../lib/Api';
 
 const ApiContext = React.createContext(null);
 

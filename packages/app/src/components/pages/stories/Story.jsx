@@ -8,8 +8,8 @@ import { Button } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 import { Screens } from '@micromag/editor';
 import { ScreensProvider } from '@micromag/screens';
+import { useStory } from '@micromag/data';
 
-import { useStory } from '../../../hooks/useData';
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
 

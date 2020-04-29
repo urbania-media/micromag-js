@@ -6,8 +6,7 @@ import { defineMessages } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Form } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
-
-import { useApi } from '../../contexts/ApiContext';
+import { useApi } from '@micromag/data';
 
 import formMessages from './messages';
 

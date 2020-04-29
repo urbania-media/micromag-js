@@ -85,6 +85,7 @@ const Navbar = ({
                         value={searchValue}
                         onChange={onSearchChange}
                         onFocus={onFocusSearch}
+                        className={classNames(['form-inline'])}
                     />
                     <form className={classNames(['form-inline', 'ml-auto'])}>
                         <Button
