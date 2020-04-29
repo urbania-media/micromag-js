@@ -40,7 +40,7 @@ const OrganisationMediasPage = ({ className }) => (
                 },
             ])}
         >
-            Medias
+            <MediaGallery />
         </Page>
     </MainLayout>
 );

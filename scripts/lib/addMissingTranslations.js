@@ -2,6 +2,9 @@ const fs = require('fs');
 const sortIntlMessages = require('./sortIntlMessages');
 
 const addMissingTranslations = (baseLangFile, otherLangFiles) => {
+    if (!fs.existsSync(baseLangFile)) {
+        return;
+    }
     const baseTranslations = require(baseLangFile);
     otherLangFiles.forEach((langPath) => {
         const translations = require(langPath);
