@@ -3,17 +3,5 @@
 @import '~@micromag/core/scss/mixins';
 
 .container {
-    position: relative;
 
-    .grid {
-        display: grid;
-        position: relative;
-        grid-column-gap: 5px;
-        grid-row-gap: 15px;
-        grid-template-columns: repeat(3, minmax(95px, 1fr));
-        align-content: space-between;
-        justify-content: space-around;
-        max-width: 100%;
-        margin: 0;
-    }
 }

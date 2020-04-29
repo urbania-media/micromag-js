@@ -1,1 +1,1 @@
-[{"id":"media-gallery.content.search_placeholder","defaultMessage":"Rechercher ou filter","file":"src/components/forms/Search.jsx","start":{"line":21,"column":17},"end":{"line":24,"column":5}}]
+[{"id":"media-gallery.forms.search_placeholder","defaultMessage":"Search...","file":"src/components/forms/Search.jsx","start":{"line":10,"column":17},"end":{"line":13,"column":5}}]

@@ -2,39 +2,42 @@
 @import '~@micromag/core/scss/placeholders';
 @import '~@micromag/core/scss/mixins';
 
+%inactive {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
 .container {
     position: relative;
 
-    .search {
-        border-bottom: solid 1px $border-color;
+    .content {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
     }
 
-    .tags::-webkit-scrollbar {
-        display: none;
+    .gallery {
+        transition: transform 0.2s ease-out;
     }
 
-    &.filtersOpened {
-        .search {
-            border-bottom: 0;
+    .mediaMetadata {
+        @extend %inactive;
+        transform: translate(100%, 0);
+        transition: transform 0.2s ease-out;
+    }
+
+    &.metadataOpened {
+        .gallery {
+            @extend %inactive;
+            transform: translate(-100%, 0);
         }
 
-        .gallery,
-        .tags {
-            visibility: hidden;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-    }
-
-    &.metadataOpen {
-        .search,
-        .gallery,
-        .tags {
-            visibility: hidden;
-            position: absolute;
-            top: 0;
-            left: 0;
+        .mediaMetadata {
+            position: static;
+            width: auto;
+            transform: translate(0, 0);
         }
     }
 }

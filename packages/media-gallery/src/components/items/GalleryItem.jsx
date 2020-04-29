@@ -2,21 +2,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
 import { faPlayCircle, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Card, Button } from '@micromag/core/components';
 
-import { Button } from '@micromag/core';
+import * as AppPropTypes from '../../lib/PropTypes';
 
 import styles from '../../styles/items/gallery-item.module.scss';
 
 const propTypes = {
     withInfoButton: PropTypes.bool,
-    item: PropTypes.shape({
-        type: PropTypes.string,
-        url: PropTypes.string,
-        filename: PropTypes.string,
-    }),
+    item: AppPropTypes.media,
     onClick: PropTypes.func,
     onClickInfo: PropTypes.func,
     className: PropTypes.string,
@@ -31,48 +27,48 @@ const defaultProps = {
 };
 
 const GalleryItem = ({ withInfoButton, item, onClick, onClickInfo, className }) => {
-    const { type, url, filename } = item;
-
+    const { type, thumbnail_url: thumbnail = null, name, size } = item;
     return (
-        <div
+        <Card
+            image={
+                <button
+                    type="button"
+                    className={classNames(['p-0', 'bg-dark', styles.imageButton])}
+                    onClick={onClick}
+                >
+                    <div
+                        className={classNames(['card-img-top', styles.image])}
+                        style={{
+                            backgroundImage: thumbnail !== null ? `url("${thumbnail}")` : null,
+                        }}
+                    />
+                    {type === 'video' ? (
+                        <FontAwesomeIcon className={styles.playIcon} icon={faPlayCircle} />
+                    ) : null}
+                </button>
+            }
             className={classNames([
                 styles.container,
                 {
                     [className]: className !== null,
                 },
             ])}
+            bodyClassName={styles.body}
+            beforeBody={
+                withInfoButton ? (
+                    <Button className={styles.infoButton} onClick={onClickInfo} withoutStyle>
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                    </Button>
+                ) : null
+            }
+            onClickBody={onClick}
         >
-            <Button
-                className={classNames([
-                    styles.imageContainer,
-                    {
-                        [className]: className !== null,
-                    },
-                ])}
-                withoutStyle
-                onClick={onClick}
-            >
-                <div className={styles.thumbnailContainer}>
-                    <div className={styles.thumbnailInner}>
-                        <div
-                            className={styles.thumbnail}
-                            style={{
-                                backgroundImage: `url("${url}")`,
-                            }}
-                        />
-                        {type === 'video' ? (
-                            <FontAwesomeIcon className={styles.videoIcon} icon={faPlayCircle} />
-                        ) : null}
-                        <div className={styles.filename}> {filename} </div>
-                    </div>
-                </div>
-            </Button>
-            {withInfoButton ? (
-                <button value={filename} className={styles.infoButton} onClick={onClickInfo}>
-                    <FontAwesomeIcon icon={faInfoCircle} />
-                </button>
-            ) : null}
-        </div>
+            <p className="m-0">
+                <strong>{name}</strong>
+                <br />
+                <small>{size}</small>
+            </p>
+        </Card>
     );
 };
 

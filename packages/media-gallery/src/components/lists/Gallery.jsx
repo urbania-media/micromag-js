@@ -23,39 +23,30 @@ const defaultProps = {
     className: null,
 };
 
-const Gallery = ({ items, withInfoButton, onClickItem, onClickItemInfo, className }) => {
-
-    return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-        >
-            <div className={styles.grid}>
-                {items.map((item, index) => {
-                    return (
-                        <GalleryItem
-                            key={`gallery-item-${item.filename}`}
-                            item={item}
-                            onClick={e => (onClickItem !== null ?
-                                    onClickItem(e, item, index)
-                                : null)}
-                            onClickInfo={e => {
-                                if (onClickItemInfo !== null) {
-                                    onClickItemInfo(e, item, index);
-                                }
-                            }}
-                            withInfoButton={withInfoButton}
-                        />
-                    );
-                })}
-            </div>
+const Gallery = ({ items, withInfoButton, onClickItem, onClickItemInfo, className }) => (
+    <div
+        className={classNames([
+            styles.container,
+            'p-2',
+            {
+                [className]: className !== null,
+            },
+        ])}
+    >
+        <div className={classNames(['row', 'row-cols-2', 'row-cols-md-3'])}>
+            {items.map(item => (
+                <div className="col mb-4" key={`gallery-item-${item.id}`}>
+                    <GalleryItem
+                        item={item}
+                        onClick={onClickItem !== null ? () => onClickItem(item) : null}
+                        onClickInfo={onClickItemInfo !== null ? () => onClickItemInfo(item) : null}
+                        withInfoButton={withInfoButton}
+                    />
+                </div>
+            ))}
         </div>
-    );
-};
+    </div>
+);
 
 Gallery.propTypes = propTypes;
 Gallery.defaultProps = defaultProps;

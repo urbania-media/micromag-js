@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
+import MediaGallery from '@micromag/media-gallery';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
