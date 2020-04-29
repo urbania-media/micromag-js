@@ -11,6 +11,10 @@ export const schemas = defineMessages({
         id: 'schema.properties.layout',
         defaultMessage: 'Layout',
     },
+    ad: {
+        id: 'schema.properties.ad',
+        defaultMessage: 'Ad',
+    },
     background: {
         id: 'schema.properties.background',
         defaultMessage: 'Background',

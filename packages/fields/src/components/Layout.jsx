@@ -10,6 +10,7 @@ import Radios from './Radios';
 import styles from '../styles/layout.module.scss';
 
 const propTypes = {
+    screenType: PropTypes.string,
     enums: PropTypes.arrayOf(PropTypes.string),
     value: PropTypes.string,
     className: PropTypes.string,
@@ -17,13 +18,14 @@ const propTypes = {
 };
 
 const defaultProps = {
+    screenType: 'title',
     enums: [],
     value: null,
     className: null,
     onChange: null,
 };
 
-const LayoutField = ({ enums, value, className, onChange }) => (
+const LayoutField = ({ screenType: type, enums, value, className, onChange }) => (
     <Radios
         options={enums.map(layout => ({
             value: layout,
@@ -31,9 +33,11 @@ const LayoutField = ({ enums, value, className, onChange }) => (
                 <div className={styles.layout}>
                     <ScreenPlaceholder
                         screen={{
-                            type: 'title',
+                            type,
                             layout,
                         }}
+                        width={80}
+                        height={120}
                     />
                 </div>
             ),

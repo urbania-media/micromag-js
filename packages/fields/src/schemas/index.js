@@ -1,12 +1,16 @@
+export { default as cards } from './cards.json';
 export { default as color } from './color.json';
 export { default as fontFamily } from './font-family.json';
 export { default as fontSize } from './font-size.json';
 export { default as fontStyles } from './font-styles.json';
 export { default as font } from './font.json';
 export { default as gridLayout } from './grid-layout.json';
+export { default as iframe } from './iframe.json';
 export { default as image } from './image.json';
+export { default as images } from './images.json';
 export { default as letterSpacing } from './letter-spacing.json';
 export { default as lineHeight } from './line-height.json';
+export { default as link } from './link.json';
 export { default as margin } from './margin.json';
 export { default as objectFit } from './object-fit.json';
 export { default as screenLayout } from './screen-layout.json';

@@ -24,6 +24,6 @@
     }
 
     .empty {
-        margin: 5px auto;
+        @extend %empty;
     }
 }

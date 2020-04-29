@@ -32,6 +32,7 @@ const ScreenPlaceholder = ({ screen, width, height, className }) => {
         }),
         [width, height],
     );
+
     return (
         <ScreenSizeProvider size={screenSize}>
             <Screen

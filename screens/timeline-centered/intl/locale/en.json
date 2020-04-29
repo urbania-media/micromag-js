@@ -1,4 +1,5 @@
 {
     "screens.timeline-centered.schema.properties.background": "Background",
+    "screens.timeline-centered.schema.properties.cards": "Cards",
     "screens.timeline-centered.schema.title": "Timeline centered"
 }

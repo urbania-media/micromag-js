@@ -19,14 +19,22 @@ export default {
                 layout: {
                     $ref: 'https://schemas.micromag.ca/0.1/fields/screen-layout.json',
                     title: 'Layout',
+                    screenType: 'map',
                     enum: names,
                     intl: {
                         title: messages.layout,
                     },
                 },
+                cards: {
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/cards.json',
+                    title: 'Cards',
+                    intl: {
+                        title: messages.cards,
+                    },
+                },
                 cardBackground: {
-                    title: "Arrière-plan d'item",
                     $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
+                    title: 'Cards background',
                     intl: {
                         title: messages.cardBackground,
                     },

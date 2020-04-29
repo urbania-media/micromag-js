@@ -98,7 +98,7 @@ const QuoteSplitScreen = ({
                         {...quote}
                         className={blockStyles.quote}
                         emptyClassName={blockStyles.empty}
-                        showEmpty={isEditor}
+                        showEmpty={isEditor && quote === null}
                       />
                 </blockquote>
             </div>,

@@ -15,7 +15,7 @@ import { getRenderFormat } from '@micromag/core/utils';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    ad: MicromagPropTypes.adFormat,
+    iframe: MicromagPropTypes.adFormat,
     box: MicromagPropTypes.boxElement,
     background: MicromagPropTypes.backgroundElement,
     visible: PropTypes.bool,
@@ -24,12 +24,11 @@ const propTypes = {
 };
 
 const defaultProps = {
-    ad: {
+    iframe: {
+        src: null,
+        title: null,
         width: null,
         height: null,
-        url: null,
-        target: '_blank',
-        iframe: null,
     },
     box: null,
     background: null,
@@ -38,33 +37,25 @@ const defaultProps = {
     className: null,
 };
 
-const AdSlotScreen = ({ ad, box, background, visible, renderFormat, className }) => {
+const AdSlotScreen = ({ iframe, box, background, visible, renderFormat, className }) => {
     const { width, height } = useScreenSize();
     const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
-
-    const { url, iframe, target } = ad;
+    const { src, title } = iframe;
 
     const preview = isSimple ? (
-        <div className={styles.previewBlock} style={{ width: 300, height: 200 }} />
+        <div className={styles.previewBlock} />
     ) : (
-        <Image showEmpty={isEditor && iframe === null} />
+        <Image showEmpty={isEditor} />
     );
 
     const inner =
-        iframe !== null && !isSimple ? (
-            <iframe className={styles.iframe} src={iframe} title="iframe" />
+        src !== null && !isSimple ? (
+            <iframe className={styles.iframe} src={src} title={title} />
         ) : (
             preview
         );
 
-    const content =
-        url !== null ? (
-            <a href={url} target={target} rel="noopener noreferer">
-                {inner}
-            </a>
-        ) : (
-            inner
-        );
+    console.log('adslot', title, src, inner);
 
     return (
         <div
@@ -84,11 +75,7 @@ const AdSlotScreen = ({ ad, box, background, visible, renderFormat, className })
             >
                 <Frame className={styles.frame} width={width} height={height} visible={visible}>
                     <Box {...box} withSmallSpacing={isSimple}>
-                        {isPlaceholder ? (
-                            <Placeholders.Ad className={styles.placeholder} />
-                        ) : (
-                            content
-                        )}
+                        {isPlaceholder ? <Placeholders.Ad className={styles.placeholder} /> : inner}
                     </Box>
                 </Frame>
             </Background>

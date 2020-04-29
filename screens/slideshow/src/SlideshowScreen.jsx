@@ -56,7 +56,7 @@ const SlideshowScreen = ({
         width: maxWidth,
         items: slides,
         disabled: isSimple,
-        onChangeEnd: setParallelIndex,
+        onSwipeEnd: setParallelIndex,
     });
 
     const onClickNext = useCallback(() => {

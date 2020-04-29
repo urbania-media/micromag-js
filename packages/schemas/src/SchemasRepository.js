@@ -201,6 +201,7 @@ class SchemasRepository {
             setting = false,
             advanced = false,
             properties,
+            screenType = null,
             intl = null,
         } = property;
         const numberProps = {
@@ -216,6 +217,7 @@ class SchemasRepository {
             setting,
             advanced,
             enums,
+            screenType,
             ...(type === 'number' ? numberProps : null),
         };
         return type === 'object'

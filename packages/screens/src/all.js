@@ -1,4 +1,5 @@
 export { default as Ad } from '@micromag/screen-ad';
+export { default as AdSlot } from '@micromag/screen-ad-slot';
 export { default as Audio } from '@micromag/screen-audio';
 export { default as Gallery } from '@micromag/screen-gallery';
 export { default as GalleryScroll } from '@micromag/screen-gallery-scroll';

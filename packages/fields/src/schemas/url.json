@@ -6,7 +6,8 @@
     "properties": {
         "url": {
             "type": "string",
-            "title": "URL"
+            "title": "URL",
+            "component": "url"
         }
     }
 }

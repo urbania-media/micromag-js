@@ -53,7 +53,7 @@ export const Editor = () => (
     <LayoutSwitcher {...switcherProps}>
         {layout => (
             <Screen>
-                <PreviewScreen layout={layout} renderFormat="edit" />
+                <MapPath layout={layout} renderFormat="edit" {...props} />
             </Screen>
         )}
     </LayoutSwitcher>

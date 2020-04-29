@@ -74,6 +74,7 @@
     "editor.buttons.view_screen": "Voir l’écran",
     "editor.modals.screen_types_title": "Ajouter un écran",
     "editor.screen_name": "Écran {index}",
+    "elements.link.schema.title": "Élément texte",
     "elements.text.schema.properties.text_style": "Style du texte",
     "elements.text.schema.title": "Élément texte",
     "screens.ad-slot.schema.properties.background": "Arrière-plan",

@@ -19,9 +19,17 @@ export default {
                 layout: {
                     $ref: 'https://schemas.micromag.ca/0.1/fields/screen-layout.json',
                     title: 'Layout',
+                    screenType: 'ad-slot',
                     enum: names,
                     intl: {
                         title: messages.layout,
+                    },
+                },
+                iframe: {
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/iframe.json',
+                    title: 'Ad',
+                    intl: {
+                        title: messages.ad,
                     },
                 },
                 background: {

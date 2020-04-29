@@ -21,7 +21,7 @@ const defaultProps = {
 
 const ElementField = ({ fields: formFields, value, gotoFieldForm, onChange }) => {
     const fields = formFields || [];
-    console.log('debug fields', fields);
+    // console.log('debug fields', fields);
     const settingsNames = useMemo(
         () => (fields ? fields.filter(({ setting = false }) => setting).map(it => it.name) : []),
         [fields],

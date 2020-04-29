@@ -52,6 +52,7 @@
         "@micromag/element-box": "^0.1.0",
         "@micromag/element-frame": "^0.1.0",
         "@micromag/element-image": "^0.1.0",
+        "@micromag/element-link": "^0.1.0",
         "@micromag/core": "^0.1.0",
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",

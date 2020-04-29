@@ -58,7 +58,7 @@ const AudioScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
 
     return (
         <div
@@ -81,7 +81,6 @@ const AudioScreen = ({
                                 maxWidth={Math.min(width, maxWidth)}
                                 maxHeight={Math.min(width, maxWidth)}
                                 fit={{ size: 'cover' }}
-                                showEmpty={image === null && isEditor}
                                 className={styles.image}
                                 emptyClassName={styles.empty}
                             />
@@ -99,7 +98,6 @@ const AudioScreen = ({
                         ) : (
                             <TextElement
                                 {...text}
-                                showEmpty={text === null && isEditor}
                                 className={styles.text}
                                 emptyClassName={styles.empty}
                             />

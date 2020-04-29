@@ -20,6 +20,7 @@ export default {
                 layout: {
                     $ref: 'https://schemas.micromag.ca/0.1/fields/screen-layout.json',
                     title: 'Layout',
+                    screenType: 'ad',
                     enum: names,
                     intl: {
                         title: messages.layout,
@@ -32,14 +33,14 @@ export default {
                         title: messages.image,
                     },
                 },
-                url: {
-                    $ref: 'https://schemas.micromag.ca/0.1/fields/url.json',
-                    title: 'Url',
+                link: {
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/link.json',
+                    title: 'Link',
                     intl: {
-                        title: messages.url,
+                        title: messages.link,
                     },
                 },
-                // NICETOHAVE: add this underneath the image ?
+                // NICETOHAVE: add sponsor/presented by underneath the image ?
                 // text: {
                 //     $ref: 'https://schemas.micromag.ca/0.1/elements/text.json',
                 //     title: 'Description',
