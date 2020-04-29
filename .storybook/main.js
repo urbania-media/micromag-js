@@ -67,6 +67,17 @@ module.exports = {
                     },
                 };
             }),
+            {
+                loader: require.resolve('babel-loader'),
+                test: /\.(js|jsx)$/,
+                include: /\/query-string\//,
+                options: {
+                    babelrc: false,
+                    plugins: [
+                        require.resolve('@babel/plugin-transform-modules-commonjs'),
+                    ],
+                },
+            }
         ];
 
         return config;

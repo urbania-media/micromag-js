@@ -49,7 +49,6 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.8.7",
-        "@folklore/fetch": "^0.1.8",
         "@folklore/size": "^0.1.11",
         "@fortawesome/fontawesome-svg-core": "^1.2.28",
         "@fortawesome/free-solid-svg-icons": "^5.13.0",

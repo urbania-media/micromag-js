@@ -14,17 +14,18 @@ const propTypes = {
     }),
     isForm: PropTypes.string,
     className: PropTypes.string,
+    onChange: PropTypes.func,
 };
 
 const defaultProps = {
     value: null,
     isForm: false,
     className: null,
+    onChange: null,
 };
 
-const ImageField = ({ value, isForm, className }) => {
-    const { image = null, url = null, caption = null } = value || {};
-    const finalUrl = image !== null ? image.url || null : url;
+const ImageField = ({ value, isForm, className, onChange }) => {
+    const { name = null, thumbnail_url: thumbnailUrl = null } = value || {};
     return isForm ? (
         <div
             className={classNames([
@@ -34,7 +35,7 @@ const ImageField = ({ value, isForm, className }) => {
                 },
             ])}
         >
-            <MediaGallery isPicker />
+            <MediaGallery isPicker onClickMedia={onChange} />
         </div>
     ) : (
         <div
@@ -45,10 +46,10 @@ const ImageField = ({ value, isForm, className }) => {
                 },
             ])}
         >
-            {finalUrl !== null ? (
+            {thumbnailUrl !== null ? (
                 <>
-                    <span className={styles.name}>{getFileName(finalUrl)}</span>
-                    <img src={finalUrl} className={styles.thumbnail} alt={caption} />
+                    <span className={styles.name}>{name}</span>
+                    <img src={thumbnailUrl} className={styles.thumbnail} alt={name} />
                 </>
             ) : (
                 <span className={styles.noValue}>Sélectionnez une image</span>

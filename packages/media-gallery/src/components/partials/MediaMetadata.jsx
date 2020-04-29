@@ -50,9 +50,13 @@ const MediaMetadata = ({ media, className }) => {
         type,
         thumbnail_url: thumbnail = null,
         name,
-        filename = null,
-        size = null,
-        metadata: { width = null, height = null, duration = null } = {},
+        metadata: {
+            filename = null,
+            size = null,
+            width = null,
+            height = null,
+            duration = null,
+        } = {},
     } = media || {};
     return (
         <div

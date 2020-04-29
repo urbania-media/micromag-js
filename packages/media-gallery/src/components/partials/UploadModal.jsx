@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 // import classNames from 'classnames';
 import { DashboardModal } from '@uppy/react';
@@ -22,18 +22,34 @@ const defaultProps = {
 
 const UploadModal = ({ opened, onUploaded, onRequestClose }) => {
     const onUpppyComplete = useCallback(
-        result => {
-            const newValue = result.successful
-                .map(it =>
-                    convertUppyToMedia({
+        response => {
+            const newValue = response.successful
+                .map(it => {
+                    const transloadit =
+                        response.transloadit.find(
+                            subIt => subIt.assembly_id === it.transloadit.assembly,
+                        ) || null;
+                    const results = transloadit !== null ? transloadit.results || null : null;
+                    return {
                         ...it,
                         transloadit:
-                            result.transloadit.find(
-                                subIt => subIt.assembly_id === it.transloadit.assembly,
-                            ) || null,
-                    }),
-                )
-                .filter(it => it.transloadit !== null);
+                            results !== null
+                                ? Object.keys(results).reduce((map, resultKey) => {
+                                      const result = results[resultKey].find(
+                                          itResult => itResult.name === it.name,
+                                      );
+                                      return result !== null
+                                          ? {
+                                                ...map,
+                                                [resultKey]: result,
+                                            }
+                                          : map;
+                                  }, null)
+                                : null,
+                    };
+                })
+                .filter(it => it.transloadit !== null)
+                .map(it => convertUppyToMedia(it));
             if (onUploaded !== null) {
                 onUploaded(newValue);
             }
@@ -44,6 +60,12 @@ const UploadModal = ({ opened, onUploaded, onRequestClose }) => {
     const uppy = useUppy({
         onComplete: onUpppyComplete,
     });
+
+    useEffect(() => {
+        if (!opened) {
+            uppy.reset();
+        }
+    }, [uppy, opened]);
 
     return (
         <DashboardModal

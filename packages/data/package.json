@@ -49,7 +49,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.8.7",
-        "@folklore/fetch": "^0.1.8",
+        "@folklore/fetch": "^0.1.9",
         "@micromag/core": "^0.1.0",
         "query-string": "^6.12.1",
         "prop-types": "^15.7.2",

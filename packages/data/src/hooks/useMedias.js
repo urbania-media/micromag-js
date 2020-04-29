@@ -16,8 +16,8 @@ const useMedias = (query = null, page = null, count = null, opts) => {
         ...opts,
     });
     return {
-        stories: page !== null ? pageItems : items,
-        allStories: items,
+        medias: page !== null ? pageItems : items,
+        allMedias: items,
         ...request,
     };
 };

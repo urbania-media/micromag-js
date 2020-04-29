@@ -1,7 +1,7 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useMedias } from '@micromag/data';
+import { useMedias, useCreateMedia } from '@micromag/data';
 
 import * as AppPropTypes from '../lib/PropTypes';
 
@@ -31,9 +31,14 @@ const MediaGallery = ({ items: initialItems, isPicker, className, onClickMedia }
     const [filtersValue, setFiltersValue] = useState(null);
 
     // Items
-    const { medias } = useMedias(filtersValue, 1, 100, {
+    const { allMedias: loadedMedias } = useMedias(filtersValue, 1, 100, {
         items: initialItems,
     });
+    const [addedMedias, setAddedMedias] = useState([]);
+    const medias = useMemo(() => {
+        const allMedias = [...addedMedias, ...(loadedMedias || [])];
+        return allMedias.length > 0 ? allMedias : null;
+    }, [loadedMedias, addedMedias]);
 
     // Medias
     const [metadataMedia, setMetadataMedia] = useState(null);
@@ -53,10 +58,17 @@ const MediaGallery = ({ items: initialItems, isPicker, className, onClickMedia }
 
     // Upload modal
     const [uploadModalOpened, setUploadModalOpened] = useState(false);
+    const createMedia = useCreateMedia();
     const onClickAdd = useCallback(() => setUploadModalOpened(true), [setUploadModalOpened]);
-    const onUploadCompleted = useCallback(newMedias => {
-        console.log(newMedias);
-    }, []);
+    const onUploadCompleted = useCallback(
+        newMedias => {
+            console.log(newMedias);
+            Promise.all(newMedias.map(createMedia)).then(newAddedMedias =>
+                setAddedMedias([...addedMedias, ...newAddedMedias]),
+            );
+        },
+        [createMedia, addedMedias, setAddedMedias],
+    );
     const onUploadRequestClose = useCallback(() => setUploadModalOpened(false), [
         setUploadModalOpened,
     ]);
@@ -81,12 +93,14 @@ const MediaGallery = ({ items: initialItems, isPicker, className, onClickMedia }
 
             <div className={styles.content}>
                 <div className={styles.gallery}>
-                    <Gallery
-                        items={medias}
-                        withInfoButton={isPicker}
-                        onClickItem={onClickItem}
-                        onClickItemInfo={onClickItemInfo}
-                    />
+                    {medias !== null ? (
+                        <Gallery
+                            items={medias}
+                            withInfoButton={isPicker}
+                            onClickItem={onClickItem}
+                            onClickItemInfo={onClickItemInfo}
+                        />
+                    ) : null}
                 </div>
 
                 <div className={styles.mediaMetadata}>

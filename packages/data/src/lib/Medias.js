@@ -7,6 +7,9 @@ class MediasApi extends Base {
             routes: {
                 index: 'medias',
                 show: 'medias/:media',
+                store: 'medias',
+                update: 'medias/:story',
+                delete: 'medias/:story',
                 ...(opts.routes || null),
             },
         });
@@ -31,6 +34,27 @@ class MediasApi extends Base {
             finalQuery.count = count;
         }
         return this.requestGet(this.route('index'), finalQuery);
+    }
+
+    create(data) {
+        return this.requestPost(this.route('store'), data);
+    }
+
+    update(id, data) {
+        return this.requestPost(
+            this.route('update', {
+                story: id,
+            }),
+            data,
+        );
+    }
+
+    delete(id) {
+        return this.requestDelete(
+            this.route('delete', {
+                story: id,
+            }),
+        );
     }
 }
 
