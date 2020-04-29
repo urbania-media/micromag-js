@@ -1,5 +1,7 @@
 {
-    "screens.title.schema.title": "Image",
-    "screens.ad.schema.properties.background": "Arrière-plan",
-    "screens.ad.schema.properties.layout": "Mise en page"
+    "screens.image.schema.properties.background": "TRANSLATE: Background",
+    "screens.image.schema.properties.image": "TRANSLATE: Image",
+    "screens.image.schema.properties.layout": "TRANSLATE: Layout",
+    "screens.image.schema.properties.text": "TRANSLATE: Text",
+    "screens.image.schema.title": "TRANSLATE: Image"
 }

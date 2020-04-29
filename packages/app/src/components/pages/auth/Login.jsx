@@ -19,10 +19,6 @@ const messages = defineMessages({
         id: 'pages.login.title',
         defaultMessage: 'Login',
     },
-    description: {
-        id: 'pages.login.description',
-        defaultMessage: 'Please login with your credentials',
-    },
     forgotPassword: {
         id: 'pages.login.forgot_password',
         defaultMessage: 'Forgot password?',
@@ -61,13 +57,7 @@ const LoginPage = ({ className }) => {
                     },
                 ])}
             >
-                <FormPanel
-                    description={
-                        <div className={styles.description}>
-                            <Label>{messages.description}</Label>
-                        </div>
-                    }
-                >
+                <FormPanel>
                     <LoginForm onLoggedIn={onLoginComplete} />
 
                     <div className={styles.links}>

@@ -7,12 +7,12 @@ import * as MicromagPropTypes from '../../PropTypes';
 import Label from './Label';
 import Link from './Link';
 
-import styles from '../../styles/partials/card.module.scss';
-
 const propTypes = {
+    href: PropTypes.string,
     header: PropTypes.node,
     image: PropTypes.node,
     imageAlt: PropTypes.string,
+    imageOverlay: PropTypes.bool,
     beforeBody: PropTypes.node,
     title: MicromagPropTypes.label,
     subtitle: MicromagPropTypes.label,
@@ -33,12 +33,16 @@ const propTypes = {
     subtitleClassName: PropTypes.string,
     bodyClassName: PropTypes.string,
     footerClassName: PropTypes.string,
+    onClick: PropTypes.func,
+    onClickBody: PropTypes.func,
 };
 
 const defaultProps = {
+    href: null,
     header: null,
     image: null,
     imageAlt: null,
+    imageOverlay: false,
     beforeBody: null,
     title: null,
     subtitle: null,
@@ -54,12 +58,16 @@ const defaultProps = {
     subtitleClassName: null,
     bodyClassName: null,
     footerClassName: null,
+    onClick: null,
+    onClickBody: null,
 };
 
 const Card = ({
+    href,
     header,
     image,
     imageAlt,
+    imageOverlay,
     beforeBody,
     title,
     subtitle,
@@ -75,6 +83,8 @@ const Card = ({
     subtitleClassName,
     bodyClassName,
     footerClassName,
+    onClick,
+    onClickBody,
 }) => {
     const linksElements = (links || []).map(
         ({ label, className: linkClassName = null, ...linkProps }, index) => (
@@ -82,7 +92,6 @@ const Card = ({
                 key={`link-${label}-${index}`}
                 className={classNames([
                     'card-link',
-                    styles.link,
                     {
                         [linkClassName]: linkClassName !== null,
                     },
@@ -93,21 +102,46 @@ const Card = ({
             </Link>
         ),
     );
-    return (
-        <div
-            className={classNames([
-                'card',
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-        >
+
+    const bodyInner = (
+        <>
+            {title !== null ? (
+                <h5
+                    className={classNames([
+                        'card-title',
+                        {
+                            [titleClassName]: titleClassName !== null,
+                        },
+                    ])}
+                >
+                    <Label>{title}</Label>
+                </h5>
+            ) : null}
+            {subtitle !== null ? (
+                <h6
+                    className={classNames([
+                        'card-subtitle',
+                        {
+                            [subtitleClassName]: subtitleClassName !== null,
+                        },
+                    ])}
+                >
+                    <Label>{subtitle}</Label>
+                </h6>
+            ) : null}
+            {children}
+            {links !== null && linksInSameBody ? (
+                <div className="d-flex">{linksElements}</div>
+            ) : null}
+        </>
+    );
+
+    const cardInner = (
+        <>
             {header !== null ? (
                 <div
                     className={classNames([
                         'card-header',
-                        styles.header,
                         {
                             [headerClassName]: headerClassName !== null,
                         },
@@ -122,7 +156,6 @@ const Card = ({
                     alt={imageAlt}
                     className={classNames([
                         'card-img-top',
-                        styles.image,
                         {
                             [imageClassName]: imageClassName !== null,
                         },
@@ -132,44 +165,30 @@ const Card = ({
                 image
             )}
             {beforeBody}
-            <div
-                className={classNames([
-                    'card-body',
-                    styles.body,
-                    {
+            {onClickBody !== null ? (
+                <button
+                    type="button"
+                    className={classNames({
+                        'card-body': !imageOverlay,
+                        'card-img-overlay': imageOverlay,
                         [bodyClassName]: bodyClassName !== null,
-                    },
-                ])}
-            >
-                {title !== null ? (
-                    <h5
-                        className={classNames([
-                            'card-title',
-                            styles.title,
-                            {
-                                [titleClassName]: titleClassName !== null,
-                            },
-                        ])}
-                    >
-                        <Label>{title}</Label>
-                    </h5>
-                ) : null}
-                {subtitle !== null ? (
-                    <h6
-                        className={classNames([
-                            'card-subtitle',
-                            styles.subtitle,
-                            {
-                                [subtitleClassName]: subtitleClassName !== null,
-                            },
-                        ])}
-                    >
-                        <Label>{subtitle}</Label>
-                    </h6>
-                ) : null}
-                {children}
-                {links !== null && linksInSameBody ? <div className="d-flex">{linksElements}</div> : null}
-            </div>
+                    })}
+                    onClick={onClickBody}
+                >
+                    {bodyInner}
+                </button>
+            ) : (
+                <div
+                    className={classNames({
+                        'card-body': !imageOverlay,
+                        'card-img-overlay': imageOverlay,
+                        [bodyClassName]: bodyClassName !== null,
+                    })}
+                >
+                    {bodyInner}
+                </div>
+            )}
+
             {afterBody}
             {links !== null && !linksInSameBody ? (
                 <div className="card-body">{linksElements}</div>
@@ -178,7 +197,6 @@ const Card = ({
                 <div
                     className={classNames([
                         'card-footer',
-                        styles.footer,
                         {
                             [footerClassName]: footerClassName !== null,
                         },
@@ -187,8 +205,38 @@ const Card = ({
                     <Label>{footer}</Label>
                 </div>
             ) : null}
-        </div>
+        </>
     );
+    const cardClassName = classNames([
+        'card',
+        {
+            'bg-dark': imageOverlay,
+            'text-white': imageOverlay,
+            [className]: className !== null,
+        },
+    ]);
+
+    if (href !== null) {
+        return (
+            <Link href={href} className={cardClassName}>
+                {cardInner}
+            </Link>
+        );
+    }
+
+    if (onClick !== null) {
+        return (
+            <button
+                type="button"
+                className={classNames(['p-0', 'text-left', cardClassName])}
+                onClick={onClick}
+            >
+                {cardInner}
+            </button>
+        );
+    }
+
+    return <div className={cardClassName}>{cardInner}</div>;
 };
 
 Card.propTypes = propTypes;

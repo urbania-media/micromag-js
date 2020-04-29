@@ -1,1 +1,6 @@
-{}
+{
+    "screens.gallery.schema.properties.background": "TRANSLATE: Background",
+    "screens.gallery.schema.properties.images": "TRANSLATE: Images",
+    "screens.gallery.schema.properties.layout": "TRANSLATE: Layout",
+    "screens.gallery.schema.title": "TRANSLATE: Gallery"
+}

@@ -58,6 +58,7 @@
         "@micromag/editor": "^0.1.0",
         "@micromag/fields": "^0.1.0",
         "@micromag/intl": "^0.1.0",
+        "@micromag/media-gallery": "^0.1.0",
         "@micromag/schemas": "^0.1.0",
         "@micromag/screens": "^0.1.0",
         "@micromag/viewer": "^0.1.0",

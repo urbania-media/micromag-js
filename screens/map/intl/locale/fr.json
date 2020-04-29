@@ -1,6 +1,7 @@
 {
     "screens.map.schema.properties.background": "Arrière-plan",
     "screens.map.schema.properties.cardBackground": "Arrière-plan d'item",
+    "screens.map.schema.properties.cards": "TRANSLATE: Cards",
     "screens.map.schema.properties.layout": "Mise en page",
     "screens.map.schema.title": "Carte"
 }

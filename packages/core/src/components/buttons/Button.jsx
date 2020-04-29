@@ -45,7 +45,7 @@ const propTypes = {
 
 const defaultProps = {
     type: 'button',
-    theme: 'primary',
+    theme: null,
     size: null,
     href: null,
     external: false,
@@ -177,7 +177,7 @@ const Button = ({
 
     const buttonClassNames = classNames([
         {
-            btn: !withoutTheme && !withoutStyle && theme !== null,
+            btn: !withoutTheme && !withoutStyle,
             [`btn-${outline ? 'outline-' : ''}${theme}`]:
                 !withoutTheme && !withoutStyle && theme !== null,
             [`btn-${size}`]: !withoutTheme && !withoutStyle && size !== null,
