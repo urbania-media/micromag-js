@@ -2,6 +2,7 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { defineMessages } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Button, Empty } from '@micromag/core/components';
@@ -9,7 +10,16 @@ import { Button, Empty } from '@micromag/core/components';
 import FieldRow from './FieldRow';
 import ImageField from './Image';
 
-import styles from '../styles/images.module.scss';
+const messages = defineMessages({
+    noImage: {
+        id: 'images.no_image',
+        defaultMessage: 'No image...',
+    },
+    addImage: {
+        id: 'images.add_image',
+        defaultMessage: 'Add an image',
+    },
+});
 
 const propTypes = {
     name: PropTypes.string,
@@ -48,42 +58,37 @@ const ImagesField = ({ name, value, newDefaultValue, className, onChange, gotoFi
         [value, onChange],
     );
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-        >
+        <div className={className}>
             {value !== null ? (
-                <div className={styles.items}>
+                <div className="list-group">
                     {value.map((itemValue, index) => (
-                        <FieldRow
-                            key={`item-${index}`}
-                            label={`#${index + 1}`}
-                            className={styles.item}
-                            withForm
-                            gotoForm={form => gotoFieldForm(`${name}.${index}`, form)}
-                        >
-                            <ImageField
-                                form="image-component"
-                                value={itemValue}
-                                onChange={newValue => onItemChange(index, newValue)}
-                            />
-                        </FieldRow>
+                        <div className="list-group-item py-2 px-2">
+                            <FieldRow
+                                key={`item-${index}`}
+                                label={`#${index + 1}`}
+                                withForm
+                                gotoForm={form => gotoFieldForm(`${name}.${index}`, form)}
+                            >
+                                <ImageField
+                                    form="image-component"
+                                    value={itemValue}
+                                    onChange={newValue => onItemChange(index, newValue)}
+                                />
+                            </FieldRow>
+                        </div>
                     ))}
                 </div>
             ) : (
-                <Empty className={styles.placeholder}>Aucune image...</Empty>
+                <Empty className={classNames(['text-light', 'p-4'])}>{messages.noImage}</Empty>
             )}
-            <div className={styles.top}>
+            <div className="mt-2">
                 <Button
+                    theme="primary"
                     size="sm"
-                    icon={<FontAwesomeIcon icon={faPlus} className={styles.icon} />}
+                    icon={<FontAwesomeIcon icon={faPlus} />}
                     onClick={onClickAdd}
                 >
-                    Ajouter une image
+                    {messages.addImage}
                 </Button>
             </div>
         </div>

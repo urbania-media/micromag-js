@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 // import * as AppPropTypes from '../../lib/PropTypes';
+import Label from './Label';
 
 import styles from '../../styles/partials/empty.module.scss';
 
@@ -32,7 +33,9 @@ const Empty = ({ children, withoutBorder, invertColor, className }) => (
             },
         ])}
     >
-        <div className={styles.middle}>{children}</div>
+        <div className={styles.middle}>
+            <Label>{children}</Label>
+        </div>
     </div>
 );
 
