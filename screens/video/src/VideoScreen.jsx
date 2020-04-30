@@ -81,8 +81,6 @@ const VideoScreen = ({
         />
     );
 
-    console.log('video', active);
-
     return (
         <Background
             {...(!isPlaceholder ? background : null)}
