@@ -60,7 +60,7 @@ class StoriesApi extends Base {
     }
 
     update(id, data) {
-        return this.requestPost(
+        return this.requestPut(
             this.route('update', {
                 story: id,
             }),

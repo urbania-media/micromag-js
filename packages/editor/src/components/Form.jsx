@@ -40,7 +40,7 @@ const EditForm = ({ story, className, onChange }) => {
     } = useRouteMatch({
         path: [routes['screen.field.form'], routes['screen.field'], routes.screen, '*'],
     });
-    console.log(url, screenId, fieldParams, formParams);
+    // console.log(url, screenId, fieldParams, formParams);
 
     // Get screen
     const { components: screens = [] } = story || {};
@@ -108,7 +108,7 @@ const EditForm = ({ story, className, onChange }) => {
                 },
             ])}
         >
-            <div className={classNames(['bg-light', styles.top])}>
+            <div className={classNames([styles.top])}>
                 {screenId !== null ? (
                     <Breadcrumb
                         story={story}

@@ -10,6 +10,8 @@ import AccountMenu from '../menus/Account';
 import StoriesMenu from '../menus/Stories';
 import OrganisationMenu from '../menus/Organisation';
 
+import logo from '../../assets/logo-beta.svg';
+
 const propTypes = {
     className: PropTypes.string,
 };
@@ -22,7 +24,12 @@ const MainNavbar = ({ className }) => {
     const { loggedIn } = useAuth();
     const url = useUrlGenerator();
     return (
-        <Navbar brand="Micromag" brandLink={url('home')}  theme="primary" className={className}>
+        <Navbar
+            brand={<img src={logo} height="30" alt="Micromag" />}
+            brandLink={url('home')}
+            theme="primary"
+            className={className}
+        >
             {loggedIn ? (
                 <>
                     <OrganisationMenu

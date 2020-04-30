@@ -40,11 +40,11 @@ const StoriesPage = ({ count, className }) => {
     const url = useUrlGenerator();
     const { search } = useLocation();
     const { page = 1, ...query } = useMemo(
-        () => (search !== null && search.length > 0 ? parseQuery(search) : null),
+        () => (search !== null && search.length > 0 ? parseQuery(search) : {}),
         [search],
     );
     const finalQuery = Object.keys(query).length > 0 ? query : null;
-    const { stories, total } = useStories(finalQuery, page, count);
+    const { stories, total, lastPage } = useStories(finalQuery, page, count);
     const paginationUrl = `${url('stories')}${
         finalQuery !== null ? `?${stringifyQuery(finalQuery)}` : ''
     }`;
@@ -73,7 +73,14 @@ const StoriesPage = ({ count, className }) => {
                 {stories !== null ? (
                     <>
                         <StoriesList items={stories} />
-                        <Pagination page={parseInt(page, 10)} total={total} url={paginationUrl} />
+                        {lastPage > 1 ? (
+                            <Pagination
+                                page={parseInt(page, 10)}
+                                total={total}
+                                url={paginationUrl}
+                                className="mt-2"
+                            />
+                        ) : null}
                     </>
                 ) : null}
             </Page>

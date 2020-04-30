@@ -49,16 +49,15 @@ const RecentStories = ({ count, className }) => {
                         <Label>{messages.title}</Label>
                     </h5>
                     <StoriesList items={stories} />
-                    <div className={classNames(['d-flex', 'mt-2'])}>
+                    <div className={classNames(['d-flex', 'mt-4'])}>
                         <Button
                             href={url('stories.create')}
                             theme="primary"
-                            outline
                             className="mr-2"
                         >
                             {messages.create}
                         </Button>
-                        <Button href={url('stories')} theme="secondary" outline>
+                        <Button href={url('stories')} theme="secondary">
                             {messages.viewAll}
                         </Button>
                     </div>

@@ -31,6 +31,20 @@ class Base {
         });
     }
 
+    requestPut(path, data) {
+        return postJSON(
+            this.getFullUrl(path),
+            {
+                _method: 'PUT',
+                ...data,
+            },
+            {
+                credentials: 'include',
+                headers: getCSRFHeaders(),
+            },
+        );
+    }
+
     requestDelete(path) {
         return this.requestPost(path, {
             _method: 'DELETE',

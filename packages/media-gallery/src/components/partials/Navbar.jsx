@@ -63,7 +63,9 @@ const Navbar = ({
             className={classNames([
                 'navbar',
                 'navbar-dark',
-                'bg-primary',
+                'bg-light',
+                'flex-nowrap',
+                'px-2',
                 {
                     [className]: className !== null,
                 },
@@ -85,12 +87,11 @@ const Navbar = ({
                         value={searchValue}
                         onChange={onSearchChange}
                         onFocus={onFocusSearch}
-                        className={classNames(['form-inline'])}
+                        className={classNames(['form-inline', 'mr-2'])}
                     />
                     <form className={classNames(['form-inline', 'ml-auto'])}>
                         <Button
-                            theme="light"
-                            outline
+                            theme="primary"
                             icon={<FontAwesomeIcon icon={faPlus} />}
                             onClick={onClickAdd}
                         >

@@ -53,13 +53,7 @@ const StoriesCreatePage = ({ className }) => {
                     },
                 ])}
             >
-                <FormPanel
-                    description={
-                        <div className={styles.description}>
-                            <Label>{messages.description}</Label>
-                        </div>
-                    }
-                >
+                <FormPanel>
                     <StoryCreateForm onCreated={onCreated} />
                 </FormPanel>
             </Page>

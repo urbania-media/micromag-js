@@ -34,7 +34,7 @@ const VideoField = ({ value, isForm, className, onChange }) => {
                 },
             ])}
         >
-            <MediaGallery type="video" isPicker onClickMedia={onChange} />
+            <MediaGallery type="video" isPicker isSmall onClickMedia={onChange} />
         </div>
     ) : (
         <div

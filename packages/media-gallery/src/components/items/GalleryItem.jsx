@@ -33,7 +33,7 @@ const GalleryItem = ({ withInfoButton, item, onClick, onClickInfo, className }) 
             image={
                 <button
                     type="button"
-                    className={classNames(['p-0', 'bg-dark', styles.imageButton])}
+                    className={classNames(['p-0', styles.imageButton])}
                     onClick={onClick}
                 >
                     <div
@@ -47,28 +47,28 @@ const GalleryItem = ({ withInfoButton, item, onClick, onClickInfo, className }) 
                     ) : null}
                 </button>
             }
+            beforeBody={
+                withInfoButton ? (
+                    <Button className={styles.infoButton} onClick={onClickInfo} withoutStyle>
+                        <FontAwesomeIcon icon={faInfoCircle} className={styles.icon} />
+                    </Button>
+                ) : null
+            }
+            footer={
+                <>
+                    <small>{name}</small>
+                    <small className="text-muted">{size}</small>
+                </>
+            }
             className={classNames([
                 styles.container,
                 {
                     [className]: className !== null,
                 },
             ])}
-            bodyClassName={styles.body}
-            beforeBody={
-                withInfoButton ? (
-                    <Button className={styles.infoButton} onClick={onClickInfo} withoutStyle>
-                        <FontAwesomeIcon icon={faInfoCircle} />
-                    </Button>
-                ) : null
-            }
-            onClickBody={onClick}
-        >
-            <p className="m-0">
-                <strong>{name}</strong>
-                <br />
-                <small>{size}</small>
-            </p>
-        </Card>
+            footerClassName={classNames(['p-2', styles.footer])}
+            onClickFooter={onClick}
+        />
     );
 };
 

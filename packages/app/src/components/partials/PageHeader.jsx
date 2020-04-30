@@ -5,8 +5,6 @@ import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Label } from '@micromag/core/components';
 
-import styles from '../../styles/partials/page-header.module.scss';
-
 const propTypes = {
     title: MicromagPropTypes.label,
     section: MicromagPropTypes.label,
@@ -25,24 +23,16 @@ const defaultProps = {
     sectionClassName: null,
 };
 
-const LoginPage = ({ title, section, children, className, titleClassName, sectionClassName }) => (
+const PageHeader = ({ title, section, children, className, titleClassName, sectionClassName }) => (
     <header
         className={classNames([
-            styles.container,
+            'py-4',
             {
                 [className]: className !== null,
             },
         ])}
     >
-        <h1
-            className={classNames([
-                'display-4',
-                styles.title,
-                {
-                    [titleClassName]: titleClassName !== null,
-                },
-            ])}
-        >
+        <h1 className={titleClassName}>
             <Label>{section !== null ? section : title}</Label>
             {section !== null ? (
                 <>
@@ -50,7 +40,6 @@ const LoginPage = ({ title, section, children, className, titleClassName, sectio
                     <small
                         className={classNames([
                             'text-muted',
-                            styles.section,
                             {
                                 [sectionClassName]: sectionClassName !== null,
                             },
@@ -65,7 +54,7 @@ const LoginPage = ({ title, section, children, className, titleClassName, sectio
     </header>
 );
 
-LoginPage.propTypes = propTypes;
-LoginPage.defaultProps = defaultProps;
+PageHeader.propTypes = propTypes;
+PageHeader.defaultProps = defaultProps;
 
-export default LoginPage;
+export default PageHeader;

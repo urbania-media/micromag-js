@@ -42,13 +42,14 @@ const AccountBox = ({ withoutHeader, className }) => {
         <Card
             header={!withoutHeader ? messages.title : null}
             title={user.name}
+            afterBody={<AccountMenu asList flush />}
+            theme="dark"
             className={classNames([
                 styles.container,
                 {
                     [className]: className !== null,
                 },
             ])}
-            afterBody={<AccountMenu asList flush />}
             bodyClassName={styles.body}
         >
             <p className="mb-0">{user.email}</p>
