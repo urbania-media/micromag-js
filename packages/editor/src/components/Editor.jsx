@@ -106,20 +106,26 @@ const Editor = ({
                         >
                             <Button
                                 size="sm"
-                                theme="outline-primary"
+                                theme="secondary"
                                 className={styles.back}
                                 onClick={onClickScreens}
                             >
                                 {messages.screens}
                             </Button>
                             {mobileView !== 'form' ? (
-                                <Button size="sm" className={styles.edit} onClick={onClickEdit}>
+                                <Button
+                                    size="sm"
+                                    theme="primary"
+                                    className={styles.edit}
+                                    onClick={onClickEdit}
+                                >
                                     {messages.edit}
                                 </Button>
                             ) : null}
                             {mobileView === 'form' ? (
                                 <Button
                                     size="sm"
+                                    theme="primary"
                                     className={styles.edit}
                                     onClick={onClickViewScreen}
                                 >

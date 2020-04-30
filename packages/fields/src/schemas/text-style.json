@@ -2,6 +2,7 @@
     "$id": "https://schemas.micromag.ca/0.1/fields/text-style.json",
     "title": "Text style",
     "type": "object",
+    "component": "text-style",
 
     "properties": {
         "fontFamily": {
