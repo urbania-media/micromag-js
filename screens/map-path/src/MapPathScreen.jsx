@@ -21,6 +21,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     align: PropTypes.string,
     visible: PropTypes.bool,
+    active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -30,18 +31,19 @@ const defaultProps = {
     background: null,
     align: 'bottom',
     visible: true,
+    active: false,
     renderFormat: 'view',
     className: null,
 };
 
-const MapPathScreen = ({ map, background, align, visible, renderFormat, className }) => {
+const MapPathScreen = ({ map, background, align, visible, active, renderFormat, className }) => {
     const { width, height } = useScreenSize();
     const { markers: mapMarkers = [] } = map || {};
-    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
 
     const [index, setIndex] = useState(0);
     const markers = mapMarkers || []; // .map((m, i) => ({ ...m })) : [];
-    const active = markers.find((m, i) => i === index) || null;
+    const currentMarker = markers.find((m, i) => i === index) || null;
 
     const onClickMarker = useCallback(
         i => {
@@ -82,7 +84,13 @@ const MapPathScreen = ({ map, background, align, visible, renderFormat, classNam
                 },
             ])}
         >
-            <Background {...background} width={width} height={height}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={isView || (isEditor && active)}
+                className={styles.background}
+            >
                 <Frame width={width} height={height} visible={visible}>
                     {isSimple ? (
                         preview
@@ -90,8 +98,8 @@ const MapPathScreen = ({ map, background, align, visible, renderFormat, classNam
                         <>
                             <MapComponent
                                 {...map}
-                                {...(active
-                                    ? { center: { lat: active.lat, lng: active.lng } }
+                                {...(currentMarker
+                                    ? { center: { lat: currentMarker.lat, lng: currentMarker.lng } }
                                     : null)}
                                 markers={markers}
                                 withLine

@@ -21,6 +21,12 @@
                     "title": "Image",
                     "description": "Image d’arrière-plan",
                     "$ref": "https://schemas.micromag.ca/0.1/fields/image.json"
+                },
+                "video": {
+                    "type": "object",
+                    "title": "Vidéo",
+                    "description": "Vidéo d’arrière-plan",
+                    "$ref": "https://schemas.micromag.ca/0.1/fields/video.json"
                 }
             }
         }

@@ -21,6 +21,7 @@ const propTypes = {
     box: MicromagPropTypes.boxElement,
     textAlign: MicromagPropTypes.textAlign,
     visible: PropTypes.bool,
+    active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -32,6 +33,7 @@ const defaultProps = {
     background: null,
     textAlign: 'center',
     visible: true,
+    active: true,
     renderFormat: 'view',
     className: null,
 };
@@ -43,11 +45,12 @@ const ImageScreen = ({
     background,
     textAlign,
     visible,
+    active,
     renderFormat,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
 
     return (
         <div
@@ -61,7 +64,13 @@ const ImageScreen = ({
                 },
             ])}
         >
-            <Background {...background} width={width} height={height}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={isView || (isEditor && active)}
+                className={styles.background}
+            >
                 <Frame width={width} height={height} visible={visible}>
                     <Box {...box} withSmallSpacing={isSimple}>
                         {isPlaceholder ? (

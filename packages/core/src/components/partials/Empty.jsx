@@ -10,21 +10,24 @@ import styles from '../../styles/partials/empty.module.scss';
 const propTypes = {
     children: PropTypes.node,
     withoutBorder: PropTypes.bool,
+    invertColor: PropTypes.bool,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     children: null,
     withoutBorder: false,
+    invertColor: false,
     className: null,
 };
 
-const Placeholder = ({ children, withoutBorder, className }) => (
+const Empty = ({ children, withoutBorder, invertColor, className }) => (
     <div
         className={classNames([
             styles.container,
             {
                 [styles.withoutBorder]: withoutBorder,
+                [styles.invertColor]: invertColor,
                 [className]: className,
             },
         ])}
@@ -33,7 +36,7 @@ const Placeholder = ({ children, withoutBorder, className }) => (
     </div>
 );
 
-Placeholder.propTypes = propTypes;
-Placeholder.defaultProps = defaultProps;
+Empty.propTypes = propTypes;
+Empty.defaultProps = defaultProps;
 
-export default Placeholder;
+export default Empty;

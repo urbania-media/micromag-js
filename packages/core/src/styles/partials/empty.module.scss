@@ -16,4 +16,9 @@
     &.withoutBorder {
         border: 0;
     }
+
+    &.invertColor {
+        border: dashed 2px rgba($white, 0.3);
+        color: rgba($white, 0.3);
+    }
 }

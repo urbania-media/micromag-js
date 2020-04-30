@@ -83,6 +83,7 @@ const Viewer = ({
         width: screenSize.width,
         items: components,
         disabled: desktop,
+        withSpring: interactions !== null,
         // onSwipeEnd: changeIndex,
     });
 
@@ -130,9 +131,11 @@ const Viewer = ({
     // Track the menu cursor on use change
     const onVisible = useCallback(
         index => {
+            // if (interactions !== null) {
             changeIndex(index);
+            // }
         },
-        [changeIndex],
+        [changeIndex, interactions],
     );
 
     // console.log('current index', screenId, currentIndex);

@@ -10,32 +10,48 @@ import Frame from '@micromag/element-frame';
 import Button from '@micromag/element-button';
 import { Placeholders, PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
+import { getRenderFormat } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
     question: MicromagPropTypes.textElement,
-    background: MicromagPropTypes.backgroundElement,
+
     result: PropTypes.shape({
         image: MicromagPropTypes.image,
         text: MicromagPropTypes.textElement,
     }),
     onClick: PropTypes.func,
+    background: MicromagPropTypes.backgroundElement,
+    visible: PropTypes.bool,
+    active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     question: null,
-    background: null,
     result: null,
     onClick: null,
+    background: null,
+    visible: true,
+    active: false,
     renderFormat: 'view',
     className: null,
 };
 
-const SurveyYesNo = ({ question, background, result, onClick, renderFormat, className }) => {
+const SurveyYesNo = ({
+    question,
+    result,
+    onClick,
+    background,
+    visible,
+    active,
+    renderFormat,
+    className,
+}) => {
     const { width, height } = useScreenSize();
+    const { isPlaceholder, isEditor, isView } = getRenderFormat(renderFormat);
 
     const [answered, setAnswered] = useState(false);
 
@@ -56,8 +72,14 @@ const SurveyYesNo = ({ question, background, result, onClick, renderFormat, clas
                 },
             ])}
         >
-            <Background {...background} width={width} height={height}>
-                <Frame width={width} height={height}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={isView || (isEditor && active)}
+                className={styles.background}
+            >
+                <Frame width={width} height={height} visible={visible}>
                     <div className={styles.inner}>
                         {answered ? (
                             <div className={styles.resultContainer}>

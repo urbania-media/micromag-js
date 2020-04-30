@@ -10,6 +10,7 @@ import Frame from '@micromag/element-frame';
 import Button from '@micromag/element-button';
 import { Placeholders, PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
+import { getRenderFormat } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
@@ -21,6 +22,8 @@ const propTypes = {
         text: MicromagPropTypes.textElement,
     }),
     background: MicromagPropTypes.backgroundElement,
+    visible: PropTypes.bool,
+    active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -30,6 +33,8 @@ const defaultProps = {
     options: null,
     result: null,
     background: null,
+    visible: true,
+    active: false,
     renderFormat: 'view',
     className: null,
 };
@@ -39,10 +44,13 @@ const SurveyMultipleChoice = ({
     options,
     result,
     background,
+    visible,
+    active,
     renderFormat,
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const { isPlaceholder, isView, isEditor } = getRenderFormat(renderFormat);
 
     const [answered, setAnswered] = useState(false);
 
@@ -63,8 +71,14 @@ const SurveyMultipleChoice = ({
                 },
             ])}
         >
-            <Background {...background} width={width} height={height}>
-                <Frame width={width} height={height}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={isView || (isEditor && active)}
+                className={styles.background}
+            >
+                <Frame width={width} height={height} visible={visible}>
                     <div className={styles.inner}>
                         {answered ? (
                             <div className={styles.resultContainer}>

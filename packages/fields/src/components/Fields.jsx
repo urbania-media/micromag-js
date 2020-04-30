@@ -150,6 +150,8 @@ const Fields = ({
         [visibleFields, globalIsHorizontal, isList, value, errors, onFieldChange, gotoFieldForm],
     );
 
+    console.log(fields, value);
+
     return (
         <div
             className={classNames([

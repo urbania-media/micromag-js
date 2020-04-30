@@ -42,7 +42,7 @@ const LayoutField = ({ screenType: type, enums, value, className, onChange }) =>
                 </div>
             ),
         }))}
-        value={value}
+        value={value || (enums ? enums[0] : null)}
         className={classNames([
             styles.container,
             {

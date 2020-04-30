@@ -131,8 +131,10 @@ export const images = ({ count = 3, width = 800, height = 800, rand = false } = 
 
 export const videoFile = () => ({
     url: VideoTest,
-    width: 1920,
-    height: 1080,
+    metadata: {
+        width: 1920,
+        height: 1080,
+    },
 });
 
 export const video = () => ({

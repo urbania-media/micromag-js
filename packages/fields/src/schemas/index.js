@@ -18,4 +18,5 @@ export { default as textStyle } from './text-style.json';
 export { default as url } from './url.json';
 export { default as videoControl } from './video-control.json';
 export { default as videoControls } from './video-controls.json';
+export { default as videoParams } from './video-params.json';
 export { default as video } from './video.json';

@@ -20,6 +20,7 @@ const propTypes = {
     grid: MicromagPropTypes.gridElement,
     textAlign: MicromagPropTypes.textAlign,
     visible: PropTypes.bool,
+    active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -31,6 +32,7 @@ const defaultProps = {
     grid: null,
     textAlign: 'center',
     visible: true,
+    active: false,
     renderFormat: 'view',
     className: null,
 };
@@ -42,11 +44,12 @@ const TextScreen = ({
     grid,
     textAlign,
     visible,
+    active,
     renderFormat,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
 
     const item = isPlaceholder ? (
         <Placeholders.Text className={styles.placeholder} />
@@ -55,7 +58,13 @@ const TextScreen = ({
     );
 
     return (
-        <Background {...background} width={width} height={height}>
+        <Background
+            {...(!isPlaceholder ? background : null)}
+            width={width}
+            height={height}
+            playing={isView || (isEditor && active)}
+            className={styles.background}
+        >
             <Frame width={width} height={height} visible={visible}>
                 <div
                     className={classNames([

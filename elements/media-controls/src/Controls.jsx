@@ -25,6 +25,7 @@ const propTypes = {
     progress: MicromagPropTypes.videoControl,
     playback: MicromagPropTypes.videoControl,
     volume: MicromagPropTypes.videoControl,
+    width: PropTypes.number,
     className: PropTypes.string,
 };
 
@@ -44,6 +45,7 @@ const defaultProps = {
     progress: null,
     playback: null,
     volume: null,
+    width: null,
     className: null,
 };
 
@@ -60,6 +62,7 @@ const MediaControls = ({
     progress,
     playback,
     volume,
+    width: widthStyle,
     className,
 }) => {
     const seekRef = useRef(null);
@@ -127,6 +130,7 @@ const MediaControls = ({
                     [className]: className,
                 },
             ])}
+            style={{ width: widthStyle }}
         >
             <div className={styles.bar}>
                 {playbackVisible ? (
