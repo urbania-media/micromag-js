@@ -67,7 +67,7 @@ const GalleryScreen = ({
               .map(() => <Placeholders.Image className={styles.placeholder} />)
         : activeImages.map(it => (
             <Image
-                {...it}
+                image={it}
                 fit={{ size: 'cover' }}
                 hasParentContainer={false}
                 className={styles.image}
