@@ -18,6 +18,7 @@ const propTypes = {
     panorama: PropTypes.object, // eslint-disable-line
     background: MicromagPropTypes.backgroundElement,
     visible: PropTypes.bool,
+    active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -30,13 +31,14 @@ const defaultProps = {
     },
     background: null,
     visible: true,
+    active: false,
     renderFormat: 'view',
     className: null,
 };
 
-const PanoramaScreen = ({ background, visible, renderFormat, className }) => {
+const PanoramaScreen = ({ background, visible, active, renderFormat, className }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
     const content = 'Panorama';
 
     return (
@@ -54,6 +56,7 @@ const PanoramaScreen = ({ background, visible, renderFormat, className }) => {
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
+                playing={isView || (isEditor && active)}
                 className={styles.background}
             >
                 <Frame className={styles.frame} width={width} height={height} visible={visible}>

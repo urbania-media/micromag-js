@@ -7,9 +7,9 @@ export const useSwipe = ({
     width = null,
     height = null,
     items = [],
-    // display = 'flex',
+    withSpring = true,
     threshold = 3,
-    range = 2,
+    // range = 2,
     disabled = false,
     onSwipeStart = null,
     onSwipeEnd = null,
@@ -18,37 +18,42 @@ export const useSwipe = ({
     const currentWidth = width || window.innerWidth;
     const count = items.length;
 
-    const getItem = useCallback((item, x = 0, y = 0, hidden = false, idx = 0) => {
+    const getItem = useCallback((item, x = 0, y = 0, idx = 0) => {
         return {
             x,
             y,
-            // display: hidden ? 'none' : display,
-            // visibility: hidden ? 'hidden' : 'visible',
             item,
             zIndex: idx,
         };
-    }, []);
+    });
 
     const getItems = useCallback(
         ({ down = 0, mx = 0 } = {}) => {
             return items.map((item, i) => {
                 const x = disabled ? 0 : (i - index.current) * currentWidth + (down ? mx : 0);
-                const hidden =
-                    !disabled && (i < index.current - range || i > index.current + range);
-                return getItem(item, x, 0, hidden, i);
+                // const hidden =
+                //     !disabled && (i < index.current - range || i > index.current + range);
+                return getItem(item, x, 0, i);
             });
         },
         [disabled, items, index, currentWidth],
     );
 
     // Initial state
-    const [itemsWithProps, set] = useSprings(items.length, i => ({
-        x: disabled ? 0 : i * currentWidth,
-        // display: !disabled && i >= range ? 'none' : display,
-        // visibility: !disabled && i >= range ? 'hidden' : 'visible',
-        item: items[i],
-        zIndex: i,
-    }));
+    const [itemsWithProps, set] = useSprings(
+        items.length,
+        i => ({
+            x: disabled ? 0 : i * currentWidth,
+            // display: !disabled && i >= range ? 'none' : display,
+            // visibility: !disabled && i >= range ? 'hidden' : 'visible',
+            item: items[i],
+            zIndex: i,
+            config: {
+                ...(!withSpring ? { duration: 1 } : null),
+            },
+        }),
+        [items],
+    );
 
     const bind = useDrag(
         ({ down, movement: [mx], direction: [xDir, yDir], distance, delta: [xDelta], cancel }) => {
@@ -107,7 +112,7 @@ export const useSwipe = ({
     // Reset on resize or others
     useEffect(() => {
         set(getItems());
-    }, [width, height, set, disabled]);
+    }, [items, width, height, set, disabled]);
 
     return {
         items: itemsWithProps,

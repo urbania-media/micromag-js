@@ -9,9 +9,12 @@ import Box from '@micromag/element-box';
 import Image from '@micromag/element-image';
 // import Link from '@micromag/element-link';
 
-import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
+import { FormattedMessage } from 'react-intl';
+
+import messages from './messages';
 
 import styles from './styles.module.scss';
 
@@ -21,6 +24,7 @@ const propTypes = {
     box: MicromagPropTypes.boxElement,
     background: MicromagPropTypes.backgroundElement,
     visible: PropTypes.bool,
+    active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -31,6 +35,7 @@ const defaultProps = {
     box: null,
     background: null,
     visible: true,
+    active: false,
     renderFormat: 'view',
     className: null,
 };
@@ -41,18 +46,17 @@ const AdScreen = ({
     box,
     background,
     visible,
+    active,
     renderFormat,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isView, isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
 
     const { url, target = '_blank', rel = 'noopener noreferer' } = linkElement || {};
     const { image: { url: imageUrl = null } = {} } = imageElement || {};
 
-    // console.log('ad', linkElement, imageElement);
-
-    const inner =
+    let inner =
         imageUrl || isEditor ? (
             <Image
                 className={styles.content}
@@ -67,6 +71,15 @@ const AdScreen = ({
                     : { width, height })}
             />
         ) : null;
+
+    inner =
+        isEditor && !imageUrl ? (
+            <Empty invertColor className={styles.empty}>
+                <FormattedMessage {...messages.schemaTitle} />
+            </Empty>
+        ) : (
+            inner
+        );
 
     const content =
         url !== null && isView ? (
@@ -91,6 +104,7 @@ const AdScreen = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
+                playing={isView || (isEditor && active)}
                 className={styles.background}
             >
                 <Frame className={styles.frame} width={width} height={height} visible={visible}>

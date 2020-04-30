@@ -10,11 +10,13 @@ const propTypes = {
     fit: PropTypes.shape({
         size: PropTypes.string,
     }),
-    loop: PropTypes.bool,
-    autoPlay: PropTypes.bool,
-    muted: PropTypes.bool,
-    playsInline: PropTypes.bool,
-    controls: PropTypes.bool,
+    videoParams: PropTypes.shape({
+        loop: PropTypes.bool,
+        autoPlay: PropTypes.bool,
+        muted: PropTypes.bool,
+        controls: PropTypes.bool,
+        // playsInline: PropTypes.bool,
+    }),
 };
 
 const defaultProps = {
@@ -23,11 +25,13 @@ const defaultProps = {
         axisAlign: 'center',
     },
     fit: { size: 'contain' },
-    loop: true,
-    autoPlay: true,
-    playsInline: true,
-    muted: true,
-    controls: false,
+    videoParams: {
+        loop: true,
+        autoPlay: true,
+        muted: true,
+        controls: false,
+        // playsInline: true,
+    },
 };
 
 const VideoLoop = ({ ...props }) => {

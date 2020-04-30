@@ -20,6 +20,7 @@ const propTypes = {
     columns: PropTypes.arrayOf(PropTypes.number),
     spacing: PropTypes.number,
     visible: PropTypes.bool,
+    active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -31,6 +32,7 @@ const defaultProps = {
     columns: [1],
     spacing: 10,
     visible: true,
+    active: false,
     renderFormat: 'view',
     className: null,
 };
@@ -41,11 +43,12 @@ const GalleryScrollScreen = ({
     columns,
     spacing,
     visible,
+    active,
     renderFormat,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
 
     const defaultArray = [
         ...Array(16).map(i => ({
@@ -61,16 +64,16 @@ const GalleryScrollScreen = ({
 
     const groups = [];
     let step = 0;
-    let current = 0;
+    let row = 0;
     let index = 0;
 
     currentImages.forEach(image => {
         const max = columns[step];
-        if (current < max) {
-            current += 1;
+        if (row < max) {
+            row += 1;
         } else {
             index += 1;
-            current = 1;
+            row = 1;
             if (step < columns.length - 1) {
                 step += 1;
             } else {
@@ -123,7 +126,13 @@ const GalleryScrollScreen = ({
                 },
             ])}
         >
-            <Background {...background} width={width} height={height} className={styles.background}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={isView || (isEditor && active)}
+                className={styles.background}
+            >
                 <Frame width={width} height={height} withScroll={!isSimple} visible={visible}>
                     <Box axisAlign="top" withSmallSpacing={isSimple} className={styles.box}>
                         {items}

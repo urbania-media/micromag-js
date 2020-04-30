@@ -21,6 +21,7 @@ const propTypes = {
     cardBackground: MicromagPropTypes.backgroundElement,
     align: PropTypes.string,
     visible: PropTypes.bool,
+    active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -31,6 +32,7 @@ const defaultProps = {
     cardBackground: null,
     align: 'bottom',
     visible: true,
+    active: true,
     renderFormat: 'view',
     className: null,
 };
@@ -41,11 +43,12 @@ const MapScreen = ({
     cardBackground,
     align,
     visible,
+    active,
     renderFormat,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
     const [index, setIndex] = useState();
 
     const { markers: mapMarkers = [] } = map || {};
@@ -80,7 +83,13 @@ const MapScreen = ({
                 },
             ])}
         >
-            <Background {...background} width={width} height={height}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={isView || (isEditor && active)}
+                className={styles.background}
+            >
                 <Frame width={width} height={height} visible={visible}>
                     {isSimple ? (
                         preview

@@ -20,6 +20,8 @@ const propTypes = {
     items: PropTypes.arrayOf(MicromagPropTypes.textElement),
     background: MicromagPropTypes.backgroundElement,
     renderFormat: MicromagPropTypes.renderFormat,
+    visible: PropTypes.bool,
+    active: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -27,13 +29,15 @@ const defaultProps = {
     title: null,
     items: null,
     background: null,
+    visible: true,
+    active: false,
     renderFormat: 'view',
     className: null,
 };
 
-const TimelineDots = ({ title, items, background, renderFormat, className }) => {
+const TimelineDots = ({ title, items, background, visible, active, renderFormat, className }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isPreview, isSimple } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isPreview, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
 
     return (
         <div
@@ -46,8 +50,14 @@ const TimelineDots = ({ title, items, background, renderFormat, className }) => 
                 },
             ])}
         >
-            <Background {...background} width={width} height={height}>
-                <Frame width={width} height={height} withScroll={!isSimple}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={isView || (isEditor && active)}
+                className={styles.background}
+            >
+                <Frame width={width} height={height} visible={visible} withScroll={!isSimple}>
                     <div className={styles.inner}>
                         {!isPlaceholder ? (
                             <>

@@ -10,10 +10,15 @@ import VideoControls from '@micromag/element-media-controls';
 import styles from './styles/video.module.scss';
 
 const propTypes = {
-    url: PropTypes.string,
+    video: PropTypes.shape({
+        id: PropTypes.string,
+        url: PropTypes.string,
+        metadata: PropTypes.shape({
+            width: PropTypes.number,
+            height: PropTypes.number,
+        }),
+    }),
     players: PropTypes.arrayOf(PropTypes.elementType),
-    width: PropTypes.number,
-    height: PropTypes.number,
     maxWidth: PropTypes.number,
     maxHeight: PropTypes.number,
     autoPlay: PropTypes.bool,
@@ -27,10 +32,8 @@ const propTypes = {
 };
 
 const defaultProps = {
-    url: null,
+    video: null,
     players: null,
-    width: null,
-    height: null,
     maxWidth: null,
     maxHeight: null,
     autoPlay: false,
@@ -44,10 +47,8 @@ const defaultProps = {
 };
 
 const Video = ({
+    video,
     players,
-    url,
-    width,
-    height,
     maxWidth: defaultMaxWidth,
     maxHeight: defaultMaxHeight,
     autoPlay,
@@ -59,6 +60,9 @@ const Video = ({
     showEmpty,
     className,
 }) => {
+    const { url = null, metadata = {} } = video || {};
+    const { width = null, height = null } = metadata;
+
     const maxWidth = defaultMaxWidth || width;
     const maxHeight = defaultMaxHeight || height;
     // console.log(width, height);
@@ -103,7 +107,18 @@ const Video = ({
         setVideoSize({ width, height });
     }, [width, height]);
 
+    useEffect(() => {
+        if (refPlayer.current) {
+            if (!autoPlay) {
+                refPlayer.current.pause();
+            } else {
+                refPlayer.current.play();
+            }
+        }
+    }, [autoPlay, setPlayerState]);
+
     const { size = 'fit' } = fit || {};
+
     let playerSize =
         size === 'fit'
             ? {
@@ -113,7 +128,7 @@ const Video = ({
             : getSizeWithinBounds(videoSize.width, videoSize.height, maxWidth, maxHeight, {
                   cover: size === 'cover',
               });
-    playerSize = showEmpty ? { width: '100%', height: 200 } : playerSize;
+    playerSize = showEmpty && !url ? { width: '100%', height: 200 } : playerSize;
 
     return (
         <div
@@ -127,17 +142,27 @@ const Video = ({
             style={{
                 width: playerSize.width,
                 height: playerSize.height,
-                overflow: 'hidden',
             }}
         >
+            {(playerReady && controlsVisible) || showEmpty ? (
+                <VideoControls
+                    {...refPlayer.current}
+                    {...playerState}
+                    {...controls}
+                    duration={duration}
+                    currentTime={currentTime}
+                    width={Math.min(maxWidth, playerSize.width)}
+                    className={styles.controls}
+                />
+            ) : null}
             {PlayerComponent !== null ? (
                 <div
                     className={styles.playerContainer}
                     style={{
                         width: playerSize.width,
                         height: playerSize.height,
-                        top: size === 'cover' ? -(height - playerSize.height) / 2 : 0,
-                        left: size === 'cover' ? -(width - playerSize.width) / 2 : 0,
+                        top: size === 'cover' ? (maxHeight - playerSize.height) / 2 : 0,
+                        left: size === 'cover' ? (maxWidth - playerSize.width) / 2 : 0,
                     }}
                 >
                     <PlayerComponent
@@ -154,16 +179,6 @@ const Video = ({
                         onCurrentTimeChange={onPlayerCurrentTimeChange}
                     />
                 </div>
-            ) : null}
-            {(playerReady && controlsVisible) || showEmpty ? (
-                <VideoControls
-                    {...refPlayer.current}
-                    {...playerState}
-                    {...controls}
-                    duration={duration}
-                    currentTime={currentTime}
-                    className={styles.controls}
-                />
             ) : null}
         </div>
     );

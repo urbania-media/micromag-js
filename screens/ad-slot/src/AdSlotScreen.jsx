@@ -19,6 +19,7 @@ const propTypes = {
     box: MicromagPropTypes.boxElement,
     background: MicromagPropTypes.backgroundElement,
     visible: PropTypes.bool,
+    active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -33,13 +34,14 @@ const defaultProps = {
     box: null,
     background: null,
     visible: true,
+    active: false,
     renderFormat: 'view',
     className: null,
 };
 
-const AdSlotScreen = ({ iframe, box, background, visible, renderFormat, className }) => {
+const AdSlotScreen = ({ iframe, box, background, visible, active, renderFormat, className }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
     const { src, title } = iframe;
 
     const preview = isSimple ? (
@@ -55,8 +57,6 @@ const AdSlotScreen = ({ iframe, box, background, visible, renderFormat, classNam
             preview
         );
 
-    console.log('adslot', title, src, inner);
-
     return (
         <div
             className={classNames([
@@ -71,6 +71,7 @@ const AdSlotScreen = ({ iframe, box, background, visible, renderFormat, classNam
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
+                playing={isView || (isEditor && active)}
                 className={styles.background}
             >
                 <Frame className={styles.frame} width={width} height={height} visible={visible}>

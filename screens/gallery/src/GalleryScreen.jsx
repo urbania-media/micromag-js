@@ -22,6 +22,7 @@ const propTypes = {
     }),
     defaultSpacing: PropTypes.number,
     visible: PropTypes.bool,
+    active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -32,6 +33,7 @@ const defaultProps = {
     grid: null,
     defaultSpacing: 10,
     visible: true,
+    active: false,
     renderFormat: 'view',
     className: null,
 };
@@ -42,11 +44,12 @@ const GalleryScreen = ({
     grid,
     defaultSpacing,
     visible,
+    active,
     renderFormat,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isPreview, isSimple, isEditor } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isPreview, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
 
     const { layout } = grid;
     const defaultArray = [
@@ -56,13 +59,13 @@ const GalleryScreen = ({
         })),
     ];
     const images = isPreview ? imageList.slice(0, 16) : imageList || [];
-    const currentImages = isEditor ? defaultArray : images;
+    const activeImages = isEditor ? defaultArray : images;
 
     const items = isPlaceholder
         ? layout
               .reduce((map, row) => [...map, ...row.columns], [])
               .map(() => <Placeholders.Image className={styles.placeholder} />)
-        : currentImages.map(it => (
+        : activeImages.map(it => (
             <Image
                 {...it}
                 fit={{ size: 'cover' }}
@@ -83,7 +86,13 @@ const GalleryScreen = ({
                 },
             ])}
         >
-            <Background {...background} width={width} height={height} className={styles.background}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={isView || (isEditor && active)}
+                className={styles.background}
+            >
                 <Frame width={width} height={height} visible={visible}>
                     <div className={styles.images}>
                         <Grid

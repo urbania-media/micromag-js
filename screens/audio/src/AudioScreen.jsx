@@ -22,6 +22,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     maxWidth: PropTypes.number,
     visible: PropTypes.bool,
+    active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -42,6 +43,7 @@ const defaultProps = {
     background: null,
     maxWidth: 300,
     visible: true,
+    active: false,
     renderFormat: 'view',
     className: null,
 };
@@ -54,11 +56,12 @@ const AudioScreen = ({
     background,
     maxWidth,
     visible,
+    active,
     renderFormat,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
 
     return (
         <div
@@ -70,7 +73,12 @@ const AudioScreen = ({
                 },
             ])}
         >
-            <Background {...background} width={width} height={height}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={isView || (isEditor && active)}
+            >
                 <Frame width={width} height={height} visible={visible}>
                     <Box {...box} withSmallSpacing={isSimple} className={styles.box}>
                         {isPlaceholder && image !== null ? (

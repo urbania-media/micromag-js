@@ -10,18 +10,25 @@ const propTypes = {
     fit: PropTypes.shape({
         size: PropTypes.string,
     }),
+    videoParams: PropTypes.shape({
+        controls: PropTypes.bool,
+    }),
 };
 
 const defaultProps = {
     box: {
         direction: 'column',
         axisAlign: 'center',
+        spacing: 0,
     },
     fit: { size: 'cover' },
+    videoParams: {
+        controls: false,
+    },
 };
 
-const VideoFull = ({ box, fit, ...otherProps }) => {
-    return <VideoScreen box={box} fit={fit} {...otherProps} />;
+const VideoFull = ({ box, fit, videoParams, ...otherProps }) => {
+    return <VideoScreen box={box} fit={fit} videoParams={videoParams} {...otherProps} />;
 };
 
 VideoFull.propTypes = propTypes;

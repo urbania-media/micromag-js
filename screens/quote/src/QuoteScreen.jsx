@@ -25,6 +25,7 @@ const propTypes = {
     textAlign: PropTypes.oneOf(['left', 'right', 'center']),
     position: PropTypes.number,
     visible: PropTypes.bool,
+    active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -39,6 +40,7 @@ const defaultProps = {
     textAlign: 'center',
     position: 1,
     visible: true,
+    active: false,
     renderFormat: 'view',
     className: null,
 };
@@ -53,11 +55,12 @@ const QuoteScreen = ({
     textAlign,
     position,
     visible,
+    active,
     renderFormat,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
     const { layout = [] } = grid || {};
 
     const item = (
@@ -87,7 +90,13 @@ const QuoteScreen = ({
                 },
             ])}
         >
-            <Background {...background} width={width} height={height} className={styles.background}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={isView || (isEditor && active)}
+                className={styles.background}
+            >
                 <Frame width={width} height={height} visible={visible}>
                     {grid !== null ? (
                         <Grid

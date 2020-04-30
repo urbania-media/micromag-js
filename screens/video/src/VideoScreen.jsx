@@ -14,62 +14,64 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     video: MicromagPropTypes.video,
+    videoParams: PropTypes.shape({
+        controls: PropTypes.bool,
+        autoPlay: PropTypes.bool,
+        muted: PropTypes.bool,
+        loop: PropTypes.bool,
+    }),
     background: MicromagPropTypes.backgroundElement,
     box: MicromagPropTypes.boxElement,
-    autoPlay: PropTypes.bool,
-    muted: PropTypes.bool,
-    loop: PropTypes.bool,
-    controls: PropTypes.bool,
     fit: PropTypes.shape({
         size: PropTypes.string,
     }),
     visible: PropTypes.bool,
+    active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     video: null,
+    videoParams: null,
     background: null,
     box: null,
-    loop: false,
-    autoPlay: false,
-    muted: false,
-    controls: false,
     fit: false,
     visible: true,
+    active: false,
     renderFormat: 'view',
     className: null,
 };
 
 const VideoScreen = ({
-    video,
+    video: videoField,
+    videoParams,
     background,
     box,
-    autoPlay,
-    muted,
-    loop,
-    controls,
     fit,
     visible,
+    active,
     renderFormat,
     className,
 }) => {
     const { width, height } = useScreenSize();
     const { size } = fit || {};
-    const { isSimple, isEditor } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
+    const { video = {} } = videoField || {};
+    const { loop = false, autoPlay = false, muted = false, controls = true } = videoParams || {};
 
     const placeholderSized = size === 'cover' ? Placeholders.VideoFull : Placeholders.Video;
     const Placeholder = loop ? Placeholders.VideoLoop : placeholderSized;
+    const autoplayCondition = isEditor ? autoPlay && active : autoPlay && !isSimple;
 
     const item = isSimple ? (
         <Placeholder className={styles.placeholder} />
     ) : (
         <VideoComponent
-            {...video}
-            maxWidth={Math.min(width - 40, 768 - 40)}
+            video={video}
+            maxWidth={Math.min(width, 768)}
             maxHeight={height}
-            autoPlay={autoPlay}
+            autoPlay={autoplayCondition}
             muted={muted}
             loop={loop}
             controlsVisible={controls}
@@ -80,7 +82,13 @@ const VideoScreen = ({
     );
 
     return (
-        <Background {...background} width={width} height={height}>
+        <Background
+            {...(!isPlaceholder ? background : null)}
+            width={width}
+            height={height}
+            playing={isView || (isEditor && active)}
+            className={styles.background}
+        >
             <Frame width={width} height={height} visible={visible}>
                 <div
                     className={classNames([
@@ -91,7 +99,7 @@ const VideoScreen = ({
                         },
                     ])}
                 >
-                    <Box {...box} withSmallSpacing={isSimple} className={styles.box}>
+                    <Box {...box} withSmallSpacing={isSimple} spacing={0} className={styles.box}>
                         {item}
                     </Box>
                 </div>

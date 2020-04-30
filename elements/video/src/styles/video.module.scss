@@ -3,15 +3,17 @@
 
 .container {
     position: relative;
-    overflow: hidden;
+    // overflow: hidden;
     background-color: $black;
 
     .controls {
         position: absolute;
-        z-index: 2;
-        bottom: 0;
+        z-index: 3;
+        bottom: -1px;
         left: 0;
-        width: 100%;
+        // width: 100%;
+        transform: translateZ(0);
+        // This is a browser bugfix, see https://stackoverflow.com/questions/49653475/video-and-z-index-inside-scaled-element-some-divs-disappear
     }
 
     .playerContainer {

@@ -11,6 +11,8 @@ const propTypes = {
     height: PropTypes.number,
     color: MicromagPropTypes.color,
     image: MicromagPropTypes.image,
+    video: MicromagPropTypes.video,
+    playing: PropTypes.bool,
     className: PropTypes.string,
     children: PropTypes.node,
 };
@@ -20,15 +22,20 @@ const defaultProps = {
     height: '100%',
     color: null,
     image: null,
+    video: null,
+    playing: true,
     className: null,
     children: null,
 };
 
-const Background = ({ width, height, color, image, className, children }) => {
+const Background = ({ width, height, color, image, video, playing, className, children }) => {
     let finalStyle = {
         width,
         height,
     };
+    let videoUrl = null;
+    let poster = null;
+    let posterStyle = null;
 
     if (color !== null) {
         finalStyle = {
@@ -43,6 +50,16 @@ const Background = ({ width, height, color, image, className, children }) => {
             backgroundSize: 'cover',
         };
     }
+    if (video !== null) {
+        const { url = null, thumbnail_url: thumbnail } = video || {};
+        videoUrl = url;
+        poster = thumbnail;
+        posterStyle = {
+            backgroundImage: `url("${thumbnail}")`,
+            backgroundSize: 'cover',
+        };
+    }
+
     return (
         <div
             className={classNames([
@@ -53,6 +70,20 @@ const Background = ({ width, height, color, image, className, children }) => {
             ])}
             style={finalStyle}
         >
+            {videoUrl !== null && playing ? (
+                <video
+                    className={styles.video}
+                    src={videoUrl}
+                    playsinline
+                    autoPlay
+                    muted
+                    loop
+                    poster={poster}
+                />
+            ) : null}
+            {videoUrl !== null && !playing ? (
+                <div className={styles.poster} src={poster} style={posterStyle} />
+            ) : null}
             {children}
         </div>
     );

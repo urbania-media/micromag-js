@@ -24,6 +24,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     textAlign: MicromagPropTypes.textAlign,
     visible: PropTypes.bool,
+    active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -34,6 +35,7 @@ const defaultProps = {
     background: null,
     textAlign: 'left',
     visible: true,
+    active: false,
     renderFormat: 'view',
     className: null,
 };
@@ -44,12 +46,13 @@ const SlideshowScreen = ({
     background,
     textAlign,
     visible,
+    active,
     renderFormat,
     className,
 }) => {
     const [parallelIndex, setParallelIndex] = useState(0);
     const { width, height, screens } = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
     const maxWidth = Math.min(width, 500);
 
     const { items, bind, setIndex } = useSwipe({
@@ -138,7 +141,13 @@ const SlideshowScreen = ({
                 },
             ])}
         >
-            <Background {...background} width={width} height={height} className={styles.background}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={isView || (isEditor && active)}
+                className={styles.background}
+            >
                 <Frame width={maxWidth} height={height} visible={visible}>
                     <Box {...box} withSmallSpacing={isSimple}>
                         {isPlaceholder ? <Placeholders.Slideshow /> : inner}

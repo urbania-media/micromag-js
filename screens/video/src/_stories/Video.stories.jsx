@@ -15,7 +15,7 @@ import Video from '../Video';
 const layouts = ['center', 'full', 'loop'];
 
 const props = {
-    video: videoFile(),
+    video: { video: videoFile() },
     background: background(),
 };
 

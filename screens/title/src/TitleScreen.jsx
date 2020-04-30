@@ -31,6 +31,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     textAlign: PropTypes.oneOf(['left', 'right', 'center']),
     visible: PropTypes.bool,
+    active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -45,6 +46,7 @@ const defaultProps = {
     background: null,
     textAlign: 'center',
     visible: true,
+    active: false,
     renderFormat: 'view',
     className: null,
 };
@@ -59,11 +61,12 @@ const TitleScreen = ({
     background,
     textAlign,
     visible,
+    active,
     renderFormat,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
 
     const options = { title, subtitle, description };
     const items = groups.map(its => (
@@ -101,7 +104,13 @@ const TitleScreen = ({
                 },
             ])}
         >
-            <Background {...background} width={width} height={height}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={isView || (isEditor && active)}
+                className={styles.background}
+            >
                 <Frame width={width} height={height} visible={visible}>
                     <div className={styles.inner}>
                         {grid !== null ? (
