@@ -108,7 +108,15 @@ const EditForm = ({ story, className, onChange }) => {
                 },
             ])}
         >
-            <div className={classNames([styles.top])}>
+            <nav
+                className={classNames([
+                    'navbar',
+                    'navbar-light',
+                    'bg-light',
+                    'flex-nowrap',
+                    'px-2',
+                ])}
+            >
                 {screenId !== null ? (
                     <Breadcrumb
                         story={story}
@@ -125,7 +133,7 @@ const EditForm = ({ story, className, onChange }) => {
                     onClickDuplicate={onClickDuplicate}
                     onClickDelete={onClickDelete}
                 />
-            </div>
+            </nav>
             <div
                 className={classNames([
                     styles.content,
@@ -160,7 +168,10 @@ const EditForm = ({ story, className, onChange }) => {
                                     />
                                 </div>
                             ) : (
-                                <div className={classNames(['bg-dark', styles.panel])} key={`screen-${screen.id}`}>
+                                <div
+                                    className={classNames(['bg-dark', styles.panel])}
+                                    key={`screen-${screen.id}`}
+                                >
                                     <ScreenForm
                                         value={screen}
                                         className={styles.form}

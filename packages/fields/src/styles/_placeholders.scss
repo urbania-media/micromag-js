@@ -7,13 +7,11 @@
     align-items: center;
     justify-content: flex-end;
     width: 100%;
-    font-size: 0.85rem;
     white-space: nowrap;
 
     > * {
         display: block;
         margin-right: $spacer / 2;
-        line-height: 1;
 
         &:last-child {
             margin-right: 0;
@@ -21,10 +19,15 @@
     }
 
     .noValue {
+        overflow: hidden;
         color: $gray-400;
+        text-overflow: ellipsis;
     }
 
     .value {
+        overflow: hidden;
         font-family: $font-family-monospace;
+        font-size: 0.75rem;
+        text-overflow: ellipsis;
     }
 }

@@ -6,8 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { Button } from '@micromag/core/components';
 
-import styles from '../../styles/buttons/back.module.scss';
-
 const propTypes = {
     className: PropTypes.string,
 };
@@ -18,14 +16,12 @@ const defaultProps = {
 
 const BackButton = ({ className, ...props }) => (
     <Button
-        className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-            },
-        ])}
-        withoutStyle
-        icon={<FontAwesomeIcon icon={faAngleLeft} className={styles.icon} />}
+        className={classNames(['px-2', {
+            [className]: className,
+        }])}
+        theme="secondary"
+        size="sm"
+        icon={<FontAwesomeIcon icon={faAngleLeft} />}
         {...props}
     />
 );

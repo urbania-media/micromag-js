@@ -62,7 +62,7 @@ const Navbar = ({
         <nav
             className={classNames([
                 'navbar',
-                'navbar-dark',
+                'navbar-light',
                 'bg-light',
                 'flex-nowrap',
                 'px-2',
@@ -75,11 +75,14 @@ const Navbar = ({
                 <>
                     <form className={classNames(['form-inline'])}>
                         <Button
+                            theme="secondary"
+                            size="sm"
+                            outline
                             icon={<FontAwesomeIcon icon={faChevronLeft} />}
                             onClick={onClickBack}
                         />
                     </form>
-                    <strong className="navbar-text mr-auto">{media.name}</strong>
+                    <strong className="navbar-text ml-2 mr-auto">{media.name}</strong>
                 </>
             ) : (
                 <>

@@ -1,12 +1,10 @@
-/* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCogs } from '@fortawesome/free-solid-svg-icons';
 import { Button } from '@micromag/core/components';
-
-import styles from '../../styles/buttons/settings.module.scss';
 
 const propTypes = {
     className: PropTypes.string,
@@ -18,15 +16,10 @@ const defaultProps = {
 
 const SettingsButton = ({ className, ...props }) => (
     <Button
-        className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-            },
-        ])}
-        theme="outline-secondary"
+        className={className}
+        theme="secondary"
         size="sm"
-        icon={<FontAwesomeIcon icon={faCogs} className={styles.icon} />}
+        icon={<FontAwesomeIcon icon={faCogs} />}
         {...props}
     />
 );

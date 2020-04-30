@@ -5,6 +5,10 @@
 .container {
     position: relative;
 
+    .preview {
+        background: $black;
+    }
+
     .image {
         display: block;
         width: 100%;
