@@ -63,14 +63,13 @@ const ImagesField = ({ name, value, newDefaultValue, className, onChange, gotoFi
                             key={`item-${index}`}
                             label={`#${index + 1}`}
                             className={styles.item}
-                            isHorizontal
-                            withCaret
+                            withForm
+                            gotoForm={form => gotoFieldForm(`${name}.${index}`, form)}
                         >
                             <ImageField
                                 form="image-component"
                                 value={itemValue}
                                 onChange={newValue => onItemChange(index, newValue)}
-                                gotoForm={form => gotoFieldForm(`${name}.${index}`, form)}
                             />
                         </FieldRow>
                     ))}

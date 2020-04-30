@@ -160,13 +160,19 @@ class SchemasRepository {
             ...other
         } = property;
         const subSchema = subRef !== null ? this.getSchema(subRef) : null;
-        const { $id, type: subType, allOf, properties, ...subOther } = subSchema || {};
+        const { $id, type: subType, allOf, properties, items = null, ...subOther } =
+            subSchema || {};
         const hasProperties =
             type === 'object' || subProperties !== null || subRef !== null || subAllOf !== null;
         return hasProperties
             ? {
                   type: this.getTypeFromProperty(property),
                   properties: this.getPropertiesFromSchema(property, conditionalData),
+                  ...(items !== null
+                      ? {
+                            items: this.getProperty(items),
+                        }
+                      : null),
                   ...subOther,
                   ...other,
               }
@@ -204,6 +210,7 @@ class SchemasRepository {
             screenType = null,
             intl = null,
             hidden = false,
+            items = null,
         } = property;
         const numberProps = {
             min: minimum,
@@ -228,6 +235,11 @@ class SchemasRepository {
             enums,
             screenType,
             hidden,
+            ...(items !== null
+                ? {
+                      items: this.getFieldFromProperty(items, '*'),
+                  }
+                : null),
             ...(type === 'number' ? numberProps : null),
         };
         return type === 'object'

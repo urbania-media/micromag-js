@@ -79,7 +79,7 @@ const FieldRow = ({
     const closePanel = useCallback(() => setPanelOpened(false), [setPanelOpened]);
     const openPanel = useCallback(() => setPanelOpened(true), [setPanelOpened]);
 
-    if (isHorizontal) {
+    if (isHorizontal || withForm || withPanel) {
         const isClickable = withForm || withPanel;
         const rowInner = (
             <>

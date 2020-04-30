@@ -57,10 +57,16 @@ const FieldForm = ({
     const field = fieldPath
         .split('.')
         .reduce(
-            (foundField, key) =>
-                foundField !== null
-                    ? (foundField.fields || []).find(it => it.name === key) || null
-                    : foundField,
+            (foundField, key) => {
+                if (foundField === null) {
+                    return null;
+                }
+                const { fields: subFields = [], items = null } = foundField;
+                if (items !== null && key.match(/^[0-9]+$/)) {
+                    return items;
+                }
+                return subFields.find(it => it.name === key) || null;
+            },
             { fields },
         );
 
