@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
 import { useHistory, useLocation } from 'react-router';
 import { parse as parseQueryString } from 'query-string';
-import { FormPanel, Label, Link } from '@micromag/core/components';
+import { FormPanel, Link } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
 import MainLayout from '../../layouts/Main';
@@ -46,7 +46,7 @@ const LoginPage = ({ className }) => {
         history.push(next !== null ? next : url('home'));
     }, [history, url]);
     return (
-        <MainLayout>
+        <MainLayout contentAlign="middle">
             <Page
                 title={messages.title}
                 small

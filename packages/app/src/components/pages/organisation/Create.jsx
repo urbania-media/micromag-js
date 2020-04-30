@@ -45,7 +45,7 @@ const OrganisationCreatePage = ({ className }) => {
         history.push(next !== null ? next : url('home'));
     }, [history, url, setOrganisation]);
     return (
-        <MainLayout>
+        <MainLayout contentAlign="middle">
             <Page
                 title={messages.title}
                 small

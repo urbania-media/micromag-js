@@ -42,7 +42,7 @@ const StoriesCreatePage = ({ className }) => {
         [push],
     );
     return (
-        <MainLayout>
+        <MainLayout contentAlign="middle">
             <Page
                 title={messages.title}
                 small

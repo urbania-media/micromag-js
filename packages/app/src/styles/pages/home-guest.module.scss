@@ -2,5 +2,10 @@
 @import './placeholders';
 
 .container {
+    text-align: center;
 
+    .logo {
+        width: 120px;
+        height: auto;
+    }
 }

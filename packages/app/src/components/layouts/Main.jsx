@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import MainNavbar from '../navbars/Main';
-import Footer from '../partials/Footer';
 
 import styles from '../../styles/layouts/main.module.scss';
 
@@ -15,7 +14,6 @@ const propTypes = {
     fullscreen: PropTypes.bool,
     isEditor: PropTypes.bool,
     withoutHeader: PropTypes.bool,
-    withoutFooter: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -26,7 +24,6 @@ const defaultProps = {
     fullscreen: false,
     isEditor: false,
     withoutHeader: false,
-    withoutFooter: false,
     className: null,
 };
 
@@ -37,7 +34,6 @@ const MainLayout = ({
     fullscreen,
     isEditor,
     withoutHeader,
-    withoutFooter,
     className,
 }) => {
     return (
@@ -70,16 +66,6 @@ const MainLayout = ({
             >
                 {children}
             </main>
-            <footer
-                className={classNames([
-                    styles.header,
-                    {
-                        [styles.hidden]: withoutFooter || fullscreen || isEditor,
-                    },
-                ])}
-            >
-                <Footer />
-            </footer>
         </div>
     );
 };
