@@ -10,7 +10,6 @@ export { default as FontSize } from './FontSize';
 export { default as FontStyles } from './FontStyles';
 export { default as GridLayout } from './GridLayout';
 export { default as Image } from './Image';
-export { default as ImageUrl } from './ImageUrl';
 export { default as Images } from './Images';
 export { default as Layout } from './Layout';
 export { default as Margin } from './Margin';

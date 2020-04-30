@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import MediaGallery from '@micromag/media-gallery';
 
-import styles from '../styles/image.module.scss';
+import styles from '../styles/video.module.scss';
 
 const propTypes = {
     value: PropTypes.shape({

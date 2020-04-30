@@ -6,9 +6,7 @@
 
     "properties": {
         "url": {
-            "type": "string",
-            "title": "Adresse de l’image",
-            "component": "image-url"
+            "type": "string"
         }
     }
 }

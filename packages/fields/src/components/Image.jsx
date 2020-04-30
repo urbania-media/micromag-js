@@ -47,7 +47,7 @@ const ImageField = ({ value, isForm, className, onChange }) => {
         >
             {thumbnailUrl !== null ? (
                 <>
-                    <span className={styles.name}>{name}</span>
+                    <span className={styles.value}>{name}</span>
                     <img src={thumbnailUrl} className={styles.thumbnail} alt={name} />
                 </>
             ) : (

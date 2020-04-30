@@ -2,6 +2,7 @@
     "$id": "https://schemas.micromag.ca/0.1/elements/background.json",
     "title": "Background",
     "type": "object",
+    "component": "element",
 
     "allOf": [
         {
