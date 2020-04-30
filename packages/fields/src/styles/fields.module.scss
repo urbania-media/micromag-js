@@ -1,11 +1,25 @@
 @import '~@micromag/core/scss/variables';
 
 .container {
+    /* stylelint-disable selector-class-pattern */
+    :global {
+        .form-group {
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+    /* stylelint-enable selector-class-pattern */
+
     .field {
         margin-bottom: $spacer;
 
         &.isSection {
             margin-bottom: $spacer * 2;
+        }
+
+        &.isList {
+            margin-bottom: 0;
         }
 
         &:last-child {

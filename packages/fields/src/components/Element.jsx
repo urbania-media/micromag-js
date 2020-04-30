@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import React, { useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -9,6 +8,7 @@ const propTypes = {
     name: PropTypes.string,
     fields: MicromagPropTypes.formFields,
     value: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    isList: PropTypes.bool,
     gotoFieldForm: PropTypes.func,
     onChange: PropTypes.func,
 };
@@ -17,11 +17,12 @@ const defaultProps = {
     name: null,
     fields: [],
     value: null,
+    isList: false,
     gotoFieldForm: null,
     onChange: null,
 };
 
-const ElementField = ({ name, fields: formFields, value, gotoFieldForm, onChange }) => {
+const ElementField = ({ name, fields: formFields, value, gotoFieldForm, isList, onChange }) => {
     const fields = formFields || [];
     // console.log('debug fields', fields);
     const settingsNames = useMemo(
@@ -67,6 +68,7 @@ const ElementField = ({ name, fields: formFields, value, gotoFieldForm, onChange
             value={componentValue}
             gotoFieldForm={gotoFieldForm}
             onChange={componentOnChange}
+            isList={isList}
         />
     );
 };

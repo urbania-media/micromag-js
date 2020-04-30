@@ -22,7 +22,7 @@
     &.isHorizontal {
         display: flex;
         flex-wrap: nowrap;
-        width: 100%;
+        width: calc(100% + #{$form-grid-gutter-width});
 
         @include label {
             max-width: 7em;

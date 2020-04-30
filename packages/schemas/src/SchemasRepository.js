@@ -203,21 +203,31 @@ class SchemasRepository {
             properties,
             screenType = null,
             intl = null,
+            hidden = false,
         } = property;
         const numberProps = {
             min: minimum,
             max: maximum,
             steps: multiplesOf,
         };
+        let fieldType = type;
+        if (component !== null) {
+            fieldType = component;
+        } else if (hidden) {
+            fieldType = 'hidden';
+        } else if (type === 'object') {
+            fieldType = 'fields';
+        }
         const field = {
             name,
-            type: component || (type === 'object' ? 'fields' : type),
+            type: fieldType,
             label: intl !== null ? intl.title || label : label,
             description: intl !== null ? intl.description || description : description,
             setting,
             advanced,
             enums,
             screenType,
+            hidden,
             ...(type === 'number' ? numberProps : null),
         };
         return type === 'object'

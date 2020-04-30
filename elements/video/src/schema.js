@@ -4,7 +4,7 @@ export default {
     $id: 'https://schemas.micromag.ca/0.1/elements/video.json',
     title: 'Video',
     type: 'object',
-    component: 'element',
+    component: 'element-list',
     intl: {
         title: messages.schemaTitle,
     },

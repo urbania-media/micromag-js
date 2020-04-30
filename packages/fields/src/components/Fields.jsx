@@ -27,6 +27,7 @@ const propTypes = {
     gotoFieldForm: PropTypes.func,
     nullEmptyObject: PropTypes.bool,
     isHorizontal: PropTypes.bool,
+    isList: PropTypes.bool,
     onChange: PropTypes.func,
     className: PropTypes.string,
     labelClassName: PropTypes.string,
@@ -42,6 +43,7 @@ const defaultProps = {
     gotoFieldForm: null,
     nullEmptyObject: false,
     isHorizontal: false,
+    isList: false,
     onChange: null,
     className: null,
     labelClassName: null,
@@ -57,6 +59,7 @@ const Fields = ({
     gotoFieldForm,
     nullEmptyObject,
     isHorizontal: globalIsHorizontal,
+    isList,
     onChange,
     className,
     labelClassName,
@@ -86,7 +89,8 @@ const Fields = ({
         [value, nullableOnChange],
     );
 
-    const fieldsAdvanced = fields.map(({ advanced = false }) => advanced);
+    const visibleFields = fields.filter(({ hidden = false }) => !hidden);
+    const fieldsAdvanced = visibleFields.map(({ advanced = false }) => advanced);
     const normalFieldsIndex = useMemo(
         () =>
             fieldsAdvanced
@@ -104,7 +108,7 @@ const Fields = ({
 
     const fieldsElements = useMemo(
         () =>
-            fields.map((field, i) => {
+            visibleFields.map((field, i) => {
                 const {
                     name = null,
                     value: customValue,
@@ -131,6 +135,10 @@ const Fields = ({
                         className={classNames([
                             styles.field,
                             {
+                                'list-group-item': isList,
+                                'mb-0': isList,
+                                'py-2': isList,
+                                'px-2': isList,
                                 [styles.isSection]: isSection,
                             },
                         ])}
@@ -139,7 +147,7 @@ const Fields = ({
                     />
                 );
             }),
-        [fields, globalIsHorizontal, value, errors, onFieldChange, gotoFieldForm],
+        [visibleFields, globalIsHorizontal, isList, value, errors, onFieldChange, gotoFieldForm],
     );
 
     return (
@@ -152,12 +160,26 @@ const Fields = ({
                 },
             ])}
         >
-            <div className={styles.fields}>
+            <div
+                className={classNames([
+                    styles.fields,
+                    {
+                        'list-group': isList,
+                    },
+                ])}
+            >
                 {normalFieldsIndex.map(index => fieldsElements[index])}
             </div>
             {advancedFieldsIndex.length > 0 ? (
                 <FieldRow label={messages.advanced} isSection className={styles.advanced}>
-                    <div className={styles.fields}>
+                    <div
+                        className={classNames([
+                            styles.fields,
+                            {
+                                'list-group': isList,
+                            },
+                        ])}
+                    >
                         {advancedFieldsIndex.map(index => fieldsElements[index])}
                     </div>
                 </FieldRow>

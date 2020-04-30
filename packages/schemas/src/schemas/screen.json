@@ -5,7 +5,8 @@
     "properties": {
         "type": {
             "type": "string",
-            "title": "Type"
+            "title": "Type",
+            "hidden": true
         }
     },
     "required": ["type"]
