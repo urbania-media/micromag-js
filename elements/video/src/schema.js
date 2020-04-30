@@ -14,11 +14,11 @@ export default {
         },
         {
             properties: {
-                url: {
-                    $ref: 'https://schemas.micromag.ca/0.1/fields/url.json',
-                    title: 'URL',
+                video: {
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/video.json',
+                    title: 'Video',
                     intl: {
-                        title: messages.url,
+                        title: messages.video,
                     },
                 },
             },

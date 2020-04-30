@@ -9,6 +9,7 @@ import Button from '../buttons/Button';
 const propTypes = {
     brand: PropTypes.node,
     brandLink: PropTypes.string,
+    theme: PropTypes.oneOf(['light', 'dark', 'primary']),
     children: PropTypes.node,
     className: PropTypes.string,
 };
@@ -16,11 +17,12 @@ const propTypes = {
 const defaultProps = {
     brand: null,
     brandLink: null,
+    theme: 'light',
     children: null,
     className: null,
 };
 
-const Navbar = ({ brand, brandLink, children, className }) => {
+const Navbar = ({ brand, brandLink, theme, children, className }) => {
     const [menuVisible, setMenuVisible] = useState(false);
     const onClickMenu = useCallback(() => setMenuVisible(!menuVisible), [
         setMenuVisible,
@@ -30,9 +32,9 @@ const Navbar = ({ brand, brandLink, children, className }) => {
         <nav
             className={classNames([
                 'navbar',
-                'navbar-expand-lg',
-                'navbar-light',
-                'bg-light',
+                'navbar-expand-md',
+                `navbar-${theme === 'light' ? 'light' : 'dark'}`,
+                `bg-${theme}`,
                 {
                     [className]: className !== null,
                 },

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { getFileName } from '@micromag/core/utils';
 import MediaGallery from '@micromag/media-gallery';
 
 import styles from '../styles/image.module.scss';
@@ -35,7 +34,7 @@ const ImageField = ({ value, isForm, className, onChange }) => {
                 },
             ])}
         >
-            <MediaGallery isPicker onClickMedia={onChange} />
+            <MediaGallery type="image" isPicker onClickMedia={onChange} />
         </div>
     ) : (
         <div

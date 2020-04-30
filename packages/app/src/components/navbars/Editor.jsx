@@ -30,7 +30,7 @@ const EditorNavbar = ({ className }) => {
     const url = useUrlGenerator();
     const story = useStory();
     return (
-        <Navbar brand="Micromag" brandLink={url('home')} className={className}>
+        <Navbar brand="Micromag" brandLink={url('home')} theme="primary" className={className}>
             {story !== null ? (
                 <>
                     <span className="navbar-text">{story.title}</span>

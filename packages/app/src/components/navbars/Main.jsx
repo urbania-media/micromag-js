@@ -22,7 +22,7 @@ const MainNavbar = ({ className }) => {
     const { loggedIn } = useAuth();
     const url = useUrlGenerator();
     return (
-        <Navbar brand="Micromag" brandLink={url('home')} className={className}>
+        <Navbar brand="Micromag" brandLink={url('home')}  theme="primary" className={className}>
             {loggedIn ? (
                 <>
                     <OrganisationMenu

@@ -7,9 +7,9 @@ export const schemas = defineMessages({
         id: 'schema.title',
         defaultMessage: 'Video element',
     },
-    url: {
-        id: 'schema.properties.url',
-        defaultMessage: 'URL',
+    video: {
+        id: 'schema.properties.video',
+        defaultMessage: 'Vidéo',
     },
 });
 

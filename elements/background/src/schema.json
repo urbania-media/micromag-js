@@ -13,15 +13,13 @@
                     "type": "object",
                     "title": "Couleur",
                     "description": "Couleur de l’arrière-plan",
-                    "$ref": "https://schemas.micromag.ca/0.1/fields/color.json",
-                    "component": "color"
+                    "$ref": "https://schemas.micromag.ca/0.1/fields/color.json"
                 },
                 "image": {
                     "type": "object",
                     "title": "Image",
                     "description": "Image d’arrière-plan",
-                    "$ref": "https://schemas.micromag.ca/0.1/fields/image.json",
-                    "component": "image"
+                    "$ref": "https://schemas.micromag.ca/0.1/fields/image.json"
                 }
             }
         }

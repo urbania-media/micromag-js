@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faTimes, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { Button } from '@micromag/core';
 
 import * as AppPropTypes from '../../lib/PropTypes';
@@ -62,8 +62,8 @@ const Navbar = ({
         <nav
             className={classNames([
                 'navbar',
-                'navbar-light',
-                'bg-light',
+                'navbar-dark',
+                'bg-primary',
                 {
                     [className]: className !== null,
                 },
@@ -89,7 +89,7 @@ const Navbar = ({
                     />
                     <form className={classNames(['form-inline', 'ml-auto'])}>
                         <Button
-                            theme="primary"
+                            theme="light"
                             outline
                             icon={<FontAwesomeIcon icon={faPlus} />}
                             onClick={onClickAdd}

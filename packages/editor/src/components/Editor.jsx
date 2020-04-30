@@ -146,6 +146,7 @@ const Editor = ({
                             </div>
                             <div
                                 className={classNames([
+                                    'bg-dark',
                                     styles.center,
                                     {
                                         [styles.visible]: !isMobile || mobileView === 'preview',

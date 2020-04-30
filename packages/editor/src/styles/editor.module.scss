@@ -14,7 +14,6 @@
         align-items: center;
         justify-content: space-between;
         padding: 5px;
-        background: $light;
         text-align: center;
 
         &.hidden {
@@ -44,11 +43,10 @@
     .right {
         @extend %hide-scrollbars;
         overflow-y: auto;
-        background: $white;
     }
 
     .center {
-        background: $dark;
+
     }
 
     .right {
