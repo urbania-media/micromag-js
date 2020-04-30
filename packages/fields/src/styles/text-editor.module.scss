@@ -1,10 +1,12 @@
 @import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/variables';
 
 .container {
     /* stylelint-disable selector-class-pattern */
     :global {
         .ck-content {
             @extend %text-styles;
+            color: $black;
         }
     }
     /* stylelint-enable selector-class-pattern */

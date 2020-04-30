@@ -15,6 +15,7 @@ import styles from '../styles/media-gallery.module.scss';
 const propTypes = {
     items: AppPropTypes.medias,
     isPicker: PropTypes.bool,
+    isSmall: PropTypes.bool,
     className: PropTypes.string,
     onClickMedia: PropTypes.func,
 };
@@ -22,11 +23,12 @@ const propTypes = {
 const defaultProps = {
     items: null,
     isPicker: false,
+    isSmall: false,
     className: null,
     onClickMedia: null,
 };
 
-const MediaGallery = ({ items: initialItems, isPicker, className, onClickMedia }) => {
+const MediaGallery = ({ items: initialItems, isPicker,isSmall, className, onClickMedia }) => {
     // Filters
     const [filtersValue, setFiltersValue] = useState(null);
 
@@ -97,6 +99,7 @@ const MediaGallery = ({ items: initialItems, isPicker, className, onClickMedia }
                         <Gallery
                             items={medias}
                             withInfoButton={isPicker}
+                            isSmall={isSmall}
                             onClickItem={onClickItem}
                             onClickItemInfo={onClickItemInfo}
                         />

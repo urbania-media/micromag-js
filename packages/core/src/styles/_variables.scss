@@ -1,6 +1,4 @@
 @import 'theme';
-@import '~bootstrap/scss/functions';
-@import '~bootstrap/scss/variables';
 
 $container-small-max-widths: (
     sm: 540px,
@@ -8,3 +6,6 @@ $container-small-max-widths: (
     lg: 540px,
     xl: 540px,
 ) !default;
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';

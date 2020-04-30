@@ -73,6 +73,8 @@ const EditorPreview = ({ story, devices, device: initialDevice, className, onScr
         };
     }, [device, contentRect, screen]);
 
+    console.log(routes);
+
     return (
         <div
             className={classNames([
@@ -97,7 +99,7 @@ const EditorPreview = ({ story, devices, device: initialDevice, className, onScr
                     <div className={styles.inner} ref={bottomRef}>
                         <div className={styles.preview} style={previewStyle}>
                             <Route
-                                path={[routes.home, routes.screen]}
+                                path={[routes.screen, routes.home]}
                                 render={({
                                     match: {
                                         params: { screen: screenId = null },

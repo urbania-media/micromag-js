@@ -16,7 +16,6 @@
         align-items: center;
         justify-content: space-between;
         padding: $spacer / 4;
-        background: $gray-200;
     }
 
     .settings {
@@ -54,7 +53,6 @@
     .panel {
         position: relative;
         min-height: 100%;
-        background: $white;
 
         &.enterRight,
         &.enterLeft,

@@ -130,6 +130,7 @@ const Editor = ({
                         <div className={styles.inner}>
                             <div
                                 className={classNames([
+                                    'bg-dark',
                                     styles.left,
                                     {
                                         [styles.visible]: !isMobile || mobileView === 'screens',
@@ -146,7 +147,6 @@ const Editor = ({
                             </div>
                             <div
                                 className={classNames([
-                                    'bg-dark',
                                     styles.center,
                                     {
                                         [styles.visible]: !isMobile || mobileView === 'preview',
@@ -161,6 +161,7 @@ const Editor = ({
                             </div>
                             <div
                                 className={classNames([
+                                    'bg-dark',
                                     styles.right,
                                     {
                                         [styles.visible]: !isMobile || mobileView === 'form',

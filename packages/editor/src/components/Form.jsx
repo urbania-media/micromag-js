@@ -108,7 +108,7 @@ const EditForm = ({ story, className, onChange }) => {
                 },
             ])}
         >
-            <div className={styles.top}>
+            <div className={classNames(['bg-light', styles.top])}>
                 {screenId !== null ? (
                     <Breadcrumb
                         story={story}
@@ -147,7 +147,7 @@ const EditForm = ({ story, className, onChange }) => {
                         >
                             {fieldParams !== null ? (
                                 <div
-                                    className={styles.panel}
+                                    className={classNames(['bg-dark', styles.panel])}
                                     key={`field-${fieldParams}-${formParams}`}
                                 >
                                     <FieldForm
@@ -160,7 +160,7 @@ const EditForm = ({ story, className, onChange }) => {
                                     />
                                 </div>
                             ) : (
-                                <div className={styles.panel} key={`screen-${screen.id}`}>
+                                <div className={classNames(['bg-dark', styles.panel])} key={`screen-${screen.id}`}>
                                     <ScreenForm
                                         value={screen}
                                         className={styles.form}
