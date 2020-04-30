@@ -20,6 +20,7 @@ const BackButton = ({ className, ...props }) => (
             [className]: className,
         }])}
         theme="secondary"
+        outline
         size="sm"
         icon={<FontAwesomeIcon icon={faAngleLeft} />}
         {...props}

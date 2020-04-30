@@ -76,7 +76,6 @@ const Navbar = ({
                     <form className={classNames(['form-inline'])}>
                         <Button
                             theme="secondary"
-                            size="sm"
                             outline
                             icon={<FontAwesomeIcon icon={faChevronLeft} />}
                             onClick={onClickBack}
