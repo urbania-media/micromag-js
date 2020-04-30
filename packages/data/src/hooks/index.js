@@ -9,3 +9,4 @@ export { default as useOrganisationTeam } from './useOrganisationTeam';
 export { default as useRecentStories } from './useRecentStories';
 export { default as useStories } from './useStories';
 export { default as useStory } from './useStory';
+export { default as useUpdateStory } from './useUpdateStory';

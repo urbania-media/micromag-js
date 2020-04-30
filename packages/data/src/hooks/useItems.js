@@ -188,6 +188,7 @@ const useItems = ({
         pages,
         pageItems: currentPage !== null ? currentPage.items : null,
         total,
+        lastPage,
         loaded,
         allLoaded:
             (!isPaginated && loaded) ||

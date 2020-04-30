@@ -62,8 +62,10 @@ const Navbar = ({
         <nav
             className={classNames([
                 'navbar',
-                'navbar-dark',
-                'bg-primary',
+                'navbar-light',
+                'bg-light',
+                'flex-nowrap',
+                'px-2',
                 {
                     [className]: className !== null,
                 },
@@ -73,11 +75,14 @@ const Navbar = ({
                 <>
                     <form className={classNames(['form-inline'])}>
                         <Button
+                            theme="secondary"
+                            size="sm"
+                            outline
                             icon={<FontAwesomeIcon icon={faChevronLeft} />}
                             onClick={onClickBack}
                         />
                     </form>
-                    <strong className="navbar-text mr-auto">{media.name}</strong>
+                    <strong className="navbar-text ml-2 mr-auto">{media.name}</strong>
                 </>
             ) : (
                 <>
@@ -85,12 +90,11 @@ const Navbar = ({
                         value={searchValue}
                         onChange={onSearchChange}
                         onFocus={onFocusSearch}
-                        className={classNames(['form-inline'])}
+                        className={classNames(['form-inline', 'mr-2'])}
                     />
                     <form className={classNames(['form-inline', 'ml-auto'])}>
                         <Button
-                            theme="light"
-                            outline
+                            theme="primary"
                             icon={<FontAwesomeIcon icon={faPlus} />}
                             onClick={onClickAdd}
                         >

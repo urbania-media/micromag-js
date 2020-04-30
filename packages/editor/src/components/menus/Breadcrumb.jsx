@@ -128,12 +128,11 @@ const Breadcrumb = ({ intl, story, screenId, field, form, panel, url, className 
             className={classNames([
                 styles.container,
                 {
-                    [styles.withBack]: withBack,
                     [className]: className !== null,
                 },
             ])}
         >
-            {withBack ? <BackButton onClick={onClickBack} className={styles.back} /> : null}
+            {withBack ? <BackButton onClick={onClickBack} className="mr-2" /> : null}
             <BaseBreadcrumb items={items} className={styles.menu} />
         </div>
     );

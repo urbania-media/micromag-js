@@ -8,25 +8,23 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Menu } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
-// import * as AppPropTypes from '../../lib/PropTypes';
-import { useAuth } from '../../contexts/AuthContext';
-
 const messages = defineMessages({
-    account: {
-        id: 'menus.account.account',
-        defaultMessage: 'Account',
+    editor: {
+        id: 'menus.story.editor',
+        defaultMessage: 'Launch editor',
     },
-    profile: {
-        id: 'menus.account.profile',
-        defaultMessage: 'Edit profile',
+    settings: {
+        id: 'menus.story.settings',
+        defaultMessage: 'Settings',
     },
-    logout: {
-        id: 'menus.account.logout',
-        defaultMessage: 'Logout',
+    delete: {
+        id: 'menus.story.delete',
+        defaultMessage: 'Delete story',
     },
 });
 
 const propTypes = {
+    story: MicromagPropTypes.story.isRequired,
     className: PropTypes.string,
     itemClassName: PropTypes.string,
     linkClassName: PropTypes.string,
@@ -34,6 +32,7 @@ const propTypes = {
     asList: PropTypes.bool,
     flush: PropTypes.bool,
     dropdownAlign: MicromagPropTypes.dropdownAlign,
+    withDelete: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -44,9 +43,11 @@ const defaultProps = {
     asList: false,
     flush: false,
     dropdownAlign: null,
+    withDelete: false,
 };
 
-const AccountMenu = ({
+const StoryMenu = ({
+    story,
     className,
     itemClassName,
     linkClassName,
@@ -54,27 +55,39 @@ const AccountMenu = ({
     asList,
     flush,
     dropdownAlign,
+    withDelete,
     ...props
 }) => {
     const url = useUrlGenerator();
     const { pathname } = useLocation();
-    const { logout } = useAuth();
     const finalItems = useMemo(() => {
         const subMenu = [
             {
-                id: 'profile',
-                href: url('account.profile'),
-                label: messages.profile,
+                id: 'editor',
+                href: url('stories.editor', {
+                    story: story.id,
+                }),
+                label: messages.editor,
+                className: asList ? 'list-group-item-dark' : null,
             },
             {
-                id: 'logout',
-                href: url('auth.logout'),
-                label: messages.logout,
-                onClick: e => {
-                    e.preventDefault();
-                    logout();
-                },
+                id: 'settings',
+                href: url('stories.settings', {
+                    story: story.id,
+                }),
+                label: messages.settings,
+                className: asList ? 'list-group-item-dark' : null,
             },
+            withDelete
+                ? {
+                      id: 'delete',
+                      href: url('stories.delete', {
+                          story: story.id,
+                      }),
+                      label: messages.delete,
+                      className: asList ? 'list-group-item-danger' : null,
+                  }
+                : null,
         ]
             .filter(it => it !== null)
             .map(it =>
@@ -89,13 +102,15 @@ const AccountMenu = ({
             ? subMenu
             : [
                   {
-                      id: 'account',
-                      href: url('account'),
-                      label: messages.account,
+                      id: 'story',
+                      href: url('stories.show', {
+                          story: story.id,
+                      }),
+                      label: story.title,
                       dropdown: subMenu,
                   },
               ];
-    }, [url, messages, logout, pathname, withoutDropdown, asList]);
+    }, [story, url, messages, withoutDropdown, withDelete, asList]);
     return (
         <Menu
             {...props}
@@ -109,7 +124,6 @@ const AccountMenu = ({
             itemClassName={classNames({
                 'list-group-item': asList,
                 'list-group-item-action': asList,
-                'list-group-item-dark': asList,
                 [itemClassName]: itemClassName !== null,
             })}
             linkClassName={linkClassName}
@@ -118,7 +132,7 @@ const AccountMenu = ({
     );
 };
 
-AccountMenu.propTypes = propTypes;
-AccountMenu.defaultProps = defaultProps;
+StoryMenu.propTypes = propTypes;
+StoryMenu.defaultProps = defaultProps;
 
-export default AccountMenu;
+export default StoryMenu;

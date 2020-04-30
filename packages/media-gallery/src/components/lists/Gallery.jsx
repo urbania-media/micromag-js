@@ -10,20 +10,22 @@ import styles from '../../styles/lists/gallery.module.scss';
 const propTypes = {
     items: PropTypes.arrayOf(PropTypes.shape({})),
     withInfoButton: PropTypes.bool,
+    isSmall: PropTypes.bool,
+    className: PropTypes.string,
     onClickItem: PropTypes.func,
     onClickItemInfo: PropTypes.func,
-    className: PropTypes.string,
 };
 
 const defaultProps = {
     items: null,
     withInfoButton: false,
+    isSmall: false,
+    className: null,
     onClickItem: null,
     onClickItemInfo: null,
-    className: null,
 };
 
-const Gallery = ({ items, withInfoButton, onClickItem, onClickItemInfo, className }) => (
+const Gallery = ({ items, withInfoButton, isSmall, className, onClickItem, onClickItemInfo }) => (
     <div
         className={classNames([
             styles.container,
@@ -33,9 +35,18 @@ const Gallery = ({ items, withInfoButton, onClickItem, onClickItemInfo, classNam
             },
         ])}
     >
-        <div className={classNames(['row', 'row-cols-2', 'row-cols-md-3'])}>
+        <div
+            className={classNames([
+                'row',
+                'mx-n1',
+                'row-cols-2',
+                {
+                    'row-cols-md-3': !isSmall,
+                },
+            ])}
+        >
             {items.map(item => (
-                <div className="col mb-4" key={`gallery-item-${item.id}`}>
+                <div className="col px-1 py-1" key={`gallery-item-${item.id}`}>
                     <GalleryItem
                         item={item}
                         onClick={onClickItem !== null ? () => onClickItem(item) : null}

@@ -4,28 +4,26 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Card, Link, Label } from '@micromag/core/components';
+import { Card, Label, Link } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
-import styles from '../../styles/items/story-card.module.scss';
+import StoryMenu from '../menus/Story';
+
+import styles from '../../styles/partials/account-box.module.scss';
 
 const messages = defineMessages({
-    edit: {
-        id: 'items.story.edit',
-        defaultMessage: 'Edit',
-    },
-    settings: {
-        id: 'items.story.settings',
-        defaultMessage: 'Settings',
+    title: {
+        id: 'story-box.title',
+        defaultMessage: 'Account',
     },
     screens: {
-        id: 'items.story.screens',
+        id: 'story-box.screens',
         defaultMessage: '{count} {count, plural, one {screen} other {screens}}',
     },
 });
 
 const propTypes = {
-    item: MicromagPropTypes.story.isRequired,
+    story: MicromagPropTypes.story.isRequired,
     className: PropTypes.string,
 };
 
@@ -33,39 +31,21 @@ const defaultProps = {
     className: null,
 };
 
-const StoryCardItem = ({ item, className }) => {
+const StoryBox = ({ story, className }) => {
+    const { components = [] } = story;
     const url = useUrlGenerator();
-    const { components = [] } = item;
     const screensCount = components.length;
     return (
         <Card
+            afterBody={<StoryMenu story={story} asList flush />}
             theme="dark"
-            footer={
-                <>
-                    <Link
-                        href={url('stories.editor', {
-                            story: item.id,
-                        })}
-                        className="card-link text-white"
-                    >
-                        {messages.edit}
-                    </Link>
-                    <Link
-                        href={url('stories.settings', {
-                            story: item.id,
-                        })}
-                        className="card-link text-white"
-                    >
-                        {messages.settings}
-                    </Link>
-                </>
-            }
             className={classNames([
                 styles.container,
                 {
                     [className]: className !== null,
                 },
             ])}
+            bodyClassName={styles.body}
         >
             <h4
                 className={classNames([
@@ -77,15 +57,15 @@ const StoryCardItem = ({ item, className }) => {
             >
                 <Link
                     to={url('stories.show', {
-                        story: item.id,
+                        story: story.id,
                     })}
                     className="text-white"
                 >
-                    {item.title}
+                    {story.title}
                 </Link>
             </h4>
             {screensCount > 0 ? (
-                <p className="text-muted mb-0">
+                <p className="mb-0 text-muted">
                     <Label values={{ count: screensCount }}>{messages.screens}</Label>
                 </p>
             ) : null}
@@ -93,7 +73,7 @@ const StoryCardItem = ({ item, className }) => {
     );
 };
 
-StoryCardItem.propTypes = propTypes;
-StoryCardItem.defaultProps = defaultProps;
+StoryBox.propTypes = propTypes;
+StoryBox.defaultProps = defaultProps;
 
-export default StoryCardItem;
+export default StoryBox;

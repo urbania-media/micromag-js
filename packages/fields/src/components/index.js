@@ -26,6 +26,7 @@ export { default as Spacing } from './Spacing';
 export { default as StaticField } from './StaticField';
 export { default as Text } from './Text';
 export { default as TextEditor } from './TextEditor';
+export { default as TextStyle } from './TextStyle';
 export { default as Toggle } from './Toggle';
 export { default as Tokens } from './Tokens';
 export { default as Url } from './Url';

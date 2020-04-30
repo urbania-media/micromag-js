@@ -34,7 +34,7 @@ const ImageField = ({ value, isForm, className, onChange }) => {
                 },
             ])}
         >
-            <MediaGallery type="image" isPicker onClickMedia={onChange} />
+            <MediaGallery type="image" isPicker isSmall onClickMedia={onChange} />
         </div>
     ) : (
         <div

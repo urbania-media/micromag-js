@@ -27,6 +27,7 @@ const OrganisationItem = ({ item, className }) => {
             className={classNames([
                 'list-group-item',
                 'list-group-item-action',
+                'list-group-item-dark',
                 styles.container,
                 {
                     [className]: className !== null,

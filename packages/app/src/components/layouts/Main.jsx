@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import MainNavbar from '../navbars/Main';
-import EditorNavbar from '../navbars/Editor';
 import Footer from '../partials/Footer';
 
 import styles from '../../styles/layouts/main.module.scss';
 
 const propTypes = {
+    navbar: PropTypes.node,
     children: PropTypes.node,
     contentAlign: PropTypes.oneOf(['top', 'middle', 'bottom']),
     fullscreen: PropTypes.bool,
@@ -20,6 +20,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    navbar: null,
     children: null,
     contentAlign: 'top',
     fullscreen: false,
@@ -30,6 +31,7 @@ const defaultProps = {
 };
 
 const MainLayout = ({
+    navbar,
     children,
     contentAlign,
     fullscreen,
@@ -56,7 +58,7 @@ const MainLayout = ({
                     },
                 ])}
             >
-                {isEditor ? <EditorNavbar /> : <MainNavbar />}
+                {navbar !== null ? navbar : <MainNavbar />}
             </header>
             <main
                 className={classNames([

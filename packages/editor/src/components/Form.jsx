@@ -40,7 +40,7 @@ const EditForm = ({ story, className, onChange }) => {
     } = useRouteMatch({
         path: [routes['screen.field.form'], routes['screen.field'], routes.screen, '*'],
     });
-    console.log(url, screenId, fieldParams, formParams);
+    // console.log(url, screenId, fieldParams, formParams);
 
     // Get screen
     const { components: screens = [] } = story || {};
@@ -108,7 +108,15 @@ const EditForm = ({ story, className, onChange }) => {
                 },
             ])}
         >
-            <div className={classNames(['bg-light', styles.top])}>
+            <nav
+                className={classNames([
+                    'navbar',
+                    'navbar-light',
+                    'bg-light',
+                    'flex-nowrap',
+                    'px-2',
+                ])}
+            >
                 {screenId !== null ? (
                     <Breadcrumb
                         story={story}
@@ -125,7 +133,7 @@ const EditForm = ({ story, className, onChange }) => {
                     onClickDuplicate={onClickDuplicate}
                     onClickDelete={onClickDelete}
                 />
-            </div>
+            </nav>
             <div
                 className={classNames([
                     styles.content,
@@ -160,7 +168,10 @@ const EditForm = ({ story, className, onChange }) => {
                                     />
                                 </div>
                             ) : (
-                                <div className={classNames(['bg-dark', styles.panel])} key={`screen-${screen.id}`}>
+                                <div
+                                    className={classNames(['bg-dark', styles.panel])}
+                                    key={`screen-${screen.id}`}
+                                >
                                     <ScreenForm
                                         value={screen}
                                         className={styles.form}

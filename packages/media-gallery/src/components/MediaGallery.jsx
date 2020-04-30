@@ -64,7 +64,6 @@ const MediaGallery = ({ items: initialItems, isPicker,isSmall, className, onClic
     const onClickAdd = useCallback(() => setUploadModalOpened(true), [setUploadModalOpened]);
     const onUploadCompleted = useCallback(
         newMedias => {
-            console.log(newMedias);
             Promise.all(newMedias.map(createMedia)).then(newAddedMedias =>
                 setAddedMedias([...addedMedias, ...newAddedMedias]),
             );

@@ -3,6 +3,7 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
+import { useLocation } from 'react-router';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Menu } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
@@ -69,6 +70,7 @@ const OrganisationsMenu = ({
     ...props
 }) => {
     const url = useUrlGenerator();
+    const { pathname } = useLocation();
     const { organisations } = useOrganisations();
     const organisation = useOrganisation();
     const finalItems = useMemo(() => {
@@ -101,7 +103,16 @@ const OrganisationsMenu = ({
                 href: url('organisation.medias'),
                 label: messages.medias,
             },
-        ];
+        ]
+            .filter(it => it !== null)
+            .map(it =>
+                it.href === pathname
+                    ? {
+                          ...it,
+                          active: true,
+                      }
+                    : it,
+            );
         const organisationsItems =
             organisations !== null
                 ? organisations
@@ -142,7 +153,7 @@ const OrganisationsMenu = ({
                               : organisationsItems,
                   },
               ];
-    }, [url, messages, withoutDropdown, asList, organisations, organisation]);
+    }, [url, messages, withoutDropdown, asList, organisations, organisation, pathname]);
     return (
         <Menu
             {...props}
@@ -156,6 +167,7 @@ const OrganisationsMenu = ({
             itemClassName={classNames({
                 'list-group-item': asList,
                 'list-group-item-action': asList,
+                'list-group-item-dark': asList,
                 [itemClassName]: itemClassName !== null,
             })}
             linkClassName={linkClassName}

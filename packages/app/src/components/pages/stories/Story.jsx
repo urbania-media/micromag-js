@@ -4,18 +4,15 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useParams } from 'react-router';
 import { defineMessages } from 'react-intl';
-import { Button } from '@micromag/core/components';
-import { useUrlGenerator } from '@micromag/core/contexts';
 import { Screens } from '@micromag/editor';
 import { ScreensProvider } from '@micromag/screens';
 import { useStory } from '@micromag/data';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
+import StoryBox from '../../partials/StoryBox';
 
 import styles from '../../../styles/pages/stories/stories.module.scss';
-
-import storyMessages from './messages';
 
 const messages = defineMessages({
     title: {
@@ -33,7 +30,6 @@ const defaultProps = {
 };
 
 const StoryPage = ({ className }) => {
-    const url = useUrlGenerator();
     const { story: storyId } = useParams();
     const { story } = useStory(storyId);
     return (
@@ -43,19 +39,7 @@ const StoryPage = ({ className }) => {
                 title={story !== null ? story.title : null}
                 sidebar={
                     story !== null ? (
-                        <>
-                            <div className={styles.actions}>
-                                <Button
-                                    href={url('stories.editor', {
-                                        story: story.id,
-                                    })}
-                                    theme="primary"
-                                    className={styles.button}
-                                >
-                                    {storyMessages.launchEditor}
-                                </Button>
-                            </div>
-                        </>
+                        <StoryBox story={story} />
                     ) : null
                 }
                 className={classNames([

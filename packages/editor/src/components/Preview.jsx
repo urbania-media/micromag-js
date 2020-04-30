@@ -73,8 +73,6 @@ const EditorPreview = ({ story, devices, device: initialDevice, className, onScr
         };
     }, [device, contentRect, screen]);
 
-    console.log(routes);
-
     return (
         <div
             className={classNames([

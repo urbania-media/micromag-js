@@ -67,7 +67,7 @@ const MediaMetadata = ({ media, className }) => {
                 },
             ])}
         >
-            <div className={classNames(['bg-dark', styles.preview])}>
+            <div className={classNames([styles.preview])}>
                 {type === 'video' ? (
                     <FontAwesomeIcon className={styles.playIcon} icon={faPlayCircle} />
                 ) : null}
@@ -87,44 +87,52 @@ const MediaMetadata = ({ media, className }) => {
                 </h6>
                 <ul className="list-group">
                     {filename !== null ? (
-                        <li className="list-group-item">
+                        <li className="list-group-item py-2 px-2">
                             <div className="row">
-                                <div className="col-2 text-muted">
+                                <div className="col-4 text-muted">
                                     <Label>{messages.filename}</Label>
                                 </div>
-                                <div className="col">{filename}</div>
+                                <div className="col">
+                                    <small>{filename}</small>
+                                </div>
                             </div>
                         </li>
                     ) : null}
                     {duration ? (
-                        <li className="list-group-item">
+                        <li className="list-group-item py-2 px-2">
                             <div className="row">
-                                <div className="col-2 text-muted">
+                                <div className="col-4 text-muted">
                                     <Label>{messages.duration}</Label>
                                 </div>
-                                <div className="col">{duration}</div>
+                                <div className="col">
+                                    <small>{duration}</small>
+                                </div>
                             </div>
                         </li>
                     ) : null}
                     {width !== null || height !== null ? (
-                        <li className="list-group-item">
+                        <li className="list-group-item py-2 px-2">
                             <div className="row">
-                                <div className="col-2 text-muted">
+                                <div className="col-4 text-muted">
                                     <Label>{messages.dimension}</Label>
                                 </div>
                                 <div className="col">
-                                    {width}x{height}
+                                    <small>
+                                        {width}x{height}
+                                    </small>
                                 </div>
                             </div>
                         </li>
                     ) : null}
                     {size !== null ? (
-                        <li className="list-group-item">
+                        <li className="list-group-item py-2 px-2">
                             <div className="row">
-                                <div className="col-2 text-muted">
+                                <div className="col-4 text-muted">
                                     <Label>{messages.size}</Label>
                                 </div>
-                                <div className="col">{prettyBytes(size)}</div>
+                                <div className="col">
+                                    <small>{prettyBytes(size)}</small>
+                                </div>
                             </div>
                         </li>
                     ) : null}

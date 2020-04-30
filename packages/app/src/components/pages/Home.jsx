@@ -77,7 +77,6 @@ const HomePage = ({ recentStoriesCount, className }) => {
                                 <Button
                                     href={url('organisation.create')}
                                     theme="secondary"
-                                    outline
                                     className={classNames([
                                         'w-100',
                                         {
