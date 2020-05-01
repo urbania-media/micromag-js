@@ -74,7 +74,7 @@ const AdScreen = ({
 
     inner =
         isEditor && !imageUrl ? (
-            <Empty invertColor className={styles.empty}>
+            <Empty className={styles.empty}>
                 <FormattedMessage {...messages.schemaTitle} />
             </Empty>
         ) : (

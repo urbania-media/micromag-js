@@ -6,8 +6,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: dashed 2px rgba($black, 0.2);
-    color: rgba($black, 0.2);
+    border: dashed 2px $gray-600;
+    color: $gray-600;
 
     .middle {
         text-align: center;
@@ -18,7 +18,7 @@
     }
 
     &.invertColor {
-        border: dashed 2px rgba($white, 0.3);
-        color: rgba($white, 0.3);
+        border: dashed 2px $gray-200;
+        color: $gray-200;
     }
 }

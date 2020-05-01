@@ -11,24 +11,24 @@ import styles from '../../styles/partials/empty.module.scss';
 const propTypes = {
     children: PropTypes.node,
     withoutBorder: PropTypes.bool,
-    invertColor: PropTypes.bool,
+    light: PropTypes.bool,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     children: null,
     withoutBorder: false,
-    invertColor: false,
+    light: false,
     className: null,
 };
 
-const Empty = ({ children, withoutBorder, invertColor, className }) => (
+const Empty = ({ children, withoutBorder, light, className }) => (
     <div
         className={classNames([
             styles.container,
             {
                 [styles.withoutBorder]: withoutBorder,
-                [styles.invertColor]: invertColor,
+                [styles.light]: light,
                 [className]: className,
             },
         ])}
