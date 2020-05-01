@@ -98,7 +98,7 @@ const EditorScreens = ({ story, isVertical, onClickScreen, onChange, className }
 
     return (
         <div className={classNames(['d-flex', 'flex-column', className])}>
-            <Navbar theme="dark" compact noWrap>
+            <Navbar theme="dark" compact noWrap withoutCollapse>
                 <strong className="mb-0 mr-auto">
                     <Label>{messages.screens}</Label>
                 </strong>

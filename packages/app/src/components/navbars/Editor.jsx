@@ -44,6 +44,8 @@ const EditorNavbar = ({ story, saving, onClickSave, className }) => {
             brand={<img src={logo} height="30" alt="Micromag" />}
             brandLink={url('home')}
             theme="primary"
+            withoutCollapse
+            noWrap
             className={className}
         >
             <span className="navbar-text">{story !== null ? story.title : null}</span>

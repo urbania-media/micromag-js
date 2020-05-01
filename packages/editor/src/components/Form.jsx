@@ -101,7 +101,7 @@ const EditForm = ({ story, className, onChange }) => {
     return (
         <div className={classNames(['d-flex', 'flex-column', className])}>
             {screenId !== null ? (
-                <Navbar theme="dark" compact noWrap>
+                <Navbar theme="dark" compact noWrap withoutCollapse>
                     <Breadcrumb
                         story={story}
                         url={url}
@@ -118,7 +118,7 @@ const EditForm = ({ story, className, onChange }) => {
             ) : null}
             <div className={classNames(['flex-grow-1', 'd-flex', 'w-100', styles.content])}>
                 {screen === null ? (
-                    <Empty className={styles.empty}>{messages.selectScreen}</Empty>
+                    <Empty className="w-100 m-2">{messages.selectScreen}</Empty>
                 ) : null}
 
                 {screen !== null ? (

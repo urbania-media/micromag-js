@@ -7,20 +7,6 @@
     position: relative;
     flex-direction: column;
 
-    > .top {
-        display: flex;
-        position: relative;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        padding: 5px;
-        text-align: center;
-
-        &.hidden {
-            display: none;
-        }
-    }
-
     > .inner {
         position: relative;
         flex-grow: 1;
@@ -46,16 +32,6 @@
 
         > .inner {
             min-height: 100%;
-        }
-    }
-
-    .right {
-        .placeholder {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            bottom: 10px;
-            left: 10px;
         }
     }
 
