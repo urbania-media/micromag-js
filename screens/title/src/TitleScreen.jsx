@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { FormattedMessage } from 'react-intl';
 
 import Background from '@micromag/element-background';
 import Frame from '@micromag/element-frame';
@@ -10,9 +11,11 @@ import Text from '@micromag/element-text';
 import Grid from '@micromag/element-grid';
 import Box from '@micromag/element-box';
 
-import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
 import { getComponentFromName, getRenderFormat } from '@micromag/core/utils';
 import { useScreenSize } from '@micromag/core/contexts';
+
+import { schemas as messages } from './messages';
 
 import styles from './styles.module.scss';
 
@@ -81,7 +84,11 @@ const TitleScreen = ({
                 }
 
                 if (isEditor && !value) {
-                    return <Text showEmpty emptyClassName={styles.empty} />;
+                    return (
+                        <Empty className={styles.empty}>
+                            <FormattedMessage {...messages[name]} />
+                        </Empty>
+                    );
                 }
 
                 if (name === 'description') {

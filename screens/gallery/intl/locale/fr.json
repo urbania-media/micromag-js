@@ -1,5 +1,6 @@
 {
     "screens.gallery.schema.properties.background": "Arrière-plan",
+    "screens.gallery.schema.properties.image": "TRANSLATE: Image",
     "screens.gallery.schema.properties.images": "Images",
     "screens.gallery.schema.properties.layout": "Mise en page",
     "screens.gallery.schema.title": "Gallerie"

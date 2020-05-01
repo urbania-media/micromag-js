@@ -10,6 +10,10 @@ const propTypes = {
     brand: PropTypes.node,
     brandLink: PropTypes.string,
     theme: PropTypes.oneOf(['light', 'dark', 'primary']),
+    size: PropTypes.oneOf(['sm', 'md', 'lg']),
+    compact: PropTypes.bool,
+    noWrap: PropTypes.bool,
+    withoutCollapse: PropTypes.bool,
     children: PropTypes.node,
     className: PropTypes.string,
 };
@@ -18,11 +22,25 @@ const defaultProps = {
     brand: null,
     brandLink: null,
     theme: 'light',
+    size: 'md',
+    compact: false,
+    noWrap: false,
+    withoutCollapse: false,
     children: null,
     className: null,
 };
 
-const Navbar = ({ brand, brandLink, theme, children, className }) => {
+const Navbar = ({
+    brand,
+    brandLink,
+    theme,
+    size,
+    compact,
+    noWrap,
+    withoutCollapse,
+    children,
+    className,
+}) => {
     const [menuVisible, setMenuVisible] = useState(false);
     const onClickMenu = useCallback(() => setMenuVisible(!menuVisible), [
         setMenuVisible,
@@ -32,10 +50,14 @@ const Navbar = ({ brand, brandLink, theme, children, className }) => {
         <nav
             className={classNames([
                 'navbar',
-                'navbar-expand-md',
-                `navbar-${theme === 'light' ? 'light' : 'dark'}`,
                 `bg-${theme}`,
+                `navbar-${theme === 'light' ? 'light' : 'dark'}`,
+                `text-${theme === 'light' ? 'dark' : 'light'}`,
                 {
+                    [`navbar-expand-${size}`]: !withoutCollapse,
+                    'py-2': compact,
+                    'px-2': compact,
+                    'flex-nowrap': noWrap,
                     [className]: className !== null,
                 },
             ])}
@@ -46,31 +68,35 @@ const Navbar = ({ brand, brandLink, theme, children, className }) => {
                 </Link>
             ) : null}
             {brand !== null && brandLink === null ? (
-                <span className="navbar-brand">
-                    {brand}
-                </span>
+                <span className="navbar-brand">{brand}</span>
             ) : null}
-            <Button
-                className="navbar-toggler"
-                onClick={onClickMenu}
-                withoutTheme
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-            >
-                <span className="navbar-toggler-icon" />
-            </Button>
-            <div
-                className={classNames([
-                    'navbar-collapse',
-                    'collapse',
-                    {
-                        show: menuVisible,
-                    },
-                ])}
-            >
-                {children}
-            </div>
+            {!withoutCollapse ? (
+                <Button
+                    className="navbar-toggler"
+                    onClick={onClickMenu}
+                    withoutTheme
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span className="navbar-toggler-icon" />
+                </Button>
+            ) : null}
+            {!withoutCollapse ? (
+                <div
+                    className={classNames([
+                        'navbar-collapse',
+                        'collapse',
+                        {
+                            show: menuVisible,
+                        },
+                    ])}
+                >
+                    {children}
+                </div>
+            ) : (
+                children
+            )}
         </nav>
     );
 };

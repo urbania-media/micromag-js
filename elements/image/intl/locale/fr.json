@@ -1,4 +1,5 @@
 {
+    "elements.image.messages.name": "TRANSLATE: Image",
     "elements.image.schema.properties.caption": "Légende",
     "elements.image.schema.properties.container_style": "Style de la boîte",
     "elements.image.schema.properties.image_style": "Style de l'image",

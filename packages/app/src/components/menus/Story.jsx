@@ -17,6 +17,10 @@ const messages = defineMessages({
         id: 'menus.story.settings',
         defaultMessage: 'Settings',
     },
+    publish: {
+        id: 'menus.story.publish',
+        defaultMessage: 'Publish',
+    },
     delete: {
         id: 'menus.story.delete',
         defaultMessage: 'Delete story',
@@ -68,6 +72,14 @@ const StoryMenu = ({
                     story: story.id,
                 }),
                 label: messages.editor,
+                className: asList ? 'list-group-item-dark' : null,
+            },
+            {
+                id: 'publish',
+                href: url('stories.publish', {
+                    story: story.id,
+                }),
+                label: messages.publish,
                 className: asList ? 'list-group-item-dark' : null,
             },
             {

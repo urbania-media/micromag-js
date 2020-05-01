@@ -6,8 +6,8 @@ import { useRouteMatch } from 'react-router';
 import TransitionGroup from 'react-addons-css-transition-group';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { slug } from '@micromag/core/utils';
-import { usePanels, useRoutePush, useRoutes } from '@micromag/core/contexts';
-import { Empty, Panels } from '@micromag/core/components';
+import { useRoutePush, useRoutes } from '@micromag/core/contexts';
+import { Empty, Navbar } from '@micromag/core/components';
 
 import { updateScreen, duplicateScreen, deleteScreen } from '../utils';
 import useFormTransition from '../hooks/useFormTransition';
@@ -17,6 +17,7 @@ import ScreenForm from './forms/Screen';
 import FieldForm from './forms/Field';
 
 import styles from '../styles/form.module.scss';
+import messages from '../messages';
 
 const propTypes = {
     story: MicromagPropTypes.story,
@@ -46,8 +47,6 @@ const EditForm = ({ story, className, onChange }) => {
     const { components: screens = [] } = story || {};
     const screenIndex = screens.findIndex(it => it.id === screenId);
     const screen = screenIndex !== -1 ? screens[screenIndex] : null;
-
-    const { panels } = usePanels();
 
     // Get transition value
     const { name: transitionName, timeout: transitionTimeout } = useFormTransition(
@@ -100,50 +99,26 @@ const EditForm = ({ story, className, onChange }) => {
     );
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className,
-                },
-            ])}
-        >
-            <nav
-                className={classNames([
-                    'navbar',
-                    'navbar-light',
-                    'bg-light',
-                    'flex-nowrap',
-                    'px-2',
-                ])}
-            >
-                {screenId !== null ? (
+        <div className={classNames(['d-flex', 'flex-column', className])}>
+            {screenId !== null ? (
+                <Navbar theme="dark" compact noWrap withoutCollapse>
                     <Breadcrumb
                         story={story}
                         url={url}
                         screenId={screenId}
                         field={fieldParams}
                         form={formParams}
-                        panel={panels !== null && panels.length > 0 ? panels[0] : null}
-                        className={styles.breadcrumb}
                     />
-                ) : null}
-                <SettingsButton
-                    className={styles.settings}
-                    onClickDuplicate={onClickDuplicate}
-                    onClickDelete={onClickDelete}
-                />
-            </nav>
-            <div
-                className={classNames([
-                    styles.content,
-                    {
-                        [styles.hasPanels]: panels !== null && panels.length > 0,
-                    },
-                ])}
-            >
+                    <SettingsButton
+                        className="ml-auto"
+                        onClickDuplicate={onClickDuplicate}
+                        onClickDelete={onClickDelete}
+                    />
+                </Navbar>
+            ) : null}
+            <div className={classNames(['flex-grow-1', 'd-flex', 'w-100', styles.content])}>
                 {screen === null ? (
-                    <Empty className={styles.empty}>Sélectionnez un écran...</Empty>
+                    <Empty className="w-100 m-2">{messages.selectScreen}</Empty>
                 ) : null}
 
                 {screen !== null ? (
@@ -152,10 +127,11 @@ const EditForm = ({ story, className, onChange }) => {
                             transitionName={transitionName}
                             transitionEnterTimeout={transitionTimeout}
                             transitionLeaveTimeout={transitionTimeout}
+                            className="w-100 flex-grow-1"
                         >
                             {fieldParams !== null ? (
                                 <div
-                                    className={classNames(['bg-dark', styles.panel])}
+                                    className={classNames(['bg-dark', 'w-100', styles.panel])}
                                     key={`field-${fieldParams}-${formParams}`}
                                 >
                                     <FieldForm
@@ -169,7 +145,7 @@ const EditForm = ({ story, className, onChange }) => {
                                 </div>
                             ) : (
                                 <div
-                                    className={classNames(['bg-dark', styles.panel])}
+                                    className={classNames(['bg-dark', 'w-100', styles.panel])}
                                     key={`screen-${screen.id}`}
                                 >
                                     <ScreenForm
@@ -182,7 +158,6 @@ const EditForm = ({ story, className, onChange }) => {
                                 </div>
                             )}
                         </TransitionGroup>
-                        <Panels className={styles.panels} />
                     </>
                 ) : null}
             </div>

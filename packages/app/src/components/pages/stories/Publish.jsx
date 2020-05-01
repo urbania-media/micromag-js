@@ -9,11 +9,13 @@ import { useStory } from '@micromag/data';
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
 import StoryBox from '../../partials/StoryBox';
+import PublishForm from '../../forms/StoryPublish';
+import RecentPublications from '../../partials/RecentPublications';
 
 const messages = defineMessages({
     title: {
-        id: 'pages.story.settings.title',
-        defaultMessage: 'Settings',
+        id: 'pages.story.publish.title',
+        defaultMessage: 'Publish',
     },
 });
 
@@ -25,7 +27,7 @@ const defaultProps = {
     className: null,
 };
 
-const StorySettingsPage = ({ className }) => {
+const StoryPublishPage = ({ className }) => {
     const { story: storyId } = useParams();
     const { story } = useStory(storyId);
     return (
@@ -36,13 +38,18 @@ const StorySettingsPage = ({ className }) => {
                 sidebar={story !== null ? <StoryBox story={story} /> : <div />}
                 className={className}
             >
-                Story settings
+                {story !== null ? (
+                    <>
+                        <PublishForm story={story} />
+                        <RecentPublications story={story} />
+                    </>
+                ) : null}
             </Page>
         </MainLayout>
     );
 };
 
-StorySettingsPage.propTypes = propTypes;
-StorySettingsPage.defaultProps = defaultProps;
+StoryPublishPage.propTypes = propTypes;
+StoryPublishPage.defaultProps = defaultProps;
 
-export default StorySettingsPage;
+export default StoryPublishPage;

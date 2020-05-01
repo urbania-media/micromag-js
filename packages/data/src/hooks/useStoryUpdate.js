@@ -2,10 +2,10 @@ import { useCallback, useState } from 'react';
 
 import { useApi } from '../contexts/ApiContext';
 
-const useUpdateStory = storyId => {
+const useStoryUpdate = storyId => {
     const [updating, setUpdating] = useState(false);
     const api = useApi();
-    const updateStory = useCallback(
+    const update = useCallback(
         story => {
             setUpdating(true);
             return api.stories.update(storyId, story).then(response => {
@@ -15,7 +15,7 @@ const useUpdateStory = storyId => {
         },
         [api, storyId, setUpdating],
     );
-    return { updateStory, updating };
+    return { update, updating };
 };
 
-export default useUpdateStory;
+export default useStoryUpdate;

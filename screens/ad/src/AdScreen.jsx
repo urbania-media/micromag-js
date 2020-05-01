@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { FormattedMessage } from 'react-intl';
 
 import Background from '@micromag/element-background';
 import Frame from '@micromag/element-frame';
@@ -12,7 +13,6 @@ import Link from '@micromag/element-link';
 import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
-import { FormattedMessage } from 'react-intl';
 
 import { schemas as messages } from './messages';
 

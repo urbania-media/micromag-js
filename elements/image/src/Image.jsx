@@ -3,10 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import TextElement from '@micromag/element-text';
-import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getStyleFromImage, getStyleFromContainer } from '@micromag/core/utils';
-import messages from './messages';
+
 // import { getSizeWithinBounds } from '@folklore/size';
 
 import styles from './styles.module.scss';
@@ -23,10 +22,8 @@ const propTypes = {
     fit: MicromagPropTypes.objectFit,
     imageStyle: MicromagPropTypes.imageStyle,
     containerStyle: MicromagPropTypes.containerStyle,
-    showEmpty: PropTypes.bool,
     className: PropTypes.string,
     imageClassName: PropTypes.string,
-    emptyClassName: PropTypes.string,
 };
 
 const defaultProps = {
@@ -41,10 +38,8 @@ const defaultProps = {
     fit: null,
     imageStyle: {},
     containerStyle: {},
-    showEmpty: false,
     className: null,
     imageClassName: null,
-    emptyClassName: null,
 };
 
 const Image = ({
@@ -55,10 +50,8 @@ const Image = ({
     fit: defaultFit,
     imageStyle,
     containerStyle,
-    showEmpty,
     className,
     imageClassName,
-    emptyClassName,
 }) => {
     const { url = null, name = 'Image', metadata = {} } = image || {};
     const { width: imageWidth, height: imageHeight } = metadata;
@@ -111,7 +104,7 @@ const Image = ({
 
     // console.log('is', imageStyle, finalStyle, containerStyle, containerFinalStyle);
 
-    const imageElement = url ? (
+    const img = url ? (
         <img
             src={url}
             alt={alt || name}
@@ -119,30 +112,11 @@ const Image = ({
                 styles.img,
                 {
                     [imageClassName]: imageClassName !== null,
-                    [imageClassName]: imageClassName !== null,
                 },
             ])}
             style={finalStyle}
-            // ref={imgRef}
-            // onLoad={onLoad}
         />
     ) : null;
-
-    const img =
-        showEmpty && !url ? (
-            <div
-                className={classNames([
-                    styles.showEmpty,
-                    {
-                        [emptyClassName]: emptyClassName !== null,
-                    },
-                ])}
-            >
-                <FormattedMessage {...messages.name} />
-            </div>
-        ) : (
-            imageElement
-        );
 
     return (
         <div

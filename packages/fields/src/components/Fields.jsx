@@ -28,6 +28,7 @@ const propTypes = {
     nullEmptyObject: PropTypes.bool,
     isHorizontal: PropTypes.bool,
     isList: PropTypes.bool,
+    isFlushList: PropTypes.bool,
     onChange: PropTypes.func,
     className: PropTypes.string,
     labelClassName: PropTypes.string,
@@ -44,6 +45,7 @@ const defaultProps = {
     nullEmptyObject: false,
     isHorizontal: false,
     isList: false,
+    isFlushList: false,
     onChange: null,
     className: null,
     labelClassName: null,
@@ -60,6 +62,7 @@ const Fields = ({
     nullEmptyObject,
     isHorizontal: globalIsHorizontal,
     isList,
+    isFlushList,
     onChange,
     className,
     labelClassName,
@@ -135,10 +138,10 @@ const Fields = ({
                         className={classNames([
                             styles.field,
                             {
-                                'list-group-item': isList,
-                                'mb-0': isList,
-                                'py-2': isList,
-                                'px-2': isList,
+                                'list-group-item': isList || isFlushList,
+                                'mb-0': isList || isFlushList,
+                                'py-2': isList || isFlushList,
+                                'px-2': isList || isFlushList,
                                 [styles.isSection]: isSection,
                             },
                         ])}
@@ -147,7 +150,16 @@ const Fields = ({
                     />
                 );
             }),
-        [visibleFields, globalIsHorizontal, isList, value, errors, onFieldChange, gotoFieldForm],
+        [
+            visibleFields,
+            globalIsHorizontal,
+            isList,
+            isFlushList,
+            value,
+            errors,
+            onFieldChange,
+            gotoFieldForm,
+        ],
     );
 
     // console.log(fields, value);
@@ -167,6 +179,7 @@ const Fields = ({
                     styles.fields,
                     {
                         'list-group': isList,
+                        'list-group-flush': isFlushList,
                     },
                 ])}
             >
@@ -179,6 +192,7 @@ const Fields = ({
                             styles.fields,
                             {
                                 'list-group': isList,
+                                'list-group-flush': isFlushList,
                             },
                         ])}
                     >

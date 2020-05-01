@@ -37,6 +37,10 @@ const messages = defineMessages({
         id: 'menus.organisation.medias',
         defaultMessage: 'Medias',
     },
+    create: {
+        id: 'menus.organisation.create',
+        defaultMessage: 'Create an organisation',
+    },
 });
 
 const propTypes = {
@@ -126,6 +130,13 @@ const OrganisationsMenu = ({
                           active: organisation !== null && organisation.id === it.id,
                       }))
                 : [];
+        const endItems = [
+            {
+                id: 'create',
+                href: url('organisation.create'),
+                label: messages.create,
+            },
+        ];
         return withoutDropdown || asList
             ? menuItems.filter(({ type = 'link' }) => type === 'link')
             : [
@@ -147,10 +158,19 @@ const OrganisationsMenu = ({
                                                   label: messages.organisations,
                                               },
                                               ...organisationsItems,
+                                              {
+                                                  type: 'divider',
+                                              },
+                                              ...endItems,
                                           ]
-                                        : []),
+                                        : [
+                                              {
+                                                  type: 'divider',
+                                              },
+                                              ...endItems,
+                                          ]),
                                 ]
-                              : organisationsItems,
+                              : [...organisationsItems, ...endItems],
                   },
               ];
     }, [url, messages, withoutDropdown, asList, organisations, organisation, pathname]);

@@ -11,7 +11,7 @@ import {
 } from '@micromag/core/contexts';
 import { getDeviceScreens } from '@micromag/core/utils';
 import { useScreenSizeFromElement } from '@micromag/core/hooks';
-import { Button, Modals } from '@micromag/core/components';
+import { Button, Modals, Navbar } from '@micromag/core/components';
 
 import Screens from './Screens';
 import EditorPreview from './Preview';
@@ -96,43 +96,26 @@ const Editor = ({
                         ])}
                         ref={refContainer}
                     >
-                        <div
-                            className={classNames([
-                                styles.top,
-                                {
-                                    [styles.hidden]: isMobile && mobileView === 'screens',
-                                },
-                            ])}
-                        >
+                        <Navbar theme="light" compact noWrap withoutCollapse className={styles.top}>
                             <Button
                                 size="sm"
                                 theme="secondary"
-                                className={styles.back}
                                 onClick={onClickScreens}
+                                className="mr-auto"
                             >
                                 {messages.screens}
                             </Button>
                             {mobileView !== 'form' ? (
-                                <Button
-                                    size="sm"
-                                    theme="primary"
-                                    className={styles.edit}
-                                    onClick={onClickEdit}
-                                >
+                                <Button size="sm" theme="primary" onClick={onClickEdit}>
                                     {messages.edit}
                                 </Button>
                             ) : null}
                             {mobileView === 'form' ? (
-                                <Button
-                                    size="sm"
-                                    theme="primary"
-                                    className={styles.edit}
-                                    onClick={onClickViewScreen}
-                                >
+                                <Button size="sm" theme="primary" onClick={onClickViewScreen}>
                                     {messages.viewScreen}
                                 </Button>
                             ) : null}
-                        </div>
+                        </Navbar>
                         <div className={styles.inner}>
                             <div
                                 className={classNames([
@@ -148,7 +131,7 @@ const Editor = ({
                                     onChange={onChange}
                                     onClickScreen={onClickScreen}
                                     isVertical={!isMobile}
-                                    className={styles.screens}
+                                    className={styles.inner}
                                 />
                             </div>
                             <div
@@ -177,7 +160,7 @@ const Editor = ({
                                 <EditorForm
                                     story={story}
                                     onChange={onChange}
-                                    className={styles.form}
+                                    className={styles.inner}
                                 />
                             </div>
                         </div>

@@ -32,6 +32,7 @@ import StoriesPage from './pages/stories/Stories';
 import StoryCreatePage from './pages/stories/Create';
 import StoryPage from './pages/stories/Story';
 import StoryEditorPage from './pages/stories/Editor';
+import StoryPublishPage from './pages/stories/Publish';
 import StorySettingsPage from './pages/stories/Settings';
 
 const propTypes = {};
@@ -45,6 +46,9 @@ const Routes = () => {
     const organisation = useOrganisation();
     return (
         <Switch>
+            {/*
+                Home routes
+            */}
             {organisation !== null ? (
                 <Route
                     path={routes.home}
@@ -55,10 +59,14 @@ const Routes = () => {
                 <Route path={routes.home} exact component={loggedIn ? HomePage : HomeGuestPage} />
             )}
 
-            {/* Register routes */}
+            {/*
+                Register routes
+            */}
             <Route path={routes.register} exact component={RegisterPage} />
 
-            {/* Auth routes */}
+            {/*
+                Auth routes
+            */}
             {loggedIn ? (
                 <Redirect
                     from={[
@@ -73,7 +81,9 @@ const Routes = () => {
             <Route path={routes['auth.forgot_password']} exact component={ForgotPasswordPage} />
             <Route path={routes['auth.reset_password']} exact component={ResetPasswordPage} />
 
-            {/* Account routes */}
+            {/*
+                Account routes
+            */}
             {!loggedIn ? (
                 <Redirect
                     from={routes.account}
@@ -85,7 +95,9 @@ const Routes = () => {
             <Route path={routes.account} exact component={AccountPage} />
             <Route path={routes['account.profile']} exact component={AccountProfilePage} />
 
-            {/* Organisation routes */}
+            {/*
+                Organisation routes
+            */}
             {organisation === null ? (
                 <Redirect
                     from={[
@@ -98,11 +110,7 @@ const Routes = () => {
                     to={routes.home}
                 />
             ) : null}
-            <Route
-                path={routes['organisation.create']}
-                exact
-                component={OrganisationCreatePage}
-            />
+            <Route path={routes['organisation.create']} exact component={OrganisationCreatePage} />
             <Route
                 path={routes['organisation.settings']}
                 exact
@@ -123,20 +131,23 @@ const Routes = () => {
                     match: {
                         params: { organisation: organisationSlug },
                     },
-                }) => {
-                    return organisation === null || organisation.slug !== organisationSlug ? (
+                }) =>
+                    organisation === null || organisation.slug !== organisationSlug ? (
                         <OrganisationSwitchPage slug={organisationSlug} />
                     ) : (
                         <Redirect to={url('home')} />
-                    );
-                }}
+                    )
+                }
             />
 
-            {/* Stories routes */}
+            {/*
+                Stories routes
+            */}
             <Route path={routes.stories} exact component={StoriesPage} />
             <Route path={routes['stories.create']} exact component={StoryCreatePage} />
             <Route path={routes['stories.show']} exact component={StoryPage} />
             <Route path={routes['stories.editor']} component={StoryEditorPage} />
+            <Route path={routes['stories.publish']} component={StoryPublishPage} />
             <Route path={routes['stories.settings']} component={StorySettingsPage} />
         </Switch>
     );

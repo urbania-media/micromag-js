@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 import { useParams } from 'react-router';
 import { defineMessages } from 'react-intl';
 import { Screens } from '@micromag/editor';
@@ -11,8 +11,6 @@ import { useStory } from '@micromag/data';
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
 import StoryBox from '../../partials/StoryBox';
-
-import styles from '../../../styles/pages/stories/stories.module.scss';
 
 const messages = defineMessages({
     title: {
@@ -37,17 +35,8 @@ const StoryPage = ({ className }) => {
             <Page
                 section={messages.title}
                 title={story !== null ? story.title : null}
-                sidebar={
-                    story !== null ? (
-                        <StoryBox story={story} />
-                    ) : null
-                }
-                className={classNames([
-                    styles.container,
-                    {
-                        [className]: className !== null,
-                    },
-                ])}
+                sidebar={story !== null ? <StoryBox story={story} /> : <div />}
+                className={className}
             >
                 <ScreensProvider>
                     {story !== null ? <Screens items={story.components || []} withPreview /> : null}

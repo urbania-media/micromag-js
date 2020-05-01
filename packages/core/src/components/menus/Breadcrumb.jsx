@@ -7,44 +7,57 @@ import { Link } from 'react-router-dom';
 import * as MicromagPropTypes from '../../PropTypes';
 import Label from '../partials/Label';
 
-import styles from '../../styles/menus/breadcrumb.module.scss';
-
 const propTypes = {
     items: MicromagPropTypes.menuItems,
+    theme: PropTypes.oneOf([null, 'light']),
+    withoutBar: PropTypes.bool,
+    noWrap: PropTypes.bool,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     items: [],
+    theme: null,
+    withoutBar: false,
+    noWrap: false,
     className: null,
 };
 
-const Breadcrumb = ({ items, className }) => (
-    <nav
-        className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-            },
-        ])}
-    >
-        <ol className={classNames(['breadcrumb', styles.items])}>
+const Breadcrumb = ({ items, theme, withoutBar, noWrap, className }) => (
+    <nav className={className}>
+        <ol
+            className={classNames([
+                'breadcrumb',
+                'mb-0',
+                {
+                    'p-0': withoutBar,
+                    'bg-transparent': withoutBar,
+                    'rounded-0': withoutBar,
+                    'flex-nowrap': noWrap,
+                },
+            ])}
+        >
             {items.map(({ url, label, active = false, onClick = null }, index) => (
                 <li
                     className={classNames([
                         'breadcrumb-item',
-                        styles.item,
                         {
                             active,
-                            [styles.active]: active,
+                            [`text-${theme}`]: active && theme !== null,
                         },
                     ])}
                     key={`item-${index}`}
                 >
                     {active ? (
-                        <Label>label</Label>
+                        <Label>{label}</Label>
                     ) : (
-                        <Link to={url} className={styles.link} onClick={onClick}>
+                        <Link
+                            to={url}
+                            onClick={onClick}
+                            className={classNames({
+                                [`text-${theme}`]: theme !== null,
+                            })}
+                        >
                             <Label>{label}</Label>
                         </Link>
                     )}

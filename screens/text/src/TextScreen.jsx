@@ -2,14 +2,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { FormattedMessage } from 'react-intl';
+
 import Box from '@micromag/element-box';
 import Grid from '@micromag/element-grid';
 import Background from '@micromag/element-background';
 import Frame from '@micromag/element-frame';
 import TextComponent from '@micromag/element-text';
+
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
-import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
+
+import { schemas as messages } from './messages';
 
 import styles from './styles.module.scss';
 
@@ -51,10 +56,19 @@ const TextScreen = ({
     const { width, height } = useScreenSize();
     const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
 
+    const textComponent =
+        isEditor && !text ? (
+            <Empty className={styles.empty}>
+                <FormattedMessage {...messages.text} />
+            </Empty>
+        ) : (
+            <TextComponent {...text} className={styles.text} />
+        );
+
     const item = isPlaceholder ? (
         <Placeholders.Text className={styles.placeholder} />
     ) : (
-        <TextComponent {...text} className={styles.text} showEmpty={isEditor && text === null} />
+        textComponent
     );
 
     return (
