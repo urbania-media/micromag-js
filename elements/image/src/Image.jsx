@@ -1,8 +1,12 @@
-/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import TextElement from '@micromag/element-text';
+import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { getStyleFromImage, getStyleFromContainer } from '@micromag/core/utils';
+import messages from './messages';
 // import { getSizeWithinBounds } from '@folklore/size';
 
 import styles from './styles.module.scss';
@@ -14,10 +18,11 @@ const propTypes = {
         height: PropTypes.number,
     }),
     caption: PropTypes.string,
-    credits: PropTypes.string,
     maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     fit: MicromagPropTypes.objectFit,
+    imageStyle: MicromagPropTypes.imageStyle,
+    containerStyle: MicromagPropTypes.containerStyle,
     showEmpty: PropTypes.bool,
     className: PropTypes.string,
     imageClassName: PropTypes.string,
@@ -31,10 +36,11 @@ const defaultProps = {
         height: null,
     },
     caption: null,
-    credits: null,
     maxWidth: null,
     maxHeight: null,
     fit: null,
+    imageStyle: {},
+    containerStyle: {},
     showEmpty: false,
     className: null,
     imageClassName: null,
@@ -44,23 +50,71 @@ const defaultProps = {
 const Image = ({
     image,
     caption,
-    credits,
     maxWidth,
     maxHeight,
-    fit,
+    fit: defaultFit,
+    imageStyle,
+    containerStyle,
     showEmpty,
     className,
     imageClassName,
     emptyClassName,
 }) => {
-    const { url = null } = image || {};
-    // Much simpler now, to test
-    const { size = 'contain' } = fit || {};
+    const { url = null, name = 'Image', metadata = {} } = image || {};
+    const { width: imageWidth, height: imageHeight } = metadata;
+    const width = maxWidth !== null ? Math.min(imageWidth, maxWidth) : null;
+    const height = maxHeight !== null ? Math.min(imageHeight, maxHeight) : null;
+
+    // Much much simpler now
+    const { size = 'contain' } = defaultFit || {};
+
+    // const imgRef = useRef(null);
+    // const imageSize = useRef({ width: null, height: null });
+    // const onLoad = useCallback(() => {
+    //     imageSize.current.width = imgRef.current.width;
+    //     imageSize.current.height = imgRef.current.height;
+    // }, [imgRef.current]);
+
+    let fill = false;
+    let alt = name;
+    let finalStyle = {
+        width,
+        height,
+        objectFit: size,
+    };
+    if (imageStyle !== null) {
+        finalStyle = {
+            ...finalStyle,
+            ...getStyleFromImage(imageStyle),
+        };
+        if (imageStyle.alt) {
+            alt = imageStyle.alt;
+        }
+        if (imageStyle.fit) {
+            if (imageStyle.fit.fill) {
+                fill = imageStyle.fit.fill;
+            }
+        }
+    }
+
+    let containerFinalStyle = {
+        width: fill ? '100%' : maxWidth,
+        height: fill ? '100%' : maxHeight,
+    };
+
+    if (containerStyle !== null) {
+        containerFinalStyle = {
+            ...containerFinalStyle,
+            ...getStyleFromContainer(containerStyle),
+        };
+    }
+
+    // console.log('is', imageStyle, finalStyle, containerStyle, containerFinalStyle);
 
     const imageElement = url ? (
         <img
             src={url}
-            alt={credits || 'Image'}
+            alt={alt || name}
             className={classNames([
                 styles.img,
                 {
@@ -68,7 +122,9 @@ const Image = ({
                     [imageClassName]: imageClassName !== null,
                 },
             ])}
-            style={{ objectFit: size }}
+            style={finalStyle}
+            // ref={imgRef}
+            // onLoad={onLoad}
         />
     ) : null;
 
@@ -81,10 +137,13 @@ const Image = ({
                         [emptyClassName]: emptyClassName !== null,
                     },
                 ])}
-            />
+            >
+                <FormattedMessage {...messages.name} />
+            </div>
         ) : (
             imageElement
         );
+
     return (
         <div
             className={classNames([
@@ -93,12 +152,12 @@ const Image = ({
                     [className]: className !== null,
                 },
             ])}
-            style={{ width: maxWidth, height: maxHeight }}
+            style={containerFinalStyle}
         >
             {img}
             {url && caption ? (
-                <div className={styles.credits}>
-                    <span className={styles.text}>{caption}</span>
+                <div className={styles.caption}>
+                    <TextElement {...caption} className={styles.text} />
                 </div>
             ) : null}
         </div>

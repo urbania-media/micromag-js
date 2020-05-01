@@ -1,5 +1,7 @@
 import { defineMessages } from 'react-intl';
 
+const messages = defineMessages({});
+
 export const schemas = defineMessages({
     schemaTitle: {
         id: 'schema.title',
@@ -24,4 +26,4 @@ export const schemas = defineMessages({
     },
 });
 
-export default schemas;
+export default messages;

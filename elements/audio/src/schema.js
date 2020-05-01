@@ -21,6 +21,14 @@ export default {
                         title: messages.url,
                     },
                 },
+                params: {
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/audio-params.json',
+                    title: 'Audio settings',
+                    setting: true,
+                    intl: {
+                        title: messages.audip,
+                    },
+                },
             },
         },
     ],

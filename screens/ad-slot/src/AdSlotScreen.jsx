@@ -2,15 +2,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { FormattedMessage } from 'react-intl';
 
 import Background from '@micromag/element-background';
 import Frame from '@micromag/element-frame';
 import Box from '@micromag/element-box';
-import Image from '@micromag/element-image';
 
-import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
+
+import { schemas as messages } from './messages';
 
 import styles from './styles.module.scss';
 
@@ -25,12 +27,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    iframe: {
-        src: null,
-        title: null,
-        width: null,
-        height: null,
-    },
+    iframe: null,
     box: null,
     background: null,
     visible: true,
@@ -42,19 +39,21 @@ const defaultProps = {
 const AdSlotScreen = ({ iframe, box, background, visible, active, renderFormat, className }) => {
     const { width, height } = useScreenSize();
     const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
-    const { src, title } = iframe;
+    const { src = null, title } = iframe || {};
 
     const preview = isSimple ? (
         <div className={styles.previewBlock} />
     ) : (
-        <Image showEmpty={isEditor} />
+        <Empty className={styles.empty}>
+            <FormattedMessage {...messages.schemaTitle} />
+        </Empty>
     );
 
     const inner =
-        src !== null && !isSimple ? (
-            <iframe className={styles.iframe} src={src} title={title} />
-        ) : (
+        isSimple || (isEditor && !src) ? (
             preview
+        ) : (
+            <iframe className={styles.iframe} src={src} title={title} />
         );
 
     return (

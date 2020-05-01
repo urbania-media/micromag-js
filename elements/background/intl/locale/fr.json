@@ -1,0 +1,6 @@
+{
+    "elements.background.schema.properties.color": "Couleur",
+    "elements.background.schema.properties.image": "Image",
+    "elements.background.schema.properties.video": "Vidéo",
+    "elements.background.schema.title": "Arrière-plan"
+}

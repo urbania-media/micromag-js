@@ -9,7 +9,7 @@ export const schemas = defineMessages({
     },
     video: {
         id: 'schema.properties.video',
-        defaultMessage: 'Vidéo',
+        defaultMessage: 'Video',
     },
 });
 

@@ -3,37 +3,42 @@
 
 .container {
     @extend %screen;
-}
 
-.inner {
-    position: relative;
-}
+    .empty {
+        @extend %empty;
+        @extend %empty-image;
+    }
 
-.placeholder {
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-}
+    .inner {
+        position: relative;
+    }
 
-.frame {
-    display: flex;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-}
+    .placeholder {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+    }
 
-.iframe {
-    width: 100%;
-    height: 100%;
-}
+    .frame {
+        display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+    }
 
-.previewBlock {
-    display: block;
-    width: 300px;
-    height: 300px;
-    background-color: rgba(0, 0, 0, 0.5);
+    .iframe {
+        width: 100%;
+        height: 100%;
+    }
+
+    .previewBlock {
+        display: block;
+        width: 300px;
+        height: 300px;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
 }

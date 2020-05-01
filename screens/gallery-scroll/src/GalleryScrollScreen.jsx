@@ -2,14 +2,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { FormattedMessage } from 'react-intl';
 
 import Background from '@micromag/element-background';
 import Frame from '@micromag/element-frame';
 import Image from '@micromag/element-image';
 import Box from '@micromag/element-box';
-import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
+
+import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
+
+import { schemas as messages } from './messages';
 
 import styles from './styles.module.scss';
 
@@ -88,30 +92,41 @@ const GalleryScrollScreen = ({
 
     const items = groups.map((its, i) => (
         <div key={`group-${i + 1}`} className={styles.group}>
-            {its.map((it, j) => (
-                <div
-                    key={`image-${j + 1}`}
-                    className={classNames([
-                        styles.image,
-                        {
-                            [styles[`columns${its.length}`]]: columns !== null,
-                        },
-                    ])}
-                    style={{ padding: isPlaceholder ? 2 : spacing / 2 }}
-                >
-                    {isPlaceholder ? (
-                        <Placeholders.Image key={`image-${j + 1}`} className={styles.placeholder} />
+            {its.map((it, j) => {
+                const item =
+                    isEditor && !it ? (
+                        <Empty className={styles.empty}>
+                            <FormattedMessage {...messages.image} />
+                        </Empty>
                     ) : (
                         <Image
                             image={it}
                             fit={{ size: 'cover' }}
-                            showEmpty={isEditor && !it}
                             className={styles.imageComponent}
-                            emptyClassName={styles.empty}
                         />
-                    )}
-                </div>
-            ))}
+                    );
+                return (
+                    <div
+                        key={`image-${j + 1}`}
+                        className={classNames([
+                            styles.image,
+                            {
+                                [styles[`columns${its.length}`]]: columns !== null,
+                            },
+                        ])}
+                        style={{ padding: isPlaceholder ? 2 : spacing / 2 }}
+                    >
+                        {isPlaceholder ? (
+                            <Placeholders.Image
+                                key={`image-${j + 1}`}
+                                className={styles.placeholder}
+                            />
+                        ) : (
+                            item
+                        )}
+                    </div>
+                );
+            })}
         </div>
     ));
 

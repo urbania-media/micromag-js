@@ -1,0 +1,6 @@
+{
+    "elements.image.schema.properties.caption": "Caption",
+    "elements.image.schema.properties.container_style": "Container style",
+    "elements.image.schema.properties.image_style": "Image style",
+    "elements.image.schema.title": "Image element"
+}

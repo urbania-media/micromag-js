@@ -1,17 +1,24 @@
 {
     "$id": "https://schemas.micromag.ca/0.1/fields/object-fit.json",
-    "title": "Object fit field",
+    "title": "Positionnement",
     "type": "object",
 
     "properties": {
+        "fill": {
+            "title": "Remplissage",
+            "type": "boolean",
+            "component": "toggle"
+        },
         "size": {
-            "title": "Espacement",
+            "title": "Type de remplissage",
             "type": "string",
-            "enum": ["cover", "contain"],
-            "component": "object-fit-size",
-            "componentProps": {
-                "withoutLabel": true
-            }
+            "enum": ["cover", "contain", "fill", "scale-down", "none"],
+            "component": "object-fit-size"
+        },
+        "position": {
+            "title": "Position",
+            "type": "object",
+            "component": "position"
         }
     }
 }

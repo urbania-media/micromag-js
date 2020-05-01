@@ -1,0 +1,8 @@
+@import '~@micromag/core/scss/placeholders';
+
+.container {
+    @extend %hide-scrollbars;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}

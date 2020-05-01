@@ -1,25 +1,20 @@
+import { schemas as messages } from './messages';
+
 export default {
-    $id: 'https://schemas.micromag.ca/0.1/screens/quiz.json',
-    title: 'Quiz',
+    $id: 'https://schemas.micromag.ca/0.1/elements/checkbox.json',
+    title: 'Checkbox',
     type: 'object',
     allOf: [
         {
-            $ref: 'https://schemas.micromag.ca/0.1/screens/screen.json',
+            $ref: 'https://schemas.micromag.ca/0.1/elements/element.json',
         },
         {
             properties: {
-                layout: {
-                    type: 'string',
-                    title: 'Mise en page',
-                    enum: ['default', 'split'],
-                    default: 'default',
-                },
-                background: {
-                    title: 'Arrière-Plan',
-                    $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
-                    componentProps: {
-                        withBorders: true,
-                        isSection: true,
+                checkboxStyle: {
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/checkbox-style.json',
+                    title: 'Checkbox style',
+                    intl: {
+                        title: messages.checkboxStyle,
                     },
                 },
             },

@@ -2,14 +2,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { FormattedMessage } from 'react-intl';
 
 import Background from '@micromag/element-background';
 import Frame from '@micromag/element-frame';
 import Grid from '@micromag/element-grid';
 import Image from '@micromag/element-image';
-import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
+
+import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
+
+import { schemas as messages } from './messages';
 
 import styles from './styles.module.scss';
 
@@ -65,16 +69,22 @@ const GalleryScreen = ({
         ? layout
               .reduce((map, row) => [...map, ...row.columns], [])
               .map(() => <Placeholders.Image className={styles.placeholder} />)
-        : activeImages.map(it => (
-            <Image
-                image={it}
-                fit={{ size: 'cover' }}
-                contain
-                showEmpty={isEditor}
-                className={styles.image}
-                emptyClassName={styles.empty}
-              />
-          ));
+        : activeImages.map(it =>
+              isEditor && !it ? (
+                  <Empty className={styles.empty}>
+                      <FormattedMessage {...messages.image} />
+                  </Empty>
+              ) : (
+                  <Image
+                      image={it}
+                      fit={{ size: 'cover' }}
+                      contain
+                      // showEmpty={isEditor}
+                      className={styles.image}
+                      // emptyClassName={styles.empty}
+                  />
+              ),
+          );
 
     return (
         <div

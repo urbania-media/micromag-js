@@ -2,6 +2,7 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { FormattedMessage } from 'react-intl';
 import { animated } from 'react-spring';
 
 import Background from '@micromag/element-background';
@@ -11,10 +12,12 @@ import ImageElement from '@micromag/element-image';
 import ButtonElement from '@micromag/element-button';
 import TextElement from '@micromag/element-text';
 
-import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 import { useSwipe } from '@micromag/core/hooks';
+
+import { schemas as messages } from './messages';
 
 import styles from './slideshow.module.scss';
 
@@ -80,10 +83,9 @@ const SlideshowScreen = ({
 
     const inner =
         isEditor && slides.length === 0 ? (
-            <>
-                <ImageElement maxWidth={width} showEmpty emptyClassName={styles.empty} />
-                <TextElement showEmpty emptyClassName={styles.empty} />
-            </>
+            <Empty className={styles.empty}>
+                <FormattedMessage {...messages.schemaTitle} />
+            </Empty>
         ) : (
             <>
                 <button {...bind()} type="button" className={styles.slides}>

@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/jsx-props-no-spreading, jsx-a11y/anchor-is-valid */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -7,14 +7,14 @@ import Background from '@micromag/element-background';
 import Frame from '@micromag/element-frame';
 import Box from '@micromag/element-box';
 import Image from '@micromag/element-image';
-// import Link from '@micromag/element-link';
+import Link from '@micromag/element-link';
 
 import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 import { FormattedMessage } from 'react-intl';
 
-import messages from './messages';
+import { schemas as messages } from './messages';
 
 import styles from './styles.module.scss';
 
@@ -41,8 +41,8 @@ const defaultProps = {
 };
 
 const AdScreen = ({
-    image: imageElement,
-    link: linkElement,
+    image: imageProps,
+    link: linkProps,
     box,
     background,
     visible,
@@ -53,39 +53,33 @@ const AdScreen = ({
     const { width, height } = useScreenSize();
     const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
 
-    const { url, target = '_blank', rel = 'noopener noreferer' } = linkElement || {};
-    const { image: { url: imageUrl = null } = {} } = imageElement || {};
+    const { url, target = '_blank', rel = 'noopener noreferer' } = linkProps || {};
+    const { image: { url: imageUrl = null } = {} } = imageProps || {};
 
-    let inner =
+    const imageElement =
         imageUrl || isEditor ? (
             <Image
                 className={styles.content}
                 emptyClassName={styles.empty}
-                caption="Ad"
-                {...imageElement}
-                {...(isEditor && imageUrl === null
-                    ? {
-                          resize: true,
-                          showEmpty: true,
-                      }
-                    : { width, height })}
+                caption={{ body: 'Ad' }}
+                {...imageProps}
             />
         ) : null;
 
-    inner =
+    const inner =
         isEditor && !imageUrl ? (
-            <Empty invertColor className={styles.empty}>
+            <Empty className={styles.empty}>
                 <FormattedMessage {...messages.schemaTitle} />
             </Empty>
         ) : (
-            inner
+            imageElement
         );
 
     const content =
         url !== null && isView ? (
-            <a href={url} target={target} rel={rel}>
+            <Link url={url} target={target} rel={rel}>
                 {inner}
-            </a>
+            </Link>
         ) : (
             inner
         );

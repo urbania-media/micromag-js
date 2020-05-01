@@ -1,6 +1,6 @@
 {
-    "screens.gallery-scroll.schema.properties.background": "TRANSLATE: Background",
-    "screens.gallery-scroll.schema.properties.images": "TRANSLATE: Images",
-    "screens.gallery-scroll.schema.properties.layout": "TRANSLATE: Layout",
-    "screens.gallery-scroll.schema.title": "TRANSLATE: Gallery with scroll"
+    "screens.gallery-scroll.schema.properties.background": "Arrière-plan",
+    "screens.gallery-scroll.schema.properties.images": "Images",
+    "screens.gallery-scroll.schema.properties.layout": "Mise en page",
+    "screens.gallery-scroll.schema.title": "Gallerie défilante"
 }

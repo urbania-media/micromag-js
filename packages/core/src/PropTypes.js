@@ -215,6 +215,10 @@ export const imageElement = PropTypes.shape({
     image,
 });
 
+export const videoElement = PropTypes.shape({
+    video,
+});
+
 export const backgroundElement = PropTypes.shape({
     color,
     image,
@@ -230,6 +234,13 @@ export const boxElement = PropTypes.shape({
 export const gridElement = PropTypes.shape({
     layout: PropTypes.array,
     spacing: PropTypes.number,
+});
+
+export const audioParams = PropTypes.shape({
+    muted: PropTypes.boolean,
+    autoPlay: PropTypes.boolean,
+    loop: PropTypes.boolean,
+    native: PropTypes.boolean,
 });
 
 /**

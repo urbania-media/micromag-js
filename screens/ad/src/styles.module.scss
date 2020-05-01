@@ -6,8 +6,7 @@
 
     .empty {
         @extend %empty;
-        width: 300px;
-        height: 200px;
+        @extend %empty-image;
     }
 
     .inner {

@@ -7,7 +7,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 const propTypes = {
     type: PropTypes.oneOf(['text', 'email', 'number', 'password']),
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     errors: MicromagPropTypes.errors,
     required: PropTypes.bool,
     className: PropTypes.string,
