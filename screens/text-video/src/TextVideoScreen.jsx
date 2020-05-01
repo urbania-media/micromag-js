@@ -56,14 +56,16 @@ const TextVideoScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { spacing = 0 } = box || {};
+    const { spacing = 10 } = box || {};
     const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
+    const showEmpty = text === null && video === null;
 
     let videoSize = {};
-    if (video && video.width && video.height) {
-        if (video.width > width - spacing * 2) {
-            videoSize = { width: width - spacing * 2 };
-        }
+    if (video) {
+        videoSize = {
+            maxWidth: Math.min(width, 768) - spacing * 2,
+            maxHeight: Math.min(height, 400) - spacing * 2,
+        };
     }
 
     const textElement = isPlaceholder ? (
@@ -72,7 +74,7 @@ const TextVideoScreen = ({
         <TextComponent
             {...text}
             key="text-element"
-            showEmpty={isEditor && text === null}
+            showEmpty={isEditor && showEmpty}
             className={styles.text}
             emptyClassName={styles.empty}
         />
@@ -85,7 +87,8 @@ const TextVideoScreen = ({
             {...video}
             {...videoSize}
             key="video-element"
-            showEmpty={isEditor && video === null}
+            fit={{ size: 'contain' }}
+            showEmpty={isEditor && showEmpty}
             className={styles.video}
             emptyClassName={styles.empty}
         />
@@ -108,7 +111,7 @@ const TextVideoScreen = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={isView || (isEditor && active)}
+                playing={(isView && visible) || (isEditor && active)}
                 className={styles.background}
             >
                 <Frame width={width} height={height} visible={visible}>

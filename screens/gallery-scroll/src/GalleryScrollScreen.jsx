@@ -60,7 +60,7 @@ const GalleryScrollScreen = ({
         imageList && imageList.length > 0 && !isPlaceholder
             ? imageList
             : [...Array(16)].map(() => null);
-    const currentImages = isEditor ? defaultArray : images;
+    const currentImages = isEditor && imageList.length === 0 ? defaultArray : images;
 
     const groups = [];
     let step = 0;
@@ -103,12 +103,11 @@ const GalleryScrollScreen = ({
                         <Placeholders.Image key={`image-${j + 1}`} className={styles.placeholder} />
                     ) : (
                         <Image
+                            image={it}
+                            fit={{ size: 'cover' }}
+                            showEmpty={isEditor && !it}
                             className={styles.imageComponent}
                             emptyClassName={styles.empty}
-                            fit={{ size: 'cover' }}
-                            hasParentContainer={false}
-                            showEmpty={isEditor}
-                            {...it}
                         />
                     )}
                 </div>
@@ -130,7 +129,7 @@ const GalleryScrollScreen = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={isView || (isEditor && active)}
+                playing={(isView && visible) || (isEditor && active)}
                 className={styles.background}
             >
                 <Frame width={width} height={height} withScroll={!isSimple} visible={visible}>

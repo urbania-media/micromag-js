@@ -145,7 +145,7 @@ const SlideshowScreen = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={isView || (isEditor && active)}
+                playing={(isView && visible) || (isEditor && active)}
                 className={styles.background}
             >
                 <Frame width={maxWidth} height={height} visible={visible}>

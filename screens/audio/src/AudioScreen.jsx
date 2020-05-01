@@ -77,7 +77,7 @@ const AudioScreen = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={isView || (isEditor && active)}
+                playing={(isView && visible) || (isEditor && active)}
             >
                 <Frame width={width} height={height} visible={visible}>
                     <Box {...box} withSmallSpacing={isSimple} className={styles.box}>

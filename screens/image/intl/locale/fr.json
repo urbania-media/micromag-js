@@ -1,7 +1,7 @@
 {
-    "screens.image.schema.properties.background": "TRANSLATE: Background",
-    "screens.image.schema.properties.image": "TRANSLATE: Image",
-    "screens.image.schema.properties.layout": "TRANSLATE: Layout",
-    "screens.image.schema.properties.text": "TRANSLATE: Text",
-    "screens.image.schema.title": "TRANSLATE: Image"
+    "screens.image.schema.properties.background": "Arrière-plan",
+    "screens.image.schema.properties.image": "Image",
+    "screens.image.schema.properties.layout": "Mise en page",
+    "screens.image.schema.properties.text": "Texte",
+    "screens.image.schema.title": "Image"
 }

@@ -78,6 +78,7 @@ const TextImageScreen = ({
         <ImageComponent
             {...image}
             key="image-element"
+            fit={{ size: 'cover' }}
             showEmpty={isEditor && text === null}
             className={styles.image}
             emptyClassName={styles.empty}
@@ -102,7 +103,7 @@ const TextImageScreen = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={isView || (isEditor && active)}
+                playing={(isView && visible) || (isEditor && active)}
                 className={styles.background}
             >
                 <Frame width={width} height={height} visible={visible}>

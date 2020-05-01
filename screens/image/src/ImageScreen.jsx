@@ -68,27 +68,29 @@ const ImageScreen = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={isView || (isEditor && active)}
+                playing={(isView && visible) || (isEditor && active)}
                 className={styles.background}
             >
                 <Frame width={width} height={height} visible={visible}>
                     <Box {...box} withSmallSpacing={isSimple}>
-                        {isPlaceholder ? (
-                            <Placeholders.MediumImage className={styles.placeholderImage} />
-                        ) : (
-                            <ImageComponent
-                                {...image}
-                                maxWidth="100%"
-                                maxHeight="100%"
-                                className={styles.image}
-                                showEmpty={isEditor && image === null}
-                            />
-                        )}
-                        {!isPlaceholder ? (
-                            <div className={styles.textContainer}>
-                                <TextComponent {...text} />
-                            </div>
-                        ) : null}
+                        <div className={styles.inner}>
+                            {isPlaceholder ? (
+                                <Placeholders.MediumImage className={styles.placeholderImage} />
+                            ) : (
+                                <ImageComponent
+                                    {...image}
+                                    maxWidth="100%"
+                                    maxHeight="100%"
+                                    className={styles.image}
+                                    showEmpty={isEditor && image === null}
+                                />
+                            )}
+                            {!isPlaceholder ? (
+                                <div className={styles.textContainer}>
+                                    <TextComponent {...text} />
+                                </div>
+                            ) : null}
+                        </div>
                     </Box>
                 </Frame>
             </Background>

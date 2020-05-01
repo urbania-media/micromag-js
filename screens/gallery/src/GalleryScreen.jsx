@@ -59,7 +59,7 @@ const GalleryScreen = ({
         })),
     ];
     const images = isPreview ? imageList.slice(0, 16) : imageList || [];
-    const activeImages = isEditor ? defaultArray : images;
+    const activeImages = isEditor && imageList.length === 0 ? defaultArray : images;
 
     const items = isPlaceholder
         ? layout
@@ -69,10 +69,10 @@ const GalleryScreen = ({
             <Image
                 image={it}
                 fit={{ size: 'cover' }}
-                hasParentContainer={false}
+                contain
+                showEmpty={isEditor}
                 className={styles.image}
                 emptyClassName={styles.empty}
-                showEmpty={isEditor}
               />
           ));
 
@@ -90,7 +90,7 @@ const GalleryScreen = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={isView || (isEditor && active)}
+                playing={(isView && visible) || (isEditor && active)}
                 className={styles.background}
             >
                 <Frame width={width} height={height} visible={visible}>
