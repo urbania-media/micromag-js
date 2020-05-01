@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useMedias, useCreateMedia } from '@micromag/data';
+import { useMedias, useMediaCreate } from '@micromag/data';
 
 import * as AppPropTypes from '../lib/PropTypes';
 
@@ -28,7 +28,7 @@ const defaultProps = {
     onClickMedia: null,
 };
 
-const MediaGallery = ({ items: initialItems, isPicker,isSmall, className, onClickMedia }) => {
+const MediaGallery = ({ items: initialItems, isPicker, isSmall, className, onClickMedia }) => {
     // Filters
     const [filtersValue, setFiltersValue] = useState(null);
 
@@ -60,7 +60,7 @@ const MediaGallery = ({ items: initialItems, isPicker,isSmall, className, onClic
 
     // Upload modal
     const [uploadModalOpened, setUploadModalOpened] = useState(false);
-    const createMedia = useCreateMedia();
+    const { create: createMedia } = useMediaCreate();
     const onClickAdd = useCallback(() => setUploadModalOpened(true), [setUploadModalOpened]);
     const onUploadCompleted = useCallback(
         newMedias => {

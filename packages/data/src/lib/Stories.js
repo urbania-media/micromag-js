@@ -1,5 +1,8 @@
 import Base from './Base';
 
+import StoriesVersions from './StoriesVersions';
+import StoriesPublications from './StoriesPublications';
+
 class StoriesApi extends Base {
     constructor(opts = {}) {
         super({
@@ -13,6 +16,9 @@ class StoriesApi extends Base {
                 ...(opts.routes || null),
             },
         });
+
+        this.versions = new StoriesVersions(opts);
+        this.publications = new StoriesPublications(opts);
     }
 
     find(id) {

@@ -51,6 +51,7 @@ const Navbar = ({
             className={classNames([
                 'navbar',
                 `bg-${theme}`,
+                `navbar-${theme === 'light' ? 'light' : 'dark'}`,
                 `text-${theme === 'light' ? 'dark' : 'light'}`,
                 {
                     [`navbar-expand-${size}`]: !withoutCollapse,

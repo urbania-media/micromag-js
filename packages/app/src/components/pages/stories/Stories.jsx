@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
 import { useLocation } from 'react-router';
 import { parse as parseQuery, stringify as stringifyQuery } from 'query-string';
@@ -12,8 +12,6 @@ import { useStories } from '@micromag/data';
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
 import StoriesList from '../../lists/Stories';
-
-import styles from '../../../styles/pages/stories/stories.module.scss';
 
 const messages = defineMessages({
     title: {
@@ -53,22 +51,13 @@ const StoriesPage = ({ count, className }) => {
             <Page
                 title={messages.title}
                 sidebar={
-                    <div className={styles.actions}>
-                        <Button
-                            href={url('stories.create')}
-                            theme="primary"
-                            className={styles.button}
-                        >
+                    <>
+                        <Button href={url('stories.create')} theme="primary">
                             {messages.create}
                         </Button>
-                    </div>
+                    </>
                 }
-                className={classNames([
-                    styles.container,
-                    {
-                        [className]: className !== null,
-                    },
-                ])}
+                className={className}
             >
                 {stories !== null ? (
                     <>

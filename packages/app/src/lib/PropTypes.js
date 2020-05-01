@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 export const routes = PropTypes.shape({
     home: PropTypes.string.isRequired,
@@ -50,3 +51,14 @@ export const user = PropTypes.shape({
     ...userShape,
     organisations,
 });
+
+export const publishService = PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    label: MicromagPropTypes.label.isRequired,
+});
+export const publishServices = PropTypes.arrayOf(publishService);
+
+export const storyPublication = PropTypes.shape({
+    id: PropTypes.string.isRequired,
+});
+export const storyPublications = PropTypes.arrayOf(storyPublication);

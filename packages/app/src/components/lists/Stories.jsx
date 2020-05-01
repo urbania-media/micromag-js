@@ -26,7 +26,7 @@ const StoriesList = ({ items, itemType, className }) => {
     const itemsElement = items.map(it => {
         const itemElement = <ItemComponent key={`item-${it.id}`} item={it} />;
         return itemType === 'card' ? (
-            <div className="col mt-2 mb-2">{itemElement}</div>
+            <div className="col p-2">{itemElement}</div>
         ) : (
             itemElement
         );
@@ -36,14 +36,12 @@ const StoriesList = ({ items, itemType, className }) => {
             className={classNames([
                 styles.container,
                 {
-                    'mt-n2': itemType === 'card',
-                    'mb-n2': itemType === 'card',
                     [className]: className !== null,
                 },
             ])}
         >
             {itemType === 'card' ? (
-                <div className="row row-cols-1 row-cols-md-2">{itemsElement}</div>
+                <div className="row mx-n2 my-n2 row-cols-1 row-cols-md-2 row-cols-lg-3 ">{itemsElement}</div>
             ) : (
                 itemsElement
             )}
