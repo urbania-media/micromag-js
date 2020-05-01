@@ -10,6 +10,8 @@ const propTypes = {
     brand: PropTypes.node,
     brandLink: PropTypes.string,
     theme: PropTypes.oneOf(['light', 'dark', 'primary']),
+    compact: PropTypes.bool,
+    noWrap: PropTypes.bool,
     children: PropTypes.node,
     className: PropTypes.string,
 };
@@ -18,11 +20,13 @@ const defaultProps = {
     brand: null,
     brandLink: null,
     theme: 'light',
+    compact: false,
+    noWrap: false,
     children: null,
     className: null,
 };
 
-const Navbar = ({ brand, brandLink, theme, children, className }) => {
+const Navbar = ({ brand, brandLink, theme, compact, noWrap, children, className }) => {
     const [menuVisible, setMenuVisible] = useState(false);
     const onClickMenu = useCallback(() => setMenuVisible(!menuVisible), [
         setMenuVisible,
@@ -33,9 +37,12 @@ const Navbar = ({ brand, brandLink, theme, children, className }) => {
             className={classNames([
                 'navbar',
                 'navbar-expand-md',
-                `navbar-${theme === 'light' ? 'light' : 'dark'}`,
                 `bg-${theme}`,
+                `text-${theme === 'light' ? 'dark' : 'light'}`,
                 {
+                    'py-2': compact,
+                    'px-2': compact,
+                    'flex-nowrap': noWrap,
                     [className]: className !== null,
                 },
             ])}
@@ -46,9 +53,7 @@ const Navbar = ({ brand, brandLink, theme, children, className }) => {
                 </Link>
             ) : null}
             {brand !== null && brandLink === null ? (
-                <span className="navbar-brand">
-                    {brand}
-                </span>
+                <span className="navbar-brand">{brand}</span>
             ) : null}
             <Button
                 className="navbar-toggler"

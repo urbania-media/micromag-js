@@ -43,7 +43,7 @@ const EditorNavbar = ({ story, saving, onClickSave, className }) => {
         <Navbar
             brand={<img src={logo} height="30" alt="Micromag" />}
             brandLink={url('home')}
-            theme="light"
+            theme="primary"
             className={className}
         >
             <span className="navbar-text">{story !== null ? story.title : null}</span>
@@ -51,7 +51,7 @@ const EditorNavbar = ({ story, saving, onClickSave, className }) => {
                 <Button href={url('stories')} theme="secondary" className="mr-1">
                     {messages.close}
                 </Button>
-                <Button theme="primary" disabled={story === null || saving} onClick={onClickSave}>
+                <Button theme="light" disabled={story === null || saving} onClick={onClickSave}>
                     {saving ? messages.saving : messages.save}
                 </Button>
             </form>

@@ -43,10 +43,10 @@
     .right {
         @extend %hide-scrollbars;
         overflow-y: auto;
-    }
 
-    .center {
-
+        > .inner {
+            min-height: 100%;
+        }
     }
 
     .right {
@@ -61,10 +61,6 @@
 
     .preview {
         @extend %fullscreen;
-    }
-
-    .form {
-        min-height: 100%;
     }
 
     &.fullscreen {

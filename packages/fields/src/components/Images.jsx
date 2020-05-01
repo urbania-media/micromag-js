@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -79,7 +79,7 @@ const ImagesField = ({ name, value, newDefaultValue, className, onChange, gotoFi
                     ))}
                 </div>
             ) : (
-                <Empty className={classNames(['text-light', 'p-4'])}>{messages.noImage}</Empty>
+                <Empty className="p-4">{messages.noImage}</Empty>
             )}
             <div className="mt-2">
                 <Button

@@ -148,7 +148,7 @@ const Editor = ({
                                     onChange={onChange}
                                     onClickScreen={onClickScreen}
                                     isVertical={!isMobile}
-                                    className={styles.screens}
+                                    className={styles.inner}
                                 />
                             </div>
                             <div
@@ -177,7 +177,7 @@ const Editor = ({
                                 <EditorForm
                                     story={story}
                                     onChange={onChange}
-                                    className={styles.form}
+                                    className={styles.inner}
                                 />
                             </div>
                         </div>

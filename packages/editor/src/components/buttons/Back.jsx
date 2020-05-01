@@ -19,8 +19,6 @@ const BackButton = ({ className, ...props }) => (
         className={classNames(['px-2', {
             [className]: className,
         }])}
-        theme="secondary"
-        outline
         size="sm"
         icon={<FontAwesomeIcon icon={faAngleLeft} />}
         {...props}

@@ -48,7 +48,7 @@ const useFormTransition = (url, screenIndex, styles) => {
     return {
         direction,
         name,
-        timeout: direction === 'left' || direction === 'right' ? 300 : 600,
+        timeout: direction === 'left' || direction === 'right' ? 300 : 10,
     };
 };
 

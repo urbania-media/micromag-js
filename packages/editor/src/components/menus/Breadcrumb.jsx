@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 import { useHistory } from 'react-router';
 import { Breadcrumb as BaseBreadcrumb } from '@micromag/core/components';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -9,8 +9,6 @@ import { injectIntl } from 'react-intl';
 import { useSchemasRepository, SCREENS_NAMESPACE } from '@micromag/schemas';
 
 import BackButton from '../buttons/Back';
-
-import styles from '../../styles/menus/breadcrumb.module.scss';
 
 import messages from '../../messages';
 
@@ -20,7 +18,6 @@ const propTypes = {
     screenId: PropTypes.string,
     field: PropTypes.string,
     form: PropTypes.string,
-    panel: MicromagPropTypes.panel,
     url: PropTypes.string.isRequired,
     className: PropTypes.string,
 };
@@ -30,11 +27,10 @@ const defaultProps = {
     screenId: null,
     field: null,
     form: null,
-    panel: null,
     className: null,
 };
 
-const Breadcrumb = ({ intl, story, screenId, field, form, panel, url, className }) => {
+const Breadcrumb = ({ intl, story, screenId, field, form, url, className }) => {
     const { components: screens = [] } = story || {};
     const repository = useSchemasRepository();
     const history = useHistory();
@@ -82,18 +78,6 @@ const Breadcrumb = ({ intl, story, screenId, field, form, panel, url, className 
             }
         }
 
-        const panelItems =
-            panel !== null
-                ? [
-                      {
-                          label: panel.title,
-                          url: '',
-                          active: false,
-                          panel: panel.id,
-                      },
-                  ]
-                : [];
-
         const finalItems = [
             {
                 label: intl.formatMessage(messages.screenIndexName, {
@@ -103,9 +87,7 @@ const Breadcrumb = ({ intl, story, screenId, field, form, panel, url, className 
                 active: false,
             },
             ...fieldItems,
-            ...panelItems,
-        ]
-            .filter(it => it !== null);
+        ].filter(it => it !== null);
 
         const lastItemsIndex = finalItems.length - 1;
 
@@ -118,23 +100,22 @@ const Breadcrumb = ({ intl, story, screenId, field, form, panel, url, className 
                   }
                 : it,
         );
-    }, [intl, repository, screens, screenId, field, form, panel, url]);
+    }, [intl, repository, screens, screenId, field, form, url]);
 
     const onClickBack = useCallback(() => history.push(items[items.length - 2].url), [items]);
     const withBack = items.length > 1;
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-        >
+        <>
             {withBack ? <BackButton onClick={onClickBack} className="mr-2" /> : null}
-            <BaseBreadcrumb items={items} className={styles.menu} />
-        </div>
+            <BaseBreadcrumb
+                items={items}
+                theme="secondary"
+                withoutBar
+                noWrap
+                className={className}
+            />
+        </>
     );
 };
 

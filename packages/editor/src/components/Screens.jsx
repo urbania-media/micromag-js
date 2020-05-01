@@ -3,18 +3,18 @@ import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Route } from 'react-router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useRoutes, useRoutePush, useUrlGenerator } from '@micromag/core/contexts';
-import { Label } from '@micromag/core/components';
+import { Label, Empty, Button, Navbar } from '@micromag/core/components';
 import { useSchemasRepository, SCREENS_NAMESPACE } from '@micromag/schemas';
 
 import createScreenFromType from '../utils/createScreenFromType';
 import Screens from './menus/Screens';
-import PlusButton from './buttons/Plus';
 import ScreenTypesModal from './modals/ScreenTypes';
 
 import messages from '../messages';
-import styles from '../styles/screens.module.scss';
 
 const propTypes = {
     story: MicromagPropTypes.story,
@@ -97,44 +97,52 @@ const EditorScreens = ({ story, isVertical, onClickScreen, onChange, className }
     // console.log(routes.home, routes.screen);
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className,
-                },
-            ])}
-        >
-            <div className={styles.top}>
-                <h4 className={styles.title}>
+        <div className={classNames(['d-flex', 'flex-column', className])}>
+            <Navbar theme="dark" compact noWrap>
+                <strong className="mb-0 mr-auto">
                     <Label>{messages.screens}</Label>
-                </h4>
-                <PlusButton className={styles.button} onClick={onClickAdd} />
+                </strong>
+                <Button
+                    theme="primary"
+                    size="sm"
+                    onClick={onClickAdd}
+                    icon={<FontAwesomeIcon icon={faPlus} />}
+                />
+            </Navbar>
+            <div className="flex-grow-1 d-flex w-100 p-2">
+                <Route
+                    path={[routes.screen, routes.home]}
+                    render={({
+                        match: {
+                            params: { screen: screenId = null },
+                        },
+                    }) =>
+                        screens.length > 0 ? (
+                            <Screens
+                                items={screens.map(it => ({
+                                    ...it,
+                                    href: url('screen', {
+                                        screen: it.id,
+                                    }),
+                                    active: it.id === screenId,
+                                }))}
+                                isVertical={isVertical}
+                                withPreview
+                                sortable
+                                className="w-100"
+                                onClickItem={onClickScreen}
+                                onOrderChange={onOrderChange}
+                            />
+                        ) : (
+                            <Empty className="flex-grow-1">
+                                <Button theme="primary" onClick={onClickAdd}>
+                                    {messages.createFirstSreen}
+                                </Button>
+                            </Empty>
+                        )
+                    }
+                />
             </div>
-            <Route
-                path={[routes.screen, routes.home]}
-                render={({
-                    match: {
-                        params: { screen: screenId = null },
-                    },
-                }) => (
-                    <Screens
-                        items={screens.map(it => ({
-                            ...it,
-                            href: url('screen', {
-                                screen: it.id,
-                            }),
-                            active: it.id === screenId,
-                        }))}
-                        isVertical={isVertical}
-                        withPreview
-                        sortable
-                        className={styles.screens}
-                        onClickItem={onClickScreen}
-                        onOrderChange={onOrderChange}
-                    />
-                )}
-            />
             {createModalOpened ? (
                 <ScreenTypesModal
                     onClickScreenType={onClickScreenType}
