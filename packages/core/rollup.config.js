@@ -1,17 +1,8 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import copy from 'rollup-plugin-copy';
-
 import baseConfig from '../../rollup.config';
 
 export default [
     {
         ...baseConfig,
-        plugins: [
-            ...baseConfig.plugins,
-            copy({
-                targets: [{ src: 'src/styles/*.scss', dest: 'scss' }],
-            }),
-        ],
     },
     {
         ...baseConfig,

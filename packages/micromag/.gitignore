@@ -34,4 +34,6 @@ publish
 /lib
 /es
 /dist
+/assets
+/scss
 /package-lock.json
