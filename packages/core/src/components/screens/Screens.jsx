@@ -3,13 +3,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import * as AppPropTypes from '../../PropTypes';
+import * as MicromagPropTypes from '../../PropTypes';
 import Screen from './Screen';
 
 import styles from '../../styles/screens/screens.module.scss';
 
 const propTypes = {
-    screens: AppPropTypes.storyComponents.isRequired,
+    screens: MicromagPropTypes.storyComponents.isRequired,
     screen: PropTypes.string,
     className: PropTypes.string,
 };

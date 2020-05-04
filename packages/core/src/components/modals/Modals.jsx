@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import * as MicromagPropTypes from '../../PropTypes';
-import { withModals } from '../../contexts/ModalsContext';
+import { withModals } from '../../contexts';
 
 import styles from '../../styles/modals/modals.module.scss';
 

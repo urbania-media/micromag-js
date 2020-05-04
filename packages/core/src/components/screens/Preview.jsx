@@ -3,14 +3,14 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import * as AppPropTypes from '../../PropTypes';
-import { ScreenSizeProvider } from '../../contexts/ScreenSizeContext';
+import * as MicromagPropTypes from '../../PropTypes';
+import { ScreenSizeProvider } from '../../contexts';
 import Screen from './Screen';
 
 import styles from '../../styles/screens/preview.module.scss';
 
 const propTypes = {
-    screen: AppPropTypes.component.isRequired,
+    screen: MicromagPropTypes.component.isRequired,
     width: PropTypes.number,
     height: PropTypes.number,
     className: PropTypes.string,

@@ -36,9 +36,10 @@
     ],
     "scripts": {
         "clean": "rm -rf assets && rm -rf lib && rm -rf es",
-        "build": "NODE_ENV=production ../../node_modules/.bin/rollup --config ./rollup.config.js",
+        "rollup": "NODE_ENV=production ../../node_modules/.bin/rollup --config ./rollup.config.js",
         "intl": "node ../../scripts/build-package-intl-translations.js",
-        "prepare": "npm run clean && npm run build && npm run intl",
+        "build": "npm run rollup && npm run intl",
+        "prepare": "npm run clean && npm run build",
         "start": "PUBLIC_URL=http://localhost/ react-scripts start"
     },
     "devDependencies": {

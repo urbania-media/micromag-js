@@ -3,11 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
-import { label as labelPropTypes } from '../../PropTypes';
-import isMessage from '../../utils/isMessage';
+import * as MicromagPropTypes from '../../PropTypes';
+import { isMessage } from '../../utils';
 
 const propTypes = {
-    children: labelPropTypes.isRequired,
+    children: MicromagPropTypes.label.isRequired,
     isHtml: PropTypes.bool,
     values: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };
@@ -19,11 +19,7 @@ const defaultProps = {
 
 const Label = ({ children, isHtml, values }) => {
     const Message = isHtml ? FormattedMessage : FormattedMessage;
-    return isMessage(children) ? (
-        <Message values={values} {...children} />
-    ) : (
-        children
-    )
+    return isMessage(children) ? <Message values={values} {...children} /> : children;
 };
 
 Label.propTypes = propTypes;

@@ -3,15 +3,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import * as AppPropTypes from '../../PropTypes';
+import * as MicromagPropTypes from '../../PropTypes';
 import Button from './Button';
 
 import styles from '../../styles/buttons/buttons.module.scss';
 
 const propTypes = {
-    buttons: AppPropTypes.buttons,
-    size: AppPropTypes.buttonSize,
-    theme: AppPropTypes.buttonTheme,
+    buttons: MicromagPropTypes.buttons,
+    size: MicromagPropTypes.buttonSize,
+    theme: MicromagPropTypes.buttonTheme,
     renderButton: PropTypes.func,
     onClickButton: PropTypes.func,
     className: PropTypes.string,

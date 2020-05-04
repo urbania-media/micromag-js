@@ -1,4 +1,6 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+import path from 'path';
+import resolve from '@rollup/plugin-node-resolve';
+
 import baseConfig from '../../rollup.config';
 
 export default [

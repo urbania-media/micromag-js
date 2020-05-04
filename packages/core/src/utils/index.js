@@ -1,5 +1,6 @@
 export { default as convertStyleToString } from './convertStyleToString';
 export { default as createNullableOnChange } from './createNullableOnChange';
+export { default as createUseEvent } from './createUseEvent';
 export { default as getComponentFromName } from './getComponentFromName';
 export { default as getDeviceScreens } from './getDeviceScreens';
 export { default as getDisplayName } from './getDisplayName';

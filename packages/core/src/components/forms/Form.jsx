@@ -5,8 +5,8 @@ import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
 
 import * as MicromagPropTypes from '../../PropTypes';
-import useForm from '../../hooks/useForm';
-import { useFieldComponent } from '../../contexts/ComponentsContext';
+import { useForm } from '../../hooks';
+import { useFieldComponent } from '../../contexts';
 import Button from '../buttons/Button';
 import Buttons from '../buttons/Buttons';
 

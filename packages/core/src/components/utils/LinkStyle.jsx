@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import convertStyleToString from '../../utils/convertStyleToString';
+import { convertStyleToString } from '../../utils';
 
 const propTypes = {
     selector: PropTypes.string,

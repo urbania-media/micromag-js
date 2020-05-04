@@ -2,15 +2,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import * as AppPropTypes from '../../PropTypes';
-import getComponentFromName from '../../utils/getComponentFromName';
-import { useScreensComponents } from '../../contexts/ComponentsContext';
+import * as MicromagPropTypes from '../../PropTypes';
+import { getComponentFromName } from '../../utils';
+import { useScreensComponents } from '../../contexts';
 
 const propTypes = {
-    screen: AppPropTypes.storyComponent.isRequired,
+    screen: MicromagPropTypes.storyComponent.isRequired,
     component: PropTypes.node,
-    components: AppPropTypes.components,
-    renderFormat: AppPropTypes.renderFormat,
+    components: MicromagPropTypes.components,
+    renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
 

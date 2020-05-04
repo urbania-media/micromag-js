@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ElementPortal from '../utils/ElementPortal';
-import { useModals } from '../../contexts/ModalsContext';
+import { useModals } from '../../contexts';
 
 const propTypes = {
     id: PropTypes.string,

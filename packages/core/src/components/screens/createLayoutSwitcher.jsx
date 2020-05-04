@@ -2,12 +2,12 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 
-import * as AppPropTypes from '../../PropTypes';
+import * as MicromagPropTypes from '../../PropTypes';
 import { getComponentFromName } from '../../utils';
 
 const createLayoutSwitcher = (components, defaultComponent = null) => {
     const propTypes = {
-        layout: AppPropTypes.componentNames(components),
+        layout: MicromagPropTypes.componentNames(components),
     };
 
     const defaultProps = {

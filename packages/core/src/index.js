@@ -1,5 +1,5 @@
-import * as PropTypes from './PropTypes';
-
-export { PropTypes };
-export * from './contexts/index';
-export * from './components/index';
+export * as PropTypes from './PropTypes';
+export * from './hooks';
+export * from './contexts';
+export * from './components';
+export * from './utils';

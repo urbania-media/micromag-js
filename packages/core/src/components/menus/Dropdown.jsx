@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import * as MicromagPropTypes from '../../PropTypes';
-import useDocumentEvent from '../../hooks/useDocumentEvent';
+import { useDocumentEvent } from '../../hooks';
 import Link from '../partials/Link';
 import Label from '../partials/Label';
 

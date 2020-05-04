@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import getDisplayName from '../../utils/getDisplayName';
+import { getDisplayName } from '../../utils';
 import Portal from './Portal';
 
 import styles from '../../styles/modals/modal.module.scss';

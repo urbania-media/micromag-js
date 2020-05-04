@@ -4,21 +4,21 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
-import * as AppPropTypes from '../../PropTypes';
+import * as MicromagPropTypes from '../../PropTypes';
 import Label from '../partials/Label';
 
 import styles from '../../styles/buttons/button.module.scss';
 
 const propTypes = {
     type: PropTypes.string,
-    theme: AppPropTypes.buttonTheme,
-    size: AppPropTypes.buttonSize,
+    theme: MicromagPropTypes.buttonTheme,
+    size: MicromagPropTypes.buttonSize,
     href: PropTypes.string,
     external: PropTypes.bool,
     direct: PropTypes.bool,
     target: PropTypes.string,
-    label: AppPropTypes.label,
-    children: AppPropTypes.label,
+    label: MicromagPropTypes.label,
+    children: MicromagPropTypes.label,
     active: PropTypes.bool,
     icon: PropTypes.node,
     iconPosition: PropTypes.oneOf(['left', 'right', 'inline']),

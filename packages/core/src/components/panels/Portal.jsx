@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ElementPortal from '../utils/ElementPortal';
-import { usePanels } from '../../contexts/PanelsContext';
+import { usePanels } from '../../contexts';
 
 const propTypes = {
     id: PropTypes.string,

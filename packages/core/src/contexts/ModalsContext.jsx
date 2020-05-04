@@ -2,7 +2,7 @@
 import React, { useContext, useRef, useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import getDisplayName from '../utils/getDisplayName';
+import { getDisplayName } from '../utils';
 
 const ModalsContext = React.createContext({
     container: null,

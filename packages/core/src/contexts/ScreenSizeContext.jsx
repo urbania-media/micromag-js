@@ -2,7 +2,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import * as AppPropTypes from '../PropTypes';
+import * as MicromagPropTypes from '../PropTypes';
 
 const ScreenSizeContext = React.createContext({
     screen: null,
@@ -25,7 +25,7 @@ export const useScreens = () => {
 
 const propTypes = {
     children: PropTypes.node.isRequired,
-    size: AppPropTypes.screenSize,
+    size: MicromagPropTypes.screenSize,
 };
 
 const defaultProps = {

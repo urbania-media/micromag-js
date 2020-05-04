@@ -2,8 +2,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import getDisplayName from '../utils/getDisplayName';
-import getComponentFromName from '../utils/getComponentFromName';
+import { getDisplayName, getComponentFromName } from '../utils';
 import {
     FIELDS_NAMESPACE,
     SCREENS_NAMESPACE,

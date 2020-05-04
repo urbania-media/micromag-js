@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import * as MicromagPropTypes from '../../PropTypes';
-import { withPanels } from '../../contexts/PanelsContext';
+import { withPanels } from '../../contexts';
 
 import styles from '../../styles/panels/panels.module.scss';
 
