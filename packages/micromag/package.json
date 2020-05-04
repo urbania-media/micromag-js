@@ -49,5 +49,6 @@
         "@babel/runtime": "^7.8.7",
         "@micromag/app": "^0.1.4",
         "@micromag/editor": "^0.1.4"
-    }
+    },
+    "gitHead": "78d770e14d9e68b372de47e9beffa3ba03f9907e"
 }

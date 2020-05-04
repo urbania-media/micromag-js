@@ -69,5 +69,6 @@
         "snake-case": "^3.0.3",
         "tinycolor2": "^1.4.1",
         "wolfy87-eventemitter": "^5.2.9"
-    }
+    },
+    "gitHead": "78d770e14d9e68b372de47e9beffa3ba03f9907e"
 }

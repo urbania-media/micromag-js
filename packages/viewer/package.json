@@ -56,5 +56,6 @@
         "react-router": "^5.1.2",
         "react-spring": "^9.0.0-canary.808.17.55c5691",
         "react-use-gesture": "^7.0.11"
-    }
+    },
+    "gitHead": "78d770e14d9e68b372de47e9beffa3ba03f9907e"
 }

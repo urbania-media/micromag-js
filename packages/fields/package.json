@@ -66,5 +66,6 @@
         "react-intl": "^4.5.0",
         "react-select": "^3.1.0",
         "tinycolor2": "^1.4.1"
-    }
+    },
+    "gitHead": "78d770e14d9e68b372de47e9beffa3ba03f9907e"
 }

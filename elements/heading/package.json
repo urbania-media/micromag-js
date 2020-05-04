@@ -53,5 +53,6 @@
         "prop-types": "^15.7.2",
         "react-intl": "^4.5.0",
         "uuid": "^7.0.2"
-    }
+    },
+    "gitHead": "78d770e14d9e68b372de47e9beffa3ba03f9907e"
 }
