@@ -11,7 +11,7 @@ export default [
             resolve({
                 extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
                 resolveOnly: [
-                    new RegExp(path.join(__dirname, './src/PropTypes'))
+                    path.join(__dirname, './src/PropTypes')
                 ]
             }),
             ...baseConfig.plugins.slice(2),
@@ -34,6 +34,7 @@ export default [
             resolve({
                 extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
                 resolveOnly: [
+                    path.join(__dirname, './src/PropTypes'),
                     new RegExp(path.join(__dirname, './src/components')),
                     new RegExp(path.join(__dirname, './src/styles'))
                 ]
@@ -58,6 +59,8 @@ export default [
             resolve({
                 extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
                 resolveOnly: [
+                    path.join(__dirname, './src/PropTypes'),
+                    path.join(__dirname, './src/lib/EventsManager'),
                     new RegExp(path.join(__dirname, './src/hooks'))
                 ]
             }),
@@ -81,6 +84,8 @@ export default [
             resolve({
                 extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
                 resolveOnly: [
+                    path.join(__dirname, './src/PropTypes'),
+                    new RegExp(path.join(__dirname, './src/components/namespaces')),
                     new RegExp(path.join(__dirname, './src/contexts'))
                 ]
             }),
@@ -104,6 +109,7 @@ export default [
             resolve({
                 extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
                 resolveOnly: [
+                    path.join(__dirname, './src/PropTypes'),
                     new RegExp(path.join(__dirname, './src/utils'))
                 ]
             }),
