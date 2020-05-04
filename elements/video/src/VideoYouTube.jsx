@@ -71,6 +71,7 @@ const VideoYouTube = ({
         ended: false,
         muted: initialMuted,
     });
+
     const updatePlayerState = useCallback(
         newPlayerState => {
             setPlayerState(newPlayerState);

@@ -143,6 +143,18 @@ export const VideoLoop = props => (
     </PlaceholderBlock>
 );
 
+export const VideoFullLoop = props => (
+    <PlaceholderBlock
+        {...props}
+        className={classNames([props.className, styles.videoLoop])}
+        width="100%"
+        height="100%"
+    >
+        <FontAwesomeIcon icon={faPlay} className={styles.icon} />
+        <FontAwesomeIcon icon={faRedo} className={styles.icon} />
+    </PlaceholderBlock>
+);
+
 export const Map = props => (
     <PlaceholderBlock
         {...props}
@@ -225,6 +237,7 @@ export default {
     Video,
     VideoFull,
     VideoLoop,
+    VideoFullLoop,
     Map,
     MapPath,
     Timeline,

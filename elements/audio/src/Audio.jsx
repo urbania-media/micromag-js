@@ -10,7 +10,9 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    src: PropTypes.string,
+    audio: PropTypes.shape({
+        src: PropTypes.string,
+    }),
     track: PropTypes.string,
     language: PropTypes.number,
     controls: PropTypes.bool,
@@ -20,7 +22,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    src: null,
+    audio: null,
     track: null,
     language: null,
     controls: null,
@@ -29,7 +31,8 @@ const defaultProps = {
     className: null,
 };
 
-const AudioComponent = ({ src, track, language, controls, params, className }) => {
+const AudioComponent = ({ audio: audioField, track, language, controls, params, className }) => {
+    const { url: src = null } = audioField || {};
     const { muted: initialMuted = false, autoPlay = false, loop = false, native = false } =
         params || {};
 
@@ -38,62 +41,44 @@ const AudioComponent = ({ src, track, language, controls, params, className }) =
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
 
-    const [playerState, setPlayerState] = useState({
-        hasPlayed: false,
-        playing: autoPlay,
-        paused: false,
-        ended: false,
-        muted: initialMuted,
-        loaded: false,
-    });
+    const [hasPlayed, setHasPlayed] = useState(false);
+    const [playing, setPlaying] = useState(autoPlay || false);
+    const [ended, setEnded] = useState(false);
+    const [muted, setMuted] = useState(initialMuted || false);
+    const [loaded, setLoaded] = useState(false);
+
+    const playerState = { hasPlayed, playing, ended, muted, loaded };
 
     const onLoad = useCallback(() => {
         setDuration(refAudioElement.current ? refAudioElement.current.duration : 0);
-    }, [setDuration]);
+        setCurrentTime(0);
+    }, [setDuration, setCurrentTime]);
 
     const onReady = useCallback(() => {
-        setPlayerState({
-            ...playerState,
-            loaded: true,
-        });
-    }, [playerState, setPlayerState]);
+        setLoaded(true);
+    }, [setLoaded]);
 
     const onPlay = useCallback(() => {
-        setPlayerState({
-            ...playerState,
-            playing: true,
-            hasPlayed: true,
-        });
-    }, [playerState, setPlayerState]);
+        setPlaying(true);
+        setHasPlayed(true);
+    }, [setPlaying, setHasPlayed]);
 
     const onPause = useCallback(() => {
-        setPlayerState({
-            ...playerState,
-            playing: false,
-        });
-    }, [playerState, setPlayerState]);
+        setPlaying(false);
+    }, [setPlaying]);
 
     const onEnd = useCallback(() => {
-        setPlayerState({
-            ...playerState,
-            playing: false,
-            ended: true,
-        });
-    }, [playerState, setPlayerState]);
+        setPlaying(false);
+        setEnded(true);
+    }, [setPlaying, setEnded]);
 
     const onMute = useCallback(() => {
-        setPlayerState({
-            ...playerState,
-            muted: true,
-        });
-    }, [playerState, setPlayerState]);
+        setMuted(true);
+    }, [setMuted]);
 
     const onUnMute = useCallback(() => {
-        setPlayerState({
-            ...playerState,
-            muted: false,
-        });
-    }, [playerState, setPlayerState]);
+        setMuted(false);
+    }, [setMuted]);
 
     const onTimeUpdate = useCallback(() => {
         setCurrentTime(refAudioElement.current ? refAudioElement.current.currentTime : 0);
@@ -101,18 +86,19 @@ const AudioComponent = ({ src, track, language, controls, params, className }) =
 
     useEffect(() => {
         if (!native && refAudioElement.current === null && src) {
-            const audio = new Audio(src);
-            audio.addEventListener('loadedmetadata', onLoad);
-            audio.addEventListener('durationchanged', onLoad);
-            audio.addEventListener('canplay', onReady);
-            audio.addEventListener('play', onPlay);
-            audio.addEventListener('pause', onPause);
-            audio.addEventListener('ended', onEnd);
-            audio.addEventListener('timeupdate', onTimeUpdate);
-            refAudioElement.current = audio;
+            const audioEl = new Audio(src);
+            audioEl.addEventListener('loadedmetadata', onLoad);
+            audioEl.addEventListener('durationchanged', onLoad);
+            audioEl.addEventListener('canplay', onReady);
+            audioEl.addEventListener('play', onPlay);
+            audioEl.addEventListener('pause', onPause);
+            audioEl.addEventListener('ended', onEnd);
+            audioEl.addEventListener('timeupdate', onTimeUpdate);
+            refAudioElement.current = audioEl;
         }
         return () => {
             if (refAudioElement.current !== null) {
+                refAudioElement.current.pause();
                 refAudioElement.current.removeEventListener('loadedmetadata', onLoad);
                 refAudioElement.current.removeEventListener('durationchanged', onLoad);
                 refAudioElement.current.removeEventListener('canplay', onReady);

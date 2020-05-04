@@ -11,6 +11,9 @@ const propTypes = {
         size: PropTypes.string,
     }),
     defaultParams: PropTypes.shape({
+        loop: PropTypes.bool,
+        autoPlay: PropTypes.bool,
+        muted: PropTypes.bool,
         controls: PropTypes.bool,
     }),
 };
@@ -19,19 +22,21 @@ const defaultProps = {
     box: {
         direction: 'column',
         axisAlign: 'center',
-        spacing: 0,
     },
     fit: { size: 'cover' },
     defaultParams: {
-        controls: true,
+        loop: true,
+        autoPlay: true,
+        muted: true,
+        controls: false,
     },
 };
 
-const VideoFull = ({ box, fit, defaultParams, ...otherProps }) => {
-    return <VideoScreen box={box} fit={fit} defaultParams={defaultParams} {...otherProps} />;
+const FullLoop = ({ ...props }) => {
+    return <VideoScreen {...props} />;
 };
 
-VideoFull.propTypes = propTypes;
-VideoFull.defaultProps = defaultProps;
+FullLoop.propTypes = propTypes;
+FullLoop.defaultProps = defaultProps;
 
-export default VideoFull;
+export default FullLoop;

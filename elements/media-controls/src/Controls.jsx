@@ -122,6 +122,8 @@ const MediaControls = ({
 
     const width = duration > 0 ? (currentTime / duration) * 100 : 0;
 
+    // console.log(playing, muted, play, pause);
+
     return (
         <div
             className={classNames([

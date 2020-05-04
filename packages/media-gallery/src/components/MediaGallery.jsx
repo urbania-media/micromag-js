@@ -16,6 +16,7 @@ const propTypes = {
     items: AppPropTypes.medias,
     isPicker: PropTypes.bool,
     isSmall: PropTypes.bool,
+    type: PropTypes.string,
     className: PropTypes.string,
     onClickMedia: PropTypes.func,
 };
@@ -24,23 +25,36 @@ const defaultProps = {
     items: null,
     isPicker: false,
     isSmall: false,
+    type: null,
     className: null,
     onClickMedia: null,
 };
 
-const MediaGallery = ({ items: initialItems, isPicker, isSmall, className, onClickMedia }) => {
+const MediaGallery = ({
+    items: initialItems,
+    isPicker,
+    isSmall,
+    type,
+    className,
+    onClickMedia,
+}) => {
     // Filters
-    const [filtersValue, setFiltersValue] = useState(null);
+    const [filtersValue, setFiltersValue] = useState();
 
     // Items
     const { allMedias: loadedMedias } = useMedias(filtersValue, 1, 100, {
         items: initialItems,
     });
+
+    // Temporary type filter
+    const filteredMedias =
+        type !== null ? (loadedMedias || []).filter(i => i.type === type) : loadedMedias;
+
     const [addedMedias, setAddedMedias] = useState([]);
     const medias = useMemo(() => {
-        const allMedias = [...addedMedias, ...(loadedMedias || [])];
+        const allMedias = [...addedMedias, ...(filteredMedias || [])];
         return allMedias.length > 0 ? allMedias : null;
-    }, [loadedMedias, addedMedias]);
+    }, [filteredMedias, addedMedias]);
 
     // Medias
     const [metadataMedia, setMetadataMedia] = useState(null);

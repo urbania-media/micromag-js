@@ -2,9 +2,9 @@ import createScreenFromType from './createScreenFromType';
 
 const createDefaultStory = () => ({
     components: [
-        createScreenFromType('text-video'),
-        createScreenFromType('text-image'),
-        createScreenFromType('gallery'),
+        createScreenFromType('video'),
+        createScreenFromType('audio'),
+        // createScreenFromType('gallery'),
     ],
 });
 
