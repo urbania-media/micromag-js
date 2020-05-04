@@ -1,2 +1,2 @@
 export { Editor } from '@micromag/editor';
-export * from '@micromag/app';
+export { default } from '@micromag/app';
