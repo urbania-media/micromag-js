@@ -14,15 +14,12 @@ class App {
     }
 
     getProps() {
-        const { locale } = this.options;
-        return {
-            locale,
-        };
+        return this.options;
     }
 
     render(el = null) {
         if (el !== null) {
-            this.element = null;
+            this.element = el;
         }
 
         if (this.element === null) {
