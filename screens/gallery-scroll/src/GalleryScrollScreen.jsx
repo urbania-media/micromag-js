@@ -102,6 +102,7 @@ const GalleryScrollScreen = ({
                         <Image
                             image={it}
                             fit={{ size: 'cover' }}
+                            contain
                             className={styles.imageComponent}
                         />
                     );

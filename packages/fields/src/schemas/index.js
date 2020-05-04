@@ -1,6 +1,7 @@
 export { default as audioParams } from './audio-params.json';
 export { default as audio } from './audio.json';
 export { default as cards } from './cards.json';
+export { default as card } from './card.json';
 export { default as color } from './color.json';
 export { default as containerStyle } from './container-style.json';
 export { default as fontFamily } from './font-family.json';

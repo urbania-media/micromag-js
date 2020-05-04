@@ -8,6 +8,11 @@
             "type": "string",
             "title": "URL",
             "component": "url"
+        },
+        "target": {
+            "type": "string",
+            "title": "Cible",
+            "component": "target"
         }
     }
 }

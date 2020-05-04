@@ -104,7 +104,7 @@ const AdScreen = ({
                 <Frame className={styles.frame} width={width} height={height} visible={visible}>
                     <Box {...box} withSmallSpacing={isSimple}>
                         {isPlaceholder ? (
-                            <Placeholders.Ad className={styles.placeholder} />
+                            <Placeholders.AdImage className={styles.placeholder} />
                         ) : (
                             content
                         )}

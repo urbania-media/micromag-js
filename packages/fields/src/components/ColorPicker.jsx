@@ -48,6 +48,9 @@ const ColorPickerField = ({ className, value, onChange }) => {
                     picker: {
                         boxShadow: 'none',
                     },
+                    label: {
+                        color: '#FFF',
+                    },
                 }}
                 onChange={newValue => {
                     if (onChange !== null) {

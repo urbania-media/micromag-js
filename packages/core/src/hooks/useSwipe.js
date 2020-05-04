@@ -117,7 +117,7 @@ export const useSwipe = ({
     return {
         items: itemsWithProps,
         bind,
-        indexRef: index,
+        index: index.current,
         setIndex,
     };
 };

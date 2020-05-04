@@ -91,6 +91,7 @@ const AudioScreen = ({
                                 maxWidth={image !== null ? Math.min(width, maxWidth) : null}
                                 maxHeight={image !== null ? Math.min(width, maxWidth) : null}
                                 fit={{ size: 'cover' }}
+                                contain
                                 className={styles.image}
                             />
                         )}

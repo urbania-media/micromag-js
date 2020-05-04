@@ -11,6 +11,7 @@ import {
     faMapMarkedAlt,
     faRedo,
     faEye,
+    faImage,
 } from '@fortawesome/free-solid-svg-icons';
 
 import Placeholder from './Placeholder';
@@ -87,7 +88,7 @@ export const SmallImage = props => (
         {...props}
         className={classNames([props.className, styles.image])}
         width="50%"
-        height="20%"
+        height="30%"
     />
 );
 
@@ -185,7 +186,13 @@ export const Timeline = props => (
     <Placeholder {...props} className={classNames([props.className, styles.timeline])} />
 );
 
-export const Ad = props => (
+export const AdImage = props => (
+    <PlaceholderBlock {...props} width="80%" className={classNames([props.className, styles.ad])}>
+        <FontAwesomeIcon icon={faImage} className={styles.icon} />
+    </PlaceholderBlock>
+);
+
+export const AdFrame = props => (
     <PlaceholderBlock {...props} width="80%" className={classNames([props.className, styles.ad])}>
         <FontAwesomeIcon icon={faAd} className={styles.icon} />
     </PlaceholderBlock>
@@ -241,7 +248,8 @@ export default {
     Map,
     MapPath,
     Timeline,
-    Ad,
+    AdFrame,
+    AdImage,
     Audio,
     Slideshow,
     Panorama,

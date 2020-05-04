@@ -75,14 +75,7 @@ const GalleryScreen = ({
                       <FormattedMessage {...messages.image} />
                   </Empty>
               ) : (
-                  <Image
-                      image={it}
-                      fit={{ size: 'cover' }}
-                      contain
-                      // showEmpty={isEditor}
-                      className={styles.image}
-                      // emptyClassName={styles.empty}
-                  />
+                  <Image image={it} fit={{ size: 'cover' }} contain className={styles.image} />
               ),
           );
 
