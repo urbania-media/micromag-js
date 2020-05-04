@@ -28,18 +28,34 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            width: 100%;
+            height: 100%;
             padding: 2px;
         }
 
         .media {
             width: 100%;
-            height: 50%;
+            height: 30px;
             background: $gray-400;
         }
 
         &.cover {
             .media {
                 height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        &.contain {
+            .media {
+                object-fit: contain;
+            }
+        }
+
+        &.fill {
+            .media {
+                height: 100%;
+                object-fit: fill;
             }
         }
     }

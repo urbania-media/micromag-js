@@ -1,13 +1,15 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+
 import AudioElement from '@micromag/element-audio';
 import TextElement from '@micromag/element-text';
 import ImageElement from '@micromag/element-image';
 import Background from '@micromag/element-background';
 import Frame from '@micromag/element-frame';
 import Box from '@micromag/element-box';
-import classNames from 'classnames';
+
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';

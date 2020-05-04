@@ -1,5 +1,6 @@
 {
     "screens.gallery.schema.properties.background": "Background",
+    "screens.gallery.schema.properties.image": "Image",
     "screens.gallery.schema.properties.images": "Images",
     "screens.gallery.schema.properties.layout": "Layout",
     "screens.gallery.schema.title": "Gallery"

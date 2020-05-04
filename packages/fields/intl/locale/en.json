@@ -1,3 +1,5 @@
 {
-    "fields.advanced_fields": "Advanced"
+    "fields.advanced_fields": "Advanced",
+    "fields.images.add_image": "Add an image",
+    "fields.images.no_image": "No image..."
 }

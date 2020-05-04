@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import MediaControls from '@micromag/element-media-controls';
 
-// import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import styles from './styles.module.scss';
 
@@ -14,10 +14,7 @@ const propTypes = {
     track: PropTypes.string,
     language: PropTypes.number,
     controls: PropTypes.bool,
-    muted: PropTypes.bool,
-    autoPlay: PropTypes.bool,
-    loop: PropTypes.bool,
-    native: PropTypes.bool,
+    params: MicromagPropTypes.audioParams,
     // TODO: style: MicromagPropTypes.textStyle,
     className: PropTypes.string,
 };
@@ -27,25 +24,15 @@ const defaultProps = {
     track: null,
     language: null,
     controls: null,
-    muted: false,
-    autoPlay: false,
-    loop: false,
-    native: false,
+    params: null,
     // style: null,
     className: null,
 };
 
-const AudioComponent = ({
-    src,
-    track,
-    language,
-    controls,
-    muted: initialMuted,
-    autoPlay,
-    loop,
-    native,
-    className,
-}) => {
+const AudioComponent = ({ src, track, language, controls, params, className }) => {
+    const { muted: initialMuted = false, autoPlay = false, loop = false, native = false } =
+        params || {};
+
     const finalStyle = {};
     const refAudioElement = useRef(null);
     const [currentTime, setCurrentTime] = useState(0);

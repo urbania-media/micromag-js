@@ -34,7 +34,7 @@ export default {
                     },
                 },
                 link: {
-                    $ref: 'https://schemas.micromag.ca/0.1/elements/link.json',
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/url.json',
                     title: 'Link',
                     intl: {
                         title: messages.link,

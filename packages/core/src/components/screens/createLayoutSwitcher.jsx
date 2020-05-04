@@ -7,10 +7,12 @@ import { getComponentFromName } from '../../utils';
 
 const createLayoutSwitcher = (components, defaultComponent = null) => {
     const propTypes = {
-        layout: AppPropTypes.componentNames(components).isRequired,
+        layout: AppPropTypes.componentNames(components),
     };
 
-    const defaultProps = {};
+    const defaultProps = {
+        layout: null,
+    };
 
     const componentNames = Object.keys(components);
     const firstComponent = componentNames.length > 0 ? componentNames[0] : null;

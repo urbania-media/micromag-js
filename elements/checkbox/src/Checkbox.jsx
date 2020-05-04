@@ -10,6 +10,7 @@ const propTypes = {
     option: MicromagPropTypes.textComponent,
     value: PropTypes.string,
     onChange: PropTypes.func,
+    checkboxStyle: MicromagPropTypes.checkboxStyle,
     className: PropTypes.string,
 };
 
@@ -17,10 +18,11 @@ const defaultProps = {
     option: null,
     value: null,
     onChange: null,
+    checkboxStyle: null,
     className: null,
 };
 
-const Checkbox = ({ option, value, onChange, className }) => {
+const Checkbox = ({ option, value, onChange, checkboxStyle, className }) => {
     return (
         <div
             className={classNames([
@@ -29,6 +31,7 @@ const Checkbox = ({ option, value, onChange, className }) => {
                     [className]: className !== null,
                 },
             ])}
+            style={{ ...checkboxStyle }}
         >
             <label
                 className={classNames([

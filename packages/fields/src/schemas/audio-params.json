@@ -1,0 +1,28 @@
+{
+    "$id": "https://schemas.micromag.ca/0.1/fields/audio-params.json",
+    "title": "Audio parameters",
+    "type": "object",
+
+    "properties": {
+        "loop": {
+            "type": "boolean",
+            "title": "Loop",
+            "component": "toggle"
+        },
+        "autoPlay": {
+            "type": "boolean",
+            "title": "Autoplay",
+            "component": "toggle"
+        },
+        "muted": {
+            "type": "boolean",
+            "title": "Muted",
+            "component": "toggle"
+        },
+        "native": {
+            "type": "boolean",
+            "title": "Native",
+            "component": "toggle"
+        }
+    }
+}

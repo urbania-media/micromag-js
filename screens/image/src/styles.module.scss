@@ -62,4 +62,9 @@
 
         text-align: center;
     }
+
+    .empty {
+        @extend %empty;
+        @extend %empty-image;
+    }
 }

@@ -53,6 +53,7 @@
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",
         "prop-types": "^15.7.2",
+        "react-intl": "^4.5.0",
         "uuid": "^7.0.2"
     }
 }

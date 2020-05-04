@@ -1,17 +1,22 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
 import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { FormattedMessage } from 'react-intl';
+
 import Background from '@micromag/element-background';
 import Frame from '@micromag/element-frame';
 import MapComponent from '@micromag/element-map';
 import TextComponent from '@micromag/element-text';
 import ImageComponent from '@micromag/element-image';
-import classNames from 'classnames';
-import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
+
+import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 
 import PreviewBackground from './preview.jpg';
+
+import { schemas as messages } from './messages';
 
 import styles from './styles.module.scss';
 
@@ -49,6 +54,8 @@ const MapScreen = ({
 }) => {
     const { width, height } = useScreenSize();
     const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
+    const isEmpty = isEditor && map === null;
+
     const [index, setIndex] = useState();
 
     const { markers: mapMarkers = [] } = map || {};
@@ -66,11 +73,21 @@ const MapScreen = ({
         [setIndex],
     );
 
-    const preview = isPlaceholder ? (
-        <Placeholders.Map />
+    const element = isEmpty ? (
+        <Empty className={styles.empty}>
+            <FormattedMessage {...messages.schemaTitle} />
+        </Empty>
     ) : (
-        <ImageComponent image={{ url: PreviewBackground, width, height }} />
+        <ImageComponent
+            {...{
+                image: { url: PreviewBackground },
+                maxWidth: width,
+                maxHeight: height,
+            }}
+        />
     );
+
+    const preview = isPlaceholder ? <Placeholders.Map /> : element;
 
     return (
         <div
@@ -91,7 +108,7 @@ const MapScreen = ({
                 className={styles.background}
             >
                 <Frame width={width} height={height} visible={visible}>
-                    {isSimple ? (
+                    {isSimple || isEmpty ? (
                         preview
                     ) : (
                         <>

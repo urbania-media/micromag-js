@@ -1,2 +1,2 @@
 export { default } from './Background';
-export { default as schema } from './schema.json';
+export { default as schema } from './schema';

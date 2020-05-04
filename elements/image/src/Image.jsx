@@ -1,8 +1,11 @@
-/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import TextElement from '@micromag/element-text';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { getStyleFromImage, getStyleFromContainer } from '@micromag/core/utils';
+
 // import { getSizeWithinBounds } from '@folklore/size';
 
 import styles from './styles.module.scss';
@@ -14,14 +17,13 @@ const propTypes = {
         height: PropTypes.number,
     }),
     caption: PropTypes.string,
-    credits: PropTypes.string,
     maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     fit: MicromagPropTypes.objectFit,
-    showEmpty: PropTypes.bool,
+    imageStyle: MicromagPropTypes.imageStyle,
+    containerStyle: MicromagPropTypes.containerStyle,
     className: PropTypes.string,
     imageClassName: PropTypes.string,
-    emptyClassName: PropTypes.string,
 };
 
 const defaultProps = {
@@ -31,60 +33,91 @@ const defaultProps = {
         height: null,
     },
     caption: null,
-    credits: null,
     maxWidth: null,
     maxHeight: null,
     fit: null,
-    showEmpty: false,
+    imageStyle: {},
+    containerStyle: {},
     className: null,
     imageClassName: null,
-    emptyClassName: null,
 };
 
 const Image = ({
     image,
     caption,
-    credits,
     maxWidth,
     maxHeight,
-    fit,
-    showEmpty,
+    fit: defaultFit,
+    imageStyle,
+    containerStyle,
     className,
     imageClassName,
-    emptyClassName,
 }) => {
-    const { url = null } = image || {};
-    // Much simpler now, to test
-    const { size = 'contain' } = fit || {};
+    const { url = null, name = 'Image', metadata = {} } = image || {};
+    const { width: imageWidth, height: imageHeight } = metadata;
+    const width = maxWidth !== null ? Math.min(imageWidth, maxWidth) : null;
+    const height = maxHeight !== null ? Math.min(imageHeight, maxHeight) : null;
 
-    const imageElement = url ? (
+    // Much much simpler now
+    const { size = 'contain' } = defaultFit || {};
+
+    // const imgRef = useRef(null);
+    // const imageSize = useRef({ width: null, height: null });
+    // const onLoad = useCallback(() => {
+    //     imageSize.current.width = imgRef.current.width;
+    //     imageSize.current.height = imgRef.current.height;
+    // }, [imgRef.current]);
+
+    let fill = false;
+    let alt = name;
+    let finalStyle = {
+        width,
+        height,
+        objectFit: size,
+    };
+    if (imageStyle !== null) {
+        finalStyle = {
+            ...finalStyle,
+            ...getStyleFromImage(imageStyle),
+        };
+        if (imageStyle.alt) {
+            alt = imageStyle.alt;
+        }
+        if (imageStyle.fit) {
+            if (imageStyle.fit.fill) {
+                fill = imageStyle.fit.fill;
+            }
+        }
+    }
+
+    let containerFinalStyle = {
+        width: fill ? '100%' : maxWidth,
+        height: fill ? '100%' : maxHeight,
+    };
+
+    if (containerStyle !== null) {
+        containerFinalStyle = {
+            ...containerFinalStyle,
+            ...getStyleFromContainer(containerStyle),
+        };
+    }
+
+    // console.log('is', imageStyle, finalStyle, containerStyle, containerFinalStyle);
+
+    const img = url ? (
         <img
             src={url}
-            alt={credits || 'Image'}
+            alt={alt || name}
             className={classNames([
                 styles.img,
                 {
                     [imageClassName]: imageClassName !== null,
-                    [imageClassName]: imageClassName !== null,
                 },
             ])}
-            style={{ objectFit: size }}
+            style={finalStyle}
         />
     ) : null;
 
-    const img =
-        showEmpty && !url ? (
-            <div
-                className={classNames([
-                    styles.showEmpty,
-                    {
-                        [emptyClassName]: emptyClassName !== null,
-                    },
-                ])}
-            />
-        ) : (
-            imageElement
-        );
     return (
         <div
             className={classNames([
@@ -93,12 +126,12 @@ const Image = ({
                     [className]: className !== null,
                 },
             ])}
-            style={{ width: maxWidth, height: maxHeight }}
+            style={containerFinalStyle}
         >
             {img}
             {url && caption ? (
-                <div className={styles.credits}>
-                    <span className={styles.text}>{caption}</span>
+                <div className={styles.caption}>
+                    <TextElement {...caption} className={styles.text} />
                 </div>
             ) : null}
         </div>
