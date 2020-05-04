@@ -29,11 +29,16 @@
     "module": "es/index.js",
     "files": [
         "lib",
-        "es"
+        "es",
+        "assets"
     ],
     "scripts": {
         "clean": "rm -rf lib && rm -rf es",
-        "build": "NODE_ENV=production ../../node_modules/.bin/rollup --config ../../rollup.config.js",
+        "rollup": "NODE_ENV=production ../../node_modules/.bin/rollup --config ../../rollup.config.js",
+        "sass:vendor": "../../scripts/build-sass.js ./src/styles/vendor.scss ./assets/css/vendor.css",
+        "sass:styles": "../../scripts/build-sass.js ./src/styles/styles.scss ./assets/css/styles.css",
+        "sass": "npm run sass:vendor && npm run sass:styles",
+        "build": "npm run rollup && npm run sass",
         "intl": "node ../../scripts/build-package-intl-translations.js",
         "prepare": "npm run clean && npm run build && npm run intl"
     },
@@ -48,7 +53,9 @@
     "dependencies": {
         "@babel/runtime": "^7.8.7",
         "@micromag/app": "^0.1.7",
-        "@micromag/editor": "^0.1.7"
+        "@micromag/core": "^0.1.7",
+        "@micromag/editor": "^0.1.7",
+        "bootstrap": "^4.4.1"
     },
     "gitHead": "cc83150016c207039000c37fb4fcc3a660940fab"
 }

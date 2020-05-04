@@ -34,4 +34,5 @@ publish
 /lib
 /es
 /dist
+/assets
 /package-lock.json

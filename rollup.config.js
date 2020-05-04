@@ -23,7 +23,7 @@ export default {
     plugins: [
         json(),
         resolve({
-            extensions: ['.mjs', '.js', '.jsx', '.json', '.node', '.scss'],
+            extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
             jail: path.join(process.cwd(), 'src'),
         }),
         commonjs(),
