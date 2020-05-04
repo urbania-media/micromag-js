@@ -17,8 +17,5 @@
         "npmClientArgs": [
             "--no-package-lock"
         ]
-    },
-    "publishConfig": {
-        "access": "public"
     }
 }

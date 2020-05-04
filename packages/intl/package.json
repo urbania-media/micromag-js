@@ -59,5 +59,8 @@
         "prop-types": "^15.7.2",
         "react-intl": "^4.3.1"
     },
-    "gitHead": "d5d9dfec6727dac9f96c019d38ebe59525832f1c"
+    "publishConfig": {
+        "access": "public"
+    },
+    "gitHead": "cc83150016c207039000c37fb4fcc3a660940fab"
 }

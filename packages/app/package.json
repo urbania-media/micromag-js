@@ -75,5 +75,8 @@
         "react-sortablejs": "^2.0.11",
         "uuid": "^7.0.3"
     },
-    "gitHead": "d5d9dfec6727dac9f96c019d38ebe59525832f1c"
+    "publishConfig": {
+        "access": "public"
+    },
+    "gitHead": "cc83150016c207039000c37fb4fcc3a660940fab"
 }
