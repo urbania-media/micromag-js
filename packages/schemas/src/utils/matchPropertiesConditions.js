@@ -10,7 +10,7 @@ const matchPropertiesConditions = (condition, data) => {
             allMatch &&
             matchPropertyConditions(property, propertyValue) &&
             (conditionProperties === null ||
-                this.matchPropertiesConditions(properties[key], propertyValue))
+                matchPropertiesConditions(properties[key], propertyValue))
         );
     }, true);
 };
