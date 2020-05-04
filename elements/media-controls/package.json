@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-media-controls",
-    "version": "0.1.5",
+    "version": "0.1.2",
     "description": "",
     "keywords": [
         "javascript"
@@ -51,7 +51,7 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.27",
         "@fortawesome/free-solid-svg-icons": "^5.12.1",
         "@fortawesome/react-fontawesome": "^0.1.9",
-        "@micromag/core": "^0.1.5",
+        "@micromag/core": "^0.1.2",
         "classnames": "^2.2.6",
         "prop-types": "^15.7.2",
         "react-intl": "^4.5.0",

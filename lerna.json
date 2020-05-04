@@ -1,13 +1,22 @@
 {
-    "version": "0.1.1",
-    "packages": ["elements/*", "packages/*", "screens/*"],
+    "version": "0.1.2",
+    "packages": [
+        "elements/*",
+        "packages/*",
+        "screens/*"
+    ],
     "command": {
         "publish": {
-            "allowBranch": ["master", "develop"]
+            "allowBranch": [
+                "master",
+                "develop"
+            ]
         }
     },
     "bootstrap": {
-        "npmClientArgs": ["--no-package-lock"]
+        "npmClientArgs": [
+            "--no-package-lock"
+        ]
     },
     "publishConfig": {
         "access": "public"
