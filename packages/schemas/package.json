@@ -30,7 +30,8 @@
     "files": [
         "lib",
         "es",
-        "assets"
+        "assets",
+        "repository.js"
     ],
     "scripts": {
         "clean": "rm -rf assets && rm -rf lib && rm -rf es",

@@ -31,7 +31,11 @@
         "lib",
         "es",
         "assets",
-        "scss"
+        "scss",
+        "components.js",
+        "contexts.js",
+        "hooks.js",
+        "utils.js"
     ],
     "scripts": {
         "clean": "rm -rf assets && rm -rf scss && rm -rf lib && rm -rf es",
