@@ -27,9 +27,14 @@ const result = sass.renderSync({
     includePaths: [path.join(process.cwd(), 'node_modules')],
 });
 
-postcss(postcssConfig.plugins).process(result.css).then(postCssResult => {
-    mkdirp.sync(path.dirname(outFile));
-    fs.writeFileSync(outFile, postCssResult.css);
+postcss(postcssConfig.plugins)
+    .process(result.css, {
+        from: srcFile,
+        to: outFile,
+    })
+    .then(postCssResult => {
+        mkdirp.sync(path.dirname(outFile));
+        fs.writeFileSync(outFile, postCssResult.css);
 
-    console.log(`Generated ${outFile} from ${result.stats.entry} in ${result.stats.duration}s`);
-});
+        console.log(`Generated ${outFile} from ${result.stats.entry} in ${result.stats.duration}s`);
+    });
