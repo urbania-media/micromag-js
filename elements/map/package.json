@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-map",
-    "version": "0.1.9",
+    "version": "0.1.10",
     "description": "",
     "keywords": [
         "javascript"
@@ -48,7 +48,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.8.7",
-        "@micromag/core": "^0.1.9",
+        "@micromag/core": "^0.1.10",
         "classnames": "^2.2.6",
         "prop-types": "^15.7.2",
         "react-intl": "^4.5.0",
