@@ -20,11 +20,7 @@ const getPackagesAliases = () =>
                         ),
                     };
                 }, {}),
-            ...(packageName === '@micromag/core'
-                ? {
-                      [`${packageName}/scss`]: path.join(packagePath, './src/styles'),
-                  }
-                : null),
+            [`${packageName}/scss`]: path.join(packagePath, './src/styles'),
             [`${packageName}$`]: path.join(packagePath, './src/index.js'),
         };
     }, {});
