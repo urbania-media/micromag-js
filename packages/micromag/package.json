@@ -1,6 +1,6 @@
 {
     "name": "micromag",
-    "version": "0.1.10",
+    "version": "0.1.11",
     "description": "",
     "keywords": [
         "javascript"
@@ -54,9 +54,9 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.8.7",
-        "@micromag/app": "^0.1.10",
-        "@micromag/core": "^0.1.10",
-        "@micromag/editor": "^0.1.10",
+        "@micromag/app": "^0.1.11",
+        "@micromag/core": "^0.1.11",
+        "@micromag/editor": "^0.1.11",
         "bootstrap": "^4.4.1"
     },
     "gitHead": "cc83150016c207039000c37fb4fcc3a660940fab"
