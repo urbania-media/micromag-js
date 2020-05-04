@@ -63,6 +63,8 @@
         "mkdirp": "^1.0.4",
         "node-sass": "^4.13.1",
         "node-sass-tilde-importer": "^1.0.2",
+        "postcss": "^7.0.29",
+        "postcss-cli": "^7.1.1",
         "postcss-flexbugs-fixes": "^4.2.0",
         "postcss-normalize": "^9.0.0",
         "postcss-preset-env": "^6.7.0",

@@ -7,6 +7,5 @@ module.exports = {
             },
             stage: 3,
         }),
-        require('postcss-preset-env')(),
     ],
 };

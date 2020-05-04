@@ -5,6 +5,8 @@ const mkdirp = require('mkdirp');
 const { program } = require('commander');
 const sass = require('node-sass');
 const tildeImporter = require('node-sass-tilde-importer');
+const postcss = require('postcss');
+const postcssConfig = require('../postcss.config');
 
 let srcFile = null;
 let outFile = null;
@@ -25,7 +27,9 @@ const result = sass.renderSync({
     includePaths: [path.join(process.cwd(), 'node_modules')],
 });
 
-mkdirp.sync(path.dirname(outFile));
-fs.writeFileSync(outFile, result.css);
+postcss(postcssConfig.plugins).process(result.css).then(postCssResult => {
+    mkdirp.sync(path.dirname(outFile));
+    fs.writeFileSync(outFile, postCssResult.css);
 
-console.log(`Generated ${outFile} from ${result.stats.entry} in ${result.stats.duration}s`);
+    console.log(`Generated ${outFile} from ${result.stats.entry} in ${result.stats.duration}s`);
+});
