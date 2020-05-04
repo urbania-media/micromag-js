@@ -1,3 +1,4 @@
+export { default as Audio } from './Audio';
 export { default as Checkboxes } from './Checkboxes';
 export { default as Color } from './Color';
 export { default as ColorPicker } from './ColorPicker';

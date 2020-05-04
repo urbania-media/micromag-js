@@ -88,11 +88,10 @@ const AudioScreen = ({
                         ) : (
                             <ImageElement
                                 {...image}
-                                maxWidth={Math.min(width, maxWidth)}
-                                maxHeight={Math.min(width, maxWidth)}
+                                maxWidth={image !== null ? Math.min(width, maxWidth) : null}
+                                maxHeight={image !== null ? Math.min(width, maxWidth) : null}
                                 fit={{ size: 'cover' }}
                                 className={styles.image}
-                                emptyClassName={styles.empty}
                             />
                         )}
                         {isPlaceholder ? (
@@ -106,11 +105,7 @@ const AudioScreen = ({
                         {isPlaceholder && text !== null ? (
                             <Placeholders.Text className={styles.placeholder} />
                         ) : (
-                            <TextElement
-                                {...text}
-                                className={styles.text}
-                                emptyClassName={styles.empty}
-                            />
+                            <TextElement {...text} className={styles.text} />
                         )}
                     </Box>
                 </Frame>

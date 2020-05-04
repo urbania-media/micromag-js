@@ -18,14 +18,16 @@ const propTypes = {
             height: PropTypes.number,
         }),
     }),
+    videoParams: PropTypes.shape({
+        autoPlay: PropTypes.bool,
+        muted: PropTypes.bool,
+        loop: PropTypes.bool,
+        controls: PropTypes.bool,
+    }),
     players: PropTypes.arrayOf(PropTypes.elementType),
     maxWidth: PropTypes.number,
     maxHeight: PropTypes.number,
-    autoPlay: PropTypes.bool,
-    muted: PropTypes.bool,
-    loop: PropTypes.bool,
     controls: MicromagPropTypes.videoControls,
-    controlsVisible: PropTypes.bool,
     fit: MicromagPropTypes.objectFit,
     showEmpty: PropTypes.bool,
     className: PropTypes.string,
@@ -36,11 +38,8 @@ const defaultProps = {
     players: null,
     maxWidth: null,
     maxHeight: null,
-    autoPlay: false,
-    muted: true,
-    loop: false,
+    videoParams: null,
     controls: null,
-    controlsVisible: true,
     fit: null,
     showEmpty: false,
     className: null,
@@ -51,15 +50,20 @@ const Video = ({
     players,
     maxWidth: defaultMaxWidth,
     maxHeight: defaultMaxHeight,
-    autoPlay,
-    muted: initialMuted,
-    loop,
+    videoParams,
     controls,
-    controlsVisible,
+    // controlsVisible,
     fit,
     showEmpty,
     className,
 }) => {
+    const {
+        muted: initialMuted = false,
+        loop = false,
+        controls: controlsVisible = true,
+        autoPlay = false,
+    } = videoParams || {};
+
     const { url = null, metadata = {} } = video || {};
     const { width = null, height = null } = metadata;
 
@@ -108,6 +112,10 @@ const Video = ({
     }, [width, height]);
 
     useEffect(() => {
+        setPlayerState({ ...playerState, muted: initialMuted });
+    }, [initialMuted, setPlayerState]);
+
+    useEffect(() => {
         if (refPlayer.current) {
             if (!autoPlay) {
                 refPlayer.current.pause();
@@ -144,7 +152,7 @@ const Video = ({
                 height: playerSize.height,
             }}
         >
-            {(playerReady && controlsVisible) || showEmpty ? (
+            {(playerReady && controlsVisible) || (!url && showEmpty) ? (
                 <VideoControls
                     {...refPlayer.current}
                     {...playerState}

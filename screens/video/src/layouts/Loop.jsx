@@ -10,12 +10,11 @@ const propTypes = {
     fit: PropTypes.shape({
         size: PropTypes.string,
     }),
-    videoParams: PropTypes.shape({
+    defaultParams: PropTypes.shape({
         loop: PropTypes.bool,
         autoPlay: PropTypes.bool,
         muted: PropTypes.bool,
         controls: PropTypes.bool,
-        // playsInline: PropTypes.bool,
     }),
 };
 
@@ -25,12 +24,11 @@ const defaultProps = {
         axisAlign: 'center',
     },
     fit: { size: 'contain' },
-    videoParams: {
+    defaultParams: {
         loop: true,
         autoPlay: true,
         muted: true,
         controls: false,
-        // playsInline: true,
     },
 };
 

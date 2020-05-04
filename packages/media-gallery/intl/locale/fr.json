@@ -1,0 +1,9 @@
+{
+    "media-gallery.buttons.add": "Ajouter",
+    "media-gallery.forms.search_placeholder": "Chercher...",
+    "media-gallery.metadata.dimension": "Dimensions",
+    "media-gallery.metadata.duration": "Temps",
+    "media-gallery.metadata.filename": "Nom de fichier",
+    "media-gallery.metadata.size": "Taille",
+    "media-gallery.metadata.technical_details": "Détails techniques"
+}

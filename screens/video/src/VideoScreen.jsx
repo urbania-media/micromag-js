@@ -14,7 +14,7 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     video: MicromagPropTypes.video,
-    videoParams: PropTypes.shape({
+    defaultParams: PropTypes.shape({
         controls: PropTypes.bool,
         autoPlay: PropTypes.bool,
         muted: PropTypes.bool,
@@ -33,7 +33,7 @@ const propTypes = {
 
 const defaultProps = {
     video: null,
-    videoParams: null,
+    defaultParams: null,
     background: null,
     box: null,
     fit: false,
@@ -45,7 +45,7 @@ const defaultProps = {
 
 const VideoScreen = ({
     video: videoField,
-    videoParams,
+    defaultParams,
     background,
     box,
     fit,
@@ -57,24 +57,26 @@ const VideoScreen = ({
     const { width, height } = useScreenSize();
     const { size } = fit || {};
     const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
-    const { video = {} } = videoField || {};
-    const { loop = false, autoPlay = false, muted = false, controls = true } = videoParams || {};
 
-    const placeholderSized = size === 'cover' ? Placeholders.VideoFull : Placeholders.Video;
-    const Placeholder = loop ? Placeholders.VideoLoop : placeholderSized;
+    // TODO: make this better for default state
+    const { loop = false, autoPlay = false } = defaultParams || {};
+
+    const PlaceholderSized = size === 'cover' ? Placeholders.VideoFull : Placeholders.Video;
+    const PlaceholderLoop = loop ? Placeholders.VideoLoop : PlaceholderSized;
+    const Placeholder = loop && size === 'cover' ? Placeholders.VideoFullLoop : PlaceholderLoop;
+
     const autoplayCondition = isEditor ? autoPlay && active : autoPlay && !isSimple;
+
+    // console.log(size === 'cover', placeholderSized);
 
     const item = isSimple ? (
         <Placeholder className={styles.placeholder} />
     ) : (
         <VideoComponent
-            video={video}
+            videoParams={{ ...defaultParams, autoPlay: autoplayCondition }}
+            {...videoField}
             maxWidth={Math.min(width, 768)}
             maxHeight={height}
-            autoPlay={autoplayCondition}
-            muted={muted}
-            loop={loop}
-            controlsVisible={controls}
             fit={fit}
             showEmpty={isEditor}
             className={styles.video}

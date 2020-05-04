@@ -59,26 +59,46 @@ const VideoFile = ({
     const refPlayerInternal = useRef(null);
     const videoSize = { width, height };
 
-    // Player state
-    const [playerState, setPlayerState] = useState({
-        hasPlayed: false,
-        playing: autoPlay,
-        paused: false,
-        ended: false,
-        muted: initialMuted,
-    });
+    const [hasPlayed, setHasPlayed] = useState(false);
+    const [playing, setPlaying] = useState(autoPlay || false);
+    const [paused, setPaused] = useState(false);
+    const [ended, setEnded] = useState(false);
+    const [muted, setMuted] = useState(initialMuted || false);
+    const [loaded, setLoaded] = useState(false);
+
+    const playerState = { hasPlayed, playing, paused, ended, muted, loaded };
 
     const [ready, setReady] = useState(false);
 
     const updatePlayerState = useCallback(
         newPlayerState => {
-            setPlayerState(newPlayerState);
-            if (onStateChange !== null) {
-                onStateChange(newPlayerState);
+            if (typeof newPlayerState.hasPlayed === 'boolean') {
+                setHasPlayed(newPlayerState.hasPlayed);
+            }
+            if (typeof newPlayerState.playing === 'boolean') {
+                setPlaying(newPlayerState.playing);
+            }
+            if (typeof newPlayerState.paused === 'boolean') {
+                setPaused(newPlayerState.paused);
+            }
+            if (typeof newPlayerState.ended === 'boolean') {
+                setEnded(newPlayerState.ended);
+            }
+            if (typeof newPlayerState.muted === 'boolean') {
+                setMuted(newPlayerState.muted);
+            }
+            if (typeof newPlayerState.loaded === 'boolean') {
+                setLoaded(newPlayerState.loaded);
             }
         },
-        [setPlayerState, onStateChange],
+        [onStateChange],
     );
+
+    useEffect(() => {
+        if (onStateChange !== null) {
+            onStateChange(playerState);
+        }
+    }, [JSON.stringify(playerState)]);
 
     // Onload
     const onLoad = useCallback(() => {
@@ -118,14 +138,34 @@ const VideoFile = ({
     // Player API
     const playerApi = useMemo(
         () => ({
-            ...playerState,
-            play: () => (refVideo.current !== null ? refVideo.current.play() : null),
-            pause: () => (refVideo.current !== null ? refVideo.current.pause() : null),
+            play: () => {
+                if (refVideo.current !== null) {
+                    refVideo.current.play();
+                }
+                updatePlayerState({
+                    ...playerState,
+                    hasPlayed: true,
+                    playing: true,
+                });
+            },
+            pause: () => {
+                if (refVideo.current !== null) {
+                    refVideo.current.pause();
+                }
+                updatePlayerState({
+                    ...playerState,
+                    playing: false,
+                });
+            },
             stop: () => {
                 if (refVideo.current !== null) {
                     refVideo.current.pause();
                     refVideo.current.currentTime = 0;
                 }
+                updatePlayerState({
+                    ...playerState,
+                    playing: false,
+                });
             },
             seek: time => {
                 if (refVideo.current !== null) {
@@ -157,14 +197,12 @@ const VideoFile = ({
     }
 
     const onClickPlayPause = useCallback(() => {
-        if (playerApi.playing) {
+        if (playerState.playing) {
             playerApi.pause();
         } else {
             playerApi.play();
         }
-    }, [playerApi]);
-
-    // console.log(url, autoPlay, loop, playerState.muted, playsInline);
+    }, [playerApi, playerState]);
 
     return (
         <div

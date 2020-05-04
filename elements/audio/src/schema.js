@@ -14,11 +14,21 @@ export default {
         },
         {
             properties: {
-                src: {
-                    $ref: 'https://schemas.micromag.ca/0.1/fields/url.json',
-                    title: 'URL',
+                // src: {
+                //     $ref: 'https://schemas.micromag.ca/0.1/fields/url.json',
+                //     title: 'URL',
+                //     intl: {
+                //         title: messages.url,
+                //     },
+                // },
+                audio: {
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/audio.json',
+                    title: 'Audio',
                     intl: {
-                        title: messages.url,
+                        title: messages.audio,
+                    },
+                    componentProps: {
+                        withoutLabel: true,
                     },
                 },
                 params: {

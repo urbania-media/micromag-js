@@ -10,7 +10,9 @@ const propTypes = {
     fit: PropTypes.shape({
         size: PropTypes.string,
     }),
-    controls: PropTypes.bool,
+    defaultParams: PropTypes.shape({
+        controls: PropTypes.bool,
+    }),
 };
 
 const defaultProps = {
@@ -19,11 +21,13 @@ const defaultProps = {
         axisAlign: 'center',
     },
     fit: { size: 'contain' },
-    controls: true,
+    defaultParams: {
+        controls: true,
+    },
 };
 
-const VideoCenter = ({ box, controls, ...otherProps }) => {
-    return <VideoScreen box={box} controls={controls} {...otherProps} />;
+const VideoCenter = ({ box, defaultParams, ...otherProps }) => {
+    return <VideoScreen box={box} defaultParams={defaultParams} {...otherProps} />;
 };
 
 VideoCenter.propTypes = propTypes;
