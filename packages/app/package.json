@@ -30,7 +30,8 @@
     "files": [
         "lib",
         "es",
-        "assets"
+        "assets",
+        "scss"
     ],
     "scripts": {
         "clean": "rm -rf scss && rm -rf assets && rm -rf lib && rm -rf es",
