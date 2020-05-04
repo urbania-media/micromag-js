@@ -43,9 +43,8 @@ export default {
             extract: path.join(process.cwd(), 'assets/css/styles.css'),
             inject: false,
         }),
-        image(),
-        svgo({
-            removeViewBox: false,
+        image({
+            // exclude: ['**/*.svg'],
         }),
         url({ include: ['**/*.mp4'] }),
         replace({
