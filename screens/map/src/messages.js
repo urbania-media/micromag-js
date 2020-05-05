@@ -21,9 +21,14 @@ export const schemas = defineMessages({
         defaultMessage: 'Markers',
         file: 'src/messages.js',
     },
+    cardTextStyle: {
+        id: 'schema.properties.cardTextStyle',
+        defaultMessage: 'Marker text style',
+        file: 'src/messages.js',
+    },
     cardBackground: {
         id: 'schema.properties.cardBackground',
-        defaultMessage: 'Item background',
+        defaultMessage: 'Marker background',
         file: 'src/messages.js',
     },
     background: {

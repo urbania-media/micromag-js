@@ -1,6 +1,6 @@
 {
     "screens.map.schema.properties.background": "Arrière-plan",
-    "screens.map.schema.properties.cardBackground": "Arrière-plan d'item",
+    "screens.map.schema.properties.cardBackground": "Arrière-plan de marqueur",
     "screens.map.schema.properties.layout": "Mise en page",
     "screens.map.schema.properties.map": "Carte",
     "screens.map.schema.properties.markers": "Marqueurs",

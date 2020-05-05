@@ -107,9 +107,9 @@ const SlideshowScreen = ({
                                 className={styles.slide}
                             >
                                 {item.image ? (
-                                    <ImageElement {...item.image} maxWidth={width} />
+                                    <ImageElement image={item.image} fit={{ size: 'cover' }} />
                                 ) : null}
-                                {item.text ? <TextElement {...item.text} /> : null}
+                                {item.text ? <TextElement body={item.text} /> : null}
                             </animated.div>
                         );
                     })}

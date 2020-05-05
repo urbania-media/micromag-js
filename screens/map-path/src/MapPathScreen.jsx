@@ -62,7 +62,6 @@ const MapPathScreen = ({
 
     const markers = mapMarkers || []; // .map((m, i) => ({ ...m })) : [];
     const center = mapCenter || markers.find((m, i) => i === index) || null;
-    const currentMarker = markers.find((m, i) => i === index) || null;
 
     const onClickMarker = useCallback(
         i => {

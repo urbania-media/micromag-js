@@ -16,7 +16,6 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     question: MicromagPropTypes.textElement,
-
     result: PropTypes.shape({
         image: MicromagPropTypes.image,
         text: MicromagPropTypes.textElement,

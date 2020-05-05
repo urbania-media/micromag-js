@@ -8,7 +8,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Button, Empty } from '@micromag/core/components';
 
 import FieldRow from './FieldRow';
-import ImageField from './Image';
+import SlideField from './Slide';
 
 const messages = defineMessages({
     noSlide: {
@@ -75,8 +75,8 @@ const SlidesField = ({ name, value, newDefaultValue, className, onChange, gotoFi
                                 withForm
                                 gotoForm={() => gotoFieldForm(`${name}.${index}`)}
                             >
-                                <ImageField
-                                    form="image-component"
+                                <SlideField
+                                    form="slide-component"
                                     value={itemValue}
                                     onChange={newValue => onItemChange(index, newValue)}
                                     thumbnailLabel={messages.label}

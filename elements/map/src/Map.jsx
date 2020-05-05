@@ -44,7 +44,9 @@ const Map = ({ zoom, center, markers, layers, withLine, onClickMap, onClickMarke
         [onClickMap],
     );
 
-    console.log('mapsApi', mapsApi);
+    if (!mapsApi) {
+        // console.log('No mapsApi', mapsApi);
+    }
 
     return (
         <div

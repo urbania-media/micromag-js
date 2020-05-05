@@ -32,7 +32,7 @@ const MarkerField = ({ isForm, value, className, ...props }) => {
                 },
             ])}
         >
-            <Fields {...props} name={null} value={value} />
+            <Fields {...props} value={value} />
         </div>
     ) : (
         <div

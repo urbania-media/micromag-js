@@ -62,6 +62,7 @@ const FieldForm = ({
             const { fields: subFields = [], items = null } = foundField;
             if (items !== null && key.match(/^[0-9]+$/)) {
                 const it = { ...items, name: fieldPath };
+                console.log(fieldPath, it);
                 return it;
             }
             return subFields.find(it => it.name === key) || null;

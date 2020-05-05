@@ -39,18 +39,25 @@ export default {
                         title: messages.markers,
                     },
                 },
-                cardBackground: {
-                    $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
-                    title: 'Card background',
-                    intl: {
-                        title: messages.cardBackground,
-                    },
-                },
                 background: {
                     $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
                     title: 'Background',
                     intl: {
                         title: messages.background,
+                    },
+                },
+                cardTextStyle: {
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/text-style.json',
+                    title: 'Card text style',
+                    intl: {
+                        title: messages.cardTextStyle,
+                    },
+                },
+                cardBackground: {
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
+                    title: 'Card background',
+                    intl: {
+                        title: messages.cardBackground,
                     },
                 },
             },
