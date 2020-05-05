@@ -11,6 +11,14 @@ export const schemas = defineMessages({
         id: 'schema.properties.video',
         defaultMessage: 'Video',
     },
+    subtitles: {
+        id: 'schema.properties.subtitles',
+        defaultMessage: 'Subtitles',
+    },
+    subtitleStyle: {
+        id: 'schema.properties.subtitleStyle',
+        defaultMessage: 'Subtitle style',
+    },
 });
 
 export default messages;

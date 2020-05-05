@@ -39,6 +39,13 @@ export default {
                         title: messages.markers,
                     },
                 },
+                button: {
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/button.json',
+                    title: 'Button style',
+                    intl: {
+                        title: messages.buttonStyle,
+                    },
+                },
                 cardBackground: {
                     $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
                     title: 'Card background',

@@ -1,4 +1,8 @@
 export { default as Audio } from './Audio';
+export { default as BorderStyle } from './BorderStyle';
+export { default as BorderType } from './BorderType';
+export { default as BorderWidth } from './BorderWidth';
+export { default as BorderRadius } from './BorderRadius';
 export { default as Checkboxes } from './Checkboxes';
 export { default as Color } from './Color';
 export { default as ColorPicker } from './ColorPicker';

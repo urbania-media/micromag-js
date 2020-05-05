@@ -10,7 +10,7 @@ export { default as getStyleFromContainer } from './getStyleFromContainer';
 export { default as getStyleFromImage } from './getStyleFromImage';
 export { default as getStyleFromText } from './getStyleFromText';
 export { default as getStyleFromMargin } from './getStyleFromMargin';
-export { default as getStyleFromRounded } from './getStyleFromRounded';
+export { default as getStyleFromBorder } from './getStyleFromBorder';
 export { default as getRenderFormat } from './getRenderFormat';
 export { default as isMessage } from './isMessage';
 export * from './path';

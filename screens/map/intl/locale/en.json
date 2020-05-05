@@ -1,6 +1,7 @@
 {
     "screens.map.schema.properties.background": "Background",
-    "screens.map.schema.properties.cardBackground": "Item background",
+    "screens.map.schema.properties.cardBackground": "Marker background",
+    "screens.map.schema.properties.cardTextStyle": "Marker text style",
     "screens.map.schema.properties.layout": "Layout",
     "screens.map.schema.properties.map": "Map",
     "screens.map.schema.properties.markers": "Markers",

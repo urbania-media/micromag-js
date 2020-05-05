@@ -23,6 +23,7 @@ import styles from './slideshow.module.scss';
 
 const propTypes = {
     slides: MicromagPropTypes.slides,
+    button: MicromagPropTypes.slides,
     box: MicromagPropTypes.boxElement,
     background: MicromagPropTypes.backgroundElement,
     textAlign: MicromagPropTypes.textAlign,
@@ -34,6 +35,7 @@ const propTypes = {
 
 const defaultProps = {
     slides: [],
+    button: null,
     box: null,
     background: null,
     textAlign: 'left',
@@ -45,6 +47,7 @@ const defaultProps = {
 
 const SlideshowScreen = ({
     slides,
+    button,
     box,
     background,
     textAlign,
@@ -85,6 +88,8 @@ const SlideshowScreen = ({
         setIndex(parallelIndex);
     }, [parallelIndex, setIndex]);
 
+    console.log(button);
+
     const inner =
         isEditor && slides.length === 0 ? (
             <Empty className={styles.empty}>
@@ -117,16 +122,18 @@ const SlideshowScreen = ({
                 {items.length > 1 ? (
                     <div className={styles.controls}>
                         <ButtonElement
-                            className={styles.previous}
+                            {...button}
                             disabled={isSimple}
                             onClick={onClickPrevious}
+                            className={styles.previous}
                         >
                             Previous
                         </ButtonElement>
                         <ButtonElement
-                            className={styles.next}
+                            {...button}
                             disabled={isSimple}
                             onClick={onClickNext}
+                            className={styles.next}
                         >
                             Next
                         </ButtonElement>

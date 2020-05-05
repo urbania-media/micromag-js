@@ -7,9 +7,17 @@ export const schemas = defineMessages({
         id: 'schema.title',
         defaultMessage: 'Button element',
     },
-    buttonStyle: {
-        id: 'schema.properties.button_style',
-        defaultMessage: 'Button style',
+    textStyle: {
+        id: 'schema.properties.text_style',
+        defaultMessage: 'Text style',
+    },
+    borderStyle: {
+        id: 'schema.properties.border_style',
+        defaultMessage: 'Border style',
+    },
+    backgroundColor: {
+        id: 'schema.properties.background_color',
+        defaultMessage: 'Background color',
     },
 });
 
