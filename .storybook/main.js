@@ -36,6 +36,8 @@ module.exports = {
         //     },
         // ]);
 
+        config.module.rules[0].exclude.push(/@ckeditor/);
+
         config.module.rules = [
             ...config.module.rules,
             ...getPackagesPaths().map(packagePath => {

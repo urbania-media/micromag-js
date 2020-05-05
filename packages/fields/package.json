@@ -53,7 +53,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.8.7",
-        "@ckeditor/ckeditor5-build-classic": "^15.0.0",
+        "@ckeditor/ckeditor5-build-classic": "^19.0.0",
         "@ckeditor/ckeditor5-react": "^2.0.0",
         "@fortawesome/fontawesome-svg-core": "^1.2.28",
         "@fortawesome/free-solid-svg-icons": "^5.13.0",
@@ -64,7 +64,7 @@
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",
         "prop-types": "^15.7.2",
-        "rc-slider": "^8.7.1",
+        "rc-slider": "^9.2.4",
         "rc-switch": "^1.9.0",
         "react-color": "^2.18.0",
         "react-intl": "^4.5.0",
