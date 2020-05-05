@@ -1,7 +1,7 @@
 {
     "fields.advanced_fields": "Avancé",
-    "fields.cards.add_card": "Ajouter une carte",
-    "fields.cards.no_card": "Pas de carte...",
+    "fields.cards.add_image": "TRANSLATE: Add a card",
+    "fields.cards.no_image": "TRANSLATE: No card...",
     "fields.images.add_image": "Ajouter une image",
     "fields.images.no_image": "Pas d'image",
     "fields.markers.add_marker": "Ajouter un marqueur",

@@ -15,19 +15,21 @@ const defaultProps = {
     className: null,
 };
 
-const SlideField = ({ isForm, className, ...props }) => (
+const GeoPosition = ({ isForm, className, ...props }) => (
     <Fields
+        {...props}
         className={classNames([
             {
                 'p-2': isForm,
                 className: className !== null,
             },
         ])}
-        {...props}
+        isList
+        isHorizontal
     />
 );
 
-SlideField.propTypes = propTypes;
-SlideField.defaultProps = defaultProps;
+GeoPosition.propTypes = propTypes;
+GeoPosition.defaultProps = defaultProps;
 
-export default SlideField;
+export default GeoPosition;

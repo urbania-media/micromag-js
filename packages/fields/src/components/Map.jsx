@@ -7,7 +7,7 @@ const propTypes = {};
 
 const defaultProps = {};
 
-const MapField = props => <Fields isList {...props} />;
+const MapField = props => <Fields {...props} />;
 
 MapField.propTypes = propTypes;
 MapField.defaultProps = defaultProps;

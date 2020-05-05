@@ -37,7 +37,6 @@
         "@storybook/addon-knobs": "^5.3.18",
         "@storybook/addon-toolbars": "^6.0.0-alpha.27",
         "@storybook/addon-viewport": "^5.3.18",
-        "@storybook/preset-create-react-app": "^2.1.1",
         "@storybook/react": "^5.3.18",
         "babel-eslint": "^10.1.0",
         "babel-plugin-css-modules-transform": "^1.6.2",
