@@ -8,7 +8,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Button, Empty } from '@micromag/core/components';
 
 import FieldRow from './FieldRow';
-import ImageField from './Image';
+import MarkerField from './Marker';
 
 const messages = defineMessages({
     noImage: {
@@ -71,8 +71,7 @@ const MarkersField = ({ name, value, newDefaultValue, className, onChange, gotoF
                                 withForm
                                 gotoForm={() => gotoFieldForm(`${name}.${index}`)}
                             >
-                                <ImageField
-                                    form="image-component"
+                                <MarkerField
                                     value={itemValue}
                                     onChange={newValue => onItemChange(index, newValue)}
                                 />

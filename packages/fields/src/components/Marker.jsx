@@ -5,27 +5,54 @@ import classNames from 'classnames';
 
 import Fields from './Fields';
 
+import styles from '../styles/marker.module.scss';
+
 const propTypes = {
+    value: PropTypes.shape({
+        text: PropTypes.string,
+    }),
     isForm: PropTypes.bool,
     className: PropTypes.string,
 };
 
 const defaultProps = {
+    value: null,
     isForm: false,
     className: null,
 };
 
-const MarkerField = ({ isForm, className, ...props }) => (
-    <Fields
-        className={classNames([
-            {
-                'p-2': isForm,
-                className: className !== null,
-            },
-        ])}
-        {...props}
-    />
-);
+const MarkerField = ({ isForm, value, className, ...props }) => {
+    const { text = null } = value || {};
+    return isForm ? (
+        <div
+            className={classNames([
+                styles.panel,
+                {
+                    [className]: className !== null,
+                },
+            ])}
+        >
+            <Fields {...props} name={null} value={value} />
+        </div>
+    ) : (
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                },
+            ])}
+        >
+            {text !== null ? (
+                <>
+                    <span className={styles.value}>{text}</span>
+                </>
+            ) : (
+                <span className={styles.noValue}>Entrez les infos...</span>
+            )}
+        </div>
+    );
+};
 
 MarkerField.propTypes = propTypes;
 MarkerField.defaultProps = defaultProps;

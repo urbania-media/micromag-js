@@ -1,0 +1,14 @@
+@import '~@micromag/core/scss/variables';
+@import './placeholders';
+
+.container {
+    @extend %field-with-form;
+
+    .value {
+        font-family: $font-family-monospace;
+    }
+}
+
+.panel {
+    padding: $spacer / 2;
+}
