@@ -11,9 +11,14 @@ export const schemas = defineMessages({
         id: 'schema.properties.layout',
         defaultMessage: 'Layout',
     },
-    cards: {
-        id: 'schema.properties.cards',
-        defaultMessage: 'Cards',
+    map: {
+        id: 'schema.properties.map',
+        defaultMessage: 'Map',
+        file: 'src/messages.js',
+    },
+    markers: {
+        id: 'schema.properties.markers',
+        defaultMessage: 'Markers',
         file: 'src/messages.js',
     },
     cardBackground: {

@@ -7,9 +7,9 @@ const propTypes = {};
 
 const defaultProps = {};
 
-const CardField = props => <Fields isList {...props} />;
+const MapField = props => <Fields isList {...props} />;
 
-CardField.propTypes = propTypes;
-CardField.defaultProps = defaultProps;
+MapField.propTypes = propTypes;
+MapField.defaultProps = defaultProps;
 
-export default CardField;
+export default MapField;

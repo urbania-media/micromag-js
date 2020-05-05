@@ -11,13 +11,17 @@ import FieldRow from './FieldRow';
 import ImageField from './Image';
 
 const messages = defineMessages({
-    noImage: {
-        id: 'cards.no_image',
-        defaultMessage: 'No card...',
+    noSlide: {
+        id: 'slides.no_slide',
+        defaultMessage: 'No slide...',
     },
-    addImage: {
-        id: 'cards.add_image',
-        defaultMessage: 'Add a card',
+    addSlide: {
+        id: 'slides.add_slide',
+        defaultMessage: 'Add a slide',
+    },
+    selectSlide: {
+        id: 'slides.select_slide',
+        defaultMessage: 'Select a slide',
     },
 });
 
@@ -39,7 +43,7 @@ const defaultProps = {
     onChange: null,
 };
 
-const CardsField = ({ name, value, newDefaultValue, className, onChange, gotoFieldForm }) => {
+const SlidesField = ({ name, value, newDefaultValue, className, onChange, gotoFieldForm }) => {
     const onClickAdd = useCallback(() => {
         if (onChange !== null) {
             onChange([...(value || []), newDefaultValue]);
@@ -75,13 +79,14 @@ const CardsField = ({ name, value, newDefaultValue, className, onChange, gotoFie
                                     form="image-component"
                                     value={itemValue}
                                     onChange={newValue => onItemChange(index, newValue)}
+                                    thumbnailLabel={messages.label}
                                 />
                             </FieldRow>
                         </div>
                     ))}
                 </div>
             ) : (
-                <Empty className="p-4">{messages.noImage}</Empty>
+                <Empty className="p-4">{messages.noSlide}</Empty>
             )}
             <div className="mt-2">
                 <Button
@@ -90,14 +95,14 @@ const CardsField = ({ name, value, newDefaultValue, className, onChange, gotoFie
                     icon={<FontAwesomeIcon icon={faPlus} />}
                     onClick={onClickAdd}
                 >
-                    {messages.addImage}
+                    {messages.addSlide}
                 </Button>
             </div>
         </div>
     );
 };
 
-CardsField.propTypes = propTypes;
-CardsField.defaultProps = defaultProps;
+SlidesField.propTypes = propTypes;
+SlidesField.defaultProps = defaultProps;
 
-export default CardsField;
+export default SlidesField;

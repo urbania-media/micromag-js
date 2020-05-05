@@ -1,8 +1,8 @@
 {
-    "$id": "https://schemas.micromag.ca/0.1/fields/card.json",
-    "title": "Card field",
+    "$id": "https://schemas.micromag.ca/0.1/fields/slide.json",
+    "title": "Slide field",
     "type": "object",
-    "component": "card",
+    "component": "slide",
 
     "properties": {
         "image": {

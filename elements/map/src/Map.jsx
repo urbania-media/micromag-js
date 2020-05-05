@@ -44,6 +44,8 @@ const Map = ({ zoom, center, markers, layers, withLine, onClickMap, onClickMarke
         [onClickMap],
     );
 
+    console.log('mapsApi', mapsApi);
+
     return (
         <div
             className={classNames([

@@ -1,5 +1,5 @@
 {
     "screens.slideshow.schema.properties.background": "Background",
-    "screens.slideshow.schema.properties.cards": "Cards",
+    "screens.slideshow.schema.properties.slides": "Slides",
     "screens.slideshow.schema.title": "Slideshow"
 }

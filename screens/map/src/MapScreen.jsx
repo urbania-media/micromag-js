@@ -22,6 +22,7 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     map: MicromagPropTypes.map,
+    markers: MicromagPropTypes.markers,
     background: MicromagPropTypes.backgroundElement,
     cardBackground: MicromagPropTypes.backgroundElement,
     align: PropTypes.string,
@@ -33,6 +34,7 @@ const propTypes = {
 
 const defaultProps = {
     map: null,
+    markers: [],
     background: null,
     cardBackground: null,
     align: 'bottom',
@@ -44,6 +46,7 @@ const defaultProps = {
 
 const MapScreen = ({
     map,
+    markers: mapMarkers,
     background,
     cardBackground,
     align,
@@ -58,9 +61,10 @@ const MapScreen = ({
 
     const [index, setIndex] = useState();
 
-    const { markers: mapMarkers = [] } = map || {};
+    const { geoPosition: mapCenter = null } = map || {};
+
     const markers = mapMarkers.map(m => ({ ...m, active: true }));
-    const center = markers.find((m, i) => i === index) || null;
+    const center = mapCenter || markers.find((m, i) => i === index) || {};
 
     const onClickMap = useCallback(() => {
         setIndex(null);
@@ -87,7 +91,8 @@ const MapScreen = ({
         />
     );
 
-    const preview = isPlaceholder ? <Placeholders.Map /> : element;
+    const preview = isPlaceholder ? <Placeholders.Map className={styles.placeholder} /> : element;
+    const isPreview = isSimple || isEmpty || (!center.lat && !center.lng);
 
     return (
         <div
@@ -108,15 +113,13 @@ const MapScreen = ({
                 className={styles.background}
             >
                 <Frame width={width} height={height} visible={visible}>
-                    {isSimple || isEmpty ? (
+                    {isPreview ? (
                         preview
                     ) : (
                         <>
                             <MapComponent
                                 {...map}
-                                {...(center
-                                    ? { center: { lat: center.lat, lng: center.lng } }
-                                    : null)}
+                                {...(center.lat && center.lng ? { center } : null)}
                                 markers={markers}
                                 onClickMap={onClickMap}
                                 onClickMarker={onClickMarker}

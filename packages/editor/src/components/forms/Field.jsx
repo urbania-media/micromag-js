@@ -54,21 +54,20 @@ const FieldForm = ({
     );
     const fields = useScreenSchemaFields(type, conditionalData);
 
-    const field = fieldPath
-        .split('.')
-        .reduce(
-            (foundField, key) => {
-                if (foundField === null) {
-                    return null;
-                }
-                const { fields: subFields = [], items = null } = foundField;
-                if (items !== null && key.match(/^[0-9]+$/)) {
-                    return items;
-                }
-                return subFields.find(it => it.name === key) || null;
-            },
-            { fields },
-        );
+    const field = fieldPath.split('.').reduce(
+        (foundField, key) => {
+            if (foundField === null) {
+                return null;
+            }
+            const { fields: subFields = [], items = null } = foundField;
+            if (items !== null && key.match(/^[0-9]+$/)) {
+                const it = { ...items, name: fieldPath };
+                return it;
+            }
+            return subFields.find(it => it.name === key) || null;
+        },
+        { fields },
+    );
 
     const fieldValue = get(value, fieldPath, null);
 

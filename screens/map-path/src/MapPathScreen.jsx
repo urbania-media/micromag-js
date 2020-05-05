@@ -23,6 +23,7 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     map: MicromagPropTypes.map,
+    markers: MicromagPropTypes.markers,
     background: MicromagPropTypes.backgroundElement,
     align: PropTypes.string,
     visible: PropTypes.bool,
@@ -33,6 +34,7 @@ const propTypes = {
 
 const defaultProps = {
     map: null,
+    markers: [],
     background: null,
     align: 'bottom',
     visible: true,
@@ -41,14 +43,25 @@ const defaultProps = {
     className: null,
 };
 
-const MapPathScreen = ({ map, background, align, visible, active, renderFormat, className }) => {
+const MapPathScreen = ({
+    map,
+    markers: mapMarkers,
+    background,
+    align,
+    visible,
+    active,
+    renderFormat,
+    className,
+}) => {
     const { width, height } = useScreenSize();
-    const { markers: mapMarkers = [] } = map || {};
     const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
     const isEmpty = isEditor && map === null;
 
     const [index, setIndex] = useState(0);
+    const { geoPosition: mapCenter = null } = map || {};
+
     const markers = mapMarkers || []; // .map((m, i) => ({ ...m })) : [];
+    const center = mapCenter || markers.find((m, i) => i === index) || null;
     const currentMarker = markers.find((m, i) => i === index) || null;
 
     const onClickMarker = useCallback(
@@ -88,7 +101,13 @@ const MapPathScreen = ({ map, background, align, visible, active, renderFormat, 
         />
     );
 
-    const preview = isPlaceholder ? <Placeholders.MapPath /> : element;
+    const preview = isPlaceholder ? (
+        <Placeholders.MapPath className={styles.placeholder} />
+    ) : (
+        element
+    );
+
+    console.log(isSimple, isEmpty, currentMarker);
 
     return (
         <div
@@ -114,8 +133,8 @@ const MapPathScreen = ({ map, background, align, visible, active, renderFormat, 
                         <>
                             <MapComponent
                                 {...map}
-                                {...(currentMarker
-                                    ? { center: { lat: currentMarker.lat, lng: currentMarker.lng } }
+                                {...(center && center.lat && center.lng
+                                    ? { center: { lat: center.lat, lng: center.lng } }
                                     : null)}
                                 markers={markers}
                                 withLine

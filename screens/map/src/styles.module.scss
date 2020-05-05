@@ -10,6 +10,11 @@
         height: 80%;
     }
 
+    .placeholder {
+        display: block;
+        position: relative;
+    }
+
     &.top {
         .card {
             top: 0;
@@ -23,7 +28,8 @@
     }
 
     &.bottom {
-        .empty {
+        .empty,
+        .placeholder {
             position: absolute;
             bottom: 0;
         }

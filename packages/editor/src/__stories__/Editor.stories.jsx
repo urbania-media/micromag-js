@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Editor from '../components/Container';
 import IntlProvider from '../../../intl/src/IntlProvider';
 import { ApiProvider } from '../../../data/src/contexts/ApiContext';
+import { withGoogleMapsApi } from '../../../../.storybook/decorators';
 
 // import manager from '../../../intl/src/manager';
 
@@ -11,6 +12,7 @@ import '../../../intl/locale/fr';
 export default {
     component: Editor,
     title: 'Editor/Editor',
+    decorators: [withGoogleMapsApi],
 };
 
 const defaultStory = createDefaultStory();

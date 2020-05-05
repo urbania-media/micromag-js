@@ -1,0 +1,24 @@
+{
+    "$id": "https://schemas.micromag.ca/0.1/fields/marker.json",
+    "title": "Marker field",
+    "type": "object",
+    "component": "marker",
+
+    "properties": {
+        "image": {
+            "$ref": "https://schemas.micromag.ca/0.1/elements/image.json",
+            "title": "Image",
+            "type": "object"
+        },
+        "text": {
+            "$ref": "https://schemas.micromag.ca/0.1/elements/text.json",
+            "title": "Text",
+            "type": "object"
+        },
+        "geoPosition": {
+            "$ref": "https://schemas.micromag.ca/0.1/fields/geo-position.json",
+            "title": "Geographical position",
+            "type": "object"
+        }
+    }
+}

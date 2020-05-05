@@ -160,7 +160,7 @@ export const Map = props => (
     <PlaceholderBlock
         {...props}
         width="100%"
-        height="100%"
+        height="80%"
         className={classNames([props.className, styles.map])}
     >
         <FontAwesomeIcon icon={faMapMarkerAlt} className={styles.icon} />
@@ -175,7 +175,7 @@ export const MapPath = props => (
     <PlaceholderBlock
         {...props}
         width="100%"
-        height="100%"
+        height="80%"
         className={classNames([props.className, styles.mapPath])}
     >
         <FontAwesomeIcon icon={faMapMarkedAlt} size="lg" className={styles.icon} />

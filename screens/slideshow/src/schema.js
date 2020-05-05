@@ -24,11 +24,11 @@ export default {
                 //         title: messages.layout,
                 //     },
                 // },
-                cards: {
-                    $ref: 'https://schemas.micromag.ca/0.1/fields/cards.json',
-                    title: 'Cards',
+                slides: {
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/slides.json',
+                    title: 'Slide',
                     intl: {
-                        title: messages.cards,
+                        title: messages.slides,
                     },
                 },
                 background: {

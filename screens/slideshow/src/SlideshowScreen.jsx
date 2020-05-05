@@ -22,7 +22,7 @@ import { schemas as messages } from './messages';
 import styles from './slideshow.module.scss';
 
 const propTypes = {
-    cards: MicromagPropTypes.slides,
+    slides: MicromagPropTypes.slides,
     box: MicromagPropTypes.boxElement,
     background: MicromagPropTypes.backgroundElement,
     textAlign: MicromagPropTypes.textAlign,
@@ -33,7 +33,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    cards: [],
+    slides: [],
     box: null,
     background: null,
     textAlign: 'left',
@@ -44,8 +44,8 @@ const defaultProps = {
 };
 
 const SlideshowScreen = ({
+    slides,
     box,
-    cards: slides,
     background,
     textAlign,
     visible,

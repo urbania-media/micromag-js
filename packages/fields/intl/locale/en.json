@@ -1,7 +1,10 @@
 {
     "fields.advanced_fields": "Advanced",
-    "fields.cards.add_image": "Add a card",
-    "fields.cards.no_image": "No card...",
+    "fields.cards.add_card": "Add a card",
+    "fields.cards.no_card": "No card...",
     "fields.images.add_image": "Add an image",
-    "fields.images.no_image": "No image..."
+    "fields.images.no_image": "No image...",
+    "fields.slides.add_slide": "Add a slide",
+    "fields.slides.no_slide": "No slide...",
+    "fields.slides.select_slide": "Select a slide"
 }

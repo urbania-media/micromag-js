@@ -7,15 +7,13 @@ export const schemas = defineMessages({
         id: 'schema.title',
         defaultMessage: 'Slideshow',
     },
-    cards: {
-        id: 'schema.properties.cards',
-        defaultMessage: 'Cards',
-        file: 'src/messages.js',
+    slides: {
+        id: 'schema.properties.slides',
+        defaultMessage: 'Slides',
     },
     background: {
         id: 'schema.properties.background',
         defaultMessage: 'Background',
-        file: 'src/messages.js',
     },
 });
 

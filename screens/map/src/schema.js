@@ -25,16 +25,23 @@ export default {
                         title: messages.layout,
                     },
                 },
-                cards: {
-                    $ref: 'https://schemas.micromag.ca/0.1/fields/cards.json',
-                    title: 'Cards',
+                map: {
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/map.json',
+                    title: 'Map',
                     intl: {
-                        title: messages.cards,
+                        title: messages.map,
+                    },
+                },
+                markers: {
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/markers.json',
+                    title: 'Markers',
+                    intl: {
+                        title: messages.markers,
                     },
                 },
                 cardBackground: {
                     $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
-                    title: 'Cards background',
+                    title: 'Card background',
                     intl: {
                         title: messages.cardBackground,
                     },

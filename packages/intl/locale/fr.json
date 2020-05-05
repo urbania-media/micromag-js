@@ -185,7 +185,7 @@
     "screens.quote.schema.properties.source": "Source",
     "screens.quote.schema.title": "Citation",
     "screens.slideshow.schema.properties.background": "Arrière-plan",
-    "screens.slideshow.schema.properties.cards": "Planches",
+    "screens.slideshow.schema.properties.slides": "TRANSLATE: Slides",
     "screens.slideshow.schema.title": "Diaporama",
     "screens.survey-checkbox.schema.properties.background": "Arrière-plan",
     "screens.survey-checkbox.schema.title": "Sondage à réponses multiples",
