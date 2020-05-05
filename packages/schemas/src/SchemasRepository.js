@@ -216,6 +216,7 @@ class SchemasRepository {
             min: minimum,
             max: maximum,
             steps: multiplesOf,
+            float: type === 'number',
         };
         let fieldType = type;
         if (component !== null) {
@@ -240,7 +241,7 @@ class SchemasRepository {
                       items: this.getFieldFromProperty(items, '*'),
                   }
                 : null),
-            ...(type === 'number' ? numberProps : null),
+            ...(type === 'number' || type === 'integer' ? numberProps : null),
         };
         return type === 'object'
             ? {
