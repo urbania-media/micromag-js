@@ -10,12 +10,10 @@ export default [
             ...baseConfig.plugins.slice(0, 1),
             resolve({
                 extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
-                resolveOnly: [
-                    new RegExp(path.join(__dirname, './src/ElementsProvider'))
-                ]
+                resolveOnly: [new RegExp(path.join(__dirname, './src/ElementsProvider'))],
             }),
             ...baseConfig.plugins.slice(2),
-        ]
+        ],
     },
     {
         ...baseConfig,

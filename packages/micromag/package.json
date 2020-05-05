@@ -36,12 +36,12 @@
     "scripts": {
         "clean": "rm -rf assets && rm -rf scss && rm -rf lib && rm -rf es",
         "rollup": "NODE_ENV=production ../../node_modules/.bin/rollup --config ../../rollup.config.js",
-        "sass:vendor": "../../scripts/build-sass.js ./src/styles/vendor.scss ./assets/css/vendor.css",
-        "sass:styles": "../../scripts/build-sass.js ./src/styles/styles.scss ./assets/css/styles.css",
-        "sass": "npm run sass:vendor && npm run sass:styles",
+        "css:vendor": "../../scripts/build-sass.js ./src/styles/vendor.scss ./assets/css/vendor.css",
+        "css:styles": "../../scripts/build-sass.js ./src/styles/styles.scss ./assets/css/styles.css",
+        "css": "npm run css:vendor && npm run css:styles",
         "scss": "mkdir scss && cp ./src/styles/*.scss scss",
         "intl": "node ../../scripts/build-package-intl-translations.js",
-        "build": "npm run rollup && npm run sass && npm run scss && npm run intl",
+        "build": "npm run rollup && npm run css && npm run scss && npm run intl",
         "prepare": "npm run clean && npm run build"
     },
     "devDependencies": {

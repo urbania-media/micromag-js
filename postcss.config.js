@@ -7,5 +7,14 @@ module.exports = {
             },
             stage: 3,
         }),
+        require('cssnano')({
+            preset: ['default', {
+                svgo: {
+                    plugins: [{
+                        removeViewBox: false,
+                    }],
+                },
+            }],
+        }),
     ],
 };
