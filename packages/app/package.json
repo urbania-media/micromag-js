@@ -1,6 +1,6 @@
 {
     "name": "@micromag/app",
-    "version": "0.1.18",
+    "version": "0.1.19",
     "description": "",
     "keywords": [
         "javascript"
@@ -61,7 +61,7 @@
         "@micromag/editor": "^0.1.18",
         "@micromag/elements": "^0.1.18",
         "@micromag/fields": "^0.1.18",
-        "@micromag/intl": "^0.1.18",
+        "@micromag/intl": "^0.1.19",
         "@micromag/media-gallery": "^0.1.18",
         "@micromag/schemas": "^0.1.18",
         "@micromag/screens": "^0.1.18",
