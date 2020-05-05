@@ -1,6 +1,6 @@
 {
     "name": "@micromag/schemas",
-    "version": "0.1.18",
+    "version": "0.1.24",
     "description": "",
     "keywords": [
         "javascript"
@@ -50,10 +50,10 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.8.7",
-        "@micromag/core": "^0.1.18",
-        "@micromag/elements": "^0.1.18",
-        "@micromag/fields": "^0.1.18",
-        "@micromag/screens": "^0.1.18",
+        "@micromag/core": "^0.1.24",
+        "@micromag/elements": "^0.1.24",
+        "@micromag/fields": "^0.1.24",
+        "@micromag/screens": "^0.1.24",
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",
         "prop-types": "^15.7.2"
@@ -61,5 +61,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "cc83150016c207039000c37fb4fcc3a660940fab"
+    "gitHead": "56ea5e35c4d053f49e1272568854e542bfe6e6cf"
 }

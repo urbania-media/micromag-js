@@ -4,6 +4,8 @@
     "fields.cards.no_card": "No card...",
     "fields.images.add_image": "Add an image",
     "fields.images.no_image": "No image...",
+    "fields.markers.add_marker": "Add a marker",
+    "fields.markers.no_marker": "No marker...",
     "fields.slides.add_slide": "Add a slide",
     "fields.slides.no_slide": "No slide...",
     "fields.slides.select_slide": "Select a slide"

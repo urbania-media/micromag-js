@@ -4,6 +4,8 @@
     "fields.cards.no_card": "Pas de carte...",
     "fields.images.add_image": "Ajouter une image",
     "fields.images.no_image": "Pas d'image",
+    "fields.markers.add_marker": "TRANSLATE: Add a marker",
+    "fields.markers.no_marker": "TRANSLATE: No marker...",
     "fields.slides.add_slide": "Ajouter une diapositive",
     "fields.slides.no_slide": "Pas de diapositive...",
     "fields.slides.select_slide": "Sélectionner une diapositive"
