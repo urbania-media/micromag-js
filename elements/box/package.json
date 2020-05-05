@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-box",
-    "version": "0.1.18",
+    "version": "0.1.24",
     "description": "",
     "keywords": [
         "javascript"
@@ -48,7 +48,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.8.7",
-        "@micromag/core": "^0.1.18",
+        "@micromag/core": "^0.1.24",
         "change-case": "^4.1.1",
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",
