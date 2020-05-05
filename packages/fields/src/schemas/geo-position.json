@@ -7,12 +7,20 @@
         "lat": {
             "type": "number",
             "title": "Latitude",
-            "component": "number"
+            "component": "number",
+            "componentProps": {
+                "float": true,
+                "floatStep": 0.01
+            }
         },
         "lng": {
             "type": "number",
             "title": "Longitude",
-            "component": "number"
+            "component": "number",
+            "componentProps": {
+                "float": true,
+                "floatStep": 0.01
+            }
         }
     }
 }

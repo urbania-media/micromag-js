@@ -17,8 +17,6 @@ const props = {
     background: background(),
 };
 
-console.log('ad props', props);
-
 const switcherProps = {
     layouts,
     defaultLayout: 'center',

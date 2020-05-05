@@ -16,7 +16,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    values: ['cover', 'contain', 'fill', 'scale-down', 'none'],
+    values: ['cover', 'contain', 'none'], // TODO, maybe add 'fill', 'scale-down', ?
     value: null,
     className: null,
     onChange: null,

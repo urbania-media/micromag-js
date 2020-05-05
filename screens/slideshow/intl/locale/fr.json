@@ -1,5 +1,5 @@
 {
     "screens.slideshow.schema.properties.background": "Arrière-plan",
-    "screens.slideshow.schema.properties.slides": "TRANSLATE: Slides",
+    "screens.slideshow.schema.properties.slides": "Diapositives",
     "screens.slideshow.schema.title": "Diaporama"
 }

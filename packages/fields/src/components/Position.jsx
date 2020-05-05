@@ -2,6 +2,15 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faDotCircle,
+    faArrowUp,
+    faArrowDown,
+    faArrowLeft,
+    faArrowRight,
+} from '@fortawesome/free-solid-svg-icons';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import getSelectOptions from '../utils/getSelectOptions';
@@ -27,6 +36,33 @@ const defaultProps = {
     buttonClassName: null,
     onChange: null,
 };
+
+const Icon = ({ label }) => {
+    switch (label) {
+        case 'top-left':
+            return <FontAwesomeIcon icon={faArrowUp} className={styles.rotateLeft} />;
+        case 'top-center':
+            return <FontAwesomeIcon icon={faArrowUp} className={styles.icon} />;
+        case 'top-right':
+            return <FontAwesomeIcon icon={faArrowUp} className={styles.rotateRight} />;
+        case 'center-left':
+            return <FontAwesomeIcon icon={faArrowLeft} className={styles.icon} />;
+        case 'center-center':
+            return <FontAwesomeIcon icon={faDotCircle} className={styles.icon} />;
+        case 'center-right':
+            return <FontAwesomeIcon icon={faArrowRight} className={styles.icon} />;
+        case 'bottom-left':
+            return <FontAwesomeIcon icon={faArrowDown} className={styles.rotateRight} />;
+        case 'bottom-center':
+            return <FontAwesomeIcon icon={faArrowDown} className={styles.icon} />;
+        case 'bottom-right':
+            return <FontAwesomeIcon icon={faArrowDown} className={styles.rotateLeft} />;
+        default:
+    }
+    return null;
+};
+
+Icon.propTypes = { label: PropTypes.string.isRequired };
 
 const Position = ({
     name,
@@ -60,6 +96,7 @@ const Position = ({
                             'btn',
                             'btn-outline-secondary',
                             {
+                                [styles.button]: true,
                                 active: axisOption === axisAlign && crossOption === crossAlign,
                                 [buttonClassName]: buttonClassName !== null,
                             },
@@ -84,7 +121,7 @@ const Position = ({
                             }}
                             checked={axisOption === axisAlign && crossOption === crossAlign}
                         />{' '}
-                        {`${axisLabel}-${crossLabel}`}
+                        <Icon label={`${axisLabel}-${crossLabel}`} />
                     </label>
                 )),
             )}

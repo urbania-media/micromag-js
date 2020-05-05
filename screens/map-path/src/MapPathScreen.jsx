@@ -107,8 +107,6 @@ const MapPathScreen = ({
         element
     );
 
-    console.log(isSimple, isEmpty, currentMarker);
-
     return (
         <div
             className={classNames([

@@ -58,5 +58,12 @@
                 object-fit: fill;
             }
         }
+
+        &.none {
+            .media {
+                height: 0;
+                object-fit: none;
+            }
+        }
     }
 }
