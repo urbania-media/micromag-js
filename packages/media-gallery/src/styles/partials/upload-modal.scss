@@ -1,2 +1,4 @@
-@import '~@uppy/core/dist/style.css';
-@import '~@uppy/dashboard/dist/style.css';
+:global {
+    @import '~@uppy/core/dist/style.css';
+    @import '~@uppy/dashboard/dist/style.css';
+}
