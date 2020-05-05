@@ -26,6 +26,7 @@ export { default as size } from './size.json';
 export { default as slide } from './slide.json';
 export { default as slides } from './slides.json';
 export { default as textStyle } from './text-style.json';
+export { default as text } from './text.json';
 export { default as url } from './url.json';
 export { default as videoControl } from './video-control.json';
 export { default as videoControls } from './video-controls.json';
