@@ -1,0 +1,19 @@
+{
+    "$id": "https://schemas.micromag.ca/0.1/fields/card.json",
+    "title": "Card field",
+    "type": "object",
+    "component": "card",
+
+    "properties": {
+        "image": {
+            "$ref": "https://schemas.micromag.ca/0.1/elements/image.json",
+            "title": "Image",
+            "type": "object"
+        },
+        "text": {
+            "$ref": "https://schemas.micromag.ca/0.1/elements/text.json",
+            "title": "Text",
+            "type": "object"
+        }
+    }
+}

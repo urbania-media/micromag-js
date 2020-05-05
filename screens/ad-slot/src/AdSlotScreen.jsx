@@ -75,7 +75,11 @@ const AdSlotScreen = ({ iframe, box, background, visible, active, renderFormat, 
             >
                 <Frame className={styles.frame} width={width} height={height} visible={visible}>
                     <Box {...box} withSmallSpacing={isSimple}>
-                        {isPlaceholder ? <Placeholders.Ad className={styles.placeholder} /> : inner}
+                        {isPlaceholder ? (
+                            <Placeholders.AdFrame className={styles.placeholder} />
+                        ) : (
+                            inner
+                        )}
                     </Box>
                 </Frame>
             </Background>

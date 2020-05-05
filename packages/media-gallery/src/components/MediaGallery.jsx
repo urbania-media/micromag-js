@@ -105,7 +105,6 @@ const MediaGallery = ({
                 onClickAdd={onClickAdd}
                 onClickBack={onClickBack}
             />
-
             <div className={styles.content}>
                 <div className={styles.gallery}>
                     {medias !== null ? (
@@ -118,12 +117,10 @@ const MediaGallery = ({
                         />
                     ) : null}
                 </div>
-
                 <div className={styles.mediaMetadata}>
                     <MediaMetadata media={metadataMedia} onClickClose={onMetadataClickClose} />
                 </div>
             </div>
-
             <UploadModal
                 opened={uploadModalOpened}
                 onUploaded={onUploadCompleted}

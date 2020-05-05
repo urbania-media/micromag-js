@@ -1,4 +1,6 @@
 export { default as Audio } from './Audio';
+export { default as Cards } from './Cards';
+export { default as Card } from './Card';
 export { default as Checkboxes } from './Checkboxes';
 export { default as Color } from './Color';
 export { default as ColorPicker } from './ColorPicker';
@@ -29,6 +31,7 @@ export { default as SliderPercentage } from './SliderPercentage';
 export { default as SliderPoint } from './SliderPoint';
 export { default as Spacing } from './Spacing';
 export { default as StaticField } from './StaticField';
+export { default as Target } from './Target';
 export { default as Text } from './Text';
 export { default as TextEditor } from './TextEditor';
 export { default as TextStyle } from './TextStyle';

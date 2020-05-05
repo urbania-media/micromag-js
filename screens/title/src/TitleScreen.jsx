@@ -72,6 +72,8 @@ const TitleScreen = ({
     const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
 
     const options = { title, subtitle, description };
+    const hasValue = title !== null || subtitle !== null || description !== null;
+
     const items = groups.map(its => (
         <div className={styles.group} key={`group-${its.join('-')}`}>
             {its.map(name => {
@@ -83,7 +85,7 @@ const TitleScreen = ({
                     return <Placeholder className={styles.placeholder} key={key} />;
                 }
 
-                if (isEditor && !value) {
+                if (isEditor && !hasValue) {
                     return (
                         <Empty className={styles.empty}>
                             <FormattedMessage {...messages[name]} />

@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -22,7 +22,7 @@ import { schemas as messages } from './messages';
 import styles from './slideshow.module.scss';
 
 const propTypes = {
-    items: MicromagPropTypes.slides,
+    cards: MicromagPropTypes.slides,
     box: MicromagPropTypes.boxElement,
     background: MicromagPropTypes.backgroundElement,
     textAlign: MicromagPropTypes.textAlign,
@@ -33,7 +33,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    items: [],
+    cards: [],
     box: null,
     background: null,
     textAlign: 'left',
@@ -45,7 +45,7 @@ const defaultProps = {
 
 const SlideshowScreen = ({
     box,
-    items: slides,
+    cards: slides,
     background,
     textAlign,
     visible,
@@ -62,24 +62,28 @@ const SlideshowScreen = ({
         width: maxWidth,
         items: slides,
         disabled: isSimple,
-        onSwipeEnd: setParallelIndex,
     });
 
     const onClickNext = useCallback(() => {
         if (parallelIndex < items.length - 1) {
-            setIndex(parallelIndex + 1);
+            // setIndex(parallelIndex + 1);
+            setParallelIndex(parallelIndex + 1);
         } else {
-            setIndex(0);
+            setParallelIndex(0);
         }
-    }, [items, parallelIndex, setIndex]);
+    }, [items, parallelIndex, setParallelIndex]);
 
     const onClickPrevious = useCallback(() => {
         if (parallelIndex > 0) {
-            setIndex(parallelIndex - 1);
+            setParallelIndex(parallelIndex - 1);
         } else {
-            setIndex(items.length - 1);
+            setParallelIndex(items.length - 1);
         }
-    }, [items, parallelIndex, setIndex]);
+    }, [items, parallelIndex, setParallelIndex]);
+
+    useEffect(() => {
+        setIndex(parallelIndex);
+    }, [parallelIndex, setIndex]);
 
     const inner =
         isEditor && slides.length === 0 ? (
