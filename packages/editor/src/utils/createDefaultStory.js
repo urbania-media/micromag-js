@@ -1,7 +1,7 @@
 import createScreenFromType from './createScreenFromType';
 
 const createDefaultStory = () => ({
-    components: [createScreenFromType('slideshow'), createScreenFromType('text')],
+    components: [createScreenFromType('image')],
 });
 
 export default createDefaultStory;
