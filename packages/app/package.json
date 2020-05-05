@@ -59,7 +59,6 @@
         "@micromag/core": "^0.1.18",
         "@micromag/data": "^0.1.18",
         "@micromag/editor": "^0.1.22",
-        "@micromag/elements": "^0.1.22",
         "@micromag/fields": "^0.1.18",
         "@micromag/intl": "^0.1.22",
         "@micromag/media-gallery": "^0.1.18",
