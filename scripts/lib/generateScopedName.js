@@ -8,6 +8,9 @@ const hasStylesPath = fs.existsSync(stylesPath);
 const namespace = slugify(packageName.replace(/[@/]/gi, ' '));
 
 const generateScopedName = (localName, filePath) => {
+    if (!filePath.match(/\.module\.scss$/)) {
+        return localName;
+    }
     const relativePath = hasStylesPath ? path.relative(stylesPath, filePath) : null;
     const subDirectory = relativePath !== null ? path.dirname(relativePath).replace(/\//gi, '-').replace(/[^a-z-]+/gi, '') : null;
     const basename = path.basename(filePath).replace(/(\.module|\.global)?\.s?css$/i, '');

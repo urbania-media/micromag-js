@@ -1,6 +1,6 @@
 {
     "name": "@micromag/media-gallery",
-    "version": "0.1.24",
+    "version": "0.1.26",
     "description": "",
     "keywords": [
         "javascript"
@@ -30,13 +30,16 @@
     "files": [
         "lib",
         "es",
-        "assets"
+        "assets",
+        "scss"
     ],
     "scripts": {
-        "clean": "rm -rf assets && rm -rf lib && rm -rf es",
-        "build": "NODE_ENV=production ../../node_modules/.bin/rollup --config ../../rollup.config.js",
+        "clean": "rm -rf scss && rm -rf assets && rm -rf lib && rm -rf es",
+        "rollup": "NODE_ENV=production ../../node_modules/.bin/rollup --config ../../rollup.config.js",
+        "scss": "mkdir scss && cp ./src/styles/styles.scss ./scss/styles.scss",
         "intl": "node ../../scripts/build-package-intl-translations.js",
-        "prepare": "npm run clean && npm run build && npm run intl",
+        "build": "npm run rollup && npm run scss && npm run intl",
+        "prepare": "npm run clean && npm run build",
         "start": "PUBLIC_URL=http://localhost/ react-scripts start"
     },
     "devDependencies": {
@@ -52,8 +55,8 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.28",
         "@fortawesome/free-solid-svg-icons": "^5.13.0",
         "@fortawesome/react-fontawesome": "^0.1.9",
-        "@micromag/core": "^0.1.24",
-        "@micromag/data": "^0.1.24",
+        "@micromag/core": "^0.1.26",
+        "@micromag/data": "^0.1.26",
         "@uppy/core": "^1.10.3",
         "@uppy/dashboard": "^1.8.4",
         "@uppy/dropbox": "^1.4.4",

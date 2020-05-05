@@ -76,7 +76,6 @@ const SlidesField = ({ name, value, newDefaultValue, className, onChange, gotoFi
                                 gotoForm={() => gotoFieldForm(`${name}.${index}`)}
                             >
                                 <SlideField
-                                    form="slide-component"
                                     value={itemValue}
                                     onChange={newValue => onItemChange(index, newValue)}
                                     thumbnailLabel={messages.label}

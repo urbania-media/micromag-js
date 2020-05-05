@@ -70,7 +70,6 @@ const ImagesField = ({ name, value, newDefaultValue, className, onChange, gotoFi
                                 gotoForm={() => gotoFieldForm(`${name}.${index}`)}
                             >
                                 <ImageField
-                                    form="image-component"
                                     value={itemValue}
                                     onChange={newValue => onItemChange(index, newValue)}
                                 />
