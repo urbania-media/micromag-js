@@ -1,5 +1,4 @@
 import '../packages/core/src/styles/vendor.scss';
-import '../packages/core/src/styles/styles.scss';
 
 // import '@storybook/addon-console';
 import { addParameters } from '@storybook/react';
