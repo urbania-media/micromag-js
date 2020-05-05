@@ -1,6 +1,6 @@
 {
     "name": "@micromag/schemas",
-    "version": "0.1.16",
+    "version": "0.1.18",
     "description": "",
     "keywords": [
         "javascript"
@@ -50,10 +50,10 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.8.7",
-        "@micromag/core": "^0.1.16",
-        "@micromag/elements": "^0.1.16",
-        "@micromag/fields": "^0.1.16",
-        "@micromag/screens": "^0.1.16",
+        "@micromag/core": "^0.1.18",
+        "@micromag/elements": "^0.1.18",
+        "@micromag/fields": "^0.1.18",
+        "@micromag/screens": "^0.1.18",
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",
         "prop-types": "^15.7.2"
