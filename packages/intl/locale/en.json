@@ -142,6 +142,8 @@
     "elements.video.schema.properties.video": "Video",
     "elements.video.schema.title": "Video element",
     "fields.advanced_fields": "Advanced",
+    "fields.cards.add_image": "Add a card",
+    "fields.cards.no_image": "No card...",
     "fields.images.add_image": "Add an image",
     "fields.images.no_image": "No image...",
     "media-gallery.buttons.add": "Add",
