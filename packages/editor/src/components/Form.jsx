@@ -90,7 +90,7 @@ const EditForm = ({ story, className, onChange }) => {
     }, [story, screenId, triggerOnChange]);
 
     const [fieldForms, setFieldForms] = useState({});
-    console.log(fieldForms);
+
     const gotoFieldForm = useCallback(
         (field, formName = null) => {
             routePush(formName !== null ? 'screen.field.form' : 'screen.field', {
