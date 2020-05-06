@@ -45,7 +45,7 @@ const EditorPage = ({ className }) => {
     }, [story]);
     return (
         <MainLayout
-            isEditor
+            fullscreen
             navbar={
                 <EditorNavbar story={editorStory} onClickSave={onClickSave} saving={creating} />
             }

@@ -13,6 +13,10 @@ const messages = defineMessages({
         id: 'menus.story.editor',
         defaultMessage: 'Launch editor',
     },
+    preview: {
+        id: 'menus.story.preview',
+        defaultMessage: 'Preview',
+    },
     settings: {
         id: 'menus.story.settings',
         defaultMessage: 'Settings',
@@ -72,6 +76,14 @@ const StoryMenu = ({
                     story: story.id,
                 }),
                 label: messages.editor,
+                className: asList ? 'list-group-item-dark' : null,
+            },
+            {
+                id: 'preview',
+                href: url('stories.preview', {
+                    story: story.id,
+                }),
+                label: messages.preview,
                 className: asList ? 'list-group-item-dark' : null,
             },
             {

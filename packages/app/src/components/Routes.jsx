@@ -32,6 +32,7 @@ import StoriesPage from './pages/stories/Stories';
 import StoryCreatePage from './pages/stories/Create';
 import StoryPage from './pages/stories/Story';
 import StoryEditorPage from './pages/stories/Editor';
+import StoryPreviewPage from './pages/stories/Preview';
 import StoryPublishPage from './pages/stories/Publish';
 import StorySettingsPage from './pages/stories/Settings';
 
@@ -147,6 +148,7 @@ const Routes = () => {
             <Route path={routes['stories.create']} exact component={StoryCreatePage} />
             <Route path={routes['stories.show']} exact component={StoryPage} />
             <Route path={routes['stories.editor']} component={StoryEditorPage} />
+            <Route path={routes['stories.preview']} component={StoryPreviewPage} />
             <Route path={routes['stories.publish']} component={StoryPublishPage} />
             <Route path={routes['stories.settings']} component={StorySettingsPage} />
         </Switch>

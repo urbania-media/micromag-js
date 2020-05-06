@@ -12,7 +12,6 @@ const propTypes = {
     children: PropTypes.node,
     contentAlign: PropTypes.oneOf(['top', 'middle', 'bottom']),
     fullscreen: PropTypes.bool,
-    isEditor: PropTypes.bool,
     withoutHeader: PropTypes.bool,
     className: PropTypes.string,
 };
@@ -22,53 +21,42 @@ const defaultProps = {
     children: null,
     contentAlign: 'top',
     fullscreen: false,
-    isEditor: false,
     withoutHeader: false,
     className: null,
 };
 
-const MainLayout = ({
-    navbar,
-    children,
-    contentAlign,
-    fullscreen,
-    isEditor,
-    withoutHeader,
-    className,
-}) => {
-    return (
-        <div
+const MainLayout = ({ navbar, children, contentAlign, fullscreen, withoutHeader, className }) => (
+    <div
+        className={classNames([
+            styles.container,
+            {
+                [styles.fullscreen]: fullscreen,
+                [className]: className !== null,
+            },
+        ])}
+    >
+        <header
             className={classNames([
-                styles.container,
+                styles.header,
                 {
-                    [styles.fullscreen]: fullscreen || isEditor,
-                    [className]: className !== null,
+                    [styles.hidden]: withoutHeader,
                 },
             ])}
         >
-            <header
-                className={classNames([
-                    styles.header,
-                    {
-                        [styles.hidden]: withoutHeader,
-                    },
-                ])}
-            >
-                {navbar !== null ? navbar : <MainNavbar />}
-            </header>
-            <main
-                className={classNames([
-                    styles.content,
-                    {
-                        [styles[contentAlign]]: contentAlign !== null && contentAlign !== 'top',
-                    },
-                ])}
-            >
-                {children}
-            </main>
-        </div>
-    );
-};
+            {navbar !== null ? navbar : <MainNavbar />}
+        </header>
+        <main
+            className={classNames([
+                styles.content,
+                {
+                    [styles[contentAlign]]: contentAlign !== null && contentAlign !== 'top',
+                },
+            ])}
+        >
+            {children}
+        </main>
+    </div>
+);
 
 MainLayout.propTypes = propTypes;
 MainLayout.defaultProps = defaultProps;

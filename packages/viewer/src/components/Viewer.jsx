@@ -3,7 +3,6 @@ import React, { useCallback, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { animated } from 'react-spring';
-
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSizeFromElement, useSwipe } from '@micromag/core/hooks';
 import { ScreenSizeProvider } from '@micromag/core/contexts';
@@ -23,6 +22,7 @@ const propTypes = {
     renderFormat: MicromagPropTypes.renderFormat,
     deviceScreens: MicromagPropTypes.deviceScreens,
     interactions: MicromagPropTypes.interactions,
+    fullscreen: PropTypes.bool,
     onScreenChange: PropTypes.func,
     className: PropTypes.string,
 };
@@ -35,6 +35,7 @@ const defaultProps = {
     deviceScreens: getDeviceScreens(),
     className: null,
     interactions: ['tap'],
+    fullscreen: false,
     onScreenChange: null,
 };
 
@@ -46,6 +47,7 @@ const Viewer = ({
     renderFormat,
     deviceScreens,
     interactions,
+    fullscreen,
     onScreenChange,
     className,
 }) => {
@@ -147,6 +149,7 @@ const Viewer = ({
                     styles.container,
                     screenSize.screens.map(screenName => `story-screen-${screenName}`),
                     {
+                        [styles.fullscreen]: fullscreen,
                         [styles.desktop]: desktop,
                         [className]: className,
                     },

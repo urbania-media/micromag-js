@@ -16,6 +16,7 @@ const propTypes = {
     withoutCollapse: PropTypes.bool,
     children: PropTypes.node,
     className: PropTypes.string,
+    brandClassName: PropTypes.string,
 };
 
 const defaultProps = {
@@ -28,6 +29,7 @@ const defaultProps = {
     withoutCollapse: false,
     children: null,
     className: null,
+    brandClassName: null,
 };
 
 const Navbar = ({
@@ -40,6 +42,7 @@ const Navbar = ({
     withoutCollapse,
     children,
     className,
+    brandClassName,
 }) => {
     const [menuVisible, setMenuVisible] = useState(false);
     const onClickMenu = useCallback(() => setMenuVisible(!menuVisible), [
@@ -63,12 +66,31 @@ const Navbar = ({
             ])}
         >
             {brand !== null && brandLink !== null ? (
-                <Link className="navbar-brand" to={brandLink}>
+                <Link
+                    className={classNames([
+                        'navbar-brand',
+                        {
+                            'py-0': compact,
+                            [brandClassName]: brandClassName !== null,
+                        },
+                    ])}
+                    to={brandLink}
+                >
                     {brand}
                 </Link>
             ) : null}
             {brand !== null && brandLink === null ? (
-                <span className="navbar-brand">{brand}</span>
+                <span
+                    className={classNames([
+                        'navbar-brand',
+                        {
+                            'py-0': compact,
+                            [brandClassName]: brandClassName !== null,
+                        },
+                    ])}
+                >
+                    {brand}
+                </span>
             ) : null}
             {!withoutCollapse ? (
                 <Button

@@ -1,44 +1,45 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { useHistory, Route } from 'react-router';
+import { MemoryRouter } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 import { ScreensProvider } from '@micromag/screens';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { RoutesProvider } from '@micromag/core/contexts';
 
-import Viewer from './Viewer';
+import * as ViewerPropTypes from '../lib/PropTypes';
+import ViewerRoutes from './ViewerRoutes';
+
+import defaultRoutes from '../data/routes.json';
 
 const propTypes = {
+    memoryRouter: PropTypes.bool,
+    basePath: PropTypes.string,
+    routes: ViewerPropTypes.routes,
     screen: PropTypes.string,
     renderFormat: MicromagPropTypes.renderFormat,
     children: PropTypes.func,
 };
 
 const defaultProps = {
+    memoryRouter: false,
+    basePath: null,
+    routes: defaultRoutes,
     screen: null,
     renderFormat: 'view',
     children: null,
 };
 
-const ViewerContainer = ({ screen: defaultId, ...otherProps }) => {
-    const history = useHistory();
-    const onScreenChange = useCallback(
-        it => {
-            history.push(`/${it.id}`);
-        },
-        [history],
-    );
-
+const ViewerContainer = ({ memoryRouter, basePath, routes, ...otherProps }) => {
+    const Router = memoryRouter ? MemoryRouter : BrowserRouter;
     return (
-        <ScreensProvider>
-            <Route
-                path="/:screen?"
-                render={({
-                    match: {
-                        params: { screen: screenId = defaultId || null },
-                    },
-                }) => <Viewer screen={screenId} onScreenChange={onScreenChange} {...otherProps} />}
-            />
-        </ScreensProvider>
+        <Router basename={!memoryRouter ? basePath : null}>
+            <RoutesProvider routes={routes}>
+                <ScreensProvider>
+                    <ViewerRoutes {...otherProps} />
+                </ScreensProvider>
+            </RoutesProvider>
+        </Router>
     );
 };
 

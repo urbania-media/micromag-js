@@ -26,6 +26,7 @@
     "stories.create": "/stories/create",
     "stories.show": "/stories/:story",
     "stories.editor": "/stories/:story/editor",
+    "stories.preview": "/stories/:story/preview",
     "stories.publish": "/stories/:story/publish",
     "stories.settings": "/stories/:story/settings"
 }
