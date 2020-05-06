@@ -6,6 +6,7 @@ class AccountApi extends Base {
             ...opts,
             routes: {
                 account: 'account',
+                register: 'register',
                 ...opts.routes || null,
             }
         });
@@ -13,6 +14,10 @@ class AccountApi extends Base {
 
     get() {
         return this.requestGet(this.route('account'));
+    }
+
+    create(data) {
+        return this.requestPost(this.route('register'), data);
     }
 
     update(data) {

@@ -6,9 +6,7 @@ import { defineMessages } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Form } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
-import { useApi } from '@micromag/data';
-
-import { useUser } from '../../contexts/AuthContext';
+import { useStoryCreate } from '@micromag/data';
 
 import formMessages from './messages';
 
@@ -39,8 +37,8 @@ const defaultProps = {
 
 const StoryCreateForm = ({ fields, className, onCreated }) => {
     const url = useUrlGenerator();
-    const api = useApi();
-    const postForm = useCallback((action, data) => api.stories.create(data), [api]);
+    const { create: createStory } = useStoryCreate();
+    const postForm = useCallback((action, data) => createStory(data), [createStory]);
     return (
         <Form
             action={url('stories.create')}
