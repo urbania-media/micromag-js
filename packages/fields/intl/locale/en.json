@@ -6,6 +6,9 @@
     "fields.image.no_value": "Select an image...",
     "fields.images.add_image": "Add an image",
     "fields.images.no_image": "No image...",
+    "fields.items.add_item": "Add an item",
+    "fields.items.item_field_label": "#{index}",
+    "fields.items.no_item": "No item...",
     "fields.markers.add_marker": "Add a marker",
     "fields.markers.no_marker": "No marker...",
     "fields.media.no_value": "Select a media...",
@@ -17,6 +20,5 @@
     "fields.schemas.audio.title": "Audio",
     "fields.slides.add_slide": "Add a slide",
     "fields.slides.no_slide": "No slide...",
-    "fields.slides.select_slide": "Select a slide",
     "fields.video.no_value": "Select a video..."
 }
