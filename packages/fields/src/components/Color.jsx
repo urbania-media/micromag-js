@@ -27,7 +27,7 @@ const defaultProps = {
 const ColorField = ({ value, onChange, isForm, className }) => {
     const { color = null, alpha = null } = value || {};
     return isForm ? (
-        <div className={styles.form}>
+        <div className={classNames(['p-2', 'bg-light', styles.form])}>
             <ColorPicker value={value} onChange={onChange} />
         </div>
     ) : (

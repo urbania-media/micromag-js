@@ -4,10 +4,12 @@ export default {
     $id: 'https://schemas.micromag.ca/0.1/elements/image.json',
     title: 'Image',
     type: 'object',
-    component: 'element',
+    component: 'element-list',
+
     intl: {
         title: messages.schemaTitle,
     },
+
     allOf: [
         {
             $ref: 'https://schemas.micromag.ca/0.1/elements/element.json',
@@ -25,7 +27,7 @@ export default {
                     },
                 },
                 caption: {
-                    $ref: 'https://schemas.micromag.ca/0.1/elements/text.json',
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/text-editor.json',
                     title: 'Caption',
                     setting: true,
                     intl: {

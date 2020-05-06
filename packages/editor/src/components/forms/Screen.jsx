@@ -1,7 +1,8 @@
 /* eslint-disable react/no-array-index-key, no-alert */
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { defineMessages, injectIntl } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, CollapsablePanel } from '@micromag/core/components';
 import { Fields } from '@micromag/fields';
@@ -9,7 +10,23 @@ import { useScreenSchemaFields } from '@micromag/schemas';
 
 import styles from '../../styles/forms/screen.module.scss';
 
+const messages = defineMessages({
+    dangerZone: {
+        id: 'forms.screen.danger_zone',
+        defaultMessage: 'Danger zone',
+    },
+    confirmDelete: {
+        id: 'forms.screen.confirm_delete',
+        defaultMessage: 'Are you sure you want to delete this screen?',
+    },
+    deleteScreen: {
+        id: 'forms.screen.delete_screen',
+        defaultMessage: 'Delete screen',
+    },
+});
+
 const propTypes = {
+    intl: MicromagPropTypes.intl.isRequired,
     value: MicromagPropTypes.component,
     className: PropTypes.string,
     gotoFieldForm: PropTypes.func.isRequired,
@@ -24,7 +41,7 @@ const defaultProps = {
     onClickDelete: null,
 };
 
-const ScreenForm = ({ value, className, gotoFieldForm, onChange, onClickDelete }) => {
+const ScreenForm = ({ intl, value, className, gotoFieldForm, onChange, onClickDelete }) => {
     const { type, layout } = value;
     const conditionalData = useMemo(
         () => ({
@@ -33,6 +50,11 @@ const ScreenForm = ({ value, className, gotoFieldForm, onChange, onClickDelete }
         [layout],
     );
     const fields = useScreenSchemaFields(type, conditionalData);
+    const finalOnClickDelete = useCallback(() => {
+        if (onClickDelete !== null && window.confirm(intl.formatMessage(messages.confirmDelete))) {
+            onClickDelete(value);
+        }
+    }, [intl, messages, onClickDelete, value]);
     return (
         <div
             className={classNames([
@@ -50,24 +72,17 @@ const ScreenForm = ({ value, className, gotoFieldForm, onChange, onClickDelete }
                     gotoFieldForm={gotoFieldForm}
                 />
                 <CollapsablePanel
-                    title="Zone périlleuse"
-                    className={styles.dangerZone}
+                    title={messages.dangerZone}
+                    className={classNames(['mt-4', styles.dangerZone])}
                     contentClassName={styles.content}
                     openedClassName={styles.opened}
                 >
                     <Button
                         className={styles.deleteButton}
-                        theme="outline-danger"
-                        onClick={() => {
-                            if (
-                                onClickDelete !== null &&
-                                window.confirm('Êtes-vous certain de vouloir supprimer cet écran?')
-                            ) {
-                                onClickDelete(value);
-                            }
-                        }}
+                        theme="danger"
+                        onClick={finalOnClickDelete}
                     >
-                        Effacer l’écran
+                        {messages.deleteScreen}
                     </Button>
                 </CollapsablePanel>
             </div>
@@ -78,4 +93,4 @@ const ScreenForm = ({ value, className, gotoFieldForm, onChange, onClickDelete }
 ScreenForm.propTypes = propTypes;
 ScreenForm.defaultProps = defaultProps;
 
-export default ScreenForm;
+export default injectIntl(ScreenForm);

@@ -10,13 +10,7 @@
     }
 
     .dangerZone {
-        margin-top: $spacer * 3;
-        transition: color 0.2s ease-out;
-        color: $gray-500;
-
         &.opened {
-            color: $black;
-
             .content {
                 max-height: 100px;
             }

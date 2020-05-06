@@ -28,6 +28,7 @@ export { default as screenLayout } from './screen-layout';
 export { default as size } from './size';
 export { default as slide } from './slide';
 export { default as slides } from './slides';
+export { default as textEditor } from './text-editor';
 export { default as textStyle } from './text-style';
 export { default as text } from './text';
 export { default as url } from './url';

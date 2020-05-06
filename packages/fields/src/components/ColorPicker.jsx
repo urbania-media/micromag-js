@@ -1,13 +1,11 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 import { SketchPicker } from 'react-color';
 import tinycolor from 'tinycolor2';
 
 // import * as AppPropTypes from '../../lib/PropTypes';
-
-import styles from '../styles/color-picker.module.scss';
 
 const propTypes = {
     value: PropTypes.shape({
@@ -34,14 +32,7 @@ const ColorPickerField = ({ className, value, onChange }) => {
         return '';
     }, [value]);
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-        >
+        <div className={className}>
             <SketchPicker
                 color={color}
                 styles={{
