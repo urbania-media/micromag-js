@@ -11,7 +11,7 @@ export { schema as Quote } from '@micromag/screen-quote';
 export { schema as Slideshow } from '@micromag/screen-slideshow';
 // export { schema as SurveyCheckbox } from '@micromag/screen-survey-checkbox';
 // export { schema as SurveyMultipleChoice } from '@micromag/screen-survey-multiple-choice';
-// export { schema as SurveyYesNo } from '@micromag/screen-survey-yes-no';
+export { schema as SurveyYesNo } from '@micromag/screen-survey-yes-no';
 export { schema as Text } from '@micromag/screen-text';
 export { schema as TextImage } from '@micromag/screen-text-image';
 export { schema as TextVideo } from '@micromag/screen-text-video';

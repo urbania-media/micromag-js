@@ -1,2 +1,2 @@
 export { default } from './components/ViewerContainer';
-export { default as ViewerWithoutRouter } from './components/Viewer';
+export { default as Viewer } from './components/Viewer';

@@ -136,7 +136,7 @@
     "elements.image.schema.title": "Image element",
     "elements.link.schema.title": "Link element",
     "elements.link.schema.url": "URL",
-    "elements.map.schema.properties.card_style": "Card style",
+    "elements.map.schema.properties.map": "Map",
     "elements.map.schema.properties.map_style": "Map style",
     "elements.map.schema.title": "Map element",
     "elements.text.schema.properties.text_style": "Text style",

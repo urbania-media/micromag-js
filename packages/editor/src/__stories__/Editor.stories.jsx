@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Editor from '../components/Container';
+import Editor from '../components/EditorContainer';
 import IntlProvider from '../../../intl/src/IntlProvider';
 import { ApiProvider } from '../../../data/src/contexts/ApiContext';
 import { withGoogleMapsApi } from '../../../../.storybook/decorators';

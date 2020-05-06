@@ -45,4 +45,8 @@
             }
         }
     }
+
+    &.fullscreen {
+        @extend %fullscreen;
+    }
 }
