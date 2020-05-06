@@ -16,6 +16,7 @@ const propTypes = {
     className: PropTypes.string,
     onChange: PropTypes.func,
     gotoFieldForm: PropTypes.func.isRequired,
+    closeFieldForm: PropTypes.func.isRequired,
     formComponents: MicromagPropTypes.components,
     fieldComponents: MicromagPropTypes.components,
 };
@@ -36,6 +37,7 @@ const FieldForm = ({
     className,
     onChange,
     gotoFieldForm,
+    closeFieldForm,
     formComponents,
     fieldComponents,
 }) => {
@@ -62,7 +64,6 @@ const FieldForm = ({
             const { fields: subFields = [], items = null } = foundField;
             if (items !== null && key.match(/^[0-9]+$/)) {
                 const it = { ...items, name: fieldPath };
-                console.log(fieldPath, it);
                 return it;
             }
             return subFields.find(it => it.name === key) || null;
@@ -88,6 +89,8 @@ const FieldForm = ({
         [field, value, fieldPath, onChange],
     );
 
+    const closeForm = useCallback(() => closeFieldForm(fieldPath, form), [fieldPath, form, closeFieldForm]);
+
     const FormComponent =
         form !== null
             ? getComponentFromName(form, finalFormComponents)
@@ -102,6 +105,8 @@ const FieldForm = ({
             value={fieldValue}
             onChange={onFieldChange}
             gotoFieldForm={gotoFieldForm}
+            closeFieldForm={closeFieldForm}
+            closeForm={closeForm}
         />
     ) : null;
 };

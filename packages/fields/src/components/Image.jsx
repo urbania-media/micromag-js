@@ -1,72 +1,27 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import MediaGallery from '@micromag/media-gallery';
-import { Label } from '@micromag/core/components';
-
+// import PropTypes from 'prop-types';
+import { defineMessages } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import styles from '../styles/image.module.scss';
+import MediaField from './Media';
+
+const messages = defineMessages({
+    noValue: {
+        id: 'image.no_value',
+        defaultMessage: 'Select an image...',
+    },
+});
 
 const propTypes = {
-    value: PropTypes.shape({
-        url: PropTypes.string,
-        caption: PropTypes.string,
-        credits: PropTypes.string,
-    }),
-    isForm: PropTypes.string,
-    thumbnailLabel: MicromagPropTypes.label,
-    className: PropTypes.string,
-    onChange: PropTypes.func,
+    value: MicromagPropTypes.image,
 };
 
 const defaultProps = {
     value: null,
-    isForm: false,
-    thumbnailLabel: null,
-    className: null,
-    onChange: null,
 };
 
-const ImageField = ({ value, isForm, thumbnailLabel, className, onChange }) => {
-    const { name = null, thumbnail_url: thumbnailUrl = null } = value || {};
-    return isForm ? (
-        <div
-            className={classNames([
-                styles.panel,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-        >
-            <MediaGallery type="image" isPicker isSmall onClickMedia={onChange} />
-        </div>
-    ) : (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-        >
-            {thumbnailUrl !== null ? (
-                <>
-                    <span className={styles.value}>{name}</span>
-                    <img src={thumbnailUrl} className={styles.thumbnail} alt={name} />
-                </>
-            ) : (
-                <span className={styles.noValue}>
-                    {thumbnailLabel !== null ? (
-                        <Label>{thumbnailLabel}</Label>
-                    ) : (
-                        'Sélectionnez une image'
-                    )}
-                </span>
-            )}
-        </div>
-    );
-};
+const ImageField = props => <MediaField noValueLabel={messages.noValue} {...props} type="image" />;
 
 ImageField.propTypes = propTypes;
 ImageField.defaultProps = defaultProps;

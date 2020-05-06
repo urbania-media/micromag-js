@@ -27,6 +27,7 @@ const propTypes = {
     newDefaultValue: PropTypes.object, // eslint-disable-line
     className: PropTypes.string,
     gotoFieldForm: PropTypes.func,
+    closeFieldForm: PropTypes.func,
     onChange: PropTypes.func,
 };
 
@@ -36,10 +37,11 @@ const defaultProps = {
     newDefaultValue: {},
     className: null,
     gotoFieldForm: null,
+    closeFieldForm: null,
     onChange: null,
 };
 
-const ImagesField = ({ name, value, newDefaultValue, className, onChange, gotoFieldForm }) => {
+const ImagesField = ({ name, value, newDefaultValue, className, onChange, gotoFieldForm, closeFieldForm }) => {
     const onClickAdd = useCallback(() => {
         if (onChange !== null) {
             onChange([...(value || []), newDefaultValue]);
@@ -57,6 +59,22 @@ const ImagesField = ({ name, value, newDefaultValue, className, onChange, gotoFi
         },
         [value, onChange],
     );
+
+    const gotoForms = useCallback(
+        () =>
+            value !== null
+                ? value.map((val, index) => () => gotoFieldForm(`${name}.${index}`))
+                : null,
+        [value, gotoFieldForm],
+    );
+    const closeForms = useCallback(
+        () =>
+            value !== null
+                ? value.map((val, index) => () => closeFieldForm(`${name}.${index}`))
+                : null,
+        [value, closeFieldForm],
+    );
+
     return (
         <div className={className}>
             {value !== null ? (
@@ -67,7 +85,8 @@ const ImagesField = ({ name, value, newDefaultValue, className, onChange, gotoFi
                                 key={`item-${index}`}
                                 label={`#${index + 1}`}
                                 withForm
-                                gotoForm={() => gotoFieldForm(`${name}.${index}`)}
+                                gotoForm={gotoForms[index]}
+                                closeForm={closeForms[index]}
                             >
                                 <ImageField
                                     value={itemValue}

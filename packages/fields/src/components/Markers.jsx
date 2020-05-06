@@ -27,6 +27,7 @@ const propTypes = {
     newDefaultValue: PropTypes.object, // eslint-disable-line
     className: PropTypes.string,
     gotoFieldForm: PropTypes.func,
+    closeFieldForm: PropTypes.func,
     onChange: PropTypes.func,
 };
 
@@ -36,10 +37,19 @@ const defaultProps = {
     newDefaultValue: {},
     className: null,
     gotoFieldForm: null,
+    closeFieldForm: null,
     onChange: null,
 };
 
-const MarkersField = ({ name, value, newDefaultValue, className, onChange, gotoFieldForm }) => {
+const MarkersField = ({
+    name,
+    value,
+    newDefaultValue,
+    className,
+    onChange,
+    gotoFieldForm,
+    closeFieldForm,
+}) => {
     const onClickAdd = useCallback(() => {
         if (onChange !== null) {
             onChange([...(value || []), newDefaultValue]);
@@ -59,6 +69,21 @@ const MarkersField = ({ name, value, newDefaultValue, className, onChange, gotoF
         [value, onChange],
     );
 
+    const gotoForms = useCallback(
+        () =>
+            value !== null
+                ? value.map((val, index) => () => gotoFieldForm(`${name}.${index}`))
+                : null,
+        [value, gotoFieldForm],
+    );
+    const closeForms = useCallback(
+        () =>
+            value !== null
+                ? value.map((val, index) => () => closeFieldForm(`${name}.${index}`))
+                : null,
+        [value, closeFieldForm],
+    );
+
     return (
         <div className={className}>
             {value !== null ? (
@@ -69,7 +94,8 @@ const MarkersField = ({ name, value, newDefaultValue, className, onChange, gotoF
                                 key={`item-${index}`}
                                 label={`#${index + 1}`}
                                 withForm
-                                gotoForm={() => gotoFieldForm(`${name}.${index}`)}
+                                gotoForm={gotoForms[index]}
+                                closeForm={closeForms[index]}
                             >
                                 <MarkerField
                                     value={itemValue}

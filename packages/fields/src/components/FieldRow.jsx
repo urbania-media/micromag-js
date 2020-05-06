@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading, jsx-a11y/label-has-associated-control */
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -22,7 +22,6 @@ const propTypes = {
     withoutLabel: PropTypes.bool,
     withSettings: PropTypes.bool,
     withForm: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-    withPanel: PropTypes.bool,
     gotoSettings: PropTypes.func,
     gotoForm: PropTypes.func,
     className: PropTypes.string,
@@ -39,7 +38,6 @@ const defaultProps = {
     withoutLabel: false,
     withSettings: false,
     withForm: false,
-    withPanel: false,
     gotoSettings: null,
     gotoForm: null,
     className: null,
@@ -56,31 +54,25 @@ const FieldRow = ({
     withoutLabel,
     withSettings,
     withForm,
-    withPanel,
     gotoForm,
     gotoSettings,
     className,
     labelClassName,
 }) => {
-    const [panelOpened, setPanelOpened] = useState(false);
     const withLabel = !withoutLabel && label !== null;
 
     const labelElement = <Label>{label}</Label>;
 
     const onClickRow = useCallback(() => {
-        if (withPanel) {
-            setPanelOpened(true);
-        } else if (typeof withForm === 'string') {
+        if (typeof withForm === 'string') {
             gotoForm(withForm);
         } else if (withForm) {
             gotoForm();
         }
-    }, [withPanel, withForm, gotoForm, setPanelOpened]);
-    const closePanel = useCallback(() => setPanelOpened(false), [setPanelOpened]);
-    const openPanel = useCallback(() => setPanelOpened(true), [setPanelOpened]);
+    }, [withForm, gotoForm]);
 
-    if (isHorizontal || withForm || withPanel) {
-        const isClickable = withForm || withPanel;
+    if (isHorizontal || withForm) {
+        const isClickable = withForm;
         const rowInner = (
             <>
                 <label
@@ -129,13 +121,6 @@ const FieldRow = ({
                 >
                     {rowInner}
                 </Button>
-                {panelOpened
-                    ? React.cloneElement(children, {
-                          panelOpened,
-                          closePanel,
-                          openPanel,
-                      })
-                    : null}
             </>
         ) : (
             <div

@@ -1,8 +1,8 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useRouteMatch } from 'react-router';
+import { useRouteMatch, useHistory } from 'react-router';
 import TransitionGroup from 'react-addons-css-transition-group';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { slug } from '@micromag/core/utils';
@@ -33,7 +33,8 @@ const defaultProps = {
 
 const EditForm = ({ story, className, onChange }) => {
     // Match routes
-    const push = useRoutePush();
+    const history = useHistory();
+    const routePush = useRoutePush();
     const routes = useRoutes();
     const {
         url,
@@ -88,14 +89,44 @@ const EditForm = ({ story, className, onChange }) => {
         }
     }, [story, screenId, triggerOnChange]);
 
+    const [fieldForms, setFieldForms] = useState({});
+    console.log(fieldForms);
     const gotoFieldForm = useCallback(
-        (field, formName = null) =>
-            push(formName !== null ? 'screen.field.form' : 'screen.field', {
+        (field, formName = null) => {
+            routePush(formName !== null ? 'screen.field.form' : 'screen.field', {
                 screen: screenId,
                 field: field.split('.'),
                 form: formName !== null ? slug(formName) : null,
-            }),
-        [push, screenId],
+            });
+            setFieldForms({
+                ...fieldForms,
+                [`${field}${formName !== null ? `:${formName}` : ''}`]: url,
+            });
+        },
+        [routePush, screenId, url, fieldForms, setFieldForms],
+    );
+
+    const closeFieldForm = useCallback(
+        (field, formName = null) => {
+            const fieldKey = `${field}${formName !== null ? `:${formName}` : ''}`;
+            const pastUrl = fieldForms[fieldKey] || null;
+            if (pastUrl !== null) {
+                history.push(pastUrl);
+            }
+            setFieldForms(
+                Object.keys(fieldForms).reduce(
+                    (map, key) =>
+                        key !== fieldKey
+                            ? {
+                                  ...map,
+                                  [key]: fieldForms[key],
+                              }
+                            : map,
+                    {},
+                ),
+            );
+        },
+        [history, screenId, fieldForms, setFieldForms],
     );
 
     return (
@@ -140,6 +171,7 @@ const EditForm = ({ story, className, onChange }) => {
                                         form={formParams}
                                         className={styles.form}
                                         gotoFieldForm={gotoFieldForm}
+                                        closeFieldForm={closeFieldForm}
                                         onChange={onScreenFormChange}
                                     />
                                 </div>
@@ -153,6 +185,7 @@ const EditForm = ({ story, className, onChange }) => {
                                         className={styles.form}
                                         onChange={onScreenFormChange}
                                         gotoFieldForm={gotoFieldForm}
+                                        closeFieldForm={closeFieldForm}
                                         onClickDelete={onClickScreenDelete}
                                     />
                                 </div>

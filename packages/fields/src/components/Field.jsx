@@ -25,6 +25,7 @@ const propTypes = {
     withoutFieldRow: PropTypes.bool,
     onChange: PropTypes.func,
     gotoFieldForm: PropTypes.func,
+    closeFieldForm: PropTypes.func,
     className: PropTypes.string,
     labelClassName: PropTypes.string,
     fieldRowClassName: PropTypes.string,
@@ -44,6 +45,7 @@ const defaultProps = {
     withoutFieldRow: false,
     onChange: null,
     gotoFieldForm: null,
+    closeFieldForm: null,
     className: null,
     labelClassName: null,
     fieldRowClassName: null,
@@ -65,6 +67,7 @@ const Field = ({
     value,
     onChange,
     gotoFieldForm,
+    closeFieldForm,
     fieldsComponents,
     className,
     labelClassName,
@@ -80,6 +83,7 @@ const Field = ({
             ? fields.reduce((acc, { setting = false }) => acc || setting, false)
             : false;
     const gotoForm = useCallback(form => gotoFieldForm(name, form), [name, gotoFieldForm]);
+    const closeForm = useCallback(form => closeFieldForm(name, form), [name, closeFieldForm]);
     const gotoSettings = useCallback(() => gotoForm('settings'), [gotoForm]);
 
     if (FieldComponent === null) {
@@ -90,12 +94,10 @@ const Field = ({
         (isHorizontal && !isFields) ||
         FieldComponent.isHorizontal ||
         FieldComponent.withForm ||
-        FieldComponent.withPanel ||
         false;
     const finalWithoutLabel = withoutLabel || FieldComponent.withoutLabel || false;
     const finalWithSettings = withSettings || asSettings || FieldComponent.withSettings || false;
     const finalWithForm = FieldComponent.withForm || false;
-    const finalWithPanel = FieldComponent.withPanel || false;
 
     const fieldElement = (
         <FieldComponent
@@ -135,9 +137,9 @@ const Field = ({
                 withoutLabel={finalWithoutLabel}
                 withSettings={finalWithSettings}
                 withForm={finalWithForm}
-                withPanel={finalWithPanel}
                 gotoSettings={gotoSettings}
                 gotoForm={gotoForm}
+                closeForm={closeForm}
                 className={classNames([
                     styles.row,
                     {

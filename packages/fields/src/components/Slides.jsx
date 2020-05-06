@@ -31,6 +31,7 @@ const propTypes = {
     newDefaultValue: PropTypes.object, // eslint-disable-line
     className: PropTypes.string,
     gotoFieldForm: PropTypes.func,
+    closeFieldForm: PropTypes.func,
     onChange: PropTypes.func,
 };
 
@@ -40,10 +41,19 @@ const defaultProps = {
     newDefaultValue: {},
     className: null,
     gotoFieldForm: null,
+    closeFieldForm: null,
     onChange: null,
 };
 
-const SlidesField = ({ name, value, newDefaultValue, className, onChange, gotoFieldForm }) => {
+const SlidesField = ({
+    name,
+    value,
+    newDefaultValue,
+    className,
+    onChange,
+    gotoFieldForm,
+    closeFieldForm,
+}) => {
     const onClickAdd = useCallback(() => {
         if (onChange !== null) {
             onChange([...(value || []), newDefaultValue]);
@@ -63,6 +73,21 @@ const SlidesField = ({ name, value, newDefaultValue, className, onChange, gotoFi
         [value, onChange],
     );
 
+    const gotoForms = useCallback(
+        () =>
+            value !== null
+                ? value.map((val, index) => () => gotoFieldForm(`${name}.${index}`))
+                : null,
+        [value, gotoFieldForm],
+    );
+    const closeForms = useCallback(
+        () =>
+            value !== null
+                ? value.map((val, index) => () => closeFieldForm(`${name}.${index}`))
+                : null,
+        [value, closeFieldForm],
+    );
+
     return (
         <div className={className}>
             {value !== null ? (
@@ -73,12 +98,12 @@ const SlidesField = ({ name, value, newDefaultValue, className, onChange, gotoFi
                                 key={`item-${index}`}
                                 label={`#${index + 1}`}
                                 withForm
-                                gotoForm={() => gotoFieldForm(`${name}.${index}`)}
+                                gotoForm={gotoForms[index]}
+                                closeForm={closeForms[index]}
                             >
                                 <SlideField
                                     value={itemValue}
                                     onChange={newValue => onItemChange(index, newValue)}
-                                    thumbnailLabel={messages.label}
                                 />
                             </FieldRow>
                         </div>

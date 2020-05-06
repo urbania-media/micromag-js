@@ -13,6 +13,7 @@ const propTypes = {
     fields: MicromagPropTypes.formFields,
     className: PropTypes.string,
     gotoFieldForm: PropTypes.func.isRequired,
+    closeFieldForm: PropTypes.func.isRequired,
     onChange: PropTypes.func,
 };
 
@@ -23,7 +24,15 @@ const defaultProps = {
     onChange: null,
 };
 
-const SettingsForm = ({ field, value, fields, className, gotoFieldForm, onChange }) => {
+const SettingsForm = ({
+    field,
+    value,
+    fields,
+    className,
+    gotoFieldForm,
+    closeFieldForm,
+    onChange,
+}) => {
     const settingsNames = useMemo(
         () => fields.filter(({ setting = false }) => setting).map(it => it.name),
         [fields],
@@ -85,6 +94,7 @@ const SettingsForm = ({ field, value, fields, className, gotoFieldForm, onChange
                     value={settingsValue}
                     onChange={settingsOnChange}
                     gotoFieldForm={gotoFieldForm}
+                    closeFieldForm={closeFieldForm}
                 />
             </div>
         </div>

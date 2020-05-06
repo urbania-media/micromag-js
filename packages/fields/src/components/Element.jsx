@@ -10,6 +10,7 @@ const propTypes = {
     value: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     isList: PropTypes.bool,
     gotoFieldForm: PropTypes.func,
+    closeFieldForm: PropTypes.func,
     onChange: PropTypes.func,
 };
 
@@ -19,10 +20,19 @@ const defaultProps = {
     value: null,
     isList: false,
     gotoFieldForm: null,
+    closeFieldForm: null,
     onChange: null,
 };
 
-const ElementField = ({ name, fields: formFields, value, gotoFieldForm, isList, onChange }) => {
+const ElementField = ({
+    name,
+    fields: formFields,
+    value,
+    gotoFieldForm,
+    closeFieldForm,
+    isList,
+    onChange,
+}) => {
     const fields = formFields || [];
     // console.log('debug fields', fields);
     const settingsNames = useMemo(
@@ -67,6 +77,7 @@ const ElementField = ({ name, fields: formFields, value, gotoFieldForm, isList, 
             fields={componentFields}
             value={componentValue}
             gotoFieldForm={gotoFieldForm}
+            closeFieldForm={closeFieldForm}
             onChange={componentOnChange}
             isList={isList}
         />
