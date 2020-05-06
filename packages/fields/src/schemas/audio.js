@@ -1,4 +1,11 @@
-import messages from '../messages';
+import { defineMessages } from 'react-intl';
+
+const messages = defineMessages({
+    audioTitle: {
+        id: 'schemas.audio.title',
+        defaultMessage: 'Audio',
+    },
+});
 
 export default {
     $id: 'https://schemas.micromag.ca/0.1/fields/audio.json',

@@ -22,7 +22,6 @@ export const schemas = defineMessages({
     background: {
         id: 'schema.properties.background',
         defaultMessage: 'Background',
-        file: 'src/messages.js',
     },
 });
 

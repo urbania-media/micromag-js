@@ -3,6 +3,9 @@
     "editor.buttons.edit": "Modifier",
     "editor.buttons.screens": "Écrans",
     "editor.buttons.view_screen": "Voir l’écran",
+    "editor.forms.screen.confirm_delete": "TRANSLATE: Are you sure you want to delete this screen?",
+    "editor.forms.screen.danger_zone": "TRANSLATE: Danger zone",
+    "editor.forms.screen.delete_screen": "TRANSLATE: Delete screen",
     "editor.modals.screen_types_title": "Ajouter un écran",
     "editor.screen_name": "Écran {index}",
     "editor.select_screen": "Sélectionnez un écran..."

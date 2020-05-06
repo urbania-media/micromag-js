@@ -10,22 +10,18 @@ export const schemas = defineMessages({
     quote: {
         id: 'schema.properties.quote',
         defaultMessage: 'Quote',
-        file: 'src/messages.js',
     },
     source: {
         id: 'schema.properties.source',
         defaultMessage: 'Source',
-        file: 'src/messages.js',
     },
     author: {
         id: 'schema.properties.author',
         defaultMessage: 'Author',
-        file: 'src/messages.js',
     },
     background: {
         id: 'schema.properties.background',
         defaultMessage: 'Background',
-        file: 'src/messages.js',
     },
 });
 

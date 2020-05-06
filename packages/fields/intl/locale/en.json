@@ -12,6 +12,11 @@
     "fields.schemas.audio-params.props.native": "Native",
     "fields.schemas.audio-params.title": "Audio parameters",
     "fields.schemas.audio.title": "Audio",
+    "fields.schemas.border-style.color": "Color",
+    "fields.schemas.border-style.radius": "Radius",
+    "fields.schemas.border-style.title": "Border",
+    "fields.schemas.border-style.type": "Style",
+    "fields.schemas.border-style.width": "Width",
     "fields.slides.add_slide": "Add a slide",
     "fields.slides.no_slide": "No slide...",
     "fields.slides.select_slide": "Select a slide"
