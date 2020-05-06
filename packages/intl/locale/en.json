@@ -228,6 +228,7 @@
     "screens.quote.schema.properties.source": "Source",
     "screens.quote.schema.title": "Quote",
     "screens.slideshow.schema.properties.background": "Background",
+    "screens.slideshow.schema.properties.button-style": "Button style",
     "screens.slideshow.schema.properties.slides": "Slides",
     "screens.slideshow.schema.title": "Slideshow",
     "screens.survey-checkbox.schema.properties.background": "Background",

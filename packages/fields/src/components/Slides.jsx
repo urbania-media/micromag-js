@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 // import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
@@ -73,14 +73,14 @@ const SlidesField = ({
         [value, onChange],
     );
 
-    const gotoForms = useCallback(
+    const gotoForms = useMemo(
         () =>
             value !== null
                 ? value.map((val, index) => () => gotoFieldForm(`${name}.${index}`))
                 : null,
         [value, gotoFieldForm],
     );
-    const closeForms = useCallback(
+    const closeForms = useMemo(
         () =>
             value !== null
                 ? value.map((val, index) => () => closeFieldForm(`${name}.${index}`))
@@ -104,6 +104,7 @@ const SlidesField = ({
                                 <SlideField
                                     value={itemValue}
                                     onChange={newValue => onItemChange(index, newValue)}
+                                    closeForm={closeForms[index]}
                                 />
                             </FieldRow>
                         </div>

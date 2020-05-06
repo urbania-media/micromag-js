@@ -11,6 +11,10 @@ export const schemas = defineMessages({
         id: 'schema.properties.slides',
         defaultMessage: 'Slides',
     },
+    buttonStyle: {
+        id: 'schema.properties.button-style',
+        defaultMessage: 'Button style',
+    },
     background: {
         id: 'schema.properties.background',
         defaultMessage: 'Background',

@@ -14,9 +14,17 @@ export default {
         },
         {
             properties: {
+                map: {
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/map.json',
+                    title: 'Map',
+                    intl: {
+                        title: messages.map,
+                    },
+                },
                 cardStyle: {
                     $ref: 'https://schemas.micromag.ca/0.1/fields/container-style.json',
                     title: 'Card style',
+                    // setting: true,
                     intl: {
                         title: messages.cardStyle,
                     },
@@ -24,6 +32,7 @@ export default {
                 mapStyle: {
                     $ref: 'https://schemas.micromag.ca/0.1/fields/map-style.json',
                     title: 'Map style',
+                    // setting: true,
                     intl: {
                         title: messages.mapStyle,
                     },
