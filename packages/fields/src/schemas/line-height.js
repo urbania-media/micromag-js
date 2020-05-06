@@ -3,8 +3,9 @@ export default {
     title: 'Line height',
     type: 'number',
 
-    minimum: -2,
+    minimum: 0,
     maximum: 2,
+    step: 0.1,
     multiplesOf: 0.1,
 
     component: 'slider-point',

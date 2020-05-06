@@ -131,7 +131,7 @@ const Image = ({
             {img}
             {url && caption ? (
                 <div className={styles.caption}>
-                    <TextElement {...caption} className={styles.text} />
+                    <TextElement body={caption} className={styles.text} />
                 </div>
             ) : null}
         </div>

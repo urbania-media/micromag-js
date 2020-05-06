@@ -1,11 +1,14 @@
 {
     "fields.advanced_fields": "Advanced",
+    "fields.audio.no_value": "Select an audio file...",
     "fields.cards.add_card": "Add a card",
     "fields.cards.no_card": "No card...",
+    "fields.image.no_value": "Select an image...",
     "fields.images.add_image": "Add an image",
     "fields.images.no_image": "No image...",
     "fields.markers.add_marker": "Add a marker",
     "fields.markers.no_marker": "No marker...",
+    "fields.media.no_value": "Select a media...",
     "fields.schemas.audio-params.props.autoplay": "Autoplay",
     "fields.schemas.audio-params.props.loop": "Loop",
     "fields.schemas.audio-params.props.muted": "Muted",
@@ -19,5 +22,6 @@
     "fields.schemas.border-style.width": "Width",
     "fields.slides.add_slide": "Add a slide",
     "fields.slides.no_slide": "No slide...",
-    "fields.slides.select_slide": "Select a slide"
+    "fields.slides.select_slide": "Select a slide",
+    "fields.video.no_value": "Select a video..."
 }
