@@ -1,61 +1,27 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import MediaGallery from '@micromag/media-gallery';
+// import PropTypes from 'prop-types';
+import { defineMessages } from 'react-intl';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import styles from '../styles/image.module.scss';
+import MediaField from './Media';
+
+const messages = defineMessages({
+    noValue: {
+        id: 'audio.no_value',
+        defaultMessage: 'Select an audio file...',
+    },
+});
 
 const propTypes = {
-    value: PropTypes.shape({
-        url: PropTypes.string,
-        caption: PropTypes.string,
-        credits: PropTypes.string,
-    }),
-    isForm: PropTypes.string,
-    className: PropTypes.string,
-    onChange: PropTypes.func,
+    value: MicromagPropTypes.audio,
 };
 
 const defaultProps = {
     value: null,
-    isForm: false,
-    className: null,
-    onChange: null,
 };
 
-const AudioField = ({ value, isForm, className, onChange }) => {
-    const { name = null, thumbnail_url: thumbnailUrl = null } = value || {};
-    return isForm ? (
-        <div
-            className={classNames([
-                styles.panel,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-        >
-            <MediaGallery type="audio" isPicker isSmall onClickMedia={onChange} />
-        </div>
-    ) : (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-        >
-            {thumbnailUrl !== null ? (
-                <>
-                    <span className={styles.value}>{name}</span>
-                    <img src={thumbnailUrl} className={styles.thumbnail} alt={name} />
-                </>
-            ) : (
-                <span className={styles.noValue}>Sélectionnez un son</span>
-            )}
-        </div>
-    );
-};
+const AudioField = props => <MediaField noValueLabel={messages.noValue} {...props} type="audio" />;
 
 AudioField.propTypes = propTypes;
 AudioField.defaultProps = defaultProps;

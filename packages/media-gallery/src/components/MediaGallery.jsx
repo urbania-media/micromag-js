@@ -2,8 +2,9 @@ import React, { useState, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useMedias, useMediaCreate } from '@micromag/data';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import * as AppPropTypes from '../lib/PropTypes';
+// import * as AppPropTypes from '../lib/PropTypes';
 
 import Navbar from './partials/Navbar';
 import UploadModal from './partials/UploadModal';
@@ -13,48 +14,50 @@ import MediaMetadata from './partials/MediaMetadata';
 import styles from '../styles/media-gallery.module.scss';
 
 const propTypes = {
-    items: AppPropTypes.medias,
+    type: PropTypes.string,
     isPicker: PropTypes.bool,
     isSmall: PropTypes.bool,
-    type: PropTypes.string,
+    medias: MicromagPropTypes.medias,
+    selectedMedia: MicromagPropTypes.media,
     className: PropTypes.string,
     onClickMedia: PropTypes.func,
 };
 
 const defaultProps = {
-    items: null,
+    type: null,
     isPicker: false,
     isSmall: false,
-    type: null,
+    medias: null,
+    selectedMedia: null,
     className: null,
     onClickMedia: null,
 };
 
 const MediaGallery = ({
-    items: initialItems,
+    type,
     isPicker,
     isSmall,
-    type,
+    medias: initialMedias,
+    selectedMedia,
     className,
     onClickMedia,
 }) => {
     // Filters
-    const [filtersValue, setFiltersValue] = useState();
+    const [filtersValue, setFiltersValue] = useState({
+        type,
+    });
 
     // Items
     const { allMedias: loadedMedias } = useMedias(filtersValue, 1, 100, {
-        items: initialItems,
+        items: initialMedias,
     });
 
     // Temporary type filter
-    const filteredMedias =
-        type !== null ? (loadedMedias || []).filter(i => i.type === type) : loadedMedias;
-
     const [addedMedias, setAddedMedias] = useState([]);
     const medias = useMemo(() => {
-        const allMedias = [...addedMedias, ...(filteredMedias || [])];
+        const allMedias = [...addedMedias, ...(loadedMedias || [])];
         return allMedias.length > 0 ? allMedias : null;
-    }, [filteredMedias, addedMedias]);
+    }, [loadedMedias, addedMedias]);
 
     // Medias
     const [metadataMedia, setMetadataMedia] = useState(null);
@@ -110,6 +113,7 @@ const MediaGallery = ({
                     {medias !== null ? (
                         <Gallery
                             items={medias}
+                            selectedItem={selectedMedia}
                             withInfoButton={isPicker}
                             isSmall={isSmall}
                             onClickItem={onClickItem}

@@ -2,13 +2,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import GalleryItem from '../items/GalleryItem';
 
 import styles from '../../styles/lists/gallery.module.scss';
 
 const propTypes = {
-    items: PropTypes.arrayOf(PropTypes.shape({})),
+    items: MicromagPropTypes.medias,
+    selectedItem: MicromagPropTypes.media,
     withInfoButton: PropTypes.bool,
     isSmall: PropTypes.bool,
     className: PropTypes.string,
@@ -18,6 +20,7 @@ const propTypes = {
 
 const defaultProps = {
     items: null,
+    selectedItem: null,
     withInfoButton: false,
     isSmall: false,
     className: null,
@@ -25,7 +28,15 @@ const defaultProps = {
     onClickItemInfo: null,
 };
 
-const Gallery = ({ items, withInfoButton, isSmall, className, onClickItem, onClickItemInfo }) => (
+const Gallery = ({
+    items,
+    selectedItem,
+    withInfoButton,
+    isSmall,
+    className,
+    onClickItem,
+    onClickItemInfo,
+}) => (
     <div
         className={classNames([
             styles.container,
@@ -49,6 +60,7 @@ const Gallery = ({ items, withInfoButton, isSmall, className, onClickItem, onCli
                 <div className="col px-1 py-1" key={`gallery-item-${item.id}`}>
                     <GalleryItem
                         item={item}
+                        selected={selectedItem !== null && selectedItem.id === item.id}
                         onClick={onClickItem !== null ? () => onClickItem(item) : null}
                         onClickInfo={onClickItemInfo !== null ? () => onClickItemInfo(item) : null}
                         withInfoButton={withInfoButton}

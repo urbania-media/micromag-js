@@ -4,29 +4,30 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { faPlayCircle, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Card, Button } from '@micromag/core/components';
-
-import * as AppPropTypes from '../../lib/PropTypes';
 
 import styles from '../../styles/items/gallery-item.module.scss';
 
 const propTypes = {
+    item: MicromagPropTypes.media,
+    selected: PropTypes.bool,
     withInfoButton: PropTypes.bool,
-    item: AppPropTypes.media,
+    className: PropTypes.string,
     onClick: PropTypes.func,
     onClickInfo: PropTypes.func,
-    className: PropTypes.string,
 };
 
 const defaultProps = {
-    withInfoButton: false,
     item: null,
+    selected: false,
+    withInfoButton: false,
+    className: null,
     onClick: null,
     onClickInfo: null,
-    className: null,
 };
 
-const GalleryItem = ({ withInfoButton, item, onClick, onClickInfo, className }) => {
+const GalleryItem = ({ item, selected, withInfoButton, className, onClick, onClickInfo }) => {
     const { type, thumbnail_url: thumbnail = null, name, size } = item;
     return (
         <Card
@@ -60,9 +61,11 @@ const GalleryItem = ({ withInfoButton, item, onClick, onClickInfo, className }) 
                     <small className="text-muted">{size}</small>
                 </>
             }
+            theme={selected ? 'primary' : null}
             className={classNames([
                 styles.container,
                 {
+                    'border-primary': selected,
                     [className]: className !== null,
                 },
             ])}

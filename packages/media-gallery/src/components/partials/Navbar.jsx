@@ -4,7 +4,8 @@ import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import { Button } from '@micromag/core';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { Button } from '@micromag/core/components';
 
 import * as AppPropTypes from '../../lib/PropTypes';
 import SearchForm from '../forms/Search';
@@ -18,7 +19,7 @@ const messages = defineMessages({
 
 const propTypes = {
     filters: AppPropTypes.filtersValue,
-    media: AppPropTypes.media,
+    media: MicromagPropTypes.media,
     className: PropTypes.string,
     onClickAdd: PropTypes.func,
     onFocusSearch: PropTypes.func,

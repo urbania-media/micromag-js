@@ -188,15 +188,52 @@ export const crossAlign = PropTypes.oneOf(['top', 'center', 'bottom', 'stretch']
 /**
  * Content
  */
+const mediaShape = {
+    id: PropTypes.string,
+    type: PropTypes.string,
+    thumbnail_url: PropTypes.string,
+    name: PropTypes.string,
+    filename: PropTypes.string,
+    size: PropTypes.number,
+    metadata: PropTypes.shape({
+        width: PropTypes.number,
+        height: PropTypes.number,
+        duration: PropTypes.number,
+    }),
+};
+
+export const media = PropTypes.shape(mediaShape);
+export const medias = PropTypes.arrayOf(media);
+
+export const image = PropTypes.shape({
+    ...mediaShape,
+    type: PropTypes.oneOf(['image']),
+    metadata: PropTypes.shape({
+        width: PropTypes.number,
+        height: PropTypes.number,
+    }),
+});
+export const images = PropTypes.arrayOf(image);
+
 export const video = PropTypes.shape({
-    url: PropTypes.string.isRequired,
+    ...mediaShape,
+    type: PropTypes.oneOf(['video']),
+    metadata: PropTypes.shape({
+        width: PropTypes.number,
+        height: PropTypes.number,
+        duration: PropTypes.number,
+    }),
 });
 export const videos = PropTypes.arrayOf(video);
 
-export const image = PropTypes.shape({
-    url: PropTypes.string.isRequired,
+export const audio = PropTypes.shape({
+    ...mediaShape,
+    type: PropTypes.oneOf(['audio']),
+    metadata: PropTypes.shape({
+        duration: PropTypes.number,
+    }),
 });
-export const images = PropTypes.arrayOf(image);
+export const audios = PropTypes.arrayOf(audio);
 
 /**
  * Elements

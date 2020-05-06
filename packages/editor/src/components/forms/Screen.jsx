@@ -30,6 +30,7 @@ const propTypes = {
     value: MicromagPropTypes.component,
     className: PropTypes.string,
     gotoFieldForm: PropTypes.func.isRequired,
+    closeFieldForm: PropTypes.func.isRequired,
     onChange: PropTypes.func,
     onClickDelete: PropTypes.func,
 };
@@ -41,7 +42,15 @@ const defaultProps = {
     onClickDelete: null,
 };
 
-const ScreenForm = ({ intl, value, className, gotoFieldForm, onChange, onClickDelete }) => {
+const ScreenForm = ({
+    intl,
+    value,
+    className,
+    gotoFieldForm,
+    closeFieldForm,
+    onChange,
+    onClickDelete,
+}) => {
     const { type, layout } = value;
     const conditionalData = useMemo(
         () => ({
@@ -70,6 +79,7 @@ const ScreenForm = ({ intl, value, className, gotoFieldForm, onChange, onClickDe
                     value={value}
                     onChange={onChange}
                     gotoFieldForm={gotoFieldForm}
+                    closeFieldForm={closeFieldForm}
                 />
                 <CollapsablePanel
                     title={messages.dangerZone}

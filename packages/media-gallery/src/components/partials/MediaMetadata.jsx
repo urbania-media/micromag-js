@@ -6,9 +6,8 @@ import prettyBytes from 'pretty-bytes';
 import { defineMessages } from 'react-intl';
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Label } from '@micromag/core/components';
-
-import * as AppPropTypes from '../../lib/PropTypes';
 
 import styles from '../../styles/partials/media-metadata.module.scss';
 
@@ -36,7 +35,7 @@ const messages = defineMessages({
 });
 
 const propTypes = {
-    media: AppPropTypes.media, // eslint-disable-line react/forbid-prop-types
+    media: MicromagPropTypes.media,
     className: PropTypes.string,
 };
 

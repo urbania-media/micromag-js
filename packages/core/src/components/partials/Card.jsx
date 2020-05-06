@@ -26,7 +26,7 @@ const propTypes = {
     ),
     linksInSameBody: PropTypes.bool,
     footer: PropTypes.node,
-    theme: PropTypes.oneOf([null, 'dark']),
+    theme: PropTypes.oneOf([null, 'dark', 'primary']),
     className: PropTypes.string,
     imageClassName: PropTypes.string,
     headerClassName: PropTypes.string,
@@ -240,9 +240,10 @@ const Card = ({
     const cardClassName = classNames([
         'card',
         {
-            'text-dark': theme !== 'dark',
             'bg-dark': imageOverlay || theme === 'dark',
-            'text-white': imageOverlay || theme === 'dark',
+            [`bg-${theme}`]: theme !== 'dark',
+            'text-dark': theme === null || theme === 'light',
+            'text-light': imageOverlay || theme === 'dark' || theme === 'primary',
             [className]: className !== null,
         },
     ]);

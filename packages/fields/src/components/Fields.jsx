@@ -25,6 +25,7 @@ const propTypes = {
     errors: MicromagPropTypes.formErrors,
     withBorders: PropTypes.bool,
     gotoFieldForm: PropTypes.func,
+    closeFieldForm: PropTypes.func,
     nullEmptyObject: PropTypes.bool,
     isHorizontal: PropTypes.bool,
     isList: PropTypes.bool,
@@ -42,6 +43,7 @@ const defaultProps = {
     errors: null,
     withBorders: false,
     gotoFieldForm: null,
+    closeFieldForm: null,
     nullEmptyObject: false,
     isHorizontal: false,
     isList: false,
@@ -59,6 +61,7 @@ const Fields = ({
     errors,
     withBorders,
     gotoFieldForm,
+    closeFieldForm,
     nullEmptyObject,
     isHorizontal: globalIsHorizontal,
     isList,
@@ -132,6 +135,7 @@ const Fields = ({
                         errors={typeof customErrors !== 'undefined' ? customErrors : fieldErrors}
                         onChange={customOnChange || fieldOnChange}
                         gotoFieldForm={gotoFieldForm}
+                        closeFieldForm={closeFieldForm}
                         fieldsComponents={fieldsComponents}
                         isHorizontal={isHorizontal}
                         isSection={isSection}
@@ -159,6 +163,7 @@ const Fields = ({
             errors,
             onFieldChange,
             gotoFieldForm,
+            closeFieldForm,
         ],
     );
 
