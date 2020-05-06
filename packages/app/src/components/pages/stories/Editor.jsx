@@ -7,6 +7,7 @@ import Editor from '@micromag/editor';
 import { useUrlGenerator } from '@micromag/core/contexts';
 import { useStory, useStoryVersionCreate } from '@micromag/data';
 
+import { useApp } from '../../../contexts/AppContext';
 import EditorNavbar from '../../navbars/Editor';
 import MainLayout from '../../layouts/Main';
 
@@ -19,6 +20,7 @@ const defaultProps = {
 };
 
 const EditorPage = ({ className }) => {
+    const { memoryRouter } = useApp();
     const { story: storyId } = useParams();
     const url = useUrlGenerator();
     const { story } = useStory(storyId);
@@ -55,8 +57,8 @@ const EditorPage = ({ className }) => {
                         basePath={url('stories.editor', {
                             story: story.id,
                         })}
+                        memoryRouter={memoryRouter}
                         fullscreen
-                        memoryRouter
                         onChange={setEditorStory}
                     />
                 ) : null}

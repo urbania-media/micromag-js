@@ -5,11 +5,12 @@ import { IntlProvider } from '@micromag/intl';
 import { MemoryRouter } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import { RoutesProvider } from '@micromag/core/contexts';
-import { ApiProvider } from '@micromag/data';
+import { DataProvider } from '@micromag/data';
 import { FieldsProvider } from '@micromag/fields';
 
 import * as AppPropTypes from '../lib/PropTypes';
 import { AuthProvider } from '../contexts/AuthContext';
+import { AppProvider } from '../contexts/AppContext';
 import App from './App';
 
 import defaultRoutes from '../data/routes.json';
@@ -34,22 +35,32 @@ const defaultProps = {
     authCheckOnMount: false,
 };
 
-const Container = ({ locale, memoryRouter, basePath, apiBaseUrl, apiUsesCookie, authCheckOnMount, routes }) => {
+const Container = ({
+    locale,
+    memoryRouter,
+    basePath,
+    apiBaseUrl,
+    apiUsesCookie,
+    authCheckOnMount,
+    routes,
+}) => {
     const Router = memoryRouter ? MemoryRouter : BrowserRouter;
     return (
-        <FieldsProvider>
-            <IntlProvider locale={locale}>
-                <Router basename={basePath}>
-                    <ApiProvider baseUrl={apiBaseUrl} usesCookie={apiUsesCookie}>
-                        <RoutesProvider routes={routes}>
-                            <AuthProvider checkOnMount={authCheckOnMount}>
-                                <App />
-                            </AuthProvider>
-                        </RoutesProvider>
-                    </ApiProvider>
-                </Router>
-            </IntlProvider>
-        </FieldsProvider>
+        <IntlProvider locale={locale}>
+            <DataProvider apiBaseUrl={apiBaseUrl} apiUsesCookie={apiUsesCookie}>
+                <AppProvider memoryRouter={memoryRouter}>
+                    <FieldsProvider>
+                        <Router basename={basePath}>
+                            <RoutesProvider routes={routes}>
+                                <AuthProvider checkOnMount={authCheckOnMount}>
+                                    <App />
+                                </AuthProvider>
+                            </RoutesProvider>
+                        </Router>
+                    </FieldsProvider>
+                </AppProvider>
+            </DataProvider>
+        </IntlProvider>
     );
 };
 

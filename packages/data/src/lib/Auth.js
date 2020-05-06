@@ -9,7 +9,6 @@ class AuthApi extends Base {
                 check: 'auth/check',
                 login: 'auth/login',
                 logout: 'auth/logout',
-                register: 'register',
                 cookie: 'csrf-cookie',
                 ...(opts.routes || null),
             },
@@ -35,10 +34,6 @@ class AuthApi extends Base {
 
     logout() {
         return this.requestPost(this.route('logout'));
-    }
-
-    register(data) {
-        return this.requestPost(this.route('register'), data);
     }
 
     cookie() {

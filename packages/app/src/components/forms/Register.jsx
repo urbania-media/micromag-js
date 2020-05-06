@@ -6,7 +6,7 @@ import { defineMessages } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Form } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
-import { useApi } from '@micromag/data';
+import { useAccountCreate } from '@micromag/data';
 
 import formMessages from './messages';
 
@@ -52,8 +52,8 @@ const defaultProps = {
 
 const RegisterForm = ({ fields, className, onRegistered }) => {
     const url = useUrlGenerator();
-    const api = useApi();
-    const postForm = useCallback((action, data) => api.auth.register(data), [api]);
+    const { create: createAccount } = useAccountCreate();
+    const postForm = useCallback((action, data) => createAccount(data), [createAccount]);
     return (
         <Form
             action={url('register')}

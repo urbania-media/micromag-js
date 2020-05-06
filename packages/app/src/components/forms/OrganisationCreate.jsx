@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Form } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
-import { useApi } from '@micromag/data';
+import { useOrganisationCreate } from '@micromag/data';
 
 import * as AppPropTypes from '../../lib/PropTypes';
 
@@ -35,8 +35,8 @@ const defaultProps = {
 
 const OrganisationCreateForm = ({ organisation, fields, className, onCreated }) => {
     const url = useUrlGenerator();
-    const api = useApi();
-    const postForm = useCallback((action, data) => api.organisations.create(data), [api]);
+    const { create: createOrganisation } = useOrganisationCreate();
+    const postForm = useCallback((action, data) => createOrganisation(data), [createOrganisation]);
     return (
         <Form
             action={url('organisation.create')}

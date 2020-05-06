@@ -17,7 +17,7 @@ const propTypes = {
 
 const defaultProps = {
     api: null,
-    baseUrl: null,
+    baseUrl: undefined,
     usesCookie: false,
 };
 

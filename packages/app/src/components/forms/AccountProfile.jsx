@@ -6,7 +6,7 @@ import { defineMessages } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Form } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
-import { useApi } from '@micromag/data';
+import { useAccountUpdate } from '@micromag/data';
 
 import { useUser } from '../../contexts/AuthContext';
 
@@ -65,9 +65,9 @@ const defaultProps = {
 
 const AccountProfileForm = ({ fields, className, onUpdated }) => {
     const url = useUrlGenerator();
-    const api = useApi();
     const user = useUser();
-    const postForm = useCallback((action, data) => api.account.update(data), [api]);
+    const { update: updateAccount } = useAccountUpdate();
+    const postForm = useCallback((action, data) => updateAccount(data), [updateAccount]);
     return (
         <Form
             action={url('account.profile')}

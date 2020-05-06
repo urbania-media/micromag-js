@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext, useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useApi } from '@micromag/data';
+import { useAuthLogin, useAuthLogout, useAuthCheck } from '@micromag/data';
 
 import * as AppPropTypes from '../lib/PropTypes';
 
@@ -29,26 +29,28 @@ const defaultProps = {
 };
 
 export const AuthProvider = ({ user: initialUser, checkOnMount, children }) => {
-    const api = useApi();
     const [user, setUser] = useState(initialUser);
+    const { login: authLogin } = useAuthLogin();
+    const { logout: authLogout } = useAuthLogout();
+    const { check: authCheck } = useAuthCheck();
     const login = useCallback(
         (email, password) =>
-            api.auth.login(email, password).then(newUser => {
+            authLogin(email, password).then(newUser => {
                 setUser(newUser);
                 return newUser;
             }),
-        [api, setUser],
+        [authLogin, setUser],
     );
-    const logout = useCallback(() => api.auth.logout().then(() => setUser(null)), [api, setUser]);
+    const logout = useCallback(() => authLogout().then(() => setUser(null)), [authLogout, setUser]);
     useEffect(() => {
         if (checkOnMount) {
-            api.auth.check().then((newUser = null) => {
+            authCheck().then((newUser = null) => {
                 if (newUser !== null) {
                     setUser(newUser);
                 }
             });
         }
-    }, []);
+    }, [authCheck]);
     return (
         <AuthContext.Provider
             value={{
