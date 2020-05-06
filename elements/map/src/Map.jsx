@@ -73,21 +73,25 @@ const Map = ({ zoom, center, markers, layers, withLine, onClickMap, onClickMarke
                     />
                     <TransitLayer mapsApi={mapsApi} enabled={layers.includes('transit')} />
                     {markers
-                        ? markers.map((m, index) => (
-                            <Marker
-                                mapsApi={mapsApi}
-                                key={m.id}
-                                active
-                                title={`marker id: ${m.id}`}
-                                position={{ lat: m.lat, lng: m.lng }}
-                                events={{
-                                      onClick:
-                                          onClickMarker !== null
-                                              ? e => onClickMarker(e, index)
-                                              : () => console.log(index), // eslint-disable-line no-console
-                                  }}
-                              />
-                          ))
+                        ? markers.map((m, index) =>
+                              m.geoPosition && m.geoPosition.lat && m.geoPosition.lng ? (
+                                  <Marker
+                                      mapsApi={mapsApi}
+                                      key={m.id}
+                                      active
+                                      title={`marker id: ${m.id}`}
+                                      position={{ lat: m.geoPosition.lat, lng: m.geoPosition.lng }}
+                                      events={{
+                                          onClick:
+                                              onClickMarker !== null
+                                                  ? e => onClickMarker(e, index)
+                                                  : () => console.log(index), // eslint-disable-line no-console
+                                      }}
+                                  />
+                              ) : (
+                                  <div />
+                              ),
+                          )
                         : null}
                 </GoogleMap>
             ) : null}

@@ -40,8 +40,9 @@ const Marker = ({ mapsApi, position, type, map, events, active = false, title })
             } else {
                 marker.setIcon(PinInactive);
             }
+            marker.setPosition(position);
         }
-    }, [active]);
+    }, [active, position.lat, position.lng]);
 
     return null;
 };

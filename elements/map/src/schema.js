@@ -21,22 +21,14 @@ export default {
                         title: messages.map,
                     },
                 },
-                cardStyle: {
-                    $ref: 'https://schemas.micromag.ca/0.1/fields/container-style.json',
-                    title: 'Card style',
-                    // setting: true,
-                    intl: {
-                        title: messages.cardStyle,
-                    },
-                },
-                mapStyle: {
-                    $ref: 'https://schemas.micromag.ca/0.1/fields/map-style.json',
-                    title: 'Map style',
-                    // setting: true,
-                    intl: {
-                        title: messages.mapStyle,
-                    },
-                },
+                // mapStyle: {
+                //     $ref: 'https://schemas.micromag.ca/0.1/fields/map-style.json',
+                //     title: 'Map style',
+                //     setting: true,
+                //     intl: {
+                //         title: messages.mapStyle,
+                //     },
+                // },
             },
         },
     ],

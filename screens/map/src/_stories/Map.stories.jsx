@@ -7,7 +7,7 @@ import {
     LayoutGrid,
     Screen,
 } from '../../../../.storybook/components';
-import { map, background } from '../../../../.storybook/data';
+import { map, markers, background } from '../../../../.storybook/data';
 import { withGoogleMapsApi } from '../../../../.storybook/decorators';
 
 import MapScreen from '../Map';
@@ -15,7 +15,8 @@ import MapScreen from '../Map';
 import layouts from '../layouts/names';
 
 const props = {
-    map: map(),
+    map: { map: map() },
+    markers: markers(),
     cardBackground: background(),
 };
 

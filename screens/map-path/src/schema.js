@@ -26,7 +26,7 @@ export default {
                     },
                 },
                 map: {
-                    $ref: 'https://schemas.micromag.ca/0.1/fields/map.json',
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/map.json',
                     title: 'Map',
                     intl: {
                         title: messages.map,
@@ -34,7 +34,7 @@ export default {
                 },
                 markers: {
                     $ref: 'https://schemas.micromag.ca/0.1/fields/markers.json',
-                    title: 'Cards',
+                    title: 'Markers',
                     intl: {
                         title: messages.markers,
                     },
@@ -46,13 +46,13 @@ export default {
                         title: messages.buttonStyle,
                     },
                 },
-                cardBackground: {
-                    $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
-                    title: 'Card background',
-                    intl: {
-                        title: messages.cardBackground,
-                    },
-                },
+                // cardBackground: {
+                //     $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
+                //     title: 'Card background',
+                //     intl: {
+                //         title: messages.cardBackground,
+                //     },
+                // },
                 background: {
                     $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
                     title: 'Background',

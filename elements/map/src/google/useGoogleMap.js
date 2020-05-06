@@ -32,6 +32,9 @@ export default function useGoogleMap({
             ),
         );
         setMapState({ maps: mapsApi, map, loading: false });
+        return () => {
+            mapRef.current = null;
+        };
     }, []);
     return { mapRef, ...mapState };
 }

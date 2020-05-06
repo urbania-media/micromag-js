@@ -1,0 +1,5 @@
+{
+    "elements.map.schema.properties.card_style": "Style de panneau",
+    "elements.map.schema.properties.map_style": "Style de carte",
+    "elements.map.schema.title": "Élément carte"
+}

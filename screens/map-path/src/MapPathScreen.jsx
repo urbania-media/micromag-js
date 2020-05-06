@@ -53,12 +53,12 @@ const MapPathScreen = ({
     renderFormat,
     className,
 }) => {
+    const [index, setIndex] = useState(0);
     const { width, height } = useScreenSize();
     const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
     const isEmpty = isEditor && map === null;
 
-    const [index, setIndex] = useState(0);
-    const { geoPosition: mapCenter = null } = map || {};
+    const { map: { center: mapCenter = null } = {} } = map || {};
 
     const markers = mapMarkers || []; // .map((m, i) => ({ ...m })) : [];
     const center = mapCenter || markers.find((m, i) => i === index) || null;
@@ -130,9 +130,7 @@ const MapPathScreen = ({
                         <>
                             <MapComponent
                                 {...map}
-                                {...(center && center.lat && center.lng
-                                    ? { center: { lat: center.lat, lng: center.lng } }
-                                    : null)}
+                                {...(center && center.lat && center.lng ? { center } : null)}
                                 markers={markers}
                                 withLine
                                 onClickMap={null}
@@ -149,8 +147,16 @@ const MapPathScreen = ({
                                             },
                                         ])}
                                     >
-                                        <TextComponent {...(marker.text ? marker.text : null)} />
-                                        <ImageComponent {...(marker.image ? marker.image : null)} />
+                                        <div className={styles.background}>
+                                            <TextComponent
+                                                className={styles.text}
+                                                body={marker.text ? marker.text : null}
+                                            />
+                                            <ImageComponent
+                                                className={styles.image}
+                                                image={marker.image ? marker.image : null}
+                                            />
+                                        </div>
                                     </div>
                                 ))}
                             </div>

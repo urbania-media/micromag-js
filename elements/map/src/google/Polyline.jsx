@@ -3,23 +3,18 @@ import PropTypes from 'prop-types';
 import useGoogleMapPolyline from './useGoogleMapPolyline';
 
 const propTypes = {
-    position: PropTypes.shape({
-        lat: PropTypes.number,
-        lng: PropTypes.number,
-    }).isRequired,
-    type: PropTypes.string.isRequired,
+    coords: PropTypes.arrayOf(
+        PropTypes.shape({
+            lat: PropTypes.number,
+            lng: PropTypes.number,
+        }),
+    ).isRequired,
     mapsApi: PropTypes.object.isRequired, // eslint-disable-line
     map: PropTypes.object.isRequired, // eslint-disable-line
     events: PropTypes.object, // eslint-disable-line
-    active: PropTypes.bool,
-    title: PropTypes.string,
 };
 
-const defaultProps = {
-    events: null,
-    active: true,
-    title: null,
-};
+const defaultProps = {};
 
 const Polyline = ({ mapsApi, map, coords }) => {
     useGoogleMapPolyline({
@@ -27,16 +22,6 @@ const Polyline = ({ mapsApi, map, coords }) => {
         coords,
         map,
     });
-
-    // useEffect(() => {
-    //     if (line) {
-    //         if (active) {
-    //             marker.setIcon(Pin);
-    //         } else {
-    //             marker.setIcon(PinInactive);
-    //         }
-    //     }
-    // }, [active]);
 
     return null;
 };

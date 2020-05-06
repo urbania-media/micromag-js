@@ -7,9 +7,9 @@ export const schemas = defineMessages({
         id: 'schema.title',
         defaultMessage: 'Map element',
     },
-    cardStyle: {
-        id: 'schema.properties.card_style',
-        defaultMessage: 'Card style',
+    map: {
+        id: 'schema.properties.map',
+        defaultMessage: 'Map',
     },
     mapStyle: {
         id: 'schema.properties.map_style',

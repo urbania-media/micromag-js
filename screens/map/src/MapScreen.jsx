@@ -24,7 +24,6 @@ const propTypes = {
     map: MicromagPropTypes.map,
     markers: MicromagPropTypes.markers,
     background: MicromagPropTypes.backgroundElement,
-    cardBackground: MicromagPropTypes.backgroundElement,
     align: PropTypes.string,
     visible: PropTypes.bool,
     active: PropTypes.bool,
@@ -36,7 +35,6 @@ const defaultProps = {
     map: null,
     markers: [],
     background: null,
-    cardBackground: null,
     align: 'bottom',
     visible: true,
     active: true,
@@ -48,20 +46,18 @@ const MapScreen = ({
     map,
     markers: mapMarkers,
     background,
-    cardBackground,
     align,
     visible,
     active,
     renderFormat,
     className,
 }) => {
+    const [index, setIndex] = useState(0);
     const { width, height } = useScreenSize();
     const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
     const isEmpty = isEditor && map === null;
 
-    const [index, setIndex] = useState();
-
-    const { geoPosition: mapCenter = null } = map || {};
+    const { map: { center: mapCenter = null } = {} } = map || {};
 
     const markers = mapMarkers.map(m => ({ ...m, active: true }));
     const center = mapCenter || markers.find((m, i) => i === index) || {};
@@ -119,7 +115,7 @@ const MapScreen = ({
                         <>
                             <MapComponent
                                 {...map}
-                                {...(center.lat && center.lng ? { center } : null)}
+                                {...(center && center.lat && center.lng ? { center } : null)}
                                 markers={markers}
                                 onClickMap={onClickMap}
                                 onClickMarker={onClickMarker}
@@ -135,19 +131,16 @@ const MapScreen = ({
                                             },
                                         ])}
                                     >
-                                        <Background
-                                            className={styles.background}
-                                            {...cardBackground}
-                                        >
+                                        <div className={styles.background}>
                                             <TextComponent
                                                 className={styles.text}
-                                                {...(marker.text ? marker.text : null)}
+                                                body={marker.text ? marker.text : null}
                                             />
                                             <ImageComponent
                                                 className={styles.image}
-                                                {...(marker.image ? marker.image : null)}
+                                                image={marker.image ? marker.image : null}
                                             />
-                                        </Background>
+                                        </div>
                                     </div>
                                 ))}
                             </div>

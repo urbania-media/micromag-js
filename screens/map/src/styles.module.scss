@@ -16,10 +16,12 @@
     }
 
     &.top {
-        .card {
+        .cards {
             top: 0;
-            bottom: auto;
-            transform: translate3d(0, -100%, 0);
+        }
+
+        .card {
+            transform: translate3d(0, 100%, 0);
 
             &.active {
                 transform: translate3d(0, 0, 0);
@@ -28,6 +30,19 @@
     }
 
     &.bottom {
+        .cards {
+            top: 0;
+        }
+
+        .card {
+            top: 0;
+            transform: translate3d(0, -100%, 0);
+
+            &.active {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
         .empty,
         .placeholder {
             position: absolute;
@@ -53,7 +68,6 @@
 .card {
     position: absolute;
     z-index: 3;
-    bottom: 0;
     width: 100%;
     transform: translate3d(0, 100%, 0);
     background-color: $white;

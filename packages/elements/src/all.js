@@ -8,5 +8,7 @@ export { default as Frame } from '@micromag/element-frame';
 export { default as Grid } from '@micromag/element-grid';
 export { default as Heading } from '@micromag/element-heading';
 export { default as Image } from '@micromag/element-image';
+export { default as Link } from '@micromag/element-link';
+export { default as Map } from '@micromag/element-map';
 export { default as Text } from '@micromag/element-text';
 export { default as Video } from '@micromag/element-video';

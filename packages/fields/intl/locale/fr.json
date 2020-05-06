@@ -25,6 +25,5 @@
     "fields.schemas.border-style.width": "Largeur",
     "fields.slides.add_slide": "Ajouter une diapositive",
     "fields.slides.no_slide": "Pas de diapositive...",
-    "fields.slides.select_slide": "Sélectionner une diapositive",
     "fields.video.no_value": "Sélectionnez un vidéo"
 }
