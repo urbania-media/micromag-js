@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+
 import SurveyYesNoScreen from '../SurveyYesNoScreen';
 
 const propTypes = {

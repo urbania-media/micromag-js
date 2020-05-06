@@ -1,10 +1,10 @@
 {
     "screens.survey-yes-no.schema.properties.background": "Arrière-plan",
-    "screens.survey-yes-no.schema.properties.bad_answer_image": "TRANSLATE: Bad answer image",
-    "screens.survey-yes-no.schema.properties.bad_answer_text": "TRANSLATE: Bad answer text",
-    "screens.survey-yes-no.schema.properties.good_answer_image": "TRANSLATE: Good answer image",
-    "screens.survey-yes-no.schema.properties.good_answer_text": "TRANSLATE: Good answer text",
-    "screens.survey-yes-no.schema.properties.question_image": "TRANSLATE: Question image",
-    "screens.survey-yes-no.schema.properties.question_text": "TRANSLATE: Question text",
+    "screens.survey-yes-no.schema.properties.bad_answer_image": "NON: image",
+    "screens.survey-yes-no.schema.properties.bad_answer_text": "NON: texte",
+    "screens.survey-yes-no.schema.properties.good_answer_image": "OUI: image",
+    "screens.survey-yes-no.schema.properties.good_answer_text": "OUI: texte",
+    "screens.survey-yes-no.schema.properties.question_image": "Question: image",
+    "screens.survey-yes-no.schema.properties.question_text": "Question: texte",
     "screens.survey-yes-no.schema.title": "Sondage Oui ou Non"
 }
