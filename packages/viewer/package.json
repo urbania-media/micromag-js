@@ -1,6 +1,6 @@
 {
     "name": "@micromag/viewer",
-    "version": "0.1.26",
+    "version": "0.1.27",
     "description": "",
     "keywords": [
         "javascript"
@@ -52,8 +52,8 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.8.7",
-        "@micromag/core": "^0.1.26",
-        "@micromag/screens": "^0.1.26",
+        "@micromag/core": "^0.1.27",
+        "@micromag/screens": "^0.1.27",
         "classnames": "^2.2.6",
         "prop-types": "^15.7.2",
         "react-router": "^5.1.2",
