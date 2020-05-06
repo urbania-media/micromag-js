@@ -21,11 +21,7 @@ export default {
 };
 
 const props = {
-    question: { body: description() },
-    result: {
-        image: { url: 'https://picsum.photos/400/300' },
-        text: { body: 'Le résultat de votre quiz' },
-    },
+    questionText: { body: description() },
 };
 
 export const Placeholders = () => (

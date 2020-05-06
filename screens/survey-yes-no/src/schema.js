@@ -1,5 +1,5 @@
 import { schemas as messages } from './messages';
-// import { names } from './layouts/names';
+import { names } from './layouts/names';
 
 export default {
     $id: 'https://schemas.micromag.ca/0.1/screens/survey-yes-no.json',
@@ -15,15 +15,57 @@ export default {
         },
         {
             properties: {
-                // layout: {
-                //     $ref: 'https://schemas.micromag.ca/0.1/fields/screen-layout.json',
-                //     title: 'Layout',
-                //     screenType: 'survey-yes-no',
-                //     enum: names,
-                //     intl: {
-                //         title: messages.layout,
-                //     },
-                // }
+                layout: {
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/screen-layout.json',
+                    title: 'Layout',
+                    screenType: 'survey-yes-no',
+                    enum: names,
+                    intl: {
+                        title: messages.layout,
+                    },
+                },
+                questionText: {
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/text.json',
+                    title: 'Text',
+                    intl: {
+                        title: messages.questionText,
+                    },
+                },
+                questionImage: {
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/image.json',
+                    title: 'Title',
+                    intl: {
+                        title: messages.questionImage,
+                    },
+                },
+                goodAnswerText: {
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/text.json',
+                    title: 'Text',
+                    intl: {
+                        title: messages.goodAnswerText,
+                    },
+                },
+                goodAnswerImage: {
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/image.json',
+                    title: 'Title',
+                    intl: {
+                        title: messages.goodAnswerImage,
+                    },
+                },
+                badAnswerText: {
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/text.json',
+                    title: 'Text',
+                    intl: {
+                        title: messages.badAnswerText,
+                    },
+                },
+                badAnswerImage: {
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/image.json',
+                    title: 'Title',
+                    intl: {
+                        title: messages.badAnswerImage,
+                    },
+                },
                 button: {
                     $ref: 'https://schemas.micromag.ca/0.1/elements/button.json',
                     title: 'Button style',

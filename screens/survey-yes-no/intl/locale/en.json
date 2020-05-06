@@ -1,4 +1,10 @@
 {
     "screens.survey-yes-no.schema.properties.background": "Background",
+    "screens.survey-yes-no.schema.properties.bad_answer_image": "Bad answer image",
+    "screens.survey-yes-no.schema.properties.bad_answer_text": "Bad answer text",
+    "screens.survey-yes-no.schema.properties.good_answer_image": "Good answer image",
+    "screens.survey-yes-no.schema.properties.good_answer_text": "Good answer text",
+    "screens.survey-yes-no.schema.properties.question_image": "Question image",
+    "screens.survey-yes-no.schema.properties.question_text": "Question text",
     "screens.survey-yes-no.schema.title": "Survey with yes or no"
 }

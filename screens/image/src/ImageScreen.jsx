@@ -62,7 +62,7 @@ const ImageScreen = ({
             <FormattedMessage {...messages.image} />
         </Empty>
     ) : (
-        <ImageComponent {...image} className={styles.image} />
+        <ImageComponent {...image} />
     );
 
     const textElement = isEmpty ? null : (

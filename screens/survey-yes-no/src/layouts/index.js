@@ -1,2 +1,3 @@
-// eslint-disable-next-line import/prefer-default-export
-export { default as Normal } from './Normal';
+export { default as Center } from './Center';
+export { default as Top } from './Top';
+export { default as Bottom } from './Bottom';

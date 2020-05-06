@@ -4,16 +4,7 @@
 
 .container {
     @extend %screen;
-
-    .inner {
-        width: 100%;
-        padding: 20px 15px;
-    }
-
-    .questionContainer {
-        width: 100%;
-        margin-bottom: 10px;
-    }
+    text-align: center;
 
     .buttons {
         display: flex;
@@ -23,20 +14,11 @@
 
     .button {
         margin-right: 20px;
-        padding: 5px 10px;
+        padding: 10px;
 
         &:last-child {
             margin-right: 0;
         }
-    }
-
-    .submitButton {
-        display: block;
-        margin: 10px auto;
-    }
-
-    .placeholder {
-        width: 100%;
     }
 
     .buttonPlaceholder {
@@ -48,10 +30,8 @@
             margin-right: 0;
         }
     }
+}
 
-    .submitButtonPlaceholder {
-        display: block;
-        margin: 5px auto;
-        background-color: rgba(0, 0, 0, 0.5);
-    }
+.image {
+    margin: 0 auto;
 }

@@ -118,6 +118,8 @@ const Image = ({
         />
     ) : null;
 
+    console.log(className);
+
     return (
         <div
             className={classNames([

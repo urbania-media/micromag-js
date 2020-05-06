@@ -55,6 +55,7 @@
         "@micromag/element-heading": "^0.1.29",
         "@micromag/element-image": "^0.1.29",
         "@micromag/element-text": "^0.1.29",
+        "@micromag/element-box": "^0.1.29",
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",
         "prop-types": "^15.7.2",
