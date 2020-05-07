@@ -52,11 +52,21 @@ export const user = PropTypes.shape({
     organisations,
 });
 
-export const publishService = PropTypes.shape({
+export const publicationService = PropTypes.shape({
     id: PropTypes.string.isRequired,
     label: MicromagPropTypes.label.isRequired,
+    settings: MicromagPropTypes.formFields,
 });
-export const publishServices = PropTypes.arrayOf(publishService);
+export const publicationServices = PropTypes.arrayOf(publicationService);
+
+export const publicationServiceValue = PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.shape({
+        enabled: PropTypes.bool.isRequired,
+        settings: PropTypes.object,
+    }),
+]);
+export const publicationServicesValue = PropTypes.objectOf(publicationServiceValue);
 
 export const storyPublication = PropTypes.shape({
     id: PropTypes.string.isRequired,

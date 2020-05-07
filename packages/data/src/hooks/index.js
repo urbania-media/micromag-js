@@ -17,6 +17,7 @@ export { default as useRecentStories } from './useRecentStories';
 export { default as useStories } from './useStories';
 export { default as useStory } from './useStory';
 export { default as useStoryCreate } from './useStoryCreate';
+export { default as useStoryPublicationCreate } from './useStoryPublicationCreate';
 export { default as useStoryPublications } from './useStoryPublications';
 export { default as useStoryUpdate } from './useStoryUpdate';
 export { default as useStoryVersions } from './useStoryVersions';

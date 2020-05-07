@@ -1,13 +1,15 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback, useState, useMemo } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
+import isObject from 'lodash/isObject';
 // import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
-// import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button } from '@micromag/core/components';
+import { useStoryPublicationCreate } from '@micromag/data';
 
 import * as AppPropTypes from '../../lib/PropTypes';
-import PublishServices from '../lists/PublishServices';
+import PublicationServices from '../lists/PublicationServices';
 import defaultServices from '../../data/publish-services';
 
 const messages = defineMessages({
@@ -18,7 +20,8 @@ const messages = defineMessages({
 });
 
 const propTypes = {
-    services: AppPropTypes.publishServices,
+    story: MicromagPropTypes.story.isRequired,
+    services: AppPropTypes.publicationServices,
     className: PropTypes.string,
     onPublished: PropTypes.func,
 };
@@ -29,34 +32,51 @@ const defaultProps = {
     onPublished: null,
 };
 
-const StoryPublishForm = ({ services, className }) => {
-    const [selectedServices, setSelectedServices] = useState(null);
-    const onServiceChange = useCallback(
-        ({ id }, value) => {
-            setSelectedServices({
-                ...selectedServices,
-                [id]: value,
-            });
-        },
-        [selectedServices],
-    );
-    const finalServices = useMemo(
-        () =>
-            services.map(it => ({
-                ...it,
-                ...(selectedServices !== null ? selectedServices[it.id] || null : null),
-            })),
-        [services, selectedServices],
-    );
-    const hasServiceEnabled = finalServices.reduce(
-        (oneEnabled, { enabled = false }) => oneEnabled || enabled,
-        false,
-    );
+const StoryPublishForm = ({ story, services, className, onPublished }) => {
+    const [publicationValue, setPublicationValue] = useState(null);
+    const { create: createPublication } = useStoryPublicationCreate(story.id);
+    const onClickPublish = useCallback(() => {
+        Promise.all(
+            Object.keys(publicationValue)
+                .filter(id =>
+                    isObject(publicationValue[id])
+                        ? publicationValue[id].enabled || false
+                        : publicationValue[id] || false,
+                )
+                .map(id => {
+                    const value = publicationValue[id];
+                    const settings = isObject(value) ? value.settings || null : null;
+                    return createPublication(id, settings);
+                }),
+        ).then(publications => {
+            console.log(publications);
+        });
+    }, [createPublication, onPublished, publicationValue]);
+
+    const hasServiceEnabled =
+        publicationValue !== null &&
+        Object.keys(publicationValue).reduce(
+            (oneEnabled, serviceId) =>
+                oneEnabled ||
+                (isObject(publicationValue[serviceId])
+                    ? publicationValue[serviceId].enabled || false
+                    : publicationValue[serviceId] || false),
+            false,
+        );
     return (
         <form className={className}>
-            <PublishServices items={finalServices} onServiceChange={onServiceChange} />
+            <PublicationServices
+                items={services}
+                value={publicationValue}
+                onChange={setPublicationValue}
+            />
             <div className="d-flex mt-4 align-items-center justify-content-end">
-                <Button theme="primary" size="lg" disabled={!hasServiceEnabled}>
+                <Button
+                    theme="primary"
+                    size="lg"
+                    disabled={!hasServiceEnabled}
+                    onClick={onClickPublish}
+                >
                     {messages.publish}
                 </Button>
             </div>

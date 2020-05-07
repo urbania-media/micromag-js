@@ -28,8 +28,8 @@ const defaultProps = {
 };
 
 const RecentPublications = ({ story, count, className }) => {
-    const { publications, loading } = useStoryPublications(story.id, null, null, count);
-    return !loading && publications.length > 0 ? (
+    const { publications } = useStoryPublications(story.id, null, null, count);
+    return publications !== null && publications.length > 0 ? (
         <section className={className}>
             <h4>
                 <Label>{messages.title}</Label>

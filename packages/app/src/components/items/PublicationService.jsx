@@ -2,6 +2,7 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import isObject from 'lodash/isObject';
 import { defineMessages } from 'react-intl';
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Label, Button } from '@micromag/core/components';
@@ -17,38 +18,57 @@ const messages = defineMessages({
 });
 
 const propTypes = {
-    item: AppPropTypes.publishService.isRequired,
+    item: AppPropTypes.publicationService.isRequired,
+    value: AppPropTypes.publicationServiceValue,
     className: PropTypes.string,
     onChange: PropTypes.func,
 };
 
 const defaultProps = {
+    value: null,
     className: null,
     onChange: null,
 };
 
-const PublishSevice = ({ item, className, onChange }) => {
-    const { enabled = false, settings = null } = item;
+const PublicationSevice = ({ item, value, className, onChange }) => {
+    const { id, settings: settingsFields = null } = item;
     const [settingsOpened, setSettingsOpened] = useState(false);
+    const enabled = isObject(value) ? value.enabled || false : value || false;
+    const settings = isObject(value) ? value.settings || null : null;
     const onEnableChange = useCallback(
         checked => {
-            const newItem = {
-                ...item,
-                enabled: checked,
-            };
+            const newValue = isObject(value)
+                ? {
+                      ...value,
+                      enabled: checked,
+                  }
+                : checked;
             if (!checked && settingsOpened) {
                 setSettingsOpened(false);
             }
             if (onChange !== null) {
-                onChange(newItem);
+                onChange(newValue);
             }
         },
-        [item, settingsOpened, setSettingsOpened, onChange],
+        [id, value, settingsOpened, setSettingsOpened, onChange],
     );
     const onClickSettings = useCallback(() => setSettingsOpened(!settingsOpened), [
         settingsOpened,
         setSettingsOpened,
     ]);
+    const onSettingsChange = useCallback(
+        newSettings => {
+            const currentEnabled = isObject(value) ? value.enabled || false : value || false;
+            const newValue = newSettings !== null ? {
+                enabled: currentEnabled,
+                settings: newSettings,
+            } : currentEnabled;
+            if (onChange !== null) {
+                onChange(newValue);
+            }
+        },
+        [value, onChange],
+    );
     return (
         <li
             className={classNames([
@@ -62,7 +82,7 @@ const PublishSevice = ({ item, className, onChange }) => {
                 <div className="col px-2">
                     <Label>{item.label}</Label>
                 </div>
-                {settings !== null ? (
+                {settingsFields !== null ? (
                     <div className="col-auto px-2">
                         <Button
                             theme="secondary"
@@ -82,7 +102,7 @@ const PublishSevice = ({ item, className, onChange }) => {
                     <Toggle value={enabled} onChange={onEnableChange} />
                 </div>
             </div>
-            {settings !== null ? (
+            {settingsFields !== null ? (
                 <div
                     className={classNames([
                         'pt-4',
@@ -92,11 +112,13 @@ const PublishSevice = ({ item, className, onChange }) => {
                     ])}
                 >
                     <Fields
-                        fields={settings.map(it => ({
+                        fields={settingsFields.map(it => ({
                             ...it,
                             isHorizontal: true,
                         }))}
+                        value={settings}
                         isList
+                        onChange={onSettingsChange}
                     />
                 </div>
             ) : null}
@@ -104,7 +126,7 @@ const PublishSevice = ({ item, className, onChange }) => {
     );
 };
 
-PublishSevice.propTypes = propTypes;
-PublishSevice.defaultProps = defaultProps;
+PublicationSevice.propTypes = propTypes;
+PublicationSevice.defaultProps = defaultProps;
 
-export default PublishSevice;
+export default PublicationSevice;

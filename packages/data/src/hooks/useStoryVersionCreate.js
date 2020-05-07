@@ -6,9 +6,9 @@ const useStoryVersionCreate = (storyId) => {
     const [creating, setCreating] = useState(false);
     const api = useApi();
     const create = useCallback(
-        story => {
+        data => {
             setCreating(true);
-            return api.stories.versions.create(storyId, story).then(response => {
+            return api.stories.versions.create(storyId, data).then(response => {
                 setCreating(false);
                 return response;
             });
