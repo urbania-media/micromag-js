@@ -1,6 +1,19 @@
 import { defineMessages } from 'react-intl';
 
-const messages = defineMessages({});
+const messages = defineMessages({
+    yes: {
+        id: 'screen.yes',
+        defaultMessage: 'Yes',
+    },
+    no: {
+        id: 'screen.no',
+        defaultMessage: 'No',
+    },
+    retry: {
+        id: 'screen.retry',
+        defaultMessage: 'Retry',
+    },
+});
 
 export const schemas = defineMessages({
     schemaTitle: {
@@ -11,29 +24,25 @@ export const schemas = defineMessages({
         id: 'schema.properties.background',
         defaultMessage: 'Background',
     },
-    questionText: {
-        id: 'schema.properties.question_text',
-        defaultMessage: 'Question text',
+    question: {
+        id: 'schema.properties.question',
+        defaultMessage: 'Question',
     },
-    questionImage: {
-        id: 'schema.properties.question_image',
-        defaultMessage: 'Question image',
+    answerYes: {
+        id: 'schema.properties.answer_yes',
+        defaultMessage: 'Answer Yes',
     },
-    goodAnswerText: {
-        id: 'schema.properties.good_answer_text',
-        defaultMessage: 'YES answer text',
+    answerNo: {
+        id: 'schema.properties.answer_no',
+        defaultMessage: 'Answer No',
     },
-    goodAnswerImage: {
-        id: 'schema.properties.good_answer_image',
-        defaultMessage: 'YES answer image',
+    textStyle: {
+        id: 'schema.properties.text_style',
+        defaultMessage: 'Text style',
     },
-    badAnswerText: {
-        id: 'schema.properties.bad_answer_text',
-        defaultMessage: 'NO answer text',
-    },
-    badAnswerImage: {
-        id: 'schema.properties.bad_answer_image',
-        defaultMessage: 'NO answer image',
+    buttonStyle: {
+        id: 'schema.properties.button',
+        defaultMessage: 'Button style',
     },
 });
 

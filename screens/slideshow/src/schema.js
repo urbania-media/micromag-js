@@ -31,6 +31,15 @@ export default {
                         title: messages.slides,
                     },
                 },
+                // TODO: figure out how to collapse this with settings or else
+                // textStyle: {
+                //     $ref: 'https://schemas.micromag.ca/0.1/fields/text-style.json',
+                //     title: 'Text style',
+                //     setting: true,
+                //     intl: {
+                //         title: messages.textStyle,
+                //     },
+                // },
                 button: {
                     $ref: 'https://schemas.micromag.ca/0.1/elements/button.json',
                     title: 'Button style',

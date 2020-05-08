@@ -18,7 +18,7 @@ const propTypes = {
             height: PropTypes.number,
         }),
     }),
-    videoParams: PropTypes.shape({
+    params: PropTypes.shape({
         autoPlay: PropTypes.bool,
         muted: PropTypes.bool,
         loop: PropTypes.bool,
@@ -38,7 +38,7 @@ const defaultProps = {
     players: null,
     maxWidth: null,
     maxHeight: null,
-    videoParams: null,
+    params: null,
     controls: null,
     fit: null,
     showEmpty: false,
@@ -50,7 +50,7 @@ const Video = ({
     players,
     maxWidth: defaultMaxWidth,
     maxHeight: defaultMaxHeight,
-    videoParams,
+    params,
     controls,
     // controlsVisible,
     fit,
@@ -62,7 +62,7 @@ const Video = ({
         loop = false,
         controls: controlsVisible = true,
         autoPlay = false,
-    } = videoParams || {};
+    } = params || {};
 
     const { url = null, metadata = {} } = video || {};
     const { width = null, height = null } = metadata;

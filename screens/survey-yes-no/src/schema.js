@@ -24,48 +24,36 @@ export default {
                         title: messages.layout,
                     },
                 },
-                questionText: {
-                    $ref: 'https://schemas.micromag.ca/0.1/elements/text.json',
-                    title: 'Text',
+                question: {
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/question.json',
+                    title: 'Question',
                     intl: {
-                        title: messages.questionText,
+                        title: messages.question,
                     },
                 },
-                questionImage: {
-                    $ref: 'https://schemas.micromag.ca/0.1/elements/image.json',
-                    title: 'Title',
+                answerYes: {
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/question.json',
+                    title: 'Answer Yes',
                     intl: {
-                        title: messages.questionImage,
+                        title: messages.answerYes,
                     },
                 },
-                goodAnswerText: {
-                    $ref: 'https://schemas.micromag.ca/0.1/elements/text.json',
-                    title: 'Text',
+                answerNo: {
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/question.json',
+                    title: 'Answer No',
                     intl: {
-                        title: messages.goodAnswerText,
+                        title: messages.answerNo,
                     },
                 },
-                goodAnswerImage: {
-                    $ref: 'https://schemas.micromag.ca/0.1/elements/image.json',
-                    title: 'Title',
-                    intl: {
-                        title: messages.goodAnswerImage,
-                    },
-                },
-                badAnswerText: {
-                    $ref: 'https://schemas.micromag.ca/0.1/elements/text.json',
-                    title: 'Text',
-                    intl: {
-                        title: messages.badAnswerText,
-                    },
-                },
-                badAnswerImage: {
-                    $ref: 'https://schemas.micromag.ca/0.1/elements/image.json',
-                    title: 'Title',
-                    intl: {
-                        title: messages.badAnswerImage,
-                    },
-                },
+                // TODO: figure out how to collapse this with settings or else
+                // textStyle: {
+                //     $ref: 'https://schemas.micromag.ca/0.1/fields/text-style.json',
+                //     title: 'Text style',
+                //     setting: true,
+                //     intl: {
+                //         title: messages.textStyle,
+                //     },
+                // },
                 button: {
                     $ref: 'https://schemas.micromag.ca/0.1/elements/button.json',
                     title: 'Button style',

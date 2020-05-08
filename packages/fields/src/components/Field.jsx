@@ -117,6 +117,8 @@ const Field = ({
         />
     );
 
+    // console.log(type, fieldElement, value, props);
+
     return !withoutFieldRow ? (
         <div
             className={classNames([

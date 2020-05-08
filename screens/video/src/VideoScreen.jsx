@@ -88,7 +88,7 @@ const VideoScreen = ({
         preview
     ) : (
         <VideoComponent
-            videoParams={{ ...defaultParams, autoPlay: autoplayCondition }}
+            params={{ ...defaultParams, autoPlay: autoplayCondition }}
             {...videoField}
             maxWidth={Math.min(width, 768)}
             maxHeight={height}

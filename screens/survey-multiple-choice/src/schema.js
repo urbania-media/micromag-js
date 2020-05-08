@@ -24,6 +24,55 @@ export default {
                 //         title: messages.layout,
                 //     },
                 // },
+                multipleAnswers: {
+                    type: 'boolean',
+                    title: 'Multiple answers',
+                    component: 'toggle',
+                    default: true,
+                    componentProps: {
+                        isHorizontal: true,
+                    },
+                    intl: {
+                        title: messages.multipleAnswers,
+                    },
+                },
+                question: {
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/question.json',
+                    title: 'Question',
+                    intl: {
+                        title: messages.question,
+                    },
+                },
+                answers: {
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/answers.json',
+                    title: 'Answers',
+                    intl: {
+                        title: messages.answers,
+                    },
+                },
+                success: {
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/question.json',
+                    title: 'Success',
+                    intl: {
+                        title: messages.success,
+                    },
+                },
+                failure: {
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/question.json',
+                    title: 'Failure',
+                    intl: {
+                        title: messages.failure,
+                    },
+                },
+                // TODO: figure out how to collapse this with settings or else
+                // textStyle: {
+                //     $ref: 'https://schemas.micromag.ca/0.1/fields/text-style.json',
+                //     title: 'Text style',
+                //     setting: true,
+                //     intl: {
+                //         title: messages.textStyle,
+                //     },
+                // },
                 button: {
                     $ref: 'https://schemas.micromag.ca/0.1/elements/button.json',
                     title: 'Button style',

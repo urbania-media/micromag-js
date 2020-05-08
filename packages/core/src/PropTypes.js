@@ -356,7 +356,12 @@ export const audioComponent = PropTypes.shape({
 
 export const slide = PropTypes.shape({
     image,
-    text: textElement,
+    text: PropTypes.string,
 });
 
 export const slides = PropTypes.arrayOf(slide);
+
+export const imageStyle = PropTypes.shape({
+    alt: PropTypes.string,
+    fit: PropTypes.object,
+});

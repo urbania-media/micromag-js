@@ -20,6 +20,7 @@ const defaultProps = {
 };
 
 const SurveyYesNoCenter = ({ box, ...otherProps }) => {
+    console.log('center layout', box);
     return <SurveyYesNoScreen box={box} {...otherProps} />;
 };
 

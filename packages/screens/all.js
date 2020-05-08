@@ -10,7 +10,7 @@ export { default as MapPath } from '@micromag/screen-map-path';
 export { default as Quote } from '@micromag/screen-quote';
 export { default as Slideshow } from '@micromag/screen-slideshow';
 // export { default as SurveyCheckbox } from '@micromag/screen-survey-checkbox';
-// export { default as SurveyMultipleChoice } from '@micromag/screen-survey-multiple-choice';
+export { default as SurveyMultipleChoice } from '@micromag/screen-survey-multiple-choice';
 export { default as SurveyYesNo } from '@micromag/screen-survey-yes-no';
 export { default as Text } from '@micromag/screen-text';
 export { default as TextImage } from '@micromag/screen-text-image';
