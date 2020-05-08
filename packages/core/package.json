@@ -66,6 +66,7 @@
         "change-case": "^4.1.1",
         "classnames": "^2.2.6",
         "css-mediaquery": "^0.1.2",
+        "dayjs": "^1.8.26",
         "lodash": "^4.17.15",
         "prop-types": "^15.7.2",
         "react-intl": "^4.3.1",

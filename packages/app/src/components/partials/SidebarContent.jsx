@@ -32,8 +32,8 @@ const SidebarContent = ({ sidebar, sidebarFirstOnMobile, children, className }) 
                 'col-md-4',
                 {
                     'order-sm-first': sidebarFirstOnMobile,
-                    'mb-sm-4': sidebarFirstOnMobile,
-                    'mt-sm-4': !sidebarFirstOnMobile,
+                    'mb-4': sidebarFirstOnMobile,
+                    'mt-4': !sidebarFirstOnMobile,
                     'mb-md-0': sidebarFirstOnMobile,
                     'mt-md-0': !sidebarFirstOnMobile,
                 },

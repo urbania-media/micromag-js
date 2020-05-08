@@ -50,7 +50,17 @@ const EditorNavbar = ({ story, saving, onClickSave, className }) => {
         >
             <span className="navbar-text">{story !== null ? story.title : null}</span>
             <form className="form-inline ml-auto">
-                <Button href={url('stories')} theme="secondary" className="mr-1">
+                <Button
+                    href={
+                        story !== null
+                            ? url('stories.show', {
+                                  story: story.id,
+                              })
+                            : url('stories')
+                    }
+                    theme="secondary"
+                    className="mr-1"
+                >
                     {messages.close}
                 </Button>
                 <Button theme="light" disabled={story === null || saving} onClick={onClickSave}>

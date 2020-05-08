@@ -30,7 +30,7 @@ const defaultProps = {
 const Page = ({ title, section, sidebar, children, small, className }) => (
     <div
         className={classNames([
-            small ? 'container-small' : 'container-md',
+            small ? 'container-small' : 'container-lg',
             styles.container,
             {
                 [className]: className !== null,
