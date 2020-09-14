@@ -11,7 +11,7 @@ import {
     faArrowRight,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
+// import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import getSelectOptions from '../utils/getSelectOptions';
 
@@ -20,8 +20,8 @@ import styles from '../styles/position.module.scss';
 const propTypes = {
     name: PropTypes.string,
     value: PropTypes.string,
-    axisOptions: MicromagPropTypes.selectOptions,
-    crossOptions: MicromagPropTypes.selectOptions,
+    axisOptions: PropTypes.arrayOf(PropTypes.string),
+    crossOptions: PropTypes.arrayOf(PropTypes.string),
     className: PropTypes.string,
     buttonClassName: PropTypes.string,
     onChange: PropTypes.func,

@@ -18,7 +18,7 @@ const messages = defineMessages({
 const propTypes = {
     type: PropTypes.oneOf(['image', 'video', 'audio']),
     value: MicromagPropTypes.media,
-    isForm: PropTypes.string,
+    isForm: PropTypes.bool,
     noValueLabel: MicromagPropTypes.label,
     withoutThumbnail: PropTypes.bool,
     className: PropTypes.string,

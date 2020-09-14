@@ -118,7 +118,7 @@ const Image = ({
         />
     ) : null;
 
-    console.log(className);
+    // console.log(className);
 
     return (
         <div

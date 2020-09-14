@@ -21,7 +21,7 @@ export default {
                         title: messages.video,
                     },
                 },
-                videoParams: {
+                params: {
                     $ref: 'https://schemas.micromag.ca/0.1/fields/video-params.json',
                     title: 'Video parameters',
                     setting: true,

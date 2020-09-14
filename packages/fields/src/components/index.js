@@ -1,3 +1,5 @@
+export { default as Answer } from './Answer';
+export { default as Answers } from './Answers';
 export { default as Audio } from './Audio';
 export { default as BorderStyle } from './BorderStyle';
 export { default as BorderType } from './BorderType';
@@ -30,6 +32,7 @@ export { default as ObjectFitSize } from './ObjectFitSize';
 export { default as Password } from './Password';
 export { default as Radios } from './Radios';
 export { default as Position } from './Position';
+export { default as Question } from './Question';
 export { default as Select } from './Select';
 export { default as Slide } from './Slide';
 export { default as Slider } from './Slider';

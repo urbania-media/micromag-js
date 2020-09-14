@@ -23,7 +23,7 @@ import styles from './slideshow.module.scss';
 
 const propTypes = {
     slides: MicromagPropTypes.slides,
-    button: MicromagPropTypes.slides,
+    button: MicromagPropTypes.buttonElement,
     box: MicromagPropTypes.boxElement,
     background: MicromagPropTypes.backgroundElement,
     textAlign: MicromagPropTypes.textAlign,
@@ -87,8 +87,6 @@ const SlideshowScreen = ({
     useEffect(() => {
         setIndex(parallelIndex);
     }, [parallelIndex, setIndex]);
-
-    console.log(button);
 
     const inner =
         isEditor && slides.length === 0 ? (

@@ -89,7 +89,11 @@ const FieldForm = ({
         [field, value, fieldPath, onChange],
     );
 
-    const closeForm = useCallback(() => closeFieldForm(fieldPath, form), [fieldPath, form, closeFieldForm]);
+    const closeForm = useCallback(() => closeFieldForm(fieldPath, form), [
+        fieldPath,
+        form,
+        closeFieldForm,
+    ]);
 
     const FormComponent =
         form !== null

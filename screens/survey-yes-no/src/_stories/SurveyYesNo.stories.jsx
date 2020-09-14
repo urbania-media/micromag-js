@@ -2,7 +2,7 @@
 import React from 'react';
 import { withKnobs } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
 import { withScreenSize } from '../../../../.storybook/decorators';
-import { description } from '../../../../.storybook/data';
+// import { description } from '../../../../.storybook/data';
 
 import {
     PlaceholderScreen,
@@ -21,7 +21,7 @@ export default {
 };
 
 const props = {
-    questionText: { body: description() },
+    // questionText: { body: description() },
 };
 
 export const Placeholders = () => (

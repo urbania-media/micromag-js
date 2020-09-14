@@ -1,3 +1,5 @@
+export { default as answer } from './answer';
+export { default as answers } from './answers';
 export { default as audioParams } from './audio-params';
 export { default as audio } from './audio';
 export { default as borderRadius } from './border-radius';
@@ -29,6 +31,7 @@ export { default as size } from './size';
 export { default as slide } from './slide';
 export { default as slides } from './slides';
 export { default as textEditor } from './text-editor';
+export { default as question } from './question';
 export { default as textStyle } from './text-style';
 export { default as text } from './text';
 export { default as url } from './url';

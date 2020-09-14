@@ -1,10 +1,12 @@
 {
+    "screens.survey-yes-no.schema.properties.answer_no": "Réponse Non",
+    "screens.survey-yes-no.schema.properties.answer_yes": "Réponse Oui",
     "screens.survey-yes-no.schema.properties.background": "Arrière-plan",
-    "screens.survey-yes-no.schema.properties.bad_answer_image": "NON: image",
-    "screens.survey-yes-no.schema.properties.bad_answer_text": "NON: texte",
-    "screens.survey-yes-no.schema.properties.good_answer_image": "OUI: image",
-    "screens.survey-yes-no.schema.properties.good_answer_text": "OUI: texte",
-    "screens.survey-yes-no.schema.properties.question_image": "Question: image",
-    "screens.survey-yes-no.schema.properties.question_text": "Question: texte",
-    "screens.survey-yes-no.schema.title": "Sondage Oui ou Non"
+    "screens.survey-yes-no.schema.properties.button": "Style des boutons",
+    "screens.survey-yes-no.schema.properties.question": "Question",
+    "screens.survey-yes-no.schema.properties.text_style": "Style du texte",
+    "screens.survey-yes-no.schema.title": "Sondage Oui ou Non",
+    "screens.survey-yes-no.screen.no": "Non",
+    "screens.survey-yes-no.screen.retry": "Recommencer",
+    "screens.survey-yes-no.screen.yes": "Oui"
 }

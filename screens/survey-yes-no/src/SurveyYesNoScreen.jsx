@@ -5,26 +5,27 @@ import classNames from 'classnames';
 
 import TextElement from '@micromag/element-text';
 import ImageElement from '@micromag/element-image';
+import VideoElement from '@micromag/element-video';
 import Background from '@micromag/element-background';
 import Frame from '@micromag/element-frame';
 import Button from '@micromag/element-button';
 import Box from '@micromag/element-box';
-import { Placeholders, PropTypes as MicromagPropTypes } from '@micromag/core';
+import { Label, Placeholders, PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
+
+import messages from './messages';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
-    questionText: MicromagPropTypes.textElement,
-    questionImage: MicromagPropTypes.imageElement,
-    goodAnswerText: MicromagPropTypes.textElement,
-    goodAnswerImage: MicromagPropTypes.imageElement,
-    badAnswerText: MicromagPropTypes.textElement,
-    badAnswerImage: MicromagPropTypes.imageElement,
+    question: MicromagPropTypes.textMediaField,
+    answerYes: MicromagPropTypes.textMediaField,
+    answerNo: MicromagPropTypes.textMediaField,
+    textStyle: MicromagPropTypes.textStyle,
+    button: MicromagPropTypes.buttonElement,
     box: MicromagPropTypes.boxElement,
     background: MicromagPropTypes.backgroundElement,
-    button: MicromagPropTypes.buttonElement,
     visible: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
@@ -32,15 +33,13 @@ const propTypes = {
 };
 
 const defaultProps = {
-    questionText: null,
-    questionImage: null,
-    goodAnswerText: null,
-    goodAnswerImage: null,
-    badAnswerText: null,
-    badAnswerImage: null,
+    question: null,
+    answerYes: null,
+    answerNo: null,
+    textStyle: null,
+    button: null,
     background: null,
     box: null,
-    button: null,
     visible: true,
     active: false,
     renderFormat: 'view',
@@ -48,12 +47,10 @@ const defaultProps = {
 };
 
 const SurveyYesNo = ({
-    questionText,
-    questionImage,
-    goodAnswerText,
-    badAnswerImage,
-    badAnswerText,
-    goodAnswerImage,
+    question: questionField,
+    answerYes: answerYesField,
+    answerNo: answerNoField,
+    textStyle,
     box,
     background,
     button,
@@ -65,6 +62,19 @@ const SurveyYesNo = ({
     const [answered, setAnswered] = useState(null);
     const { width, height } = useScreenSize();
     const { isPlaceholder, isEditor, isView, isSimple } = getRenderFormat(renderFormat);
+    const spacing = 10;
+    const videoProps = {
+        fit: {
+            size: 'contain',
+        },
+        maxWidth: Math.min(width, 768) - spacing * 2,
+        maxHeight: Math.min(height, 400) - spacing * 2,
+    };
+
+    const { text: questionText, image: questionImage, video: questionVideo } = questionField || {};
+    const { text: answerYesText, image: answerYesImage, video: answerYesVideo } =
+        answerYesField || {};
+    const { text: answerNoText, image: answerNoImage, video: answerNoVideo } = answerNoField || {};
 
     const onClickTrue = useCallback(() => {
         setAnswered(true);
@@ -74,24 +84,41 @@ const SurveyYesNo = ({
         setAnswered(false);
     }, [setAnswered]);
 
+    const onClickReset = useCallback(() => {
+        setAnswered(null);
+    }, [setAnswered]);
+
     const question =
-        questionText !== null || questionImage !== null ? (
+        questionText !== null || questionImage !== null || questionVideo !== null ? (
             <div className={styles.questionContainer}>
-                <ImageElement className={styles.image} {...questionImage} />
-                <TextElement {...questionText} />
+                <VideoElement className={styles.video} video={questionVideo} {...videoProps} />
+                <ImageElement className={styles.image} image={questionImage} />
+                <TextElement body={questionText} textStyle={textStyle} />
             </div>
         ) : null;
 
     const answer =
         answered === true ? (
             <div className={styles.answerContainer}>
-                <ImageElement className={styles.image} {...goodAnswerImage} />
-                <TextElement className={styles.result} {...goodAnswerText} />
+                <VideoElement className={styles.video} video={answerYesVideo} {...videoProps} />
+                <ImageElement className={styles.image} image={answerYesImage} />
+                <TextElement className={styles.result} body={answerYesText} textStyle={textStyle} />
+                {isEditor ? (
+                    <Button className={styles.button} onClick={onClickReset} {...button}>
+                        Recommencer
+                    </Button>
+                ) : null}
             </div>
         ) : (
             <div className={styles.answerContainer}>
-                <ImageElement className={styles.image} {...badAnswerImage} />
-                <TextElement className={styles.result} {...badAnswerText} />
+                <VideoElement className={styles.video} video={answerNoVideo} {...videoProps} />
+                <ImageElement className={styles.image} image={answerNoImage} />
+                <TextElement className={styles.result} body={answerNoText} textStyle={textStyle} />
+                {isEditor ? (
+                    <Button className={styles.button} onClick={onClickReset} {...button}>
+                        <Label>{messages.retry}</Label>
+                    </Button>
+                ) : null}
             </div>
         );
 
@@ -99,10 +126,10 @@ const SurveyYesNo = ({
         renderFormat !== 'placeholder' ? (
             <>
                 <Button className={styles.button} onClick={onClickTrue} {...button}>
-                    Oui
+                    <Label>{messages.yes}</Label>
                 </Button>
                 <Button className={styles.button} onClick={onClickFalse} {...button}>
-                    Non
+                    <Label>{messages.no}</Label>
                 </Button>
             </>
         ) : (
