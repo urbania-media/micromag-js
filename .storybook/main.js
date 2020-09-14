@@ -5,10 +5,29 @@ const getPackagesAliases = require('../scripts/lib/getPackagesAliases');
 require('dotenv').config();
 
 module.exports = {
-    stories: getPackagesPaths().map(packagePath =>
+    stories: getPackagesPaths().map((packagePath) =>
         path.join(packagePath, './src/**/*.stories.(jsx|mdx)'),
     ),
     addons: [
+        {
+            name: '@storybook/preset-scss',
+            options: {
+                rule: {
+                    test: /\.module\.s[ca]ss$/,
+                },
+                cssLoaderOptions: {
+                    modules: true,
+                },
+            },
+        },
+        {
+            name: '@storybook/preset-scss',
+            options: {
+                rule: {
+                    exclude: /\.module\.s[ca]ss$/,
+                },
+            },
+        },
         '@storybook/addon-viewport/register',
         '@storybook/addon-knobs/register',
         '@storybook/addon-docs',
@@ -36,11 +55,11 @@ module.exports = {
         //     },
         // ]);
 
-        config.module.rules[0].exclude.push(/@ckeditor/);
+        config.module.rules[0].exclude = [config.module.rules[0].exclude, /@ckeditor/];
 
         config.module.rules = [
             ...config.module.rules,
-            ...getPackagesPaths().map(packagePath => {
+            ...getPackagesPaths().map((packagePath) => {
                 const packageJson = require(path.join(packagePath, './package.json'));
                 const { name = null } = packageJson || {};
                 const namespace =
@@ -60,7 +79,7 @@ module.exports = {
                             [
                                 require.resolve('babel-plugin-react-intl'),
                                 {
-                                    overrideIdFn: id =>
+                                    overrideIdFn: (id) =>
                                         namespace !== null ? `${namespace}.${id}` : id,
                                     extractSourceLocation: true,
                                 },
@@ -75,11 +94,9 @@ module.exports = {
                 include: /\/query-string\//,
                 options: {
                     babelrc: false,
-                    plugins: [
-                        require.resolve('@babel/plugin-transform-modules-commonjs'),
-                    ],
+                    plugins: [require.resolve('@babel/plugin-transform-modules-commonjs')],
                 },
-            }
+            },
         ];
 
         return config;
