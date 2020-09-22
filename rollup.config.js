@@ -4,7 +4,7 @@ import postcss from 'rollup-plugin-postcss';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import image from '@rollup/plugin-image';
-import svgo from 'rollup-plugin-svgo';
+// import svgo from 'rollup-plugin-svgo';
 import json from '@rollup/plugin-json';
 import url from '@rollup/plugin-url';
 import replace from '@rollup/plugin-replace';
@@ -40,7 +40,8 @@ export default {
                 generateScopedName,
             },
             autoModules: true,
-            extract: path.join(process.cwd(), 'assets/css/styles.css'),
+            // extract: path.join(process.cwd(), 'assets/css/styles.css'),
+            extract: 'styles.css',
             inject: false,
         }),
         image({

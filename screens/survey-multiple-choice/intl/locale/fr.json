@@ -1,12 +1,4 @@
 {
-    "screens.survey-multiple-choice.schema.properties.answers": "Réponses",
     "screens.survey-multiple-choice.schema.properties.background": "Arrière-plan",
-    "screens.survey-multiple-choice.schema.properties.button": "Style des boutons",
-    "screens.survey-multiple-choice.schema.properties.failure": "Message d'échec",
-    "screens.survey-multiple-choice.schema.properties.question": "Question",
-    "screens.survey-multiple-choice.schema.properties.success": "Message de réussite",
-    "screens.survey-multiple-choice.schema.properties.text_style": "Style du texte",
-    "screens.survey-multiple-choice.schema.title": "Sondage à choix multiples",
-    "screens.survey-multiple-choice.screen.retry": "Recommencer",
-    "screens.survey-multiple-choice.screen.submit": "Soumettre"
+    "screens.survey-multiple-choice.schema.title": "Sondage à choix multiples"
 }

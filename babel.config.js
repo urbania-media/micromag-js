@@ -35,7 +35,7 @@ module.exports = api => ({
         api.env('production') && [
             require.resolve('babel-plugin-react-intl'),
             {
-                messagesDir: path.join(process.cwd(), './intl/messages/'),
+                // messagesDir: path.join(process.cwd(), './intl/messages/'),
                 overrideIdFn: require(path.join(
                     __dirname,
                     './scripts/lib/getIntlMessagesNamespace',
