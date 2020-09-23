@@ -21,22 +21,24 @@ export const useSwipe = ({
     const currentWidth = width || window.innerWidth;
     const count = items.length;
 
-    const getItem = useCallback((item, x = 0, y = 0, idx = 0) => {
+    const getItem = useCallback((item, x = 0, y = 0, idx = 0, scale = 1) => {
         return {
             x,
             y,
             item,
-            zIndex: idx
+            zIndex: idx,
+            scale
         };
     });
 
     const getItems = useCallback(
-        ({ down = 0, mx = 0 } = {}) => {
+        ({ down = 0, mx = 0, distance = 0 } = {}) => {
             return items.map((item, i) => {
                 const x = disabled ? 0 : (i - index.current) * currentWidth + (down ? mx : 0);
+                const scale = disabled || !down ? 1 : 1 - distance / window.innerWidth / 2;
                 // const hidden =
                 //     !disabled && (i < index.current - range || i > index.current + range);
-                return getItem(item, x, 0, i);
+                return getItem(item, x, 0, i, scale);
             });
         },
         [disabled, items, index, currentWidth],
@@ -94,7 +96,7 @@ export const useSwipe = ({
                 return;
             }
 
-            set(getItems({ down, mx }));
+            set(getItems({ down, mx, distance }));
 
             if (swipingIndex.current !== index.current) {
                 if (down) {
