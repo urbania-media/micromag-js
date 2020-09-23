@@ -18,6 +18,8 @@ export const useSwipe = ({
 }) => {
     const swipingIndex = useRef(null);
     const index = useRef(0);
+    const lockedAxis = useRef(null);
+
     const currentWidth = width || window.innerWidth;
     const count = items.length;
 
@@ -32,10 +34,10 @@ export const useSwipe = ({
     });
 
     const getItems = useCallback(
-        ({ down = 0, mx = 0, distance = 0 } = {}) => {
+        ({ down = false, mx = 0, my = 0 } = {}) => {
             return items.map((item, i) => {
                 const x = disabled ? 0 : (i - index.current) * currentWidth + (down ? mx : 0);
-                const scale = disabled || !down ? 1 : 1 - distance / window.innerWidth / 2;
+                const scale = disabled || !down ? 1 : 1 - Math.max(Math.abs(mx), my) / currentWidth / 2;
                 // const hidden =
                 //     !disabled && (i < index.current - range || i > index.current + range);
                 return getItem(item, x, 0, i, scale);
@@ -61,18 +63,22 @@ export const useSwipe = ({
     );
 
     const bind = useDrag(
-        ({ down, movement: [mx], direction: [xDir, yDir], distance, delta: [xDelta], cancel, tap }) => {
+        ({ down, movement: [mx, my], direction: [xDir], delta: [xDelta], cancel, tap }) => {
 
             if (disabled) {
                 cancel();
                 return;
             }
 
-            if (!down && swipingIndex.current === index.current && onSwipeCancel !== null) {
-                onSwipeCancel(index.current);
+            if (!down && swipingIndex.current === index.current) {
+                lockedAxis.current = null;
+                if (onSwipeCancel !== null) {
+                    onSwipeCancel(index.current);
+                }                
             }
 
             // Block first and last moves
+            /*
             if (down && index.current === items.length - 1 && xDir < 0) {
                 cancel();
                 return;
@@ -82,31 +88,49 @@ export const useSwipe = ({
                 cancel();
                 return;
             }
+            */
+
+            const distanceX = lockedAxis.current === 'x' ? mx : 0;
+            const distanceY = lockedAxis.current === 'y' ? my : 0;
 
             if (
                 down && // Cursor down
-                Math.abs(yDir) < 0.95 && // Avoid swipes up and down
-                (distance > currentWidth / threshold || // Pure distance
-                    (Math.abs(xDelta) > 12 && distance > currentWidth / 12)) // Speedy flick, 12 spped and 1/12 of the screen size
+                (Math.abs(distanceX) > currentWidth / threshold // Pure distance
+                )//    (Math.abs(xDelta) > 12 && Math.abs(distanceX) > currentWidth / 12)) // Speedy flick, 12 spped and 1/12 of the screen size
             ) {
                 cancel((index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, count - 1)));
+                lockedAxis.current = null;
                 if (onSwipeEnd !== null) {
                     onSwipeEnd(index.current);
                 }
                 return;
             }
 
-            set(getItems({ down, mx, distance }));
+            set(getItems({ down, mx: distanceX, my: distanceY }));
 
+            // saving current swiping index in a ref in order to have a section called only once when swipe just started or a tap was detected
             if (swipingIndex.current !== index.current) {
-                if (down) {
-                    if (onSwipeStart !== null && !tap) {
+                if (down && !tap) {
+                    if (onSwipeStart !== null ) {
                         onSwipeStart(index.current);
                     }
-                } else if (onTap !== null && tap) {
-                    onTap();
+                }
+                if (!down && tap) {
+                    if (onTap !== null) {
+                        onTap();
+                    }                    
                 }
             }
+
+            // lock swiping on axis from initial 3 pixels distance (Y axis requires to swipe down)
+            if (down && lockedAxis.current === null) {
+                const distX = Math.abs(mx);
+                const distY = Math.abs(my);
+                if (distX !== distY && (my > 2 || distX > 2)) {
+                    lockedAxis.current = my > distX ? 'y' : 'x';
+                }                
+            }
+            
             swipingIndex.current = down && !tap ? index.current : null;
         }, { filterTaps: true }
     );
