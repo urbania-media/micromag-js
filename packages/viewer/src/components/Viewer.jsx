@@ -24,6 +24,7 @@ const propTypes = {
     interactions: MicromagPropTypes.interactions,
     fullscreen: PropTypes.bool,
     onScreenChange: PropTypes.func,
+    tapNextScreenWidthPercent: PropTypes.number,
     className: PropTypes.string,
 };
 
@@ -33,10 +34,11 @@ const defaultProps = {
     screen: null,
     renderFormat: null,
     deviceScreens: getDeviceScreens(),
-    className: null,
     interactions: ['tap'],
     fullscreen: false,
     onScreenChange: null,
+    tapNextScreenWidthPercent: 0.5,
+    className: null,
 };
 
 const Viewer = ({
@@ -49,16 +51,22 @@ const Viewer = ({
     interactions,
     fullscreen,
     onScreenChange,
+    tapNextScreenWidthPercent,
     className,
 }) => {
     const { components = [] } = story || {};
-    // Size
+
     const scrollRef = useRef(null);
+    const tappingRef = useRef(true);
+
+    // Size
     const { ref: refContainer, screenSize } = useScreenSizeFromElement({
         width,
         height,
         screens: deviceScreens,
     });
+
+    // @TODO NOT SAFE
     const desktop = screenSize.width > screenSize.height;
 
     // Index
@@ -86,7 +94,8 @@ const Viewer = ({
         items: components,
         disabled: desktop,
         withSpring: interactions !== null,
-        // onSwipeEnd: changeIndex,
+        onSwipeStart: () => { tappingRef.current = false; },
+        onTap: () => { tappingRef.current = true; },
     });
 
     // Move it to the right place when id changes
@@ -112,13 +121,19 @@ const Viewer = ({
     const onTap = useCallback(
         e => {
             e.stopPropagation();
+
+            if (!tappingRef.current) {
+                return;
+            }
+
             const { index: stringIndex } = e.currentTarget.dataset;
             const index = parseInt(stringIndex, 10);
             const it = { ...components[parseInt(index, 10)] };
             if (!it) return;
 
             let next = index;
-            if (e.clientX > screenSize.width / 2) {
+
+            if (e.clientX > screenSize.width * (1 - tapNextScreenWidthPercent)) {
                 next = index < items.length - 1 ? index + 1 : index;
             } else {
                 next = index > 0 ? index - 1 : index;
@@ -136,6 +151,7 @@ const Viewer = ({
             // if (interactions !== null) {
             changeIndex(index);
             // }
+            // console.log('onVisible', index)
         },
         [changeIndex, interactions],
     );

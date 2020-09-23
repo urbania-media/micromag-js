@@ -13,7 +13,10 @@ export const useSwipe = ({
     disabled = false,
     onSwipeStart = null,
     onSwipeEnd = null,
+    onSwipeCancel = null,
+    onTap = null,
 }) => {
+    const swipingIndex = useRef(null);
     const index = useRef(0);
     const currentWidth = width || window.innerWidth;
     const count = items.length;
@@ -23,7 +26,7 @@ export const useSwipe = ({
             x,
             y,
             item,
-            zIndex: idx,
+            zIndex: idx
         };
     });
 
@@ -56,10 +59,15 @@ export const useSwipe = ({
     );
 
     const bind = useDrag(
-        ({ down, movement: [mx], direction: [xDir, yDir], distance, delta: [xDelta], cancel }) => {
+        ({ down, movement: [mx], direction: [xDir, yDir], distance, delta: [xDelta], cancel, tap }) => {
+
             if (disabled) {
                 cancel();
                 return;
+            }
+
+            if (!down && swipingIndex.current === index.current && onSwipeCancel !== null) {
+                onSwipeCancel(index.current);
             }
 
             // Block first and last moves
@@ -88,10 +96,17 @@ export const useSwipe = ({
 
             set(getItems({ down, mx }));
 
-            if (onSwipeStart !== null) {
-                onSwipeStart(index.current);
+            if (swipingIndex.current !== index.current) {
+                if (down) {
+                    if (onSwipeStart !== null && !tap) {
+                        onSwipeStart(index.current);
+                    }
+                } else if (onTap !== null && tap) {
+                    onTap();
+                }
             }
-        },
+            swipingIndex.current = down && !tap ? index.current : null;
+        }, { filterTaps: true }
     );
 
     const reset = useCallback(() => {
