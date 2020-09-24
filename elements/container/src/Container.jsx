@@ -23,7 +23,7 @@ const defaultProps = {
     children: null,
 };
 
-const Frame = ({ width, height, visible, withScroll, className, children }) => {
+const Container = ({ width, height, visible, withScroll, className, children }) => {
     const finalStyle = {
         width,
         height,
@@ -45,7 +45,7 @@ const Frame = ({ width, height, visible, withScroll, className, children }) => {
     );
 };
 
-Frame.propTypes = propTypes;
-Frame.defaultProps = defaultProps;
+Container.propTypes = propTypes;
+Container.defaultProps = defaultProps;
 
-export default Frame;
+export default Container;

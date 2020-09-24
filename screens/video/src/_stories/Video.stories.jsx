@@ -12,7 +12,7 @@ import { videoFile, background } from '../../../../.storybook/data';
 
 import Video from '../Video';
 
-const layouts = ['center', 'full', 'loop'];
+const layouts = ['center', 'full'];
 
 const props = {
     video: { video: videoFile() },
@@ -38,7 +38,7 @@ export default {
 
 export const Placeholders = () => (
     <LayoutGrid layouts={layouts}>
-        {layout => (
+        {(layout) => (
             <PlaceholderScreen>
                 <Video layout={layout} renderFormat="placeholder" />
             </PlaceholderScreen>
@@ -48,7 +48,7 @@ export const Placeholders = () => (
 
 export const Previews = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <PreviewScreen>
                 <Video layout={layout} renderFormat="preview" {...props} />
             </PreviewScreen>
@@ -58,7 +58,7 @@ export const Previews = () => (
 
 export const Editor = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <Video layout={layout} renderFormat="edit" />
             </Screen>
@@ -68,7 +68,7 @@ export const Editor = () => (
 
 export const Normal = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <Video
                     layout={layout}

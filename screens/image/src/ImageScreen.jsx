@@ -6,9 +6,8 @@ import { FormattedMessage } from 'react-intl';
 
 import TextComponent from '@micromag/element-text';
 import ImageComponent from '@micromag/element-image';
-import Background from '@micromag/element-background';
-import Frame from '@micromag/element-frame';
-import Box from '@micromag/element-box';
+import Screen from '@micromag/element-screen';
+import Stack from '@micromag/element-stack';
 
 import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
@@ -53,8 +52,8 @@ const ImageScreen = ({
     renderFormat,
     className,
 }) => {
-    const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
+    const size = useScreenSize();
+    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
     const isEmpty = isEditor && image === null && text === null;
 
     const imageElement = isEmpty ? (
@@ -71,37 +70,32 @@ const ImageScreen = ({
         </div>
     );
 
+    const containerClassNames = classNames([
+        styles.container,
+        {
+            [styles[textAlign]]: textAlign !== null,
+            [className]: className !== null,
+        },
+    ]);
+
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [styles.isSimple]: isSimple,
-                    [styles.disabled]: isSimple,
-                    [styles[textAlign]]: textAlign !== null,
-                    [className]: className !== null,
-                },
-            ])}
+        <Screen
+            size={size}
+            renderFormat={renderFormat}
+            background={background}
+            visible={visible}
+            active={active}
+            className={containerClassNames}
         >
-            <Background
-                {...(!isPlaceholder ? background : null)}
-                width={width}
-                height={height}
-                playing={(isView && visible) || (isEditor && active)}
-                className={styles.background}
-            >
-                <Frame width={width} height={height} visible={visible}>
-                    <Box {...box} withSmallSpacing={isSimple} className={styles.inner}>
-                        {isPlaceholder ? (
-                            <Placeholders.MediumImage className={styles.placeholderImage} />
-                        ) : (
-                            imageElement
-                        )}
-                        {isPlaceholder ? null : textElement}
-                    </Box>
-                </Frame>
-            </Background>
-        </div>
+            <Stack {...box} isSmall={isSimple} className={styles.inner}>
+                {isPlaceholder ? (
+                    <Placeholders.MediumImage className={styles.placeholderImage} />
+                ) : (
+                    imageElement
+                )}
+                {isPlaceholder ? null : textElement}
+            </Stack>
+        </Screen>
     );
 };
 

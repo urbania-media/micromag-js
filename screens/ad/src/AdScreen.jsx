@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-import Background from '@micromag/element-background';
-import Frame from '@micromag/element-frame';
-import Box from '@micromag/element-box';
+import Screen from '@micromag/element-screen';
+import Stack from '@micromag/element-stack';
 import Image from '@micromag/element-image';
 import Link from '@micromag/element-link';
 
@@ -50,7 +49,7 @@ const AdScreen = ({
     renderFormat,
     className,
 }) => {
-    const { width, height } = useScreenSize();
+    const size = useScreenSize();
     const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
 
     const { url, target = '_blank', rel = 'noopener noreferer' } = linkProps || {};
@@ -84,34 +83,26 @@ const AdScreen = ({
             inner
         );
 
+    const containerClassNames = classNames([
+        styles.container,
+        {
+            [className]: className !== null,
+        },
+    ]);
+
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [styles.disabled]: isSimple,
-                    [className]: className !== null,
-                },
-            ])}
+        <Screen
+            size={size}
+            renderFormat={renderFormat}
+            background={background}
+            visible={visible}
+            active={active}
+            className={containerClassNames}
         >
-            <Background
-                {...(!isPlaceholder ? background : null)}
-                width={width}
-                height={height}
-                playing={(isView && visible) || (isEditor && active)}
-                className={styles.background}
-            >
-                <Frame className={styles.frame} width={width} height={height} visible={visible}>
-                    <Box {...box} withSmallSpacing={isSimple}>
-                        {isPlaceholder ? (
-                            <Placeholders.AdImage className={styles.placeholder} />
-                        ) : (
-                            content
-                        )}
-                    </Box>
-                </Frame>
-            </Background>
-        </div>
+            <Stack {...box} isSmall={isSimple}>
+                {isPlaceholder ? <Placeholders.AdImage className={styles.placeholder} /> : content}
+            </Stack>
+        </Screen>
     );
 };
 

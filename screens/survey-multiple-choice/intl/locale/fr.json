@@ -1,4 +1,12 @@
 {
+    "screens.survey-multiple-choice.schema.properties.answers": "TRANSLATE: Answers",
     "screens.survey-multiple-choice.schema.properties.background": "Arrière-plan",
-    "screens.survey-multiple-choice.schema.title": "Sondage à choix multiples"
+    "screens.survey-multiple-choice.schema.properties.button": "TRANSLATE: Button style",
+    "screens.survey-multiple-choice.schema.properties.failure": "TRANSLATE: Failure",
+    "screens.survey-multiple-choice.schema.properties.question": "TRANSLATE: Question",
+    "screens.survey-multiple-choice.schema.properties.success": "TRANSLATE: Success",
+    "screens.survey-multiple-choice.schema.properties.text_style": "TRANSLATE: Text style",
+    "screens.survey-multiple-choice.schema.title": "Sondage à choix multiples",
+    "screens.survey-multiple-choice.screen.retry": "TRANSLATE: Retry",
+    "screens.survey-multiple-choice.screen.submit": "TRANSLATE: Submit"
 }

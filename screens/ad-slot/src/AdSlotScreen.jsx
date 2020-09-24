@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-import Background from '@micromag/element-background';
-import Frame from '@micromag/element-frame';
-import Box from '@micromag/element-box';
+import Screen from '@micromag/element-screen';
+import Stack from '@micromag/element-stack';
 
 import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
@@ -37,8 +36,8 @@ const defaultProps = {
 };
 
 const AdSlotScreen = ({ iframe, box, background, visible, active, renderFormat, className }) => {
-    const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
+    const size = useScreenSize();
+    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
     const { src = null, title } = iframe || {};
 
     const preview = isSimple ? (
@@ -56,34 +55,26 @@ const AdSlotScreen = ({ iframe, box, background, visible, active, renderFormat, 
             <iframe className={styles.iframe} src={src} title={title} />
         );
 
+    const containerClassNames = classNames([
+        styles.container,
+        {
+            [className]: className !== null,
+        },
+    ]);
+
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [styles.disabled]: isSimple,
-                    [className]: className !== null,
-                },
-            ])}
+        <Screen
+            size={size}
+            renderFormat={renderFormat}
+            background={background}
+            visible={visible}
+            active={active}
+            className={containerClassNames}
         >
-            <Background
-                {...(!isPlaceholder ? background : null)}
-                width={width}
-                height={height}
-                playing={(isView && visible) || (isEditor && active)}
-                className={styles.background}
-            >
-                <Frame className={styles.frame} width={width} height={height} visible={visible}>
-                    <Box {...box} withSmallSpacing={isSimple}>
-                        {isPlaceholder ? (
-                            <Placeholders.AdFrame className={styles.placeholder} />
-                        ) : (
-                            inner
-                        )}
-                    </Box>
-                </Frame>
-            </Background>
-        </div>
+            <Stack {...box} isSmall={isSimple}>
+                {isPlaceholder ? <Placeholders.AdFrame className={styles.placeholder} /> : inner}
+            </Stack>
+        </Screen>
     );
 };
 

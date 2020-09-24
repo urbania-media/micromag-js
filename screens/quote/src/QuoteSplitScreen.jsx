@@ -3,8 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Background from '@micromag/element-background';
-import Frame from '@micromag/element-frame';
+import Screen from '@micromag/element-screen';
 import Text from '@micromag/element-text';
 import Grid from '@micromag/element-grid';
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
@@ -67,106 +66,102 @@ const QuoteSplitScreen = ({
     renderFormat,
     className,
 }) => {
-    const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
+    const size = useScreenSize();
+    const { isPlaceholder, isEditor } = getRenderFormat(renderFormat);
 
     const items = isPlaceholder
         ? [
-            <div
-                className={classNames([
+              <div
+                  className={classNames([
                       blockStyles.splitPlaceholder,
                       blockStyles.placeholderContainer,
                   ])}
               >
-                <Placeholders.Text className={blockStyles.placeholder} />
-            </div>,
-            <div className={blockStyles.splitPlaceholder}>
-                <Placeholders.Line className={blockStyles.line} />
-            </div>,
-            <div className={blockStyles.splitPlaceholder}>
-                <Placeholders.Line className={blockStyles.line} />
-            </div>,
+                  <Placeholders.Text className={blockStyles.placeholder} />
+              </div>,
+              <div className={blockStyles.splitPlaceholder}>
+                  <Placeholders.Line className={blockStyles.line} />
+              </div>,
+              <div className={blockStyles.splitPlaceholder}>
+                  <Placeholders.Line className={blockStyles.line} />
+              </div>,
           ]
         : [
-            <div
-                className={classNames([
+              <div
+                  className={classNames([
                       blockStyles.figure,
                       {
                           [blockStyles.centered]: grid !== null,
                       },
                   ])}
               >
-                <blockquote className={blockStyles.blockquote}>
-                    <Text
-                        {...quote}
-                        className={blockStyles.quote}
-                        emptyClassName={blockStyles.empty}
-                        showEmpty={isEditor && quote === null}
+                  <blockquote className={blockStyles.blockquote}>
+                      <Text
+                          {...quote}
+                          className={blockStyles.quote}
+                          emptyClassName={blockStyles.empty}
+                          showEmpty={isEditor && quote === null}
                       />
-                </blockquote>
-            </div>,
-            <div
-                className={classNames([
+                  </blockquote>
+              </div>,
+              <div
+                  className={classNames([
                       blockStyles.figure,
                       {
                           [blockStyles.centered]: grid !== null,
                       },
                   ])}
               >
-                {author ? (
-                    <figcaption className={blockStyles.caption}>
-                        {author ? (
-                            <>
-                                <span>&mdash;</span>
-                                <Text {...author} className={blockStyles.author} />
-                            </>
+                  {author ? (
+                      <figcaption className={blockStyles.caption}>
+                          {author ? (
+                              <>
+                                  <span>&mdash;</span>
+                                  <Text {...author} className={blockStyles.author} />
+                              </>
                           ) : null}
-                    </figcaption>
+                      </figcaption>
                   ) : null}
-            </div>,
-            <div
-                className={classNames([
+              </div>,
+              <div
+                  className={classNames([
                       blockStyles.figure,
                       {
                           [blockStyles.centered]: grid !== null,
                       },
                   ])}
               >
-                {source ? (
-                    <figcaption className={blockStyles.caption}>
-                        {source ? (
-                            <cite>
-                                <Text {...source} className={blockStyles.source} />
-                            </cite>
+                  {source ? (
+                      <figcaption className={blockStyles.caption}>
+                          {source ? (
+                              <cite>
+                                  <Text {...source} className={blockStyles.source} />
+                              </cite>
                           ) : null}
-                    </figcaption>
+                      </figcaption>
                   ) : null}
-            </div>,
+              </div>,
           ];
 
+    const containerClassNames = classNames([
+        styles.container,
+        {
+            [styles[textAlign]]: textAlign !== null,
+            [className]: className,
+        },
+    ]);
+
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [styles.disabled]: isSimple,
-                    [styles[textAlign]]: textAlign !== null,
-                    [className]: className,
-                },
-            ])}
+        <Screen
+            size={size}
+            renderFormat={renderFormat}
+            background={background}
+            visible={visible}
+            active={active}
+            className={containerClassNames}
         >
-            <Background
-                {...(!isPlaceholder ? background : null)}
-                width={width}
-                height={height}
-                playing={(isView && visible) || (isEditor && active)}
-                className={styles.background}
-            >
-                <Frame width={width} height={height} visible={visible}>
-                    <Grid {...grid} items={items} className={styles.grid} />
-                </Frame>
-            </Background>
-        </div>
+            <Grid {...grid} items={items} className={styles.grid} />
+        </Screen>
     );
 };
 
