@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { ScreenPlaceholder } from '@micromag/core/components';
+import { ScreenPreview } from '@micromag/core/components';
 
 import styles from '../../styles/menus/menu-preview.module.scss';
 
@@ -47,7 +47,7 @@ const ViewerMenuPreview = ({ items, current, onClickItem, className }) => (
                         className={styles.button}
                         onClick={e => (onClickItem !== null ? onClickItem(e, item, index) : null)}
                     >
-                        <ScreenPlaceholder screen={item} />
+                        <ScreenPreview screen={item} />
                     </button>
                 </li>
             ))}
