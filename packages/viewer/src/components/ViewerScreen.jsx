@@ -25,7 +25,9 @@ const ViewerScreen = ({ screen, visible: isVisible, active, renderFormat }) => {
     return screen !== null ? (
         <div className={styles.container}>
             <Screen
-                screen={{ ...screen, visible: isVisible, active }}
+                screen={screen}
+                visible={isVisible}
+                active={active}
                 renderFormat={renderFormat}
             />
         </div>
