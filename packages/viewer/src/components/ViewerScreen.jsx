@@ -37,7 +37,9 @@ const ViewerScreen = ({ screen, index, visible: isVisible, active, renderFormat,
     return screen !== null ? (
         <div ref={ref} className={styles.container}>
             <Screen
-                screen={{ ...screen, visible: isVisible, active }}
+                screen={screen}
+                visible={isVisible}
+                active={active}
                 renderFormat={renderFormat}
             />
         </div>
