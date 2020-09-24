@@ -11,6 +11,8 @@ export const useSwipe = ({
     threshold = 3,
     // range = 2,
     disabled = false,
+    openedHeight = 200,
+    openedScale = 0.9,
     onSwipeStart = null,
     onSwipeEnd = null,
     onSwipeCancel = null,
@@ -18,6 +20,7 @@ export const useSwipe = ({
 }) => {
     const swipingIndex = useRef(null);
     const index = useRef(0);
+    const opened = useRef(false);
     const lockedAxis = useRef(null);
 
     const currentWidth = width || window.innerWidth;
@@ -37,13 +40,18 @@ export const useSwipe = ({
         ({ down = false, mx = 0, my = 0 } = {}) => {
             return items.map((item, i) => {
                 const x = disabled ? 0 : (i - index.current) * currentWidth + (down ? mx : 0);
-                const scale = disabled || !down ? 1 : 1 - Math.max(Math.abs(mx), my) / currentWidth / 2;
+                const scrollingY = disabled ? 0 : my / 5;
+                const y = opened.current ? openedHeight : scrollingY;
+
+                const scrollingScale = disabled || !down ? 1 : 1 - Math.max(Math.abs(mx), my) / currentWidth / 2;
+                const scale = opened.current ? openedScale : scrollingScale;
+
                 // const hidden =
                 //     !disabled && (i < index.current - range || i > index.current + range);
-                return getItem(item, x, 0, i, scale);
+                return getItem(item, x, y, i, scale);
             });
         },
-        [disabled, items, index, currentWidth],
+        [disabled, items, index, currentWidth, openedHeight, openedScale],
     );
 
     // Initial state
@@ -51,9 +59,9 @@ export const useSwipe = ({
         items.length,
         i => ({
             x: disabled ? 0 : i * currentWidth,
+            y: 0,
             // display: !disabled && i >= range ? 'none' : display,
             // visibility: !disabled && i >= range ? 'hidden' : 'visible',
-            item: items[i],
             zIndex: i,
             config: {
                 ...(!withSpring ? { duration: 1 } : null),
@@ -98,11 +106,19 @@ export const useSwipe = ({
                 (Math.abs(distanceX) > currentWidth / threshold // Pure distance
                 )//    (Math.abs(xDelta) > 12 && Math.abs(distanceX) > currentWidth / 12)) // Speedy flick, 12 spped and 1/12 of the screen size
             ) {
-                cancel((index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, count - 1)));
+                
+                index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, count - 1);
                 lockedAxis.current = null;
+                cancel();
                 if (onSwipeEnd !== null) {
                     onSwipeEnd(index.current);
                 }
+                return;
+            }
+
+            if (down && distanceY > openedHeight) {
+                opened.current = true;
+                cancel();                
                 return;
             }
 
@@ -126,7 +142,8 @@ export const useSwipe = ({
             if (down && lockedAxis.current === null) {
                 const distX = Math.abs(mx);
                 const distY = Math.abs(my);
-                if (distX !== distY && (my > 2 || distX > 2)) {
+                console.log(mx, my)
+                if (distX !== distY && ((opened.current ? my < -2 : my > 2) || distX > 2)) {
                     lockedAxis.current = my > distX ? 'y' : 'x';
                 }                
             }
@@ -136,6 +153,7 @@ export const useSwipe = ({
     );
 
     const reset = useCallback(() => {
+        // console.log('reset', index)
         set(getItems());
     }, [disabled, items, index, currentWidth]);
 
@@ -150,6 +168,14 @@ export const useSwipe = ({
         [reset],
     );
 
+    const setOpened = useCallback(
+        o => {
+            opened.current = o !== undefined ? o : !opened.current;
+            reset();
+        },
+        [reset]
+    );
+
     // Reset on resize or others
     useEffect(() => {
         set(getItems());
@@ -159,7 +185,9 @@ export const useSwipe = ({
         items: itemsWithProps,
         bind,
         index: index.current,
+        opened: opened.current,
         setIndex,
+        setOpened
     };
 };
 

@@ -3,8 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { ScreenPreview } from '@micromag/core/components';
 
-import styles from '../../styles/menus/menu.module.scss';
+import styles from '../../styles/menus/menu-preview.module.scss';
+
 
 const propTypes = {
     items: MicromagPropTypes.menuItems,
@@ -20,7 +22,7 @@ const defaultProps = {
     className: null,
 };
 
-const ViewerMenu = ({ items, current, onClickItem, className }) => (
+const ViewerMenuPreview = ({ items, current, onClickItem, className }) => (
     <nav
         className={classNames([
             styles.container,
@@ -45,7 +47,7 @@ const ViewerMenu = ({ items, current, onClickItem, className }) => (
                         className={styles.button}
                         onClick={e => (onClickItem !== null ? onClickItem(e, item, index) : null)}
                     >
-                        <span className={styles.dot} />
+                        <ScreenPreview screen={item} />
                     </button>
                 </li>
             ))}
@@ -53,7 +55,7 @@ const ViewerMenu = ({ items, current, onClickItem, className }) => (
     </nav>
 );
 
-ViewerMenu.propTypes = propTypes;
-ViewerMenu.defaultProps = defaultProps;
+ViewerMenuPreview.propTypes = propTypes;
+ViewerMenuPreview.defaultProps = defaultProps;
 
-export default ViewerMenu;
+export default ViewerMenuPreview;

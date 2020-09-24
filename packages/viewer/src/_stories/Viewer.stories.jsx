@@ -33,7 +33,7 @@ export default {
 // eslint-disable-next-line react/prop-types
 const Container = ({ children }) => (
     <IntlProvider locale="fr">
-        <MemoryRouter>{children}</MemoryRouter>
+        <MemoryRouter initialEntries={['/']}>{children}</MemoryRouter>
     </IntlProvider>
 );
 

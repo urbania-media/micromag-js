@@ -8,20 +8,22 @@
     overflow: hidden;
     background: $black;
 
-    .top {
+    .menuPreview {
         position: relative;
-        z-index: 2;
-        padding: 10px 0;
+        z-index: 0;
     }
 
     .content {
         @extend %fullscreen;
         z-index: 1;
+        overflow: hidden;
+        user-select: none;
     }
 
-    .content {
-        z-index: 1;
-        user-select: none;
+    .menu {
+        position: relative;
+        z-index: 2;
+        padding: 10px;
     }
 
     .screen {
