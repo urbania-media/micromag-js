@@ -67,5 +67,5 @@ export const imageWithColor = () => (
 );
 
 export const video = () => (
-    <Background width={200} height={200} video={videoFile()} />
+    <Background width={200} height={200} video={videoFile()} playing={false} />
 );

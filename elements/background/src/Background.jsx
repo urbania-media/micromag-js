@@ -23,8 +23,8 @@ const propTypes = {
 };
 
 const defaultProps = {
-    width: '100%',
-    height: '100%',
+    width: null,
+    height: null,
     horizontalPosition: 'center',
     verticalPosition: 'center',
     cover: false,
@@ -95,7 +95,7 @@ const Background = ({
             ])}
             style={finalStyle.current}
         >
-            {videoUrl !== null && playing ? <Video video={video} className={styles.video} controlsVisible={false} autoPlay loop/> : null}
+            {video !== null && playing ? <Video video={video} /> : null}
             {videoUrl !== null && !playing ? (
                 <div className={styles.poster} src={poster} style={posterStyle.current} />
             ) : null}
