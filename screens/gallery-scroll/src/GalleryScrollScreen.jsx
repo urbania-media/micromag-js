@@ -6,11 +6,11 @@ import { FormattedMessage } from 'react-intl';
 
 import Screen from '@micromag/element-screen';
 import Image from '@micromag/element-image';
-import Stack from '@micromag/element-stack';
+import { VStack, HStack } from '@micromag/element-stack';
 
 import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
-import { getRenderFormat } from '@micromag/core/utils';
+import { getRenderFormat, getComponentFromRenderFormat } from '@micromag/core/utils';
 
 import { schemas as messages } from './messages';
 
@@ -51,7 +51,7 @@ const GalleryScrollScreen = ({
     className,
 }) => {
     const size = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isEditor } = getRenderFormat(renderFormat);
 
     const defaultArray = [
         ...Array(16).map((i) => ({
@@ -89,51 +89,56 @@ const GalleryScrollScreen = ({
         groups[index].push(image);
     });
 
-    const items = groups.map((its, i) => (
-        <div key={`group-${i + 1}`} className={styles.group}>
-            {its.map((it, j) => {
-                const item =
-                    isEditor && !it ? (
-                        <Empty className={styles.empty}>
-                            <FormattedMessage {...messages.image} />
-                        </Empty>
-                    ) : (
-                        <Image
-                            image={it}
-                            fit={{ size: 'cover' }}
-                            contain
-                            className={styles.imageComponent}
-                        />
-                    );
-                return (
-                    <div
-                        key={`image-${j + 1}`}
-                        className={classNames([
-                            styles.image,
-                            {
-                                [styles[`columns${its.length}`]]: columns !== null,
-                            },
-                        ])}
-                        style={{ padding: isPlaceholder ? 2 : spacing / 2 }}
-                    >
-                        {isPlaceholder ? (
-                            <Placeholders.Image
-                                key={`image-${j + 1}`}
-                                className={styles.placeholder}
-                            />
-                        ) : (
-                            item
-                        )}
-                    </div>
-                );
-            })}
-        </div>
-    ));
+    const items = groups.map((its, i) => {
+        const stackKey = `gallery-group-${i + 1}`;
+        const stackItems = its.map((it, j) => {
+            const isEmpty = it.image !== null;
+            const item = getComponentFromRenderFormat(renderFormat, isEmpty, {
+                view: () => (
+                    <Image
+                        image={it.image}
+                        fit={{ size: 'cover' }}
+                        contain
+                        className={styles.imageComponent}
+                    />
+                ),
+                preview: () => <div className={styles.previewBlock} />,
+                empty: () => (
+                    <Empty className={styles.empty}>
+                        <FormattedMessage {...messages.image} />
+                    </Empty>
+                ),
+                placeholder: () => (
+                    <Placeholders.Image key={`image-${j + 1}`} className={styles.placeholder} />
+                ),
+            });
+
+            return (
+                <div
+                    key={`image-${j + 1}`}
+                    className={classNames([
+                        styles.image,
+                        {
+                            [styles[`columns${its.length}`]]: columns !== null,
+                        },
+                    ])}
+                    style={{ padding: isPlaceholder ? 2 : spacing / 2 }}
+                >
+                    {item}
+                </div>
+            );
+        });
+
+        return (
+            <HStack key={stackKey} horizontalAlign="space" verticalAlign="top">
+                {stackItems}
+            </HStack>
+        );
+    });
 
     const containerClassNames = classNames([
         styles.container,
         {
-            [styles.isPlaceholder]: isSimple,
             [className]: className !== null,
         },
     ]);
@@ -145,11 +150,13 @@ const GalleryScrollScreen = ({
             background={background}
             visible={visible}
             active={active}
+            spacing={spacing}
             className={containerClassNames}
+            withScroll
         >
-            <Stack axisAlign="top" isSmall={isSimple} className={styles.box}>
+            <VStack className={styles.box} verticalAlign="top">
                 {items}
-            </Stack>
+            </VStack>
         </Screen>
     );
 };

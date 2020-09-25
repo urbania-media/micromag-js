@@ -1,24 +1,26 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import AdScreen from '../AdScreen';
 
 const propTypes = {
+    fullScreen: PropTypes.bool,
     align: MicromagPropTypes.stackAlign,
 };
 
 const defaultProps = {
+    fullScreen: true,
     align: {
-        verticalAlign: 'bottom',
+        verticalAlign: 'center',
     },
 };
 
-const AdBottom = ({ ...otherProps }) => {
+const AdFull = ({ ...otherProps }) => {
     return <AdScreen {...otherProps} />;
 };
 
-AdBottom.propTypes = propTypes;
-AdBottom.defaultProps = defaultProps;
+AdFull.propTypes = propTypes;
+AdFull.defaultProps = defaultProps;
 
-export default AdBottom;
+export default AdFull;

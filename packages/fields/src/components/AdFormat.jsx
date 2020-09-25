@@ -15,13 +15,17 @@ const propTypes = {
 };
 
 const defaultProps = {
-    types: ['solid', 'dotted', 'dashed', 'groove'],
+    types: [
+        { name: '300x200', width: 300, height: 200 },
+        { name: '300x100', width: 300, height: 100 },
+        { name: '250x250', width: 250, height: 250 },
+    ],
     value: null,
     className: null,
     onChange: null,
 };
 
-const BorderTypeField = ({ types, value, className, onChange }) => (
+const AdFormatField = ({ types, value, className, onChange }) => (
     <Radios
         options={types.map((type) => ({
             value: type,
@@ -29,9 +33,9 @@ const BorderTypeField = ({ types, value, className, onChange }) => (
                 <div className={styles.type}>
                     <div
                         style={{
-                            width: 40,
-                            height: 40,
-                            border: `2px ${type} #CCC`,
+                            width: type.width / 10,
+                            height: type.height / 10,
+                            border: `2px solid #CCC`,
                         }}
                     />
                 </div>
@@ -49,7 +53,7 @@ const BorderTypeField = ({ types, value, className, onChange }) => (
     />
 );
 
-BorderTypeField.propTypes = propTypes;
-BorderTypeField.defaultProps = defaultProps;
+AdFormatField.propTypes = propTypes;
+AdFormatField.defaultProps = defaultProps;
 
-export default BorderTypeField;
+export default AdFormatField;

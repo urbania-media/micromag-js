@@ -1,3 +1,5 @@
 .container {
-    //
+    &.disabled {
+        pointer-events: none;
+    }
 }

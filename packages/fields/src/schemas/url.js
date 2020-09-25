@@ -9,10 +9,10 @@ export default {
             title: 'URL',
             component: 'url',
         },
-        target: {
-            type: 'string',
-            title: 'Cible',
-            component: 'target',
-        },
+        // target: {
+        //     type: 'string',
+        //     title: 'Cible',
+        //     component: 'target',
+        // },
     },
 };

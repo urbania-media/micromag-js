@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-// import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
+    spacing: MicromagPropTypes.spacing,
     withScroll: PropTypes.bool,
     visible: PropTypes.bool,
     className: PropTypes.string,
@@ -17,16 +18,18 @@ const propTypes = {
 const defaultProps = {
     width: '100%',
     height: '100%',
+    spacing: 0,
     withScroll: false,
     visible: true,
     className: null,
     children: null,
 };
 
-const Container = ({ width, height, visible, withScroll, className, children }) => {
+const Container = ({ width, height, spacing, visible, withScroll, className, children }) => {
     const finalStyle = {
         width,
         height,
+        padding: spacing,
     };
     return (
         <div

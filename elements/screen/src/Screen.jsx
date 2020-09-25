@@ -19,6 +19,7 @@ const propTypes = {
     visible: PropTypes.bool.isRequired,
     active: PropTypes.bool.isRequired,
     background: MicromagPropTypes.backgroundElement,
+    spacing: MicromagPropTypes.spacing,
     renderFormat: MicromagPropTypes.renderFormat.isRequired,
     withScroll: PropTypes.bool,
     className: PropTypes.string,
@@ -28,6 +29,7 @@ const propTypes = {
 
 const defaultProps = {
     background: null,
+    spacing: 0,
     withScroll: false,
     className: null,
     containerClassName: null,
@@ -39,6 +41,7 @@ const Screen = ({
     visible,
     active,
     background,
+    spacing,
     renderFormat,
     withScroll,
     className,
@@ -71,6 +74,7 @@ const Screen = ({
                     visible={visible}
                     className={containerClassName}
                     withScroll={withScroll}
+                    spacing={spacing}
                 >
                     {children}
                 </Container>

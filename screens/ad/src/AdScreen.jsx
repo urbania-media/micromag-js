@@ -5,13 +5,13 @@ import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
 import Screen from '@micromag/element-screen';
-import Stack from '@micromag/element-stack';
-import Image from '@micromag/element-image';
-import Link from '@micromag/element-link';
+import { VStack } from '@micromag/element-stack';
 
 import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
-import { getRenderFormat } from '@micromag/core/utils';
+import { getComponentFromRenderFormat } from '@micromag/core/utils';
+
+import AdImage from './AdImage';
 
 import { schemas as messages } from './messages';
 
@@ -20,10 +20,13 @@ import styles from './styles.module.scss';
 const propTypes = {
     image: MicromagPropTypes.imageElement,
     link: MicromagPropTypes.linkElement,
-    box: MicromagPropTypes.boxElement,
+    text: MicromagPropTypes.text,
+    align: MicromagPropTypes.stackAlign,
     background: MicromagPropTypes.backgroundElement,
     visible: PropTypes.bool,
     active: PropTypes.bool,
+    fullScreen: PropTypes.bool,
+    spacing: MicromagPropTypes.spacing,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -31,64 +34,59 @@ const propTypes = {
 const defaultProps = {
     image: null,
     link: null,
-    box: null,
+    text: null,
+    align: null,
     background: null,
     visible: true,
     active: false,
+    fullScreen: false,
+    spacing: 0,
     renderFormat: 'view',
     className: null,
 };
 
 const AdScreen = ({
-    image: imageProps,
-    link: linkProps,
-    box,
+    image,
+    link,
+    text,
+    align,
     background,
     visible,
     active,
+    fullScreen,
+    spacing,
     renderFormat,
     className,
 }) => {
     const size = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
-
-    const { url, target = '_blank', rel = 'noopener noreferer' } = linkProps || {};
-    const { image: { url: imageUrl = null } = {} } = imageProps || {};
-
-    const imageElement =
-        imageUrl || isEditor ? (
-            <Image
-                className={styles.content}
-                emptyClassName={styles.empty}
-                caption={{ body: 'Ad' }}
-                {...imageProps}
-            />
-        ) : null;
-
-    const inner =
-        isEditor && !imageUrl ? (
-            <Empty className={styles.empty}>
-                <FormattedMessage {...messages.schemaTitle} />
-            </Empty>
-        ) : (
-            imageElement
-        );
-
-    const content =
-        url !== null && isView ? (
-            <Link url={url} target={target} rel={rel}>
-                {inner}
-            </Link>
-        ) : (
-            inner
-        );
+    const { image: { url: imageUrl = null } = {} } = image || {};
+    const isEmpty = !imageUrl;
 
     const containerClassNames = classNames([
         styles.container,
         {
+            [styles.fullscreen]: fullScreen,
             [className]: className !== null,
         },
     ]);
+
+    const content = getComponentFromRenderFormat(renderFormat, isEmpty, {
+        view: () => (
+            <AdImage
+                image={image}
+                link={link}
+                text={text}
+                fullScreen={fullScreen}
+                renderFormat={renderFormat}
+            />
+        ),
+        empty: () => (
+            <Empty className={styles.empty}>
+                <FormattedMessage {...messages.schemaTitle} />
+            </Empty>
+        ),
+        placeholder: () => <Placeholders.AdImage className={styles.placeholder} />,
+    });
 
     return (
         <Screen
@@ -97,11 +95,10 @@ const AdScreen = ({
             background={background}
             visible={visible}
             active={active}
+            spacing={spacing}
             className={containerClassNames}
         >
-            <Stack {...box} isSmall={isSimple}>
-                {isPlaceholder ? <Placeholders.AdImage className={styles.placeholder} /> : content}
-            </Stack>
+            <VStack {...align}>{content}</VStack>
         </Screen>
     );
 };

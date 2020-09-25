@@ -1,4 +1,4 @@
-const getRenderFormat = renderFormat => {
+const getRenderFormat = (renderFormat) => {
     const isPlaceholder = renderFormat === 'placeholder';
     const isPreview = renderFormat === 'preview';
     const isEditor = renderFormat === 'edit';

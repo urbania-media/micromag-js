@@ -2,5 +2,5 @@
     "screens.ad-slot.schema.properties.ad": "Publicité",
     "screens.ad-slot.schema.properties.background": "Arrière-plan",
     "screens.ad-slot.schema.properties.layout": "Mise en page",
-    "screens.ad-slot.schema.title": "Emplacement de publicité"
+    "screens.ad-slot.schema.title": "Publicité"
 }

@@ -5,55 +5,78 @@ import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
 import Screen from '@micromag/element-screen';
-import Stack from '@micromag/element-stack';
+import { VStack } from '@micromag/element-stack';
 
 import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
-import { getRenderFormat } from '@micromag/core/utils';
+import { getComponentFromRenderFormat } from '@micromag/core/utils';
 
 import { schemas as messages } from './messages';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
-    iframe: MicromagPropTypes.adFormat,
-    box: MicromagPropTypes.boxElement,
+    iframe: MicromagPropTypes.iframe,
+    adFormat: MicromagPropTypes.adFormat,
+    align: MicromagPropTypes.stackAlign,
     background: MicromagPropTypes.backgroundElement,
     visible: PropTypes.bool,
     active: PropTypes.bool,
+    spacing: MicromagPropTypes.spacing,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     iframe: null,
-    box: null,
+    adFormat: null,
+    align: null,
     background: null,
     visible: true,
     active: false,
+    spacing: 0,
     renderFormat: 'view',
     className: null,
 };
 
-const AdSlotScreen = ({ iframe, box, background, visible, active, renderFormat, className }) => {
+const AdSlotScreen = ({
+    iframe,
+    adFormat,
+    align,
+    background,
+    visible,
+    active,
+    spacing,
+    renderFormat,
+    className,
+}) => {
     const size = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
-    const { src = null, title } = iframe || {};
 
-    const preview = isSimple ? (
-        <div className={styles.previewBlock} />
-    ) : (
-        <Empty className={styles.empty}>
-            <FormattedMessage {...messages.schemaTitle} />
-        </Empty>
-    );
+    const { src = null, title = 'Ad' } = iframe || {};
+    const { name = null, width, height } = adFormat || {};
 
-    const inner =
-        isSimple || (isEditor && !src) ? (
-            preview
-        ) : (
-            <iframe className={styles.iframe} src={src} title={title} />
-        );
+    const isEmpty = src === null;
+
+    const inner = getComponentFromRenderFormat(renderFormat, isEmpty, {
+        view: () => (
+            <iframe
+                className={styles.iframe}
+                src={src}
+                title={title}
+                width={width}
+                height={height}
+            />
+        ),
+        preview: () => <div className={styles.previewBlock} />,
+        empty: () => (
+            <div className={styles.emptyContainer} style={{ width, height }}>
+                <Empty className={styles.empty}>
+                    {name !== null ? name : <FormattedMessage {...messages.schemaTitle} />}
+                </Empty>
+            </div>
+        ),
+        placeholder: () => <Placeholders.AdFrame className={styles.placeholder} />,
+    });
 
     const containerClassNames = classNames([
         styles.container,
@@ -69,11 +92,10 @@ const AdSlotScreen = ({ iframe, box, background, visible, active, renderFormat, 
             background={background}
             visible={visible}
             active={active}
+            spacing={spacing}
             className={containerClassNames}
         >
-            <Stack {...box} isSmall={isSimple}>
-                {isPlaceholder ? <Placeholders.AdFrame className={styles.placeholder} /> : inner}
-            </Stack>
+            <VStack {...align}>{inner}</VStack>
         </Screen>
     );
 };
