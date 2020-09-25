@@ -101,7 +101,7 @@ const Viewer = ({
             if (index === currentIndex) {
                 return;
             }
-            console.log('screen change', index);
+            // console.log('screen change', index);
             if (onScreenChange !== null) {
                 onScreenChange(components[index], index);
             }

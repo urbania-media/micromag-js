@@ -2,7 +2,7 @@
 @import '~@micromag/core/scss/placeholders';
 
 .container {
-    display: flex;    
+    display: flex;
     position: relative;
     flex-direction: column;
     padding: 20px;
@@ -23,11 +23,13 @@
     margin-right: 10px;
 }
 
+/*
 .close {
 
 }
+*/
 
-.nav {    
+.nav {
     position: relative;
     flex-grow: 1;
     overflow: auto;
