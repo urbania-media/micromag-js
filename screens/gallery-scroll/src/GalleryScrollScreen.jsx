@@ -92,11 +92,11 @@ const GalleryScrollScreen = ({
     const items = groups.map((its, i) => {
         const stackKey = `gallery-group-${i + 1}`;
         const stackItems = its.map((it, j) => {
-            const isEmpty = it.image !== null;
+            const isEmpty = it && it.image !== null;
             const item = getComponentFromRenderFormat(renderFormat, isEmpty, {
                 view: () => (
                     <Image
-                        image={it.image}
+                        image={it && it.image ? it.image : null}
                         fit={{ size: 'cover' }}
                         contain
                         className={styles.imageComponent}
