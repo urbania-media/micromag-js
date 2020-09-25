@@ -9,21 +9,25 @@ import styles from '../../styles/menus/menu-preview.module.scss';
 
 
 const propTypes = {
+    title: PropTypes.string,
     items: MicromagPropTypes.menuItems,
     current: PropTypes.number,
     onClickItem: PropTypes.func,
+    onClose: PropTypes.func,
     className: PropTypes.string,
 };
 
 const defaultProps = {
+    title: 'Titre du micromag',
     items: [],
     current: 0,
     onClickItem: null,
+    onClose: null,
     className: null,
 };
 
-const ViewerMenuPreview = ({ items, current, onClickItem, className }) => (
-    <nav
+const ViewerMenuPreview = ({ title, items, current, onClickItem, onClose, className }) => (
+    <div
         className={classNames([
             styles.container,
             {
@@ -31,28 +35,35 @@ const ViewerMenuPreview = ({ items, current, onClickItem, className }) => (
             },
         ])}
     >
-        <ul className={styles.items}>
-            {items.map((item, index) => (
-                <li
-                    className={classNames([
-                        styles.item,
-                        {
-                            [styles.active]: current === index,
-                        },
-                    ])}
-                    key={`item-${index}`}
-                >
-                    <button
-                        type="button"
-                        className={styles.button}
-                        onClick={e => (onClickItem !== null ? onClickItem(e, item, index) : null)}
+        <div className={styles.header}>
+            <div className={styles.title}>{title}</div>
+            <button type="button" className={styles.share}>Share</button>
+            <button type="button" className={styles.close} onClick={onClose}>Close</button>
+        </div>
+        <nav className={styles.nav}>
+            <ul className={styles.items}>
+                {items.map((item, index) => (
+                    <li
+                        className={classNames([
+                            styles.item,
+                            {
+                                [styles.active]: current === index,
+                            },
+                        ])}
+                        key={`item-${index}`}
                     >
-                        <ScreenPreview screen={item} />
-                    </button>
-                </li>
-            ))}
-        </ul>
-    </nav>
+                        <button
+                            type="button"
+                            className={styles.button}
+                            onClick={() => (onClickItem !== null ? onClickItem(index) : null)}
+                        >
+                            <ScreenPreview screen={item} />
+                        </button>
+                    </li>
+                ))}
+            </ul>
+        </nav>
+    </div>
 );
 
 ViewerMenuPreview.propTypes = propTypes;

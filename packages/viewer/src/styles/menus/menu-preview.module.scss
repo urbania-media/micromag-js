@@ -2,8 +2,35 @@
 @import '~@micromag/core/scss/placeholders';
 
 .container {
+    display: flex;    
     position: relative;
+    flex-direction: column;
     padding: 20px;
+    background-color: $black;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.title {
+    margin-right: auto;
+}
+
+.share {
+    margin-right: 10px;
+}
+
+.close {
+
+}
+
+.nav {    
+    position: relative;
+    flex-grow: 1;
+    overflow: auto;
 }
 
 .items,
@@ -14,18 +41,14 @@
 }
 
 .items {
-    @extend %hide-scrollbars;
+    display: flex;
     position: relative;
-    overflow: auto;
-    white-space: nowrap;
-    margin: 0 -10px;
+    flex-wrap: wrap;
+    margin: -10px;
 }
 
 .item {
-    display: inline-block;
-    vertical-align: middle;
-    white-space: normal;
-    margin: 0 10px;
+    margin: 10px;
 
     .button {
         @extend %reset-button;
@@ -34,15 +57,5 @@
         height: 140px;
         padding: 10px 5px;
         background-color: $gray-800;
-    }
-
-    &:last-child {
-        margin-right: 0;
-    }
-
-    &.active {
-        .dot {
-            background-color: $white;
-        }
     }
 }
