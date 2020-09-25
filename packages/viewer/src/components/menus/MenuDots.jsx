@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import styles from '../../styles/menus/menu.module.scss';
+import styles from '../../styles/menus/menu-dots.module.scss';
 
 const propTypes = {
     items: MicromagPropTypes.menuItems,
@@ -20,7 +20,7 @@ const defaultProps = {
     className: null,
 };
 
-const ViewerMenu = ({ items, current, onClickItem, className }) => (
+const ViewerMenuDots = ({ items, current, onClickItem, className }) => (
     <nav
         className={classNames([
             styles.container,
@@ -43,7 +43,7 @@ const ViewerMenu = ({ items, current, onClickItem, className }) => (
                     <button
                         type="button"
                         className={styles.button}
-                        onClick={e => (onClickItem !== null ? onClickItem(e, item, index) : null)}
+                        onClick={() => (onClickItem !== null ? onClickItem(index) : null)}
                     >
                         <span className={styles.dot} />
                     </button>
@@ -53,7 +53,7 @@ const ViewerMenu = ({ items, current, onClickItem, className }) => (
     </nav>
 );
 
-ViewerMenu.propTypes = propTypes;
-ViewerMenu.defaultProps = defaultProps;
+ViewerMenuDots.propTypes = propTypes;
+ViewerMenuDots.defaultProps = defaultProps;
 
-export default ViewerMenu;
+export default ViewerMenuDots;

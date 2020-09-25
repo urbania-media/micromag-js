@@ -8,26 +8,26 @@ import styles from '../styles/screen.module.scss';
 
 const propTypes = {
     screen: MicromagPropTypes.screenType,
+    current: PropTypes.bool,
     active: PropTypes.bool,
-    visible: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
 };
 
 const defaultProps = {
     screen: null,
-    active: false,
-    visible: true,
+    current: false,
+    active: true,
     renderFormat: null,
 };
 
-const ViewerScreen = ({ screen, visible: isVisible, active, renderFormat }) => {
+const ViewerScreen = ({ screen, active, current, renderFormat }) => {
     
     return screen !== null ? (
         <div className={styles.container}>
             <Screen
                 screen={screen}
-                visible={isVisible}
-                active={active}
+                visible={active}
+                active={current}
                 renderFormat={renderFormat}
             />
         </div>
