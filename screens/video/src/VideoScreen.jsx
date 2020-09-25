@@ -2,13 +2,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Box from '@micromag/element-box';
-import Background from '@micromag/element-background';
-import Frame from '@micromag/element-frame';
+
+import Stack from '@micromag/element-stack';
+import Screen from '@micromag/element-screen';
 import Image from '@micromag/element-image';
 import VideoComponent from '@micromag/element-video';
+
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
+
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 
 import styles from './styles.module.scss';
@@ -57,7 +59,7 @@ const VideoScreen = ({
 }) => {
     const { width, height } = useScreenSize();
     const { size } = fit || {};
-    const { isPlaceholder, isPreview, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
+    const { isPreview, isSimple, isEditor } = getRenderFormat(renderFormat);
 
     const { video = {} } = videoField || {};
     const { loop = false, autoPlay = false } = defaultParams || {};
@@ -71,7 +73,7 @@ const VideoScreen = ({
         isPreview && video.thumbnail_url && video.metadata ? (
             <Image
                 image={{ url: video.thumbnail_url, metadata: video.metadata }}
-                className={classNames([styles.preview])}
+                className={styles.preview}
             />
         ) : (
             <Placeholder
@@ -98,30 +100,26 @@ const VideoScreen = ({
         />
     );
 
+    const containerClassNames = classNames([
+        styles.container,
+        {
+            [className]: className !== null,
+        },
+    ]);
+
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [styles.disabled]: isSimple,
-                    [className]: className !== null,
-                },
-            ])}
+        <Screen
+            size={{ width, height }}
+            renderFormat={renderFormat}
+            background={background}
+            visible={visible}
+            active={active}
+            className={containerClassNames}
         >
-            <Background
-                {...(!isPlaceholder ? background : null)}
-                width={width}
-                height={height}
-                playing={(isView && visible) || (isEditor && active)}
-                className={styles.background}
-            >
-                <Frame width={width} height={height} visible={visible}>
-                    <Box {...box} withSmallSpacing={isSimple} spacing={0} className={styles.box}>
-                        {item}
-                    </Box>
-                </Frame>
-            </Background>
-        </div>
+            <Stack {...box} isSmall={isSimple} spacing={0} className={styles.box}>
+                {item}
+            </Stack>
+        </Screen>
     );
 };
 

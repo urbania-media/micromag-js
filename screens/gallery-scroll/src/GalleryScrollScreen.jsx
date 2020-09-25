@@ -4,10 +4,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-import Background from '@micromag/element-background';
-import Frame from '@micromag/element-frame';
+import Screen from '@micromag/element-screen';
 import Image from '@micromag/element-image';
-import Box from '@micromag/element-box';
+import Stack from '@micromag/element-stack';
 
 import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
@@ -42,20 +41,20 @@ const defaultProps = {
 };
 
 const GalleryScrollScreen = ({
-    background,
     images: imageList,
     columns,
     spacing,
+    background,
     visible,
     active,
     renderFormat,
     className,
 }) => {
-    const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
+    const size = useScreenSize();
+    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
 
     const defaultArray = [
-        ...Array(16).map(i => ({
+        ...Array(16).map((i) => ({
             id: `image-${i}`,
             ...(imageList[i] ? imageList[i] : null),
         })),
@@ -71,7 +70,7 @@ const GalleryScrollScreen = ({
     let row = 0;
     let index = 0;
 
-    currentImages.forEach(image => {
+    currentImages.forEach((image) => {
         const max = columns[step];
         if (row < max) {
             row += 1;
@@ -131,30 +130,27 @@ const GalleryScrollScreen = ({
         </div>
     ));
 
+    const containerClassNames = classNames([
+        styles.container,
+        {
+            [styles.isPlaceholder]: isSimple,
+            [className]: className !== null,
+        },
+    ]);
+
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [styles.isPlaceholder]: isSimple,
-                    [className]: className,
-                },
-            ])}
+        <Screen
+            size={size}
+            renderFormat={renderFormat}
+            background={background}
+            visible={visible}
+            active={active}
+            className={containerClassNames}
         >
-            <Background
-                {...(!isPlaceholder ? background : null)}
-                width={width}
-                height={height}
-                playing={(isView && visible) || (isEditor && active)}
-                className={styles.background}
-            >
-                <Frame width={width} height={height} withScroll={!isSimple} visible={visible}>
-                    <Box axisAlign="top" withSmallSpacing={isSimple} className={styles.box}>
-                        {items}
-                    </Box>
-                </Frame>
-            </Background>
-        </div>
+            <Stack axisAlign="top" isSmall={isSimple} className={styles.box}>
+                {items}
+            </Stack>
+        </Screen>
     );
 };
 

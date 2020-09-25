@@ -17,10 +17,8 @@ const propTypes = {
     spacing: PropTypes.number,
     wrap: PropTypes.bool,
     reverse: PropTypes.bool,
-    withSmallSpacing: PropTypes.bool,
+    isSmall: PropTypes.bool,
     className: PropTypes.string,
-    itemClassName: PropTypes.string,
-    indexClassNames: PropTypes.object, // eslint-disable-line
     children: PropTypes.node,
 };
 
@@ -34,14 +32,12 @@ const defaultProps = {
     spacing: 10,
     wrap: false,
     reverse: false,
-    withSmallSpacing: false,
+    isSmall: false,
     className: null,
-    itemClassName: null,
-    indexClassNames: {},
     children: null,
 };
 
-const Box = ({
+const Stack = ({
     direction,
     axisAlign,
     crossAlign,
@@ -51,13 +47,11 @@ const Box = ({
     spacing: defaultSpacing,
     wrap,
     reverse,
-    withSmallSpacing,
+    isSmall,
     className,
-    itemClassName,
-    indexClassNames,
     children,
 }) => {
-    const spacing = withSmallSpacing ? 10 : defaultSpacing;
+    const spacing = isSmall ? 10 : defaultSpacing;
     const containerSpacing =
         items.length > 0 && spacing !== null && spacing > 0 ? spacing / 2 : spacing;
     return (
@@ -79,33 +73,12 @@ const Box = ({
                 padding: containerSpacing || null,
             }}
         >
-            {items.length > 0
-                ? items.map((item, index) => {
-                      return (
-                          <div
-                              key={`item-${index}`}
-                              className={classNames([
-                                  styles.item,
-                                  {
-                                      [itemClassName]: itemClassName !== null,
-                                      [indexClassNames[index]]: indexClassNames[index],
-                                  },
-                              ])}
-                              style={{
-                                  padding: spacing !== null && spacing > 0 ? spacing / 2 : null,
-                              }}
-                          >
-                              {item}
-                          </div>
-                      );
-                  })
-                : null}
             {children}
         </div>
     );
 };
 
-Box.propTypes = propTypes;
-Box.defaultProps = defaultProps;
+Stack.propTypes = propTypes;
+Stack.defaultProps = defaultProps;
 
-export default Box;
+export default Stack;

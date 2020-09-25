@@ -5,9 +5,8 @@ import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { animated } from 'react-spring';
 
-import Background from '@micromag/element-background';
-import Frame from '@micromag/element-frame';
-import Box from '@micromag/element-box';
+import Screen from '@micromag/element-screen';
+import Stack from '@micromag/element-stack';
 import ImageElement from '@micromag/element-image';
 import ButtonElement from '@micromag/element-button';
 import TextElement from '@micromag/element-text';
@@ -58,7 +57,7 @@ const SlideshowScreen = ({
 }) => {
     const [parallelIndex, setParallelIndex] = useState(0);
     const { width, height, screens } = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
     const maxWidth = Math.min(width, 500);
 
     const { items, bind, setIndex } = useSwipe({
@@ -140,32 +139,28 @@ const SlideshowScreen = ({
             </>
         );
 
+    const containerClassNames = classNames([
+        styles.container,
+        screens.map((size) => styles[`screen-${size}`]),
+        {
+            [styles[textAlign]]: textAlign !== null,
+            [className]: className,
+        },
+    ]);
+
     return (
-        <div
-            className={classNames([
-                styles.container,
-                screens.map(size => styles[`screen-${size}`]),
-                {
-                    [styles.disabled]: isSimple,
-                    [styles[textAlign]]: textAlign !== null,
-                    [className]: className,
-                },
-            ])}
+        <Screen
+            size={{ width, height }}
+            renderFormat={renderFormat}
+            background={background}
+            visible={visible}
+            active={active}
+            className={containerClassNames}
         >
-            <Background
-                {...(!isPlaceholder ? background : null)}
-                width={width}
-                height={height}
-                playing={(isView && visible) || (isEditor && active)}
-                className={styles.background}
-            >
-                <Frame width={maxWidth} height={height} visible={visible}>
-                    <Box {...box} withSmallSpacing={isSimple}>
-                        {isPlaceholder ? <Placeholders.Slideshow /> : inner}
-                    </Box>
-                </Frame>
-            </Background>
-        </div>
+            <Stack {...box} isSmall={isSimple}>
+                {isPlaceholder ? <Placeholders.Slideshow /> : inner}
+            </Stack>
+        </Screen>
     );
 };
 
