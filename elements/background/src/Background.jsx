@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -17,7 +17,6 @@ const propTypes = {
     color: MicromagPropTypes.color,
     image: MicromagPropTypes.image,
     video: MicromagPropTypes.video,
-    playing: PropTypes.bool,
     className: PropTypes.string,
     children: PropTypes.node,
 };
@@ -32,7 +31,6 @@ const defaultProps = {
     color: null,
     image: null,
     video: null,
-    playing: true,
     className: null,
     children: null,
 };
@@ -43,7 +41,6 @@ const Background = ({
     color,
     image,
     video,
-    playing,
     className,
     children,
     horizontalPosition,
@@ -51,38 +48,22 @@ const Background = ({
     cover,
     repeat,
 }) => {
-    const finalStyle = useRef({
+    const finalStyle = {
         width,
         height,
-    });
-    const videoUrl = useRef();
-    const poster = useRef();
-    const posterStyle = useRef({});
-
-    if (color !== null) {
-        const colorStyle = getStyleFromColor(color);
-        finalStyle.current = { ...finalStyle.current, ...colorStyle };
-    }
+        ...getStyleFromColor(color),
+    };
 
     if (image !== null) {
-        finalStyle.current.backgroundImage = `url("${image.url}")`;
-        finalStyle.current.backgroundRepeat = repeat ? 'repeat' : 'no-repeat';
-        finalStyle.current.backgroundPosition = [horizontalPosition, verticalPosition].join(' ');
+        finalStyle.backgroundImage = `url("${image.url}")`;
+        finalStyle.backgroundRepeat = repeat ? 'repeat' : 'no-repeat';
+        finalStyle.backgroundPosition = [horizontalPosition, verticalPosition].join(' ');
 
         if (cover) {
-            finalStyle.current.backgroundSize = 'cover';
+            finalStyle.backgroundSize = 'cover';
         } else {
-            finalStyle.current.backgroundSize = color || repeat ? 'contain' : 'auto';
+            finalStyle.backgroundSize = color || repeat ? 'contain' : 'auto';
         }
-    }
-
-    if (video !== null) {
-        const { url = null, thumbnail_url: thumbnail } = video || {};
-        videoUrl.current = url;
-        poster.current = thumbnail;
-        posterStyle.current.backgroundImage = `url("${thumbnail}")`;
-        posterStyle.current.backgroundSize = 'cover';
-        posterStyle.current.backgroundPosition = [horizontalPosition, verticalPosition].join(' ');
     }
 
     return (
@@ -93,13 +74,10 @@ const Background = ({
                     [className]: className !== null,
                 },
             ])}
-            style={finalStyle.current}
+            style={finalStyle}
         >
-            {video !== null && playing ? <Video video={video} /> : null}
-            {videoUrl !== null && !playing ? (
-                <div className={styles.poster} src={poster} style={posterStyle.current} />
-            ) : null}
-            {children}
+            {video !== null ? <Video video={video} className={styles.video} /> : null}
+            <div className={styles.content}>{children}</div>
         </div>
     );
 };

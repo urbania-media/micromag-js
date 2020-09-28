@@ -18,13 +18,13 @@ const propTypes = {
             height: PropTypes.number,
         }),
     }),
-    height: PropTypes.string,
-    width: PropTypes.string,
-    autoPlay: PropTypes.bool,
-    muted: PropTypes.bool,
-    loop: PropTypes.bool,
-    controlsVisible: PropTypes.bool,
-    // players: PropTypes.arrayOf(PropTypes.elementType),
+    params: PropTypes.shape({
+        autoPlay: PropTypes.bool,
+        muted: PropTypes.bool,
+        loop: PropTypes.bool,
+        controls: PropTypes.bool,
+    }),
+    players: PropTypes.arrayOf(PropTypes.elementType),
     maxWidth: PropTypes.number,
     maxHeight: PropTypes.number,
     controls: MicromagPropTypes.videoControls,
@@ -34,16 +34,11 @@ const propTypes = {
 };
 
 const defaultProps = {
-    height: '100%',
-    width: '100%',
     video: null,
-    autoPlay: false,
-    muted: true,
-    loop: false,
-    controlsVisible: true,
-    // players: null,
+    players: null,
     maxWidth: null,
     maxHeight: null,
+    params: null,
     controls: null,
     fit: null,
     showEmpty: false,
@@ -51,32 +46,32 @@ const defaultProps = {
 };
 
 const Video = ({
-    height,
-    width,
     video,
-    autoPlay,
-    muted,
-    loop,
-    // players,
+    players,
     maxWidth: defaultMaxWidth,
     maxHeight: defaultMaxHeight,
+    params,
     controls,
-    controlsVisible,
+    // controlsVisible,
     fit,
     showEmpty,
     className,
 }) => {
+    const {
+        muted: initialMuted = false,
+        loop = false,
+        controls: controlsVisible = true,
+        autoPlay = false,
+    } = params || {};
 
     const { url = null, metadata = {} } = video || {};
-    // const { width = null, height = null } = metadata;
+    const { width = null, height = null } = metadata;
 
     const maxWidth = defaultMaxWidth || width;
     const maxHeight = defaultMaxHeight || height;
     // console.log(width, height);
-    // const finalPlayers = players || Video.defaultPlayers;
-    const finalPlayers = Video.defaultPlayers;
-    const PlayerComponent =
-        url !== null ? finalPlayers.find((it) => it.testUrl(url)) || null : null;
+    const finalPlayers = players || Video.defaultPlayers;
+    const PlayerComponent = url !== null ? finalPlayers.find(it => it.testUrl(url)) || null : null;
     const refPlayer = useRef(null);
     const [playerReady, setPlayerReady] = useState(false);
     const [duration, setDuration] = useState(0);
@@ -89,7 +84,7 @@ const Video = ({
         playing: false,
         paused: false,
         ended: false,
-        muted,
+        muted: initialMuted,
     });
 
     const onPlayerReady = useCallback(() => {
@@ -99,14 +94,14 @@ const Video = ({
     }, [setPlayerReady, setDuration, setVideoSize]);
 
     const onPlayerStateChange = useCallback(
-        (newPlayerState) => {
+        newPlayerState => {
             setPlayerState(newPlayerState);
         },
         [setPlayerState],
     );
 
     const onPlayerCurrentTimeChange = useCallback(
-        (newCurrentTime) => {
+        newCurrentTime => {
             setCurrentTime(newCurrentTime);
         },
         [setCurrentTime],
@@ -117,8 +112,8 @@ const Video = ({
     }, [width, height]);
 
     useEffect(() => {
-        setPlayerState({ ...playerState, muted });
-    }, [muted, setPlayerState]);
+        setPlayerState({ ...playerState, muted: initialMuted });
+    }, [initialMuted, setPlayerState]);
 
     useEffect(() => {
         if (refPlayer.current) {
@@ -183,7 +178,7 @@ const Video = ({
                         width={playerSize.width}
                         height={playerSize.height}
                         autoPlay={autoPlay}
-                        muted={muted}
+                        muted={initialMuted}
                         loop={loop}
                         refPlayer={refPlayer}
                         className={styles.player}
@@ -200,8 +195,8 @@ const Video = ({
 Video.propTypes = propTypes;
 Video.defaultProps = defaultProps;
 Video.defaultPlayers = [];
-Video.registerPlayer = (Player) => {
-    const playerIndex = Video.defaultPlayers.findIndex((it) => it === Player);
+Video.registerPlayer = Player => {
+    const playerIndex = Video.defaultPlayers.findIndex(it => it === Player);
     if (playerIndex === -1) {
         Video.defaultPlayers = [...Video.defaultPlayers, Player];
     }
