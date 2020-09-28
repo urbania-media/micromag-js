@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -18,6 +19,10 @@ const propTypes = {
     color: MicromagPropTypes.color,
     image: MicromagPropTypes.image,
     video: MicromagPropTypes.video,
+    autoPlay: PropTypes.bool,
+    loop: PropTypes.bool,
+    muted: PropTypes.bool,
+    controls: MicromagPropTypes.controls,
     className: PropTypes.string,
     children: PropTypes.node,
 };
@@ -33,6 +38,10 @@ const defaultProps = {
     color: null,
     image: null,
     video: null,
+    autoPlay: true,
+    loop: true,
+    muted: true,
+    controls: false,
     className: null,
     children: null,
 };
@@ -48,6 +57,10 @@ const Background = ({
     color,
     image,
     video,
+    autoPlay,
+    loop,
+    muted,
+    controls,
     className,
     children,
 }) => {
@@ -81,7 +94,18 @@ const Background = ({
             ])}
             style={finalStyle}
         >
-            {video !== null ? <Video video={video} className={styles.video} /> : null}
+            {video !== null ? (
+                <Video
+                    video={video}
+                    className={styles.video}
+                    autoPlay={autoPlay}
+                    loop={loop}
+                    muted={muted}
+                    controls={controls}
+                    width={width}
+                    height={height}
+                />
+            ) : null}
             <div className={styles.content}>{children}</div>
         </div>
     );

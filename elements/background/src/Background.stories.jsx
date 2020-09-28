@@ -1,4 +1,5 @@
 import React from 'react';
+import Stack from '@micromag/element-stack';
 import { image as imageCreator, videoFile, video  } from '../../../.storybook/data';
 import Background from './Background';
 
@@ -8,15 +9,15 @@ export default {
 };
 
 export const color = () => (
-    <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+    <Stack axisAlign='around' direction='row' spacing={10}>
         <Background width={400} height={200} color={{ color: '#ff02cc', alpha: 0.5 }} />
-        <Background width={200} height={200} color={{ color: '#FF9100', alpha: 1 }} />
-        <Background width={200} height={200} color={{ color: '#FFFF00', alpha: 0.8 }} />
-    </div>
+        <Background width={200} height={350} color={{ color: '#FF9100', alpha: 1 }} />
+        <Background width={350} height={200} color={{ color: '#FFFF00', alpha: 0.8 }} />
+    </Stack>
 );
 
 export const image = () => (
-    <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+    <Stack axisAlign='around' direction='row' spacing={10}>
         <div>
             <h4>Position center</h4>
             <Background
@@ -51,11 +52,11 @@ export const image = () => (
                 verticalAlign="top"
             />
         </div>
-    </div>
+    </Stack>
 );
 
 export const imageWithColor = () => (
-    <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+    <Stack axisAlign='around' direction='row' spacing={10}>
         <div>
             <h4>Position center</h4>
             <Background
@@ -65,7 +66,7 @@ export const imageWithColor = () => (
                 color={{ color: '#FFFF00', alpha: 0.8 }}
             />
         </div>
-    </div>
+    </Stack>
 );
 
 export const videoUploaded = () => (
