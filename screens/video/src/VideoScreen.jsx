@@ -17,12 +17,7 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     video: MicromagPropTypes.video,
-    defaultParams: PropTypes.shape({
-        controls: PropTypes.bool,
-        autoPlay: PropTypes.bool,
-        muted: PropTypes.bool,
-        loop: PropTypes.bool,
-    }),
+
     background: MicromagPropTypes.backgroundElement,
     box: MicromagPropTypes.boxElement,
     fit: PropTypes.shape({
@@ -36,7 +31,6 @@ const propTypes = {
 
 const defaultProps = {
     video: null,
-    defaultParams: null,
     background: null,
     box: null,
     fit: false,
@@ -48,7 +42,6 @@ const defaultProps = {
 
 const VideoScreen = ({
     video: videoField,
-    defaultParams,
     background,
     box,
     fit,
@@ -57,12 +50,12 @@ const VideoScreen = ({
     renderFormat,
     className,
 }) => {
+    const loop = false;
+    const autoPlay = false;
     const { width, height } = useScreenSize();
     const { size } = fit || {};
     const { isPreview, isSimple, isEditor } = getRenderFormat(renderFormat);
-
-    const { video = {} } = videoField || {};
-    const { loop = false, autoPlay = false } = defaultParams || {};
+    const { video = {}, params = {} } = videoField || {};
 
     const PlaceholderSized = size === 'cover' ? Placeholders.VideoFull : Placeholders.Video;
     const PlaceholderLoop = loop ? Placeholders.VideoLoop : PlaceholderSized;
@@ -90,10 +83,11 @@ const VideoScreen = ({
         preview
     ) : (
         <VideoComponent
-            params={{ ...defaultParams, autoPlay: autoplayCondition }}
-            {...videoField}
-            maxWidth={Math.min(width, 768)}
-            maxHeight={height}
+            {...params}
+            autoPlay={autoplayCondition}
+            video={video}
+            width={Math.min(width, 768)}
+            height={height}
             fit={fit}
             showEmpty={isEditor}
             className={styles.video}
