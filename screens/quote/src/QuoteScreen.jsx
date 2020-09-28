@@ -3,10 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Background from '@micromag/element-background';
-import Frame from '@micromag/element-frame';
-import Box from '@micromag/element-box';
+import Screen from '@micromag/element-screen';
+import Stack from '@micromag/element-stack';
 import Grid from '@micromag/element-grid';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
@@ -59,8 +59,8 @@ const QuoteScreen = ({
     renderFormat,
     className,
 }) => {
-    const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
+    const size = useScreenSize();
+    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
     const { layout = [] } = grid || {};
 
     const item = (
@@ -79,40 +79,31 @@ const QuoteScreen = ({
         itemsArray.splice(index, 1, item);
     }
 
+    const containerClassNames = classNames([
+        styles.container,
+        {
+            [styles[textAlign]]: textAlign !== null,
+            [className]: className,
+        },
+    ]);
+
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [styles.disabled]: isSimple,
-                    [styles[textAlign]]: textAlign !== null,
-                    [className]: className,
-                },
-            ])}
+        <Screen
+            size={size}
+            renderFormat={renderFormat}
+            background={background}
+            visible={visible}
+            active={active}
+            className={containerClassNames}
         >
-            <Background
-                {...(!isPlaceholder ? background : null)}
-                width={width}
-                height={height}
-                playing={(isView && visible) || (isEditor && active)}
-                className={styles.background}
-            >
-                <Frame width={width} height={height} visible={visible}>
-                    {grid !== null ? (
-                        <Grid
-                            {...grid}
-                            withSmallSpacing={isSimple}
-                            items={itemsArray}
-                            className={styles.grid}
-                        />
-                    ) : (
-                        <Box {...box} withSmallSpacing={isSimple} className={styles.box}>
-                            {item}
-                        </Box>
-                    )}
-                </Frame>
-            </Background>
-        </div>
+            {grid !== null ? (
+                <Grid {...grid} isSmall={isSimple} items={itemsArray} className={styles.grid} />
+            ) : (
+                <Stack {...box} isSmall={isSimple} className={styles.box}>
+                    {item}
+                </Stack>
+            )}
+        </Screen>
     );
 };
 

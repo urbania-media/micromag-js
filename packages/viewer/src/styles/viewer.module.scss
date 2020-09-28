@@ -8,19 +8,27 @@
     overflow: hidden;
     background: $black;
 
-    .top {
-        position: relative;
-        z-index: 2;
-        padding: 10px 0;
-    }
-
     .content {
         @extend %fullscreen;
         z-index: 1;
+        overflow: hidden;
+        user-select: none;
     }
 
-    .content {
-        z-index: 1;
+    .menu {
+        position: relative;
+        z-index: 2;
+        padding: 10px;
+    }
+
+    .menuPreviewContainer {
+        @extend %fullscreen;
+        z-index: 3;
+        top: -100%;
+    }
+
+    .menuPreview {
+        @extend %fullscreen;
     }
 
     .screen {
@@ -32,13 +40,7 @@
 
     &.desktop {
         .content {
-            scroll-snap-type: y mandatory;
-            overflow-y: scroll;
-
-            > div {
-                position: relative;
-                scroll-snap-align: start;
-            }
+            overflow-y: auto;
 
             .screen {
                 position: relative;

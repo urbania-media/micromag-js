@@ -13,7 +13,12 @@ import GalleryScroll from '../GalleryScroll';
 import layouts from '../layouts/names';
 
 const props = {
-    images: images({ width: 500, height: 300, count: 20 }),
+    images: images({ width: 500, height: Math.random() > 0.5 ? 300 : 200, count: 20 }),
+    background: background(),
+};
+
+const smallProps = {
+    images: images({ width: 150, height: 100, count: 20 }),
     background: background(),
 };
 
@@ -28,7 +33,7 @@ export default {
 
 export const Placeholders = () => (
     <LayoutGrid layouts={layouts}>
-        {layout => (
+        {(layout) => (
             <PlaceholderScreen>
                 <GalleryScroll layout={layout} renderFormat="placeholder" />
             </PlaceholderScreen>
@@ -38,7 +43,7 @@ export const Placeholders = () => (
 
 export const Previews = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <PreviewScreen>
                 <GalleryScroll layout={layout} renderFormat="preview" {...props} />
             </PreviewScreen>
@@ -48,7 +53,7 @@ export const Previews = () => (
 
 export const Editor = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <GalleryScroll layout={layout} renderFormat="edit" />
             </Screen>
@@ -58,9 +63,19 @@ export const Editor = () => (
 
 export const Normal = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <GalleryScroll layout={layout} {...props} />
+            </Screen>
+        )}
+    </LayoutSwitcher>
+);
+
+export const Small = () => (
+    <LayoutSwitcher {...switcherProps}>
+        {(layout) => (
+            <Screen>
+                <GalleryScroll layout={layout} {...smallProps} />
             </Screen>
         )}
     </LayoutSwitcher>

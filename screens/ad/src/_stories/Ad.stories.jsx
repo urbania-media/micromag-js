@@ -28,7 +28,7 @@ export default {
 
 export const Placeholders = () => (
     <LayoutGrid layouts={layouts}>
-        {layout => (
+        {(layout) => (
             <PlaceholderScreen>
                 <Ad layout={layout} renderFormat="placeholder" />
             </PlaceholderScreen>
@@ -38,7 +38,7 @@ export const Placeholders = () => (
 
 export const Previews = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <PreviewScreen>
                 <Ad layout={layout} renderFormat="preview" {...props} />
             </PreviewScreen>
@@ -48,7 +48,7 @@ export const Previews = () => (
 
 export const Editor = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <PreviewScreen>
                 <Ad layout={layout} renderFormat="edit" />
             </PreviewScreen>
@@ -58,7 +58,7 @@ export const Editor = () => (
 
 export const Normal = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <Ad layout={layout} {...props} />
             </Screen>
@@ -68,7 +68,7 @@ export const Normal = () => (
 
 export const MediumRectangle = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <Ad layout={layout} {...props} image={image({ width: 300, height: 250 })} />
             </Screen>
@@ -78,7 +78,7 @@ export const MediumRectangle = () => (
 
 export const LargeRectangle = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <Ad layout={layout} {...props} image={image({ width: 336, height: 280 })} />
             </Screen>
@@ -88,7 +88,7 @@ export const LargeRectangle = () => (
 
 export const Skyscraper = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <Ad layout={layout} {...props} image={image({ width: 300, height: 600 })} />
             </Screen>
@@ -98,7 +98,7 @@ export const Skyscraper = () => (
 
 export const MobilePortrait = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <Ad layout={layout} {...props} image={image({ width: 320, height: 480 })} />
             </Screen>
@@ -106,15 +106,15 @@ export const MobilePortrait = () => (
     </LayoutSwitcher>
 );
 
-export const FullScreen = () => (
+export const WithSpacing = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <Ad
                     layout={layout}
                     {...props}
-                    image={image({ width: 500, height: 700 })}
-                    isFullScreen
+                    spacing={20}
+                    image={image({ width: 320, height: 480 })}
                 />
             </Screen>
         )}

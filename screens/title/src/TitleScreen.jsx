@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-import Background from '@micromag/element-background';
-import Frame from '@micromag/element-frame';
+import Screen from '@micromag/element-screen';
 import Heading from '@micromag/element-heading';
 import Text from '@micromag/element-text';
 import Grid from '@micromag/element-grid';
-import Box from '@micromag/element-box';
+import Stack from '@micromag/element-stack';
 
 import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
 import { getComponentFromName, getRenderFormat } from '@micromag/core/utils';
@@ -60,23 +59,23 @@ const TitleScreen = ({
     description,
     groups,
     grid,
-    box,
     background,
+    box,
     textAlign,
     visible,
     active,
     renderFormat,
     className,
 }) => {
-    const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
+    const size = useScreenSize();
+    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
 
     const options = { title, subtitle, description };
     const hasValue = title !== null || subtitle !== null || description !== null;
 
-    const items = groups.map(its => (
+    const items = groups.map((its) => (
         <div className={styles.group} key={`group-${its.join('-')}`}>
-            {its.map(name => {
+            {its.map((name) => {
                 const key = `group-item-${name}`;
                 const value = options[name] || null;
 
@@ -96,48 +95,39 @@ const TitleScreen = ({
                 if (name === 'description') {
                     return <Text {...value} className={styles[name]} key={key} />;
                 }
-                const props = HEADING_SIZES[name] || null;
-                return <Heading {...props} {...value} className={styles.title} key={key} />;
+                const otherProps = HEADING_SIZES[name] || null;
+                return <Heading {...otherProps} {...value} className={styles.title} key={key} />;
             })}
         </div>
     ));
 
+    const containerClassNames = classNames([
+        styles.container,
+        {
+            [styles[textAlign]]: textAlign !== null,
+            [className]: className !== null,
+        },
+    ]);
+
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [styles.disabled]: isSimple,
-                    [styles[textAlign]]: textAlign !== null,
-                    [className]: className,
-                },
-            ])}
+        <Screen
+            size={size}
+            renderFormat={renderFormat}
+            background={background}
+            visible={visible}
+            active={active}
+            className={containerClassNames}
         >
-            <Background
-                {...(!isPlaceholder ? background : null)}
-                width={width}
-                height={height}
-                playing={(isView && visible) || (isEditor && active)}
-                className={styles.background}
-            >
-                <Frame width={width} height={height} visible={visible}>
-                    <div className={styles.inner}>
-                        {grid !== null ? (
-                            <Grid
-                                {...grid}
-                                items={items}
-                                withSmallSpacing={isSimple}
-                                className={styles.grid}
-                            />
-                        ) : (
-                            <Box {...box} className={styles.box}>
-                                {items}
-                            </Box>
-                        )}
-                    </div>
-                </Frame>
-            </Background>
-        </div>
+            <div className={styles.inner}>
+                {grid !== null ? (
+                    <Grid {...grid} items={items} isSmall={isSimple} className={styles.grid} />
+                ) : (
+                    <Stack {...box} className={styles.box}>
+                        {items}
+                    </Stack>
+                )}
+            </div>
+        </Screen>
     );
 };
 

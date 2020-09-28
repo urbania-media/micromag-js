@@ -32,6 +32,13 @@ export default {
                         title: messages.ad,
                     },
                 },
+                adFormat: {
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/ad-format.json',
+                    title: 'Format',
+                    intl: {
+                        title: messages.adFormat,
+                    },
+                },
                 background: {
                     $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
                     title: 'Background',

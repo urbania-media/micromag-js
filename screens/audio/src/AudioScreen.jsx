@@ -6,9 +6,8 @@ import classNames from 'classnames';
 import AudioElement from '@micromag/element-audio';
 import TextElement from '@micromag/element-text';
 import ImageElement from '@micromag/element-image';
-import Background from '@micromag/element-background';
-import Frame from '@micromag/element-frame';
-import Box from '@micromag/element-box';
+import Screen from '@micromag/element-screen';
+import Stack from '@micromag/element-stack';
 
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
@@ -56,62 +55,59 @@ const AudioScreen = ({
     text,
     box,
     background,
-    maxWidth,
     visible,
     active,
+    maxWidth,
     renderFormat,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
+
+    const containerClassNames = classNames([
+        styles.container,
+        {
+            [className]: className !== null,
+        },
+    ]);
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [styles.disabled]: isSimple,
-                    [className]: className !== null,
-                },
-            ])}
+        <Screen
+            size={{ width, height }}
+            renderFormat={renderFormat}
+            background={background}
+            visible={visible}
+            active={active}
+            className={containerClassNames}
         >
-            <Background
-                {...(!isPlaceholder ? background : null)}
-                width={width}
-                height={height}
-                playing={(isView && visible) || (isEditor && active)}
-            >
-                <Frame width={width} height={height} visible={visible}>
-                    <Box {...box} withSmallSpacing={isSimple} className={styles.box}>
-                        {isPlaceholder && image !== null ? (
-                            <Placeholders.MediumImage className={styles.placeholder} />
-                        ) : (
-                            <ImageElement
-                                {...image}
-                                maxWidth={image !== null ? Math.min(width, maxWidth) : null}
-                                maxHeight={image !== null ? Math.min(width, maxWidth) : null}
-                                fit={{ size: 'cover' }}
-                                contain
-                                className={styles.image}
-                            />
-                        )}
-                        {isPlaceholder ? (
-                            <Placeholders.Audio className={styles.placeholder} />
-                        ) : (
-                            <AudioElement
-                                className={styles.audio}
-                                {...(isSimple ? { ...audio, src: null } : audio)}
-                            />
-                        )}
-                        {isPlaceholder && text !== null ? (
-                            <Placeholders.Text className={styles.placeholder} />
-                        ) : (
-                            <TextElement {...text} className={styles.text} />
-                        )}
-                    </Box>
-                </Frame>
-            </Background>
-        </div>
+            <Stack {...box} isSmall={isSimple} className={styles.box}>
+                {isPlaceholder && image !== null ? (
+                    <Placeholders.MediumImage className={styles.placeholder} />
+                ) : (
+                    <ImageElement
+                        {...image}
+                        maxWidth={image !== null ? Math.min(width, maxWidth) : null}
+                        maxHeight={image !== null ? Math.min(width, maxWidth) : null}
+                        fit={{ size: 'cover' }}
+                        contain
+                        className={styles.image}
+                    />
+                )}
+                {isPlaceholder ? (
+                    <Placeholders.Audio className={styles.placeholder} />
+                ) : (
+                    <AudioElement
+                        className={styles.audio}
+                        {...(isSimple ? { ...audio, src: null } : audio)}
+                    />
+                )}
+                {isPlaceholder && text !== null ? (
+                    <Placeholders.Text className={styles.placeholder} />
+                ) : (
+                    <TextElement {...text} className={styles.text} />
+                )}
+            </Stack>
+        </Screen>
     );
 };
 

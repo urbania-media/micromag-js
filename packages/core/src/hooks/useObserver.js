@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 
-const buildThresholdArray = () => Array.from(Array(10).keys(), i => i / 10);
+const buildThresholdArray = () => [0, 1.0];
 
 const observersCache = new Map();
 
@@ -10,38 +10,76 @@ const getOptionsKey = ({ root = null, rootMargin, threshold = null }) =>
 const createObserver = (Observer, options = {}) => {
     let subscribers = [];
 
-    const observer = new Observer(entries => {
-        entries.forEach(entry => {
-            subscribers.forEach(({ element, callback }) => {
+    const addSubscriber = (element, callback) => {
+        const currentSubscriber = subscribers.find((it) => it.element === element) || null;
+        if (currentSubscriber !== null) {
+            return subscribers
+                .map((it) =>
+                    it.element === element && it.callbacks.indexOf(callback) === -1
+                        ? {
+                              ...it,
+                              callbacks: [...it.callbacks, callback],
+                          }
+                        : it,
+                )
+                .filter((it) => it.callbacks.length > 0);
+        }
+        return [
+            ...subscribers,
+            {
+                element,
+                callbacks: [callback],
+            },
+        ];
+    };
+
+    const removeSubscriber = (element, callback) =>
+        subscribers
+            .map((it) =>
+                it.element === element
+                    ? {
+                          ...it,
+                          callbacks: it.callbacks.filter((subCallback) => subCallback !== callback),
+                      }
+                    : it,
+            )
+            .filter((it) => it.callbacks.length > 0);
+
+    const onUpdate = (entries) => {
+        entries.forEach((entry) => {
+            subscribers.forEach(({ element, callbacks }) => {
                 if (element === entry.target) {
-                    callback(entry);
+                    callbacks.forEach((callback) => {
+                        callback(entry);
+                    });
                 }
             });
         });
-    }, options);
+    };
 
-    const unsubscribe = element => {
-        subscribers = subscribers.filter(it => it.element !== element);
+    const observer = new Observer(onUpdate, options);
+
+    const unsubscribe = (element, callback = null) => {
+        subscribers = removeSubscriber(element, callback);
         if (typeof observer.unobserve === 'undefined') {
             observer.disconnect();
-            subscribers.forEach(subscriber => {
+            subscribers.forEach((subscriber) => {
                 observer.observe(subscriber.element);
             });
             return;
         }
-        observer.unobserve(element);
+        const currentSubscriber = subscribers.find((it) => it.element === element) || null;
+        if (currentSubscriber === null) {
+            observer.unobserve(element);
+        }
     };
 
     const subscribe = (element, callback) => {
-        const currentSubscriber = subscribers.findIndex(it => it.element === element) || null;
-        if (currentSubscriber !== null) {
-            unsubscribe(element);
+        const currentSubscriber = subscribers.find((it) => it.element === element) || null;
+        subscribers = addSubscriber(element, callback);
+        if (currentSubscriber === null) {
+            observer.observe(element);
         }
-        subscribers.push({
-            element,
-            callback,
-        });
-        observer.observe(element);
     };
 
     return {
@@ -51,7 +89,7 @@ const createObserver = (Observer, options = {}) => {
     };
 };
 
-const getObserver = (Observer, options = {}) => {
+export const getObserver = (Observer, options = {}) => {
     const observerKey = getOptionsKey(options);
     if (!observersCache.has(Observer)) {
         observersCache.set(Observer, {});
@@ -64,22 +102,38 @@ const getObserver = (Observer, options = {}) => {
     return observers[observerKey];
 };
 
-export const useObserver = (Observer, opts = {}, initialEntry = {}, changes = []) => {
+export const useObserver = (Observer, opts = {}, initialEntry = {}) => {
+    const { root = null, rootMargin = null, threshold = null, disabled = false } = opts;
     const [entry, setEntry] = useState(initialEntry);
     const nodeRef = useRef(null);
-
+    const currentElement = useRef(null);
+    const elementChanged = nodeRef.current !== currentElement.current;
     useEffect(() => {
-        const { subscribe, unsubscribe } = getObserver(Observer, opts || {});
-
-        if (nodeRef.current !== null) {
-            subscribe(nodeRef.current, newEntry => setEntry(newEntry));
+        const { current: nodeElement } = nodeRef;
+        const callback = (newEntry) => setEntry(newEntry);
+        let unsubscribe = null;
+        if (nodeElement !== null) {
+            const newOpts = {};
+            if (root !== null) {
+                newOpts.root = root;
+            }
+            if (rootMargin !== null) {
+                newOpts.rootMargin = rootMargin;
+            }
+            if (threshold !== null) {
+                newOpts.threshold = threshold;
+            }
+            const { subscribe, unsubscribe: localUnsubscribe } = getObserver(Observer, newOpts);
+            unsubscribe = localUnsubscribe;
+            subscribe(nodeElement, callback);
         }
+        currentElement.current = nodeElement;
         return () => {
-            if (nodeRef.current !== null) {
-                unsubscribe(nodeRef.current);
+            if (unsubscribe !== null) {
+                unsubscribe(nodeElement, callback);
             }
         };
-    }, [nodeRef.current, ...Object.values(opts || {}), ...changes]);
+    }, [Observer, elementChanged, disabled, root, rootMargin, threshold]);
 
     return {
         ref: nodeRef,
@@ -87,38 +141,45 @@ export const useObserver = (Observer, opts = {}, initialEntry = {}, changes = []
     };
 };
 
+/**
+ * Intersection Observer
+ */
 const thresholdArray = buildThresholdArray();
-
+const intersectionObserverInitialEntry = {
+    target: null,
+    time: null,
+    isVisible: false,
+    isIntersecting: false,
+    intersectionRatio: 0,
+    intersectionRect: null,
+    boundingClientRect: null,
+    rootBounds: null,
+};
 export const useIntersectionObserver = ({
     root = null,
     rootMargin = '0px',
     threshold = thresholdArray,
-} = {}, changes = []) => {
-    const returnValue = useObserver(
+    disabled = false,
+} = {}) =>
+    useObserver(
         IntersectionObserver,
         {
             root,
             rootMargin,
             threshold,
+            disabled,
         },
-        {
-            target: null,
-            time: null,
-            isVisible: false,
-            isIntersecting: false,
-            intersectionRatio: 0,
-            intersectionRect: null,
-            boundingClientRect: null,
-            rootBounds: null,
-        },
-        changes,
+        intersectionObserverInitialEntry,
     );
-    return returnValue;
-};
 
-export const useResizeObserver = (opts, changes = []) => {
-    const returnValue = useObserver(ResizeObserver, opts, {
-        contentRect: null,
-    }, changes);
-    return returnValue;
+/**
+ * Resize Observer
+ */
+const resizeObserverInitialEntry = {
+    target: null,
+    contentRect: null,
+    contentBoxSize: null,
+    borderBoxSize: null,
 };
+export const useResizeObserver = ({ disabled = false } = {}) =>
+    useObserver(ResizeObserver, { disabled }, resizeObserverInitialEntry);

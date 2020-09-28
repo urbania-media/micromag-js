@@ -5,10 +5,9 @@ import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
 import Video from '@micromag/element-video';
-import Box from '@micromag/element-box';
+import Stack from '@micromag/element-stack';
 import Grid from '@micromag/element-grid';
-import Background from '@micromag/element-background';
-import Frame from '@micromag/element-frame';
+import Screen from '@micromag/element-screen';
 import TextComponent from '@micromag/element-text';
 
 import { useScreenSize } from '@micromag/core/contexts';
@@ -50,19 +49,19 @@ const defaultProps = {
 const TextVideoScreen = ({
     text,
     video,
-    background,
     box,
     grid,
-    textAlign,
-    reverse,
+    background,
     visible,
     active,
+    textAlign,
+    reverse,
     renderFormat,
     className,
 }) => {
     const { width, height } = useScreenSize();
     const { spacing = 10 } = box || {};
-    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
     const showEmpty = text === null && video === null;
 
     let videoSize = {};
@@ -104,40 +103,31 @@ const TextVideoScreen = ({
 
     const items = reverse ? [textElement, videoElement] : [videoElement, textElement];
 
+    const containerClassNames = classNames([
+        styles.container,
+        {
+            [styles[textAlign]]: textAlign !== null,
+            [className]: className !== null,
+        },
+    ]);
+
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [styles.disabled]: isSimple,
-                    [styles[textAlign]]: textAlign !== null,
-                    [className]: className !== null,
-                },
-            ])}
+        <Screen
+            size={{ width, height }}
+            renderFormat={renderFormat}
+            background={background}
+            visible={visible}
+            active={active}
+            className={containerClassNames}
         >
-            <Background
-                {...(!isPlaceholder ? background : null)}
-                width={width}
-                height={height}
-                playing={(isView && visible) || (isEditor && active)}
-                className={styles.background}
-            >
-                <Frame width={width} height={height} visible={visible}>
-                    {grid !== null ? (
-                        <Grid
-                            {...grid}
-                            items={items}
-                            withSmallSpacing={isSimple}
-                            className={styles.box}
-                        />
-                    ) : (
-                        <Box {...box} withSmallSpacing={isSimple} className={styles.box}>
-                            {items}
-                        </Box>
-                    )}
-                </Frame>
-            </Background>
-        </div>
+            {grid !== null ? (
+                <Grid {...grid} items={items} isSmall={isSimple} className={styles.box} />
+            ) : (
+                <Stack {...box} isSmall={isSimple} className={styles.box}>
+                    {items}
+                </Stack>
+            )}
+        </Screen>
     );
 };
 

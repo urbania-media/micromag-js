@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import VideoScreen from '../VideoScreen';
+import GifScreen from '../GifScreen';
 
 const propTypes = {
     box: MicromagPropTypes.boxElement,
@@ -32,11 +32,11 @@ const defaultProps = {
     },
 };
 
-const FullLoop = ({ ...props }) => {
-    return <VideoScreen {...props} />;
+const GifFull = ({ ...props }) => {
+    return <GifScreen {...props} />;
 };
 
-FullLoop.propTypes = propTypes;
-FullLoop.defaultProps = defaultProps;
+GifFull.propTypes = propTypes;
+GifFull.defaultProps = defaultProps;
 
-export default FullLoop;
+export default GifFull;

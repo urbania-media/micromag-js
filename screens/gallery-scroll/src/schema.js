@@ -38,6 +38,13 @@ export default {
                         title: messages.background,
                     },
                 },
+                spacing: {
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/spacing.json',
+                    title: 'Spacing',
+                    intl: {
+                        title: messages.spacing,
+                    },
+                },
             },
         },
     ],

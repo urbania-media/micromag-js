@@ -5,13 +5,12 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import AdScreen from '../AdScreen';
 
 const propTypes = {
-    box: MicromagPropTypes.boxElement,
+    align: MicromagPropTypes.stackAlign,
 };
 
 const defaultProps = {
-    box: {
-        direction: 'column',
-        axisAlign: 'center',
+    align: {
+        verticalAlign: 'center',
     },
 };
 

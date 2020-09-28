@@ -1,10 +1,12 @@
 {
+    "screens.survey-yes-no.schema.properties.answer_no": "Answer No",
+    "screens.survey-yes-no.schema.properties.answer_yes": "Answer Yes",
     "screens.survey-yes-no.schema.properties.background": "Background",
-    "screens.survey-yes-no.schema.properties.bad_answer_image": "NO answer image",
-    "screens.survey-yes-no.schema.properties.bad_answer_text": "NO answer text",
-    "screens.survey-yes-no.schema.properties.good_answer_image": "YES answer image",
-    "screens.survey-yes-no.schema.properties.good_answer_text": "YES answer text",
-    "screens.survey-yes-no.schema.properties.question_image": "Question image",
-    "screens.survey-yes-no.schema.properties.question_text": "Question text",
-    "screens.survey-yes-no.schema.title": "Survey with yes or no"
+    "screens.survey-yes-no.schema.properties.button": "Button style",
+    "screens.survey-yes-no.schema.properties.question": "Question",
+    "screens.survey-yes-no.schema.properties.text_style": "Text style",
+    "screens.survey-yes-no.schema.title": "Survey with yes or no",
+    "screens.survey-yes-no.screen.no": "No",
+    "screens.survey-yes-no.screen.retry": "Retry",
+    "screens.survey-yes-no.screen.yes": "Yes"
 }

@@ -40,26 +40,25 @@ export default {
                         title: messages.link,
                     },
                 },
-                // NICETOHAVE: add sponsor/presented by underneath the image ?
-                // text: {
-                //     $ref: 'https://schemas.micromag.ca/0.1/elements/text.json',
-                //     title: 'Description',
-                //     intl: {
-                //         title: messages.text,
-                //     },
-                // },
-                // logo: {
-                //     $ref: 'https://schemas.micromag.ca/0.1/elements/image.json',
-                //     title: 'Logo',
-                //     intl: {
-                //         title: messages.logo,
-                //     },
-                // },
+                text: {
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/text.json',
+                    title: 'Sponsor',
+                    intl: {
+                        title: messages.sponsor,
+                    },
+                },
                 background: {
                     $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
                     title: 'Background',
                     intl: {
                         title: messages.background,
+                    },
+                },
+                spacing: {
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/spacing.json',
+                    title: 'Spacing',
+                    intl: {
+                        title: messages.spacing,
                     },
                 },
             },

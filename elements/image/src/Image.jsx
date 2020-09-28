@@ -22,6 +22,7 @@ const propTypes = {
     fit: MicromagPropTypes.objectFit,
     imageStyle: MicromagPropTypes.imageStyle,
     containerStyle: MicromagPropTypes.containerStyle,
+    captionStyle: MicromagPropTypes.textStyle,
     className: PropTypes.string,
     imageClassName: PropTypes.string,
 };
@@ -38,6 +39,7 @@ const defaultProps = {
     fit: null,
     imageStyle: {},
     containerStyle: {},
+    captionStyle: {},
     className: null,
     imageClassName: null,
 };
@@ -50,6 +52,7 @@ const Image = ({
     fit: defaultFit,
     imageStyle,
     containerStyle,
+    captionStyle,
     className,
     imageClassName,
 }) => {
@@ -122,6 +125,7 @@ const Image = ({
 
     return (
         <div
+            id="image"
             className={classNames([
                 styles.container,
                 {
@@ -133,7 +137,7 @@ const Image = ({
             {img}
             {url && caption ? (
                 <div className={styles.caption}>
-                    <TextElement body={caption} className={styles.text} />
+                    <TextElement body={caption} style={captionStyle} className={styles.text} />
                 </div>
             ) : null}
         </div>

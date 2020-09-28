@@ -11,7 +11,7 @@ import VideoTest from './data/test.mp4';
 
 const chance = new Chance();
 
-const random = array => array[Math.floor(Math.random() * array.length)];
+const random = (array) => array[Math.floor(Math.random() * array.length)];
 
 const words = (likelyhood = 100, min = 2, max = 6) =>
     likelyhood === 100 ? randomWords.slice(0, chance.integer({ min, max })).join(' ') : null;
@@ -155,6 +155,7 @@ export const audio = () => ({
 export const advertising = ({ width, height }) => ({
     image: { image: { url: `https://picsum.photos/${width}/${height}`, width, height } },
     url: { url: 'https://www.urbania.ca', target: '_blank', rel: 'noopener noreferer' },
+    text: { body: 'Presented by Paul' },
 });
 
 export const markers = ({ count = 3, withText = true, withImage = true } = {}) => {

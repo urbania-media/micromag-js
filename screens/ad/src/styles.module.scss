@@ -4,13 +4,19 @@
 .container {
     @extend %screen;
 
+    &.fullscreen {
+        width: 100%;
+        height: 100%;
+    }
+
     .empty {
         @extend %empty;
         @extend %empty-image;
-    }
 
-    .inner {
-        position: relative;
+        &.fullscreen {
+            width: 100%;
+            height: 100%;
+        }
     }
 
     .placeholder {
@@ -22,21 +28,11 @@
         width: 100%;
         height: 100%;
     }
+}
 
-    .frame {
-        display: flex;
-        position: relative;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .iframe {
+.image {
+    &.fullscreen {
         width: 100%;
         height: 100%;
-    }
-
-    .previewBlock {
-        display: block;
-        background-color: rgba(0, 0, 0, 0.5);
     }
 }

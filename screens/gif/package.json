@@ -1,0 +1,71 @@
+{
+    "name": "@micromag/screen-gif",
+    "version": "0.1.29",
+    "description": "",
+    "keywords": [
+        "javascript"
+    ],
+    "homepage": "https://github.com/urbania-media/micromag-js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/urbania-media/micromag-js.git"
+    },
+    "author": {
+        "name": "Folklore",
+        "email": "info@folklore.email"
+    },
+    "contributors": [
+        {
+            "name": "David Mongeau-Petitpas",
+            "email": "dmp@folklore.email"
+        },
+        {
+            "name": "Nicolas Roy-Bourdages",
+            "email": "nrb@folklore.email"
+        }
+    ],
+    "license": "ISC",
+    "main": "lib/index.js",
+    "module": "es/index.js",
+    "files": [
+        "lib",
+        "es",
+        "assets"
+    ],
+    "scripts": {
+        "clean": "rm -rf assets && rm -rf lib && rm -rf es",
+        "build": "NODE_ENV=production ../../node_modules/.bin/rollup --config ../../rollup.config.js",
+        "intl": "node ../../scripts/build-package-intl-translations.js",
+        "css:mkdir": "mkdir -p ./assets/css/",
+        "css:copy": "cp es/styles.css ./assets/css/styles.css",
+        "css:clean": "rm -f es/styles.css && rm -f lib/styles.css",
+        "css": "npm run css:mkdir && npm run css:copy && npm run css:clean",
+        "prepare": "npm run clean && npm run build && npm run css && npm run intl"
+    },
+    "devDependencies": {
+        "react": ">=15.0.0 || ^16.0.0",
+        "react-dom": ">=15.0.0 || ^16.0.0"
+    },
+    "peerDependencies": {
+        "react": ">=15.0.0 || ^16.0.0",
+        "react-dom": ">=15.0.0 || ^16.0.0"
+    },
+    "dependencies": {
+        "@babel/runtime": "^7.8.7",
+        "@micromag/core": "^0.1.29",
+        "@micromag/element-screen": "^0.1.29",
+        "@micromag/element-stack": "^0.1.29",
+        "@micromag/element-image": "^0.1.29",
+        "@micromag/element-text": "^0.1.29",
+        "@micromag/element-video": "^0.1.29",
+        "classnames": "^2.2.6",
+        "lodash": "^4.17.15",
+        "prop-types": "^15.7.2",
+        "react-intl": "^4.5.0",
+        "uuid": "^7.0.2"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "gitHead": "cc83150016c207039000c37fb4fcc3a660940fab"
+}

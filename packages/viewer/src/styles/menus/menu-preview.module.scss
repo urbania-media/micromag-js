@@ -1,0 +1,63 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+.container {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    padding: 20px;
+    background-color: $black;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.title {
+    margin-right: auto;
+}
+
+.share {
+    margin-right: 10px;
+}
+
+/*
+.close {
+
+}
+*/
+
+.nav {
+    position: relative;
+    flex-grow: 1;
+    overflow: auto;
+}
+
+.items,
+.item {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.items {
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    margin: -10px;
+}
+
+.item {
+    margin: 10px;
+
+    .button {
+        @extend %reset-button;
+        display: block;
+        width: 90px;
+        height: 140px;
+        padding: 10px 5px;
+        background-color: $gray-800;
+    }
+}

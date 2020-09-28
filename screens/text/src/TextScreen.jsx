@@ -4,10 +4,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-import Box from '@micromag/element-box';
+import Stack from '@micromag/element-stack';
 import Grid from '@micromag/element-grid';
-import Background from '@micromag/element-background';
-import Frame from '@micromag/element-frame';
+import Screen from '@micromag/element-screen';
 import TextComponent from '@micromag/element-text';
 
 import { useScreenSize } from '@micromag/core/contexts';
@@ -54,7 +53,7 @@ const TextScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
 
     const textComponent =
         isEditor && !text ? (
@@ -71,35 +70,31 @@ const TextScreen = ({
         textComponent
     );
 
+    const containerClassNames = classNames([
+        styles.container,
+        {
+            [styles[textAlign]]: textAlign !== null,
+            [className]: className !== null,
+        },
+    ]);
+
     return (
-        <Background
-            {...(!isPlaceholder ? background : null)}
-            width={width}
-            height={height}
-            playing={(isView && visible) || (isEditor && active)}
-            className={styles.background}
+        <Screen
+            size={{ width, height }}
+            renderFormat={renderFormat}
+            background={background}
+            visible={visible}
+            active={active}
+            className={containerClassNames}
         >
-            <Frame width={width} height={height} visible={visible}>
-                <div
-                    className={classNames([
-                        styles.container,
-                        {
-                            [styles.disabled]: isSimple,
-                            [styles[textAlign]]: textAlign !== null,
-                            [className]: className !== null,
-                        },
-                    ])}
-                >
-                    {grid !== null ? (
-                        <Grid {...grid} items={[item]} className={styles.box} />
-                    ) : (
-                        <Box {...box} withSmallSpacing={isSimple} className={styles.box}>
-                            {item}
-                        </Box>
-                    )}
-                </div>
-            </Frame>
-        </Background>
+            {grid !== null ? (
+                <Grid {...grid} items={[item]} className={styles.box} />
+            ) : (
+                <Stack {...box} isSmall={isSimple} className={styles.box}>
+                    {item}
+                </Stack>
+            )}
+        </Screen>
     );
 };
 

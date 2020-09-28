@@ -40,9 +40,9 @@ const Radios = ({ name, value, options, className, buttonClassName, onChange }) 
             ])}
             data-toggle="buttons"
         >
-            {finalOptions.map(({ value: optionValue, label }) => (
+            {finalOptions.map(({ value: optionValue, label }, index) => (
                 <label
-                    key={`radio-${optionValue}`}
+                    key={`radio-${optionValue}-${index + 1}`}
                     className={classNames([
                         'btn',
                         'btn-outline-secondary',
@@ -57,7 +57,7 @@ const Radios = ({ name, value, options, className, buttonClassName, onChange }) 
                         name={name}
                         autoComplete="off"
                         value={optionValue}
-                        onChange={e => {
+                        onChange={(e) => {
                             if (onChange !== null) {
                                 onChange(e.currentTarget.checked ? optionValue : null);
                             }

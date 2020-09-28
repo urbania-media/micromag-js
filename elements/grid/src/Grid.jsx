@@ -14,7 +14,7 @@ const propTypes = {
     height: PropTypes.number,
     spacing: PropTypes.number,
     reverse: PropTypes.bool,
-    withSmallSpacing: PropTypes.bool,
+    isSmall: PropTypes.bool,
     className: PropTypes.string,
     rowClassName: PropTypes.string,
     columnClassName: PropTypes.string,
@@ -36,7 +36,7 @@ const defaultProps = {
     height: null,
     spacing: 0,
     reverse: false,
-    withSmallSpacing: false,
+    isSmall: false,
     className: null,
     rowClassName: null,
     columnClassName: null,
@@ -49,13 +49,13 @@ const Grid = ({
     height,
     spacing: defaultSpacing,
     reverse,
-    withSmallSpacing,
+    isSmall,
     className,
     rowClassName,
     columnClassName,
 }) => {
     const items = reverse && itemList ? itemList.reverse() : itemList;
-    const spacing = withSmallSpacing ? 4 : defaultSpacing;
+    const spacing = isSmall ? 4 : defaultSpacing;
     let itemIndex = 0;
     const finalLayout = layout || [
         {

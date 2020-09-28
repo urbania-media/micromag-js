@@ -1,3 +1,4 @@
+export { default as adFormat } from './ad-format';
 export { default as answer } from './answer';
 export { default as answers } from './answers';
 export { default as audioParams } from './audio-params';
@@ -30,6 +31,7 @@ export { default as screenLayout } from './screen-layout';
 export { default as size } from './size';
 export { default as slide } from './slide';
 export { default as slides } from './slides';
+export { default as spacing } from './spacing';
 export { default as textEditor } from './text-editor';
 export { default as question } from './question';
 export { default as textStyle } from './text-style';

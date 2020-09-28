@@ -14,7 +14,9 @@ import layouts from '../layouts/names';
 
 const props = {
     iframe: {
-        url: null,
+        url: 'https://urbania.ca',
+        width: 300,
+        height: 300,
     },
     background: background(),
 };
@@ -30,7 +32,7 @@ export default {
 
 export const Placeholders = () => (
     <LayoutGrid layouts={layouts}>
-        {layout => (
+        {(layout) => (
             <PlaceholderScreen>
                 <AdSlot layout={layout} renderFormat="placeholder" />
             </PlaceholderScreen>
@@ -40,7 +42,7 @@ export const Placeholders = () => (
 
 export const Previews = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <PreviewScreen>
                 <AdSlot layout={layout} renderFormat="preview" {...props} />
             </PreviewScreen>
@@ -50,7 +52,7 @@ export const Previews = () => (
 
 export const Editor = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <PreviewScreen>
                 <AdSlot layout={layout} renderFormat="edit" />
             </PreviewScreen>
@@ -60,7 +62,7 @@ export const Editor = () => (
 
 export const Normal = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <AdSlot layout={layout} {...props} />
             </Screen>

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { pascalCase } from 'change-case';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useResizeObserver } from '@micromag/core/hooks';
 
 import styles from './styles.module.scss';
 
@@ -11,16 +12,12 @@ const propTypes = {
     direction: MicromagPropTypes.flexDirection,
     axisAlign: MicromagPropTypes.axisAlign,
     crossAlign: MicromagPropTypes.crossAlign,
-    items: PropTypes.arrayOf(PropTypes.node),
     width: PropTypes.number,
     height: PropTypes.number,
     spacing: PropTypes.number,
     wrap: PropTypes.bool,
     reverse: PropTypes.bool,
-    withSmallSpacing: PropTypes.bool,
     className: PropTypes.string,
-    itemClassName: PropTypes.string,
-    indexClassNames: PropTypes.object, // eslint-disable-line
     children: PropTypes.node,
 };
 
@@ -28,40 +25,42 @@ const defaultProps = {
     direction: null,
     axisAlign: null,
     crossAlign: null,
-    items: [],
     width: null,
     height: null,
-    spacing: 10,
+    spacing: 0,
     wrap: false,
     reverse: false,
-    withSmallSpacing: false,
     className: null,
-    itemClassName: null,
-    indexClassNames: {},
     children: null,
 };
 
-const Box = ({
+const Stack = ({
     direction,
     axisAlign,
     crossAlign,
-    items,
     width,
     height,
     spacing: defaultSpacing,
     wrap,
     reverse,
-    withSmallSpacing,
     className,
-    itemClassName,
-    indexClassNames,
     children,
 }) => {
-    const spacing = withSmallSpacing ? 10 : defaultSpacing;
-    const containerSpacing =
-        items.length > 0 && spacing !== null && spacing > 0 ? spacing / 2 : spacing;
+    const {
+        ref,
+        entry: { contentRect },
+    } = useResizeObserver();
+
+    const spacing =
+        (width !== null && width < 300) || (contentRect && contentRect.width < 300)
+            ? 10
+            : defaultSpacing;
+
+    const containerSpacing = spacing !== null && spacing > 0 ? spacing / 2 : spacing;
+
     return (
         <div
+            ref={width === null && spacing > 0 ? ref : null}
             className={classNames([
                 styles.container,
                 {
@@ -79,33 +78,12 @@ const Box = ({
                 padding: containerSpacing || null,
             }}
         >
-            {items.length > 0
-                ? items.map((item, index) => {
-                      return (
-                          <div
-                              key={`item-${index}`}
-                              className={classNames([
-                                  styles.item,
-                                  {
-                                      [itemClassName]: itemClassName !== null,
-                                      [indexClassNames[index]]: indexClassNames[index],
-                                  },
-                              ])}
-                              style={{
-                                  padding: spacing !== null && spacing > 0 ? spacing / 2 : null,
-                              }}
-                          >
-                              {item}
-                          </div>
-                      );
-                  })
-                : null}
             {children}
         </div>
     );
 };
 
-Box.propTypes = propTypes;
-Box.defaultProps = defaultProps;
+Stack.propTypes = propTypes;
+Stack.defaultProps = defaultProps;
 
-export default Box;
+export default Stack;

@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-import Background from '@micromag/element-background';
-import Frame from '@micromag/element-frame';
+import Screen from '@micromag/element-screen';
 import Grid from '@micromag/element-grid';
 import Image from '@micromag/element-image';
 
@@ -43,21 +42,21 @@ const defaultProps = {
 };
 
 const GalleryScreen = ({
-    background,
     images: imageList,
     grid,
-    defaultSpacing,
+    background,
     visible,
     active,
+    defaultSpacing,
     renderFormat,
     className,
 }) => {
-    const { width, height } = useScreenSize();
-    const { isPlaceholder, isPreview, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
+    const size = useScreenSize();
+    const { isPlaceholder, isPreview, isSimple, isEditor } = getRenderFormat(renderFormat);
 
     const { layout } = grid;
     const defaultArray = [
-        ...Array(16).map(i => ({
+        ...Array(16).map((i) => ({
             id: `image-${i}`,
             ...(imageList[i] ? imageList[i] : null),
         })),
@@ -69,7 +68,7 @@ const GalleryScreen = ({
         ? layout
               .reduce((map, row) => [...map, ...row.columns], [])
               .map(() => <Placeholders.Image className={styles.placeholder} />)
-        : activeImages.map(it =>
+        : activeImages.map((it) =>
               isEditor && !it ? (
                   <Empty className={styles.empty}>
                       <FormattedMessage {...messages.image} />
@@ -79,36 +78,32 @@ const GalleryScreen = ({
               ),
           );
 
+    const containerClassNames = classNames([
+        styles.container,
+        {
+            [className]: className !== null,
+        },
+    ]);
+
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [styles.disabled]: isSimple,
-                    [className]: className,
-                },
-            ])}
+        <Screen
+            size={size}
+            renderFormat={renderFormat}
+            background={background}
+            visible={visible}
+            active={active}
+            className={containerClassNames}
         >
-            <Background
-                {...(!isPlaceholder ? background : null)}
-                width={width}
-                height={height}
-                playing={(isView && visible) || (isEditor && active)}
-                className={styles.background}
-            >
-                <Frame width={width} height={height} visible={visible}>
-                    <div className={styles.images}>
-                        <Grid
-                            spacing={defaultSpacing}
-                            {...grid}
-                            withSmallSpacing={isSimple}
-                            items={items}
-                            className={styles.grid}
-                        />
-                    </div>
-                </Frame>
-            </Background>
-        </div>
+            <div className={styles.images}>
+                <Grid
+                    spacing={defaultSpacing}
+                    {...grid}
+                    isSmall={isSimple}
+                    items={items}
+                    className={styles.grid}
+                />
+            </div>
+        </Screen>
     );
 };
 

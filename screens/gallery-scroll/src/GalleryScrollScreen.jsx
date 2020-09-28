@@ -4,14 +4,13 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-import Background from '@micromag/element-background';
-import Frame from '@micromag/element-frame';
+import Screen from '@micromag/element-screen';
 import Image from '@micromag/element-image';
-import Box from '@micromag/element-box';
+import { VStack, HStack } from '@micromag/element-stack';
 
 import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
-import { getRenderFormat } from '@micromag/core/utils';
+import { getRenderFormat, getComponentFromRenderFormat } from '@micromag/core/utils';
 
 import { schemas as messages } from './messages';
 
@@ -42,20 +41,20 @@ const defaultProps = {
 };
 
 const GalleryScrollScreen = ({
-    background,
     images: imageList,
     columns,
     spacing,
+    background,
     visible,
     active,
     renderFormat,
     className,
 }) => {
-    const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
+    const size = useScreenSize();
+    const { isPlaceholder, isEditor } = getRenderFormat(renderFormat);
 
     const defaultArray = [
-        ...Array(16).map(i => ({
+        ...Array(16).map((i) => ({
             id: `image-${i}`,
             ...(imageList[i] ? imageList[i] : null),
         })),
@@ -71,7 +70,7 @@ const GalleryScrollScreen = ({
     let row = 0;
     let index = 0;
 
-    currentImages.forEach(image => {
+    currentImages.forEach((image) => {
         const max = columns[step];
         if (row < max) {
             row += 1;
@@ -90,71 +89,75 @@ const GalleryScrollScreen = ({
         groups[index].push(image);
     });
 
-    const items = groups.map((its, i) => (
-        <div key={`group-${i + 1}`} className={styles.group}>
-            {its.map((it, j) => {
-                const item =
-                    isEditor && !it ? (
-                        <Empty className={styles.empty}>
-                            <FormattedMessage {...messages.image} />
-                        </Empty>
-                    ) : (
-                        <Image
-                            image={it}
-                            fit={{ size: 'cover' }}
-                            contain
-                            className={styles.imageComponent}
-                        />
-                    );
-                return (
-                    <div
-                        key={`image-${j + 1}`}
-                        className={classNames([
-                            styles.image,
-                            {
-                                [styles[`columns${its.length}`]]: columns !== null,
-                            },
-                        ])}
-                        style={{ padding: isPlaceholder ? 2 : spacing / 2 }}
-                    >
-                        {isPlaceholder ? (
-                            <Placeholders.Image
-                                key={`image-${j + 1}`}
-                                className={styles.placeholder}
-                            />
-                        ) : (
-                            item
-                        )}
-                    </div>
-                );
-            })}
-        </div>
-    ));
+    const items = groups.map((its, i) => {
+        const stackKey = `gallery-group-${i + 1}`;
+        const stackItems = its.map((it, j) => {
+            const isEmpty = it && it.image !== null;
+            const item = getComponentFromRenderFormat(renderFormat, isEmpty, {
+                view: () => (
+                    <Image
+                        image={it && it.image ? it.image : null}
+                        fit={{ size: 'cover' }}
+                        contain
+                        className={styles.imageComponent}
+                    />
+                ),
+                preview: () => <div className={styles.previewBlock} />,
+                empty: () => (
+                    <Empty className={styles.empty}>
+                        <FormattedMessage {...messages.image} />
+                    </Empty>
+                ),
+                placeholder: () => (
+                    <Placeholders.Image key={`image-${j + 1}`} className={styles.placeholder} />
+                ),
+            });
+
+            return (
+                <div
+                    key={`image-${j + 1}`}
+                    className={classNames([
+                        styles.image,
+                        {
+                            [styles[`columns${its.length}`]]: columns !== null,
+                        },
+                    ])}
+                    style={{ padding: isPlaceholder ? 2 : spacing / 2 }}
+                >
+                    {item}
+                </div>
+            );
+        });
+
+        return (
+            <HStack key={stackKey} horizontalAlign="space" verticalAlign="top">
+                {stackItems}
+            </HStack>
+        );
+    });
+
+    const containerClassNames = classNames([
+        styles.container,
+        {
+            [className]: className !== null,
+        },
+    ]);
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [styles.isPlaceholder]: isSimple,
-                    [className]: className,
-                },
-            ])}
+        <Screen
+            size={size}
+            renderFormat={renderFormat}
+            background={background}
+            visible={visible}
+            active={active}
+            spacing={spacing}
+            className={containerClassNames}
+            withScroll
         >
-            <Background
-                {...(!isPlaceholder ? background : null)}
-                width={width}
-                height={height}
-                playing={(isView && visible) || (isEditor && active)}
-                className={styles.background}
-            >
-                <Frame width={width} height={height} withScroll={!isSimple} visible={visible}>
-                    <Box axisAlign="top" withSmallSpacing={isSimple} className={styles.box}>
-                        {items}
-                    </Box>
-                </Frame>
-            </Background>
-        </div>
+            <VStack className={styles.box} verticalAlign="top">
+                {items}
+            </VStack>
+        </Screen>
     );
 };
 

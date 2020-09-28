@@ -105,8 +105,8 @@ export const buttonSize = PropTypes.oneOf(['lg', 'sm', null]);
 
 export const dropdownAlign = PropTypes.oneOf(['left', 'right']);
 
-export const componentNames = Components =>
-    PropTypes.oneOf(Object.keys(Components).map(it => snakeCase(it)));
+export const componentNames = (Components) =>
+    PropTypes.oneOf(Object.keys(Components).map((it) => snakeCase(it)));
 
 export const component = PropTypes.oneOfType([PropTypes.object, PropTypes.func]);
 export const components = PropTypes.objectOf(component);
@@ -185,6 +185,9 @@ export const axisAlign = PropTypes.oneOf(['top', 'center', 'bottom', 'between', 
 
 export const crossAlign = PropTypes.oneOf(['top', 'center', 'bottom', 'stretch']);
 
+export const stackAlign = PropTypes.oneOf(['top', 'center', 'bottom', 'stretch', 'around', 'even']);
+
+export const spacing = PropTypes.number;
 /**
  * Content
  */
@@ -365,3 +368,5 @@ export const imageStyle = PropTypes.shape({
     alt: PropTypes.string,
     fit: PropTypes.object,
 });
+
+export const containerStyle = PropTypes.shape({});

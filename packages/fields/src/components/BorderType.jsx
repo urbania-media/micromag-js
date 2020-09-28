@@ -23,7 +23,7 @@ const defaultProps = {
 
 const BorderTypeField = ({ types, value, className, onChange }) => (
     <Radios
-        options={types.map(type => ({
+        options={types.map((type) => ({
             value: type,
             label: (
                 <div className={styles.type}>
