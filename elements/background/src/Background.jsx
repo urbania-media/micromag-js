@@ -10,9 +10,10 @@ import styles from './styles.module.scss';
 const propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
-    horizontalPosition: PropTypes.string,
-    verticalPosition: PropTypes.string,
-    cover: PropTypes.bool,
+    fit: PropTypes.bool,
+    noResize: PropTypes.bool,
+    horizontalAlign: PropTypes.string,
+    verticalAlign: PropTypes.string,
     repeat: PropTypes.bool,
     color: MicromagPropTypes.color,
     image: MicromagPropTypes.image,
@@ -24,9 +25,10 @@ const propTypes = {
 const defaultProps = {
     width: null,
     height: null,
-    horizontalPosition: 'center',
-    verticalPosition: 'center',
-    cover: false,
+    fit: false,
+    noResize: false,
+    horizontalAlign: 'center',
+    verticalAlign: 'center',
     repeat: false,
     color: null,
     image: null,
@@ -38,15 +40,16 @@ const defaultProps = {
 const Background = ({
     width,
     height,
+    fit,
+    noResize,
+    horizontalAlign,
+    verticalAlign,
+    repeat,
     color,
     image,
     video,
     className,
     children,
-    horizontalPosition,
-    verticalPosition,
-    cover,
-    repeat,
 }) => {
     const finalStyle = {
         width,
@@ -57,12 +60,14 @@ const Background = ({
     if (image !== null) {
         finalStyle.backgroundImage = `url("${image.url}")`;
         finalStyle.backgroundRepeat = repeat ? 'repeat' : 'no-repeat';
-        finalStyle.backgroundPosition = [horizontalPosition, verticalPosition].join(' ');
+        finalStyle.backgroundPosition = [horizontalAlign, verticalAlign].join(' ');
 
-        if (cover) {
+        if (fit) {
             finalStyle.backgroundSize = 'cover';
+        } else if (noResize) {
+            finalStyle.backgroundSize = 'auto';
         } else {
-            finalStyle.backgroundSize = color || repeat ? 'contain' : 'auto';
+            finalStyle.backgroundSize = 'contain';
         }
     }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { image as imageCreator, videoFile } from '../../../.storybook/data';
+import { image as imageCreator, videoFile, video  } from '../../../.storybook/data';
 import Background from './Background';
 
 export default {
@@ -23,8 +23,8 @@ export const image = () => (
                 width={200}
                 height={200}
                 image={imageCreator()}
-                cover
-                horizontalPosition="left"
+                fit
+                horizontalAlign="left"
             />
         </div>
 
@@ -34,8 +34,9 @@ export const image = () => (
                 width={200}
                 height={200}
                 image={imageCreator()}
-                horizontalPosition="right"
-                verticalPosition="bottom"
+                noResize
+                horizontalAlign="right"
+                verticalAlign="bottom"
             />
         </div>
 
@@ -45,8 +46,9 @@ export const image = () => (
                 width={200}
                 height={200}
                 image={imageCreator()}
-                horizontalPosition="left"
-                verticalPosition="top"
+                noResize
+                horizontalAlign="left"
+                verticalAlign="top"
             />
         </div>
     </div>
@@ -66,6 +68,10 @@ export const imageWithColor = () => (
     </div>
 );
 
-export const video = () => (
+export const videoUploaded = () => (
     <Background width={200} height={200} video={videoFile()} playing={false} />
+);
+
+export const videoYoutube = () => (
+    <Background width={200} height={200} video={video()} playing={false} />
 );
