@@ -73,6 +73,7 @@ export const Normal = () => (
                 <Video
                     layout={layout}
                     textAlign={select('textAlign', options, 'center')}
+                    width="100%"
                     {...props}
                 />
             </Screen>

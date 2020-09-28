@@ -1,0 +1,28 @@
+.micromag-component-grid-container {
+  display: block;
+  position: relative; }
+
+.micromag-component-grid-items {
+  display: -webkit-box;
+  display: flex;
+  position: relative;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  height: 100%; }
+
+.micromag-component-grid-row {
+  display: -webkit-box;
+  display: flex;
+  position: relative;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-direction: row; }
+
+.micromag-component-grid-column {
+  position: relative;
+  height: 100%; }
+  .micromag-component-grid-column > * {
+    object-fit: cover;
+    width: 100%;
+    height: 100%; }

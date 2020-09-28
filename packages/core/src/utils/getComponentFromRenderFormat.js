@@ -6,8 +6,8 @@ const getComponentFromRenderFormat = (
     const isPlaceholder = renderFormat === 'placeholder';
     const isPreview = renderFormat === 'preview';
     const isEditor = renderFormat === 'edit';
-    // const isView = renderFormat === 'view';
 
+    // const isView = renderFormat === 'view';
     // console.log('placeh, preview, editor, view', isPlaceholder, isPreview, isEditor, isView);
 
     if (isPlaceholder) {
