@@ -7,6 +7,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import styles from '../../styles/menus/menu-dots.module.scss';
 
 const propTypes = {
+    direction: PropTypes.oneOf(['horizontal', 'vertical']),
     items: MicromagPropTypes.menuItems,
     current: PropTypes.number,
     onClickItem: PropTypes.func,
@@ -14,18 +15,20 @@ const propTypes = {
 };
 
 const defaultProps = {
+    direction: 'horizontal',
     items: [],
     current: 0,
     onClickItem: null,
     className: null,
 };
 
-const ViewerMenuDots = ({ items, current, onClickItem, className }) => (
+const ViewerMenuDots = ({ direction, items, current, onClickItem, className }) => (
     <nav
         className={classNames([
             styles.container,
             {
                 [className]: className !== null,
+                [styles.vertical]: direction === 'vertical',
             },
         ])}
     >

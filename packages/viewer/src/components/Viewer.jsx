@@ -77,12 +77,9 @@ const Viewer = ({
         screens: deviceScreens,
     });
 
-    // checking if desktop @TODO NOT SAFE
-    // desktop disables swiping, simply renders each items in blocks
-    // desktop at true also checks for index change while scrolling
-    const desktop = screenSize.width > screenSize.height;
+    const landscape = screenSize.width > screenSize.height;
 
-    const hasInteractions = !desktop && interactions !== null;
+    const hasInteractions = !landscape && interactions !== null;
     const withSwipe = hasInteractions && interactions.includes('swipe');
     const withTap = hasInteractions && interactions.includes('tap');
 
@@ -114,7 +111,7 @@ const Viewer = ({
         width: screenSize.width,
         height: screenSize.height,
         items: components,
-        disabled: desktop,
+        disabled: landscape,
         withSpring: hasInteractions,
         onSwipeStart: () => {
             tappingRef.current = false;
@@ -129,7 +126,7 @@ const Viewer = ({
 
     // Handle screen change
     useEffect(() => {
-        if (desktop) {
+        if (landscape) {
             if (animateScroll.current) {
                 anime({
                     targets: scrollRef.current,
@@ -144,19 +141,19 @@ const Viewer = ({
         } else {
             setIndex(currentIndex);
         }
-    }, [desktop, setIndex, currentIndex, screenSize]);
+    }, [landscape, setIndex, currentIndex, screenSize]);
 
     // Handle dot menu item click
     const onClickDotsMenuItem = useCallback(
         index => {
-            if (desktop) {
+            if (landscape) {
                 animateScroll.current = true;
                 changeIndex(index);
             } else {
                 setMenuOpened();
             }
         },
-        [desktop, setMenuOpened, changeIndex],
+        [landscape, setMenuOpened, changeIndex],
     );
 
     // handle preview menu item click
@@ -199,9 +196,9 @@ const Viewer = ({
         [onScreenChange, screenSize, components, changeIndex, currentIndex],
     );
 
-    // Handle desktop scroll updating currentScreen
+    // Handle landscape scroll updating currentScreen
     const onContentScrolled = useCallback(() => {
-        if (!desktop || animateScroll.current) {
+        if (!landscape || animateScroll.current) {
             return;
         }
         const scrollIndex = clamp(
@@ -214,7 +211,7 @@ const Viewer = ({
         if (scrollIndex !== currentIndex) {
             changeIndex(scrollIndex);
         }
-    }, [desktop, currentIndex, screenSize, components]);
+    }, [landscape, currentIndex, screenSize, components]);
 
     return (
         <ScreenSizeProvider size={screenSize}>
@@ -224,18 +221,20 @@ const Viewer = ({
                     screenSize.screens.map((screenName) => `story-screen-${screenName}`),
                     {
                         [styles.fullscreen]: fullscreen,
-                        [styles.desktop]: desktop,
+                        [styles.landscape]: landscape,
                         [className]: className,
                     },
                 ])}
-                ref={refContainer}
                 {...(withSwipe ? bind() : null)}
+                ref={refContainer}
             >
+                
                 <MenuDots
+                    direction={landscape ? 'vertical' : 'horizontal'}
                     items={components}
                     current={currentIndex}
                     onClickItem={onClickDotsMenuItem}
-                    className={styles.menu}
+                    className={styles.menuDots}
                 />
                 <animated.div style={menu} className={styles.menuPreviewContainer}>
                     <MenuPreview
@@ -275,7 +274,7 @@ const Viewer = ({
                         );
                     })}
                 </div>
-            </div>
+            </div>           
         </ScreenSizeProvider>
     );
 };

@@ -3,44 +3,56 @@
 
 .container {
     position: relative;
-}
 
-.items,
-.item {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.items {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.item {
-    .button {
-        @extend %reset-button;
-        display: block;
-        width: 25px;
-        padding: 10px 5px;
+    .items,
+    .item {
+        margin: 0;
+        padding: 0;
+        list-style: none;
     }
 
-    .dot {
-        display: block;
-        width: 100%;
-        height: 2px;
-        border-radius: 2px;
-        background-color: $gray-600;
+    .items {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
     }
 
-    &:last-child {
-        margin-right: 0;
-    }
+    .item {
+        .button {
+            @extend %reset-button;
+            display: block;
+            width: 25px;
+            padding: 10px 5px;
+        }
 
-    &.active {
         .dot {
-            background-color: $white;
+            display: block;
+            width: 100%;
+            height: 2px;
+            border-radius: 2px;
+            background-color: $gray-600;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &.active {
+            .dot {
+                background-color: $white;
+            }
+        }
+    }
+
+    &.vertical {
+        .items {
+            flex-direction: column;
+        }
+
+        .item {
+            .dot {
+                transform: rotate(90deg);
+            }
         }
     }
 }

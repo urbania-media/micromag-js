@@ -14,6 +14,7 @@ const propTypes = {
     current: PropTypes.number,
     onClickItem: PropTypes.func,
     onClose: PropTypes.func,
+    screenSizeRatio: PropTypes.number,
     className: PropTypes.string,
 };
 
@@ -23,10 +24,11 @@ const defaultProps = {
     current: 0,
     onClickItem: null,
     onClose: null,
+    screenSizeRatio: 0.4,
     className: null,
 };
 
-const ViewerMenuPreview = ({ title, items, current, onClickItem, onClose, className }) => (
+const ViewerMenuPreview = ({ title, items, current, onClickItem, onClose, screenSizeRatio, className }) => (
     <div
         className={classNames([
             styles.container,
@@ -40,29 +42,32 @@ const ViewerMenuPreview = ({ title, items, current, onClickItem, onClose, classN
             <button type="button" className={styles.share}>Share</button>
             <button type="button" className={styles.close} onClick={onClose}>Close</button>
         </div>
-        <nav className={styles.nav}>
-            <ul className={styles.items}>
-                {items.map((item, index) => (
-                    <li
-                        className={classNames([
-                            styles.item,
-                            {
-                                [styles.active]: current === index,
-                            },
-                        ])}
-                        key={`item-${index}`}
-                    >
-                        <button
-                            type="button"
-                            className={styles.button}
-                            onClick={() => (onClickItem !== null ? onClickItem(index) : null)}
+        <div className={styles.content}>
+            <nav className={styles.nav}>
+                <ul className={styles.items}>
+                    {items.map((item, index) => (
+                        <li
+                            className={classNames([
+                                styles.item,
+                                {
+                                    [styles.active]: current === index,
+                                },
+                            ])}
+                            key={`item-${index}`}
+                            style={{paddingBottom: `${screenSizeRatio * 100}%`}}
                         >
-                            <ScreenPreview screen={item} />
-                        </button>
-                    </li>
-                ))}
-            </ul>
-        </nav>
+                            <button
+                                type="button"
+                                className={styles.button}
+                                onClick={() => (onClickItem !== null ? onClickItem(index) : null)}
+                            >
+                                <ScreenPreview screen={item} />
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+        </div>
     </div>
 );
 

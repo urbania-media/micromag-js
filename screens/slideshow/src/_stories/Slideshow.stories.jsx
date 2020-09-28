@@ -16,7 +16,7 @@ const layouts = ['center'];
 
 const props = {
     background: background(),
-    items: [
+    slides: [
         {
             image: image({ width: 500, height: 250 }),
             text: text(),
