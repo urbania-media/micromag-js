@@ -152,7 +152,7 @@ const Video = ({
                 <VideoControls
                     {...refPlayer.current}
                     {...playerState}
-                    {...controls}
+                    {...(controls !== true ? controls : null)}
                     duration={duration}
                     currentTime={currentTime}
                     width={Math.min(maxWidth, playerSize.width)}
