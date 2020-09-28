@@ -19,6 +19,11 @@ const props = {
     background: background(),
 };
 
+const propsWithControls = {
+    video: { video: videoFile(), params: { controls: true, muted: true, autoPlay: true } },
+    background: background(),
+};
+
 const switcherProps = {
     layouts,
     defaultLayout: 'center',
@@ -73,7 +78,22 @@ export const Normal = () => (
                 <Video
                     layout={layout}
                     textAlign={select('textAlign', options, 'center')}
+                    width="100%"
                     {...props}
+                />
+            </Screen>
+        )}
+    </LayoutSwitcher>
+);
+
+export const WithControls = () => (
+    <LayoutSwitcher {...switcherProps}>
+        {(layout) => (
+            <Screen>
+                <Video
+                    layout={layout}
+                    textAlign={select('textAlign', options, 'center')}
+                    {...propsWithControls}
                 />
             </Screen>
         )}

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -10,13 +11,18 @@ import styles from './styles.module.scss';
 const propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
-    horizontalPosition: PropTypes.string,
-    verticalPosition: PropTypes.string,
-    cover: PropTypes.bool,
+    fit: PropTypes.bool,
+    noResize: PropTypes.bool,
+    horizontalAlign: PropTypes.string,
+    verticalAlign: PropTypes.string,
     repeat: PropTypes.bool,
     color: MicromagPropTypes.color,
     image: MicromagPropTypes.image,
     video: MicromagPropTypes.video,
+    autoPlay: PropTypes.bool,
+    loop: PropTypes.bool,
+    muted: PropTypes.bool,
+    controls: MicromagPropTypes.controls,
     className: PropTypes.string,
     children: PropTypes.node,
 };
@@ -24,13 +30,18 @@ const propTypes = {
 const defaultProps = {
     width: null,
     height: null,
-    horizontalPosition: 'center',
-    verticalPosition: 'center',
-    cover: false,
+    fit: false,
+    noResize: false,
+    horizontalAlign: 'center',
+    verticalAlign: 'center',
     repeat: false,
     color: null,
     image: null,
     video: null,
+    autoPlay: true,
+    loop: true,
+    muted: true,
+    controls: false,
     className: null,
     children: null,
 };
@@ -38,15 +49,20 @@ const defaultProps = {
 const Background = ({
     width,
     height,
+    fit,
+    noResize,
+    horizontalAlign,
+    verticalAlign,
+    repeat,
     color,
     image,
     video,
+    autoPlay,
+    loop,
+    muted,
+    controls,
     className,
     children,
-    horizontalPosition,
-    verticalPosition,
-    cover,
-    repeat,
 }) => {
     const finalStyle = {
         width,
@@ -57,12 +73,14 @@ const Background = ({
     if (image !== null) {
         finalStyle.backgroundImage = `url("${image.url}")`;
         finalStyle.backgroundRepeat = repeat ? 'repeat' : 'no-repeat';
-        finalStyle.backgroundPosition = [horizontalPosition, verticalPosition].join(' ');
+        finalStyle.backgroundPosition = [horizontalAlign, verticalAlign].join(' ');
 
-        if (cover) {
+        if (fit) {
             finalStyle.backgroundSize = 'cover';
+        } else if (noResize) {
+            finalStyle.backgroundSize = 'auto';
         } else {
-            finalStyle.backgroundSize = color || repeat ? 'contain' : 'auto';
+            finalStyle.backgroundSize = 'contain';
         }
     }
 
@@ -76,7 +94,18 @@ const Background = ({
             ])}
             style={finalStyle}
         >
-            {video !== null ? <Video video={video} className={styles.video} /> : null}
+            {video !== null ? (
+                <Video
+                    video={video}
+                    className={styles.video}
+                    autoPlay={autoPlay}
+                    loop={loop}
+                    muted={muted}
+                    controls={controls}
+                    width={width}
+                    height={height}
+                />
+            ) : null}
             <div className={styles.content}>{children}</div>
         </div>
     );

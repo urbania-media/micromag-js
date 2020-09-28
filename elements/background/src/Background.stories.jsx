@@ -1,5 +1,6 @@
 import React from 'react';
-import { image as imageCreator, videoFile } from '../../../.storybook/data';
+import Stack from '@micromag/element-stack';
+import { image as imageCreator, videoFile, video  } from '../../../.storybook/data';
 import Background from './Background';
 
 export default {
@@ -8,23 +9,23 @@ export default {
 };
 
 export const color = () => (
-    <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+    <Stack axisAlign='around' direction='row' spacing={10}>
         <Background width={400} height={200} color={{ color: '#ff02cc', alpha: 0.5 }} />
-        <Background width={200} height={200} color={{ color: '#FF9100', alpha: 1 }} />
-        <Background width={200} height={200} color={{ color: '#FFFF00', alpha: 0.8 }} />
-    </div>
+        <Background width={200} height={350} color={{ color: '#FF9100', alpha: 1 }} />
+        <Background width={350} height={200} color={{ color: '#FFFF00', alpha: 0.8 }} />
+    </Stack>
 );
 
 export const image = () => (
-    <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+    <Stack axisAlign='around' direction='row' spacing={10}>
         <div>
             <h4>Position center</h4>
             <Background
                 width={200}
                 height={200}
                 image={imageCreator()}
-                cover
-                horizontalPosition="left"
+                fit
+                horizontalAlign="left"
             />
         </div>
 
@@ -34,8 +35,9 @@ export const image = () => (
                 width={200}
                 height={200}
                 image={imageCreator()}
-                horizontalPosition="right"
-                verticalPosition="bottom"
+                noResize
+                horizontalAlign="right"
+                verticalAlign="bottom"
             />
         </div>
 
@@ -45,15 +47,16 @@ export const image = () => (
                 width={200}
                 height={200}
                 image={imageCreator()}
-                horizontalPosition="left"
-                verticalPosition="top"
+                noResize
+                horizontalAlign="left"
+                verticalAlign="top"
             />
         </div>
-    </div>
+    </Stack>
 );
 
 export const imageWithColor = () => (
-    <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+    <Stack axisAlign='around' direction='row' spacing={10}>
         <div>
             <h4>Position center</h4>
             <Background
@@ -63,9 +66,13 @@ export const imageWithColor = () => (
                 color={{ color: '#FFFF00', alpha: 0.8 }}
             />
         </div>
-    </div>
+    </Stack>
 );
 
-export const video = () => (
+export const videoUploaded = () => (
     <Background width={200} height={200} video={videoFile()} playing={false} />
+);
+
+export const videoYoutube = () => (
+    <Background width={200} height={200} video={video()} playing={false} />
 );

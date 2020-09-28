@@ -1,0 +1,8 @@
+.micromag-component-image-img {
+  display: block; }
+
+.micromag-component-image-container {
+  position: relative;
+  overflow: hidden; }
+  .micromag-component-image-container .micromag-component-image-img {
+    position: absolute; }

@@ -18,16 +18,13 @@ const propTypes = {
             height: PropTypes.number,
         }),
     }),
-    params: PropTypes.shape({
-        autoPlay: PropTypes.bool,
-        muted: PropTypes.bool,
-        loop: PropTypes.bool,
-        controls: PropTypes.bool,
-    }),
-    players: PropTypes.arrayOf(PropTypes.elementType),
-    maxWidth: PropTypes.number,
-    maxHeight: PropTypes.number,
+    autoPlay: PropTypes.bool,
+    muted: PropTypes.bool,
+    loop: PropTypes.bool,
     controls: MicromagPropTypes.videoControls,
+    players: PropTypes.arrayOf(PropTypes.elementType),
+    width: PropTypes.number,
+    height: PropTypes.number,
     fit: MicromagPropTypes.objectFit,
     showEmpty: PropTypes.bool,
     className: PropTypes.string,
@@ -36,9 +33,11 @@ const propTypes = {
 const defaultProps = {
     video: null,
     players: null,
-    maxWidth: null,
-    maxHeight: null,
-    params: null,
+    width: null,
+    height: null,
+    autoPlay: false,
+    muted: false,
+    loop: false,
     controls: null,
     fit: null,
     showEmpty: false,
@@ -48,21 +47,17 @@ const defaultProps = {
 const Video = ({
     video,
     players,
-    maxWidth: defaultMaxWidth,
-    maxHeight: defaultMaxHeight,
-    params,
+    width: defaultMaxWidth,
+    height: defaultMaxHeight,
+    autoPlay,
+    muted: initialMuted,
+    loop,
     controls,
-    // controlsVisible,
     fit,
     showEmpty,
     className,
 }) => {
-    const {
-        muted: initialMuted = false,
-        loop = false,
-        controls: controlsVisible = true,
-        autoPlay = false,
-    } = params || {};
+    const controlsVisible = controls !== null;
 
     const { url = null, metadata = {} } = video || {};
     const { width = null, height = null } = metadata;
@@ -71,7 +66,8 @@ const Video = ({
     const maxHeight = defaultMaxHeight || height;
     // console.log(width, height);
     const finalPlayers = players || Video.defaultPlayers;
-    const PlayerComponent = url !== null ? finalPlayers.find(it => it.testUrl(url)) || null : null;
+    const PlayerComponent =
+        url !== null ? finalPlayers.find((it) => it.testUrl(url)) || null : null;
     const refPlayer = useRef(null);
     const [playerReady, setPlayerReady] = useState(false);
     const [duration, setDuration] = useState(0);
@@ -94,14 +90,14 @@ const Video = ({
     }, [setPlayerReady, setDuration, setVideoSize]);
 
     const onPlayerStateChange = useCallback(
-        newPlayerState => {
+        (newPlayerState) => {
             setPlayerState(newPlayerState);
         },
         [setPlayerState],
     );
 
     const onPlayerCurrentTimeChange = useCallback(
-        newCurrentTime => {
+        (newCurrentTime) => {
             setCurrentTime(newCurrentTime);
         },
         [setCurrentTime],
@@ -156,7 +152,7 @@ const Video = ({
                 <VideoControls
                     {...refPlayer.current}
                     {...playerState}
-                    {...controls}
+                    {...(controls !== true ? controls : null)}
                     duration={duration}
                     currentTime={currentTime}
                     width={Math.min(maxWidth, playerSize.width)}
@@ -195,8 +191,8 @@ const Video = ({
 Video.propTypes = propTypes;
 Video.defaultProps = defaultProps;
 Video.defaultPlayers = [];
-Video.registerPlayer = Player => {
-    const playerIndex = Video.defaultPlayers.findIndex(it => it === Player);
+Video.registerPlayer = (Player) => {
+    const playerIndex = Video.defaultPlayers.findIndex((it) => it === Player);
     if (playerIndex === -1) {
         Video.defaultPlayers = [...Video.defaultPlayers, Player];
     }
