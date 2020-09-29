@@ -99,8 +99,8 @@ export const imageWithRandomSize = ({ min = 100, max = 800 } = {}) => {
     const height = chance.integer({ min, max });
     return {
         url: `https://picsum.photos/${width}/${height}`,
-        // width,
-        // height,
+        width,
+        height,
     };
 };
 
@@ -108,16 +108,16 @@ export const imageSquareWithRandomSize = ({ min = 100, max = 800 } = {}) => {
     const size = chance.integer({ min, max });
     return {
         url: `https://picsum.photos/${size}/${size}`,
-        // width: size,
-        // height: size,
+        width: size,
+        height: size,
     };
 };
 
 export const images = ({ count = 3, width = 800, height = 800, rand = false } = {}) => {
     return [...Array(count)].map(() => ({
         url: `https://picsum.photos/${width}/${height}?random=${rand ? Math.random() : 1}`,
-        // width,
-        // height,
+        width,
+        height,
     }));
 };
 

@@ -1,15 +1,16 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-import Screen from '@micromag/element-screen';
+import Container from '@micromag/element-container';
+import Background from '@micromag/element-background';
 import { VStack } from '@micromag/element-stack';
 
 import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
-import { getComponentFromRenderFormat } from '@micromag/core/utils';
+import { getRenderFormat } from '@micromag/core/utils';
 
 import { schemas as messages } from './messages';
 
@@ -22,7 +23,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     visible: PropTypes.bool,
     active: PropTypes.bool,
-    spacing: MicromagPropTypes.spacing,
+    // spacing: MicromagPropTypes.spacing,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -34,7 +35,7 @@ const defaultProps = {
     background: null,
     visible: true,
     active: false,
-    spacing: 0,
+    // spacing: 0,
     renderFormat: 'view',
     className: null,
 };
@@ -46,37 +47,45 @@ const AdSlotScreen = ({
     background,
     visible,
     active,
-    spacing,
+    // spacing,
     renderFormat,
     className,
 }) => {
-    const size = useScreenSize();
+    const { width, height } = useScreenSize();
+    const { isView, isPreview, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
 
     const { src = null, title = 'Ad' } = iframe || {};
-    const { name = null, width, height } = adFormat || {};
+    const { name = null, width: adWidth, height: adHeight } = adFormat || {};
 
     const isEmpty = src === null;
 
-    const inner = getComponentFromRenderFormat(renderFormat, isEmpty, {
-        view: () => (
+    const view = useMemo(
+        () => (
             <iframe
                 className={styles.iframe}
                 src={src}
                 title={title}
-                width={width}
-                height={height}
+                width={adWidth}
+                height={adHeight}
             />
         ),
-        preview: () => <div className={styles.previewBlock} />,
-        empty: () => (
+        [src, title, adWidth, adHeight],
+    );
+
+    const preview = <div className={styles.previewBlock} />;
+
+    const empty = useMemo(
+        () => (
             <div className={styles.emptyContainer} style={{ width, height }}>
                 <Empty className={styles.empty}>
                     {name !== null ? name : <FormattedMessage {...messages.schemaTitle} />}
                 </Empty>
             </div>
         ),
-        placeholder: () => <Placeholders.AdFrame className={styles.placeholder} />,
-    });
+        [],
+    );
+
+    const placeholder = useMemo(() => <Placeholders.AdFrame className={styles.placeholder} />, []);
 
     const containerClassNames = classNames([
         styles.container,
@@ -86,17 +95,24 @@ const AdSlotScreen = ({
     ]);
 
     return (
-        <Screen
-            size={size}
-            renderFormat={renderFormat}
-            background={background}
-            visible={visible}
-            active={active}
-            spacing={spacing}
-            className={containerClassNames}
-        >
-            <VStack {...align}>{inner}</VStack>
-        </Screen>
+        <div className={containerClassNames}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={(isView && visible) || (isEditor && active)}
+            />
+            <div className={styles.content}>
+                <Container width={width} height={height} visible={visible}>
+                    <VStack {...align}>
+                        {isPlaceholder ? placeholder : null}
+                        {isEditor && isEmpty ? empty : null}
+                        {isView || (isEditor && !isEmpty) ? view : null}
+                        {isPreview ? preview : null}
+                    </VStack>
+                </Container>
+            </div>
+        </div>
     );
 };
 

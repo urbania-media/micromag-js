@@ -1,3 +1,9 @@
 {
-    "media-gallery.forms.search_placeholder": "Chercher..."
+    "media-gallery.buttons.add": "TRANSLATE: Add",
+    "media-gallery.forms.search_placeholder": "Chercher...",
+    "media-gallery.metadata.dimension": "TRANSLATE: Dimension",
+    "media-gallery.metadata.duration": "TRANSLATE: Duration",
+    "media-gallery.metadata.filename": "TRANSLATE: Filename",
+    "media-gallery.metadata.size": "TRANSLATE: Size",
+    "media-gallery.metadata.technical_details": "TRANSLATE: Technical details"
 }

@@ -10,7 +10,6 @@ const propTypes = {
     verticalAlign: MicromagPropTypes.axisAlign,
     horizontalAlign: MicromagPropTypes.horizontalAlign,
     spacing: PropTypes.number,
-    wrap: PropTypes.bool,
     reverse: PropTypes.bool,
     className: PropTypes.string,
     children: PropTypes.node,
@@ -20,21 +19,12 @@ const defaultProps = {
     verticalAlign: null,
     horizontalAlign: null,
     spacing: 0,
-    wrap: false,
     reverse: false,
     className: null,
     children: null,
 };
 
-const VStack = ({
-    verticalAlign,
-    horizontalAlign,
-    spacing,
-    wrap,
-    reverse,
-    className,
-    children,
-}) => {
+const VStack = ({ verticalAlign, horizontalAlign, spacing, reverse, className, children }) => {
     const containerSpacing = spacing !== null && spacing > 0 ? spacing / 2 : spacing;
     return (
         <div
@@ -42,7 +32,6 @@ const VStack = ({
                 styles.container,
                 {
                     [styles.column]: true,
-                    [styles.wrap]: wrap === true,
                     [styles.reverse]: reverse === true,
                     [styles[`axis${pascalCase(verticalAlign || '')}`]]: verticalAlign !== null,
                     [styles[`cross${pascalCase(horizontalAlign || '')}`]]: horizontalAlign !== null,
