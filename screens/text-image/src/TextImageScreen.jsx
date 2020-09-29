@@ -1,12 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
 import Stack from '@micromag/element-stack';
 import Grid from '@micromag/element-grid';
-import Screen from '@micromag/element-screen';
+import Container from '@micromag/element-container';
+import Background from '@micromag/element-background';
+
 import TextComponent from '@micromag/element-text';
 import ImageComponent from '@micromag/element-image';
 
@@ -60,50 +62,58 @@ const TextImageScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
+    const { isView, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
     const isEmpty = isEditor && image === null && text === null;
     const { direction } = box;
 
-    const textComponent = isEmpty ? (
-        <Empty className={styles.empty}>
-            <FormattedMessage {...messages.text} />
-        </Empty>
-    ) : (
-        <TextComponent
-            {...text}
-            key="text-element"
-            showEmpty={isEditor && text === null}
-            className={styles.text}
-            emptyClassName={styles.empty}
-        />
-    );
+    const textElement = useMemo(() => {
+        if (isPlaceholder) {
+            return (
+                <div className={styles.placeholderContainer}>
+                    <Placeholders.ShortText key="text-element" className={styles.placeholder} />
+                </div>
+            );
+        }
+        if (isEmpty) {
+            return (
+                <Empty className={styles.empty}>
+                    <FormattedMessage {...messages.text} />
+                </Empty>
+            );
+        }
+        return (
+            <TextComponent
+                {...text}
+                key="text-element"
+                showEmpty={isEditor && text === null}
+                className={styles.text}
+                emptyClassName={styles.empty}
+            />
+        );
+    }, [isPlaceholder, isEmpty, isEditor, text]);
 
-    const textElement = isPlaceholder ? (
-        <div className={styles.placeholderContainer}>
-            <Placeholders.ShortText key="text-element" className={styles.placeholder} />
-        </div>
-    ) : (
-        textComponent
-    );
-
-    const imageComponent = isEmpty ? (
-        <Empty className={classNames([styles.empty, styles.emptyImage])}>
-            <FormattedMessage {...messages.image} />
-        </Empty>
-    ) : (
-        <ImageComponent
-            {...image}
-            key="image-element"
-            fit={{ size: 'cover' }}
-            className={styles.image}
-        />
-    );
-
-    const imageElement = isPlaceholder ? (
-        <Placeholders.SmallImage key="image-element" className={styles.placeholderImage} />
-    ) : (
-        imageComponent
-    );
+    const imageElement = useMemo(() => {
+        if (isPlaceholder) {
+            return (
+                <Placeholders.SmallImage key="image-element" className={styles.placeholderImage} />
+            );
+        }
+        if (isEmpty) {
+            return (
+                <Empty className={classNames([styles.empty, styles.emptyImage])}>
+                    <FormattedMessage {...messages.image} />
+                </Empty>
+            );
+        }
+        return (
+            <ImageComponent
+                image={image}
+                key="image-element"
+                fit={{ size: 'cover' }}
+                className={styles.image}
+            />
+        );
+    }, [isPlaceholder, isEmpty, image]);
 
     const items = reverse ? [textElement, imageElement] : [imageElement, textElement];
 
@@ -117,22 +127,23 @@ const TextImageScreen = ({
     ]);
 
     return (
-        <Screen
-            size={{ width, height }}
-            renderFormat={renderFormat}
-            background={background}
-            visible={visible}
-            active={active}
-            className={containerClassNames}
-        >
-            {grid !== null ? (
-                <Grid {...grid} isSmall={isSimple} items={items} />
-            ) : (
-                <Stack {...box} isSmall={isSimple}>
-                    {items}
-                </Stack>
-            )}
-        </Screen>
+        <div className={containerClassNames}>
+            <div className={styles.content}>
+                <Container width={width} height={height} visible={visible}>
+                    {grid !== null ? (
+                        <Grid {...grid} items={items} />
+                    ) : (
+                        <Stack {...box}>{items}</Stack>
+                    )}
+                </Container>
+            </div>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={(isView && visible) || (isEditor && active)}
+            />
+        </div>
     );
 };
 

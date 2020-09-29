@@ -10,7 +10,7 @@ const propTypes = {
     axisAlign: MicromagPropTypes.axisAlign,
     crossAlign: MicromagPropTypes.crossAlign,
     spacing: PropTypes.number,
-    wrap: PropTypes.bool,
+    // wrap: PropTypes.bool,
     reverse: PropTypes.bool,
     className: PropTypes.string,
     children: PropTypes.node,
@@ -20,13 +20,13 @@ const defaultProps = {
     axisAlign: null,
     crossAlign: null,
     spacing: 0,
-    wrap: false,
+    // wrap: false,
     reverse: false,
     className: null,
     children: null,
 };
 
-const HStack = ({ axisAlign, crossAlign, spacing, wrap, reverse, className, children }) => {
+const HStack = ({ axisAlign, crossAlign, spacing, reverse, className, children }) => {
     const containerSpacing = spacing !== null && spacing > 0 ? spacing / 2 : spacing;
     return (
         <div
@@ -34,7 +34,6 @@ const HStack = ({ axisAlign, crossAlign, spacing, wrap, reverse, className, chil
                 styles.container,
                 {
                     [styles.row]: true,
-                    [styles.wrap]: wrap === true,
                     [styles.reverse]: reverse === true,
                     [styles[`axis${pascalCase(axisAlign || '')}`]]: axisAlign !== null,
                     [styles[`cross${pascalCase(crossAlign || '')}`]]: crossAlign !== null,

@@ -1,15 +1,16 @@
 /* eslint-disable react/jsx-props-no-spreading, jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-import Screen from '@micromag/element-screen';
+import Container from '@micromag/element-container';
+import Background from '@micromag/element-background';
 import { VStack } from '@micromag/element-stack';
 
 import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
-import { getComponentFromRenderFormat } from '@micromag/core/utils';
+import { getRenderFormat } from '@micromag/core/utils';
 
 import AdImage from './AdImage';
 
@@ -26,7 +27,7 @@ const propTypes = {
     visible: PropTypes.bool,
     active: PropTypes.bool,
     fullScreen: PropTypes.bool,
-    spacing: MicromagPropTypes.spacing,
+    // spacing: MicromagPropTypes.spacing,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
@@ -40,7 +41,7 @@ const defaultProps = {
     visible: true,
     active: false,
     fullScreen: false,
-    spacing: 0,
+    // spacing: 0,
     renderFormat: 'view',
     className: null,
 };
@@ -54,13 +55,37 @@ const AdScreen = ({
     visible,
     active,
     fullScreen,
-    spacing,
+    // spacing,
     renderFormat,
     className,
 }) => {
-    const size = useScreenSize();
-    const { image: { url: imageUrl = null } = {} } = image || {};
-    const isEmpty = !imageUrl;
+    const { width, height } = useScreenSize();
+    const { isView, isPreview, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
+    const isEmpty = !image;
+
+    const view = useMemo(
+        () => (
+            <AdImage
+                image={image}
+                link={link}
+                text={text}
+                fullScreen={fullScreen}
+                renderFormat={renderFormat}
+            />
+        ),
+        [image, link, text, fullScreen, renderFormat],
+    );
+
+    const empty = useMemo(
+        () => (
+            <Empty className={styles.empty}>
+                <FormattedMessage {...messages.schemaTitle} />
+            </Empty>
+        ),
+        [],
+    );
+
+    const placeholder = useMemo(() => <Placeholders.AdImage className={styles.placeholder} />, []);
 
     const containerClassNames = classNames([
         styles.container,
@@ -70,36 +95,25 @@ const AdScreen = ({
         },
     ]);
 
-    const content = getComponentFromRenderFormat(renderFormat, isEmpty, {
-        view: () => (
-            <AdImage
-                image={image}
-                link={link}
-                text={text}
-                fullScreen={fullScreen}
-                renderFormat={renderFormat}
-            />
-        ),
-        empty: () => (
-            <Empty className={styles.empty}>
-                <FormattedMessage {...messages.schemaTitle} />
-            </Empty>
-        ),
-        placeholder: () => <Placeholders.AdImage className={styles.placeholder} />,
-    });
-
     return (
-        <Screen
-            size={size}
-            renderFormat={renderFormat}
-            background={background}
-            visible={visible}
-            active={active}
-            spacing={spacing}
-            className={containerClassNames}
-        >
-            <VStack {...align}>{content}</VStack>
-        </Screen>
+        <div className={containerClassNames}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={(isView && visible) || (isEditor && active)}
+            />
+            <div className={styles.content}>
+                <Container width={width} height={height} visible={visible}>
+                    <VStack {...align}>
+                        {isPlaceholder ? placeholder : null}
+                        {isEditor && isEmpty ? empty : null}
+                        {isView || (isEditor && !isEmpty) ? view : null}
+                        {isPreview ? view : null}
+                    </VStack>
+                </Container>
+            </div>
+        </div>
     );
 };
 

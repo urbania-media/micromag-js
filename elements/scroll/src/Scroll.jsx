@@ -8,31 +8,30 @@ import styles from './styles.module.scss';
 const propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
-    maxRatio: PropTypes.bool,
+    withScroll: PropTypes.bool,
     className: PropTypes.string,
     children: PropTypes.node,
 };
 
 const defaultProps = {
-    width: '100%',
-    height: '100%',
-    maxRatio: 2 / 3,
+    width: null,
+    height: null,
+    withScroll: true,
     className: null,
     children: null,
 };
 
-const Container = ({ width, height, maxRatio, className, children }) => {
-    console.log('TODO: calculate ratio', maxRatio);
+const Scroll = ({ width, height, withScroll, className, children }) => {
     const finalStyle = {
         width,
         height,
-        maxWidth: 768,
     };
     return (
         <div
             className={classNames([
                 styles.container,
                 {
+                    [styles.withScroll]: withScroll === true,
                     [className]: className !== null,
                 },
             ])}
@@ -43,7 +42,7 @@ const Container = ({ width, height, maxRatio, className, children }) => {
     );
 };
 
-Container.propTypes = propTypes;
-Container.defaultProps = defaultProps;
+Scroll.propTypes = propTypes;
+Scroll.defaultProps = defaultProps;
 
-export default Container;
+export default Scroll;

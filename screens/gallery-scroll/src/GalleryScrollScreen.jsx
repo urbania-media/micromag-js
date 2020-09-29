@@ -10,7 +10,7 @@ import { VStack, HStack } from '@micromag/element-stack';
 
 import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
-import { getRenderFormat, getComponentFromRenderFormat } from '@micromag/core/utils';
+import { getRenderFormat } from '@micromag/core/utils';
 
 import { schemas as messages } from './messages';
 
@@ -51,7 +51,7 @@ const GalleryScrollScreen = ({
     className,
 }) => {
     const size = useScreenSize();
-    const { isPlaceholder, isEditor } = getRenderFormat(renderFormat);
+    const { isView, isPreview, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
 
     const defaultArray = [
         ...Array(16).map((i) => ({
@@ -93,25 +93,6 @@ const GalleryScrollScreen = ({
         const stackKey = `gallery-group-${i + 1}`;
         const stackItems = its.map((it, j) => {
             const isEmpty = it && it.image !== null;
-            const item = getComponentFromRenderFormat(renderFormat, isEmpty, {
-                view: () => (
-                    <Image
-                        image={it && it.image ? it.image : null}
-                        fit={{ size: 'cover' }}
-                        contain
-                        className={styles.imageComponent}
-                    />
-                ),
-                preview: () => <div className={styles.previewBlock} />,
-                empty: () => (
-                    <Empty className={styles.empty}>
-                        <FormattedMessage {...messages.image} />
-                    </Empty>
-                ),
-                placeholder: () => (
-                    <Placeholders.Image key={`image-${j + 1}`} className={styles.placeholder} />
-                ),
-            });
 
             return (
                 <div
@@ -124,7 +105,23 @@ const GalleryScrollScreen = ({
                     ])}
                     style={{ padding: isPlaceholder ? 2 : spacing / 2 }}
                 >
-                    {item}
+                    {isView || (isEditor && !isEmpty) ? (
+                        <Image
+                            image={it && it.image ? it.image : null}
+                            fit={{ size: 'cover' }}
+                            contain
+                            className={styles.imageComponent}
+                        />
+                    ) : null}
+                    {isPreview ? <div className={styles.previewBlock} /> : null}
+                    {isPlaceholder ? (
+                        <Placeholders.Image key={`image-${j + 1}`} className={styles.placeholder} />
+                    ) : null}
+                    {isEditor && isEmpty ? (
+                        <Empty className={styles.empty}>
+                            <FormattedMessage {...messages.image} />
+                        </Empty>
+                    ) : null}
                 </div>
             );
         });
