@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useCallback, useRef, useEffect, useMemo } from 'react';
+import React, { useCallback, useRef, useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { animated } from 'react-spring';
@@ -107,12 +107,12 @@ const Viewer = ({
     );
 
     // Swipe mechanics
-    const { items, menu, bind, setIndex, setMenuOpened } = useSwipe({
+    const { items, bind, setIndex } = useSwipe({
         width: screenSize.width,
-        height: screenSize.height,
         items: components,
         disabled: landscape,
         withSpring: hasInteractions,
+        animateScale: true,
         onSwipeStart: () => {
             tappingRef.current = false;
         },
@@ -143,17 +143,15 @@ const Viewer = ({
         }
     }, [landscape, setIndex, currentIndex, screenSize]);
 
+    // Handle menu
+    const [menuOpened, setMenuOpened] = useState(false);
+
     // Handle dot menu item click
     const onClickDotsMenuItem = useCallback(
-        index => {
-            if (landscape) {
-                animateScroll.current = true;
-                changeIndex(index);
-            } else {
-                setMenuOpened();
-            }
+        () => {
+            setMenuOpened(!menuOpened);
         },
-        [landscape, setMenuOpened, changeIndex],
+        [menuOpened, setMenuOpened],
     );
 
     // handle preview menu item click
@@ -222,6 +220,7 @@ const Viewer = ({
                     {
                         [styles.fullscreen]: fullscreen,
                         [styles.landscape]: landscape,
+                        [styles.menuOpened]: menuOpened,
                         [className]: className,
                     },
                 ])}
@@ -236,15 +235,13 @@ const Viewer = ({
                     onClickItem={onClickDotsMenuItem}
                     className={styles.menuDots}
                 />
-                <animated.div style={menu} className={styles.menuPreviewContainer}>
-                    <MenuPreview
-                        items={components}
-                        current={currentIndex}
-                        onClickItem={onClickPreviewMenuItem}
-                        onClose={onClickPreviewMenuClose}
-                        className={styles.menuPreview}
-                    />
-                </animated.div>
+                <MenuPreview
+                    items={components}
+                    current={currentIndex}
+                    onClickItem={onClickPreviewMenuItem}
+                    onClose={onClickPreviewMenuClose}
+                    className={styles.menuPreview}
+                />
                 <div
                     ref={scrollRef}
                     className={styles.content}

@@ -25,14 +25,11 @@
         transform: translateX(50%);
     }
 
-    .menuPreviewContainer {
+    .menuPreview {
         @extend %fullscreen;
         z-index: 3;
         top: -100%;
-    }
-
-    .menuPreview {
-        @extend %fullscreen;
+        transition: transform 0.3s ease;
     }
 
     .screen {
@@ -60,5 +57,11 @@
 
     &.fullscreen {
         @extend %fullscreen;
+    }
+
+    &.menuOpened {
+        .menuPreview {
+            transform: translateY(100%);
+        }
     }
 }
