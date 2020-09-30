@@ -14,6 +14,7 @@ const propTypes = {
     spacing: MicromagPropTypes.stackSpacing,
     reverse: PropTypes.bool,
     className: PropTypes.string,
+    itemClassName: PropTypes.string,
     children: PropTypes.node,
 };
 
@@ -25,15 +26,16 @@ const defaultProps = {
     spacing: 0,
     reverse: false,
     className: null,
+    itemClassName: null,
     children: null,
 };
 
-const StackNew = ({ direction, align, width, height, spacing, reverse, className, children }) => {
+const StackNew = ({ direction, align, width, height, spacing, reverse, className, itemClassName, children }) => {
     const flexDirection =
         (direction === 'vertical' ? 'column' : 'row') + (reverse ? '-reverse' : '');
     const alignItems = align === 'center' ? align : `flex-${align}`;
     const justifyContent = typeof spacing === 'string' ? `space-${spacing}` : null;
-    const itemMargin = typeof spacing === 'number' ? spacing : 0;
+    // const itemMargin = typeof spacing === 'number' ? spacing : 0;
 
     const containerStyle = {
         width,
@@ -44,12 +46,12 @@ const StackNew = ({ direction, align, width, height, spacing, reverse, className
         flexDirection,
         alignItems,
         justifyContent,
-        margin: -itemMargin,
+        // margin: -itemMargin,
     };
 
-    const itemStyle = {
+    /* const itemStyle = {
         margin: itemMargin,
-    };
+    }; */
 
     return (
         <div
@@ -62,11 +64,17 @@ const StackNew = ({ direction, align, width, height, spacing, reverse, className
             style={containerStyle}
         >
             <ul className={styles.items} style={itemsStyle}>
-                {React.Children.map(children, (child, childI) => (
-                    <li key={`item-${childI}`} className={styles.item} style={itemStyle}>
+                { children }
+                {/* React.Children.map(children, (child, childI) => (
+                    <li key={`item-${childI}`} className={classNames([
+                        styles.item,
+                        {
+                            [itemClassName]: itemClassName !== null,
+                        },
+                    ])} style={itemStyle}>
                         {child}
                     </li>
-                ))}
+                )) */}
             </ul>
         </div>
     );

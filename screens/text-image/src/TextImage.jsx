@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useMemo } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-import StackNew from '@micromag/element-stack';
+import { StackNew } from '@micromag/element-stack';
 import Container from '@micromag/element-container';
 import Background from '@micromag/element-background';
 
@@ -61,57 +61,8 @@ const TextImage = ({
     const { isView, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
     const isEmpty = isEditor && image === null && text === null;
 
-    const textElement = useMemo(() => {
-        if (isPlaceholder) {
-            return (
-                <div className={styles.placeholderContainer}>
-                    <Placeholders.ShortText key="text-element" className={styles.placeholder} />
-                </div>
-            );
-        }
-        if (isEmpty) {
-            return (
-                <Empty className={styles.empty}>
-                    <FormattedMessage {...messages.text} />
-                </Empty>
-            );
-        }
-        return (
-            <TextComponent
-                {...text}
-                key="text-element"
-                showEmpty={isEditor && text === null}
-                className={styles.text}
-                emptyClassName={styles.empty}
-            />
-        );
-    }, [isPlaceholder, isEmpty, isEditor, text]);
-
-    const imageElement = useMemo(() => {
-        if (isPlaceholder) {
-            return (
-                <Placeholders.SmallImage key="image-element" className={styles.placeholderImage} />
-            );
-        }
-        if (isEmpty) {
-            return (
-                <Empty className={classNames([styles.empty, styles.emptyImage])}>
-                    <FormattedMessage {...messages.image} />
-                </Empty>
-            );
-        }
-        return (
-            <ImageComponent
-                image={image}
-                key="image-element"
-                fit={{ size: 'cover' }}
-                className={styles.image}
-            />
-        );
-    }, [isPlaceholder, isEmpty, image]);
-
-    const items = [imageElement, textElement];
-    const layoutArray = layout.split('_');
+    const finalLayout = layout !== null ? layout : 'center';
+    const layoutArray = finalLayout.split('_');
     const layoutName = layoutArray[0];
     const sideways = layoutName === 'side';
     const reverse = layoutArray.length === 2 && layoutArray[1] === 'reverse';
@@ -133,8 +84,64 @@ const TextImage = ({
 
     const stackProps = {
         direction: stackDirection,
-        reverse
+        reverse,
+        itemClassName: styles.item
     };
+
+    // Text element
+
+    let textElement = null;
+
+    if (isPlaceholder) {
+        textElement = (
+            <div className={styles.placeholderContainer}>
+                <Placeholders.ShortText key="text-element" className={styles.placeholder} />
+            </div>
+        );
+    } else if (isEmpty) {
+        textElement = (
+            <Empty className={styles.empty}>
+                <FormattedMessage {...messages.text} />
+            </Empty>
+        );
+    } else {
+        textElement = (
+            <TextComponent
+                {...text}
+                key="text-element"
+                showEmpty={isEditor && text === null}
+                className={styles.text}
+                emptyClassName={styles.empty}
+            />
+        );
+    }
+
+    // Image element
+
+    let imageElement = null;
+
+    if (isPlaceholder) {
+        imageElement = (
+            <Placeholders.SmallImage key="image-element" className={styles.placeholderImage} />
+        );
+    } else if (isEmpty) {
+        imageElement = (
+            <Empty className={classNames([styles.empty, styles.emptyImage])}>
+                <FormattedMessage {...messages.image} />
+            </Empty>
+        );
+    } else {
+        imageElement = (
+            <ImageComponent
+                image={image}
+                key="image-element"
+                fit={{ size: 'cover' }}
+                className={styles.image}
+            />
+        );
+    } 
+
+    const items = [textElement, imageElement];
 
     return (
         <div className={classNames([
@@ -142,6 +149,8 @@ const TextImage = ({
             {
                 [className]: className !== null,
                 [styles.sideways]: sideways,
+                [styles.isPlaceholder]: isPlaceholder,
+                [styles.isEmpty]: isEmpty,
             },
         ])}>
             <Background
@@ -150,17 +159,13 @@ const TextImage = ({
                 height={height}
                 playing={(isView && visible) || (isEditor && active)}
             />
-            <div className={styles.content}>
-                <Container width={width} height={height} visible={visible} maxRatio={maxRatio} styles={{textAlign}}>
-                    <div className={styles.stackContainer} style={stackContainerStyle}>
-                        <StackNew {...stackProps}>{items.map(item => 
-                            <div className={styles.stackItem}>
-                                { item }
-                            </div>
-                        )}</StackNew>
-                    </div>
-                </Container>
-            </div>
+            <Container width={width} height={height} visible={visible} maxRatio={maxRatio} styles={{textAlign}}>
+                <div className={styles.stackContainer} style={stackContainerStyle}>
+                    <StackNew className={styles.stack} {...stackProps}>
+                        { items }
+                    </StackNew>
+                </div>
+            </Container>
         </div>
     );
 };

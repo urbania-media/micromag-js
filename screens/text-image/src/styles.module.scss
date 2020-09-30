@@ -4,22 +4,28 @@
     @extend %screen;
 
     &.sideways {
+        /* .item {
+            max-width: 50%;
+        } */
         .image,
         .text {
             max-width: 50%;
-            padding: 10px;
         }
     }
 
-    .content {
-        height: 100%;
-    }
+    /* .item {
+        padding: 10px;
+    } */
 
     .stackContainer {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         height: 100%;
+    }
+
+    .image,
+    .text {
+        padding: 10px;
     }
 
     .image {
@@ -46,5 +52,17 @@
 
     .emptyImage {
         height: 30%;
+    }
+
+    &.isPlaceholder {
+        .stack {
+            height: 100%;
+        }
+
+        .item {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+        }
     }
 }
