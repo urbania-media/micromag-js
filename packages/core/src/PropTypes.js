@@ -180,14 +180,11 @@ export const objectFit = PropTypes.shape({
 });
 
 export const flexDirection = PropTypes.oneOf(['row', 'column']);
+// export const axisAlign = PropTypes.oneOf(['top', 'center', 'bottom', 'between', 'around', 'even']);
+// export const crossAlign = PropTypes.oneOf(['top', 'center', 'bottom', 'stretch']);
+// export const stackAlign = PropTypes.oneOf(['top', 'center', 'bottom', 'stretch', 'around', 'even']);
+// export const spacing = PropTypes.number;
 
-export const axisAlign = PropTypes.oneOf(['top', 'center', 'bottom', 'between', 'around', 'even']);
-
-export const crossAlign = PropTypes.oneOf(['top', 'center', 'bottom', 'stretch']);
-
-export const stackAlign = PropTypes.oneOf(['top', 'center', 'bottom', 'stretch', 'around', 'even']);
-
-export const spacing = PropTypes.number;
 /**
  * Content
  */
@@ -264,11 +261,20 @@ export const backgroundElement = PropTypes.shape({
     image,
 });
 
-export const boxElement = PropTypes.shape({
-    direction: flexDirection,
-    axisAlign,
-    crossAlign,
-    spacing: PropTypes.number,
+export const stackDirection = PropTypes.oneOf(['horizontal', 'vertical']);
+export const stackAlign = PropTypes.oneOf(['start', 'center', 'end']);
+export const stackSpacing = PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.oneOf(['between', 'evenly', 'around']),
+])
+
+export const stackElement = PropTypes.shape({
+    direction: stackDirection,
+    align: stackAlign,
+    width: PropTypes.number,
+    height: PropTypes.number,
+    spacing: stackSpacing,
+    reverse: PropTypes.bool,
 });
 
 export const gridElement = PropTypes.shape({
