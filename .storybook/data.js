@@ -89,50 +89,52 @@ export const text = (length = 'normal', style = 'normal') => {
 };
 
 export const image = ({ width = 800, height = 800 } = {}) => ({
-    url: `https://picsum.photos/${width}/${height}`,
-    // width,
-    // height,
+    media: {
+        url: `https://picsum.photos/${width}/${height}`,
+        width,
+        height,
+    },
+    name: 'Image!',
 });
 
 export const imageWithRandomSize = ({ min = 100, max = 800 } = {}) => {
     const width = chance.integer({ min, max });
     const height = chance.integer({ min, max });
-    return {
-        url: `https://picsum.photos/${width}/${height}`,
-        width,
-        height,
-    };
+    return image({ width, height });
 };
 
 export const imageSquareWithRandomSize = ({ min = 100, max = 800 } = {}) => {
     const size = chance.integer({ min, max });
-    return {
-        url: `https://picsum.photos/${size}/${size}`,
-        width: size,
-        height: size,
-    };
+    return image({ width: size, height: size });
 };
 
 export const images = ({ count = 3, width = 800, height = 800, rand = false } = {}) => {
     return [...Array(count)].map(() => ({
-        url: `https://picsum.photos/${width}/${height}?random=${rand ? Math.random() : 1}`,
-        width,
-        height,
+        media: {
+            url: `https://picsum.photos/${width}/${height}?random=${rand ? Math.random() : 1}`,
+            width,
+            height,
+        },
+        name: 'image-in-array',
     }));
 };
 
 export const videoFile = () => ({
-    url: VideoTest,
-    metadata: {
-        width: 1920,
-        height: 1080,
+    media: {
+        url: VideoTest,
+        metadata: {
+            width: 1920,
+            height: 1080,
+        },
     },
 });
 
 export const video = () => ({
-    url: 'https://www.youtube.com/watch?v=AfeAhCWaMD0',
-    width: 640,
-    height: 480,
+    media: {
+        url: 'https://www.youtube.com/watch?v=AfeAhCWaMD0',
+        width: 640,
+        height: 480,
+    },
 });
 
 export const background = () => ({ color: { color: chance.color({ format: 'rgb' }) } });
@@ -140,20 +142,24 @@ export const background = () => ({ color: { color: chance.color({ format: 'rgb' 
 export const backgroundImage = ({ rand = false } = {}) => ({
     color: { color: chance.color({ format: 'rgb' }) },
     image: {
-        url: `https://picsum.photos/1000/1000/?blur&random=${rand ? Math.random() : 1}`,
-        width: 1000,
-        height: 1000,
+        media: {
+            url: `https://picsum.photos/1000/1000/?blur&random=${rand ? Math.random() : 1}`,
+            width: 1000,
+            height: 1000,
+        },
     },
 });
 
 export const audio = () => ({
-    src: AudioTest,
-    length: '16000',
+    media: {
+        src: AudioTest,
+        length: 16000,
+    },
     controls: true,
 });
 
 export const advertising = ({ width, height }) => ({
-    image: { image: { url: `https://picsum.photos/${width}/${height}`, width, height } },
+    image: { media: { url: `https://picsum.photos/${width}/${height}`, width, height } },
     url: { url: 'https://www.urbania.ca', target: '_blank', rel: 'noopener noreferer' },
     text: { body: 'Presented by Paul' },
 });

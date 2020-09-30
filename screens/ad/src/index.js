@@ -1,3 +1,3 @@
 export { default } from './Ad';
-export { default as layouts } from './layouts/names';
+export { layouts } from './Ad';
 export { default as schema } from './schema';

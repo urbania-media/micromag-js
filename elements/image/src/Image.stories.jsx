@@ -6,15 +6,29 @@ export default {
     title: 'Components/Image',
 };
 
-export const normal = () => <Image url="https://picsum.photos/200/300" />;
+export const normal = () => (
+    <Image
+        media={{
+            url: 'https://picsum.photos/200/300',
+        }}
+    />
+);
 
 export const withSize = () => (
     <>
-        <Image url="https://picsum.photos/200/300" width={200} height={200} />
         <Image
-            url="https://picsum.photos/200/300"
-            width={200}
-            height={200}
+            media={{
+                url: 'https://picsum.photos/200/300',
+                width: 200,
+                height: 200,
+            }}
+        />
+        <Image
+            media={{
+                url: 'https://picsum.photos/200/300',
+                width: 200,
+                height: 200,
+            }}
             fit={{ size: 'cover' }}
         />
     </>

@@ -1,4 +1,6 @@
-import { schemas as messages } from './messages';
+import {
+    schemas as messages
+} from './messages';
 
 export default {
     $id: 'https://schemas.micromag.ca/0.1/elements/audio.json',
@@ -8,20 +10,12 @@ export default {
     intl: {
         title: messages.schemaTitle,
     },
-    allOf: [
-        {
+    allOf: [{
             $ref: 'https://schemas.micromag.ca/0.1/elements/element.json',
         },
         {
             properties: {
-                // src: {
-                //     $ref: 'https://schemas.micromag.ca/0.1/fields/url.json',
-                //     title: 'URL',
-                //     intl: {
-                //         title: messages.url,
-                //     },
-                // },
-                audio: {
+                media: {
                     $ref: 'https://schemas.micromag.ca/0.1/fields/audio.json',
                     title: 'Audio',
                     intl: {

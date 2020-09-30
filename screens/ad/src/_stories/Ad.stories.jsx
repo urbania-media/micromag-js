@@ -9,8 +9,7 @@ import {
 } from '../../../../.storybook/components';
 import { advertising, image, background } from '../../../../.storybook/data';
 
-import Ad from '../Ad';
-import layouts from '../layouts/names';
+import Ad, { layouts } from '../Ad';
 
 const props = {
     ...advertising({ width: 300, height: 250 }),

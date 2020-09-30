@@ -9,11 +9,10 @@ import {
 } from '../../../../.storybook/components';
 import { audio, image, text, background } from '../../../../.storybook/data';
 
-import Audio from '../Audio';
-import layouts from '../layouts/names';
+import Audio, { layouts } from '../Audio';
 
 const props = {
-    ad: audio(),
+    audio: audio(),
     background: background(),
 };
 
@@ -70,7 +69,7 @@ export const WithImage = () => (
     <LayoutSwitcher {...switcherProps}>
         {(layout) => (
             <Screen>
-                <Audio layout={layout} {...props} image={{ image: image() }} />
+                <Audio layout={layout} {...props} image={image()} />
             </Screen>
         )}
     </LayoutSwitcher>
@@ -80,7 +79,7 @@ export const WithImageAndText = () => (
     <LayoutSwitcher {...switcherProps}>
         {(layout) => (
             <Screen>
-                <Audio layout={layout} {...props} text={text()} image={{ image: image() }} />
+                <Audio layout={layout} {...props} text={text()} image={image()} />
             </Screen>
         )}
     </LayoutSwitcher>

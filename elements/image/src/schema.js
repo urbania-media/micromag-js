@@ -1,4 +1,6 @@
-import { schemas as messages } from './messages';
+import {
+    schemas as messages
+} from './messages';
 
 export default {
     $id: 'https://schemas.micromag.ca/0.1/elements/image.json',
@@ -10,13 +12,12 @@ export default {
         title: messages.schemaTitle,
     },
 
-    allOf: [
-        {
+    allOf: [{
             $ref: 'https://schemas.micromag.ca/0.1/elements/element.json',
         },
         {
             properties: {
-                image: {
+                media: {
                     title: 'Image',
                     $ref: 'https://schemas.micromag.ca/0.1/fields/image.json',
                     intl: {

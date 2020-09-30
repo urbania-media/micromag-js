@@ -9,8 +9,7 @@ import {
 } from '../../../../.storybook/components';
 import { background } from '../../../../.storybook/data';
 
-import AdSlot from '../AdSlot';
-import layouts from '../layouts/names';
+import AdSlot, { layouts } from '../AdSlot';
 
 const props = {
     iframe: {
