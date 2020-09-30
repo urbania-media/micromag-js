@@ -133,7 +133,7 @@ const TextImage = ({
     } else {
         imageElement = (
             <ImageComponent
-                image={image}
+                {...image}
                 key="image-element"
                 fit={{ size: 'cover' }}
                 className={styles.image}

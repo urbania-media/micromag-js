@@ -23,7 +23,7 @@ const defaultProps = {
     align: 'center',
     width: null,
     height: null,
-    spacing: 0,
+    spacing: null,
     reverse: false,
     className: null,
     itemClassName: null,
@@ -35,7 +35,7 @@ const StackNew = ({ direction, align, width, height, spacing, reverse, className
         (direction === 'vertical' ? 'column' : 'row') + (reverse ? '-reverse' : '');
     const alignItems = align === 'center' ? align : `flex-${align}`;
     const justifyContent = typeof spacing === 'string' ? `space-${spacing}` : null;
-    // const itemMargin = typeof spacing === 'number' ? spacing : 0;
+    const itemMargin = typeof spacing === 'number' ? spacing : 0;
 
     const containerStyle = {
         width,
@@ -46,12 +46,12 @@ const StackNew = ({ direction, align, width, height, spacing, reverse, className
         flexDirection,
         alignItems,
         justifyContent,
-        // margin: -itemMargin,
+        margin: -itemMargin,
     };
 
-    /* const itemStyle = {
+    const itemStyle = {
         margin: itemMargin,
-    }; */
+    };
 
     return (
         <div
@@ -63,19 +63,20 @@ const StackNew = ({ direction, align, width, height, spacing, reverse, className
             ])}
             style={containerStyle}
         >
-            <ul className={styles.items} style={itemsStyle}>
-                { children }
-                {/* React.Children.map(children, (child, childI) => (
-                    <li key={`item-${childI}`} className={classNames([
-                        styles.item,
-                        {
-                            [itemClassName]: itemClassName !== null,
-                        },
-                    ])} style={itemStyle}>
-                        {child}
-                    </li>
-                )) */}
-            </ul>
+            <div className={styles.items} style={itemsStyle}>
+                { itemMargin === 0 ? children : 
+                    React.Children.map(children, (child, childI) => (
+                        <div key={`item-${childI}`} className={classNames([
+                            styles.item,
+                            {
+                                [itemClassName]: itemClassName !== null,
+                            },
+                        ])} style={itemStyle}>
+                            {child}
+                        </div>
+                    ))
+                }
+            </div>
         </div>
     );
 };
