@@ -19,78 +19,74 @@ import { schemas as messages } from './messages';
 import styles from './styles.module.scss';
 
 const propTypes = {
+    layout: PropTypes.oneOf(['center', 'top', 'bottom', 'full']),
     image: MicromagPropTypes.imageElement,
     link: MicromagPropTypes.linkElement,
     text: MicromagPropTypes.text,
-    align: MicromagPropTypes.stackAlign,
     background: MicromagPropTypes.backgroundElement,
     visible: PropTypes.bool,
     active: PropTypes.bool,
-    fullScreen: PropTypes.bool,
-    // spacing: MicromagPropTypes.spacing,
     renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
 
 const defaultProps = {
+    layout: null,
     image: null,
     link: null,
     text: null,
-    align: null,
     background: null,
     visible: true,
     active: false,
-    fullScreen: false,
-    // spacing: 0,
     renderFormat: 'view',
     className: null,
 };
 
 const AdScreen = ({
+    layout,
     image,
     link,
     text,
-    align,
     background,
     visible,
     active,
-    fullScreen,
-    // spacing,
     renderFormat,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isView, isPreview, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
+    const { isView, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
     const isEmpty = !image;
+    const isFullScreen = layout === 'full';
 
-    const view = useMemo(
-        () => (
+    const content = useMemo(() => {
+        if (isPlaceholder) {
+            return <Placeholders.AdImage className={styles.placeholder} />;
+        }
+
+        if (isEditor && isEmpty) {
+            return (
+                <Empty className={styles.empty}>
+                    <FormattedMessage {...messages.schemaTitle} />
+                </Empty>
+            );
+        }
+
+        return (
             <AdImage
                 image={image}
                 link={link}
                 text={text}
-                fullScreen={fullScreen}
+                fullScreen={isFullScreen}
                 renderFormat={renderFormat}
             />
-        ),
-        [image, link, text, fullScreen, renderFormat],
-    );
-
-    const empty = useMemo(
-        () => (
-            <Empty className={styles.empty}>
-                <FormattedMessage {...messages.schemaTitle} />
-            </Empty>
-        ),
-        [],
-    );
-
-    const placeholder = useMemo(() => <Placeholders.AdImage className={styles.placeholder} />, []);
+        );
+    }, [isPlaceholder, isEditor, isEmpty, isFullScreen, image, link, text, renderFormat]);
 
     const containerClassNames = classNames([
         styles.container,
         {
-            [styles.fullscreen]: fullScreen,
+            [styles.fullscreen]: isFullScreen,
+            [styles[layout]]: layout !== null,
             [className]: className !== null,
         },
     ]);
@@ -105,12 +101,7 @@ const AdScreen = ({
             />
             <div className={styles.content}>
                 <Container width={width} height={height} visible={visible}>
-                    <VStack {...align}>
-                        {isPlaceholder ? placeholder : null}
-                        {isEditor && isEmpty ? empty : null}
-                        {isView || (isEditor && !isEmpty) ? view : null}
-                        {isPreview ? view : null}
-                    </VStack>
+                    <VStack align="start">{content}</VStack>
                 </Container>
             </div>
         </div>

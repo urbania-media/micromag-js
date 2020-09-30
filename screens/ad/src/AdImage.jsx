@@ -52,11 +52,11 @@ const AdImage = ({
 
     const imageElement = imageProps ? (
         <Image
+            {...imageProps}
             className={imageClassNames}
             emptyClassName={styles.empty}
             caption={hasCaption ? caption : null}
             captionStyle={hasCaption ? captionStyle : null}
-            {...imageProps}
         />
     ) : null;
 

@@ -1,6 +1,3 @@
-import { createLayoutSwitcher } from '@micromag/core';
-import * as LayoutComponents from './layouts';
-
-const AdScreen = createLayoutSwitcher(LayoutComponents);
+import AdScreen from './AdScreen';
 
 export default AdScreen;

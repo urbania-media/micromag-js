@@ -11,11 +11,10 @@ import { getStyleFromImage, getStyleFromContainer } from '@micromag/core/utils';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    image: PropTypes.shape({
-        url: PropTypes.string,
-        width: PropTypes.number,
-        height: PropTypes.number,
-    }),
+    url: PropTypes.string,
+    width: PropTypes.number,
+    height: PropTypes.number,
+    name: PropTypes.string,
     caption: PropTypes.string,
     maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -28,11 +27,10 @@ const propTypes = {
 };
 
 const defaultProps = {
-    image: {
-        url: null,
-        width: null,
-        height: null,
-    },
+    url: null,
+    width: null,
+    height: null,
+    name: null,
     caption: null,
     maxWidth: null,
     maxHeight: null,
@@ -45,7 +43,10 @@ const defaultProps = {
 };
 
 const Image = ({
-    image,
+    url,
+    width: imageWidth,
+    height: imageHeight,
+    name,
     caption,
     maxWidth,
     maxHeight,
@@ -56,8 +57,6 @@ const Image = ({
     className,
     imageClassName,
 }) => {
-    const { url = null, name = 'Image', metadata = {} } = image || {};
-    const { width: imageWidth, height: imageHeight } = metadata;
     const width = maxWidth !== null ? Math.min(imageWidth, maxWidth) : null;
     const height = maxHeight !== null ? Math.min(imageHeight, maxHeight) : null;
 
@@ -72,7 +71,7 @@ const Image = ({
     // }, [imgRef.current]);
 
     let fill = false;
-    let alt = name;
+    let alt = name || 'image';
     let finalStyle = {
         width,
         height,
