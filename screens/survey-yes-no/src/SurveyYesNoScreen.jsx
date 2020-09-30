@@ -3,10 +3,11 @@ import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import Background from '@micromag/element-background';
+import Container from '@micromag/element-container';
 import TextElement from '@micromag/element-text';
 import ImageElement from '@micromag/element-image';
 import VideoElement from '@micromag/element-video';
-import Screen from '@micromag/element-screen';
 
 import Button from '@micromag/element-button';
 import Stack from '@micromag/element-stack';
@@ -61,7 +62,8 @@ const SurveyYesNo = ({
 }) => {
     const [answered, setAnswered] = useState(null);
     const { width, height } = useScreenSize();
-    const { isEditor, isSimple } = getRenderFormat(renderFormat);
+    const { isEditor, isPreview, isView, isPlaceholder } = getRenderFormat(renderFormat);
+    const isSimple = isPreview || isPlaceholder;
     const spacing = 10;
     const videoProps = {
         fit: {
@@ -147,25 +149,28 @@ const SurveyYesNo = ({
     ]);
 
     return (
-        <Screen
-            size={{ width, height }}
-            renderFormat={renderFormat}
-            background={background}
-            visible={visible}
-            active={active}
-            className={containerClassNames}
-        >
-            <Stack {...box} isSmall={isSimple} className={styles.inner}>
-                {answered !== null ? (
-                    answer
-                ) : (
-                    <>
-                        {renderFormat !== 'placeholder' ? question : <Placeholders.Text />}
-                        <div className={styles.buttons}>{buttons}</div>
-                    </>
-                )}
-            </Stack>
-        </Screen>
+        <div className={containerClassNames}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={(isView && visible) || (isEditor && active)}
+            />
+            <div className={styles.content}>
+                <Container width={width} height={height} visible={visible}>
+                    <Stack {...box} isSmall={isSimple} className={styles.inner}>
+                        {answered !== null ? (
+                            answer
+                        ) : (
+                            <>
+                                {renderFormat !== 'placeholder' ? question : <Placeholders.Text />}
+                                <div className={styles.buttons}>{buttons}</div>
+                            </>
+                        )}
+                    </Stack>
+                </Container>
+            </div>
+        </div>
     );
 };
 

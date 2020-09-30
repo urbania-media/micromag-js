@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
+import Background from '@micromag/element-background';
+import Container from '@micromag/element-container';
 import Stack from '@micromag/element-stack';
 import Grid from '@micromag/element-grid';
-import Screen from '@micromag/element-screen';
 import TextComponent from '@micromag/element-text';
 
 import { useScreenSize } from '@micromag/core/contexts';
@@ -53,7 +54,7 @@ const TextScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isEditor, isView } = getRenderFormat(renderFormat);
 
     const textComponent =
         isEditor && !text ? (
@@ -79,22 +80,25 @@ const TextScreen = ({
     ]);
 
     return (
-        <Screen
-            size={{ width, height }}
-            renderFormat={renderFormat}
-            background={background}
-            visible={visible}
-            active={active}
-            className={containerClassNames}
-        >
-            {grid !== null ? (
-                <Grid {...grid} items={[item]} className={styles.box} />
-            ) : (
-                <Stack {...box} isSmall={isSimple} className={styles.box}>
-                    {item}
-                </Stack>
-            )}
-        </Screen>
+        <div className={containerClassNames}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={(isView && visible) || (isEditor && active)}
+            />
+            <div className={styles.content}>
+                <Container width={width} height={height} visible={visible}>
+                    {grid !== null ? (
+                        <Grid {...grid} items={[item]} className={styles.box} />
+                    ) : (
+                        <Stack {...box} className={styles.box}>
+                            {item}
+                        </Stack>
+                    )}
+                </Container>
+            </div>
+        </div>
     );
 };
 

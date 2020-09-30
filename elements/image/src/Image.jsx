@@ -54,14 +54,11 @@ const Image = ({
     captionStyle,
     className,
     imageClassName,
-    ...props
 }) => {
     const { url = null, width: imageWidth, height: imageHeight } = media || {};
     const width = maxWidth !== null ? Math.min(imageWidth, maxWidth) : null;
     const height = maxHeight !== null ? Math.min(imageHeight, maxHeight) : null;
     const { size = 'contain' } = defaultFit || {};
-
-    console.log(props, media, url);
 
     let fill = false;
     let alt = name || 'image';

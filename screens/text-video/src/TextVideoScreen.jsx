@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
+import Background from '@micromag/element-background';
+import Container from '@micromag/element-container';
 import Video from '@micromag/element-video';
 import Stack from '@micromag/element-stack';
 import Grid from '@micromag/element-grid';
-import Screen from '@micromag/element-screen';
 import TextComponent from '@micromag/element-text';
 
 import { useScreenSize } from '@micromag/core/contexts';
@@ -61,8 +62,9 @@ const TextVideoScreen = ({
 }) => {
     const { width, height } = useScreenSize();
     const { spacing = 10 } = box || {};
-    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
+    const { isView, isPlaceholder, isPreview, isEditor } = getRenderFormat(renderFormat);
     const showEmpty = text === null && video === null;
+    const isSimple = isPreview || isPlaceholder;
 
     let videoSize = {};
     if (video) {
@@ -112,22 +114,25 @@ const TextVideoScreen = ({
     ]);
 
     return (
-        <Screen
-            size={{ width, height }}
-            renderFormat={renderFormat}
-            background={background}
-            visible={visible}
-            active={active}
-            className={containerClassNames}
-        >
-            {grid !== null ? (
-                <Grid {...grid} items={items} isSmall={isSimple} className={styles.box} />
-            ) : (
-                <Stack {...box} isSmall={isSimple} className={styles.box}>
-                    {items}
-                </Stack>
-            )}
-        </Screen>
+        <div className={containerClassNames}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={(isView && visible) || (isEditor && active)}
+            />
+            <div className={styles.content}>
+                <Container width={width} height={height} visible={visible}>
+                    {grid !== null ? (
+                        <Grid {...grid} items={items} className={styles.box} />
+                    ) : (
+                        <Stack {...box} className={styles.box}>
+                            {items}
+                        </Stack>
+                    )}
+                </Container>
+            </div>
+        </div>
     );
 };
 

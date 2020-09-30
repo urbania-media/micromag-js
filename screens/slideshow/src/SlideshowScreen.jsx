@@ -5,7 +5,8 @@ import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { animated } from 'react-spring';
 
-import Screen from '@micromag/element-screen';
+import Background from '@micromag/element-background';
+import Container from '@micromag/element-container';
 import Stack from '@micromag/element-stack';
 import ImageElement from '@micromag/element-image';
 import ButtonElement from '@micromag/element-button';
@@ -57,7 +58,7 @@ const SlideshowScreen = ({
 }) => {
     const [parallelIndex, setParallelIndex] = useState(0);
     const { width, height, screens } = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
     const maxWidth = Math.min(width, 500);
 
     const { items, bind, setIndex } = useSwipe({
@@ -109,7 +110,7 @@ const SlideshowScreen = ({
                                 className={styles.slide}
                             >
                                 {item.image ? (
-                                    <ImageElement image={item.image} fit={{ size: 'cover' }} />
+                                    <ImageElement {...item.image} fit={{ size: 'cover' }} />
                                 ) : null}
                                 {item.text ? <TextElement body={item.text} /> : null}
                             </animated.div>
@@ -149,18 +150,21 @@ const SlideshowScreen = ({
     ]);
 
     return (
-        <Screen
-            size={{ width, height }}
-            renderFormat={renderFormat}
-            background={background}
-            visible={visible}
-            active={active}
-            className={containerClassNames}
-        >
-            <Stack {...box} isSmall={isSimple}>
-                {isPlaceholder ? <Placeholders.Slideshow /> : inner}
-            </Stack>
-        </Screen>
+        <div className={containerClassNames}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={(isView && visible) || (isEditor && active)}
+            />
+            <div className={styles.content}>
+                <Container width={width} height={height} visible={visible}>
+                    <Stack {...box} isSmall={isSimple}>
+                        {isPlaceholder ? <Placeholders.Slideshow /> : inner}
+                    </Stack>
+                </Container>
+            </div>
+        </div>
     );
 };
 

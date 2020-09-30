@@ -4,9 +4,10 @@ import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import Background from '@micromag/element-background';
+import Container from '@micromag/element-container';
 import TextComponent from '@micromag/element-text';
 import Image from '@micromag/element-image';
-import Screen from '@micromag/element-screen';
 import Checkbox from '@micromag/element-checkbox';
 import Button from '@micromag/element-button';
 
@@ -53,18 +54,15 @@ const SurveyCheckbox = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    // const { isPlaceholder, isEditor, isView } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isEditor, isView } = getRenderFormat(renderFormat);
 
     const [value, setValue] = useState('');
-
     const [answered, setAnswered] = useState(false);
-
     const { image, text: resultText } = result || {};
 
     const onClickSubmit = () => {
         setAnswered(true);
     };
-
     const onChange = useCallback((newValue) => setValue(newValue), [value]);
 
     const containerClassNames = classNames([
@@ -75,70 +73,80 @@ const SurveyCheckbox = ({
     ]);
 
     return (
-        <Screen
-            size={{ width, height }}
-            renderFormat={renderFormat}
-            background={background}
-            visible={visible}
-            active={active}
-            className={containerClassNames}
-        >
-            <div className={styles.inner}>
-                {answered ? (
-                    <div className={styles.resultContainer}>
-                        <Image className={styles.image} {...image} />
-                        <TextComponent className={styles.result} {...resultText} />
-                    </div>
-                ) : (
-                    <>
-                        {renderFormat !== 'placeholder' ? (
-                            <div className={styles.choices}>
-                                {options !== null && options.length > 0 ? (
-                                    <>
-                                        {question !== null ? (
-                                            <TextComponent
-                                                className={styles.question}
-                                                {...question}
-                                            />
-                                        ) : null}
-
-                                        {options.map((item, i) => (
-                                            <Checkbox
-                                                className={styles.choice}
-                                                onChange={onChange}
-                                                key={`checkbox-${i + 1}`}
-                                                option={<TextComponent {...item} />}
-                                                value={value}
-                                            />
-                                        ))}
-                                        <Button className={styles.button} onClick={onClickSubmit}>
-                                            soumettre
-                                        </Button>
-                                    </>
-                                ) : null}
+        <div className={containerClassNames}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={(isView && visible) || (isEditor && active)}
+            />
+            <div className={styles.content}>
+                <Container width={width} height={height} visible={visible}>
+                    <div className={styles.inner}>
+                        {answered ? (
+                            <div className={styles.resultContainer}>
+                                <Image className={styles.image} {...image} />
+                                <TextComponent className={styles.result} {...resultText} />
                             </div>
                         ) : (
                             <>
-                                <Placeholders.Title className={styles.questionPlaceholder} />
-                                <Checkbox
-                                    className={styles.placeholder}
-                                    option={<Placeholders.Subtitle />}
-                                />
-                                <Checkbox
-                                    className={styles.placeholder}
-                                    option={<Placeholders.Subtitle />}
-                                />
-                                <Checkbox
-                                    className={styles.placeholder}
-                                    option={<Placeholders.Subtitle />}
-                                />
-                                <Placeholders.Button className={styles.submitButtonPlaceholder} />
+                                {renderFormat !== 'placeholder' ? (
+                                    <div className={styles.choices}>
+                                        {options !== null && options.length > 0 ? (
+                                            <>
+                                                {question !== null ? (
+                                                    <TextComponent
+                                                        className={styles.question}
+                                                        {...question}
+                                                    />
+                                                ) : null}
+
+                                                {options.map((item, i) => (
+                                                    <Checkbox
+                                                        className={styles.choice}
+                                                        onChange={onChange}
+                                                        key={`checkbox-${i + 1}`}
+                                                        option={<TextComponent {...item} />}
+                                                        value={value}
+                                                    />
+                                                ))}
+                                                <Button
+                                                    className={styles.button}
+                                                    onClick={onClickSubmit}
+                                                >
+                                                    soumettre
+                                                </Button>
+                                            </>
+                                        ) : null}
+                                    </div>
+                                ) : (
+                                    <>
+                                        <Placeholders.Title
+                                            className={styles.questionPlaceholder}
+                                        />
+                                        <Checkbox
+                                            className={styles.placeholder}
+                                            option={<Placeholders.Subtitle />}
+                                        />
+                                        <Checkbox
+                                            className={styles.placeholder}
+                                            option={<Placeholders.Subtitle />}
+                                        />
+                                        <Checkbox
+                                            className={styles.placeholder}
+                                            option={<Placeholders.Subtitle />}
+                                        />
+                                        <Placeholders.Button
+                                            className={styles.submitButtonPlaceholder}
+                                        />
+                                    </>
+                                )}
                             </>
                         )}
-                    </>
-                )}
+                    </div>
+                </Container>
             </div>
-        </Screen>
+        </div>
     );
 };
 

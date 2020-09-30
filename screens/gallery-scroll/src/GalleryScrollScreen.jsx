@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-import Screen from '@micromag/element-screen';
+import Background from '@micromag/element-background';
+import Container from '@micromag/element-container';
+import Scroll from '@micromag/element-scroll';
 import Image from '@micromag/element-image';
 import { VStack, HStack } from '@micromag/element-stack';
 
@@ -50,7 +52,7 @@ const GalleryScrollScreen = ({
     renderFormat,
     className,
 }) => {
-    const size = useScreenSize();
+    const { width, height } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
 
     const defaultArray = [
@@ -107,7 +109,7 @@ const GalleryScrollScreen = ({
                 >
                     {isView || (isEditor && !isEmpty) ? (
                         <Image
-                            image={it && it.image ? it.image : null}
+                            {...it}
                             fit={{ size: 'cover' }}
                             contain
                             className={styles.imageComponent}
@@ -141,20 +143,23 @@ const GalleryScrollScreen = ({
     ]);
 
     return (
-        <Screen
-            size={size}
-            renderFormat={renderFormat}
-            background={background}
-            visible={visible}
-            active={active}
-            spacing={spacing}
-            className={containerClassNames}
-            withScroll
-        >
-            <VStack className={styles.box} verticalAlign="top">
-                {items}
-            </VStack>
-        </Screen>
+        <div className={containerClassNames}>
+            <Scroll>
+                <Background
+                    {...(!isPlaceholder ? background : null)}
+                    width={width}
+                    height={height}
+                    playing={(isView && visible) || (isEditor && active)}
+                />
+                <div className={styles.content}>
+                    <Container width={width} height={height} visible={visible}>
+                        <VStack className={styles.box} verticalAlign="top">
+                            {items}
+                        </VStack>
+                    </Container>
+                </div>
+            </Scroll>
+        </div>
     );
 };
 

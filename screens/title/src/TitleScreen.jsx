@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-import Screen from '@micromag/element-screen';
+import Background from '@micromag/element-background';
+import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Text from '@micromag/element-text';
 import Grid from '@micromag/element-grid';
@@ -67,8 +68,8 @@ const TitleScreen = ({
     renderFormat,
     className,
 }) => {
-    const size = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
+    const { width, height } = useScreenSize();
+    const { isView, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
 
     const options = { title, subtitle, description };
     const hasValue = title !== null || subtitle !== null || description !== null;
@@ -110,24 +111,25 @@ const TitleScreen = ({
     ]);
 
     return (
-        <Screen
-            size={size}
-            renderFormat={renderFormat}
-            background={background}
-            visible={visible}
-            active={active}
-            className={containerClassNames}
-        >
-            <div className={styles.inner}>
-                {grid !== null ? (
-                    <Grid {...grid} items={items} isSmall={isSimple} className={styles.grid} />
-                ) : (
-                    <Stack {...box} className={styles.box}>
-                        {items}
-                    </Stack>
-                )}
+        <div className={containerClassNames}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={(isView && visible) || (isEditor && active)}
+            />
+            <div className={styles.content}>
+                <Container width={width} height={height} visible={visible}>
+                    {grid !== null ? (
+                        <Grid {...grid} items={items} className={styles.grid} />
+                    ) : (
+                        <Stack {...box} className={styles.box}>
+                            {items}
+                        </Stack>
+                    )}
+                </Container>
             </div>
-        </Screen>
+        </div>
     );
 };
 

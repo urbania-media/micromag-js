@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Stack from '@micromag/element-stack';
-import Screen from '@micromag/element-screen';
+import Background from '@micromag/element-background';
+import Container from '@micromag/element-container';
 import Image from '@micromag/element-image';
 import VideoComponent from '@micromag/element-video';
 
@@ -17,7 +18,6 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     video: MicromagPropTypes.video,
-
     background: MicromagPropTypes.backgroundElement,
     box: MicromagPropTypes.boxElement,
     fit: PropTypes.shape({
@@ -54,18 +54,19 @@ const VideoScreen = ({
     const autoPlay = false;
     const { width, height } = useScreenSize();
     const { size } = fit || {};
-    const { isPreview, isSimple, isEditor } = getRenderFormat(renderFormat);
+    const { isPreview, isEditor, isPlaceholder, isView } = getRenderFormat(renderFormat);
     const { video = {}, params = {} } = videoField || {};
+    const isNonInteractive = isPlaceholder || isPreview;
 
     const PlaceholderSized = size === 'cover' ? Placeholders.VideoFull : Placeholders.Video;
     const PlaceholderLoop = loop ? Placeholders.VideoLoop : PlaceholderSized;
     const Placeholder = loop && size === 'cover' ? Placeholders.VideoFullLoop : PlaceholderLoop;
-    const autoplayCondition = isEditor ? autoPlay && active : autoPlay && !isSimple;
+    const autoplayCondition = isEditor ? autoPlay && active : autoPlay && !isNonInteractive;
 
     const preview =
         isPreview && video.thumbnail_url && video.metadata ? (
             <Image
-                image={{ url: video.thumbnail_url, metadata: video.metadata }}
+                image={{ media: { url: video.thumbnail_url }, metadata: video.metadata }}
                 className={styles.preview}
             />
         ) : (
@@ -79,7 +80,7 @@ const VideoScreen = ({
             />
         );
 
-    const item = isSimple ? (
+    const item = isNonInteractive ? (
         preview
     ) : (
         <VideoComponent
@@ -102,18 +103,21 @@ const VideoScreen = ({
     ]);
 
     return (
-        <Screen
-            size={{ width, height }}
-            renderFormat={renderFormat}
-            background={background}
-            visible={visible}
-            active={active}
-            className={containerClassNames}
-        >
-            <Stack {...box} isSmall={isSimple} spacing={0} className={styles.box}>
-                {item}
-            </Stack>
-        </Screen>
+        <div className={containerClassNames}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={(isView && visible) || (isEditor && active)}
+            />
+            <div className={styles.content}>
+                <Container width={width} height={height} visible={visible}>
+                    <Stack {...box} className={styles.box}>
+                        {item}
+                    </Stack>
+                </Container>
+            </div>
+        </div>
     );
 };
 

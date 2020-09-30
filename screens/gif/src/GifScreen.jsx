@@ -3,8 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import Background from '@micromag/element-background';
+import Container from '@micromag/element-container';
 import Stack from '@micromag/element-stack';
-import Screen from '@micromag/element-screen';
 import Image from '@micromag/element-image';
 import VideoComponent from '@micromag/element-video';
 
@@ -58,7 +59,8 @@ const GifScreen = ({
 }) => {
     const { width, height } = useScreenSize();
     const { size } = fit || {};
-    const { isPreview, isSimple, isEditor } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isView, isPreview, isEditor } = getRenderFormat(renderFormat);
+    const isNonInteractive = isPreview || isPlaceholder;
 
     const { video = {} } = videoField || {};
     const { loop = false, autoPlay = false } = defaultParams || {};
@@ -66,7 +68,7 @@ const GifScreen = ({
     const PlaceholderSized = size === 'cover' ? Placeholders.VideoFull : Placeholders.Video;
     const PlaceholderLoop = loop ? Placeholders.VideoLoop : PlaceholderSized;
     const Placeholder = loop && size === 'cover' ? Placeholders.VideoFullLoop : PlaceholderLoop;
-    const autoplayCondition = isEditor ? autoPlay && active : autoPlay && !isSimple;
+    const autoplayCondition = isEditor ? autoPlay && active : autoPlay && !isNonInteractive;
 
     const preview =
         isPreview && video.thumbnail_url && video.metadata ? (
@@ -85,7 +87,7 @@ const GifScreen = ({
             />
         );
 
-    const item = isSimple ? (
+    const item = isNonInteractive ? (
         preview
     ) : (
         <VideoComponent
@@ -107,18 +109,21 @@ const GifScreen = ({
     ]);
 
     return (
-        <Screen
-            size={size}
-            renderFormat={renderFormat}
-            background={background}
-            visible={visible}
-            active={active}
-            className={containerClassNames}
-        >
-            <Stack {...box} isSmall={isSimple} spacing={0} className={styles.box}>
-                {item}
-            </Stack>
-        </Screen>
+        <div className={containerClassNames}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={(isView && visible) || (isEditor && active)}
+            />
+            <div className={styles.content}>
+                <Container width={width} height={height} visible={visible}>
+                    <Stack {...box} className={styles.box}>
+                        {item}
+                    </Stack>
+                </Container>
+            </div>
+        </div>
     );
 };
 

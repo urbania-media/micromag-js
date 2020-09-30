@@ -3,7 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Screen from '@micromag/element-screen';
+import Background from '@micromag/element-background';
+import Container from '@micromag/element-container';
 import Stack from '@micromag/element-stack';
 import Grid from '@micromag/element-grid';
 
@@ -59,8 +60,8 @@ const QuoteScreen = ({
     renderFormat,
     className,
 }) => {
-    const size = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
+    const { width, height } = useScreenSize();
+    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
     const { layout = [] } = grid || {};
 
     const item = (
@@ -88,22 +89,30 @@ const QuoteScreen = ({
     ]);
 
     return (
-        <Screen
-            size={size}
-            renderFormat={renderFormat}
-            background={background}
-            visible={visible}
-            active={active}
-            className={containerClassNames}
-        >
-            {grid !== null ? (
-                <Grid {...grid} isSmall={isSimple} items={itemsArray} className={styles.grid} />
-            ) : (
-                <Stack {...box} isSmall={isSimple} className={styles.box}>
-                    {item}
-                </Stack>
-            )}
-        </Screen>
+        <div className={containerClassNames}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={(isView && visible) || (isEditor && active)}
+            />
+            <div className={styles.content}>
+                <Container width={width} height={height} visible={visible}>
+                    {grid !== null ? (
+                        <Grid
+                            {...grid}
+                            isSmall={isSimple}
+                            items={itemsArray}
+                            className={styles.grid}
+                        />
+                    ) : (
+                        <Stack {...box} isSmall={isSimple} className={styles.box}>
+                            {item}
+                        </Stack>
+                    )}
+                </Container>
+            </div>
+        </div>
     );
 };
 

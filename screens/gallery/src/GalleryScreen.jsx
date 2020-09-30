@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-import Screen from '@micromag/element-screen';
+import Background from '@micromag/element-background';
+import Container from '@micromag/element-container';
 import Grid from '@micromag/element-grid';
 import Image from '@micromag/element-image';
 
@@ -51,8 +52,8 @@ const GalleryScreen = ({
     renderFormat,
     className,
 }) => {
-    const size = useScreenSize();
-    const { isPlaceholder, isPreview, isSimple, isEditor } = getRenderFormat(renderFormat);
+    const { width, height } = useScreenSize();
+    const { isPlaceholder, isView, isPreview, isEditor } = getRenderFormat(renderFormat);
 
     const { layout } = grid;
     const defaultArray = [
@@ -74,7 +75,7 @@ const GalleryScreen = ({
                       <FormattedMessage {...messages.image} />
                   </Empty>
               ) : (
-                  <Image image={it} fit={{ size: 'cover' }} contain className={styles.image} />
+                  <Image {...it} fit={{ size: 'cover' }} contain className={styles.image} />
               ),
           );
 
@@ -86,24 +87,27 @@ const GalleryScreen = ({
     ]);
 
     return (
-        <Screen
-            size={size}
-            renderFormat={renderFormat}
-            background={background}
-            visible={visible}
-            active={active}
-            className={containerClassNames}
-        >
-            <div className={styles.images}>
-                <Grid
-                    spacing={defaultSpacing}
-                    {...grid}
-                    isSmall={isSimple}
-                    items={items}
-                    className={styles.grid}
-                />
+        <div className={containerClassNames}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={(isView && visible) || (isEditor && active)}
+            />
+            <div className={styles.content}>
+                <Container width={width} height={height} visible={visible}>
+                    <div className={styles.images}>
+                        <Grid
+                            spacing={defaultSpacing}
+                            {...grid}
+                            isSmall={isPlaceholder || isPreview}
+                            items={items}
+                            className={styles.grid}
+                        />
+                    </div>
+                </Container>
             </div>
-        </Screen>
+        </div>
     );
 };
 
