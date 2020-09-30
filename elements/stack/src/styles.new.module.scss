@@ -1,7 +1,7 @@
 .container {
     position: relative;
     overflow: hidden;
-    
+
     .items {
         display: flex;
         height: 100%;
@@ -9,5 +9,12 @@
 
     .item {
         position: relative;
+    }
+
+    ul,
+    li {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
     }
 }

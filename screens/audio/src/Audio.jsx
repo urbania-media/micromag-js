@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
-import React, { useMemo } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -68,8 +68,6 @@ const AudioScreen = ({
 
     let imageElement = null;
 
-    console.log(image);
-
     if (isPlaceholder && image !== null) {
         imageElement = <Placeholders.MediumImage className={styles.placeholder} />;
     } else {
@@ -121,7 +119,7 @@ const AudioScreen = ({
             />
             <div className={styles.content}>
                 <Container width={width} height={height} visible={visible}>
-                    <VStack align="start">
+                    <VStack align="center">
                         {imageElement}
                         {audioElement}
                         {textElement}

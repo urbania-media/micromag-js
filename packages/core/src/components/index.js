@@ -30,7 +30,27 @@ export { default as Link } from './partials/Link';
 export { default as Media } from './partials/Media';
 export { default as Placeholder } from './partials/Placeholder';
 export { default as PlaceholderBlock } from './partials/PlaceholderBlock';
+
 export { default as Placeholders } from './partials/Placeholders';
+
+export { default as PlaceholderAdFrame } from './placeholders/AdFrame';
+export { default as PlaceholderAdImage } from './placeholders/AdImage';
+export { default as PlaceholderAudio } from './placeholders/Audio';
+export { default as PlaceholderButton } from './placeholders/Button';
+export { default as PlaceholderImage } from './placeholders/Image';
+export { default as PlaceholderLine } from './placeholders/Line';
+export { default as PlaceholderMap } from './placeholders/Map';
+export { default as PlaceholderMapPath } from './placeholders/MapPath';
+export { default as PlaceholderPanorama } from './placeholders/Panorama';
+export { default as PlaceholderQuote } from './placeholders/Quote';
+export { default as PlaceholderShortText } from './placeholders/ShortText';
+export { default as PlaceholderSlideshow } from './placeholders/Slideshow';
+export { default as PlaceholderSubtitle } from './placeholders/Subtitle';
+export { default as PlaceholderText } from './placeholders/Text';
+export { default as PlaceholderTimeline } from './placeholders/Timeline';
+export { default as PlaceholderTitle } from './placeholders/Title';
+export { default as PlaceholderVideo } from './placeholders/Video';
+export { default as PlaceholderVideoLoop } from './placeholders/VideoLoop';
 
 export { default as createLayoutSwitcher } from './screens/createLayoutSwitcher';
 export { default as ScreenPlaceholder } from './screens/Placeholder';

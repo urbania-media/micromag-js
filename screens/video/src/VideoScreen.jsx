@@ -63,13 +63,16 @@ const VideoScreen = ({
     const Placeholder = loop && size === 'cover' ? Placeholders.VideoFullLoop : PlaceholderLoop;
     const autoplayCondition = isEditor ? autoPlay && active : autoPlay && !isNonInteractive;
 
-    const preview =
-        isPreview && video.thumbnail_url && video.metadata ? (
+    let videoElement = null;
+    if (isPreview && video.thumbnail_url && video.metadata) {
+        videoElement = (
             <Image
                 image={{ media: { url: video.thumbnail_url }, metadata: video.metadata }}
                 className={styles.preview}
             />
-        ) : (
+        );
+    } else if (isNonInteractive) {
+        videoElement = (
             <Placeholder
                 className={classNames([
                     styles.placeholder,
@@ -79,21 +82,20 @@ const VideoScreen = ({
                 ])}
             />
         );
-
-    const item = isNonInteractive ? (
-        preview
-    ) : (
-        <VideoComponent
-            {...params}
-            autoPlay={autoplayCondition}
-            video={video}
-            width={Math.min(width, 768)}
-            height={height}
-            fit={fit}
-            showEmpty={isEditor}
-            className={styles.video}
-        />
-    );
+    } else {
+        videoElement = (
+            <VideoComponent
+                {...params}
+                autoPlay={autoplayCondition}
+                video={video}
+                width={Math.min(width, 768)}
+                height={height}
+                fit={fit}
+                showEmpty={isEditor}
+                className={styles.video}
+            />
+        );
+    }
 
     const containerClassNames = classNames([
         styles.container,
@@ -113,7 +115,7 @@ const VideoScreen = ({
             <div className={styles.content}>
                 <Container width={width} height={height} visible={visible}>
                     <Stack {...box} className={styles.box}>
-                        {item}
+                        {videoElement}
                     </Stack>
                 </Container>
             </div>

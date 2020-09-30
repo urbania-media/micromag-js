@@ -30,7 +30,7 @@ const defaultProps = {
 
 const StackNew = ({ direction, align, width, height, spacing, reverse, className, children }) => {
     const flexDirection =
-        (direction === 'vertical' ? 'column' : 'row') + (reverse ? '-reverse' : '');
+        (direction === 'vertical' ? 'row' : 'column') + (reverse ? '-reverse' : '');
     const alignItems = align === 'center' ? align : `flex-${align}`;
     const justifyContent = typeof spacing === 'string' ? `space-${spacing}` : null;
     const itemMargin = typeof spacing === 'number' ? spacing : 0;

@@ -6,9 +6,9 @@ import { FormattedMessage } from 'react-intl';
 
 import Container from '@micromag/element-container';
 import Background from '@micromag/element-background';
-import { VStack } from '@micromag/element-stack';
+import { StackNew } from '@micromag/element-stack';
 
-import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, PlaceholderAdImage, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 
@@ -56,6 +56,8 @@ const AdScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const maxRatio = 3 / 4;
+
     const { isView, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
     const isEmpty = !image;
     const isFullScreen = layout === 'full';
@@ -71,7 +73,7 @@ const AdScreen = ({
     );
 
     if (isPlaceholder) {
-        imageElement = <Placeholders.AdImage className={styles.placeholder} />;
+        imageElement = <PlaceholderAdImage className={styles.placeholder} />;
     }
 
     if (isEditor && isEmpty) {
@@ -97,11 +99,14 @@ const AdScreen = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
+                maxRatio={maxRatio}
                 playing={(isView && visible) || (isEditor && active)}
             />
             <div className={styles.content}>
-                <Container width={width} height={height} visible={visible}>
-                    <VStack align="start">{imageElement}</VStack>
+                <Container width={width} height={height} maxRatio={maxRatio} visible={visible}>
+                    <StackNew className={styles.stack} direction="vertical" align="start">
+                        {imageElement}
+                    </StackNew>
                 </Container>
             </div>
         </div>

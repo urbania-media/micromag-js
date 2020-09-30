@@ -20,14 +20,13 @@ const defaultProps = {
 };
 
 const Container = ({ width, height, maxRatio, className, children }) => {
-    
     const currentRatio = width / height;
     const maxWidth = maxRatio !== null && currentRatio > maxRatio ? height * maxRatio : null;
 
     const finalStyle = {
         width,
         height,
-        maxWidth
+        maxWidth,
     };
 
     return (

@@ -37,10 +37,8 @@ const AdImage = ({
     renderFormat,
 }) => {
     const { isView, isEditor } = getRenderFormat(renderFormat);
-
     const { url = null, target = '_blank', rel = 'noopener noreferer' } = linkProps || {};
     const { body: caption, style: captionStyle } = textProps || {};
-
     const hasCaption = isView || isEditor;
 
     const imageClassNames = classNames([
