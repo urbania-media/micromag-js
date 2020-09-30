@@ -1,52 +1,19 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { pascalCase } from 'change-case';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import styles from './styles.module.scss';
+import Stack from './StackNew';
 
 const propTypes = {
-    axisAlign: MicromagPropTypes.axisAlign,
-    crossAlign: MicromagPropTypes.crossAlign,
-    spacing: PropTypes.number,
-    // wrap: PropTypes.bool,
-    reverse: PropTypes.bool,
-    className: PropTypes.string,
-    children: PropTypes.node,
+    direction: PropTypes.string,
 };
 
 const defaultProps = {
-    axisAlign: null,
-    crossAlign: null,
-    spacing: 0,
-    // wrap: false,
-    reverse: false,
-    className: null,
-    children: null,
+    direction: 'horizontal',
 };
 
-const HStack = ({ axisAlign, crossAlign, spacing, reverse, className, children }) => {
-    const containerSpacing = spacing !== null && spacing > 0 ? spacing / 2 : spacing;
-    return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [styles.row]: true,
-                    [styles.reverse]: reverse === true,
-                    [styles[`axis${pascalCase(axisAlign || '')}`]]: axisAlign !== null,
-                    [styles[`cross${pascalCase(crossAlign || '')}`]]: crossAlign !== null,
-                    [className]: className !== null,
-                },
-            ])}
-            style={{
-                padding: containerSpacing || null,
-            }}
-        >
-            {children}
-        </div>
-    );
+const HStack = ({ direction, ...props }) => {
+    return <Stack {...props} direction={direction} />;
 };
 
 HStack.propTypes = propTypes;

@@ -13,6 +13,7 @@ const propTypes = {
     reverse: PropTypes.bool,
     className: PropTypes.string,
     itemClassName: PropTypes.string,
+    wrapChildren: PropTypes.bool,
     children: PropTypes.node,
 };
 
@@ -23,10 +24,20 @@ const defaultProps = {
     reverse: false,
     className: null,
     itemClassName: null,
+    wrapChildren: true,
     children: null,
 };
 
-const StackNew = ({ direction, align, spacing, reverse, className, itemClassName, children }) => {
+const StackNew = ({
+    direction,
+    align,
+    spacing,
+    reverse,
+    className,
+    itemClassName,
+    wrapChildren,
+    children,
+}) => {
     const flexDirection =
         (direction === 'vertical' ? 'column' : 'row') + (reverse ? '-reverse' : '');
     const alignItems = align === 'center' ? align : `flex-${align}`;
@@ -60,23 +71,27 @@ const StackNew = ({ direction, align, spacing, reverse, className, itemClassName
         >
             {space === 0
                 ? children
-                : React.Children.map(children, (child, index) => (
-                    <div
-                        key={`item-${index}`}
-                        className={classNames([
-                              styles.item,
-                              {
-                                  [itemClassName]: itemClassName !== null,
-                              },
-                          ])}
-                        style={{
-                              ...(!reverse && index !== children.length - 1 ? itemStyle : null),
-                              ...(reverse && index !== 0 ? itemStyle : null),
-                          }}
-                      >
-                        {child}
-                    </div>
-                  ))}
+                : React.Children.map(children, (child, index) =>
+                      wrapChildren && children.length > 1 ? (
+                          <div
+                              key={`item-${index}`}
+                              className={classNames([
+                                  styles.item,
+                                  {
+                                      [itemClassName]: itemClassName !== null,
+                                  },
+                              ])}
+                              style={{
+                                  ...(!reverse && index !== children.length - 1 ? itemStyle : null),
+                                  ...(reverse && index !== 0 ? itemStyle : null),
+                              }}
+                          >
+                              {child}
+                          </div>
+                      ) : (
+                          child
+                      ),
+                  )}
         </div>
     );
 };
