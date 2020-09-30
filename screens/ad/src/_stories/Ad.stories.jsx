@@ -12,7 +12,7 @@ import { advertising, image, background } from '../../../../.storybook/data';
 import Ad, { layouts } from '../Ad';
 
 const props = {
-    ...advertising({ width: 300, height: 250 }),
+    ...advertising({ width: 300, height: 100 }),
     background: background(),
 };
 

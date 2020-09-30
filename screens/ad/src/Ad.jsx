@@ -104,7 +104,14 @@ const AdScreen = ({
             />
             <div className={styles.content}>
                 <Container width={width} height={height} maxRatio={maxRatio} visible={visible}>
-                    <StackNew className={styles.stack} direction="vertical" align="start">
+                    <StackNew
+                        className={styles.stack}
+                        direction="vertical"
+                        align="center"
+                        spacing={20}
+                    >
+                        {imageElement}
+                        {imageElement}
                         {imageElement}
                     </StackNew>
                 </Container>
