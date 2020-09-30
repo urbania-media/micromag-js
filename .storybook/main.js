@@ -16,7 +16,9 @@ module.exports = {
                     test: /\.module\.s[ca]ss$/,
                 },
                 cssLoaderOptions: {
-                    modules: true,
+                    modules: {
+                        localIdentName: '[name]__[local]--[hash:base64:5]',
+                    },                    
                 },
             },
         },
