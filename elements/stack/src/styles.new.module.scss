@@ -1,0 +1,13 @@
+.container {
+    position: relative;
+    overflow: hidden;
+    
+    .items {
+        display: flex;
+        height: 100%;
+    }
+
+    .item {
+        position: relative;
+    }
+}

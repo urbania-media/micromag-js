@@ -23,6 +23,7 @@ const propTypes = {
     loop: PropTypes.bool,
     muted: PropTypes.bool,
     controls: MicromagPropTypes.controls,
+    maxRatio: PropTypes.number,
     className: PropTypes.string,
     children: PropTypes.node,
 };
@@ -42,6 +43,7 @@ const defaultProps = {
     loop: true,
     muted: true,
     controls: false,
+    maxRatio: null,
     className: null,
     children: null,
 };
@@ -61,11 +63,16 @@ const Background = ({
     loop,
     muted,
     controls,
+    maxRatio,
     className,
     children,
 }) => {
+
+    const currentRatio = width / height;
+    const finalWidth = maxRatio !== null && currentRatio > maxRatio ? height * maxRatio : width;
+
     const finalStyle = {
-        width,
+        width: finalWidth,
         height,
         ...getStyleFromColor(color),
     };

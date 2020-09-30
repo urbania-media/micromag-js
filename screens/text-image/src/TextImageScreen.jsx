@@ -31,6 +31,7 @@ const propTypes = {
     visible: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
+    maxRatio: PropTypes.number,
     className: PropTypes.string,
 };
 
@@ -45,6 +46,7 @@ const defaultProps = {
     visible: true,
     active: false,
     renderFormat: 'view',
+    maxRatio: 3 / 4,
     className: null,
 };
 
@@ -59,6 +61,7 @@ const TextImageScreen = ({
     textAlign,
     reverse,
     renderFormat,
+    maxRatio,
     className,
 }) => {
     const { width, height } = useScreenSize();
@@ -129,7 +132,7 @@ const TextImageScreen = ({
     return (
         <div className={containerClassNames}>
             <div className={styles.content}>
-                <Container width={width} height={height} visible={visible}>
+                <Container width={width} height={height} visible={visible} maxRatio={maxRatio}>
                     {grid !== null ? (
                         <Grid {...grid} items={items} />
                     ) : (
