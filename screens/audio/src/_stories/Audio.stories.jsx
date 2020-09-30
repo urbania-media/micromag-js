@@ -9,11 +9,10 @@ import {
 } from '../../../../.storybook/components';
 import { audio, image, text, background } from '../../../../.storybook/data';
 
-import Audio from '../Audio';
-import layouts from '../layouts/names';
+import Audio, { layouts } from '../Audio';
 
 const props = {
-    ad: audio(),
+    audio: audio(),
     background: background(),
 };
 
@@ -28,7 +27,7 @@ export default {
 
 export const Placeholders = () => (
     <LayoutGrid layouts={layouts}>
-        {layout => (
+        {(layout) => (
             <PlaceholderScreen>
                 <Audio layout={layout} renderFormat="placeholder" />
             </PlaceholderScreen>
@@ -38,7 +37,7 @@ export const Placeholders = () => (
 
 export const Previews = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <PreviewScreen>
                 <Audio layout={layout} renderFormat="preview" {...props} />
             </PreviewScreen>
@@ -48,7 +47,7 @@ export const Previews = () => (
 
 export const Editor = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <Audio layout={layout} renderFormat="edit" />
             </Screen>
@@ -58,7 +57,7 @@ export const Editor = () => (
 
 export const Normal = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <Audio layout={layout} {...props} />
             </Screen>
@@ -68,7 +67,7 @@ export const Normal = () => (
 
 export const WithImage = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <Audio layout={layout} {...props} image={image()} />
             </Screen>
@@ -78,7 +77,7 @@ export const WithImage = () => (
 
 export const WithImageAndText = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <Audio layout={layout} {...props} text={text()} image={image()} />
             </Screen>
@@ -88,7 +87,7 @@ export const WithImageAndText = () => (
 
 export const Muted = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <Audio layout={layout} {...props} audio={{ ...audio(), muted: true }} />
             </Screen>

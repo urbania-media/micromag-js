@@ -3,7 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Screen from '@micromag/element-screen';
+import Background from '@micromag/element-background';
+import Container from '@micromag/element-container';
 import Stack from '@micromag/element-stack';
 
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
@@ -35,8 +36,8 @@ const defaultProps = {
 };
 
 const PanoramaScreen = ({ background, visible, active, renderFormat, className }) => {
-    const size = useScreenSize();
-    const { isPlaceholder, isSimple } = getRenderFormat(renderFormat);
+    const { width, height } = useScreenSize();
+    const { isPlaceholder, isSimple, isView, isEditor } = getRenderFormat(renderFormat);
     const content = 'Panorama';
 
     const containerClassNames = classNames([
@@ -47,18 +48,25 @@ const PanoramaScreen = ({ background, visible, active, renderFormat, className }
     ]);
 
     return (
-        <Screen
-            size={size}
-            renderFormat={renderFormat}
-            background={background}
-            visible={visible}
-            active={active}
-            className={containerClassNames}
-        >
-            <Stack isSmall={isSimple}>
-                {isPlaceholder ? <Placeholders.Panorama className={styles.placeholder} /> : content}
-            </Stack>
-        </Screen>
+        <div className={containerClassNames}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={(isView && visible) || (isEditor && active)}
+            />
+            <div className={styles.content}>
+                <Container width={width} height={height} visible={visible}>
+                    <Stack isSmall={isSimple}>
+                        {isPlaceholder ? (
+                            <Placeholders.Panorama className={styles.placeholder} />
+                        ) : (
+                            content
+                        )}
+                    </Stack>
+                </Container>
+            </div>
+        </div>
     );
 };
 

@@ -4,7 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Screen from '@micromag/element-screen';
+import Background from '@micromag/element-background';
+import Container from '@micromag/element-container';
 import TextComponent from '@micromag/element-text';
 import Image from '@micromag/element-image';
 import Heading from '@micromag/element-heading';
@@ -35,8 +36,8 @@ const defaultProps = {
 };
 
 const TimelineCentered = ({ items, background, visible, active, renderFormat, className }) => {
-    const size = useScreenSize();
-    const { isPlaceholder } = getRenderFormat(renderFormat);
+    const { width, height } = useScreenSize();
+    const { isPlaceholder, isView, isEditor } = getRenderFormat(renderFormat);
 
     const containerClassNames = classNames([
         styles.container,
@@ -46,78 +47,85 @@ const TimelineCentered = ({ items, background, visible, active, renderFormat, cl
     ]);
 
     return (
-        <Screen
-            size={size}
-            renderFormat={renderFormat}
-            background={background}
-            visible={visible}
-            active={active}
-            className={containerClassNames}
-        >
-            <div className={styles.inner}>
-                <div className={styles.timelineContainer}>
-                    {!isPlaceholder ? (
-                        <>
-                            {items !== null
-                                ? items.map(({ text, image, heading }, index) => {
-                                      return (
-                                          <div
-                                              className={styles.timelineBlock}
-                                              key={`block-${index + 1}`}
-                                          >
-                                              <div className={styles.mainContent}>
-                                                  {heading !== null ? (
-                                                      <Heading
-                                                          key={`item-heading-${index + 1}`}
-                                                          className={styles.heading}
-                                                          {...heading}
-                                                      />
-                                                  ) : null}
-                                                  {image !== null ? (
-                                                      <div className={styles.imageContainer}>
-                                                          <Image
-                                                              key={`item-image-${index + 1}`}
-                                                              className={styles.image}
-                                                              {...image}
+        <div className={containerClassNames}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={(isView && visible) || (isEditor && active)}
+            />
+            <div className={styles.content}>
+                <Container width={width} height={height} visible={visible}>
+                    <div className={styles.inner}>
+                        <div className={styles.timelineContainer}>
+                            {!isPlaceholder ? (
+                                <>
+                                    {items !== null
+                                        ? items.map(({ text, image, heading }, index) => {
+                                              return (
+                                                  <div
+                                                      className={styles.timelineBlock}
+                                                      key={`block-${index + 1}`}
+                                                  >
+                                                      <div className={styles.mainContent}>
+                                                          {heading !== null ? (
+                                                              <Heading
+                                                                  key={`item-heading-${index + 1}`}
+                                                                  className={styles.heading}
+                                                                  {...heading}
+                                                              />
+                                                          ) : null}
+                                                          {image !== null ? (
+                                                              <div
+                                                                  className={styles.imageContainer}
+                                                              >
+                                                                  <Image
+                                                                      key={`item-image-${
+                                                                          index + 1
+                                                                      }`}
+                                                                      className={styles.image}
+                                                                      {...image}
+                                                                  />
+                                                              </div>
+                                                          ) : null}
+                                                          <TextComponent
+                                                              key={`item-body-${index + 1}`}
+                                                              className={styles.item}
+                                                              {...text}
                                                           />
                                                       </div>
-                                                  ) : null}
-                                                  <TextComponent
-                                                      key={`item-body-${index + 1}`}
-                                                      className={styles.item}
-                                                      {...text}
-                                                  />
-                                              </div>
-                                          </div>
-                                      );
-                                  })
-                                : null}
-                        </>
-                    ) : (
-                        <>
-                            <div className={styles.timelineBlock}>
-                                <div className={styles.mainContent}>
-                                    <Placeholders.Title className={styles.placeholder} />
-                                    <Placeholders.Image className={styles.placeholder} />
-                                    <Placeholders.Text className={styles.placeholder} />
-                                </div>
-                            </div>
-                            <div className={styles.timelineBlock}>
-                                <div className={styles.mainContent}>
-                                    <Placeholders.Text className={styles.placeholder} />
-                                </div>
-                            </div>
-                            <div className={styles.timelineBlock}>
-                                <div className={styles.mainContent}>
-                                    <Placeholders.Title className={styles.placeholder} />
-                                    <Placeholders.Text className={styles.placeholder} />
-                                </div>
-                            </div>
-                        </>
-                    )}
-                </div>
+                                                  </div>
+                                              );
+                                          })
+                                        : null}
+                                </>
+                            ) : (
+                                <>
+                                    <div className={styles.timelineBlock}>
+                                        <div className={styles.mainContent}>
+                                            <Placeholders.Title className={styles.placeholder} />
+                                            <Placeholders.Image className={styles.placeholder} />
+                                            <Placeholders.Text className={styles.placeholder} />
+                                        </div>
+                                    </div>
+                                    <div className={styles.timelineBlock}>
+                                        <div className={styles.mainContent}>
+                                            <Placeholders.Text className={styles.placeholder} />
+                                        </div>
+                                    </div>
+                                    <div className={styles.timelineBlock}>
+                                        <div className={styles.mainContent}>
+                                            <Placeholders.Title className={styles.placeholder} />
+                                            <Placeholders.Text className={styles.placeholder} />
+                                        </div>
+                                    </div>
+                                </>
+                            )}
+                        </div>
+                    </div>
+                </Container>
             </div>
-        </Screen>
+        </div>
     );
 };
 

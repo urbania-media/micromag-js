@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
+import Background from '@micromag/element-background';
+import Container from '@micromag/element-container';
 import TextComponent from '@micromag/element-text';
 import ImageComponent from '@micromag/element-image';
-import Screen from '@micromag/element-screen';
 import Stack from '@micromag/element-stack';
 
 import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
@@ -52,8 +53,8 @@ const ImageScreen = ({
     renderFormat,
     className,
 }) => {
-    const size = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
+    const { width, height } = useScreenSize();
+    const { isView, isPlaceholder, isSimple, isEditor } = getRenderFormat(renderFormat);
     const isEmpty = isEditor && image === null && text === null;
 
     const imageElement = isEmpty ? (
@@ -79,23 +80,26 @@ const ImageScreen = ({
     ]);
 
     return (
-        <Screen
-            size={size}
-            renderFormat={renderFormat}
-            background={background}
-            visible={visible}
-            active={active}
-            className={containerClassNames}
-        >
-            <Stack {...box} isSmall={isSimple} className={styles.inner}>
-                {isPlaceholder ? (
-                    <Placeholders.MediumImage className={styles.placeholderImage} />
-                ) : (
-                    imageElement
-                )}
-                {isPlaceholder ? null : textElement}
-            </Stack>
-        </Screen>
+        <div className={containerClassNames}>
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={(isView && visible) || (isEditor && active)}
+            />
+            <div className={styles.content}>
+                <Container width={width} height={height} visible={visible}>
+                    <Stack {...box} isSmall={isSimple} className={styles.inner}>
+                        {isPlaceholder ? (
+                            <Placeholders.MediumImage className={styles.placeholderImage} />
+                        ) : (
+                            imageElement
+                        )}
+                        {isPlaceholder ? null : textElement}
+                    </Stack>
+                </Container>
+            </div>
+        </div>
     );
 };
 

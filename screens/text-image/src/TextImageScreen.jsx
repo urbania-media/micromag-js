@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
+import Background from '@micromag/element-background';
+import Container from '@micromag/element-container';
 import Stack from '@micromag/element-stack';
 import Grid from '@micromag/element-grid';
-import Container from '@micromag/element-container';
-import Background from '@micromag/element-background';
 
 import TextComponent from '@micromag/element-text';
 import ImageComponent from '@micromag/element-image';
@@ -69,22 +69,21 @@ const TextImageScreen = ({
     const isEmpty = isEditor && image === null && text === null;
     const { direction } = box;
 
-    const textElement = useMemo(() => {
-        if (isPlaceholder) {
-            return (
-                <div className={styles.placeholderContainer}>
-                    <Placeholders.ShortText key="text-element" className={styles.placeholder} />
-                </div>
-            );
-        }
-        if (isEmpty) {
-            return (
-                <Empty className={styles.empty}>
-                    <FormattedMessage {...messages.text} />
-                </Empty>
-            );
-        }
-        return (
+    let textElement = null;
+    if (isPlaceholder) {
+        textElement = (
+            <div className={styles.placeholderContainer}>
+                <Placeholders.ShortText key="text-element" className={styles.placeholder} />
+            </div>
+        );
+    } else if (isEmpty) {
+        textElement = (
+            <Empty className={styles.empty}>
+                <FormattedMessage {...messages.text} />
+            </Empty>
+        );
+    } else {
+        textElement = (
             <TextComponent
                 {...text}
                 key="text-element"
@@ -93,30 +92,29 @@ const TextImageScreen = ({
                 emptyClassName={styles.empty}
             />
         );
-    }, [isPlaceholder, isEmpty, isEditor, text]);
+    }
 
-    const imageElement = useMemo(() => {
-        if (isPlaceholder) {
-            return (
-                <Placeholders.SmallImage key="image-element" className={styles.placeholderImage} />
-            );
-        }
-        if (isEmpty) {
-            return (
-                <Empty className={classNames([styles.empty, styles.emptyImage])}>
-                    <FormattedMessage {...messages.image} />
-                </Empty>
-            );
-        }
-        return (
+    let imageElement = null;
+    if (isPlaceholder) {
+        imageElement = (
+            <Placeholders.SmallImage key="image-element" className={styles.placeholderImage} />
+        );
+    } else if (isEmpty) {
+        imageElement = (
+            <Empty className={classNames([styles.empty, styles.emptyImage])}>
+                <FormattedMessage {...messages.image} />
+            </Empty>
+        );
+    } else {
+        imageElement = (
             <ImageComponent
-                image={image}
+                {...image}
                 key="image-element"
                 fit={{ size: 'cover' }}
                 className={styles.image}
             />
         );
-    }, [isPlaceholder, isEmpty, image]);
+    }
 
     const items = reverse ? [textElement, imageElement] : [imageElement, textElement];
 

@@ -11,14 +11,15 @@ import { getStyleFromImage, getStyleFromContainer } from '@micromag/core/utils';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    image: PropTypes.shape({
-        url: PropTypes.string,
-        width: PropTypes.number,
-        height: PropTypes.number,
+    media: PropTypes.shape({
+        url: PropTypes.string.isRequired,
+        width: PropTypes.number.isRequired,
+        height: PropTypes.number.isRequired,
     }),
+    name: PropTypes.string,
     caption: PropTypes.string,
-    maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     fit: MicromagPropTypes.objectFit,
     imageStyle: MicromagPropTypes.imageStyle,
     containerStyle: MicromagPropTypes.containerStyle,
@@ -28,14 +29,11 @@ const propTypes = {
 };
 
 const defaultProps = {
-    image: {
-        url: null,
-        width: null,
-        height: null,
-    },
+    media: null,
+    name: null,
     caption: null,
-    maxWidth: null,
-    maxHeight: null,
+    width: null,
+    height: null,
     fit: null,
     imageStyle: {},
     containerStyle: {},
@@ -45,10 +43,11 @@ const defaultProps = {
 };
 
 const Image = ({
-    image,
+    media,
+    name,
     caption,
-    maxWidth,
-    maxHeight,
+    width: maxWidth,
+    height: maxHeight,
     fit: defaultFit,
     imageStyle,
     containerStyle,
@@ -56,23 +55,13 @@ const Image = ({
     className,
     imageClassName,
 }) => {
-    const { url = null, name = 'Image', metadata = {} } = image || {};
-    const { width: imageWidth, height: imageHeight } = metadata;
+    const { url = null, width: imageWidth, height: imageHeight } = media || {};
     const width = maxWidth !== null ? Math.min(imageWidth, maxWidth) : null;
     const height = maxHeight !== null ? Math.min(imageHeight, maxHeight) : null;
-
-    // Much much simpler now
     const { size = 'contain' } = defaultFit || {};
 
-    // const imgRef = useRef(null);
-    // const imageSize = useRef({ width: null, height: null });
-    // const onLoad = useCallback(() => {
-    //     imageSize.current.width = imgRef.current.width;
-    //     imageSize.current.height = imgRef.current.height;
-    // }, [imgRef.current]);
-
     let fill = false;
-    let alt = name;
+    let alt = name || 'image';
     let finalStyle = {
         width,
         height,
@@ -105,8 +94,6 @@ const Image = ({
         };
     }
 
-    // console.log('is', imageStyle, finalStyle, containerStyle, containerFinalStyle);
-
     const img = url ? (
         <img
             src={url}
@@ -120,8 +107,6 @@ const Image = ({
             style={finalStyle}
         />
     ) : null;
-
-    // console.log(className);
 
     return (
         <div

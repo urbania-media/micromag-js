@@ -10,8 +10,9 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    audio: PropTypes.shape({
-        src: PropTypes.string,
+    media: PropTypes.shape({
+        src: PropTypes.string.isRequired,
+        length: PropTypes.number,
     }),
     track: PropTypes.string,
     language: PropTypes.number,
@@ -22,7 +23,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    audio: null,
+    media: null,
     track: null,
     language: null,
     controls: null,
@@ -31,7 +32,7 @@ const defaultProps = {
     className: null,
 };
 
-const AudioComponent = ({ audio: audioField, track, language, controls, params, className }) => {
+const AudioComponent = ({ media: audioField, track, language, controls, params, className }) => {
     const { url: src = null } = audioField || {};
     const { muted: initialMuted = false, autoPlay = false, loop = false, native = false } =
         params || {};
@@ -126,7 +127,7 @@ const AudioComponent = ({ audio: audioField, track, language, controls, params, 
                     refAudioElement.current.currentTime = 0;
                 }
             },
-            seek: time => {
+            seek: (time) => {
                 if (refAudioElement.current !== null) {
                     refAudioElement.current.currentTime = time;
                     setCurrentTime(time);

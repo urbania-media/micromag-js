@@ -10,7 +10,7 @@ import VideoControls from '@micromag/element-media-controls';
 import styles from './styles/video.module.scss';
 
 const propTypes = {
-    video: PropTypes.shape({
+    media: PropTypes.shape({
         id: PropTypes.string,
         url: PropTypes.string,
         metadata: PropTypes.shape({
@@ -31,7 +31,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    video: null,
+    media: null,
     players: null,
     width: null,
     height: null,
@@ -45,7 +45,7 @@ const defaultProps = {
 };
 
 const Video = ({
-    video,
+    media: video,
     players,
     width: defaultMaxWidth,
     height: defaultMaxHeight,
