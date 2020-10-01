@@ -10,21 +10,30 @@ import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import { VStack } from '@micromag/element-stack';
 
-import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
+import {
+    PropTypes as MicromagPropTypes,
+    PlaceholderImage,
+    PlaceholderAudio,
+    PlaceholderText,
+} from '@micromag/core';
+
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
-export const layouts = ['top', 'bottom', 'center'];
+export const layouts = ['top', 'bottom', 'center', 'around'];
 
 const propTypes = {
     layout: PropTypes.oneOf(layouts),
+    reverse: PropTypes.bool,
+    maxWidth: PropTypes.number,
+    spacing: MicromagPropTypes.spacing,
     audio: MicromagPropTypes.audioElement,
     text: MicromagPropTypes.textElement,
     image: MicromagPropTypes.imageElement,
     background: MicromagPropTypes.backgroundElement,
-    maxWidth: PropTypes.number,
+
     visible: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
@@ -32,6 +41,9 @@ const propTypes = {
 
 const defaultProps = {
     layout: null,
+    reverse: false,
+    maxWidth: 300,
+    spacing: 10,
     audio: {
         media: {
             src: null,
@@ -46,7 +58,7 @@ const defaultProps = {
     image: null,
     text: null,
     background: null,
-    maxWidth: 300,
+
     visible: true,
     active: false,
     renderFormat: 'view',
@@ -54,13 +66,15 @@ const defaultProps = {
 
 const AudioScreen = ({
     layout,
+    reverse,
+    maxWidth,
+    spacing,
     audio,
     image,
     text,
     background,
     visible,
     active,
-    maxWidth,
     renderFormat,
 }) => {
     const { width, height } = useScreenSize();
@@ -69,7 +83,7 @@ const AudioScreen = ({
     let imageElement = null;
 
     if (isPlaceholder && image !== null) {
-        imageElement = <Placeholders.MediumImage className={styles.placeholder} />;
+        imageElement = <PlaceholderImage className={styles.placeholder} />;
     } else {
         imageElement = (
             <ImageElement
@@ -85,7 +99,7 @@ const AudioScreen = ({
 
     let audioElement = null;
     if (isPlaceholder) {
-        audioElement = <Placeholders.Audio className={styles.placeholder} />;
+        audioElement = <PlaceholderAudio className={styles.placeholder} />;
     } else {
         audioElement = (
             <AudioElement
@@ -96,8 +110,8 @@ const AudioScreen = ({
     }
 
     let textElement = null;
-    if (isPlaceholder) {
-        textElement = <Placeholders.Text className={styles.placeholder} />;
+    if (isPlaceholder && text !== null) {
+        textElement = <PlaceholderText className={styles.placeholder} />;
     } else {
         textElement = <TextElement {...text} className={styles.text} />;
     }
@@ -105,7 +119,15 @@ const AudioScreen = ({
     const containerClassNames = classNames([
         styles.container,
         {
+            [styles.placeholder]: isPlaceholder,
             [styles[layout]]: layout !== null,
+        },
+    ]);
+
+    const stackClassNames = classNames([
+        styles.stack,
+        {
+            [styles.full]: layout === 'around',
         },
     ]);
 
@@ -117,13 +139,19 @@ const AudioScreen = ({
                 height={height}
                 playing={(isView && visible) || (isEditor && active)}
             />
-            <div className={styles.content}>
+            <div className={styles.inner}>
                 <Container width={width} height={height} visible={visible}>
-                    <VStack align="center">
-                        {imageElement}
-                        {audioElement}
-                        {textElement}
-                    </VStack>
+                    <div className={styles.content}>
+                        <VStack
+                            className={stackClassNames}
+                            spacing={layout === 'around' ? 'around' : spacing}
+                            reverse={reverse}
+                        >
+                            {imageElement}
+                            {audioElement}
+                            {textElement}
+                        </VStack>
+                    </div>
                 </Container>
             </div>
         </div>

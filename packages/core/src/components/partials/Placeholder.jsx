@@ -9,6 +9,7 @@ import styles from '../../styles/partials/placeholder.module.scss';
 const propTypes = {
     lines: PropTypes.number,
     lineMargin: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     baseSize: PropTypes.number,
     className: PropTypes.string,
@@ -17,12 +18,13 @@ const propTypes = {
 const defaultProps = {
     lines: 1,
     lineMargin: null,
+    width: '3em',
     height: null,
     baseSize: 16,
     className: null,
 };
 
-const Placeholder = ({ lines, lineMargin, height, baseSize, className }) => {
+const Placeholder = ({ lines, lineMargin, width, height, baseSize, className }) => {
     const lineHeight =
         height !== null && isNumber(height) ? `${Math.round(height * baseSize)}px` : height;
     const margin = lineMargin !== null && isNumber(lineMargin) ? `${lineMargin}em` : lineMargin;
@@ -36,6 +38,7 @@ const Placeholder = ({ lines, lineMargin, height, baseSize, className }) => {
                 },
             ])}
             style={{
+                width,
                 height: lineHeight,
                 marginBottom: index < lines - 1 ? margin : null,
             }}

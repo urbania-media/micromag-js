@@ -9,6 +9,7 @@
 
 .screen {
     @extend %fullscreen;
+    box-sizing: content-box;
 
     .withBorder & {
         border: solid 1px $gray-200;

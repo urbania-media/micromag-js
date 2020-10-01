@@ -59,6 +59,13 @@
         display: none;
         visibility: hidden;
     }
+
+    &.placeholder {
+        .content {
+            position: relative;
+            padding: 6px;
+        }
+    }
 }
 
 %empty {
@@ -113,6 +120,24 @@
         padding-left: 1em;
     }
 }
+
+%flex {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+%flex-full {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+// TODO: remove this
 
 %placeholder-full {
     width: 100%;

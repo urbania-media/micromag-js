@@ -4,39 +4,43 @@
 .container {
     @extend %screen;
 
-    &.content {
+    .inner {
         margin: 0 auto;
     }
 
-    .stack {
-        width: auto;
-        height: 100%;
-        margin: 0 auto;
-    }
-
-    .fullscreen {
+    .content {
+        @extend %flex;
         width: 100%;
         height: 100%;
     }
 
-    .empty {
-        @extend %empty;
-        @extend %empty-image;
+    &.fullscreen {
+        width: 100%;
+        height: 100%;
+    }
 
-        &.fullscreen {
-            width: 100%;
-            height: 100%;
+    &.top {
+        .content {
+            align-items: flex-start;
         }
     }
 
-    .placeholder {
-        display: flex;
-        position: relative;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
+    &.bottom {
+        .content {
+            align-items: flex-end;
+        }
+    }
+
+    &.left {
+        .content {
+            justify-content: flex-start;
+        }
+    }
+
+    &.right {
+        .content {
+            justify-content: flex-end;
+        }
     }
 }
 

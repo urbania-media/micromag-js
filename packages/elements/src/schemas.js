@@ -1,7 +1,7 @@
 // eslint-disable-next-line
 export { schema as Audio } from '@micromag/element-audio';
 export { schema as Background } from '@micromag/element-background';
-// export { schema as Stack } from '@micromag/element-stack';
+export { schema as Stack } from '@micromag/element-stack';
 export { schema as Button } from '@micromag/element-button';
 // export { schema as Container } from '@micromag/element-container';
 // export { schema as Grid } from '@micromag/element-grid';

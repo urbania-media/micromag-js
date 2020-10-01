@@ -1,5 +1,10 @@
-import { layouts } from './Ad';
-import { schemas as messages } from './messages';
+import {
+    layouts
+} from './Ad';
+
+import {
+    schemas as messages
+} from './messages';
 
 export default {
     $id: 'https://schemas.micromag.ca/0.1/screens/ad.json',
@@ -11,8 +16,7 @@ export default {
         title: messages.schemaTitle,
     },
 
-    allOf: [
-        {
+    allOf: [{
             $ref: 'https://schemas.micromag.ca/0.1/screens/screen.json',
         },
         {
