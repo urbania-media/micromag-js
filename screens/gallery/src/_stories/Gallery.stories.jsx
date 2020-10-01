@@ -7,10 +7,10 @@ import {
     LayoutGrid,
     Screen,
 } from '../../../../.storybook/components';
+
 import { images, background } from '../../../../.storybook/data';
 
-import Gallery from '../Gallery';
-import layouts from '../layouts/names';
+import Gallery, { layouts } from '../Gallery';
 
 const props = {
     images: images({ count: 20 }),
@@ -28,7 +28,7 @@ export default {
 
 export const Placeholders = () => (
     <LayoutGrid layouts={layouts}>
-        {layout => (
+        {(layout) => (
             <PlaceholderScreen>
                 <Gallery layout={layout} renderFormat="placeholder" />
             </PlaceholderScreen>
@@ -38,7 +38,7 @@ export const Placeholders = () => (
 
 export const Previews = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <PreviewScreen>
                 <Gallery layout={layout} renderFormat="preview" {...props} />
             </PreviewScreen>
@@ -48,7 +48,7 @@ export const Previews = () => (
 
 export const Editor = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <Gallery layout={layout} renderFormat="edit" />
             </Screen>
@@ -58,7 +58,7 @@ export const Editor = () => (
 
 export const Normal = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <Gallery layout={layout} {...props} />
             </Screen>

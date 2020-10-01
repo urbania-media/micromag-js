@@ -26,14 +26,15 @@ export const layouts = ['top', 'bottom', 'center', 'around'];
 
 const propTypes = {
     layout: PropTypes.oneOf(layouts),
-    reverse: PropTypes.bool,
+    stack: PropTypes.shape({
+        reverse: PropTypes.bool,
+        spacing: MicromagPropTypes.spacing,
+    }),
     maxWidth: PropTypes.number,
-    spacing: MicromagPropTypes.spacing,
     audio: MicromagPropTypes.audioElement,
     text: MicromagPropTypes.textElement,
     image: MicromagPropTypes.imageElement,
     background: MicromagPropTypes.backgroundElement,
-
     visible: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
@@ -41,9 +42,8 @@ const propTypes = {
 
 const defaultProps = {
     layout: null,
-    reverse: false,
+    stack: null,
     maxWidth: 300,
-    spacing: 10,
     audio: {
         media: {
             src: null,
@@ -58,7 +58,6 @@ const defaultProps = {
     image: null,
     text: null,
     background: null,
-
     visible: true,
     active: false,
     renderFormat: 'view',
@@ -66,9 +65,8 @@ const defaultProps = {
 
 const AudioScreen = ({
     layout,
-    reverse,
+    stack,
     maxWidth,
-    spacing,
     audio,
     image,
     text,
@@ -79,7 +77,7 @@ const AudioScreen = ({
 }) => {
     const { width, height } = useScreenSize();
     const { isPlaceholder, isView, isPreview, isEditor } = getRenderFormat(renderFormat);
-
+    const { spacing, reverse } = stack || {};
     let imageElement = null;
 
     if (isPlaceholder && image !== null) {
