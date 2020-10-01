@@ -13,7 +13,6 @@ const propTypes = {
     reverse: PropTypes.bool,
     className: PropTypes.string,
     itemClassName: PropTypes.string,
-    wrapChildren: PropTypes.bool,
     children: PropTypes.node,
 };
 
@@ -24,7 +23,6 @@ const defaultProps = {
     reverse: false,
     className: null,
     itemClassName: null,
-    wrapChildren: true,
     children: null,
 };
 
@@ -35,7 +33,6 @@ const StackNew = ({
     reverse,
     className,
     itemClassName,
-    wrapChildren,
     children,
 }) => {
     const flexDirection =
@@ -50,14 +47,7 @@ const StackNew = ({
         justifyContent,
     };
 
-    const itemStyle =
-        direction === 'vertical'
-            ? {
-                  marginBottom: space,
-              }
-            : {
-                  marginRight: space,
-              };
+    const lastIndex = children.length - 1;
 
     return (
         <div
@@ -69,29 +59,26 @@ const StackNew = ({
             ])}
             style={itemsStyle}
         >
-            {space === 0
-                ? children
-                : React.Children.map(children, (child, index) =>
-                      wrapChildren && children.length > 1 ? (
-                          <div
-                              key={`item-${index}`}
-                              className={classNames([
-                                  styles.item,
-                                  {
-                                      [itemClassName]: itemClassName !== null,
-                                  },
-                              ])}
-                              style={{
-                                  ...(!reverse && index !== children.length - 1 ? itemStyle : null),
-                                  ...(reverse && index !== 0 ? itemStyle : null),
-                              }}
-                          >
-                              {child}
-                          </div>
-                      ) : (
-                          child
-                      ),
-                  )}
+            {React.Children.map(children, (child, index) => {
+                const isLast = reverse ? index === 0 : index === lastIndex;
+                return (
+                    <div
+                        key={`item-${index}`}
+                        className={classNames([
+                            styles.item,
+                            {
+                                [itemClassName]: itemClassName !== null,
+                            },
+                        ])}
+                        style={{
+                            marginBottom: direction === 'vertical' && !isLast ? space : null,
+                            marginRight: direction === 'horizontal' && !isLast ? space : null,
+                        }}
+                    >
+                        {child}
+                    </div>
+                );
+            })}
         </div>
     );
 };
