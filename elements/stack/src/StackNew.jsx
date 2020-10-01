@@ -47,7 +47,7 @@ const StackNew = ({
         justifyContent,
     };
 
-    const lastIndex = children.length - 1;
+    const lastIndex = children !== null && children.length ? children.length - 1 : null;
 
     return (
         <div

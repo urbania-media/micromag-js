@@ -149,8 +149,6 @@ const TextImage = ({
             {
                 [className]: className !== null,
                 [styles.sideways]: sideways,
-                [styles.isPlaceholder]: isPlaceholder,
-                [styles.isEmpty]: isEmpty,
             },
         ])}>
             <Background

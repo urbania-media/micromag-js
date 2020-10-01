@@ -9,13 +9,9 @@
         height: 100%;
     }
 
-    // .stack {
-    //
-    // }
-
-    // .item {
-    //    padding: 10px;
-    // }
+    .item {
+        padding: 10px;
+    }
 
     .image,
     .text {
@@ -49,19 +45,8 @@
     }
 
     &.sideways {
-        // .item {
-        //     max-width: 50%;
-        // }
-        .image,
-        .text {
-            max-width: 50%;
-        }
-    }
-
-    &.isPlaceholder,
-    &.isEmpty {
-        .stack {
-            height: 100%;
+        .item {
+            width: 50%;
         }
     }
 }
