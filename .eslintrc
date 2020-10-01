@@ -1,5 +1,11 @@
 {
-    "extends": ["airbnb", "prettier", "prettier/react"],
+    "extends": [
+        "airbnb",
+        "prettier",
+        "prettier/react",
+        "plugin:import/errors",
+        "plugin:import/warnings"
+    ],
     "parser": "babel-eslint",
     "env": {
         "browser": true,
@@ -10,27 +16,25 @@
     "rules": {
         "react/jsx-indent": ["error", 4],
         "react/jsx-indent-props": ["error", 4],
-        "no-console": ["error", { "allow": ["warn", "error"] }]
-    },
-    "overrides": [
-        {
-            "files": [
-                "*.config.js",
-                "scripts/**/*.js",
-                ".storybook/**/*.js",
-                "**/*.config.js"
-            ],
-            "rules": {
-                "import/no-extraneous-dependencies": [
-                    "error",
-                    {
-                        "devDependencies": true
-                    }
-                ],
-                "global-require": 0,
-                "import/no-dynamic-require": 0,
-                "no-console": 0
+        "no-console": [
+            "error",
+            {
+                "allow": ["warn", "error"]
             }
+        ]
+    },
+    "overrides": [{
+        "files": ["*.config.js", "scripts/**/*.js", ".storybook/**/*.js", "**/*.config.js"],
+        "rules": {
+            "import/no-extraneous-dependencies": [
+                "error",
+                {
+                    "devDependencies": true
+                }
+            ],
+            "global-require": 0,
+            "import/no-dynamic-require": 0,
+            "no-console": 0
         }
-    ]
+    }]
 }

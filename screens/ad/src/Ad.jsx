@@ -6,11 +6,10 @@ import { FormattedMessage } from 'react-intl';
 
 import Container from '@micromag/element-container';
 import Background from '@micromag/element-background';
-import { StackNew } from '@micromag/element-stack';
 
 import { PropTypes as MicromagPropTypes, PlaceholderAdImage, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
-import { getRenderFormat } from '@micromag/core/utils';
+import { getRenderFormat, getLayoutParts } from '@micromag/core/utils';
 
 import AdImage from './AdImage';
 
@@ -18,10 +17,21 @@ import { schemas as messages } from './messages';
 
 import styles from './styles.module.scss';
 
-export const layouts = ['center', 'top', 'bottom', 'full'];
+export const layouts = [
+    'center',
+    'top',
+    'bottom',
+    'full',
+    'center-left',
+    'center-right',
+    'top-left',
+    'top-right',
+    'bottom-left',
+    'bottom-right',
+];
 
 const propTypes = {
-    layout: PropTypes.oneOf(['center', 'top', 'bottom', 'full']),
+    layout: PropTypes.oneOf(layouts),
     image: MicromagPropTypes.imageElement,
     link: MicromagPropTypes.linkElement,
     text: MicromagPropTypes.text,
@@ -73,7 +83,17 @@ const AdScreen = ({
     );
 
     if (isPlaceholder) {
-        imageElement = <PlaceholderAdImage className={styles.placeholder} />;
+        imageElement = (
+            <PlaceholderAdImage
+                className={classNames([styles.placeholder])}
+                {...(isFullScreen
+                    ? {
+                          width: '100%',
+                          height: '100%',
+                      }
+                    : null)}
+            />
+        );
     }
 
     if (isEditor && isEmpty) {
@@ -84,11 +104,15 @@ const AdScreen = ({
         );
     }
 
+    const { horizontal, vertical } = getLayoutParts(layout);
+
     const containerClassNames = classNames([
         styles.container,
         {
             [styles.fullscreen]: isFullScreen,
-            [styles[layout]]: layout !== null,
+            [styles.placeholder]: isPlaceholder,
+            [styles[horizontal]]: horizontal !== null,
+            [styles[vertical]]: vertical !== null,
             [className]: className !== null,
         },
     ]);
@@ -102,18 +126,9 @@ const AdScreen = ({
                 maxRatio={maxRatio}
                 playing={(isView && visible) || (isEditor && active)}
             />
-            <div className={styles.content}>
+            <div className={styles.inner}>
                 <Container width={width} height={height} maxRatio={maxRatio} visible={visible}>
-                    <StackNew
-                        className={styles.stack}
-                        direction="horizontal"
-                        align="center"
-                        spacing={10}
-                    >
-                        {imageElement}
-                        {imageElement}
-                        {imageElement}
-                    </StackNew>
+                    <div className={styles.content}>{imageElement}</div>
                 </Container>
             </div>
         </div>

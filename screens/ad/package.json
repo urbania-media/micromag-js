@@ -14,8 +14,7 @@
         "name": "Folklore",
         "email": "info@folklore.email"
     },
-    "contributors": [
-        {
+    "contributors": [{
             "name": "David Mongeau-Petitpas",
             "email": "dmp@folklore.email"
         },
@@ -55,7 +54,6 @@
         "@micromag/core": "^0.1.29",
         "@micromag/element-container": "^0.1.29",
         "@micromag/element-background": "^0.1.29",
-        "@micromag/element-stack": "^0.1.29",
         "@micromag/element-image": "^0.1.29",
         "@micromag/element-link": "^0.1.29",
         "classnames": "^2.2.6",
