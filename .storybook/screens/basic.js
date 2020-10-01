@@ -2,16 +2,47 @@ import uuid from 'uuid/v1';
 
 import { advertising, image, images, text } from '../data';
 
-export default [
+export default [    
     {
         id: uuid(),
-        type: 'title',
+        type: 'text-image',
         layout: 'center',
-        title: {
-            body: 'A title',
+        text: {
+            body: 'An image text',
+        },
+        image: {
+            ...image(),
         },
         background: {
             color: '#FF0000',
+        },
+    },
+    {
+        id: uuid(),
+        type: 'text-image',
+        layout: 'center',
+        text: {
+            body: 'Another image text',
+        },
+        image: {
+            ...image(),
+        },
+        background: {
+            color: '#00FF00',
+        },
+    },
+    {
+        id: uuid(),
+        type: 'text-image',
+        layout: 'center',
+        text: {
+            body: 'Another another image text',
+        },
+        image: {
+            ...image(),
+        },
+        background: {
+            color: '#0000FF',
         },
     },
     {
@@ -77,16 +108,13 @@ export default [
     },
     {
         id: uuid(),
-        type: 'text-image',
+        type: 'title',
         layout: 'center',
-        text: {
-            body: 'An image text',
-        },
-        image: {
-            ...image(),
+        title: {
+            body: 'A title',
         },
         background: {
-            color: '#00CC00',
+            color: '#FF0000',
         },
     },
 ];

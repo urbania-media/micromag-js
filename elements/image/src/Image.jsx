@@ -23,9 +23,10 @@ const propTypes = {
     fit: MicromagPropTypes.objectFit,
     imageStyle: MicromagPropTypes.imageStyle,
     containerStyle: MicromagPropTypes.containerStyle,
-    captionStyle: MicromagPropTypes.textStyle,
+    captionStyle: MicromagPropTypes.textStyle,    
     className: PropTypes.string,
     imageClassName: PropTypes.string,
+    onLoaded: PropTypes.func,
 };
 
 const defaultProps = {
@@ -37,9 +38,10 @@ const defaultProps = {
     fit: null,
     imageStyle: {},
     containerStyle: {},
-    captionStyle: {},
+    captionStyle: {},    
     className: null,
     imageClassName: null,
+    onLoaded: null,
 };
 
 const Image = ({
@@ -48,12 +50,13 @@ const Image = ({
     caption,
     width: maxWidth,
     height: maxHeight,
-    fit: defaultFit,
+    fit: defaultFit,    
     imageStyle,
     containerStyle,
-    captionStyle,
+    captionStyle,    
     className,
     imageClassName,
+    onLoaded,
 }) => {
     const { url = null, width: imageWidth, height: imageHeight } = media || {};
     const width = maxWidth !== null ? Math.min(imageWidth, maxWidth) : null;
@@ -105,6 +108,7 @@ const Image = ({
                 },
             ])}
             style={finalStyle}
+            onLoad={onLoaded}
         />
     ) : null;
 

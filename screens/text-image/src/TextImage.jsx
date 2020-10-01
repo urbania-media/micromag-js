@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+// import {useTransition, animated} from 'react-spring';
 
 import { StackNew } from '@micromag/element-stack';
 import Container from '@micromag/element-container';
@@ -23,12 +24,14 @@ const propTypes = {
     text: MicromagPropTypes.textComponent,
     image: MicromagPropTypes.imageComponent,
     background: MicromagPropTypes.backgroundComponent,
-    visible: PropTypes.bool,
+    current: PropTypes.bool,
     active: PropTypes.bool,
     textAlign: PropTypes.oneOf(['left', 'right', 'center']),
     layout: PropTypes.string,
     renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
+    transitions: MicromagPropTypes.transitions,
+    defaultTransitionParams: MicromagPropTypes.transitionParams,
     className: PropTypes.string,
 };
 
@@ -36,12 +39,17 @@ const defaultProps = {
     text: null,
     image: null,
     background: null,
-    visible: true,
-    active: false,
+    current: true,
+    active: true,
     textAlign: 'center',
     layout: 'center',
     renderFormat: 'view',
     maxRatio: 3 / 4,
+    transitions: {
+        in: 'fade',
+        out: 'scale',
+    },
+    defaultTransitionParams: { duration: 0.4, easing: 'ease' },
     className: null,
 };
 
@@ -49,17 +57,25 @@ const TextImage = ({
     text,
     image,
     background,
-    visible,
+    current,
     active,
     textAlign,
     layout,
     renderFormat,
     maxRatio,
+    transitions,
+    defaultTransitionParams,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isView, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
+    const { isView, isPreview, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
     const isEmpty = isEditor && image === null && text === null;
+
+    const withImage = isView || isPreview;
+    const [ready, setReady] = useState(!withImage);
+    const onImageLoaded = useCallback(() => {
+        setReady(true);
+    }, [setReady]);
 
     const finalLayout = layout !== null ? layout : 'center';
     const layoutArray = finalLayout.split('_');
@@ -79,16 +95,50 @@ const TextImage = ({
     }
 
     const stackContainerStyle = {
-        justifyContent: stackContainerJustifyContent
+        justifyContent: stackContainerJustifyContent,
     };
 
     const stackProps = {
         direction: stackDirection,
         reverse,
-        itemClassName: styles.item
+        itemClassName: styles.item,
     };
 
-    // Text element
+    // Transitions
+
+    const [animationCurrent, setAnimationCurrent] = useState(!current);
+    const animating = animationCurrent === current;
+
+    useEffect( () => {
+        if (!ready) {
+            return;
+        }
+        setAnimationCurrent(current);
+    }, [current, ready]);
+
+    const finalTransitions = { in: null, out: null };
+    Object.keys(transitions).forEach((transitionKey) => {
+        const currentTransition = transitions[transitionKey];
+        const transition =
+            typeof currentTransition === 'string' ? { name: currentTransition } : currentTransition;
+        finalTransitions[transitionKey] = { ...defaultTransitionParams, ...transition };
+    });
+
+    const currentTransition = finalTransitions[current ? 'in' : 'out'];
+    const {
+        name: transitionName = null,
+        duration: transitionDuration = 0,
+        easing: transitionEasing = null,
+    } = currentTransition || {};
+
+    const transitionStyle = {
+        transitionDuration: `${animating ? transitionDuration : 0}s`,
+        transitionTimingFunction: transitionEasing,
+    };
+
+    // console.log(transitionName, current, animationCurrent, animating)
+
+    // Text
 
     let textElement = null;
 
@@ -106,18 +156,19 @@ const TextImage = ({
         );
     } else {
         textElement = (
-            <TextComponent
-                {...text}
-                key="text-element"
-                showEmpty={isEditor && text === null}
-                className={styles.text}
-                emptyClassName={styles.empty}
-            />
+            <div className={styles.transitionText} style={{...transitionStyle /* , transitionDelay: reverse && animating ? `${transitionDuration}s` : 0 */ }}>
+                <TextComponent
+                    {...text}
+                    key="text-element"
+                    showEmpty={isEditor && text === null}
+                    className={styles.text}
+                    emptyClassName={styles.empty}
+                />
+            </div>
         );
     }
 
-    // Image element
-
+    // Image
     let imageElement = null;
 
     if (isPlaceholder) {
@@ -132,35 +183,43 @@ const TextImage = ({
         );
     } else {
         imageElement = (
-            <ImageComponent
-                {...image}
-                key="image-element"
-                fit={{ size: 'cover' }}
-                className={styles.image}
-            />
+            <div className={styles.transitionImage} style={{...transitionStyle /* , transitionDelay: !reverse && animating ? `${transitionDuration}s` : 0 */ }}>
+                <ImageComponent
+                    {...image}
+                    key="image-element"
+                    fit={{ size: 'cover' }}
+                    className={styles.image}
+                    onLoaded={onImageLoaded}
+                />
+            </div>
         );
-    } 
+    }
 
     const items = [textElement, imageElement];
-
+   
     return (
-        <div className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-                [styles.sideways]: sideways,
-            },
-        ])}>
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,                    
+                    [styles.sideways]: sideways,
+                    [styles.ready]: ready && active,
+                    [styles.current]: animationCurrent,
+                    [styles[`${transitionName}Transition`]]: transitionName !== null,
+                },
+            ])}
+        >
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && visible) || (isEditor && active)}
+                playing={(isView && current) || (isEditor && active)}
             />
-            <Container width={width} height={height} visible={visible} maxRatio={maxRatio} styles={{textAlign}}>
+            <Container width={width} height={height} maxRatio={maxRatio} styles={{ textAlign }}>
                 <div className={styles.stackContainer} style={stackContainerStyle}>
                     <StackNew className={styles.stack} {...stackProps}>
-                        { items }
+                        {items}
                     </StackNew>
                 </div>
             </Container>

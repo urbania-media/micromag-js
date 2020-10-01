@@ -26,8 +26,8 @@ const ViewerScreen = ({ screen, active, current, renderFormat }) => {
         <div className={styles.container}>
             <Screen
                 screen={screen}
-                visible={active}
-                active={current}
+                active={active}
+                current={current}
                 renderFormat={renderFormat}
             />
         </div>
