@@ -1,10 +1,8 @@
 {
     "fields.advanced_fields": "Avancé",
-    "fields.answers.add_answer": "TRANSLATE: Add an answer",
-    "fields.answers.no_answer": "TRANSLATE: No answer...",
     "fields.audio.no_value": "Sélectionnez un fichier audio...",
-    "fields.cards.add_card": "TRANSLATE: Add a card",
-    "fields.cards.no_card": "TRANSLATE: No card...",
+    "fields.cards.add_image": "TRANSLATE: Add a card",
+    "fields.cards.no_image": "TRANSLATE: No card...",
     "fields.image.no_value": "Sélectionnez une image...",
     "fields.images.add_image": "Ajouter une image",
     "fields.images.no_image": "Pas d'image",

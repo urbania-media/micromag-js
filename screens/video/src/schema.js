@@ -1,41 +1,51 @@
-import { names } from './layouts/names';
-import { schemas as messages } from './messages';
+import { defineMessage } from 'react-intl';
+import { schemaId } from '@micromag/core/utils';
+import { layouts } from './Video';
 
 export default {
-    $id: 'https://schemas.micromag.ca/0.1/screens/video.json',
+    $id: schemaId`screens/video`,
     title: 'Video',
     group: 'Video',
     type: 'object',
     intl: {
-        title: messages.schemaTitle,
+        title: defineMessage({
+            defaultMessage: 'Video',
+            description: 'Video screen title',
+        }),
     },
     allOf: [
         {
-            $ref: 'https://schemas.micromag.ca/0.1/screens/screen.json',
+            $ref: schemaId`screens/screen.json`,
         },
         {
             properties: {
                 layout: {
-                    $ref: 'https://schemas.micromag.ca/0.1/fields/screen-layout.json',
+                    $ref: schemaId`fields/screen-layout.json`,
                     title: 'Layout',
                     screenType: 'video',
-                    enum: names,
+                    enum: layouts,
                     intl: {
-                        title: messages.layout,
+                        title: defineMessage({
+                            defaultMessage: 'Layout',
+                        }),
                     },
                 },
                 video: {
-                    $ref: 'https://schemas.micromag.ca/0.1/elements/video.json',
+                    $ref: schemaId`elements/video.json`,
                     title: 'Video',
                     intl: {
-                        title: messages.video,
+                        title: defineMessage({
+                            defaultMessage: 'Video',
+                        }),
                     },
                 },
                 background: {
-                    $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
+                    $ref: schemaId`elements/background.json`,
                     title: 'Background',
                     intl: {
-                        title: messages.background,
+                        title: defineMessage({
+                            defaultMessage: 'Background',
+                        }),
                     },
                 },
             },

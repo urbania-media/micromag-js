@@ -1,6 +1,0 @@
-{
-    "screens.video.schema.properties.background": "Background",
-    "screens.video.schema.properties.layout": "Layout",
-    "screens.video.schema.properties.video": "Video",
-    "screens.video.schema.title": "Video"
-}

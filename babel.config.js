@@ -1,6 +1,7 @@
-const path = require('path');
+// const path = require('path');
+const { idInterpolationPattern } = require('./scripts/formatjs');
 
-module.exports = api => ({
+module.exports = (api) => ({
     presets: [
         api.env('production') && [
             require('@babel/preset-env'),
@@ -35,12 +36,8 @@ module.exports = api => ({
         api.env('production') && [
             require.resolve('babel-plugin-react-intl'),
             {
-                // messagesDir: path.join(process.cwd(), './intl/messages/'),
-                overrideIdFn: require(path.join(
-                    __dirname,
-                    './scripts/lib/getIntlMessagesNamespace',
-                )),
-                extractSourceLocation: true,
+                ast: true,
+                idInterpolationPattern,
             },
         ],
     ].filter(Boolean),

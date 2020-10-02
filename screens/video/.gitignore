@@ -36,3 +36,4 @@ publish
 /dist
 /assets
 /package-lock.json
+/lang/extract
