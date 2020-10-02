@@ -376,3 +376,27 @@ export const imageStyle = PropTypes.shape({
 });
 
 export const containerStyle = PropTypes.shape({});
+
+/**
+ * Transitions
+ */
+
+export const transitionName = PropTypes.oneOf(['fade', 'scale', 'slide']);
+
+export const transitionParams = PropTypes.shape({
+    duration: PropTypes.number,
+    easing: PropTypes.oneOf(['ease', 'ease-in', 'ease-out', 'ease-in-out', 'linear']),
+});
+
+export const transition = PropTypes.oneOfType([
+    transitionName.isRequired,
+    PropTypes.shape({
+        name: transitionName.isRequired,
+        ...transitionParams,
+    }),
+]);
+
+export const transitions = PropTypes.shape({
+    in: transition,
+    out: transition
+});

@@ -6,17 +6,27 @@ import { FormattedMessage } from 'react-intl';
 
 import Container from '@micromag/element-container';
 import Background from '@micromag/element-background';
-import { VStack } from '@micromag/element-stack';
 
-import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, PlaceholderAdFrame, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
-import { getRenderFormat } from '@micromag/core/utils';
+import { getRenderFormat, getLayoutParts } from '@micromag/core/utils';
 
 import { schemas as messages } from './messages';
 
 import styles from './styles.module.scss';
 
-export const layouts = ['top', 'center', 'bottom', 'full'];
+export const layouts = [
+    'center',
+    'top',
+    'bottom',
+    'full',
+    'center-left',
+    'center-right',
+    'top-left',
+    'top-right',
+    'bottom-left',
+    'bottom-right',
+];
 
 const propTypes = {
     layout: PropTypes.oneOf(layouts),
@@ -43,7 +53,9 @@ const AdSlotScreen = ({ layout, iframe, adFormat, background, visible, active, r
     const { isView, isPreview, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
     const { src = null, title = 'Ad' } = iframe || {};
     const { name = null, width: adWidth, height: adHeight } = adFormat || {};
+
     const isEmpty = src === null;
+    const isFullScreen = layout === 'full';
 
     let iframeElement = null;
 
@@ -51,14 +63,22 @@ const AdSlotScreen = ({ layout, iframe, adFormat, background, visible, active, r
         iframeElement = <div className={styles.previewBlock} />;
     } else if (isEditor && isEmpty) {
         iframeElement = (
-            <div className={styles.emptyContainer} style={{ width, height }}>
-                <Empty className={styles.empty}>
-                    {name !== null ? name : <FormattedMessage {...messages.schemaTitle} />}
-                </Empty>
-            </div>
+            <Empty className={styles.empty}>
+                {name !== null ? name : <FormattedMessage {...messages.schemaTitle} />}
+            </Empty>
         );
     } else if (isPlaceholder) {
-        iframeElement = <Placeholders.AdFrame className={styles.placeholder} />;
+        iframeElement = (
+            <PlaceholderAdFrame
+                className={styles.placeholder}
+                {...(isFullScreen
+                    ? {
+                          width: '100%',
+                          height: '100%',
+                      }
+                    : null)}
+            />
+        );
     } else {
         iframeElement = (
             <iframe
@@ -71,10 +91,15 @@ const AdSlotScreen = ({ layout, iframe, adFormat, background, visible, active, r
         );
     }
 
+    const { horizontal, vertical } = getLayoutParts(layout);
+
     const containerClassNames = classNames([
         styles.container,
         {
-            [styles[layout]]: layout !== null,
+            [styles.fullscreen]: isFullScreen,
+            [styles.placeholder]: isPlaceholder,
+            [styles[horizontal]]: horizontal !== null,
+            [styles[vertical]]: vertical !== null,
         },
     ]);
 
@@ -86,9 +111,9 @@ const AdSlotScreen = ({ layout, iframe, adFormat, background, visible, active, r
                 height={height}
                 playing={(isView && visible) || (isEditor && active)}
             />
-            <div className={styles.content}>
+            <div className={styles.inner}>
                 <Container width={width} height={height} visible={visible}>
-                    <VStack>{iframeElement}</VStack>
+                    <div className={styles.content}>{iframeElement}</div>
                 </Container>
             </div>
         </div>

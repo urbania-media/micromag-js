@@ -45,7 +45,7 @@ const defaultProps = {
     onScreenChange: null,
     tapNextScreenWidthPercent: 0.5,
     neighborScreensActive: 2,
-    scrollIndexHeightPercent: 0.75,
+    scrollIndexHeightPercent: 0.5,
     className: null,
 };
 

@@ -45,6 +45,13 @@ export default {
                         title: messages.text,
                     },
                 },
+                stack: {
+                    $ref: 'https://schemas.micromag.ca/0.1/elements/stack.json',
+                    title: 'Stack',
+                    intl: {
+                        title: messages.stack,
+                    },
+                },
                 background: {
                     $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
                     title: 'Background',

@@ -1,10 +1,11 @@
 @import '~@micromag/core/scss/placeholders';
 
 .container {
-    @extend %screen;
+    @extend %screen;    
 
     .stackContainer {
         display: flex;
+        visibility: hidden;
         flex-direction: column;
         height: 100%;
     }
@@ -44,9 +45,45 @@
         height: 30%;
     }
 
+    &.ready {
+        .stackContainer {
+            visibility: visible;
+        }
+    }
+
     &.sideways {
         .item {
             width: 50%;
+        }
+    }
+
+    &.fadeTransition {
+        .transitionText,
+        .transitionImage {
+            transition-property: opacity;
+            opacity: 0;
+        }
+
+        &.current {
+            .transitionText,
+            .transitionImage {
+                opacity: 1;
+            }
+        }
+    }
+
+    &.scaleTransition {
+        .transitionText,
+        .transitionImage {
+            transform: scale(0);
+            transition-property: transform;           
+        }
+
+        &.current {
+            .transitionText,
+            .transitionImage {
+                transform: scale(1);
+            }
         }
     }
 }

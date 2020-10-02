@@ -13,6 +13,7 @@ export { default as getStyleFromText } from './getStyleFromText';
 export { default as getStyleFromMargin } from './getStyleFromMargin';
 export { default as getStyleFromBorder } from './getStyleFromBorder';
 export { default as getRenderFormat } from './getRenderFormat';
+export { default as getLayoutParts } from './getLayoutParts';
 export { default as isMessage } from './isMessage';
 export { default as pascalCase } from './pascalCase';
 export { default as schemaId } from './schemaId';

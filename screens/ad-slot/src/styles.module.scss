@@ -4,41 +4,42 @@
 .container {
     @extend %screen;
 
-    .empty {
-        @extend %empty;
-        height: 100%;
-        padding: 10px;
-    }
-
     .inner {
-        position: relative;
+        margin: 0 auto;
     }
 
-    .placeholder {
-        display: flex;
-        position: relative;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+    .content {
+        @extend %flex;
         width: 100%;
         height: 100%;
     }
 
-    .frame {
-        display: flex;
-        position: relative;
-        align-items: center;
-        justify-content: center;
+    &.fullscreen {
+        width: 100%;
+        height: 100%;
     }
 
-    .iframe {
-        //
+    &.top {
+        .content {
+            align-items: flex-start;
+        }
     }
 
-    .previewBlock {
-        display: block;
-        width: 300px;
-        height: 300px;
-        background-color: rgba(0, 0, 0, 0.5);
+    &.bottom {
+        .content {
+            align-items: flex-end;
+        }
+    }
+
+    &.left {
+        .content {
+            justify-content: flex-start;
+        }
+    }
+
+    &.right {
+        .content {
+            justify-content: flex-end;
+        }
     }
 }

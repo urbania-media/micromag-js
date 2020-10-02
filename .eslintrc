@@ -13,16 +13,11 @@
         "react/jsx-indent-props": ["error", 4],
         "no-console": ["error", { "allow": ["warn", "error"] }],
         "formatjs/enforce-default-message": ["error", "literal"],
-        "formatjs/no-camel-case": ["error"],
+        "formatjs/no-camel-case": ["error"]
     },
     "overrides": [
         {
-            "files": [
-                "*.config.js",
-                "scripts/**/*.js",
-                ".storybook/**/*.js",
-                "**/*.config.js"
-            ],
+            "files": ["*.config.js", "scripts/**/*.js", ".storybook/**/*.js", "**/*.config.js"],
             "rules": {
                 "import/no-extraneous-dependencies": [
                     "error",

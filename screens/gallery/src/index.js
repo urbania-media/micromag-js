@@ -1,3 +1,2 @@
-export { default } from './Gallery';
-export { default as layouts } from './layouts/names';
+export { default, layouts } from './Gallery';
 export { default as schema } from './schema';

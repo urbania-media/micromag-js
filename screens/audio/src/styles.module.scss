@@ -2,10 +2,45 @@
 
 .container {
     @extend %screen;
-    display: flex;
-    position: relative;
-    align-items: center;
-    justify-content: center;
+
+    .inner {
+        margin: 0 auto;
+    }
+
+    .content {
+        @extend %flex;
+        width: 100%;
+        height: 100%;
+    }
+
+    .stack {
+        &.full {
+            height: 100%;
+        }
+    }
+
+    &.fullscreen {
+        width: 100%;
+        height: 100%;
+    }
+
+    &.top {
+        .content {
+            align-items: flex-start;
+        }
+    }
+
+    &.bottom {
+        .content {
+            align-items: flex-end;
+        }
+    }
+
+    &.around {
+        .content {
+            height: 100%;
+        }
+    }
 
     .audio,
     .text,
