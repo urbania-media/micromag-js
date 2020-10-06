@@ -1,63 +1,101 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import * as MicromagPropTypes from '../../PropTypes';
+import { animated, useSpring } from 'react-spring';
 
-import Transitions from './index';
-import { getComponentFromName } from '../../../lib';
+// import * as MicromagPropTypes from '../../PropTypes';
 
 const propTypes = {
+    from: PropTypes.style,
+    to: PropTypes.style,
     playing: PropTypes.bool,
+    direction: PropTypes.oneOf(['in', 'out', 'both']),
     delay: PropTypes.number,
-    transitions: MicromagPropTypes.transitions,
+    duration: PropTypes.number,
+    easing: PropTypes.func,
     children: PropTypes.node,
+    className: PropTypes.string,
+    onStart: PropTypes.func,
+    onComplete: PropTypes.func,
 };
 
 const defaultProps = {
+    from: null,
+    to: null,
     playing: false,
+    direction: 'both',
     delay: 0,
-    transitions: null,
+    duration: undefined,
+    easing: undefined,
     children: null,
+    className: null,
+    onStart: null,
+    onComplete: null,
 };
 
-const Transition = ({ playing, delay, transitions, children }) => {
-    
-    const finalTransitions = { in: null, out: null };
-    Object.keys(transitions).forEach((transitionKey) => {
-        const currentTransition = transitions[transitionKey];
-        finalTransitions[transitionKey] = typeof currentTransition === 'string' ? { name: currentTransition } : currentTransition;
-    });
+const Transition = ({
+    from,
+    to,
+    playing,
+    direction,
+    delay,
+    duration,
+    easing,
+    children,
+    className,
+    onStart,
+    onComplete,
+}) => {
+    const [completed, setCompleted] = useState(false);
 
-    const { in: transitionIn = null, out: transitionOut = null } = finalTransitions;
-    const finalTransitionIn = transitionIn !== null ? transitionIn : transitionOut;
-    const finalTransitionOut = transitionOut !== null ? transitionOut : transitionIn;
-    const sameTransitionInOut = finalTransitionIn.name === finalTransitionOut.name;
+    const onSpringStart = useCallback(() => {
+        setCompleted(false);
+        if (onStart !== null) {
+            onStart();
+        }
+    }, [setCompleted, onStart]);
 
-    const TransitionIn = finalTransitionIn !== null ? getComponentFromName(finalTransitionIn.name, Transitions, null) : null;
-    const TransitionOut = finalTransitionOut !== null && !sameTransitionInOut ? getComponentFromName(finalTransitionOut.name, Transitions, null) : null;
-    
-    const transitionInProps = finalTransitionIn !== null ? {...finalTransitionIn, name: undefined, delay } : null;
-    const transitionOutProps = finalTransitionOut !== null ? {...finalTransitionOut, name: undefined, delay } : null;
+    const onSpringComplete = useCallback(() => {
+        setCompleted(true);
+        if (onComplete !== null) {
+            onComplete();
+        }
+    }, [setCompleted, onComplete]);
+
+    const [springProps, setSpringProps] = useSpring(() => null);
+
+    useEffect(() => {
+        const immediate = (!playing && direction === 'in') || (playing && direction === 'out');
+        const finalPlaying = immediate || playing;
+        const reset = playing && !immediate;
+
+        const props = {
+            from,
+            to: finalPlaying ? to : from,
+            immediate,
+            reset,
+            onStart: onSpringStart,
+            onRest: onSpringComplete,
+        } 
+
+        const withDelay = delay > 0 && playing && direction !== 'out';
+        let timeout = null;
+        if (withDelay) {
+            setSpringProps({ to: from, immediate: true });
+            timeout = setTimeout(setSpringProps, delay, props);
+        } else {
+            setSpringProps(props);
+        }
+        return () => {
+            if (timeout !== null) {
+                clearTimeout(timeout);
+            }
+        }
+    }, [playing, direction, delay, duration, easing, from, to, setSpringProps]);
 
     return (
-        <>
-            { TransitionIn !== null ? (
-                <TransitionIn playing={playing} direction={sameTransitionInOut ? 'both' : 'in'} {...transitionInProps}>
-                    { TransitionOut !== null ?
-                        <TransitionOut playing={playing} direction="out" {...transitionOutProps}>
-                            { children }
-                        </TransitionOut>
-                    : children }
-                </TransitionIn>
-            ) : null }
-            { TransitionIn === null ? 
-                <>
-                    { TransitionOut !== null ? 
-                        <TransitionOut playing={playing} direction="out" {...transitionOutProps}>{ children }</TransitionOut>
-                    : children }
-                </>
-            : null }
-        </>
+        <animated.div style={{ ...springProps }} className={className}>
+            {React.cloneElement(children, { completed })}
+        </animated.div>
     );
 };
 

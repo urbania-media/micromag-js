@@ -2,6 +2,7 @@
 const path = require('path');
 const getPackagesPaths = require('../scripts/lib/getPackagesPaths');
 const getPackagesAliases = require('../scripts/lib/getPackagesAliases');
+const { idInterpolationPattern } = require('../scripts/formatjs');
 require('dotenv').config();
 
 module.exports = {
@@ -81,9 +82,8 @@ module.exports = {
                             [
                                 require.resolve('babel-plugin-react-intl'),
                                 {
-                                    overrideIdFn: (id) =>
-                                        namespace !== null ? `${namespace}.${id}` : id,
-                                    extractSourceLocation: true,
+                                    ast: true,
+                                    idInterpolationPattern,
                                 },
                             ],
                         ],
