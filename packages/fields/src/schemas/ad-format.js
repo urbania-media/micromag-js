@@ -1,11 +1,4 @@
-import { defineMessages } from 'react-intl';
-
-const messages = defineMessages({
-    adFormatTitle: {
-        id: 'schemas.ad-format.title',
-        defaultMessage: 'Ad Format',
-    },
-});
+import { defineMessage } from 'react-intl';
 
 export default {
     $id: 'https://schemas.micromag.ca/0.1/fields/ad-format.json',
@@ -13,7 +6,9 @@ export default {
     type: 'object',
     component: 'ad-format',
     intl: {
-        title: messages.adFormatTitle,
+        title: defineMessage({
+            defaultMessage: 'Ad Format',
+        }),
     },
     properties: {
         name: {
