@@ -1,68 +1,70 @@
-import {
-    layouts
-} from './Ad';
-
-import {
-    schemas as messages
-} from './messages';
+import intl from 'react-intl';
+import { layouts } from './Ad';
 
 export default {
     $id: 'https://schemas.micromag.ca/0.1/screens/ad.json',
     title: 'Advertising',
     group: 'Ad',
     type: 'object',
-
     intl: {
-        title: messages.schemaTitle,
+        title: intl.formatMessage({
+            description: 'Ad title',
+            defaultMessage: 'Advertising',
+        }),
     },
-
-    allOf: [{
+    allOf: [
+        {
             $ref: 'https://schemas.micromag.ca/0.1/screens/screen.json',
         },
         {
             properties: {
                 layout: {
                     $ref: 'https://schemas.micromag.ca/0.1/fields/screen-layout.json',
-                    title: 'Layout',
                     screenType: 'ad',
                     enum: layouts,
                     intl: {
-                        title: messages.layout,
+                        title: intl.formatMessage({
+                            description: 'Schema layout title',
+                            defaultMessage: 'Layout',
+                        }),
                     },
                 },
                 image: {
                     $ref: 'https://schemas.micromag.ca/0.1/elements/image.json',
                     title: 'Image',
                     intl: {
-                        title: messages.image,
+                        title: intl.formatMessage({
+                            description: 'Schema image title',
+                            defaultMessage: 'Image',
+                        }),
                     },
                 },
                 link: {
                     $ref: 'https://schemas.micromag.ca/0.1/fields/url.json',
-                    title: 'Link',
                     intl: {
-                        title: messages.link,
+                        title: intl.formatMessage({
+                            description: 'Schema link title',
+                            defaultMessage: 'Link',
+                        }),
                     },
                 },
                 text: {
                     $ref: 'https://schemas.micromag.ca/0.1/elements/text.json',
-                    title: 'Sponsor',
+
                     intl: {
-                        title: messages.sponsor,
+                        title: intl.formatMessage({
+                            description: 'Schema sponsor title',
+                            defaultMessage: 'Sponsor',
+                        }),
                     },
                 },
                 background: {
                     $ref: 'https://schemas.micromag.ca/0.1/elements/background.json',
-                    title: 'Background',
                     intl: {
-                        title: messages.background,
-                    },
-                },
-                spacing: {
-                    $ref: 'https://schemas.micromag.ca/0.1/fields/spacing.json',
-                    title: 'Spacing',
-                    intl: {
-                        title: messages.spacing,
+                        title: intl.formatMessage({
+                            description: 'Schema background title',
+                            defaultMessage: 'Background',
+                        }),
                     },
                 },
             },
