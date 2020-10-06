@@ -1,9 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-// import {useTransition, animated} from 'react-spring';
 
 import { StackNew } from '@micromag/element-stack';
 import Container from '@micromag/element-container';
@@ -12,6 +11,8 @@ import Background from '@micromag/element-background';
 import TextComponent from '@micromag/element-text';
 import ImageComponent from '@micromag/element-image';
 
+import Transition from '@micromag/core/src/components/transitions/Transition';
+
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
@@ -19,6 +20,7 @@ import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/c
 import { schemas as messages } from './messages';
 
 import styles from './styles.module.scss';
+
 
 const propTypes = {
     text: MicromagPropTypes.textComponent,
@@ -31,7 +33,6 @@ const propTypes = {
     renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
-    defaultTransitionParams: MicromagPropTypes.transitionParams,
     className: PropTypes.string,
 };
 
@@ -46,10 +47,12 @@ const defaultProps = {
     renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: {
-        in: 'fade',
+        in: {
+            name: 'fade',
+            duration: 1000
+        },
         out: 'scale',
     },
-    defaultTransitionParams: { duration: 0.4, easing: 'ease' },
     className: null,
 };
 
@@ -64,7 +67,6 @@ const TextImage = ({
     renderFormat,
     maxRatio,
     transitions,
-    defaultTransitionParams,
     className,
 }) => {
     const { width, height } = useScreenSize();
@@ -105,38 +107,11 @@ const TextImage = ({
     };
 
     // Transitions
+    const animationCurrent = current && ready;
 
-    const [animationCurrent, setAnimationCurrent] = useState(!current);
-    const animating = animationCurrent === current;
-
-    useEffect( () => {
-        if (!ready) {
-            return;
-        }
-        setAnimationCurrent(current);
-    }, [current, ready]);
-
-    const finalTransitions = { in: null, out: null };
-    Object.keys(transitions).forEach((transitionKey) => {
-        const currentTransition = transitions[transitionKey];
-        const transition =
-            typeof currentTransition === 'string' ? { name: currentTransition } : currentTransition;
-        finalTransitions[transitionKey] = { ...defaultTransitionParams, ...transition };
-    });
-
-    const currentTransition = finalTransitions[current ? 'in' : 'out'];
-    const {
-        name: transitionName = null,
-        duration: transitionDuration = 0,
-        easing: transitionEasing = null,
-    } = currentTransition || {};
-
-    const transitionStyle = {
-        transitionDuration: `${animating ? transitionDuration : 0}s`,
-        transitionTimingFunction: transitionEasing,
-    };
-
-    // console.log(transitionName, current, animationCurrent, animating)
+    if (text.body === 'An image text') {
+        // console.log(animationCurrent);
+    }
 
     // Text
 
@@ -156,7 +131,7 @@ const TextImage = ({
         );
     } else {
         textElement = (
-            <div className={styles.transitionText} style={{...transitionStyle /* , transitionDelay: reverse && animating ? `${transitionDuration}s` : 0 */ }}>
+            <Transition playing={animationCurrent} transitions={transitions} delay={reverse ? 500 : 0}>                
                 <TextComponent
                     {...text}
                     key="text-element"
@@ -164,7 +139,7 @@ const TextImage = ({
                     className={styles.text}
                     emptyClassName={styles.empty}
                 />
-            </div>
+            </Transition>
         );
     }
 
@@ -183,7 +158,7 @@ const TextImage = ({
         );
     } else {
         imageElement = (
-            <div className={styles.transitionImage} style={{...transitionStyle /* , transitionDelay: !reverse && animating ? `${transitionDuration}s` : 0 */ }}>
+            <Transition playing={animationCurrent} transitions={transitions} delay={!reverse ? 500 : 0}>
                 <ImageComponent
                     {...image}
                     key="image-element"
@@ -191,7 +166,7 @@ const TextImage = ({
                     className={styles.image}
                     onLoaded={onImageLoaded}
                 />
-            </div>
+            </Transition>
         );
     }
 
@@ -205,8 +180,6 @@ const TextImage = ({
                     [className]: className !== null,                    
                     [styles.sideways]: sideways,
                     [styles.ready]: ready && active,
-                    [styles.current]: animationCurrent,
-                    [styles[`${transitionName}Transition`]]: transitionName !== null,
                 },
             ])}
         >
