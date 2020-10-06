@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { animated, useSpring } from 'react-spring';
 
@@ -8,7 +8,7 @@ const propTypes = {
     from: PropTypes.style,
     to: PropTypes.style,
     playing: PropTypes.bool,
-    direction: PropTypes.oneOf(['in', 'out', 'both']),
+    direction: PropTypes.oneOf(['in', 'out']),
     delay: PropTypes.number,
     duration: PropTypes.number,
     easing: PropTypes.func,
@@ -22,7 +22,7 @@ const defaultProps = {
     from: null,
     to: null,
     playing: false,
-    direction: 'both',
+    direction: null,
     delay: 0,
     duration: undefined,
     easing: undefined,
@@ -45,23 +45,7 @@ const Transition = ({
     onStart,
     onComplete,
 }) => {
-    const [completed, setCompleted] = useState(false);
-
-    const onSpringStart = useCallback(() => {
-        setCompleted(false);
-        if (onStart !== null) {
-            onStart();
-        }
-    }, [setCompleted, onStart]);
-
-    const onSpringComplete = useCallback(() => {
-        setCompleted(true);
-        if (onComplete !== null) {
-            onComplete();
-        }
-    }, [setCompleted, onComplete]);
-
-    const [springProps, setSpringProps] = useSpring(() => null);
+    const [springProps, setSpringProps] = useSpring(() => from);
 
     useEffect(() => {
         const immediate = (!playing && direction === 'in') || (playing && direction === 'out');
@@ -73,9 +57,9 @@ const Transition = ({
             to: finalPlaying ? to : from,
             immediate,
             reset,
-            onStart: onSpringStart,
-            onRest: onSpringComplete,
-        } 
+            onStart,
+            onRest: onComplete,
+        };
 
         const withDelay = delay > 0 && playing && direction !== 'out';
         let timeout = null;
@@ -89,12 +73,23 @@ const Transition = ({
             if (timeout !== null) {
                 clearTimeout(timeout);
             }
-        }
-    }, [playing, direction, delay, duration, easing, from, to, setSpringProps]);
+        };
+    }, [
+        playing,
+        direction,
+        delay,
+        duration,
+        easing,
+        from,
+        to,
+        setSpringProps,
+        onStart,
+        onComplete,
+    ]);
 
     return (
         <animated.div style={{ ...springProps }} className={className}>
-            {React.cloneElement(children, { completed })}
+            {children}
         </animated.div>
     );
 };

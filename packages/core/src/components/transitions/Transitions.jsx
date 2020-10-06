@@ -50,7 +50,7 @@ const Transitions = ({ playing, delay, transitions, children }) => {
     return (
         <>
             { TransitionIn !== null ? (
-                <TransitionIn playing={playing} direction={sameTransitionInOut ? 'both' : 'in'} {...transitionInProps}>
+                <TransitionIn playing={playing} direction={!sameTransitionInOut ? 'in' : null} {...transitionInProps}>
                     { renderTransitionOut }
                 </TransitionIn>
             ) : renderTransitionOut }
