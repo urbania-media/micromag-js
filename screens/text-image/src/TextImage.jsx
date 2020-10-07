@@ -1,9 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-// import {useTransition, animated} from 'react-spring';
 
 import { StackNew } from '@micromag/element-stack';
 import Container from '@micromag/element-container';
@@ -11,6 +10,8 @@ import Background from '@micromag/element-background';
 
 import TextComponent from '@micromag/element-text';
 import ImageComponent from '@micromag/element-image';
+
+import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
@@ -31,7 +32,6 @@ const propTypes = {
     renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
-    defaultTransitionParams: MicromagPropTypes.transitionParams,
     className: PropTypes.string,
 };
 
@@ -46,10 +46,12 @@ const defaultProps = {
     renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: {
-        in: 'fade',
+        in: {
+            name: 'fade',
+            duration: 1000,
+        },
         out: 'scale',
     },
-    defaultTransitionParams: { duration: 0.4, easing: 'ease' },
     className: null,
 };
 
@@ -64,7 +66,6 @@ const TextImage = ({
     renderFormat,
     maxRatio,
     transitions,
-    defaultTransitionParams,
     className,
 }) => {
     const { width, height } = useScreenSize();
@@ -73,6 +74,8 @@ const TextImage = ({
 
     const withImage = isView || isPreview;
     const [ready, setReady] = useState(!withImage);
+    const transitionPlaying = current && ready;
+
     const onImageLoaded = useCallback(() => {
         setReady(true);
     }, [setReady]);
@@ -94,50 +97,6 @@ const TextImage = ({
         stackContainerJustifyContent = 'center';
     }
 
-    const stackContainerStyle = {
-        justifyContent: stackContainerJustifyContent,
-    };
-
-    const stackProps = {
-        direction: stackDirection,
-        reverse,
-        itemClassName: styles.item,
-    };
-
-    // Transitions
-
-    const [animationCurrent, setAnimationCurrent] = useState(!current);
-    const animating = animationCurrent === current;
-
-    useEffect( () => {
-        if (!ready) {
-            return;
-        }
-        setAnimationCurrent(current);
-    }, [current, ready]);
-
-    const finalTransitions = { in: null, out: null };
-    Object.keys(transitions).forEach((transitionKey) => {
-        const currentTransition = transitions[transitionKey];
-        const transition =
-            typeof currentTransition === 'string' ? { name: currentTransition } : currentTransition;
-        finalTransitions[transitionKey] = { ...defaultTransitionParams, ...transition };
-    });
-
-    const currentTransition = finalTransitions[current ? 'in' : 'out'];
-    const {
-        name: transitionName = null,
-        duration: transitionDuration = 0,
-        easing: transitionEasing = null,
-    } = currentTransition || {};
-
-    const transitionStyle = {
-        transitionDuration: `${animating ? transitionDuration : 0}s`,
-        transitionTimingFunction: transitionEasing,
-    };
-
-    // console.log(transitionName, current, animationCurrent, animating)
-
     // Text
 
     let textElement = null;
@@ -156,7 +115,11 @@ const TextImage = ({
         );
     } else {
         textElement = (
-            <div className={styles.transitionText} style={{...transitionStyle /* , transitionDelay: reverse && animating ? `${transitionDuration}s` : 0 */ }}>
+            <Transitions
+                playing={transitionPlaying}
+                transitions={transitions}
+                delay={reverse ? 500 : 0}
+            >
                 <TextComponent
                     {...text}
                     key="text-element"
@@ -164,7 +127,7 @@ const TextImage = ({
                     className={styles.text}
                     emptyClassName={styles.empty}
                 />
-            </div>
+            </Transitions>
         );
     }
 
@@ -183,7 +146,11 @@ const TextImage = ({
         );
     } else {
         imageElement = (
-            <div className={styles.transitionImage} style={{...transitionStyle /* , transitionDelay: !reverse && animating ? `${transitionDuration}s` : 0 */ }}>
+            <Transitions
+                playing={transitionPlaying}
+                transitions={transitions}
+                delay={!reverse ? 500 : 0}
+            >
                 <ImageComponent
                     {...image}
                     key="image-element"
@@ -191,22 +158,20 @@ const TextImage = ({
                     className={styles.image}
                     onLoaded={onImageLoaded}
                 />
-            </div>
+            </Transitions>
         );
     }
 
     const items = [textElement, imageElement];
-   
+
     return (
         <div
             className={classNames([
                 styles.container,
                 {
-                    [className]: className !== null,                    
+                    [className]: className !== null,
                     [styles.sideways]: sideways,
                     [styles.ready]: ready && active,
-                    [styles.current]: animationCurrent,
-                    [styles[`${transitionName}Transition`]]: transitionName !== null,
                 },
             ])}
         >
@@ -217,8 +182,13 @@ const TextImage = ({
                 playing={(isView && current) || (isEditor && active)}
             />
             <Container width={width} height={height} maxRatio={maxRatio} styles={{ textAlign }}>
-                <div className={styles.stackContainer} style={stackContainerStyle}>
-                    <StackNew className={styles.stack} {...stackProps}>
+                <div
+                    className={styles.stackContainer}
+                    style={{
+                        justifyContent: stackContainerJustifyContent,
+                    }}
+                >
+                    <StackNew className={styles.stack} direction={stackDirection} reverse={reverse} itemClassName={styles.item} >
                         {items}
                     </StackNew>
                 </div>
