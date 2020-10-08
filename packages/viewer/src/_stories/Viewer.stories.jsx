@@ -11,7 +11,7 @@ import * as ScreenComponents from '../../../screens/src/all';
 
 // import { paragraph, image } from '../../../../.storybook/data';
 
-import Viewer from '../components/Viewer';
+import Viewer from '../components/ViewerContainer';
 
 const props = {
     screenId: Basic[0].id,
@@ -36,9 +36,7 @@ export default {
 // eslint-disable-next-line react/prop-types
 const Container = ({ children }) => (
     <IntlProvider locale="fr">
-        <ComponentsProvider namespace={SCREENS_NAMESPACE} components={ScreenComponents}>
-            {children}
-        </ComponentsProvider>
+        {children}
     </IntlProvider>
 );
 
