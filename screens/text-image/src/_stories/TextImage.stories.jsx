@@ -10,8 +10,7 @@ import {
 } from '../../../../.storybook/components';
 import { text, imageWithRandomSize } from '../../../../.storybook/data';
 
-import TextImage from '../TextImage';
-import layouts from '../layouts/names';
+import TextImage, { layouts } from '../TextImage';
 
 const props = {
     text: text(),

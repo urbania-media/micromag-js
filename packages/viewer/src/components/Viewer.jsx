@@ -98,7 +98,6 @@ const Viewer = ({
             if (index === currentIndex) {
                 return;
             }
-            // console.log('screen change', index);
             if (onScreenChange !== null) {
                 onScreenChange(components[index], index);
             }
@@ -199,6 +198,7 @@ const Viewer = ({
         if (!landscape || animateScroll.current) {
             return;
         }
+
         const scrollIndex = clamp(
             Math.floor(
                 scrollRef.current.scrollTop / screenSize.height + (1 - scrollIndexHeightPercent),
@@ -206,6 +206,7 @@ const Viewer = ({
             0,
             components.length - 1,
         );
+
         if (scrollIndex !== currentIndex) {
             changeIndex(scrollIndex);
         }

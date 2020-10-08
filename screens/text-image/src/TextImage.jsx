@@ -21,6 +21,17 @@ import { schemas as messages } from './messages';
 
 import styles from './styles.module.scss';
 
+export const layouts = [
+    'top',
+    'top-reverse',
+    'center',
+    'center-reverse',
+    'bottom',
+    'bottom-reverse',
+    'side',
+    'side-reverse',
+];
+
 const propTypes = {
     text: MicromagPropTypes.textComponent,
     image: MicromagPropTypes.imageComponent,
@@ -103,9 +114,7 @@ const TextImage = ({
 
     if (isPlaceholder) {
         textElement = (
-            <div className={styles.placeholderContainer}>
-                <Placeholders.ShortText key="text-element" className={styles.placeholder} />
-            </div>
+            <Placeholders.ShortText key="text-element" className={styles.placeholder} />
         );
     } else if (isEmpty) {
         textElement = (
@@ -136,7 +145,7 @@ const TextImage = ({
 
     if (isPlaceholder) {
         imageElement = (
-            <Placeholders.SmallImage key="image-element" className={styles.placeholderImage} />
+            <Placeholders.SmallImage key="image-element" className={styles.placeholder} />
         );
     } else if (isEmpty) {
         imageElement = (

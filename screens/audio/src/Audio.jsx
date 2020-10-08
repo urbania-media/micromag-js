@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -21,6 +21,7 @@ import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
+import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
 export const layouts = ['top', 'bottom', 'center', 'around'];
 
@@ -35,9 +36,12 @@ const propTypes = {
     text: MicromagPropTypes.textElement,
     image: MicromagPropTypes.imageElement,
     background: MicromagPropTypes.backgroundElement,
-    visible: PropTypes.bool,
+    current: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
+    maxRatio: PropTypes.number,
+    transitions: MicromagPropTypes.transitions,
+    className: PropTypes.string,
 };
 
 const defaultProps = {
@@ -58,9 +62,18 @@ const defaultProps = {
     image: null,
     text: null,
     background: null,
-    visible: true,
+    current: true,
     active: false,
     renderFormat: 'view',
+    maxRatio: 3 / 4,
+    transitions: {
+        in: {
+            name: 'fade',
+            duration: 1000,
+        },
+        out: 'scale',
+    },
+    className: null,
 };
 
 const AudioScreen = ({
@@ -71,28 +84,45 @@ const AudioScreen = ({
     image,
     text,
     background,
-    visible,
+    current,
     active,
     renderFormat,
+    maxRatio,
+    transitions,
+    className,
 }) => {
     const { width, height } = useScreenSize();
     const { isPlaceholder, isView, isPreview, isEditor } = getRenderFormat(renderFormat);
     const { spacing, reverse } = stack || {};
+
+    const withImage = image !== null;
+    const [ready, setReady] = useState(!withImage);
+    const transitionPlaying = current && ready;
+
     let imageElement = null;
 
-    if (isPlaceholder && image !== null) {
-        imageElement = <PlaceholderImage className={styles.placeholder} />;
-    } else {
-        imageElement = (
-            <ImageElement
-                width={image !== null ? Math.min(width, maxWidth) : null}
-                height={image !== null ? Math.min(width, maxWidth) : null}
-                fit={{ size: 'cover' }}
-                contain
-                className={styles.image}
-                {...image}
-            />
-        );
+    const onImageLoaded = useCallback(() => {
+        setReady(true);
+    }, [setReady]);
+
+    if (withImage) {
+        if (isPlaceholder) {
+            imageElement = <PlaceholderImage className={styles.placeholder} />;
+        } else {
+            imageElement = (
+                <Transitions transitions={transitions} playing={transitionPlaying}>
+                    <ImageElement
+                        width={Math.min(width, maxWidth)}
+                        height={Math.min(width, maxWidth)}
+                        fit={{ size: 'cover' }}
+                        contain
+                        className={styles.image}
+                        onLoaded={onImageLoaded}
+                        {...image}
+                    />
+                </Transitions>
+            );
+        }
     }
 
     let audioElement = null;
@@ -100,27 +130,28 @@ const AudioScreen = ({
         audioElement = <PlaceholderAudio className={styles.placeholder} />;
     } else {
         audioElement = (
-            <AudioElement
-                className={styles.audio}
-                {...(isPlaceholder || isPreview ? { ...audio, src: null } : audio)}
-            />
+            <Transitions transitions={transitions} playing={transitionPlaying}>
+                <AudioElement
+                    className={styles.audio}
+                    {...(isPlaceholder || isPreview ? { ...audio, src: null } : audio)}
+                />
+            </Transitions>
         );
     }
 
     let textElement = null;
-    if (isPlaceholder && text !== null) {
-        textElement = <PlaceholderText className={styles.placeholder} />;
-    } else {
-        textElement = <TextElement {...text} className={styles.text} />;
+    const withText = text !== null;
+    if (withText) {
+        if (isPlaceholder) {
+            textElement = <PlaceholderText className={styles.placeholder} />;
+        } else {
+            textElement = (
+                <Transitions transitions={transitions} playing={transitionPlaying}>
+                    <TextElement {...text} className={styles.text} />
+                </Transitions>
+            );
+        }
     }
-
-    const containerClassNames = classNames([
-        styles.container,
-        {
-            [styles.placeholder]: isPlaceholder,
-            [styles[layout]]: layout !== null,
-        },
-    ]);
 
     const stackClassNames = classNames([
         styles.stack,
@@ -130,15 +161,23 @@ const AudioScreen = ({
     ]);
 
     return (
-        <div className={containerClassNames}>
+        <div className={classNames([
+            styles.container,
+            {
+                [className]: className !== null,
+                [styles.placeholder]: isPlaceholder,
+                [styles[layout]]: layout !== null,
+            },
+        ])}>
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && visible) || (isEditor && active)}
+                maxRatio={maxRatio}
+                playing={(isView && current) || (isEditor && active)}
             />
             <div className={styles.inner}>
-                <Container width={width} height={height} visible={visible}>
+                <Container width={width} height={height} maxRatio={maxRatio}>
                     <div className={styles.content}>
                         <VStack
                             className={stackClassNames}
