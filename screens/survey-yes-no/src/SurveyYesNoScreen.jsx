@@ -11,7 +11,13 @@ import VideoElement from '@micromag/element-video';
 
 import Button from '@micromag/element-button';
 import Stack from '@micromag/element-stack';
-import { Label, Placeholders, PropTypes as MicromagPropTypes } from '@micromag/core';
+import {
+    Label,
+    PlaceholderText,
+    PlaceholderButton,
+    PropTypes as MicromagPropTypes,
+} from '@micromag/core';
+
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 
@@ -136,8 +142,8 @@ const SurveyYesNo = ({
             </>
         ) : (
             <>
-                <Placeholders.Button className={styles.buttonPlaceholder} />
-                <Placeholders.Button className={styles.buttonPlaceholder} />
+                <PlaceholderButton className={styles.buttonPlaceholder} />
+                <PlaceholderButton className={styles.buttonPlaceholder} />
             </>
         );
 
@@ -163,7 +169,7 @@ const SurveyYesNo = ({
                             answer
                         ) : (
                             <>
-                                {renderFormat !== 'placeholder' ? question : <Placeholders.Text />}
+                                {renderFormat !== 'placeholder' ? question : <PlaceholderText />}
                                 <div className={styles.buttons}>{buttons}</div>
                             </>
                         )}

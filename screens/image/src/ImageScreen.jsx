@@ -10,7 +10,7 @@ import TextComponent from '@micromag/element-text';
 import ImageComponent from '@micromag/element-image';
 import Stack from '@micromag/element-stack';
 
-import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, PlaceholderImage, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 
@@ -91,7 +91,7 @@ const ImageScreen = ({
                 <Container width={width} height={height} visible={visible}>
                     <Stack {...box} isSmall={isSimple} className={styles.inner}>
                         {isPlaceholder ? (
-                            <Placeholders.MediumImage className={styles.placeholderImage} />
+                            <PlaceholderImage className={styles.placeholderImage} />
                         ) : (
                             imageElement
                         )}

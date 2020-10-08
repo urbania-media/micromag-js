@@ -10,7 +10,7 @@ import TextComponent from '@micromag/element-text';
 
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
-import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, PlaceholderText, Empty } from '@micromag/core';
 
 import { schemas as messages } from './messages';
 
@@ -70,7 +70,7 @@ const TextScreen = ({
     let textComponent = null;
 
     if (isPlaceholder) {
-        textComponent = <Placeholders.Text className={styles.placeholder} />;
+        textComponent = <PlaceholderText className={styles.placeholder} />;
     } else if (isEmpty) {
         textComponent = (
             <Empty className={styles.empty}>

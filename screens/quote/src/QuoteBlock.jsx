@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import TextComponent from '@micromag/element-text';
-import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, PlaceholderText, PlaceholderLine } from '@micromag/core';
 
 import styles from './styles-block.module.scss';
 
@@ -39,8 +39,8 @@ const QuoteBlock = ({ quote, source, author, isPlaceholder, showEmpty, centered 
             ])}
         >
             <div className={styles.placeholderInner}>
-                <Placeholders.Text className={styles.placeholder} />
-                <Placeholders.Line className={styles.placeholderSource} />
+                <PlaceholderText className={styles.placeholder} />
+                <PlaceholderLine className={styles.placeholderSource} />
             </div>
         </blockquote>
     ) : (

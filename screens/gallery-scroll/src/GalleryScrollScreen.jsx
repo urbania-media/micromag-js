@@ -10,7 +10,7 @@ import Scroll from '@micromag/element-scroll';
 import Image from '@micromag/element-image';
 import { VStack, HStack } from '@micromag/element-stack';
 
-import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, PlaceholderImage, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 
@@ -117,7 +117,12 @@ const GalleryScrollScreen = ({
                     ) : null}
                     {isPreview ? <div className={styles.previewBlock} /> : null}
                     {isPlaceholder ? (
-                        <Placeholders.Image key={`image-${j + 1}`} className={styles.placeholder} />
+                        <PlaceholderImage
+                            key={`image-${j + 1}`}
+                            className={styles.placeholder}
+                            width="100%"
+                            height="100%"
+                        />
                     ) : null}
                     {isEditor && isEmpty ? (
                         <Empty className={styles.empty}>

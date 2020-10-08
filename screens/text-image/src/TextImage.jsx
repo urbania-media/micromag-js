@@ -15,7 +15,12 @@ import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
-import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
+import {
+    PropTypes as MicromagPropTypes,
+    PlaceholderShortText,
+    PlaceholderImage,
+    Empty,
+} from '@micromag/core';
 
 import { schemas as messages } from './messages';
 
@@ -111,9 +116,7 @@ const TextImage = ({
     let textElement = null;
 
     if (isPlaceholder) {
-        textElement = (
-            <Placeholders.ShortText key="text-element" className={styles.placeholder} />
-        );
+        textElement = <PlaceholderShortText key="text-element" className={styles.placeholder} />;
     } else if (isEmpty) {
         textElement = (
             <Empty className={styles.empty}>
@@ -142,9 +145,7 @@ const TextImage = ({
     let imageElement = null;
 
     if (isPlaceholder) {
-        imageElement = (
-            <Placeholders.SmallImage key="image-element" className={styles.placeholder} />
-        );
+        imageElement = <PlaceholderImage key="image-element" className={styles.placeholder} />;
     } else if (isEmpty) {
         imageElement = (
             <Empty className={classNames([styles.empty, styles.emptyImage])}>
@@ -195,7 +196,12 @@ const TextImage = ({
                         justifyContent: stackContainerJustifyContent,
                     }}
                 >
-                    <StackNew className={styles.stack} direction={stackDirection} reverse={reverse} itemClassName={styles.item} >
+                    <StackNew
+                        className={styles.stack}
+                        direction={stackDirection}
+                        reverse={reverse}
+                        itemClassName={styles.item}
+                    >
                         {items}
                     </StackNew>
                 </div>
@@ -204,7 +210,6 @@ const TextImage = ({
     );
 };
 
-TextImage.propTypes = propTypes;
 TextImage.defaultProps = defaultProps;
 
 export default React.memo(TextImage);

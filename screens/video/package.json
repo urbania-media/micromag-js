@@ -60,7 +60,6 @@
         "@micromag/core": "^0.1.29",
         "@micromag/element-background": "^0.1.29",
         "@micromag/element-container": "^0.1.29",
-        "@micromag/element-stack": "^0.1.29",
         "@micromag/element-image": "^0.1.29",
         "@micromag/element-text": "^0.1.29",
         "@micromag/element-video": "^0.1.29",
@@ -71,7 +70,10 @@
         "uuid": "^7.0.2"
     },
     "lang": "lang",
-    "supportedLocales": ["en", "fr"],
+    "supportedLocales": [
+        "en",
+        "fr"
+    ],
     "publishConfig": {
         "access": "public"
     },

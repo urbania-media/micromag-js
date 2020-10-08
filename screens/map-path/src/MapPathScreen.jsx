@@ -11,7 +11,7 @@ import TextComponent from '@micromag/element-text';
 import ImageComponent from '@micromag/element-image';
 import ButtonComponent from '@micromag/element-button';
 
-import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, PlaceholderMapPath, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 
@@ -101,11 +101,7 @@ const MapPathScreen = ({
         />
     );
 
-    const preview = isPlaceholder ? (
-        <Placeholders.MapPath className={styles.placeholder} />
-    ) : (
-        element
-    );
+    const preview = isPlaceholder ? <PlaceholderMapPath className={styles.placeholder} /> : element;
 
     const containerClassNames = classNames([
         styles.container,

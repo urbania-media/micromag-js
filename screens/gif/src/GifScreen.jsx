@@ -11,7 +11,7 @@ import VideoComponent from '@micromag/element-video';
 
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
-import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, PlaceholderVideoLoop } from '@micromag/core';
 
 import styles from './styles.module.scss';
 
@@ -63,11 +63,8 @@ const GifScreen = ({
     const isNonInteractive = isPreview || isPlaceholder;
 
     const { video = {} } = videoField || {};
-    const { loop = false, autoPlay = false } = defaultParams || {};
+    const { autoPlay = false } = defaultParams || {};
 
-    const PlaceholderSized = size === 'cover' ? Placeholders.VideoFull : Placeholders.Video;
-    const PlaceholderLoop = loop ? Placeholders.VideoLoop : PlaceholderSized;
-    const Placeholder = loop && size === 'cover' ? Placeholders.VideoFullLoop : PlaceholderLoop;
     const autoplayCondition = isEditor ? autoPlay && active : autoPlay && !isNonInteractive;
 
     const preview =
@@ -77,7 +74,7 @@ const GifScreen = ({
                 className={classNames([styles.preview])}
             />
         ) : (
-            <Placeholder
+            <PlaceholderVideoLoop
                 className={classNames([
                     styles.placeholder,
                     {

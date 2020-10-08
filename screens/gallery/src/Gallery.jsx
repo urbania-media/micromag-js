@@ -9,7 +9,7 @@ import Container from '@micromag/element-container';
 import Grid from '@micromag/element-grid';
 import Image from '@micromag/element-image';
 
-import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, PlaceholderImage, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 
@@ -80,7 +80,9 @@ const GalleryScreen = ({
     const items = isPlaceholder
         ? gridLayout
               .reduce((map, row) => [...map, ...row.columns], [])
-              .map(() => <Placeholders.Image className={styles.placeholder} />)
+              .map(() => (
+                  <PlaceholderImage className={styles.placeholder} width="100%" height="100%" />
+              ))
         : activeImages.map((it) =>
               isEditor && !it ? (
                   <Empty className={styles.empty}>

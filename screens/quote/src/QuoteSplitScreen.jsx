@@ -7,7 +7,7 @@ import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Text from '@micromag/element-text';
 import Grid from '@micromag/element-grid';
-import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, PlaceholderText, PlaceholderLine } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 
@@ -72,76 +72,76 @@ const QuoteSplitScreen = ({
 
     const items = isPlaceholder
         ? [
-            <div
-                className={classNames([
+              <div
+                  className={classNames([
                       blockStyles.splitPlaceholder,
                       blockStyles.placeholderContainer,
                   ])}
               >
-                <Placeholders.Text className={blockStyles.placeholder} />
-            </div>,
-            <div className={blockStyles.splitPlaceholder}>
-                <Placeholders.Line className={blockStyles.line} />
-            </div>,
-            <div className={blockStyles.splitPlaceholder}>
-                <Placeholders.Line className={blockStyles.line} />
-            </div>,
+                  <PlaceholderText className={blockStyles.placeholder} />
+              </div>,
+              <div className={blockStyles.splitPlaceholder}>
+                  <PlaceholderLine className={blockStyles.line} />
+              </div>,
+              <div className={blockStyles.splitPlaceholder}>
+                  <PlaceholderLine className={blockStyles.line} />
+              </div>,
           ]
         : [
-            <div
-                className={classNames([
+              <div
+                  className={classNames([
                       blockStyles.figure,
                       {
                           [blockStyles.centered]: grid !== null,
                       },
                   ])}
               >
-                <blockquote className={blockStyles.blockquote}>
-                    <Text
-                        {...quote}
-                        className={blockStyles.quote}
-                        emptyClassName={blockStyles.empty}
-                        showEmpty={isEditor && quote === null}
+                  <blockquote className={blockStyles.blockquote}>
+                      <Text
+                          {...quote}
+                          className={blockStyles.quote}
+                          emptyClassName={blockStyles.empty}
+                          showEmpty={isEditor && quote === null}
                       />
-                </blockquote>
-            </div>,
-            <div
-                className={classNames([
+                  </blockquote>
+              </div>,
+              <div
+                  className={classNames([
                       blockStyles.figure,
                       {
                           [blockStyles.centered]: grid !== null,
                       },
                   ])}
               >
-                {author ? (
-                    <figcaption className={blockStyles.caption}>
-                        {author ? (
-                            <>
-                                <span>&mdash;</span>
-                                <Text {...author} className={blockStyles.author} />
-                            </>
+                  {author ? (
+                      <figcaption className={blockStyles.caption}>
+                          {author ? (
+                              <>
+                                  <span>&mdash;</span>
+                                  <Text {...author} className={blockStyles.author} />
+                              </>
                           ) : null}
-                    </figcaption>
+                      </figcaption>
                   ) : null}
-            </div>,
-            <div
-                className={classNames([
+              </div>,
+              <div
+                  className={classNames([
                       blockStyles.figure,
                       {
                           [blockStyles.centered]: grid !== null,
                       },
                   ])}
               >
-                {source ? (
-                    <figcaption className={blockStyles.caption}>
-                        {source ? (
-                            <cite>
-                                <Text {...source} className={blockStyles.source} />
-                            </cite>
+                  {source ? (
+                      <figcaption className={blockStyles.caption}>
+                          {source ? (
+                              <cite>
+                                  <Text {...source} className={blockStyles.source} />
+                              </cite>
                           ) : null}
-                    </figcaption>
+                      </figcaption>
                   ) : null}
-            </div>,
+              </div>,
           ];
 
     const containerClassNames = classNames([

@@ -28,10 +28,6 @@ export { default as Empty } from './partials/Empty';
 export { default as Label } from './partials/Label';
 export { default as Link } from './partials/Link';
 export { default as Media } from './partials/Media';
-export { default as Placeholder } from './partials/Placeholder';
-export { default as PlaceholderBlock } from './partials/PlaceholderBlock';
-
-export { default as Placeholders } from './partials/Placeholders';
 
 export { default as PlaceholderAdFrame } from './placeholders/AdFrame';
 export { default as PlaceholderAdImage } from './placeholders/AdImage';

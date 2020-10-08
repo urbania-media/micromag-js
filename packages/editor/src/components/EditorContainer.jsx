@@ -36,6 +36,7 @@ const defaultProps = {
 
 const EditorContainer = ({ schemasRepository, memoryRouter, routes, basePath, ...props }) => {
     const Router = memoryRouter ? MemoryRouter : BrowserRouter;
+
     return (
         <Router basename={!memoryRouter ? basePath : null}>
             <ScreensProvider>
@@ -51,7 +52,7 @@ const EditorContainer = ({ schemasRepository, memoryRouter, routes, basePath, ..
                                     const formRegEx =
                                         formComponents !== null
                                             ? Object.keys(formComponents)
-                                                  .map(name => slug(name))
+                                                  .map((name) => slug(name))
                                                   .join('|')
                                             : null;
                                     return (
