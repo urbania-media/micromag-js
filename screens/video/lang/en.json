@@ -1,26 +1,5 @@
 {
-  "RQ4EKT": [
-    {
-      "type": 0,
-      "value": "Layout"
-    }
-  ],
-  "UBXIYP": [
-    {
-      "type": 0,
-      "value": "Video"
-    }
-  ],
-  "XQZA8e": [
-    {
-      "type": 0,
-      "value": "Background"
-    }
-  ],
-  "kBJUtE": [
-    {
-      "type": 0,
-      "value": "Video"
-    }
-  ]
+  "RQ4EKT": "Layout",
+  "XQZA8e": "Background",
+  "kBJUtE": "Video"
 }

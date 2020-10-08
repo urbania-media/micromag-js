@@ -9,6 +9,7 @@
         "server": "npm run storybook",
         "intl:build": "node ./scripts/build-all-packages-intl-translations.js",
         "intl:merge": "node ./scripts/merge-all-packages-intl-translations.js",
+        "intl:tx-config": "./scripts/tx-config.js",
         "intl": "npm run intl:build && npm run intl:merge"
     },
     "author": "",
@@ -44,6 +45,7 @@
         "babel-plugin-css-modules-transform": "^1.6.2",
         "babel-plugin-react-intl": "^8.2.6",
         "babel-plugin-static-fs": "^3.0.0",
+        "chalk": "^4.1.0",
         "chance": "^1.1.7",
         "commander": "^6.1.0",
         "css-loader": "^4.3.0",
