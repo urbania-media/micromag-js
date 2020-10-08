@@ -1,4 +1,4 @@
-import { defineMessage } from 'react-intl';
+import intl from 'react-intl';
 import { schemaId } from '@micromag/core/utils';
 import { layouts } from './Video';
 
@@ -40,9 +40,9 @@ export default {
     group: 'Video',
     type: 'object',
     intl: {
-        title: defineMessage({
-            defaultMessage: 'Video',
+        title: intl.formatMessage({
             description: 'Video screen title',
+            defaultMessage: 'Video',
         }),
     },
     allOf: [
@@ -53,29 +53,29 @@ export default {
             properties: {
                 layout: {
                     $ref: schemaId`fields/screen-layout.json`,
-                    title: 'Layout',
                     screenType: 'video',
                     enum: layouts,
                     intl: {
-                        title: defineMessage({
+                        title: intl.formatMessage({
+                            description: 'Layout title',
                             defaultMessage: 'Layout',
                         }),
                     },
                 },
                 video: {
                     $ref: schemaId`elements/video.json`,
-                    title: 'Video',
                     intl: {
-                        title: defineMessage({
+                        title: intl.formatMessage({
+                            description: 'Video title',
                             defaultMessage: 'Video',
                         }),
                     },
                 },
                 background: {
                     $ref: schemaId`elements/background.json`,
-                    title: 'Background',
                     intl: {
-                        title: defineMessage({
+                        title: intl.formatMessage({
+                            description: 'Background title',
                             defaultMessage: 'Background',
                         }),
                     },

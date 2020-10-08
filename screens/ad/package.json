@@ -14,7 +14,8 @@
         "name": "Folklore",
         "email": "info@folklore.email"
     },
-    "contributors": [{
+    "contributors": [
+        {
             "name": "David Mongeau-Petitpas",
             "email": "dmp@folklore.email"
         },
@@ -59,7 +60,7 @@
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",
         "prop-types": "^15.7.2",
-        "react-intl": "^4.5.0",
+        "react-intl": "^5.8.4",
         "uuid": "^7.0.2"
     },
     "publishConfig": {

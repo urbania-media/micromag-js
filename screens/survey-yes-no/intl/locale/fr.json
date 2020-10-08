@@ -1,10 +1,12 @@
 {
+    "screens.survey-yes-no.schema.properties.answer_no": "TRANSLATE: Answer No",
+    "screens.survey-yes-no.schema.properties.answer_yes": "TRANSLATE: Answer Yes",
     "screens.survey-yes-no.schema.properties.background": "Arrière-plan",
-    "screens.survey-yes-no.schema.properties.bad_answer_image": "TRANSLATE: NO answer image",
-    "screens.survey-yes-no.schema.properties.bad_answer_text": "TRANSLATE: NO answer text",
-    "screens.survey-yes-no.schema.properties.good_answer_image": "TRANSLATE: YES answer image",
-    "screens.survey-yes-no.schema.properties.good_answer_text": "TRANSLATE: YES answer text",
-    "screens.survey-yes-no.schema.properties.question_image": "TRANSLATE: Question image",
-    "screens.survey-yes-no.schema.properties.question_text": "TRANSLATE: Question text",
-    "screens.survey-yes-no.schema.title": "Sondage Oui ou Non"
+    "screens.survey-yes-no.schema.properties.button": "TRANSLATE: Button style",
+    "screens.survey-yes-no.schema.properties.question": "TRANSLATE: Question",
+    "screens.survey-yes-no.schema.properties.text_style": "TRANSLATE: Text style",
+    "screens.survey-yes-no.schema.title": "Sondage Oui ou Non",
+    "screens.survey-yes-no.screen.no": "TRANSLATE: No",
+    "screens.survey-yes-no.screen.retry": "TRANSLATE: Retry",
+    "screens.survey-yes-no.screen.yes": "TRANSLATE: Yes"
 }

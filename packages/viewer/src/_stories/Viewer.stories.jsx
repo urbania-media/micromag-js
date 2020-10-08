@@ -8,7 +8,7 @@ import { Basic, Medium } from '../../../../.storybook/screens/index';
 
 // import { paragraph, image } from '../../../../.storybook/data';
 
-import Viewer from '../components/Viewer';
+import Viewer from '../components/ViewerContainer';
 
 const props = {
     screenId: Basic[0].id,
@@ -33,7 +33,7 @@ export default {
 // eslint-disable-next-line react/prop-types
 const Container = ({ children }) => (
     <IntlProvider locale="fr">
-        <MemoryRouter initialEntries={['/']}>{children}</MemoryRouter>
+        {children}
     </IntlProvider>
 );
 

@@ -13,8 +13,6 @@ import { getRenderFormat, getLayoutParts } from '@micromag/core/utils';
 
 import AdImage from './AdImage';
 
-import { schemas as messages } from './messages';
-
 import styles from './styles.module.scss';
 
 export const layouts = [
@@ -99,7 +97,7 @@ const AdScreen = ({
     if (isEditor && isEmpty) {
         imageElement = (
             <Empty className={styles.empty}>
-                <FormattedMessage {...messages.schemaTitle} />
+                <FormattedMessage description="Ad title" defaultMessage="Advertising" />
             </Empty>
         );
     }
