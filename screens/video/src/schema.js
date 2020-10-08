@@ -2,6 +2,38 @@ import { defineMessage } from 'react-intl';
 import { schemaId } from '@micromag/core/utils';
 import { layouts } from './Video';
 
+const schema = {
+    id: 'video',
+    type: 'screen',
+    title: defineMessage({
+        defaultMessage: 'Video',
+    }),
+    fields: [
+        {
+            name: 'layout',
+            type: 'screen-layout',
+            label: defineMessage({
+                defaultMessage: 'Layout',
+            }),
+            layouts,
+        },
+        {
+            name: 'video',
+            type: 'video',
+            label: defineMessage({
+                defaultMessage: 'Video',
+            }),
+        },
+        {
+            name: 'background',
+            type: 'background',
+            label: defineMessage({
+                defaultMessage: 'Background',
+            }),
+        },
+    ],
+};
+
 export default {
     $id: schemaId`screens/video`,
     title: 'Video',

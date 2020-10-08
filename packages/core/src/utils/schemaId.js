@@ -1,3 +1,5 @@
-const schemaId = (str) => `https://schemas.micromag.ca/0.1/${str.join('/')}.json`;
+import createSchemaId from './createSchemaId';
+
+const schemaId = str => createSchemaId(str.join('/'));
 
 export default schemaId;

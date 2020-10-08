@@ -8,7 +8,7 @@ import { Basic, Medium } from '../../../../.storybook/screens/index';
 
 // import { paragraph, image } from '../../../../.storybook/data';
 
-import Viewer from '../index';
+import Viewer from '../components/Viewer';
 
 const props = {
     screenId: Basic[0].id,
