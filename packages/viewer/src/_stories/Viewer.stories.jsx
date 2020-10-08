@@ -5,6 +5,9 @@ import { MemoryRouter } from 'react-router'; // eslint-disable-line
 import { withKnobs } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
 import { withScreenSize } from '../../../../.storybook/decorators';
 import { Basic, Medium } from '../../../../.storybook/screens/index';
+import { ComponentsProvider } from '../../../core/src/contexts';
+import { SCREENS_NAMESPACE } from '../../../core/src/components';
+import * as ScreenComponents from '../../../screens/src/all';
 
 // import { paragraph, image } from '../../../../.storybook/data';
 
@@ -33,7 +36,9 @@ export default {
 // eslint-disable-next-line react/prop-types
 const Container = ({ children }) => (
     <IntlProvider locale="fr">
-        <MemoryRouter initialEntries={['/']}>{children}</MemoryRouter>
+        <ComponentsProvider namespace={SCREENS_NAMESPACE} components={ScreenComponents}>
+            {children}
+        </ComponentsProvider>
     </IntlProvider>
 );
 
