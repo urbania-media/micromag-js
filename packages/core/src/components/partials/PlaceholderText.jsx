@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import isNumber from 'lodash/isNumber';
 import classNames from 'classnames';
 
-import styles from '../../styles/partials/placeholder.module.scss';
+import styles from '../../styles/partials/placeholder-text.module.scss';
 
 const propTypes = {
     lines: PropTypes.number,
     lineMargin: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    baseSize: PropTypes.number,
+    fontSize: PropTypes.number,
     className: PropTypes.string,
 };
 
@@ -20,13 +20,13 @@ const defaultProps = {
     lineMargin: null,
     width: '3em',
     height: null,
-    baseSize: 16,
+    fontSize: 16,
     className: null,
 };
 
-const Placeholder = ({ lines, lineMargin, width, height, baseSize, className }) => {
+const PlaceholderText = ({ lines, lineMargin, width, height, fontSize, className }) => {
     const lineHeight =
-        height !== null && isNumber(height) ? `${Math.round(height * baseSize)}px` : height;
+        height !== null && isNumber(height) ? `${Math.round(height * fontSize)}px` : height;
     const margin = lineMargin !== null && isNumber(lineMargin) ? `${lineMargin}em` : lineMargin;
     return [...Array(lines)].map((e, index) => (
         <div
@@ -46,7 +46,7 @@ const Placeholder = ({ lines, lineMargin, width, height, baseSize, className }) 
     ));
 };
 
-Placeholder.propTypes = propTypes;
-Placeholder.defaultProps = defaultProps;
+PlaceholderText.propTypes = propTypes;
+PlaceholderText.defaultProps = defaultProps;
 
-export default Placeholder;
+export default PlaceholderText;

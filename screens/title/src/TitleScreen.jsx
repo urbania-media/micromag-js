@@ -11,8 +11,15 @@ import Text from '@micromag/element-text';
 import Grid from '@micromag/element-grid';
 import Stack from '@micromag/element-stack';
 
-import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
-import { getComponentFromName, getRenderFormat } from '@micromag/core/utils';
+import {
+    PropTypes as MicromagPropTypes,
+    PlaceholderTitle,
+    PlaceholderText,
+    PlaceholderSubtitle,
+    Empty,
+} from '@micromag/core';
+
+import { getRenderFormat } from '@micromag/core/utils';
 import { useScreenSize } from '@micromag/core/contexts';
 
 import { schemas as messages } from './messages';
@@ -81,8 +88,13 @@ const TitleScreen = ({
                 const value = options[name] || null;
 
                 if (isPlaceholder) {
-                    const Placeholder = getComponentFromName(name, Placeholders);
-                    return <Placeholder className={styles.placeholder} key={key} />;
+                    if (name === 'subtitle') {
+                        return <PlaceholderSubtitle className={styles.placeholder} key={key} />;
+                    }
+                    if (name === 'description') {
+                        return <PlaceholderText className={styles.placeholder} key={key} />;
+                    }
+                    return <PlaceholderTitle className={styles.placeholder} key={key} />;
                 }
 
                 if (isEditor && !hasValue) {

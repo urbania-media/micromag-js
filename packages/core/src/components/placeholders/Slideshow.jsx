@@ -6,7 +6,7 @@ import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 
 import PlaceholderBlock from '../partials/PlaceholderBlock';
 
-import styles from '../../styles/partials/placeholders.module.scss';
+import styles from '../../styles/placeholders/placeholders.module.scss';
 
 export const Slideshow = (props) => (
     <PlaceholderBlock

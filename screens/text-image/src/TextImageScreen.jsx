@@ -14,7 +14,12 @@ import ImageComponent from '@micromag/element-image';
 
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
-import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
+import {
+    PropTypes as MicromagPropTypes,
+    PlaceholderShortText,
+    PlaceholderImage,
+    Empty,
+} from '@micromag/core';
 
 import { schemas as messages } from './messages';
 
@@ -73,7 +78,7 @@ const TextImageScreen = ({
     if (isPlaceholder) {
         textElement = (
             <div className={styles.placeholderContainer}>
-                <Placeholders.ShortText key="text-element" className={styles.placeholder} />
+                <PlaceholderShortText key="text-element" className={styles.placeholder} />
             </div>
         );
     } else if (isEmpty) {
@@ -96,9 +101,7 @@ const TextImageScreen = ({
 
     let imageElement = null;
     if (isPlaceholder) {
-        imageElement = (
-            <Placeholders.SmallImage key="image-element" className={styles.placeholderImage} />
-        );
+        imageElement = <PlaceholderImage key="image-element" className={styles.placeholderImage} />;
     } else if (isEmpty) {
         imageElement = (
             <Empty className={classNames([styles.empty, styles.emptyImage])}>

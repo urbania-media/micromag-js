@@ -49,7 +49,6 @@ const Editor = ({
     const push = useRoutePush();
 
     // Screen size
-    // Screen size
     const { ref: refContainer, screenSize } = useScreenSizeFromElement({
         screens: deviceScreens,
     });
@@ -68,7 +67,7 @@ const Editor = ({
     }, [screenSize.screen]);
 
     const onPreviewScreenChange = useCallback(
-        it => {
+        (it) => {
             onChange(story);
             push('screen', {
                 screen: it.id,
@@ -86,7 +85,7 @@ const Editor = ({
                             styles.container,
                             screenSize !== null
                                 ? screenSize.screens.map(
-                                      screenName => styles[`screen-${screenName}`],
+                                      (screenName) => styles[`screen-${screenName}`],
                                   )
                                 : null,
                             {

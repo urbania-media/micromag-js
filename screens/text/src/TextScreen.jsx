@@ -12,7 +12,7 @@ import TextComponent from '@micromag/element-text';
 
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
-import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, PlaceholderText, Empty } from '@micromag/core';
 
 import { schemas as messages } from './messages';
 
@@ -65,11 +65,7 @@ const TextScreen = ({
             <TextComponent {...text} className={styles.text} />
         );
 
-    const item = isPlaceholder ? (
-        <Placeholders.Text className={styles.placeholder} />
-    ) : (
-        textComponent
-    );
+    const item = isPlaceholder ? <PlaceholderText className={styles.placeholder} /> : textComponent;
 
     const containerClassNames = classNames([
         styles.container,

@@ -3,7 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Stack from '@micromag/element-stack';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Image from '@micromag/element-image';
@@ -12,7 +11,7 @@ import VideoComponent from '@micromag/element-video';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 
-import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, PlaceholderVideo } from '@micromag/core';
 
 import styles from './styles.module.scss';
 
@@ -44,7 +43,7 @@ const defaultProps = {
     className: null,
 };
 
-const Video = ({
+const VideoScreen = ({
     video: videoField,
     background,
     box,
@@ -54,18 +53,14 @@ const Video = ({
     renderFormat,
     className,
 }) => {
-    const loop = false;
     const autoPlay = false;
     const { width, height } = useScreenSize();
     const { size } = fit || {};
     const { isPreview, isEditor, isPlaceholder, isView } = getRenderFormat(renderFormat);
     const { video = {}, params = {} } = videoField || {};
     const isNonInteractive = isPlaceholder || isPreview;
-
-    const PlaceholderSized = size === 'cover' ? Placeholders.VideoFull : Placeholders.Video;
-    const PlaceholderLoop = loop ? Placeholders.VideoLoop : PlaceholderSized;
-    const Placeholder = loop && size === 'cover' ? Placeholders.VideoFullLoop : PlaceholderLoop;
     const autoplayCondition = isEditor ? autoPlay && active : autoPlay && !isNonInteractive;
+    const isFullScreen = false;
 
     let videoElement = null;
     if (isPreview && video.thumbnail_url && video.metadata) {
@@ -77,7 +72,7 @@ const Video = ({
         );
     } else if (isNonInteractive) {
         videoElement = (
-            <Placeholder
+            <PlaceholderVideo
                 className={classNames([
                     styles.placeholder,
                     {
@@ -101,9 +96,13 @@ const Video = ({
         );
     }
 
+    console.log(PlaceholderVideo);
+
     const containerClassNames = classNames([
         styles.container,
         {
+            [styles.fullscreen]: isFullScreen,
+            [styles.placeholder]: isPlaceholder,
             [className]: className !== null,
         },
     ]);
@@ -118,16 +117,14 @@ const Video = ({
             />
             <div className={styles.content}>
                 <Container width={width} height={height} visible={visible}>
-                    <Stack {...box} className={styles.box}>
-                        {videoElement}
-                    </Stack>
+                    <div className={styles.content}>{videoElement}</div>
                 </Container>
             </div>
         </div>
     );
 };
 
-Video.propTypes = propTypes;
-Video.defaultProps = defaultProps;
+VideoScreen.propTypes = propTypes;
+VideoScreen.defaultProps = defaultProps;
 
-export default React.memo(Video);
+export default React.memo(VideoScreen);

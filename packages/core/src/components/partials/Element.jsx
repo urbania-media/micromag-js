@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { pascalCase } from '../../utils';
-import Placeholders from './Placeholders';
+import Placeholder from './PlaceholderBlock';
 
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
@@ -36,8 +36,8 @@ const ElementComponent = ({
     }
 
     if (isPlaceholder) {
-        const PlaceholderComponent = Placeholders[pascalCase(name)];
-        return <PlaceholderComponent className={placeholderClassName} />;
+        // const PlaceholderComponent = Placeholders[pascalCase(name)];
+        return <PlaceholderBlock className={placeholderClassName} />;
     }
 
     const RealComponent = components[pascalCase(name)];

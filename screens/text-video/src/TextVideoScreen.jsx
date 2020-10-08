@@ -13,7 +13,12 @@ import TextComponent from '@micromag/element-text';
 
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
-import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
+import {
+    PropTypes as MicromagPropTypes,
+    PlaceholderText,
+    PlaceholderVideo,
+    Empty,
+} from '@micromag/core';
 
 import { schemas as messages } from './messages';
 
@@ -84,13 +89,13 @@ const TextVideoScreen = ({
         );
 
     const textElement = isPlaceholder ? (
-        <Placeholders.Text key="text-element" className={styles.placeholderText} />
+        <PlaceholderText key="text-element" className={styles.placeholderText} />
     ) : (
         textComponent
     );
 
     const videoElement = isSimple ? (
-        <Placeholders.Video key="video-element" className={styles.placeholderVideo} />
+        <PlaceholderVideo key="video-element" className={styles.placeholderVideo} />
     ) : (
         <Video
             {...video}

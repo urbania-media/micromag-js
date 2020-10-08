@@ -5,7 +5,7 @@ const createDefaultStory = () => ({
         // createScreenFromType('survey-multiple-choice'),
         // createScreenFromType('survey-yes-no'),
         createScreenFromType('ad'),
-        createScreenFromType('ad-slot'),
+        // createScreenFromType('ad-slot'),
     ],
 });
 

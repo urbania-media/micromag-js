@@ -5,7 +5,7 @@ import { faAd } from '@fortawesome/free-solid-svg-icons';
 
 import PlaceholderBlock from '../partials/PlaceholderBlock';
 
-import styles from '../../styles/partials/placeholders.module.scss';
+import styles from '../../styles/placeholders/placeholders.module.scss';
 
 export const AdFrame = ({ width, height, className }) => (
     <PlaceholderBlock width={width} height={height} className={className}>

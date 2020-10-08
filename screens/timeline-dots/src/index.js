@@ -1,3 +1,3 @@
 export { default } from './TimelineDots';
-export { default as layouts } from './layouts/names';
+export { layouts } from './TimelineDots';
 export { default as schema } from './schema';

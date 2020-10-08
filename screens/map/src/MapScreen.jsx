@@ -10,7 +10,7 @@ import MapComponent from '@micromag/element-map';
 import TextComponent from '@micromag/element-text';
 import ImageComponent from '@micromag/element-image';
 
-import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, PlaceholderMap, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 
@@ -87,7 +87,7 @@ const MapScreen = ({
         />
     );
 
-    const preview = isPlaceholder ? <Placeholders.Map className={styles.placeholder} /> : element;
+    const preview = isPlaceholder ? <PlaceholderMap className={styles.placeholder} /> : element;
     const isPreview = isSimple || isEmpty || (!center.lat && !center.lng);
 
     const containerClassNames = classNames([
