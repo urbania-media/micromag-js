@@ -98,14 +98,12 @@ const TextImage = ({
     const reverse = layoutArray.length === 2 && layoutArray[1] === 'reverse';
     const stackDirection = sideways ? 'horizontal' : 'vertical';
 
-    let stackContainerJustifyContent = null;
+    let stackContainerJustifyContent = 'center';
 
     if (layoutName === 'top') {
         stackContainerJustifyContent = 'flex-start';
     } else if (layoutName === 'bottom') {
         stackContainerJustifyContent = 'flex-end';
-    } else {
-        stackContainerJustifyContent = 'center';
     }
 
     // Text
