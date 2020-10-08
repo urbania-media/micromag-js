@@ -21,11 +21,11 @@ const defaultProps = {
 };
 
 const Transitions = ({ playing, delay, transitions, children }) => {
-    
     const finalTransitions = { in: null, out: null };
     Object.keys(transitions).forEach((transitionKey) => {
         const currentTransition = transitions[transitionKey];
-        finalTransitions[transitionKey] = typeof currentTransition === 'string' ? { name: currentTransition } : currentTransition;
+        finalTransitions[transitionKey] =
+            typeof currentTransition === 'string' ? { name: currentTransition } : currentTransition;
     });
 
     const { in: transitionIn = null, out: transitionOut = null } = finalTransitions;
@@ -33,28 +33,38 @@ const Transitions = ({ playing, delay, transitions, children }) => {
     const finalTransitionOut = transitionOut !== null ? transitionOut : transitionIn;
     const sameTransitionInOut = finalTransitionIn.name === finalTransitionOut.name;
 
-    const TransitionIn = finalTransitionIn !== null ? getComponentFromName(finalTransitionIn.name, TransitionComponents, null) : null;
-    const TransitionOut = finalTransitionOut !== null && !sameTransitionInOut ? getComponentFromName(finalTransitionOut.name, TransitionComponents, null) : null;
-    
-    const transitionInProps = finalTransitionIn !== null ? {...finalTransitionIn, name: undefined, delay } : null;
-    const transitionOutProps = finalTransitionOut !== null ? {...finalTransitionOut, name: undefined, delay } : null;
+    const TransitionIn =
+        finalTransitionIn !== null
+            ? getComponentFromName(finalTransitionIn.name, TransitionComponents, null)
+            : null;
+    const TransitionOut =
+        finalTransitionOut !== null && !sameTransitionInOut
+            ? getComponentFromName(finalTransitionOut.name, TransitionComponents, null)
+            : null;
 
-    const renderTransitionOut = 
-        TransitionOut !== null ?
+    const transitionInProps =
+        finalTransitionIn !== null ? { ...finalTransitionIn, name: undefined, delay } : null;
+    const transitionOutProps =
+        finalTransitionOut !== null ? { ...finalTransitionOut, name: undefined, delay } : null;
+
+    const renderTransitionOut =
+        TransitionOut !== null ? (
             <TransitionOut playing={playing} direction="out" {...transitionOutProps}>
-                { children }
+                {children}
             </TransitionOut>
-        : children
-    ;        
-
-    return (
-        <>
-            { TransitionIn !== null ? (
-                <TransitionIn playing={playing} direction={!sameTransitionInOut ? 'in' : null} {...transitionInProps}>
-                    { renderTransitionOut }
-                </TransitionIn>
-            ) : renderTransitionOut }
-        </>
+        ) : (
+            children
+        );
+    return TransitionIn !== null ? (
+        <TransitionIn
+            playing={playing}
+            direction={!sameTransitionInOut ? 'in' : null}
+            {...transitionInProps}
+        >
+            {renderTransitionOut}
+        </TransitionIn>
+    ) : (
+        renderTransitionOut
     );
 };
 

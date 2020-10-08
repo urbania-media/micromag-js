@@ -26,6 +26,17 @@ import { schemas as messages } from './messages';
 
 import styles from './styles.module.scss';
 
+export const layouts = [
+    'top',
+    'top-reverse',
+    'center',
+    'center-reverse',
+    'bottom',
+    'bottom-reverse',
+    'side',
+    'side-reverse',
+];
+
 const propTypes = {
     text: MicromagPropTypes.textComponent,
     image: MicromagPropTypes.imageComponent,
@@ -107,11 +118,7 @@ const TextImage = ({
     let textElement = null;
 
     if (isPlaceholder) {
-        textElement = (
-            <div className={styles.placeholderContainer}>
-                <PlaceholderShortText key="text-element" className={styles.placeholder} />
-            </div>
-        );
+        textElement = <PlaceholderShortText key="text-element" className={styles.placeholder} />;
     } else if (isEmpty) {
         textElement = (
             <Empty className={styles.empty}>
@@ -140,7 +147,7 @@ const TextImage = ({
     let imageElement = null;
 
     if (isPlaceholder) {
-        imageElement = <PlaceholderImage key="image-element" className={styles.placeholderImage} />;
+        imageElement = <PlaceholderImage key="image-element" className={styles.placeholder} />;
     } else if (isEmpty) {
         imageElement = (
             <Empty className={classNames([styles.empty, styles.emptyImage])}>
@@ -205,7 +212,6 @@ const TextImage = ({
     );
 };
 
-TextImage.propTypes = propTypes;
 TextImage.defaultProps = defaultProps;
 
 export default React.memo(TextImage);

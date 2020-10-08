@@ -29,7 +29,7 @@ const defaultProps = {
     buttonClassName: null,
 };
 
-const Placeholder = ({
+const CollapsablePanel = ({
     title,
     children,
     className,
@@ -94,7 +94,7 @@ const Placeholder = ({
     );
 };
 
-Placeholder.propTypes = propTypes;
-Placeholder.defaultProps = defaultProps;
+CollapsablePanel.propTypes = propTypes;
+CollapsablePanel.defaultProps = defaultProps;
 
-export default Placeholder;
+export default CollapsablePanel;

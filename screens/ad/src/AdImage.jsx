@@ -17,6 +17,7 @@ const propTypes = {
     text: MicromagPropTypes.text,
     fullScreen: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
+    onImageLoaded: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -26,6 +27,7 @@ const defaultProps = {
     text: null,
     fullScreen: false,
     renderFormat: 'view',
+    onImageLoaded: null,
     className: null,
 };
 
@@ -35,6 +37,8 @@ const AdImage = ({
     text: textProps,
     fullScreen,
     renderFormat,
+    onImageLoaded,
+    className
 }) => {
     const { isView, isEditor } = getRenderFormat(renderFormat);
     const { url = null, target = '_blank', rel = 'noopener noreferer' } = linkProps || {};
@@ -44,6 +48,7 @@ const AdImage = ({
     const imageClassNames = classNames([
         styles.image,
         {
+            [className]: className !== null,
             [styles.fullscreen]: fullScreen,
         },
     ]);
@@ -55,6 +60,7 @@ const AdImage = ({
             emptyClassName={styles.empty}
             caption={hasCaption ? caption : null}
             captionStyle={hasCaption ? captionStyle : null}
+            onLoaded={onImageLoaded}
         />
     ) : null;
 
