@@ -8,7 +8,7 @@ import {
     Screen,
 } from '../../../../.storybook/components';
 import { map, markers, background } from '../../../../.storybook/data';
-import { withGoogleMapsApi } from '../../../../.storybook/decorators';
+import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 
 import MapScreen from '../Map';
 
@@ -27,7 +27,7 @@ const switcherProps = {
 
 export default {
     title: 'Screens/Map',
-    decorators: [withGoogleMapsApi],
+    decorators: [withGoogleMaps],
 };
 
 export const Placeholders = () => (

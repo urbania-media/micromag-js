@@ -14,9 +14,9 @@ import { getRenderFormat } from '@micromag/core/utils';
 
 import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
 
-import styles from './styles.module.scss';
+import { layouts } from './definition';
 
-export const layouts = ['center', 'full'];
+import styles from './styles.module.scss';
 
 const propTypes = {
     video: MicromagPropTypes.video,

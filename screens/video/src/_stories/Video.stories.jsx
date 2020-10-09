@@ -1,16 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { withKnobs, select } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
-import {
-    PlaceholderScreen,
-    PreviewScreen,
-    LayoutSwitcher,
-    LayoutGrid,
-    Screen,
-} from '../../../../.storybook/components';
 import { videoFile, background } from '../../../../.storybook/data';
+import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
-import Video, { layouts } from '../Video';
+import Video from '../Video';
+import definition, { layouts } from '../definition';
 
 const props = {
     video: { video: videoFile() },
@@ -18,82 +12,27 @@ const props = {
 };
 
 const propsWithControls = {
+    ...props,
     video: { video: videoFile(), params: { controls: true, muted: true, autoPlay: true } },
-    background: background(),
-};
-
-const switcherProps = {
-    layouts,
-    defaultLayout: 'center',
-};
-
-const options = {
-    Center: 'center',
-    Left: 'left',
-    Right: 'right',
-    None: null,
 };
 
 export default {
     title: 'Screens/Video',
-    decorators: [withKnobs],
+    component: Video,
+    parameters: {
+        intl: true,
+        screenLayouts: layouts,
+    },
 };
 
-export const Placeholders = () => (
-    <LayoutGrid layouts={layouts}>
-        {(layout) => (
-            <PlaceholderScreen>
-                <Video layout={layout} renderFormat="placeholder" />
-            </PlaceholderScreen>
-        )}
-    </LayoutGrid>
-);
+export const Placeholder = (storyProps) => <Video {...storyProps} />;
 
-export const Previews = () => (
-    <LayoutSwitcher {...switcherProps}>
-        {(layout) => (
-            <PreviewScreen>
-                <Video layout={layout} renderFormat="preview" {...props} />
-            </PreviewScreen>
-        )}
-    </LayoutSwitcher>
-);
+export const Preview = (storyProps) => <Video {...storyProps} />;
 
-export const Editor = () => (
-    <LayoutSwitcher {...switcherProps}>
-        {(layout) => (
-            <Screen>
-                <Video layout={layout} renderFormat="edit" />
-            </Screen>
-        )}
-    </LayoutSwitcher>
-);
+export const Edit = (storyProps) => <Video {...storyProps} />;
 
-export const Normal = () => (
-    <LayoutSwitcher {...switcherProps}>
-        {(layout) => (
-            <Screen>
-                <Video
-                    layout={layout}
-                    textAlign={select('textAlign', options, 'center')}
-                    width="100%"
-                    {...props}
-                />
-            </Screen>
-        )}
-    </LayoutSwitcher>
-);
+export const Normal = (storyProps) => <Video {...storyProps} {...props} />;
 
-export const WithControls = () => (
-    <LayoutSwitcher {...switcherProps}>
-        {(layout) => (
-            <Screen>
-                <Video
-                    layout={layout}
-                    textAlign={select('textAlign', options, 'center')}
-                    {...propsWithControls}
-                />
-            </Screen>
-        )}
-    </LayoutSwitcher>
-);
+export const WithControls = (storyProps) => <Video {...storyProps} {...propsWithControls} />;
+
+export const Definition = () => <ScreenDefinition definition={definition} />;

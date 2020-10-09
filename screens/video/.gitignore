@@ -36,4 +36,5 @@ publish
 /dist
 /assets
 /package-lock.json
+/definition.js
 /lang/extract

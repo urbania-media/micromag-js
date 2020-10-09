@@ -34,73 +34,59 @@ module.exports = {
         '@storybook/addon-viewport/register',
         '@storybook/addon-knobs/register',
         '@storybook/addon-docs',
-        // '@storybook/addon-a11y/register',
         '@storybook/addon-actions',
-        // path.join(__dirname, './addons/layouts/register')
     ],
     webpackFinal: async (config) => {
-        const packagesAliases = getPackagesAliases();
+        return {
+            ...config,
 
-        config.resolve.alias = {
-            ...config.resolve.alias,
-            'react-router': require.resolve('react-router'),
-            'react-router-dom': require.resolve('react-router-dom'),
-            'react-intl': require.resolve('react-intl'),
-            ...packagesAliases,
-        };
-
-        // const rules = config.module.rules;
-        // config.module.rules[0].use[0].options.plugins.push([
-        //     require.resolve('babel-plugin-react-intl'),
-        //     {
-        //         overrideIdFn: require(path.join(__dirname, '../scripts/lib/getIntlMessagesNamespace')),
-        //         extractSourceLocation: true,
-        //     },
-        // ]);
-
-        config.module.rules[0].exclude = [config.module.rules[0].exclude, /@ckeditor/];
-
-        config.module.rules = [
-            ...config.module.rules,
-            ...getPackagesPaths().map((packagePath) => {
-                const packageJson = require(path.join(packagePath, './package.json'));
-                const { name = null } = packageJson || {};
-                const namespace =
-                    name !== null
-                        ? name
-                              .replace(/^@micromag\/(screen|element|field)-(.*)$/, '$1s.$2')
-                              .replace(/^@micromag\/(.*)$/, '$1')
-                        : null;
-                return {
-                    loader: require.resolve('babel-loader'),
-                    test: /\.(js|jsx)$/,
-                    include: path.join(packagePath, './src/'),
-                    exclude: /\/node_modules\//,
-                    options: {
-                        babelrc: false,
-                        plugins: [
-                            [
-                                require.resolve('babel-plugin-react-intl'),
-                                {
-                                    ast: true,
-                                    idInterpolationPattern,
-                                },
-                            ],
-                        ],
-                    },
-                };
-            }),
-            {
-                loader: require.resolve('babel-loader'),
-                test: /\.(js|jsx)$/,
-                include: /\/query-string\//,
-                options: {
-                    babelrc: false,
-                    plugins: [require.resolve('@babel/plugin-transform-modules-commonjs')],
-                },
+            resolve: {
+                ...config.resolve,
+                alias: {
+                    ...config.resolve.alias,
+                    'react-router': require.resolve('react-router'),
+                    'react-router-dom': require.resolve('react-router-dom'),
+                    'react-intl': require.resolve('react-intl'),
+                    ...getPackagesAliases(),
+                }
             },
-        ];
 
-        return config;
+            module: {
+                ...config.module,
+                rules: [
+                    ...config.module.rules.map((rule, index) => (index === 0 ? {
+                        ...rule,
+                        exclude: [rule.exclude, /@ckeditor/],
+                    } : rule)),
+                    ...getPackagesPaths().map((packagePath) => ({
+                        loader: require.resolve('babel-loader'),
+                        test: /\.(js|jsx)$/,
+                        include: path.join(packagePath, './src/'),
+                        exclude: /\/node_modules\//,
+                        options: {
+                            babelrc: false,
+                            plugins: [
+                                [
+                                    require.resolve('babel-plugin-react-intl'),
+                                    {
+                                        ast: true,
+                                        idInterpolationPattern,
+                                    },
+                                ],
+                            ],
+                        },
+                    })),
+                    {
+                        loader: require.resolve('babel-loader'),
+                        test: /\.(js|jsx)$/,
+                        include: /\/query-string\//,
+                        options: {
+                            babelrc: false,
+                            plugins: [require.resolve('@babel/plugin-transform-modules-commonjs')],
+                        },
+                    },
+                ]
+            }
+        };
     },
 };

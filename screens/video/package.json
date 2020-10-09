@@ -30,22 +30,11 @@
     "files": [
         "lib",
         "es",
-        "assets"
+        "assets",
+        "definition.js"
     ],
     "scripts": {
-        "clean": "rm -rf assets && rm -rf lib && rm -rf es",
-        "build": "NODE_ENV=production ../../node_modules/.bin/rollup --config ../../rollup.config.js",
-        "intl:mkdir": "mkdir -p ./lang/extract/",
-        "intl:extract": "node ../../scripts/formatjs-extract.js './src/**/*.js*' ./lang/extract/en.json",
-        "intl:upload": "tx push -s",
-        "intl:download": "tx pull -a",
-        "intl:compile": "node ../../scripts/formatjs-compile.js './lang/extract/*.json' ./lang",
-        "intl": "npm run intl:mkdir && npm run intl:extract && npm run intl:upload && npm run intl:download && npm run intl:compile",
-        "css:mkdir": "mkdir -p ./assets/css/",
-        "css:copy": "cp es/styles.css ./assets/css/styles.css",
-        "css:clean": "rm -f es/styles.css && rm -f lib/styles.css",
-        "css": "npm run css:mkdir && npm run css:copy && npm run css:clean",
-        "prepare": "npm run clean && npm run build && npm run css"
+        "prepare": "../../scripts/prepare-package.sh"
     },
     "devDependencies": {
         "react": ">=15.0.0 || ^16.0.0",

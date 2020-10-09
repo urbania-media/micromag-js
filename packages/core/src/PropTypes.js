@@ -15,8 +15,9 @@ export const intl = PropTypes.shape({
 });
 
 export const message = PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    defaultMessage: PropTypes.string,
+    id: PropTypes.string,
+    defaultMessage: PropTypes.string.isRequired,
+    description: PropTypes.string,
 });
 
 export const text = PropTypes.oneOfType([message, PropTypes.string]);
@@ -27,7 +28,7 @@ export const statusCode = PropTypes.oneOf([401, 403, 404, 500]);
 
 export const ref = PropTypes.oneOfType([
     PropTypes.shape({
-        current: PropTypes.any,
+        current: PropTypes.any, // eslint-disable-line react/forbid-prop-types
     }),
     PropTypes.func,
 ]);
@@ -266,7 +267,7 @@ export const stackAlign = PropTypes.oneOf(['start', 'center', 'end']);
 export const stackSpacing = PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.oneOf(['between', 'evenly', 'around']),
-])
+]);
 
 export const stackElement = PropTypes.shape({
     direction: stackDirection,
@@ -290,21 +291,29 @@ export const audioParams = PropTypes.shape({
 });
 
 /**
+ * Definitions
+ */
+export const field = PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    label: text,
+});
+
+export const fields = PropTypes.arrayOf(field);
+
+export const screenDefinition = PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    type: PropTypes.oneOf(['screen']).isRequired,
+    title: text.isRequired,
+    layouts: PropTypes.arrayOf(PropTypes.string),
+    fields,
+});
+
+export const screenDefinitions = PropTypes.arrayOf(screenDefinition);
+
+/**
  * Story
  */
-const schemaBaseShape = {
-    id: PropTypes.string,
-    title: PropTypes.string,
-    description: PropTypes.string,
-    type: PropTypes.string.isRequired,
-};
-export const componentType = PropTypes.shape({
-    ...schemaBaseShape,
-    id: PropTypes.string.isRequired,
-    properties: PropTypes.objectOf(schemaBaseShape),
-});
-export const componentTypes = PropTypes.arrayOf(componentType);
-
 export const storyComponent = PropTypes.shape({
     type: PropTypes.string.isRequired,
 });
@@ -313,14 +322,6 @@ export const storyComponents = PropTypes.arrayOf(storyComponent);
 export const story = PropTypes.shape({
     components: storyComponents,
 });
-
-export const screenType = PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    layouts: PropTypes.arrayOf(PropTypes.string),
-});
-
-export const screenTypes = PropTypes.arrayOf(screenType);
 
 export const deviceScreen = PropTypes.shape({
     name: PropTypes.string.isRequired,
@@ -398,5 +399,5 @@ export const transition = PropTypes.oneOfType([
 
 export const transitions = PropTypes.shape({
     in: transition,
-    out: transition
+    out: transition,
 });

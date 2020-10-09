@@ -1,7 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { withKnobs } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
-import { withScreenSize } from '../../../../.storybook/decorators';
 
 import {
     PlaceholderScreen,
@@ -17,7 +15,6 @@ import SurveyMultipleChoice from '../SurveyMultipleChoice';
 export default {
     // component: Main,
     title: 'Screens/SurveyMultipleChoice',
-    decorators: [withKnobs, withScreenSize()],
 };
 
 const props = {
