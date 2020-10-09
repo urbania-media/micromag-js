@@ -1,5 +1,5 @@
-import { names } from './layouts/names';
 import { schemas as messages } from './messages';
+import { layouts } from './Text';
 
 export default {
     $id: 'https://schemas.micromag.ca/0.1/screens/text.json',
@@ -19,7 +19,7 @@ export default {
                     $ref: 'https://schemas.micromag.ca/0.1/fields/screen-layout.json',
                     title: 'Layout',
                     screenType: 'text',
-                    enum: names,
+                    enum: layouts,
                     intl: {
                         title: messages.layout,
                     },

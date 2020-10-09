@@ -10,6 +10,12 @@
         height: 50px;
     }
 
+    .content {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
     &.center {
         text-align: center;
 
@@ -33,16 +39,4 @@
             @extend %placeholder-right;
         }
     }
-
-    &.reverse {
-        .inner {
-            flex-direction: column-reverse;
-        }
-    }
-}
-
-.image,
-.video {
-    display: block;
-    margin: 0 auto;
 }
