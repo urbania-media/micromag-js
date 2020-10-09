@@ -36,6 +36,7 @@ const ElementComponent = ({
     }
 
     if (isPlaceholder) {
+        // TODO: figure out what this did
         // const PlaceholderComponent = Placeholders[pascalCase(name)];
         return <PlaceholderBlock className={placeholderClassName} />;
     }
