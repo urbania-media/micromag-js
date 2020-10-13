@@ -22,7 +22,7 @@ const defaultProps = {
 
 const Transitions = ({ playing, delay, transitions, children }) => {
     const finalTransitions = { in: null, out: null };
-    Object.keys(transitions).forEach((transitionKey) => {
+    Object.keys(transitions || []).forEach((transitionKey) => {
         const currentTransition = transitions[transitionKey];
         finalTransitions[transitionKey] =
             typeof currentTransition === 'string' ? { name: currentTransition } : currentTransition;
@@ -31,15 +31,17 @@ const Transitions = ({ playing, delay, transitions, children }) => {
     const { in: transitionIn = null, out: transitionOut = null } = finalTransitions;
     const finalTransitionIn = transitionIn !== null ? transitionIn : transitionOut;
     const finalTransitionOut = transitionOut !== null ? transitionOut : transitionIn;
-    const sameTransitionInOut = finalTransitionIn.name === finalTransitionOut.name;
+    const { name: transitionInName = null } = finalTransitionIn || {};
+    const { name: transitionOutName = null } = finalTransitionOut || {};
+    const sameTransitionInOut = transitionInName === transitionOutName;
 
     const TransitionIn =
         finalTransitionIn !== null
-            ? getComponentFromName(finalTransitionIn.name, TransitionComponents, null)
+            ? getComponentFromName(transitionInName, TransitionComponents, null)
             : null;
     const TransitionOut =
         finalTransitionOut !== null && !sameTransitionInOut
-            ? getComponentFromName(finalTransitionOut.name, TransitionComponents, null)
+            ? getComponentFromName(transitionOutName, TransitionComponents, null)
             : null;
 
     const transitionInProps =

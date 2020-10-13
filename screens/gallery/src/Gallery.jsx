@@ -36,9 +36,11 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     images: MicromagPropTypes.images,
     defaultSpacing: PropTypes.number,
-    visible: PropTypes.bool,
+    current: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
+    maxRatio: PropTypes.number,
+    transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
 };
 
@@ -47,20 +49,24 @@ const defaultProps = {
     background: null,
     images: [],
     defaultSpacing: 10,
-    visible: true,
+    current: true,
     active: false,
     renderFormat: 'view',
+    maxRatio: 3 / 4,
+    transitions: null,
     className: null,
 };
 
-const GalleryScreen = ({
+const Gallery = ({
     layout,
     images: imageList,
     background,
-    visible,
+    current,
     active,
     defaultSpacing,
     renderFormat,
+    maxRatio,
+    transitions,
     className,
 }) => {
     const { width, height } = useScreenSize();
@@ -93,24 +99,24 @@ const GalleryScreen = ({
               ),
           );
 
-    const containerClassNames = classNames([
-        styles.container,
-        {
-            [styles.placeholder]: isPlaceholder,
-            [className]: className !== null,
-        },
-    ]);
-
     return (
-        <div className={containerClassNames}>
+        <div className={classNames([
+            styles.container,
+            {
+                [styles.placeholder]: isPlaceholder,
+                [className]: className !== null,
+            },
+        ])}>
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && visible) || (isEditor && active)}
+                playing={(isView && current) || (isEditor && active)}
+                maxRatio={maxRatio}
             />
-            <div className={styles.content}>
-                <Container width={width} height={height} visible={visible}>
+            
+            <Container width={width} height={height} maxRatio={maxRatio}>
+                <div className={styles.content}>
                     <div className={styles.images}>
                         <Grid
                             className={styles.grid}
@@ -120,13 +126,13 @@ const GalleryScreen = ({
                             {...grid}
                         />
                     </div>
-                </Container>
-            </div>
+                </div>
+            </Container>            
         </div>
     );
 };
 
-GalleryScreen.propTypes = propTypes;
-GalleryScreen.defaultProps = defaultProps;
+Gallery.propTypes = propTypes;
+Gallery.defaultProps = defaultProps;
 
-export default React.memo(GalleryScreen);
+export default React.memo(Gallery);

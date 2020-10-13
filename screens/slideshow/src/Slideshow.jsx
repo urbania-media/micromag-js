@@ -7,7 +7,6 @@ import { animated } from 'react-spring';
 
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
-import Stack from '@micromag/element-stack';
 import ImageElement from '@micromag/element-image';
 import ButtonElement from '@micromag/element-button';
 import TextElement from '@micromag/element-text';
@@ -24,38 +23,44 @@ import styles from './slideshow.module.scss';
 export const layouts = ['center'];
 
 const propTypes = {
+    layout: PropTypes.oneOf(layouts),
     slides: MicromagPropTypes.slides,
     button: MicromagPropTypes.buttonElement,
-    box: MicromagPropTypes.boxElement,
     background: MicromagPropTypes.backgroundElement,
     textAlign: MicromagPropTypes.textAlign,
-    visible: PropTypes.bool,
+    current: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
+    maxRatio: PropTypes.number,
+    transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
 };
 
 const defaultProps = {
+    layout: 'center',
     slides: [],
     button: null,
-    box: null,
     background: null,
     textAlign: 'left',
-    visible: true,
+    current: true,
     active: false,
     renderFormat: 'view',
+    maxRatio: 3 / 4,
+    transitions: null,
     className: null,
 };
 
-const SlideshowScreen = ({
+const Slideshow = ({
+    layout,
     slides,
     button,
-    box,
     background,
     textAlign,
-    visible,
+    current,
     active,
     renderFormat,
+    maxRatio,
+    transitions,
     className,
 }) => {
     const [parallelIndex, setParallelIndex] = useState(0);
@@ -142,35 +147,33 @@ const SlideshowScreen = ({
             </>
         );
 
-    const containerClassNames = classNames([
-        styles.container,
-        screens.map((size) => styles[`screen-${size}`]),
-        {
-            [styles[textAlign]]: textAlign !== null,
-            [className]: className,
-        },
-    ]);
-
     return (
-        <div className={containerClassNames}>
+        <div className={classNames([
+            styles.container,
+            screens.map((size) => styles[`screen-${size}`]),
+            {
+                [styles[textAlign]]: textAlign !== null,
+                [className]: className,
+            },
+        ])}>
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && visible) || (isEditor && active)}
+                playing={(isView && current) || (isEditor && active)}
+                maxRatio={maxRatio}
             />
-            <div className={styles.content}>
-                <Container width={width} height={height} visible={visible}>
-                    <Stack {...box} isSmall={isSimple}>
-                        {isPlaceholder ? <PlaceholderSlideshow /> : inner}
-                    </Stack>
-                </Container>
-            </div>
+            
+            <Container width={width} height={height} current={current} maxRatio={maxRatio}>
+                <div className={styles.content}>
+                    {isPlaceholder ? <PlaceholderSlideshow /> : inner}
+                </div>
+            </Container>            
         </div>
     );
 };
 
-SlideshowScreen.propTypes = propTypes;
-SlideshowScreen.defaultProps = defaultProps;
+Slideshow.propTypes = propTypes;
+Slideshow.defaultProps = defaultProps;
 
-export default React.memo(SlideshowScreen);
+export default React.memo(Slideshow);

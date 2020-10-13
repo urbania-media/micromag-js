@@ -11,8 +11,7 @@ import {
     Screen,
 } from '../../../../.storybook/components';
 
-import layouts from '../layouts/names';
-import SurveyYesNo from '../SurveyYesNo';
+import SurveyYesNo, { layouts } from '../SurveyYesNo';
 
 export default {
     // component: Normal,

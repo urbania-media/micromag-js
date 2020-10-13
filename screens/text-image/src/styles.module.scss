@@ -1,9 +1,10 @@
+@import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 
 .container {
-    @extend %screen;    
+    @extend %screen;
 
-    .stackContainer {
+    .content {
         display: flex;
         visibility: hidden;
         flex-direction: column;
@@ -20,7 +21,7 @@
         max-width: 100%;
     }
 
-    .placeholderContainer {
+    .placeholder {
         margin: 4px;
     }
 
@@ -36,7 +37,7 @@
     }
 
     &.ready {
-        .stackContainer {
+        .content {
             visibility: visible;
         }
     }
@@ -44,6 +45,30 @@
     &.sideways {
         .item {
             width: 50%;
+        }
+    }
+
+    &.center {
+        text-align: center;
+
+        .placeholder {
+            @extend %placeholder-center;
+        }
+    }
+
+    &.left {
+        text-align: left;
+
+        .placeholder {
+            @extend %placeholder-left;
+        }
+    }
+
+    &.right {
+        text-align: right;
+
+        .placeholder {
+            @extend %placeholder-right;
         }
     }
 }

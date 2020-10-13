@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-import { StackNew } from '@micromag/element-stack';
+import Stack from '@micromag/element-stack';
 import Container from '@micromag/element-container';
 import Background from '@micromag/element-background';
 
@@ -44,7 +44,7 @@ const propTypes = {
     current: PropTypes.bool,
     active: PropTypes.bool,
     textAlign: PropTypes.oneOf(['left', 'right', 'center']),
-    layout: PropTypes.string,
+    layout: PropTypes.oneOf(layouts),
     renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
@@ -86,9 +86,12 @@ const TextImage = ({
 }) => {
     const { width, height } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
-    const isEmpty = isEditor && image === null && text === null;
+    
+    const withText = text !== null;
+    const withImage = image !== null;
 
-    const withImage = isView || isPreview;
+    const isEmpty = isEditor && !withImage && !withText;
+
     const [ready, setReady] = useState(!withImage);
     const transitionPlaying = current && ready;
 
@@ -97,7 +100,7 @@ const TextImage = ({
     }, [setReady]);
 
     const finalLayout = layout !== null ? layout : 'center';
-    const layoutArray = finalLayout.split('_');
+    const layoutArray = finalLayout.split('-');
     const layoutName = layoutArray[0];
     const sideways = layoutName === 'side';
     const reverse = layoutArray.length === 2 && layoutArray[1] === 'reverse';
@@ -116,7 +119,7 @@ const TextImage = ({
     let textElement = null;
 
     if (isPlaceholder) {
-        textElement = <PlaceholderShortText key="text-element" className={styles.placeholder} />;
+        textElement = <PlaceholderShortText className={styles.placeholder} />;
     } else if (isEmpty) {
         textElement = (
             <Empty className={styles.empty}>
@@ -132,7 +135,6 @@ const TextImage = ({
             >
                 <TextComponent
                     {...text}
-                    key="text-element"
                     showEmpty={isEditor && text === null}
                     className={styles.text}
                     emptyClassName={styles.empty}
@@ -145,14 +147,14 @@ const TextImage = ({
     let imageElement = null;
 
     if (isPlaceholder) {
-        imageElement = <PlaceholderImage key="image-element" className={styles.placeholder} />;
+        imageElement = <PlaceholderImage className={styles.placeholder} />;
     } else if (isEmpty) {
         imageElement = (
             <Empty className={classNames([styles.empty, styles.emptyImage])}>
                 <FormattedMessage {...messages.image} />
             </Empty>
         );
-    } else {
+    } else if (withImage) {
         imageElement = (
             <Transitions
                 playing={transitionPlaying}
@@ -161,7 +163,6 @@ const TextImage = ({
             >
                 <ImageComponent
                     {...image}
-                    key="image-element"
                     fit={{ size: 'cover' }}
                     className={styles.image}
                     onLoaded={onImageLoaded}
@@ -176,10 +177,13 @@ const TextImage = ({
         <div
             className={classNames([
                 styles.container,
-                {
+                {                    
                     [className]: className !== null,
+                    [styles.placeholder]: isPlaceholder,
+                    [styles[textAlign]]: textAlign !== null,                    
                     [styles.sideways]: sideways,
                     [styles.ready]: ready && active,
+                    
                 },
             ])}
         >
@@ -189,27 +193,30 @@ const TextImage = ({
                 height={height}
                 playing={(isView && current) || (isEditor && active)}
             />
-            <Container width={width} height={height} maxRatio={maxRatio} styles={{ textAlign }}>
+            <Container width={width} height={height} maxRatio={maxRatio}>
                 <div
-                    className={styles.stackContainer}
+                    className={styles.content}
                     style={{
                         justifyContent: stackContainerJustifyContent,
                     }}
                 >
-                    <StackNew
+                    <Stack
                         className={styles.stack}
                         direction={stackDirection}
                         reverse={reverse}
                         itemClassName={styles.item}
                     >
-                        {items}
-                    </StackNew>
+                        {items.map((item, index) => (
+                            <div key={index}>{item}</div>
+                        ))}
+                    </Stack>
                 </div>
             </Container>
         </div>
     );
 };
 
+TextImage.propTypes = propTypes;
 TextImage.defaultProps = defaultProps;
 
 export default React.memo(TextImage);

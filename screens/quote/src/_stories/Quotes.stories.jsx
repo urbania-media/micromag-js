@@ -10,8 +10,7 @@ import {
 } from '../../../../.storybook/components';
 import { quote, author, source, background } from '../../../../.storybook/data';
 
-import Quote from '../Quote';
-import layouts from '../layouts/names';
+import Quote, { layouts } from '../Quote';
 
 const props = {
     quote: { body: quote(), style: { text: { color: '#FFF' } } },

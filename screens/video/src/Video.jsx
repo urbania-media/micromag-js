@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -14,6 +14,7 @@ import { getRenderFormat } from '@micromag/core/utils';
 import { PropTypes as MicromagPropTypes, PlaceholderVideo } from '@micromag/core';
 
 import styles from './styles.module.scss';
+import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
 export const layouts = ['center', 'full'];
 
@@ -21,13 +22,11 @@ const propTypes = {
     video: MicromagPropTypes.video,
     layout: PropTypes.oneOf(layouts),
     background: MicromagPropTypes.backgroundElement,
-    box: MicromagPropTypes.boxElement,
-    fit: PropTypes.shape({
-        size: PropTypes.string,
-    }),
-    visible: PropTypes.bool,
+    current: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
+    maxRatio: PropTypes.number,
+    transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
 };
 
@@ -35,35 +34,50 @@ const defaultProps = {
     video: null,
     layout: null,
     background: null,
-    box: null,
-    fit: false,
-    visible: true,
-    active: false,
+    current: true,
+    active: true,
     renderFormat: 'view',
+    maxRatio: 3 / 4,
+    transitions: {
+        in: {
+            name: 'fade',
+            duration: 1000,
+        },
+        out: 'scale',
+    },
     className: null,
 };
 
 const VideoScreen = ({
     video: videoField,
+    layout,
     background,
-    box,
-    fit,
-    visible,
+    current,
     active,
     renderFormat,
+    maxRatio,
+    transitions,
     className,
 }) => {
-    const autoPlay = false;
+    const autoPlay = false; // props?
     const { width, height } = useScreenSize();
-    const { size } = fit || {};
     const { isPreview, isEditor, isPlaceholder, isView } = getRenderFormat(renderFormat);
-    const { video = {}, params = {} } = videoField || {};
+    const { video = null, params = {} } = videoField || {};
     const isNonInteractive = isPlaceholder || isPreview;
     const autoplayCondition = isEditor ? autoPlay && active : autoPlay && !isNonInteractive;
-    const isFullScreen = false;
+    const isFullScreen = layout === 'full';
+
+    const withVideo = video !== null;
+    // @TODO enlever le "|| true" après avoir fixé le <Video> qui trigger le onReady
+    const [ready, setReady] = useState(!withVideo || true);
+    const transitionPlaying = current && ready;
+
+    const onVideoReady = useCallback(() => {
+        setReady(true);
+    }, [setReady]);
 
     let videoElement = null;
-    if (isPreview && video.thumbnail_url && video.metadata) {
+    if (isPreview && withVideo && video.thumbnail_url && video.metadata) {
         videoElement = (
             <Image
                 image={{ media: { url: video.thumbnail_url }, metadata: video.metadata }}
@@ -73,53 +87,51 @@ const VideoScreen = ({
     } else if (isNonInteractive) {
         videoElement = (
             <PlaceholderVideo
-                className={classNames([
-                    styles.placeholder,
-                    {
-                        [styles.cover]: size === 'cover',
-                    },
-                ])}
+                className={styles.placeholder}
+                width={isFullScreen ? '100%' : undefined }
+                height={isFullScreen ? '100%' : undefined }
             />
         );
-    } else {
+    } else if (withVideo) {
         videoElement = (
-            <VideoComponent
-                {...params}
-                autoPlay={autoplayCondition}
-                video={video}
-                width={Math.min(width, 768)}
-                height={height}
-                fit={fit}
-                showEmpty={isEditor}
-                className={styles.video}
-            />
+            <Transitions playing={transitionPlaying} transitions={transitions}>
+                <VideoComponent
+                    {...params}
+                    autoPlay={autoplayCondition}
+                    video={video}
+                    width={Math.min(width, 768)}
+                    height={height}
+                    fit={{ size: isFullScreen ? 'cover' : 'contain' }}
+                    showEmpty={isEditor}
+                    className={styles.video}
+                    onReady={onVideoReady}
+                />
+            </Transitions>
         );
     }
 
-    console.log(PlaceholderVideo);
-
-    const containerClassNames = classNames([
-        styles.container,
-        {
-            [styles.fullscreen]: isFullScreen,
-            [styles.placeholder]: isPlaceholder,
-            [className]: className !== null,
-        },
-    ]);
 
     return (
-        <div className={containerClassNames}>
+        <div className={classNames([
+            styles.container,
+            {
+                [className]: className !== null,
+                [styles.placeholder]: isPlaceholder,
+                [styles.fullscreen]: isFullScreen,
+            },
+        ])}>
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && visible) || (isEditor && active)}
+                playing={(isView && current) || (isEditor && active)}
+                maxRatio={maxRatio}
             />
-            <div className={styles.content}>
-                <Container width={width} height={height} visible={visible}>
-                    <div className={styles.content}>{videoElement}</div>
-                </Container>
-            </div>
+            <Container width={width} height={height} maxRatio={maxRatio}>
+                <div className={styles.content}>
+                    { videoElement }
+                </div>
+            </Container>
         </div>
     );
 };

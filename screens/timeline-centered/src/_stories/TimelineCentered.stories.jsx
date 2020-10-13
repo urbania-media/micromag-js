@@ -9,7 +9,7 @@ import {
     LayoutGrid,
     Screen,
 } from '../../../../.storybook/components';
-import { description, subtitle } from '../../../../.storybook/data';
+import { description, subtitle, image, title } from '../../../../.storybook/data';
 
 import TimelineCentered, { layouts } from '../TimelineCentered';
 
@@ -21,9 +21,10 @@ export default {
 
 const props = {
     items: [
-        { subtitle: { body: subtitle() }, text: { body: description() } },
-        { subtitle: { body: subtitle() }, text: { body: description() } },
-        { subtitle: { body: subtitle() }, text: { body: description() } },
+        { title: {body: title()}, subtitle: { body: subtitle() }, text: { body: description() } },
+        { subtitle: { body: subtitle() }, text: { body: description() }, image: image() },
+        { title: {body: title()}, subtitle: { body: subtitle() }, text: { body: description() } },
+        { title: {body: title()}, subtitle: { body: subtitle() }, text: { body: description() }, image: image() },
     ],
 };
 

@@ -8,7 +8,6 @@ import Container from '@micromag/element-container';
 import TextElement from '@micromag/element-text';
 import ImageElement from '@micromag/element-image';
 import VideoElement from '@micromag/element-video';
-import Stack from '@micromag/element-stack';
 import Button from '@micromag/element-button';
 
 import {
@@ -28,6 +27,7 @@ import styles from './styles.module.scss';
 export const layouts = ['normal'];
 
 const propTypes = {
+    layout: PropTypes.oneOf(layouts),
     multipleAnswers: PropTypes.bool,
     question: MicromagPropTypes.textElement,
     answers: PropTypes.arrayOf(MicromagPropTypes.textElement),
@@ -42,14 +42,16 @@ const propTypes = {
     textStyle: MicromagPropTypes.textStyle,
     button: MicromagPropTypes.buttonElement,
     background: MicromagPropTypes.backgroundElement,
-    box: MicromagPropTypes.boxElement,
-    visible: PropTypes.bool,
+    current: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
+    maxRatio: PropTypes.number,
+    transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
 };
 
 const defaultProps = {
+    layout: 'normal',
     multipleAnswers: false,
     question: null,
     answers: null,
@@ -58,16 +60,16 @@ const defaultProps = {
     textStyle: null,
     button: null,
     background: null,
-    box: {
-        axisAlign: 'top',
-    },
-    visible: true,
+    current: true,
     active: false,
     renderFormat: 'view',
+    maxRatio: 3 / 4,
+    transitions: null,
     className: null,
 };
 
 const SurveyMultipleChoice = ({
+    layout,
     multipleAnswers,
     question: questionField,
     answers: answerFields,
@@ -76,10 +78,11 @@ const SurveyMultipleChoice = ({
     textStyle,
     button,
     background,
-    box,
-    visible,
+    current,
     active,
     renderFormat,
+    maxRatio,
+    transitions,
     className,
 }) => {
     const [answer, setAnswer] = useState(null);
@@ -159,133 +162,125 @@ const SurveyMultipleChoice = ({
         </div>
     );
 
-    const containerClassNames = classNames([
-        styles.container,
-        {
-            [className]: className !== null,
-        },
-    ]);
-
     return (
-        <div className={containerClassNames}>
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                },
+            ])}
+        >
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && visible) || (isEditor && active)}
+                playing={(isView && current) || (isEditor && active)}
+                maxRatio={maxRatio}
             />
-            <div className={styles.content}>
-                <Container width={width} height={height} visible={visible}>
-                    <Stack {...box} isSmall={isSimple} className={styles.inner}>
-                        <div className={styles.innerContainer}>
-                            {answer !== null ? (
-                                answerBlock
-                            ) : (
-                                <>
-                                    <div className={styles.questionContainer}>
-                                        {renderFormat !== 'placeholder' ? (
-                                            questionBlock
-                                        ) : (
-                                            <PlaceholderText className={styles.placeholder} />
-                                        )}
-                                    </div>
-                                    <div className={styles.buttons}>
-                                        {renderFormat !== 'placeholder' ? (
-                                            <>
-                                                {answerFields !== null
-                                                    ? answerFields.map((item, i) => {
-                                                          const currentAnswer =
-                                                              answered.find(
-                                                                  (a) =>
-                                                                      a.text === item.text &&
-                                                                      a.image === item.image &&
-                                                                      a.video === item.video,
-                                                              ) || null;
-                                                          return (
-                                                              <Button
-                                                                  key={`question-${i + 1}`}
-                                                                  className={classNames([
-                                                                      styles.button,
-                                                                      {
-                                                                          [styles.selected]:
-                                                                              multipleAnswers &&
-                                                                              currentAnswer !==
-                                                                                  null,
-                                                                      },
-                                                                  ])}
-                                                                  onClick={() =>
-                                                                      onClickAnswer(item)
-                                                                  }
+            <Container width={width} height={height} maxRatio={maxRatio}>
+                <div className={styles.content}>
+                    <div className={styles.inner}>
+                        {answer !== null ? (
+                            answerBlock
+                        ) : (
+                            <>
+                                <div className={styles.questionContainer}>
+                                    {renderFormat !== 'placeholder' ? (
+                                        questionBlock
+                                    ) : (
+                                        <PlaceholderText className={styles.placeholder} />
+                                    )}
+                                </div>
+                                <div className={styles.buttons}>
+                                    {renderFormat !== 'placeholder' ? (
+                                        <>
+                                            {answerFields !== null
+                                                ? answerFields.map((item, i) => {
+                                                      const currentAnswer =
+                                                          answered.find(
+                                                              (a) =>
+                                                                  a.text === item.text &&
+                                                                  a.image === item.image &&
+                                                                  a.video === item.video,
+                                                          ) || null;
+                                                      return (
+                                                          <Button
+                                                              key={`question-${i + 1}`}
+                                                              className={classNames([
+                                                                  styles.button,
+                                                                  {
+                                                                      [styles.selected]:
+                                                                          multipleAnswers &&
+                                                                          currentAnswer !== null,
+                                                                  },
+                                                              ])}
+                                                              onClick={() => onClickAnswer(item)}
+                                                          >
+                                                              <div
+                                                                  className={styles.answerContainer}
                                                               >
-                                                                  <div
-                                                                      className={
-                                                                          styles.answerContainer
-                                                                      }
-                                                                  >
-                                                                      <VideoElement
-                                                                          className={styles.video}
-                                                                          video={item.video || null}
-                                                                          {...videoProps}
-                                                                      />
-                                                                      <ImageElement
-                                                                          className={styles.image}
-                                                                          image={item.image || null}
-                                                                      />
-                                                                      <TextElement
-                                                                          body={item.text || null}
-                                                                          textStyle={textStyle}
-                                                                      />
-                                                                  </div>
-                                                              </Button>
-                                                          );
-                                                      })
-                                                    : null}
-                                            </>
-                                        ) : (
-                                            <>
-                                                <PlaceholderButton
-                                                    className={styles.buttonPlaceholder}
-                                                />
-                                                <PlaceholderButton
-                                                    className={styles.buttonPlaceholder}
-                                                />
-                                                <PlaceholderButton
-                                                    className={styles.buttonPlaceholder}
-                                                />
-                                                <PlaceholderButton
-                                                    className={styles.buttonPlaceholder}
-                                                />
-                                            </>
-                                        )}
-                                    </div>
-                                </>
-                            )}
-                            {renderFormat !== 'placeholder' &&
-                            multipleAnswers &&
-                            answer === null ? (
-                                <Button
-                                    className={styles.submitButton}
-                                    onClick={onClickSubmit}
-                                    {...button}
-                                >
-                                    <Label>{messages.submit}</Label>
-                                </Button>
-                            ) : (
-                                <PlaceholderButton className={styles.submitButtonPlaceholder} />
-                            )}
-                            {renderFormat !== 'placeholder' && isEditor && answer !== null ? (
-                                <Button
-                                    className={styles.submitButton}
-                                    onClick={onClickReset}
-                                    {...button}
-                                >
-                                    <Label>{messages.retry}</Label>
-                                </Button>
-                            ) : null}
-                        </div>
-                    </Stack>
-                </Container>
-            </div>
+                                                                  <VideoElement
+                                                                      className={styles.video}
+                                                                      video={item.video || null}
+                                                                      {...videoProps}
+                                                                  />
+                                                                  <ImageElement
+                                                                      className={styles.image}
+                                                                      image={item.image || null}
+                                                                  />
+                                                                  <TextElement
+                                                                      body={item.text || null}
+                                                                      textStyle={textStyle}
+                                                                  />
+                                                              </div>
+                                                          </Button>
+                                                      );
+                                                  })
+                                                : null}
+                                        </>
+                                    ) : (
+                                        <>
+                                            <PlaceholderButton
+                                                className={styles.buttonPlaceholder}
+                                            />
+                                            <PlaceholderButton
+                                                className={styles.buttonPlaceholder}
+                                            />
+                                            <PlaceholderButton
+                                                className={styles.buttonPlaceholder}
+                                            />
+                                            <PlaceholderButton
+                                                className={styles.buttonPlaceholder}
+                                            />
+                                        </>
+                                    )}
+                                </div>
+                            </>
+                        )}
+                        {renderFormat !== 'placeholder' && multipleAnswers && answer === null ? (
+                            <Button
+                                className={styles.submitButton}
+                                onClick={onClickSubmit}
+                                {...button}
+                            >
+                                <Label>{messages.submit}</Label>
+                            </Button>
+                        ) : (
+                            <PlaceholderButton className={styles.submitButtonPlaceholder} />
+                        )}
+                        {renderFormat !== 'placeholder' && isEditor && answer !== null ? (
+                            <Button
+                                className={styles.submitButton}
+                                onClick={onClickReset}
+                                {...button}
+                            >
+                                <Label>{messages.retry}</Label>
+                            </Button>
+                        ) : null}
+                    </div>
+                </div>
+            </Container>
         </div>
     );
 };

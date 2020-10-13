@@ -1,6 +1,195 @@
-import { createLayoutSwitcher } from '@micromag/core';
-import * as LayoutComponents from './layouts';
+/* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { FormattedMessage } from 'react-intl';
 
-const GalleryScrollScreen = createLayoutSwitcher(LayoutComponents);
+import Background from '@micromag/element-background';
+import Container from '@micromag/element-container';
+import Image from '@micromag/element-image';
+import { VStack, HStack } from '@micromag/element-stack';
 
-export default GalleryScrollScreen;
+import { PropTypes as MicromagPropTypes, PlaceholderImage, Empty } from '@micromag/core';
+import { useScreenSize } from '@micromag/core/contexts';
+import { getRenderFormat } from '@micromag/core/utils';
+
+import { schemas as messages } from './messages';
+
+import styles from './styles.module.scss';
+
+export const layouts = ['single', 'double', 'triple', 'mixed-double', 'mixed-triple'];
+
+const propTypes = {
+    layout: PropTypes.oneOf(layouts),
+    background: MicromagPropTypes.backgroundElement,
+    images: MicromagPropTypes.images,
+    spacing: PropTypes.number,
+    current: PropTypes.bool,
+    active: PropTypes.bool,
+    renderFormat: MicromagPropTypes.renderFormat,
+    maxRatio: PropTypes.number,
+    transitions: MicromagPropTypes.transitions,
+    className: PropTypes.string,
+};
+
+const defaultProps = {
+    layout: 'single',
+    background: null,
+    images: [],
+    spacing: 10,
+    current: true,
+    active: true,
+    renderFormat: 'view',
+    maxRatio: 3 / 4,
+    transitions: null,
+    className: null,
+};
+
+const GalleryScroll = ({
+    layout,
+    images: imageList,
+    spacing,
+    background,
+    current,
+    active,
+    renderFormat,
+    maxRatio,
+    transitions,
+    className,
+}) => {
+    const { width, height } = useScreenSize();
+    const { isView, isPreview, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
+
+    const defaultArray = [
+        ...Array(16).map((i) => ({
+            id: `image-${i}`,
+            ...(imageList[i] ? imageList[i] : null),
+        })),
+    ];
+    const images =
+        imageList && imageList.length > 0 && !isPlaceholder
+            ? imageList
+            : [...Array(16)].map(() => null);
+    const currentImages = isEditor && imageList.length === 0 ? defaultArray : images;
+
+    const groups = [];
+    let step = 0;
+    let row = 0;
+    let index = 0;
+
+    let columns;
+
+    switch (layout) {
+        default:
+        case 'single':
+            columns = [1];
+            break;
+        case 'double':
+            columns = [2];
+            break;
+        case 'triple':
+            columns = [3];
+            break;
+        case 'mixed-double':
+            columns = [1, 2];
+            break;
+        case 'mixed-triple':
+            columns = [1, 3];
+            break;
+    }
+
+    currentImages.forEach((image) => {
+        const max = columns[step];
+        if (row < max) {
+            row += 1;
+        } else {
+            index += 1;
+            row = 1;
+            if (step < columns.length - 1) {
+                step += 1;
+            } else {
+                step = 0;
+            }
+        }
+        if (!groups[index]) {
+            groups[index] = [];
+        }
+        groups[index].push(image);
+    });
+
+    const items = groups.map((its, i) => {
+        const stackKey = `gallery-group-${i + 1}`;
+        const stackItems = its.map((it, j) => {
+            const isEmpty = it && it.image !== null;
+
+            return (
+                <div
+                    key={`image-${j + 1}`}
+                    className={classNames([
+                        styles.image,
+                        {
+                            [styles[`columns${its.length}`]]: columns !== null,
+                        },
+                    ])}
+                    style={{ padding: isPlaceholder ? 2 : spacing / 2 }}
+                >
+                    {isView || (isEditor && !isEmpty) ? (
+                        <Image
+                            {...it}
+                            fit={{ size: 'cover' }}
+                            contain
+                            className={styles.imageComponent}
+                        />
+                    ) : null}
+                    {isPreview ? <div className={styles.previewBlock} /> : null}
+                    {isPlaceholder ? (
+                        <PlaceholderImage
+                            key={`image-${j + 1}`}
+                            className={styles.placeholder}
+                            width="100%"
+                            height="100%"
+                        />
+                    ) : null}
+                    {isEditor && isEmpty ? (
+                        <Empty className={styles.empty}>
+                            <FormattedMessage {...messages.image} />
+                        </Empty>
+                    ) : null}
+                </div>
+            );
+        });
+
+        return <HStack key={stackKey}>{stackItems}</HStack>;
+    });
+
+    return (
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                    [styles.placeholder]: isPlaceholder,
+                },
+            ])}
+        >
+            <Background
+                {...(!isPlaceholder ? background : null)}
+                width={width}
+                height={height}
+                playing={(isView && current) || (isEditor && active)}
+                maxRatio={maxRatio}
+            />
+
+            <Container width={width} height={height} maxRatio={maxRatio}>
+                <div className={styles.content}>
+                    <VStack>{items}</VStack>
+                </div>
+            </Container>
+        </div>
+    );
+};
+
+GalleryScroll.propTypes = propTypes;
+GalleryScroll.defaultProps = defaultProps;
+
+export default React.memo(GalleryScroll);

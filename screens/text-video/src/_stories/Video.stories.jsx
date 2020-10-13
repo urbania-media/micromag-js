@@ -10,8 +10,7 @@ import {
 } from '../../../../.storybook/components';
 import { text, video, background } from '../../../../.storybook/data';
 
-import TextVideo from '../TextVideo';
-import layouts from '../layouts/names';
+import TextVideo, { layouts } from '../TextVideo';
 
 const props = {
     text: text(),

@@ -1,3 +1,2 @@
-export { default } from './Map';
-export { default as layouts } from './layouts/names';
+export { default, layouts } from './Map';
 export { default as schema } from './schema';

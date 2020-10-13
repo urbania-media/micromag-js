@@ -2,11 +2,27 @@
 @import '~@micromag/core/scss/placeholders';
 
 .container {
-    @extend %screen;
+    @extend %screen;    
 
-    .video {
+    .stackContainer {
+        display: flex;
+        visibility: hidden;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .image,
+    .text {
+        padding: 10px;
+    }
+
+    .image {
         display: inline-block;
         max-width: 100%;
+    }
+
+    .placeholder {
+        margin: 4px;
     }
 
     .empty {
@@ -14,6 +30,22 @@
         width: 100%;
         height: 50px;
         margin: 5px auto;
+    }
+
+    .emptyVideo {
+        height: 30%;
+    }
+
+    &.ready {
+        .stackContainer {
+            visibility: visible;
+        }
+    }
+
+    &.sideways {
+        .item {
+            width: 50%;
+        }
     }
 
     &.center {
@@ -39,21 +71,4 @@
             @extend %placeholder-right;
         }
     }
-
-    &.reverse {
-        .inner {
-            flex-direction: column-reverse;
-        }
-    }
-
-    .placeholderVideo {
-        margin: 10px 0;
-    }
-}
-
-.image,
-.video {
-    display: block;
-    margin: 0 auto;
-    padding: 10px;
 }

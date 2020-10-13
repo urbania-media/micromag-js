@@ -26,6 +26,7 @@ import styles from './styles.module.scss';
 export const layouts = ['normal'];
 
 const propTypes = {
+    layout: PropTypes.oneOf(layouts),
     question: MicromagPropTypes.textElement,
     options: PropTypes.arrayOf(MicromagPropTypes.textElement),
     result: PropTypes.shape({
@@ -33,31 +34,45 @@ const propTypes = {
         text: MicromagPropTypes.textElement,
     }),
     background: MicromagPropTypes.backgroundElement,
-    visible: PropTypes.bool,
+    current: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
+    maxRatio: PropTypes.number,
+    transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
 };
 
 const defaultProps = {
+    layout: 'normal',
     question: null,
     options: null,
     result: null,
     background: null,
-    visible: true,
+    current: true,
     active: false,
     renderFormat: 'view',
+    maxRatio: 3 / 4,
+    transitions: {
+        in: {
+            name: 'fade',
+            duration: 1000,
+        },
+        out: 'scale',
+    },
     className: null,
 };
 
 const SurveyCheckbox = ({
+    layout,
     question,
     options,
     result,
     background,
-    visible,
+    current,
     active,
     renderFormat,
+    maxRatio,
+    transitions,
     className,
 }) => {
     const { width, height } = useScreenSize();
@@ -72,23 +87,23 @@ const SurveyCheckbox = ({
     };
     const onChange = useCallback((newValue) => setValue(newValue), [value]);
 
-    const containerClassNames = classNames([
-        styles.container,
-        {
-            [className]: className !== null,
-        },
-    ]);
-
     return (
-        <div className={containerClassNames}>
+        <div className={classNames([
+            styles.container,
+            {
+                [className]: className !== null,
+            },
+        ])}>
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && visible) || (isEditor && active)}
+                playing={(isView && current) || (isEditor && active)}
+                maxRatio={maxRatio}
             />
-            <div className={styles.content}>
-                <Container width={width} height={height} visible={visible}>
+
+            <Container width={width} height={height} maxRatio={maxRatio}>
+                <div className={styles.content}>
                     <div className={styles.inner}>
                         {answered ? (
                             <div className={styles.resultContainer}>
@@ -149,8 +164,8 @@ const SurveyCheckbox = ({
                             </>
                         )}
                     </div>
-                </Container>
-            </div>
+                </div>
+            </Container>
         </div>
     );
 };

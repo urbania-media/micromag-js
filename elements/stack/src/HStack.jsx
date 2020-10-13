@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Stack from './StackNew';
+import Stack from './Stack';
 
 const propTypes = {
     direction: PropTypes.string,

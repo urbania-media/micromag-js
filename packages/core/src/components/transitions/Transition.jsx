@@ -5,8 +5,8 @@ import { animated, useSpring } from 'react-spring';
 // import * as MicromagPropTypes from '../../PropTypes';
 
 const propTypes = {
-    from: PropTypes.style,
-    to: PropTypes.style,
+    from: PropTypes.objectOf(PropTypes.any),
+    to: PropTypes.objectOf(PropTypes.any),
     playing: PropTypes.bool,
     direction: PropTypes.oneOf(['in', 'out']),
     delay: PropTypes.number,

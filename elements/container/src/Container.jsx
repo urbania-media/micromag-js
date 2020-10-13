@@ -23,10 +23,13 @@ const Container = ({ width, height, maxRatio, className, children }) => {
     const currentRatio = width / height;
     const maxWidth = maxRatio !== null && currentRatio > maxRatio ? height * maxRatio : null;
 
-    const finalStyle = {
+    const containerStyle = {
         width,
         height,
-        maxWidth,
+    }
+
+    const innerStyle = {
+        width: maxWidth
     };
 
     return (
@@ -37,9 +40,11 @@ const Container = ({ width, height, maxRatio, className, children }) => {
                     [className]: className !== null,
                 },
             ])}
-            style={finalStyle}
+            style={containerStyle}
         >
-            {children}
+            <div className={styles.inner} style={innerStyle}>
+                {children}
+            </div>
         </div>
     );
 };

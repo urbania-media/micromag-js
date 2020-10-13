@@ -12,7 +12,7 @@ import { withGoogleMapsApi } from '../../../../.storybook/decorators';
 
 import MapScreen from '../Map';
 
-import layouts from '../layouts/names';
+import { layouts } from '../Map';
 
 const props = {
     map: { map: map() },
@@ -22,7 +22,7 @@ const props = {
 
 const switcherProps = {
     layouts,
-    defaultLayout: 'bottom',
+    defaultLayout: 'top',
 };
 
 export default {

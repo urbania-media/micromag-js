@@ -1,12 +1,17 @@
 import React from 'react';
-import Stack from './Stack';
+import HStack from './HStack';
+import VStack from './VStack';
 
 export default {
     component: Stack,
     title: 'Components/Stack',
 };
 
-const cellStyle = { textAlign: 'center', padding: 20, background: '#ddd' };
+const cellStyle = {
+    textAlign: 'center',
+    padding: 20,
+    background: '#ddd',
+};
 
 const cells = [1, 2, 3, 4, 5].map((number) => (
     <div style={cellStyle} key={`cell-${number}`}>
@@ -16,12 +21,10 @@ const cells = [1, 2, 3, 4, 5].map((number) => (
 
 const spacing = 10;
 
-export const withoutSpacing = () => <Stack items={cells} />;
+export const withoutSpacing = () => <HStack items={cells} />;
 
-export const withSpacing = () => <Stack items={cells} spacing={spacing} />;
+export const withSpacing = () => <HStack items={cells} spacing={spacing} />;
 
-export const withRow = () => <Stack items={cells} spacing={spacing} direction="row" />;
+export const withRow = () => <VStack items={cells} spacing={spacing} />;
 
-export const withRowAround = () => (
-    <Stack items={cells} spacing={spacing} direction="row" axisAlign="between" />
-);
+export const withRowAround = () => <VStack items={cells} spacing="around" />;

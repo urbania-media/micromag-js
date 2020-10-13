@@ -6,6 +6,14 @@
     @extend %screen;
     text-align: center;
 
+    .content {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+    }
+
     .buttons {
         display: flex;
         justify-content: center;

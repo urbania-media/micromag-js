@@ -1,5 +1,5 @@
 import React from 'react';
-import Stack from '@micromag/element-stack';
+import HStack from '@micromag/element-stack';
 import { image as imageCreator, videoFile, video  } from '../../../.storybook/data';
 import Background from './Background';
 
@@ -9,15 +9,15 @@ export default {
 };
 
 export const color = () => (
-    <Stack axisAlign='around' direction='row' spacing={10}>
+    <HStack spacing="around">
         <Background width={400} height={200} color={{ color: '#ff02cc', alpha: 0.5 }} />
         <Background width={200} height={350} color={{ color: '#FF9100', alpha: 1 }} />
         <Background width={350} height={200} color={{ color: '#FFFF00', alpha: 0.8 }} />
-    </Stack>
+    </HStack>
 );
 
 export const image = () => (
-    <Stack axisAlign='around' direction='row' spacing={10}>
+    <HStack spacing="around">
         <div>
             <h4>Position center</h4>
             <Background
@@ -52,21 +52,16 @@ export const image = () => (
                 verticalAlign="top"
             />
         </div>
-    </Stack>
+    </HStack>
 );
 
 export const imageWithColor = () => (
-    <Stack axisAlign='around' direction='row' spacing={10}>
-        <div>
-            <h4>Position center</h4>
-            <Background
-                width={350}
-                height={600}
-                image={imageCreator()}
-                color={{ color: '#FFFF00', alpha: 0.8 }}
-            />
-        </div>
-    </Stack>
+    <Background
+        width={350}
+        height={600}
+        image={imageCreator()}
+        color={{ color: '#FFFF00', alpha: 0.8 }}
+    />
 );
 
 export const videoUploaded = () => (
