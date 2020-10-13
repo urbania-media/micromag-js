@@ -24,13 +24,7 @@ import { schemas as messages } from './messages';
 
 import styles from './styles.module.scss';
 
-export const layouts = [    
-    'center',
-    'top',
-    'bottom',
-    'around',
-    'between'
-];
+export const layouts = ['center', 'top', 'bottom', 'around', 'between'];
 
 const HEADING_SIZES = {
     title: { size: 1 },
@@ -75,9 +69,7 @@ const Title = ({
     subtitle,
     description,
     groups,
-    grid,
     background,
-    box,
     textAlign,
     current,
     active,
@@ -130,25 +122,32 @@ const Title = ({
     switch (layout) {
         default:
         case 'center':
-            contentJustifyContentValue = 'center'; break;
+            contentJustifyContentValue = 'center';
+            break;
         case 'top':
-            contentJustifyContentValue = 'flex-start'; break;
+            contentJustifyContentValue = 'flex-start';
+            break;
         case 'bottom':
-            contentJustifyContentValue = 'flex-end'; break;
+            contentJustifyContentValue = 'flex-end';
+            break;
         case 'around':
-            contentJustifyContentValue = 'space-around'; break;
+            contentJustifyContentValue = 'space-around';
+            break;
         case 'between':
-            contentJustifyContentValue = 'space-between'; break;
+            contentJustifyContentValue = 'space-between';
+            break;
     }
 
     return (
-        <div className={classNames([
-            styles.container,
-            {
-                [styles[textAlign]]: textAlign !== null,
-                [className]: className !== null,
-            },
-        ])}>
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [styles[textAlign]]: textAlign !== null,
+                    [className]: className !== null,
+                },
+            ])}
+        >
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
@@ -156,11 +155,14 @@ const Title = ({
                 playing={(isView && current) || (isEditor && active)}
                 maxRatio={maxRatio}
             />
-            
+
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <div className={styles.content} style={{
-                    justifyContent: contentJustifyContentValue,
-                }}>
+                <div
+                    className={styles.content}
+                    style={{
+                        justifyContent: contentJustifyContentValue,
+                    }}
+                >
                     {items}
                 </div>
             </Container>

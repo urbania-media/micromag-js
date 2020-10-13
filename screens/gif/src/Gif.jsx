@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -11,6 +11,7 @@ import VideoComponent from '@micromag/element-video';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 import { PropTypes as MicromagPropTypes, PlaceholderVideoLoop } from '@micromag/core';
+import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
 import styles from './styles.module.scss';
 
@@ -43,7 +44,13 @@ const defaultProps = {
     active: false,
     renderFormat: 'view',
     maxRatio: 3 / 4,
-    transitions: null,
+    transitions: {
+        in: {
+            name: 'fade',
+            duration: 1000,
+        },
+        out: 'scale',
+    },
     className: null,
 };
 
@@ -63,14 +70,22 @@ const Gif = ({
     const { isPlaceholder, isView, isPreview, isEditor } = getRenderFormat(renderFormat);
     const isNonInteractive = isPreview || isPlaceholder;
 
-    const { video = {} } = videoField || {};
-    const { autoPlay = false } = defaultParams || {};
+    const { video = null } = videoField || {};
+    const { autoPlay = false } = defaultParams || {};    
     const isFullScreen = layout === 'full';
 
     const autoplayCondition = isEditor ? autoPlay && active : autoPlay && !isNonInteractive;
 
+    const withVideo = video !== null;
+    
+    const [ready, setReady] = useState(!withVideo || true);// @TODO
+    const transitionPlaying = current && ready;
+    const onVideoReady = useCallback(() => {
+        setReady(true);
+    }, [setReady]);
+
     const preview =
-        isPreview && video.thumbnail_url && video.metadata ? (
+        isPreview && video !== null && video.thumbnail_url && video.metadata ? (
             <Image
                 image={{ url: video.thumbnail_url, metadata: video.metadata }}
                 className={classNames([styles.preview])}
@@ -86,15 +101,16 @@ const Gif = ({
     const item = isNonInteractive ? (
         preview
     ) : (
-        <VideoComponent
-            params={{ ...defaultParams, autoPlay: autoplayCondition }}
-            {...videoField}
-            maxWidth={Math.min(width, 768)}
-            maxHeight={height}
-            fit={{ size: isFullScreen ? 'cover' : 'contain' }}
-            showEmpty={isEditor}
-            className={styles.video}
-        />
+        <Transitions transitions={transitions} playing={transitionPlaying}>
+            <VideoComponent
+                params={{ ...defaultParams, autoPlay: autoplayCondition }}
+                {...video}
+                fit={{ size: isFullScreen ? 'cover' : 'contain' }}
+                showEmpty={isEditor}
+                className={styles.video}
+                onReady={onVideoReady}
+            />
+        </Transitions>
     );
 
     return (

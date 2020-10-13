@@ -5,11 +5,9 @@
     @extend %screen;
 
     .content {
-        height: 100%;
-    }
-
-    .inner {
-        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         height: 100%;
     }
 
@@ -52,10 +50,8 @@
             }
         }
 
-        .empty,
         .placeholder {
-            position: absolute;
-            bottom: 0;
+            margin-top: auto;
         }
     }
 

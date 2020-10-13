@@ -11,6 +11,8 @@ import TextComponent from '@micromag/element-text';
 import ImageComponent from '@micromag/element-image';
 import ButtonComponent from '@micromag/element-button';
 
+import Transitions from '@micromag/core/src/components/transitions/Transitions';
+
 import { PropTypes as MicromagPropTypes, PlaceholderMapPath, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
@@ -45,7 +47,13 @@ const defaultProps = {
     active: true,
     renderFormat: 'view',
     maxRatio: 3 / 4,
-    transitions: null,
+    transitions: {
+        in: {
+            name: 'fade',
+            duration: 1000,
+        },
+        out: 'scale',
+    },
     className: null,
 };
 
@@ -64,13 +72,20 @@ const MapPath = ({
     const [index, setIndex] = useState(0);
     const { width, height } = useScreenSize();
     const { isView, isPlaceholder, isEditor, isPreview } = getRenderFormat(renderFormat);
-    const isSimple = isPlaceholder || isPreview;
-    const isEmpty = isEditor && map === null;
+    const withMap = map !== null;
+    const isEmpty = isEditor && !withMap;
 
     const { map: { center: mapCenter = null } = {} } = map || {};
 
     const markers = mapMarkers || []; // .map((m, i) => ({ ...m })) : [];
     const center = mapCenter || markers.find((m, i) => i === index) || null;
+
+    const [ready, setReady] = useState(!withMap);
+    const transitionPlaying = current && ready;
+
+    const onMapReady = useCallback(() => {
+        setReady(true);
+    }, [setReady]);
 
     const onClickMarker = useCallback(
         (i) => {
@@ -95,21 +110,68 @@ const MapPath = ({
         }
     }, [markers, index, setIndex]);
 
-    const element = isEmpty ? (
-        <Empty className={styles.empty}>
-            <FormattedMessage {...messages.schemaTitle} />
-        </Empty>
-    ) : (
-        <ImageComponent
-            {...{
-                image: { url: PreviewBackground },
-                maxWidth: width,
-                maxHeight: height,
-            }}
-        />
-    );
+    let element = null;
 
-    const preview = isPlaceholder ? <PlaceholderMapPath className={styles.placeholder} /> : element;
+    if (isEmpty) {
+        element = (
+            <Empty className={styles.empty}>
+                <FormattedMessage {...messages.schemaTitle} />
+            </Empty>
+        );
+    } else if (isPlaceholder) {
+        element = <PlaceholderMapPath className={styles.placeholder} />;
+    } else if (isPreview) {
+        element = <ImageComponent {...{ media: { url: PreviewBackground, width, height } }} />;
+    } else if (withMap) {
+        element = (
+            <Transitions transitions={transitions} playing={transitionPlaying} fullScreen>
+                <MapComponent
+                    {...map}
+                    {...(center && center.lat && center.lng ? { center } : null)}
+                    markers={markers}
+                    withLine
+                    onClickMap={null}
+                    onClickMarker={onClickMarker}
+                    onReady={onMapReady}
+                />
+                <div className={styles.cards}>
+                    {markers.map((marker, i) => (
+                        <div
+                            key={`marker-${i + 1}`}
+                            className={classNames([
+                                styles.card,
+                                {
+                                    [styles.active]: i === index,
+                                },
+                            ])}
+                        >
+                            <div className={styles.background}>
+                                <TextComponent
+                                    className={styles.text}
+                                    body={marker.text ? marker.text : null}
+                                />
+                                <ImageComponent
+                                    className={styles.image}
+                                    image={marker.image ? marker.image : null}
+                                />
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <div className={styles.controls}>
+                    <ButtonComponent
+                        className={styles.previous}
+                        onClick={onClickPrevious}
+                    >
+                        Previous
+                    </ButtonComponent>
+                    <ButtonComponent className={styles.next} onClick={onClickNext}>
+                        Next
+                    </ButtonComponent>
+                </div>
+            </Transitions>
+        );
+    }
 
     return (
         <div
@@ -131,59 +193,7 @@ const MapPath = ({
             />
 
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <div className={styles.content}>
-                    <div className={styles.inner}>
-                        {isSimple || isEmpty ? (
-                            preview
-                        ) : (
-                            <>
-                                <MapComponent
-                                    {...map}
-                                    {...(center && center.lat && center.lng ? { center } : null)}
-                                    markers={markers}
-                                    withLine
-                                    onClickMap={null}
-                                    onClickMarker={onClickMarker}
-                                />
-                                <div className={styles.cards}>
-                                    {markers.map((marker, i) => (
-                                        <div
-                                            key={`marker-${i + 1}`}
-                                            className={classNames([
-                                                styles.card,
-                                                {
-                                                    [styles.active]: i === index,
-                                                },
-                                            ])}
-                                        >
-                                            <div className={styles.background}>
-                                                <TextComponent
-                                                    className={styles.text}
-                                                    body={marker.text ? marker.text : null}
-                                                />
-                                                <ImageComponent
-                                                    className={styles.image}
-                                                    image={marker.image ? marker.image : null}
-                                                />
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                                <div className={styles.controls}>
-                                    <ButtonComponent
-                                        className={styles.previous}
-                                        onClick={onClickPrevious}
-                                    >
-                                        Previous
-                                    </ButtonComponent>
-                                    <ButtonComponent className={styles.next} onClick={onClickNext}>
-                                        Next
-                                    </ButtonComponent>
-                                </div>
-                            </>
-                        )}
-                    </div>
-                </div>
+                <div className={styles.content}>{element}</div>
             </Container>
         </div>
     );

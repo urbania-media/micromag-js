@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -18,6 +18,7 @@ import layoutProps from './layouts';
 import { schemas as messages } from './messages';
 
 import styles from './styles.module.scss';
+import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
 export const layouts = [
     'four-by-four',
@@ -41,6 +42,7 @@ const propTypes = {
     renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
+    transitionStagger: PropTypes.number,
     className: PropTypes.string,
 };
 
@@ -53,7 +55,14 @@ const defaultProps = {
     active: false,
     renderFormat: 'view',
     maxRatio: 3 / 4,
-    transitions: null,
+    transitions: {
+        in: {
+            name: 'fade',
+            duration: 1000,
+        },
+        out: 'scale',
+    },
+    transitionStagger: 75,
     className: null,
 };
 
@@ -67,6 +76,7 @@ const Gallery = ({
     renderFormat,
     maxRatio,
     transitions,
+    transitionStagger,
     className,
 }) => {
     const { width, height } = useScreenSize();
@@ -80,8 +90,21 @@ const Gallery = ({
             ...(imageList[i] ? imageList[i] : null),
         })),
     ];
+    const gridSpaces = gridLayout.reduce((acc, current) => acc + current.columns.length, 0);
     const images = isPreview ? imageList.slice(0, 16) : imageList || [];
     const activeImages = isEditor && imageList.length === 0 ? defaultArray : images;
+
+    const imagesCount = Math.min(gridSpaces, activeImages.length);
+
+    const [imagesLoaded, setImagesLoaded] = useState(0);
+    const ready = imagesLoaded >= imagesCount;
+    const transitionPlaying = current && ready;
+
+    const onImageLoaded = useCallback(() => {
+        setImagesLoaded(imagesLoaded + 1);
+    }, [imagesLoaded, setImagesLoaded]);
+
+    let transitionDelay = 0;
 
     const items = isPlaceholder
         ? gridLayout
@@ -89,24 +112,41 @@ const Gallery = ({
               .map(() => (
                   <PlaceholderImage className={styles.placeholder} width="100%" height="100%" />
               ))
-        : activeImages.map((it) =>
-              isEditor && !it ? (
-                  <Empty className={styles.empty}>
-                      <FormattedMessage {...messages.image} />
-                  </Empty>
-              ) : (
-                  <Image {...it} fit={{ size: 'cover' }} contain className={styles.image} />
-              ),
-          );
+        : activeImages.map((it, index) => {
+              const element =
+                  isEditor && !it ? (
+                      <Empty className={styles.empty}>
+                          <FormattedMessage {...messages.image} />
+                      </Empty>
+                  ) : (
+                      <Transitions
+                          transitions={transitions}
+                          delay={transitionDelay}
+                          playing={transitionPlaying}
+                      >
+                          <Image
+                              {...it}
+                              fit={{ size: 'cover' }}
+                              contain
+                              className={styles.image}
+                              onLoaded={onImageLoaded}
+                          />
+                      </Transitions>
+                  );
+              transitionDelay += transitionStagger;
+              return element;
+          });
 
     return (
-        <div className={classNames([
-            styles.container,
-            {
-                [styles.placeholder]: isPlaceholder,
-                [className]: className !== null,
-            },
-        ])}>
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [styles.placeholder]: isPlaceholder,
+                    [className]: className !== null,
+                },
+            ])}
+        >
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
@@ -114,7 +154,7 @@ const Gallery = ({
                 playing={(isView && current) || (isEditor && active)}
                 maxRatio={maxRatio}
             />
-            
+
             <Container width={width} height={height} maxRatio={maxRatio}>
                 <div className={styles.content}>
                     <div className={styles.images}>
@@ -127,7 +167,7 @@ const Gallery = ({
                         />
                     </div>
                 </div>
-            </Container>            
+            </Container>
         </div>
     );
 };

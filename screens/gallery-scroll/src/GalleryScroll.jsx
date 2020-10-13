@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -12,10 +12,12 @@ import { VStack, HStack } from '@micromag/element-stack';
 import { PropTypes as MicromagPropTypes, PlaceholderImage, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
+import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
 import { schemas as messages } from './messages';
 
 import styles from './styles.module.scss';
+
 
 export const layouts = ['single', 'double', 'triple', 'mixed-double', 'mixed-triple'];
 
@@ -29,6 +31,7 @@ const propTypes = {
     renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
+    transitionStagger: PropTypes.number,
     className: PropTypes.string,
 };
 
@@ -41,7 +44,14 @@ const defaultProps = {
     active: true,
     renderFormat: 'view',
     maxRatio: 3 / 4,
-    transitions: null,
+    transitions: {
+        in: {
+            name: 'fade',
+            duration: 1000,
+        },
+        out: 'scale',
+    },
+    transitionStagger: 75,
     className: null,
 };
 
@@ -55,6 +65,7 @@ const GalleryScroll = ({
     renderFormat,
     maxRatio,
     transitions,
+    transitionStagger,
     className,
 }) => {
     const { width, height } = useScreenSize();
@@ -71,6 +82,15 @@ const GalleryScroll = ({
             ? imageList
             : [...Array(16)].map(() => null);
     const currentImages = isEditor && imageList.length === 0 ? defaultArray : images;
+
+    const imagesCount = currentImages.length;
+    const [imagesLoaded, setImagesLoaded] = useState(0);
+    const ready = imagesLoaded >= imagesCount;
+    const transitionPlaying = current && ready;
+
+    const onImageLoaded = useCallback(() => {
+        setImagesLoaded(imagesLoaded + 1);
+    }, [imagesLoaded, setImagesLoaded]);
 
     const groups = [];
     let step = 0;
@@ -117,10 +137,46 @@ const GalleryScroll = ({
         groups[index].push(image);
     });
 
+    let transitionDelay = 0;
+
     const items = groups.map((its, i) => {
         const stackKey = `gallery-group-${i + 1}`;
         const stackItems = its.map((it, j) => {
-            const isEmpty = it && it.image !== null;
+            const isEmpty = it !== null && it.image !== null;
+
+            let imageElement = null;
+
+            if (isView || (isEditor && !isEmpty)) {
+                imageElement = (
+                    <Transitions transitions={transitions} delay={transitionDelay} playing={transitionPlaying}>
+                        <Image
+                            {...it}
+                            fit={{ size: 'cover' }}
+                            contain
+                            className={styles.imageComponent}
+                            onLoaded={onImageLoaded}
+                        />
+                    </Transitions>
+                );
+                transitionDelay += transitionStagger;
+            } else if (isPreview) {
+                imageElement = <div className={styles.previewBlock} />;
+            } else if (isPlaceholder) {
+                imageElement = (
+                    <PlaceholderImage
+                        key={`image-${j + 1}`}
+                        className={styles.placeholder}
+                        width="100%"
+                        height="100%"
+                    />
+                );
+            } else if (isEditor && isEmpty) {
+                imageElement = (
+                    <Empty className={styles.empty}>
+                        <FormattedMessage {...messages.image} />
+                    </Empty>
+                );
+            }
 
             return (
                 <div
@@ -133,28 +189,7 @@ const GalleryScroll = ({
                     ])}
                     style={{ padding: isPlaceholder ? 2 : spacing / 2 }}
                 >
-                    {isView || (isEditor && !isEmpty) ? (
-                        <Image
-                            {...it}
-                            fit={{ size: 'cover' }}
-                            contain
-                            className={styles.imageComponent}
-                        />
-                    ) : null}
-                    {isPreview ? <div className={styles.previewBlock} /> : null}
-                    {isPlaceholder ? (
-                        <PlaceholderImage
-                            key={`image-${j + 1}`}
-                            className={styles.placeholder}
-                            width="100%"
-                            height="100%"
-                        />
-                    ) : null}
-                    {isEditor && isEmpty ? (
-                        <Empty className={styles.empty}>
-                            <FormattedMessage {...messages.image} />
-                        </Empty>
-                    ) : null}
+                    {imageElement}
                 </div>
             );
         });

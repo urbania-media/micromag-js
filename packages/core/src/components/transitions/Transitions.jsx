@@ -7,6 +7,7 @@ import { getComponentFromName } from '../../../lib';
 import TransitionComponents from './index';
 
 const propTypes = {
+    fullScreen: PropTypes.bool,
     playing: PropTypes.bool,
     delay: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
@@ -14,13 +15,14 @@ const propTypes = {
 };
 
 const defaultProps = {
+    fullScreen: false,
     playing: false,
     delay: 0,
     transitions: null,
     children: null,
 };
 
-const Transitions = ({ playing, delay, transitions, children }) => {
+const Transitions = ({ fullScreen, playing, delay, transitions, children }) => {
     const finalTransitions = { in: null, out: null };
     Object.keys(transitions || []).forEach((transitionKey) => {
         const currentTransition = transitions[transitionKey];
@@ -51,7 +53,7 @@ const Transitions = ({ playing, delay, transitions, children }) => {
 
     const renderTransitionOut =
         TransitionOut !== null ? (
-            <TransitionOut playing={playing} direction="out" {...transitionOutProps}>
+            <TransitionOut fullScreen={fullScreen} playing={playing} direction="out" {...transitionOutProps}>
                 {children}
             </TransitionOut>
         ) : (
@@ -59,6 +61,7 @@ const Transitions = ({ playing, delay, transitions, children }) => {
         );
     return TransitionIn !== null ? (
         <TransitionIn
+            fullScreen={fullScreen}
             playing={playing}
             direction={!sameTransitionInOut ? 'in' : null}
             {...transitionInProps}

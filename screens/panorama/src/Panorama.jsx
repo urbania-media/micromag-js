@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -9,6 +9,7 @@ import Container from '@micromag/element-container';
 import { PropTypes as MicromagPropTypes, PlaceholderPanorama } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
+import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
 import styles from './styles.module.scss';
 
@@ -37,7 +38,13 @@ const defaultProps = {
     active: true,
     renderFormat: 'view',
     maxRatio: 3 / 4,
-    transitions: null,
+    transitions: {
+        in: {
+            name: 'fade',
+            duration: 1000,
+        },
+        out: 'scale',
+    },
     className: null,
 };
 
@@ -52,8 +59,22 @@ const PanoramaScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple, isView, isEditor } = getRenderFormat(renderFormat);
-    const content = 'Panorama';
+    const { isView, isPlaceholder, isPreview, isEditor } = getRenderFormat(renderFormat);
+
+    const [ready, setReady] = useState(true);// @TODO
+    const transitionPlaying = current && ready;
+
+    let element = null;
+
+    if (isPlaceholder) {
+        element = <PlaceholderPanorama className={styles.placeholder} />;
+    } else {
+        element = (
+            <Transitions transitions={transitions} playing={transitionPlaying}>
+                { 'Panorama' }
+            </Transitions>
+        );
+    }
 
     return (
         <div className={classNames([
@@ -72,11 +93,7 @@ const PanoramaScreen = ({
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
                 <div className={styles.content}>
-                    {isPlaceholder ? (
-                        <PlaceholderPanorama className={styles.placeholder} />
-                    ) : (
-                        content
-                    )}
+                    { element }
                 </div>
             </Container>            
         </div>

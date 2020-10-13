@@ -5,11 +5,9 @@
     @extend %screen;
 
     .content {
-        height: 100%;
-    }
-
-    .inner {
-        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         height: 100%;
     }
 
