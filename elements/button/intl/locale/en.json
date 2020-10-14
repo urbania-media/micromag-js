@@ -1,6 +1,0 @@
-{
-    "elements.button.schema.properties.background_color": "Background color",
-    "elements.button.schema.properties.border_style": "Border style",
-    "elements.button.schema.properties.text_style": "Text style",
-    "elements.button.schema.title": "Button element"
-}

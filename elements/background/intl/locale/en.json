@@ -1,6 +1,0 @@
-{
-    "elements.background.schema.properties.color": "Color",
-    "elements.background.schema.properties.image": "Image",
-    "elements.background.schema.properties.video": "Video",
-    "elements.background.schema.title": "Background element"
-}
