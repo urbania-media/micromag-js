@@ -7,13 +7,9 @@ import {
     LayoutGrid,
     Screen,
 } from '../../../../.storybook/components';
-<<<<<<< HEAD
+
 import { map, background } from '../../../../.storybook/data';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
-=======
-import { map, background, markers } from '../../../../.storybook/data';
-import { withGoogleMapsApi } from '../../../../.storybook/decorators';
->>>>>>> develop
 
 import MapPath, { layouts } from '../MapPath';
 

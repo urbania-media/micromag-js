@@ -17,9 +17,9 @@ import Transitions from '@micromag/core/src/components/transitions/Transitions';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 
-import styles from './styles.module.scss';
+import { layouts } from './definition';
 
-export const layouts = ['normal'];
+import styles from './styles.module.scss';
 
 const propTypes = {
     items: PropTypes.arrayOf(MicromagPropTypes.textElement),

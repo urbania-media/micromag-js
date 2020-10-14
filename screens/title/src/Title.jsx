@@ -20,11 +20,9 @@ import {
 import { getRenderFormat } from '@micromag/core/utils';
 import { useScreenSize } from '@micromag/core/contexts';
 
-import { schemas as messages } from './messages';
+import { layouts } from './definition';
 
 import styles from './styles.module.scss';
-
-export const layouts = ['center', 'top', 'bottom', 'around', 'between'];
 
 const HEADING_SIZES = {
     title: { size: 1 },
@@ -38,7 +36,6 @@ const propTypes = {
     description: MicromagPropTypes.textElement,
     groups: PropTypes.arrayOf(PropTypes.array),
     background: MicromagPropTypes.backgroundElement,
-    textAlign: PropTypes.oneOf(['left', 'right', 'center']),
     current: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
@@ -54,7 +51,6 @@ const defaultProps = {
     description: null,
     groups: [['title', 'subtitle'], ['description']],
     background: null,
-    textAlign: 'center',
     current: true,
     active: false,
     renderFormat: 'view',
@@ -70,7 +66,6 @@ const Title = ({
     description,
     groups,
     background,
-    textAlign,
     current,
     active,
     renderFormat,
@@ -103,7 +98,15 @@ const Title = ({
                 if (isEditor && !hasValue) {
                     return (
                         <Empty className={styles.empty}>
-                            <FormattedMessage {...messages[name]} />
+                            { name === 'title' ?
+                                <FormattedMessage defaultMessage="Title" />
+                            : null }
+                            { name === 'subtitle' ?
+                                <FormattedMessage defaultMessage="Subtitle" />
+                            : null }
+                            { name === 'description' ?
+                                <FormattedMessage defaultMessage="Description" />
+                            : null }
                         </Empty>
                     );
                 }
@@ -143,7 +146,6 @@ const Title = ({
             className={classNames([
                 styles.container,
                 {
-                    [styles[textAlign]]: textAlign !== null,
                     [className]: className !== null,
                 },
             ])}

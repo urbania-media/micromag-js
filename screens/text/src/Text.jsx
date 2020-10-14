@@ -14,10 +14,11 @@ import { PropTypes as MicromagPropTypes, PlaceholderText, Empty } from '@microma
 
 import { schemas as messages } from './messages';
 
-import styles from './styles.module.scss';
 import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
-export const layouts = ['top', 'center', 'bottom'];
+import { layouts } from './definition';
+
+import styles from './styles.module.scss';
 
 const propTypes = {
     layout: PropTypes.oneOf(layouts),

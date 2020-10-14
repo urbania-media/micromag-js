@@ -36,7 +36,7 @@ const withScreenLayouts = (Story, { story, parameters: { screenLayouts = null },
         <LayoutSwitcher layouts={screenLayouts}>
             {(layout) => (
                 <Screen>
-                    <Story layout={layout} />
+                    <Story args={{ ...args, layout }} />
                 </Screen>
             )}
         </LayoutSwitcher>

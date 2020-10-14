@@ -47,28 +47,4 @@
             width: 50%;
         }
     }
-
-    &.center {
-        text-align: center;
-
-        .placeholder {
-            @extend %placeholder-center;
-        }
-    }
-
-    &.left {
-        text-align: left;
-
-        .placeholder {
-            @extend %placeholder-left;
-        }
-    }
-
-    &.right {
-        text-align: right;
-
-        .placeholder {
-            @extend %placeholder-right;
-        }
-    }
 }
