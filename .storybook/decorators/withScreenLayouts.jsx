@@ -3,16 +3,27 @@ import LayoutGrid from '../components/LayoutGrid';
 import LayoutSwitcher from '../components/LayoutSwitcher';
 import Screen from '../components/Screen';
 
-const withScreenLayouts = (Story, { story, parameters: { screenLayouts = null }, args }) => {
-    if (screenLayouts === null || story === 'Definition') {
+const withScreenLayouts = (
+    Story,
+    {
+        story,
+        parameters: {
+            screenDefinition = null,
+            screenOptions: { gridWidth = 100, gridHeight = 200 } = {},
+        },
+        args,
+    },
+) => {
+    const { layouts = null } = screenDefinition || {};
+    if (layouts === null || story === 'Definition') {
         return <Story />;
     }
 
     if (story === 'Placeholder') {
         return (
-            <LayoutGrid layouts={screenLayouts}>
+            <LayoutGrid layouts={layouts}>
                 {(layout) => (
-                    <Screen width={100} height={200} withBorder>
+                    <Screen width={gridWidth} height={gridHeight} withBorder>
                         <Story args={{ ...args, layout, renderFormat: 'placeholder' }} />
                     </Screen>
                 )}
@@ -22,7 +33,7 @@ const withScreenLayouts = (Story, { story, parameters: { screenLayouts = null },
 
     if (story === 'Preview' || story === 'Edit') {
         return (
-            <LayoutSwitcher layouts={screenLayouts}>
+            <LayoutSwitcher layouts={layouts}>
                 {(layout) => (
                     <Screen>
                         <Story args={{ ...args, layout, renderFormat: story.toLowerCase() }} />
@@ -33,7 +44,7 @@ const withScreenLayouts = (Story, { story, parameters: { screenLayouts = null },
     }
 
     return (
-        <LayoutSwitcher layouts={screenLayouts}>
+        <LayoutSwitcher layouts={layouts}>
             {(layout) => (
                 <Screen>
                     <Story args={{ ...args, layout }} />

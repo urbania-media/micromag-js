@@ -4,7 +4,7 @@ import { videoFile, background } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import Video from '../Video';
-import definition, { layouts } from '../definition';
+import definition from '../definition';
 
 const props = {
     video: { video: videoFile() },
@@ -21,7 +21,7 @@ export default {
     component: Video,
     parameters: {
         intl: true,
-        screenLayouts: layouts,
+        screenDefinition: definition,
     },
 };
 
