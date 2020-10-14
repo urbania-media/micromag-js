@@ -5,7 +5,7 @@ import { audio } from '../../../.storybook/data';
 
 export default {
     component: Audio,
-    title: 'Components/Audio',
+    title: 'Elements/Audio',
 };
 
 export const Normal = () => <Audio media={audio()} />;

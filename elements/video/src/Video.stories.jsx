@@ -6,7 +6,7 @@ import Video from './Video';
 
 export default {
     component: Video,
-    title: 'Components/Video',
+    title: 'Elements/Video',
 };
 
 export const Normal = () => <Video {...videoFile()} />;

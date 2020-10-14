@@ -1,5 +1,4 @@
 import { defineMessage } from 'react-intl';
-
 import Video from './Video';
 
 export default [

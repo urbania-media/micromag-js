@@ -1,81 +1,32 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { withKnobs, select } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
-import {
-    PlaceholderScreen,
-    PreviewScreen,
-    LayoutGrid,
-    LayoutSwitcher,
-    Screen,
-} from '../../../../.storybook/components';
-import { title, subtitle, text } from '../../../../.storybook/data';
+import { title, subtitle, background } from '../../../../.storybook/data';
+import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
-import Title, { layouts } from '../Title';
+import Title from '../Title';
+import definition from '../definition';
 
 const props = {
     title: { body: title() },
     subtitle: { body: subtitle() },
-    description: text(),
-};
-
-const options = {
-    Center: 'center',
-    Left: 'left',
-    Right: 'right',
-    None: null,
+    background: background(),
 };
 
 export default {
     title: 'Screens/Title',
-    decorators: [withKnobs],
+    component: Title,
+    parameters: {
+        intl: true,
+        screenDefinition: definition.find(it => it.component === Title),
+    },
 };
 
-// eslint-disable-next-line
-export const Placeholders = () => (
-    <LayoutGrid layouts={layouts}>
-        {layout => (
-            <PlaceholderScreen>
-                <Title layout={layout} renderFormat="placeholder" />
-            </PlaceholderScreen>
-        )}
-    </LayoutGrid>
-);
+export const Placeholder = (storyProps) => <Title {...storyProps} />;
 
-export const Previews = () => (
-    <LayoutSwitcher layouts={layouts}>
-        {layout => (
-            <PreviewScreen>
-                <Title
-                    layout={layout}
-                    renderFormat="preview"
-                    {...props}
-                    textAlign={select('textAlign', options, 'center')}
-                />
-            </PreviewScreen>
-        )}
-    </LayoutSwitcher>
-);
+export const Preview = (storyProps) => <Title {...storyProps} />;
 
-export const Editor = () => (
-    <LayoutSwitcher layouts={layouts}>
-        {layout => (
-            <Screen>
-                <Title layout={layout} renderFormat="edit" />
-            </Screen>
-        )}
-    </LayoutSwitcher>
-);
+export const Edit = (storyProps) => <Title {...storyProps} />;
 
-export const Normal = () => (
-    <LayoutSwitcher layouts={layouts}>
-        {layout => (
-            <Screen>
-                <Title
-                    layout={layout}
-                    {...props}
-                    textAlign={select('textAlign', options, 'center')}
-                />
-            </Screen>
-        )}
-    </LayoutSwitcher>
-);
+export const Normal = (storyProps) => <Title {...storyProps} {...props} />;
+
+export const Definition = () => <ScreenDefinition definition={definition} />;

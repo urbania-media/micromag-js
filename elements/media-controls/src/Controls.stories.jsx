@@ -3,7 +3,7 @@ import Controls from './Controls';
 
 export default {
     component: Controls,
-    title: 'Components/MediaControls/Controls',
+    title: 'Elements/MediaControls/Controls',
 };
 
 export const normal = () => <Controls />;

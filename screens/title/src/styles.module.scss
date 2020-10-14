@@ -57,30 +57,6 @@
         margin: 5px auto;
     }
 
-    &.center {
-        text-align: center;
-
-        .placeholder {
-            @extend %placeholder-center;
-        }
-    }
-
-    &.left {
-        text-align: left;
-
-        .placeholder {
-            @extend %placeholder-left;
-        }
-    }
-
-    &.right {
-        text-align: right;
-
-        .placeholder {
-            @extend %placeholder-right;
-        }
-    }
-
     &.reverse {
         .inner {
             flex-direction: column-reverse;

@@ -4,7 +4,7 @@ import VStack from './VStack';
 
 export default {
     component: Stack,
-    title: 'Components/Stack',
+    title: 'Elements/Stack',
 };
 
 const cellStyle = {

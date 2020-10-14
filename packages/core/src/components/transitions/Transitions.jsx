@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as MicromagPropTypes from '../../PropTypes';
 
-import { getComponentFromName } from '../../../lib';
+import { getComponentFromName } from '../../utils';
 import TransitionComponents from './index';
 
 const propTypes = {
@@ -23,6 +23,7 @@ const defaultProps = {
 };
 
 const Transitions = ({ fullScreen, playing, delay, transitions, children }) => {
+
     const finalTransitions = { in: null, out: null };
     Object.keys(transitions || []).forEach((transitionKey) => {
         const currentTransition = transitions[transitionKey];

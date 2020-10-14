@@ -3,7 +3,7 @@ import Grid from './Grid';
 
 export default {
     component: Grid,
-    title: 'Components/Grid',
+    title: 'Elements/Grid',
 };
 
 const cellStyle = { textAlign: 'center', padding: 20, background: '#ddd' };

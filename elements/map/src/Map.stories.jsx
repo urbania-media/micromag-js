@@ -11,7 +11,7 @@ const props = {
 
 export default {
     component: MapComponent,
-    title: 'Components/Map',
+    title: 'Elements/Map',
     decorators: [withGoogleMapsApi],
 };
 

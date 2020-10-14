@@ -3,7 +3,7 @@ import Scroll from './Scroll';
 
 export default {
     component: Scroll,
-    title: 'Components/Scroll',
+    title: 'Elements/Scroll',
 };
 
 export const normal = () => (

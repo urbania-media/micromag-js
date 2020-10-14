@@ -3,7 +3,7 @@ import Link from './Link';
 
 export default {
     component: Link,
-    title: 'Components/Link',
+    title: 'Elements/Link',
 };
 
 export const external = () => (

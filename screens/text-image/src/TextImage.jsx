@@ -22,29 +22,24 @@ import {
     Empty,
 } from '@micromag/core';
 
-import { schemas as messages } from './messages';
-
 import styles from './styles.module.scss';
 
-export const layouts = [
-    'top',
-    'top-reverse',
-    'center',
-    'center-reverse',
-    'bottom',
-    'bottom-reverse',
-    'side',
-    'side-reverse',
-];
-
 const propTypes = {
+    layout: PropTypes.oneOf([
+        'center',
+        'center-reverse',
+        'top',
+        'top-reverse',
+        'bottom',
+        'bottom-reverse',
+        'side',
+        'side-reverse',
+    ]),
     text: MicromagPropTypes.textElement,
     image: MicromagPropTypes.imageElement,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    textAlign: PropTypes.oneOf(['left', 'right', 'center']),
-    layout: PropTypes.oneOf(layouts),
     renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
@@ -57,7 +52,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    textAlign: 'center',
     layout: 'center',
     renderFormat: 'view',
     maxRatio: 3 / 4,
@@ -77,7 +71,6 @@ const TextImage = ({
     background,
     current,
     active,
-    textAlign,
     layout,
     renderFormat,
     maxRatio,
@@ -123,7 +116,7 @@ const TextImage = ({
     } else if (isEmpty) {
         textElement = (
             <Empty className={styles.empty}>
-                <FormattedMessage {...messages.text} />
+                <FormattedMessage defaultMessage="Text" />
             </Empty>
         );
     } else {
@@ -151,7 +144,7 @@ const TextImage = ({
     } else if (isEmpty) {
         imageElement = (
             <Empty className={classNames([styles.empty, styles.emptyImage])}>
-                <FormattedMessage {...messages.image} />
+                <FormattedMessage defaultMessage="Image" />
             </Empty>
         );
     } else if (withImage) {
@@ -180,7 +173,6 @@ const TextImage = ({
                 {
                     [className]: className !== null,
                     [styles.placeholder]: isPlaceholder,
-                    [styles[textAlign]]: textAlign !== null,
                     [styles.sideways]: sideways,
                     [styles.ready]: ready && active,
 

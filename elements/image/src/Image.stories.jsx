@@ -3,7 +3,7 @@ import Image from './Image';
 
 export default {
     component: Image,
-    title: 'Components/Image',
+    title: 'Elements/Image',
 };
 
 export const normal = () => (

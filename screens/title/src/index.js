@@ -1,2 +1,2 @@
-export { default, layouts } from './Title';
-export { default as schema } from './schema';
+export { default } from './definition';
+export { default as Title } from './Title';

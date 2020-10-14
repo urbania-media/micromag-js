@@ -19,12 +19,10 @@ import { getRenderFormat } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
-export const layouts = ['normal'];
-
 const propTypes = {
     items: PropTypes.arrayOf(MicromagPropTypes.textElement),
     background: MicromagPropTypes.backgroundElement,
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf(['normal']),
     current: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,

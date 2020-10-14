@@ -7,7 +7,7 @@ require('dotenv').config();
 
 module.exports = {
     stories: getPackagesPaths().map((packagePath) =>
-        path.join(packagePath, './src/**/*.stories.(jsx|mdx)'),
+        path.join(packagePath, './src/**/*.stories.@(jsx|mdx)'),
     ),
     addons: [
         {
