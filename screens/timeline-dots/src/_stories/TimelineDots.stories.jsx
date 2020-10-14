@@ -10,7 +10,7 @@ import {
 } from '../../../../.storybook/components';
 import { title, description, subtitle } from '../../../../.storybook/data';
 
-import layouts from '../layouts/names';
+import { layouts } from '../TimelineDots';
 import TimelineDots from '../TimelineDots';
 
 export default {
@@ -32,7 +32,7 @@ const props = {
 
 export const Placeholders = () => (
     <LayoutGrid layouts={layouts}>
-        {layout => (
+        {(layout) => (
             <PlaceholderScreen>
                 <TimelineDots layout={layout} renderFormat="placeholder" />
             </PlaceholderScreen>
@@ -42,7 +42,7 @@ export const Placeholders = () => (
 
 export const Editor = () => (
     <LayoutSwitcher layouts={layouts}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <TimelineDots layout={layout} renderFormat="edit" />
             </Screen>
@@ -52,7 +52,7 @@ export const Editor = () => (
 
 export const Normal = () => (
     <LayoutSwitcher layouts={layouts}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <TimelineDots layout={layout} {...props} />
             </Screen>

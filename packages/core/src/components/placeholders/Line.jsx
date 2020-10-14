@@ -2,12 +2,12 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import Placeholder from '../partials/Placeholder';
+import PlaceholderText from '../partials/PlaceholderText';
 
-import styles from '../../styles/partials/placeholders.module.scss';
+import styles from '../../styles/placeholders/placeholders.module.scss';
 
 export const Line = (props) => (
-    <Placeholder
+    <PlaceholderText
         {...props}
         className={classNames([props.className, styles.shortText])}
         height={0.2}

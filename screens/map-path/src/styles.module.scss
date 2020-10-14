@@ -4,6 +4,13 @@
 .container {
     @extend %screen;
 
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+    }
+
     .empty {
         @extend %empty;
         width: 100%;
@@ -49,64 +56,64 @@
             bottom: 10%;
         }
     }
-}
 
-.cards {
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-end;
-
-    width: 100%;
-    height: 100%;
-
-    overflow: hidden;
-    pointer-events: none;
-}
-
-.card {
-    position: absolute;
-    z-index: 3;
-    width: 100%;
-    max-height: 50%;
-    padding: 10px;
-    transform: translate3d(0, 100%, 0);
-
-    background-color: $white;
-    color: $black;
-    text-align: left;
-
-    &.active {
-        transform: translate3d(0, 0, 0);
+    .cards {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: flex-end;
+    
+        width: 100%;
+        height: 100%;
+    
+        overflow: hidden;
+        pointer-events: none;
     }
-}
-
-.controls {
-    display: flex;
-    position: absolute;
-    z-index: 4;
-    bottom: 0;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-
-    width: 100%;
-    height: 10%;
-
-    background-color: $white;
-    color: $black;
-
-    .next,
-    .previous {
-        margin: 2px;
+    
+    .card {
+        position: absolute;
+        z-index: 3;
+        width: 100%;
+        max-height: 50%;
+        padding: 10px;
+        transform: translate3d(0, 100%, 0);
+    
+        background-color: $white;
+        color: $black;
+        text-align: left;
+    
+        &.active {
+            transform: translate3d(0, 0, 0);
+        }
     }
-}
-
-.text {
-    width: 70%;
-}
-
-.image {
-    width: 30%;
+    
+    .controls {
+        display: flex;
+        position: absolute;
+        z-index: 4;
+        bottom: 0;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    
+        width: 100%;
+        height: 10%;
+    
+        background-color: $white;
+        color: $black;
+    
+        .next,
+        .previous {
+            margin: 2px;
+        }
+    }
+    
+    .text {
+        width: 70%;
+    }
+    
+    .image {
+        width: 30%;
+    }
 }

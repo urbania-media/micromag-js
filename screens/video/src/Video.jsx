@@ -1,9 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Stack from '@micromag/element-stack';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Image from '@micromag/element-image';
@@ -12,9 +11,14 @@ import VideoComponent from '@micromag/element-video';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 
-import { PropTypes as MicromagPropTypes, Placeholders } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, PlaceholderVideo } from '@micromag/core';
 
+<<<<<<< HEAD
 import { layouts } from './definition';
+=======
+import styles from './styles.module.scss';
+import Transitions from '@micromag/core/src/components/transitions/Transitions';
+>>>>>>> develop
 
 import styles from './styles.module.scss';
 
@@ -22,13 +26,11 @@ const propTypes = {
     video: MicromagPropTypes.video,
     layout: PropTypes.oneOf(layouts),
     background: MicromagPropTypes.backgroundElement,
-    box: MicromagPropTypes.boxElement,
-    fit: PropTypes.shape({
-        size: PropTypes.string,
-    }),
-    visible: PropTypes.bool,
+    current: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
+    maxRatio: PropTypes.number,
+    transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
 };
 
@@ -36,39 +38,50 @@ const defaultProps = {
     video: null,
     layout: null,
     background: null,
-    box: null,
-    fit: false,
-    visible: true,
-    active: false,
+    current: true,
+    active: true,
     renderFormat: 'view',
+    maxRatio: 3 / 4,
+    transitions: {
+        in: {
+            name: 'fade',
+            duration: 1000,
+        },
+        out: 'scale',
+    },
     className: null,
 };
 
-const Video = ({
+const VideoScreen = ({
     video: videoField,
+    layout,
     background,
-    box,
-    fit,
-    visible,
+    current,
     active,
     renderFormat,
+    maxRatio,
+    transitions,
     className,
 }) => {
-    const loop = false;
-    const autoPlay = false;
+    const autoPlay = false; // props?
     const { width, height } = useScreenSize();
-    const { size } = fit || {};
     const { isPreview, isEditor, isPlaceholder, isView } = getRenderFormat(renderFormat);
-    const { video = {}, params = {} } = videoField || {};
+    const { video = null, params = {} } = videoField || {};
     const isNonInteractive = isPlaceholder || isPreview;
-
-    const PlaceholderSized = size === 'cover' ? Placeholders.VideoFull : Placeholders.Video;
-    const PlaceholderLoop = loop ? Placeholders.VideoLoop : PlaceholderSized;
-    const Placeholder = loop && size === 'cover' ? Placeholders.VideoFullLoop : PlaceholderLoop;
     const autoplayCondition = isEditor ? autoPlay && active : autoPlay && !isNonInteractive;
+    const isFullScreen = layout === 'full';
+
+    const withVideo = video !== null;
+    // @TODO enlever le "|| true" après avoir fixé le <Video> qui trigger le onReady
+    const [ready, setReady] = useState(!withVideo || true);
+    const transitionPlaying = current && ready;
+
+    const onVideoReady = useCallback(() => {
+        setReady(true);
+    }, [setReady]);
 
     let videoElement = null;
-    if (isPreview && video.thumbnail_url && video.metadata) {
+    if (isPreview && withVideo && video.thumbnail_url && video.metadata) {
         videoElement = (
             <Image
                 image={{ media: { url: video.thumbnail_url }, metadata: video.metadata }}
@@ -77,57 +90,57 @@ const Video = ({
         );
     } else if (isNonInteractive) {
         videoElement = (
-            <Placeholder
-                className={classNames([
-                    styles.placeholder,
-                    {
-                        [styles.cover]: size === 'cover',
-                    },
-                ])}
+            <PlaceholderVideo
+                className={styles.placeholder}
+                width={isFullScreen ? '100%' : undefined }
+                height={isFullScreen ? '100%' : undefined }
             />
         );
-    } else {
+    } else if (withVideo) {
         videoElement = (
-            <VideoComponent
-                {...params}
-                autoPlay={autoplayCondition}
-                video={video}
-                width={Math.min(width, 768)}
-                height={height}
-                fit={fit}
-                showEmpty={isEditor}
-                className={styles.video}
-            />
+            <Transitions playing={transitionPlaying} transitions={transitions}>
+                <VideoComponent
+                    {...params}
+                    autoPlay={autoplayCondition}
+                    video={video}
+                    width={Math.min(width, 768)}
+                    height={height}
+                    fit={{ size: isFullScreen ? 'cover' : 'contain' }}
+                    showEmpty={isEditor}
+                    className={styles.video}
+                    onReady={onVideoReady}
+                />
+            </Transitions>
         );
     }
 
-    const containerClassNames = classNames([
-        styles.container,
-        {
-            [className]: className !== null,
-        },
-    ]);
 
     return (
-        <div className={containerClassNames}>
+        <div className={classNames([
+            styles.container,
+            {
+                [className]: className !== null,
+                [styles.placeholder]: isPlaceholder,
+                [styles.fullscreen]: isFullScreen,
+            },
+        ])}>
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && visible) || (isEditor && active)}
+                playing={(isView && current) || (isEditor && active)}
+                maxRatio={maxRatio}
             />
-            <div className={styles.content}>
-                <Container width={width} height={height} visible={visible}>
-                    <Stack {...box} className={styles.box}>
-                        {videoElement}
-                    </Stack>
-                </Container>
-            </div>
+            <Container width={width} height={height} maxRatio={maxRatio}>
+                <div className={styles.content}>
+                    { videoElement }
+                </div>
+            </Container>
         </div>
     );
 };
 
-Video.propTypes = propTypes;
-Video.defaultProps = defaultProps;
+VideoScreen.propTypes = propTypes;
+VideoScreen.defaultProps = defaultProps;
 
-export default React.memo(Video);
+export default React.memo(VideoScreen);

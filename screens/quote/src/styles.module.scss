@@ -6,9 +6,11 @@
     @extend %fullscreen;
     color: $gray-500;
 
-    .grid,
-    .box {
-        width: 100%;
+    .content {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        align-items: center;
         height: 100%;
     }
 

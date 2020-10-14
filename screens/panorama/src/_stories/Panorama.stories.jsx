@@ -9,9 +9,7 @@ import {
 } from '../../../../.storybook/components';
 import { background } from '../../../../.storybook/data';
 
-import Panorama from '../Panorama';
-
-const layouts = ['center'];
+import Panorama, { layouts } from '../Panorama';
 
 const props = {
     background: background(),
@@ -28,7 +26,7 @@ export default {
 
 export const Placeholders = () => (
     <LayoutGrid layouts={layouts}>
-        {layout => (
+        {(layout) => (
             <PlaceholderScreen>
                 <Panorama layout={layout} renderFormat="placeholder" />
             </PlaceholderScreen>
@@ -38,7 +36,7 @@ export const Placeholders = () => (
 
 export const Previews = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <PreviewScreen>
                 <Panorama layout={layout} renderFormat="preview" {...props} />
             </PreviewScreen>
@@ -48,7 +46,7 @@ export const Previews = () => (
 
 export const Normal = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <Panorama layout={layout} {...props} />
             </Screen>

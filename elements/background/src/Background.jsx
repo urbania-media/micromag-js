@@ -69,16 +69,17 @@ const Background = ({
 }) => {
 
     const currentRatio = width / height;
-    const finalWidth = maxRatio !== null && currentRatio > maxRatio ? height * maxRatio : width;
+    const boxedWidth = maxRatio !== null && currentRatio > maxRatio ? height * maxRatio : width;
+    // à utiliser pour les background complexes en desktop (video/image blur)
 
     const finalStyle = {
-        width: finalWidth,
+        width,
         height,
         ...getStyleFromColor(color),
     };
 
     if (image !== null) {
-        finalStyle.backgroundImage = `url("${image.url}")`;
+        finalStyle.backgroundImage = `url("${image.media.url}")`;
         finalStyle.backgroundRepeat = repeat ? 'repeat' : 'no-repeat';
         finalStyle.backgroundPosition = [horizontalAlign, verticalAlign].join(' ');
 

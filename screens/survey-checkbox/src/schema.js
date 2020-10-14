@@ -1,5 +1,5 @@
 import { schemas as messages } from './messages';
-// import { names } from './layouts/names';
+import { layouts } from './SurveyCheckbox';
 
 export default {
     $id: 'https://schemas.micromag.ca/0.1/screens/survey-checkbox.json',
@@ -15,15 +15,15 @@ export default {
         },
         {
             properties: {
-                // layout: {
-                //     $ref: 'https://schemas.micromag.ca/0.1/fields/screen-layout.json',
-                //     title: 'Layout',
-                //     screenType: 'survey-checkbox',
-                //     enum: names,
-                //     intl: {
-                //         title: messages.layout,
-                //     },
-                // },
+                layout: {
+                    $ref: 'https://schemas.micromag.ca/0.1/fields/screen-layout.json',
+                    title: 'Layout',
+                    screenType: 'survey-checkbox',
+                    enum: layouts,
+                    intl: {
+                        title: messages.layout,
+                    },
+                },
                 button: {
                     $ref: 'https://schemas.micromag.ca/0.1/elements/button.json',
                     title: 'Button style',

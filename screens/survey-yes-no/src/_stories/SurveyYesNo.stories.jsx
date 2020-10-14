@@ -9,8 +9,7 @@ import {
     Screen,
 } from '../../../../.storybook/components';
 
-import layouts from '../layouts/names';
-import SurveyYesNo from '../SurveyYesNo';
+import SurveyYesNo, { layouts } from '../SurveyYesNo';
 
 export default {
     // component: Normal,
@@ -23,7 +22,7 @@ const props = {
 
 export const Placeholders = () => (
     <LayoutGrid layouts={layouts}>
-        {layout => (
+        {(layout) => (
             <PlaceholderScreen>
                 <SurveyYesNo layout={layout} renderFormat="placeholder" />
             </PlaceholderScreen>
@@ -33,7 +32,7 @@ export const Placeholders = () => (
 
 export const Editor = () => (
     <LayoutSwitcher layouts={layouts}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <SurveyYesNo layout={layout} renderFormat="edit" />
             </Screen>
@@ -43,7 +42,7 @@ export const Editor = () => (
 
 export const Normal = () => (
     <LayoutSwitcher layouts={layouts}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <SurveyYesNo layout={layout} {...props} />
             </Screen>

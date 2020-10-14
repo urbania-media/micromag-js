@@ -10,10 +10,12 @@ import Background from '@micromag/element-background';
 import { PropTypes as MicromagPropTypes, PlaceholderAdFrame, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat, getLayoutParts } from '@micromag/core/utils';
+import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
 import { schemas as messages } from './messages';
 
 import styles from './styles.module.scss';
+
 
 export const layouts = [
     'center',
@@ -33,9 +35,12 @@ const propTypes = {
     iframe: MicromagPropTypes.iframe,
     adFormat: MicromagPropTypes.adFormat,
     background: MicromagPropTypes.backgroundElement,
-    visible: PropTypes.bool,
+    current: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
+    maxRatio: PropTypes.number,
+    transitions: MicromagPropTypes.transitions,
+    className: PropTypes.string,
 };
 
 const defaultProps = {
@@ -43,16 +48,36 @@ const defaultProps = {
     iframe: null,
     adFormat: null,
     background: null,
-    visible: true,
+    current: true,
     active: false,
     renderFormat: 'view',
+    maxRatio: 3 / 4,
+    transitions: {
+        in: {
+            name: 'fade',
+            duration: 1000,
+        },
+        out: 'scale',
+    },
+    className: null,
 };
 
-const AdSlotScreen = ({ layout, iframe, adFormat, background, visible, active, renderFormat }) => {
+const AdSlot = ({
+    layout,
+    iframe,
+    adFormat,
+    background,
+    current,
+    active,
+    renderFormat,
+    maxRatio,
+    transitions,
+    className,
+}) => {
     const { width, height } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
-    const { src = null, title = 'Ad' } = iframe || {};
-    const { name = null, width: adWidth, height: adHeight } = adFormat || {};
+    const { src = null, title = 'Ad', width: iframeWidth, height: iframeHeight } = iframe || {};
+    const { name = null /* , width: adWidth, height: adHeight */ } = adFormat || {};
 
     const isEmpty = src === null;
     const isFullScreen = layout === 'full';
@@ -60,7 +85,11 @@ const AdSlotScreen = ({ layout, iframe, adFormat, background, visible, active, r
     let iframeElement = null;
 
     if (isPreview) {
-        iframeElement = <div className={styles.previewBlock} />;
+        iframeElement = (
+            <Transitions transitions={transitions} playing={current}>
+                <div className={styles.previewBlock} />
+            </Transitions>
+        );
     } else if (isEditor && isEmpty) {
         iframeElement = (
             <Empty className={styles.empty}>
@@ -81,46 +110,49 @@ const AdSlotScreen = ({ layout, iframe, adFormat, background, visible, active, r
         );
     } else {
         iframeElement = (
-            <iframe
-                className={styles.iframe}
-                src={src}
-                title={title}
-                width={adWidth}
-                height={adHeight}
-            />
+            <Transitions transitions={transitions} playing={current}>
+                <iframe
+                    className={styles.iframe}
+                    src={src}
+                    title={title}
+                    width={iframeWidth}
+                    height={iframeHeight}
+                />
+            </Transitions>
         );
     }
 
     const { horizontal, vertical } = getLayoutParts(layout);
 
-    const containerClassNames = classNames([
-        styles.container,
-        {
-            [styles.fullscreen]: isFullScreen,
-            [styles.placeholder]: isPlaceholder,
-            [styles[horizontal]]: horizontal !== null,
-            [styles[vertical]]: vertical !== null,
-        },
-    ]);
-
     return (
-        <div className={containerClassNames}>
+        <div className={classNames([
+            styles.container,
+            {
+                [className]: className !== null,
+                [styles.fullscreen]: isFullScreen,
+                [styles.placeholder]: isPlaceholder,
+                [styles[horizontal]]: horizontal !== null,
+                [styles[vertical]]: vertical !== null,
+            },
+        ])}>
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && visible) || (isEditor && active)}
+                maxRatio={maxRatio}
+                playing={(isView && current) || (isEditor && active)}
             />
-            <div className={styles.inner}>
-                <Container width={width} height={height} visible={visible}>
-                    <div className={styles.content}>{iframeElement}</div>
-                </Container>
-            </div>
+            
+            <Container width={width} height={height} maxRatio={maxRatio}>
+                <div className={styles.content}>
+                    <div className={styles.inner}>{iframeElement}</div>
+                </div>
+            </Container>            
         </div>
     );
 };
 
-AdSlotScreen.propTypes = propTypes;
-AdSlotScreen.defaultProps = defaultProps;
+AdSlot.propTypes = propTypes;
+AdSlot.defaultProps = defaultProps;
 
-export default React.memo(AdSlotScreen);
+export default React.memo(AdSlot);

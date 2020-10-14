@@ -1,4 +1,4 @@
-// import { names } from './layouts/names';
+// import { layouts } from './Panorama';
 import { schemas as messages } from './messages';
 
 export default {

@@ -10,9 +10,7 @@ import {
 } from '../../../../.storybook/components';
 import { text } from '../../../../.storybook/data';
 
-import Text from '../Text';
-
-import layouts from '../layouts/names';
+import Text, { layouts } from '../Text';
 
 const props = {
     text: text('verylong'),

@@ -2,83 +2,83 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { pascalCase } from 'change-case';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useResizeObserver } from '@micromag/core/hooks';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
-    direction: MicromagPropTypes.flexDirection,
-    axisAlign: MicromagPropTypes.axisAlign,
-    crossAlign: MicromagPropTypes.crossAlign,
-    width: PropTypes.number,
-    height: PropTypes.number,
-    spacing: PropTypes.number,
-    wrap: PropTypes.bool,
+    direction: MicromagPropTypes.stackDirection,
+    align: MicromagPropTypes.stackAlign,
+    spacing: MicromagPropTypes.stackSpacing,
     reverse: PropTypes.bool,
     className: PropTypes.string,
+    itemClassName: PropTypes.string,
     children: PropTypes.node,
 };
 
 const defaultProps = {
-    direction: null,
-    axisAlign: null,
-    crossAlign: null,
-    width: null,
-    height: null,
-    spacing: 0,
-    wrap: false,
+    direction: 'horizontal',
+    align: 'center',
+    spacing: null,
     reverse: false,
     className: null,
+    itemClassName: null,
     children: null,
 };
 
 const Stack = ({
     direction,
-    axisAlign,
-    crossAlign,
-    width,
-    height,
-    spacing: defaultSpacing,
-    wrap,
+    align,
+    spacing,
     reverse,
     className,
+    itemClassName,
     children,
 }) => {
-    const {
-        ref,
-        entry: { contentRect },
-    } = useResizeObserver();
+    const flexDirection =
+        (direction === 'vertical' ? 'column' : 'row') + (reverse ? '-reverse' : '');
+    const alignItems = align === 'center' ? align : `flex-${align}`;
+    const justifyContent = typeof spacing === 'string' ? `space-${spacing}` : null;
+    const space = typeof spacing === 'number' ? spacing : 0;
 
-    const spacing =
-        (width !== null && width < 300) || (contentRect && contentRect.width < 300)
-            ? 10
-            : defaultSpacing;
+    const itemsStyle = {
+        flexDirection,
+        alignItems,
+        justifyContent,
+    };
 
-    const containerSpacing = spacing !== null && spacing > 0 ? spacing / 2 : spacing;
+    const lastIndex = children !== null && children.length ? children.length - 1 : null;
 
     return (
         <div
-            ref={width === null && spacing > 0 ? ref : null}
             className={classNames([
                 styles.container,
                 {
-                    [styles[direction]]: direction !== null,
-                    [styles.wrap]: wrap === true,
-                    [styles.reverse]: reverse === true,
-                    [styles[`axis${pascalCase(axisAlign || '')}`]]: axisAlign !== null,
-                    [styles[`cross${pascalCase(crossAlign || '')}`]]: crossAlign !== null,
                     [className]: className !== null,
                 },
             ])}
-            style={{
-                width,
-                height,
-                padding: containerSpacing || null,
-            }}
+            style={itemsStyle}
         >
-            {children}
+            {React.Children.map(children, (child, index) => {
+                const isLast = reverse ? index === 0 : index === lastIndex;
+                return (
+                    <div
+                        key={`item-${index}`}
+                        className={classNames([
+                            styles.item,
+                            {
+                                [itemClassName]: itemClassName !== null,
+                            },
+                        ])}
+                        style={{
+                            marginBottom: direction === 'vertical' && !isLast ? space : null,
+                            marginRight: direction === 'horizontal' && !isLast ? space : null,
+                        }}
+                    >
+                        {child}
+                    </div>
+                );
+            })}
         </div>
     );
 };

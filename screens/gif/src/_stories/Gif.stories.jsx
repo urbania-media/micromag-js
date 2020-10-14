@@ -10,9 +10,7 @@ import {
 } from '../../../../.storybook/components';
 import { videoFile, background } from '../../../../.storybook/data';
 
-import Gif from '../Gif';
-
-const layouts = ['center', 'full'];
+import Gif, { layouts } from '../Gif';
 
 const props = {
     video: { video: videoFile() },

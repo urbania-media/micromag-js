@@ -9,8 +9,7 @@ import {
 } from '../../../../.storybook/components';
 import { images, background } from '../../../../.storybook/data';
 
-import GalleryScroll from '../GalleryScroll';
-import layouts from '../layouts/names';
+import GalleryScroll, { layouts } from '../GalleryScroll';
 
 const props = {
     images: images({ width: 500, height: Math.random() > 0.5 ? 300 : 200, count: 20 }),

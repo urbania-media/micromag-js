@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -9,7 +9,7 @@ import Container from '@micromag/element-container';
 import Grid from '@micromag/element-grid';
 import Image from '@micromag/element-image';
 
-import { PropTypes as MicromagPropTypes, Placeholders, Empty } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, PlaceholderImage, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 
@@ -18,6 +18,7 @@ import layoutProps from './layouts';
 import { schemas as messages } from './messages';
 
 import styles from './styles.module.scss';
+import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
 export const layouts = [
     'four-by-four',
@@ -36,9 +37,12 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     images: MicromagPropTypes.images,
     defaultSpacing: PropTypes.number,
-    visible: PropTypes.bool,
+    current: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
+    maxRatio: PropTypes.number,
+    transitions: MicromagPropTypes.transitions,
+    transitionStagger: PropTypes.number,
     className: PropTypes.string,
 };
 
@@ -47,20 +51,32 @@ const defaultProps = {
     background: null,
     images: [],
     defaultSpacing: 10,
-    visible: true,
+    current: true,
     active: false,
     renderFormat: 'view',
+    maxRatio: 3 / 4,
+    transitions: {
+        in: {
+            name: 'fade',
+            duration: 1000,
+        },
+        out: 'scale',
+    },
+    transitionStagger: 75,
     className: null,
 };
 
-const GalleryScreen = ({
+const Gallery = ({
     layout,
     images: imageList,
     background,
-    visible,
+    current,
     active,
     defaultSpacing,
     renderFormat,
+    maxRatio,
+    transitions,
+    transitionStagger,
     className,
 }) => {
     const { width, height } = useScreenSize();
@@ -74,41 +90,73 @@ const GalleryScreen = ({
             ...(imageList[i] ? imageList[i] : null),
         })),
     ];
+    const gridSpaces = gridLayout.reduce((acc, current) => acc + current.columns.length, 0);
     const images = isPreview ? imageList.slice(0, 16) : imageList || [];
     const activeImages = isEditor && imageList.length === 0 ? defaultArray : images;
+
+    const imagesCount = Math.min(gridSpaces, activeImages.length);
+
+    const [imagesLoaded, setImagesLoaded] = useState(0);
+    const ready = imagesLoaded >= imagesCount;
+    const transitionPlaying = current && ready;
+
+    const onImageLoaded = useCallback(() => {
+        setImagesLoaded(imagesLoaded + 1);
+    }, [imagesLoaded, setImagesLoaded]);
+
+    let transitionDelay = 0;
 
     const items = isPlaceholder
         ? gridLayout
               .reduce((map, row) => [...map, ...row.columns], [])
-              .map(() => <Placeholders.Image className={styles.placeholder} />)
-        : activeImages.map((it) =>
-              isEditor && !it ? (
-                  <Empty className={styles.empty}>
-                      <FormattedMessage {...messages.image} />
-                  </Empty>
-              ) : (
-                  <Image {...it} fit={{ size: 'cover' }} contain className={styles.image} />
-              ),
-          );
-
-    const containerClassNames = classNames([
-        styles.container,
-        {
-            [styles.placeholder]: isPlaceholder,
-            [className]: className !== null,
-        },
-    ]);
+              .map(() => (
+                  <PlaceholderImage className={styles.placeholder} width="100%" height="100%" />
+              ))
+        : activeImages.map((it, index) => {
+              const element =
+                  isEditor && !it ? (
+                      <Empty className={styles.empty}>
+                          <FormattedMessage {...messages.image} />
+                      </Empty>
+                  ) : (
+                      <Transitions
+                          transitions={transitions}
+                          delay={transitionDelay}
+                          playing={transitionPlaying}
+                      >
+                          <Image
+                              {...it}
+                              fit={{ size: 'cover' }}
+                              contain
+                              className={styles.image}
+                              onLoaded={onImageLoaded}
+                          />
+                      </Transitions>
+                  );
+              transitionDelay += transitionStagger;
+              return element;
+          });
 
     return (
-        <div className={containerClassNames}>
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [styles.placeholder]: isPlaceholder,
+                    [className]: className !== null,
+                },
+            ])}
+        >
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && visible) || (isEditor && active)}
+                playing={(isView && current) || (isEditor && active)}
+                maxRatio={maxRatio}
             />
-            <div className={styles.content}>
-                <Container width={width} height={height} visible={visible}>
+
+            <Container width={width} height={height} maxRatio={maxRatio}>
+                <div className={styles.content}>
                     <div className={styles.images}>
                         <Grid
                             className={styles.grid}
@@ -118,13 +166,13 @@ const GalleryScreen = ({
                             {...grid}
                         />
                     </div>
-                </Container>
-            </div>
+                </div>
+            </Container>
         </div>
     );
 };
 
-GalleryScreen.propTypes = propTypes;
-GalleryScreen.defaultProps = defaultProps;
+Gallery.propTypes = propTypes;
+Gallery.defaultProps = defaultProps;
 
-export default React.memo(GalleryScreen);
+export default React.memo(Gallery);

@@ -1,6 +1,12 @@
 @import '~@micromag/core/scss/variables';
 
 .container {
-    margin: 0 auto;
-    background-color: rgba(255, 255, 255, 0.05);//@TODO tmp
+    position: relative;
+    overflow: auto;
+
+    .inner {
+        position: relative;
+        height: 100%;
+        margin: 0 auto;
+    }
 }

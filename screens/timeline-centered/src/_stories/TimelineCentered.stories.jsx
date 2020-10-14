@@ -7,10 +7,9 @@ import {
     LayoutGrid,
     Screen,
 } from '../../../../.storybook/components';
-import { description, subtitle } from '../../../../.storybook/data';
+import { description, subtitle, image, title } from '../../../../.storybook/data';
 
-import layouts from '../layouts/names';
-import TimelineCentered from '../TimelineCentered';
+import TimelineCentered, { layouts } from '../TimelineCentered';
 
 export default {
     // component: Normal,
@@ -19,15 +18,16 @@ export default {
 
 const props = {
     items: [
-        { subtitle: { body: subtitle() }, text: { body: description() } },
-        { subtitle: { body: subtitle() }, text: { body: description() } },
-        { subtitle: { body: subtitle() }, text: { body: description() } },
+        { title: {body: title()}, subtitle: { body: subtitle() }, text: { body: description() } },
+        { subtitle: { body: subtitle() }, text: { body: description() }, image: image() },
+        { title: {body: title()}, subtitle: { body: subtitle() }, text: { body: description() } },
+        { title: {body: title()}, subtitle: { body: subtitle() }, text: { body: description() }, image: image() },
     ],
 };
 
 export const Placeholders = () => (
     <LayoutGrid layouts={layouts}>
-        {layout => (
+        {(layout) => (
             <PlaceholderScreen>
                 <TimelineCentered layout={layout} renderFormat="placeholder" />
             </PlaceholderScreen>
@@ -37,7 +37,7 @@ export const Placeholders = () => (
 
 export const Editor = () => (
     <LayoutSwitcher layouts={layouts}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <TimelineCentered layout={layout} renderFormat="edit" />
             </Screen>
@@ -47,7 +47,7 @@ export const Editor = () => (
 
 export const Normal = () => (
     <LayoutSwitcher layouts={layouts}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <TimelineCentered layout={layout} {...props} />
             </Screen>

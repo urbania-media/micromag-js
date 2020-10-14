@@ -3,6 +3,14 @@
 .container {
     @extend %screen;
 
+    .content {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+    }
+
     &.center {
         .textContainer {
             text-align: center;
@@ -31,36 +39,6 @@
         .placeholder {
             @extend %placeholder-right;
         }
-    }
-
-    .inner {
-        position: relative;
-        width: 100%;
-        height: 100%;
-    }
-
-    .placeholderImage {
-        height: 40%;
-    }
-
-    .textContainer {
-        max-width: 100%;
-    }
-
-    .textContainer,
-    .placeholderTextContainer {
-        display: flex;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-
-        text-align: center;
     }
 
     .empty {

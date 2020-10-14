@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading, jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -10,6 +10,7 @@ import Background from '@micromag/element-background';
 import { PropTypes as MicromagPropTypes, PlaceholderAdImage, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat, getLayoutParts } from '@micromag/core/utils';
+import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
 import AdImage from './AdImage';
 
@@ -34,9 +35,11 @@ const propTypes = {
     link: MicromagPropTypes.linkElement,
     text: MicromagPropTypes.text,
     background: MicromagPropTypes.backgroundElement,
-    visible: PropTypes.bool,
+    current: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
+    maxRatio: PropTypes.number,
+    transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
 };
 
@@ -46,38 +49,57 @@ const defaultProps = {
     link: null,
     text: null,
     background: null,
-    visible: true,
-    active: false,
+    current: true,
+    active: true,
     renderFormat: 'view',
+    maxRatio: 3 / 4,
+    transitions: {
+        in: {
+            name: 'fade',
+            duration: 1000,
+        },
+        out: 'scale',
+    },
     className: null,
 };
 
-const AdScreen = ({
+const Ad = ({
     layout,
     image,
     link,
     text,
     background,
-    visible,
+    current,
     active,
     renderFormat,
+    maxRatio,
+    transitions,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const maxRatio = 3 / 4;
 
     const { isView, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
     const isEmpty = !image;
     const isFullScreen = layout === 'full';
 
+    const [ready, setReady] = useState(isEmpty);
+    const transitionPlaying = current && ready;
+
+    const onImageLoaded = useCallback(() => {
+        setReady(true);
+    }, [setReady]);    
+
     let imageElement = (
-        <AdImage
-            image={image}
-            link={link}
-            text={text}
-            fullScreen={isFullScreen}
-            renderFormat={renderFormat}
-        />
+        <Transitions transitions={transitions} playing={transitionPlaying}>
+            <AdImage
+                image={image}
+                link={link}
+                text={text}
+                fullScreen={isFullScreen}
+                renderFormat={renderFormat}
+                onImageLoaded={onImageLoaded}
+            />
+        </Transitions>
     );
 
     if (isPlaceholder) {
@@ -104,36 +126,32 @@ const AdScreen = ({
 
     const { horizontal, vertical } = getLayoutParts(layout);
 
-    const containerClassNames = classNames([
-        styles.container,
-        {
-            [styles.fullscreen]: isFullScreen,
-            [styles.placeholder]: isPlaceholder,
-            [styles[horizontal]]: horizontal !== null,
-            [styles[vertical]]: vertical !== null,
-            [className]: className !== null,
-        },
-    ]);
-
     return (
-        <div className={containerClassNames}>
+        <div className={classNames([
+            styles.container,
+            {
+                [styles.fullscreen]: isFullScreen,
+                [styles.placeholder]: isPlaceholder,
+                [styles[horizontal]]: horizontal !== null,
+                [styles[vertical]]: vertical !== null,
+                [className]: className !== null,
+            },
+        ])}>
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
                 maxRatio={maxRatio}
-                playing={(isView && visible) || (isEditor && active)}
+                playing={(isView && current) || (isEditor && active)}
             />
-            <div className={styles.inner}>
-                <Container width={width} height={height} maxRatio={maxRatio} visible={visible}>
-                    <div className={styles.content}>{imageElement}</div>
-                </Container>
-            </div>
+            <Container width={width} height={height} maxRatio={maxRatio}>
+                <div className={styles.content}>{imageElement}</div>
+            </Container>
         </div>
     );
 };
 
-AdScreen.propTypes = propTypes;
-AdScreen.defaultProps = defaultProps;
+Ad.propTypes = propTypes;
+Ad.defaultProps = defaultProps;
 
-export default React.memo(AdScreen);
+export default React.memo(Ad);

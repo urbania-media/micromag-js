@@ -10,8 +10,7 @@ import {
 } from '../../../../.storybook/components';
 import { title, subtitle, text } from '../../../../.storybook/data';
 
-import layouts from '../layouts/names';
-import Title from '../Title';
+import Title, { layouts } from '../Title';
 
 const props = {
     title: { body: title() },

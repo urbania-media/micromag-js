@@ -19,7 +19,7 @@ const props = {
 
 const switcherProps = {
     layouts,
-    defaultLayout: 'one_plus_three',
+    defaultLayout: 'four-by-four',
 };
 
 export default {

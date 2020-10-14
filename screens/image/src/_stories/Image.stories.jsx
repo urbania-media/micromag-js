@@ -9,8 +9,7 @@ import {
 } from '../../../../.storybook/components';
 import { imageWithRandomSize, background } from '../../../../.storybook/data';
 
-import Image from '../Image';
-import layouts from '../layouts/names';
+import Image, { layouts } from '../Image';
 
 const props = {
     image: imageWithRandomSize(),

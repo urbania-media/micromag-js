@@ -5,6 +5,13 @@
 .container {
     @extend %screen;
 
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+    }
+
     .inner {
         width: 100%;
         padding: 20px 15px;
