@@ -8,7 +8,7 @@ import {
     Screen,
 } from '../../../../.storybook/components';
 
-import { map, background } from '../../../../.storybook/data';
+import { map, background, markers } from '../../../../.storybook/data';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 
 import MapPath, { layouts } from '../MapPath';
@@ -31,7 +31,7 @@ export default {
 
 export const Placeholders = () => (
     <LayoutGrid layouts={layouts}>
-        {layout => (
+        {(layout) => (
             <PlaceholderScreen>
                 <MapPath layout={layout} renderFormat="placeholder" />
             </PlaceholderScreen>
@@ -41,7 +41,7 @@ export const Placeholders = () => (
 
 export const Previews = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <PreviewScreen>
                 <MapPath layout={layout} renderFormat="preview" {...props} />
             </PreviewScreen>
@@ -51,7 +51,7 @@ export const Previews = () => (
 
 export const Editor = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <MapPath layout={layout} renderFormat="edit" {...props} />
             </Screen>
@@ -61,7 +61,7 @@ export const Editor = () => (
 
 export const Normal = () => (
     <LayoutSwitcher {...switcherProps}>
-        {layout => (
+        {(layout) => (
             <Screen>
                 <MapPath layout={layout} {...props} />
             </Screen>

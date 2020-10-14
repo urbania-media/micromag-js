@@ -1,2 +1,2 @@
-export { default } from './TextImage';
-export { default as definition, layouts } from './definition';
+export { default } from './definition';
+export { default as TextImage } from './TextImage';

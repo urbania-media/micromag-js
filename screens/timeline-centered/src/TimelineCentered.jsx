@@ -17,14 +17,12 @@ import Transitions from '@micromag/core/src/components/transitions/Transitions';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 
-import { layouts } from './definition';
-
 import styles from './styles.module.scss';
 
 const propTypes = {
     items: PropTypes.arrayOf(MicromagPropTypes.textElement),
     background: MicromagPropTypes.backgroundElement,
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf(['normal']),
     current: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,

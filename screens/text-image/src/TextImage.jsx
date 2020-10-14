@@ -22,17 +22,24 @@ import {
     Empty,
 } from '@micromag/core';
 
-import { layouts } from './definition';
-
 import styles from './styles.module.scss';
 
 const propTypes = {
+    layout: PropTypes.oneOf([
+        'center',
+        'center-reverse',
+        'top',
+        'top-reverse',    
+        'bottom',
+        'bottom-reverse',
+        'side',
+        'side-reverse',
+    ]),
     text: MicromagPropTypes.textComponent,
     image: MicromagPropTypes.imageComponent,
     background: MicromagPropTypes.backgroundComponent,
     current: PropTypes.bool,
-    active: PropTypes.bool,
-    layout: PropTypes.oneOf(layouts),
+    active: PropTypes.bool,    
     renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,

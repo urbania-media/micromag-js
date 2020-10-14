@@ -20,8 +20,6 @@ import {
 import { getRenderFormat } from '@micromag/core/utils';
 import { useScreenSize } from '@micromag/core/contexts';
 
-import { layouts } from './definition';
-
 import styles from './styles.module.scss';
 
 const HEADING_SIZES = {
@@ -30,7 +28,7 @@ const HEADING_SIZES = {
 };
 
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf(['center', 'top', 'bottom', 'split-top', 'split-bottom']),
     title: MicromagPropTypes.headingElement,
     subtitle: MicromagPropTypes.headingElement,
     description: MicromagPropTypes.textElement,

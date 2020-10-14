@@ -1,6 +1,5 @@
 import { defineMessage } from 'react-intl';
-
-export const layouts = ['normal'];
+import TimelineCentered from './TimelineCentered';
 
 export default {
     id: 'timeline-centered',
@@ -9,7 +8,8 @@ export default {
         defaultMessage: 'TimelineCentered',
         description: 'TimelineCentered screen title'
     }),
-    layouts,
+    component: TimelineCentered,
+    layouts: ['normal'],
     fields: [
         {
             name: 'layout',

@@ -4,7 +4,7 @@ import { description, subtitle, image, title, background } from '../../../../.st
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import TimelineCentered from '../TimelineCentered';
-import definition, { layouts } from '../definition';
+import definition from '../definition';
 
 const props = {
     items: [
@@ -20,7 +20,7 @@ export default {
     component: TimelineCentered,
     parameters: {
         intl: true,
-        screenLayouts: layouts
+        screenDefinition: definition.find(it => it.component === TimelineCentered),
     }
 };
 

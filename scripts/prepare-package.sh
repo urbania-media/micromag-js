@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NODE_ENV=production
+export NODE_ENV=production
 
 # Clean
 echo "Cleaning..."
@@ -29,8 +29,8 @@ fi
 if grep -q "lang" "package.json"; then
     echo "Building intl..."
     mkdir -p ./lang/extract/
-    node ../../scripts/formatjs-extract.js './src/**/*.js*' ./lang/extract/en.json
+    ../../scripts/formatjs-extract.js './src/**/*.js*' ./lang/extract/en.json
     tx push -s
     tx pull -a
-    node ../../scripts/formatjs-compile.js './lang/extract/*.json' ./lang
+    ../../scripts/formatjs-compile.js './lang/extract/*.json' ./lang
 fi

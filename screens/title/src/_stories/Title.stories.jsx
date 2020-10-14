@@ -4,7 +4,7 @@ import { title, subtitle, background } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import Title from '../Title';
-import definition, { layouts } from '../definition';
+import definition from '../definition';
 
 const props = {
     title: { body: title() },
@@ -17,7 +17,7 @@ export default {
     component: Title,
     parameters: {
         intl: true,
-        screenLayouts: layouts,
+        screenDefinition: definition.find(it => it.component === Title),
     },
 };
 

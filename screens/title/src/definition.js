@@ -1,6 +1,5 @@
 import { defineMessage } from 'react-intl';
-
-export const layouts = ['center', 'top', 'bottom', 'split-top', 'split-bottom'];
+import Title from './Title';
 
 export default {
     id: 'title',
@@ -9,7 +8,8 @@ export default {
         defaultMessage: 'Title',
         description: 'Title screen title'
     }),
-    layouts,
+    components: Title,
+    layouts: ['center', 'top', 'bottom', 'split-top', 'split-bottom'],
     fields: [
         {
             name: 'layout',

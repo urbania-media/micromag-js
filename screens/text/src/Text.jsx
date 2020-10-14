@@ -12,16 +12,12 @@ import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 import { PropTypes as MicromagPropTypes, PlaceholderText, Empty } from '@micromag/core';
 
-import { schemas as messages } from './messages';
-
 import Transitions from '@micromag/core/src/components/transitions/Transitions';
-
-import { layouts } from './definition';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf(['center', 'top', 'bottom']),
     text: MicromagPropTypes.textElement,
     background: MicromagPropTypes.backgroundElement,
     textAlign: MicromagPropTypes.textAlign,
@@ -75,7 +71,7 @@ const TextScreen = ({
     } else if (isEmpty) {
         textComponent = (
             <Empty className={styles.empty}>
-                <FormattedMessage {...messages.text} />
+                <FormattedMessage defaultMessage="Text" />
             </Empty>
         );
     } else {

@@ -4,7 +4,7 @@ import { text } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import Text from '../Text';
-import definition, { layouts } from '../definition';
+import definition from '../definition';
 
 const props = {
     text: text('verylong'),
@@ -15,7 +15,7 @@ export default {
     component: Text,
     parameters: {
         intl: true,
-        screenLayouts: layouts,
+        screenDefinition: definition.find(it => it.component === Text),
     },
 };
 

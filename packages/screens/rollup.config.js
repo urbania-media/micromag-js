@@ -4,19 +4,14 @@ import resolve from '@rollup/plugin-node-resolve';
 import baseConfig from '../../rollup.config';
 
 export default [
+    baseConfig({
+        resolveOptions: {
+            extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
+            resolveOnly: [new RegExp(path.join(__dirname, './src/'))],
+        },
+    }),
     {
-        ...baseConfig,
-        plugins: [
-            ...baseConfig.plugins.slice(0, 1),
-            resolve({
-                extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
-                resolveOnly: [new RegExp(path.join(__dirname, './src/ScreensProvider'))],
-            }),
-            ...baseConfig.plugins.slice(2),
-        ],
-    },
-    {
-        ...baseConfig,
+        ...baseConfig(),
         input: 'src/all.js',
         output: [
             {
@@ -25,19 +20,6 @@ export default [
             },
             {
                 file: 'es/all.js',
-            },
-        ],
-    },
-    {
-        ...baseConfig,
-        input: 'src/schemas.js',
-        output: [
-            {
-                file: 'lib/schemas.js',
-                format: 'cjs',
-            },
-            {
-                file: 'es/schemas.js',
             },
         ],
     },

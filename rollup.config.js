@@ -10,7 +10,7 @@ import url from '@rollup/plugin-url';
 import replace from '@rollup/plugin-replace';
 import generateScopedName from './scripts/lib/generateScopedName';
 
-export default ({ withoutPostCss = false, withoutPostCssExtract = false } = {}) => {
+export default ({ withoutPostCss = false, withoutPostCssExtract = false, resolveOptions = null } = {}) => {
     return {
         input: 'src/index.js',
         output: [
@@ -27,6 +27,7 @@ export default ({ withoutPostCss = false, withoutPostCssExtract = false } = {}) 
             resolve({
                 extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
                 jail: path.join(process.cwd(), 'src'),
+                ...resolveOptions,
             }),
             commonjs(),
             babel({

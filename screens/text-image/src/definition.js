@@ -1,15 +1,5 @@
 import { defineMessage } from 'react-intl';
-
-export const layouts = [
-    'center',
-    'center-reverse',
-    'top',
-    'top-reverse',    
-    'bottom',
-    'bottom-reverse',
-    'side',
-    'side-reverse',
-];
+import TextImage from './TextImage';
 
 export default {
     id: 'video',
@@ -18,7 +8,17 @@ export default {
         defaultMessage: 'Video',
         description: 'Video screen title'
     }),
-    layouts,
+    component: TextImage,
+    layouts: [
+        'center',
+        'center-reverse',
+        'top',
+        'top-reverse',    
+        'bottom',
+        'bottom-reverse',
+        'side',
+        'side-reverse',
+    ],
     fields: [
         {
             name: 'layout',

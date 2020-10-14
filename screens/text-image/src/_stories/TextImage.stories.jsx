@@ -4,7 +4,7 @@ import { text, imageWithRandomSize } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import TextImage from '../TextImage';
-import definition, { layouts } from '../definition';
+import definition from '../definition';
 
 const props = {
     text: text(),
@@ -16,7 +16,7 @@ export default {
     component: TextImage,
     parameters: {
         intl: true,
-        screenLayouts: layouts,
+        screenDefinition: definition.find(it => it.component === TextImage),
     },
 };
 

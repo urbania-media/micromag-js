@@ -10,8 +10,14 @@
 // export { default as SurveyCheckbox } from '@micromag/screen-survey-checkbox';
 // export { default as SurveyMultipleChoice } from '@micromag/screen-survey-multiple-choice';
 // export { default as SurveyYesNo } from '@micromag/screen-survey-yes-no';
-export { default as Text } from '@micromag/screen-text';
-export { default as TextImage } from '@micromag/screen-text-image';
-export { default as TimelineCentered } from '@micromag/screen-timeline-centered';
-export { default as Title } from '@micromag/screen-title';
-export { default as Video } from '@micromag/screen-video';
+// export { default as Text } from '@micromag/screen-text';
+// export { default as TextImage } from '@micromag/screen-text-image';
+// export { default as TextVideo } from '@micromag/screen-text-video';
+// export { default as TimelineCentered } from '@micromag/screen-timeline-centered';
+// export { default as TimelineDots } from '@micromag/screen-timeline-dots';
+// export { default as Title } from '@micromag/screen-title';
+import video from '@micromag/screen-video';
+
+const screens = [...video];
+
+export default screens;

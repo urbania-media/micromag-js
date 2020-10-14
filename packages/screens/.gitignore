@@ -36,6 +36,5 @@ publish
 /dist
 /assets
 /scss
-/all.js
 /schemas.js
 /package-lock.json
