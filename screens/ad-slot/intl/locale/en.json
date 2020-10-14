@@ -1,6 +1,0 @@
-{
-    "screens.ad-slot.schema.properties.ad": "Ad",
-    "screens.ad-slot.schema.properties.background": "Background",
-    "screens.ad-slot.schema.properties.layout": "Layout",
-    "screens.ad-slot.schema.title": "Advertising Slot"
-}

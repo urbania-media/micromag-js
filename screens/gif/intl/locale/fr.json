@@ -1,6 +1,0 @@
-{
-    "screens.video.schema.properties.background": "Arrière-plan",
-    "screens.video.schema.properties.layout": "Mise en page",
-    "screens.video.schema.properties.video": "Vidéo",
-    "screens.video.schema.title": "Vidéo"
-}

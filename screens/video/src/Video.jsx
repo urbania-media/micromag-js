@@ -10,15 +10,11 @@ import VideoComponent from '@micromag/element-video';
 
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
+import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
 import { PropTypes as MicromagPropTypes, PlaceholderVideo } from '@micromag/core';
 
-<<<<<<< HEAD
 import { layouts } from './definition';
-=======
-import styles from './styles.module.scss';
-import Transitions from '@micromag/core/src/components/transitions/Transitions';
->>>>>>> develop
 
 import styles from './styles.module.scss';
 
