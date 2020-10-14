@@ -1,2 +1,2 @@
-export { default } from './Video';
-export { default as definition, layouts } from './definition';
+export { default } from './definition';
+export { default as Video } from './Video';

@@ -14,13 +14,11 @@ import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
 import { PropTypes as MicromagPropTypes, PlaceholderVideo } from '@micromag/core';
 
-import { layouts } from './definition';
-
 import styles from './styles.module.scss';
 
 const propTypes = {
     video: MicromagPropTypes.video,
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf(['full', 'center']),
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,

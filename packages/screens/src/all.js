@@ -18,4 +18,8 @@
 // // export { default as TimelineCentered } from '@micromag/screen-timeline-centered';
 // // export { default as TimelineDots } from '@micromag/screen-timeline-dots';
 // export { default as Title } from '@micromag/screen-title';
-export { default as Video } from '@micromag/screen-video';
+import video from '@micromag/screen-video';
+
+const screens = [...video];
+
+export default screens;
