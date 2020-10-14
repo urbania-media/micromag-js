@@ -38,9 +38,9 @@ export const layouts = [
 ];
 
 const propTypes = {
-    text: MicromagPropTypes.textComponent,
-    image: MicromagPropTypes.imageComponent,
-    background: MicromagPropTypes.backgroundComponent,
+    text: MicromagPropTypes.textElement,
+    image: MicromagPropTypes.imageElement,
+    background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
     textAlign: PropTypes.oneOf(['left', 'right', 'center']),
@@ -86,7 +86,7 @@ const TextImage = ({
 }) => {
     const { width, height } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
-    
+
     const withText = text !== null;
     const withImage = image !== null;
 
@@ -177,13 +177,13 @@ const TextImage = ({
         <div
             className={classNames([
                 styles.container,
-                {                    
+                {
                     [className]: className !== null,
                     [styles.placeholder]: isPlaceholder,
-                    [styles[textAlign]]: textAlign !== null,                    
+                    [styles[textAlign]]: textAlign !== null,
                     [styles.sideways]: sideways,
                     [styles.ready]: ready && active,
-                    
+
                 },
             ])}
         >

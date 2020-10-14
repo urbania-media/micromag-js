@@ -14,7 +14,7 @@ const messages = defineMessages({
 });
 
 const propTypes = {
-    value: MicromagPropTypes.video,
+    value: MicromagPropTypes.videoMedia,
 };
 
 const defaultProps = {

@@ -14,7 +14,7 @@ const messages = defineMessages({
 });
 
 const propTypes = {
-    value: MicromagPropTypes.audio,
+    value: MicromagPropTypes.audioMedia,
 };
 
 const defaultProps = {

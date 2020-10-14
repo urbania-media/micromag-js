@@ -17,7 +17,7 @@ import { PropTypes as MicromagPropTypes, PlaceholderVideo } from '@micromag/core
 import styles from './styles.module.scss';
 
 const propTypes = {
-    video: MicromagPropTypes.video,
+    video: MicromagPropTypes.videoElement,
     layout: PropTypes.oneOf(['full', 'center']),
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,

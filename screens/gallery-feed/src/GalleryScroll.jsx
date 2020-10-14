@@ -24,7 +24,7 @@ export const layouts = ['single', 'double', 'triple', 'mixed-double', 'mixed-tri
 const propTypes = {
     layout: PropTypes.oneOf(layouts),
     background: MicromagPropTypes.backgroundElement,
-    images: MicromagPropTypes.images,
+    images: MicromagPropTypes.imageMedias,
     spacing: PropTypes.number,
     current: PropTypes.bool,
     active: PropTypes.bool,

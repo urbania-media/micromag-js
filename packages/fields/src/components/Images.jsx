@@ -20,7 +20,7 @@ const messages = defineMessages({
 });
 
 const propTypes = {
-    value: MicromagPropTypes.images,
+    value: MicromagPropTypes.imageMedias,
 };
 
 const defaultProps = {

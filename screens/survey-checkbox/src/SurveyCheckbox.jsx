@@ -30,7 +30,7 @@ const propTypes = {
     question: MicromagPropTypes.textElement,
     options: PropTypes.arrayOf(MicromagPropTypes.textElement),
     result: PropTypes.shape({
-        image: MicromagPropTypes.image,
+        image: MicromagPropTypes.imageMedia,
         text: MicromagPropTypes.textElement,
     }),
     background: MicromagPropTypes.backgroundElement,

@@ -151,11 +151,9 @@ export const backgroundImage = ({ rand = false } = {}) => ({
 });
 
 export const audio = () => ({
-    media: {
-        src: AudioTest,
-        length: 16000,
-    },
-    controls: true,
+    type: 'audio',
+    url: AudioTest,
+    duration: 16000,
 });
 
 export const advertising = ({ width, height }) => ({

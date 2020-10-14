@@ -187,54 +187,59 @@ export const flexDirection = PropTypes.oneOf(['row', 'column']);
 // export const spacing = PropTypes.number;
 
 /**
- * Content
+ * Medias
  */
-const mediaShape = {
-    id: PropTypes.string,
-    type: PropTypes.string,
-    thumbnail_url: PropTypes.string,
-    name: PropTypes.string,
+const mediaMetadataShape = {
     filename: PropTypes.string,
     size: PropTypes.number,
+};
+
+const mediaShape = {
+    id: PropTypes.string,
+    type: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    thumbnail_url: PropTypes.string,
+    name: PropTypes.string,
     metadata: PropTypes.shape({
-        width: PropTypes.number,
-        height: PropTypes.number,
-        duration: PropTypes.number,
+        ...mediaMetadataShape,
     }),
 };
 
 export const media = PropTypes.shape(mediaShape);
 export const medias = PropTypes.arrayOf(media);
 
-export const image = PropTypes.shape({
+export const imageMedia = PropTypes.shape({
     ...mediaShape,
     type: PropTypes.oneOf(['image']),
     metadata: PropTypes.shape({
+        ...mediaMetadataShape,
         width: PropTypes.number,
         height: PropTypes.number,
     }),
 });
-export const images = PropTypes.arrayOf(image);
+export const imageMedias = PropTypes.arrayOf(imageMedia);
 
-export const video = PropTypes.shape({
+export const videoMedia = PropTypes.shape({
     ...mediaShape,
     type: PropTypes.oneOf(['video']),
     metadata: PropTypes.shape({
+        ...mediaMetadataShape,
         width: PropTypes.number,
         height: PropTypes.number,
         duration: PropTypes.number,
     }),
 });
-export const videos = PropTypes.arrayOf(video);
+export const videoMedias = PropTypes.arrayOf(videoMedia);
 
-export const audio = PropTypes.shape({
+export const audioMedia = PropTypes.shape({
     ...mediaShape,
     type: PropTypes.oneOf(['audio']),
     metadata: PropTypes.shape({
+        ...mediaMetadataShape,
         duration: PropTypes.number,
     }),
 });
-export const audios = PropTypes.arrayOf(audio);
+export const audioMedias = PropTypes.arrayOf(audioMedia);
 
 /**
  * Elements
@@ -250,16 +255,21 @@ export const textElement = PropTypes.shape({
 });
 
 export const imageElement = PropTypes.shape({
-    image,
+    image: imageMedia,
 });
 
 export const videoElement = PropTypes.shape({
-    video,
+    video: videoMedia,
+});
+
+export const audioElement = PropTypes.shape({
+    audio: videoMedia,
 });
 
 export const backgroundElement = PropTypes.shape({
     color,
-    image,
+    image: imageMedia,
+    video: videoMedia,
 });
 
 export const stackDirection = PropTypes.oneOf(['horizontal', 'vertical']);
@@ -354,7 +364,7 @@ export const adFormat = PropTypes.shape({
     url: PropTypes.string,
     target,
     iframe: PropTypes.string,
-    image,
+    image: imageMedia,
 });
 
 export const audioComponent = PropTypes.shape({
@@ -365,7 +375,7 @@ export const audioComponent = PropTypes.shape({
 });
 
 export const slide = PropTypes.shape({
-    image,
+    image: imageMedia,
     text: PropTypes.string,
 });
 

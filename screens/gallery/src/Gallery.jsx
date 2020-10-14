@@ -35,7 +35,7 @@ export const layouts = [
 const propTypes = {
     layout: PropTypes.oneOf(layouts),
     background: MicromagPropTypes.backgroundElement,
-    images: MicromagPropTypes.images,
+    images: MicromagPropTypes.imageMedias,
     defaultSpacing: PropTypes.number,
     current: PropTypes.bool,
     active: PropTypes.bool,

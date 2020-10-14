@@ -22,7 +22,7 @@ export const layouts = ['center', 'top', 'bottom'];
 
 const propTypes = {
     layout: PropTypes.oneOf(layouts),
-    image: MicromagPropTypes.image,
+    image: MicromagPropTypes.imageMedia,
     text: MicromagPropTypes.textElement,
     background: MicromagPropTypes.backgroundElement,
     textAlign: MicromagPropTypes.textAlign,
