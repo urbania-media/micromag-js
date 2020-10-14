@@ -17,7 +17,7 @@ export default {
     component: Title,
     parameters: {
         intl: true,
-        screenDefinition: definition.find(it => it.component === Title),
+        screenDefinition: definition,
     },
 };
 

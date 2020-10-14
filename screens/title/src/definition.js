@@ -8,7 +8,7 @@ export default {
         defaultMessage: 'Title',
         description: 'Title screen title'
     }),
-    components: Title,
+    component: Title,
     layouts: ['center', 'top', 'bottom', 'split-top', 'split-bottom'],
     fields: [
         {

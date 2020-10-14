@@ -16,7 +16,7 @@ export default {
     component: TextImage,
     parameters: {
         intl: true,
-        screenDefinition: definition.find(it => it.component === TextImage),
+        screenDefinition: definition,
     },
 };
 

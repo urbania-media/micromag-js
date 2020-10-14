@@ -12,12 +12,19 @@
 // export { default as SurveyYesNo } from '@micromag/screen-survey-yes-no';
 // export { default as Text } from '@micromag/screen-text';
 // export { default as TextImage } from '@micromag/screen-text-image';
-// export { default as TextVideo } from '@micromag/screen-text-video';
 // export { default as TimelineCentered } from '@micromag/screen-timeline-centered';
-// export { default as TimelineDots } from '@micromag/screen-timeline-dots';
-// export { default as Title } from '@micromag/screen-title';
+import text from '@micromag/screen-text';
+import textImage from '@micromag/screen-text-image';
+import timelineCentered from '@micromag/screen-timeline-centered';
+import title from '@micromag/screen-title';
 import video from '@micromag/screen-video';
 
-const screens = [...video];
+const screens = [
+    text,
+    textImage,
+    timelineCentered,
+    title,
+    ...video,
+];
 
 export default screens;

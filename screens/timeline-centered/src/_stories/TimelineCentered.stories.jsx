@@ -20,7 +20,7 @@ export default {
     component: TimelineCentered,
     parameters: {
         intl: true,
-        screenDefinition: definition.find(it => it.component === TimelineCentered),
+        screenDefinition: definition,
     }
 };
 
