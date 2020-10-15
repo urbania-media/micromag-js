@@ -3,13 +3,12 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import { getDisplayName, getComponentFromName } from '../utils';
-import {
-    FIELDS_NAMESPACE,
-    SCREENS_NAMESPACE,
-    FORMS_NAMESPACE,
-    MODALS_NAMESPACE,
-    ELEMENTS_NAMESPACE,
-} from '../components/namespaces';
+
+export const MODALS_NAMESPACE = 'modals';
+export const FIELDS_NAMESPACE = 'fields';
+export const FORMS_NAMESPACE = 'forms';
+export const SCREENS_NAMESPACE = 'screens';
+export const ELEMENTS_NAMESPACE  = 'elements';
 
 export const ComponentsContext = React.createContext({});
 
@@ -41,8 +40,8 @@ export const useModalsComponents = (defaultComponents = {}) =>
 export const useElementsComponents = (defaultComponents = {}) =>
     useComponents(ELEMENTS_NAMESPACE, defaultComponents);
 
-export const withComponents = WrappedComponent => {
-    const withComponentsComponent = props => (
+export const withComponents = (WrappedComponent) => {
+    const withComponentsComponent = (props) => (
         <ComponentsContext.Consumer>
             {({ components }) => <WrappedComponent components={components} {...props} />}
         </ComponentsContext.Consumer>

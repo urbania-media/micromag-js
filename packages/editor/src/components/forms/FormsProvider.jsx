@@ -1,8 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ComponentsProvider } from '@micromag/core/contexts';
-import { FORMS_NAMESPACE } from '@micromag/core/components';
+import { ComponentsProvider, FORMS_NAMESPACE } from '@micromag/core/contexts';
 
 import * as FormsComponents from './index';
 

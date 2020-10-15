@@ -7,7 +7,7 @@ import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 // import manager from '../../../intl/src/manager';
 
 import createDefaultStory from '../utils/createDefaultStory';
-import '../../../intl/locale/fr';
+import '../../../intl/lang/fr';
 
 export default {
     component: Editor,

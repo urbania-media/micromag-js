@@ -1,0 +1,12 @@
+{
+  "schema.properties.answers": "Answers",
+  "schema.properties.background": "Background",
+  "schema.properties.button": "Button style",
+  "schema.properties.failure": "Failure",
+  "schema.properties.question": "Question",
+  "schema.properties.success": "Success",
+  "schema.properties.text_style": "Text style",
+  "schema.title": "Survey with multiple choices",
+  "screen.retry": "Retry",
+  "screen.submit": "Submit"
+}

@@ -1,19 +1,12 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Label } from '@micromag/core/components';
 import MediaGallery from '@micromag/media-gallery';
 
 import styles from '../styles/media.module.scss';
-
-const messages = defineMessages({
-    noValue: {
-        id: 'media.no_value',
-        defaultMessage: 'Select a media...',
-    },
-});
 
 const propTypes = {
     type: PropTypes.oneOf(['image', 'video', 'audio']),
@@ -30,7 +23,12 @@ const defaultProps = {
     type: null,
     value: null,
     isForm: false,
-    noValueLabel: messages.noValue,
+    noValueLabel: (
+        <FormattedMessage
+            defaultMessage="Select a media..."
+            description="Label when no value is provided to Media field"
+        />
+    ),
     withoutThumbnail: false,
     className: null,
     onChange: null,
@@ -49,7 +47,7 @@ const MediaField = ({
 }) => {
     const { name = null, thumbnail_url: thumbnailUrl = null } = value || {};
     const onClickMedia = useCallback(
-        media => {
+        (media) => {
             if (onChange !== null) {
                 onChange(media !== null && value !== null && media.id === value.id ? null : media);
             }

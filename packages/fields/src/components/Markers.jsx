@@ -2,30 +2,29 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 // import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import ItemsField from './Items';
 import MarkerField from './Marker';
-
-const messages = defineMessages({
-    noMarker: {
-        id: 'markers.no_marker',
-        defaultMessage: 'No marker...',
-    },
-    addMarker: {
-        id: 'markers.add_marker',
-        defaultMessage: 'Add a marker',
-    },
-});
 
 const propTypes = {};
 
 const defaultProps = {};
 
-const MarkersField = props => (
+const MarkersField = (props) => (
     <ItemsField
-        noItemLabel={messages.noMarker}
-        addItemLabel={messages.addMarker}
+        noItemLabel={
+            <FormattedMessage
+                defaultMessage="No marker..."
+                description="Label when there is no item in markers field"
+            />
+        }
+        addItemLabel={
+            <FormattedMessage
+                defaultMessage="Add a marker"
+                description="Button label in markers field"
+            />
+        }
         ItemComponent={MarkerField}
         {...props}
     />

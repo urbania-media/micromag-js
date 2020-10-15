@@ -1,8 +1,0 @@
-{
-    "screens.title.schema.properties.background": "Background",
-    "screens.title.schema.properties.description": "Description",
-    "screens.title.schema.properties.layout": "Layout",
-    "screens.title.schema.properties.subtitle": "Subtitle",
-    "screens.title.schema.properties.title": "Title",
-    "screens.title.schema.title": "Title"
-}

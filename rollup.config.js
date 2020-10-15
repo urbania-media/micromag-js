@@ -10,7 +10,13 @@ import url from '@rollup/plugin-url';
 import replace from '@rollup/plugin-replace';
 import generateScopedName from './scripts/lib/generateScopedName';
 
-export default ({ withoutPostCss = false, withoutPostCssExtract = false, resolveOptions = null } = {}) => {
+export default ({
+    withoutPostCss = false,
+    withoutPostCssExtract = false,
+    resolveOptions = null,
+    prependPlugins = [],
+    appendPlugins = [],
+} = {}) => {
     return {
         input: 'src/index.js',
         output: [
@@ -23,6 +29,7 @@ export default ({ withoutPostCss = false, withoutPostCssExtract = false, resolve
             },
         ],
         plugins: [
+            ...prependPlugins,
             json(),
             resolve({
                 extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
@@ -53,6 +60,7 @@ export default ({ withoutPostCss = false, withoutPostCssExtract = false, resolve
             replace({
                 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
             }),
+            ...appendPlugins,
         ].filter(Boolean),
     };
 };

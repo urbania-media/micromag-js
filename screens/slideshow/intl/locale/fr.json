@@ -1,6 +1,0 @@
-{
-    "screens.slideshow.schema.properties.background": "Arrière-plan",
-    "screens.slideshow.schema.properties.button-style": "Style de bouton",
-    "screens.slideshow.schema.properties.slides": "Diapositives",
-    "screens.slideshow.schema.title": "Diaporama"
-}

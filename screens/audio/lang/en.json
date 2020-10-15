@@ -1,0 +1,8 @@
+{
+  "schema.properties.audio": "Audio",
+  "schema.properties.background": "Background",
+  "schema.properties.image": "Image",
+  "schema.properties.layout": "Layout",
+  "schema.properties.text": "Text",
+  "schema.title": "Audio"
+}

@@ -31,14 +31,12 @@
         "lib",
         "es",
         "assets",
-        "scss",
         "all.js",
         "schemas.js"
     ],
     "scripts": {
         "css": "../../scripts/build-sass.js ./src/styles.scss ./assets/css/styles.css",
-        "scss": "mkdir assets/scss && cp ./src/styles.scss ./assets/scss/styles.scss",
-        "prepare": "../../scripts/prepare-package.sh && npm run css && npm run scss"
+        "prepare": "../../scripts/prepare-package.sh --scss && npm run css"
     },
     "devDependencies": {
         "react": ">=15.0.0 || ^16.0.0",

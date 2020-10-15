@@ -1,0 +1,12 @@
+{
+  "schema.properties.answer_no": "Answer No",
+  "schema.properties.answer_yes": "Answer Yes",
+  "schema.properties.background": "Background",
+  "schema.properties.button": "Button style",
+  "schema.properties.question": "Question",
+  "schema.properties.text_style": "Text style",
+  "schema.title": "Survey with yes or no",
+  "screen.no": "No",
+  "screen.retry": "Retry",
+  "screen.yes": "Yes"
+}

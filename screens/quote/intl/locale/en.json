@@ -1,7 +1,0 @@
-{
-    "screens.quote.schema.properties.author": "Author",
-    "screens.quote.schema.properties.background": "Background",
-    "screens.quote.schema.properties.quote": "Quote",
-    "screens.quote.schema.properties.source": "Source",
-    "screens.quote.schema.title": "Quote"
-}

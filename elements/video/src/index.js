@@ -4,4 +4,3 @@ export { default as VideoFile } from './VideoFile';
 export { default as Poster } from './Poster';
 export { default as PosterYouTube } from './PosterYouTube';
 export { default } from './Video';
-export { default as schema } from './schema';

@@ -1,0 +1,7 @@
+{
+  "schema.properties.author": "Author",
+  "schema.properties.background": "Background",
+  "schema.properties.quote": "Quote",
+  "schema.properties.source": "Source",
+  "schema.title": "Quote"
+}

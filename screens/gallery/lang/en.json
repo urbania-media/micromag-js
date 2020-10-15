@@ -1,0 +1,7 @@
+{
+  "schema.properties.background": "Background",
+  "schema.properties.image": "Image",
+  "schema.properties.images": "Images",
+  "schema.properties.layout": "Layout",
+  "schema.title": "Gallery"
+}

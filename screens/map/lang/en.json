@@ -1,0 +1,9 @@
+{
+  "schema.properties.background": "Background",
+  "schema.properties.cardBackground": "Marker background",
+  "schema.properties.cardTextStyle": "Marker text style",
+  "schema.properties.layout": "Layout",
+  "schema.properties.map": "Map",
+  "schema.properties.markers": "Markers",
+  "schema.title": "Map"
+}

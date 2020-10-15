@@ -2,30 +2,29 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 // import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import ItemsField from './Items';
 import SlideField from './Slide';
-
-const messages = defineMessages({
-    noSlide: {
-        id: 'slides.no_slide',
-        defaultMessage: 'No slide...',
-    },
-    addSlide: {
-        id: 'slides.add_slide',
-        defaultMessage: 'Add a slide',
-    },
-});
 
 const propTypes = {};
 
 const defaultProps = {};
 
-const SlidesField = props => (
+const SlidesField = (props) => (
     <ItemsField
-        noItemLabel={messages.noSlide}
-        addItemLabel={messages.addSlide}
+        noItemLabel={
+            <FormattedMessage
+                defaultMessage="No slide..."
+                description="Label when there is no item in slides field"
+            />
+        }
+        addItemLabel={
+            <FormattedMessage
+                defaultMessage="Add a slide"
+                description="Button label in slides field"
+            />
+        }
         ItemComponent={SlideField}
         {...props}
     />
