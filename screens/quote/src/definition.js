@@ -6,7 +6,7 @@ export default {
     type: 'screen',
     title: defineMessage({
         defaultMessage: 'Quote',
-        description: 'Quote screen title'
+        description: 'Quote screen title',
     }),
     component: Quote,
     layouts: ['center', 'top', 'bottom', 'around'],
@@ -16,7 +16,7 @@ export default {
             type: 'screen-layout',
             label: defineMessage({
                 defaultMessage: 'Layout',
-                description: 'Layout field label'
+                description: 'Layout field label',
             }),
         },
         {
@@ -24,7 +24,7 @@ export default {
             type: 'text',
             label: defineMessage({
                 defaultMessage: 'Quote',
-                description: 'Quote field label'
+                description: 'Quote field label',
             }),
         },
         {
@@ -32,7 +32,7 @@ export default {
             type: 'text',
             label: defineMessage({
                 defaultMessage: 'Source',
-                description: 'Source field label'
+                description: 'Source field label',
             }),
         },
         {
@@ -40,7 +40,7 @@ export default {
             type: 'text',
             label: defineMessage({
                 defaultMessage: 'Author',
-                description: 'Author field label'
+                description: 'Author field label',
             }),
         },
         {
@@ -48,7 +48,7 @@ export default {
             type: 'background',
             label: defineMessage({
                 defaultMessage: 'Background',
-                description: 'Background field label'
+                description: 'Background field label',
             }),
         },
     ],

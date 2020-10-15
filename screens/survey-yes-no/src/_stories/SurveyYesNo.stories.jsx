@@ -5,8 +5,7 @@ import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition
 import SurveyYesNo from '../SurveyYesNo';
 import definition from '../definition';
 
-const props = {
-};
+const props = {};
 
 export default {
     title: 'Screens/SurveyYesNo',
@@ -14,7 +13,7 @@ export default {
     parameters: {
         intl: true,
         screenDefinition: definition,
-    }
+    },
 };
 
 export const Placeholder = (storyProps) => <SurveyYesNo {...storyProps} />;

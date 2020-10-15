@@ -111,7 +111,10 @@ const MapPath = ({
     if (isEmpty) {
         element = (
             <Empty className={styles.empty}>
-                <FormattedMessage defaultMessage="Map with path" />
+                <FormattedMessage
+                    defaultMessage="Map with path"
+                    description="Map with path placeholder"
+                />
             </Empty>
         );
     } else if (isPlaceholder) {
@@ -155,10 +158,7 @@ const MapPath = ({
                     ))}
                 </div>
                 <div className={styles.controls}>
-                    <ButtonComponent
-                        className={styles.previous}
-                        onClick={onClickPrevious}
-                    >
+                    <ButtonComponent className={styles.previous} onClick={onClickPrevious}>
                         Previous
                     </ButtonComponent>
                     <ButtonComponent className={styles.next} onClick={onClickNext}>

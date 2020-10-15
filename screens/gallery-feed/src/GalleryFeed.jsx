@@ -143,7 +143,11 @@ const GalleryFeed = ({
 
             if (isView || (isEditor && !isEmpty)) {
                 imageElement = (
-                    <Transitions transitions={transitions} delay={transitionDelay} playing={transitionPlaying}>
+                    <Transitions
+                        transitions={transitions}
+                        delay={transitionDelay}
+                        playing={transitionPlaying}
+                    >
                         <Image
                             {...it}
                             fit={{ size: 'cover' }}
@@ -168,7 +172,10 @@ const GalleryFeed = ({
             } else if (isEditor && isEmpty) {
                 imageElement = (
                     <Empty className={styles.empty}>
-                        <FormattedMessage defaultMessage="Gallery feed" />
+                        <FormattedMessage
+                            defaultMessage="Gallery feed"
+                            description="Gallery feed placeholder"
+                        />
                     </Empty>
                 );
             }

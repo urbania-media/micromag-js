@@ -74,25 +74,32 @@ const Quote = ({
     switch (layout) {
         default:
         case 'center':
-            contentJustifyContentValue = 'center'; break;
+            contentJustifyContentValue = 'center';
+            break;
         case 'top':
-            contentJustifyContentValue = 'flex-start'; break;
+            contentJustifyContentValue = 'flex-start';
+            break;
         case 'bottom':
-            contentJustifyContentValue = 'flex-end'; break;
+            contentJustifyContentValue = 'flex-end';
+            break;
         case 'around':
-            contentJustifyContentValue = 'space-around'; break;
+            contentJustifyContentValue = 'space-around';
+            break;
         case 'between':
-            contentJustifyContentValue = 'space-between'; break;
+            contentJustifyContentValue = 'space-between';
+            break;
     }
 
     return (
-        <div className={classNames([
-            styles.container,
-            {
-                [className]: className,
-                [styles.placeholder]: isPlaceholder,
-            },
-        ])}>
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className,
+                    [styles.placeholder]: isPlaceholder,
+                },
+            ])}
+        >
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
@@ -100,11 +107,14 @@ const Quote = ({
                 playing={(isView && current) || (isEditor && active)}
                 maxRatio={maxRatio}
             />
-            
+
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <div className={styles.content} style={{
-                    justifyContent: contentJustifyContentValue,
-                }}>
+                <div
+                    className={styles.content}
+                    style={{
+                        justifyContent: contentJustifyContentValue,
+                    }}
+                >
                     {item}
                 </div>
             </Container>

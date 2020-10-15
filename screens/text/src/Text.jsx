@@ -22,7 +22,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     textAlign: MicromagPropTypes.textAlign,
     current: PropTypes.bool,
-    active: PropTypes.bool,    
+    active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
@@ -35,7 +35,7 @@ const defaultProps = {
     background: null,
     textAlign: 'center',
     current: true,
-    active: false,    
+    active: false,
     renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: {
@@ -54,7 +54,7 @@ const TextScreen = ({
     background,
     textAlign,
     current,
-    active,    
+    active,
     renderFormat,
     maxRatio,
     transitions,
@@ -71,7 +71,7 @@ const TextScreen = ({
     } else if (isEmpty) {
         textComponent = (
             <Empty className={styles.empty}>
-                <FormattedMessage defaultMessage="Text" />
+                <FormattedMessage defaultMessage="Text" description="Text placeholder" />
             </Empty>
         );
     } else {
@@ -87,15 +87,20 @@ const TextScreen = ({
     switch (layout) {
         default:
         case 'center':
-            contentJustifyContentValue = 'center'; break;
+            contentJustifyContentValue = 'center';
+            break;
         case 'top':
-            contentJustifyContentValue = 'flex-start'; break;
+            contentJustifyContentValue = 'flex-start';
+            break;
         case 'bottom':
-            contentJustifyContentValue = 'flex-end'; break;
+            contentJustifyContentValue = 'flex-end';
+            break;
         case 'around':
-            contentJustifyContentValue = 'space-around'; break;
+            contentJustifyContentValue = 'space-around';
+            break;
         case 'between':
-            contentJustifyContentValue = 'space-between'; break;
+            contentJustifyContentValue = 'space-between';
+            break;
     }
 
     return (

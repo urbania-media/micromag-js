@@ -86,12 +86,14 @@ const SurveyCheckbox = ({
     const onChange = useCallback((newValue) => setValue(newValue), [value]);
 
     return (
-        <div className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-            },
-        ])}>
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                },
+            ])}
+        >
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}

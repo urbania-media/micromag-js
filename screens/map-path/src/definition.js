@@ -6,7 +6,7 @@ export default {
     type: 'screen',
     title: defineMessage({
         defaultMessage: 'MapPath',
-        description: 'MapPath screen title'
+        description: 'MapPath screen title',
     }),
     component: MapPath,
     layouts: ['top', 'bottom'],
@@ -16,7 +16,7 @@ export default {
             type: 'screen-layout',
             label: defineMessage({
                 defaultMessage: 'Layout',
-                description: 'Layout field label'
+                description: 'Layout field label',
             }),
         },
         {
@@ -24,7 +24,7 @@ export default {
             type: 'map',
             label: defineMessage({
                 defaultMessage: 'Map',
-                description: 'Map field label'
+                description: 'Map field label',
             }),
         },
         {
@@ -32,7 +32,7 @@ export default {
             type: 'markers',
             label: defineMessage({
                 defaultMessage: 'Markers',
-                description: 'Markers field label'
+                description: 'Markers field label',
             }),
         },
         {
@@ -40,7 +40,7 @@ export default {
             type: 'button',
             label: defineMessage({
                 defaultMessage: 'Button style',
-                description: 'Button style field label'
+                description: 'Button style field label',
             }),
         },
         {
@@ -48,7 +48,7 @@ export default {
             type: 'background',
             label: defineMessage({
                 defaultMessage: 'Background',
-                description: 'Background field label'
+                description: 'Background field label',
             }),
         },
     ],

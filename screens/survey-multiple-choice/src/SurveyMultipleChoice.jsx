@@ -260,7 +260,10 @@ const SurveyMultipleChoice = ({
                                 onClick={onClickSubmit}
                                 {...button}
                             >
-                                <FormattedMessage defaultMessage="Submit" />
+                                <FormattedMessage
+                                    defaultMessage="Submit"
+                                    description="Submit placeholder"
+                                />
                             </Button>
                         ) : (
                             <PlaceholderButton className={styles.submitButtonPlaceholder} />
@@ -271,7 +274,10 @@ const SurveyMultipleChoice = ({
                                 onClick={onClickReset}
                                 {...button}
                             >
-                                <FormattedMessage defaultMessage="Retry" />
+                                <FormattedMessage
+                                    defaultMessage="Retry"
+                                    description="Retry placeholder"
+                                />
                             </Button>
                         ) : null}
                     </div>

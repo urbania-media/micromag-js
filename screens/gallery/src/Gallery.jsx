@@ -18,7 +18,6 @@ import layoutProps from './layouts';
 
 import styles from './styles.module.scss';
 
-
 const propTypes = {
     layout: PropTypes.oneOf([
         'four-by-four',
@@ -113,7 +112,10 @@ const Gallery = ({
               const element =
                   isEditor && !it ? (
                       <Empty className={styles.empty}>
-                          <FormattedMessage defaultMessage="Image" />
+                          <FormattedMessage
+                              defaultMessage="Image"
+                              description="Image placeholder"
+                          />
                       </Empty>
                   ) : (
                       <Transitions

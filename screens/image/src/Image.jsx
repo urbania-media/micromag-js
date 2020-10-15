@@ -80,7 +80,7 @@ const Image = ({
     } else if (isEmpty) {
         imageElement = (
             <Empty invertColor className={classNames([styles.image, styles.empty])}>
-                <FormattedMessage defaultMessage="Image" />
+                <FormattedMessage defaultMessage="Image" description="Image placeholder" />
             </Empty>
         );
     } else if (withImage) {
@@ -148,8 +148,8 @@ const Image = ({
                         justifyContent: contentJustifyContentValue,
                     }}
                 >
-                    { imageElement }
-                    { textElement }
+                    {imageElement}
+                    {textElement}
                 </div>
             </Container>
         </div>

@@ -6,7 +6,7 @@ export default {
     type: 'screen',
     title: defineMessage({
         defaultMessage: 'GalleryFeed',
-        description: 'GalleryFeed screen title'
+        description: 'GalleryFeed screen title',
     }),
     component: GalleryFeed,
     layouts: ['single', 'double', 'triple', 'mixed-double', 'mixed-triple'],
@@ -16,7 +16,7 @@ export default {
             type: 'screen-layout',
             label: defineMessage({
                 defaultMessage: 'Layout',
-                description: 'Layout field label'
+                description: 'Layout field label',
             }),
         },
         {
@@ -24,7 +24,7 @@ export default {
             type: 'images',
             label: defineMessage({
                 defaultMessage: 'Images',
-                description: 'Images field label'
+                description: 'Images field label',
             }),
         },
         {
@@ -32,7 +32,7 @@ export default {
             type: 'number',
             label: defineMessage({
                 defaultMessage: 'Spacing',
-                description: 'Spacing field label'
+                description: 'Spacing field label',
             }),
         },
         {
@@ -40,7 +40,7 @@ export default {
             type: 'background',
             label: defineMessage({
                 defaultMessage: 'Background',
-                description: 'Background field label'
+                description: 'Background field label',
             }),
         },
     ],

@@ -6,7 +6,7 @@ export default {
     type: 'screen',
     title: defineMessage({
         defaultMessage: 'Gallery',
-        description: 'Gallery screen title'
+        description: 'Gallery screen title',
     }),
     component: Gallery,
     layouts: [
@@ -26,7 +26,7 @@ export default {
             type: 'screen-layout',
             label: defineMessage({
                 defaultMessage: 'Layout',
-                description: 'Layout field label'
+                description: 'Layout field label',
             }),
         },
         {
@@ -34,7 +34,7 @@ export default {
             type: 'images',
             label: defineMessage({
                 defaultMessage: 'Images',
-                description: 'Images field label'
+                description: 'Images field label',
             }),
         },
         {
@@ -42,7 +42,7 @@ export default {
             type: 'background',
             label: defineMessage({
                 defaultMessage: 'Background',
-                description: 'Background field label'
+                description: 'Background field label',
             }),
         },
     ],

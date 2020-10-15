@@ -6,7 +6,7 @@ export default {
     type: 'screen',
     title: defineMessage({
         defaultMessage: 'Text',
-        description: 'Text screen title'
+        description: 'Text screen title',
     }),
     component: Text,
     layouts: ['center', 'top', 'bottom'],
@@ -16,7 +16,7 @@ export default {
             type: 'screen-layout',
             label: defineMessage({
                 defaultMessage: 'Layout',
-                description: 'Layout field label'
+                description: 'Layout field label',
             }),
         },
         {
@@ -24,7 +24,7 @@ export default {
             type: 'text',
             label: defineMessage({
                 defaultMessage: 'Text',
-                description: 'Text field label'
+                description: 'Text field label',
             }),
         },
         {
@@ -32,7 +32,7 @@ export default {
             type: 'background',
             label: defineMessage({
                 defaultMessage: 'Background',
-                description: 'Background field label'
+                description: 'Background field label',
             }),
         },
     ],

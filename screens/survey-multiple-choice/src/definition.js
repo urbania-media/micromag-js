@@ -6,7 +6,7 @@ export default {
     type: 'screen',
     title: defineMessage({
         defaultMessage: 'SurveyMultipleChoice',
-        description: 'SurveyMultipleChoice screen title'
+        description: 'SurveyMultipleChoice screen title',
     }),
     component: SurveyMultipleChoice,
     layouts: ['normal'],
@@ -16,7 +16,7 @@ export default {
             type: 'screen-layout',
             label: defineMessage({
                 defaultMessage: 'Layout',
-                description: 'Layout field label'
+                description: 'Layout field label',
             }),
         },
         {
@@ -28,7 +28,7 @@ export default {
             },
             label: defineMessage({
                 defaultMessage: 'Multiple answers',
-                description: 'Multiple answers field label'
+                description: 'Multiple answers field label',
             }),
         },
         {
@@ -77,7 +77,7 @@ export default {
             type: 'background',
             label: defineMessage({
                 defaultMessage: 'Background',
-                description: 'Background field label'
+                description: 'Background field label',
             }),
         },
     ],

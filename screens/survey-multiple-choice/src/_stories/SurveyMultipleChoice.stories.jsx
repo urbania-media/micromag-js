@@ -25,8 +25,8 @@ export default {
     component: SurveyMultipleChoice,
     parameters: {
         intl: true,
-        screenDefinition: definition
-    }
+        screenDefinition: definition,
+    },
 };
 
 export const Placeholder = (storyProps) => <SurveyMultipleChoice {...storyProps} />;

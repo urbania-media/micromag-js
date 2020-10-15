@@ -6,7 +6,7 @@ export default {
     type: 'screen',
     title: defineMessage({
         defaultMessage: 'Audio',
-        description: 'Audio screen title'
+        description: 'Audio screen title',
     }),
     component: Audio,
     layouts: ['center', 'top', 'bottom', 'around'],
@@ -16,7 +16,7 @@ export default {
             type: 'screen-layout',
             label: defineMessage({
                 defaultMessage: 'Layout',
-                description: 'Layout field label'
+                description: 'Layout field label',
             }),
         },
         {
@@ -24,7 +24,7 @@ export default {
             type: 'audio',
             label: defineMessage({
                 defaultMessage: 'Audio',
-                description: 'Audio field label'
+                description: 'Audio field label',
             }),
         },
         {
@@ -32,7 +32,7 @@ export default {
             type: 'image',
             label: defineMessage({
                 defaultMessage: 'Image',
-                description: 'Image field label'
+                description: 'Image field label',
             }),
         },
         {
@@ -40,7 +40,7 @@ export default {
             type: 'text',
             label: defineMessage({
                 defaultMessage: 'Text',
-                description: 'Text field label'
+                description: 'Text field label',
             }),
         },
         {
@@ -48,7 +48,7 @@ export default {
             type: 'background',
             label: defineMessage({
                 defaultMessage: 'Background',
-                description: 'Background field label'
+                description: 'Background field label',
             }),
         },
     ],

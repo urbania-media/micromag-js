@@ -97,7 +97,7 @@ const Map = ({
     if (isEmpty) {
         element = (
             <Empty className={styles.empty}>
-                <FormattedMessage defaultMessage="Map" />
+                <FormattedMessage defaultMessage="Map" description="Map placeholder" />
             </Empty>
         );
     } else if (isPlaceholder) {

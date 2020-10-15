@@ -85,7 +85,7 @@ const Ad = ({
 
     const onImageLoaded = useCallback(() => {
         setReady(true);
-    }, [setReady]);    
+    }, [setReady]);
 
     let imageElement = (
         <Transitions transitions={transitions} playing={transitionPlaying}>
@@ -117,7 +117,7 @@ const Ad = ({
     if (isEditor && isEmpty) {
         imageElement = (
             <Empty className={styles.empty}>
-                <FormattedMessage description="Ad title" defaultMessage="Advertising" />
+                <FormattedMessage defaultMessage="Advertising" description="Ad title" />
             </Empty>
         );
     }
@@ -125,16 +125,18 @@ const Ad = ({
     const { horizontal, vertical } = getLayoutParts(layout);
 
     return (
-        <div className={classNames([
-            styles.container,
-            {
-                [styles.fullscreen]: isFullScreen,
-                [styles.placeholder]: isPlaceholder,
-                [styles[horizontal]]: horizontal !== null,
-                [styles[vertical]]: vertical !== null,
-                [className]: className !== null,
-            },
-        ])}>
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [styles.fullscreen]: isFullScreen,
+                    [styles.placeholder]: isPlaceholder,
+                    [styles[horizontal]]: horizontal !== null,
+                    [styles[vertical]]: vertical !== null,
+                    [className]: className !== null,
+                },
+            ])}
+        >
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}

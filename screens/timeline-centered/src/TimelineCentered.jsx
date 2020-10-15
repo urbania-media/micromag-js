@@ -22,7 +22,7 @@ import styles from './styles.module.scss';
 const propTypes = {
     layout: PropTypes.oneOf(['normal']),
     items: PropTypes.arrayOf(MicromagPropTypes.textElement),
-    background: MicromagPropTypes.backgroundElement,    
+    background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,

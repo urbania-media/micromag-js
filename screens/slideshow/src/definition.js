@@ -6,7 +6,7 @@ export default {
     type: 'screen',
     title: defineMessage({
         defaultMessage: 'Slideshow',
-        description: 'Slideshow screen title'
+        description: 'Slideshow screen title',
     }),
     component: Slideshow,
     layouts: ['center'],
@@ -16,7 +16,7 @@ export default {
             type: 'screen-layout',
             label: defineMessage({
                 defaultMessage: 'Layout',
-                description: 'Layout field label'
+                description: 'Layout field label',
             }),
         },
         {
@@ -24,7 +24,7 @@ export default {
             type: 'slides',
             label: defineMessage({
                 defaultMessage: 'Slides',
-                description: 'Slides field label'
+                description: 'Slides field label',
             }),
         },
         {
@@ -40,7 +40,7 @@ export default {
             type: 'background',
             label: defineMessage({
                 defaultMessage: 'Background',
-                description: 'Background field label'
+                description: 'Background field label',
             }),
         },
     ],

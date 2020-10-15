@@ -91,7 +91,7 @@ const Slideshow = ({
     const inner =
         isEditor && slides.length === 0 ? (
             <Empty className={styles.empty}>
-                <FormattedMessage defaultMessage="Slideshow" />
+                <FormattedMessage defaultMessage="Slideshow" description="Slideshow placeholder" />
             </Empty>
         ) : (
             <>
@@ -141,13 +141,15 @@ const Slideshow = ({
         );
 
     return (
-        <div className={classNames([
-            styles.container,
-            screens.map((size) => styles[`screen-${size}`]),
-            {
-                [className]: className,
-            },
-        ])}>
+        <div
+            className={classNames([
+                styles.container,
+                screens.map((size) => styles[`screen-${size}`]),
+                {
+                    [className]: className,
+                },
+            ])}
+        >
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
@@ -155,12 +157,12 @@ const Slideshow = ({
                 playing={(isView && current) || (isEditor && active)}
                 maxRatio={maxRatio}
             />
-            
+
             <Container width={width} height={height} current={current} maxRatio={maxRatio}>
                 <div className={styles.content}>
                     {isPlaceholder ? <PlaceholderSlideshow /> : inner}
                 </div>
-            </Container>            
+            </Container>
         </div>
     );
 };

@@ -69,7 +69,7 @@ const SurveyYesNo = ({
     transitions,
     className,
 }) => {
-    console.log(renderFormat, layout)
+    console.log(renderFormat, layout);
     const [answered, setAnswered] = useState(false);
     const { width, height } = useScreenSize();
     const { isEditor, isPreview, isView, isPlaceholder } = getRenderFormat(renderFormat);
@@ -109,30 +109,29 @@ const SurveyYesNo = ({
             </div>
         ) : null;
 
-    const answer =
-        answered ? (
-            <div className={styles.answerContainer}>
-                <VideoElement className={styles.video} video={answerYesVideo} {...videoProps} />
-                <ImageElement className={styles.image} image={answerYesImage} />
-                <TextElement className={styles.result} body={answerYesText} textStyle={textStyle} />
-                {isEditor ? (
-                    <Button className={styles.button} onClick={onClickReset} {...button}>
-                        Retry
-                    </Button>
-                ) : null}
-            </div>
-        ) : (
-            <div className={styles.answerContainer}>
-                <VideoElement className={styles.video} video={answerNoVideo} {...videoProps} />
-                <ImageElement className={styles.image} image={answerNoImage} />
-                <TextElement className={styles.result} body={answerNoText} textStyle={textStyle} />
-                {isEditor ? (
-                    <Button className={styles.button} onClick={onClickReset} {...button}>
-                        <Label>Retry</Label>
-                    </Button>
-                ) : null}
-            </div>
-        );
+    const answer = answered ? (
+        <div className={styles.answerContainer}>
+            <VideoElement className={styles.video} video={answerYesVideo} {...videoProps} />
+            <ImageElement className={styles.image} image={answerYesImage} />
+            <TextElement className={styles.result} body={answerYesText} textStyle={textStyle} />
+            {isEditor ? (
+                <Button className={styles.button} onClick={onClickReset} {...button}>
+                    Retry
+                </Button>
+            ) : null}
+        </div>
+    ) : (
+        <div className={styles.answerContainer}>
+            <VideoElement className={styles.video} video={answerNoVideo} {...videoProps} />
+            <ImageElement className={styles.image} image={answerNoImage} />
+            <TextElement className={styles.result} body={answerNoText} textStyle={textStyle} />
+            {isEditor ? (
+                <Button className={styles.button} onClick={onClickReset} {...button}>
+                    <Label>Retry</Label>
+                </Button>
+            ) : null}
+        </div>
+    );
 
     const buttons =
         renderFormat !== 'placeholder' ? (
@@ -156,25 +155,32 @@ const SurveyYesNo = ({
     switch (layout) {
         default:
         case 'center':
-            contentJustifyContentValue = 'center'; break;
+            contentJustifyContentValue = 'center';
+            break;
         case 'top':
-            contentJustifyContentValue = 'flex-start'; break;
+            contentJustifyContentValue = 'flex-start';
+            break;
         case 'bottom':
-            contentJustifyContentValue = 'flex-end'; break;
+            contentJustifyContentValue = 'flex-end';
+            break;
         case 'around':
-            contentJustifyContentValue = 'space-around'; break;
+            contentJustifyContentValue = 'space-around';
+            break;
         case 'between':
-            contentJustifyContentValue = 'space-between'; break;
+            contentJustifyContentValue = 'space-between';
+            break;
     }
 
     return (
-        <div className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-                [styles.placeholder]: isPlaceholder,
-            },
-        ])}>
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                    [styles.placeholder]: isPlaceholder,
+                },
+            ])}
+        >
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
@@ -183,9 +189,12 @@ const SurveyYesNo = ({
                 maxRatio={maxRatio}
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <div className={styles.content} style={{
-                    justifyContent: contentJustifyContentValue,
-                }}>
+                <div
+                    className={styles.content}
+                    style={{
+                        justifyContent: contentJustifyContentValue,
+                    }}
+                >
                     {answered ? (
                         answer
                     ) : (
