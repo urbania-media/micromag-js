@@ -96,15 +96,24 @@ const Title = ({
                 if (isEditor && !hasValue) {
                     return (
                         <Empty className={styles.empty}>
-                            { name === 'title' ?
-                                <FormattedMessage defaultMessage="Title" />
-                            : null }
-                            { name === 'subtitle' ?
-                                <FormattedMessage defaultMessage="Subtitle" />
-                            : null }
-                            { name === 'description' ?
-                                <FormattedMessage defaultMessage="Description" />
-                            : null }
+                            {name === 'title' ? (
+                                <FormattedMessage
+                                    defaultMessage="Title"
+                                    description="Title placeholder"
+                                />
+                            ) : null}
+                            {name === 'subtitle' ? (
+                                <FormattedMessage
+                                    defaultMessage="Subtitle"
+                                    description="Subtitle placeholder"
+                                />
+                            ) : null}
+                            {name === 'description' ? (
+                                <FormattedMessage
+                                    defaultMessage="Description"
+                                    description="Description placeholder"
+                                />
+                            ) : null}
                         </Empty>
                     );
                 }
