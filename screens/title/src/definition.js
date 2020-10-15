@@ -6,7 +6,7 @@ export default {
     type: 'screen',
     title: defineMessage({
         defaultMessage: 'Title',
-        description: 'Title screen title'
+        description: 'Title screen title',
     }),
     component: Title,
     layouts: ['center', 'top', 'bottom', 'split-top', 'split-bottom'],
@@ -16,7 +16,7 @@ export default {
             type: 'screen-layout',
             label: defineMessage({
                 defaultMessage: 'Layout',
-                description: 'Layout field label'
+                description: 'Layout field label',
             }),
         },
         {
@@ -24,7 +24,7 @@ export default {
             type: 'text',
             label: defineMessage({
                 defaultMessage: 'Title',
-                description: 'Title field label'
+                description: 'Title field label',
             }),
         },
         {
@@ -32,7 +32,7 @@ export default {
             type: 'text',
             label: defineMessage({
                 defaultMessage: 'Subtitle',
-                description: 'Subtitle field label'
+                description: 'Subtitle field label',
             }),
         },
         {
@@ -40,8 +40,8 @@ export default {
             type: 'background',
             label: defineMessage({
                 defaultMessage: 'Background',
-                description: 'Background field label'
+                description: 'Background field label',
             }),
         },
-    ]
+    ],
 };

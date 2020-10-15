@@ -11,36 +11,6 @@
         height: 100%;
     }
 
-    &.center {
-        .textContainer {
-            text-align: center;
-        }
-
-        .placeholder {
-            @extend %placeholder-center;
-        }
-    }
-
-    &.left {
-        .textContainer {
-            text-align: left;
-        }
-
-        .placeholder {
-            @extend %placeholder-left;
-        }
-    }
-
-    &.right {
-        .textContainer {
-            text-align: right;
-        }
-
-        .placeholder {
-            @extend %placeholder-right;
-        }
-    }
-
     .empty {
         @extend %empty;
         @extend %empty-image;

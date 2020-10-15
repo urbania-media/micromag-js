@@ -20,14 +20,10 @@ import {
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 
-import messages from './messages';
-
 import styles from './styles.module.scss';
 
-export const layouts = ['normal'];
-
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf(['normal']),
     multipleAnswers: PropTypes.bool,
     question: MicromagPropTypes.textElement,
     answers: PropTypes.arrayOf(MicromagPropTypes.textElement),
@@ -264,7 +260,10 @@ const SurveyMultipleChoice = ({
                                 onClick={onClickSubmit}
                                 {...button}
                             >
-                                <Label>{messages.submit}</Label>
+                                <FormattedMessage
+                                    defaultMessage="Submit"
+                                    description="Submit placeholder"
+                                />
                             </Button>
                         ) : (
                             <PlaceholderButton className={styles.submitButtonPlaceholder} />
@@ -275,7 +274,10 @@ const SurveyMultipleChoice = ({
                                 onClick={onClickReset}
                                 {...button}
                             >
-                                <Label>{messages.retry}</Label>
+                                <FormattedMessage
+                                    defaultMessage="Retry"
+                                    description="Retry placeholder"
+                                />
                             </Button>
                         ) : null}
                     </div>

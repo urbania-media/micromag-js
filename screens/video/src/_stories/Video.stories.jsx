@@ -21,7 +21,7 @@ export default {
     component: Video,
     parameters: {
         intl: true,
-        screenDefinition: definition.find(it => it.component === Video),
+        screenDefinition: definition.find((it) => it.component === Video),
     },
 };
 

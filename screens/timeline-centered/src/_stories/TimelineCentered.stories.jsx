@@ -8,10 +8,15 @@ import definition from '../definition';
 
 const props = {
     items: [
-        { title: {body: title()}, subtitle: { body: subtitle() }, text: { body: description() } },
+        { title: { body: title() }, subtitle: { body: subtitle() }, text: { body: description() } },
         { subtitle: { body: subtitle() }, text: { body: description() }, image: image() },
-        { title: {body: title()}, subtitle: { body: subtitle() }, text: { body: description() } },
-        { title: {body: title()}, subtitle: { body: subtitle() }, text: { body: description() }, image: image() },
+        { title: { body: title() }, subtitle: { body: subtitle() }, text: { body: description() } },
+        {
+            title: { body: title() },
+            subtitle: { body: subtitle() },
+            text: { body: description() },
+            image: image(),
+        },
     ],
 };
 
@@ -21,7 +26,7 @@ export default {
     parameters: {
         intl: true,
         screenDefinition: definition,
-    }
+    },
 };
 
 export const Placeholder = (storyProps) => <TimelineCentered {...storyProps} />;

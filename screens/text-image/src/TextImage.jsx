@@ -116,7 +116,7 @@ const TextImage = ({
     } else if (isEmpty) {
         textElement = (
             <Empty className={styles.empty}>
-                <FormattedMessage defaultMessage="Text" />
+                <FormattedMessage defaultMessage="Text" description="Text placeholder" />
             </Empty>
         );
     } else {
@@ -144,7 +144,7 @@ const TextImage = ({
     } else if (isEmpty) {
         imageElement = (
             <Empty className={classNames([styles.empty, styles.emptyImage])}>
-                <FormattedMessage defaultMessage="Image" />
+                <FormattedMessage defaultMessage="Image" description="Image placeholder" />
             </Empty>
         );
     } else if (withImage) {
@@ -175,7 +175,6 @@ const TextImage = ({
                     [styles.placeholder]: isPlaceholder,
                     [styles.sideways]: sideways,
                     [styles.ready]: ready && active,
-
                 },
             ])}
         >

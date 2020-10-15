@@ -1,2 +1,2 @@
-export { default, layouts } from './SurveyCheckboxScreen';
-export { default as schema } from './schema';
+export { default } from './definition';
+export { default as SurveyCheckbox } from './SurveyCheckbox';

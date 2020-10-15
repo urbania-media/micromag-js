@@ -16,17 +16,14 @@ import {
     PlaceholderAudio,
     PlaceholderText,
 } from '@micromag/core';
-
+import Transitions from '@micromag/core/src/components/transitions/Transitions';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
-import Transitions from '@micromag/core/src/components/transitions/Transitions';
-
-export const layouts = ['top', 'bottom', 'center', 'around'];
 
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf(['center', 'top', 'bottom', 'around']),
     stack: PropTypes.shape({
         reverse: PropTypes.bool,
         spacing: MicromagPropTypes.spacing,

@@ -14,15 +14,10 @@ import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
-import { schemas as messages } from './messages';
-
 import styles from './styles.module.scss';
 
-
-export const layouts = ['single', 'double', 'triple', 'mixed-double', 'mixed-triple'];
-
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf(['single', 'double', 'triple', 'mixed-double', 'mixed-triple']),
     background: MicromagPropTypes.backgroundElement,
     images: MicromagPropTypes.imageMedias,
     spacing: PropTypes.number,
@@ -55,7 +50,7 @@ const defaultProps = {
     className: null,
 };
 
-const GalleryScroll = ({
+const GalleryFeed = ({
     layout,
     images: imageList,
     spacing,
@@ -148,7 +143,11 @@ const GalleryScroll = ({
 
             if (isView || (isEditor && !isEmpty)) {
                 imageElement = (
-                    <Transitions transitions={transitions} delay={transitionDelay} playing={transitionPlaying}>
+                    <Transitions
+                        transitions={transitions}
+                        delay={transitionDelay}
+                        playing={transitionPlaying}
+                    >
                         <Image
                             {...it}
                             fit={{ size: 'cover' }}
@@ -173,7 +172,10 @@ const GalleryScroll = ({
             } else if (isEditor && isEmpty) {
                 imageElement = (
                     <Empty className={styles.empty}>
-                        <FormattedMessage {...messages.image} />
+                        <FormattedMessage
+                            defaultMessage="Gallery feed"
+                            description="Gallery feed placeholder"
+                        />
                     </Empty>
                 );
             }
@@ -224,7 +226,7 @@ const GalleryScroll = ({
     );
 };
 
-GalleryScroll.propTypes = propTypes;
-GalleryScroll.defaultProps = defaultProps;
+GalleryFeed.propTypes = propTypes;
+GalleryFeed.defaultProps = defaultProps;
 
-export default React.memo(GalleryScroll);
+export default React.memo(GalleryFeed);

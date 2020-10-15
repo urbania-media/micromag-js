@@ -19,14 +19,10 @@ import { getRenderFormat } from '@micromag/core/utils';
 
 import PreviewBackground from './preview.jpg';
 
-import { schemas as messages } from './messages';
-
 import styles from './styles.module.scss';
 
-export const layouts = ['top', 'bottom'];
-
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf(['top', 'bottom']),
     map: MicromagPropTypes.map,
     markers: MicromagPropTypes.markers,
     background: MicromagPropTypes.backgroundElement,
@@ -115,7 +111,10 @@ const MapPath = ({
     if (isEmpty) {
         element = (
             <Empty className={styles.empty}>
-                <FormattedMessage {...messages.schemaTitle} />
+                <FormattedMessage
+                    defaultMessage="Map with path"
+                    description="Map with path placeholder"
+                />
             </Empty>
         );
     } else if (isPlaceholder) {
@@ -159,10 +158,7 @@ const MapPath = ({
                     ))}
                 </div>
                 <div className={styles.controls}>
-                    <ButtonComponent
-                        className={styles.previous}
-                        onClick={onClickPrevious}
-                    >
+                    <ButtonComponent className={styles.previous} onClick={onClickPrevious}>
                         Previous
                     </ButtonComponent>
                     <ButtonComponent className={styles.next} onClick={onClickNext}>

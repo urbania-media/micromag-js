@@ -1,2 +1,2 @@
-export { default, layouts } from './SurveyYesNo';
-export { default as schema } from './schema';
+export { default } from './definition';
+export { default as SurveyYesNo } from './SurveyYesNo';

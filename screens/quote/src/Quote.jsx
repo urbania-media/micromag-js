@@ -14,15 +14,12 @@ import QuoteBlock from './QuoteBlock';
 
 import styles from './styles.module.scss';
 
-export const layouts = ['center', 'top', 'bottom', 'around'];
-
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf(['center', 'top', 'bottom', 'around']),
     background: MicromagPropTypes.backgroundElement,
     quote: MicromagPropTypes.textElement,
     source: MicromagPropTypes.textElement,
     author: MicromagPropTypes.textElement,
-    textAlign: PropTypes.oneOf(['left', 'right', 'center']),
     current: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
@@ -37,7 +34,6 @@ const defaultProps = {
     quote: null,
     author: null,
     source: null,
-    textAlign: 'center',
     current: true,
     active: true,
     renderFormat: 'view',
@@ -52,7 +48,6 @@ const Quote = ({
     quote,
     source,
     author,
-    textAlign,
     current,
     active,
     renderFormat,
@@ -79,26 +74,32 @@ const Quote = ({
     switch (layout) {
         default:
         case 'center':
-            contentJustifyContentValue = 'center'; break;
+            contentJustifyContentValue = 'center';
+            break;
         case 'top':
-            contentJustifyContentValue = 'flex-start'; break;
+            contentJustifyContentValue = 'flex-start';
+            break;
         case 'bottom':
-            contentJustifyContentValue = 'flex-end'; break;
+            contentJustifyContentValue = 'flex-end';
+            break;
         case 'around':
-            contentJustifyContentValue = 'space-around'; break;
+            contentJustifyContentValue = 'space-around';
+            break;
         case 'between':
-            contentJustifyContentValue = 'space-between'; break;
+            contentJustifyContentValue = 'space-between';
+            break;
     }
 
     return (
-        <div className={classNames([
-            styles.container,
-            {
-                [className]: className,
-                [styles.placeholder]: isPlaceholder,
-                [styles[textAlign]]: textAlign !== null,
-            },
-        ])}>
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className,
+                    [styles.placeholder]: isPlaceholder,
+                },
+            ])}
+        >
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
@@ -106,11 +107,14 @@ const Quote = ({
                 playing={(isView && current) || (isEditor && active)}
                 maxRatio={maxRatio}
             />
-            
+
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <div className={styles.content} style={{
-                    justifyContent: contentJustifyContentValue,
-                }}>
+                <div
+                    className={styles.content}
+                    style={{
+                        justifyContent: contentJustifyContentValue,
+                    }}
+                >
                     {item}
                 </div>
             </Container>

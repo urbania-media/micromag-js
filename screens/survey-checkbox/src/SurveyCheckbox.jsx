@@ -23,10 +23,8 @@ import { getRenderFormat } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
-export const layouts = ['normal'];
-
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf(['normal']),
     question: MicromagPropTypes.textElement,
     options: PropTypes.arrayOf(MicromagPropTypes.textElement),
     result: PropTypes.shape({
@@ -88,12 +86,14 @@ const SurveyCheckbox = ({
     const onChange = useCallback((newValue) => setValue(newValue), [value]);
 
     return (
-        <div className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-            },
-        ])}>
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                },
+            ])}
+        >
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}

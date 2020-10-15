@@ -16,21 +16,19 @@ import AdImage from './AdImage';
 
 import styles from './styles.module.scss';
 
-export const layouts = [
-    'center',
-    'top',
-    'bottom',
-    'full',
-    'center-left',
-    'center-right',
-    'top-left',
-    'top-right',
-    'bottom-left',
-    'bottom-right',
-];
-
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf([
+        'center',
+        'top',
+        'bottom',
+        'full',
+        'center-left',
+        'center-right',
+        'top-left',
+        'top-right',
+        'bottom-left',
+        'bottom-right',
+    ]),
     image: MicromagPropTypes.imageElement,
     link: MicromagPropTypes.linkElement,
     text: MicromagPropTypes.text,
@@ -87,7 +85,7 @@ const Ad = ({
 
     const onImageLoaded = useCallback(() => {
         setReady(true);
-    }, [setReady]);    
+    }, [setReady]);
 
     let imageElement = (
         <Transitions transitions={transitions} playing={transitionPlaying}>
@@ -119,7 +117,7 @@ const Ad = ({
     if (isEditor && isEmpty) {
         imageElement = (
             <Empty className={styles.empty}>
-                <FormattedMessage description="Ad title" defaultMessage="Advertising" />
+                <FormattedMessage defaultMessage="Advertising" description="Ad title" />
             </Empty>
         );
     }
@@ -127,16 +125,18 @@ const Ad = ({
     const { horizontal, vertical } = getLayoutParts(layout);
 
     return (
-        <div className={classNames([
-            styles.container,
-            {
-                [styles.fullscreen]: isFullScreen,
-                [styles.placeholder]: isPlaceholder,
-                [styles[horizontal]]: horizontal !== null,
-                [styles[vertical]]: vertical !== null,
-                [className]: className !== null,
-            },
-        ])}>
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [styles.fullscreen]: isFullScreen,
+                    [styles.placeholder]: isPlaceholder,
+                    [styles[horizontal]]: horizontal !== null,
+                    [styles[vertical]]: vertical !== null,
+                    [className]: className !== null,
+                },
+            ])}
+        >
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}

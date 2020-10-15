@@ -1,19 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
-import {
-    PlaceholderScreen,
-    LayoutSwitcher,
-    LayoutGrid,
-    Screen,
-} from '../../../../.storybook/components';
-
-import SurveyCheckbox, { layouts } from '../SurveyCheckbox';
-
-export default {
-    // component: Main,
-    title: 'Screens/SurveyCheckbox',
-};
+import SurveyCheckbox from '../SurveyCheckbox';
+import definition from '../definition';
 
 const props = {
     question: { body: 'Voici une question à répondre' },
@@ -28,32 +18,21 @@ const props = {
     },
 };
 
-export const Placeholders = () => (
-    <LayoutGrid layouts={layouts}>
-        {(layout) => (
-            <PlaceholderScreen>
-                <SurveyCheckbox layout={layout} renderFormat="placeholder" />
-            </PlaceholderScreen>
-        )}
-    </LayoutGrid>
-);
+export default {
+    title: 'Screens/SurveyCheckbox',
+    component: SurveyCheckbox,
+    parameters: {
+        intl: true,
+        screenDefinition: definition,
+    },
+};
 
-export const Editor = () => (
-    <LayoutSwitcher layouts={layouts}>
-        {(layout) => (
-            <Screen>
-                <SurveyCheckbox layout={layout} renderFormat="edit" />
-            </Screen>
-        )}
-    </LayoutSwitcher>
-);
+export const Placeholder = (storyProps) => <SurveyCheckbox {...storyProps} />;
 
-export const Normal = () => (
-    <LayoutSwitcher layouts={layouts}>
-        {(layout) => (
-            <Screen>
-                <SurveyCheckbox layout={layout} {...props} />
-            </Screen>
-        )}
-    </LayoutSwitcher>
-);
+export const Preview = (storyProps) => <SurveyCheckbox {...storyProps} />;
+
+export const Edit = (storyProps) => <SurveyCheckbox {...storyProps} />;
+
+export const Normal = (storyProps) => <SurveyCheckbox {...storyProps} {...props} />;
+
+export const Definition = () => <ScreenDefinition definition={definition} />;

@@ -1,66 +1,31 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import {
-    PlaceholderScreen,
-    PreviewScreen,
-    LayoutSwitcher,
-    LayoutGrid,
-    Screen,
-} from '../../../../.storybook/components';
 import { imageWithRandomSize, background } from '../../../../.storybook/data';
+import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
-import Image, { layouts } from '../Image';
+import Image from '../Image';
+import definition from '../definition';
 
 const props = {
     image: imageWithRandomSize(),
     background: background(),
 };
 
-const switcherProps = {
-    layouts,
-    defaultLayout: 'center',
-};
-
 export default {
     title: 'Screens/Image',
+    component: Image,
+    parameters: {
+        intl: true,
+        screenDefinition: definition,
+    },
 };
 
-export const Placeholders = () => (
-    <LayoutGrid layouts={layouts}>
-        {layout => (
-            <PlaceholderScreen>
-                <Image layout={layout} renderFormat="placeholder" />
-            </PlaceholderScreen>
-        )}
-    </LayoutGrid>
-);
+export const Placeholder = (storyProps) => <Image {...storyProps} />;
 
-export const Previews = () => (
-    <LayoutSwitcher {...switcherProps}>
-        {layout => (
-            <PreviewScreen>
-                <Image layout={layout} renderFormat="preview" {...props} />
-            </PreviewScreen>
-        )}
-    </LayoutSwitcher>
-);
+export const Preview = (storyProps) => <Image {...storyProps} />;
 
-export const Editor = () => (
-    <LayoutSwitcher {...switcherProps}>
-        {layout => (
-            <Screen>
-                <Image layout={layout} renderFormat="edit" />
-            </Screen>
-        )}
-    </LayoutSwitcher>
-);
+export const Edit = (storyProps) => <Image {...storyProps} />;
 
-export const Normal = () => (
-    <LayoutSwitcher {...switcherProps}>
-        {layout => (
-            <Screen>
-                <Image layout={layout} {...props} />
-            </Screen>
-        )}
-    </LayoutSwitcher>
-);
+export const Normal = (storyProps) => <Image {...storyProps} {...props} />;
+
+export const Definition = () => <ScreenDefinition definition={definition} />;

@@ -86,8 +86,8 @@ const VideoScreen = ({
         videoElement = (
             <PlaceholderVideo
                 className={styles.placeholder}
-                width={isFullScreen ? '100%' : undefined }
-                height={isFullScreen ? '100%' : undefined }
+                width={isFullScreen ? '100%' : undefined}
+                height={isFullScreen ? '100%' : undefined}
             />
         );
     } else if (withVideo) {
@@ -108,16 +108,17 @@ const VideoScreen = ({
         );
     }
 
-
     return (
-        <div className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-                [styles.placeholder]: isPlaceholder,
-                [styles.fullscreen]: isFullScreen,
-            },
-        ])}>
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                    [styles.placeholder]: isPlaceholder,
+                    [styles.fullscreen]: isFullScreen,
+                },
+            ])}
+        >
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
@@ -126,9 +127,7 @@ const VideoScreen = ({
                 maxRatio={maxRatio}
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <div className={styles.content}>
-                    { videoElement }
-                </div>
+                <div className={styles.content}>{videoElement}</div>
             </Container>
         </div>
     );

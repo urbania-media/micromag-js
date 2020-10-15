@@ -1,51 +1,27 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-// import { description } from '../../../../.storybook/data';
+import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
-import {
-    PlaceholderScreen,
-    LayoutSwitcher,
-    LayoutGrid,
-    Screen,
-} from '../../../../.storybook/components';
+import SurveyYesNo from '../SurveyYesNo';
+import definition from '../definition';
 
-import SurveyYesNo, { layouts } from '../SurveyYesNo';
+const props = {};
 
 export default {
-    // component: Normal,
     title: 'Screens/SurveyYesNo',
+    component: SurveyYesNo,
+    parameters: {
+        intl: true,
+        screenDefinition: definition,
+    },
 };
 
-const props = {
-    // questionText: { body: description() },
-};
+export const Placeholder = (storyProps) => <SurveyYesNo {...storyProps} />;
 
-export const Placeholders = () => (
-    <LayoutGrid layouts={layouts}>
-        {(layout) => (
-            <PlaceholderScreen>
-                <SurveyYesNo layout={layout} renderFormat="placeholder" />
-            </PlaceholderScreen>
-        )}
-    </LayoutGrid>
-);
+export const Preview = (storyProps) => <SurveyYesNo {...storyProps} />;
 
-export const Editor = () => (
-    <LayoutSwitcher layouts={layouts}>
-        {(layout) => (
-            <Screen>
-                <SurveyYesNo layout={layout} renderFormat="edit" />
-            </Screen>
-        )}
-    </LayoutSwitcher>
-);
+export const Edit = (storyProps) => <SurveyYesNo {...storyProps} />;
 
-export const Normal = () => (
-    <LayoutSwitcher layouts={layouts}>
-        {(layout) => (
-            <Screen>
-                <SurveyYesNo layout={layout} {...props} />
-            </Screen>
-        )}
-    </LayoutSwitcher>
-);
+export const Normal = (storyProps) => <SurveyYesNo {...storyProps} {...props} />;
+
+export const Definition = () => <ScreenDefinition definition={definition} />;

@@ -14,18 +14,13 @@ import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
-import { schemas as messages } from './messages';
-
 import styles from './styles.module.scss';
 
-export const layouts = ['center', 'top', 'bottom'];
-
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf(['center', 'top', 'bottom']),
     image: MicromagPropTypes.imageMedia,
     text: MicromagPropTypes.textElement,
     background: MicromagPropTypes.backgroundElement,
-    textAlign: MicromagPropTypes.textAlign,
     current: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
@@ -39,7 +34,6 @@ const defaultProps = {
     image: null,
     text: null,
     background: null,
-    textAlign: 'center',
     current: true,
     active: true,
     renderFormat: 'view',
@@ -59,7 +53,6 @@ const Image = ({
     image,
     text,
     background,
-    textAlign,
     current,
     active,
     renderFormat,
@@ -87,7 +80,7 @@ const Image = ({
     } else if (isEmpty) {
         imageElement = (
             <Empty invertColor className={classNames([styles.image, styles.empty])}>
-                <FormattedMessage {...messages.image} />
+                <FormattedMessage defaultMessage="Image" description="Image placeholder" />
             </Empty>
         );
     } else if (withImage) {
@@ -138,7 +131,6 @@ const Image = ({
                 {
                     [className]: className !== null,
                     [styles.placeholder]: isPlaceholder,
-                    [styles[textAlign]]: textAlign !== null,
                 },
             ])}
         >
@@ -156,8 +148,8 @@ const Image = ({
                         justifyContent: contentJustifyContentValue,
                     }}
                 >
-                    { imageElement }
-                    { textElement }
+                    {imageElement}
+                    {textElement}
                 </div>
             </Container>
         </div>

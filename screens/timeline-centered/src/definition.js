@@ -6,7 +6,7 @@ export default {
     type: 'screen',
     title: defineMessage({
         defaultMessage: 'TimelineCentered',
-        description: 'TimelineCentered screen title'
+        description: 'TimelineCentered screen title',
     }),
     component: TimelineCentered,
     layouts: ['normal'],
@@ -16,7 +16,7 @@ export default {
             type: 'screen-layout',
             label: defineMessage({
                 defaultMessage: 'Layout',
-                description: 'Layout field label'
+                description: 'Layout field label',
             }),
         },
         {
@@ -24,7 +24,7 @@ export default {
             type: 'items',
             label: defineMessage({
                 defaultMessage: 'Items',
-                description: 'Items field label'
+                description: 'Items field label',
             }),
         },
         {
@@ -32,7 +32,7 @@ export default {
             type: 'background',
             label: defineMessage({
                 defaultMessage: 'Background',
-                description: 'Background field label'
+                description: 'Background field label',
             }),
         },
     ],
