@@ -1,17 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import {
-    PlaceholderScreen,
-    PreviewScreen,
-    LayoutSwitcher,
-    LayoutGrid,
-    Screen,
-} from '../../../../.storybook/components';
-
 import { map, background, markers } from '../../../../.storybook/data';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
+import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
-import MapPath, { layouts } from '../MapPath';
+import MapPath from '../MapPath';
+import definition from '../definition';
 
 const props = {
     map: map(),
@@ -19,52 +13,22 @@ const props = {
     cardBackground: background(),
 };
 
-const switcherProps = {
-    layouts,
-    defaultLayout: 'top',
-};
-
 export default {
     title: 'Screens/MapPath',
     decorators: [withGoogleMaps],
+    component: MapPath,
+    parameters: {
+        intl: true,
+        screenDefinition: definition,
+    },
 };
 
-export const Placeholders = () => (
-    <LayoutGrid layouts={layouts}>
-        {(layout) => (
-            <PlaceholderScreen>
-                <MapPath layout={layout} renderFormat="placeholder" />
-            </PlaceholderScreen>
-        )}
-    </LayoutGrid>
-);
+export const Placeholder = (storyProps) => <MapPath {...storyProps} />;
 
-export const Previews = () => (
-    <LayoutSwitcher {...switcherProps}>
-        {(layout) => (
-            <PreviewScreen>
-                <MapPath layout={layout} renderFormat="preview" {...props} />
-            </PreviewScreen>
-        )}
-    </LayoutSwitcher>
-);
+export const Preview = (storyProps) => <MapPath {...storyProps} />;
 
-export const Editor = () => (
-    <LayoutSwitcher {...switcherProps}>
-        {(layout) => (
-            <Screen>
-                <MapPath layout={layout} renderFormat="edit" {...props} />
-            </Screen>
-        )}
-    </LayoutSwitcher>
-);
+export const Edit = (storyProps) => <MapPath {...storyProps} />;
 
-export const Normal = () => (
-    <LayoutSwitcher {...switcherProps}>
-        {(layout) => (
-            <Screen>
-                <MapPath layout={layout} {...props} />
-            </Screen>
-        )}
-    </LayoutSwitcher>
-);
+export const Normal = (storyProps) => <MapPath {...storyProps} {...props} />;
+
+export const Definition = () => <ScreenDefinition definition={definition} />;

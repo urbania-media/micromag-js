@@ -1,23 +1,25 @@
 import { defineMessage } from 'react-intl';
-import TextImage from './TextImage';
+import Ad from './Ad';
 
 export default {
-    id: 'text-image',
+    id: 'ad',
     type: 'screen',
     title: defineMessage({
-        defaultMessage: 'Video',
-        description: 'Video screen title'
+        defaultMessage: 'Ad',
+        description: 'Ad screen title'
     }),
-    component: TextImage,
+    component: Ad,
     layouts: [
         'center',
-        'center-reverse',
         'top',
-        'top-reverse',    
         'bottom',
-        'bottom-reverse',
-        'side',
-        'side-reverse',
+        'full',
+        'center-left',
+        'center-right',
+        'top-left',
+        'top-right',
+        'bottom-left',
+        'bottom-right',
     ],
     fields: [
         {
@@ -29,11 +31,11 @@ export default {
             }),
         },
         {
-            name: 'text',
-            type: 'text',
+            name: 'link',
+            type: 'link',
             label: defineMessage({
-                defaultMessage: 'Text',
-                description: 'Text field label'
+                defaultMessage: 'Link',
+                description: 'Link field label'
             }),
         },
         {
@@ -42,6 +44,14 @@ export default {
             label: defineMessage({
                 defaultMessage: 'Image',
                 description: 'Image field label'
+            }),
+        },
+        {
+            name: 'text',
+            type: 'text',
+            label: defineMessage({
+                defaultMessage: 'Text',
+                description: 'Text field label'
             }),
         },
         {

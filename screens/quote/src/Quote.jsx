@@ -14,15 +14,12 @@ import QuoteBlock from './QuoteBlock';
 
 import styles from './styles.module.scss';
 
-export const layouts = ['center', 'top', 'bottom', 'around'];
-
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf(['center', 'top', 'bottom', 'around']),
     background: MicromagPropTypes.backgroundElement,
     quote: MicromagPropTypes.textElement,
     source: MicromagPropTypes.textElement,
     author: MicromagPropTypes.textElement,
-    textAlign: PropTypes.oneOf(['left', 'right', 'center']),
     current: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
@@ -37,7 +34,6 @@ const defaultProps = {
     quote: null,
     author: null,
     source: null,
-    textAlign: 'center',
     current: true,
     active: true,
     renderFormat: 'view',
@@ -52,7 +48,6 @@ const Quote = ({
     quote,
     source,
     author,
-    textAlign,
     current,
     active,
     renderFormat,
@@ -96,7 +91,6 @@ const Quote = ({
             {
                 [className]: className,
                 [styles.placeholder]: isPlaceholder,
-                [styles[textAlign]]: textAlign !== null,
             },
         ])}>
             <Background

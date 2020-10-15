@@ -14,36 +14,6 @@
         height: 100%;
     }
 
-    &.center {
-        .slide {
-            text-align: center;
-        }
-
-        .placeholder {
-            @extend %placeholder-center;
-        }
-    }
-
-    &.left {
-        .slide {
-            text-align: left;
-        }
-
-        .placeholder {
-            @extend %placeholder-left;
-        }
-    }
-
-    &.right {
-        .slide {
-            text-align: right;
-        }
-
-        .placeholder {
-            @extend %placeholder-right;
-        }
-    }
-
     .empty {
         @extend %empty;
         width: 100%;

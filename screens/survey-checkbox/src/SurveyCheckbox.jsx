@@ -23,10 +23,8 @@ import { getRenderFormat } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
-export const layouts = ['normal'];
-
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf(['normal']),
     question: MicromagPropTypes.textElement,
     options: PropTypes.arrayOf(MicromagPropTypes.textElement),
     result: PropTypes.shape({

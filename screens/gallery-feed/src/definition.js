@@ -1,24 +1,15 @@
 import { defineMessage } from 'react-intl';
-import TextImage from './TextImage';
+import GalleryFeed from './GalleryFeed';
 
 export default {
-    id: 'text-image',
+    id: 'gallery-feed',
     type: 'screen',
     title: defineMessage({
-        defaultMessage: 'Video',
-        description: 'Video screen title'
+        defaultMessage: 'GalleryFeed',
+        description: 'GalleryFeed screen title'
     }),
-    component: TextImage,
-    layouts: [
-        'center',
-        'center-reverse',
-        'top',
-        'top-reverse',    
-        'bottom',
-        'bottom-reverse',
-        'side',
-        'side-reverse',
-    ],
+    component: GalleryFeed,
+    layouts: ['single', 'double', 'triple', 'mixed-double', 'mixed-triple'],
     fields: [
         {
             name: 'layout',
@@ -29,19 +20,19 @@ export default {
             }),
         },
         {
-            name: 'text',
-            type: 'text',
+            name: 'images',
+            type: 'images',
             label: defineMessage({
-                defaultMessage: 'Text',
-                description: 'Text field label'
+                defaultMessage: 'Images',
+                description: 'Images field label'
             }),
         },
         {
-            name: 'image',
-            type: 'image',
+            name: 'spacing',
+            type: 'number',
             label: defineMessage({
-                defaultMessage: 'Image',
-                description: 'Image field label'
+                defaultMessage: 'Spacing',
+                description: 'Spacing field label'
             }),
         },
         {

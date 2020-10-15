@@ -1,23 +1,24 @@
 import { defineMessage } from 'react-intl';
-import TextImage from './TextImage';
+import Gallery from './Gallery';
 
 export default {
-    id: 'text-image',
+    id: 'gallery',
     type: 'screen',
     title: defineMessage({
-        defaultMessage: 'Video',
-        description: 'Video screen title'
+        defaultMessage: 'Gallery',
+        description: 'Gallery screen title'
     }),
-    component: TextImage,
+    component: Gallery,
     layouts: [
-        'center',
-        'center-reverse',
-        'top',
-        'top-reverse',    
-        'bottom',
-        'bottom-reverse',
-        'side',
-        'side-reverse',
+        'four-by-four',
+        'one-plus-three',
+        'one-plus-two',
+        'six-by-two',
+        'three-by-three',
+        'two-by-two',
+        'two-high',
+        'two-plus-one',
+        'two-wide',
     ],
     fields: [
         {
@@ -29,19 +30,11 @@ export default {
             }),
         },
         {
-            name: 'text',
-            type: 'text',
+            name: 'images',
+            type: 'images',
             label: defineMessage({
-                defaultMessage: 'Text',
-                description: 'Text field label'
-            }),
-        },
-        {
-            name: 'image',
-            type: 'image',
-            label: defineMessage({
-                defaultMessage: 'Image',
-                description: 'Image field label'
+                defaultMessage: 'Images',
+                description: 'Images field label'
             }),
         },
         {

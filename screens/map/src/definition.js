@@ -1,24 +1,15 @@
 import { defineMessage } from 'react-intl';
-import TextImage from './TextImage';
+import Map from './Map';
 
 export default {
-    id: 'text-image',
+    id: 'map',
     type: 'screen',
     title: defineMessage({
-        defaultMessage: 'Video',
-        description: 'Video screen title'
+        defaultMessage: 'Map',
+        description: 'Map screen title'
     }),
-    component: TextImage,
-    layouts: [
-        'center',
-        'center-reverse',
-        'top',
-        'top-reverse',    
-        'bottom',
-        'bottom-reverse',
-        'side',
-        'side-reverse',
-    ],
+    component: Map,
+    layouts: ['top', 'bottom'],
     fields: [
         {
             name: 'layout',
@@ -29,19 +20,19 @@ export default {
             }),
         },
         {
-            name: 'text',
-            type: 'text',
+            name: 'map',
+            type: 'map',
             label: defineMessage({
-                defaultMessage: 'Text',
-                description: 'Text field label'
+                defaultMessage: 'Map',
+                description: 'Map field label'
             }),
         },
         {
-            name: 'image',
-            type: 'image',
+            name: 'markers',
+            type: 'markers',
             label: defineMessage({
-                defaultMessage: 'Image',
-                description: 'Image field label'
+                defaultMessage: 'Markers',
+                description: 'Markers field label'
             }),
         },
         {

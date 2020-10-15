@@ -1,24 +1,15 @@
 import { defineMessage } from 'react-intl';
-import TextImage from './TextImage';
+import Slideshow from './Slideshow';
 
 export default {
-    id: 'text-image',
+    id: 'slideshow',
     type: 'screen',
     title: defineMessage({
-        defaultMessage: 'Video',
-        description: 'Video screen title'
+        defaultMessage: 'Slideshow',
+        description: 'Slideshow screen title'
     }),
-    component: TextImage,
-    layouts: [
-        'center',
-        'center-reverse',
-        'top',
-        'top-reverse',    
-        'bottom',
-        'bottom-reverse',
-        'side',
-        'side-reverse',
-    ],
+    component: Slideshow,
+    layouts: ['center'],
     fields: [
         {
             name: 'layout',
@@ -29,19 +20,19 @@ export default {
             }),
         },
         {
-            name: 'text',
-            type: 'text',
+            name: 'slides',
+            type: 'slides',
             label: defineMessage({
-                defaultMessage: 'Text',
-                description: 'Text field label'
+                defaultMessage: 'Slides',
+                description: 'Slides field label'
             }),
         },
         {
-            name: 'image',
-            type: 'image',
+            name: 'button',
+            type: 'button',
             label: defineMessage({
-                defaultMessage: 'Image',
-                description: 'Image field label'
+                defaultMessage: 'Button style',
+                description: 'Button style field label',
             }),
         },
         {

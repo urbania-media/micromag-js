@@ -20,14 +20,10 @@ import {
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 
-import messages from './messages';
-
 import styles from './styles.module.scss';
 
-export const layouts = ['center', 'top', 'bottom'];
-
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf(['center', 'top', 'bottom']),
     question: MicromagPropTypes.textMediaField,
     answerYes: MicromagPropTypes.textMediaField,
     answerNo: MicromagPropTypes.textMediaField,
@@ -73,6 +69,7 @@ const SurveyYesNo = ({
     transitions,
     className,
 }) => {
+    console.log(renderFormat, layout)
     const [answered, setAnswered] = useState(false);
     const { width, height } = useScreenSize();
     const { isEditor, isPreview, isView, isPlaceholder } = getRenderFormat(renderFormat);
@@ -198,7 +195,7 @@ const SurveyYesNo = ({
                         </>
                     )}
                 </div>
-            </Container>            
+            </Container>
         </div>
     );
 };

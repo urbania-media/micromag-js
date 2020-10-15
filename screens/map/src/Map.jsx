@@ -17,14 +17,10 @@ import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
 import PreviewBackground from './preview.jpg';
 
-import { schemas as messages } from './messages';
-
 import styles from './styles.module.scss';
 
-export const layouts = ['top', 'bottom'];
-
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf(['top', 'bottom']),
     map: MicromagPropTypes.map,
     markers: MicromagPropTypes.markers,
     background: MicromagPropTypes.backgroundElement,
@@ -101,7 +97,7 @@ const Map = ({
     if (isEmpty) {
         element = (
             <Empty className={styles.empty}>
-                <FormattedMessage {...messages.schemaTitle} />
+                <FormattedMessage defaultMessage="Map" />
             </Empty>
         );
     } else if (isPlaceholder) {

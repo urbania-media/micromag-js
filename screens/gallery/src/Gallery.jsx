@@ -12,28 +12,25 @@ import Image from '@micromag/element-image';
 import { PropTypes as MicromagPropTypes, PlaceholderImage, Empty } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
+import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
 import layoutProps from './layouts';
 
-import { schemas as messages } from './messages';
-
 import styles from './styles.module.scss';
-import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
-export const layouts = [
-    'four-by-four',
-    'one-plus-three',
-    'one-plus-two',
-    'six-by-two',
-    'three-by-three',
-    'two-by-two',
-    'two-high',
-    'two-plus-one',
-    'two-wide',
-];
 
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf([
+        'four-by-four',
+        'one-plus-three',
+        'one-plus-two',
+        'six-by-two',
+        'three-by-three',
+        'two-by-two',
+        'two-high',
+        'two-plus-one',
+        'two-wide',
+    ]),
     background: MicromagPropTypes.backgroundElement,
     images: MicromagPropTypes.imageMedias,
     defaultSpacing: PropTypes.number,
@@ -116,7 +113,7 @@ const Gallery = ({
               const element =
                   isEditor && !it ? (
                       <Empty className={styles.empty}>
-                          <FormattedMessage {...messages.image} />
+                          <FormattedMessage defaultMessage="Image" />
                       </Empty>
                   ) : (
                       <Transitions

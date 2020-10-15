@@ -1,96 +1,34 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import {
-    PlaceholderScreen,
-    PreviewScreen,
-    LayoutSwitcher,
-    LayoutGrid,
-    Screen,
-} from '../../../../.storybook/components';
 import { audio, image, text, background } from '../../../../.storybook/data';
+import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
-import Audio, { layouts } from '../Audio';
+import Audio from '../Audio';
+import definition from '../definition';
 
 const props = {
     audio: audio(),
     background: background(),
 };
 
-const switcherProps = {
-    layouts,
-    defaultLayout: 'center',
-};
-
 export default {
     title: 'Screens/Audio',
+    component: Audio,
+    parameters: {
+        intl: true,
+        screenDefinition: definition,
+    },
 };
 
-export const Placeholders = () => (
-    <LayoutGrid layouts={layouts}>
-        {(layout) => (
-            <PlaceholderScreen>
-                <Audio layout={layout} renderFormat="placeholder" />
-            </PlaceholderScreen>
-        )}
-    </LayoutGrid>
-);
+export const Placeholder = (storyProps) => <Audio {...storyProps} />;
 
-export const Previews = () => (
-    <LayoutSwitcher {...switcherProps}>
-        {(layout) => (
-            <PreviewScreen>
-                <Audio layout={layout} renderFormat="preview" {...props} />
-            </PreviewScreen>
-        )}
-    </LayoutSwitcher>
-);
+export const Preview = (storyProps) => <Audio {...storyProps} />;
 
-export const Editor = () => (
-    <LayoutSwitcher {...switcherProps}>
-        {(layout) => (
-            <Screen>
-                <Audio layout={layout} renderFormat="edit" />
-            </Screen>
-        )}
-    </LayoutSwitcher>
-);
+export const Edit = (storyProps) => <Audio {...storyProps} />;
 
-export const Normal = () => (
-    <LayoutSwitcher {...switcherProps}>
-        {(layout) => (
-            <Screen>
-                <Audio layout={layout} {...props} />
-            </Screen>
-        )}
-    </LayoutSwitcher>
-);
+export const Normal = (storyProps) => <Audio {...storyProps} {...props} />;
+export const WithImage = (storyProps) => <Audio {...storyProps} {...props} image={image()} />;
+export const WithImageAndText = (storyProps) => <Audio {...storyProps} {...props} text={text()} image={image()} />;
+export const Muted = (storyProps) => <Audio {...storyProps} {...props} audio={{ ...audio(), muted: true }} />;
 
-export const WithImage = () => (
-    <LayoutSwitcher {...switcherProps}>
-        {(layout) => (
-            <Screen>
-                <Audio layout={layout} {...props} image={image()} />
-            </Screen>
-        )}
-    </LayoutSwitcher>
-);
-
-export const WithImageAndText = () => (
-    <LayoutSwitcher {...switcherProps}>
-        {(layout) => (
-            <Screen>
-                <Audio layout={layout} {...props} text={text()} image={image()} />
-            </Screen>
-        )}
-    </LayoutSwitcher>
-);
-
-export const Muted = () => (
-    <LayoutSwitcher {...switcherProps}>
-        {(layout) => (
-            <Screen>
-                <Audio layout={layout} {...props} audio={{ ...audio(), muted: true }} />
-            </Screen>
-        )}
-    </LayoutSwitcher>
-);
+export const Definition = () => <ScreenDefinition definition={definition} />;

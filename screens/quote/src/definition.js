@@ -1,24 +1,15 @@
 import { defineMessage } from 'react-intl';
-import TextImage from './TextImage';
+import Quote from './Quote';
 
 export default {
-    id: 'text-image',
+    id: 'quote',
     type: 'screen',
     title: defineMessage({
-        defaultMessage: 'Video',
-        description: 'Video screen title'
+        defaultMessage: 'Quote',
+        description: 'Quote screen title'
     }),
-    component: TextImage,
-    layouts: [
-        'center',
-        'center-reverse',
-        'top',
-        'top-reverse',    
-        'bottom',
-        'bottom-reverse',
-        'side',
-        'side-reverse',
-    ],
+    component: Quote,
+    layouts: ['center', 'top', 'bottom', 'around'],
     fields: [
         {
             name: 'layout',
@@ -29,19 +20,27 @@ export default {
             }),
         },
         {
-            name: 'text',
+            name: 'quote',
             type: 'text',
             label: defineMessage({
-                defaultMessage: 'Text',
-                description: 'Text field label'
+                defaultMessage: 'Quote',
+                description: 'Quote field label'
             }),
         },
         {
-            name: 'image',
-            type: 'image',
+            name: 'source',
+            type: 'text',
             label: defineMessage({
-                defaultMessage: 'Image',
-                description: 'Image field label'
+                defaultMessage: 'Source',
+                description: 'Source field label'
+            }),
+        },
+        {
+            name: 'author',
+            type: 'text',
+            label: defineMessage({
+                defaultMessage: 'Author',
+                description: 'Author field label'
             }),
         },
         {

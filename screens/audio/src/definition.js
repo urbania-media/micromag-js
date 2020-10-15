@@ -1,24 +1,15 @@
 import { defineMessage } from 'react-intl';
-import TextImage from './TextImage';
+import Audio from './Audio';
 
 export default {
-    id: 'text-image',
+    id: 'audio',
     type: 'screen',
     title: defineMessage({
-        defaultMessage: 'Video',
-        description: 'Video screen title'
+        defaultMessage: 'Audio',
+        description: 'Audio screen title'
     }),
-    component: TextImage,
-    layouts: [
-        'center',
-        'center-reverse',
-        'top',
-        'top-reverse',    
-        'bottom',
-        'bottom-reverse',
-        'side',
-        'side-reverse',
-    ],
+    component: Audio,
+    layouts: ['center', 'top', 'bottom', 'around'],
     fields: [
         {
             name: 'layout',
@@ -29,11 +20,11 @@ export default {
             }),
         },
         {
-            name: 'text',
-            type: 'text',
+            name: 'audio',
+            type: 'audio',
             label: defineMessage({
-                defaultMessage: 'Text',
-                description: 'Text field label'
+                defaultMessage: 'Audio',
+                description: 'Audio field label'
             }),
         },
         {
@@ -42,6 +33,14 @@ export default {
             label: defineMessage({
                 defaultMessage: 'Image',
                 description: 'Image field label'
+            }),
+        },
+        {
+            name: 'text',
+            type: 'text',
+            label: defineMessage({
+                defaultMessage: 'Text',
+                description: 'Text field label'
             }),
         },
         {

@@ -20,14 +20,14 @@ import { getRenderFormat } from '@micromag/core/utils';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    items: PropTypes.arrayOf(MicromagPropTypes.textElement),
-    background: MicromagPropTypes.backgroundElement,
     layout: PropTypes.oneOf(['normal']),
+    items: PropTypes.arrayOf(MicromagPropTypes.textElement),
+    background: MicromagPropTypes.backgroundElement,    
     current: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
-    transitions: MicromagPropTypes.transitions,
+    // transitions: MicromagPropTypes.transitions, // @TODO transforme l'objet en string ???
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
 };

@@ -16,18 +16,13 @@ import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
 import { useSwipe } from '@micromag/core/hooks';
 
-import { schemas as messages } from './messages';
-
 import styles from './slideshow.module.scss';
 
-export const layouts = ['center'];
-
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf(['center']),
     slides: MicromagPropTypes.slides,
     button: MicromagPropTypes.buttonElement,
     background: MicromagPropTypes.backgroundElement,
-    textAlign: MicromagPropTypes.textAlign,
     current: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
@@ -41,7 +36,6 @@ const defaultProps = {
     slides: [],
     button: null,
     background: null,
-    textAlign: 'left',
     current: true,
     active: false,
     renderFormat: 'view',
@@ -55,7 +49,6 @@ const Slideshow = ({
     slides,
     button,
     background,
-    textAlign,
     current,
     active,
     renderFormat,
@@ -98,7 +91,7 @@ const Slideshow = ({
     const inner =
         isEditor && slides.length === 0 ? (
             <Empty className={styles.empty}>
-                <FormattedMessage {...messages.schemaTitle} />
+                <FormattedMessage defaultMessage="Slideshow" />
             </Empty>
         ) : (
             <>
@@ -152,7 +145,6 @@ const Slideshow = ({
             styles.container,
             screens.map((size) => styles[`screen-${size}`]),
             {
-                [styles[textAlign]]: textAlign !== null,
                 [className]: className,
             },
         ])}>

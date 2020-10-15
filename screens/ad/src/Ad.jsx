@@ -16,21 +16,19 @@ import AdImage from './AdImage';
 
 import styles from './styles.module.scss';
 
-export const layouts = [
-    'center',
-    'top',
-    'bottom',
-    'full',
-    'center-left',
-    'center-right',
-    'top-left',
-    'top-right',
-    'bottom-left',
-    'bottom-right',
-];
-
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf([
+        'center',
+        'top',
+        'bottom',
+        'full',
+        'center-left',
+        'center-right',
+        'top-left',
+        'top-right',
+        'bottom-left',
+        'bottom-right',
+    ]),
     image: MicromagPropTypes.imageElement,
     link: MicromagPropTypes.linkElement,
     text: MicromagPropTypes.text,
