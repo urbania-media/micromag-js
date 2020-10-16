@@ -6,6 +6,7 @@ function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'defau
 
 var manager__default = /*#__PURE__*/_interopDefaultLegacy(manager);
 
+var CrzYgw = "Quote";
 var DWEzCv = "Select a video...";
 var EcZYpr = "Subtitle";
 var GE8wrk = "Image";
@@ -55,6 +56,7 @@ var tAYwqp = "Add a slide";
 var tvl2Zc = "Video";
 var uJ9eBc = "Image";
 var vrCfAS = "GalleryFeed";
+var xYqGzM = "Author";
 var yUPjCz = "Slideshow";
 var z4CiV1 = "Text";
 var messages = {
@@ -67,15 +69,14 @@ var messages = {
   "3q9GPv": "Quote",
   "4E2gbX": "Text",
   "4iBXj2": "Layout",
-  "507VAi": "Description",
   "5uH4x7": "Submit",
   "63Kvho": "Images",
   "6kvjpX": "SurveyYesNo",
   "72Z3Od": "Multiple answers",
   "73hxYw": "Author",
   "88/Ge8": "Quote",
-  "9wk4/T": "Source",
   "B1MeY+": "Select an image...",
+  CrzYgw: CrzYgw,
   DWEzCv: DWEzCv,
   EcZYpr: EcZYpr,
   GE8wrk: GE8wrk,
@@ -125,6 +126,17 @@ var messages = {
   qKQCxc: qKQCxc,
   qWT7a5: qWT7a5,
   r6ZYoE: r6ZYoE,
+  "screens.text-image.schema.properties.background": "Background",
+  "screens.text-image.schema.properties.image": "Image",
+  "screens.text-image.schema.properties.layout": "Layout",
+  "screens.text-image.schema.properties.text": "Text",
+  "screens.text-image.schema.title": "Text with image",
+  "screens.title.schema.properties.background": "Background",
+  "screens.title.schema.properties.description": "Description",
+  "screens.title.schema.properties.layout": "Layout",
+  "screens.title.schema.properties.subtitle": "Subtitle",
+  "screens.title.schema.properties.title": "Title",
+  "screens.title.schema.title": "Title",
   "t+L1J/": "No image...",
   tAYwqp: tAYwqp,
   tvl2Zc: tvl2Zc,
@@ -132,6 +144,7 @@ var messages = {
   "uOFw+A": "Map with path",
   vrCfAS: vrCfAS,
   "wt1+dM": "Select an audio file...",
+  xYqGzM: xYqGzM,
   yUPjCz: yUPjCz,
   z4CiV1: z4CiV1
 };
