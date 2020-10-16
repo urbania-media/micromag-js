@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getComponentFromName } from '@micromag/core/utils';
-import { useFieldsComponents } from '@micromag/core/contexts';
+import { useFieldComponent } from '@micromag/core/contexts';
 
 import FieldRow from './FieldRow';
 
@@ -29,7 +29,7 @@ const propTypes = {
     className: PropTypes.string,
     labelClassName: PropTypes.string,
     fieldRowClassName: PropTypes.string,
-    fieldsComponents: MicromagPropTypes.components,
+    components: MicromagPropTypes.components,
 };
 
 const defaultProps = {
@@ -49,7 +49,7 @@ const defaultProps = {
     className: null,
     labelClassName: null,
     fieldRowClassName: null,
-    fieldsComponents: null,
+    components: null,
 };
 
 const Field = ({
@@ -68,15 +68,16 @@ const Field = ({
     onChange,
     gotoFieldForm,
     closeFieldForm,
-    fieldsComponents,
+    components,
     className,
     labelClassName,
     fieldRowClassName,
     ...props
 }) => {
-    const contextFieldsComponents = useFieldsComponents();
-    const finalFieldsComponents = fieldsComponents || contextFieldsComponents;
-    const FieldComponent = getComponentFromName(type, finalFieldsComponents);
+    const CustomFieldComponent =
+        components !== null ? getComponentFromName(type, components) || null : null;
+    const ContextFieldComponent = useFieldComponent(type);
+    const FieldComponent = CustomFieldComponent || ContextFieldComponent;
     const isFields = type === 'fields';
     const asSettings =
         fields !== null

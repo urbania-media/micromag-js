@@ -35,8 +35,9 @@
         "schemas.js"
     ],
     "scripts": {
-        "css": "../../scripts/build-sass.js ./src/styles.scss ./assets/css/styles.css",
-        "prepare": "../../scripts/prepare-package.sh --scss && npm run css"
+        "scss": "../../scripts/build-packages-styles.js --pattern='@micromag/screen-*' ./src/styles.scss.ejs ./scss/styles.scss",
+        "css": "../../scripts/build-sass.js ./scss/styles.scss ./assets/css/styles.css",
+        "prepare": "../../scripts/prepare-package.sh && npm run scss && npm run css"
     },
     "devDependencies": {
         "react": ">=15.0.0 || ^16.0.0",
@@ -53,6 +54,7 @@
         "@micromag/screen-ad-slot": "^0.1.29",
         "@micromag/screen-audio": "^0.1.29",
         "@micromag/screen-gallery": "^0.1.29",
+        "@micromag/screen-gallery-feed": "^0.1.29",
         "@micromag/screen-gallery-scroll": "^0.1.29",
         "@micromag/screen-image": "^0.1.29",
         "@micromag/screen-map": "^0.1.29",

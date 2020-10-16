@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import * as MicromagPropTypes from '../../PropTypes';
 import { getComponentFromName } from '../../utils';
-import { useScreensComponents } from '../../contexts';
+import { useScreenComponent } from '../../contexts';
 
 const propTypes = {
     screen: MicromagPropTypes.storyComponent.isRequired,
@@ -27,9 +27,10 @@ const defaultProps = {
 
 const Screen = ({ screen, active, current, components, component, renderFormat, className }) => {
     const { type } = screen;
-    const contextComponents = useScreensComponents();
-    const finalComponents = components || contextComponents;
-    const ScreenComponent = getComponentFromName(type, finalComponents) || null;
+    const CustomScreenComponent =
+        components !== null ? getComponentFromName(type, components) || null : null;
+    const ContextScreenComponent = useScreenComponent(type);
+    const ScreenComponent = CustomScreenComponent || ContextScreenComponent;
 
     return ScreenComponent !== null ? (
         <div className={className}>

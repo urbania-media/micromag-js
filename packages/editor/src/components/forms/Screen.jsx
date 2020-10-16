@@ -1,12 +1,12 @@
 /* eslint-disable react/no-array-index-key, no-alert */
-import React, { useMemo, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { defineMessages, injectIntl } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, CollapsablePanel } from '@micromag/core/components';
 import { Fields } from '@micromag/fields';
-import { useScreenSchemaFields } from '@micromag/schemas';
+import { useScreenFields } from '@micromag/core/contexts';
 
 import styles from '../../styles/forms/screen.module.scss';
 
@@ -51,14 +51,8 @@ const ScreenForm = ({
     onChange,
     onClickDelete,
 }) => {
-    const { type, layout } = value;
-    const conditionalData = useMemo(
-        () => ({
-            layout,
-        }),
-        [layout],
-    );
-    const fields = useScreenSchemaFields(type, conditionalData);
+    const { type } = value;
+    const fields = useScreenFields(type);
     const finalOnClickDelete = useCallback(() => {
         if (onClickDelete !== null && window.confirm(intl.formatMessage(messages.confirmDelete))) {
             onClickDelete(value);

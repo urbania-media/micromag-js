@@ -5,6 +5,10 @@ export default [
     {
         id: 'video',
         type: 'screen',
+        group: defineMessage({
+            defaultMessage: 'Video',
+            description: 'Video screen group',
+        }),
         title: defineMessage({
             defaultMessage: 'Video',
             description: 'Video screen title',
