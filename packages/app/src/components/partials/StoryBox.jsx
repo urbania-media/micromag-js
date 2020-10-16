@@ -2,25 +2,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Card, Label, Link } from '@micromag/core/components';
+import { Card, Link } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
 import StoryMenu from '../menus/Story';
+import ScreensCount from './ScreensCount';
 
 import styles from '../../styles/partials/account-box.module.scss';
-
-const messages = defineMessages({
-    title: {
-        id: 'story-box.title',
-        defaultMessage: 'Account',
-    },
-    screens: {
-        id: 'story-box.screens',
-        defaultMessage: '{count} {count, plural, one {screen} other {screens}}',
-    },
-});
 
 const propTypes = {
     story: MicromagPropTypes.story.isRequired,
@@ -66,7 +55,7 @@ const StoryBox = ({ story, className }) => {
             </h4>
             {screensCount > 0 ? (
                 <p className="mb-0 text-muted">
-                    <Label values={{ count: screensCount }}>{messages.screens}</Label>
+                    <ScreensCount count={screensCount} />
                 </p>
             ) : null}
         </Card>

@@ -2,6 +2,7 @@
 import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     ScreenSizeProvider,
@@ -18,7 +19,6 @@ import EditorPreview from './Preview';
 import EditorForm from './Form';
 
 import styles from '../styles/editor.module.scss';
-import messages from '../messages';
 
 const propTypes = {
     story: MicromagPropTypes.story,
@@ -102,16 +102,25 @@ const Editor = ({
                                 onClick={onClickScreens}
                                 className="mr-auto"
                             >
-                                {messages.screens}
+                                <FormattedMessage
+                                    defaultMessage="Screens"
+                                    description="Button to show screens"
+                                />
                             </Button>
                             {mobileView !== 'form' ? (
                                 <Button size="sm" theme="primary" onClick={onClickEdit}>
-                                    {messages.edit}
+                                    <FormattedMessage
+                                        defaultMessage="Edit"
+                                        description="Button to edit a screen"
+                                    />
                                 </Button>
                             ) : null}
                             {mobileView === 'form' ? (
                                 <Button size="sm" theme="primary" onClick={onClickViewScreen}>
-                                    {messages.viewScreen}
+                                    <FormattedMessage
+                                        defaultMessage="View screen"
+                                        description="Button to view a screen"
+                                    />
                                 </Button>
                             ) : null}
                         </Navbar>

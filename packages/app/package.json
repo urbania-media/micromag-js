@@ -32,8 +32,13 @@
         "es",
         "assets"
     ],
+    "lang": "lang",
+    "supportedLocales": [
+        "en",
+        "fr"
+    ],
     "scripts": {
-        "prepare": "../../scripts/prepare-package.sh --scss",
+        "prepare": "../../scripts/prepare-package.sh --scss --intl",
         "start": "PUBLIC_URL=http://localhost/ react-scripts start"
     },
     "devDependencies": {

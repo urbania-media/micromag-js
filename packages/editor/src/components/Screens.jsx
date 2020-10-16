@@ -3,17 +3,21 @@ import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Route } from 'react-router';
+import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useRoutes, useRoutePush, useUrlGenerator, useScreensManager } from '@micromag/core/contexts';
-import { Label, Empty, Button, Navbar } from '@micromag/core/components';
+import {
+    useRoutes,
+    useRoutePush,
+    useUrlGenerator,
+    useScreensManager,
+} from '@micromag/core/contexts';
+import { Empty, Button, Navbar } from '@micromag/core/components';
 
 import createScreen from '../utils/createScreen';
 import Screens from './menus/Screens';
 import ScreenTypesModal from './modals/ScreenTypes';
-
-import messages from '../messages';
 
 const propTypes = {
     story: MicromagPropTypes.story,
@@ -84,9 +88,7 @@ const EditorScreens = ({ story, isVertical, onClickScreen, onChange, className }
         [story, onChange],
     );
 
-    const onClickScreenType = useCallback((e, item) => createScreenFromType(item), [
-        createScreen,
-    ]);
+    const onClickScreenType = useCallback((e, item) => createScreenFromType(item), [createScreen]);
     const onClickAdd = useCallback(() => setCreateModalOpened(true), [setCreateModalOpened]);
     const onCreateModalRequestClose = useCallback(() => setCreateModalOpened(false), [
         setCreateModalOpened,
@@ -98,7 +100,10 @@ const EditorScreens = ({ story, isVertical, onClickScreen, onChange, className }
         <div className={classNames(['d-flex', 'flex-column', className])}>
             <Navbar theme="dark" compact noWrap withoutCollapse>
                 <strong className="mb-0 mr-auto">
-                    <Label>{messages.screens}</Label>
+                    <FormattedMessage
+                        defaultMessage="Screens"
+                        description="Title of the screens section"
+                    />
                 </strong>
                 <Button
                     theme="primary"
@@ -134,7 +139,10 @@ const EditorScreens = ({ story, isVertical, onClickScreen, onChange, className }
                         ) : (
                             <Empty className="flex-grow-1">
                                 <Button theme="primary" onClick={onClickAdd}>
-                                    {messages.createFirstSreen}
+                                    <FormattedMessage
+                                        defaultMessage="Create your first screen"
+                                        description="Button to create your first screen"
+                                    />
                                 </Button>
                             </Empty>
                         )

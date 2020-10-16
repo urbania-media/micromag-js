@@ -3,7 +3,7 @@ import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import isObject from 'lodash/isObject';
 // import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button } from '@micromag/core/components';
 import { useStoryPublicationCreate } from '@micromag/data';
@@ -11,13 +11,6 @@ import { useStoryPublicationCreate } from '@micromag/data';
 import * as AppPropTypes from '../../lib/PropTypes';
 import PublicationServices from '../lists/PublicationServices';
 import defaultServices from '../../data/publish-services';
-
-const messages = defineMessages({
-    publish: {
-        id: 'forms.story.publish.submit',
-        defaultMessage: 'Publish',
-    },
-});
 
 const propTypes = {
     story: MicromagPropTypes.story.isRequired,
@@ -77,7 +70,7 @@ const StoryPublishForm = ({ story, services, className, onPublished }) => {
                     disabled={!hasServiceEnabled}
                     onClick={onClickPublish}
                 >
-                    {messages.publish}
+                    <FormattedMessage defaultMessage="Publish" description="Button label" />,
                 </Button>
             </div>
         </form>

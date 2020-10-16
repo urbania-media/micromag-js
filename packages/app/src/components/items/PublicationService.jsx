@@ -3,19 +3,12 @@ import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isObject from 'lodash/isObject';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Label, Button } from '@micromag/core/components';
 import { Toggle, Fields } from '@micromag/fields';
 
 import * as AppPropTypes from '../../lib/PropTypes';
-
-const messages = defineMessages({
-    settings: {
-        id: 'publish_service.settings',
-        defaultMessage: 'Settings',
-    },
-});
 
 const propTypes = {
     item: AppPropTypes.publicationService.isRequired,
@@ -36,7 +29,7 @@ const PublicationSevice = ({ item, value, className, onChange }) => {
     const enabled = isObject(value) ? value.enabled || false : value || false;
     const settings = isObject(value) ? value.settings || null : null;
     const onEnableChange = useCallback(
-        checked => {
+        (checked) => {
             const newValue = isObject(value)
                 ? {
                       ...value,
@@ -57,12 +50,15 @@ const PublicationSevice = ({ item, value, className, onChange }) => {
         setSettingsOpened,
     ]);
     const onSettingsChange = useCallback(
-        newSettings => {
+        (newSettings) => {
             const currentEnabled = isObject(value) ? value.enabled || false : value || false;
-            const newValue = newSettings !== null ? {
-                enabled: currentEnabled,
-                settings: newSettings,
-            } : currentEnabled;
+            const newValue =
+                newSettings !== null
+                    ? {
+                          enabled: currentEnabled,
+                          settings: newSettings,
+                      }
+                    : currentEnabled;
             if (onChange !== null) {
                 onChange(newValue);
             }
@@ -94,7 +90,10 @@ const PublicationSevice = ({ item, value, className, onChange }) => {
                                 active: settingsOpened,
                             })}
                         >
-                            {messages.settings}
+                            <FormattedMessage
+                                defaultMessage="Settings"
+                                description="Button label"
+                            />
                         </Button>
                     </div>
                 ) : null}
@@ -112,7 +111,7 @@ const PublicationSevice = ({ item, value, className, onChange }) => {
                     ])}
                 >
                     <Fields
-                        fields={settingsFields.map(it => ({
+                        fields={settingsFields.map((it) => ({
                             ...it,
                             isHorizontal: true,
                         }))}

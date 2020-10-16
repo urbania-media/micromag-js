@@ -32,6 +32,11 @@
         "es",
         "assets"
     ],
+    "lang": "lang",
+    "supportedLocales": [
+        "en",
+        "fr"
+    ],
     "scripts": {
         "prepare": "../../scripts/prepare-package.sh --intl"
     },
@@ -57,11 +62,6 @@
         "react-intl": "^4.5.0",
         "uuid": "^7.0.2"
     },
-    "lang": "lang",
-    "supportedLocales": [
-        "en",
-        "fr"
-    ],
     "publishConfig": {
         "access": "public"
     },

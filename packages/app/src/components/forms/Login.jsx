@@ -2,21 +2,12 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 // import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Form } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
 import { useAuth } from '../../contexts/AuthContext';
-
-import formMessages from './messages';
-
-const messages = defineMessages({
-    submit: {
-        id: 'forms.login.submit',
-        defaultMessage: 'Log in',
-    },
-});
 
 const propTypes = {
     fields: MicromagPropTypes.formFields,
@@ -29,13 +20,13 @@ const defaultProps = {
         {
             name: 'email',
             type: 'email',
-            label: formMessages.emailLabel,
+            label: <FormattedMessage defaultMessage="Email" description="Field label" />,
             required: true,
         },
         {
             name: 'password',
             type: 'password',
-            label: formMessages.passwordLabel,
+            label: <FormattedMessage defaultMessage="Password" description="Field label" />,
             required: true,
         },
     ],
@@ -53,7 +44,9 @@ const LoginForm = ({ fields, className, onLoggedIn }) => {
             postForm={postForm}
             fields={fields}
             onComplete={onLoggedIn}
-            submitButtonLabel={messages.submit}
+            submitButtonLabel={
+                <FormattedMessage defaultMessage="Log in" description="Button label" />
+            }
             className={className}
         />
     );
