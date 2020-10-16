@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -22,9 +22,10 @@ import Transitions from '@micromag/core/src/components/transitions/Transitions';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    layout: PropTypes.oneOf(['top', 'center', 'bottom', 'split']),
+    layout: PropTypes.oneOf(['top', 'center', 'bottom', 'split-top', 'split-bottom']),
     title: MicromagPropTypes.headingElement,
     subtitle: MicromagPropTypes.headingElement,
+    credits: MicromagPropTypes.headingElement,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -39,6 +40,7 @@ const defaultProps = {
     layout: 'top',
     title: null,
     subtitle: null,
+    credits: null,
     background: null,
     current: true,
     active: false,
@@ -55,10 +57,11 @@ const defaultProps = {
     className: null,
 };
 
-const Title = ({
+const TitleCredits = ({
     layout,
     title,
     subtitle,
+    credits,
     background,
     current,
     active,
@@ -73,24 +76,46 @@ const Title = ({
 
     const withTitle = title !== null;
     const withSubtitle = subtitle !== null;
+    const withCredits = credits !== null;
 
-    const isEmpty = isEditor && !withTitle && !withSubtitle;
+    const isEmpty = isEditor && !withTitle && !withSubtitle && !credits;
 
     let titleElement = null;
     let subtitleElement = null;
+    let creditElement = null;
+
+    const createSecondElement = useCallback(
+        (children) => (
+            <div
+                style={{
+                    marginTop: layout === 'split-bottom' ? 'auto' : null,
+                    marginBottom: layout === 'split-top' ? 'auto' : null,
+                }}
+            >
+                {children}
+            </div>
+        ),
+        [layout],
+    );
 
     if (isPlaceholder) {
         titleElement = <PlaceholderTitle />;
-        subtitleElement = <PlaceholderSubtitle />;
+        subtitleElement = createSecondElement(<PlaceholderSubtitle />);
+        creditElement = <PlaceholderSubtitle />;
     } else if (isEmpty) {
         titleElement = (
             <Empty className={styles.empty}>
                 <FormattedMessage defaultMessage="Title" description="Title placeholder" />
             </Empty>
         );
-        subtitleElement = (
+        subtitleElement = createSecondElement(
             <Empty className={styles.empty}>
                 <FormattedMessage defaultMessage="Subtitle" description="Subtitle placeholder" />
+            </Empty>,
+        );
+        creditElement = (
+            <Empty className={styles.empty}>
+                <FormattedMessage defaultMessage="Credits" description="Credits placeholder" />
             </Empty>
         );
     } else {
@@ -107,12 +132,15 @@ const Title = ({
         };
 
         if (withTitle) {
-            titleElement = createElement(<Heading {...title} size={1} className={styles.title} />);
+            titleElement = createElement(<Heading {...title} size={1} />);
         }
         if (withSubtitle) {
-            subtitleElement = createElement(
-                <Heading {...subtitle} size={2} className={styles.subtitle} />,
+            subtitleElement = createSecondElement(
+                createElement(<Heading {...subtitle} size={2} />),
             );
+        }
+        if (withCredits) {
+            creditElement = createElement(<Heading {...credits} size={3} />);
         }
     }
 
@@ -129,7 +157,8 @@ const Title = ({
         case 'bottom':
             contentJustifyContentValue = 'flex-end';
             break;
-        case 'split':
+        case 'split-top':
+        case 'split-bottom':
             contentJustifyContentValue = 'space-between';
             break;
     }
@@ -161,13 +190,14 @@ const Title = ({
                 >
                     {titleElement}
                     {subtitleElement}
+                    {creditElement}
                 </div>
             </Container>
         </div>
     );
 };
 
-Title.propTypes = propTypes;
-Title.defaultProps = defaultProps;
+TitleCredits.propTypes = propTypes;
+TitleCredits.defaultProps = defaultProps;
 
-export default React.memo(Title);
+export default React.memo(TitleCredits);

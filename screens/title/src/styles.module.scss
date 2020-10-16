@@ -4,50 +4,11 @@
 
 .container {
     @extend %screen;
-    @extend %fullscreen;
-    color: $gray-500;
 
     .content {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
         height: 100%;
-    }
-
-    .inner {
-        @extend %fullscreen;
-        display: flex;
-        z-index: 2;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        padding: 20px 10px;
-    }
-
-    .grid {
-        width: 100%;
-        height: 100%;
-    }
-
-    .group {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-    }
-
-    .title,
-    .subtitle,
-    .description {
-        display: block;
-        width: 100%;
-    }
-
-    .background {
-        @extend %fullscreen;
-        z-index: 1;
     }
 
     .empty {
@@ -57,15 +18,9 @@
         margin: 5px auto;
     }
 
-    &.reverse {
-        .inner {
-            flex-direction: column-reverse;
+    &.placeholder {
+        .content {
+            align-items: center;
         }
-    }
-}
-
-@include match-story-screen('medium') {
-    .middle {
-        max-width: 30rem;
     }
 }

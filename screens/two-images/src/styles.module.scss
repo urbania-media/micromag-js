@@ -1,3 +1,4 @@
+@import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 
 .container {
@@ -5,7 +6,7 @@
 
     .content {
         display: flex;
-        flex-direction: column;        
+        flex-direction: column;
         height: 100%;
     }
 

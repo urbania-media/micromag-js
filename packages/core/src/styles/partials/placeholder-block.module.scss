@@ -1,15 +1,13 @@
 @import '../variables';
 
 .container {
-    display: block;
+    margin: 2px;
 
     .box {
         display: flex;
         position: relative;
         align-items: center;
         justify-content: center;
-        width: 100%;
-        height: 100%;
         background-color: rgba($black, 0.5);
     }
 }

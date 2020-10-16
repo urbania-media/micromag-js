@@ -9,7 +9,7 @@ export default {
         description: 'Text screen title',
     }),
     component: Text,
-    layouts: ['center', 'top', 'bottom'],
+    layouts: ['top', 'center', 'bottom', 'split'],
     fields: [
         {
             name: 'layout',
@@ -25,6 +25,14 @@ export default {
             label: defineMessage({
                 defaultMessage: 'Text',
                 description: 'Text field label',
+            }),
+        },
+        {
+            name: 'title',
+            type: 'text',
+            label: defineMessage({
+                defaultMessage: 'Title',
+                description: 'Title field label',
             }),
         },
         {

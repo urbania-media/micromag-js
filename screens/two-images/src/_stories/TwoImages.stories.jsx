@@ -3,29 +3,30 @@ import React from 'react';
 import { text, imageWithRandomSize } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
-import TextImage from '../TextImage';
+import TwoImages from '../TwoImages';
 import definition from '../definition';
 
 const props = {
     text: text(),
     image: imageWithRandomSize(),
+    image2: imageWithRandomSize(),
 };
 
 export default {
-    title: 'Screens/TextImage',
-    component: TextImage,
+    title: 'Screens/TwoImages',
+    component: TwoImages,
     parameters: {
         intl: true,
         screenDefinition: definition,
     },
 };
 
-export const Placeholder = (storyProps) => <TextImage {...storyProps} />;
+export const Placeholder = (storyProps) => <TwoImages {...storyProps} />;
 
-export const Preview = (storyProps) => <TextImage {...storyProps} {...props} />;
+export const Preview = (storyProps) => <TwoImages {...storyProps} {...props} />;
 
-export const Edit = (storyProps) => <TextImage {...storyProps} />;
+export const Edit = (storyProps) => <TwoImages {...storyProps} />;
 
-export const Normal = (storyProps) => <TextImage {...storyProps} {...props} />;
+export const Normal = (storyProps) => <TwoImages {...storyProps} {...props} />;
 
 export const Definition = () => <ScreenDefinition definition={definition} />;

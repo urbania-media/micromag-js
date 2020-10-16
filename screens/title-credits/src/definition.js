@@ -1,15 +1,15 @@
 import { defineMessage } from 'react-intl';
-import Quote from './Quote';
+import TitleCredits from './TitleCredits';
 
 export default {
-    id: 'quote',
+    id: 'title-credits',
     type: 'screen',
     title: defineMessage({
-        defaultMessage: 'Quote',
-        description: 'Quote screen title',
+        defaultMessage: 'TitleCredits',
+        description: 'TitleCredits screen title',
     }),
-    component: Quote,
-    layouts: ['top', 'center', 'bottom', 'split'],
+    component: TitleCredits,
+    layouts: ['top', 'center', 'bottom', 'split-top', 'split-bottom'],
     fields: [
         {
             name: 'layout',
@@ -20,19 +20,27 @@ export default {
             }),
         },
         {
-            name: 'quote',
+            name: 'title',
             type: 'text',
             label: defineMessage({
-                defaultMessage: 'Quote',
-                description: 'Quote field label',
+                defaultMessage: 'Title',
+                description: 'Title field label',
             }),
         },
         {
-            name: 'author',
+            name: 'subtitle',
             type: 'text',
             label: defineMessage({
-                defaultMessage: 'Author',
-                description: 'Author field label',
+                defaultMessage: 'Subtitle',
+                description: 'Subtitle field label',
+            }),
+        },
+        {
+            name: 'credits',
+            type: 'text',
+            label: defineMessage({
+                defaultMessage: 'Credits',
+                description: 'Credits field label',
             }),
         },
         {

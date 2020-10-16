@@ -28,12 +28,16 @@ const PlaceholderBlock = ({ width, height, className, children }) => {
                     [className]: className,
                 },
             ])}
-            style={{
-                width,
-                height,
-            }}
         >
-            <div className={styles.box}>{children}</div>
+            <div
+                className={styles.box}
+                style={{
+                    width,
+                    height,
+                }}
+            >
+                {children}
+            </div>
         </div>
     );
 };

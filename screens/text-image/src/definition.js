@@ -10,14 +10,14 @@ export default {
     }),
     component: TextImage,
     layouts: [
-        'center',
-        'center-reverse',
         'top',
         'top-reverse',
+        'center',
+        'center-reverse',        
         'bottom',
-        'bottom-reverse',
-        'side',
-        'side-reverse',
+        'bottom-reverse',        
+        'split',
+        'split-reverse',
     ],
     fields: [
         {

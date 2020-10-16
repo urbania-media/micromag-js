@@ -2,13 +2,7 @@
 @import '~@micromag/core/scss/placeholders';
 
 .container {
-    @extend %screen;
-
-    .empty {
-        @extend %empty;
-        width: 100%;
-        height: 50px;
-    }
+    @extend %screen;    
 
     .content {
         display: flex;
@@ -16,27 +10,15 @@
         height: 100%;
     }
 
-    &.center {
-        text-align: center;
-
-        .placeholder {
-            @extend %placeholder-center;
-        }
+    .empty {
+        @extend %empty;
+        width: 100%;
+        height: 50px;
     }
 
-    &.left {
-        text-align: left;
-
-        .placeholder {
-            @extend %placeholder-left;
-        }
-    }
-
-    &.right {
-        text-align: right;
-
-        .placeholder {
-            @extend %placeholder-right;
+    &.placeholder {
+        .content {
+            align-items: center;
         }
     }
 }

@@ -1,20 +1,20 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+/* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
-import Heading from '@micromag/element-heading';
+import Image from '@micromag/element-image';
+import Text from '@micromag/element-text';
 
 import {
     PropTypes as MicromagPropTypes,
-    PlaceholderTitle,
-    PlaceholderSubtitle,
+    PlaceholderImage,
+    PlaceholderText,
     Empty,
 } from '@micromag/core';
-
 import { getRenderFormat } from '@micromag/core/utils';
 import { useScreenSize } from '@micromag/core/contexts';
 import Transitions from '@micromag/core/src/components/transitions/Transitions';
@@ -23,8 +23,9 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     layout: PropTypes.oneOf(['top', 'center', 'bottom', 'split']),
-    title: MicromagPropTypes.headingElement,
-    subtitle: MicromagPropTypes.headingElement,
+    image: MicromagPropTypes.imageMedia,
+    image2: MicromagPropTypes.imageMedia,
+    text: MicromagPropTypes.textElement,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -37,11 +38,12 @@ const propTypes = {
 
 const defaultProps = {
     layout: 'top',
-    title: null,
-    subtitle: null,
+    image: null,
+    image2: null,
+    text: null,
     background: null,
     current: true,
-    active: false,
+    active: true,
     renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: {
@@ -55,10 +57,11 @@ const defaultProps = {
     className: null,
 };
 
-const Title = ({
+const TwoImages = ({
     layout,
-    title,
-    subtitle,
+    image,
+    image2,
+    text,
     background,
     current,
     active,
@@ -69,28 +72,44 @@ const Title = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isView, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
+    const { isView, isPlaceholder, isPreview, isEditor } = getRenderFormat(renderFormat);
 
-    const withTitle = title !== null;
-    const withSubtitle = subtitle !== null;
+    const withText = text !== null;
+    const withImage = image !== null;
+    const withImage2 = image2 !== null;
+    const isEmpty = isEditor && !withText && !withImage;
 
-    const isEmpty = isEditor && !withTitle && !withSubtitle;
+    const imagesCount = [withImage, withImage2].reduce((acc, current) => acc + (current ? 1 : 0), 0);
+    const [imagesLoaded, setImagesLoaded] = useState(0);
+    const ready = imagesLoaded >= imagesCount;
+    const transitionPlaying = current && ready;
 
-    let titleElement = null;
-    let subtitleElement = null;
+    const onImageLoaded = useCallback(() => {
+        setImagesLoaded(imagesLoaded + 1);
+    }, [imagesLoaded, setImagesLoaded]);
+
+    let imageElement = null;
+    let image2Element = null;
+    let textElement = null;
 
     if (isPlaceholder) {
-        titleElement = <PlaceholderTitle />;
-        subtitleElement = <PlaceholderSubtitle />;
+        imageElement = <PlaceholderImage />;
+        image2Element = <PlaceholderImage />;
+        textElement = <PlaceholderText />;
     } else if (isEmpty) {
-        titleElement = (
-            <Empty className={styles.empty}>
-                <FormattedMessage defaultMessage="Title" description="Title placeholder" />
+        imageElement = (
+            <Empty className={classNames([styles.empty, styles.emptyImage])}>
+                <FormattedMessage defaultMessage="Image" description="Image placeholder" />
             </Empty>
         );
-        subtitleElement = (
+        image2Element = (
+            <Empty className={classNames([styles.empty, styles.emptyImage])}>
+                <FormattedMessage defaultMessage="Second image" description="Second image placeholder" />
+            </Empty>
+        );
+        textElement = (
             <Empty className={styles.empty}>
-                <FormattedMessage defaultMessage="Subtitle" description="Subtitle placeholder" />
+                <FormattedMessage defaultMessage="Title" description="Title placeholder" />
             </Empty>
         );
     } else {
@@ -98,7 +117,11 @@ const Title = ({
 
         const createElement = (children) => {
             const element = (
-                <Transitions transitions={transitions} delay={transitionDelay} playing>
+                <Transitions
+                    transitions={transitions}
+                    delay={transitionDelay}
+                    playing={transitionPlaying}
+                >
                     {children}
                 </Transitions>
             );
@@ -106,13 +129,16 @@ const Title = ({
             return element;
         };
 
-        if (withTitle) {
-            titleElement = createElement(<Heading {...title} size={1} className={styles.title} />);
+        if (withImage) {
+            imageElement = createElement(<Image {...image} onLoaded={onImageLoaded} />);
         }
-        if (withSubtitle) {
-            subtitleElement = createElement(
-                <Heading {...subtitle} size={2} className={styles.subtitle} />,
-            );
+
+        if (withImage2) {
+            image2Element = createElement(<Image {...image2} onLoaded={onImageLoaded} />);
+        }
+
+        if (withText) {
+            textElement = createElement(<Text {...text} />);
         }
     }
 
@@ -151,7 +177,6 @@ const Title = ({
                 playing={(isView && current) || (isEditor && active)}
                 maxRatio={maxRatio}
             />
-
             <Container width={width} height={height} maxRatio={maxRatio}>
                 <div
                     className={styles.content}
@@ -159,15 +184,16 @@ const Title = ({
                         justifyContent: contentJustifyContentValue,
                     }}
                 >
-                    {titleElement}
-                    {subtitleElement}
+                    {imageElement}
+                    {textElement}
+                    {image2Element}
                 </div>
             </Container>
         </div>
     );
 };
 
-Title.propTypes = propTypes;
-Title.defaultProps = defaultProps;
+TwoImages.propTypes = propTypes;
+TwoImages.defaultProps = defaultProps;
 
-export default React.memo(Title);
+export default React.memo(TwoImages);

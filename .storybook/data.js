@@ -33,7 +33,7 @@ export const title = () => random(titles);
 
 export const subtitle = () => random(subtitles);
 
-export const quote = ({ likelyhood = 100, min = 7, max = 20 } = {}) => words(likelyhood, min, max);
+export const quote = ({ likelyhood = 100, min = 7, max = 20 } = {}) => `“ ${words(likelyhood, min, max)} ”`;
 
 export const author = ({ likelyhood = 100 } = {}) => name(likelyhood);
 

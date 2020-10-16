@@ -7,9 +7,8 @@ import Quote from '../Quote';
 import definition from '../definition';
 
 const props = {
-    quote: { body: quote(), style: { text: { color: '#FFF' } } },
+    quote: { body: quote() },
     author: { body: author() },
-    source: { body: source() },
     background: background(),
 };
 

@@ -9,7 +9,16 @@ export default {
         description: 'Image screen title',
     }),
     component: Image,
-    layouts: ['center', 'top', 'bottom'],
+    layouts: [
+        'top',
+        'top-reverse',
+        'center',
+        'center-reverse',
+        'bottom',
+        'bottom-reverse',        
+        'split',
+        'split-reverse',
+    ],
     fields: [
         {
             name: 'layout',
@@ -28,11 +37,11 @@ export default {
             }),
         },
         {
-            name: 'text',
+            name: 'title',
             type: 'text',
             label: defineMessage({
-                defaultMessage: 'Text',
-                description: 'Text field label',
+                defaultMessage: 'Title',
+                description: 'Title field label',
             }),
         },
         {

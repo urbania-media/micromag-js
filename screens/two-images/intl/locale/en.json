@@ -1,0 +1,7 @@
+{
+    "screens.text-image.schema.properties.background": "Background",
+    "screens.text-image.schema.properties.image": "Image",
+    "screens.text-image.schema.properties.layout": "Layout",
+    "screens.text-image.schema.properties.text": "Text",
+    "screens.text-image.schema.title": "Text with image"
+}

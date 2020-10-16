@@ -6,34 +6,41 @@ import { FormattedMessage } from 'react-intl';
 
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
-import TextComponent from '@micromag/element-text';
+import Heading from '@micromag/element-heading';
+import Text from '@micromag/element-text';
 
 import { useScreenSize } from '@micromag/core/contexts';
 import { getRenderFormat } from '@micromag/core/utils';
-import { PropTypes as MicromagPropTypes, PlaceholderText, Empty } from '@micromag/core';
+import {
+    PropTypes as MicromagPropTypes,
+    PlaceholderTitle,
+    PlaceholderText,
+    Empty,
+} from '@micromag/core';
 
 import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
-    layout: PropTypes.oneOf(['center', 'top', 'bottom']),
+    layout: PropTypes.oneOf(['top', 'center', 'bottom', 'split']),
+    title: MicromagPropTypes.headingElement,
     text: MicromagPropTypes.textElement,
     background: MicromagPropTypes.backgroundElement,
-    textAlign: MicromagPropTypes.textAlign,
     current: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
+    transitionStagger: PropTypes.number,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     layout: 'center',
+    title: null,
     text: null,
     background: null,
-    textAlign: 'center',
     current: true,
     active: false,
     renderFormat: 'view',
@@ -45,41 +52,68 @@ const defaultProps = {
         },
         out: 'scale',
     },
+    transitionStagger: 100,
     className: null,
 };
 
 const TextScreen = ({
     layout,
+    title,
     text,
     background,
-    textAlign,
     current,
     active,
     renderFormat,
     maxRatio,
     transitions,
+    transitionStagger,
     className,
 }) => {
     const { width, height } = useScreenSize();
     const { isPlaceholder, isEditor, isView } = getRenderFormat(renderFormat);
-    const isEmpty = isEditor && text === null;
 
-    let textComponent = null;
+    const withTitle = title !== null;
+    const withText = text !== null;
+
+    const isEmpty = isEditor && !withTitle && !withText;
+
+    let titleElement = null;
+    let textElement = null;
 
     if (isPlaceholder) {
-        textComponent = <PlaceholderText className={styles.placeholder} />;
+        titleElement = <PlaceholderTitle />;
+        textElement = <PlaceholderText />;
     } else if (isEmpty) {
-        textComponent = (
+        titleElement = (
+            <Empty className={styles.empty}>
+                <FormattedMessage defaultMessage="Title" description="Title placeholder" />
+            </Empty>
+        );
+        textElement = (
             <Empty className={styles.empty}>
                 <FormattedMessage defaultMessage="Text" description="Text placeholder" />
             </Empty>
         );
     } else {
-        textComponent = (
-            <Transitions transitions={transitions} playing={current}>
-                <TextComponent {...text} className={styles.text} />
-            </Transitions>
-        );
+        let transitionDelay = 0;
+
+        const createElement = (children) => {
+            const element = (
+                <Transitions transitions={transitions} delay={transitionDelay} playing>
+                    {children}
+                </Transitions>
+            );
+            transitionDelay += transitionStagger;
+            return element;
+        };
+
+        if (withTitle) {
+            titleElement = createElement(<Heading {...title} size={2} className={styles.title} />);
+        }
+
+        if (withText) {
+            textElement = createElement(<Text {...text} className={styles.text} />);
+        }
     }
 
     let contentJustifyContentValue;
@@ -95,10 +129,7 @@ const TextScreen = ({
         case 'bottom':
             contentJustifyContentValue = 'flex-end';
             break;
-        case 'around':
-            contentJustifyContentValue = 'space-around';
-            break;
-        case 'between':
+        case 'split':
             contentJustifyContentValue = 'space-between';
             break;
     }
@@ -108,8 +139,8 @@ const TextScreen = ({
             className={classNames([
                 styles.container,
                 {
-                    [styles[textAlign]]: textAlign !== null,
                     [className]: className !== null,
+                    [styles.placeholder]: isPlaceholder,
                 },
             ])}
         >
@@ -127,7 +158,8 @@ const TextScreen = ({
                         justifyContent: contentJustifyContentValue,
                     }}
                 >
-                    {textComponent}
+                    {titleElement}
+                    {textElement}
                 </div>
             </Container>
         </div>

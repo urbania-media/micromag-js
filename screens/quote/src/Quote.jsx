@@ -2,72 +2,113 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { FormattedMessage } from 'react-intl';
 
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
+import Text from '@micromag/element-text';
 
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useScreenSize } from '@micromag/core/contexts';
+import {
+    PropTypes as MicromagPropTypes,
+    PlaceholderQuote,
+    PlaceholderSubtitle,
+    Empty
+} from '@micromag/core';
+
 import { getRenderFormat } from '@micromag/core/utils';
-
-import QuoteBlock from './QuoteBlock';
+import { useScreenSize } from '@micromag/core/contexts';
+import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
-    layout: PropTypes.oneOf(['center', 'top', 'bottom', 'around']),
-    background: MicromagPropTypes.backgroundElement,
+    layout: PropTypes.oneOf(['center', 'center', 'bottom', 'split']),    
     quote: MicromagPropTypes.textElement,
-    source: MicromagPropTypes.textElement,
     author: MicromagPropTypes.textElement,
+    background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
+    transitionStagger: PropTypes.number,
     className: PropTypes.string,
 };
 
 const defaultProps = {
-    layout: 'center',
-    background: null,
+    layout: 'top',    
     quote: null,
     author: null,
-    source: null,
+    background: null,
     current: true,
     active: true,
     renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: null,
+    transitionStagger: 100,
     className: null,
 };
 
 const Quote = ({
-    layout,
-    background,
+    layout,    
     quote,
-    source,
     author,
+    background,
     current,
     active,
     renderFormat,
     maxRatio,
     transitions,
+    transitionStagger,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
+    const { isView, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
 
-    const item = (
-        <QuoteBlock
-            quote={quote}
-            source={source}
-            author={author}
-            isPlaceholder={isPlaceholder}
-            showEmpty={isEditor}
-            centered={true}
-        />
-    );
+    const withQuote = quote !== null;
+    const withAuthor = author !== null;
+
+    const isEmpty = isEditor && !withQuote && !withAuthor;
+
+    let quoteElement = null;
+    let authorElement = null;
+
+    if (isPlaceholder) {
+        quoteElement = <PlaceholderQuote  />;
+        authorElement = <PlaceholderSubtitle />;
+    } else if (isEmpty) {
+        quoteElement = (
+            <Empty className={styles.empty}>
+                <FormattedMessage defaultMessage="Quote" description="Quote placeholder" />
+            </Empty>
+        );
+        authorElement = (
+            <Empty className={styles.empty}>
+                <FormattedMessage defaultMessage="Author" description="Author placeholder" />
+            </Empty>
+        );
+    } else {
+        let transitionDelay = 0;
+
+        const createElement = (children) => {
+            const element = (
+                <Transitions transitions={transitions} delay={transitionDelay} playing>
+                    {children}
+                </Transitions>
+            );
+            transitionDelay += transitionStagger;
+            return element;
+        };
+
+        if (withQuote) {
+            quoteElement = createElement(<Text {...quote} className={styles.quote} />);
+        }
+        if (withAuthor) {
+            authorElement = createElement(
+                <Text {...author} sclassName={styles.author} />,
+            );
+        }
+    }
 
     let contentJustifyContentValue;
 
@@ -82,10 +123,7 @@ const Quote = ({
         case 'bottom':
             contentJustifyContentValue = 'flex-end';
             break;
-        case 'around':
-            contentJustifyContentValue = 'space-around';
-            break;
-        case 'between':
+        case 'split':
             contentJustifyContentValue = 'space-between';
             break;
     }
@@ -115,7 +153,8 @@ const Quote = ({
                         justifyContent: contentJustifyContentValue,
                     }}
                 >
-                    {item}
+                    { quoteElement }
+                    { authorElement }
                 </div>
             </Container>
         </div>
