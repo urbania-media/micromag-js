@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -9,13 +9,6 @@ import { Button } from '@micromag/core/components';
 
 import * as AppPropTypes from '../../lib/PropTypes';
 import SearchForm from '../forms/Search';
-
-const messages = defineMessages({
-    addButton: {
-        id: 'buttons.add',
-        defaultMessage: 'Add',
-    },
-});
 
 const propTypes = {
     filters: AppPropTypes.filtersValue,
@@ -47,7 +40,7 @@ const Navbar = ({
     onClickBack,
 }) => {
     const onSearchChange = useCallback(
-        newSearchValue => {
+        (newSearchValue) => {
             const newFiltersValue = {
                 ...filters,
                 search: newSearchValue,
@@ -98,7 +91,7 @@ const Navbar = ({
                             icon={<FontAwesomeIcon icon={faPlus} />}
                             onClick={onClickAdd}
                         >
-                            {messages.addButton}
+                            <FormattedMessage defaultMessage="Add" description="Add button label in Media Gallery" />
                         </Button>
                     </form>
                 </>

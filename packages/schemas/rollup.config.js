@@ -3,10 +3,10 @@ import baseConfig from '../../rollup.config';
 
 export default [
     {
-        ...baseConfig,
+        ...baseConfig(),
     },
     {
-        ...baseConfig,
+        ...baseConfig(),
         input: 'src/repository.js',
         output: [
             {

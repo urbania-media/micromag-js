@@ -1,6 +1,0 @@
-{
-    "elements.video.schema.properties.subtitleStyle": "Subtitle style",
-    "elements.video.schema.properties.subtitles": "Subtitles",
-    "elements.video.schema.properties.video": "Video",
-    "elements.video.schema.title": "Video element"
-}

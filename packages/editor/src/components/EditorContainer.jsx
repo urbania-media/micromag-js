@@ -3,8 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { MemoryRouter } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
-import { FORMS_NAMESPACE } from '@micromag/core/components';
-import { RoutesProvider, ComponentsContext } from '@micromag/core/contexts';
+import { RoutesProvider, ComponentsContext, FORMS_NAMESPACE } from '@micromag/core/contexts';
 import {
     repository as defaultSchemasRepository,
     SchemasProvider,

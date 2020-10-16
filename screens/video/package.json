@@ -30,11 +30,10 @@
     "files": [
         "lib",
         "es",
-        "assets",
-        "definition.js"
+        "assets"
     ],
     "scripts": {
-        "prepare": "../../scripts/prepare-package.sh"
+        "prepare": "../../scripts/prepare-package.sh --intl"
     },
     "devDependencies": {
         "react": ">=15.0.0 || ^16.0.0",

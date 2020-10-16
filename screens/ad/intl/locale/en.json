@@ -1,7 +1,0 @@
-{
-    "screens.ad.schema.properties.background": "Background",
-    "screens.ad.schema.properties.image": "Image",
-    "screens.ad.schema.properties.layout": "Layout",
-    "screens.ad.schema.properties.link": "Link",
-    "screens.ad.schema.title": "Advertising"
-}

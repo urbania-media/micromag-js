@@ -22,6 +22,7 @@ module.exports = (api) => ({
         api.env('production') && [
             require.resolve('@babel/plugin-transform-runtime'),
             {
+                version: require('@babel/helpers/package.json').version,
                 helpers: true,
                 useESModules: true,
             },

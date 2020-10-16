@@ -1,8 +1,0 @@
-{
-    "screens.audio.schema.properties.audio": "Audio",
-    "screens.audio.schema.properties.background": "Arrière-plan",
-    "screens.audio.schema.properties.image": "Image",
-    "screens.audio.schema.properties.layout": "Mise en page",
-    "screens.audio.schema.properties.text": "Texte",
-    "screens.audio.schema.title": "Audio"
-}

@@ -1,8 +1,0 @@
-{
-    "screens.title.schema.properties.background": "Arrière-plan",
-    "screens.title.schema.properties.description": "Description",
-    "screens.title.schema.properties.layout": "Mise en page",
-    "screens.title.schema.properties.subtitle": "Sous-titre",
-    "screens.title.schema.properties.title": "Titre",
-    "screens.title.schema.title": "Titre"
-}

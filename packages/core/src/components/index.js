@@ -55,5 +55,3 @@ export { default as Screen } from './screens/Screen';
 export { default as Screens } from './screens/Screens';
 
 export { default as LinkStyle } from './utils/LinkStyle';
-
-export * from './namespaces';

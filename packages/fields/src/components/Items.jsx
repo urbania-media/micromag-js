@@ -2,28 +2,14 @@
 import React, { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 // import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import isFunction from 'lodash/isFunction';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, Empty, Label } from '@micromag/core/components';
 
 import FieldRow from './FieldRow';
-
-const messages = defineMessages({
-    noItem: {
-        id: 'items.no_item',
-        defaultMessage: 'No item...',
-    },
-    addItem: {
-        id: 'items.add_item',
-        defaultMessage: 'Add an item',
-    },
-    itemFieldLabel: {
-        id: 'items.item_field_label',
-        defaultMessage: '#{index}',
-    },
-});
 
 const propTypes = {
     name: PropTypes.string,
@@ -44,9 +30,23 @@ const defaultProps = {
     name: null,
     value: null,
     newDefaultValue: {},
-    noItemLabel: messages.noItem,
-    addItemLabel: messages.addItem,
-    itemFieldLabel: messages.itemFieldLabel,
+    noItemLabel: (
+        <FormattedMessage
+            defaultMessage="No item..."
+            description="Label when there is no item in items field"
+        />
+    ),
+    addItemLabel: (
+        <FormattedMessage defaultMessage="Add an item" description="Button label in items field" />
+    ),
+    // eslint-disable-next-line react/prop-types
+    itemFieldLabel: ({ index }) => (
+        <FormattedMessage
+            defaultMessage="#{index}"
+            description="Item label in items field"
+            values={{ index: index + 1 }}
+        />
+    ),
     children: null,
     ItemComponent: null,
     className: null,
@@ -110,7 +110,7 @@ const ItemsField = ({
                         const itemProps = {
                             name: `${name}.${index}`,
                             value: itemValue,
-                            onChange: newValue => onItemChange(index, newValue),
+                            onChange: (newValue) => onItemChange(index, newValue),
                             closeForm: closeForms[index],
                             gotoFieldForm,
                             closeFieldForm,
@@ -120,9 +120,13 @@ const ItemsField = ({
                                 <FieldRow
                                     key={`item-${index}`}
                                     label={
-                                        <Label values={{ index: index + 1 }}>
-                                            {itemFieldLabel}
-                                        </Label>
+                                        isFunction(itemFieldLabel) ? (
+                                            itemFieldLabel({ item: itemValue, index: index + 1 })
+                                        ) : (
+                                            <Label values={{ index: index + 1 }}>
+                                                {itemFieldLabel}
+                                            </Label>
+                                        )
                                     }
                                     name={`${name}.${index}`}
                                     withForm

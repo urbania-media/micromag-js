@@ -3,36 +3,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import prettyBytes from 'pretty-bytes';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Label } from '@micromag/core/components';
 
 import styles from '../../styles/partials/media-metadata.module.scss';
-
-const messages = defineMessages({
-    technicalDetails: {
-        id: 'metadata.technical_details',
-        defaultMessage: 'Technical details',
-    },
-    filename: {
-        id: 'metadata.filename',
-        defaultMessage: 'Filename',
-    },
-    size: {
-        id: 'metadata.size',
-        defaultMessage: 'Size',
-    },
-    duration: {
-        id: 'metadata.duration',
-        defaultMessage: 'Duration',
-    },
-    dimension: {
-        id: 'metadata.dimension',
-        defaultMessage: 'Dimension',
-    },
-});
 
 const propTypes = {
     media: MicromagPropTypes.media,
@@ -82,14 +58,20 @@ const MediaMetadata = ({ media, className }) => {
                 <h4 className="mb-4">{name}</h4>
 
                 <h6>
-                    <Label>{messages.technicalDetails}</Label>
+                    <FormattedMessage
+                        defaultMessage="Technical details"
+                        description="Heading in Media Gallery"
+                    />
                 </h6>
                 <ul className="list-group">
                     {filename !== null ? (
                         <li className="list-group-item py-2 px-2">
                             <div className="row">
                                 <div className="col-4 text-muted">
-                                    <Label>{messages.filename}</Label>
+                                    <FormattedMessage
+                                        defaultMessage="Filename"
+                                        description="Label in Media Gallery"
+                                    />
                                 </div>
                                 <div className="col">
                                     <small>{filename}</small>
@@ -101,7 +83,10 @@ const MediaMetadata = ({ media, className }) => {
                         <li className="list-group-item py-2 px-2">
                             <div className="row">
                                 <div className="col-4 text-muted">
-                                    <Label>{messages.duration}</Label>
+                                    <FormattedMessage
+                                        defaultMessage="Duration"
+                                        description="Label in Media Gallery"
+                                    />
                                 </div>
                                 <div className="col">
                                     <small>{duration}</small>
@@ -113,7 +98,10 @@ const MediaMetadata = ({ media, className }) => {
                         <li className="list-group-item py-2 px-2">
                             <div className="row">
                                 <div className="col-4 text-muted">
-                                    <Label>{messages.dimension}</Label>
+                                    <FormattedMessage
+                                        defaultMessage="Dimension"
+                                        description="Label in Media Gallery"
+                                    />
                                 </div>
                                 <div className="col">
                                     <small>
@@ -127,7 +115,10 @@ const MediaMetadata = ({ media, className }) => {
                         <li className="list-group-item py-2 px-2">
                             <div className="row">
                                 <div className="col-4 text-muted">
-                                    <Label>{messages.size}</Label>
+                                    <FormattedMessage
+                                        defaultMessage="Size"
+                                        description="Label in Media Gallery"
+                                    />
                                 </div>
                                 <div className="col">
                                     <small>{prettyBytes(size)}</small>
