@@ -3,16 +3,13 @@ import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { PlaceholderImage, Empty, Transitions } from '@micromag/core/components';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Image from '@micromag/element-image';
 import { VStack, HStack } from '@micromag/element-stack';
-
-import { PropTypes as MicromagPropTypes, PlaceholderImage, Empty } from '@micromag/core';
-import { useScreenSize } from '@micromag/core/contexts';
-import { getRenderFormat } from '@micromag/core/utils';
-import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
 import styles from './styles.module.scss';
 
@@ -23,7 +20,6 @@ const propTypes = {
     spacing: PropTypes.number,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
@@ -37,7 +33,6 @@ const defaultProps = {
     spacing: 10,
     current: true,
     active: true,
-    renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: {
         in: {
@@ -57,14 +52,13 @@ const GalleryFeed = ({
     background,
     current,
     active,
-    renderFormat,
     maxRatio,
     transitions,
     transitionStagger,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isView, isPreview, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
+    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
     const defaultArray = [
         ...Array(16).map((i) => ({
@@ -76,7 +70,7 @@ const GalleryFeed = ({
         imageList && imageList.length > 0 && !isPlaceholder
             ? imageList
             : [...Array(16)].map(() => null);
-    const currentImages = isEditor && imageList.length === 0 ? defaultArray : images;
+    const currentImages = isEdit && imageList.length === 0 ? defaultArray : images;
 
     const imagesCount = currentImages.length;
     const [imagesLoaded, setImagesLoaded] = useState(0);
@@ -141,7 +135,7 @@ const GalleryFeed = ({
 
             let imageElement = null;
 
-            if (isView || (isEditor && !isEmpty)) {
+            if (isView || (isEdit && !isEmpty)) {
                 imageElement = (
                     <Transitions
                         transitions={transitions}
@@ -169,7 +163,7 @@ const GalleryFeed = ({
                         height="100%"
                     />
                 );
-            } else if (isEditor && isEmpty) {
+            } else if (isEdit && isEmpty) {
                 imageElement = (
                     <Empty className={styles.empty}>
                         <FormattedMessage
@@ -213,7 +207,7 @@ const GalleryFeed = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEditor && active)}
+                playing={(isView && current) || (isEdit && active)}
                 maxRatio={maxRatio}
             />
 

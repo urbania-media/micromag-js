@@ -348,6 +348,8 @@ export const screenSize = PropTypes.shape({
     height: PropTypes.number,
 });
 
+export const renderContext = PropTypes.oneOf(['view', 'placeholder', 'edit', 'preview']);
+
 /**
  * Screens
  */
@@ -356,8 +358,6 @@ export const adFormats = PropTypes.shape({
     width: PropTypes.number,
     height: PropTypes.number,
 });
-
-export const renderFormat = PropTypes.oneOf(['view', 'placeholder', 'edit', 'preview']);
 
 export const adFormat = PropTypes.shape({
     width: PropTypes.number,

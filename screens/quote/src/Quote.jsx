@@ -4,20 +4,12 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { PlaceholderQuote, PlaceholderSubtitle, Empty, Transitions } from '@micromag/core/components';
+import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Text from '@micromag/element-text';
-
-import {
-    PropTypes as MicromagPropTypes,
-    PlaceholderQuote,
-    PlaceholderSubtitle,
-    Empty,
-} from '@micromag/core';
-
-import { getRenderFormat } from '@micromag/core/utils';
-import { useScreenSize } from '@micromag/core/contexts';
-import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
 import styles from './styles.module.scss';
 
@@ -28,7 +20,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
@@ -42,7 +33,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: null,
     transitionStagger: 100,
@@ -56,19 +46,18 @@ const Quote = ({
     background,
     current,
     active,
-    renderFormat,
     maxRatio,
     transitions,
     transitionStagger,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isView, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
+    const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
 
     const withQuote = quote !== null;
     const withAuthor = author !== null;
 
-    const isEmpty = isEditor && !withQuote && !withAuthor;
+    const isEmpty = isEdit && !withQuote && !withAuthor;
 
     let quoteElement = null;
     let authorElement = null;
@@ -143,7 +132,7 @@ const Quote = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEditor && active)}
+                playing={(isView && current) || (isEdit && active)}
                 maxRatio={maxRatio}
             />
 

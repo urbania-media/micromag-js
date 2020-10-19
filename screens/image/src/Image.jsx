@@ -3,21 +3,13 @@ import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { PlaceholderImage, PlaceholderTitle, Empty, Transitions } from '@micromag/core/components';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import ImageComponent from '@micromag/element-image';
 import Heading from '@micromag/element-heading';
-
-import {
-    PropTypes as MicromagPropTypes,
-    PlaceholderImage,
-    PlaceholderTitle,
-    Empty,
-} from '@micromag/core';
-import { getRenderFormat } from '@micromag/core/utils';
-import { useScreenSize } from '@micromag/core/contexts';
-import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
 import styles from './styles.module.scss';
 
@@ -37,7 +29,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
@@ -51,7 +42,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: {
         in: {
@@ -71,18 +61,17 @@ const Image = ({
     background,
     current,
     active,
-    renderFormat,
     maxRatio,
     transitions,
     transitionStagger,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isView, isPlaceholder, isPreview, isEditor } = getRenderFormat(renderFormat);
+    const { isView, isPlaceholder, isPreview, isEdit } = useScreenRenderContext();
 
     const withTitle = title !== null;
     const withImage = image !== null;
-    const isEmpty = isEditor && !withTitle && !withImage;
+    const isEmpty = isEdit && !withTitle && !withImage;
 
     const [ready, setReady] = useState(!withImage);
     const transitionPlaying = current && ready;
@@ -131,7 +120,13 @@ const Image = ({
         };
 
         if (withImage) {
-            imageElement = createElement(<ImageComponent {...image} fit={{ size: 'cover', maxRatio: 9 / 16 }} onLoaded={onImageLoaded} />);
+            imageElement = createElement(
+                <ImageComponent
+                    {...image}
+                    fit={{ size: 'cover', maxRatio: 9 / 16 }}
+                    onLoaded={onImageLoaded}
+                />,
+            );
         }
         if (withTitle) {
             titleElement = createElement(<Heading {...title} />);
@@ -158,7 +153,7 @@ const Image = ({
 
     if (layoutChunks.length === 2 && layoutChunks[1] === 'reverse') {
         items.reverse();
-    }    
+    }
 
     return (
         <div
@@ -174,11 +169,17 @@ const Image = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEditor && active)}
+                playing={(isView && current) || (isEdit && active)}
                 maxRatio={maxRatio}
             />
-            <Container width={width} height={height} maxRatio={maxRatio} verticalAlign={verticalAlign} distribution={distribution}>
-                { items }
+            <Container
+                width={width}
+                height={height}
+                maxRatio={maxRatio}
+                verticalAlign={verticalAlign}
+                distribution={distribution}
+            >
+                {items}
             </Container>
         </div>
     );

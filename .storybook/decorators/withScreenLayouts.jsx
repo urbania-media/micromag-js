@@ -23,8 +23,13 @@ const withScreenLayouts = (
         return (
             <LayoutGrid layouts={layouts}>
                 {(layout) => (
-                    <Screen width={gridWidth} height={gridHeight} withBorder>
-                        <Story args={{ ...args, layout, renderFormat: 'placeholder' }} />
+                    <Screen
+                        width={gridWidth}
+                        height={gridHeight}
+                        withBorder
+                        renderContext="placeholder"
+                    >
+                        <Story args={{ ...args, layout }} />
                     </Screen>
                 )}
             </LayoutGrid>
@@ -35,8 +40,8 @@ const withScreenLayouts = (
         return (
             <LayoutSwitcher layouts={layouts}>
                 {(layout) => (
-                    <Screen>
-                        <Story args={{ ...args, layout, renderFormat: story.toLowerCase() }} />
+                    <Screen renderContext={story.toLowerCase()}>
+                        <Story args={{ ...args, layout }} />
                     </Screen>
                 )}
             </LayoutSwitcher>

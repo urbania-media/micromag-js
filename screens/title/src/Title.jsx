@@ -3,36 +3,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
+import Layout, { Spacer } from '@micromag/element-layout';
 import Heading from '@micromag/element-heading';
 import Text from '@micromag/element-text';
-
-import {
-    PropTypes as MicromagPropTypes,
-    PlaceholderTitle,
-    PlaceholderSubtitle,
-    Empty,
-} from '@micromag/core';
-
-import { getRenderFormat } from '@micromag/core/utils';
-import { useScreenSize } from '@micromag/core/contexts';
-import TransitionsStagger from '@micromag/core/src/components/transitions/TransitionsStagger';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
-    layout: PropTypes.oneOf(['top', 'center', 'bottom', 'split', 'split-top', 'split-bottom']),
+    layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split', 'split-top', 'split-bottom']),
     title: MicromagPropTypes.headingElement,
     subtitle: MicromagPropTypes.headingElement,
     description: MicromagPropTypes.textElement,
-    descriptionPlaceholder: PropTypes.bool,
-    descriptionEmptyContent: PropTypes.node,
+    withDescription: PropTypes.bool,
+    descriptionEmptyLabel: MicromagPropTypes.label,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
@@ -44,12 +35,13 @@ const defaultProps = {
     title: null,
     subtitle: null,
     description: null,
-    descriptionPlaceholder: false,
-    descriptionEmptyContent: null,
+    withDescription: false,
+    descriptionEmptyLabel: (
+        <FormattedMessage defaultMessage="Description" description="Description placeholder" />
+    ),
     background: null,
     current: true,
     active: false,
-    renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: {
         in: {
@@ -67,69 +59,67 @@ const Title = ({
     title,
     subtitle,
     description,
-    descriptionPlaceholder,
-    descriptionEmptyContent,
+    withDescription,
+    descriptionEmptyLabel,
     background,
     current,
     active,
-    renderFormat,
     maxRatio,
     transitions,
     transitionStagger,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isView, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
+    const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
 
-    const withTitle = title !== null;
-    const withSubtitle = subtitle !== null;
-    const withDescription = description !== null;
+    const hasTitle = title !== null;
+    const hasSubtitle = subtitle !== null;
+    const hasDescription = description !== null;
 
-    const isEmpty = isEditor && !withTitle && !withSubtitle && !description;
+    const isEmpty = !hasTitle && !hasSubtitle && (!withDescription || !hasDescription);
+
+    const layoutParts = layout.split('-');
+    const isSplitted = layoutParts[0] === 'split';
+    const verticalAlign = isSplitted ? layoutParts[1] || 'top' : layoutParts[0];
 
     // Create elements
-    let items = [];
+    const items = [
+        <ScreenElement
+            key="title"
+            placeholder="title"
+            emptyLabel={<FormattedMessage defaultMessage="Title" description="Title placeholder" />}
+            emptyClassName={styles.empty}
+            isEmpty={isEmpty}
+        >
+            <Heading key="title" {...title} size={1} />
+        </ScreenElement>,
 
-    if (isPlaceholder) {
-        items = [
-            <PlaceholderTitle />,
-            <PlaceholderSubtitle />
-        ];
-        if (descriptionPlaceholder) {
-            items.push(<PlaceholderSubtitle />)
-        }
-    } else if (isEmpty) {
-        items = [
-            <Empty className={styles.empty}>
-                <FormattedMessage defaultMessage="Title" description="Title placeholder" />
-            </Empty>,
-            <Empty className={styles.empty}>
+        isSplitted && !withDescription && <Spacer />,
+
+        <ScreenElement
+            key="subtitle"
+            placeholder="subtitle"
+            emptyLabel={
                 <FormattedMessage defaultMessage="Subtitle" description="Subtitle placeholder" />
-            </Empty>
-        ]
-        if (descriptionPlaceholder) {
-            items.push(
-                <Empty className={styles.empty}>
-                    {descriptionEmptyContent !== null ? descriptionEmptyContent : (
-                        <FormattedMessage
-                            defaultMessage="Description"
-                            description="Description placeholder"
-                        />
-                    )}
-                </Empty>
-            );
-        }
-    } else {
-        if (withTitle) {
-            items.push(<Heading {...title} size={1} />);
-        }
-        if (withSubtitle) {
-            items.push(<Heading {...subtitle} size={2} />);
-        }
-        if (withDescription) {
-            items.push(<Text {...description} />);
-        }
-    }
+            }
+            emptyClassName={styles.empty}
+            isEmpty={isEmpty}
+        >
+            <Heading key="subtitle" {...subtitle} size={2} />
+        </ScreenElement>,
+
+        isSplitted && withDescription && hasDescription && <Spacer />,
+
+        <ScreenElement
+            key="subtitle"
+            placeholder="text"
+            emptyLabel={descriptionEmptyLabel}
+            emptyClassName={styles.empty}
+            isEmpty={isEmpty}
+        >
+            <Text key="description" {...description} />
+        </ScreenElement>,
+    ].filter(Boolean);
 
     return (
         <div
@@ -144,26 +134,24 @@ const Title = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEditor && active)}
+                playing={(isView && current) || (isEdit && active)}
                 maxRatio={maxRatio}
             />
 
-            <Container
-                width={width}
-                height={height}
-                maxRatio={maxRatio}
-            >
-                {isView ? (
-                    <TransitionsStagger
-                        transitions={transitions}
-                        stagger={transitionStagger}
-                        playing
-                    >
-                        {items}
-                    </TransitionsStagger>
-                ) : (
-                    items
-                )}
+            <Container width={width} height={height} maxRatio={maxRatio}>
+                <Layout width={width} height={height} verticalAlign={verticalAlign}>
+                    {isView ? (
+                        <TransitionsStagger
+                            transitions={transitions}
+                            stagger={transitionStagger}
+                            playing
+                        >
+                            {items}
+                        </TransitionsStagger>
+                    ) : (
+                        items
+                    )}
+                </Layout>
             </Container>
         </div>
     );
