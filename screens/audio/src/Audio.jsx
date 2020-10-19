@@ -63,7 +63,7 @@ const defaultProps = {
     text: null,
     background: null,
     current: true,
-    active: false,
+    active: true,
     renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: {
@@ -76,7 +76,7 @@ const defaultProps = {
     className: null,
 };
 
-const AudioScreen = ({
+const Audio = ({
     layout,
     stack,
     maxWidth,
@@ -161,14 +161,16 @@ const AudioScreen = ({
     ]);
 
     return (
-        <div className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-                [styles.placeholder]: isPlaceholder,
-                [styles[layout]]: layout !== null,
-            },
-        ])}>
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                    [styles.placeholder]: isPlaceholder,
+                    [styles[layout]]: layout !== null,
+                },
+            ])}
+        >
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
@@ -176,9 +178,9 @@ const AudioScreen = ({
                 maxRatio={maxRatio}
                 playing={(isView && current) || (isEditor && active)}
             />
-            <div className={styles.inner}>
-                <Container width={width} height={height} maxRatio={maxRatio}>
-                    <div className={styles.content}>
+            <Container width={width} height={height} maxRatio={maxRatio}>
+                <div className={styles.content}>
+                    <div className={styles.inner}>
                         <VStack
                             className={stackClassNames}
                             spacing={layout === 'around' ? 'around' : spacing}
@@ -189,13 +191,13 @@ const AudioScreen = ({
                             {textElement}
                         </VStack>
                     </div>
-                </Container>
-            </div>
+                </div>
+            </Container>
         </div>
     );
 };
 
-AudioScreen.propTypes = propTypes;
-AudioScreen.defaultProps = defaultProps;
+Audio.propTypes = propTypes;
+Audio.defaultProps = defaultProps;
 
-export default React.memo(AudioScreen);
+export default React.memo(Audio);

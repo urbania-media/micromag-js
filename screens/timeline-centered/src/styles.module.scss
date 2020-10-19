@@ -5,54 +5,14 @@
 .container {
     @extend %screen;
 
-    .inner {
-        width: 100%;
-        padding: 20px 15px;
-    }
-
-    .title {
-        position: relative;
-    }
-
-    .timelineContainer {
+    .containerInner {
         display: flex;
-        position: relative;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto;
+        height: 100%;
     }
 
-    .timelineBlock {
-        display: flex;
-        position: relative;
-        flex-direction: column;
-        align-items: center;
-
-        &::after {
-            content: '';
-            position: relative;
-            height: 50px;
-            margin: 5px auto;
-            border-left: 2px dashed #000;
-        }
-
-        &:last-child {
-            &::after {
-                display: none;
-                visibility: hidden;
-            }
-        }
-    }
-
-    .mainContent {
-        flex-grow: 1;
-        margin-left: 20px;
-    }
-
-    .imageContainer {
-        width: 100%;
-        margin-top: 5px;
+    .content {
+        margin: auto 0;
     }
 
     .image {
@@ -60,22 +20,24 @@
         height: auto;
     }
 
-    .placeholder {
-        width: 100%;
+    .line {
+        width: 0;
+        height: 20px;
+        margin: 4px auto;
+        border-left: 2px dashed $black;
     }
 
-    &.isPlaceholder {
-        .timelineContainer {
-            width: 100%;
-        }
+    .placeholder {
+        @extend %placeholder-center;
+    }
 
-        .timelineBlock {
-            width: 100%;
-        }
+    .timelineBlock {
+        margin: 20px 0;
 
-        .mainContent {
-            width: 100%;
-            margin-left: 0;
+        .line {
+            height: 60px;
+            margin: 20px auto;
+            border-left-color: $white;
         }
     }
 }

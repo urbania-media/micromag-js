@@ -8,13 +8,8 @@ import PlaceholderBlock from '../partials/PlaceholderBlock';
 
 import styles from '../../styles/placeholders/placeholders.module.scss';
 
-export const Video = (props) => (
-    <PlaceholderBlock
-        {...props}
-        className={classNames([props.className, styles.video])}
-        width="80%"
-        height="40%"
-    >
+export const Video = ({ width, height, className }) => (
+    <PlaceholderBlock width={width} height={height} className={className}>
         <FontAwesomeIcon icon={faPlay} className={styles.icon} />
     </PlaceholderBlock>
 );

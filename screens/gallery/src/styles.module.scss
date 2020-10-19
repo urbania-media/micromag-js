@@ -3,6 +3,11 @@
 .container {
     @extend %fullscreen;
 
+    .content {
+        position: relative;
+        height: 100%;
+    }
+
     .images {
         position: absolute;
         z-index: 2;
@@ -14,6 +19,10 @@
 
     .grid {
         @extend %fullscreen;
+
+        * {
+            height: 100%;
+        }
     }
 
     .background {

@@ -7,21 +7,20 @@ import {
     LayoutGrid,
     Screen,
 } from '../../../../.storybook/components';
-import { map, background } from '../../../../.storybook/data';
+import { map, background, markers } from '../../../../.storybook/data';
 import { withGoogleMapsApi } from '../../../../.storybook/decorators';
 
-import MapPath from '../MapPath';
-
-import layouts from '../layouts/names';
+import MapPath, { layouts } from '../MapPath';
 
 const props = {
     map: map(),
+    markers: markers(),
     cardBackground: background(),
 };
 
 const switcherProps = {
     layouts,
-    defaultLayout: 'bottom',
+    defaultLayout: 'top',
 };
 
 export default {

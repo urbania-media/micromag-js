@@ -1,3 +1,2 @@
-export { default } from './GalleryScroll';
-export { default as layouts } from './layouts/names';
+export { default, layouts } from './GalleryScroll';
 export { default as schema } from './schema';

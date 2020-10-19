@@ -18,7 +18,6 @@
         align-items: center;
         justify-content: center;
         width: 100%;
-        height: 100%;
     }
 }
 
@@ -26,9 +25,9 @@
     display: inline;
 }
 
-.source {
-    //
-}
+// .source {
+    
+// }
 
 .line {
     max-width: 30%;
@@ -47,7 +46,7 @@
 
     &::before {
         content: open-quote;
-        display: inline;
+        display: inline-block;
         position: absolute;
         top: 50%;
         left: 0;
@@ -58,7 +57,7 @@
 
     &::after {
         content: close-quote;
-        display: inline;
+        display: inline-block;
         position: absolute;
         top: 50%;
         right: 0;

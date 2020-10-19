@@ -4,12 +4,13 @@
 .container {
     @extend %screen;
 
-    .inner {
+    .content {
         position: relative;
+        height: 100%;
         margin: 0 auto;
     }
 
-    .content {
+    .inner {
         @extend %flex;
         width: 100%;
         height: 100%;
@@ -21,25 +22,25 @@
     }
 
     &.top {
-        .content {
+        .inner {
             align-items: flex-start;
         }
     }
 
     &.bottom {
-        .content {
+        .inner {
             align-items: flex-end;
         }
     }
 
     &.left {
-        .content {
+        .inner {
             justify-content: flex-start;
         }
     }
 
     &.right {
-        .content {
+        .inner {
             justify-content: flex-end;
         }
     }

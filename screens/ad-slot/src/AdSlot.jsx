@@ -62,7 +62,7 @@ const defaultProps = {
     className: null,
 };
 
-const AdSlotScreen = ({
+const AdSlot = ({
     layout,
     iframe,
     adFormat,
@@ -124,19 +124,17 @@ const AdSlotScreen = ({
 
     const { horizontal, vertical } = getLayoutParts(layout);
 
-    const containerClassNames = classNames([
-        styles.container,
-        {
-            [className]: className !== null,
-            [styles.fullscreen]: isFullScreen,
-            [styles.placeholder]: isPlaceholder,
-            [styles[horizontal]]: horizontal !== null,
-            [styles[vertical]]: vertical !== null,
-        },
-    ]);
-
     return (
-        <div className={containerClassNames}>
+        <div className={classNames([
+            styles.container,
+            {
+                [className]: className !== null,
+                [styles.fullscreen]: isFullScreen,
+                [styles.placeholder]: isPlaceholder,
+                [styles[horizontal]]: horizontal !== null,
+                [styles[vertical]]: vertical !== null,
+            },
+        ])}>
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
@@ -144,16 +142,17 @@ const AdSlotScreen = ({
                 maxRatio={maxRatio}
                 playing={(isView && current) || (isEditor && active)}
             />
-            <div className={styles.inner}>
-                <Container width={width} height={height} maxRatio={maxRatio}>
-                    <div className={styles.content}>{iframeElement}</div>
-                </Container>
-            </div>
+            
+            <Container width={width} height={height} maxRatio={maxRatio}>
+                <div className={styles.content}>
+                    <div className={styles.inner}>{iframeElement}</div>
+                </div>
+            </Container>            
         </div>
     );
 };
 
-AdSlotScreen.propTypes = propTypes;
-AdSlotScreen.defaultProps = defaultProps;
+AdSlot.propTypes = propTypes;
+AdSlot.defaultProps = defaultProps;
 
-export default React.memo(AdSlotScreen);
+export default React.memo(AdSlot);

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -19,6 +19,7 @@ const propTypes = {
     onClickMap: PropTypes.func,
     onClickMarker: PropTypes.func,
     className: PropTypes.string,
+    onReady: PropTypes.func,
 };
 
 const defaultProps = {
@@ -30,13 +31,24 @@ const defaultProps = {
     onClickMarker: null,
     withLine: false,
     className: null,
+    onReady: null,
 };
 
-const Map = ({ zoom, center, markers, layers, withLine, onClickMap, onClickMarker, className }) => {
+const Map = ({
+    zoom,
+    center,
+    markers,
+    layers,
+    withLine,
+    onClickMap,
+    onClickMarker,
+    className,
+    onReady,
+}) => {
     const { maps: mapsApi } = useGoogleMapsClient() || {};
 
     const onClick = useCallback(
-        position => {
+        (position) => {
             if (onClickMap !== null) {
                 onClickMap(position);
             }
@@ -47,6 +59,12 @@ const Map = ({ zoom, center, markers, layers, withLine, onClickMap, onClickMarke
     if (!mapsApi) {
         // console.log('No mapsApi', mapsApi);
     }
+
+    useEffect(() => {
+        if (mapsApi && onReady !== null) {
+            onReady(mapsApi);
+        }
+    }, [mapsApi, onReady]);
 
     return (
         <div
@@ -69,7 +87,7 @@ const Map = ({ zoom, center, markers, layers, withLine, onClickMap, onClickMarke
                 >
                     <Polyline
                         mapsApi={mapsApi}
-                        coords={withLine ? markers.map(m => ({ lat: m.lat, lng: m.lng })) : []}
+                        coords={withLine ? markers.map((m) => ({ lat: m.lat, lng: m.lng })) : []}
                     />
                     <TransitLayer mapsApi={mapsApi} enabled={layers.includes('transit')} />
                     {markers
@@ -84,7 +102,7 @@ const Map = ({ zoom, center, markers, layers, withLine, onClickMap, onClickMarke
                                       events={{
                                           onClick:
                                               onClickMarker !== null
-                                                  ? e => onClickMarker(e, index)
+                                                  ? (e) => onClickMarker(e, index)
                                                   : () => console.log(index), // eslint-disable-line no-console
                                       }}
                                   />

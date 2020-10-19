@@ -20,12 +20,12 @@ import Transitions from '@micromag/core/src/components/transitions/Transitions';
 export const layouts = ['top', 'center', 'bottom'];
 
 const propTypes = {
+    layout: PropTypes.oneOf(layouts),
     text: MicromagPropTypes.textElement,
     background: MicromagPropTypes.backgroundElement,
     textAlign: MicromagPropTypes.textAlign,
     current: PropTypes.bool,
-    active: PropTypes.bool,
-    layout: PropTypes.string,
+    active: PropTypes.bool,    
     renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
@@ -33,12 +33,12 @@ const propTypes = {
 };
 
 const defaultProps = {
+    layout: 'center',
     text: null,
     background: null,
     textAlign: 'center',
     current: true,
-    active: false,
-    layout: 'center',
+    active: false,    
     renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: {
@@ -52,12 +52,12 @@ const defaultProps = {
 };
 
 const TextScreen = ({
+    layout,
     text,
     background,
     textAlign,
     current,
-    active,
-    layout,
+    active,    
     renderFormat,
     maxRatio,
     transitions,
@@ -85,12 +85,20 @@ const TextScreen = ({
         );
     }
 
-    let contentJustifyContentValue = 'center';
+    let contentJustifyContentValue;
 
-    if (layout === 'top') {
-        contentJustifyContentValue = 'flex-start';
-    } else if (layout === 'bottom') {
-        contentJustifyContentValue = 'flex-end';
+    switch (layout) {
+        default:
+        case 'center':
+            contentJustifyContentValue = 'center'; break;
+        case 'top':
+            contentJustifyContentValue = 'flex-start'; break;
+        case 'bottom':
+            contentJustifyContentValue = 'flex-end'; break;
+        case 'around':
+            contentJustifyContentValue = 'space-around'; break;
+        case 'between':
+            contentJustifyContentValue = 'space-between'; break;
     }
 
     return (

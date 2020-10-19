@@ -27,6 +27,7 @@ const propTypes = {
     height: PropTypes.number,
     fit: MicromagPropTypes.objectFit,
     showEmpty: PropTypes.bool,
+    onReady: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -41,6 +42,7 @@ const defaultProps = {
     controls: null,
     fit: null,
     showEmpty: false,
+    onReady: null,
     className: null,
 };
 
@@ -55,6 +57,7 @@ const Video = ({
     controls,
     fit,
     showEmpty,
+    onReady,
     className,
 }) => {
     const controlsVisible = controls !== null;
@@ -85,9 +88,18 @@ const Video = ({
 
     const onPlayerReady = useCallback(() => {
         setPlayerReady(true);
-        setDuration(refPlayer.current.getDuration());
-        setVideoSize(refPlayer.current.getSize());
-    }, [setPlayerReady, setDuration, setVideoSize]);
+
+        const player = refPlayer.current;
+        const duration = player.getDuration();
+        const size = player.getSize();
+
+        setDuration(duration);
+        setVideoSize(size);
+
+        if (onReady !== null) {
+            onReady({duration, size});
+        }
+    }, [setPlayerReady, setDuration, setVideoSize, onReady]);
 
     const onPlayerStateChange = useCallback(
         (newPlayerState) => {
@@ -113,13 +125,14 @@ const Video = ({
 
     useEffect(() => {
         if (refPlayer.current) {
-            if (!autoPlay) {
-                refPlayer.current.pause();
+            console.log('@TODO video api');
+            if (!autoPlay) {                
+                try { refPlayer.current.pause(); } catch{}
             } else {
-                refPlayer.current.play();
+                try { refPlayer.current.play(); } catch{}
             }
         }
-    }, [autoPlay, setPlayerState]);
+    }, [autoPlay]);
 
     const { size = 'fit' } = fit || {};
 

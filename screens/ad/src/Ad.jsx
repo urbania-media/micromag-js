@@ -16,7 +16,6 @@ import AdImage from './AdImage';
 
 import styles from './styles.module.scss';
 
-
 export const layouts = [
     'center',
     'top',
@@ -145,11 +144,9 @@ const Ad = ({
                 maxRatio={maxRatio}
                 playing={(isView && current) || (isEditor && active)}
             />
-            <div className={styles.inner}>
-                <Container width={width} height={height} maxRatio={maxRatio}>
-                    <div className={styles.content}>{imageElement}</div>
-                </Container>
-            </div>
+            <Container width={width} height={height} maxRatio={maxRatio}>
+                <div className={styles.content}>{imageElement}</div>
+            </Container>
         </div>
     );
 };
