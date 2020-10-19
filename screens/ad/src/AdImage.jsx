@@ -2,12 +2,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useScreenRenderContext } from '@micromag/core/contexts';
 import Image from '@micromag/element-image';
 import Link from '@micromag/element-link';
-
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { getRenderFormat } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
@@ -16,7 +14,6 @@ const propTypes = {
     link: MicromagPropTypes.linkElement,
     text: MicromagPropTypes.text,
     fullScreen: PropTypes.bool,
-    renderFormat: MicromagPropTypes.renderFormat,
     onImageLoaded: PropTypes.func,
     className: PropTypes.string,
 };
@@ -26,7 +23,6 @@ const defaultProps = {
     link: null,
     text: null,
     fullScreen: false,
-    renderFormat: 'view',
     onImageLoaded: null,
     className: null,
 };
@@ -36,14 +32,13 @@ const AdImage = ({
     link: linkProps,
     text: textProps,
     fullScreen,
-    renderFormat,
     onImageLoaded,
     className
 }) => {
-    const { isView, isEditor } = getRenderFormat(renderFormat);
+    const { isView, isEdit } = useScreenRenderContext();
     const { url = null, target = '_blank', rel = 'noopener noreferer' } = linkProps || {};
     const { body: caption, style: captionStyle } = textProps || {};
-    const hasCaption = isView || isEditor;
+    const hasCaption = isView || isEdit;
 
     const imageClassNames = classNames([
         styles.image,

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import * as MicromagPropTypes from '../../PropTypes';
 import { getComponentFromName } from '../../utils';
-import { useScreenComponent } from '../../contexts';
+import { useScreenComponent } from '../../contexts/ComponentsContext';
 
 const propTypes = {
     screen: MicromagPropTypes.storyComponent.isRequired,
@@ -12,7 +12,6 @@ const propTypes = {
     current: PropTypes.bool,
     component: PropTypes.node,
     components: MicromagPropTypes.components,
-    renderFormat: MicromagPropTypes.renderFormat,
     className: PropTypes.string,
 };
 
@@ -21,11 +20,10 @@ const defaultProps = {
     current: false,
     component: null,
     components: null,
-    renderFormat: 'view',
     className: null,
 };
 
-const Screen = ({ screen, active, current, components, component, renderFormat, className }) => {
+const Screen = ({ screen, active, current, components, component, className }) => {
     const { type } = screen;
     const CustomScreenComponent =
         components !== null ? getComponentFromName(type, components) || null : null;
@@ -34,12 +32,7 @@ const Screen = ({ screen, active, current, components, component, renderFormat, 
 
     return ScreenComponent !== null ? (
         <div className={className}>
-            <ScreenComponent
-                {...screen}
-                active={active}
-                current={current}
-                renderFormat={renderFormat}
-            />
+            <ScreenComponent {...screen} active={active} current={current} />
         </div>
     ) : (
         <div className={className}>{component}</div>

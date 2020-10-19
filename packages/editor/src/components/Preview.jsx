@@ -6,7 +6,7 @@ import { Route } from 'react-router';
 import { getSizeWithinBounds } from '@folklore/size';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useResizeObserver } from '@micromag/core/hooks';
-import { useScreen, useScreens, useRoutes } from '@micromag/core/contexts';
+import { useScreenSize, useRoutes, ScreenRenderProvider } from '@micromag/core/contexts';
 import { Viewer } from '@micromag/viewer';
 
 import DevicesMenu from './menus/Devices';
@@ -42,13 +42,12 @@ const defaultProps = {
 
 const EditorPreview = ({ story, devices, device: initialDevice, className, onScreenChange }) => {
     const routes = useRoutes();
-    const screen = useScreen();
-    const screens = useScreens();
+    const { screen = null, screens = [] } = useScreenSize();
 
     // Get device
     const [deviceId, setDeviceId] = useState(initialDevice || devices[0].id);
     const onClickDeviceItem = useCallback((e, it) => setDeviceId(it.id), [setDeviceId]);
-    const device = useMemo(() => devices.find(it => it.id === deviceId), [devices, deviceId]);
+    const device = useMemo(() => devices.find((it) => it.id === deviceId), [devices, deviceId]);
 
     // Calculate preview style
     const {
@@ -77,7 +76,7 @@ const EditorPreview = ({ story, devices, device: initialDevice, className, onScr
         <div
             className={classNames([
                 styles.container,
-                screens.map(screenName => styles[`screen-${screenName}`]),
+                screens.map((screenName) => styles[`screen-${screenName}`]),
                 {
                     [className]: className,
                 },
@@ -86,7 +85,7 @@ const EditorPreview = ({ story, devices, device: initialDevice, className, onScr
             <div className={styles.inner}>
                 <div className={styles.top}>
                     <DevicesMenu
-                        items={devices.map(it => ({
+                        items={devices.map((it) => ({
                             ...it,
                             active: it.id === deviceId,
                         }))}
@@ -103,14 +102,15 @@ const EditorPreview = ({ story, devices, device: initialDevice, className, onScr
                                         params: { screen: screenId = null },
                                     },
                                 }) => (
-                                    <Viewer
-                                        story={story}
-                                        screen={screenId}
-                                        className={styles.story}
-                                        interactions={null}
-                                        renderFormat="edit"
-                                        onScreenChange={onScreenChange}
-                                    />
+                                    <ScreenRenderProvider context="edit">
+                                        <Viewer
+                                            story={story}
+                                            screen={screenId}
+                                            className={styles.story}
+                                            interactions={null}
+                                            onScreenChange={onScreenChange}
+                                        />
+                                    </ScreenRenderProvider>
                                 )}
                             />
                         </div>

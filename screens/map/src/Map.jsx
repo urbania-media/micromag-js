@@ -4,16 +4,14 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { PlaceholderMap, Empty, Transitions } from '@micromag/core/components';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import MapComponent from '@micromag/element-map';
 import TextComponent from '@micromag/element-text';
 import ImageComponent from '@micromag/element-image';
-
-import { PropTypes as MicromagPropTypes, PlaceholderMap, Empty } from '@micromag/core';
-import { useScreenSize } from '@micromag/core/contexts';
-import { getRenderFormat } from '@micromag/core/utils';
-import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
 import PreviewBackground from './preview.jpg';
 
@@ -26,7 +24,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
@@ -39,7 +36,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: {
         in: {
@@ -58,16 +54,15 @@ const Map = ({
     background,
     current,
     active,
-    renderFormat,
     maxRatio,
     transitions,
     className,
 }) => {
     const [index, setIndex] = useState(0);
     const { width, height } = useScreenSize();
-    const { isView, isPlaceholder, isPreview, isEditor } = getRenderFormat(renderFormat);
+    const { isView, isPlaceholder, isPreview, isEdit } = useScreenRenderContext();
     const withMap = map !== null;
-    const isEmpty = isEditor && !withMap;
+    const isEmpty = isEdit && !withMap;
 
     const { map: { center: mapCenter = null } = {} } = map || {};
 
@@ -158,7 +153,7 @@ const Map = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEditor && active)}
+                playing={(isView && current) || (isEdit && active)}
                 maxRatio={maxRatio}
             />
 

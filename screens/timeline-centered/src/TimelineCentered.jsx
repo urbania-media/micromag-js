@@ -1,23 +1,18 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-props-no-spreading */
-
 import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { PlaceholderShortText, Transitions } from '@micromag/core/components';
+import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import TextComponent from '@micromag/element-text';
 import Image from '@micromag/element-image';
 import Heading from '@micromag/element-heading';
 import Scroll from '@micromag/element-scroll';
-
-import { PlaceholderShortText, PropTypes as MicromagPropTypes } from '@micromag/core';
-
-import Transitions from '@micromag/core/src/components/transitions/Transitions';
-
-import { useScreenSize } from '@micromag/core/contexts';
-import { getRenderFormat } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
@@ -27,7 +22,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions, // @TODO transforme l'objet en string ???
     transitionStagger: PropTypes.number,
@@ -40,7 +34,6 @@ const defaultProps = {
     layout: 'normal',
     current: true,
     active: true,
-    renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: {
         in: {
@@ -59,14 +52,13 @@ const TimelineCentered = ({
     layout,
     current,
     active,
-    renderFormat,
     maxRatio,
     transitions,
     transitionStagger,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isView, isEditor } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isView, isEdit } = useScreenRenderContext();
 
     let elements = null;
 
@@ -150,7 +142,7 @@ const TimelineCentered = ({
                 width={width}
                 height={height}
                 maxRatio={maxRatio}
-                playing={(isView && current) || (isEditor && active)}
+                playing={(isView && current) || (isEdit && active)}
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
                 <Scroll verticalAlign="center">{elements}</Scroll>

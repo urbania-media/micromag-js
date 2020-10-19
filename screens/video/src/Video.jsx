@@ -3,16 +3,13 @@ import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { PlaceholderVideo, Transitions } from '@micromag/core/components';
+import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Image from '@micromag/element-image';
 import VideoComponent from '@micromag/element-video';
-
-import { useScreenSize } from '@micromag/core/contexts';
-import { getRenderFormat } from '@micromag/core/utils';
-import Transitions from '@micromag/core/src/components/transitions/Transitions';
-
-import { PropTypes as MicromagPropTypes, PlaceholderVideo } from '@micromag/core';
 
 import styles from './styles.module.scss';
 
@@ -22,7 +19,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
@@ -34,7 +30,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: {
         in: {
@@ -52,17 +47,16 @@ const VideoScreen = ({
     background,
     current,
     active,
-    renderFormat,
     maxRatio,
     transitions,
     className,
 }) => {
     const autoPlay = false; // props?
     const { width, height } = useScreenSize();
-    const { isPreview, isEditor, isPlaceholder, isView } = getRenderFormat(renderFormat);
+    const { isPreview, isEdit, isPlaceholder, isView } = useScreenRenderContext();
     const { video = null, params = {} } = videoField || {};
     const isNonInteractive = isPlaceholder || isPreview;
-    const autoplayCondition = isEditor ? autoPlay && active : autoPlay && !isNonInteractive;
+    const autoplayCondition = isEdit ? autoPlay && active : autoPlay && !isNonInteractive;
     const isFullScreen = layout === 'full';
 
     const withVideo = video !== null;
@@ -99,8 +93,8 @@ const VideoScreen = ({
                     video={video}
                     width={Math.min(width, 768)}
                     height={height}
-                    objectFit={{ size: isFullScreen ? 'cover' : 'contain' }}
-                    showEmpty={isEditor}
+                    objectFit={{ fit: isFullScreen ? 'cover' : 'contain' }}
+                    showEmpty={isEdit}
                     className={styles.video}
                     onReady={onVideoReady}
                 />
@@ -122,11 +116,17 @@ const VideoScreen = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEditor && active)}
+                playing={(isView && current) || (isEdit && active)}
                 maxRatio={maxRatio}
             />
-            <Container width={width} height={height} maxRatio={maxRatio} verticalAlign="center" itemClassName={styles.item}>
-                {[ videoElement ]}
+            <Container
+                width={width}
+                height={height}
+                maxRatio={maxRatio}
+                verticalAlign="center"
+                itemClassName={styles.item}
+            >
+                {[videoElement]}
             </Container>
         </div>
     );

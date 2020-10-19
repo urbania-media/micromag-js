@@ -4,21 +4,13 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { PlaceholderTitle, PlaceholderText, Empty, Transitions } from '@micromag/core/components';
+import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Text from '@micromag/element-text';
-
-import { useScreenSize } from '@micromag/core/contexts';
-import { getRenderFormat } from '@micromag/core/utils';
-import {
-    PropTypes as MicromagPropTypes,
-    PlaceholderTitle,
-    PlaceholderText,
-    Empty,
-} from '@micromag/core';
-
-import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
 import styles from './styles.module.scss';
 
@@ -29,7 +21,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
@@ -43,7 +34,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: false,
-    renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: {
         in: {
@@ -63,19 +53,18 @@ const TextScreen = ({
     background,
     current,
     active,
-    renderFormat,
     maxRatio,
     transitions,
     transitionStagger,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isEditor, isView } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isEdit, isView } = useScreenRenderContext();
 
     const withTitle = title !== null;
     const withText = text !== null;
 
-    const isEmpty = isEditor && !withTitle && !withText;
+    const isEmpty = isEdit && !withTitle && !withText;
 
     let titleElement = null;
     let textElement = null;
@@ -149,7 +138,7 @@ const TextScreen = ({
                 width={width}
                 height={height}
                 maxRatio={maxRatio}
-                playing={(isView && current) || (isEditor && active)}
+                playing={(isView && current) || (isEdit && active)}
             />
             <Container
                 width={width}

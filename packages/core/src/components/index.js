@@ -52,6 +52,10 @@ export { default as createLayoutSwitcher } from './screens/createLayoutSwitcher'
 export { default as ScreenPlaceholder } from './screens/Placeholder';
 export { default as ScreenPreview } from './screens/Preview';
 export { default as Screen } from './screens/Screen';
+export { default as ScreenElement } from './screens/ScreenElement';
 export { default as Screens } from './screens/Screens';
+
+export { default as Transitions } from './transitions/Transitions';
+export { default as TransitionsStagger } from './transitions/TransitionsStagger';
 
 export { default as LinkStyle } from './utils/LinkStyle';

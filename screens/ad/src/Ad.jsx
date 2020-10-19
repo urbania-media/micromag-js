@@ -8,8 +8,8 @@ import Container from '@micromag/element-container';
 import Background from '@micromag/element-background';
 
 import { PropTypes as MicromagPropTypes, PlaceholderAdImage, Empty } from '@micromag/core';
-import { useScreenSize } from '@micromag/core/contexts';
-import { getRenderFormat, getLayoutParts } from '@micromag/core/utils';
+import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { getLayoutParts } from '@micromag/core/utils';
 import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
 import AdImage from './AdImage';
@@ -35,7 +35,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
@@ -49,7 +48,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: {
         in: {
@@ -69,14 +67,13 @@ const Ad = ({
     background,
     current,
     active,
-    renderFormat,
     maxRatio,
     transitions,
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
 
-    const { isView, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
     const isEmpty = !image;
     const isFullScreen = layout === 'full';
 
@@ -94,7 +91,6 @@ const Ad = ({
                 link={link}
                 text={text}
                 fullScreen={isFullScreen}
-                renderFormat={renderFormat}
                 onImageLoaded={onImageLoaded}
             />
         </Transitions>
@@ -114,7 +110,7 @@ const Ad = ({
         );
     }
 
-    if (isEditor && isEmpty) {
+    if (isEdit && isEmpty) {
         imageElement = (
             <Empty className={styles.empty}>
                 <FormattedMessage defaultMessage="Advertising" description="Ad title" />
@@ -142,7 +138,7 @@ const Ad = ({
                 width={width}
                 height={height}
                 maxRatio={maxRatio}
-                playing={(isView && current) || (isEditor && active)}
+                playing={(isView && current) || (isEdit && active)}
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
                 <div className={styles.content}>{imageElement}</div>

@@ -17,8 +17,8 @@ const TitleCredits = ({ credits, ...props }) => (
     <Title
         description={credits}
         {...props}
-        descriptionPlaceholder
-        descriptionEmptyContent={
+        withDescription
+        descriptionEmptyLabel={
             <FormattedMessage defaultMessage="Credits" description="Credits placeholder" />
         }
     />

@@ -3,22 +3,15 @@ import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { Label, PlaceholderText, PlaceholderButton } from '@micromag/core/components';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import TextElement from '@micromag/element-text';
 import ImageElement from '@micromag/element-image';
 import VideoElement from '@micromag/element-video';
-
 import Button from '@micromag/element-button';
-import {
-    Label,
-    PlaceholderText,
-    PlaceholderButton,
-    PropTypes as MicromagPropTypes,
-} from '@micromag/core';
-
-import { useScreenSize } from '@micromag/core/contexts';
-import { getRenderFormat } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
@@ -32,7 +25,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
@@ -48,7 +40,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: false,
-    renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: null,
     className: null,
@@ -64,15 +55,13 @@ const SurveyYesNo = ({
     button,
     current,
     active,
-    renderFormat,
     maxRatio,
     transitions,
     className,
 }) => {
-    console.log(renderFormat, layout);
     const [answered, setAnswered] = useState(false);
     const { width, height } = useScreenSize();
-    const { isEditor, isPreview, isView, isPlaceholder } = getRenderFormat(renderFormat);
+    const { isEdit, isPreview, isView, isPlaceholder } = useScreenRenderContext();
     const isSimple = isPreview || isPlaceholder;
     const spacing = 10;
     const videoProps = {
@@ -114,7 +103,7 @@ const SurveyYesNo = ({
             <VideoElement className={styles.video} video={answerYesVideo} {...videoProps} />
             <ImageElement className={styles.image} image={answerYesImage} />
             <TextElement className={styles.result} body={answerYesText} textStyle={textStyle} />
-            {isEditor ? (
+            {isEdit ? (
                 <Button className={styles.button} onClick={onClickReset} {...button}>
                     Retry
                 </Button>
@@ -125,7 +114,7 @@ const SurveyYesNo = ({
             <VideoElement className={styles.video} video={answerNoVideo} {...videoProps} />
             <ImageElement className={styles.image} image={answerNoImage} />
             <TextElement className={styles.result} body={answerNoText} textStyle={textStyle} />
-            {isEditor ? (
+            {isEdit ? (
                 <Button className={styles.button} onClick={onClickReset} {...button}>
                     <Label>Retry</Label>
                 </Button>
@@ -134,7 +123,7 @@ const SurveyYesNo = ({
     );
 
     const buttons =
-        renderFormat !== 'placeholder' ? (
+        !isPlaceholder ? (
             <>
                 <Button className={styles.button} onClick={onClickTrue} {...button}>
                     <Label>Yes</Label>
@@ -185,7 +174,7 @@ const SurveyYesNo = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEditor && active)}
+                playing={(isView && current) || (isEdit && active)}
                 maxRatio={maxRatio}
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
@@ -199,7 +188,7 @@ const SurveyYesNo = ({
                         answer
                     ) : (
                         <>
-                            {renderFormat !== 'placeholder' ? question : <PlaceholderText />}
+                            {!isPlaceholder ? question : <PlaceholderText />}
                             <div className={styles.buttons}>{buttons}</div>
                         </>
                     )}

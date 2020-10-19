@@ -23,7 +23,6 @@ const propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
     screen: PropTypes.string,
-    renderFormat: MicromagPropTypes.renderFormat,
     deviceScreens: MicromagPropTypes.deviceScreens,
     interactions: MicromagPropTypes.interactions,
     fullscreen: PropTypes.bool,
@@ -38,7 +37,6 @@ const defaultProps = {
     width: null,
     height: null,
     screen: null,
-    renderFormat: null,
     deviceScreens: getDeviceScreens(),
     interactions: ['tap'],
     fullscreen: false,
@@ -54,7 +52,6 @@ const Viewer = ({
     width,
     height,
     screen: screenId,
-    renderFormat,
     deviceScreens,
     interactions,
     fullscreen,
@@ -228,7 +225,7 @@ const Viewer = ({
                 {...(withSwipe ? bind() : null)}
                 ref={refContainer}
             >
-                
+
                 <MenuDots
                     direction={landscape ? 'vertical' : 'horizontal'}
                     items={components}
@@ -266,13 +263,12 @@ const Viewer = ({
                                     index={i}
                                     current={current}
                                     active={active}
-                                    renderFormat={renderFormat}
                                 />
                             </animated.div>
                         );
                     })}
                 </div>
-            </div>           
+            </div>
         </ScreenSizeProvider>
     );
 };

@@ -3,16 +3,13 @@ import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { PlaceholderImage, Empty, Transitions } from '@micromag/core/components';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Grid from '@micromag/element-grid';
 import Image from '@micromag/element-image';
-
-import { PropTypes as MicromagPropTypes, PlaceholderImage, Empty } from '@micromag/core';
-import { useScreenSize } from '@micromag/core/contexts';
-import { getRenderFormat } from '@micromag/core/utils';
-import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
 import layoutProps from './layouts';
 
@@ -35,7 +32,6 @@ const propTypes = {
     defaultSpacing: PropTypes.number,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
@@ -49,7 +45,6 @@ const defaultProps = {
     defaultSpacing: 10,
     current: true,
     active: false,
-    renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: {
         in: {
@@ -69,14 +64,13 @@ const Gallery = ({
     current,
     active,
     defaultSpacing,
-    renderFormat,
     maxRatio,
     transitions,
     transitionStagger,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isView, isPreview, isEditor } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isView, isPreview, isEdit } = useScreenRenderContext();
     const grid = layout && layoutProps[layout] ? layoutProps[layout] : {};
     const { layout: gridLayout = [] } = grid || {};
 
@@ -88,7 +82,7 @@ const Gallery = ({
     ];
     const gridSpaces = gridLayout.reduce((acc, current) => acc + current.columns.length, 0);
     const images = isPreview ? imageList.slice(0, 16) : imageList || [];
-    const activeImages = isEditor && imageList.length === 0 ? defaultArray : images;
+    const activeImages = isEdit && imageList.length === 0 ? defaultArray : images;
 
     const imagesCount = Math.min(gridSpaces, activeImages.length);
 
@@ -110,7 +104,7 @@ const Gallery = ({
               ))
         : activeImages.map((it, index) => {
               const element =
-                  isEditor && !it ? (
+                  isEdit && !it ? (
                       <Empty className={styles.empty}>
                           <FormattedMessage
                               defaultMessage="Image"
@@ -149,7 +143,7 @@ const Gallery = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEditor && active)}
+                playing={(isView && current) || (isEdit && active)}
                 maxRatio={maxRatio}
             />
 

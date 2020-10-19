@@ -11,7 +11,7 @@ export default [
             description: 'Title screen title',
         }),
         component: Title,
-        layouts: ['top', 'center', 'bottom', 'split'],
+        layouts: ['top', 'middle', 'bottom', 'split'],
         fields: [
             {
                 name: 'layout',
