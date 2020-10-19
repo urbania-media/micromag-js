@@ -131,7 +131,7 @@ const Image = ({
         };
 
         if (withImage) {
-            imageElement = createElement(<ImageComponent {...image} onLoaded={onImageLoaded} />);
+            imageElement = createElement(<ImageComponent {...image} fit={{ size: 'contain', maxRatio: 9 / 16 }} onLoaded={onImageLoaded} />);
         }
         if (withTitle) {
             titleElement = createElement(<Heading {...title} />);

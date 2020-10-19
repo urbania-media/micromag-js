@@ -174,10 +174,11 @@ export const videoControls = PropTypes.shape({
     volume: videoControl,
 });
 
-export const objectFitSize = PropTypes.oneOf(['cover', 'contain']);
 
 export const objectFit = PropTypes.shape({
-    size: objectFitSize,
+    size: PropTypes.oneOf(['cover', 'contain', null]),
+    position: PropTypes.string,
+    maxRatio: PropTypes.number,
 });
 
 export const flexDirection = PropTypes.oneOf(['row', 'column']);

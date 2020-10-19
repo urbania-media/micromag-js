@@ -116,23 +116,23 @@ const TextScreen = ({
         }
     }
 
-    let contentJustifyContentValue;
+    // Add elements to items
 
-    switch (layout) {
-        default:
-        case 'center':
-            contentJustifyContentValue = 'center';
-            break;
-        case 'top':
-            contentJustifyContentValue = 'flex-start';
-            break;
-        case 'bottom':
-            contentJustifyContentValue = 'flex-end';
-            break;
-        case 'split':
-            contentJustifyContentValue = 'space-between';
-            break;
+    const items = [];
+    if (titleElement !== null) {
+        items.push(titleElement);
     }
+
+    if (textElement !== null) {
+        items.push(textElement);
+    }
+
+    // convert layout to Container props
+
+    const layoutChunks = layout.split('-');
+    const isDistribution = layoutChunks[0] === 'split';
+    const verticalAlign = isDistribution ? layoutChunks[1] : layoutChunks[0];
+    const distribution = isDistribution ? 'between' : null;
 
     return (
         <div
@@ -151,16 +151,8 @@ const TextScreen = ({
                 maxRatio={maxRatio}
                 playing={(isView && current) || (isEditor && active)}
             />
-            <Container width={width} height={height} maxRatio={maxRatio}>
-                <div
-                    className={styles.content}
-                    style={{
-                        justifyContent: contentJustifyContentValue,
-                    }}
-                >
-                    {titleElement}
-                    {textElement}
-                </div>
+            <Container width={width} height={height} maxRatio={maxRatio} verticalAlign={verticalAlign} distribution={distribution}>
+                { items }
             </Container>
         </div>
     );

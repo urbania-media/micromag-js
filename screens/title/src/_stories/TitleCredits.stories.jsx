@@ -18,11 +18,11 @@ export default {
     component: TitleCredits,
     parameters: {
         intl: true,
-        screenDefinition: definition,
+        screenDefinition: definition.find((it) => it.component === TitleCredits),
     },
 };
 
-export const Placeholder = (storyProps) => <TitleCredits {...storyProps} />;
+export const Placeholder = (storyProps) => <TitleCredits {...storyProps} credits={{}} />;
 
 export const Preview = (storyProps) => <TitleCredits {...storyProps} />;
 

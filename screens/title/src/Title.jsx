@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -7,6 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
+import Text from '@micromag/element-text';
 
 import {
     PropTypes as MicromagPropTypes,
@@ -17,14 +18,16 @@ import {
 
 import { getRenderFormat } from '@micromag/core/utils';
 import { useScreenSize } from '@micromag/core/contexts';
-import Transitions from '@micromag/core/src/components/transitions/Transitions';
+import TransitionsStagger from '@micromag/core/src/components/transitions/TransitionsStagger';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
-    layout: PropTypes.oneOf(['top', 'center', 'bottom', 'split']),
+    layout: PropTypes.oneOf(['top', 'center', 'bottom', 'split', 'split-top', 'split-bottom']),
     title: MicromagPropTypes.headingElement,
     subtitle: MicromagPropTypes.headingElement,
+    description: MicromagPropTypes.headingElement,
+    descriptionPlaceholder: PropTypes.bool,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -39,6 +42,8 @@ const defaultProps = {
     layout: 'top',
     title: null,
     subtitle: null,
+    description: null,
+    descriptionPlaceholder: false,
     background: null,
     current: true,
     active: false,
@@ -59,6 +64,8 @@ const Title = ({
     layout,
     title,
     subtitle,
+    description,
+    descriptionPlaceholder,
     background,
     current,
     active,
@@ -73,15 +80,20 @@ const Title = ({
 
     const withTitle = title !== null;
     const withSubtitle = subtitle !== null;
+    const withDescription = description !== null;
 
-    const isEmpty = isEditor && !withTitle && !withSubtitle;
+    const isEmpty = isEditor && !withTitle && !withSubtitle && !description;
+
+    // Create elements
 
     let titleElement = null;
     let subtitleElement = null;
+    let descriptionElement = null;
 
     if (isPlaceholder) {
         titleElement = <PlaceholderTitle />;
         subtitleElement = <PlaceholderSubtitle />;
+        descriptionElement = descriptionPlaceholder ? <PlaceholderSubtitle /> : null;
     } else if (isEmpty) {
         titleElement = (
             <Empty className={styles.empty}>
@@ -93,46 +105,47 @@ const Title = ({
                 <FormattedMessage defaultMessage="Subtitle" description="Subtitle placeholder" />
             </Empty>
         );
+        descriptionElement = descriptionPlaceholder ? (
+            <Empty className={styles.empty}>
+                <FormattedMessage
+                    defaultMessage="Description"
+                    description="Description placeholder"
+                />
+            </Empty>
+        ) : null;
     } else {
-        let transitionDelay = 0;
-
-        const createElement = (children) => {
-            const element = (
-                <Transitions transitions={transitions} delay={transitionDelay} playing>
-                    {children}
-                </Transitions>
-            );
-            transitionDelay += transitionStagger;
-            return element;
-        };
-
         if (withTitle) {
-            titleElement = createElement(<Heading {...title} size={1} className={styles.title} />);
+            titleElement = <Heading {...title} size={1} />;
         }
         if (withSubtitle) {
-            subtitleElement = createElement(
-                <Heading {...subtitle} size={2} className={styles.subtitle} />,
-            );
+            subtitleElement = <Heading {...subtitle} size={2} />;
+        }
+        if (withDescription) {
+            descriptionElement = <Text {...description} />;
         }
     }
 
-    let contentJustifyContentValue;
+    // Add elements to items
 
-    switch (layout) {
-        default:
-        case 'center':
-            contentJustifyContentValue = 'center';
-            break;
-        case 'top':
-            contentJustifyContentValue = 'flex-start';
-            break;
-        case 'bottom':
-            contentJustifyContentValue = 'flex-end';
-            break;
-        case 'split':
-            contentJustifyContentValue = 'space-between';
-            break;
+    const items = [];
+    if (titleElement !== null) {
+        items.push(titleElement);
     }
+
+    if (subtitleElement !== null) {
+        items.push(subtitleElement);
+    }
+
+    if (descriptionElement !== null) {
+        items.push(descriptionElement);
+    }
+
+    // convert layout to Container props
+
+    const layoutChunks = layout.split('-');
+    const isDistribution = layoutChunks[0] === 'split';
+    const verticalAlign = isDistribution ? layoutChunks[1] : layoutChunks[0];
+    const distribution = isDistribution ? 'between' : null;
 
     return (
         <div
@@ -152,16 +165,16 @@ const Title = ({
                 maxRatio={maxRatio}
             />
 
-            <Container width={width} height={height} maxRatio={maxRatio}>
-                <div
-                    className={styles.content}
-                    style={{
-                        justifyContent: contentJustifyContentValue,
-                    }}
-                >
-                    {titleElement}
-                    {subtitleElement}
-                </div>
+            <Container
+                width={width}
+                height={height}
+                maxRatio={maxRatio}
+                verticalAlign={verticalAlign}
+                distribution={distribution}
+            >
+                <TransitionsStagger transitions={transitions} stagger={transitionStagger} playing>
+                    {items}
+                </TransitionsStagger>
             </Container>
         </div>
     );

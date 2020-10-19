@@ -2,11 +2,17 @@
 
 .container {
     position: relative;
-    overflow: auto;
 
     .inner {
         position: relative;
         height: 100%;
         margin: 0 auto;
+    }
+
+    &.withVerticalContainer {
+        .inner {
+            display: flex;
+            flex-direction: column;
+        }
     }
 }

@@ -79,7 +79,10 @@ const TwoImages = ({
     const withImage2 = image2 !== null;
     const isEmpty = isEditor && !withText && !withImage;
 
-    const imagesCount = [withImage, withImage2].reduce((acc, current) => acc + (current ? 1 : 0), 0);
+    const imagesCount = [withImage, withImage2].reduce(
+        (acc, current) => acc + (current ? 1 : 0),
+        0,
+    );
     const [imagesLoaded, setImagesLoaded] = useState(0);
     const ready = imagesLoaded >= imagesCount;
     const transitionPlaying = current && ready;
@@ -104,7 +107,10 @@ const TwoImages = ({
         );
         image2Element = (
             <Empty className={classNames([styles.empty, styles.emptyImage])}>
-                <FormattedMessage defaultMessage="Second image" description="Second image placeholder" />
+                <FormattedMessage
+                    defaultMessage="Second image"
+                    description="Second image placeholder"
+                />
             </Empty>
         );
         textElement = (
@@ -130,11 +136,23 @@ const TwoImages = ({
         };
 
         if (withImage) {
-            imageElement = createElement(<Image {...image} onLoaded={onImageLoaded} />);
+            imageElement = createElement(
+                <Image
+                    {...image}
+                    fit={{ size: 'cover', maxRatio: 9 / 16 }}
+                    onLoaded={onImageLoaded}
+                />,
+            );
         }
 
         if (withImage2) {
-            image2Element = createElement(<Image {...image2} onLoaded={onImageLoaded} />);
+            image2Element = createElement(
+                <Image
+                    {...image2}
+                    fit={{ size: 'cover', maxRatio: 9 / 16 }}
+                    onLoaded={onImageLoaded}
+                />,
+            );
         }
 
         if (withText) {
@@ -142,23 +160,26 @@ const TwoImages = ({
         }
     }
 
-    let contentJustifyContentValue;
+    // Add elements to items
 
-    switch (layout) {
-        default:
-        case 'center':
-            contentJustifyContentValue = 'center';
-            break;
-        case 'top':
-            contentJustifyContentValue = 'flex-start';
-            break;
-        case 'bottom':
-            contentJustifyContentValue = 'flex-end';
-            break;
-        case 'split':
-            contentJustifyContentValue = 'space-between';
-            break;
+    const items = [];
+    if (imageElement !== null) {
+        items.push(imageElement);
     }
+
+    if (textElement !== null) {
+        items.push(textElement);
+    }
+
+    if (image2Element !== null) {
+        items.push(image2Element);
+    }
+
+    // convert layout to Container props
+    const layoutChunks = layout.split('-');
+    const isDistribution = layoutChunks[0] === 'split';
+    const verticalAlign = isDistribution ? layoutChunks[1] : layoutChunks[0];
+    const distribution = isDistribution ? 'between' : null;
 
     return (
         <div
@@ -177,17 +198,14 @@ const TwoImages = ({
                 playing={(isView && current) || (isEditor && active)}
                 maxRatio={maxRatio}
             />
-            <Container width={width} height={height} maxRatio={maxRatio}>
-                <div
-                    className={styles.content}
-                    style={{
-                        justifyContent: contentJustifyContentValue,
-                    }}
-                >
-                    {imageElement}
-                    {textElement}
-                    {image2Element}
-                </div>
+            <Container
+                width={width}
+                height={height}
+                maxRatio={maxRatio}
+                verticalAlign={verticalAlign}
+                distribution={distribution}
+            >
+                {items}
             </Container>
         </div>
     );

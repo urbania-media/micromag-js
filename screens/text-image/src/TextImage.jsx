@@ -91,11 +91,6 @@ const TextImage = ({
         setReady(true);
     }, [setReady]);
 
-    const finalLayout = layout !== null ? layout : 'center';
-    const layoutArray = finalLayout.split('-');
-    const layoutName = layoutArray[0];
-    const reverse = layoutArray.length === 2 && layoutArray[1] === 'reverse';
-
     let imageElement = null;
     let textElement = null;
 
@@ -131,30 +126,33 @@ const TextImage = ({
         };
 
         if (withImage) {
-            imageElement = createElement(<Image {...image} onLoaded={onImageLoaded} />);
+            imageElement = createElement(<Image {...image} fit={{ size: 'contain', maxRatio: 9 / 16 }} onLoaded={onImageLoaded} />);
         }
         if (withText) {
             textElement = createElement(<Text {...text} />);
         }
     }
 
-    let contentJustifyContentValue;
-    const contentFlexDirection = 'column' + (reverse ? '-reverse' : '');
+    // Add elements to items
 
-    switch (layoutName) {
-        default:
-        case 'center':
-            contentJustifyContentValue = 'center';
-            break;
-        case 'top':
-            contentJustifyContentValue = reverse ? 'flex-end' : 'flex-start';
-            break;
-        case 'bottom':
-            contentJustifyContentValue = reverse ? 'flex-start' : 'flex-end';
-            break;
-        case 'split':
-            contentJustifyContentValue = 'space-between';
-            break;
+    const items = [];
+    if (imageElement !== null) {
+        items.push(imageElement);
+    }
+
+    if (textElement !== null) {
+        items.push(textElement);
+    }
+
+    // convert layout to Container props
+
+    const layoutChunks = layout.split('-');
+    const isDistribution = layoutChunks[0] === 'split';
+    const verticalAlign = isDistribution ? layoutChunks[1] : layoutChunks[0];
+    const distribution = isDistribution ? 'between' : null;
+
+    if (layoutChunks.length === 2 && layoutChunks[1] === 'reverse') {
+        items.reverse();
     }
 
     return (
@@ -174,17 +172,8 @@ const TextImage = ({
                 playing={(isView && current) || (isEditor && active)}
                 maxRatio={maxRatio}
             />
-            <Container width={width} height={height} maxRatio={maxRatio}>
-                <div
-                    className={styles.content}
-                    style={{
-                        flexDirection: contentFlexDirection,
-                        justifyContent: contentJustifyContentValue,
-                    }}
-                >
-                    {imageElement}
-                    {textElement}
-                </div>
+            <Container width={width} height={height} maxRatio={maxRatio} verticalAlign={verticalAlign} distribution={distribution}>
+                { items }
             </Container>
         </div>
     );

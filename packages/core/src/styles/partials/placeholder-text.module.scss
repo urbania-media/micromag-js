@@ -5,11 +5,7 @@
 
     .line {
         height: 16px;
-        margin-bottom: 2px;
+        margin: 0 auto;
         background-color: rgba($black, 0.5);
-
-        &:last-child {
-            margin-bottom: 0;
-        }
     }
 }
