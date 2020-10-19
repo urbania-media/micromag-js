@@ -62,7 +62,7 @@ const Transition = ({
             reset,
             onStart,
             onRest: onComplete,
-            immediate,
+            // immediate,
             config: {
                 duration: immediate ? 0 : undefined
             }

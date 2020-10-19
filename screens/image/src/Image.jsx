@@ -118,9 +118,7 @@ const Image = ({
 
         if (withImage) {
             // get container size from screen maxRatio
-            const currentRatio = width / height;
-            const maxWidth =
-                maxRatio !== null && currentRatio > maxRatio ? height * maxRatio : null;
+            const maxWidth = maxRatio !== null && width / height > maxRatio ? height * maxRatio : width;
 
             // get image container size
             const imageWidth = maxWidth - margin * 2;

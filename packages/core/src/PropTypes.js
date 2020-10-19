@@ -290,7 +290,7 @@ export const stackElement = PropTypes.shape({
 });
 
 export const gridElement = PropTypes.shape({
-    layout: PropTypes.array,
+    layout: PropTypes.arrayOf(PropTypes.string),
     spacing: PropTypes.number,
 });
 

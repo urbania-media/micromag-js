@@ -55,7 +55,7 @@ export default [
             description: 'TitleCredits screen title',
         }),
         component: TitleCredits,
-        layouts: ['top', 'center', 'bottom', 'split-top', 'split-bottom'],
+        layouts: ['top', 'middle', 'bottom', 'split-top', 'split-bottom'],
         fields: [
             {
                 name: 'layout',

@@ -20,17 +20,31 @@ const defaultProps = {
     children: null,
 };
 
-const TransitionsStagger = ({ transitions, stagger, playing, delay, children }) =>
-    React.Children.map(children, (child, childIndex) => (
-        <Transitions
-            transitions={transitions}
-            delay={delay + childIndex * stagger}
-            playing={playing}
-        >
-            {child}
-        </Transitions>
-    ));
+const TransitionsStagger = ({ transitions, stagger, playing, delay, children }) => {
+    let validIndex = 0;
+    const elements = React.Children.map(children, (child) => {
+        const { type = null } = child;
+        const { name = null } = type || {};
+        
+        if (name === 'Spacer') {
+            return child;
+        }
 
+        const el = (
+            <Transitions
+                transitions={transitions}
+                delay={delay + validIndex * stagger}
+                playing={playing}
+            >
+                {child}
+            </Transitions>
+        );
+        validIndex += 1;
+        return el
+    });
+
+    return elements;
+}
 TransitionsStagger.propTypes = propTypes;
 TransitionsStagger.defaultProps = defaultProps;
 

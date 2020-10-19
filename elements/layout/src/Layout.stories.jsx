@@ -31,7 +31,11 @@ const layouts = [
 export const normal = () => (
     <LayoutGrid layouts={layouts}>
         {(layout) => (
-            <div style={{ width: 100, height: 200, border: 'solid 1px #000' }}>
+            <div style={{
+                width: 100,
+                height: 200,
+                border: 'solid 1px #000'
+            }}>
                 <Layout width={100} height={200} {...layout}>
                     Bonjour
                 </Layout>

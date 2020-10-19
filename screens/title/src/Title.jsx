@@ -91,10 +91,10 @@ const Title = ({
             emptyClassName={styles.empty}
             isEmpty={isEmpty}
         >
-            <Heading key="title" {...title} size={1} />
+            <Heading {...title} size={1} />
         </ScreenElement>,
 
-        isSplitted && !withDescription && <Spacer />,
+        isSplitted && (!withDescription || verticalAlign === 'bottom') && <Spacer />,
 
         <ScreenElement
             key="subtitle"
@@ -105,21 +105,25 @@ const Title = ({
             emptyClassName={styles.empty}
             isEmpty={isEmpty}
         >
-            <Heading key="subtitle" {...subtitle} size={2} />
+            <Heading {...subtitle} size={2} />
         </ScreenElement>,
 
-        isSplitted && withDescription && hasDescription && <Spacer />,
+        isSplitted && withDescription && verticalAlign !== 'bottom' && <Spacer />,
 
-        <ScreenElement
-            key="subtitle"
-            placeholder="text"
-            emptyLabel={descriptionEmptyLabel}
-            emptyClassName={styles.empty}
-            isEmpty={isEmpty}
-        >
-            <Text key="description" {...description} />
-        </ScreenElement>,
+        withDescription && hasDescription && (
+            <ScreenElement
+                key="description"
+                placeholder="text"
+                emptyLabel={descriptionEmptyLabel}
+                emptyClassName={styles.empty}
+                isEmpty={isEmpty}
+            >
+                <Text {...description} />
+            </ScreenElement>
+        ),
     ].filter(Boolean);
+
+    const maxWidth = maxRatio !== null && width / height > maxRatio ? height * maxRatio : width;
 
     return (
         <div
@@ -139,7 +143,7 @@ const Title = ({
             />
 
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <Layout width={width} height={height} verticalAlign={verticalAlign}>
+                <Layout width={maxWidth} height={height} verticalAlign={verticalAlign}>
                     {isView ? (
                         <TransitionsStagger
                             transitions={transitions}
