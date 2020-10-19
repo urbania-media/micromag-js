@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -89,9 +89,6 @@ const Title = ({
 
     // Create elements
     let items = [];
-    let titleElement = null;
-    let subtitleElement = null;
-    let descriptionElement = null;
 
     if (isPlaceholder) {
         items = [
