@@ -22,7 +22,7 @@ const screens = [
     gallery,
     galleryFeed,
     image,
-    map,
+    ...map,
     mapPath,
     quote,
     slideshow,
@@ -32,7 +32,7 @@ const screens = [
     text,
     textImage,
     timelineCentered,
-    title,
+    ...title,
     ...video,
 ];
 

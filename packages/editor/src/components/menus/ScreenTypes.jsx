@@ -34,12 +34,16 @@ const ScreenTypes = ({ screens, className, onClickItem }) => {
                     ? { id: group.id, name: group }
                     : { id: group || id, name: group || title };
                 const groupIndex = allGroups.findIndex((it) => it.id === groupId);
+                const item = {
+                    ...screen,
+                    type: id,
+                };
                 return groupIndex !== -1
                     ? [
                           ...allGroups.slice(0, groupIndex),
                           {
                               ...allGroups[groupIndex],
-                              items: [...allGroups[groupIndex].items, screen],
+                              items: [...allGroups[groupIndex].items, item],
                           },
                           ...allGroups.slice(groupIndex + 1),
                       ]
@@ -48,12 +52,13 @@ const ScreenTypes = ({ screens, className, onClickItem }) => {
                           {
                               id: groupId,
                               name: groupName,
-                              items: [screen],
+                              items: [item],
                           },
                       ];
             }, []),
         [finalScreens],
     );
+    console.log(groups);
     return (
         <div
             className={classNames([
@@ -66,12 +71,10 @@ const ScreenTypes = ({ screens, className, onClickItem }) => {
             <div className={styles.rows}>
                 {groups.map(({ id, name, items }) => (
                     <div key={`group-${id}`} className={styles.row}>
-                        <h4 className={styles.title}>
-                            <Label>{name}</Label>
-                        </h4>
+
                         <div className={styles.layouts}>
                             <Screens
-                                items={items}
+                                items={items.slice(0, 1)}
                                 withPlaceholder
                                 itemClassName={styles.item}
                                 previewMinWidth={120}
