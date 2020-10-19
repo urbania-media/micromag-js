@@ -2,7 +2,7 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretLeft, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -10,17 +10,6 @@ import { Label, Button, Link, Date } from '@micromag/core/components';
 
 import * as AppPropTypes from '../../lib/PropTypes';
 import defaultServices from '../../data/publish-services';
-
-const messages = defineMessages({
-    details: {
-        id: 'story_publication.details',
-        defaultMessage: 'Details',
-    },
-    publishedAt: {
-        id: 'story_publication.published_at',
-        defaultMessage: 'Published at',
-    },
-});
 
 const propTypes = {
     item: AppPropTypes.storyPublication.isRequired,
@@ -36,7 +25,7 @@ const defaultProps = {
 const StoryPublication = ({ item, services, className }) => {
     const [detailsOpened, setDetailsOpened] = useState(false);
     const { service: serviceId, url, published_at: publishedAt = null } = item;
-    const service = services.find(it => it.id === serviceId) || null;
+    const service = services.find((it) => it.id === serviceId) || null;
     const onClickDetails = useCallback(() => setDetailsOpened(!detailsOpened), [
         detailsOpened,
         setDetailsOpened,
@@ -89,7 +78,10 @@ const StoryPublication = ({ item, services, className }) => {
                             <div className="row align-items-center mx-n2">
                                 <div className="col-3 px-2">
                                     <strong>
-                                        <Label>{messages.publishedAt}</Label>
+                                        <FormattedMessage
+                                            defaultMessage="Published at"
+                                            description="Field label"
+                                        />
                                     </strong>
                                 </div>
                                 <div className="col px-2 small">
@@ -102,7 +94,12 @@ const StoryPublication = ({ item, services, className }) => {
                         <li className="list-group-item px-0 py-2 text-muted small">
                             <div className="row align-items-center mx-n2">
                                 <div className="col-3 px-2">
-                                    <strong>URL</strong>
+                                    <strong>
+                                        <FormattedMessage
+                                            defaultMessage="URL"
+                                            description="Field label"
+                                        />
+                                    </strong>
                                 </div>
                                 <div className="col px-2">
                                     <Link href={url} external className="text-reset">

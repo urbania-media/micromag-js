@@ -26,7 +26,7 @@ const propTypes = {
     onChange: PropTypes.func,
     className: PropTypes.string,
     labelClassName: PropTypes.string,
-    fieldsComponents: MicromagPropTypes.components,
+    components: MicromagPropTypes.components,
 };
 
 const defaultProps = {
@@ -44,7 +44,7 @@ const defaultProps = {
     onChange: null,
     className: null,
     labelClassName: null,
-    fieldsComponents: null,
+    components: null,
 };
 
 const Fields = ({
@@ -62,7 +62,7 @@ const Fields = ({
     onChange,
     className,
     labelClassName,
-    fieldsComponents,
+    components,
 }) => {
     const nullableOnChange = useCallback(
         nullEmptyObject ? createNullableOnChange(onChange) : onChange,
@@ -129,7 +129,7 @@ const Fields = ({
                         onChange={customOnChange || fieldOnChange}
                         gotoFieldForm={gotoFieldForm}
                         closeFieldForm={closeFieldForm}
-                        fieldsComponents={fieldsComponents}
+                        components={components}
                         isHorizontal={isHorizontal}
                         isSection={isSection}
                         className={classNames([

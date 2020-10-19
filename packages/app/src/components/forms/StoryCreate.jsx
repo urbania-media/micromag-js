@@ -2,20 +2,11 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 // import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Form } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 import { useStoryCreate } from '@micromag/data';
-
-import formMessages from './messages';
-
-const messages = defineMessages({
-    submit: {
-        id: 'forms.story.create.submit',
-        defaultMessage: 'Create',
-    },
-});
 
 const propTypes = {
     className: PropTypes.string,
@@ -28,7 +19,7 @@ const defaultProps = {
         {
             name: 'title',
             type: 'text',
-            label: formMessages.titleLabel,
+            label: <FormattedMessage defaultMessage="Title" description="Field label" />,
         },
     ],
     className: null,
@@ -44,7 +35,7 @@ const StoryCreateForm = ({ fields, className, onCreated }) => {
             action={url('stories.create')}
             fields={fields}
             postForm={postForm}
-            submitButtonLabel={messages.submit}
+            submitButtonLabel={<FormattedMessage defaultMessage="Create" description="Button label" />}
             onComplete={onCreated}
             className={className}
         />

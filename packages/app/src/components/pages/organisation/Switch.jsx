@@ -2,8 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
-import { Label } from '@micromag/core/components';
+import { FormattedMessage } from 'react-intl';
 import { useRoutePush } from '@micromag/core/contexts';
 import { useOrganisation } from '@micromag/data';
 
@@ -11,13 +10,6 @@ import { useSetOrganisation } from '../../../contexts/OrganisationContext';
 import MainLayout from '../../layouts/Main';
 
 import styles from '../../../styles/pages/organisation/switch.module.scss';
-
-const messages = defineMessages({
-    switching: {
-        id: 'pages.organisation.switch.switching',
-        defaultMessage: 'Switching organisation...',
-    },
-});
 
 const propTypes = {
     slug: PropTypes.string.isRequired,
@@ -59,7 +51,10 @@ const OrganisationSwitch = ({ slug, minimumDelay, className }) => {
                     },
                 ])}
             >
-                <Label>{messages.switching}</Label>
+                <FormattedMessage
+                    defaultMessage="Switching organisation..."
+                    descrition="Page message"
+                />
             </div>
         </MainLayout>
     );

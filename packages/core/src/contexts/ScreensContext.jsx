@@ -1,48 +1,63 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, useMemo } from 'react';
+import React, { useContext, useMemo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import * as MicromagPropTypes from '../PropTypes';
 import { ComponentsProvider, SCREENS_NAMESPACE } from './ComponentsContext';
+import ScreensManager from '../lib/ScreensManager';
 
-export const ScreensContext = React.createContext([]);
+export const ScreensContext = React.createContext(new ScreensManager());
 
-export const useScreens = () => useContext(ScreensContext);
+export const useScreensManager = () => useContext(ScreensContext);
+
+export const useScreens = () => {
+    const manager = useScreensManager();
+    return manager.getScreens();
+};
 
 export const useScreen = (id) => {
-    const screens = useScreens();
-    return screens.find((it) => it.id === id) || null;
+    const manager = useScreensManager();
+    return manager.getScreen(id);
+};
+
+export const useScreenFields = (id) => {
+    const { fields = [] } = useScreen(id);
+    return fields;
 };
 
 const propTypes = {
-    screens: MicromagPropTypes.screenDefinitions.isRequired,
+    screens: MicromagPropTypes.screenDefinitions,
+    manager: PropTypes.instanceOf(ScreensManager),
     children: PropTypes.node.isRequired,
 };
 
-const defaultProps = {};
+const defaultProps = {
+    screens: null,
+    manager: null,
+};
 
-export const ScreensProvider = ({ children, screens }) => {
-    const previousScreens = useScreens();
-    const finalScreens = useMemo(() => {
-        const screenIds = screens.map(({ id }) => id);
-        return [
-            ...(previousScreens || []).filter(({ id }) => screenIds.indexOf(id) === -1),
-            ...screens,
-        ];
-    }, [previousScreens, screens]);
-    const components = useMemo(
-        () =>
-            finalScreens.reduce(
-                (allComponents, { id, component }) => ({
-                    ...allComponents,
-                    [id]: component,
-                }),
-                {},
-            ),
-        [finalScreens],
-    );
+export const ScreensProvider = ({ screens, manager, children }) => {
+    const previousManager = useScreensManager();
+    const finalManager = useMemo(() => {
+        const newManager = manager !== null ? manager : new ScreensManager(screens);
+        if ((previousManager || null) !== null) {
+            return previousManager.merge(newManager);
+        }
+        return newManager;
+    }, [manager, screens, previousManager]);
+
+    const initialComponents = useMemo(() => finalManager.getComponents(), [finalManager]);
+    const [components, setComponents] = useState(initialComponents);
+    useEffect(() => {
+        const onChange = () => setComponents(finalManager.getComponents());
+        finalManager.on('change', onChange);
+        return () => {
+            finalManager.off('change', onChange);
+        };
+    }, [finalManager, setComponents]);
+
     return (
-        <ScreensContext.Provider value={finalScreens}>
+        <ScreensContext.Provider value={finalManager}>
             <ComponentsProvider namespace={SCREENS_NAMESPACE} components={components}>
                 {children}
             </ComponentsProvider>

@@ -1,11 +1,10 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useMemo, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getComponentFromName } from '@micromag/core/utils';
-import { useFormsComponents, useFieldsComponents } from '@micromag/core/contexts';
-import { useScreenSchemaFields } from '@micromag/schemas';
+import { useFormsComponents, useFieldsComponents, useScreenFields } from '@micromag/core/contexts';
 
 import setValue from '../../utils/setFieldValue';
 
@@ -41,20 +40,8 @@ const FieldForm = ({
     formComponents,
     fieldComponents,
 }) => {
-    const contextFormComponents = useFormsComponents();
-    const finalFormComponents = formComponents || contextFormComponents;
-
-    const contextFieldComponents = useFieldsComponents();
-    const finalFieldComponents = fieldComponents || contextFieldComponents;
-
-    const { type, layout } = value;
-    const conditionalData = useMemo(
-        () => ({
-            layout,
-        }),
-        [layout],
-    );
-    const fields = useScreenSchemaFields(type, conditionalData);
+    const { type } = value;
+    const fields = useScreenFields(type);
 
     const field = fieldPath.split('.').reduce(
         (foundField, key) => {
@@ -95,6 +82,10 @@ const FieldForm = ({
         closeFieldForm,
     ]);
 
+    const contextFormComponents = useFormsComponents();
+    const finalFormComponents = formComponents || contextFormComponents;
+    const contextFieldComponents = useFieldsComponents();
+    const finalFieldComponents = fieldComponents || contextFieldComponents;
     const FormComponent =
         form !== null
             ? getComponentFromName(form, finalFormComponents)

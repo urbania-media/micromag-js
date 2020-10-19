@@ -2,19 +2,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { FormattedMessage } from 'react-intl';
 import { Modal, ModalDialog as Dialog } from '@micromag/core/components';
-import { defineMessages } from 'react-intl';
 
 import ScreenTypesMenu from '../menus/ScreenTypes';
 
 import styles from '../../styles/modals/screen-types.module.scss';
-
-const messages = defineMessages({
-    title: {
-        id: 'modals.screen_types_title',
-        defaultMessage: 'Add a screen',
-    },
-});
 
 const propTypes = {
     className: PropTypes.string,
@@ -31,7 +24,12 @@ const defaultProps = {
 const ScreenTypesModal = ({ className, onRequestClose, onClickScreenType }) => (
     <Modal>
         <Dialog
-            title={messages.title}
+            title={
+                <FormattedMessage
+                    defaultMessage="Add a screen"
+                    description="Title of the screen types selection dialog"
+                />
+            }
             className={classNames([
                 styles.container,
                 {

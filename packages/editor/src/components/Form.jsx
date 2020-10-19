@@ -3,6 +3,7 @@ import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useRouteMatch, useHistory } from 'react-router';
+import { useIntl, FormattedMessage } from 'react-intl';
 import TransitionGroup from 'react-addons-css-transition-group';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { slug } from '@micromag/core/utils';
@@ -17,7 +18,6 @@ import ScreenForm from './forms/Screen';
 import FieldForm from './forms/Field';
 
 import styles from '../styles/form.module.scss';
-import messages from '../messages';
 
 const propTypes = {
     story: MicromagPropTypes.story,
@@ -32,6 +32,7 @@ const defaultProps = {
 };
 
 const EditForm = ({ story, className, onChange }) => {
+    const intl = useIntl();
     // Match routes
     const history = useHistory();
     const routePush = useRoutePush();
@@ -46,7 +47,7 @@ const EditForm = ({ story, className, onChange }) => {
 
     // Get screen
     const { components: screens = [] } = story || {};
-    const screenIndex = screens.findIndex(it => it.id === screenId);
+    const screenIndex = screens.findIndex((it) => it.id === screenId);
     const screen = screenIndex !== -1 ? screens[screenIndex] : null;
 
     // Get transition value
@@ -58,7 +59,7 @@ const EditForm = ({ story, className, onChange }) => {
 
     // Callbacks
     const triggerOnChange = useCallback(
-        newValue => {
+        (newValue) => {
             if (onChange !== null) {
                 onChange(newValue);
             }
@@ -67,7 +68,7 @@ const EditForm = ({ story, className, onChange }) => {
     );
 
     const onScreenFormChange = useCallback(
-        newScreenValue => triggerOnChange(updateScreen(story, newScreenValue)),
+        (newScreenValue) => triggerOnChange(updateScreen(story, newScreenValue)),
         [story, triggerOnChange],
     );
 
@@ -83,11 +84,15 @@ const EditForm = ({ story, className, onChange }) => {
     ]);
 
     const onClickDelete = useCallback(() => {
+        const confirmMessage = intl.formatMessage({
+            defaultMessage: 'Are you sure you want to delete this screen?',
+            decription: 'Confirmation message before deleting a screen',
+        });
         // eslint-disable-next-line no-alert
-        if (window.confirm('Êtes-vous certain de vouloir supprimer cet écran?')) {
+        if (window.confirm(confirmMessage)) {
             triggerOnChange(deleteScreen(story, screenId));
         }
-    }, [story, screenId, triggerOnChange]);
+    }, [intl, story, screenId, triggerOnChange]);
 
     const [fieldForms, setFieldForms] = useState({});
 
@@ -149,7 +154,12 @@ const EditForm = ({ story, className, onChange }) => {
             ) : null}
             <div className={classNames(['flex-grow-1', 'd-flex', 'w-100', styles.content])}>
                 {screen === null ? (
-                    <Empty className="w-100 m-2">{messages.selectScreen}</Empty>
+                    <Empty className="w-100 m-2">
+                        <FormattedMessage
+                            defaultMessage="Select a screen..."
+                            decription="Indication to select a screen to view the form"
+                        />
+                    </Empty>
                 ) : null}
 
                 {screen !== null ? (

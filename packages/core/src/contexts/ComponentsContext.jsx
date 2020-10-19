@@ -1,83 +1,137 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext } from 'react';
+import React, { useContext, useMemo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { getDisplayName, getComponentFromName } from '../utils';
+import ComponentsManager from '../lib/ComponentsManager';
 
 export const MODALS_NAMESPACE = 'modals';
 export const FIELDS_NAMESPACE = 'fields';
 export const FORMS_NAMESPACE = 'forms';
 export const SCREENS_NAMESPACE = 'screens';
-export const ELEMENTS_NAMESPACE  = 'elements';
+export const ELEMENTS_NAMESPACE = 'elements';
 
-export const ComponentsContext = React.createContext({});
+export const ComponentsContext = React.createContext(new ComponentsManager());
+
+/**
+ * Hooks
+ */
+export const useComponentsManager = (namespace = null) => {
+    const manager = useContext(ComponentsContext);
+    const newManager = useMemo(
+        () =>
+            namespace !== null ? new ComponentsManager(manager.getComponents(namespace)) : manager,
+        [manager, namespace],
+    );
+    return newManager;
+};
 
 export const useComponents = (namespace = null, defaultComponents = {}) => {
-    const { components } = useContext(ComponentsContext);
-    return (namespace !== null ? (components || {})[namespace] : components) || defaultComponents;
+    const manager = useComponentsManager();
+    return manager.getComponents(namespace) || defaultComponents;
+};
+
+export const useComponent = (name, defaultComponent = null, namespace = null) => {
+    const manager = useComponentsManager(namespace);
+    return useMemo(() => manager.getComponent(name) || defaultComponent, [
+        manager,
+        name,
+        defaultComponent,
+    ]);
 };
 
 /**
- * Fields components
+ * Fields hooks
  */
+export const useFieldsComponentsManager = () => useComponentsManager(FIELDS_NAMESPACE);
+
 export const useFieldsComponents = (defaultComponents = {}) =>
     useComponents(FIELDS_NAMESPACE, defaultComponents);
 
-export const useFieldComponent = (name, defaultComponents = {}) => {
-    const components = useComponents(FIELDS_NAMESPACE, defaultComponents);
-    return getComponentFromName(name, components);
-};
+export const useFieldComponent = (name, defaultComponent = null) =>
+    useComponent(name, defaultComponent, FIELDS_NAMESPACE);
+
+/**
+ * Screens hooks
+ */
+export const useScreensComponentsManager = () => useComponentsManager(SCREENS_NAMESPACE);
 
 export const useScreensComponents = (defaultComponents = {}) =>
     useComponents(SCREENS_NAMESPACE, defaultComponents);
 
+export const useScreenComponent = (name, defaultComponent = null) =>
+    useComponent(name, defaultComponent, SCREENS_NAMESPACE);
+
+/**
+ * Forms hooks
+ */
+export const useFormsComponentsManager = () => useComponentsManager(FORMS_NAMESPACE);
+
 export const useFormsComponents = (defaultComponents = {}) =>
     useComponents(FORMS_NAMESPACE, defaultComponents);
+
+export const useFormComponent = (name, defaultComponent = null) =>
+    useComponent(name, defaultComponent, FORMS_NAMESPACE);
+
+/**
+ * Modals hooks
+ */
+export const useModalsComponentsManager = () => useComponentsManager(MODALS_NAMESPACE);
 
 export const useModalsComponents = (defaultComponents = {}) =>
     useComponents(MODALS_NAMESPACE, defaultComponents);
 
+export const useModalComponent = (name, defaultComponent = null) =>
+    useComponent(name, defaultComponent, MODALS_NAMESPACE);
+
+/**
+ * Elements hooks
+ */
+export const useElementsComponentsManager = () => useComponentsManager(ELEMENTS_NAMESPACE);
+
 export const useElementsComponents = (defaultComponents = {}) =>
     useComponents(ELEMENTS_NAMESPACE, defaultComponents);
 
-export const withComponents = (WrappedComponent) => {
-    const withComponentsComponent = (props) => (
-        <ComponentsContext.Consumer>
-            {({ components }) => <WrappedComponent components={components} {...props} />}
-        </ComponentsContext.Consumer>
-    );
-    withComponentsComponent.displayName = `withComponents(${getDisplayName(WrappedComponent)})`;
-    return withComponentsComponent;
-};
+export const useElementComponent = (name, defaultComponent = null) =>
+    useComponent(name, defaultComponent, ELEMENTS_NAMESPACE);
 
+/**
+ * Provider
+ */
 const propTypes = {
     children: PropTypes.node.isRequired,
     namespace: PropTypes.string,
+    manager: PropTypes.instanceOf(ComponentsManager),
     components: PropTypes.objectOf(PropTypes.object),
 };
 
 const defaultProps = {
     namespace: null,
     components: {},
+    manager: null,
 };
 
-export const ComponentsProvider = ({ children, components, namespace }) => {
-    const previousComponents = useComponents();
-    const finalComponents =
-        namespace !== null
-            ? {
-                  ...previousComponents,
-                  [namespace]: {
-                      ...((previousComponents || {})[namespace] || null),
-                      ...components,
-                  },
-              }
-            : { ...previousComponents, ...components };
-    return (
-        <ComponentsContext.Provider value={{ components: finalComponents }}>
-            {children}
-        </ComponentsContext.Provider>
-    );
+export const ComponentsProvider = ({ components, manager, namespace, children }) => {
+    const previousManager = useComponentsManager();
+
+    const finalManager = useMemo(() => {
+        const newManager = manager !== null ? manager : new ComponentsManager(components);
+        if ((previousManager || null) !== null) {
+            return previousManager.merge(newManager, namespace);
+        }
+        return namespace !== null ? newManager.addNamespace(namespace) : null;
+    }, [manager, components, previousManager, namespace]);
+
+    const initialComponents = useMemo(() => finalManager.getComponents(), [finalManager]);
+    const [, setComponents] = useState(initialComponents);
+    useEffect(() => {
+        const onChange = () => setComponents(finalManager.getComponents());
+        finalManager.on('change', onChange);
+        return () => {
+            finalManager.off('change', onChange);
+        };
+    }, [finalManager, setComponents]);
+
+    return <ComponentsContext.Provider value={finalManager}>{children}</ComponentsContext.Provider>;
 };
 
 ComponentsProvider.propTypes = propTypes;
