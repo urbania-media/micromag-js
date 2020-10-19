@@ -78,7 +78,7 @@ const TextImage = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isView, isPlaceholder, isPreview, isEditor } = getRenderFormat(renderFormat);
+    const { isView, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
 
     const withText = text !== null;
     const withImage = image !== null;
@@ -126,7 +126,7 @@ const TextImage = ({
         };
 
         if (withImage) {
-            imageElement = createElement(<Image {...image} fit={{ size: 'cover', maxRatio: 9 / 16 }} onLoaded={onImageLoaded} />);
+            imageElement = createElement(<Image {...image} objectFit={{ fit: 'cover' }} onLoaded={onImageLoaded} />);
         }
         if (withText) {
             textElement = createElement(<Text {...text} />);

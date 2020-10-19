@@ -111,8 +111,7 @@ const Audio = ({
                     <ImageElement
                         width={Math.min(width, maxWidth)}
                         height={Math.min(width, maxWidth)}
-                        fit={{ size: 'cover' }}
-                        contain
+                        objectFit={{ fit: 'cover' }}
                         className={styles.image}
                         onLoaded={onImageLoaded}
                         {...image}

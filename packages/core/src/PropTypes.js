@@ -176,9 +176,9 @@ export const videoControls = PropTypes.shape({
 
 
 export const objectFit = PropTypes.shape({
-    size: PropTypes.oneOf(['cover', 'contain', null]),
-    position: PropTypes.string,
-    maxRatio: PropTypes.number,
+    fit: PropTypes.oneOf(['cover', 'contain', null]),
+    horizontalPosition: PropTypes.oneOf(['left', 'center', 'right']),
+    verticalPosition: PropTypes.oneOf(['top', 'center', 'bottom']),
 });
 
 export const flexDirection = PropTypes.oneOf(['row', 'column']);
@@ -382,10 +382,10 @@ export const slide = PropTypes.shape({
 
 export const slides = PropTypes.arrayOf(slide);
 
-export const imageStyle = PropTypes.shape({
-    alt: PropTypes.string,
-    fit: PropTypes.object,
-});
+// export const imageStyle = PropTypes.shape({
+//     alt: PropTypes.string,
+//     fit: PropTypes.object,
+// });
 
 export const containerStyle = PropTypes.shape({});
 

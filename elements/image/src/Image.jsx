@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import TextElement from '@micromag/element-text';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { /* getStyleFromImage, */ getStyleFromContainer } from '@micromag/core/utils';
-// import { getSizeWithinBounds } from '@folklore/size';
+import { getSizeWithinBounds } from '@folklore/size';
 
 import styles from './styles.module.scss';
 
@@ -17,9 +16,11 @@ const propTypes = {
     }),
     alt: PropTypes.string,
     caption: PropTypes.string,
-    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    fit: MicromagPropTypes.objectFit,
+    width: PropTypes.number,
+    height: PropTypes.number,
+    shrinkWidth: PropTypes.bool,
+    shrinkHeight: PropTypes.bool,
+    objectFit: MicromagPropTypes.objectFit,
     containerStyle: MicromagPropTypes.containerStyle,
     imageStyle: MicromagPropTypes.containerStyle,
     captionStyle: MicromagPropTypes.textStyle,    
@@ -34,7 +35,9 @@ const defaultProps = {
     caption: null,
     width: null,
     height: null,
-    fit: null,
+    shrinkWidth: false,
+    shrinkHeight: false,
+    objectFit: null,
     containerStyle: {},
     imageStyle: {},
     captionStyle: {},    
@@ -49,7 +52,9 @@ const Image = ({
     caption,
     width,
     height,
-    fit,
+    shrinkWidth,
+    shrinkHeight,
+    objectFit,
     containerStyle,
     imageStyle,
     captionStyle,    
@@ -59,45 +64,58 @@ const Image = ({
 }) => {
     const { url = null, width: mediaWidth, height: mediaHeight } = media || {};    
 
-    const withFit = fit !== null;    
-
+    const withFit = objectFit !== null;
     
     let finalContainerStyle;
-    let imageContainerStyle;
     let finalImageStyle;
 
     if (withFit) {        
-        const { size = null, position = null, maxRatio = null } = fit || {};
-        const imageRatio = mediaWidth > 0 && mediaHeight > 0 ? mediaHeight / mediaWidth : 0;
-        console.log(imageRatio, maxRatio);
-        // console.log(getSizeWithinBounds(mediaWidth, mediaHeight, width, height))
+        const { fit = null, horizontalPosition = 'center', verticalPosition = 'center' } = objectFit || {};        
+        const { width: imageWidth, height: imageHeight } = getSizeWithinBounds(mediaWidth, mediaHeight, width, height, { cover: fit === 'cover' });
 
-        if (maxRatio !== null) {
-            finalContainerStyle = {
-                width,
-                height,
-            }
-            imageContainerStyle = {
-                width: '100%',
-                height: 0,
-                paddingBottom: `${maxRatio * 100}%`,
-            }
+        let imageTop;
+        let imageLeft;
+
+        if (horizontalPosition === 'center') {
+            imageLeft = -(imageWidth - width) / 2;
+        } else if (horizontalPosition === 'right') {
+            imageLeft = -(imageWidth - width);
         } else {
-            finalContainerStyle = {
-                width,
-                height,
-            }
+            imageLeft = 0;
+        }
+
+        if (verticalPosition === 'center') {
+            imageTop = -(imageHeight - height) / 2;
+        } else if (verticalPosition === 'bottom') {
+            imageTop = -(imageHeight - height);
+        } else {
+            imageTop = 0;
+        }
+
+        const finalImageWidth = shrinkWidth ? Math.min(imageWidth, width) : width;
+        const finalImageHeight = shrinkHeight ? Math.min(imageHeight, height) : height;        
+
+        if (shrinkWidth && width > imageWidth) {
+            imageLeft = 0;
+        }
+
+        if (shrinkHeight && height > imageHeight) {
+            imageTop = 0;
+        }
+
+        finalContainerStyle = {
+            width: finalImageWidth,
+            height: finalImageHeight,
         }
         
         finalImageStyle = {
             position: 'absolute',
-            width: '100%',
-            height: '100%',
-            objectFit: size,
-            objectPosition: position,
+            width: imageWidth,
+            height: imageHeight,
+            top: imageTop,
+            left: imageLeft,
         }
     } else {
-        // no fit, we simply apply size to the <img>
         finalImageStyle = {
             width,
             height,
@@ -106,7 +124,7 @@ const Image = ({
 
     finalContainerStyle = {
         ...finalContainerStyle,
-        containerStyle,// ...getStyleFromContainer(containerStyle),
+        ...containerStyle,
     };
 
     finalImageStyle = {
@@ -139,9 +157,7 @@ const Image = ({
             ])}
             style={finalContainerStyle}
         >
-            <div className={styles.imageContainer} style={imageContainerStyle}>
-                { img }
-            </div>
+            { img }
             { url !== null && caption !== null ? (
                 <div className={styles.caption}>
                     <TextElement body={caption} style={captionStyle} className={styles.text} />

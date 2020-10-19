@@ -72,7 +72,7 @@ const TwoImages = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isView, isPlaceholder, isPreview, isEditor } = getRenderFormat(renderFormat);
+    const { isView, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
 
     const withText = text !== null;
     const withImage = image !== null;
@@ -80,7 +80,7 @@ const TwoImages = ({
     const isEmpty = isEditor && !withText && !withImage;
 
     const imagesCount = [withImage, withImage2].reduce(
-        (acc, current) => acc + (current ? 1 : 0),
+        (acc, curr) => acc + (curr ? 1 : 0),
         0,
     );
     const [imagesLoaded, setImagesLoaded] = useState(0);
@@ -139,7 +139,7 @@ const TwoImages = ({
             imageElement = createElement(
                 <Image
                     {...image}
-                    fit={{ size: 'cover', maxRatio: 9 / 16 }}
+                    objectFit={{ size: 'cover' }}
                     onLoaded={onImageLoaded}
                 />,
             );
@@ -149,7 +149,7 @@ const TwoImages = ({
             image2Element = createElement(
                 <Image
                     {...image2}
-                    fit={{ size: 'cover', maxRatio: 9 / 16 }}
+                    objectFit={{ size: 'cover' }}
                     onLoaded={onImageLoaded}
                 />,
             );

@@ -110,7 +110,7 @@ const Slideshow = ({
                                 className={styles.slide}
                             >
                                 {item.image ? (
-                                    <ImageElement {...item.image} fit={{ size: 'cover' }} />
+                                    <ImageElement {...item.image} objectFit={{ fit: 'cover' }} />
                                 ) : null}
                                 {item.text ? <TextElement {...item.text} /> : null}
                             </animated.div>

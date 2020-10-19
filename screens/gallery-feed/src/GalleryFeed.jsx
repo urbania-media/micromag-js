@@ -150,8 +150,7 @@ const GalleryFeed = ({
                     >
                         <Image
                             {...it}
-                            fit={{ size: 'cover' }}
-                            contain
+                            objectFit={{ fit: 'cover' }}
                             className={styles.imageComponent}
                             onLoaded={onImageLoaded}
                         />

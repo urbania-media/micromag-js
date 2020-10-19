@@ -125,8 +125,7 @@ const Gallery = ({
                       >
                           <Image
                               {...it}
-                              fit={{ size: 'cover' }}
-                              contain
+                              objectFit={{ fit: 'cover' }}
                               className={styles.image}
                               onLoaded={onImageLoaded}
                           />

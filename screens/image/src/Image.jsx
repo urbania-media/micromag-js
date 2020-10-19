@@ -15,6 +15,7 @@ import {
     PlaceholderTitle,
     Empty,
 } from '@micromag/core';
+
 import { getRenderFormat } from '@micromag/core/utils';
 import { useScreenSize } from '@micromag/core/contexts';
 import Transitions from '@micromag/core/src/components/transitions/Transitions';
@@ -34,10 +35,12 @@ const propTypes = {
     ]),
     image: MicromagPropTypes.imageMedia,
     title: MicromagPropTypes.headingElement,
+    margin: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
+    maxImageRatio: PropTypes.number,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
@@ -48,10 +51,12 @@ const defaultProps = {
     layout: 'top',
     image: null,
     title: null,
+    margin: 20,
     background: null,
     current: true,
     active: true,
     renderFormat: 'view',
+    maxImageRatio: 4 / 3,
     maxRatio: 3 / 4,
     transitions: {
         in: {
@@ -68,17 +73,19 @@ const Image = ({
     layout,
     image,
     title,
+    margin,
     background,
     current,
     active,
     renderFormat,
+    maxImageRatio,
     maxRatio,
     transitions,
     transitionStagger,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isView, isPlaceholder, isPreview, isEditor } = getRenderFormat(renderFormat);
+    const { isView, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
 
     const withTitle = title !== null;
     const withImage = image !== null;
@@ -91,28 +98,19 @@ const Image = ({
         setReady(true);
     }, [setReady]);
 
-    const finalLayout = layout !== null ? layout : 'center';
-    const layoutArray = finalLayout.split('-');
-    const layoutName = layoutArray[0];
-    const reverse = layoutArray.length === 2 && layoutArray[1] === 'reverse';
-
-    let imageElement = null;
-    let titleElement = null;
+    let items = [];
 
     if (isPlaceholder) {
-        imageElement = <PlaceholderImage />;
-        titleElement = <PlaceholderTitle />;
+        items = [<PlaceholderImage />, <PlaceholderTitle />];
     } else if (isEmpty) {
-        imageElement = (
+        items = [
             <Empty className={classNames([styles.empty, styles.emptyImage])}>
                 <FormattedMessage defaultMessage="Image" description="Image placeholder" />
-            </Empty>
-        );
-        titleElement = (
+            </Empty>,
             <Empty className={styles.empty}>
                 <FormattedMessage defaultMessage="Title" description="Title placeholder" />
-            </Empty>
-        );
+            </Empty>,
+        ];
     } else {
         let transitionDelay = 0;
 
@@ -131,34 +129,35 @@ const Image = ({
         };
 
         if (withImage) {
-            imageElement = createElement(<ImageComponent {...image} fit={{ size: 'cover', maxRatio: 9 / 16 }} onLoaded={onImageLoaded} />);
+            // get container size from screen maxRatio
+            const currentRatio = width / height;
+            const maxWidth = maxRatio !== null && currentRatio > maxRatio ? height * maxRatio : null;
+
+            // get image container size
+            const imageWidth = maxWidth - margin * 2;
+            const imageHeight = imageWidth / maxImageRatio;
+
+            items.push(
+                createElement(
+                    <ImageComponent
+                        {...image}
+                        width={imageWidth}
+                        height={imageHeight}
+                        shrinkHeight
+                        objectFit={{ fit: 'contain' }}
+                        onLoaded={onImageLoaded}
+                    />,
+                ),
+            );
         }
         if (withTitle) {
-            titleElement = createElement(<Heading {...title} />);
+            items.push(createElement(<Heading {...title} />));
         }
     }
 
-    // Add elements to items
-
-    const items = [];
-    if (imageElement !== null) {
-        items.push(imageElement);
+    if (layout) {
+        // @TODO
     }
-
-    if (titleElement !== null) {
-        items.push(titleElement);
-    }
-
-    // convert layout to Container props
-
-    const layoutChunks = layout.split('-');
-    const isDistribution = layoutChunks[0] === 'split';
-    const verticalAlign = isDistribution ? layoutChunks[1] : layoutChunks[0];
-    const distribution = isDistribution ? 'between' : null;
-
-    if (layoutChunks.length === 2 && layoutChunks[1] === 'reverse') {
-        items.reverse();
-    }    
 
     return (
         <div
@@ -177,8 +176,8 @@ const Image = ({
                 playing={(isView && current) || (isEditor && active)}
                 maxRatio={maxRatio}
             />
-            <Container width={width} height={height} maxRatio={maxRatio} verticalAlign={verticalAlign} distribution={distribution}>
-                { items }
+            <Container width={width} height={height} maxRatio={maxRatio}>
+                <div style={{ margin }}>{items}</div>
             </Container>
         </div>
     );

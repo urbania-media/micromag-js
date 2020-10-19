@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React, { useState, useCallback } from 'react';
@@ -28,7 +29,7 @@ const propTypes = {
     active: PropTypes.bool,
     renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
-    // transitions: MicromagPropTypes.transitions, // @TODO transforme l'objet en string ???
+    transitions: MicromagPropTypes.transitions, // @TODO transforme l'objet en string ???
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
 };
@@ -73,8 +74,8 @@ const TimelineCentered = ({
     const imagesCount =
         !isPlaceholder && hasItems
             ? items.reduce(
-                  (acc, current) =>
-                      acc + (current.image !== null && current.image !== undefined ? 1 : 0),
+                  (acc, curr) =>
+                      acc + (curr.image !== null && curr.image !== undefined ? 1 : 0),
                   0,
               )
             : 0;
@@ -114,24 +115,23 @@ const TimelineCentered = ({
 
         elements = hasItems
             ? items.map(({ title, subtitle, image, text }, index) => (
-                  <div className={styles.timelineBlock} key={index}>
-                      {title !== null ? createElement(<Heading {...title} />) : null}
-                      {subtitle !== null ? createElement(<Heading {...subtitle} size={3} />) : null}
-                      {image !== null
-                          ? createElement(
-                                <Image
-                                    className={styles.image}
-                                    {...image}
-                                    width="100%"
-                                    onLoaded={onImageLoaded}
-                                />,
-                            )
-                          : null}
-                      {text !== null ? createElement(<TextComponent {...text} />) : null}
-                      {index < items.length - 1
-                          ? createElement(<div className={styles.line} />)
-                          : null}
-                  </div>
+                <div className={styles.timelineBlock} key={index}>
+                    {title !== null ? createElement(<Heading {...title} />) : null}
+                    {subtitle !== null ? createElement(<Heading {...subtitle} size={3} />) : null}
+                    {image !== null
+                        ? createElement(
+                            <Image
+                                className={styles.image}
+                                {...image}
+                                onLoaded={onImageLoaded}
+                            />,
+                        )
+                        : null}
+                    {text !== null ? createElement(<TextComponent {...text} />) : null}
+                    {index < items.length - 1
+                        ? createElement(<div className={styles.line} />)
+                        : null}
+                </div>
               ))
             : null;
     }
@@ -153,9 +153,7 @@ const TimelineCentered = ({
                 playing={(isView && current) || (isEditor && active)}
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <Scroll verticalAlign="center">
-                    { elements }
-                </Scroll>
+                <Scroll verticalAlign="center">{elements}</Scroll>
             </Container>
         </div>
     );
