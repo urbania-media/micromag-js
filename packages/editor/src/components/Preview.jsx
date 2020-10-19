@@ -6,7 +6,7 @@ import { Route } from 'react-router';
 import { getSizeWithinBounds } from '@folklore/size';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useResizeObserver } from '@micromag/core/hooks';
-import { useScreenSize, useRoutes } from '@micromag/core/contexts';
+import { useScreenSize, useRoutes, ScreenRenderProvider } from '@micromag/core/contexts';
 import { Viewer } from '@micromag/viewer';
 
 import DevicesMenu from './menus/Devices';
