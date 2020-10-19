@@ -9,6 +9,7 @@ import Container from '@micromag/element-container';
 import TextComponent from '@micromag/element-text';
 import Image from '@micromag/element-image';
 import Heading from '@micromag/element-heading';
+import Scroll from '@micromag/element-scroll';
 
 import { PlaceholderShortText, PropTypes as MicromagPropTypes } from '@micromag/core';
 
@@ -121,6 +122,7 @@ const TimelineCentered = ({
                                 <Image
                                     className={styles.image}
                                     {...image}
+                                    width="100%"
                                     onLoaded={onImageLoaded}
                                 />,
                             )
@@ -140,7 +142,6 @@ const TimelineCentered = ({
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.placeholder]: isPlaceholder,
                 },
             ])}
         >
@@ -152,9 +153,9 @@ const TimelineCentered = ({
                 playing={(isView && current) || (isEditor && active)}
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <div className={styles.containerInner}>
-                    <div className={styles.content}>{elements}</div>
-                </div>
+                <Scroll verticalAlign="center">
+                    { elements }
+                </Scroll>
             </Container>
         </div>
     );

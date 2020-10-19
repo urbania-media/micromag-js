@@ -1,4 +1,5 @@
 import React from 'react';
+import Stack from './Stack';
 import HStack from './HStack';
 import VStack from './VStack';
 

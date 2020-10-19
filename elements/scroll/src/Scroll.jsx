@@ -8,7 +8,8 @@ import styles from './styles.module.scss';
 const propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
-    withScroll: PropTypes.bool,
+    withoutScroll: PropTypes.bool,
+    verticalAlign: PropTypes.oneOf(['top', 'center', 'bottom']),
     className: PropTypes.string,
     children: PropTypes.node,
 };
@@ -16,28 +17,31 @@ const propTypes = {
 const defaultProps = {
     width: null,
     height: null,
-    withScroll: true,
+    withoutScroll: false,
+    verticalAlign: null,
     className: null,
     children: null,
 };
 
-const Scroll = ({ width, height, withScroll, className, children }) => {
+const Scroll = ({ width, height, withoutScroll, verticalAlign, className, children }) => {
     const finalStyle = {
         width,
         height,
     };
+
     return (
         <div
             className={classNames([
                 styles.container,
                 {
-                    [styles.withScroll]: withScroll === true,
+                    [styles.withScroll]: !withoutScroll,
                     [className]: className !== null,
+                    [styles[verticalAlign]]: verticalAlign !== null,
                 },
             ])}
             style={finalStyle}
         >
-            {children}
+            <div className={styles.inner}>{children}</div>
         </div>
     );
 };

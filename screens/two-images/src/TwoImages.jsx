@@ -187,7 +187,6 @@ const TwoImages = ({
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.placeholder]: isPlaceholder,
                 },
             ])}
         >

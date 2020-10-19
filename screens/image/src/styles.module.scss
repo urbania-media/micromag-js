@@ -3,12 +3,6 @@
 .container {
     @extend %screen;
 
-    .content {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
-
     .empty {
         @extend %empty;
         width: 100%;
@@ -17,12 +11,6 @@
 
         &.emptyImage {
             @extend %empty-image;
-        }
-    }
-
-    &.placeholder {
-        .content {
-            align-items: center;
         }
     }
 }

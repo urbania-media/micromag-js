@@ -126,7 +126,7 @@ const TextImage = ({
         };
 
         if (withImage) {
-            imageElement = createElement(<Image {...image} fit={{ size: 'contain', maxRatio: 9 / 16 }} onLoaded={onImageLoaded} />);
+            imageElement = createElement(<Image {...image} fit={{ size: 'cover', maxRatio: 9 / 16 }} onLoaded={onImageLoaded} />);
         }
         if (withText) {
             textElement = createElement(<Text {...text} />);

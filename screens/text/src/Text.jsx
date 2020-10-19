@@ -151,8 +151,14 @@ const TextScreen = ({
                 maxRatio={maxRatio}
                 playing={(isView && current) || (isEditor && active)}
             />
-            <Container width={width} height={height} maxRatio={maxRatio} verticalAlign={verticalAlign} distribution={distribution}>
-                { items }
+            <Container
+                width={width}
+                height={height}
+                maxRatio={maxRatio}
+                verticalAlign={verticalAlign}
+                distribution={distribution}
+            >
+                {items}
             </Container>
         </div>
     );

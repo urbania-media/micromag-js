@@ -49,7 +49,7 @@ const Transition = ({
     onStart,
     onComplete,
 }) => {
-    const [springProps, setSpringProps] = useSpring(() => from);
+    const [springProps, setSpringProps] = useSpring(() => {});
 
     useEffect(() => {
         const immediate = (!playing && direction === 'in') || (playing && direction === 'out');
@@ -59,10 +59,13 @@ const Transition = ({
         const props = {
             from,
             to: finalPlaying ? to : from,
-            immediate,
             reset,
             onStart,
             onRest: onComplete,
+            immediate,
+            config: {
+                duration: immediate ? 0 : undefined
+            }
         };
 
         const withDelay = delay > 0 && playing && direction !== 'out';

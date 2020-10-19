@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -26,8 +26,9 @@ const propTypes = {
     layout: PropTypes.oneOf(['top', 'center', 'bottom', 'split', 'split-top', 'split-bottom']),
     title: MicromagPropTypes.headingElement,
     subtitle: MicromagPropTypes.headingElement,
-    description: MicromagPropTypes.headingElement,
+    description: MicromagPropTypes.textElement,
     descriptionPlaceholder: PropTypes.bool,
+    descriptionEmptyContent: PropTypes.node,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -44,6 +45,7 @@ const defaultProps = {
     subtitle: null,
     description: null,
     descriptionPlaceholder: false,
+    descriptionEmptyContent: null,
     background: null,
     current: true,
     active: false,
@@ -66,6 +68,7 @@ const Title = ({
     subtitle,
     description,
     descriptionPlaceholder,
+    descriptionEmptyContent,
     background,
     current,
     active,
@@ -85,67 +88,51 @@ const Title = ({
     const isEmpty = isEditor && !withTitle && !withSubtitle && !description;
 
     // Create elements
-
+    let items = [];
     let titleElement = null;
     let subtitleElement = null;
     let descriptionElement = null;
 
     if (isPlaceholder) {
-        titleElement = <PlaceholderTitle />;
-        subtitleElement = <PlaceholderSubtitle />;
-        descriptionElement = descriptionPlaceholder ? <PlaceholderSubtitle /> : null;
+        items = [
+            <PlaceholderTitle />,
+            <PlaceholderSubtitle />
+        ];
+        if (descriptionPlaceholder) {
+            items.push(<PlaceholderSubtitle />)
+        }
     } else if (isEmpty) {
-        titleElement = (
+        items = [
             <Empty className={styles.empty}>
                 <FormattedMessage defaultMessage="Title" description="Title placeholder" />
-            </Empty>
-        );
-        subtitleElement = (
+            </Empty>,
             <Empty className={styles.empty}>
                 <FormattedMessage defaultMessage="Subtitle" description="Subtitle placeholder" />
             </Empty>
-        );
-        descriptionElement = descriptionPlaceholder ? (
-            <Empty className={styles.empty}>
-                <FormattedMessage
-                    defaultMessage="Description"
-                    description="Description placeholder"
-                />
-            </Empty>
-        ) : null;
+        ]
+        if (descriptionPlaceholder) {
+            items.push(
+                <Empty className={styles.empty}>
+                    {descriptionEmptyContent !== null ? descriptionEmptyContent : (
+                        <FormattedMessage
+                            defaultMessage="Description"
+                            description="Description placeholder"
+                        />
+                    )}
+                </Empty>
+            );
+        }
     } else {
         if (withTitle) {
-            titleElement = <Heading {...title} size={1} />;
+            items.push(<Heading {...title} size={1} />);
         }
         if (withSubtitle) {
-            subtitleElement = <Heading {...subtitle} size={2} />;
+            items.push(<Heading {...subtitle} size={2} />);
         }
         if (withDescription) {
-            descriptionElement = <Text {...description} />;
+            items.push(<Text {...description} />);
         }
     }
-
-    // Add elements to items
-
-    const items = [];
-    if (titleElement !== null) {
-        items.push(titleElement);
-    }
-
-    if (subtitleElement !== null) {
-        items.push(subtitleElement);
-    }
-
-    if (descriptionElement !== null) {
-        items.push(descriptionElement);
-    }
-
-    // convert layout to Container props
-
-    const layoutChunks = layout.split('-');
-    const isDistribution = layoutChunks[0] === 'split';
-    const verticalAlign = isDistribution ? layoutChunks[1] : layoutChunks[0];
-    const distribution = isDistribution ? 'between' : null;
 
     return (
         <div
@@ -153,7 +140,6 @@ const Title = ({
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.placeholder]: isPlaceholder,
                 },
             ])}
         >
@@ -169,12 +155,18 @@ const Title = ({
                 width={width}
                 height={height}
                 maxRatio={maxRatio}
-                verticalAlign={verticalAlign}
-                distribution={distribution}
             >
-                <TransitionsStagger transitions={transitions} stagger={transitionStagger} playing>
-                    {items}
-                </TransitionsStagger>
+                {isView ? (
+                    <TransitionsStagger
+                        transitions={transitions}
+                        stagger={transitionStagger}
+                        playing
+                    >
+                        {items}
+                    </TransitionsStagger>
+                ) : (
+                    items
+                )}
             </Container>
         </div>
     );

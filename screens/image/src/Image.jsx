@@ -131,31 +131,34 @@ const Image = ({
         };
 
         if (withImage) {
-            imageElement = createElement(<ImageComponent {...image} fit={{ size: 'contain', maxRatio: 9 / 16 }} onLoaded={onImageLoaded} />);
+            imageElement = createElement(<ImageComponent {...image} fit={{ size: 'cover', maxRatio: 9 / 16 }} onLoaded={onImageLoaded} />);
         }
         if (withTitle) {
             titleElement = createElement(<Heading {...title} />);
         }
     }
 
-    let contentJustifyContentValue;
-    const contentFlexDirection = 'column' + (reverse ? '-reverse' : '');
+    // Add elements to items
 
-    switch (layoutName) {
-        default:
-        case 'center':
-            contentJustifyContentValue = 'center';
-            break;
-        case 'top':
-            contentJustifyContentValue = reverse ? 'flex-end' : 'flex-start';
-            break;
-        case 'bottom':
-            contentJustifyContentValue = reverse ? 'flex-start' : 'flex-end';
-            break;
-        case 'split':
-            contentJustifyContentValue = 'space-between';
-            break;
+    const items = [];
+    if (imageElement !== null) {
+        items.push(imageElement);
     }
+
+    if (titleElement !== null) {
+        items.push(titleElement);
+    }
+
+    // convert layout to Container props
+
+    const layoutChunks = layout.split('-');
+    const isDistribution = layoutChunks[0] === 'split';
+    const verticalAlign = isDistribution ? layoutChunks[1] : layoutChunks[0];
+    const distribution = isDistribution ? 'between' : null;
+
+    if (layoutChunks.length === 2 && layoutChunks[1] === 'reverse') {
+        items.reverse();
+    }    
 
     return (
         <div
@@ -174,17 +177,8 @@ const Image = ({
                 playing={(isView && current) || (isEditor && active)}
                 maxRatio={maxRatio}
             />
-            <Container width={width} height={height} maxRatio={maxRatio}>
-                <div
-                    className={styles.content}
-                    style={{
-                        flexDirection: contentFlexDirection,
-                        justifyContent: contentJustifyContentValue,
-                    }}
-                >
-                    {imageElement}
-                    {titleElement}
-                </div>
+            <Container width={width} height={height} maxRatio={maxRatio} verticalAlign={verticalAlign} distribution={distribution}>
+                { items }
             </Container>
         </div>
     );

@@ -12,7 +12,7 @@ import {
     PropTypes as MicromagPropTypes,
     PlaceholderQuote,
     PlaceholderSubtitle,
-    Empty
+    Empty,
 } from '@micromag/core';
 
 import { getRenderFormat } from '@micromag/core/utils';
@@ -22,7 +22,7 @@ import Transitions from '@micromag/core/src/components/transitions/Transitions';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    layout: PropTypes.oneOf(['center', 'center', 'bottom', 'split']),    
+    layout: PropTypes.oneOf(['top', 'center', 'bottom', 'split']),
     quote: MicromagPropTypes.textElement,
     author: MicromagPropTypes.textElement,
     background: MicromagPropTypes.backgroundElement,
@@ -36,7 +36,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    layout: 'top',    
+    layout: 'top',
     quote: null,
     author: null,
     background: null,
@@ -50,7 +50,7 @@ const defaultProps = {
 };
 
 const Quote = ({
-    layout,    
+    layout,
     quote,
     author,
     background,
@@ -74,7 +74,7 @@ const Quote = ({
     let authorElement = null;
 
     if (isPlaceholder) {
-        quoteElement = <PlaceholderQuote  />;
+        quoteElement = <PlaceholderQuote />;
         authorElement = <PlaceholderSubtitle />;
     } else if (isEmpty) {
         quoteElement = (
@@ -104,28 +104,30 @@ const Quote = ({
             quoteElement = createElement(<Text {...quote} className={styles.quote} />);
         }
         if (withAuthor) {
-            authorElement = createElement(
-                <Text {...author} sclassName={styles.author} />,
-            );
+            authorElement = createElement(<Text {...author} sclassName={styles.author} />);
         }
     }
 
-    let contentJustifyContentValue;
+    // Add elements to items
 
-    switch (layout) {
-        default:
-        case 'center':
-            contentJustifyContentValue = 'center';
-            break;
-        case 'top':
-            contentJustifyContentValue = 'flex-start';
-            break;
-        case 'bottom':
-            contentJustifyContentValue = 'flex-end';
-            break;
-        case 'split':
-            contentJustifyContentValue = 'space-between';
-            break;
+    const items = [];
+    if (quoteElement !== null) {
+        items.push(quoteElement);
+    }
+
+    if (authorElement !== null) {
+        items.push(authorElement);
+    }
+
+    // convert layout to Container props
+
+    const layoutChunks = layout.split('-');
+    const isDistribution = layoutChunks[0] === 'split';
+    const verticalAlign = isDistribution ? layoutChunks[1] : layoutChunks[0];
+    const distribution = isDistribution ? 'between' : null;
+
+    if (layoutChunks.length === 2 && layoutChunks[1] === 'reverse') {
+        items.reverse();
     }
 
     return (
@@ -134,7 +136,6 @@ const Quote = ({
                 styles.container,
                 {
                     [className]: className,
-                    [styles.placeholder]: isPlaceholder,
                 },
             ])}
         >
@@ -146,16 +147,14 @@ const Quote = ({
                 maxRatio={maxRatio}
             />
 
-            <Container width={width} height={height} maxRatio={maxRatio}>
-                <div
-                    className={styles.content}
-                    style={{
-                        justifyContent: contentJustifyContentValue,
-                    }}
-                >
-                    { quoteElement }
-                    { authorElement }
-                </div>
+            <Container
+                width={width}
+                height={height}
+                maxRatio={maxRatio}
+                verticalAlign={verticalAlign}
+                distribution={distribution}
+            >
+                {items}
             </Container>
         </div>
     );

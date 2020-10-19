@@ -7,6 +7,8 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import styles from './styles.module.scss';
 
 const propTypes = {
+    width: PropTypes.number,
+    height: PropTypes.number,
     direction: MicromagPropTypes.stackDirection,
     align: MicromagPropTypes.stackAlign,
     spacing: MicromagPropTypes.stackSpacing,
@@ -17,6 +19,8 @@ const propTypes = {
 };
 
 const defaultProps = {
+    width: null,
+    height: null,
     direction: 'horizontal',
     align: 'center',
     spacing: null,
@@ -27,6 +31,8 @@ const defaultProps = {
 };
 
 const Stack = ({
+    width,
+    height,
     direction,
     align,
     spacing,
@@ -41,12 +47,6 @@ const Stack = ({
     const justifyContent = typeof spacing === 'string' ? `space-${spacing}` : null;
     const space = typeof spacing === 'number' ? spacing : 0;
 
-    const itemsStyle = {
-        flexDirection,
-        alignItems,
-        justifyContent,
-    };
-
     const lastIndex = children !== null && children.length ? children.length - 1 : null;
 
     return (
@@ -57,7 +57,13 @@ const Stack = ({
                     [className]: className !== null,
                 },
             ])}
-            style={itemsStyle}
+            style={{
+                width,
+                height,
+                flexDirection,
+                alignItems,
+                justifyContent,
+            }}
         >
             {React.Children.map(children, (child, index) => {
                 const isLast = reverse ? index === 0 : index === lastIndex;

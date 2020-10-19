@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Transition from './Transition';
 
 const Scale = (props) => {
+
+    const from = useMemo( () => ({ transform: 'scale(0)' }), []);
+    const to = useMemo( () => ({ transform: 'scale(1)' }), []);
+
     return (
         <Transition
             {...props}
-            from={{
-                transform: 'scale(0)',
-            }}
-            to={{
-                transform: 'scale(1)',
-            }}
+            from={from}
+            to={to}
         />
     );
 };

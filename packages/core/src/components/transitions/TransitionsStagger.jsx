@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import * as MicromagPropTypes from '../../PropTypes';
 

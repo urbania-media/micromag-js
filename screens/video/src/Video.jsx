@@ -114,7 +114,6 @@ const VideoScreen = ({
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.placeholder]: isPlaceholder,
                     [styles.fullscreen]: isFullScreen,
                 },
             ])}
@@ -126,8 +125,8 @@ const VideoScreen = ({
                 playing={(isView && current) || (isEditor && active)}
                 maxRatio={maxRatio}
             />
-            <Container width={width} height={height} maxRatio={maxRatio}>
-                <div className={styles.content}>{videoElement}</div>
+            <Container width={width} height={height} maxRatio={maxRatio} verticalAlign="center" itemClassName={styles.item}>
+                {[ videoElement ]}
             </Container>
         </div>
     );
