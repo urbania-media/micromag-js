@@ -3,6 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import isString from 'lodash/isString';
+import isNumber from 'lodash/isNumber';
 
 import { StackProvider } from './StackContext';
 import Spacer from './Spacer';
@@ -17,7 +19,6 @@ const propTypes = {
     minSize: PropTypes.number,
     maxSize: PropTypes.number,
     className: PropTypes.string,
-    itemClassName: PropTypes.string,
     children: PropTypes.node,
 };
 
@@ -30,7 +31,6 @@ const defaultProps = {
     minSize: null,
     maxSize: null,
     className: null,
-    itemClassName: null,
     children: null,
 };
 
@@ -43,16 +43,23 @@ const Stack = ({
     minSize,
     maxSize,
     className,
-    itemClassName,
     children,
 }) => {
     const flexDirection =
         (direction === 'vertical' ? 'column' : 'row') + (reverse ? '-reverse' : '');
     const alignItems = align === 'center' ? align : `flex-${align}`;
-    const justifyContent = typeof spacing === 'string' ? `space-${spacing}` : null;
-    const space = typeof spacing === 'number' ? spacing : 0;
+    const justifyContent = isString(spacing) ? `space-${spacing}` : null;
+    const space = isNumber(spacing) ? spacing : null;
 
     const lastIndex = children !== null && children.length ? children.length - 1 : null;
+
+    const items = React.Children.toArray(children).reduce(
+        (allChildren, child, index) =>
+            child.type !== Spacer && space !== null && index < lastIndex
+                ? [...allChildren, child, <Spacer size={space} />]
+                : [...allChildren, child],
+        [],
+    );
 
     return (
         <StackProvider direction={direction}>
@@ -75,28 +82,7 @@ const Stack = ({
                     justifyContent,
                 }}
             >
-                {React.Children.map(children, (child, index) => {
-                    const isLast = reverse ? index === 0 : index === lastIndex;
-                    return child.type !== Spacer ? (
-                        <div
-                            key={`item-${index}`}
-                            className={classNames([
-                                styles.item,
-                                {
-                                    [itemClassName]: itemClassName !== null,
-                                },
-                            ])}
-                            style={{
-                                marginBottom: direction === 'vertical' && !isLast ? space : null,
-                                marginRight: direction === 'horizontal' && !isLast ? space : null,
-                            }}
-                        >
-                            {child}
-                        </div>
-                    ) : (
-                        child
-                    );
-                })}
+                {items}
             </div>
         </StackProvider>
     );

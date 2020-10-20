@@ -28,6 +28,7 @@ const Spacer = ({ size, minSize, maxSize, className }) => {
             className={classNames([
                 styles.container,
                 {
+                    [styles.hasSize]: size !== null,
                     [className]: className !== null,
                 },
             ])}
