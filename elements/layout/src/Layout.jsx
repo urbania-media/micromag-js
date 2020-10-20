@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { StackProvider } from '@micromag/element-stack';
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import { LayoutProvider } from './LayoutContext';
-
-import styles from './styles/layout.module.scss';
+import styles from './styles.module.scss';
 
 const propTypes = {
     width: PropTypes.number.isRequired,
@@ -13,6 +12,7 @@ const propTypes = {
     horizontalAlign: PropTypes.oneOf(['left', 'center', 'right']),
     verticalAlign: PropTypes.oneOf(['top', 'middle', 'bottom']),
     distribution: PropTypes.oneOf(['space-between', 'space-around', null]),
+    fullscreen: PropTypes.bool,
     className: PropTypes.string,
     children: PropTypes.node,
 };
@@ -21,6 +21,7 @@ const defaultProps = {
     horizontalAlign: 'left',
     verticalAlign: 'top',
     distribution: null,
+    fullscreen: false,
     className: null,
     children: null,
 };
@@ -31,6 +32,7 @@ const Layout = ({
     horizontalAlign,
     verticalAlign,
     distribution,
+    fullscreen,
     className,
     children,
 }) => {
@@ -58,11 +60,12 @@ const Layout = ({
     };
 
     return (
-        <LayoutProvider direction="vertical">
+        <StackProvider direction="vertical">
             <div
                 className={classNames([
                     styles.container,
                     {
+                        [styles.fullscreen]: fullscreen,
                         [className]: className !== null,
                     },
                 ])}
@@ -70,7 +73,7 @@ const Layout = ({
             >
                 {children}
             </div>
-        </LayoutProvider>
+        </StackProvider>
     );
 };
 

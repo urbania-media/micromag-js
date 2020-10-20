@@ -8,7 +8,7 @@ import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
-import Layout, { Spacer } from '@micromag/element-layout';
+import { VStack, Spacer } from '@micromag/element-stack';
 import Heading from '@micromag/element-heading';
 import Text from '@micromag/element-text';
 
@@ -84,6 +84,10 @@ const Title = ({
 
     // Create elements
     const items = [
+        !isSplitted && (verticalAlign === 'bottom' || verticalAlign === 'middle') ? (
+            <Spacer />
+        ) : null,
+
         <ScreenElement
             key="title"
             placeholder="title"
@@ -121,9 +125,9 @@ const Title = ({
                 <Text {...description} />
             </ScreenElement>
         ),
-    ].filter(Boolean);
 
-    const maxWidth = maxRatio !== null && width / height > maxRatio ? height * maxRatio : width;
+        !isSplitted && (verticalAlign === 'top' || verticalAlign === 'middle') ? <Spacer /> : null,
+    ].filter(Boolean);
 
     return (
         <div
@@ -143,7 +147,7 @@ const Title = ({
             />
 
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <Layout width={maxWidth} height={height} verticalAlign={verticalAlign}>
+                <VStack size={height}>
                     {isView ? (
                         <TransitionsStagger
                             transitions={transitions}
@@ -155,7 +159,7 @@ const Title = ({
                     ) : (
                         items
                     )}
-                </Layout>
+                </VStack>
             </Container>
         </div>
     );

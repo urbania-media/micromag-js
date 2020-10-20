@@ -4,39 +4,44 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import styles from './styles.module.scss';
+import { StackProvider } from './StackContext';
+import Spacer from './Spacer';
+import styles from './styles/stack.module.scss';
 
 const propTypes = {
-    width: PropTypes.number,
-    height: PropTypes.number,
     direction: MicromagPropTypes.stackDirection,
     align: MicromagPropTypes.stackAlign,
     spacing: MicromagPropTypes.stackSpacing,
     reverse: PropTypes.bool,
+    size: PropTypes.number,
+    minSize: PropTypes.number,
+    maxSize: PropTypes.number,
     className: PropTypes.string,
     itemClassName: PropTypes.string,
     children: PropTypes.node,
 };
 
 const defaultProps = {
-    width: null,
-    height: null,
     direction: 'horizontal',
     align: 'center',
     spacing: null,
     reverse: false,
+    size: null,
+    minSize: null,
+    maxSize: null,
     className: null,
     itemClassName: null,
     children: null,
 };
 
 const Stack = ({
-    width,
-    height,
     direction,
     align,
     spacing,
     reverse,
+    size,
+    minSize,
+    maxSize,
     className,
     itemClassName,
     children,
@@ -50,42 +55,50 @@ const Stack = ({
     const lastIndex = children !== null && children.length ? children.length - 1 : null;
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-            style={{
-                width,
-                height,
-                flexDirection,
-                alignItems,
-                justifyContent,
-            }}
-        >
-            {React.Children.map(children, (child, index) => {
-                const isLast = reverse ? index === 0 : index === lastIndex;
-                return (
-                    <div
-                        key={`item-${index}`}
-                        className={classNames([
-                            styles.item,
-                            {
-                                [itemClassName]: itemClassName !== null,
-                            },
-                        ])}
-                        style={{
-                            marginBottom: direction === 'vertical' && !isLast ? space : null,
-                            marginRight: direction === 'horizontal' && !isLast ? space : null,
-                        }}
-                    >
-                        {child}
-                    </div>
-                );
-            })}
-        </div>
+        <StackProvider direction={direction}>
+            <div
+                className={classNames([
+                    styles.container,
+                    {
+                        [className]: className !== null,
+                    },
+                ])}
+                style={{
+                    width: direction === 'horizontal' ? size : null,
+                    minWidth: direction === 'horizontal' ? minSize : null,
+                    maxWidth: direction === 'horizontal' ? maxSize : null,
+                    height: direction === 'vertical' ? size : null,
+                    minHeight: direction === 'vertical' ? minSize : null,
+                    maxHeight: direction === 'vertical' ? maxSize : null,
+                    flexDirection,
+                    alignItems,
+                    justifyContent,
+                }}
+            >
+                {React.Children.map(children, (child, index) => {
+                    const isLast = reverse ? index === 0 : index === lastIndex;
+                    return child.type !== Spacer ? (
+                        <div
+                            key={`item-${index}`}
+                            className={classNames([
+                                styles.item,
+                                {
+                                    [itemClassName]: itemClassName !== null,
+                                },
+                            ])}
+                            style={{
+                                marginBottom: direction === 'vertical' && !isLast ? space : null,
+                                marginRight: direction === 'horizontal' && !isLast ? space : null,
+                            }}
+                        >
+                            {child}
+                        </div>
+                    ) : (
+                        child
+                    );
+                })}
+            </div>
+        </StackProvider>
     );
 };
 

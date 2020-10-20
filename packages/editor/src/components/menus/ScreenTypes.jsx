@@ -58,7 +58,6 @@ const ScreenTypes = ({ screens, className, onClickItem }) => {
             }, []),
         [finalScreens],
     );
-    console.log(groups);
     return (
         <div
             className={classNames([
