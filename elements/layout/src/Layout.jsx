@@ -12,17 +12,21 @@ const propTypes = {
     height: PropTypes.number.isRequired,
     horizontalAlign: PropTypes.oneOf(['left', 'center', 'right']),
     verticalAlign: PropTypes.oneOf(['top', 'middle', 'bottom']),
-    distribution: PropTypes.oneOf(['space-between', 'space-around', null]),
+    distribution: PropTypes.oneOf(['between', 'around', null]),
+    fullscreen: PropTypes.bool,
     className: PropTypes.string,
     children: PropTypes.node,
+    style: PropTypes.styles,
 };
 
 const defaultProps = {
     horizontalAlign: 'left',
     verticalAlign: 'top',
     distribution: null,
+    fullscreen: false,
     className: null,
     children: null,
+    style: null,
 };
 
 const Layout = ({
@@ -31,8 +35,10 @@ const Layout = ({
     horizontalAlign,
     verticalAlign,
     distribution,
+    fullscreen,
     className,
     children,
+    style,
 }) => {
     let justifyContent = null;
     if (distribution !== null) {
@@ -50,11 +56,12 @@ const Layout = ({
         alignItems = 'flex-end';
     }
 
-    const containerStyle = {
+    const finalStyle = {
         width,
         height,
         justifyContent,
         alignItems,
+        ...style,
     };
 
     return (
@@ -63,10 +70,11 @@ const Layout = ({
                 className={classNames([
                     styles.container,
                     {
+                        [styles.fullscreen]: fullscreen,
                         [className]: className !== null,
                     },
                 ])}
-                style={containerStyle}
+                style={finalStyle}
             >
                 {children}
             </div>

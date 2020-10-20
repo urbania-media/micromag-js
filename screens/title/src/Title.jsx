@@ -46,7 +46,7 @@ const defaultProps = {
     transitions: {
         in: {
             name: 'fade',
-            duration: 1000,
+            duration: 250,
         },
         out: 'scale',
     },
@@ -70,6 +70,9 @@ const Title = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const screenRatio = width / height;
+    const maxWidth = maxRatio !== null && screenRatio > maxRatio ? height * maxRatio : width;
+
     const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
 
     const hasTitle = title !== null;
@@ -122,8 +125,6 @@ const Title = ({
             </ScreenElement>
         ),
     ].filter(Boolean);
-
-    const maxWidth = maxRatio !== null && width / height > maxRatio ? height * maxRatio : width;
 
     return (
         <div

@@ -3,6 +3,11 @@
 .container {
     @extend %screen;
 
+    .content {
+        position: relative;
+        height: 100%;
+    }
+
     .empty {
         @extend %empty;
         width: 100%;

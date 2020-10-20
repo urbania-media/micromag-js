@@ -10,14 +10,8 @@ export default {
     }),
     component: Image,
     layouts: [
-        'top',
-        'top-reverse',
-        'center',
-        'center-reverse',
-        'bottom',
-        'bottom-reverse',        
-        'split',
-        'split-reverse',
+        'normal',
+        'reverse',
     ],
     fields: [
         {
