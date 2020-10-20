@@ -1,3 +1,4 @@
+@import '~@micromag/core/scss/placeholders';
 @import '~@micromag/core/scss/variables';
 
 .container {
@@ -7,5 +8,9 @@
     .horizontal {
         display: flex;
         flex-direction: row;
+    }
+
+    &.fullscreen {
+        @extend %fullscreen;
     }
 }

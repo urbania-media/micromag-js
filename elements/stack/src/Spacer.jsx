@@ -3,37 +3,42 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import { useLayoutDirection } from './LayoutContext';
+import { useStackDirection } from './StackContext';
 
 import styles from './styles/spacer.module.scss';
 
 const propTypes = {
+    size: PropTypes.number,
     minSize: PropTypes.number,
     maxSize: PropTypes.number,
     className: PropTypes.string,
 };
 
 const defaultProps = {
+    size: null,
     minSize: null,
     maxSize: null,
     className: null,
 };
 
-const Spacer = ({ minSize, maxSize, className }) => {
-    const layoutDirection = useLayoutDirection();
+const Spacer = ({ size, minSize, maxSize, className }) => {
+    const stackDirection = useStackDirection();
     return (
         <div
             className={classNames([
                 styles.container,
                 {
+                    [styles.hasSize]: size !== null,
                     [className]: className !== null,
                 },
             ])}
             style={{
-                minWidth: layoutDirection === 'horizontal' ? minSize : null,
-                minHeight: layoutDirection === 'vertical' ? minSize : null,
-                maxWidth: layoutDirection === 'horizontal' ? maxSize : null,
-                maxHeight: layoutDirection === 'vertical' ? maxSize : null,
+                width: stackDirection === 'horizontal' ? size : null,
+                minWidth: stackDirection === 'horizontal' ? minSize : null,
+                maxWidth: stackDirection === 'horizontal' ? maxSize : null,
+                height: stackDirection === 'vertical' ? size : null,
+                minHeight: stackDirection === 'vertical' ? minSize : null,
+                maxHeight: stackDirection === 'vertical' ? maxSize : null,
             }}
         />
     );

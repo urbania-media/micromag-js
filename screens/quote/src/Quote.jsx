@@ -55,8 +55,6 @@ const Quote = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const screenRatio = width / height;
-    const maxWidth = maxRatio !== null && screenRatio > maxRatio ? height * maxRatio : width;
 
     const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
 
@@ -97,7 +95,7 @@ const Quote = ({
                 <Text {...author} />
             </ScreenElement>
         ),
-    ].filter(Boolean);
+    ];
 
     return (
         <div
@@ -118,23 +116,19 @@ const Quote = ({
 
             <Container width={width} height={height} maxRatio={maxRatio}>
                 <Layout
-                    width={maxWidth}
-                    height={height}
+                    fullscreen
                     verticalAlign={verticalAlign}
                     distribution={distribution}
                     style={isView ? { padding } : null}
                 >
-                    {isView ? (
-                        <TransitionsStagger
-                            transitions={transitions}
-                            stagger={transitionStagger}
-                            playing
-                        >
-                            {items}
-                        </TransitionsStagger>
-                    ) : (
-                        items
-                    )}
+                    <TransitionsStagger
+                        transitions={transitions}
+                        stagger={transitionStagger}
+                        disabled={!isView}
+                        playing
+                    >
+                        {items}
+                    </TransitionsStagger>
                 </Layout>
             </Container>
         </div>

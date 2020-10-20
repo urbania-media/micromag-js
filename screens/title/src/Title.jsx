@@ -70,8 +70,6 @@ const Title = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const screenRatio = width / height;
-    const maxWidth = maxRatio !== null && screenRatio > maxRatio ? height * maxRatio : width;
 
     const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
 
@@ -124,7 +122,7 @@ const Title = ({
                 <Text {...description} />
             </ScreenElement>
         ),
-    ].filter(Boolean);
+    ];
 
     return (
         <div
@@ -144,18 +142,15 @@ const Title = ({
             />
 
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <Layout width={maxWidth} height={height} verticalAlign={verticalAlign}>
-                    {isView ? (
-                        <TransitionsStagger
-                            transitions={transitions}
-                            stagger={transitionStagger}
-                            playing
-                        >
-                            {items}
-                        </TransitionsStagger>
-                    ) : (
-                        items
-                    )}
+                <Layout fullscreen verticalAlign={verticalAlign}>
+                    <TransitionsStagger
+                        transitions={transitions}
+                        stagger={transitionStagger}
+                        disabled={!isView}
+                        playing
+                    >
+                        {items}
+                    </TransitionsStagger>
                 </Layout>
             </Container>
         </div>

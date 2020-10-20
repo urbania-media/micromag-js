@@ -2,14 +2,14 @@
 import React, { useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-const LayoutContext = React.createContext({
+const StackContext = React.createContext({
     direction: 'horizontal',
 });
 
-export const useLayout = () => useContext(LayoutContext);
+export const useStack = () => useContext(StackContext);
 
-export const useLayoutDirection = () => {
-    const { direction } = useContext(LayoutContext);
+export const useStackDirection = () => {
+    const { direction } = useContext(StackContext);
     return direction;
 };
 
@@ -24,12 +24,12 @@ const defaultProps = {
 
 // Note: this is done to avoid excessive renders on the screens that use the context
 
-export const LayoutProvider = ({ direction, children }) => {
+export const StackProvider = ({ direction, children }) => {
     const value = useMemo(() => ({ direction }), [direction]);
-    return <LayoutContext.Provider value={value}>{children}</LayoutContext.Provider>;
+    return <StackContext.Provider value={value}>{children}</StackContext.Provider>;
 };
 
-LayoutProvider.propTypes = propTypes;
-LayoutProvider.defaultProps = defaultProps;
+StackProvider.propTypes = propTypes;
+StackProvider.defaultProps = defaultProps;
 
-export default LayoutContext;
+export default StackContext;

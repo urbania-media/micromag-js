@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { StackProvider } from '@micromag/element-stack';
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import { LayoutProvider } from './LayoutContext';
-
-import styles from './styles/layout.module.scss';
+import styles from './styles.module.scss';
 
 const propTypes = {
     width: PropTypes.number.isRequired,
@@ -65,7 +64,7 @@ const Layout = ({
     };
 
     return (
-        <LayoutProvider direction="vertical">
+        <StackProvider direction="vertical">
             <div
                 className={classNames([
                     styles.container,
@@ -78,7 +77,7 @@ const Layout = ({
             >
                 {children}
             </div>
-        </LayoutProvider>
+        </StackProvider>
     );
 };
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import Stack from './Stack';
-import HStack from './HStack';
-import VStack from './VStack';
+import Spacer from './Spacer';
 
 export default {
     component: Stack,
@@ -22,10 +21,53 @@ const cells = [1, 2, 3, 4, 5].map((number) => (
 
 const spacing = 10;
 
-export const withoutSpacing = () => <HStack items={cells} />;
+export const withoutSpacing = () => (
+    <div>
+        <h4>Vertical</h4>
+        <Stack direction="vertical">{cells}</Stack>
+        <hr />
+        <h4>Horizontal</h4>
+        <Stack direction="horizontal">{cells}</Stack>
+    </div>
+);
 
-export const withSpacing = () => <HStack items={cells} spacing={spacing} />;
+export const withSpacing = () => (
+    <div>
+        <h4>Vertical</h4>
+        <Stack direction="vertical" spacing={spacing}>
+            {cells}
+        </Stack>
+        <hr />
+        <h4>Horizontal</h4>
+        <Stack direction="horizontal" spacing={spacing}>
+            {cells}
+        </Stack>
+    </div>
+);
 
-export const withRow = () => <VStack items={cells} spacing={spacing} />;
+export const withSpacingAround = () => (
+    <div>
+        <h4>Vertical</h4>
+        <Stack direction="vertical" spacing="around">
+            {cells}
+        </Stack>
+        <hr />
+        <h4>Horizontal</h4>
+        <Stack direction="horizontal" spacing="around">
+            {cells}
+        </Stack>
+    </div>
+);
 
-export const withRowAround = () => <VStack items={cells} spacing="around" />;
+export const withSpacer = () => (
+    <div>
+        <h4>Horizontal</h4>
+        <Stack direction="horizontal">
+            <div style={cellStyle}>1</div>
+            <Spacer />
+            <div style={cellStyle}>2</div>
+            <div style={cellStyle}>3</div>
+            <div style={cellStyle}>4</div>
+        </Stack>
+    </div>
+);

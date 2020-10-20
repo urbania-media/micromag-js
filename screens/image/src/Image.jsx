@@ -65,8 +65,7 @@ const ImageScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const screenRatio = width / height;
-    const maxWidth = maxRatio !== null && screenRatio > maxRatio ? height * maxRatio : width;
+    
 
     const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
 
@@ -84,6 +83,8 @@ const ImageScreen = ({
 
     const isReversed = layout === 'reverse';
 
+    const screenRatio = width / height;
+    const maxWidth = maxRatio !== null && screenRatio > maxRatio ? height * maxRatio : width;
     const imageWidth = maxWidth - padding * 2;
     const imageHeight = imageWidth / maxImageRatio;
 
@@ -123,7 +124,7 @@ const ImageScreen = ({
         ),
 
         isReversed && !withTitle && <Spacer />,
-    ].filter(Boolean);
+    ];
 
     if (isReversed) {
         items.reverse();
@@ -147,22 +148,18 @@ const ImageScreen = ({
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
                 <Layout
-                    width={maxWidth}
-                    height={height}
+                    fullscreen
                     distribution="between"
                     style={isView ? { padding } : null}
                 >
-                    {isView ? (
-                        <TransitionsStagger
-                            transitions={transitions}
-                            stagger={transitionStagger}
-                            playing={transitionPlaying}
-                        >
-                            {items}
-                        </TransitionsStagger>
-                    ) : (
-                        items
-                    )}
+                    <TransitionsStagger
+                        transitions={transitions}
+                        stagger={transitionStagger}
+                        disabled={!isView}
+                        playing={transitionPlaying}
+                    >
+                        {items}
+                    </TransitionsStagger>
                 </Layout>
             </Container>
         </div>
