@@ -1,20 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import Stack from './Stack';
 
-const propTypes = {
-    direction: PropTypes.string,
-};
+const propTypes = {};
 
-const defaultProps = {
-    direction: 'vertical',
-};
+const defaultProps = {};
 
-const VStack = ({ direction, ...props }) => {
-    return <Stack {...props} direction={direction} />;
-};
+const VStack = props => <Stack {...props} direction="vertical" />;
 
 VStack.propTypes = propTypes;
 VStack.defaultProps = defaultProps;

@@ -22,7 +22,7 @@ const defaultProps = {
 };
 
 const Spacer = ({ size, minSize, maxSize, className }) => {
-    const stackDirection = useStackDirection();
+    const direction = useStackDirection();
     return (
         <div
             className={classNames([
@@ -33,12 +33,12 @@ const Spacer = ({ size, minSize, maxSize, className }) => {
                 },
             ])}
             style={{
-                width: stackDirection === 'horizontal' ? size : null,
-                minWidth: stackDirection === 'horizontal' ? minSize : null,
-                maxWidth: stackDirection === 'horizontal' ? maxSize : null,
-                height: stackDirection === 'vertical' ? size : null,
-                minHeight: stackDirection === 'vertical' ? minSize : null,
-                maxHeight: stackDirection === 'vertical' ? maxSize : null,
+                width: direction === 'horizontal' ? size : null,
+                minWidth: direction === 'horizontal' ? minSize : null,
+                maxWidth: direction === 'horizontal' ? maxSize : null,
+                height: direction === 'vertical' ? size : null,
+                minHeight: direction === 'vertical' ? minSize : null,
+                maxHeight: direction === 'vertical' ? maxSize : null,
             }}
         />
     );

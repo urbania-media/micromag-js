@@ -10,8 +10,8 @@ const PanelsContext = React.createContext({
 
 export const usePanels = () => useContext(PanelsContext) || {};
 
-export const withPanels = WrappedComponent => {
-    const WithPanelsComponent = props => (
+export const withPanels = (WrappedComponent) => {
+    const WithPanelsComponent = (props) => (
         <PanelsContext.Consumer>
             {({ panels, setContainer, container, register, unregister }) => (
                 <WrappedComponent
@@ -58,7 +58,7 @@ export const PanelsProvider = ({ children, container: initialContainer }) => {
         [panels, setPanels],
     );
     const unregister = useCallback(
-        id => {
+        (id) => {
             const { current: currentPanels } = panelsRef;
             const foundIndex = currentPanels.findIndex(({ id: modalId }) => modalId === id);
             if (foundIndex !== -1) {
