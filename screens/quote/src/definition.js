@@ -9,7 +9,7 @@ export default {
         description: 'Quote screen title',
     }),
     component: Quote,
-    layouts: ['top', 'center', 'bottom', 'split'],
+    layouts: ['top', 'middle', 'bottom', 'split'],
     fields: [
         {
             name: 'layout',

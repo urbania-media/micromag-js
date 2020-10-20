@@ -52,6 +52,7 @@
         "@micromag/element-checkbox": "^0.1.29",
         "@micromag/element-heading": "^0.1.29",
         "@micromag/element-image": "^0.1.29",
+        "@micromag/element-layout": "^0.1.29",
         "@micromag/element-text": "^0.1.29",
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",

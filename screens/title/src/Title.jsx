@@ -46,7 +46,7 @@ const defaultProps = {
     transitions: {
         in: {
             name: 'fade',
-            duration: 1000,
+            duration: 250,
         },
         out: 'scale',
     },
@@ -70,6 +70,7 @@ const Title = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+
     const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
 
     const hasTitle = title !== null;
@@ -121,7 +122,7 @@ const Title = ({
                 <Text {...description} />
             </ScreenElement>
         ),
-    ].filter(Boolean);
+    ];
 
     return (
         <div
@@ -142,17 +143,14 @@ const Title = ({
 
             <Container width={width} height={height} maxRatio={maxRatio}>
                 <Layout fullscreen verticalAlign={verticalAlign}>
-                    {isView ? (
-                        <TransitionsStagger
-                            transitions={transitions}
-                            stagger={transitionStagger}
-                            playing
-                        >
-                            {items}
-                        </TransitionsStagger>
-                    ) : (
-                        items
-                    )}
+                    <TransitionsStagger
+                        transitions={transitions}
+                        stagger={transitionStagger}
+                        disabled={!isView}
+                        playing
+                    >
+                        {items}
+                    </TransitionsStagger>
                 </Layout>
             </Container>
         </div>

@@ -55,6 +55,7 @@ const Transition = ({
         const immediate = (!playing && direction === 'in') || (playing && direction === 'out');
         const finalPlaying = immediate || playing;
         const reset = playing && !immediate;
+        const finalDuration = duration !== null ? duration : undefined;
 
         const props = {
             from,
@@ -62,9 +63,8 @@ const Transition = ({
             reset,
             onStart,
             onRest: onComplete,
-            // immediate,
             config: {
-                duration: immediate ? 0 : undefined
+                duration: immediate ? 0 : finalDuration
             }
         };
 

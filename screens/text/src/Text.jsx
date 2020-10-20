@@ -3,21 +3,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { PlaceholderTitle, PlaceholderText, Empty, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
+import Layout, { Spacer } from '@micromag/element-layout';
 import Heading from '@micromag/element-heading';
 import Text from '@micromag/element-text';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
-    layout: PropTypes.oneOf(['top', 'center', 'bottom', 'split']),
+    layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split']),
     title: MicromagPropTypes.headingElement,
     text: MicromagPropTypes.textElement,
+    padding: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -28,9 +29,10 @@ const propTypes = {
 };
 
 const defaultProps = {
-    layout: 'center',
+    layout: 'top',
     title: null,
     text: null,
+    padding: 20,
     background: null,
     current: true,
     active: false,
@@ -38,7 +40,7 @@ const defaultProps = {
     transitions: {
         in: {
             name: 'fade',
-            duration: 1000,
+            duration: 250,
         },
         out: 'scale',
     },
@@ -50,6 +52,7 @@ const TextScreen = ({
     layout,
     title,
     text,
+    padding,
     background,
     current,
     active,
@@ -59,69 +62,40 @@ const TextScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isEdit, isView } = useScreenRenderContext();
 
-    const withTitle = title !== null;
-    const withText = text !== null;
+    const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
 
-    const isEmpty = isEdit && !withTitle && !withText;
+    const hasTitle = title !== null;
+    const hasText = text !== null;
 
-    let titleElement = null;
-    let textElement = null;
+    const isEmpty = isEdit && !hasTitle && !hasText;
 
-    if (isPlaceholder) {
-        titleElement = <PlaceholderTitle />;
-        textElement = <PlaceholderText />;
-    } else if (isEmpty) {
-        titleElement = (
-            <Empty className={styles.empty}>
-                <FormattedMessage defaultMessage="Title" description="Title placeholder" />
-            </Empty>
-        );
-        textElement = (
-            <Empty className={styles.empty}>
-                <FormattedMessage defaultMessage="Text" description="Text placeholder" />
-            </Empty>
-        );
-    } else {
-        let transitionDelay = 0;
+    const isSplitted = layout === 'split';
+    const distribution = isSplitted ? 'between' : null;
+    const verticalAlign = isSplitted ? null : layout;
 
-        const createElement = (children) => {
-            const element = (
-                <Transitions transitions={transitions} delay={transitionDelay} playing>
-                    {children}
-                </Transitions>
-            );
-            transitionDelay += transitionStagger;
-            return element;
-        };
-
-        if (withTitle) {
-            titleElement = createElement(<Heading {...title} size={2} className={styles.title} />);
-        }
-
-        if (withText) {
-            textElement = createElement(<Text {...text} className={styles.text} />);
-        }
-    }
-
-    // Add elements to items
-
-    const items = [];
-    if (titleElement !== null) {
-        items.push(titleElement);
-    }
-
-    if (textElement !== null) {
-        items.push(textElement);
-    }
-
-    // convert layout to Container props
-
-    const layoutChunks = layout.split('-');
-    const isDistribution = layoutChunks[0] === 'split';
-    const verticalAlign = isDistribution ? layoutChunks[1] : layoutChunks[0];
-    const distribution = isDistribution ? 'between' : null;
+    // Create elements
+    const items = [
+        (hasTitle || isPlaceholder) && <ScreenElement
+            key="title"
+            placeholder="title"
+            emptyLabel={<FormattedMessage defaultMessage="Title" description="Title placeholder" />}
+            emptyClassName={styles.empty}
+            isEmpty={isEmpty}
+        >
+            <Heading {...title} />
+        </ScreenElement>,
+        (isSplitted && hasTitle) && <Spacer />,
+        (hasText || isPlaceholder) && <ScreenElement
+            key="description"
+            placeholder="text"
+            emptyLabel={<FormattedMessage defaultMessage="Text" description="Text placeholder" />}
+            emptyClassName={styles.empty}
+            isEmpty={isEmpty}
+        >
+            <Text {...text} />
+        </ScreenElement>,
+    ];
 
     return (
         <div
@@ -140,14 +114,22 @@ const TextScreen = ({
                 maxRatio={maxRatio}
                 playing={(isView && current) || (isEdit && active)}
             />
-            <Container
-                width={width}
-                height={height}
-                maxRatio={maxRatio}
-                verticalAlign={verticalAlign}
-                distribution={distribution}
-            >
-                {items}
+            <Container width={width} height={height} maxRatio={maxRatio}>
+                <Layout
+                    fullscreen
+                    verticalAlign={verticalAlign}
+                    distribution={distribution}
+                    style={ isView ? { padding } : null }
+                >
+                    <TransitionsStagger
+                        transitions={transitions}
+                        stagger={transitionStagger}
+                        disabled={!isView}
+                        playing
+                    >
+                        {items}
+                    </TransitionsStagger>
+                </Layout>
             </Container>
         </div>
     );

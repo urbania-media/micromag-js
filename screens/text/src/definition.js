@@ -9,7 +9,7 @@ export default {
         description: 'Text screen title',
     }),
     component: Text,
-    layouts: ['top', 'center', 'bottom', 'split'],
+    layouts: ['top', 'middle', 'bottom', 'split'],
     fields: [
         {
             name: 'layout',

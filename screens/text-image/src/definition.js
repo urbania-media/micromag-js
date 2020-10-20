@@ -9,16 +9,7 @@ export default {
         description: 'Video screen title',
     }),
     component: TextImage,
-    layouts: [
-        'top',
-        'top-reverse',
-        'center',
-        'center-reverse',        
-        'bottom',
-        'bottom-reverse',        
-        'split',
-        'split-reverse',
-    ],
+    layouts: ['normal', 'reverse'],
     fields: [
         {
             name: 'layout',

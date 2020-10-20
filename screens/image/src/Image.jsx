@@ -1,32 +1,24 @@
-/* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
-import { PlaceholderImage, PlaceholderTitle, Empty, Transitions } from '@micromag/core/components';
+import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
-import ImageComponent from '@micromag/element-image';
+import Layout, { Spacer } from '@micromag/element-layout';
+import Image from '@micromag/element-image';
 import Heading from '@micromag/element-heading';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
-    layout: PropTypes.oneOf([
-        'top',
-        'top-reverse',
-        'center',
-        'center-reverse',
-        'bottom',
-        'bottom-reverse',
-        'split-reverse',
-        'split',
-    ]),
+    layout: PropTypes.oneOf(['normal', 'reverse']),
     image: MicromagPropTypes.imageMedia,
     title: MicromagPropTypes.headingElement,
-    margin: PropTypes.number,
+    padding: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -38,19 +30,19 @@ const propTypes = {
 };
 
 const defaultProps = {
-    layout: 'top',
+    layout: 'normal',
     image: null,
     title: null,
-    margin: 20,
+    padding: 20,
     background: null,
     current: true,
     active: true,
     maxRatio: 3 / 4,
-    maxImageRatio: 4 / 3,
+    maxImageRatio: 5 / 6,
     transitions: {
         in: {
             name: 'fade',
-            duration: 1000,
+            duration: 250,
         },
         out: 'scale',
     },
@@ -58,11 +50,11 @@ const defaultProps = {
     className: null,
 };
 
-const Image = ({
+const ImageScreen = ({
     layout,
     image,
     title,
-    margin,
+    padding,
     background,
     current,
     active,
@@ -73,10 +65,13 @@ const Image = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    
+
     const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
 
     const withTitle = title !== null;
     const withImage = image !== null;
+
     const isEmpty = isEdit && !withTitle && !withImage;
 
     const [ready, setReady] = useState(!withImage);
@@ -86,64 +81,53 @@ const Image = ({
         setReady(true);
     }, [setReady]);
 
-    let items = [];
+    const isReversed = layout === 'reverse';
 
-    if (isPlaceholder) {
-        items = [<PlaceholderImage />, <PlaceholderTitle />];
-    } else if (isEmpty) {
-        items = [
-            <Empty className={classNames([styles.empty, styles.emptyImage])}>
-                <FormattedMessage defaultMessage="Image" description="Image placeholder" />
-            </Empty>,
-            <Empty className={styles.empty}>
-                <FormattedMessage defaultMessage="Title" description="Title placeholder" />
-            </Empty>,
-        ];
-    } else {
-        let transitionDelay = 0;
+    const screenRatio = width / height;
+    const maxWidth = maxRatio !== null && screenRatio > maxRatio ? height * maxRatio : width;
+    const imageWidth = maxWidth - padding * 2;
+    const imageHeight = imageWidth / maxImageRatio;
 
-        const createElement = (children) => {
-            const element = (
-                <Transitions
-                    transitions={transitions}
-                    delay={transitionDelay}
-                    playing={transitionPlaying}
-                >
-                    {children}
-                </Transitions>
-            );
-            transitionDelay += transitionStagger;
-            return element;
-        };
+    const items = [
+        (withImage || isPlaceholder) && (
+            <ScreenElement
+                key="image"
+                placeholder="image"
+                emptyLabel={
+                    <FormattedMessage defaultMessage="Image" description="Image placeholder" />
+                }
+                emptyClassName={styles.empty}
+                isEmpty={isEmpty}
+            >
+                <Image
+                    {...image}
+                    width={imageWidth}
+                    height={imageHeight}
+                    shrinkHeight
+                    objectFit={{ fit: 'contain' }}
+                    onLoaded={onImageLoaded}
+                />
+            </ScreenElement>
+        ),
+        (withTitle || isPlaceholder) && (
+            <ScreenElement
+                key="title"
+                placeholder="title"
+                emptyLabel={
+                    <FormattedMessage defaultMessage="Title" description="Title placeholder" />
+                }
+                emptyClassName={styles.empty}
+                isEmpty={isEmpty}
+            >
+                <Heading {...title} />
+            </ScreenElement>
+        ),
 
-        if (withImage) {
-            // get container size from screen maxRatio
-            const maxWidth = maxRatio !== null && width / height > maxRatio ? height * maxRatio : width;
+        isReversed && !withTitle && <Spacer />,
+    ];
 
-            // get image container size
-            const imageWidth = maxWidth - margin * 2;
-            const imageHeight = imageWidth / maxImageRatio;
-
-            items.push(
-                createElement(
-                    <ImageComponent
-                        {...image}
-                        width={imageWidth}
-                        height={imageHeight}
-                        shrinkHeight
-                        objectFit={{ fit: 'contain' }}
-                        onLoaded={onImageLoaded}
-                    />,
-                ),
-            );
-        }
-        if (withTitle) {
-            items.push(createElement(<Heading {...title} />));
-        }
-    }
-
-    if (layout) {
-        // @TODO
+    if (isReversed) {
+        items.reverse();
     }
 
     return (
@@ -152,7 +136,6 @@ const Image = ({
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.placeholder]: isPlaceholder,
                 },
             ])}
         >
@@ -164,13 +147,26 @@ const Image = ({
                 maxRatio={maxRatio}
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <div style={{ margin }}>{items}</div>
+                <Layout
+                    fullscreen
+                    distribution="between"
+                    style={isView ? { padding } : null}
+                >
+                    <TransitionsStagger
+                        transitions={transitions}
+                        stagger={transitionStagger}
+                        disabled={!isView}
+                        playing={transitionPlaying}
+                    >
+                        {items}
+                    </TransitionsStagger>
+                </Layout>
             </Container>
         </div>
     );
 };
 
-Image.propTypes = propTypes;
-Image.defaultProps = defaultProps;
+ImageScreen.propTypes = propTypes;
+ImageScreen.defaultProps = defaultProps;
 
-export default React.memo(Image);
+export default React.memo(ImageScreen);

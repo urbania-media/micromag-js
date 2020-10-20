@@ -1,54 +1,48 @@
-/* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-
-import { PlaceholderImage, PlaceholderText, Empty, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
+import Layout from '@micromag/element-layout';
 import Image from '@micromag/element-image';
 import Text from '@micromag/element-text';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
-    layout: PropTypes.oneOf([
-        'top',
-        'top-reverse',
-        'center',
-        'center-reverse',
-        'bottom',
-        'bottom-reverse',
-        'split-reverse',
-        'split',
-    ]),
+    layout: PropTypes.oneOf(['normal', 'reverse']),
     image: MicromagPropTypes.imageMedia,
     text: MicromagPropTypes.textElement,
+    padding: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
     maxRatio: PropTypes.number,
+    maxImageRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
 };
 
 const defaultProps = {
-    layout: 'top',
+    layout: 'normal',
     image: null,
     text: null,
+    padding: 20,
     background: null,
     current: true,
     active: true,
     maxRatio: 3 / 4,
+    maxImageRatio: 5 / 6,
     transitions: {
         in: {
             name: 'fade',
-            duration: 1000,
+            duration: 250,
         },
         out: 'scale',
     },
@@ -60,19 +54,23 @@ const TextImage = ({
     layout,
     image,
     text,
+    padding,
     background,
     current,
     active,
     maxRatio,
+    maxImageRatio,
     transitions,
     transitionStagger,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
 
-    const withText = text !== null;
+    const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
+    
     const withImage = image !== null;
+    const withText = text !== null;
+
     const isEmpty = isEdit && !withText && !withImage;
 
     const [ready, setReady] = useState(!withImage);
@@ -82,69 +80,50 @@ const TextImage = ({
         setReady(true);
     }, [setReady]);
 
-    let imageElement = null;
-    let textElement = null;
+    const isReversed = layout === 'reverse';
 
-    if (isPlaceholder) {
-        imageElement = <PlaceholderImage />;
-        textElement = <PlaceholderText />;
-    } else if (isEmpty) {
-        imageElement = (
-            <Empty className={classNames([styles.empty, styles.emptyImage])}>
-                <FormattedMessage defaultMessage="Image" description="Image placeholder" />
-            </Empty>
-        );
-        textElement = (
-            <Empty className={styles.empty}>
-                <FormattedMessage defaultMessage="Title" description="Title placeholder" />
-            </Empty>
-        );
-    } else {
-        let transitionDelay = 0;
+    const screenRatio = width / height;
+    const maxWidth = maxRatio !== null && screenRatio > maxRatio ? height * maxRatio : width;
+    const imageWidth = maxWidth - padding * 2;
+    const imageHeight = imageWidth / maxImageRatio;
 
-        const createElement = (children) => {
-            const element = (
-                <Transitions
-                    transitions={transitions}
-                    delay={transitionDelay}
-                    playing={transitionPlaying}
-                >
-                    {children}
-                </Transitions>
-            );
-            transitionDelay += transitionStagger;
-            return element;
-        };
+    const items = [
+        (withImage || isPlaceholder) && (
+            <ScreenElement
+                key="image"
+                placeholder="image"
+                emptyLabel={
+                    <FormattedMessage defaultMessage="Image" description="Image placeholder" />
+                }
+                emptyClassName={styles.empty}
+                isEmpty={isEmpty}
+            >
+                <Image
+                    {...image}
+                    width={imageWidth}
+                    height={imageHeight}
+                    shrinkHeight
+                    objectFit={{ fit: 'contain' }}
+                    onLoaded={onImageLoaded}
+                />
+            </ScreenElement>
+        ),
+        (withText || isPlaceholder) && (
+            <ScreenElement
+                key="text"
+                placeholder="text"
+                emptyLabel={
+                    <FormattedMessage defaultMessage="Text" description="Text placeholder" />
+                }
+                emptyClassName={styles.empty}
+                isEmpty={isEmpty}
+            >
+                <Text {...text} />
+            </ScreenElement>
+        ),
+    ];
 
-        if (withImage) {
-            imageElement = createElement(
-                <Image {...image} objectFit={{ fit: 'cover' }} onLoaded={onImageLoaded} />,
-            );
-        }
-        if (withText) {
-            textElement = createElement(<Text {...text} />);
-        }
-    }
-
-    // Add elements to items
-
-    const items = [];
-    if (imageElement !== null) {
-        items.push(imageElement);
-    }
-
-    if (textElement !== null) {
-        items.push(textElement);
-    }
-
-    // convert layout to Container props
-
-    const layoutChunks = layout.split('-');
-    const isDistribution = layoutChunks[0] === 'split';
-    const verticalAlign = isDistribution ? layoutChunks[1] : layoutChunks[0];
-    const distribution = isDistribution ? 'between' : null;
-
-    if (layoutChunks.length === 2 && layoutChunks[1] === 'reverse') {
+    if (isReversed) {
         items.reverse();
     }
 
@@ -154,7 +133,6 @@ const TextImage = ({
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.placeholder]: isPlaceholder,
                 },
             ])}
         >
@@ -165,14 +143,22 @@ const TextImage = ({
                 playing={(isView && current) || (isEdit && active)}
                 maxRatio={maxRatio}
             />
-            <Container
-                width={width}
-                height={height}
-                maxRatio={maxRatio}
-                verticalAlign={verticalAlign}
-                distribution={distribution}
-            >
-                {items}
+            <Container width={width} height={height} maxRatio={maxRatio}>
+                <Layout
+                    width={maxWidth}
+                    height={height}
+                    distribution="between"
+                    style={isView ? { padding } : null}
+                >
+                    <TransitionsStagger
+                        transitions={transitions}
+                        stagger={transitionStagger}
+                        playing={transitionPlaying}
+                        disabled={!isView}
+                    >
+                        {items}
+                    </TransitionsStagger>
+                </Layout>
             </Container>
         </div>
     );
