@@ -35,47 +35,47 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
 
     const items = useMemo(() => {
         const screenIndex = screens.findIndex((it) => it.id === screenId);
-        const { type, layout = null } = screens[screenIndex];
+        // const { type, layout = null } = screens[screenIndex];
         const fieldItems = [];
-        if (field !== null) {
-            const fields = repository.getFieldsFromSchema(`${SCREENS_NAMESPACE}/${type}`, {
-                layout,
-            });
-            const fieldParts = field.split('/');
-            const parentField = fields.find((it) => it.name === fieldParts[0]) || null;
-            const currentField = fieldParts.reduce(
-                (foundField, name) => {
-                    if (foundField === null) {
-                        return null;
-                    }
-                    const { setting = false } = foundField;
-                    const newField =
-                        (foundField.fields || []).find((it) => it.name === name) || null;
-                    return setting
-                        ? {
-                              ...newField,
-                              setting,
-                          }
-                        : newField;
-                },
-                { fields },
-            );
-            const isSetting = currentField !== null && currentField.setting === true;
-            if (isSetting && parentField !== null) {
-                fieldItems.push({
-                    label: parentField.label,
-                    url: `/${screenId}/${parentField.name}${isSetting ? '/settings' : ''}`,
-                    active: false,
-                });
-            }
-            if (currentField !== null) {
-                fieldItems.push({
-                    label: currentField.description || currentField.label,
-                    url: `/${screenId}/${field}${form !== null ? `/${form}` : ''}`,
-                    active: false,
-                });
-            }
-        }
+        // if (field !== null) {
+        //     const fields = repository.getFieldsFromSchema(`${SCREENS_NAMESPACE}/${type}`, {
+        //         layout,
+        //     });
+        //     const fieldParts = field.split('/');
+        //     const parentField = fields.find((it) => it.name === fieldParts[0]) || null;
+        //     const currentField = fieldParts.reduce(
+        //         (foundField, name) => {
+        //             if (foundField === null) {
+        //                 return null;
+        //             }
+        //             const { setting = false } = foundField;
+        //             const newField =
+        //                 (foundField.fields || []).find((it) => it.name === name) || null;
+        //             return setting
+        //                 ? {
+        //                       ...newField,
+        //                       setting,
+        //                   }
+        //                 : newField;
+        //         },
+        //         { fields },
+        //     );
+        //     const isSetting = currentField !== null && currentField.setting === true;
+        //     if (isSetting && parentField !== null) {
+        //         fieldItems.push({
+        //             label: parentField.label,
+        //             url: `/${screenId}/${parentField.name}${isSetting ? '/settings' : ''}`,
+        //             active: false,
+        //         });
+        //     }
+        //     if (currentField !== null) {
+        //         fieldItems.push({
+        //             label: currentField.description || currentField.label,
+        //             url: `/${screenId}/${field}${form !== null ? `/${form}` : ''}`,
+        //             active: false,
+        //         });
+        //     }
+        // }
 
         const finalItems = [
             {
@@ -106,6 +106,8 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
                 : it,
         );
     }, [intl, repository, screens, screenId, field, form, url]);
+
+    console.log(items);
 
     const onClickBack = useCallback(() => history.push(items[items.length - 2].url), [items]);
     const withBack = items.length > 1;

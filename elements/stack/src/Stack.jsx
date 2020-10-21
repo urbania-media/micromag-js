@@ -50,16 +50,7 @@ const Stack = ({
     const alignItems = align === 'center' ? align : `flex-${align}`;
     const justifyContent = isString(spacing) ? `space-${spacing}` : null;
     const space = isNumber(spacing) ? spacing : null;
-
     const lastIndex = children !== null && children.length ? children.length - 1 : null;
-
-    const items = React.Children.toArray(children).reduce(
-        (allChildren, child, index) =>
-            child.type !== Spacer && space !== null && index < lastIndex
-                ? [...allChildren, child, <Spacer size={space} />]
-                : [...allChildren, child],
-        [],
-    );
 
     return (
         <StackProvider direction={direction}>
@@ -71,18 +62,24 @@ const Stack = ({
                     },
                 ])}
                 style={{
+                    flexDirection,
+                    alignItems,
+                    justifyContent,
                     width: direction === 'horizontal' ? size : null,
                     minWidth: direction === 'horizontal' ? minSize : null,
                     maxWidth: direction === 'horizontal' ? maxSize : null,
                     height: direction === 'vertical' ? size : null,
                     minHeight: direction === 'vertical' ? minSize : null,
                     maxHeight: direction === 'vertical' ? maxSize : null,
-                    flexDirection,
-                    alignItems,
-                    justifyContent,
                 }}
             >
-                {items}
+                {React.Children.toArray(children).reduce(
+                    (allChildren, child, index) =>
+                        child.type !== Spacer && space !== null && index < lastIndex
+                            ? [...allChildren, child, <Spacer size={space} />]
+                            : [...allChildren, child],
+                    [],
+                )}
             </div>
         </StackProvider>
     );

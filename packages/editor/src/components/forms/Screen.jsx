@@ -49,7 +49,7 @@ const ScreenForm = ({
         ) {
             onClickDelete(value);
         }
-    }, [intl, messages, onClickDelete, value]);
+    }, [intl, onClickDelete, value]);
     return (
         <div
             className={classNames([

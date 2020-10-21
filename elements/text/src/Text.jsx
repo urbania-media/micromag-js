@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key, react/no-danger */
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import uuid from 'uuid/v1';
+import { v1 as uuid } from 'uuid';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getStyleFromText, getStyleFromMargin } from '@micromag/core/utils';

@@ -45,11 +45,9 @@ const EditorScreens = ({ story, isVertical, onClickScreen, onChange, className }
     const screensManager = useScreensManager();
 
     const createScreenFromType = useCallback(
-        ({ id: screenTypeId }, layout = null) => {
+        ({ id: screenTypeId }) => {
             const screen = screensManager.getScreen(screenTypeId);
-            const newScreen = createScreen(screen, {
-                layout,
-            });
+            const newScreen = createScreen(screen);
             const { components: currentComponents = [], ...currentStory } = story || {};
             const newStory = {
                 ...currentStory,

@@ -70,6 +70,7 @@ module.exports = {
                                     require.resolve('babel-plugin-react-intl'),
                                     {
                                         ast: true,
+                                        extractFromFormatMessageCall: true,
                                         idInterpolationPattern,
                                     },
                                 ],

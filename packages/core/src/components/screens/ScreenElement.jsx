@@ -43,7 +43,6 @@ const ScreenElement = ({
 }) => {
     const { isPlaceholder, isEdit, isPreview } = useScreenRenderContext();
     if (isPlaceholder) {
-        // console.log(Placeholders, placeholder);
         const PlaceholderComponent = isString(placeholder)
             ? getComponentFromName(placeholder, Placeholders)
             : null;

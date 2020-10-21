@@ -28,7 +28,7 @@ const Screens = ({ screens, screen: screenId, className }) => (
             },
         ])}
     >
-        {screens.map(screen => {
+        {screens.map((screen) => {
             const { id } = screen;
             return (
                 <Screen

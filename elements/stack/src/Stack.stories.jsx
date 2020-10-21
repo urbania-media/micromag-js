@@ -19,13 +19,13 @@ const cells = [1, 2, 3, 4, 5].map((number) => (
     </div>
 ));
 
-const spacing = 10;
-
 export const withoutSpacing = () => (
     <div>
         <h4>Vertical</h4>
         <Stack direction="vertical">{cells}</Stack>
+
         <hr />
+
         <h4>Horizontal</h4>
         <Stack direction="horizontal">{cells}</Stack>
     </div>
@@ -34,12 +34,14 @@ export const withoutSpacing = () => (
 export const withSpacing = () => (
     <div>
         <h4>Vertical</h4>
-        <Stack direction="vertical" spacing={spacing}>
+        <Stack direction="vertical" spacing={10}>
             {cells}
         </Stack>
+
         <hr />
+
         <h4>Horizontal</h4>
-        <Stack direction="horizontal" spacing={spacing}>
+        <Stack direction="horizontal" spacing={10}>
             {cells}
         </Stack>
     </div>
@@ -51,7 +53,9 @@ export const withSpacingAround = () => (
         <Stack direction="vertical" spacing="around">
             {cells}
         </Stack>
+
         <hr />
+
         <h4>Horizontal</h4>
         <Stack direction="horizontal" spacing="around">
             {cells}
@@ -64,7 +68,9 @@ export const withSpacer = () => (
         <h4>Horizontal</h4>
         <Stack direction="horizontal">
             <div style={cellStyle}>1</div>
+
             <Spacer />
+
             <div style={cellStyle}>2</div>
             <div style={cellStyle}>3</div>
             <div style={cellStyle}>4</div>
