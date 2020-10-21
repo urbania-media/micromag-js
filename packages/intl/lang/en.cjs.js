@@ -19,6 +19,7 @@ var K5oXVa = "AnswerNo";
 var Ke35Pv = "Edit";
 var LI0Gz4 = "Email";
 var MhGUaY = "Slideshow";
+var Mz76RM = "ImageText";
 var N25iDO = "Title";
 var OdcEna = "No slide...";
 var PKCv5M = "No item...";
@@ -41,7 +42,7 @@ var UnYDtO = "Update profile";
 var Xt24Gj = "It’s time to start creating now.";
 var YG5ohI = "Success";
 var ZA6cIU = "Organisation";
-var Zpl5bJ = "Spacing";
+var ZtZjF0 = "TitleSubtitle";
 var ZxgNge = "Add an item";
 var aPjV2Q = "No story yet";
 var aovRFH = "Filename";
@@ -51,6 +52,7 @@ var bxWHkr = "Name of the organisation";
 var d60tSn = "Subtitle";
 var dVcog7 = "Title";
 var dmuKH3 = "Map";
+var dqnkQk = "Legend";
 var eIiKqX = "Slides";
 var ebsPd4 = "Image";
 var enFs4g = "Advanced";
@@ -61,6 +63,7 @@ var hbFrBs = "View all stories";
 var jaFXki = "Gallery";
 var kIl7G5 = "Published at";
 var l6RRDj = "AnswerYes";
+var lXV3vP = "TitleSubtitleCredits";
 var liyV7Y = "Size";
 var mv37oK = "Dimension";
 var n2teag = "Add an answer";
@@ -80,6 +83,7 @@ var uJ9eBc = "Image";
 var uQjihh = "Create an organisation";
 var upzOTm = "Credits";
 var vrCfAS = "GalleryFeed";
+var w9tlw7 = "ImagesWithLegends";
 var wsUmh9 = "Team";
 var xYqGzM = "Author";
 var yUPjCz = "Slideshow";
@@ -92,13 +96,15 @@ var messages = {
   "/CStmu": "Main contact",
   "/bEns8": "MapImages",
   "/hupzO": "Credits",
+  "0gyI2S": "GalleryFeedLegends",
   "169xnt": "Audio",
-  "1Q/OTd": "TitleCredits",
+  "1fBNmY": "ImageTitle",
   "1fNojU": "{count} {count, plural, one {screen} other {screens}}",
   "2/F1Q7": "#{index}",
   "2ZOPe+": "Title",
   "36JWTz": "Create your first story",
   "3E57H7": "No marker...",
+  "3OS3Ms": "Legend",
   "3pqFXb": "Button style",
   "3q9GPv": "Quote",
   "4E2gbX": "Text",
@@ -113,12 +119,15 @@ var messages = {
   "72Z3Od": "Multiple answers",
   "73hxYw": "Author",
   "88/Ge8": "Quote",
+  "8c34nT": "ImageTitleText",
+  "96KRj9": "ImageLegend",
   ACSasN: ACSasN,
   Avsnjl: Avsnjl,
   "B1MeY+": "Select an image...",
   CrzYgw: CrzYgw,
   D3idYv: D3idYv,
   DWEzCv: DWEzCv,
+  "E/qtB2": "TextTitle",
   EcZYpr: EcZYpr,
   "FPBu+U": "Phone",
   GE8wrk: GE8wrk,
@@ -129,6 +138,7 @@ var messages = {
   Ke35Pv: Ke35Pv,
   LI0Gz4: LI0Gz4,
   MhGUaY: MhGUaY,
+  Mz76RM: Mz76RM,
   N25iDO: N25iDO,
   OdcEna: OdcEna,
   PKCv5M: PKCv5M,
@@ -154,7 +164,7 @@ var messages = {
   YG5ohI: YG5ohI,
   "Yyv+N3": "Settings",
   ZA6cIU: ZA6cIU,
-  Zpl5bJ: Zpl5bJ,
+  ZtZjF0: ZtZjF0,
   ZxgNge: ZxgNge,
   aPjV2Q: aPjV2Q,
   "account-box.profile": "Profile",
@@ -168,6 +178,7 @@ var messages = {
   d60tSn: d60tSn,
   dVcog7: dVcog7,
   dmuKH3: dmuKH3,
+  dqnkQk: dqnkQk,
   "e6+aGf": "Select a media...",
   eIiKqX: eIiKqX,
   ebsPd4: ebsPd4,
@@ -181,6 +192,7 @@ var messages = {
   jaFXki: jaFXki,
   kIl7G5: kIl7G5,
   l6RRDj: l6RRDj,
+  lXV3vP: lXV3vP,
   liyV7Y: liyV7Y,
   "menus.account.account": "Account",
   "menus.account.logout": "Logout",
@@ -257,11 +269,6 @@ var messages = {
   "roles.admin": "Administrator",
   "roles.user": "User",
   s1aoBI: s1aoBI,
-  "screens.text-image.schema.properties.background": "Background",
-  "screens.text-image.schema.properties.image": "Image",
-  "screens.text-image.schema.properties.layout": "Layout",
-  "screens.text-image.schema.properties.text": "Text",
-  "screens.text-image.schema.title": "Text with image",
   "t+L1J/": "No image...",
   t9Wttt: t9Wttt,
   tAYwqp: tAYwqp,
@@ -272,6 +279,7 @@ var messages = {
   uQjihh: uQjihh,
   upzOTm: upzOTm,
   vrCfAS: vrCfAS,
+  w9tlw7: w9tlw7,
   wsUmh9: wsUmh9,
   "wt1+dM": "Select an audio file...",
   xYqGzM: xYqGzM,

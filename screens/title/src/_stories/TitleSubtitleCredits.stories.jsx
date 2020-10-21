@@ -3,7 +3,7 @@ import React from 'react';
 import { title, subtitle, background } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
-import TitleCredits from '../TitleCredits';
+import TitleSubtitleCredits from '../TitleSubtitleCredits';
 import definition from '../definition';
 
 const props = {
@@ -14,20 +14,20 @@ const props = {
 };
 
 export default {
-    title: 'Screens/TitleCredits',
-    component: TitleCredits,
+    title: 'Screens/TitleSubtitleCredits',
+    component: TitleSubtitleCredits,
     parameters: {
         intl: true,
-        screenDefinition: definition.find((it) => it.component === TitleCredits),
+        screenDefinition: definition.find((it) => it.component === TitleSubtitleCredits),
     },
 };
 
-export const Placeholder = (storyProps) => <TitleCredits {...storyProps} credits={{}} />;
+export const Placeholder = (storyProps) => <TitleSubtitleCredits {...storyProps} />;
 
-export const Preview = (storyProps) => <TitleCredits {...storyProps} />;
+export const Preview = (storyProps) => <TitleSubtitleCredits {...storyProps} {...props} />;
 
-export const Edit = (storyProps) => <TitleCredits {...storyProps} />;
+export const Edit = (storyProps) => <TitleSubtitleCredits {...storyProps} />;
 
-export const Normal = (storyProps) => <TitleCredits {...storyProps} {...props} />;
+export const Normal = (storyProps) => <TitleSubtitleCredits {...storyProps} {...props} />;
 
 export const Definition = () => <ScreenDefinition definition={definition} />;

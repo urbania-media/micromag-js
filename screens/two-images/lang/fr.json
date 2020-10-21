@@ -1,7 +1,0 @@
-{
-    "screens.text-image.schema.properties.background": "Arrière-plan",
-    "screens.text-image.schema.properties.image": "Image",
-    "screens.text-image.schema.properties.layout": "Mise en page",
-    "screens.text-image.schema.properties.text": "Text",
-    "screens.text-image.schema.title": "Texte avec image"
-}

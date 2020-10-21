@@ -19,6 +19,7 @@ const propTypes = {
     title: MicromagPropTypes.headingElement,
     subtitle: MicromagPropTypes.headingElement,
     description: MicromagPropTypes.textElement,
+    withSubtitle: PropTypes.bool,
     withDescription: PropTypes.bool,
     descriptionEmptyLabel: MicromagPropTypes.label,
     background: MicromagPropTypes.backgroundElement,
@@ -35,6 +36,7 @@ const defaultProps = {
     title: null,
     subtitle: null,
     description: null,
+    withSubtitle: false,
     withDescription: false,
     descriptionEmptyLabel: (
         <FormattedMessage defaultMessage="Description" description="Description placeholder" />
@@ -59,6 +61,7 @@ const Title = ({
     title,
     subtitle,
     description,
+    withSubtitle,
     withDescription,
     descriptionEmptyLabel,
     background,
@@ -85,33 +88,42 @@ const Title = ({
 
     // Create elements
     const items = [
-        <ScreenElement
-            key="title"
-            placeholder="title"
-            emptyLabel={<FormattedMessage defaultMessage="Title" description="Title placeholder" />}
-            emptyClassName={styles.empty}
-            isEmpty={isEmpty}
-        >
-            <Heading {...title} size={1} />
-        </ScreenElement>,
+        (hasTitle || isPlaceholder) && (
+            <ScreenElement
+                key="title"
+                placeholder="title"
+                emptyLabel={
+                    <FormattedMessage defaultMessage="Title" description="Title placeholder" />
+                }
+                emptyClassName={styles.empty}
+                isEmpty={isEmpty}
+            >
+                <Heading {...title} size={1} />
+            </ScreenElement>
+        ),
 
         isSplitted && (!withDescription || verticalAlign === 'bottom') && <Spacer />,
 
-        <ScreenElement
-            key="subtitle"
-            placeholder="subtitle"
-            emptyLabel={
-                <FormattedMessage defaultMessage="Subtitle" description="Subtitle placeholder" />
-            }
-            emptyClassName={styles.empty}
-            isEmpty={isEmpty}
-        >
-            <Heading {...subtitle} size={2} />
-        </ScreenElement>,
+        withSubtitle && (hasSubtitle || isPlaceholder) && (
+            <ScreenElement
+                key="subtitle"
+                placeholder="subtitle"
+                emptyLabel={
+                    <FormattedMessage
+                        defaultMessage="Subtitle"
+                        description="Subtitle placeholder"
+                    />
+                }
+                emptyClassName={styles.empty}
+                isEmpty={isEmpty}
+            >
+                <Heading {...subtitle} size={2} />
+            </ScreenElement>
+        ),
 
         isSplitted && withDescription && verticalAlign !== 'bottom' && <Spacer />,
 
-        withDescription && hasDescription && (
+        withDescription && (hasDescription || isPlaceholder) && (
             <ScreenElement
                 key="description"
                 placeholder="text"

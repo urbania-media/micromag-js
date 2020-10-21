@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-// import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import Title from './Title';
@@ -13,10 +12,11 @@ const defaultProps = {
     credits: null,
 };
 
-const TitleCredits = ({ credits, ...props }) => (
+const TitleSubtitleCredits = ({ credits, ...props }) => (
     <Title
-        description={credits}
         {...props}
+        description={credits}
+        withSubtitle
         withDescription
         descriptionEmptyLabel={
             <FormattedMessage defaultMessage="Credits" description="Credits placeholder" />
@@ -24,7 +24,7 @@ const TitleCredits = ({ credits, ...props }) => (
     />
 );
 
-TitleCredits.propTypes = propTypes;
-TitleCredits.defaultProps = defaultProps;
+TitleSubtitleCredits.propTypes = propTypes;
+TitleSubtitleCredits.defaultProps = defaultProps;
 
-export default TitleCredits;
+export default TitleSubtitleCredits;

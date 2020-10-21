@@ -11,7 +11,6 @@ import surveyCheckbox from '@micromag/screen-survey-checkbox';
 import surveyMultipleChoice from '@micromag/screen-survey-multiple-choice';
 import surveyYesNo from '@micromag/screen-survey-yes-no';
 import text from '@micromag/screen-text';
-import textImage from '@micromag/screen-text-image';
 import timelineCentered from '@micromag/screen-timeline-centered';
 import title from '@micromag/screen-title';
 import video from '@micromag/screen-video';
@@ -21,7 +20,7 @@ const screens = [
     audio,
     gallery,
     galleryFeed,
-    image,
+    ...image,
     ...map,
     mapPath,
     quote,
@@ -29,8 +28,7 @@ const screens = [
     surveyCheckbox,
     surveyMultipleChoice,
     surveyYesNo,
-    text,
-    textImage,
+    ...text,
     timelineCentered,
     ...title,
     ...video,

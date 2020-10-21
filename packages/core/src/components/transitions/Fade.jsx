@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useMemo } from 'react';
 import Transition from './Transition';
 

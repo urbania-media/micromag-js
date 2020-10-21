@@ -15,9 +15,10 @@ import Text from '@micromag/element-text';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split']),
-    title: MicromagPropTypes.headingElement,
+    layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split']),    
     text: MicromagPropTypes.textElement,
+    title: MicromagPropTypes.headingElement,
+    withTitle: PropTypes.bool,
     padding: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
@@ -29,9 +30,10 @@ const propTypes = {
 };
 
 const defaultProps = {
-    layout: 'top',
-    title: null,
+    layout: 'top',    
     text: null,
+    title: null,
+    withTitle: false,
     padding: 20,
     background: null,
     current: true,
@@ -49,9 +51,10 @@ const defaultProps = {
 };
 
 const TextScreen = ({
-    layout,
-    title,
+    layout,    
     text,
+    title,
+    withTitle,
     padding,
     background,
     current,
@@ -76,7 +79,7 @@ const TextScreen = ({
 
     // Create elements
     const items = [
-        (hasTitle || isPlaceholder) && <ScreenElement
+        (withTitle && (hasTitle || isPlaceholder)) && <ScreenElement
             key="title"
             placeholder="title"
             emptyLabel={<FormattedMessage defaultMessage="Title" description="Title placeholder" />}
@@ -85,7 +88,9 @@ const TextScreen = ({
         >
             <Heading {...title} />
         </ScreenElement>,
-        (isSplitted && hasTitle) && <Spacer />,
+
+        (isSplitted && withTitle) && <Spacer />,
+
         (hasText || isPlaceholder) && <ScreenElement
             key="description"
             placeholder="text"

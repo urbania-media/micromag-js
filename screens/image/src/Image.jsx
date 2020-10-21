@@ -5,19 +5,25 @@ import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
-import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
+import { PlaceholderShortText, ScreenElement, TransitionsStagger } from '@micromag/core/components';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
-import Layout, { Spacer } from '@micromag/element-layout';
+import Layout /* , { Spacer } */ from '@micromag/element-layout';
 import Image from '@micromag/element-image';
 import Heading from '@micromag/element-heading';
+import Text from '@micromag/element-text';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
-    layout: PropTypes.oneOf(['normal', 'reverse']),
+    layout: PropTypes.oneOf(['normal', 'reverse', 'title-top']),
     image: MicromagPropTypes.imageMedia,
     title: MicromagPropTypes.headingElement,
+    text: MicromagPropTypes.textElement,
+    legend: MicromagPropTypes.textElement,
+    withTitle: PropTypes.bool,
+    withText: PropTypes.bool,
+    withLegend: PropTypes.bool,
     padding: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
@@ -33,6 +39,11 @@ const defaultProps = {
     layout: 'normal',
     image: null,
     title: null,
+    text: null,
+    legend: null,
+    withTitle: false,
+    withText: false,
+    withLegend: false,
     padding: 20,
     background: null,
     current: true,
@@ -54,6 +65,11 @@ const ImageScreen = ({
     layout,
     image,
     title,
+    text,
+    legend,
+    withTitle,
+    withText,
+    withLegend,
     padding,
     background,
     current,
@@ -64,17 +80,18 @@ const ImageScreen = ({
     transitionStagger,
     className,
 }) => {
-    const { width, height } = useScreenSize();
-    
+    const { width, height } = useScreenSize();    
 
-    const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
-    const withTitle = title !== null;
-    const withImage = image !== null;
+    const hasImage = image !== null;
+    const hasTitle = title !== null;
+    const hasText = text !== null;
+    const hasLegend = legend !== null;    
 
-    const isEmpty = isEdit && !withTitle && !withImage;
+    const isEmpty = isEdit && !hasTitle && !hasImage;
 
-    const [ready, setReady] = useState(!withImage);
+    const [ready, setReady] = useState(!hasImage);
     const transitionPlaying = current && ready;
 
     const onImageLoaded = useCallback(() => {
@@ -82,6 +99,7 @@ const ImageScreen = ({
     }, [setReady]);
 
     const isReversed = layout === 'reverse';
+    const isTitleTop = layout === 'title-top';
 
     const screenRatio = width / height;
     const maxWidth = maxRatio !== null && screenRatio > maxRatio ? height * maxRatio : width;
@@ -89,7 +107,7 @@ const ImageScreen = ({
     const imageHeight = imageWidth / maxImageRatio;
 
     const items = [
-        (withImage || isPlaceholder) && (
+        (hasImage || isPlaceholder) && (
             <ScreenElement
                 key="image"
                 placeholder="image"
@@ -109,7 +127,7 @@ const ImageScreen = ({
                 />
             </ScreenElement>
         ),
-        (withTitle || isPlaceholder) && (
+        withTitle && (hasTitle || isPlaceholder) && (
             <ScreenElement
                 key="title"
                 placeholder="title"
@@ -123,11 +141,41 @@ const ImageScreen = ({
             </ScreenElement>
         ),
 
-        isReversed && !withTitle && <Spacer />,
+        withText && (hasText || isPlaceholder) && (
+            <ScreenElement
+                key="text"
+                placeholder="text"
+                emptyLabel={
+                    <FormattedMessage defaultMessage="Text" description="Text placeholder" />
+                }
+                emptyClassName={styles.empty}
+                isEmpty={isEmpty}
+            >
+                <Text {...text} />
+            </ScreenElement>
+        ),
+
+        withLegend && (hasLegend || isPlaceholder) && (
+            <ScreenElement
+                key="legend"
+                placeholder={<PlaceholderShortText />}
+                emptyLabel={
+                    <FormattedMessage defaultMessage="Legend" description="Legend placeholder" />
+                }
+                emptyClassName={styles.empty}
+                isEmpty={isEmpty}
+            >
+                <Text {...legend} />
+            </ScreenElement>
+        )
     ];
 
     if (isReversed) {
         items.reverse();
+    } else if (isTitleTop) {
+        if (withTitle && (hasTitle || isPlaceholder)) {
+            items.splice(0, 0, items.splice(1, 1)[0]);
+        }
     }
 
     return (
@@ -149,8 +197,7 @@ const ImageScreen = ({
             <Container width={width} height={height} maxRatio={maxRatio}>
                 <Layout
                     fullscreen
-                    distribution="between"
-                    style={isView ? { padding } : null}
+                    style={isView || isPreview ? { padding } : null}
                 >
                     <TransitionsStagger
                         transitions={transitions}

@@ -5,39 +5,45 @@ import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
-import { PlaceholderImage, Empty, Transitions } from '@micromag/core/components';
+import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
+import Layout from '@micromag/element-layout';
+import Scroll from '@micromag/element-scroll';
 import Image from '@micromag/element-image';
-import { VStack, HStack } from '@micromag/element-stack';
+import Text from '@micromag/element-text';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
-    layout: PropTypes.oneOf(['single', 'double', 'triple', 'mixed-double', 'mixed-triple']),
+    layout: PropTypes.oneOf(['normal', 'reverse']),
+    images: MicromagPropTypes.imageElementsWithLegend,
+    withLegends: PropTypes.bool,
+    padding: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    images: MicromagPropTypes.imageMedias,
-    spacing: PropTypes.number,
     current: PropTypes.bool,
     active: PropTypes.bool,
     maxRatio: PropTypes.number,
+    maxImageRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
 };
 
 const defaultProps = {
-    layout: 'single',
-    background: null,
+    layout: 'normal',
     images: [],
-    spacing: 10,
+    withLegends: false,
+    padding: 20,
+    background: null,
     current: true,
     active: true,
     maxRatio: 3 / 4,
+    maxImageRatio: 5 / 6,
     transitions: {
         in: {
             name: 'fade',
-            duration: 1000,
+            duration: 250,
         },
         out: 'scale',
     },
@@ -47,12 +53,14 @@ const defaultProps = {
 
 const GalleryFeed = ({
     layout,
-    images: imageList,
-    spacing,
+    images,
+    withLegends,
+    padding,
     background,
     current,
     active,
     maxRatio,
+    maxImageRatio,
     transitions,
     transitionStagger,
     className,
@@ -60,19 +68,7 @@ const GalleryFeed = ({
     const { width, height } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
-    const defaultArray = [
-        ...Array(16).map((i) => ({
-            id: `image-${i}`,
-            ...(imageList[i] ? imageList[i] : null),
-        })),
-    ];
-    const images =
-        imageList && imageList.length > 0 && !isPlaceholder
-            ? imageList
-            : [...Array(16)].map(() => null);
-    const currentImages = isEdit && imageList.length === 0 ? defaultArray : images;
-
-    const imagesCount = currentImages.length;
+    const imagesCount = images.length;
     const [imagesLoaded, setImagesLoaded] = useState(0);
     const ready = imagesLoaded >= imagesCount;
     const transitionPlaying = current && ready;
@@ -81,116 +77,65 @@ const GalleryFeed = ({
         setImagesLoaded(imagesLoaded + 1);
     }, [imagesLoaded, setImagesLoaded]);
 
-    const groups = [];
-    let step = 0;
-    let row = 0;
-    let index = 0;
+    const isReversed = layout === 'reverse';
 
-    let columns;
+    const screenRatio = width / height;
+    const maxWidth = maxRatio !== null && screenRatio > maxRatio ? height * maxRatio : width;
+    const imageWidth = maxWidth - padding * 2;
+    const imageHeight = imageWidth / maxImageRatio;
 
-    switch (layout) {
-        default:
-        case 'single':
-            columns = [1];
-            break;
-        case 'double':
-            columns = [2];
-            break;
-        case 'triple':
-            columns = [3];
-            break;
-        case 'mixed-double':
-            columns = [1, 2];
-            break;
-        case 'mixed-triple':
-            columns = [1, 3];
-            break;
-    }
+    const items = [];
 
-    currentImages.forEach((image) => {
-        const max = columns[step];
-        if (row < max) {
-            row += 1;
-        } else {
-            index += 1;
-            row = 1;
-            if (step < columns.length - 1) {
-                step += 1;
-            } else {
-                step = 0;
-            }
-        }
-        if (!groups[index]) {
-            groups[index] = [];
-        }
-        groups[index].push(image);
-    });
+    (isPlaceholder ? [...Array(5)] : images ).forEach((imageEl, index) => {
 
-    let transitionDelay = 0;
+        const { image = null, legend = null } = imageEl || {};
+        const hasImage = image !== null;
+        const hasLegend = legend !== null;
 
-    const items = groups.map((its, i) => {
-        const stackKey = `gallery-group-${i + 1}`;
-        const stackItems = its.map((it, j) => {
-            const isEmpty = it !== null && it.image !== null;
+        items.push(
+            <ScreenElement
+                key={`image-${index}`}
+                placeholder="image"
+                emptyLabel={
+                    <FormattedMessage defaultMessage="Image" description="Image placeholder" />
+                }
+                emptyClassName={styles.empty}
+                isEmpty={isEdit && !hasImage}
+            >
+                <Image
+                    {...image}
+                    width={imageWidth}
+                    height={imageHeight}
+                    shrinkHeight
+                    objectFit={{ fit: 'contain' }}
+                    onLoaded={onImageLoaded}
+                />
+            </ScreenElement>,
+        );
 
-            let imageElement = null;
-
-            if (isView || (isEdit && !isEmpty)) {
-                imageElement = (
-                    <Transitions
-                        transitions={transitions}
-                        delay={transitionDelay}
-                        playing={transitionPlaying}
-                    >
-                        <Image
-                            {...it}
-                            objectFit={{ fit: 'cover' }}
-                            className={styles.imageComponent}
-                            onLoaded={onImageLoaded}
-                        />
-                    </Transitions>
-                );
-                transitionDelay += transitionStagger;
-            } else if (isPreview) {
-                imageElement = <div className={styles.previewBlock} />;
-            } else if (isPlaceholder) {
-                imageElement = (
-                    <PlaceholderImage
-                        key={`image-${j + 1}`}
-                        className={styles.placeholder}
-                        width="100%"
-                        height="100%"
-                    />
-                );
-            } else if (isEdit && isEmpty) {
-                imageElement = (
-                    <Empty className={styles.empty}>
+        if (withLegends) {
+            items.push(
+                <ScreenElement
+                    key={`legend-${index}`}
+                    placeholder="shortText"
+                    emptyLabel={
                         <FormattedMessage
-                            defaultMessage="Gallery feed"
-                            description="Gallery feed placeholder"
+                            defaultMessage="Legend"
+                            description="Legend placeholder"
                         />
-                    </Empty>
-                );
-            }
-
-            return (
-                <div
-                    key={`image-${j + 1}`}
-                    className={classNames([
-                        styles.image,
-                        {
-                            [styles[`columns${its.length}`]]: columns !== null,
-                        },
-                    ])}
-                    style={{ padding: isPlaceholder ? 2 : spacing / 2 }}
+                    }
+                    emptyClassName={styles.empty}
+                    isEmpty={isEdit && !hasLegend}
                 >
-                    {imageElement}
-                </div>
+                    <Text {...legend} />
+                </ScreenElement>,
             );
-        });
-
-        return <HStack key={stackKey}>{stackItems}</HStack>;
+        }
     });
+
+    if (isReversed) {
+        items.reverse();
+    }
 
     return (
         <div
@@ -211,9 +156,18 @@ const GalleryFeed = ({
             />
 
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <div className={styles.content}>
-                    <VStack>{items}</VStack>
-                </div>
+                <Scroll>
+                    <Layout fullscreen style={isView || isPreview ? { padding } : null}>
+                        <TransitionsStagger
+                            transitions={transitions}
+                            stagger={transitionStagger}
+                            disabled={!isView}
+                            playing={transitionPlaying}
+                        >
+                            {items}
+                        </TransitionsStagger>
+                    </Layout>
+                </Scroll> 
             </Container>
         </div>
     );

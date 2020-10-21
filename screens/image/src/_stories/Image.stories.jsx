@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { imageWithRandomSize, title, background } from '../../../../.storybook/data';
+import { imageWithRandomSize, background } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import Image from '../Image';
@@ -16,17 +16,16 @@ export default {
     component: Image,
     parameters: {
         intl: true,
-        screenDefinition: definition,
+        screenDefinition: definition.find((it) => it.component === Image),
     },
 };
 
 export const Placeholder = (storyProps) => <Image {...storyProps} />;
 
-export const Preview = (storyProps) => <Image {...storyProps} />;
+export const Preview = (storyProps) => <Image {...storyProps} {...props} />;
 
 export const Edit = (storyProps) => <Image {...storyProps} />;
 
 export const Normal = (storyProps) => <Image {...storyProps} {...props} />;
-export const WithTitle = (storyProps) => <Image {...storyProps} {...props} title={{ body: title() }}/>;
 
 export const Definition = () => <ScreenDefinition definition={definition} />;
