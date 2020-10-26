@@ -1,9 +1,0 @@
-{
-    "screens.map.schema.properties.background": "Arrière-plan",
-    "screens.map.schema.properties.cardBackground": "Arrière-plan de marqueur",
-    "screens.map.schema.properties.cardTextStyle": "Style du texte des marqueurs",
-    "screens.map.schema.properties.layout": "Mise en page",
-    "screens.map.schema.properties.map": "Carte",
-    "screens.map.schema.properties.markers": "Marqueurs",
-    "screens.map.schema.title": "Carte"
-}

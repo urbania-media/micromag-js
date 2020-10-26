@@ -1,0 +1,16 @@
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/variables';
+
+.container {
+    display: flex;
+    flex-direction: column;
+
+    .horizontal {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &.fullscreen {
+        @extend %fullscreen;
+    }
+}

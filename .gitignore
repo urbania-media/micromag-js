@@ -42,3 +42,9 @@ node_modules
 
 .env
 /*/*/intl/messages
+/*/*/lang/extract
+/*/*/es
+/*/*/lib
+/*/*/assets
+/*/*/scss
+/*/*/package-lock.json

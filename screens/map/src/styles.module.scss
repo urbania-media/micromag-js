@@ -4,100 +4,77 @@
 .container {
     @extend %screen;
 
-    .content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: 100%;
-    }
-
     .empty {
         @extend %empty;
         width: 100%;
         height: 80%;
     }
 
-    .placeholder {
-        display: block;
-        position: relative;
-    }
-
-    &.top {
-        .cards {
-            top: 0;
-        }
-
-        .card {
-            transform: translate3d(0, 100%, 0);
-
-            &.active {
-                transform: translate3d(0, 0, 0);
-            }
-        }
-    }
-
-    &.bottom {
-        .cards {
-            top: 0;
-        }
-
-        .card {
-            top: 0;
-            transform: translate3d(0, -100%, 0);
-
-            &.active {
-                transform: translate3d(0, 0, 0);
-            }
-        }
-
-        .placeholder {
-            margin-top: auto;
-        }
-    }
-
-    .cards {
+    .markerContent {
+        @extend %fullscreen;
         display: flex;
-        position: relative;
         flex-direction: column;
-        align-items: flex-end;
-        justify-content: flex-end;
-    
-        width: 100%;
-        height: 100%;
-    
-        overflow: hidden;
-        pointer-events: none;
+        transition: transform 0.3s ease;
+
+        .swipeIndicator {
+            width: 30px;
+            margin: 10px auto;
+            border: 2px solid $gray-500;
+            border-radius: 2px;
+        }
+    }
+
+    .splash {
+        @extend %fullscreen;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 20px;
+        transition: opacity 0.3s ease;
+        background-color: rgba($black, 0.4);
+    }
+
+    .splashText {
+        padding: 20px;
+        background-color: $white;
+        color: $black;        
+    }
+
+    .splashButton {
+        @extend %fullscreen;
     }
     
-    .card {
-        position: absolute;
-        z-index: 3;
-        width: 100%;
-        transform: translate3d(0, 100%, 0);
-        background-color: $white;
-        color: $black;
-        text-align: left;
-    
-        &.active {
-            transform: translate3d(0, 0, 0);
+    &.topLayout {
+        .markerContent {
+            transform: translateY(-100%);
         }
-    
-        > * {
-            display: inline-block;
-            vertical-align: top;
+
+        .markerContentInner {
+            order: 1;
         }
-    
-        .text {
-            width: 70%;
+
+        .swipeIndicator {
+            order: 2;
         }
-    
-        .image {
-            width: 30%;
+    }
+
+    &.bottomLayout {
+        .markerContent {
+            transform: translateY(100%);
         }
-    
-        .background {
-            padding: 10px;
+    }
+
+    &.hasSelectedMarker {
+        .markerContent {
+            transform: translateY(0%);
         }
-    }    
+    }
+
+    &.opened {
+        .splash {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
 }
 

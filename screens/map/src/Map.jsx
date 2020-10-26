@@ -4,33 +4,28 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { PlaceholderMap, Empty, Transitions, Button } from '@micromag/core/components';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
-import MapComponent from '@micromag/element-map';
-import TextComponent from '@micromag/element-text';
-import ImageComponent from '@micromag/element-image';
-
-import { PropTypes as MicromagPropTypes, PlaceholderMap, Empty } from '@micromag/core';
-import { useScreenSize } from '@micromag/core/contexts';
-import { getRenderFormat } from '@micromag/core/utils';
-import Transitions from '@micromag/core/src/components/transitions/Transitions';
+import MapElement from '@micromag/element-map';
+import Heading from '@micromag/element-heading';
+import Text from '@micromag/element-text';
+import Image from '@micromag/element-image';
 
 import PreviewBackground from './preview.jpg';
 
-import { schemas as messages } from './messages';
-
 import styles from './styles.module.scss';
 
-export const layouts = ['top', 'bottom'];
-
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf(['bottom', 'top']),
     map: MicromagPropTypes.map,
     markers: MicromagPropTypes.markers,
+    splash: PropTypes.string,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
@@ -40,15 +35,15 @@ const defaultProps = {
     layout: 'top',
     map: null,
     markers: [],
+    splash: null,
     background: null,
     current: true,
     active: true,
-    renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: {
         in: {
             name: 'fade',
-            duration: 1000,
+            duration: 250,
         },
         out: 'scale',
     },
@@ -58,90 +53,76 @@ const defaultProps = {
 const Map = ({
     layout,
     map,
-    markers: mapMarkers,
+    markers,
+    splash,
     background,
     current,
     active,
-    renderFormat,
     maxRatio,
     transitions,
     className,
 }) => {
-    const [index, setIndex] = useState(0);
+    const [opened, setOpened] = useState(false);
+    const [selectedMarker, setSelectedMarker] = useState(null);
+    const hasSelectedMarker = selectedMarker !== null;
+
     const { width, height } = useScreenSize();
-    const { isView, isPlaceholder, isPreview, isEditor } = getRenderFormat(renderFormat);
-    const withMap = map !== null;
-    const isEmpty = isEditor && !withMap;
+    const { isView, isPlaceholder, isPreview, isEdit } = useScreenRenderContext();
 
-    const { map: { center: mapCenter = null } = {} } = map || {};
+    const hasMap = map !== null;
+    const isEmpty = isEdit && !hasMap;
 
-    const markers = mapMarkers.map((m) => ({ ...m, active: true }));
-    const center = mapCenter || markers.find((m, i) => i === index) || {};
-
-    const [ready, setReady] = useState(!withMap);
+    const [ready, setReady] = useState(!hasMap);
     const transitionPlaying = current && ready;
 
-    const onMapReady = useCallback(() => {
-        setReady(true);
-    }, [setReady]);
+    const onMapReady = useCallback(() => setReady(true), [setReady]);
 
-    const onClickMap = useCallback(() => {
-        setIndex(null);
-    }, []);
+    const onClickMap = useCallback(() => setSelectedMarker(null), []);
 
-    const onClickMarker = useCallback(
-        (e, i) => {
-            setIndex(i);
-        },
-        [setIndex],
-    );
+    const onClickMarker = useCallback((e, i) => setSelectedMarker(markers[i]), [
+        markers,
+        setSelectedMarker,
+    ]);
+
+    const onSplashClick = useCallback(() => setOpened(true), [setOpened]);
 
     let element = null;
 
     if (isEmpty) {
         element = (
             <Empty className={styles.empty}>
-                <FormattedMessage {...messages.schemaTitle} />
+                <FormattedMessage defaultMessage="Map" description="Map placeholder" />
             </Empty>
         );
     } else if (isPlaceholder) {
         element = <PlaceholderMap className={styles.placeholder} />;
     } else if (isPreview) {
-        element = <ImageComponent {...{ media: { url: PreviewBackground, width, height } }} />;
-    } else if (withMap) {
+        element = <Image {...{ media: { url: PreviewBackground, width, height } }} />;
+    } else if (hasMap) {
+        const { title = null, description = null, image = null } = selectedMarker || {};
         element = (
-            <Transitions transitions={transitions} playing={transitionPlaying} fullScreen>
-                <MapComponent
+            <Transitions transitions={transitions} playing={transitionPlaying} fullscreen>
+                <MapElement
                     {...map}
-                    {...(center && center.lat && center.lng ? { center } : null)}
                     markers={markers}
                     onClickMap={onClickMap}
                     onClickMarker={onClickMarker}
                     onReady={onMapReady}
                 />
-                <div className={styles.cards}>
-                    {markers.map((marker, i) => (
-                        <div
-                            key={`marker-${i + 1}`}
-                            className={classNames([
-                                styles.card,
-                                {
-                                    [styles.active]: i === index,
-                                },
-                            ])}
-                        >
-                            <div className={styles.background}>
-                                <TextComponent
-                                    className={styles.text}
-                                    body={marker.text ? marker.text : null}
-                                />
-                                <ImageComponent
-                                    className={styles.image}
-                                    image={marker.image ? marker.image : null}
-                                />
-                            </div>
+                <div className={styles.markerContent}>
+                    <Button className={styles.markerContentSafe} onClick={onSplashClick} withoutStyle />
+                    <div className={styles.markerContentInner}>
+                        <div className={styles.swipeIndicator} />
+                        <div className={styles.marker}>
+                            <Image className={styles.image} {...image} />
+                            <Heading className={styles.title} {...title} />
+                            <Text className={styles.description} {...description} />
                         </div>
-                    ))}
+                    </div>
+                </div>
+                <div className={styles.splash}>
+                    <Text className={styles.splashText} {...splash} />
+                    <Button className={styles.splashButton} onClick={onSplashClick} withoutStyle />
                 </div>
             </Transitions>
         );
@@ -153,8 +134,9 @@ const Map = ({
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.placeholder]: isPlaceholder,
-                    [styles[layout]]: layout !== null,
+                    [styles[`${layout}Layout`]]: layout !== null,
+                    [styles.opened]: opened,
+                    [styles.hasSelectedMarker]: hasSelectedMarker,
                 },
             ])}
         >
@@ -162,12 +144,11 @@ const Map = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEditor && active)}
+                playing={(isView && current) || (isEdit && active)}
                 maxRatio={maxRatio}
             />
-
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <div className={styles.content}>{element}</div>
+                {element}
             </Container>
         </div>
     );

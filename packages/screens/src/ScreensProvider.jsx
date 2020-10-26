@@ -1,21 +1,18 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ComponentsProvider } from '@micromag/core/contexts';
-import { SCREENS_NAMESPACE } from '@micromag/core/components';
+import { ScreensProvider as BaseScreensProvider } from '@micromag/core/contexts';
 
-import * as ScreenComponents from './all';
+import manager from './manager';
 
 const propTypes = {
-    children: PropTypes.node,
+    children: PropTypes.node.isRequired,
 };
 
-const defaultProps = {
-    children: null,
-};
+const defaultProps = {};
 
-const ScreensProvider = props => (
-    <ComponentsProvider namespace={SCREENS_NAMESPACE} components={ScreenComponents} {...props} />
+const ScreensProvider = ({ children }) => (
+    <BaseScreensProvider manager={manager}>{children}</BaseScreensProvider>
 );
 
 ScreensProvider.propTypes = propTypes;

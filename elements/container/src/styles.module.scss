@@ -2,11 +2,5 @@
 
 .container {
     position: relative;
-    overflow: auto;
-
-    .inner {
-        position: relative;
-        height: 100%;
-        margin: 0 auto;
-    }
+    margin: 0 auto;
 }

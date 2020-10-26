@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { withGoogleMapsApi } from '../../../.storybook/decorators';
+import withGoogleMapsApi from '../../../.storybook/decorators/withGoogleMaps';
 import { map } from '../../../.storybook/data';
 
 import MapComponent from './Map';
@@ -11,7 +11,7 @@ const props = {
 
 export default {
     component: MapComponent,
-    title: 'Components/Map',
+    title: 'Elements/Map',
     decorators: [withGoogleMapsApi],
 };
 

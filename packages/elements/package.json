@@ -31,19 +31,10 @@
         "lib",
         "es",
         "assets",
-        "scss",
-        "all.js",
-        "schemas.js"
+        "all.js"
     ],
     "scripts": {
-        "clean": "rm -rf scss && rm -rf assets && rm -rf lib && rm -rf es && rm -f ./all.js && rm -f ./schemas.js",
-        "rollup": "NODE_ENV=production ../../node_modules/.bin/rollup --config ./rollup.config.js",
-        "exports": "cp ./src/all.js ./all.js && cp ./src/schemas.js ./schemas.js",
-        "css": "../../scripts/build-sass.js ./src/styles.scss ./assets/css/styles.css",
-        "scss": "mkdir scss && cp ./src/styles.scss ./scss/styles.scss",
-        "intl": "node ../../scripts/build-package-intl-translations.js",
-        "build": "npm run rollup && npm run exports && npm run css && npm run scss && npm run intl",
-        "prepare": "npm run clean && npm run build"
+        "prepare": "../../scripts/prepare-package.sh --scss"
     },
     "devDependencies": {
         "react": ">=15.0.0 || ^16.0.0",

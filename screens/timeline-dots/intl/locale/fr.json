@@ -1,5 +1,0 @@
-{
-    "screens.timeline-dots.schema.properties.background": "Background",
-    "screens.timeline-dots.schema.properties.cards": "Éléments",
-    "screens.timeline-dots.schema.title": "Ligne du temps avec points"
-}

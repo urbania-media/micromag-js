@@ -1,71 +1,35 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import {
-    PlaceholderScreen,
-    PreviewScreen,
-    LayoutSwitcher,
-    LayoutGrid,
-    Screen,
-} from '../../../../.storybook/components';
 import { map, markers, background } from '../../../../.storybook/data';
-import { withGoogleMapsApi } from '../../../../.storybook/decorators';
+import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
+import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
-import MapScreen from '../Map';
-
-import { layouts } from '../Map';
+import Map from '../Map';
+import definition from '../definition';
 
 const props = {
-    map: { map: map() },
+    map: map(),
     markers: markers(),
-    cardBackground: background(),
-};
-
-const switcherProps = {
-    layouts,
-    defaultLayout: 'top',
+    splash: { body: 'Débuter' },
+    background: background(),
 };
 
 export default {
     title: 'Screens/Map',
-    decorators: [withGoogleMapsApi],
+    decorators: [withGoogleMaps],
+    component: Map,
+    parameters: {
+        intl: true,
+        screenDefinition: definition.find((it) => it.component === Map),
+    },
 };
 
-export const Placeholders = () => (
-    <LayoutGrid layouts={layouts}>
-        {layout => (
-            <PlaceholderScreen>
-                <MapScreen layout={layout} renderFormat="placeholder" />
-            </PlaceholderScreen>
-        )}
-    </LayoutGrid>
-);
+export const Placeholder = (storyProps) => <Map {...storyProps} />;
 
-export const Previews = () => (
-    <LayoutSwitcher {...switcherProps}>
-        {layout => (
-            <PreviewScreen>
-                <MapScreen layout={layout} renderFormat="preview" {...props} />
-            </PreviewScreen>
-        )}
-    </LayoutSwitcher>
-);
+export const Preview = (storyProps) => <Map {...storyProps} {...props} />;
 
-export const Editor = () => (
-    <LayoutSwitcher {...switcherProps}>
-        {layout => (
-            <Screen>
-                <MapScreen layout={layout} renderFormat="edit" {...props} />
-            </Screen>
-        )}
-    </LayoutSwitcher>
-);
+export const Edit = (storyProps) => <Map {...storyProps} />;
 
-export const Normal = () => (
-    <LayoutSwitcher {...switcherProps}>
-        {layout => (
-            <Screen>
-                <MapScreen layout={layout} {...props} />
-            </Screen>
-        )}
-    </LayoutSwitcher>
-);
+export const Normal = (storyProps) => <Map {...storyProps} {...props} />;
+
+export const Definition = () => <ScreenDefinition definition={definition} />;

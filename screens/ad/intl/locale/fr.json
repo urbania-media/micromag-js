@@ -1,7 +1,0 @@
-{
-    "screens.ad.schema.properties.background": "Arrière-plan",
-    "screens.ad.schema.properties.image": "Image",
-    "screens.ad.schema.properties.layout": "Mise en page",
-    "screens.ad.schema.properties.link": "Lien",
-    "screens.ad.schema.title": "Publicité"
-}

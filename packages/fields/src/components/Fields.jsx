@@ -2,7 +2,7 @@
 import React, { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { createNullableOnChange } from '@micromag/core/utils';
 
@@ -10,13 +10,6 @@ import Field from './Field';
 import FieldRow from './FieldRow';
 
 import styles from '../styles/fields.module.scss';
-
-const messages = defineMessages({
-    advanced: {
-        id: 'advanced_fields',
-        defaultMessage: 'Advanced',
-    },
-});
 
 const propTypes = {
     name: PropTypes.string,
@@ -33,7 +26,7 @@ const propTypes = {
     onChange: PropTypes.func,
     className: PropTypes.string,
     labelClassName: PropTypes.string,
-    fieldsComponents: MicromagPropTypes.components,
+    components: MicromagPropTypes.components,
 };
 
 const defaultProps = {
@@ -51,7 +44,7 @@ const defaultProps = {
     onChange: null,
     className: null,
     labelClassName: null,
-    fieldsComponents: null,
+    components: null,
 };
 
 const Fields = ({
@@ -69,7 +62,7 @@ const Fields = ({
     onChange,
     className,
     labelClassName,
-    fieldsComponents,
+    components,
 }) => {
     const nullableOnChange = useCallback(
         nullEmptyObject ? createNullableOnChange(onChange) : onChange,
@@ -101,14 +94,14 @@ const Fields = ({
         () =>
             fieldsAdvanced
                 .map((advanced, index) => (!advanced ? index : null))
-                .filter(it => it !== null),
+                .filter((it) => it !== null),
         [fieldsAdvanced.join(',')],
     );
     const advancedFieldsIndex = useMemo(
         () =>
             fieldsAdvanced
                 .map((advanced, index) => (advanced ? index : null))
-                .filter(it => it !== null),
+                .filter((it) => it !== null),
         [fieldsAdvanced.join(',')],
     );
 
@@ -124,7 +117,7 @@ const Fields = ({
                     isSection = false,
                 } = field;
                 const fieldValue = name !== null ? (value || {})[name] || null : value;
-                const fieldOnChange = newFieldValue => onFieldChange(name, newFieldValue);
+                const fieldOnChange = (newFieldValue) => onFieldChange(name, newFieldValue);
                 const fieldErrors = name !== null ? (errors || {})[name] || null : errors;
                 return (
                     <Field
@@ -136,7 +129,7 @@ const Fields = ({
                         onChange={customOnChange || fieldOnChange}
                         gotoFieldForm={gotoFieldForm}
                         closeFieldForm={closeFieldForm}
-                        fieldsComponents={fieldsComponents}
+                        components={components}
                         isHorizontal={isHorizontal}
                         isSection={isSection}
                         className={classNames([
@@ -188,10 +181,19 @@ const Fields = ({
                     },
                 ])}
             >
-                {normalFieldsIndex.map(index => fieldsElements[index])}
+                {normalFieldsIndex.map((index) => fieldsElements[index])}
             </div>
             {advancedFieldsIndex.length > 0 ? (
-                <FieldRow label={messages.advanced} isSection className={styles.advanced}>
+                <FieldRow
+                    label={
+                        <FormattedMessage
+                            defaultMessage="Advanced"
+                            description="Name of the section in Fields"
+                        />
+                    }
+                    isSection
+                    className={styles.advanced}
+                >
                     <div
                         className={classNames([
                             styles.fields,
@@ -201,7 +203,7 @@ const Fields = ({
                             },
                         ])}
                     >
-                        {advancedFieldsIndex.map(index => fieldsElements[index])}
+                        {advancedFieldsIndex.map((index) => fieldsElements[index])}
                     </div>
                 </FieldRow>
             ) : null}

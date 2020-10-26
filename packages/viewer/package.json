@@ -31,19 +31,10 @@
         "lib",
         "es",
         "assets",
-        "scss"
+        "lang"
     ],
     "scripts": {
-        "clean": "rm -rf scss && rm -rf assets && rm -rf lib && rm -rf es",
-        "rollup": "NODE_ENV=production ../../node_modules/.bin/rollup --config ../../rollup.config.js",
-        "intl": "node ../../scripts/build-package-intl-translations.js",
-        "scss": "mkdir scss && cp ./src/styles/styles.scss scss",
-        "css:mkdir": "mkdir -p ./assets/css/",
-        "css:copy": "cp es/styles.css ./assets/css/styles.css",
-        "css:clean": "rm -f es/styles.css && rm -f lib/styles.css",
-        "css": "npm run css:mkdir && npm run css:copy && npm run css:clean",
-        "build": "npm run rollup && npm run scss && npm run css && npm run intl",
-        "prepare": "npm run clean && npm run build",
+        "prepare": "../../scripts/prepare-package.sh --scss --intl",
         "start": "PUBLIC_URL=http://localhost/ react-scripts start"
     },
     "devDependencies": {

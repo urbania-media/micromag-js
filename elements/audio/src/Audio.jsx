@@ -10,15 +10,14 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    media: PropTypes.shape({
-        src: PropTypes.string.isRequired,
-        length: PropTypes.number,
-    }),
+    media: MicromagPropTypes.audioMedia,
     track: PropTypes.string,
     language: PropTypes.number,
     controls: PropTypes.bool,
-    params: MicromagPropTypes.audioParams,
-    // TODO: style: MicromagPropTypes.textStyle,
+    muted: PropTypes.bool,
+    autoPlay: PropTypes.bool,
+    loop: PropTypes.bool,
+    native: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -26,16 +25,26 @@ const defaultProps = {
     media: null,
     track: null,
     language: null,
-    controls: null,
-    params: null,
-    // style: null,
+    controls: false,
+    muted: false,
+    autoPlay: false,
+    loop: false,
+    native: false,
     className: null,
 };
 
-const AudioComponent = ({ media: audioField, track, language, controls, params, className }) => {
-    const { url: src = null } = audioField || {};
-    const { muted: initialMuted = false, autoPlay = false, loop = false, native = false } =
-        params || {};
+const AudioComponent = ({
+    media: audioField,
+    track,
+    language,
+    controls,
+    muted: initialMuted,
+    autoPlay,
+    loop,
+    native,
+    className,
+}) => {
+    const { url = null } = audioField || {};
 
     const finalStyle = {};
     const refAudioElement = useRef(null);
@@ -86,8 +95,8 @@ const AudioComponent = ({ media: audioField, track, language, controls, params, 
     }, [setCurrentTime]);
 
     useEffect(() => {
-        if (!native && refAudioElement.current === null && src) {
-            const audioEl = new Audio(src);
+        if (!native && refAudioElement.current === null && url !== null) {
+            const audioEl = new Audio(url);
             audioEl.addEventListener('loadedmetadata', onLoad);
             audioEl.addEventListener('durationchanged', onLoad);
             audioEl.addEventListener('canplay', onReady);
@@ -110,7 +119,7 @@ const AudioComponent = ({ media: audioField, track, language, controls, params, 
                 refAudioElement.current = null;
             }
         };
-    }, [src, native]);
+    }, [url, native]);
 
     const playerApi = useMemo(
         () => ({
@@ -166,7 +175,7 @@ const AudioComponent = ({ media: audioField, track, language, controls, params, 
             {native ? (
                 <audio
                     className={styles.audio}
-                    src={src}
+                    src={url}
                     controls
                     autoPlay={autoPlay}
                     muted={playerState.muted}

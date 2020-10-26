@@ -2,7 +2,7 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 // import classNames from 'classnames';
-// import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Form } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
@@ -10,15 +10,7 @@ import { useOrganisationUpdate } from '@micromag/data';
 
 import * as AppPropTypes from '../../lib/PropTypes';
 
-import formMessages from './messages';
 import { organisation as organisationFields } from './fields';
-
-// const messages = defineMessages({
-//     mainContact: {
-//         id: 'forms.organisation.settings.main_contact',
-//         defaultMessage: 'Main contact',
-//     },
-// });
 
 const propTypes = {
     organisation: AppPropTypes.organisation.isRequired,
@@ -43,7 +35,9 @@ const OrganisationSettingsForm = ({ organisation, fields, className, onUpdated }
             fields={fields}
             initialValue={organisation}
             postForm={postForm}
-            submitButtonLabel={formMessages.saveButton}
+            submitButtonLabel={
+                <FormattedMessage defaultMessage="Save" description="Button label" />
+            }
             onComplete={onUpdated}
             className={className}
         />

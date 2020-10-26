@@ -3,26 +3,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as MicromagPropTypes from '../../PropTypes';
 
-import { getComponentFromName } from '../../../lib';
+import { getComponentFromName } from '../../utils';
 import TransitionComponents from './index';
 
 const propTypes = {
-    fullScreen: PropTypes.bool,
+    fullscreen: PropTypes.bool,
     playing: PropTypes.bool,
     delay: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
+    disabled: PropTypes.bool,
     children: PropTypes.node,
 };
 
 const defaultProps = {
-    fullScreen: false,
+    fullscreen: false,
     playing: false,
     delay: 0,
     transitions: null,
+    disabled: false,
     children: null,
 };
 
-const Transitions = ({ fullScreen, playing, delay, transitions, children }) => {
+const Transitions = ({ fullscreen, playing, delay, transitions, disabled, children }) => {
+
     const finalTransitions = { in: null, out: null };
     Object.keys(transitions || []).forEach((transitionKey) => {
         const currentTransition = transitions[transitionKey];
@@ -52,16 +55,16 @@ const Transitions = ({ fullScreen, playing, delay, transitions, children }) => {
         finalTransitionOut !== null ? { ...finalTransitionOut, name: undefined, delay } : null;
 
     const renderTransitionOut =
-        TransitionOut !== null ? (
-            <TransitionOut fullScreen={fullScreen} playing={playing} direction="out" {...transitionOutProps}>
+        TransitionOut !== null && !disabled ? (
+            <TransitionOut fullscreen={fullscreen} playing={playing} direction="out" {...transitionOutProps}>
                 {children}
             </TransitionOut>
         ) : (
             children
         );
-    return TransitionIn !== null ? (
+    return TransitionIn !== null && !disabled ? (
         <TransitionIn
-            fullScreen={fullScreen}
+            fullscreen={fullscreen}
             playing={playing}
             direction={!sameTransitionInOut ? 'in' : null}
             {...transitionInProps}

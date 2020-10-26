@@ -10,8 +10,8 @@ const ModalsContext = React.createContext({
 
 export const useModals = () => useContext(ModalsContext) || {};
 
-export const withModals = WrappedComponent => {
-    const WithModalsComponent = props => (
+export const withModals = (WrappedComponent) => {
+    const WithModalsComponent = (props) => (
         <ModalsContext.Consumer>
             {({ modals, container, setContainer, register, unregister }) => (
                 <WrappedComponent
@@ -58,7 +58,7 @@ export const ModalsProvider = ({ children, container: initialContainer }) => {
         [modals, setModals],
     );
     const unregister = useCallback(
-        id => {
+        (id) => {
             const { current: currentModals } = modalsRef;
             const foundIndex = currentModals.findIndex(({ id: modalId }) => modalId === id);
             if (foundIndex !== -1) {

@@ -3,63 +3,56 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
+import Layout, { Spacer } from '@micromag/element-layout';
 import Heading from '@micromag/element-heading';
 import Text from '@micromag/element-text';
 
-import {
-    PropTypes as MicromagPropTypes,
-    PlaceholderTitle,
-    PlaceholderText,
-    PlaceholderSubtitle,
-    Empty,
-} from '@micromag/core';
-
-import { getRenderFormat } from '@micromag/core/utils';
-import { useScreenSize } from '@micromag/core/contexts';
-
-import { schemas as messages } from './messages';
-
 import styles from './styles.module.scss';
 
-export const layouts = ['center', 'top', 'bottom', 'around', 'between'];
-
-const HEADING_SIZES = {
-    title: { size: 1 },
-    subtitle: { size: 2 },
-};
-
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split', 'split-top', 'split-bottom']),
     title: MicromagPropTypes.headingElement,
     subtitle: MicromagPropTypes.headingElement,
     description: MicromagPropTypes.textElement,
-    groups: PropTypes.arrayOf(PropTypes.array),
+    withSubtitle: PropTypes.bool,
+    withDescription: PropTypes.bool,
+    descriptionEmptyLabel: MicromagPropTypes.label,
     background: MicromagPropTypes.backgroundElement,
-    textAlign: PropTypes.oneOf(['left', 'right', 'center']),
     current: PropTypes.bool,
     active: PropTypes.bool,
-    renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
+    transitionStagger: PropTypes.number,
     className: PropTypes.string,
 };
 
 const defaultProps = {
-    layout: 'center',
+    layout: 'top',
     title: null,
     subtitle: null,
     description: null,
-    groups: [['title', 'subtitle'], ['description']],
+    withSubtitle: false,
+    withDescription: false,
+    descriptionEmptyLabel: (
+        <FormattedMessage defaultMessage="Description" description="Description placeholder" />
+    ),
     background: null,
-    textAlign: 'center',
     current: true,
     active: false,
-    renderFormat: 'view',
     maxRatio: 3 / 4,
-    transitions: null,
+    transitions: {
+        in: {
+            name: 'fade',
+            duration: 250,
+        },
+        out: 'scale',
+    },
+    transitionStagger: 100,
     className: null,
 };
 
@@ -68,82 +61,86 @@ const Title = ({
     title,
     subtitle,
     description,
-    groups,
+    withSubtitle,
+    withDescription,
+    descriptionEmptyLabel,
     background,
-    textAlign,
     current,
     active,
-    renderFormat,
     maxRatio,
     transitions,
+    transitionStagger,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isView, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
 
-    const options = { title, subtitle, description };
-    const hasValue = title !== null || subtitle !== null || description !== null;
+    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
-    const items = groups.map((its) => (
-        <div className={styles.group} key={`group-${its.join('-')}`}>
-            {its.map((name) => {
-                const key = `group-item-${name}`;
-                const value = options[name] || null;
+    const hasTitle = title !== null;
+    const hasSubtitle = subtitle !== null;
+    const hasDescription = description !== null;
 
-                if (isPlaceholder) {
-                    if (name === 'subtitle') {
-                        return <PlaceholderSubtitle className={styles.placeholder} key={key} />;
-                    }
-                    if (name === 'description') {
-                        return <PlaceholderText className={styles.placeholder} key={key} />;
-                    }
-                    return <PlaceholderTitle className={styles.placeholder} key={key} />;
+    const isEmpty = !hasTitle && !hasSubtitle && (!withDescription || !hasDescription);
+
+    const layoutParts = layout.split('-');
+    const isSplitted = layoutParts[0] === 'split';
+    const verticalAlign = isSplitted ? layoutParts[1] || 'top' : layoutParts[0];
+
+    // Create elements
+    const items = [
+        (hasTitle || isPlaceholder) && (
+            <ScreenElement
+                key="title"
+                placeholder="title"
+                emptyLabel={
+                    <FormattedMessage defaultMessage="Title" description="Title placeholder" />
                 }
+                emptyClassName={styles.empty}
+                isEmpty={isEmpty}
+            >
+                <Heading {...title} size={1} />
+            </ScreenElement>
+        ),
 
-                if (isEditor && !hasValue) {
-                    return (
-                        <Empty className={styles.empty}>
-                            <FormattedMessage {...messages[name]} />
-                        </Empty>
-                    );
+        isSplitted && (!withDescription || verticalAlign === 'bottom') && <Spacer />,
+
+        withSubtitle && (hasSubtitle || isPlaceholder) && (
+            <ScreenElement
+                key="subtitle"
+                placeholder="subtitle"
+                emptyLabel={
+                    <FormattedMessage
+                        defaultMessage="Subtitle"
+                        description="Subtitle placeholder"
+                    />
                 }
+                emptyClassName={styles.empty}
+                isEmpty={isEmpty}
+            >
+                <Heading {...subtitle} size={2} />
+            </ScreenElement>
+        ),
 
-                if (name === 'description') {
-                    return <Text {...value} className={styles[name]} key={key} />;
-                }
-                const otherProps = HEADING_SIZES[name] || null;
-                return <Heading {...otherProps} {...value} className={styles.title} key={key} />;
-            })}
-        </div>
-    ));
+        isSplitted && withDescription && verticalAlign !== 'bottom' && <Spacer />,
 
-    let contentJustifyContentValue;
-
-    switch (layout) {
-        default:
-        case 'center':
-            contentJustifyContentValue = 'center';
-            break;
-        case 'top':
-            contentJustifyContentValue = 'flex-start';
-            break;
-        case 'bottom':
-            contentJustifyContentValue = 'flex-end';
-            break;
-        case 'around':
-            contentJustifyContentValue = 'space-around';
-            break;
-        case 'between':
-            contentJustifyContentValue = 'space-between';
-            break;
-    }
+        withDescription && (hasDescription || isPlaceholder) && (
+            <ScreenElement
+                key="description"
+                placeholder="text"
+                emptyLabel={descriptionEmptyLabel}
+                emptyClassName={styles.empty}
+                isEmpty={isEmpty}
+            >
+                <Text {...description} />
+            </ScreenElement>
+        ),
+    ];
 
     return (
         <div
             className={classNames([
                 styles.container,
                 {
-                    [styles[textAlign]]: textAlign !== null,
                     [className]: className !== null,
                 },
             ])}
@@ -152,19 +149,21 @@ const Title = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEditor && active)}
+                playing={(isView && current) || (isEdit && active)}
                 maxRatio={maxRatio}
             />
 
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <div
-                    className={styles.content}
-                    style={{
-                        justifyContent: contentJustifyContentValue,
-                    }}
-                >
-                    {items}
-                </div>
+                <Layout fullscreen verticalAlign={verticalAlign}>
+                    <TransitionsStagger
+                        transitions={transitions}
+                        stagger={transitionStagger}
+                        disabled={!isView && !isPreview}
+                        playing
+                    >
+                        {items}
+                    </TransitionsStagger>
+                </Layout>
             </Container>
         </div>
     );

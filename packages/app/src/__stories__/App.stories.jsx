@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from '../components/Container';
-import '../../../intl/locale/fr';
+import '../../../intl/lang/fr';
 
 export default {
     component: Container,

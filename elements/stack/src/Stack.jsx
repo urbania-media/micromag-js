@@ -3,16 +3,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import isString from 'lodash/isString';
+import isNumber from 'lodash/isNumber';
 
-import styles from './styles.module.scss';
+import { StackProvider } from './StackContext';
+import Spacer from './Spacer';
+import styles from './styles/stack.module.scss';
 
 const propTypes = {
     direction: MicromagPropTypes.stackDirection,
     align: MicromagPropTypes.stackAlign,
     spacing: MicromagPropTypes.stackSpacing,
     reverse: PropTypes.bool,
+    size: PropTypes.number,
+    minSize: PropTypes.number,
+    maxSize: PropTypes.number,
     className: PropTypes.string,
-    itemClassName: PropTypes.string,
     children: PropTypes.node,
 };
 
@@ -21,8 +27,10 @@ const defaultProps = {
     align: 'center',
     spacing: null,
     reverse: false,
+    size: null,
+    minSize: null,
+    maxSize: null,
     className: null,
-    itemClassName: null,
     children: null,
 };
 
@@ -31,55 +39,49 @@ const Stack = ({
     align,
     spacing,
     reverse,
+    size,
+    minSize,
+    maxSize,
     className,
-    itemClassName,
     children,
 }) => {
     const flexDirection =
         (direction === 'vertical' ? 'column' : 'row') + (reverse ? '-reverse' : '');
     const alignItems = align === 'center' ? align : `flex-${align}`;
-    const justifyContent = typeof spacing === 'string' ? `space-${spacing}` : null;
-    const space = typeof spacing === 'number' ? spacing : 0;
-
-    const itemsStyle = {
-        flexDirection,
-        alignItems,
-        justifyContent,
-    };
-
+    const justifyContent = isString(spacing) ? `space-${spacing}` : null;
+    const space = isNumber(spacing) ? spacing : null;
     const lastIndex = children !== null && children.length ? children.length - 1 : null;
 
     return (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className !== null,
-                },
-            ])}
-            style={itemsStyle}
-        >
-            {React.Children.map(children, (child, index) => {
-                const isLast = reverse ? index === 0 : index === lastIndex;
-                return (
-                    <div
-                        key={`item-${index}`}
-                        className={classNames([
-                            styles.item,
-                            {
-                                [itemClassName]: itemClassName !== null,
-                            },
-                        ])}
-                        style={{
-                            marginBottom: direction === 'vertical' && !isLast ? space : null,
-                            marginRight: direction === 'horizontal' && !isLast ? space : null,
-                        }}
-                    >
-                        {child}
-                    </div>
-                );
-            })}
-        </div>
+        <StackProvider direction={direction}>
+            <div
+                className={classNames([
+                    styles.container,
+                    {
+                        [className]: className !== null,
+                    },
+                ])}
+                style={{
+                    flexDirection,
+                    alignItems,
+                    justifyContent,
+                    width: direction === 'horizontal' ? size : null,
+                    minWidth: direction === 'horizontal' ? minSize : null,
+                    maxWidth: direction === 'horizontal' ? maxSize : null,
+                    height: direction === 'vertical' ? size : null,
+                    minHeight: direction === 'vertical' ? minSize : null,
+                    maxHeight: direction === 'vertical' ? maxSize : null,
+                }}
+            >
+                {React.Children.toArray(children).reduce(
+                    (allChildren, child, index) =>
+                        child.type !== Spacer && space !== null && index < lastIndex
+                            ? [...allChildren, child, <Spacer size={space} />]
+                            : [...allChildren, child],
+                    [],
+                )}
+            </div>
+        </StackProvider>
     );
 };
 

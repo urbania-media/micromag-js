@@ -4,6 +4,13 @@ import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import {
+    PlaceholderTitle,
+    PlaceholderSubtitle,
+    PlaceholderButton,
+} from '@micromag/core/components';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import TextComponent from '@micromag/element-text';
@@ -11,32 +18,19 @@ import Image from '@micromag/element-image';
 import Checkbox from '@micromag/element-checkbox';
 import Button from '@micromag/element-button';
 
-import {
-    PlaceholderTitle,
-    PlaceholderSubtitle,
-    PlaceholderButton,
-    PropTypes as MicromagPropTypes,
-} from '@micromag/core';
-// import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useScreenSize } from '@micromag/core/contexts';
-import { getRenderFormat } from '@micromag/core/utils';
-
 import styles from './styles.module.scss';
 
-export const layouts = ['normal'];
-
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf(['normal']),
     question: MicromagPropTypes.textElement,
     options: PropTypes.arrayOf(MicromagPropTypes.textElement),
     result: PropTypes.shape({
-        image: MicromagPropTypes.image,
+        image: MicromagPropTypes.imageMedia,
         text: MicromagPropTypes.textElement,
     }),
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
@@ -50,7 +44,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: false,
-    renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: {
         in: {
@@ -70,13 +63,12 @@ const SurveyCheckbox = ({
     background,
     current,
     active,
-    renderFormat,
     maxRatio,
     transitions,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isEditor, isView } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isEdit, isView } = useScreenRenderContext();
 
     const [value, setValue] = useState('');
     const [answered, setAnswered] = useState(false);
@@ -88,17 +80,19 @@ const SurveyCheckbox = ({
     const onChange = useCallback((newValue) => setValue(newValue), [value]);
 
     return (
-        <div className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-            },
-        ])}>
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                },
+            ])}
+        >
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEditor && active)}
+                playing={(isView && current) || (isEdit && active)}
                 maxRatio={maxRatio}
             />
 
@@ -112,7 +106,7 @@ const SurveyCheckbox = ({
                             </div>
                         ) : (
                             <>
-                                {renderFormat !== 'placeholder' ? (
+                                {isPlaceholder ? (
                                     <div className={styles.choices}>
                                         {options !== null && options.length > 0 ? (
                                             <>

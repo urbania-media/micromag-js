@@ -1,71 +1,40 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { IntlProvider } from 'react-intl'; // eslint-disable-line
-import { MemoryRouter } from 'react-router'; // eslint-disable-line
-import { withKnobs } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
-import { withScreenSize } from '../../../../.storybook/decorators';
-import { Basic, Medium } from '../../../../.storybook/screens/index';
-import { ComponentsProvider } from '../../../core/src/contexts';
-import { SCREENS_NAMESPACE } from '../../../core/src/components';
-import * as ScreenComponents from '../../../screens/src/all';
-
-// import { paragraph, image } from '../../../../.storybook/data';
+import { basic, medium } from '../../../../.storybook/data/screens';
+import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 
 import Viewer from '../components/ViewerContainer';
 
 const props = {
-    screenId: Basic[0].id,
+    screenId: basic[0].id,
     story: {
-        components: Basic,
+        components: basic,
     },
 };
 
 const mediumProps = {
-    screenId: Medium[0].id,
+    screenId: medium[0].id,
     story: {
-        components: Medium,
+        components: medium,
     },
 };
 
 export default {
     component: Viewer,
+    decorators: [withGoogleMaps],
     title: 'Viewer/Viewer',
-    decorators: [withKnobs, withScreenSize()],
+    parameters: {
+        screenSize: true,
+        intl: true,
+    },
 };
 
-// eslint-disable-next-line react/prop-types
-const Container = ({ children }) => (
-    <IntlProvider locale="fr">
-        {children}
-    </IntlProvider>
-);
+export const Default = () => <Viewer {...props} />;
 
-export const Default = () => (
-    <Container>
-        <Viewer {...props} />
-    </Container>
-);
+export const Swipe = () => <Viewer {...props} interactions={['swipe']} />;
 
-export const Swipe = () => (
-    <Container>
-        <Viewer {...props} interactions={['swipe']} />
-    </Container>
-);
+export const Tap = () => <Viewer {...props} interactions={['tap']} />;
 
-export const Tap = () => (
-    <Container>
-        <Viewer {...props} interactions={['tap']} />
-    </Container>
-);
+export const Both = () => <Viewer {...props} interactions={['swipe', 'tap']} />;
 
-export const Both = () => (
-    <Container>
-        <Viewer {...props} interactions={['swipe', 'tap']} />
-    </Container>
-);
-
-export const SwipeMedium = () => (
-    <Container>
-        <Viewer {...mediumProps} interactions={['swipe']} />
-    </Container>
-);
+export const SwipeMedium = () => <Viewer {...mediumProps} interactions={['swipe']} />;

@@ -1,9 +1,11 @@
+import { withKnobs } from '@storybook/addon-knobs';
+import withIntlProvider from './decorators/withIntlProvider';
+import withScreenSize from './decorators/withScreenSize';
+import withScreenLayouts from './decorators/withScreenLayouts';
+
 import '../packages/core/src/styles/vendor.scss';
 
-// import '@storybook/addon-console';
-import { addParameters } from '@storybook/react';
-
-addParameters({
+export const parameters = {
     viewport: {
         viewports: {
             mobileSmall: {
@@ -64,4 +66,6 @@ addParameters({
             },
         },
     },
-});
+};
+
+export const decorators = [withKnobs, withIntlProvider, withScreenSize, withScreenLayouts];

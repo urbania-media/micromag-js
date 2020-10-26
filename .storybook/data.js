@@ -33,7 +33,7 @@ export const title = () => random(titles);
 
 export const subtitle = () => random(subtitles);
 
-export const quote = ({ likelyhood = 100, min = 7, max = 20 } = {}) => words(likelyhood, min, max);
+export const quote = ({ likelyhood = 100, min = 7, max = 20 } = {}) => `“ ${words(likelyhood, min, max)} ”`;
 
 export const author = ({ likelyhood = 100 } = {}) => name(likelyhood);
 
@@ -151,11 +151,9 @@ export const backgroundImage = ({ rand = false } = {}) => ({
 });
 
 export const audio = () => ({
-    media: {
-        src: AudioTest,
-        length: 16000,
-    },
-    controls: true,
+    type: 'audio',
+    url: AudioTest,
+    duration: 16000,
 });
 
 export const advertising = ({ width, height }) => ({
@@ -164,14 +162,15 @@ export const advertising = ({ width, height }) => ({
     text: { body: 'Presented by Paul' },
 });
 
-export const markers = ({ count = 3, withText = true, withImage = true } = {}) => {
+export const markers = ({ count = 3, withTitle = true, withDescription = true, withImage = true } = {}) => {
     return [...Array(count)].map((j, i) => ({
         id: i,
         geoPosition: {
             lat: chance.floating({ min: 45.4, max: 45.6, fixed: 8 }),
             lng: chance.floating({ min: -74, max: -73, fixed: 8 }),
         },
-        text: withText ? shortText() : null,
+        title: withTitle ? { body: title() } : null,
+        description: withDescription ? { body: shortText() } : null,
         image: withImage ? imageWithRandomSize({ min: 100, max: 120 }) : null,
     }));
 };

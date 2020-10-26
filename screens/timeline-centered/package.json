@@ -33,14 +33,7 @@
         "assets"
     ],
     "scripts": {
-        "clean": "rm -rf assets && rm -rf lib && rm -rf es",
-        "build": "NODE_ENV=production ../../node_modules/.bin/rollup --config ../../rollup.config.js",
-        "intl": "node ../../scripts/build-package-intl-translations.js",
-        "css:mkdir": "mkdir -p ./assets/css/",
-        "css:copy": "cp es/styles.css ./assets/css/styles.css",
-        "css:clean": "rm -f es/styles.css && rm -f lib/styles.css",
-        "css": "npm run css:mkdir && npm run css:copy && npm run css:clean",
-        "prepare": "npm run clean && npm run build && npm run css && npm run intl"
+        "prepare": "../../scripts/prepare-package.sh --intl"
     },
     "devDependencies": {
         "react": ">=15.0.0 || ^16.0.0",
@@ -57,7 +50,9 @@
         "@micromag/element-container": "^0.1.29",
         "@micromag/element-heading": "^0.1.29",
         "@micromag/element-image": "^0.1.29",
+        "@micromag/element-layout": "^0.1.29",
         "@micromag/element-text": "^0.1.29",
+        "@micromag/element-scroll": "^0.1.29",
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",
         "prop-types": "^15.7.2",

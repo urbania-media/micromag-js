@@ -1,3 +1,2 @@
-export { default } from './TimelineCentered';
-export { layouts } from './TimelineCentered';
-export { default as schema } from './schema';
+export { default } from './definition';
+export { default as TimelineCentered } from './TimelineCentered';

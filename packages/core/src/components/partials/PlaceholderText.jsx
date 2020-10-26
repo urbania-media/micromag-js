@@ -27,23 +27,28 @@ const defaultProps = {
 const PlaceholderText = ({ lines, lineMargin, width, height, fontSize, className }) => {
     const lineHeight =
         height !== null && isNumber(height) ? `${Math.round(height * fontSize)}px` : height;
-    const margin = lineMargin !== null && isNumber(lineMargin) ? `${lineMargin}em` : lineMargin;
-    return [...Array(lines)].map((e, index) => (
+
+    return (
         <div
-            key={`line-${index}`}
             className={classNames([
                 styles.container,
                 {
                     [className]: className,
                 },
             ])}
-            style={{
-                width,
-                height: lineHeight,
-                marginBottom: index < lines - 1 ? margin : null,
-            }}
-        />
-    ));
+        >
+            {[...Array(lines)].map((e, index) => (
+                <div
+                    key={`line-${index}`}
+                    className={styles.line}
+                    style={{
+                        width,
+                        height: lineHeight,
+                    }}
+                />
+            ))}
+        </div>
+    );
 };
 
 PlaceholderText.propTypes = propTypes;

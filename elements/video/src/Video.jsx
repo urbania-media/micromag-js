@@ -25,7 +25,7 @@ const propTypes = {
     players: PropTypes.arrayOf(PropTypes.elementType),
     width: PropTypes.number,
     height: PropTypes.number,
-    fit: MicromagPropTypes.objectFit,
+    objectFit: MicromagPropTypes.objectFit,
     showEmpty: PropTypes.bool,
     onReady: PropTypes.func,
     className: PropTypes.string,
@@ -40,7 +40,7 @@ const defaultProps = {
     muted: false,
     loop: false,
     controls: null,
-    fit: null,
+    objectFit: null,
     showEmpty: false,
     onReady: null,
     className: null,
@@ -55,7 +55,7 @@ const Video = ({
     muted: initialMuted,
     loop,
     controls,
-    fit,
+    objectFit,
     showEmpty,
     onReady,
     className,
@@ -125,25 +125,24 @@ const Video = ({
 
     useEffect(() => {
         if (refPlayer.current) {
-            console.log('@TODO video api');
-            if (!autoPlay) {                
-                try { refPlayer.current.pause(); } catch{}
+            if (!autoPlay) {
+                refPlayer.current.pause();
             } else {
-                try { refPlayer.current.play(); } catch{}
+                refPlayer.current.play();
             }
         }
     }, [autoPlay]);
 
-    const { size = 'fit' } = fit || {};
+    const { fit = null } = objectFit || {};
 
     let playerSize =
-        size === 'fit'
+        objectFit === null
             ? {
                   width,
                   height,
               }
             : getSizeWithinBounds(videoSize.width, videoSize.height, maxWidth, maxHeight, {
-                  cover: size === 'cover',
+                  cover: fit === 'cover',
               });
     playerSize = showEmpty && !url ? { width: '100%', height: 200 } : playerSize;
 
@@ -178,8 +177,8 @@ const Video = ({
                     style={{
                         width: playerSize.width,
                         height: playerSize.height,
-                        top: size === 'cover' ? (maxHeight - playerSize.height) / 2 : 0,
-                        left: size === 'cover' ? (maxWidth - playerSize.width) / 2 : 0,
+                        top: fit === 'cover' ? (maxHeight - playerSize.height) / 2 : 0,
+                        left: fit === 'cover' ? (maxWidth - playerSize.width) / 2 : 0,
                     }}
                 >
                     <PlayerComponent

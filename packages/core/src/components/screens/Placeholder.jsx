@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import * as MicromagPropTypes from '../../PropTypes';
-import { ScreenSizeProvider } from '../../contexts';
+import { ScreenSizeProvider } from '../../contexts/ScreenSizeContext';
+import { ScreenRenderProvider } from '../../contexts/ScreenRenderContext';
 import Screen from './Screen';
 
 import styles from '../../styles/screens/screen-placeholder.module.scss';
@@ -32,19 +33,19 @@ const ScreenPlaceholder = ({ screen, width, height, className }) => {
         }),
         [width, height],
     );
-
     return (
         <ScreenSizeProvider size={screenSize}>
-            <Screen
-                screen={screen}
-                renderFormat="placeholder"
-                className={classNames([
-                    styles.container,
-                    {
-                        [className]: className !== null,
-                    },
-                ])}
-            />
+            <ScreenRenderProvider context="placeholder">
+                <Screen
+                    screen={screen}
+                    className={classNames([
+                        styles.container,
+                        {
+                            [className]: className !== null,
+                        },
+                    ])}
+                />
+            </ScreenRenderProvider>
         </ScreenSizeProvider>
     );
 };

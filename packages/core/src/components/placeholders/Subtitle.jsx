@@ -10,7 +10,7 @@ export const Subtitle = (props) => (
     <PlaceholderText
         {...props}
         className={classNames([props.className, styles.subtitle])}
-        height={0.3}
+        height={0.25}
         lines={1}
     />
 );

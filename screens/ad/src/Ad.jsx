@@ -8,36 +8,33 @@ import Container from '@micromag/element-container';
 import Background from '@micromag/element-background';
 
 import { PropTypes as MicromagPropTypes, PlaceholderAdImage, Empty } from '@micromag/core';
-import { useScreenSize } from '@micromag/core/contexts';
-import { getRenderFormat, getLayoutParts } from '@micromag/core/utils';
+import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { getLayoutParts } from '@micromag/core/utils';
 import Transitions from '@micromag/core/src/components/transitions/Transitions';
 
 import AdImage from './AdImage';
 
 import styles from './styles.module.scss';
 
-export const layouts = [
-    'center',
-    'top',
-    'bottom',
-    'full',
-    'center-left',
-    'center-right',
-    'top-left',
-    'top-right',
-    'bottom-left',
-    'bottom-right',
-];
-
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf([
+        'center',
+        'top',
+        'bottom',
+        'full',
+        'center-left',
+        'center-right',
+        'top-left',
+        'top-right',
+        'bottom-left',
+        'bottom-right',
+    ]),
     image: MicromagPropTypes.imageElement,
     link: MicromagPropTypes.linkElement,
     text: MicromagPropTypes.text,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
@@ -51,7 +48,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: {
         in: {
@@ -71,23 +67,22 @@ const Ad = ({
     background,
     current,
     active,
-    renderFormat,
     maxRatio,
     transitions,
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
 
-    const { isView, isPlaceholder, isEditor } = getRenderFormat(renderFormat);
     const isEmpty = !image;
-    const isFullScreen = layout === 'full';
+    const isFullscreen = layout === 'full';
 
     const [ready, setReady] = useState(isEmpty);
     const transitionPlaying = current && ready;
 
     const onImageLoaded = useCallback(() => {
         setReady(true);
-    }, [setReady]);    
+    }, [setReady]);
 
     let imageElement = (
         <Transitions transitions={transitions} playing={transitionPlaying}>
@@ -95,8 +90,7 @@ const Ad = ({
                 image={image}
                 link={link}
                 text={text}
-                fullScreen={isFullScreen}
-                renderFormat={renderFormat}
+                fullscreen={isFullscreen}
                 onImageLoaded={onImageLoaded}
             />
         </Transitions>
@@ -106,7 +100,7 @@ const Ad = ({
         imageElement = (
             <PlaceholderAdImage
                 className={classNames([styles.placeholder])}
-                {...(isFullScreen
+                {...(isFullscreen
                     ? {
                           width: '100%',
                           height: '100%',
@@ -116,10 +110,10 @@ const Ad = ({
         );
     }
 
-    if (isEditor && isEmpty) {
+    if (isEdit && isEmpty) {
         imageElement = (
             <Empty className={styles.empty}>
-                <FormattedMessage description="Ad title" defaultMessage="Advertising" />
+                <FormattedMessage defaultMessage="Advertising" description="Ad title" />
             </Empty>
         );
     }
@@ -127,22 +121,24 @@ const Ad = ({
     const { horizontal, vertical } = getLayoutParts(layout);
 
     return (
-        <div className={classNames([
-            styles.container,
-            {
-                [styles.fullscreen]: isFullScreen,
-                [styles.placeholder]: isPlaceholder,
-                [styles[horizontal]]: horizontal !== null,
-                [styles[vertical]]: vertical !== null,
-                [className]: className !== null,
-            },
-        ])}>
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [styles.fullscreen]: isFullscreen,
+                    [styles.placeholder]: isPlaceholder,
+                    [styles[horizontal]]: horizontal !== null,
+                    [styles[vertical]]: vertical !== null,
+                    [className]: className !== null,
+                },
+            ])}
+        >
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
                 maxRatio={maxRatio}
-                playing={(isView && current) || (isEditor && active)}
+                playing={(isView && current) || (isEdit && active)}
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
                 <div className={styles.content}>{imageElement}</div>

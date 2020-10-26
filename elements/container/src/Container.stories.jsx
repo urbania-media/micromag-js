@@ -3,7 +3,7 @@ import Container from './Container';
 
 export default {
     component: Container,
-    title: 'Components/Container',
+    title: 'Elements/Container',
 };
 
 export const normal = () => <Container width={320} height={480} />;

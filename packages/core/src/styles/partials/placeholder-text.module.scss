@@ -1,12 +1,11 @@
 @import '../variables';
 
 .container {
-    display: block;
-    height: 16px;
-    margin-bottom: 2px;
-    background-color: rgba($black, 0.5);
+    padding: 2px;
 
-    &:last-child {
-        margin-bottom: 0;
+    .line {
+        height: 16px;
+        margin: 0 auto;
+        background-color: rgba($black, 0.5);
     }
 }

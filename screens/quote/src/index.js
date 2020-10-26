@@ -1,2 +1,2 @@
-export { default, layouts } from './Quote';
-export { default as schema } from './schema';
+export { default } from './definition';
+export { default as Quote } from './Quote';

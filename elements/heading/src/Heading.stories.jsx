@@ -3,7 +3,7 @@ import Heading from './Heading';
 
 export default {
     component: Heading,
-    title: 'Components/Heading',
+    title: 'Elements/Heading',
 };
 
 export const normal = () => (

@@ -2,27 +2,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Card, Link, Label } from '@micromag/core/components';
+import { Card, Link } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
-import styles from '../../styles/items/story-card.module.scss';
+import ScreensCount from '../partials/ScreensCount';
 
-const messages = defineMessages({
-    edit: {
-        id: 'items.story.edit',
-        defaultMessage: 'Edit',
-    },
-    settings: {
-        id: 'items.story.settings',
-        defaultMessage: 'Settings',
-    },
-    screens: {
-        id: 'items.story.screens',
-        defaultMessage: '{count} {count, plural, one {screen} other {screens}}',
-    },
-});
+import styles from '../../styles/items/story-card.module.scss';
 
 const propTypes = {
     item: MicromagPropTypes.story.isRequired,
@@ -48,7 +35,7 @@ const StoryCardItem = ({ item, className }) => {
                         })}
                         className="card-link text-white"
                     >
-                        {messages.edit}
+                        <FormattedMessage defaultMessage="Edit" description="Button label" />
                     </Link>
                     <Link
                         href={url('stories.settings', {
@@ -56,7 +43,7 @@ const StoryCardItem = ({ item, className }) => {
                         })}
                         className="card-link text-white"
                     >
-                        {messages.settings}
+                        <FormattedMessage defaultMessage="Settings" description="Button label" />
                     </Link>
                 </>
             }
@@ -86,7 +73,7 @@ const StoryCardItem = ({ item, className }) => {
             </h4>
             {screensCount > 0 ? (
                 <p className="text-muted mb-0">
-                    <Label values={{ count: screensCount }}>{messages.screens}</Label>
+                    <ScreensCount count={screensCount} />
                 </p>
             ) : null}
         </Card>

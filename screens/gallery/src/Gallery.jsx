@@ -1,45 +1,49 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import isPlainObject from 'lodash/isPlainObject';
 import { FormattedMessage } from 'react-intl';
-
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { ScreenElement, PlaceholderImage, PlaceholderShortText, Transitions } from '@micromag/core/components';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Grid from '@micromag/element-grid';
 import Image from '@micromag/element-image';
-
-import { PropTypes as MicromagPropTypes, PlaceholderImage, Empty } from '@micromag/core';
-import { useScreenSize } from '@micromag/core/contexts';
-import { getRenderFormat } from '@micromag/core/utils';
+import Text from '@micromag/element-text';
 
 import layoutProps from './layouts';
 
-import { schemas as messages } from './messages';
-
 import styles from './styles.module.scss';
-import Transitions from '@micromag/core/src/components/transitions/Transitions';
-
-export const layouts = [
-    'four-by-four',
-    'one-plus-three',
-    'one-plus-two',
-    'six-by-two',
-    'three-by-three',
-    'two-by-two',
-    'two-high',
-    'two-plus-one',
-    'two-wide',
-];
 
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf([
+        // 2
+        'two-vertical',
+        'two-horizontal',
+        // 3
+        'one-plus-two',
+        'two-plus-one',
+        'three-vertical',
+        // 4
+        'four-mosaic',
+        'four-mosaic-reverse',
+        'two-by-two',
+        'one-plus-three',
+        // 5
+        'two-wide-plus-three',
+        'three-plus-two-wide',
+        // 6
+        'two-by-three',
+        'three-by-two',
+    ]),
+    images: MicromagPropTypes.imageMedias,
+    withLegends: PropTypes.bool,
+    spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    images: MicromagPropTypes.images,
-    defaultSpacing: PropTypes.number,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
@@ -48,55 +52,49 @@ const propTypes = {
 
 const defaultProps = {
     layout: null,
-    background: null,
+    withLegends: false,
     images: [],
-    defaultSpacing: 10,
+    spacing: 10,
+    background: null,
     current: true,
     active: false,
-    renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: {
         in: {
             name: 'fade',
-            duration: 1000,
+            duration: 250,
         },
         out: 'scale',
     },
-    transitionStagger: 75,
+    transitionStagger: 50,
     className: null,
 };
 
 const Gallery = ({
     layout,
-    images: imageList,
+    images,
+    withLegends,
     background,
     current,
     active,
-    defaultSpacing,
-    renderFormat,
+    spacing,
     maxRatio,
     transitions,
     transitionStagger,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isView, isPreview, isEditor } = getRenderFormat(renderFormat);
-    const grid = layout && layoutProps[layout] ? layoutProps[layout] : {};
-    const { layout: gridLayout = [] } = grid || {};
+    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
-    const defaultArray = [
-        ...Array(16).map((i) => ({
-            id: `image-${i}`,
-            ...(imageList[i] ? imageList[i] : null),
-        })),
-    ];
-    const gridSpaces = gridLayout.reduce((acc, current) => acc + current.columns.length, 0);
-    const images = isPreview ? imageList.slice(0, 16) : imageList || [];
-    const activeImages = isEditor && imageList.length === 0 ? defaultArray : images;
+    const finalSpacing = isPlaceholder || isPreview ? 4 : spacing;
 
-    const imagesCount = Math.min(gridSpaces, activeImages.length);
+    const grid = isPlainObject(layoutProps[layout]) ? layoutProps[layout] : {};
+    const { layout: gridLayout = [], vertical = false } = grid;
+
+    const gridSpaces = gridLayout.reduce((acc, { rows, columns }) => acc + (vertical ? rows:columns).length, 0);
 
     const [imagesLoaded, setImagesLoaded] = useState(0);
+    const imagesCount = images !== null ? Math.min(gridSpaces, images.length) : 0;
     const ready = imagesLoaded >= imagesCount;
     const transitionPlaying = current && ready;
 
@@ -104,45 +102,83 @@ const Gallery = ({
         setImagesLoaded(imagesLoaded + 1);
     }, [imagesLoaded, setImagesLoaded]);
 
-    let transitionDelay = 0;
+    const imagesEl = useRef([]);
+    const [imagesSizes, setImagesSizes] = useState([]);
 
-    const items = isPlaceholder
-        ? gridLayout
-              .reduce((map, row) => [...map, ...row.columns], [])
-              .map(() => (
-                  <PlaceholderImage className={styles.placeholder} width="100%" height="100%" />
-              ))
-        : activeImages.map((it, index) => {
-              const element =
-                  isEditor && !it ? (
-                      <Empty className={styles.empty}>
-                          <FormattedMessage {...messages.image} />
-                      </Empty>
-                  ) : (
-                      <Transitions
-                          transitions={transitions}
-                          delay={transitionDelay}
-                          playing={transitionPlaying}
-                      >
-                          <Image
-                              {...it}
-                              fit={{ size: 'cover' }}
-                              contain
-                              className={styles.image}
-                              onLoaded={onImageLoaded}
-                          />
-                      </Transitions>
-                  );
-              transitionDelay += transitionStagger;
-              return element;
-          });
+    useEffect( () => {
+        if (imagesEl.current.length) {
+            setImagesSizes(imagesEl.current.map(imageEl => {
+                const imageRect = imageEl.getBoundingClientRect();
+                return { width: imageRect.width, height: imageRect.height };
+            }));
+        }
+    }, [width, height, setImagesSizes]);
+
+    const items = [...Array(gridSpaces)].map((item, itemI) => {
+        const image = images[itemI] || null;
+        const imageSize = imagesSizes[itemI] || {};
+        const { legend = null } = image || {};
+
+        const hasImage = image !== null;
+        const hasLegend = legend !== null;
+        
+        const isEmptyImage = isEdit && !hasImage;
+        const isEmptyLegend = isEdit && !hasLegend;
+
+        return (
+            <div key={`item-${itemI}`} className={styles.gridItem}>
+                <div className={styles.image} ref={ el => {imagesEl.current[itemI] = el }}>
+                    <Transitions
+                        transitions={transitions}
+                        delay={itemI * transitionStagger}
+                        playing={transitionPlaying}
+                        disabled={isPlaceholder || isEmptyImage}
+                    >
+                        <ScreenElement
+                            placeholder={<PlaceholderImage className={styles.placeholder} width="100%" height="100%" />}
+                            emptyLabel={
+                                <FormattedMessage defaultMessage="Image" description="Image placeholder" />
+                            }
+                            emptyClassName={styles.empty}
+                            isEmpty={isEmptyImage}
+                        >
+                            <Image
+                                {...image}
+                                {...imageSize}
+                                objectFit={{ fit: 'cover' }}
+                                onLoaded={onImageLoaded}
+                            />
+                        </ScreenElement>
+                    </Transitions>
+                </div>
+                { withLegends ? <div className={styles.legend}>
+                    <Transitions
+                        transitions={transitions}
+                        delay={itemI * transitionStagger}
+                        playing={transitionPlaying}
+                        disabled={isPlaceholder || isEmptyLegend}
+                    >
+                        <ScreenElement
+                            placeholder={<PlaceholderShortText className={styles.placeholder} width="100%" />}
+                            emptyLabel={
+                                <FormattedMessage defaultMessage="Legend" description="Legend placeholder" />
+                            }
+                            emptyClassName={styles.empty}
+                            isEmpty={isEmptyLegend}
+                        >
+                            <Text {...legend} className={styles.legendText} />
+                        </ScreenElement>
+                    </Transitions>
+                </div> : null }
+            </div>
+        );        
+    });
 
     return (
         <div
             className={classNames([
                 styles.container,
                 {
-                    [styles.placeholder]: isPlaceholder,
                     [className]: className !== null,
                 },
             ])}
@@ -151,22 +187,11 @@ const Gallery = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEditor && active)}
+                playing={(isView && current) || (isEdit && active)}
                 maxRatio={maxRatio}
             />
-
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <div className={styles.content}>
-                    <div className={styles.images}>
-                        <Grid
-                            className={styles.grid}
-                            spacing={defaultSpacing}
-                            isSmall={isPlaceholder || isPreview}
-                            items={items}
-                            {...grid}
-                        />
-                    </div>
-                </div>
+                <Grid className={styles.grid} spacing={finalSpacing} items={items} {...grid} />
             </Container>
         </div>
     );

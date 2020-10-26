@@ -3,111 +3,112 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
-import TextComponent from '@micromag/element-text';
-
-import { useScreenSize } from '@micromag/core/contexts';
-import { getRenderFormat } from '@micromag/core/utils';
-import { PropTypes as MicromagPropTypes, PlaceholderText, Empty } from '@micromag/core';
-
-import { schemas as messages } from './messages';
+import Layout, { Spacer } from '@micromag/element-layout';
+import Heading from '@micromag/element-heading';
+import Text from '@micromag/element-text';
 
 import styles from './styles.module.scss';
-import Transitions from '@micromag/core/src/components/transitions/Transitions';
-
-export const layouts = ['top', 'center', 'bottom'];
 
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split']),    
     text: MicromagPropTypes.textElement,
+    title: MicromagPropTypes.headingElement,
+    withTitle: PropTypes.bool,
+    padding: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    textAlign: MicromagPropTypes.textAlign,
     current: PropTypes.bool,
-    active: PropTypes.bool,    
-    renderFormat: MicromagPropTypes.renderFormat,
+    active: PropTypes.bool,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
+    transitionStagger: PropTypes.number,
     className: PropTypes.string,
 };
 
 const defaultProps = {
-    layout: 'center',
+    layout: 'top',    
     text: null,
+    title: null,
+    withTitle: false,
+    padding: 20,
     background: null,
-    textAlign: 'center',
     current: true,
-    active: false,    
-    renderFormat: 'view',
+    active: false,
     maxRatio: 3 / 4,
     transitions: {
         in: {
             name: 'fade',
-            duration: 1000,
+            duration: 250,
         },
         out: 'scale',
     },
+    transitionStagger: 100,
     className: null,
 };
 
 const TextScreen = ({
-    layout,
+    layout,    
     text,
+    title,
+    withTitle,
+    padding,
     background,
-    textAlign,
     current,
-    active,    
-    renderFormat,
+    active,
     maxRatio,
     transitions,
+    transitionStagger,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isEditor, isView } = getRenderFormat(renderFormat);
-    const isEmpty = isEditor && text === null;
 
-    let textComponent = null;
+    const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
 
-    if (isPlaceholder) {
-        textComponent = <PlaceholderText className={styles.placeholder} />;
-    } else if (isEmpty) {
-        textComponent = (
-            <Empty className={styles.empty}>
-                <FormattedMessage {...messages.text} />
-            </Empty>
-        );
-    } else {
-        textComponent = (
-            <Transitions transitions={transitions} playing={current}>
-                <TextComponent {...text} className={styles.text} />
-            </Transitions>
-        );
-    }
+    const hasTitle = title !== null;
+    const hasText = text !== null;
 
-    let contentJustifyContentValue;
+    const isEmpty = isEdit && !hasTitle && !hasText;
 
-    switch (layout) {
-        default:
-        case 'center':
-            contentJustifyContentValue = 'center'; break;
-        case 'top':
-            contentJustifyContentValue = 'flex-start'; break;
-        case 'bottom':
-            contentJustifyContentValue = 'flex-end'; break;
-        case 'around':
-            contentJustifyContentValue = 'space-around'; break;
-        case 'between':
-            contentJustifyContentValue = 'space-between'; break;
-    }
+    const isSplitted = layout === 'split';
+    const distribution = isSplitted ? 'between' : null;
+    const verticalAlign = isSplitted ? null : layout;
+
+    // Create elements
+    const items = [
+        (withTitle && (hasTitle || isPlaceholder)) && <ScreenElement
+            key="title"
+            placeholder="title"
+            emptyLabel={<FormattedMessage defaultMessage="Title" description="Title placeholder" />}
+            emptyClassName={styles.empty}
+            isEmpty={isEmpty}
+        >
+            <Heading {...title} />
+        </ScreenElement>,
+
+        (isSplitted && withTitle) && <Spacer />,
+
+        (hasText || isPlaceholder) && <ScreenElement
+            key="description"
+            placeholder="text"
+            emptyLabel={<FormattedMessage defaultMessage="Text" description="Text placeholder" />}
+            emptyClassName={styles.empty}
+            isEmpty={isEmpty}
+        >
+            <Text {...text} />
+        </ScreenElement>,
+    ];
 
     return (
         <div
             className={classNames([
                 styles.container,
                 {
-                    [styles[textAlign]]: textAlign !== null,
                     [className]: className !== null,
+                    [styles.placeholder]: isPlaceholder,
                 },
             ])}
         >
@@ -116,17 +117,24 @@ const TextScreen = ({
                 width={width}
                 height={height}
                 maxRatio={maxRatio}
-                playing={(isView && current) || (isEditor && active)}
+                playing={(isView && current) || (isEdit && active)}
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <div
-                    className={styles.content}
-                    style={{
-                        justifyContent: contentJustifyContentValue,
-                    }}
+                <Layout
+                    fullscreen
+                    verticalAlign={verticalAlign}
+                    distribution={distribution}
+                    style={ isView ? { padding } : null }
                 >
-                    {textComponent}
-                </div>
+                    <TransitionsStagger
+                        transitions={transitions}
+                        stagger={transitionStagger}
+                        disabled={!isView}
+                        playing
+                    >
+                        {items}
+                    </TransitionsStagger>
+                </Layout>
             </Container>
         </div>
     );

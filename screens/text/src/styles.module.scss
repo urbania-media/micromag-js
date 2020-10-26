@@ -9,34 +9,4 @@
         width: 100%;
         height: 50px;
     }
-
-    .content {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
-
-    &.center {
-        text-align: center;
-
-        .placeholder {
-            @extend %placeholder-center;
-        }
-    }
-
-    &.left {
-        text-align: left;
-
-        .placeholder {
-            @extend %placeholder-left;
-        }
-    }
-
-    &.right {
-        text-align: right;
-
-        .placeholder {
-            @extend %placeholder-right;
-        }
-    }
 }

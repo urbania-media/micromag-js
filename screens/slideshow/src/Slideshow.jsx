@@ -5,32 +5,25 @@ import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { animated } from 'react-spring';
 
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { PlaceholderSlideshow, Empty } from '@micromag/core/components';
+import { useSwipe } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import ImageElement from '@micromag/element-image';
 import ButtonElement from '@micromag/element-button';
 import TextElement from '@micromag/element-text';
 
-import { PropTypes as MicromagPropTypes, PlaceholderSlideshow, Empty } from '@micromag/core';
-import { useScreenSize } from '@micromag/core/contexts';
-import { getRenderFormat } from '@micromag/core/utils';
-import { useSwipe } from '@micromag/core/hooks';
-
-import { schemas as messages } from './messages';
-
 import styles from './slideshow.module.scss';
 
-export const layouts = ['center'];
-
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf(['center']),
     slides: MicromagPropTypes.slides,
     button: MicromagPropTypes.buttonElement,
     background: MicromagPropTypes.backgroundElement,
-    textAlign: MicromagPropTypes.textAlign,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
@@ -41,10 +34,8 @@ const defaultProps = {
     slides: [],
     button: null,
     background: null,
-    textAlign: 'left',
     current: true,
     active: false,
-    renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: null,
     className: null,
@@ -55,17 +46,15 @@ const Slideshow = ({
     slides,
     button,
     background,
-    textAlign,
     current,
     active,
-    renderFormat,
     maxRatio,
     transitions,
     className,
 }) => {
     const [parallelIndex, setParallelIndex] = useState(0);
     const { width, height, screens } = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isSimple, isEdit, isView } = useScreenRenderContext();
     const maxWidth = Math.min(width, 500);
 
     const { items, bind, setIndex } = useSwipe({
@@ -96,9 +85,9 @@ const Slideshow = ({
     }, [parallelIndex, setIndex]);
 
     const inner =
-        isEditor && slides.length === 0 ? (
+        isEdit && slides.length === 0 ? (
             <Empty className={styles.empty}>
-                <FormattedMessage {...messages.schemaTitle} />
+                <FormattedMessage defaultMessage="Slideshow" description="Slideshow placeholder" />
             </Empty>
         ) : (
             <>
@@ -117,7 +106,7 @@ const Slideshow = ({
                                 className={styles.slide}
                             >
                                 {item.image ? (
-                                    <ImageElement {...item.image} fit={{ size: 'cover' }} />
+                                    <ImageElement {...item.image} objectFit={{ fit: 'cover' }} />
                                 ) : null}
                                 {item.text ? <TextElement {...item.text} /> : null}
                             </animated.div>
@@ -148,27 +137,28 @@ const Slideshow = ({
         );
 
     return (
-        <div className={classNames([
-            styles.container,
-            screens.map((size) => styles[`screen-${size}`]),
-            {
-                [styles[textAlign]]: textAlign !== null,
-                [className]: className,
-            },
-        ])}>
+        <div
+            className={classNames([
+                styles.container,
+                screens.map((size) => styles[`screen-${size}`]),
+                {
+                    [className]: className,
+                },
+            ])}
+        >
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEditor && active)}
+                playing={(isView && current) || (isEdit && active)}
                 maxRatio={maxRatio}
             />
-            
+
             <Container width={width} height={height} current={current} maxRatio={maxRatio}>
                 <div className={styles.content}>
                     {isPlaceholder ? <PlaceholderSlideshow /> : inner}
                 </div>
-            </Container>            
+            </Container>
         </div>
     );
 };

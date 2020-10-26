@@ -8,8 +8,9 @@
 }
 
 .screen {
-    @extend %fullscreen;
+    @extend %fullscreen;    
     box-sizing: content-box;
+    overflow: auto;
 
     .withBorder & {
         border: solid 1px $gray-200;

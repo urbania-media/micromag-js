@@ -3,7 +3,7 @@ import Checkbox from './Checkbox';
 
 export default {
     component: Checkbox,
-    title: 'Components/Checkbox',
+    title: 'Elements/Checkbox',
 };
 
 const option = "Example checkbox"

@@ -13,16 +13,6 @@ const ScreenSizeContext = React.createContext({
 
 export const useScreenSize = () => useContext(ScreenSizeContext);
 
-export const useScreen = () => {
-    const { screen = null } = useContext(ScreenSizeContext);
-    return screen;
-};
-
-export const useScreens = () => {
-    const { screens = [] } = useContext(ScreenSizeContext);
-    return screens;
-};
-
 const propTypes = {
     children: PropTypes.node.isRequired,
     size: MicromagPropTypes.screenSize,

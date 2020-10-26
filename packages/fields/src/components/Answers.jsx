@@ -2,22 +2,11 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 // import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import ItemsField from './Items';
 import AnswerField from './Answer';
-
-const messages = defineMessages({
-    noAnswer: {
-        id: 'answers.no_answer',
-        defaultMessage: 'No answer...',
-    },
-    addAnswer: {
-        id: 'answers.add_answer',
-        defaultMessage: 'Add an answer',
-    },
-});
 
 const propTypes = {
     value: MicromagPropTypes.answers,
@@ -27,10 +16,20 @@ const defaultProps = {
     value: null,
 };
 
-const AnswersField = props => (
+const AnswersField = (props) => (
     <ItemsField
-        noItemLabel={messages.noAnswer}
-        addItemLabel={messages.addAnswer}
+        noItemLabel={
+            <FormattedMessage
+                defaultMessage="No answer..."
+                description="Label when there is no item in answers field"
+            />
+        }
+        addItemLabel={
+            <FormattedMessage
+                defaultMessage="Add an answer"
+                description="Button label in answers field"
+            />
+        }
         ItemComponent={AnswerField}
         {...props}
     />

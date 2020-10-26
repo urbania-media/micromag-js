@@ -1,10 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { withKnobs } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
-import { IntlProvider } from 'react-intl';
 import { MemoryRouter } from 'react-router';
 import FieldsProvider from '../../../fields/src/components/FieldsProvider';
-import { withScreenSize } from '../../../../.storybook/decorators';
 // import { paragraph, image } from '../../../../.storybook/data';
 
 import MediaGallery from '../components/MediaGallery';
@@ -47,15 +44,16 @@ const props = {
 export default {
     component: MediaGallery,
     title: 'MediaGallery',
-    decorators: [withKnobs, withScreenSize()],
+    parameters: {
+        screenSize: true,
+        intl: true,
+    },
 };
 
 export const Normal = () => (
     <FieldsProvider>
-        <IntlProvider>
-            <MemoryRouter>
-                <MediaGallery {...props} />
-            </MemoryRouter>
-        </IntlProvider>
+        <MemoryRouter>
+            <MediaGallery {...props} />
+        </MemoryRouter>
     </FieldsProvider>
 );

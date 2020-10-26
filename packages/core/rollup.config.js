@@ -4,21 +4,23 @@ import resolve from '@rollup/plugin-node-resolve';
 import baseConfig from '../../rollup.config';
 
 export default [
+    baseConfig({
+        resolveOptions: {
+            extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
+            resolveOnly: [path.join(__dirname, './src/PropTypes')],
+        },
+    }),
     {
-        ...baseConfig,
-        plugins: [
-            ...baseConfig.plugins.slice(0, 1),
-            resolve({
+        ...baseConfig({
+            resolveOptions: {
                 extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
                 resolveOnly: [
-                    path.join(__dirname, './src/PropTypes')
-                ]
-            }),
-            ...baseConfig.plugins.slice(2),
-        ]
-    },
-    {
-        ...baseConfig,
+                    path.join(__dirname, './src/PropTypes'),
+                    new RegExp(path.join(__dirname, './src/components')),
+                    new RegExp(path.join(__dirname, './src/styles')),
+                ],
+            },
+        }),
         input: 'src/components.js',
         output: [
             {
@@ -29,21 +31,18 @@ export default [
                 file: 'es/components.js',
             },
         ],
-        plugins: [
-            ...baseConfig.plugins.slice(0, 1),
-            resolve({
+    },
+    {
+        ...baseConfig({
+            resolveOptions: {
                 extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
                 resolveOnly: [
                     path.join(__dirname, './src/PropTypes'),
-                    new RegExp(path.join(__dirname, './src/components')),
-                    new RegExp(path.join(__dirname, './src/styles'))
-                ]
-            }),
-            ...baseConfig.plugins.slice(2),
-        ]
-    },
-    {
-        ...baseConfig,
+                    path.join(__dirname, './src/lib/EventsManager'),
+                    new RegExp(path.join(__dirname, './src/hooks')),
+                ],
+            },
+        }),
         input: 'src/hooks.js',
         output: [
             {
@@ -54,21 +53,18 @@ export default [
                 file: 'es/hooks.js',
             },
         ],
-        plugins: [
-            ...baseConfig.plugins.slice(0, 1),
-            resolve({
+    },
+    {
+        ...baseConfig({
+            resolveOptions: {
                 extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
                 resolveOnly: [
                     path.join(__dirname, './src/PropTypes'),
-                    path.join(__dirname, './src/lib/EventsManager'),
-                    new RegExp(path.join(__dirname, './src/hooks'))
-                ]
-            }),
-            ...baseConfig.plugins.slice(2),
-        ]
-    },
-    {
-        ...baseConfig,
+                    new RegExp(path.join(__dirname, './src/components/namespaces')),
+                    new RegExp(path.join(__dirname, './src/contexts')),
+                ],
+            },
+        }),
         input: 'src/contexts.js',
         output: [
             {
@@ -79,21 +75,17 @@ export default [
                 file: 'es/contexts.js',
             },
         ],
-        plugins: [
-            ...baseConfig.plugins.slice(0, 1),
-            resolve({
+    },
+    {
+        ...baseConfig({
+            resolveOptions: {
                 extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
                 resolveOnly: [
                     path.join(__dirname, './src/PropTypes'),
-                    new RegExp(path.join(__dirname, './src/components/namespaces')),
-                    new RegExp(path.join(__dirname, './src/contexts'))
-                ]
-            }),
-            ...baseConfig.plugins.slice(2),
-        ]
-    },
-    {
-        ...baseConfig,
+                    new RegExp(path.join(__dirname, './src/utils')),
+                ],
+            },
+        }),
         input: 'src/utils.js',
         output: [
             {
@@ -104,55 +96,5 @@ export default [
                 file: 'es/utils.js',
             },
         ],
-        plugins: [
-            ...baseConfig.plugins.slice(0, 1),
-            resolve({
-                extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
-                resolveOnly: [
-                    path.join(__dirname, './src/PropTypes'),
-                    new RegExp(path.join(__dirname, './src/utils'))
-                ]
-            }),
-            ...baseConfig.plugins.slice(2),
-        ]
     },
-    // {
-    //     ...baseConfig,
-    //     input: 'src/contexts.js',
-    //     output: [
-    //         {
-    //             file: 'lib/contexts.js',
-    //             format: 'cjs',
-    //         },
-    //         {
-    //             file: 'es/contexts.js',
-    //         },
-    //     ],
-    // },
-    // {
-    //     ...baseConfig,
-    //     input: 'src/hooks.js',
-    //     output: [
-    //         {
-    //             file: 'lib/hooks.js',
-    //             format: 'cjs',
-    //         },
-    //         {
-    //             file: 'es/hooks.js',
-    //         },
-    //     ],
-    // },
-    // {
-    //     ...baseConfig,
-    //     input: 'src/utils.js',
-    //     output: [
-    //         {
-    //             file: 'lib/utils.js',
-    //             format: 'cjs',
-    //         },
-    //         {
-    //             file: 'es/utils.js',
-    //         },
-    //     ],
-    // },
 ];

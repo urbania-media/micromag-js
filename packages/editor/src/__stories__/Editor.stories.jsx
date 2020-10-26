@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import Editor from '../components/EditorContainer';
 import IntlProvider from '../../../intl/src/IntlProvider';
 import { ApiProvider } from '../../../data/src/contexts/ApiContext';
-import { withGoogleMapsApi } from '../../../../.storybook/decorators';
+import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 
 // import manager from '../../../intl/src/manager';
 
 import createDefaultStory from '../utils/createDefaultStory';
-import '../../../intl/locale/fr';
+import '../../../intl/lang/fr';
 
 export default {
     component: Editor,
     title: 'Editor/Editor',
-    decorators: [withGoogleMapsApi],
+    decorators: [withGoogleMaps],
 };
 
 const defaultStory = createDefaultStory();

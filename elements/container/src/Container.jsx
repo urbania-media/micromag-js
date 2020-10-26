@@ -9,27 +9,33 @@ const propTypes = {
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
     maxRatio: PropTypes.number,
+    withScroll: PropTypes.bool,
     className: PropTypes.string,
     children: PropTypes.node,
 };
 
 const defaultProps = {
     maxRatio: null,
+    withScroll: false,
     className: null,
     children: null,
 };
 
-const Container = ({ width, height, maxRatio, className, children }) => {
+const Container = ({
+    width,
+    height,
+    maxRatio,
+    withScroll,
+    className,
+    children,
+}) => {
     const currentRatio = width / height;
     const maxWidth = maxRatio !== null && currentRatio > maxRatio ? height * maxRatio : null;
 
     const containerStyle = {
-        width,
-        height,
-    }
-
-    const innerStyle = {
-        width: maxWidth
+        width: maxWidth,
+        height: withScroll ? null : height,
+        minHeight: withScroll ? height : null
     };
 
     return (
@@ -42,9 +48,7 @@ const Container = ({ width, height, maxRatio, className, children }) => {
             ])}
             style={containerStyle}
         >
-            <div className={styles.inner} style={innerStyle}>
-                {children}
-            </div>
+            { children }
         </div>
     );
 };

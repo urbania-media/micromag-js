@@ -2,7 +2,11 @@
 import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { FormattedMessage } from 'react-intl';
 
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { PlaceholderText, PlaceholderButton } from '@micromag/core/components';
+import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import TextElement from '@micromag/element-text';
@@ -10,33 +14,19 @@ import ImageElement from '@micromag/element-image';
 import VideoElement from '@micromag/element-video';
 import Button from '@micromag/element-button';
 
-import {
-    Label,
-    PlaceholderText,
-    PlaceholderButton,
-    PropTypes as MicromagPropTypes,
-} from '@micromag/core';
-
-import { useScreenSize } from '@micromag/core/contexts';
-import { getRenderFormat } from '@micromag/core/utils';
-
-import messages from './messages';
-
 import styles from './styles.module.scss';
 
-export const layouts = ['normal'];
-
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf(['normal']),
     multipleAnswers: PropTypes.bool,
     question: MicromagPropTypes.textElement,
     answers: PropTypes.arrayOf(MicromagPropTypes.textElement),
     success: PropTypes.shape({
-        image: MicromagPropTypes.image,
+        image: MicromagPropTypes.imageMedia,
         text: MicromagPropTypes.textElement,
     }),
     failure: PropTypes.shape({
-        image: MicromagPropTypes.image,
+        image: MicromagPropTypes.imageMedia,
         text: MicromagPropTypes.textElement,
     }),
     textStyle: MicromagPropTypes.textStyle,
@@ -44,7 +34,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
@@ -62,7 +51,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: false,
-    renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: null,
     className: null,
@@ -80,7 +68,6 @@ const SurveyMultipleChoice = ({
     background,
     current,
     active,
-    renderFormat,
     maxRatio,
     transitions,
     className,
@@ -89,7 +76,7 @@ const SurveyMultipleChoice = ({
     const [answered, setAnswered] = useState([]);
 
     const { width, height } = useScreenSize();
-    const { isPreview, isEditor, isPlaceholder, isView } = getRenderFormat(renderFormat);
+    const { isPreview, isEdit, isPlaceholder, isView } = useScreenRenderContext();
     const isSimple = isPreview || isPlaceholder;
 
     const spacing = 10;
@@ -175,7 +162,7 @@ const SurveyMultipleChoice = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEditor && active)}
+                playing={(isView && current) || (isEdit && active)}
                 maxRatio={maxRatio}
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
@@ -186,14 +173,14 @@ const SurveyMultipleChoice = ({
                         ) : (
                             <>
                                 <div className={styles.questionContainer}>
-                                    {renderFormat !== 'placeholder' ? (
+                                    {!isPlaceholder ? (
                                         questionBlock
                                     ) : (
                                         <PlaceholderText className={styles.placeholder} />
                                     )}
                                 </div>
                                 <div className={styles.buttons}>
-                                    {renderFormat !== 'placeholder' ? (
+                                    {!isPlaceholder ? (
                                         <>
                                             {answerFields !== null
                                                 ? answerFields.map((item, i) => {
@@ -258,24 +245,30 @@ const SurveyMultipleChoice = ({
                                 </div>
                             </>
                         )}
-                        {renderFormat !== 'placeholder' && multipleAnswers && answer === null ? (
+                        {!isPlaceholder && multipleAnswers && answer === null ? (
                             <Button
                                 className={styles.submitButton}
                                 onClick={onClickSubmit}
                                 {...button}
                             >
-                                <Label>{messages.submit}</Label>
+                                <FormattedMessage
+                                    defaultMessage="Submit"
+                                    description="Submit placeholder"
+                                />
                             </Button>
                         ) : (
                             <PlaceholderButton className={styles.submitButtonPlaceholder} />
                         )}
-                        {renderFormat !== 'placeholder' && isEditor && answer !== null ? (
+                        {!isPlaceholder && isEdit && answer !== null ? (
                             <Button
                                 className={styles.submitButton}
                                 onClick={onClickReset}
                                 {...button}
                             >
-                                <Label>{messages.retry}</Label>
+                                <FormattedMessage
+                                    defaultMessage="Retry"
+                                    description="Retry placeholder"
+                                />
                             </Button>
                         ) : null}
                     </div>

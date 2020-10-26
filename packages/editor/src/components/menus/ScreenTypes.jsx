@@ -3,50 +3,40 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useSchemasRepository, SCREENS_NAMESPACE } from '@micromag/schemas';
+import { isMessage } from '@micromag/core/utils';
+import { Label } from '@micromag/core/components';
+import { useScreens } from '@micromag/core/contexts';
 
 import Screens from './Screens';
 
 import styles from '../../styles/menus/screen-types.module.scss';
 
 const propTypes = {
-    types: MicromagPropTypes.screenTypes,
+    screens: MicromagPropTypes.screenDefinitions,
     className: PropTypes.string,
     onClickItem: PropTypes.func,
 };
 
 const defaultProps = {
-    types: null,
+    screens: null,
     className: null,
     onClickItem: null,
 };
 
-const ScreenTypes = ({ types, className, onClickItem }) => {
-    const repository = useSchemasRepository();
-    const contextTypes = useMemo(() => {
-        const screenSchemas = repository.getSchemas(SCREENS_NAMESPACE);
-        return screenSchemas
-            .filter(it => it.$id.match(/\/screen\.json$/) === null)
-            .map(schema => {
-                const id = schema.$id.match(/\/([^./]+)\.json$/i)[1];
-                return {
-                    id,
-                    name: schema.title,
-                    group: schema.group || null,
-                };
-            });
-    }, [repository]);
-    const finalTypes = types || contextTypes;
+const ScreenTypes = ({ screens, className, onClickItem }) => {
+    const contextScreens = useScreens();
+    const finalScreens = screens || contextScreens;
     const groups = useMemo(
         () =>
-            finalTypes.reduce((allGroups, type) => {
-                const { group = null, name = null, id = null } = type;
-                const groupId = group || id;
-                const groupName = group || name;
-                const groupIndex = allGroups.findIndex(it => it.id === groupId);
+            finalScreens.reduce((allGroups, screen) => {
+                const { id, title, group = null } = screen;
+                const { id: groupId, name: groupName } = isMessage(group)
+                    ? { id: group.id, name: group }
+                    : { id: group || id, name: group || title };
+                const groupIndex = allGroups.findIndex((it) => it.id === groupId);
                 const item = {
-                    ...type,
-                    type: type.id,
+                    ...screen,
+                    type: id,
                 };
                 return groupIndex !== -1
                     ? [
@@ -66,7 +56,7 @@ const ScreenTypes = ({ types, className, onClickItem }) => {
                           },
                       ];
             }, []),
-        [finalTypes],
+        [finalScreens],
     );
     return (
         <div
@@ -80,10 +70,10 @@ const ScreenTypes = ({ types, className, onClickItem }) => {
             <div className={styles.rows}>
                 {groups.map(({ id, name, items }) => (
                     <div key={`group-${id}`} className={styles.row}>
-                        <h4 className={styles.title}>{name}</h4>
+
                         <div className={styles.layouts}>
                             <Screens
-                                items={items}
+                                items={items.slice(0, 1)}
                                 withPlaceholder
                                 itemClassName={styles.item}
                                 previewMinWidth={120}

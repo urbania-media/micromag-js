@@ -5,16 +5,6 @@
 .container {
     @extend %screen;
 
-    .containerInner {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
-
-    .content {
-        margin: auto 0;
-    }
-
     .image {
         width: 100%;
         height: auto;
@@ -25,10 +15,6 @@
         height: 20px;
         margin: 4px auto;
         border-left: 2px dashed $black;
-    }
-
-    .placeholder {
-        @extend %placeholder-center;
     }
 
     .timelineBlock {

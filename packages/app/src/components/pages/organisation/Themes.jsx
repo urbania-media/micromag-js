@@ -2,22 +2,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
 import OrganisationMenu from '../../menus/Organisation';
 
 import styles from '../../../styles/pages/organisation/themes.module.scss';
-
-import organisationMessages from './messages';
-
-const messages = defineMessages({
-    title: {
-        id: 'pages.organisation.themes.title',
-        defaultMessage: 'Themes',
-    }
-});
 
 const propTypes = {
     className: PropTypes.string,
@@ -30,8 +21,8 @@ const defaultProps = {
 const OrganisationThemesPage = ({ className }) => (
     <MainLayout>
         <Page
-            section={organisationMessages.title}
-            title={messages.title}
+            section={<FormattedMessage defaultMessage="Organisation" descrition="Section title" />}
+            title={<FormattedMessage defaultMessage="Themes" descrition="Page title" />}
             sidebar={<OrganisationMenu asList />}
             className={classNames([
                 styles.container,

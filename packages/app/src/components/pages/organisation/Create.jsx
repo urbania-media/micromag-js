@@ -2,10 +2,10 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { useHistory, useLocation } from 'react-router';
 import { parse as parseQueryString } from 'query-string';
-import { FormPanel, Label } from '@micromag/core/components';
+import { FormPanel } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
 import { useSetOrganisation } from '../../../contexts/OrganisationContext';
@@ -14,17 +14,6 @@ import Page from '../../partials/Page';
 import OrganisationCreateForm from '../../forms/OrganisationCreate';
 
 import styles from '../../../styles/pages/organisation/create.module.scss';
-
-const messages = defineMessages({
-    title: {
-        id: 'pages.organisation.create.title',
-        defaultMessage: 'Create an organisation',
-    },
-    description: {
-        id: 'pages.organisation.create.description',
-        defaultMessage: 'Please fill all the fields below.',
-    },
-});
 
 const propTypes = {
     className: PropTypes.string,
@@ -40,14 +29,22 @@ const OrganisationCreatePage = ({ className }) => {
     const setOrganisation = useSetOrganisation();
     const { search } = useLocation();
     const { next = null } = parseQueryString(search);
-    const onCreated = useCallback((user) => {
-        setOrganisation(user);
-        history.push(next !== null ? next : url('home'));
-    }, [history, url, setOrganisation]);
+    const onCreated = useCallback(
+        (user) => {
+            setOrganisation(user);
+            history.push(next !== null ? next : url('home'));
+        },
+        [history, url, setOrganisation],
+    );
     return (
         <MainLayout contentAlign="middle">
             <Page
-                title={messages.title}
+                title={
+                    <FormattedMessage
+                        defaultMessage="Create an organisation"
+                        descrition="Page title"
+                    />
+                }
                 small
                 className={classNames([
                     styles.container,
@@ -59,7 +56,10 @@ const OrganisationCreatePage = ({ className }) => {
                 <FormPanel
                     description={
                         <div className={styles.description}>
-                            <Label>{messages.description}</Label>
+                            <FormattedMessage
+                                defaultMessage="Please fill all the fields below."
+                                descrition="Form description"
+                            />
                         </div>
                     }
                 >

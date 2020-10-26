@@ -17,7 +17,6 @@ const propTypes = {
     basePath: PropTypes.string,
     routes: ViewerPropTypes.routes,
     screen: PropTypes.string,
-    renderFormat: MicromagPropTypes.renderFormat,
     children: PropTypes.func,
 };
 
@@ -26,7 +25,6 @@ const defaultProps = {
     basePath: null,
     routes: defaultRoutes,
     screen: null,
-    renderFormat: 'view',
     children: null,
 };
 

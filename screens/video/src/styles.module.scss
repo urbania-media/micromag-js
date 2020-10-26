@@ -4,17 +4,16 @@
 .container {
     @extend %screen;
 
-    .content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-    }
-
     .preview,
     .video {
         display: block;
         margin: 0 auto;
+    }
+
+    &.fullscreen {
+        .item,
+        .placeholder {
+            @extend %fullscreen;
+        }
     }
 }

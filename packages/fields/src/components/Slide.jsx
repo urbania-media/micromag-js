@@ -11,7 +11,7 @@ import styles from '../styles/slide.module.scss';
 const propTypes = {
     value: PropTypes.shape({
         text: PropTypes.string,
-        image: MicromagPropTypes.image,
+        image: MicromagPropTypes.imageMedia,
     }),
     isForm: PropTypes.bool,
     className: PropTypes.string,

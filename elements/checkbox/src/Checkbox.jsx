@@ -7,7 +7,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    option: MicromagPropTypes.textComponent,
+    option: MicromagPropTypes.textElement,
     value: PropTypes.string,
     onChange: PropTypes.func,
     checkboxStyle: MicromagPropTypes.checkboxStyle,

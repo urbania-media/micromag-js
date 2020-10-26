@@ -2,117 +2,134 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import { FormattedMessage } from 'react-intl';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
-
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useScreenSize } from '@micromag/core/contexts';
-import { getRenderFormat } from '@micromag/core/utils';
-
-import QuoteBlock from './QuoteBlock';
+import Layout, { Spacer } from '@micromag/element-layout';
+import Text from '@micromag/element-text';
 
 import styles from './styles.module.scss';
 
-export const layouts = ['center', 'top', 'bottom', 'around'];
-
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
-    background: MicromagPropTypes.backgroundElement,
+    layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split']),
     quote: MicromagPropTypes.textElement,
-    source: MicromagPropTypes.textElement,
     author: MicromagPropTypes.textElement,
-    textAlign: PropTypes.oneOf(['left', 'right', 'center']),
+    padding: PropTypes.number,
+    background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
+    transitionStagger: PropTypes.number,
     className: PropTypes.string,
 };
 
 const defaultProps = {
-    layout: 'center',
-    background: null,
+    layout: 'top',
     quote: null,
     author: null,
-    source: null,
-    textAlign: 'center',
+    padding: 20,
+    background: null,
     current: true,
     active: true,
-    renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: null,
+    transitionStagger: 100,
     className: null,
 };
 
 const Quote = ({
     layout,
-    background,
     quote,
-    source,
     author,
-    textAlign,
+    padding,
+    background,
     current,
     active,
-    renderFormat,
     maxRatio,
     transitions,
+    transitionStagger,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isSimple, isEditor, isView } = getRenderFormat(renderFormat);
 
-    const item = (
-        <QuoteBlock
-            quote={quote}
-            source={source}
-            author={author}
-            isPlaceholder={isPlaceholder}
-            showEmpty={isEditor}
-            centered={true}
-        />
-    );
+    const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
 
-    let contentJustifyContentValue;
+    const hasQuote = quote !== null;
+    const hasAuthor = author !== null;
 
-    switch (layout) {
-        default:
-        case 'center':
-            contentJustifyContentValue = 'center'; break;
-        case 'top':
-            contentJustifyContentValue = 'flex-start'; break;
-        case 'bottom':
-            contentJustifyContentValue = 'flex-end'; break;
-        case 'around':
-            contentJustifyContentValue = 'space-around'; break;
-        case 'between':
-            contentJustifyContentValue = 'space-between'; break;
-    }
+    const isEmpty = isEdit && !hasQuote && !hasAuthor;
+
+    const isSplitted = layout === 'split';
+    const distribution = isSplitted ? 'between' : null;
+    const verticalAlign = isSplitted ? null : layout;
+
+    const items = [
+        (hasQuote || isPlaceholder) && (
+            <ScreenElement
+                key="quote"
+                placeholder="quote"
+                emptyLabel={
+                    <FormattedMessage defaultMessage="Quote" description="Quote placeholder" />
+                }
+                emptyClassName={styles.empty}
+                isEmpty={isEmpty}
+            >
+                <Text {...quote} />
+            </ScreenElement>
+        ),
+        isSplitted && hasAuthor && <Spacer />,
+        (hasAuthor || isPlaceholder) && (
+            <ScreenElement
+                key="author"
+                placeholder="subtitle"
+                emptyLabel={
+                    <FormattedMessage defaultMessage="Author" description="Author placeholder" />
+                }
+                emptyClassName={styles.empty}
+                isEmpty={isEmpty}
+            >
+                <Text {...author} />
+            </ScreenElement>
+        ),
+    ];
 
     return (
-        <div className={classNames([
-            styles.container,
-            {
-                [className]: className,
-                [styles.placeholder]: isPlaceholder,
-                [styles[textAlign]]: textAlign !== null,
-            },
-        ])}>
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className,
+                },
+            ])}
+        >
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEditor && active)}
+                playing={(isView && current) || (isEdit && active)}
                 maxRatio={maxRatio}
             />
-            
+
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <div className={styles.content} style={{
-                    justifyContent: contentJustifyContentValue,
-                }}>
-                    {item}
-                </div>
+                <Layout
+                    fullscreen
+                    verticalAlign={verticalAlign}
+                    distribution={distribution}
+                    style={isView ? { padding } : null}
+                >
+                    <TransitionsStagger
+                        transitions={transitions}
+                        stagger={transitionStagger}
+                        disabled={!isView}
+                        playing
+                    >
+                        {items}
+                    </TransitionsStagger>
+                </Layout>
             </Container>
         </div>
     );

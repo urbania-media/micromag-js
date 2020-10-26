@@ -3,6 +3,14 @@ import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import {
+    PlaceholderImage,
+    PlaceholderAudio,
+    PlaceholderText,
+    Transitions,
+} from '@micromag/core/components';
 import AudioElement from '@micromag/element-audio';
 import TextElement from '@micromag/element-text';
 import ImageElement from '@micromag/element-image';
@@ -10,23 +18,10 @@ import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import { VStack } from '@micromag/element-stack';
 
-import {
-    PropTypes as MicromagPropTypes,
-    PlaceholderImage,
-    PlaceholderAudio,
-    PlaceholderText,
-} from '@micromag/core';
-
-import { useScreenSize } from '@micromag/core/contexts';
-import { getRenderFormat } from '@micromag/core/utils';
-
 import styles from './styles.module.scss';
-import Transitions from '@micromag/core/src/components/transitions/Transitions';
-
-export const layouts = ['top', 'bottom', 'center', 'around'];
 
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf(['center', 'top', 'bottom', 'around']),
     stack: PropTypes.shape({
         reverse: PropTypes.bool,
         spacing: MicromagPropTypes.spacing,
@@ -38,7 +33,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
@@ -64,7 +58,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: {
         in: {
@@ -86,13 +79,12 @@ const Audio = ({
     background,
     current,
     active,
-    renderFormat,
     maxRatio,
     transitions,
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isView, isPreview, isEditor } = getRenderFormat(renderFormat);
+    const { isPlaceholder, isView, isPreview, isEdit } = useScreenRenderContext();
     const { spacing, reverse } = stack || {};
 
     const withImage = image !== null;
@@ -114,8 +106,7 @@ const Audio = ({
                     <ImageElement
                         width={Math.min(width, maxWidth)}
                         height={Math.min(width, maxWidth)}
-                        fit={{ size: 'cover' }}
-                        contain
+                        objectFit={{ fit: 'cover' }}
                         className={styles.image}
                         onLoaded={onImageLoaded}
                         {...image}
@@ -176,7 +167,7 @@ const Audio = ({
                 width={width}
                 height={height}
                 maxRatio={maxRatio}
-                playing={(isView && current) || (isEditor && active)}
+                playing={(isView && current) || (isEdit && active)}
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
                 <div className={styles.content}>

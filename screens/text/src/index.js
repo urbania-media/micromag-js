@@ -1,2 +1,2 @@
-export { default } from './Text';
-export { default as schema } from './schema';
+export { default } from './definition';
+export { default as Text } from './Text';

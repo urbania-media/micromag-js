@@ -1,23 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { withKnobs } from '@storybook/addon-knobs'; // eslint-disable-line import/no-extraneous-dependencies
-import { withScreenSize } from '../../../../.storybook/decorators';
-
-import {
-    PlaceholderScreen,
-    LayoutSwitcher,
-    LayoutGrid,
-    Screen,
-} from '../../../../.storybook/components';
 import { description } from '../../../../.storybook/data';
+import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
-import SurveyMultipleChoice, { layouts } from '../SurveyMultipleChoice';
-
-export default {
-    // component: Main,
-    title: 'Screens/SurveyMultipleChoice',
-    decorators: [withKnobs, withScreenSize()],
-};
+import SurveyMultipleChoice from '../SurveyMultipleChoice';
+import definition from '../definition';
 
 const props = {
     question: { body: description() },
@@ -33,32 +20,21 @@ const props = {
     },
 };
 
-export const Placeholders = () => (
-    <LayoutGrid layouts={layouts}>
-        {(layout) => (
-            <PlaceholderScreen>
-                <SurveyMultipleChoice layout={layout} renderFormat="placeholder" />
-            </PlaceholderScreen>
-        )}
-    </LayoutGrid>
-);
+export default {
+    title: 'Screens/SurveyMultipleChoice',
+    component: SurveyMultipleChoice,
+    parameters: {
+        intl: true,
+        screenDefinition: definition,
+    },
+};
 
-export const Editor = () => (
-    <LayoutSwitcher layouts={layouts}>
-        {(layout) => (
-            <Screen>
-                <SurveyMultipleChoice layout={layout} renderFormat="edit" />
-            </Screen>
-        )}
-    </LayoutSwitcher>
-);
+export const Placeholder = (storyProps) => <SurveyMultipleChoice {...storyProps} />;
 
-export const Normal = () => (
-    <LayoutSwitcher layouts={layouts}>
-        {(layout) => (
-            <Screen>
-                <SurveyMultipleChoice layout={layout} {...props} />
-            </Screen>
-        )}
-    </LayoutSwitcher>
-);
+export const Preview = (storyProps) => <SurveyMultipleChoice {...storyProps} />;
+
+export const Edit = (storyProps) => <SurveyMultipleChoice {...storyProps} />;
+
+export const Normal = (storyProps) => <SurveyMultipleChoice {...storyProps} {...props} />;
+
+export const Definition = () => <ScreenDefinition definition={definition} />;

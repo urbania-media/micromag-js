@@ -10,46 +10,57 @@ import url from '@rollup/plugin-url';
 import replace from '@rollup/plugin-replace';
 import generateScopedName from './scripts/lib/generateScopedName';
 
-export default {
-    input: 'src/index.js',
-    output: [
-        {
-            file: 'lib/index.js',
-            format: 'cjs',
-        },
-        {
-            file: 'es/index.js',
-        },
-    ],
-    plugins: [
-        json(),
-        resolve({
-            extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
-            jail: path.join(process.cwd(), 'src'),
-        }),
-        commonjs(),
-        babel({
-            extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
-            exclude: 'node_modules/**',
-            rootMode: 'upward',
-            runtimeHelpers: true,
-        }),
-        postcss({
-            extensions: ['.css', '.scss'],
-            modules: {
-                generateScopedName,
+export default ({
+    withoutPostCss = false,
+    withoutPostCssExtract = false,
+    resolveOptions = null,
+    prependPlugins = [],
+    appendPlugins = [],
+} = {}) => {
+    return {
+        input: 'src/index.js',
+        output: [
+            {
+                file: 'lib/index.js',
+                format: 'cjs',
             },
-            autoModules: true,
-            // extract: path.join(process.cwd(), 'assets/css/styles.css'),
-            extract: 'styles.css',
-            inject: false,
-        }),
-        image({
-            // exclude: ['**/*.svg'],
-        }),
-        url({ include: ['**/*.mp4'] }),
-        replace({
-            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-        }),
-    ],
+            {
+                file: 'es/index.js',
+            },
+        ],
+        plugins: [
+            ...prependPlugins,
+            json(),
+            resolve({
+                extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
+                jail: path.join(process.cwd(), 'src'),
+                ...resolveOptions,
+            }),
+            commonjs(),
+            babel({
+                extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
+                exclude: 'node_modules/**',
+                rootMode: 'upward',
+                runtimeHelpers: true,
+            }),
+            !withoutPostCss &&
+                postcss({
+                    extensions: ['.css', '.scss'],
+                    modules: {
+                        generateScopedName,
+                    },
+                    autoModules: true,
+                    extract: !withoutPostCssExtract ? 'styles.css' : false,
+                    inject: false,
+                }),
+            image({
+                // exclude: ['**/*.svg'],
+            }),
+            url({ include: ['**/*.mp4'] }),
+            replace({
+                'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+            }),
+            ...appendPlugins,
+        ].filter(Boolean),
+    };
 };

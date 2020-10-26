@@ -3,31 +3,20 @@ import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { Label, PlaceholderText, PlaceholderButton } from '@micromag/core/components';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import TextElement from '@micromag/element-text';
 import ImageElement from '@micromag/element-image';
 import VideoElement from '@micromag/element-video';
-
 import Button from '@micromag/element-button';
-import {
-    Label,
-    PlaceholderText,
-    PlaceholderButton,
-    PropTypes as MicromagPropTypes,
-} from '@micromag/core';
-
-import { useScreenSize } from '@micromag/core/contexts';
-import { getRenderFormat } from '@micromag/core/utils';
-
-import messages from './messages';
 
 import styles from './styles.module.scss';
 
-export const layouts = ['center', 'top', 'bottom'];
-
 const propTypes = {
-    layout: PropTypes.oneOf(layouts),
+    layout: PropTypes.oneOf(['center', 'top', 'bottom']),
     question: MicromagPropTypes.textMediaField,
     answerYes: MicromagPropTypes.textMediaField,
     answerNo: MicromagPropTypes.textMediaField,
@@ -36,7 +25,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    renderFormat: MicromagPropTypes.renderFormat,
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
@@ -52,7 +40,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: false,
-    renderFormat: 'view',
     maxRatio: 3 / 4,
     transitions: null,
     className: null,
@@ -68,14 +55,13 @@ const SurveyYesNo = ({
     button,
     current,
     active,
-    renderFormat,
     maxRatio,
     transitions,
     className,
 }) => {
     const [answered, setAnswered] = useState(false);
     const { width, height } = useScreenSize();
-    const { isEditor, isPreview, isView, isPlaceholder } = getRenderFormat(renderFormat);
+    const { isEdit, isPreview, isView, isPlaceholder } = useScreenRenderContext();
     const isSimple = isPreview || isPlaceholder;
     const spacing = 10;
     const videoProps = {
@@ -112,33 +98,32 @@ const SurveyYesNo = ({
             </div>
         ) : null;
 
-    const answer =
-        answered ? (
-            <div className={styles.answerContainer}>
-                <VideoElement className={styles.video} video={answerYesVideo} {...videoProps} />
-                <ImageElement className={styles.image} image={answerYesImage} />
-                <TextElement className={styles.result} body={answerYesText} textStyle={textStyle} />
-                {isEditor ? (
-                    <Button className={styles.button} onClick={onClickReset} {...button}>
-                        Retry
-                    </Button>
-                ) : null}
-            </div>
-        ) : (
-            <div className={styles.answerContainer}>
-                <VideoElement className={styles.video} video={answerNoVideo} {...videoProps} />
-                <ImageElement className={styles.image} image={answerNoImage} />
-                <TextElement className={styles.result} body={answerNoText} textStyle={textStyle} />
-                {isEditor ? (
-                    <Button className={styles.button} onClick={onClickReset} {...button}>
-                        <Label>Retry</Label>
-                    </Button>
-                ) : null}
-            </div>
-        );
+    const answer = answered ? (
+        <div className={styles.answerContainer}>
+            <VideoElement className={styles.video} video={answerYesVideo} {...videoProps} />
+            <ImageElement className={styles.image} image={answerYesImage} />
+            <TextElement className={styles.result} body={answerYesText} textStyle={textStyle} />
+            {isEdit ? (
+                <Button className={styles.button} onClick={onClickReset} {...button}>
+                    Retry
+                </Button>
+            ) : null}
+        </div>
+    ) : (
+        <div className={styles.answerContainer}>
+            <VideoElement className={styles.video} video={answerNoVideo} {...videoProps} />
+            <ImageElement className={styles.image} image={answerNoImage} />
+            <TextElement className={styles.result} body={answerNoText} textStyle={textStyle} />
+            {isEdit ? (
+                <Button className={styles.button} onClick={onClickReset} {...button}>
+                    <Label>Retry</Label>
+                </Button>
+            ) : null}
+        </div>
+    );
 
     const buttons =
-        renderFormat !== 'placeholder' ? (
+        !isPlaceholder ? (
             <>
                 <Button className={styles.button} onClick={onClickTrue} {...button}>
                     <Label>Yes</Label>
@@ -159,46 +144,56 @@ const SurveyYesNo = ({
     switch (layout) {
         default:
         case 'center':
-            contentJustifyContentValue = 'center'; break;
+            contentJustifyContentValue = 'center';
+            break;
         case 'top':
-            contentJustifyContentValue = 'flex-start'; break;
+            contentJustifyContentValue = 'flex-start';
+            break;
         case 'bottom':
-            contentJustifyContentValue = 'flex-end'; break;
+            contentJustifyContentValue = 'flex-end';
+            break;
         case 'around':
-            contentJustifyContentValue = 'space-around'; break;
+            contentJustifyContentValue = 'space-around';
+            break;
         case 'between':
-            contentJustifyContentValue = 'space-between'; break;
+            contentJustifyContentValue = 'space-between';
+            break;
     }
 
     return (
-        <div className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-                [styles.placeholder]: isPlaceholder,
-            },
-        ])}>
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                    [styles.placeholder]: isPlaceholder,
+                },
+            ])}
+        >
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEditor && active)}
+                playing={(isView && current) || (isEdit && active)}
                 maxRatio={maxRatio}
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <div className={styles.content} style={{
-                    justifyContent: contentJustifyContentValue,
-                }}>
+                <div
+                    className={styles.content}
+                    style={{
+                        justifyContent: contentJustifyContentValue,
+                    }}
+                >
                     {answered ? (
                         answer
                     ) : (
                         <>
-                            {renderFormat !== 'placeholder' ? question : <PlaceholderText />}
+                            {!isPlaceholder ? question : <PlaceholderText />}
                             <div className={styles.buttons}>{buttons}</div>
                         </>
                     )}
                 </div>
-            </Container>            
+            </Container>
         </div>
     );
 };

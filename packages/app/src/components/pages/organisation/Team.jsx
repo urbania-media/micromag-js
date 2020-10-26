@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { useOrganisationTeam } from '@micromag/data';
 
 import { useOrganisation } from '../../../contexts/OrganisationContext';
@@ -12,15 +12,6 @@ import OrganisationMenu from '../../menus/Organisation';
 import TeamList from '../../lists/Team';
 
 import styles from '../../../styles/pages/organisation/team.module.scss';
-
-import organisationMessages from './messages';
-
-const messages = defineMessages({
-    title: {
-        id: 'pages.organisation.team.title',
-        defaultMessage: 'Team',
-    },
-});
 
 const propTypes = {
     className: PropTypes.string,
@@ -36,8 +27,10 @@ const OrganisationTeamPage = ({ className }) => {
     return (
         <MainLayout>
             <Page
-                section={organisationMessages.title}
-                title={messages.title}
+                section={
+                    <FormattedMessage defaultMessage="Organisation" descrition="Section title" />
+                }
+                title={<FormattedMessage defaultMessage="Team" descrition="Page title" />}
                 sidebar={<OrganisationMenu asList />}
                 className={classNames([
                     styles.container,

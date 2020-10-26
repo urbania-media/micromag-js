@@ -2,26 +2,13 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 // import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Form } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 import { useAccountUpdate } from '@micromag/data';
 
 import { useUser } from '../../contexts/AuthContext';
-
-import formMessages from './messages';
-
-const messages = defineMessages({
-    changePasswordLabel: {
-        id: 'forms.profile.change_password',
-        defaultMessage: 'Change password',
-    },
-    submit: {
-        id: 'forms.profile.submit',
-        defaultMessage: 'Update profile',
-    },
-});
 
 const propTypes = {
     className: PropTypes.string,
@@ -34,27 +21,34 @@ const defaultProps = {
         {
             name: 'name',
             type: 'text',
-            label: formMessages.nameLabel,
+            label: <FormattedMessage defaultMessage="Name" description="Field label" />,
         },
         {
             name: 'email',
             type: 'email',
-            label: formMessages.emailLabel,
+            label: <FormattedMessage defaultMessage="Email" description="Field label" />,
         },
         {
             type: 'fields',
-            label: messages.changePasswordLabel,
+            label: (
+                <FormattedMessage defaultMessage="Change password" description="Fieldset label" />
+            ),
             isSection: true,
             fields: [
                 {
                     name: 'password',
                     type: 'password',
-                    label: formMessages.passwordLabel,
+                    label: <FormattedMessage defaultMessage="Password" description="Field label" />,
                 },
                 {
                     name: 'password_confirmation',
                     type: 'password',
-                    label: formMessages.passwordConfirmationLabel,
+                    label: (
+                        <FormattedMessage
+                            defaultMessage="Confirm password"
+                            description="Field label"
+                        />
+                    ),
                 },
             ],
         },
@@ -74,7 +68,9 @@ const AccountProfileForm = ({ fields, className, onUpdated }) => {
             fields={fields}
             postForm={postForm}
             initialValue={user}
-            submitButtonLabel={messages.submit}
+            submitButtonLabel={
+                <FormattedMessage defaultMessage="Update profile" description="Button label" />
+            }
             onComplete={onUpdated}
             className={className}
         />

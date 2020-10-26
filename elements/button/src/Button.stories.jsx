@@ -3,7 +3,7 @@ import Button from './Button';
 
 export default {
     component: Button,
-    title: 'Components/Button',
+    title: 'Elements/Button',
 };
 
 const testStyle = {

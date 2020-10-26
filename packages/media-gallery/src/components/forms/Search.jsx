@@ -1,20 +1,12 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 // import classNames from 'classnames';
-import { injectIntl, defineMessages } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-
-const messages = defineMessages({
-    placeholder: {
-        id: 'forms.search_placeholder',
-        defaultMessage: 'Search...',
-    },
-});
+// import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 const propTypes = {
-    intl: MicromagPropTypes.intl,
     value: PropTypes.string,
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
@@ -22,16 +14,16 @@ const propTypes = {
 };
 
 const defaultProps = {
-    intl: null,
     value: null,
     onChange: null,
     onFocus: null,
     className: null,
 };
 
-const Search = ({ intl, value, onChange, onFocus, className }) => {
+const Search = ({ value, onChange, onFocus, className }) => {
+    const intl = useIntl();
     const onSearchChange = useCallback(
-        e => {
+        (e) => {
             const newValue = e.currentTarget.value.length > 0 ? e.currentTarget.value : null;
             if (onChange !== null) {
                 onChange(newValue);
@@ -52,7 +44,10 @@ const Search = ({ intl, value, onChange, onFocus, className }) => {
                     className="form-control"
                     type="text"
                     value={value || ''}
-                    placeholder={intl.formatMessage(messages.placeholder)}
+                    placeholder={intl.formatMessage({
+                        defaultMessage: 'Search...',
+                        description: 'Input placeholder',
+                    })}
                     onChange={onSearchChange}
                     onFocus={onFocus}
                 />
@@ -64,4 +59,4 @@ const Search = ({ intl, value, onChange, onFocus, className }) => {
 Search.propTypes = propTypes;
 Search.defaultProps = defaultProps;
 
-export default injectIntl(Search);
+export default Search;
