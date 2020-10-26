@@ -2,7 +2,7 @@
 @import '../placeholders';
 
 .container {
-    &.fullScreen {
+    &.fullscreen {
         @extend %fullscreen;
     }
 }

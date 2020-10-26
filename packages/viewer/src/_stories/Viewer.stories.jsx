@@ -1,8 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { IntlProvider } from 'react-intl'; // eslint-disable-line
-import { MemoryRouter } from 'react-router'; // eslint-disable-line
 import { basic, medium } from '../../../../.storybook/data/screens';
+import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 
 import Viewer from '../components/ViewerContainer';
 
@@ -22,6 +21,7 @@ const mediumProps = {
 
 export default {
     component: Viewer,
+    decorators: [withGoogleMaps],
     title: 'Viewer/Viewer',
     parameters: {
         screenSize: true,

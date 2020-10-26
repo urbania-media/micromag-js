@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import styles from '../../styles/transitions/transition.module.scss';
 
 const propTypes = {
-    fullScreen: PropTypes.bool,
+    fullscreen: PropTypes.bool,
     from: PropTypes.objectOf(PropTypes.any),
     to: PropTypes.objectOf(PropTypes.any),
     playing: PropTypes.bool,
@@ -21,7 +21,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    fullScreen: false,
+    fullscreen: false,
     from: null,
     to: null,
     playing: false,
@@ -36,7 +36,7 @@ const defaultProps = {
 };
 
 const Transition = ({
-    fullScreen,
+    fullscreen,
     from,
     to,
     playing,
@@ -101,7 +101,7 @@ const Transition = ({
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.fullScreen]: fullScreen,
+                    [styles.fullscreen]: fullscreen,
                 },
             ])}
         >

@@ -21,7 +21,7 @@ export default [
                     description: 'Layout field label',
                 }),
             },
-            // Array of images
+            // Array of {image}
             {
                 name: 'images',
                 type: 'images',
@@ -59,12 +59,12 @@ export default [
                 }),
             },
             {
-                // Array of image + legend
-                name: 'imagesWithLegends',
-                type: 'imagesWithLegends',
+                // Array of {image, legend}
+                name: 'images',
+                type: 'images',
                 label: defineMessage({
-                    defaultMessage: 'ImagesWithLegends',
-                    description: 'ImagesWithLegends field label',
+                    defaultMessage: 'Images (with legend)',
+                    description: 'Images field label (with legend)',
                 }),
             },
             {

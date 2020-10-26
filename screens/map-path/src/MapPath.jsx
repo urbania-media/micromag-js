@@ -118,7 +118,7 @@ const MapPath = ({
         element = <ImageComponent {...{ media: { url: PreviewBackground, width, height } }} />;
     } else if (withMap) {
         element = (
-            <Transitions transitions={transitions} playing={transitionPlaying} fullScreen>
+            <Transitions transitions={transitions} playing={transitionPlaying} fullscreen>
                 <MapComponent
                     {...map}
                     {...(center && center.lat && center.lng ? { center } : null)}

@@ -150,14 +150,13 @@ const GalleryFeed = ({
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
-                height={height}
                 playing={(isView && current) || (isEdit && active)}
                 maxRatio={maxRatio}
             />
 
-            <Container width={width} height={height} maxRatio={maxRatio}>
+            <Container width={width} height={height} maxRatio={maxRatio} withScroll>
                 <Scroll>
-                    <Layout fullscreen style={isView || isPreview ? { padding } : null}>
+                    <Layout style={isView || isPreview ? { padding } : null}>
                         <TransitionsStagger
                             transitions={transitions}
                             stagger={transitionStagger}

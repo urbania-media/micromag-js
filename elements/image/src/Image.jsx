@@ -71,47 +71,47 @@ const Image = ({
 
     if (withFit) {        
         const { fit = null, horizontalPosition = 'center', verticalPosition = 'center' } = objectFit || {};        
-        const { width: imageWidth, height: imageHeight } = getSizeWithinBounds(mediaWidth, mediaHeight, width, height, { cover: fit === 'cover' });
+        const { width: resizedImageWidth, height: resizedImageHeight } = getSizeWithinBounds(mediaWidth, mediaHeight, width, height, { cover: fit === 'cover' });
 
         let imageTop;
         let imageLeft;
 
         if (horizontalPosition === 'center') {
-            imageLeft = -(imageWidth - width) / 2;
+            imageLeft = -(resizedImageWidth - width) / 2;
         } else if (horizontalPosition === 'right') {
-            imageLeft = -(imageWidth - width);
+            imageLeft = -(resizedImageWidth - width);
         } else {
             imageLeft = 0;
         }
 
         if (verticalPosition === 'center') {
-            imageTop = -(imageHeight - height) / 2;
+            imageTop = -(resizedImageHeight - height) / 2;
         } else if (verticalPosition === 'bottom') {
-            imageTop = -(imageHeight - height);
+            imageTop = -(resizedImageHeight - height);
         } else {
             imageTop = 0;
         }
 
-        const finalImageWidth = shrinkWidth ? Math.min(imageWidth, width) : width;
-        const finalImageHeight = shrinkHeight ? Math.min(imageHeight, height) : height;        
+        const containerWidth = shrinkWidth ? Math.min(resizedImageWidth, width) : width;
+        const containerHeight = shrinkHeight ? Math.min(resizedImageHeight, height) : height;        
 
-        if (shrinkWidth && width > imageWidth) {
+        if (shrinkWidth && width > resizedImageWidth) {
             imageLeft = 0;
         }
 
-        if (shrinkHeight && height > imageHeight) {
+        if (shrinkHeight && height > resizedImageHeight) {
             imageTop = 0;
         }
 
         finalContainerStyle = {
-            width: finalImageWidth,
-            height: finalImageHeight,
+            width: containerWidth,
+            height: containerHeight,
         }
         
         finalImageStyle = {
             position: 'absolute',
-            width: imageWidth,
-            height: imageHeight,
+            width: resizedImageWidth,
+            height: resizedImageHeight,
             top: imageTop,
             left: imageLeft,
         }

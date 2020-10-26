@@ -10,6 +10,7 @@ const propTypes = {
     playing: PropTypes.bool,
     disabled: PropTypes.bool,
     delay: PropTypes.number,
+    fullscreen: PropTypes.bool,
     children: PropTypes.node,
 };
 
@@ -19,20 +20,28 @@ const defaultProps = {
     playing: false,
     disabled: false,
     delay: 0,
+    fullscreen: false,
     children: null,
 };
 
-const TransitionsStagger = ({ transitions, stagger, playing, disabled, delay, children }) => {
+const TransitionsStagger = ({
+    transitions,
+    stagger,
+    playing,
+    disabled,
+    delay,
+    fullscreen,
+    children,
+}) => {
     let validIndex = 0;
     const elements = React.Children.map(children, (child) => {
-
         if (!child) {
             return null;
         }
 
         const { type = null } = child;
         const { name = null } = type || {};
-        
+
         if (disabled || name === 'Spacer') {
             return child;
         }
@@ -42,16 +51,17 @@ const TransitionsStagger = ({ transitions, stagger, playing, disabled, delay, ch
                 transitions={transitions}
                 delay={delay + validIndex * stagger}
                 playing={playing}
+                fullscreen={fullscreen}
             >
                 {child}
             </Transitions>
         );
         validIndex += 1;
-        return el
+        return el;
     });
 
     return elements;
-}
+};
 TransitionsStagger.propTypes = propTypes;
 TransitionsStagger.defaultProps = defaultProps;
 

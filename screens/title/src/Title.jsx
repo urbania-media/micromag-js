@@ -74,7 +74,7 @@ const Title = ({
 }) => {
     const { width, height } = useScreenSize();
 
-    const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
     const hasTitle = title !== null;
     const hasSubtitle = subtitle !== null;
@@ -158,7 +158,7 @@ const Title = ({
                     <TransitionsStagger
                         transitions={transitions}
                         stagger={transitionStagger}
-                        disabled={!isView}
+                        disabled={!isView && !isPreview}
                         playing
                     >
                         {items}

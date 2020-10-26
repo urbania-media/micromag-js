@@ -9,26 +9,25 @@ import {
     videoFile,
     background,
     backgroundImage,
+    map,
+    markers,
 } from '../data';
 
 export const basic = [
     {
         id: uuid(),
-        type: 'text-image',
-        layout: 'center',
-        text: {
-            body: 'An image text',
-        },
-        image: {
-            ...image(),
-        },
+        type: 'map',
+        layout: 'bottom',
+        map: map(),
+        markers: markers(),
+        splash: { body: 'Débuter' },
         background: {
             color: '#FF0000',
         },
     },
     {
         id: uuid(),
-        type: 'text-image',
+        type: 'image',
         layout: 'center',
         text: {
             body: 'Another image text',
@@ -42,7 +41,7 @@ export const basic = [
     },
     {
         id: uuid(),
-        type: 'text-image',
+        type: 'image',
         layout: 'center',
         text: {
             body: 'Another another image text',
@@ -83,7 +82,7 @@ export const basic = [
     },
     {
         id: uuid(),
-        layout: 'one_plus_three',
+        layout: 'one-plus-three',
         type: 'gallery',
         images: images({ count: 4 }),
         background: {
@@ -92,8 +91,8 @@ export const basic = [
     },
     {
         id: uuid(),
-        type: 'gallery-scroll',
-        layout: 'double',
+        type: 'gallery-feed',
+        layout: 'normal',
         images: images({ count: 10 }),
         background: {
             color: '#00FF00',
@@ -167,14 +166,14 @@ export const medium = [
     {
         id: uuid(),
         type: 'gallery',
-        layout: 'one_plus_three',
+        layout: 'one-plus-three',
         images: images({ count: 4, random: true }),
         background: backgroundImage({ random: true }),
     },
     {
         id: uuid(),
-        type: 'gallery-scroll',
-        layout: 'triple',
+        type: 'gallery-feed',
+        layout: 'reverse',
         images: images({ count: 20 }),
         background: backgroundImage({ random: true }),
     },
@@ -194,7 +193,7 @@ export const medium = [
     },
     {
         id: uuid(),
-        type: 'text-image',
+        type: 'image',
         layout: 'center',
         text: text('long', 'big'),
         image: {

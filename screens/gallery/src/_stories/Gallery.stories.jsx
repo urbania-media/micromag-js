@@ -16,13 +16,13 @@ export default {
     component: Gallery,
     parameters: {
         intl: true,
-        screenDefinition: definition,
+        screenDefinition: definition.find((it) => it.component === Gallery),
     },
 };
 
 export const Placeholder = (storyProps) => <Gallery {...storyProps} />;
 
-export const Preview = (storyProps) => <Gallery {...storyProps} />;
+export const Preview = (storyProps) => <Gallery {...storyProps} {...props} />;
 
 export const Edit = (storyProps) => <Gallery {...storyProps} />;
 

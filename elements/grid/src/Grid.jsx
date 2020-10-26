@@ -13,57 +13,47 @@ const propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
     spacing: PropTypes.number,
-    reverse: PropTypes.bool,
-    isSmall: PropTypes.bool,
+    vertical: PropTypes.bool,
     className: PropTypes.string,
-    rowClassName: PropTypes.string,
-    columnClassName: PropTypes.string,
+    axisClassName: PropTypes.string,
+    crossClassName: PropTypes.string,
 };
 
 const defaultProps = {
-    layout: [
-        {
-            rows: 2,
-            columns: [1],
-        },
-        {
-            rows: 1,
-            columns: [1, 1, 1],
-        },
-    ],
+    layout: null,
     items: [],
     width: null,
     height: null,
     spacing: 0,
-    reverse: false,
-    isSmall: false,
+    vertical: false,
     className: null,
-    rowClassName: null,
-    columnClassName: null,
+    axisClassName: null,
+    crossClassName: null,
 };
 
 const Grid = ({
-    items: itemList,
+    items,
     layout,
     width,
     height,
-    spacing: defaultSpacing,
-    reverse,
-    isSmall,
+    spacing,
+    vertical,
     className,
-    rowClassName,
-    columnClassName,
+    axisClassName,
+    crossClassName,
 }) => {
-    const items = reverse && itemList ? itemList.reverse() : itemList;
-    const spacing = isSmall ? 4 : defaultSpacing;
     let itemIndex = 0;
-    const finalLayout = layout || [
+    const finalLayout = isArray(layout) ? layout : [
         {
-            rows: 1,
-            columns: items.map(() => 1),
+            rows: vertical ? items.map(() => 1) : 1,
+            columns: vertical ? 1 : items.map(() => 1),
         },
     ];
-    const rowTotal = finalLayout.reduce((total, { rows = 1 }) => total + rows, 0);
+    const crossTotal = finalLayout.reduce(
+        (total, { rows = 1, columns = 1 }) => total + (vertical ? columns : rows),
+        0,
+    );
+
     return (
         <div
             className={classNames([
@@ -78,41 +68,52 @@ const Grid = ({
                 padding: spacing !== null && spacing > 0 ? spacing / 2 : null,
             }}
         >
-            <div className={styles.items}>
-                {finalLayout.map(({ rows, columns = [] }, rowIndex) => {
-                    const finalColumns = isArray(columns) ? columns : [columns];
-                    const columnTotal = finalColumns.reduce((total, it) => total + it, 0);
+            <div
+                className={styles.items}
+                style={{
+                    flexDirection: vertical ? 'row' : 'column',
+                }}
+            >
+                {finalLayout.map(({ rows, columns }, crossIndex) => {
+                    const crossSizeRatio = (vertical ? columns : rows) / crossTotal
+                    const crossSize = `${100 * crossSizeRatio}%`;
+                    const axisItems = vertical ? rows : columns;
+                    const finalAxisItems = isArray(axisItems) ? axisItems : [axisItems];
+                    const axisTotal = finalAxisItems.reduce((total, it) => total + it, 0);
+
                     return (
                         <div
-                            key={`row-${rowIndex}`}
+                            key={`cross-${crossIndex}`}
                             className={classNames([
-                                styles.row,
+                                styles.cross,
                                 {
-                                    [rowClassName]: rowClassName !== null,
+                                    [crossClassName]: crossClassName !== null,
                                 },
                             ])}
                             style={{
-                                height: `${100 * (rows / rowTotal)}%`,
+                                flexDirection: vertical ? 'column' : 'row',
+                                width: vertical ? crossSize : null,
+                                height: vertical ? null : crossSize,
                             }}
                         >
-                            {finalColumns.map((column, columnIndex) => {
+                            {finalAxisItems.map((axisItem, axisIndex) => {
+                                const axisSizeRatio = axisItem / axisTotal;
+                                const axisSize = `${100 * axisSizeRatio}%`;
                                 const item = items[itemIndex];
                                 itemIndex += 1;
                                 return (
                                     <div
-                                        key={`row-${rowIndex}-${columnIndex}`}
+                                        key={`axis-${axisIndex}`}
                                         className={classNames([
-                                            styles.column,
+                                            styles.axis,
                                             {
-                                                [columnClassName]: columnClassName !== null,
+                                                [axisClassName]: axisClassName !== null,
                                             },
                                         ])}
                                         style={{
-                                            width: `${100 * (column / columnTotal)}%`,
-                                            padding:
-                                                spacing !== null && spacing > 0
-                                                    ? spacing / 2
-                                                    : null,
+                                            width: vertical ? null : axisSize,
+                                            height: vertical ? axisSize : null,
+                                            padding: spacing > 0 ? spacing / 2 : 0,
                                         }}
                                     >
                                         {item}

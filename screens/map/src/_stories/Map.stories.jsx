@@ -8,8 +8,10 @@ import Map from '../Map';
 import definition from '../definition';
 
 const props = {
-    map: { map: map() },
+    map: map(),
     markers: markers(),
+    splash: { body: 'Débuter' },
+    background: background(),
 };
 
 export default {
@@ -24,7 +26,7 @@ export default {
 
 export const Placeholder = (storyProps) => <Map {...storyProps} />;
 
-export const Preview = (storyProps) => <Map {...storyProps} />;
+export const Preview = (storyProps) => <Map {...storyProps} {...props} />;
 
 export const Edit = (storyProps) => <Map {...storyProps} />;
 

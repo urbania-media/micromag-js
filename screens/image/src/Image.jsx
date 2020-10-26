@@ -202,7 +202,7 @@ const ImageScreen = ({
                     <TransitionsStagger
                         transitions={transitions}
                         stagger={transitionStagger}
-                        disabled={!isView}
+                        disabled={!isView && !isPreview}
                         playing={transitionPlaying}
                     >
                         {items}

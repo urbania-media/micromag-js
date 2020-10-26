@@ -20,7 +20,7 @@ var PKCv5M = "No item...";
 var PQG8A5 = "Link";
 var PbHeHc = "Markers";
 var R1HYj0 = "Save";
-var RrCcE4 = "Gallery feed";
+var Ro8ZOq = "GalleryLegends";
 var RvCDph = "Failure";
 var S9YpbV = "Text";
 var Spu1AH = "MapPath";
@@ -77,7 +77,6 @@ var uJ9eBc = "Image";
 var uQjihh = "Create an organisation";
 var upzOTm = "Credits";
 var vrCfAS = "GalleryFeed";
-var w9tlw7 = "ImagesWithLegends";
 var wsUmh9 = "Team";
 var xYqGzM = "Author";
 var yUPjCz = "Slideshow";
@@ -91,6 +90,7 @@ var messages = {
   "/bEns8": "MapImages",
   "/hupzO": "Credits",
   "0gyI2S": "GalleryFeedLegends",
+  "0vXXfT": "imagesWithLegends",
   "169xnt": "Audio",
   "1fBNmY": "ImageTitle",
   "1fNojU": "{count} {count, plural, one {screen} other {screens}}",
@@ -140,7 +140,7 @@ var messages = {
   "PQX/ph": "Create account",
   PbHeHc: PbHeHc,
   R1HYj0: R1HYj0,
-  RrCcE4: RrCcE4,
+  Ro8ZOq: Ro8ZOq,
   RvCDph: RvCDph,
   S9YpbV: S9YpbV,
   Spu1AH: Spu1AH,
@@ -268,12 +268,12 @@ var messages = {
   tAYwqp: tAYwqp,
   tV78uM: tV78uM,
   tvl2Zc: tvl2Zc,
+  "uD3/zU": "Images (with legend)",
   uJ9eBc: uJ9eBc,
   "uOFw+A": "Map with path",
   uQjihh: uQjihh,
   upzOTm: upzOTm,
   vrCfAS: vrCfAS,
-  w9tlw7: w9tlw7,
   wsUmh9: wsUmh9,
   "wt1+dM": "Select an audio file...",
   xYqGzM: xYqGzM,

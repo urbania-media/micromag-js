@@ -3,7 +3,7 @@
 @import '~@micromag/core/scss/mixins';
 
 .container {
-    @extend %screen;
+    position: relative;
 
     .empty {
         @extend %empty;

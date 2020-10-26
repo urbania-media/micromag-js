@@ -1,36 +1,23 @@
 export default {
-    'four-by-four': {
+    // 2
+    'two-vertical': {
+        vertical: true,
         layout: [
             {
-                rows: 1,
-                columns: [1, 1, 1, 1],
-            },
-            {
-                rows: 1,
-                columns: [1, 1, 1, 1],
-            },
-            {
-                rows: 1,
-                columns: [1, 1, 1, 1],
-            },
-            {
-                rows: 1,
-                columns: [1, 1, 1, 1],
+                columns: 1,
+                rows: [2, 1],
             },
         ],
     },
-    'one-plus-three': {
+    'two-horizontal': {
         layout: [
             {
-                rows: 2,
-                columns: [1],
-            },
-            {
                 rows: 1,
-                columns: [1, 1, 1],
+                columns: [1, 1],
             },
         ],
     },
+    // 3
     'one-plus-two': {
         layout: [
             {
@@ -40,58 +27,6 @@ export default {
             {
                 rows: 1,
                 columns: [1, 1],
-            },
-        ],
-    },
-    'six-by-two': {
-        layout: [
-            {
-                rows: 2,
-                columns: [1, 1, 1],
-            },
-            {
-                rows: 2,
-                columns: [1, 1, 1],
-            },
-        ],
-    },
-    'three-by-three': {
-        layout: [
-            {
-                rows: 1,
-                columns: [1, 1, 1],
-            },
-            {
-                rows: 1,
-                columns: [1, 1, 1],
-            },
-            {
-                rows: 1,
-                columns: [1, 1, 1],
-            },
-        ],
-    },
-    'two-by-two': {
-        layout: [
-            {
-                rows: 1,
-                columns: [1, 1],
-            },
-            {
-                rows: 1,
-                columns: [1, 1],
-            },
-        ],
-    },
-    'two-high': {
-        layout: [
-            {
-                rows: 1,
-                columns: [1],
-            },
-            {
-                rows: 1,
-                columns: [1],
             },
         ],
     },
@@ -107,12 +42,126 @@ export default {
             },
         ],
     },
-    'two-wide': {
+    'three-vertical': {
+        vertical: true,
         layout: [
+            {
+                columns: 1,
+                rows: [1, 1, 1],
+            },
+        ],
+    },
+    // 4
+    'four-mosaic': {
+        vertical: true,
+        layout: [
+            {
+                columns: 1,
+                rows: [3, 1],
+            },
+            {
+                columns: 1,
+                rows: [1, 3],
+            },
+        ]
+    },
+    'four-mosaic-reverse': {
+        vertical: true,
+        layout: [
+            {
+                columns: 1,
+                rows: [1, 3],
+            },
+            {
+                columns: 1,
+                rows: [3, 1],                
+            },
+        ]
+    },
+    'two-by-two': {
+        layout: [
+            {
+                rows: 1,
+                columns: [1, 1],
+            },
             {
                 rows: 1,
                 columns: [1, 1],
             },
         ],
     },
+    'one-plus-three': {
+        layout: [
+            {
+                rows: 2,
+                columns: [1],
+            },
+            {
+                rows: 1,
+                columns: [1, 1, 1],
+            },
+        ],
+    },
+    // 5 
+    'two-wide-plus-three': {
+        layout: [
+            {
+                rows: 2,
+                columns: [1]
+            },
+            {
+                rows: 2,
+                columns: [1]
+            },
+            {
+                rows: 1,
+                columns: [1, 1, 1]
+            },
+        ]
+    },
+    'three-plus-two-wide': {
+        layout: [
+            {
+                rows: 1,
+                columns: [1, 1, 1]
+            },
+            {
+                rows: 2,
+                columns: [1]
+            },
+            {
+                rows: 2,
+                columns: [1]
+            },    
+        ]
+    },
+    // 6
+    'two-by-three': {
+        layout: [
+            {
+                rows: 1,
+                columns: [1, 1],
+            },
+            {
+                rows: 1,
+                columns: [1, 1],
+            },
+            {
+                rows: 1,
+                columns: [1, 1],
+            },
+        ],
+    },
+    'three-by-two': {
+        layout: [
+            {
+                rows: 1,
+                columns: [1, 1, 1],
+            },
+            {
+                rows: 1,
+                columns: [1, 1, 1],
+            },
+        ],
+    }
 };

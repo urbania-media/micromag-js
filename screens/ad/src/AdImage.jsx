@@ -13,7 +13,7 @@ const propTypes = {
     image: MicromagPropTypes.imageElement,
     link: MicromagPropTypes.linkElement,
     text: MicromagPropTypes.text,
-    fullScreen: PropTypes.bool,
+    fullscreen: PropTypes.bool,
     onImageLoaded: PropTypes.func,
     className: PropTypes.string,
 };
@@ -22,7 +22,7 @@ const defaultProps = {
     image: null,
     link: null,
     text: null,
-    fullScreen: false,
+    fullscreen: false,
     onImageLoaded: null,
     className: null,
 };
@@ -31,7 +31,7 @@ const AdImage = ({
     image: imageProps,
     link: linkProps,
     text: textProps,
-    fullScreen,
+    fullscreen,
     onImageLoaded,
     className
 }) => {
@@ -44,7 +44,7 @@ const AdImage = ({
         styles.image,
         {
             [className]: className !== null,
-            [styles.fullscreen]: fullScreen,
+            [styles.fullscreen]: fullscreen,
         },
     ]);
 

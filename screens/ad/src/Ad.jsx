@@ -75,7 +75,7 @@ const Ad = ({
     const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
 
     const isEmpty = !image;
-    const isFullScreen = layout === 'full';
+    const isFullscreen = layout === 'full';
 
     const [ready, setReady] = useState(isEmpty);
     const transitionPlaying = current && ready;
@@ -90,7 +90,7 @@ const Ad = ({
                 image={image}
                 link={link}
                 text={text}
-                fullScreen={isFullScreen}
+                fullscreen={isFullscreen}
                 onImageLoaded={onImageLoaded}
             />
         </Transitions>
@@ -100,7 +100,7 @@ const Ad = ({
         imageElement = (
             <PlaceholderAdImage
                 className={classNames([styles.placeholder])}
-                {...(isFullScreen
+                {...(isFullscreen
                     ? {
                           width: '100%',
                           height: '100%',
@@ -125,7 +125,7 @@ const Ad = ({
             className={classNames([
                 styles.container,
                 {
-                    [styles.fullscreen]: isFullScreen,
+                    [styles.fullscreen]: isFullscreen,
                     [styles.placeholder]: isPlaceholder,
                     [styles[horizontal]]: horizontal !== null,
                     [styles[vertical]]: vertical !== null,

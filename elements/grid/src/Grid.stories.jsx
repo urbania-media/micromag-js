@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import Grid from './Grid';
 
@@ -6,14 +7,51 @@ export default {
     title: 'Elements/Grid',
 };
 
-const cellStyle = { textAlign: 'center', padding: 20, background: '#ddd' };
+const cellStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    background: '#ddd',
+    height: '100%',
+};
 
-const cells = [1, 2, 3, 4, 5].map(number => (
+const items = [1, 2, 3, 4, 5, 6].map(number => (
     <div style={cellStyle} key={`cell-${number}`}>
         {number}
     </div>
 ));
 
-export const withoutSpacing = () => <Grid items={cells} />;
+const horizontalProps = {
+    height: 400,
+    items,
+    layout: [
+        {
+            rows: 2,
+            columns: [1],
+        },
+        {
+            rows: 1,
+            columns: [1, 2, 1],
+        },
+    ]
+};
 
-export const withSpacing = () => <Grid items={cells} spacing={5} />;
+const verticalProps = {
+    height: 400,
+    items,
+    vertical: true,
+    layout: [
+        {
+            columns: 1,
+            rows: [3, 1],
+        },
+        {
+            columns: 1,
+            rows: [1, 3],
+        },
+    ]
+};
+
+export const withoutSpacing = () => <Grid {...horizontalProps} />;
+export const withSpacing = () => <Grid {...horizontalProps} spacing={10} />;
+export const verticalWithSpacing = () => <Grid {...verticalProps} spacing={10} />;
