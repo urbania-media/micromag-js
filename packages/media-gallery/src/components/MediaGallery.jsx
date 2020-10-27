@@ -42,10 +42,14 @@ const MediaGallery = ({
     className,
     onClickMedia,
 }) => {
-    // Filters
-    const [filtersValue, setFiltersValue] = useState({
+    // Base state for filters
+    const defaultFilters = {
         type,
-    });
+        source: 'all',
+    };
+
+    // Filters
+    const [filtersValue, setFiltersValue] = useState(defaultFilters);
 
     // Items
     const { allMedias: loadedMedias } = useMedias(filtersValue, 1, 100, {
@@ -73,7 +77,15 @@ const MediaGallery = ({
     );
     const onClickItemInfo = useCallback((media) => setMetadataMedia(media), [setMetadataMedia]);
     const onMetadataClickClose = useCallback(() => setMetadataMedia(null), [setMetadataMedia]);
+
+    // Navigation
     const onClickBack = useCallback(() => setMetadataMedia(null), [setMetadataMedia]);
+
+    // Reset all filters except source
+    const onClickCancel = useCallback(
+        () => setFiltersValue({ ...defaultFilters, source: filtersValue.source || null }),
+        [defaultFilters, filtersValue, setFiltersValue],
+    );
 
     // Upload modal
     const [uploadModalOpened, setUploadModalOpened] = useState(false);
@@ -91,7 +103,7 @@ const MediaGallery = ({
         setUploadModalOpened,
     ]);
 
-    console.log('filters', filtersValue);
+    // console.log('filters', filtersValue);
 
     return (
         <div
@@ -109,6 +121,7 @@ const MediaGallery = ({
                 onFiltersChange={setFiltersValue}
                 onClickAdd={onClickAdd}
                 onClickBack={onClickBack}
+                onClickCancel={onClickCancel}
             />
             <div className={styles.content}>
                 <div className={styles.gallery}>

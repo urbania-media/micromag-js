@@ -1,0 +1,19 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/mixins';
+
+.container {
+    position: relative;
+    padding: 10px;
+
+    .label {
+        display: inline-block;
+        padding-right: 5px;
+        font-weight: normal;
+    }
+
+    .dropdownToggle {
+        @extend %reset-button;
+        font-weight: bold;
+    }
+}

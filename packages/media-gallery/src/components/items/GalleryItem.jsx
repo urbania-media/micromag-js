@@ -2,15 +2,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { faPlayCircle, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faPlayCircle, faInfoCircle, faHeadphonesAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Card, Button } from '@micromag/core/components';
+
+import { middleEllipsis } from '../../lib/utils';
 
 import styles from '../../styles/items/gallery-item.module.scss';
 
 const propTypes = {
     item: MicromagPropTypes.media,
+    width: PropTypes.number,
     selected: PropTypes.bool,
     withInfoButton: PropTypes.bool,
     className: PropTypes.string,
@@ -20,6 +23,7 @@ const propTypes = {
 
 const defaultProps = {
     item: null,
+    width: 0,
     selected: false,
     withInfoButton: false,
     className: null,
@@ -27,8 +31,22 @@ const defaultProps = {
     onClickInfo: null,
 };
 
-const GalleryItem = ({ item, selected, withInfoButton, className, onClick, onClickInfo }) => {
+const GalleryItem = ({
+    item,
+    width,
+    selected,
+    withInfoButton,
+    className,
+    onClick,
+    onClickInfo,
+}) => {
     const { type, thumbnail_url: thumbnail = null, name, size } = item;
+    let title = name;
+    if (width < 768) {
+        title = middleEllipsis(name, Math.floor(Math.max(18, width / 2 / 9)));
+    } else {
+        title = middleEllipsis(name, Math.floor(Math.max(25, width / 3 / 8)));
+    }
     return (
         <Card
             image={
@@ -40,11 +58,14 @@ const GalleryItem = ({ item, selected, withInfoButton, className, onClick, onCli
                     <div
                         className={classNames(['card-img-top', styles.image])}
                         style={{
-                            backgroundImage: thumbnail !== null ? `url("${thumbnail}")` : null,
+                            backgroundImage: thumbnail !== null ? `url('${thumbnail}')` : null,
                         }}
                     />
                     {type === 'video' ? (
                         <FontAwesomeIcon className={styles.playIcon} icon={faPlayCircle} />
+                    ) : null}
+                    {type === 'audio' ? (
+                        <FontAwesomeIcon className={styles.playIcon} icon={faHeadphonesAlt} />
                     ) : null}
                 </button>
             }
@@ -57,7 +78,7 @@ const GalleryItem = ({ item, selected, withInfoButton, className, onClick, onCli
             }
             footer={
                 <>
-                    <small>{name}</small>
+                    <small>{title}</small>
                     <small className="text-muted">{size}</small>
                 </>
             }

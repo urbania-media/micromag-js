@@ -1,10 +1,11 @@
+/* eslint-disable jsx-a11y/media-has-caption */
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import prettyBytes from 'pretty-bytes';
 import { FormattedMessage } from 'react-intl';
-import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
+import { faPlayCircle, faHeadphonesAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
@@ -25,6 +26,7 @@ const MediaMetadata = ({ media, className }) => {
         type,
         thumbnail_url: thumbnail = null,
         name,
+        src,
         metadata: {
             filename = null,
             size = null,
@@ -44,19 +46,29 @@ const MediaMetadata = ({ media, className }) => {
         >
             <div className={classNames([styles.preview])}>
                 {type === 'video' ? (
-                    <FontAwesomeIcon className={styles.playIcon} icon={faPlayCircle} />
+                    <>
+                        <video className={styles.video} controls src={src} />
+                    </>
                 ) : null}
-                <div
-                    className={styles.image}
-                    style={{
-                        backgroundImage: thumbnail !== null ? `url("${thumbnail}")` : null,
-                    }}
-                />
+                {type === 'audio' ? (
+                    <>
+                        <FontAwesomeIcon className={styles.playIcon} icon={faHeadphonesAlt} />
+                        <div className={styles.audio}>
+                            <audio className={styles.player} controls src={src} />
+                        </div>
+                    </>
+                ) : null}
+                {type !== 'video' ? (
+                    <div
+                        className={styles.image}
+                        style={{
+                            backgroundImage: thumbnail !== null ? `url('${thumbnail}')` : null,
+                        }}
+                    />
+                ) : null}
             </div>
-
             <div className="p-2">
                 <h4 className="mb-4">{name}</h4>
-
                 <h6>
                     <FormattedMessage
                         defaultMessage="Technical details"

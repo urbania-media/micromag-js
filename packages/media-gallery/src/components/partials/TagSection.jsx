@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const propTypes = {
-    title: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
     tags: PropTypes.arrayOf(
         PropTypes.shape({
             label: PropTypes.string,
@@ -11,22 +10,31 @@ const propTypes = {
             active: PropTypes.bool,
         }),
     ),
-    onClick: PropTypes.func,
+    parent: PropTypes.string,
+    onChange: PropTypes.func,
     className: PropTypes.string,
 };
 
 const defaultProps = {
-    title: null,
     tags: null,
-    onClick: null,
+    parent: null,
+    onChange: null,
     className: null,
 };
 
-const TagSection = ({ title, tags, onClick, className }) => {
+const TagSection = ({ tags, parent, onChange, className }) => {
+    const onItemChange = useCallback(
+        (e) => {
+            const val = e.target.dataset.value || null;
+            onChange(val, parent);
+        },
+        [onChange, parent],
+    );
     return (
         <div
             className={classNames([
                 'd-flex',
+                'mt-1',
                 {
                     [className]: className !== null,
                 },
@@ -37,7 +45,9 @@ const TagSection = ({ title, tags, onClick, className }) => {
                       const itemClassNames = classNames([
                           'btn',
                           'btn-sm',
-                          'm-1',
+
+                          'mb-1',
+                          'mr-1',
                           {
                               'btn-primary': active === true,
                               'btn-outline-primary': active === false,
@@ -49,9 +59,8 @@ const TagSection = ({ title, tags, onClick, className }) => {
                               className={itemClassNames}
                               type="button"
                               key={`tag-${value}`}
-                              onClick={() => {
-                                  onClick(value);
-                              }}
+                              onClick={onItemChange}
+                              data-value={value}
                           >
                               {label}
                           </button>

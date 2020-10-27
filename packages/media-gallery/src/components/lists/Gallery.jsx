@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, useResizeObserver } from '@micromag/core';
 
 import GalleryItem from '../items/GalleryItem';
 
@@ -36,40 +36,52 @@ const Gallery = ({
     className,
     onClickItem,
     onClickItemInfo,
-}) => (
-    <div
-        className={classNames([
-            styles.container,
-            'p-2',
-            {
-                [className]: className !== null,
-            },
-        ])}
-    >
+}) => {
+    const {
+        ref,
+        entry: { contentRect },
+    } = useResizeObserver();
+    const { width } = contentRect || {};
+
+    return (
         <div
             className={classNames([
-                'row',
-                'mx-n1',
-                'row-cols-2',
+                styles.container,
+                'p-2',
                 {
-                    'row-cols-md-3': !isSmall,
+                    [className]: className !== null,
                 },
             ])}
+            ref={ref}
         >
-            {items.map(item => (
-                <div className="col px-1 py-1" key={`gallery-item-${item.id}`}>
-                    <GalleryItem
-                        item={item}
-                        selected={selectedItem !== null && selectedItem.id === item.id}
-                        onClick={onClickItem !== null ? () => onClickItem(item) : null}
-                        onClickInfo={onClickItemInfo !== null ? () => onClickItemInfo(item) : null}
-                        withInfoButton={withInfoButton}
-                    />
-                </div>
-            ))}
+            <div
+                className={classNames([
+                    'row',
+                    'mx-n1',
+                    'row-cols-2',
+                    {
+                        'row-cols-md-3': !isSmall,
+                    },
+                ])}
+            >
+                {items.map((item) => (
+                    <div className="col px-1 py-1" key={`gallery-item-${item.id}`}>
+                        <GalleryItem
+                            item={item}
+                            width={width}
+                            selected={selectedItem !== null && selectedItem.id === item.id}
+                            onClick={onClickItem !== null ? () => onClickItem(item) : null}
+                            onClickInfo={
+                                onClickItemInfo !== null ? () => onClickItemInfo(item) : null
+                            }
+                            withInfoButton={withInfoButton}
+                        />
+                    </div>
+                ))}
+            </div>
         </div>
-    </div>
-);
+    );
+};
 
 Gallery.propTypes = propTypes;
 Gallery.defaultProps = defaultProps;

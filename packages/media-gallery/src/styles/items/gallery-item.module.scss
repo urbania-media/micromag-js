@@ -30,11 +30,10 @@
 
     .playIcon {
         position: absolute;
-        top: 50%;
-        left: 50%;
+        right: 10px;
+        bottom: 10px;
         width: 36px;
         height: 36px;
-        transform: translate(-50%, -50%);
         color: $white;
     }
 
@@ -45,8 +44,12 @@
         color: inherit;
         text-align: inherit;
         appearance: none;
-        text-overflow: ellipsis;
+        // text-overflow: ellipsis;
         white-space: nowrap;
+
+        small {
+            font-size: 0.8rem;
+        }
     }
 
     .infoButton {

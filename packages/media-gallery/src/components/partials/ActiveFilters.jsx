@@ -2,7 +2,7 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
@@ -12,30 +12,25 @@ import CloseButton from '../buttons/Close';
 import styles from '../../styles/partials/active-filters.module.scss';
 
 const propTypes = {
-    value: PropTypes.shape({
+    filters: PropTypes.shape({
         types: PropTypes.arrayOf(PropTypes.string),
         tags: PropTypes.arrayOf(PropTypes.string),
         users: PropTypes.arrayOf(PropTypes.string),
         usage: PropTypes.arrayOf(PropTypes.oneOf(['used', 'unused'])),
     }),
     onChange: PropTypes.func,
-    filterTitles: PropTypes.arrayOf(PropTypes.object),
+    sections: PropTypes.arrayOf(PropTypes.object),
     className: PropTypes.string,
 };
 
 const defaultProps = {
-    value: null,
+    filters: null,
     onChange: null,
-    filterTitles: [
-        { id: 'types', title: 'types' },
-        { id: 'tags', title: 'étiquettes' },
-        { id: 'users', title: 'ajouté par' },
-        { id: 'usage', title: 'usage' },
-    ],
+    sections: [],
     className: null,
 };
 
-const ActiveFilters = ({ value, onChange, filterTitles, className }) => {
+const ActiveFilters = ({ filters, onChange, sections, className }) => {
     const handleReset = useCallback(() => {
         if (onChange !== null) {
             onChange(null);
@@ -44,20 +39,17 @@ const ActiveFilters = ({ value, onChange, filterTitles, className }) => {
 
     const removeFilter = useCallback(
         (key, activeValue) => {
-            const newFilterValue = value[key].filter(it => it !== activeValue);
-            const newValue = {
-                ...value,
-                [key]: newFilterValue.length > 0 ? newFilterValue : null,
-            };
+            const newFilterValue = filters[key].filter((it) => it !== activeValue);
+            const newValue = newFilterValue.length > 0 ? newFilterValue : null;
             if (onChange !== null) {
-                onChange(newValue);
+                onChange(key, newValue);
             }
         },
-        [onChange, value],
+        [onChange, filters],
     );
 
-    const hasValue = Object.keys(value).reduce(
-        (oneHasValue, key) => oneHasValue || value[key] !== null,
+    const hasValue = Object.keys(filters).reduce(
+        (oneHasValue, key) => oneHasValue || filters[key] !== null,
         false,
     );
 
@@ -72,32 +64,47 @@ const ActiveFilters = ({ value, onChange, filterTitles, className }) => {
         >
             {hasValue ? (
                 <div className={styles.heading}>
-                    <div className={styles.title}> Filtres Actifs </div>
+                    <div className={styles.title}>
+                        <FormattedMessage
+                            defaultMessage="Active filters"
+                            description="Active filters title"
+                        />
+                    </div>
                     <CloseButton className={styles.resetButton} onClick={handleReset}>
-                        <u>Retirer tous</u>
+                        <u>
+                            <FormattedMessage
+                                defaultMessage="Remove all"
+                                description="Remove all button label"
+                            />
+                        </u>
                     </CloseButton>
                 </div>
             ) : null}
-
-            {value !== null
-                ? Object.keys(value).map(key => {
-                      const { title } = filterTitles.find(it => it.id === key);
-                      return value[key] !== null
-                          ? value[key].map(activeValue => (
-                                <Button
-                                    className={styles.activeTag}
-                                    key={`filter-button-${activeValue}`}
-                                    type="submit"
-                                    size="sm"
-                                    label={`${title.toUpperCase()} ${activeValue
-                                        .charAt(0)
-                                        .toUpperCase()}${activeValue.slice(1)}`}
-                                    theme="secondary"
-                                    icon={<FontAwesomeIcon icon={faTimes} />}
-                                    iconPosition="right"
-                                    onClick={() => removeFilter(key, activeValue)}
-                                />
-                            ))
+            {filters !== null
+                ? Object.keys(filters).map((key) => {
+                      const section = sections.find((s) => s.value === key);
+                      return section && filters[key] !== null
+                          ? filters[key].map((activeValue) => {
+                                const current = section.items.find((s) => s.value === activeValue);
+                                const { label = '' } = current || {};
+                                return (
+                                    <Button
+                                        className={styles.activeTag}
+                                        key={`filter-button-${activeValue}`}
+                                        type="submit"
+                                        size="sm"
+                                        label={
+                                            <span>
+                                                {section.label} : {label}
+                                            </span>
+                                        }
+                                        theme="secondary"
+                                        icon={<FontAwesomeIcon icon={faTimes} />}
+                                        iconPosition="right"
+                                        onClick={() => removeFilter(key, activeValue)}
+                                    />
+                                );
+                            })
                           : null;
                   })
                 : null}

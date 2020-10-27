@@ -3,14 +3,16 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faChevronLeft, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
-import { useOrganisationTeam, useRecentSearches, useMediaTags } from '@micromag/data';
+import { useRecentSearches, useMediaTags } from '@micromag/data'; // useOrganisationTeam
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button } from '@micromag/core/components';
 
+import DropdownSection from './DropdownSection';
 import SearchFilters from './SearchFilters';
 import SearchForm from '../forms/Search';
+import ActiveFilters from './ActiveFilters';
 
 import * as AppPropTypes from '../../lib/PropTypes';
 
@@ -20,6 +22,7 @@ const propTypes = {
     filters: AppPropTypes.filtersValue,
     media: MicromagPropTypes.media,
     onClickAdd: PropTypes.func,
+    onClickCancel: PropTypes.func,
     onFocusSearch: PropTypes.func,
     onFiltersChange: PropTypes.func,
     onClickBack: PropTypes.func,
@@ -30,6 +33,7 @@ const defaultProps = {
     filters: null,
     media: null,
     onClickAdd: null,
+    onClickCancel: null,
     onFocusSearch: null,
     onFiltersChange: null,
     onClickBack: null,
@@ -41,6 +45,7 @@ const Navbar = ({
     media,
     className,
     onClickAdd,
+    onClickCancel,
     onFocusSearch,
     onFiltersChange,
     onClickBack,
@@ -49,6 +54,54 @@ const Navbar = ({
     const { recent } = useRecentSearches();
     const { tags } = useMediaTags();
     // const { team } = useOrganisationTeam();
+
+    const searchValue = filters !== null ? filters.search || null : null;
+    const hasFilter =
+        filters !== null
+            ? Object.keys(filters).reduce((acc, val) => {
+                  if (
+                      val !== 'type' &&
+                      val !== 'search' &&
+                      val !== 'source' &&
+                      filters[val] !== null &&
+                      filters[val].length > 0
+                  ) {
+                      return true;
+                  }
+                  return acc;
+              }, false)
+            : false;
+
+    const sources = [
+        {
+            label: (
+                <FormattedMessage
+                    defaultMessage="All sources"
+                    description="Source from all places"
+                />
+            ),
+            value: 'all',
+        },
+        {
+            label: (
+                <FormattedMessage
+                    defaultMessage="This Micromag"
+                    description="Source from this micromag"
+                />
+            ),
+            value: 'self',
+        },
+        {
+            label: (
+                <FormattedMessage
+                    defaultMessage="Some other micromag"
+                    description="Source from another micromag"
+                />
+            ),
+            value: 'some-other-micromag',
+        },
+    ];
+
     const team = [
         {
             id: 1,
@@ -132,13 +185,21 @@ const Navbar = ({
             if (onFiltersChange !== null) {
                 onFiltersChange(newFiltersValue);
             }
+            setOpen(false);
         },
-        [filters, onFiltersChange],
+        [filters, onFiltersChange, setOpen],
     );
 
     const onSearchChange = useCallback(
         (newSearchValue) => {
             onFilterChange('search', newSearchValue);
+        },
+        [onFilterChange],
+    );
+
+    const onSourceChange = useCallback(
+        (newSourceValue) => {
+            onFilterChange('source', newSourceValue);
         },
         [onFilterChange],
     );
@@ -150,7 +211,12 @@ const Navbar = ({
         setOpen(true);
     });
 
-    const searchValue = filters !== null ? filters.search || null : null;
+    const onClear = useCallback(() => {
+        if (onClickCancel !== null) {
+            onClickCancel();
+        }
+        setOpen(false);
+    }, [onClickCancel]);
 
     return (
         <nav
@@ -165,8 +231,8 @@ const Navbar = ({
             ])}
         >
             <div className={styles.inner}>
-                {media !== null ? (
-                    <div className="d-flex flex-nowrap justify-content-between">
+                <div className="d-flex flex-nowrap justify-content-between">
+                    {media !== null ? (
                         <form className={classNames(['form-inline'])}>
                             <Button
                                 theme="secondary"
@@ -175,36 +241,84 @@ const Navbar = ({
                                 onClick={onClickBack}
                             />
                         </form>
-                        <strong className="navbar-text ml-2 mr-auto">{media.name}</strong>
-                    </div>
-                ) : (
-                    <div className="d-flex flex-nowrap justify-content-between">
-                        <SearchForm
-                            value={searchValue}
-                            onChange={onSearchChange}
-                            onFocus={onSearchFocus}
-                            className={classNames(['form-inline', 'mr-2'])}
-                        />
-                        <form className={classNames(['form-inline', 'ml-auto'])}>
-                            <Button
-                                theme="primary"
-                                icon={<FontAwesomeIcon icon={faPlus} />}
-                                onClick={onClickAdd}
-                            >
-                                <FormattedMessage
-                                    defaultMessage="Add"
-                                    description="Add button label in Media Gallery"
+                    ) : null}
+                    <strong className="navbar-text ml-2 mr-auto">
+                        {media !== null ? (
+                            media.name
+                        ) : (
+                            <FormattedMessage
+                                defaultMessage="Media gallery"
+                                description="Top nav title for media gallery"
+                            />
+                        )}
+                    </strong>
+                </div>
+                {media === null ? (
+                    <>
+                        <div className="d-flex w-100 flex-nowrap justify-content-center">
+                            <DropdownSection
+                                items={sources}
+                                value={filters.source || null}
+                                onChange={onSourceChange}
+                            />
+                        </div>
+                        <div className="d-flex w-100 flex-nowrap justify-content-between">
+                            <SearchForm
+                                value={searchValue}
+                                onChange={onSearchChange}
+                                onFocus={onSearchFocus}
+                                className={classNames(['form-inline', 'mr-2'])}
+                            />
+                            <form className={classNames(['form-inline', 'ml-auto'])}>
+                                {open || searchValue || hasFilter ? (
+                                    <Button
+                                        theme="primary"
+                                        icon={<FontAwesomeIcon icon={faTimesCircle} />}
+                                        onClick={onClear}
+                                    >
+                                        {searchValue || hasFilter ? (
+                                            <FormattedMessage
+                                                defaultMessage="Clear"
+                                                description="Clear button label in Media Gallery"
+                                            />
+                                        ) : (
+                                            <FormattedMessage
+                                                defaultMessage="Cancel"
+                                                description="Cancel button label in Media Gallery"
+                                            />
+                                        )}
+                                    </Button>
+                                ) : (
+                                    <Button
+                                        theme="primary"
+                                        icon={<FontAwesomeIcon icon={faPlus} />}
+                                        onClick={onClickAdd}
+                                    >
+                                        <FormattedMessage
+                                            defaultMessage="Add"
+                                            description="Add button label in Media Gallery"
+                                        />
+                                    </Button>
+                                )}
+                            </form>
+                        </div>
+                        {open ? (
+                            <div className="d-flex w-100 my-1 flex-nowrap justify-content-between">
+                                <SearchFilters
+                                    filters={filters}
+                                    sections={sections}
+                                    onChange={onFilterChange}
                                 />
-                            </Button>
-                        </form>
-                    </div>
-                )}
-                {open && media === null ? (
-                    <div className="d-flex flex-nowrap justify-content-between">
-                        <SearchFilters
+                            </div>
+                        ) : null}
+                    </>
+                ) : null}
+                {hasFilter && !open && media === null ? (
+                    <div className="d-flex w-100 my-1 flex-nowrap justify-content-between">
+                        <ActiveFilters
                             filters={filters}
-                            onFilterChange={onFilterChange}
                             sections={sections}
+                            onChange={onFilterChange}
                         />
                     </div>
                 ) : null}

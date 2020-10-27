@@ -4,11 +4,16 @@
 
 .container {
     position: relative;
-    padding: 10px 0;
+    width: 100%;
+    overflow: hidden;
 
-    .heading {
-        display: flex;
-        justify-content: space-between;
+    .section {
+        overflow-x: scroll;
+        border-bottom: 1px solid $gray-500;
+
+        &:last-child {
+            border-bottom: 0;
+        }
     }
 
     .title {
@@ -16,15 +21,5 @@
         font-size: $font-size-sm;
         font-weight: $font-weight-bold;
         text-transform: uppercase;
-    }
-
-    .resetButton {
-        outline: none;
-        font-size: $font-size-sm;
-    }
-
-    .activeTag {
-        margin-top: 5px;
-        margin-right: 5px;
     }
 }

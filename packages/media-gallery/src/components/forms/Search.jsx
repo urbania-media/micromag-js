@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-// import classNames from 'classnames';
+import classNames from 'classnames';
+
 import { useIntl } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -10,6 +11,7 @@ const propTypes = {
     value: PropTypes.string,
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -17,10 +19,11 @@ const defaultProps = {
     value: null,
     onChange: null,
     onFocus: null,
+    onBlur: null,
     className: null,
 };
 
-const Search = ({ value, onChange, onFocus, className }) => {
+const Search = ({ value, onChange, onFocus, onBlur, className }) => {
     const intl = useIntl();
     const onSearchChange = useCallback(
         (e) => {
@@ -33,7 +36,14 @@ const Search = ({ value, onChange, onFocus, className }) => {
     );
 
     return (
-        <form method="post" className={className}>
+        <form
+            method="post"
+            className={classNames([
+                {
+                    [className]: className !== null,
+                },
+            ])}
+        >
             <div className="input-group">
                 <span className="input-group-prepend">
                     <span className="input-group-text">
@@ -41,7 +51,12 @@ const Search = ({ value, onChange, onFocus, className }) => {
                     </span>
                 </span>
                 <input
-                    className="form-control"
+                    className={classNames([
+                        'form-control',
+                        {
+                            'bg-light': !!value,
+                        },
+                    ])}
                     type="text"
                     value={value || ''}
                     placeholder={intl.formatMessage({
@@ -50,6 +65,7 @@ const Search = ({ value, onChange, onFocus, className }) => {
                     })}
                     onChange={onSearchChange}
                     onFocus={onFocus}
+                    onBlur={onBlur}
                 />
             </div>
         </form>

@@ -7,21 +7,23 @@ import classNames from 'classnames';
 
 import TagSection from './TagSection';
 
+import styles from '../../styles/partials/search-filters.module.scss';
+
 const propTypes = {
     filters: PropTypes.object, // eslint-disable-line
     sections: PropTypes.arrayOf(PropTypes.object),
-    onFilterChange: PropTypes.func,
+    onChange: PropTypes.func,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     filters: null,
     sections: [],
-    onFilterChange: null,
+    onChange: null,
     className: null,
 };
 
-const SearchFilters = ({ filters, sections, onFilterChange, className }) => {
+const SearchFilters = ({ filters, sections, onChange, className }) => {
     const getActive = useCallback((items, sectionFilters) => {
         return items !== null
             ? items.map((it) => ({
@@ -29,7 +31,7 @@ const SearchFilters = ({ filters, sections, onFilterChange, className }) => {
                   active: sectionFilters ? !!sectionFilters.find((f) => f === it.value) : false,
               }))
             : [];
-    });
+    }, []);
 
     const activeSections = useMemo(() => {
         return sections.map((section) => ({
@@ -38,40 +40,46 @@ const SearchFilters = ({ filters, sections, onFilterChange, className }) => {
         }));
     }, [getActive, sections, filters]);
 
+    const onSectionChange = useCallback(
+        (data, section) => {
+            const val = filters[section] ? filters[section] : [];
+            const found = !!val.find((f) => f === data);
+            if (found) {
+                onChange(
+                    section,
+                    val.filter((f) => f !== data),
+                );
+            } else if (data) {
+                if (section === 'recent') {
+                    onChange('search', data);
+                } else if (section === 'usage') {
+                    onChange(section, [data]);
+                } else {
+                    onChange(section, [...val, data]);
+                }
+            }
+        },
+        [filters, onChange],
+    );
+
     return (
         <div
             className={classNames([
+                styles.container,
                 'bg-light',
                 'flex-nowrap',
                 'text-dark',
+                'mt-1',
                 {
                     [className]: className !== null,
                 },
             ])}
         >
             {activeSections.map(({ value, label, items }) => {
-                const onClick = useCallback((data) => {
-                    const val = filters[value] ? filters[value] : [];
-                    const found = !!val.find((f) => f === data);
-                    if (found) {
-                        onFilterChange(
-                            value,
-                            val.filter((f) => f !== data),
-                        );
-                    } else if (data) {
-                        if (value === 'recent') {
-                            onFilterChange('search', data);
-                        } else if (value === 'usage') {
-                            onFilterChange(value, [data]);
-                        } else {
-                            onFilterChange(value, [...val, data]);
-                        }
-                    }
-                });
                 return (
-                    <div className="section py-2">
-                        <h5>{label}</h5>
-                        <TagSection tags={items} onClick={onClick} />
+                    <div key={`filter-${value}`} className={classNames([styles.section, 'py-2'])}>
+                        <p className={classNames([styles.title, 'm-0'])}>{label}</p>
+                        <TagSection tags={items} parent={value} onChange={onSectionChange} />
                     </div>
                 );
             })}

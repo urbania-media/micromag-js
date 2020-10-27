@@ -6,6 +6,9 @@ import { ApiProvider } from '../../../data/src/contexts/ApiContext';
 import { OrganisationProvider } from '../../../app/src/contexts/OrganisationContext';
 
 import FieldsProvider from '../../../fields/src/components/FieldsProvider';
+
+import video from '../../../../.storybook/data/test.mp4';
+import sound from '../../../../.storybook/data/test.mp3';
 // import { paragraph, image } from '../../../../.storybook/data';
 
 import MediaGallery from '../components/MediaGallery';
@@ -17,38 +20,45 @@ const props = {
         {
             id: 1,
             type: 'video',
-            thumbnail_url: 'https://picsum.photos/id/1/300/300',
-            name: 'uuuuurbaniaDog1.mov',
+            thumbnail_url: 'https://picsum.photos/id/100/300/300',
+            name:
+                'uuuuurbaniaDog1 sdfasdflasd s df adsf asdfasdfgasdf dasgf ads gadsfg adsfg adfg dsfg.mov',
+            src: video,
         },
         {
             id: 2,
             type: 'video',
-            thumbnail_url: 'https://picsum.photos/id/2/300/300',
+            thumbnail_url: 'https://picsum.photos/id/200/300/300',
             name: 'moon.mov',
+            src: video,
         },
         {
             id: 3,
             type: 'video',
-            thumbnail_url: 'https://picsum.photos/id/3/300/300',
+            thumbnail_url: 'https://picsum.photos/id/300/300/300',
             name: 'sea.mov',
+            src: video,
         },
         {
             id: 4,
             type: 'image',
-            thumbnail_url: 'https://picsum.photos/id/4/300/300',
+            thumbnail_url: 'https://picsum.photos/id/400/300/300',
             name: 'moondog.jpg',
+            src: 'https://picsum.photos/id/400/800/800',
         },
         {
             id: 5,
             type: 'image',
-            thumbnail_url: 'https://picsum.photos/id/5/300/300',
+            thumbnail_url: 'https://picsum.photos/id/500/300/300',
             name: 'urbaniaDog5.jpg',
+            src: 'https://picsum.photos/id/500/800/800',
         },
         {
             id: 6,
             type: 'audio',
-            thumbnail_url: 'https://picsum.photos/id/5/300/300',
+            thumbnail_url: 'https://picsum.photos/id/600/300/300',
             name: 'Cool thang',
+            src: sound,
         },
     ],
     user: {

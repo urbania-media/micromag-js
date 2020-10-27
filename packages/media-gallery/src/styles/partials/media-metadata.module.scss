@@ -6,6 +6,7 @@
     position: relative;
 
     .preview {
+        position: relative;
         background: $black;
     }
 
@@ -26,5 +27,22 @@
         height: 36px;
         transform: translate(-50%, -50%);
         color: $white;
+    }
+
+    .audio {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+
+        .player {
+            display: block;
+            margin: 0 auto;
+        }
+    }
+
+    .video {
+        display: block;
+        max-width: 80%;
+        margin: 0 auto;
     }
 }

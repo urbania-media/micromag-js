@@ -1,5 +1,5 @@
-const convertUppyToMedia = it => {
-    console.log(it);
+const convertUppyToMedia = (it) => {
+    // console.log(it);
     const type = it.data.type.split('/')[0];
     const thumbnail = it.transloadit[`${type}_thumbnail`] || null;
     const original = it.transloadit[`${type}_original`] || null;
