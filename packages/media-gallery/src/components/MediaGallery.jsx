@@ -62,7 +62,7 @@ const MediaGallery = ({
     // Medias
     const [metadataMedia, setMetadataMedia] = useState(null);
     const onClickItem = useCallback(
-        media => {
+        (media) => {
             if (!isPicker) {
                 setMetadataMedia(media);
             } else if (onClickMedia !== null) {
@@ -71,7 +71,7 @@ const MediaGallery = ({
         },
         [isPicker, setMetadataMedia, onClickMedia],
     );
-    const onClickItemInfo = useCallback(media => setMetadataMedia(media), [setMetadataMedia]);
+    const onClickItemInfo = useCallback((media) => setMetadataMedia(media), [setMetadataMedia]);
     const onMetadataClickClose = useCallback(() => setMetadataMedia(null), [setMetadataMedia]);
     const onClickBack = useCallback(() => setMetadataMedia(null), [setMetadataMedia]);
 
@@ -80,8 +80,8 @@ const MediaGallery = ({
     const { create: createMedia } = useMediaCreate();
     const onClickAdd = useCallback(() => setUploadModalOpened(true), [setUploadModalOpened]);
     const onUploadCompleted = useCallback(
-        newMedias => {
-            Promise.all(newMedias.map(createMedia)).then(newAddedMedias =>
+        (newMedias) => {
+            Promise.all(newMedias.map(createMedia)).then((newAddedMedias) =>
                 setAddedMedias([...addedMedias, ...newAddedMedias]),
             );
         },
@@ -90,6 +90,8 @@ const MediaGallery = ({
     const onUploadRequestClose = useCallback(() => setUploadModalOpened(false), [
         setUploadModalOpened,
     ]);
+
+    console.log('filters', filtersValue);
 
     return (
         <div

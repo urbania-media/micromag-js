@@ -174,7 +174,6 @@ export const videoControls = PropTypes.shape({
     volume: videoControl,
 });
 
-
 export const objectFit = PropTypes.shape({
     fit: PropTypes.oneOf(['cover', 'contain', null]),
     horizontalPosition: PropTypes.oneOf(['left', 'center', 'right']),
@@ -419,3 +418,14 @@ export const transitions = PropTypes.shape({
     in: transition,
     out: transition,
 });
+
+/**
+ * Search
+ */
+
+export const searchFilter = PropTypes.shape({
+    type: PropTypes.string,
+    value: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
+});
+
+export const searchFilters = PropTypes.arrayOf(searchFilter);

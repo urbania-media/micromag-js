@@ -1,16 +1,22 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { MemoryRouter } from 'react-router';
+
+import { ApiProvider } from '../../../data/src/contexts/ApiContext';
+import { OrganisationProvider } from '../../../app/src/contexts/OrganisationContext';
+
 import FieldsProvider from '../../../fields/src/components/FieldsProvider';
 // import { paragraph, image } from '../../../../.storybook/data';
 
 import MediaGallery from '../components/MediaGallery';
 
+const apiBaseUrl = `${window.location.protocol}//${window.location.host}/api`;
+
 const props = {
-    items: [
+    medias: [
         {
             id: 1,
-            type: 'image',
+            type: 'video',
             thumbnail_url: 'https://picsum.photos/id/1/300/300',
             name: 'uuuuurbaniaDog1.mov',
         },
@@ -30,7 +36,7 @@ const props = {
             id: 4,
             type: 'image',
             thumbnail_url: 'https://picsum.photos/id/4/300/300',
-            name: 'urbaniaDog4.jpg',
+            name: 'moondog.jpg',
         },
         {
             id: 5,
@@ -38,7 +44,16 @@ const props = {
             thumbnail_url: 'https://picsum.photos/id/5/300/300',
             name: 'urbaniaDog5.jpg',
         },
+        {
+            id: 6,
+            type: 'audio',
+            thumbnail_url: 'https://picsum.photos/id/5/300/300',
+            name: 'Cool thang',
+        },
     ],
+    user: {
+        searches: ['chose', 'chat', 'sea', 'moondog'],
+    },
 };
 
 export default {
@@ -51,9 +66,13 @@ export default {
 };
 
 export const Normal = () => (
-    <FieldsProvider>
-        <MemoryRouter>
-            <MediaGallery {...props} />
-        </MemoryRouter>
-    </FieldsProvider>
+    <ApiProvider baseUrl={apiBaseUrl}>
+        <FieldsProvider>
+            <OrganisationProvider>
+                <MemoryRouter>
+                    <MediaGallery {...props} />
+                </MemoryRouter>
+            </OrganisationProvider>
+        </FieldsProvider>
+    </ApiProvider>
 );
