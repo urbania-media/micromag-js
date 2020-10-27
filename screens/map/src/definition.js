@@ -11,7 +11,7 @@ export default [
             description: 'Map screen title',
         }),
         component: Map,
-        layouts: ['bottom', 'top'],
+        layouts: ['normal'],
         fields: [
             {
                 name: 'layout',
@@ -55,7 +55,7 @@ export default [
             description: 'MapImages screen title',
         }),
         component: MapImages,
-        layouts: ['bottom', 'top'],
+        layouts: ['normal'],
         fields: [
             {
                 name: 'layout',

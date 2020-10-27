@@ -96,7 +96,7 @@ const Map = ({
                                   <Marker
                                       mapsApi={mapsApi}
                                       key={m.id}
-                                      active
+                                      active={m.active}
                                       title={`marker id: ${m.id}`}
                                       position={{ lat: m.geoPosition.lat, lng: m.geoPosition.lng }}
                                       events={{
