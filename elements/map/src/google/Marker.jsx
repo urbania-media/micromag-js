@@ -23,7 +23,7 @@ const defaultProps = {
     title: null,
 };
 
-const Marker = ({ mapsApi, position, type, map, events, active = false, title }) => {
+const Marker = ({ mapsApi, position, type, map, events, active, title }) => {
     const marker = useGoogleMapMarker({
         mapsApi,
         position,
@@ -42,7 +42,7 @@ const Marker = ({ mapsApi, position, type, map, events, active = false, title })
             }
             marker.setPosition(position);
         }
-    }, [active, position.lat, position.lng]);
+    }, [active, position]);
 
     return null;
 };

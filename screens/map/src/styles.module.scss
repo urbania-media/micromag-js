@@ -10,18 +10,43 @@
         height: 80%;
     }
 
-    .markerContent {
+    .markerOverlay {
         @extend %fullscreen;
-        display: flex;
-        flex-direction: column;
-        transition: transform 0.3s ease;
+        transition: opacity 0.3s ease;
+        opacity: 0;
+        background-color: rgba($black, 0.4);
+        pointer-events: none;
+    }
 
-        .swipeIndicator {
-            width: 30px;
-            margin: 10px auto;
-            border: 2px solid $gray-500;
-            border-radius: 2px;
-        }
+    .markerOverlayScrollable {
+        @extend %fullscreen;
+        overflow: auto;
+    }
+
+    .markerOverlaySpacer {
+        display: block;
+        width: 100%;
+    }
+
+    .markerOverlayContent {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        padding: 0 20px;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+        background-color: $white;
+    }
+
+    .markerOverlayContentInner {
+        color: $black;
+    }
+
+    .swipeIndicator {
+        width: 30px;
+        margin: 10px auto;
+        border: 2px solid $gray-500;
+        border-radius: 2px;
     }
 
     .splash {
@@ -32,40 +57,45 @@
         padding: 20px;
         transition: opacity 0.3s ease;
         background-color: rgba($black, 0.4);
-    }
 
-    .splashText {
-        padding: 20px;
-        background-color: $white;
-        color: $black;        
-    }
-
-    .splashButton {
-        @extend %fullscreen;
-    }
+        .splashText {
+            padding: 20px;
+            background-color: $white;
+            color: $black;
+        }
     
-    &.topLayout {
-        .markerContent {
-            transform: translateY(-100%);
-        }
-
-        .markerContentInner {
-            order: 1;
-        }
-
-        .swipeIndicator {
-            order: 2;
+        .splashButton {
+            @extend %fullscreen;
         }
     }
 
-    &.bottomLayout {
-        .markerContent {
-            transform: translateY(100%);
-        }
+    .closeButton {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+        padding: 10px;
+        transition: opacity 0.3s ease;
+        border-radius: 50%;
+        opacity: 0;
+        background-color: rgba($gray-900, 0.8);
+        pointer-events: none;
+    }
+
+    .image,
+    .title,
+    .description {
+        margin-bottom: 20px;
     }
 
     &.hasSelectedMarker {
-        .markerContent {
+        .markerOverlay {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .markerOverlayContent {
             transform: translateY(0%);
         }
     }
@@ -74,6 +104,11 @@
         .splash {
             opacity: 0;
             pointer-events: none;
+        }
+
+        .closeButton {
+            opacity: 1;
+            pointer-events: all;
         }
     }
 }
