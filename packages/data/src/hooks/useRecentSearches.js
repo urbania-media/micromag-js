@@ -14,8 +14,8 @@ const useRecentSearches = (count = 5, opts) => {
     });
     return {
         recent: [
-            { id: 1, label: 'Bocarnea', value: 'bocarnea' },
-            { id: 2, label: 'Crasula', value: 'crasula' },
+            { id: 1, label: 'Bocarnea 546', value: 'bocarnea 546' },
+            { id: 2, label: 'Crasula 782', value: 'crasula 782' },
             { id: 3, label: 'Plante', value: 'plante' },
             { id: 4, label: 'Plante1', value: 'plante1' },
             { id: 5, label: 'Plante2', value: 'plante2' },
@@ -24,6 +24,7 @@ const useRecentSearches = (count = 5, opts) => {
             { id: 8, label: 'Plante5', value: 'plante5' },
             { id: 9, label: 'Plante6', value: 'plante6' },
             { id: 10, label: 'Plante7', value: 'plante7' },
+            { id: 10, label: 'avatar', value: 'avatar' },
         ],
         ...request,
     };

@@ -15,6 +15,7 @@ const useMedias = (query = null, page = null, count = null, opts) => {
         page,
         ...opts,
     });
+    // console.log('medias', items);
     return {
         medias: page !== null ? pageItems : items,
         allMedias: items,

@@ -1,144 +1,85 @@
-/* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading, jsx-a11y/label-has-associated-control */
-import React, { useCallback } from 'react';
+/* eslint-disable react/jsx-props-no-spreading */
+import React, { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { pascalCase } from 'change-case';
-import { Checkboxes, Radios } from '@micromag/fields';
+// import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import { Label } from '@micromag/core';
+import TagSection from './TagSection';
+
 import styles from '../../styles/forms/search-filters.module.scss';
 
-
-const FieldsComponent = {
-    Checkboxes,
-    Radios,
-};
-
 const propTypes = {
-    filters: PropTypes.arrayOf(PropTypes.object),
-    value: PropTypes.shape({
-        search: PropTypes.string,
-        types: PropTypes.arrayOf(PropTypes.string),
-        tags: PropTypes.arrayOf(PropTypes.string),
-        users: PropTypes.arrayOf(PropTypes.string),
-        usage: PropTypes.arrayOf(PropTypes.oneOf(['used', 'unused'])),
-    }),
+    filters: PropTypes.object, // eslint-disable-line
+    sections: PropTypes.arrayOf(PropTypes.object),
     onChange: PropTypes.func,
     className: PropTypes.string,
 };
 
 const defaultProps = {
-    filters: [
-        {
-            id: 'search',
-            title: 'Recherches récents',
-            type: 'radios',
-            options: [
-                { value: 'vhs', label: 'Vhs' },
-                { value: 'final', label: 'Final' },
-                { value: 'entrevue', label: 'Entrevue' },
-                { value: 'marcel', label: 'Marcel' },
-            ],
-        },
-        {
-            id: 'types',
-            title: 'Types',
-            type: 'checkboxes',
-            options: [
-                { value: 'videos', label: 'Vidéos' },
-                { value: 'images', label: 'Images' },
-                { value: 'audio', label: 'Audio' },
-                { value: 'policies', label: 'Policies' },
-                { value: 'blooper', label: 'Blooper' },
-            ],
-        },
-        {
-            id: 'tags',
-            title: 'Étiquettes',
-            type: 'checkboxes',
-            options: [
-                { value: 'logos', label: 'Logos' },
-                { value: 'backgrounds', label: 'Backgrounds' },
-                { value: 'motifs', label: 'Motifs' },
-                { value: 'loops', label: 'Loops' },
-            ],
-        },
-        {
-            id: 'users',
-            title: 'Ajouté par',
-            type: 'checkboxes',
-            options: [
-                { value: 'martin', label: 'Martin' },
-                { value: 'regimbald', label: 'Régimbald' },
-                { value: 'myriam', label: 'Myriam' },
-            ],
-        },
-        {
-            id: 'usage',
-            title: 'Usage',
-            type: 'radios',
-            options: [
-                { value: 'used', label: 'Déja utilisé' },
-                { value: 'unused', label: 'Inutilisé' },
-            ],
-        },
-    ],
-    value: null,
+    filters: null,
+    sections: [],
     onChange: null,
     className: null,
 };
 
-const SearchFilters = ({ filters, value, onChange, className }) => {
-    const onFieldChange = useCallback(
-        (key, newFilterValue) => {
-            const newValue =
-                key === 'usage'
-                    ? {
-                          ...value,
-                          [key]: newFilterValue !== null ? newFilterValue.split() : null,
-                      }
-                    : {
-                          ...value,
-                          [key]: newFilterValue,
-                      };
+const SearchFilters = ({ filters, sections, onChange, className }) => {
+    const getActive = useCallback((items, sectionFilters) => {
+        return items !== null
+            ? items.map((it) => ({
+                  ...it,
+                  active: sectionFilters ? !!sectionFilters.find((f) => f === it.value) : false,
+              }))
+            : [];
+    }, []);
 
-            if (onChange !== null) {
-                onChange(newValue);
+    const activeSections = useMemo(() => {
+        return sections.map((section) => ({
+            ...section,
+            items: getActive(section.items, filters[section.value]),
+        }));
+    }, [getActive, sections, filters]);
+
+    const onSectionChange = useCallback(
+        (data, section) => {
+            const val = filters[section] ? filters[section] : [];
+            const found = !!val.find((f) => f === data);
+            if (found) {
+                onChange(
+                    section,
+                    val.filter((f) => f !== data),
+                );
+            } else if (data) {
+                if (section === 'recent') {
+                    onChange('search', data);
+                } else if (section === 'usage') {
+                    onChange(section, [data]);
+                } else {
+                    onChange(section, [...val, data]);
+                }
             }
         },
-        [onChange, value],
+        [filters, onChange],
     );
 
     return (
         <div
             className={classNames([
                 styles.container,
+                'bg-light',
+                'flex-nowrap',
+                'text-dark',
+                'mt-1',
                 {
                     [className]: className !== null,
                 },
             ])}
         >
-            {filters.map(({ id, title, type, options }) => {
-                const FieldComponent = FieldsComponent[pascalCase(type)] || null;
+            {activeSections.map(({ value, label, items }) => {
                 return (
-                    <div key={`${type}-${id}`}>
-                        <div className={styles.border} />
-                        <div className={styles.filter}>
-                            <label className={styles.label}>
-                                {title !== null ? <Label>{title}</Label> : null}
-                            </label>
-                            <FieldComponent
-                                className={styles.row}
-                                options={options}
-                                name={id}
-                                value={value !== null ? value[id] || null : null}
-                                onChange={newValue => onFieldChange(id, newValue)}
-                                hasIcon={id === 'users'}
-                                noWrap
-                                spaced
-                            />
-                        </div>
+                    <div key={`filter-${value}`} className={classNames([styles.section, 'py-2'])}>
+                        <p className={classNames([styles.title, 'm-0'])}>{label}</p>
+                        <TagSection tags={items} parent={value} onChange={onSectionChange} />
                     </div>
                 );
             })}

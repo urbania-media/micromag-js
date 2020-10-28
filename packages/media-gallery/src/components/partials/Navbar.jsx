@@ -9,10 +9,12 @@ import { useRecentSearches, useMediaTags } from '@micromag/data'; // useOrganisa
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button } from '@micromag/core/components';
 
-import DropdownSection from './DropdownSection';
-import SearchFilters from './SearchFilters';
+import DropdownSection from '../forms/DropdownSection';
+import SearchFilters from '../forms/SearchFilters';
 import SearchForm from '../forms/Search';
 import ActiveFilters from './ActiveFilters';
+
+import useSearchFilters from '../../hooks/useSearchFilters';
 
 import * as AppPropTypes from '../../lib/PropTypes';
 
@@ -51,9 +53,12 @@ const Navbar = ({
     onClickBack,
 }) => {
     const [open, setOpen] = useState(false);
+
+    // TODO: get data from api for testing
     const { recent } = useRecentSearches();
     const { tags } = useMediaTags();
     // const { team } = useOrganisationTeam();
+    const { sources, sections } = useSearchFilters({ recent, tags });
 
     const searchValue = filters !== null ? filters.search || null : null;
     const hasFilter =
@@ -71,110 +76,6 @@ const Navbar = ({
                   return acc;
               }, false)
             : false;
-
-    const sources = [
-        {
-            label: (
-                <FormattedMessage
-                    defaultMessage="All sources"
-                    description="Source from all places"
-                />
-            ),
-            value: 'all',
-        },
-        {
-            label: (
-                <FormattedMessage
-                    defaultMessage="This Micromag"
-                    description="Source from this micromag"
-                />
-            ),
-            value: 'self',
-        },
-        {
-            label: (
-                <FormattedMessage
-                    defaultMessage="Some other micromag"
-                    description="Source from another micromag"
-                />
-            ),
-            value: 'some-other-micromag',
-        },
-    ];
-
-    const team = [
-        {
-            id: 1,
-            label: 'Pierre',
-            value: 'pierre',
-            thumbnail_url: 'https://picsum.photos/id/2/50/50',
-        },
-        { id: 2, label: 'Paul', value: 'paul', color: 'blue' },
-    ];
-
-    const usage = [
-        {
-            label: (
-                <FormattedMessage
-                    defaultMessage="Already used"
-                    description="Media has been use somewhere"
-                />
-            ),
-            value: 'unused',
-        },
-        {
-            label: (
-                <FormattedMessage
-                    defaultMessage="Unused"
-                    description="Media has not been used somewhere"
-                />
-            ),
-            value: 'used',
-        },
-    ];
-
-    const sections = [
-        {
-            value: 'recent',
-            label: (
-                <FormattedMessage
-                    defaultMessage="Recent searches"
-                    description="Label for recent search section"
-                />
-            ),
-            items: recent,
-        },
-        {
-            value: 'tags',
-            label: (
-                <FormattedMessage
-                    defaultMessage="Tags"
-                    description="Label for tags search section"
-                />
-            ),
-            items: tags,
-        },
-        {
-            value: 'users',
-            label: (
-                <FormattedMessage
-                    defaultMessage="Added by"
-                    description="Label for users search section"
-                />
-            ),
-            items: team,
-        },
-        {
-            value: 'usage',
-            label: (
-                <FormattedMessage
-                    defaultMessage="Usage"
-                    description="Label for usage search section"
-                />
-            ),
-            items: usage,
-        },
-    ];
 
     const onFilterChange = useCallback(
         (type, value) => {

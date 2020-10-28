@@ -4,6 +4,7 @@ import { MemoryRouter } from 'react-router';
 
 import { ApiProvider } from '../../../data/src/contexts/ApiContext';
 import { OrganisationProvider } from '../../../app/src/contexts/OrganisationContext';
+import { AuthProvider } from '../../../app/src/contexts/AuthContext';
 
 import FieldsProvider from '../../../fields/src/components/FieldsProvider';
 
@@ -24,6 +25,9 @@ const props = {
             name:
                 'uuuuurbaniaDog1 sdfasdflasd s df adsf asdfasdfgasdf dasgf ads gadsfg adsfg adfg dsfg.mov',
             src: video,
+            metadata: {
+                user: { id: 1, name: 'paul ' },
+            },
         },
         {
             id: 2,
@@ -61,14 +65,11 @@ const props = {
             src: sound,
         },
     ],
-    user: {
-        searches: ['chose', 'chat', 'sea', 'moondog'],
-    },
 };
 
 export default {
     component: MediaGallery,
-    title: 'MediaGallery',
+    title: 'Editor/MediaGallery',
     parameters: {
         screenSize: true,
         intl: true,
@@ -79,9 +80,25 @@ export const Normal = () => (
     <ApiProvider baseUrl={apiBaseUrl}>
         <FieldsProvider>
             <OrganisationProvider>
-                <MemoryRouter>
-                    <MediaGallery {...props} />
-                </MemoryRouter>
+                <AuthProvider checkOnMount>
+                    <MemoryRouter>
+                        <MediaGallery />
+                    </MemoryRouter>
+                </AuthProvider>
+            </OrganisationProvider>
+        </FieldsProvider>
+    </ApiProvider>
+);
+
+export const WithTestMedia = () => (
+    <ApiProvider baseUrl={apiBaseUrl}>
+        <FieldsProvider>
+            <OrganisationProvider>
+                <AuthProvider checkOnMount>
+                    <MemoryRouter>
+                        <MediaGallery {...props} />
+                    </MemoryRouter>
+                </AuthProvider>
             </OrganisationProvider>
         </FieldsProvider>
     </ApiProvider>

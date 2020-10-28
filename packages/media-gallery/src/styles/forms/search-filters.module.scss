@@ -4,23 +4,22 @@
 
 .container {
     position: relative;
+    width: 100%;
+    overflow: hidden;
 
-    .border {
-        margin-right: -8px;
-        margin-left: -8px;
-        border: solid 1px $border-color;
-    }
+    .section {
+        overflow-x: scroll;
+        border-bottom: 1px solid $gray-500;
 
-    .filter {
-        margin-right: -10px;
-        padding: 10px 0;
-
-        &:first-child {
-            border-top: 0;
+        &:last-child {
+            border-bottom: 0;
         }
     }
 
-    .row {
-        @extend %hide-scrollbars;
+    .title {
+        color: $gray-500;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-bold;
+        text-transform: uppercase;
     }
 }

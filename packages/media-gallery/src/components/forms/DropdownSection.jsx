@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-import styles from '../../styles/partials/dropdown-section.module.scss';
+import styles from '../../styles/forms/dropdown-section.module.scss';
 
 const propTypes = {
     value: PropTypes.string,

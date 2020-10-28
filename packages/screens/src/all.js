@@ -18,8 +18,8 @@ import video from '@micromag/screen-video';
 const screens = [
     ad,
     audio,
-    gallery,
-    galleryFeed,
+    ...gallery,
+    ...galleryFeed,
     ...image,
     ...map,
     mapPath,
