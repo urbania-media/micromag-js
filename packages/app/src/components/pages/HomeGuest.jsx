@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { Button } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
@@ -11,17 +11,6 @@ import Page from '../partials/Page';
 
 import styles from '../../styles/pages/home-guest.module.scss';
 import logo from '../../assets/logo-square-beta.svg';
-
-const messages = defineMessages({
-    createAccount: {
-        id: 'pages.home.create_account',
-        defaultMessage: 'Create an account',
-    },
-    login: {
-        id: 'pages.home.login',
-        defaultMessage: 'Login',
-    },
-});
 
 const propTypes = {
     className: PropTypes.string,
@@ -49,10 +38,13 @@ const HomeGuestPage = ({ className }) => {
                 </div>
                 <div className="mt-4">
                     <Button href={url('register')} theme="primary" size="lg" className="mr-4">
-                        {messages.createAccount}
+                        <FormattedMessage
+                            defaultMessage="Create an account"
+                            description="Create an account home nutton"
+                        />
                     </Button>
                     <Button href={url('auth.login')} theme="secondary">
-                        {messages.login}
+                        <FormattedMessage defaultMessage="Login" description="Login home nutton" />
                     </Button>
                 </div>
             </Page>

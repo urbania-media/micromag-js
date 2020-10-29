@@ -2,7 +2,7 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 // import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { useLocation } from 'react-router';
 import { parse as parseQuery, stringify as stringifyQuery } from 'query-string';
 import { Pagination, Button } from '@micromag/core/components';
@@ -12,17 +12,6 @@ import { useStories } from '@micromag/data';
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
 import StoriesList from '../../lists/Stories';
-
-const messages = defineMessages({
-    title: {
-        id: 'pages.stories.title',
-        defaultMessage: 'Stories',
-    },
-    create: {
-        id: 'pages.stories.create',
-        defaultMessage: 'Create a new story',
-    },
-});
 
 const propTypes = {
     count: PropTypes.number,
@@ -49,11 +38,16 @@ const StoriesPage = ({ count, className }) => {
     return (
         <MainLayout>
             <Page
-                title={messages.title}
+                title={
+                    <FormattedMessage defaultMessage="Stories" description="Stories page title" />
+                }
                 sidebar={
                     <>
                         <Button href={url('stories.create')} theme="primary">
-                            {messages.create}
+                            <FormattedMessage
+                                defaultMessage="Create a new story"
+                                description="Create a new story page sidebar"
+                            />
                         </Button>
                     </>
                 }

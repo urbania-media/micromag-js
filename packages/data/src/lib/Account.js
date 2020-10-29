@@ -7,8 +7,9 @@ class AccountApi extends Base {
             routes: {
                 account: 'account',
                 register: 'register',
-                ...opts.routes || null,
-            }
+                delete: 'account/delete',
+                ...(opts.routes || null),
+            },
         });
     }
 
@@ -22,6 +23,10 @@ class AccountApi extends Base {
 
     update(data) {
         return this.requestPost(this.route('account'), data);
+    }
+
+    delete(id) {
+        return this.requestDelete(this.route('delete'), { id });
     }
 }
 

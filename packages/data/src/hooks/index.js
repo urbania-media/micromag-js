@@ -1,6 +1,8 @@
 export { default as useAccountCreate } from './useAccountCreate';
 export { default as useAccountUpdate } from './useAccountUpdate';
+export { default as useAccountDelete } from './useAccountDelete';
 export { default as useAuthCheck } from './useAuthCheck';
+export { default as useAuthForgot } from './useAuthForgot';
 export { default as useAuthLogin } from './useAuthLogin';
 export { default as useAuthLogout } from './useAuthLogout';
 export { default as useAuthUser } from './useAuthUser';

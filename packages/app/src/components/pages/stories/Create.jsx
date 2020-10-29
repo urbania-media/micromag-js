@@ -2,8 +2,8 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
-import { Label, FormPanel } from '@micromag/core/components';
+import { FormattedMessage } from 'react-intl';
+import { FormPanel } from '@micromag/core/components';
 import { useRoutePush } from '@micromag/core/contexts';
 
 import MainLayout from '../../layouts/Main';
@@ -11,17 +11,6 @@ import Page from '../../partials/Page';
 import StoryCreateForm from '../../forms/StoryCreate';
 
 import styles from '../../../styles/pages/stories/create.module.scss';
-
-const messages = defineMessages({
-    title: {
-        id: 'pages.stories.create.title',
-        defaultMessage: 'Create a story',
-    },
-    description: {
-        id: 'pages.stories.create.description',
-        defaultMessage: 'A description',
-    },
-});
 
 const propTypes = {
     className: PropTypes.string,
@@ -34,7 +23,7 @@ const defaultProps = {
 const StoriesCreatePage = ({ className }) => {
     const push = useRoutePush();
     const onCreated = useCallback(
-        story => {
+        (story) => {
             push('stories.show', {
                 story: story.id,
             });
@@ -44,7 +33,12 @@ const StoriesCreatePage = ({ className }) => {
     return (
         <MainLayout contentAlign="middle">
             <Page
-                title={messages.title}
+                title={
+                    <FormattedMessage
+                        defaultMessage="Create a story"
+                        description="Create a story page title"
+                    />
+                }
                 small
                 className={classNames([
                     styles.container,

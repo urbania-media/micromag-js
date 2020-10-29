@@ -9,6 +9,8 @@ class AuthApi extends Base {
                 check: 'auth/check',
                 login: 'auth/login',
                 logout: 'auth/logout',
+                forgot: 'auth/password/email',
+                reset: 'auth/password/reset',
                 cookie: 'csrf-cookie',
                 ...(opts.routes || null),
             },
@@ -30,6 +32,12 @@ class AuthApi extends Base {
                 password,
             }),
         );
+    }
+
+    forgot(email) {
+        return this.requestPost(this.route('forgot'), {
+            email,
+        });
     }
 
     logout() {

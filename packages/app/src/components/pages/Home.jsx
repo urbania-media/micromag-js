@@ -2,8 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
-import { Label, Button } from '@micromag/core/components';
+import { FormattedMessage } from 'react-intl';
+import { Button } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 import { useOrganisations } from '@micromag/data';
 
@@ -14,29 +14,6 @@ import OrganisationsList from '../lists/Organisations';
 import RecentStories from '../partials/RecentStories';
 
 import styles from '../../styles/pages/home.module.scss';
-
-const messages = defineMessages({
-    title: {
-        id: 'pages.home.title',
-        defaultMessage: 'Micromag',
-    },
-    account: {
-        id: 'pages.home.account',
-        defaultMessage: 'Your account',
-    },
-    organisations: {
-        id: 'pages.home.organisations',
-        defaultMessage: 'Your organisations',
-    },
-    yourOrganisation: {
-        id: 'pages.home.your_organisation',
-        defaultMessage: 'Your organisation',
-    },
-    createOrganisation: {
-        id: 'pages.home.create_organisation',
-        defaultMessage: 'Create an organisation',
-    },
-});
 
 const propTypes = {
     recentStoriesCount: PropTypes.number,
@@ -54,11 +31,20 @@ const HomePage = ({ recentStoriesCount, className }) => {
     return (
         <MainLayout>
             <Page
+                title={
+                    <FormattedMessage
+                        defaultMessage="Micromag"
+                        description="Micromag home page title"
+                    />
+                }
                 sidebar={
                     <div className="d-flex flex-column">
                         <section className="mb-4">
                             <h5 className="mb-2">
-                                <Label>{messages.account}</Label>
+                                <FormattedMessage
+                                    defaultMessage="Your account"
+                                    description="Your account home sidebar"
+                                />
                             </h5>
                             <AccountBox withoutHeader />
                         </section>
@@ -66,11 +52,17 @@ const HomePage = ({ recentStoriesCount, className }) => {
                             <section>
                                 {organisations.length > 0 ? (
                                     <h5 className="mb-2">
-                                        <Label>
-                                            {organisations.length === 1
-                                                ? messages.yourOrganisation
-                                                : messages.organisations}
-                                        </Label>
+                                        {organisations.length === 1 ? (
+                                            <FormattedMessage
+                                                defaultMessage="Your organisation"
+                                                description="Your organisation home sidebar"
+                                            />
+                                        ) : (
+                                            <FormattedMessage
+                                                defaultMessage="Your organisations"
+                                                description="Your organisations home sidebar"
+                                            />
+                                        )}
                                     </h5>
                                 ) : null}
                                 <OrganisationsList items={organisations} />
@@ -84,7 +76,10 @@ const HomePage = ({ recentStoriesCount, className }) => {
                                         },
                                     ])}
                                 >
-                                    {messages.createOrganisation}
+                                    <FormattedMessage
+                                        defaultMessage="Create an organisation"
+                                        description="Create organisation button label"
+                                    />
                                 </Button>
                             </section>
                         ) : null}

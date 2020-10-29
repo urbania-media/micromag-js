@@ -2,23 +2,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
+import { FormPanel } from '@micromag/core/components';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
 import AccountMenu from '../../menus/Account';
 import ProfileForm from '../../forms/AccountProfile';
+import DeleteForm from '../../forms/AccountDelete';
 
 import styles from '../../../styles/pages/account/account.module.scss';
-
-import accountMessages from './messages';
-
-const messages = defineMessages({
-    title: {
-        id: 'pages.account.profile.title',
-        defaultMessage: 'Update your profile',
-    },
-});
 
 const propTypes = {
     className: PropTypes.string,
@@ -31,8 +24,15 @@ const defaultProps = {
 const AccountProfilePage = ({ className }) => (
     <MainLayout>
         <Page
-            section={accountMessages.title}
-            title={messages.title}
+            section={
+                <FormattedMessage defaultMessage="Account" description="Account page section" />
+            }
+            title={
+                <FormattedMessage
+                    defaultMessage="Update your profile"
+                    description="Update your profile page title"
+                />
+            }
             sidebar={<AccountMenu asList />}
             className={classNames([
                 styles.container,
@@ -41,7 +41,22 @@ const AccountProfilePage = ({ className }) => (
                 },
             ])}
         >
-            <ProfileForm />
+            <FormPanel>
+                <ProfileForm />
+            </FormPanel>
+            <div className={styles.separator} />
+            <FormPanel
+                description={
+                    <div className={styles.description}>
+                        <FormattedMessage
+                            defaultMessage="Are you sure you want to delete your profile? This action cannot be reversed."
+                            description="Update your profile page title"
+                        />
+                    </div>
+                }
+            >
+                <DeleteForm />
+            </FormPanel>
         </Page>
     </MainLayout>
 );

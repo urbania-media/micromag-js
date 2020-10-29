@@ -2,8 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
-import { Label } from '@micromag/core/components';
+import { FormattedMessage } from 'react-intl';
 
 import { useOrganisation } from '../../contexts/OrganisationContext';
 import MainLayout from '../layouts/Main';
@@ -13,17 +12,6 @@ import AccountBox from '../partials/AccountBox';
 import RecentStories from '../partials/RecentStories';
 
 import styles from '../../styles/pages/home.module.scss';
-
-const messages = defineMessages({
-    account: {
-        id: 'pages.home.account',
-        defaultMessage: 'Your account',
-    },
-    organisation: {
-        id: 'pages.home.organisation',
-        defaultMessage: 'Organisation',
-    },
-});
 
 const propTypes = {
     recentStoriesCount: PropTypes.number,
@@ -45,13 +33,19 @@ const HomeOrganisationPage = ({ recentStoriesCount, className }) => {
                     <>
                         <section className="mb-4">
                             <h5 className="mb-2">
-                                <Label>{messages.organisation}</Label>
+                                <FormattedMessage
+                                    defaultMessage="Organisation"
+                                    description="Organisation home sidebar"
+                                />
                             </h5>
                             <OrganisationBox organisation={organisation} withoutHeader />
                         </section>
                         <section className="mb-4">
                             <h5 className="mb-2">
-                                <Label>{messages.account}</Label>
+                                <FormattedMessage
+                                    defaultMessage="Your account"
+                                    description="Your account home sidebar"
+                                />
                             </h5>
                             <AccountBox withoutHeader />
                         </section>
