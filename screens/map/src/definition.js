@@ -6,6 +6,10 @@ export default [
     {
         id: 'map',
         type: 'screen',
+        group: defineMessage({
+            defaultMessage: 'Map',
+            description: 'Map screen group',
+        }),
         title: defineMessage({
             defaultMessage: 'Map',
             description: 'Map screen title',
@@ -50,6 +54,10 @@ export default [
     {
         id: 'map-images',
         type: 'screen',
+        group: defineMessage({
+            defaultMessage: 'Map',
+            description: 'Map screen group',
+        }),
         title: defineMessage({
             defaultMessage: 'MapImages',
             description: 'MapImages screen title',

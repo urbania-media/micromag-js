@@ -29,10 +29,12 @@ const ScreenTypes = ({ screens, className, onClickItem }) => {
     const groups = useMemo(
         () =>
             finalScreens.reduce((allGroups, screen) => {
-                const { id, title, group = null } = screen;
+                const { id, title, group = {} } = screen;
+                const { id: messageId } = group;
+
                 const { id: groupId, name: groupName } = isMessage(group)
-                    ? { id: group.id, name: group }
-                    : { id: group || id, name: group || title };
+                    ? { id: messageId || id, name: group }
+                    : { id: messageId || id, name: title };
                 const groupIndex = allGroups.findIndex((it) => it.id === groupId);
                 const item = {
                     ...screen,
@@ -70,10 +72,10 @@ const ScreenTypes = ({ screens, className, onClickItem }) => {
             <div className={styles.rows}>
                 {groups.map(({ id, name, items }) => (
                     <div key={`group-${id}`} className={styles.row}>
-
+                        <Label>{name}</Label>
                         <div className={styles.layouts}>
                             <Screens
-                                items={items.slice(0, 1)}
+                                items={items}
                                 withPlaceholder
                                 itemClassName={styles.item}
                                 previewMinWidth={120}

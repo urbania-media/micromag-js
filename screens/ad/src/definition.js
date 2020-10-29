@@ -4,6 +4,10 @@ import Ad from './Ad';
 export default {
     id: 'ad',
     type: 'screen',
+    group: defineMessage({
+        defaultMessage: 'Ad',
+        description: 'Ad screen group',
+    }),
     title: defineMessage({
         defaultMessage: 'Ad',
         description: 'Ad screen title',

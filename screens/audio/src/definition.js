@@ -4,6 +4,10 @@ import Audio from './Audio';
 export default {
     id: 'audio',
     type: 'screen',
+    group: defineMessage({
+        defaultMessage: 'Audio and Video',
+        description: 'Audio and Video screen group',
+    }),
     title: defineMessage({
         defaultMessage: 'Audio',
         description: 'Audio screen title',

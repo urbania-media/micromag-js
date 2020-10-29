@@ -4,6 +4,10 @@ import SurveyMultipleChoice from './SurveyMultipleChoice';
 export default {
     id: 'survey-multiple-choice',
     type: 'screen',
+    group: defineMessage({
+        defaultMessage: 'Questions',
+        description: 'Questions screen group',
+    }),
     title: defineMessage({
         defaultMessage: 'SurveyMultipleChoice',
         description: 'SurveyMultipleChoice screen title',

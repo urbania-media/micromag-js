@@ -9,6 +9,10 @@ export default [
     {
         id: 'image',
         type: 'screen',
+        group: defineMessage({
+            defaultMessage: 'Images',
+            description: 'Images screen group',
+        }),
         title: defineMessage({
             defaultMessage: 'Image',
             description: 'Image screen title',
@@ -45,6 +49,10 @@ export default [
     {
         id: 'image-title',
         type: 'screen',
+        group: defineMessage({
+            defaultMessage: 'Text and Images',
+            description: 'Text and Images screen group',
+        }),
         title: defineMessage({
             defaultMessage: 'ImageTitle',
             description: 'ImageTitle screen title',
@@ -89,6 +97,10 @@ export default [
     {
         id: 'image-text',
         type: 'screen',
+        group: defineMessage({
+            defaultMessage: 'Text and Images',
+            description: 'Text and Images screen group',
+        }),
         title: defineMessage({
             defaultMessage: 'ImageText',
             description: 'ImageText screen title',
@@ -133,6 +145,10 @@ export default [
     {
         id: 'image-title-text',
         type: 'screen',
+        group: defineMessage({
+            defaultMessage: 'Text and Images',
+            description: 'Text and Images screen group',
+        }),
         title: defineMessage({
             defaultMessage: 'ImageTitleText',
             description: 'ImageTitleText screen title',

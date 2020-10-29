@@ -16,7 +16,7 @@ import defaultRoutes from '../data/routes.json';
 
 const propTypes = {
     routes: EditorPropTypes.routes,
-    memoryRouter: PropTypes.memoryRouter,
+    memoryRouter: PropTypes.node,
     basePath: PropTypes.string,
 };
 
@@ -26,7 +26,7 @@ const defaultProps = {
     basePath: null,
 };
 
-const EditorContainer = ({ schemasRepository, memoryRouter, routes, basePath, ...props }) => {
+const EditorContainer = ({ memoryRouter, routes, basePath, ...props }) => {
     const Router = memoryRouter ? MemoryRouter : BrowserRouter;
 
     return (

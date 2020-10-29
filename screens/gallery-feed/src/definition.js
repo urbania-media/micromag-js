@@ -6,6 +6,10 @@ export default [
     {
         id: 'gallery-feed',
         type: 'screen',
+        group: defineMessage({
+            defaultMessage: 'Images',
+            description: 'Images screen group',
+        }),
         title: defineMessage({
             defaultMessage: 'GalleryFeed',
             description: 'GalleryFeed screen title',
@@ -43,6 +47,10 @@ export default [
     {
         id: 'gallery-feed-legends',
         type: 'screen',
+        group: defineMessage({
+            defaultMessage: 'Images',
+            description: 'Images screen group',
+        }),
         title: defineMessage({
             defaultMessage: 'GalleryFeedLegends',
             description: 'GalleryFeedLegends screen title',
@@ -76,5 +84,5 @@ export default [
                 }),
             },
         ],
-    }
+    },
 ];

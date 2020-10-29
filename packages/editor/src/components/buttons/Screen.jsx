@@ -9,53 +9,74 @@ import styles from '../../styles/buttons/screen.module.scss';
 
 const propTypes = {
     active: PropTypes.bool,
+    id: PropTypes.string,
+    href: PropTypes.string,
     label: MicromagPropTypes.label,
     icon: PropTypes.node,
+    title: PropTypes.string,
+    onClick: PropTypes.func,
     children: PropTypes.node,
+    refButton: PropTypes.shape({
+        current: PropTypes.any, // eslint-disable-line
+    }),
     className: PropTypes.string,
 };
 
 const defaultProps = {
     active: false,
+    id: null,
+    href: null,
     label: null,
     icon: null,
+    title: null,
+    onClick: null,
     children: null,
+    refButton: null,
     className: null,
 };
 
-const ScreenButton = ({ active, className, label, icon, children, ...props }) => (
-    <Button
-        className={classNames([
-            styles.container,
-            {
-                [styles.active]: active,
-                [className]: className !== null,
-            },
-        ])}
-        withoutStyle
-        {...props}
-    >
-        <span className={styles.border} />
-        <span className={styles.screen}>
-            {children !== null ? (
-                children
-            ) : (
-                <span className={styles.inner}>
-                    {icon !== null ? (
-                        <span className={styles.icon}>
-                            {icon}
-                        </span>
-                    ) : null}
-                    {label !== null ? (
-                        <span className={styles.label}>
-                            {label}
-                        </span>
-                    ) : null}
-                </span>
-            )}
-        </span>
-    </Button>
-);
+const ScreenButton = ({
+    active,
+    id,
+    href,
+    className,
+    label,
+    icon,
+    children,
+    title,
+    onClick,
+    refButton,
+}) => {
+    return (
+        <Button
+            className={classNames([
+                styles.container,
+                {
+                    [styles.active]: active,
+                    [className]: className !== null,
+                },
+            ])}
+            withoutStyle
+            id={id}
+            href={href}
+            title={title}
+            onClick={onClick}
+            refButton={refButton}
+        >
+            <span className={styles.border} />
+            <span className={styles.screen}>
+                {children !== null ? (
+                    children
+                ) : (
+                    <span className={styles.inner}>
+                        {icon !== null ? <span className={styles.icon}>{icon}</span> : null}
+                        {label !== null ? <span className={styles.label}>{label}</span> : null}
+                    </span>
+                )}
+            </span>
+        </Button>
+    );
+};
 
 ScreenButton.propTypes = propTypes;
 ScreenButton.defaultProps = defaultProps;

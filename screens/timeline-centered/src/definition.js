@@ -4,6 +4,10 @@ import TimelineCentered from './TimelineCentered';
 export default {
     id: 'timeline-centered',
     type: 'screen',
+    group: defineMessage({
+        defaultMessage: 'List',
+        description: 'List screen group',
+    }),
     title: defineMessage({
         defaultMessage: 'TimelineCentered',
         description: 'TimelineCentered screen title',

@@ -4,6 +4,10 @@ import Quote from './Quote';
 export default {
     id: 'quote',
     type: 'screen',
+    group: defineMessage({
+        defaultMessage: 'Text',
+        description: 'Text screen group',
+    }),
     title: defineMessage({
         defaultMessage: 'Quote',
         description: 'Quote screen title',

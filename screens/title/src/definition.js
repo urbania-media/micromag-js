@@ -7,6 +7,10 @@ export default [
     {
         id: 'title',
         type: 'screen',
+        group: defineMessage({
+            defaultMessage: 'Text',
+            description: 'Text screen group',
+        }),
         title: defineMessage({
             defaultMessage: 'Title',
             description: 'Title screen title',
@@ -43,6 +47,10 @@ export default [
     {
         id: 'title-subtitle',
         type: 'screen',
+        group: defineMessage({
+            defaultMessage: 'Text',
+            description: 'Text screen group',
+        }),
         title: defineMessage({
             defaultMessage: 'TitleSubtitle',
             description: 'TitleSubtitle screen title',
@@ -87,6 +95,10 @@ export default [
     {
         id: 'title-subtitle-credits',
         type: 'screen',
+        group: defineMessage({
+            defaultMessage: 'Text',
+            description: 'Text screen group',
+        }),
         title: defineMessage({
             defaultMessage: 'TitleSubtitleCredits',
             description: 'TitleSubtitleCredits screen title',
@@ -135,5 +147,5 @@ export default [
                 }),
             },
         ],
-    }
-]
+    },
+];

@@ -6,6 +6,10 @@ export default [
     {
         id: 'text',
         type: 'screen',
+        group: defineMessage({
+            defaultMessage: 'Text',
+            description: 'Text screen group',
+        }),
         title: defineMessage({
             defaultMessage: 'Text',
             description: 'Text screen title',
@@ -42,6 +46,10 @@ export default [
     {
         id: 'text-title',
         type: 'screen',
+        group: defineMessage({
+            defaultMessage: 'Text',
+            description: 'Text screen group',
+        }),
         title: defineMessage({
             defaultMessage: 'TextTitle',
             description: 'TextTitle screen title',
@@ -83,4 +91,4 @@ export default [
             },
         ],
     },
-]
+];

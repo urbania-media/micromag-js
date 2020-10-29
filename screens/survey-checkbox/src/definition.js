@@ -4,6 +4,10 @@ import SurveyCheckbox from './SurveyCheckbox';
 export default {
     id: 'survey-checkbox',
     type: 'screen',
+    group: defineMessage({
+        defaultMessage: 'Questions',
+        description: 'Questions screen group',
+    }),
     title: defineMessage({
         defaultMessage: 'SurveyCheckbox',
         description: 'SurveyCheckbox screen title',

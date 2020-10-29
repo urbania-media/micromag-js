@@ -86,7 +86,9 @@ const EditorScreens = ({ story, isVertical, onClickScreen, onChange, className }
         [story, onChange],
     );
 
-    const onClickScreenType = useCallback((e, item) => createScreenFromType(item), [createScreen]);
+    const onClickScreenType = useCallback((e, item) => createScreenFromType(item), [
+        createScreenFromType,
+    ]);
     const onClickAdd = useCallback(() => setCreateModalOpened(true), [setCreateModalOpened]);
     const onCreateModalRequestClose = useCallback(() => setCreateModalOpened(false), [
         setCreateModalOpened,

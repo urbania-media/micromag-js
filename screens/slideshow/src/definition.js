@@ -4,6 +4,10 @@ import Slideshow from './Slideshow';
 export default {
     id: 'slideshow',
     type: 'screen',
+    group: defineMessage({
+        defaultMessage: 'Images',
+        description: 'Images screen group',
+    }),
     title: defineMessage({
         defaultMessage: 'Slideshow',
         description: 'Slideshow screen title',

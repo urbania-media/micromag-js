@@ -6,13 +6,17 @@ export default [
     {
         id: 'gallery',
         type: 'screen',
+        group: defineMessage({
+            defaultMessage: 'Images',
+            description: 'Images screen group',
+        }),
         title: defineMessage({
             defaultMessage: 'Gallery',
             description: 'Gallery screen title',
         }),
         component: Gallery,
         layouts: [
-            // 2 
+            // 2
             'two-vertical',
             'two-horizontal',
             // 3
@@ -61,13 +65,17 @@ export default [
     {
         id: 'gallery-legends',
         type: 'screen',
+        group: defineMessage({
+            defaultMessage: 'Images',
+            description: 'Images screen group',
+        }),
         title: defineMessage({
             defaultMessage: 'GalleryLegends',
             description: 'GalleryLegends screen title',
         }),
         component: GalleryLegends,
         layouts: [
-            // 2 
+            // 2
             'two-vertical',
             'two-horizontal',
             // 3
@@ -112,5 +120,5 @@ export default [
                 }),
             },
         ],
-    }
+    },
 ];

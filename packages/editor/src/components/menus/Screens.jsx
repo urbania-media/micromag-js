@@ -2,11 +2,13 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { useIntl } from 'react-intl';
 import { getSizeWithinBounds } from '@folklore/size';
 import { ReactSortable } from 'react-sortablejs';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useResizeObserver } from '@micromag/core/hooks';
 import { ScreenPreview, ScreenPlaceholder } from '@micromag/core/components';
+import { isMessage } from '@micromag/core/utils';
 
 import ScreenButton from '../buttons/Screen';
 
@@ -53,6 +55,7 @@ const ScreensMenu = ({
     onClickItem,
     onOrderChange,
 }) => {
+    const intl = useIntl();
     const {
         ref: containerRef,
         entry: { contentRect },
@@ -72,7 +75,7 @@ const ScreensMenu = ({
             transform: `scale(${previewScale}, ${previewScale})`,
         };
     }, [previewMinWidth, contentRect]);
-    const itemsElements = items.map(({ onClick = null, ...item }, index) => (
+    const itemsElements = items.map(({ onClick = null, title, ...item }, index) => (
         <li
             key={item.id}
             className={classNames([
@@ -86,7 +89,8 @@ const ScreensMenu = ({
             <ScreenButton
                 {...item}
                 className={styles.button}
-                onClick={e => {
+                title={isMessage(title) ? intl.formatMessage(title) : null}
+                onClick={(e) => {
                     if (onClick !== null) {
                         onClick(e, item, index);
                     }

@@ -6,8 +6,8 @@ export default [
         id: 'video',
         type: 'screen',
         group: defineMessage({
-            defaultMessage: 'Video',
-            description: 'Video screen group',
+            defaultMessage: 'Audio and Video',
+            description: 'Audio and Video screen group',
         }),
         title: defineMessage({
             defaultMessage: 'Video',

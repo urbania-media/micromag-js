@@ -4,6 +4,10 @@ import SurveyYesNo from './SurveyYesNo';
 export default {
     id: 'survey-yes-no',
     type: 'screen',
+    group: defineMessage({
+        defaultMessage: 'Questions',
+        description: 'Questions screen group',
+    }),
     title: defineMessage({
         defaultMessage: 'SurveyYesNo',
         description: 'SurveyYesNo screen title',

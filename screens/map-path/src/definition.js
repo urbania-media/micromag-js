@@ -4,6 +4,10 @@ import MapPath from './MapPath';
 export default {
     id: 'map-path',
     type: 'screen',
+    group: defineMessage({
+        defaultMessage: 'Map',
+        description: 'Map screen group',
+    }),
     title: defineMessage({
         defaultMessage: 'MapPath',
         description: 'MapPath screen title',
