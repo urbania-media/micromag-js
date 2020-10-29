@@ -23,7 +23,7 @@ export { default as GridLayout } from './GridLayout';
 export { default as Image } from './Image';
 export { default as Images } from './Images';
 export { default as ImageStyle } from './ImageStyle';
-export { default as Layout } from './Layout';
+export { default as ScreenLayout } from './ScreenLayout';
 export { default as Map } from './Map';
 export { default as Margin } from './Margin';
 export { default as Markers } from './Markers';

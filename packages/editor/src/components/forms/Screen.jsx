@@ -36,6 +36,7 @@ const ScreenForm = ({
 }) => {
     const intl = useIntl();
     const { type } = value;
+
     const fields = useScreenFields(type);
     const finalOnClickDelete = useCallback(() => {
         if (

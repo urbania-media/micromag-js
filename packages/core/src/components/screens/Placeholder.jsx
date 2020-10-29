@@ -12,18 +12,20 @@ import styles from '../../styles/screens/screen-placeholder.module.scss';
 
 const propTypes = {
     screen: MicromagPropTypes.component.isRequired,
+    layout: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number,
     className: PropTypes.string,
 };
 
 const defaultProps = {
+    layout: undefined,
     width: null,
     height: null,
     className: null,
 };
 
-const ScreenPlaceholder = ({ screen, width, height, className }) => {
+const ScreenPlaceholder = ({ screen, layout, width, height, className }) => {
     const screenSize = useMemo(
         () => ({
             screen: 'mobile',
@@ -38,6 +40,7 @@ const ScreenPlaceholder = ({ screen, width, height, className }) => {
             <ScreenRenderProvider context="placeholder">
                 <Screen
                     screen={screen}
+                    layout={layout}
                     className={classNames([
                         styles.container,
                         {
