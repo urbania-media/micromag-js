@@ -107,7 +107,7 @@ const ImageScreen = ({
     const imageHeight = imageWidth / maxImageRatio;
 
     const items = [
-        (hasImage || isPlaceholder) && (
+        (
             <ScreenElement
                 key="image"
                 placeholder="image"
@@ -117,17 +117,20 @@ const ImageScreen = ({
                 emptyClassName={styles.empty}
                 isEmpty={isEmpty}
             >
-                <Image
-                    {...image}
-                    width={imageWidth}
-                    height={imageHeight}
-                    shrinkHeight
-                    objectFit={{ fit: 'contain' }}
-                    onLoaded={onImageLoaded}
-                />
+                { hasImage ?
+                    <Image
+                        {...image}
+                        width={imageWidth}
+                        height={imageHeight}
+                        shrinkHeight
+                        objectFit={{ fit: 'contain' }}
+                        onLoaded={onImageLoaded}
+                    />
+                : null }
+                
             </ScreenElement>
         ),
-        withTitle && (hasTitle || isPlaceholder) && (
+        withTitle && (
             <ScreenElement
                 key="title"
                 placeholder="title"
@@ -137,11 +140,11 @@ const ImageScreen = ({
                 emptyClassName={styles.empty}
                 isEmpty={isEmpty}
             >
-                <Heading {...title} />
+                { hasTitle ? <Heading {...title} /> : null }
             </ScreenElement>
         ),
 
-        withText && (hasText || isPlaceholder) && (
+        withText && (
             <ScreenElement
                 key="text"
                 placeholder="text"
@@ -151,11 +154,11 @@ const ImageScreen = ({
                 emptyClassName={styles.empty}
                 isEmpty={isEmpty}
             >
-                <Text {...text} />
+                { hasText ? <Text {...text} /> : null }
             </ScreenElement>
         ),
 
-        withLegend && (hasLegend || isPlaceholder) && (
+        withLegend && (
             <ScreenElement
                 key="legend"
                 placeholder={<PlaceholderShortText />}
@@ -165,7 +168,7 @@ const ImageScreen = ({
                 emptyClassName={styles.empty}
                 isEmpty={isEmpty}
             >
-                <Text {...legend} />
+                { hasLegend ? <Text {...legend} /> : null }
             </ScreenElement>
         )
     ];

@@ -2,24 +2,28 @@
 import React from 'react';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt, faImage } from '@fortawesome/free-solid-svg-icons';
 
 import PlaceholderBlock from '../partials/PlaceholderBlock';
 
-import styles from '../../styles/placeholders/placeholders.module.scss';
+import styles from '../../styles/placeholders/map.module.scss';
 
 export const Map = (props) => (
     <PlaceholderBlock
         {...props}
         width="100%"
-        height="80%"
-        className={classNames([props.className, styles.map])}
+        height="100%"
+        className={classNames([
+            styles.container,
+            {
+                [props.className]: props.className !== null,
+            }
+        ])}
     >
-        <FontAwesomeIcon icon={faMapMarkerAlt} className={styles.icon} />
-        <FontAwesomeIcon icon={faMapMarkerAlt} className={styles.icon} />
-        <FontAwesomeIcon icon={faMapMarkerAlt} className={styles.icon} />
-        <FontAwesomeIcon icon={faMapMarkerAlt} className={styles.icon} />
-        <FontAwesomeIcon icon={faMapMarkerAlt} className={styles.icon} />
+        <FontAwesomeIcon icon={props.withImages ? faImage : faMapMarkerAlt} className={styles.icon} />
+        <FontAwesomeIcon icon={props.withImages ? faImage : faMapMarkerAlt} className={styles.icon} />
+        <FontAwesomeIcon icon={props.withImages ? faImage : faMapMarkerAlt} className={styles.icon} />
+        <FontAwesomeIcon icon={props.withImages ? faImage : faMapMarkerAlt} className={styles.icon} />
     </PlaceholderBlock>
 );
 

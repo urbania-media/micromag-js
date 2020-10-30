@@ -10,7 +10,11 @@
         height: 80%;
     }
 
-    .markerOverlay {
+    .placeholder {
+        height: 100%;
+    }
+
+    .markerOverlayContainer {
         @extend %fullscreen;
         transition: opacity 0.3s ease;
         opacity: 0;
@@ -23,15 +27,23 @@
         overflow: auto;
     }
 
-    .markerOverlaySpacer {
+    .markerOverlaySafe {
         display: block;
         width: 100%;
+    }
+
+    .markerOverlay {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        overflow: hidden;
     }
 
     .markerOverlayContent {
         display: flex;
         position: relative;
         flex-direction: column;
+        flex-grow: 1;
         padding: 0 20px;
         transform: translateY(100%);
         transition: transform 0.3s ease;
@@ -63,7 +75,7 @@
             background-color: $white;
             color: $black;
         }
-    
+
         .splashButton {
             @extend %fullscreen;
         }
@@ -90,7 +102,7 @@
     }
 
     &.hasSelectedMarker {
-        .markerOverlay {
+        .markerOverlayContainer {
             opacity: 1;
             pointer-events: auto;
         }
@@ -112,4 +124,3 @@
         }
     }
 }
-

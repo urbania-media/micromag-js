@@ -9,7 +9,7 @@ import definition from '../definition';
 
 const props = {
     map: map(),
-    markers: markers(),
+    markers: markers({ withImage: true }),
     splash: { body: 'Débuter' },
     background: background()
 };

@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+
 import useGoogleMapMarker from './useGoogleMapMarker';
 import Pin from './pin.png';
 import PinInactive from './pin-inactive.png';
@@ -15,15 +17,17 @@ const propTypes = {
     events: PropTypes.object, // eslint-disable-line
     active: PropTypes.bool,
     title: PropTypes.string,
+    image: MicromagPropTypes.imageElement,
 };
 
 const defaultProps = {
     events: null,
     active: true,
     title: null,
+    image: null,
 };
 
-const Marker = ({ mapsApi, position, type, map, events, active, title }) => {
+const Marker = ({ mapsApi, position, type, map, events, active, title, image }) => {
     const marker = useGoogleMapMarker({
         mapsApi,
         position,
@@ -35,7 +39,11 @@ const Marker = ({ mapsApi, position, type, map, events, active, title }) => {
 
     useEffect(() => {
         if (marker) {
-            if (active) {
+            const { media: imageMedia = null } = image || {};
+            const { url: imageUrl = null } = imageMedia || {};
+            if (imageUrl !== null) {
+                marker.setIcon(imageUrl);
+            } else if (active) {
                 marker.setIcon(Pin);
             } else {
                 marker.setIcon(PinInactive);

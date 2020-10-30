@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { quote, author, source, background } from '../../../../.storybook/data';
+import { quote, author, background } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import Quote from '../Quote';
@@ -23,7 +23,7 @@ export default {
 
 export const Placeholder = (storyProps) => <Quote {...storyProps} />;
 
-export const Preview = (storyProps) => <Quote {...storyProps} />;
+export const Preview = (storyProps) => <Quote {...storyProps} {...props} />;
 
 export const Edit = (storyProps) => <Quote {...storyProps} />;
 

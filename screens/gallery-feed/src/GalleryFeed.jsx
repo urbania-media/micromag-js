@@ -86,7 +86,9 @@ const GalleryFeed = ({
 
     const items = [];
 
-    (isPlaceholder ? [...Array(5)] : images ).forEach((imageEl, index) => {
+    const finalImages = isEdit && images.length === 0 ? [{}] : images;
+
+    (isPlaceholder ? [...Array(5)] : finalImages ).forEach((imageEl, index) => {
 
         const { image = null, legend = null } = imageEl || {};
         const hasImage = image !== null;

@@ -88,7 +88,7 @@ const Title = ({
 
     // Create elements
     const items = [
-        (hasTitle || isPlaceholder) && (
+        (
             <ScreenElement
                 key="title"
                 placeholder="title"
@@ -98,13 +98,13 @@ const Title = ({
                 emptyClassName={styles.empty}
                 isEmpty={isEmpty}
             >
-                <Heading {...title} size={1} />
+                { hasTitle ? <Heading {...title} size={1} /> : null }
             </ScreenElement>
         ),
 
-        isSplitted && (!withDescription || verticalAlign === 'bottom') && <Spacer />,
+        isSplitted && (!withDescription || verticalAlign === 'bottom') && <Spacer key="spacer1" />,
 
-        withSubtitle && (hasSubtitle || isPlaceholder) && (
+        withSubtitle && (
             <ScreenElement
                 key="subtitle"
                 placeholder="subtitle"
@@ -117,13 +117,13 @@ const Title = ({
                 emptyClassName={styles.empty}
                 isEmpty={isEmpty}
             >
-                <Heading {...subtitle} size={2} />
+                { hasSubtitle ? <Heading {...subtitle} size={2} /> : null }
             </ScreenElement>
         ),
 
-        isSplitted && withDescription && verticalAlign !== 'bottom' && <Spacer />,
+        isSplitted && withDescription && verticalAlign !== 'bottom' && <Spacer key="spacer2" />,
 
-        withDescription && (hasDescription || isPlaceholder) && (
+        withDescription && (
             <ScreenElement
                 key="description"
                 placeholder="text"
@@ -131,7 +131,7 @@ const Title = ({
                 emptyClassName={styles.empty}
                 isEmpty={isEmpty}
             >
-                <Text {...description} />
+                { hasDescription ? <Text {...description} /> : null }
             </ScreenElement>
         ),
     ];

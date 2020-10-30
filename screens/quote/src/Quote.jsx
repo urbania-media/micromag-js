@@ -68,7 +68,7 @@ const Quote = ({
     const verticalAlign = isSplitted ? null : layout;
 
     const items = [
-        (hasQuote || isPlaceholder) && (
+        (
             <ScreenElement
                 key="quote"
                 placeholder="quote"
@@ -78,11 +78,11 @@ const Quote = ({
                 emptyClassName={styles.empty}
                 isEmpty={isEmpty}
             >
-                <Text {...quote} />
+                { hasQuote ? <Text {...quote} /> : null }
             </ScreenElement>
         ),
-        isSplitted && hasAuthor && <Spacer />,
-        (hasAuthor || isPlaceholder) && (
+        isSplitted && hasAuthor && <Spacer key="spacer" />,
+        (
             <ScreenElement
                 key="author"
                 placeholder="subtitle"
@@ -92,7 +92,7 @@ const Quote = ({
                 emptyClassName={styles.empty}
                 isEmpty={isEmpty}
             >
-                <Text {...author} />
+                { hasAuthor ? <Text {...author} /> : null }
             </ScreenElement>
         ),
     ];
