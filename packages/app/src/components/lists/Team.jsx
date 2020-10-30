@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -8,35 +8,47 @@ import TeamMemberItem from '../items/TeamMember';
 
 const propTypes = {
     items: MicromagPropTypes.team,
+    canCreate: PropTypes.bool,
+    canEdit: PropTypes.bool,
+    canRemove: PropTypes.bool,
     className: PropTypes.string,
-    onClickRemoveMember: PropTypes.func,
 };
 
 const defaultProps = {
     items: [],
+    canCreate: true,
+    canEdit: true,
+    canRemove: true,
     className: null,
-    onClickRemoveMember: null,
 };
 
-const TeamList = ({ items, className, onClickRemoveMember }) => (
-    <div
-        className={classNames([
-            'list-group',
-            {
-                [className]: className !== null,
-            },
-        ])}
-    >
-        {items.map(it => (
-            <TeamMemberItem
-                key={`member-${it.id}`}
-                item={it}
-                canRemove={items.length > 1}
-                onClickRemove={onClickRemoveMember !== null ? () => onClickRemoveMember(it) : null}
-            />
-        ))}
-    </div>
-);
+const TeamList = ({ items, canCreate, canEdit, canRemove, className }) => {
+    const onMemberCreate = useCallback(() => {}, []);
+    const onClickMemberRemove = useCallback(() => {}, []);
+    const onChangeMemberRole = useCallback(() => {}, []);
+
+    return (
+        <div
+            className={classNames([
+                'list-group',
+                {
+                    [className]: className !== null,
+                },
+            ])}
+        >
+            {items.map((it) => (
+                <TeamMemberItem
+                    key={`member-${it.id}`}
+                    item={it}
+                    canRemove={canRemove && items.length > 1}
+                    canEdit={canEdit}
+                    onClickRemove={canRemove ? onClickMemberRemove : null}
+                    onChangeRole={onChangeMemberRole}
+                />
+            ))}
+        </div>
+    );
+};
 
 TeamList.propTypes = propTypes;
 TeamList.defaultProps = defaultProps;

@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
@@ -32,6 +32,8 @@ const propTypes = {
     actionsAlign: PropTypes.oneOf(['left', 'right']),
     withoutActions: PropTypes.bool,
     onComplete: PropTypes.func,
+    onResponse: PropTypes.func,
+    onMessage: PropTypes.func,
     className: PropTypes.string,
     fieldsClassName: PropTypes.string,
     actionsClassName: PropTypes.string,
@@ -49,6 +51,8 @@ const defaultProps = {
     actionsAlign: 'left',
     withoutActions: false,
     onComplete: null,
+    onResponse: null,
+    onMessage: null,
     className: null,
     fieldsClassName: null,
     actionsClassName: null,
@@ -67,11 +71,13 @@ const Form = ({
     actionsAlign,
     withoutActions,
     onComplete,
+    onResponse,
+    onMessage,
     className,
     fieldsClassName,
     actionsClassName,
 }) => {
-    const { onSubmit, fields, status, value, setValue, errors } = useForm({
+    const { onSubmit, fields, status, value, setValue, errors, response, generalError } = useForm({
         value: initialValue,
         action,
         fields: initialFields,
@@ -85,6 +91,15 @@ const Form = ({
             console.warn('Fields components is empty in Form');
         }
     }
+
+    useEffect(() => {
+        if (onResponse !== null) {
+            onResponse(response);
+            if (onMessage !== null && response && response.message) {
+                onMessage(response.message);
+            }
+        }
+    }, [response, onResponse, onMessage]);
 
     return (
         <form
@@ -114,6 +129,7 @@ const Form = ({
                 />
             ) : null}
             {children}
+            {generalError ? <p>{generalError}</p> : null}
             {!withoutActions ? (
                 <div
                     className={classNames([

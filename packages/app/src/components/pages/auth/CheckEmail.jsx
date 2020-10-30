@@ -1,17 +1,16 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
-import { useHistory } from 'react-router';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { useParams } from 'react-router';
 import { FormPanel, Link } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
-import ForgotPasswordForm from '../../forms/ForgotPassword';
 
-import styles from '../../../styles/pages/auth/forgot-password.module.scss';
+import styles from '../../../styles/pages/auth/check-email.module.scss';
 
 const propTypes = {
     className: PropTypes.string,
@@ -21,25 +20,24 @@ const defaultProps = {
     className: null,
 };
 
-const ForgotPasswordPage = ({ className }) => {
-    const history = useHistory();
+const CheckEmailPage = ({ className }) => {
     const url = useUrlGenerator();
-    const onSuccess = useCallback(
-        (email) => {
-            const next = url('auth.check_email', {
-                email: email ? encodeURIComponent(email) : 'email',
-            });
-            history.push(next);
-        },
-        [url],
-    );
+    const intl = useIntl();
+    const { email: paramsEmail = null } = useParams();
+    const email =
+        paramsEmail !== null
+            ? paramsEmail
+            : intl.formatMessage({
+                  defaultMessage: 'email',
+                  description: 'Email check email message value',
+              });
     return (
         <MainLayout contentAlign="middle">
             <Page
                 title={
                     <FormattedMessage
-                        defaultMessage="Forgot password"
-                        description="Forgot password page title"
+                        defaultMessage="Check your email"
+                        description="Check email page title"
                     />
                 }
                 small
@@ -54,13 +52,15 @@ const ForgotPasswordPage = ({ className }) => {
                     description={
                         <div className={styles.description}>
                             <FormattedMessage
-                                defaultMessage="Please enter your email address to get a password reset link."
-                                description="Forgot password page description"
+                                defaultMessage="Instructions to reset your password have been sent to your {email}."
+                                description="Check email page description"
+                                values={{
+                                    email,
+                                }}
                             />
                         </div>
                     }
                 >
-                    <ForgotPasswordForm onSuccess={onSuccess} />
                     <div className={styles.links}>
                         <Link href={url('auth.login')}>
                             <FormattedMessage
@@ -75,7 +75,7 @@ const ForgotPasswordPage = ({ className }) => {
     );
 };
 
-ForgotPasswordPage.propTypes = propTypes;
-ForgotPasswordPage.defaultProps = defaultProps;
+CheckEmailPage.propTypes = propTypes;
+CheckEmailPage.defaultProps = defaultProps;
 
-export default ForgotPasswordPage;
+export default CheckEmailPage;

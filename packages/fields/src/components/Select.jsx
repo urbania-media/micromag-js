@@ -9,6 +9,7 @@ import getSelectOptions from '../utils/getSelectOptions';
 const propTypes = {
     value: PropTypes.string,
     options: MicromagPropTypes.selectOptions,
+    disabled: PropTypes.bool,
     className: PropTypes.string,
     onChange: PropTypes.func,
 };
@@ -16,11 +17,12 @@ const propTypes = {
 const defaultProps = {
     value: null,
     options: [],
+    disabled: false,
     className: null,
     onChange: null,
 };
 
-const SelectField = ({ value, options, className, onChange }) => {
+const SelectField = ({ value, options, disabled, className, onChange }) => {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
     return (
         <select
@@ -31,7 +33,8 @@ const SelectField = ({ value, options, className, onChange }) => {
                 },
             ])}
             value={value || ''}
-            onChange={e =>
+            disabled={disabled}
+            onChange={(e) =>
                 onChange !== null
                     ? onChange(e.currentTarget.value !== '' ? e.currentTarget.value : null)
                     : null

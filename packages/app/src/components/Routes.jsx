@@ -4,7 +4,7 @@ import { Switch, Route, Redirect } from 'react-router';
 import { stringify as stringifyQuery } from 'query-string';
 import { useRoutes, useUrlGenerator } from '@micromag/core/contexts';
 
-import { useLoggedIn } from '../contexts/AuthContext';
+import { useLoggedIn, useUser } from '../contexts/AuthContext';
 import { useOrganisation } from '../contexts/OrganisationContext';
 
 import HomePage from './pages/Home';
@@ -12,6 +12,8 @@ import HomeOrganisationPage from './pages/HomeOrganisation';
 import HomeGuestPage from './pages/HomeGuest';
 
 import RegisterPage from './pages/register/Register';
+import CompleteProfilePage from './pages/register/CompleteProfile';
+import InvitePage from './pages/register/Invite';
 
 import AccountPage from './pages/account/Account';
 import AccountProfilePage from './pages/account/Profile';
@@ -19,6 +21,7 @@ import AccountProfilePage from './pages/account/Profile';
 import LoginPage from './pages/auth/Login';
 import ForgotPasswordPage from './pages/auth/ForgotPassword';
 import ResetPasswordPage from './pages/auth/ResetPassword';
+import CheckEmailPage from './pages/auth/CheckEmail';
 
 import OrganisationCreatePage from './pages/organisation/Create';
 import OrganisationSettingsPage from './pages/organisation/Settings';
@@ -44,42 +47,49 @@ const Routes = () => {
     const routes = useRoutes();
     const url = useUrlGenerator();
     const loggedIn = useLoggedIn();
+    const user = useUser();
+    const hasCompleteProfile = !!user && !!user.name;
     const organisation = useOrganisation();
+    const HomePageByType = organisation !== null ? HomeOrganisationPage : HomePage;
+    const Home = loggedIn ? HomePageByType : HomeGuestPage;
+
     return (
         <Switch>
             {/*
                 Home routes
             */}
-            {organisation !== null ? (
-                <Route
-                    path={routes.home}
-                    exact
-                    component={loggedIn ? HomeOrganisationPage : HomeGuestPage}
-                />
+
+            {!hasCompleteProfile && loggedIn ? (
+                <Route path={routes.home} exact component={CompleteProfilePage} />
             ) : (
-                <Route path={routes.home} exact component={loggedIn ? HomePage : HomeGuestPage} />
+                <Route path={routes.home} exact component={Home} />
             )}
 
             {/*
                 Register routes
             */}
             <Route path={routes.register} exact component={RegisterPage} />
+            <Route path={routes['register.complete']} exact component={CompleteProfilePage} />
+            <Route path={routes['register.invite']} exact component={InvitePage} />
 
             {/*
                 Auth routes
             */}
-            {loggedIn ? (
+
+            {hasCompleteProfile && loggedIn ? (
                 <Redirect
                     from={[
                         routes['auth.login'],
                         routes['auth.forgot_password'],
                         routes['auth.reset_password'],
+                        routes['auth.check_email'],
                     ]}
                     to={url('account')}
                 />
             ) : null}
             <Route path={routes['auth.login']} exact component={LoginPage} />
             <Route path={routes['auth.forgot_password']} exact component={ForgotPasswordPage} />
+            <Route path={routes['auth.check_email']} exact component={CheckEmailPage} />
             <Route path={routes['auth.reset_password']} exact component={ResetPasswordPage} />
 
             {/*

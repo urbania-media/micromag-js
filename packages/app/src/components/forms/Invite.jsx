@@ -11,7 +11,7 @@ import { useAccountCreate } from '@micromag/data';
 const propTypes = {
     className: PropTypes.string,
     fields: MicromagPropTypes.formFields,
-    onRegistered: PropTypes.func,
+    onContinue: PropTypes.func,
 };
 
 const defaultProps = {
@@ -19,42 +19,32 @@ const defaultProps = {
         {
             name: 'email',
             type: 'email',
-            label: <FormattedMessage defaultMessage="Email" description="Field label" />,
-        },
-        {
-            name: 'password',
-            type: 'password',
-            label: <FormattedMessage defaultMessage="Password" description="Field label" />,
-        },
-        {
-            name: 'password_confirmation',
-            type: 'password',
-            label: <FormattedMessage defaultMessage="Confirm password" description="Field label" />,
+            label: <FormattedMessage defaultMessage="Email" description="Email field label" />,
         },
     ],
     className: null,
-    onRegistered: null,
+    onContinue: null,
 };
 
-const RegisterForm = ({ fields, className, onRegistered }) => {
+const InviteForm = ({ fields, className, onContinue }) => {
     const url = useUrlGenerator();
-    const { create: createAccount } = useAccountCreate();
-    const postForm = useCallback((action, data) => createAccount(data), [createAccount]);
+    const { create: updateAccount } = useAccountCreate();
+    const postForm = useCallback((action, data) => updateAccount(data), [updateAccount]);
     return (
         <Form
-            action={url('register')}
+            action={url('invite.collaborators')}
             fields={fields}
             postForm={postForm}
             submitButtonLabel={
                 <FormattedMessage defaultMessage="Continue" description="Continue button label" />
             }
-            onComplete={onRegistered}
+            onComplete={onContinue}
             className={className}
         />
     );
 };
 
-RegisterForm.propTypes = propTypes;
-RegisterForm.defaultProps = defaultProps;
+InviteForm.propTypes = propTypes;
+InviteForm.defaultProps = defaultProps;
 
-export default RegisterForm;
+export default InviteForm;

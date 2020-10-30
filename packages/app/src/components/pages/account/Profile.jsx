@@ -48,9 +48,15 @@ const AccountProfilePage = ({ className }) => (
             <FormPanel
                 description={
                     <div className={styles.description}>
+                        <h4>
+                            <FormattedMessage
+                                defaultMessage="Delete profile"
+                                description="Delete profile section title"
+                            />
+                        </h4>
                         <FormattedMessage
                             defaultMessage="Are you sure you want to delete your profile? This action cannot be reversed."
-                            description="Update your profile page title"
+                            description="Delete your profile description"
                         />
                     </div>
                 }

@@ -4,9 +4,12 @@
     "auth.login": "/login",
     "auth.logout": "/logout",
     "auth.forgot_password": "/forgot-password",
+    "auth.check_email": "/check-email/:email",
     "auth.reset_password": "/reset-password/:key",
 
     "register": "/register",
+    "register.complete": "/register/complete",
+    "register.invite": "/register/invite",
     "register.confirmation": "/register/thanks",
 
     "account": "/account",

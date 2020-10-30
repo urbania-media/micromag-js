@@ -17,6 +17,7 @@ export { default as useOrganisation } from './useOrganisation';
 export { default as useOrganisationCreate } from './useOrganisationCreate';
 export { default as useOrganisations } from './useOrganisations';
 export { default as useOrganisationTeam } from './useOrganisationTeam';
+export { default as useOrganisationRoles } from './useOrganisationRoles';
 export { default as useOrganisationUpdate } from './useOrganisationUpdate';
 export { default as useRecentStories } from './useRecentStories';
 export { default as useRecentSearches } from './useRecentSearches';

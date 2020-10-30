@@ -6,6 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import { useOrganisationTeam } from '@micromag/data';
 
 import { useOrganisation } from '../../../contexts/OrganisationContext';
+import { useUser } from '../../../contexts/AuthContext';
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
 import OrganisationMenu from '../../menus/Organisation';
@@ -22,8 +23,11 @@ const defaultProps = {
 };
 
 const OrganisationTeamPage = ({ className }) => {
+    const user = useUser();
     const organisation = useOrganisation();
     const { team } = useOrganisationTeam(organisation.id);
+    const role = user.role || 'administrator';
+    const teamFeatures = role === 'admin' ? { canAdd: true, canEdit: true, canDelete: true } : null;
     return (
         <MainLayout>
             <Page
@@ -39,7 +43,7 @@ const OrganisationTeamPage = ({ className }) => {
                     },
                 ])}
             >
-                {team !== null ? <TeamList items={team} /> : null}
+                {team !== null ? <TeamList items={team} {...teamFeatures} /> : null}
             </Page>
         </MainLayout>
     );

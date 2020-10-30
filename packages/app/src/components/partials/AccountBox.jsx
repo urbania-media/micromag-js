@@ -41,7 +41,7 @@ const AccountBox = ({ withoutHeader, className }) => {
     return (
         <Card
             header={!withoutHeader ? messages.title : null}
-            title={user.name}
+            title={user.name ? user.name : null}
             afterBody={<AccountMenu asList flush />}
             theme="dark"
             className={classNames([

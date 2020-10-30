@@ -3,15 +3,14 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-import { useHistory, useLocation } from 'react-router';
-import { parse as parseQueryString } from 'query-string';
-import { FormPanel, Link } from '@micromag/core/components';
+import { useHistory } from 'react-router';
+import { FormPanel } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
 import { useAuth } from '../../../contexts/AuthContext';
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
-import RegisterForm from '../../forms/Register';
+import CompleteProfileForm from '../../forms/CompleteProfile';
 
 import styles from '../../../styles/pages/register/register.module.scss';
 
@@ -23,16 +22,17 @@ const defaultProps = {
     className: null,
 };
 
-const RegisterPage = ({ className }) => {
+const CompleteProfile = ({ className }) => {
     const url = useUrlGenerator();
     const history = useHistory();
     const { setUser } = useAuth();
-    const { search } = useLocation();
-    const { next = null } = parseQueryString(search);
-    const onRegistered = useCallback(
-        (user) => {
-            setUser(user);
-            history.push(next !== null ? next : url('register.complete'));
+    const onContinue = useCallback(
+        (showInvite = false) => {
+            if (showInvite) {
+                history.push(url('register.invite'));
+            } else {
+                history.push(url('home'));
+            }
         },
         [history, url, setUser],
     );
@@ -40,7 +40,10 @@ const RegisterPage = ({ className }) => {
         <MainLayout>
             <Page
                 title={
-                    <FormattedMessage defaultMessage="Register" description="Register page title" />
+                    <FormattedMessage
+                        defaultMessage="Complete profile"
+                        description="Complete profile page title"
+                    />
                 }
                 small
                 className={classNames([
@@ -54,28 +57,20 @@ const RegisterPage = ({ className }) => {
                     description={
                         <div className={styles.description}>
                             <FormattedMessage
-                                defaultMessage="First, enter your email and pick a password."
-                                description="Register page description"
+                                defaultMessage="Your account has been created. Please complete your profile to create your first Micromag."
+                                description="Complete profile page description"
                             />
                         </div>
                     }
                 >
-                    <RegisterForm onRegistered={onRegistered} />
-                    <div className={styles.links}>
-                        <Link href={url('auth.login')}>
-                            <FormattedMessage
-                                defaultMessage="Already have an account?"
-                                description="Already have an account page link"
-                            />
-                        </Link>
-                    </div>
+                    <CompleteProfileForm onContinue={onContinue} />
                 </FormPanel>
             </Page>
         </MainLayout>
     );
 };
 
-RegisterPage.propTypes = propTypes;
-RegisterPage.defaultProps = defaultProps;
+CompleteProfile.propTypes = propTypes;
+CompleteProfile.defaultProps = defaultProps;
 
-export default RegisterPage;
+export default CompleteProfile;

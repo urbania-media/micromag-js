@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 // import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -13,7 +13,7 @@ import { useUser } from '../../contexts/AuthContext';
 const propTypes = {
     className: PropTypes.string,
     fields: MicromagPropTypes.formFields,
-    onUpdated: PropTypes.func,
+    onSuccess: PropTypes.func,
 };
 
 const defaultProps = {
@@ -25,17 +25,28 @@ const defaultProps = {
         },
     ],
     className: null,
-    onUpdated: null,
+    onSuccess: null,
 };
 
-const ForgotPasswordForm = ({ fields, className, onUpdated }) => {
+const ForgotPasswordForm = ({ fields, className, onSuccess }) => {
+    const [email, setEmail] = useState(null);
     const url = useUrlGenerator();
     const user = useUser();
     const { forgot: forgotPassword } = useAuthForgot();
-    const postForm = useCallback((action, { email }) => forgotPassword(email), [forgotPassword]);
+    const postForm = useCallback(
+        (action, { email: emailAddress }) => {
+            setEmail(emailAddress);
+            return forgotPassword(emailAddress);
+        },
+        [forgotPassword, setEmail],
+    );
+    const onComplete = useCallback(() => {
+        onSuccess(email);
+    }, [email, onSuccess]);
+
     return (
         <Form
-            action={url('account.profile')}
+            action={url('password.email')}
             fields={fields}
             postForm={postForm}
             initialValue={user}
@@ -45,7 +56,7 @@ const ForgotPasswordForm = ({ fields, className, onUpdated }) => {
                     description="Forgot password button label"
                 />
             }
-            onComplete={onUpdated}
+            onComplete={onComplete}
             className={className}
         />
     );
