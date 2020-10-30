@@ -79,26 +79,26 @@ const TextScreen = ({
 
     // Create elements
     const items = [
-        (withTitle && (hasTitle || isPlaceholder)) && <ScreenElement
+        withTitle && <ScreenElement
             key="title"
             placeholder="title"
             emptyLabel={<FormattedMessage defaultMessage="Title" description="Title placeholder" />}
             emptyClassName={styles.empty}
             isEmpty={isEmpty}
         >
-            <Heading {...title} />
+            { hasTitle ? <Heading {...title} /> : null }
         </ScreenElement>,
 
-        (isSplitted && withTitle) && <Spacer />,
+        isSplitted && withTitle && <Spacer key="spacer" />,
 
-        (hasText || isPlaceholder) && <ScreenElement
+        <ScreenElement
             key="description"
             placeholder="text"
             emptyLabel={<FormattedMessage defaultMessage="Text" description="Text placeholder" />}
             emptyClassName={styles.empty}
             isEmpty={isEmpty}
         >
-            <Text {...text} />
+            { hasText ? <Text {...text} /> : null }
         </ScreenElement>,
     ];
 

@@ -21,7 +21,7 @@ export default {
 
 export const Placeholder = (storyProps) => <Text {...storyProps} />;
 
-export const Preview = (storyProps) => <Text {...storyProps} />;
+export const Preview = (storyProps) => <Text {...storyProps} {...props} />;
 
 export const Edit = (storyProps) => <Text {...storyProps} />;
 

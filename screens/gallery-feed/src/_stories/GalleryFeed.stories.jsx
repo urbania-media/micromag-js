@@ -22,7 +22,7 @@ export default {
 
 export const Placeholder = (storyProps) => <GalleryFeed {...storyProps} />;
 
-export const Preview = (storyProps) => <GalleryFeed {...storyProps} />;
+export const Preview = (storyProps) => <GalleryFeed {...storyProps} {...props} />;
 
 export const Edit = (storyProps) => <GalleryFeed {...storyProps} />;
 

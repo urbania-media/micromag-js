@@ -106,11 +106,15 @@ const Map = ({
     if (isEmpty) {
         element = (
             <Empty className={styles.empty}>
-                <FormattedMessage defaultMessage="Map" description="Map placeholder" />
+                { withMarkerImages ?
+                    <FormattedMessage defaultMessage="MapImages" description="MapImages placeholder" />
+                :
+                    <FormattedMessage defaultMessage="Map" description="Map placeholder" />
+                }                
             </Empty>
         );
     } else if (isPlaceholder) {
-        element = <PlaceholderMap className={styles.placeholder} />;
+        element = <PlaceholderMap className={styles.placeholder} withImages={withMarkerImages} />;
     } else if (isPreview) {
         let staticUrl = `https://maps.googleapis.com/maps/api/staticmap?size=${maxWidth}x${height}`;
         const { center = null, zoom = null } = map;
@@ -136,7 +140,6 @@ const Map = ({
         const hasTitle = title !== null;
         const hasDescription = description !== null;
         const hasImage = image !== null;
-
         element = (
             <Transitions transitions={transitions} playing={transitionPlaying} fullscreen>
                 <MapElement
@@ -145,15 +148,17 @@ const Map = ({
                     onClickMarker={onClickMarker}
                     onReady={onMapReady}
                 />
-                <div className={styles.markerOverlay}>
+                <div className={styles.markerOverlayContainer}>
                     <div className={styles.markerOverlayScrollable}>
-                        <Button className={styles.markerOverlaySpacer} onClick={onClickMap} withoutStyle style={{height: height * openedMarkerSpacerHeight }} />
-                        <div className={styles.markerOverlayContent} style={{minHeight: height * (1 - openedMarkerSpacerHeight) }}>
-                            <div className={styles.swipeIndicator} />
-                            <div className={styles.markerOverlayContentInner} key={`markerContent-${selectedMarker}`}>
-                                { withMarkerImages && hasImage ? <Image className={styles.image} {...image} width="100%" /> : null }
-                                { hasTitle ? <Heading className={styles.title} {...title} /> : null }
-                                { hasDescription ? <Text className={styles.description} {...description} /> : null }
+                        <Button className={styles.markerOverlaySafe} onClick={onClickMap} withoutStyle style={{height: height * openedMarkerSpacerHeight }} />
+                        <div className={styles.markerOverlay} style={{minHeight: height * (1 - openedMarkerSpacerHeight) }}>
+                            <div className={styles.markerOverlayContent} >
+                                <div className={styles.swipeIndicator} />
+                                <div className={styles.markerOverlayContentInner} key={`markerContent-${selectedMarker}`}>
+                                    { hasImage ? <Image className={styles.image} {...image} width="100%" /> : null }
+                                    { hasTitle ? <Heading className={styles.title} {...title} /> : null }
+                                    { hasDescription ? <Text className={styles.description} {...description} /> : null }
+                                </div>
                             </div>
                         </div>
                     </div>

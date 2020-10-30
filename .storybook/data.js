@@ -162,7 +162,7 @@ export const advertising = ({ width, height }) => ({
     text: { body: 'Presented by Paul' },
 });
 
-export const markers = ({ count = 3, withTitle = true, withDescription = true, withImage = true } = {}) => {
+export const markers = ({ count = 3, withTitle = true, withDescription = true, withImage = false } = {}) => {
     return [...Array(count)].map((j, i) => ({
         id: i,
         geoPosition: {
