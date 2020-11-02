@@ -4,15 +4,14 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { FormPanel } from '@micromag/core/components';
-import { useOrganisation, useOrganisationContact } from '@micromag/data';
+import { useOrganisation } from '@micromag/data';
 
 import { useOrganisation as useContextOrganisation } from '../../../contexts/OrganisationContext';
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
 import OrganisationMenu from '../../menus/Organisation';
-import OrganisationSettingsForm from '../../forms/OrganisationSettings';
 
-import styles from '../../../styles/pages/organisation/settings.module.scss';
+import styles from '../../../styles/pages/organisation/stats.module.scss';
 
 const propTypes = {
     className: PropTypes.string,
@@ -22,14 +21,9 @@ const defaultProps = {
     className: null,
 };
 
-const OrganisationSettingsPage = ({ className }) => {
+const StatsPage = ({ className }) => {
     const currentOrganisation = useContextOrganisation();
     const { organisation } = useOrganisation(currentOrganisation.id);
-    const { contact, loading: contactLoading } = useOrganisationContact(
-        currentOrganisation.id,
-        'main',
-    );
-    console.log(currentOrganisation, organisation);
     return (
         <MainLayout>
             <Page
@@ -39,9 +33,7 @@ const OrganisationSettingsPage = ({ className }) => {
                         descrition="Organisation section title"
                     />
                 }
-                title={
-                    <FormattedMessage defaultMessage="Settings" descrition="Settings page title" />
-                }
+                title={<FormattedMessage defaultMessage="Stats" descrition="Stats page title" />}
                 sidebar={<OrganisationMenu asList />}
                 className={classNames([
                     styles.container,
@@ -50,22 +42,13 @@ const OrganisationSettingsPage = ({ className }) => {
                     },
                 ])}
             >
-                {organisation !== null ? (
-                    <FormPanel>
-                        {!contactLoading ? (
-                            <OrganisationSettingsForm
-                                organisation={organisation}
-                                mainContact={contact}
-                            />
-                        ) : null}
-                    </FormPanel>
-                ) : null}
+                {organisation !== null ? <FormPanel>Global organisation stats</FormPanel> : null}
             </Page>
         </MainLayout>
     );
 };
 
-OrganisationSettingsPage.propTypes = propTypes;
-OrganisationSettingsPage.defaultProps = defaultProps;
+StatsPage.propTypes = propTypes;
+StatsPage.defaultProps = defaultProps;
 
-export default OrganisationSettingsPage;
+export default StatsPage;

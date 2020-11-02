@@ -82,7 +82,7 @@ const Form = ({
         action,
         fields: initialFields,
         postForm,
-        onComplete,
+        onComplete: onComplete !== null ? onComplete : () => {},
     });
     const FieldsComponent = useFieldComponent('fields');
 

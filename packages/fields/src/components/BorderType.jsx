@@ -31,7 +31,7 @@ const BorderTypeField = ({ types, value, className, onChange }) => (
                         style={{
                             width: 40,
                             height: 40,
-                            border: `2px ${type} #CCC`,
+                            border: `2px ${type} #ccc`,
                         }}
                     />
                 </div>

@@ -2,18 +2,18 @@ import { useCallback, useState } from 'react';
 
 import { useApi } from '../contexts/ApiContext';
 
-const useOrganisationUpdate = organiationId => {
+const useOrganisationUpdate = (organisationId) => {
     const [updating, setUpdating] = useState(false);
     const api = useApi();
     const update = useCallback(
-        organiation => {
+        (organisation) => {
             setUpdating(true);
-            return api.organisations.update(organiationId, organiation).then(response => {
+            return api.organisations.update(organisationId, organisation).then((response) => {
                 setUpdating(false);
                 return response;
             });
         },
-        [api, organiationId, setUpdating],
+        [api, organisationId, setUpdating],
     );
     return { update, updating };
 };

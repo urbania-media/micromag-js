@@ -3,9 +3,14 @@ import { FormattedMessage } from 'react-intl';
 
 export const mainContact = [
     {
-        name: 'contact_name',
+        name: 'contact_first_name',
         type: 'text',
-        label: <FormattedMessage defaultMessage="Name" description="Name field label" />,
+        label: <FormattedMessage defaultMessage="First name" description="Firstname field label" />,
+    },
+    {
+        name: 'contact_last_name',
+        type: 'text',
+        label: <FormattedMessage defaultMessage="Last name" description="Lastname field label" />,
     },
     {
         name: 'contact_email',
@@ -25,7 +30,7 @@ export const organisation = [
         type: 'text',
         label: (
             <FormattedMessage
-                defaultMessage="Name of the organisation"
+                defaultMessage="Organisation name"
                 description="Organisation name field label"
             />
         ),

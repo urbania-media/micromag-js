@@ -71,7 +71,7 @@ const AccountProfileForm = ({ fields, className, onUpdated }) => {
             submitButtonLabel={
                 <FormattedMessage defaultMessage="Update profile" description="Button label" />
             }
-            onComplete={onUpdated}
+            onComplete={onUpdated !== null ? onUpdated : null}
             className={className}
         />
     );

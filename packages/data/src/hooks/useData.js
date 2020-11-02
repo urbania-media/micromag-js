@@ -10,14 +10,14 @@ const useData = (loadData, { initialData = null, autoload = true } = {}) => {
             let canceled = false;
             setLoading(true);
             const promise = loadData(...args)
-                .then(newData => {
+                .then((newData) => {
                     if (!canceled) {
                         setData(newData);
                         setLoading(false);
                     }
                     return newData;
                 })
-                .catch(newError => {
+                .catch((newError) => {
                     setError(newError);
                     setLoading(false);
                 });

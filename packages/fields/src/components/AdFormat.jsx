@@ -35,7 +35,7 @@ const AdFormatField = ({ types, value, className, onChange }) => (
                         style={{
                             width: type.width / 10,
                             height: type.height / 10,
-                            border: `2px solid #CCC`,
+                            border: `2px solid #ccc`,
                         }}
                     />
                 </div>

@@ -21,7 +21,12 @@ const defaultProps = {
 const OrganisationThemesPage = ({ className }) => (
     <MainLayout>
         <Page
-            section={<FormattedMessage defaultMessage="Organisation" descrition="Section title" />}
+            section={
+                <FormattedMessage
+                    defaultMessage="Organisation"
+                    descrition="Organisation section title"
+                />
+            }
             title={<FormattedMessage defaultMessage="Themes" descrition="Page title" />}
             sidebar={<OrganisationMenu asList />}
             className={classNames([

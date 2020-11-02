@@ -20,6 +20,7 @@
     "organisation.create": "/organisation/create",
     "organisation.settings": "/organisation/settings",
     "organisation.team": "/organisation/team",
+    "organisation.stats": "/organisation/stats",
     "organisation.billing": "/organisation/billing",
     "organisation.medias": "/organisation/medias",
     "organisation.themes": "/organisation/themes",

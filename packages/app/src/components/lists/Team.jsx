@@ -8,7 +8,6 @@ import TeamMemberItem from '../items/TeamMember';
 
 const propTypes = {
     items: MicromagPropTypes.team,
-    canCreate: PropTypes.bool,
     canEdit: PropTypes.bool,
     canRemove: PropTypes.bool,
     className: PropTypes.string,
@@ -16,14 +15,12 @@ const propTypes = {
 
 const defaultProps = {
     items: [],
-    canCreate: true,
     canEdit: true,
     canRemove: true,
     className: null,
 };
 
-const TeamList = ({ items, canCreate, canEdit, canRemove, className }) => {
-    const onMemberCreate = useCallback(() => {}, []);
+const TeamList = ({ items, canEdit, canRemove, className }) => {
     const onClickMemberRemove = useCallback(() => {}, []);
     const onChangeMemberRole = useCallback(() => {}, []);
 

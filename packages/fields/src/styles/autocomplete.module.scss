@@ -1,0 +1,20 @@
+@import '~@micromag/core/scss/variables';
+
+.container {
+    .input {
+        //
+    }
+
+    .list {
+        position: absolute;
+        z-index: 1;
+        width: 300px;
+        max-height: 150px;
+        margin-top: 5px;
+        overflow-y: scroll;
+    }
+
+    .item {
+        padding: 5px 10px;
+    }
+}

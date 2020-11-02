@@ -2,7 +2,7 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { useLocation } from 'react-router';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Menu } from '@micromag/core/components';
@@ -11,37 +11,6 @@ import { useOrganisations } from '@micromag/data';
 
 // import * as AppPropTypes from '../../lib/PropTypes';
 import { useOrganisation } from '../../contexts/OrganisationContext';
-
-const messages = defineMessages({
-    organisations: {
-        id: 'menus.organisation.organisations',
-        defaultMessage: 'Organisations',
-    },
-    settings: {
-        id: 'menus.organisation.settings',
-        defaultMessage: 'Settings',
-    },
-    billing: {
-        id: 'menus.organisation.billing',
-        defaultMessage: 'Billing',
-    },
-    team: {
-        id: 'menus.organisation.team',
-        defaultMessage: 'Team',
-    },
-    themes: {
-        id: 'menus.organisation.themes',
-        defaultMessage: 'Themes',
-    },
-    medias: {
-        id: 'menus.organisation.medias',
-        defaultMessage: 'Medias',
-    },
-    create: {
-        id: 'menus.organisation.create',
-        defaultMessage: 'Create an organisation',
-    },
-});
 
 const propTypes = {
     className: PropTypes.string,
@@ -82,17 +51,29 @@ const OrganisationsMenu = ({
             {
                 id: 'settings',
                 href: url('organisation.settings'),
-                label: messages.settings,
+                label: (
+                    <FormattedMessage
+                        defaultMessage="Settings"
+                        description="Settings and contact menu item"
+                    />
+                ),
             },
             {
                 id: 'billing',
                 href: url('organisation.billing'),
-                label: messages.billing,
+                label: (
+                    <FormattedMessage defaultMessage="Billing" description="Billing menu item" />
+                ),
             },
             {
                 id: 'team',
                 href: url('organisation.team'),
-                label: messages.team,
+                label: <FormattedMessage defaultMessage="Team" description="Team menu item" />,
+            },
+            {
+                id: 'stats',
+                href: url('organisation.stats'),
+                label: <FormattedMessage defaultMessage="Stats" description="Stats menu item" />,
             },
             {
                 type: 'divider',
@@ -100,16 +81,16 @@ const OrganisationsMenu = ({
             {
                 id: 'themes',
                 href: url('organisation.themes'),
-                label: messages.themes,
+                label: <FormattedMessage defaultMessage="Themes" description="Themes menu item" />,
             },
             {
                 id: 'medias',
                 href: url('organisation.medias'),
-                label: messages.medias,
+                label: <FormattedMessage defaultMessage="Medias" description="Medias menu item" />,
             },
         ]
-            .filter(it => it !== null)
-            .map(it =>
+            .filter((it) => it !== null)
+            .map((it) =>
                 it.href === pathname
                     ? {
                           ...it,
@@ -120,8 +101,8 @@ const OrganisationsMenu = ({
         const organisationsItems =
             organisations !== null
                 ? organisations
-                      .filter(it => organisation === null || it.id !== organisation.id)
-                      .map(it => ({
+                      .filter((it) => organisation === null || it.id !== organisation.id)
+                      .map((it) => ({
                           id: it.id,
                           href: url('organisation.switch', {
                               organisation: it.slug,
@@ -134,16 +115,24 @@ const OrganisationsMenu = ({
             {
                 id: 'create',
                 href: url('organisation.create'),
-                label: messages.create,
+                label: (
+                    <FormattedMessage
+                        defaultMessage="Create an organisation"
+                        description="Create an organisation button"
+                    />
+                ),
             },
         ];
+        const organisationsLabel = (
+            <FormattedMessage defaultMessage="Organisations" description="Organisations label" />
+        );
         return withoutDropdown || asList
             ? menuItems.filter(({ type = 'link' }) => type === 'link')
             : [
                   {
                       id: 'organisations',
                       href: url('home'),
-                      label: organisation !== null ? organisation.name : messages.organisations,
+                      label: organisation !== null ? organisation.name : organisationsLabel,
                       dropdown:
                           organisation !== null
                               ? [
@@ -155,7 +144,7 @@ const OrganisationsMenu = ({
                                               },
                                               {
                                                   type: 'header',
-                                                  label: messages.organisations,
+                                                  label: organisationsLabel,
                                               },
                                               ...organisationsItems,
                                               {
@@ -173,7 +162,7 @@ const OrganisationsMenu = ({
                               : [...organisationsItems, ...endItems],
                   },
               ];
-    }, [url, messages, withoutDropdown, asList, organisations, organisation, pathname]);
+    }, [url, withoutDropdown, asList, organisations, organisation, pathname]);
     return (
         <Menu
             {...props}

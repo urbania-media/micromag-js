@@ -2,13 +2,16 @@ import manager from '@micromag/intl';
 
 var ACSasN = "URL";
 var Avsnjl = "Themes";
+var ChnSK6 = "This Micromag";
 var CrzYgw = "Quote";
 var D3idYv = "Settings";
 var DWEzCv = "Select a video...";
 var EcZYpr = "Subtitle";
+var G31Yd0 = "Cancel";
 var GE8wrk = "Image";
 var Gzx6q5 = "Advertising";
 var IhBOyI = "Change password";
+var JV5hRr = "Media gallery";
 var K5oXVa = "AnswerNo";
 var Ke35Pv = "Edit";
 var LI0Gz4 = "Email";
@@ -16,6 +19,8 @@ var MhGUaY = "Slideshow";
 var Mz76RM = "ImageText";
 var N25iDO = "Title";
 var OdcEna = "No slide...";
+var OkNUmk = "Type";
+var P7UAe2 = "Unused";
 var PKCv5M = "No item...";
 var PQG8A5 = "Link";
 var PbHeHc = "Markers";
@@ -33,9 +38,11 @@ var UBXIYP = "Video";
 var UGHvSn = "Options";
 var UUv8FR = "Name";
 var UnYDtO = "Update profile";
+var VqyxpU = "Ad";
 var Xt24Gj = "It’s time to start creating now.";
 var YG5ohI = "Success";
 var ZA6cIU = "Organisation";
+var ZqwBOx = "Questions";
 var ZtZjF0 = "TitleSubtitle";
 var ZxgNge = "Add an item";
 var aPjV2Q = "No story yet";
@@ -43,6 +50,7 @@ var aovRFH = "Filename";
 var b7jY9K = "Map";
 var bhEaUt = "Audio";
 var bxWHkr = "Name of the organisation";
+var cGItoy = "List";
 var d60tSn = "Subtitle";
 var dVcog7 = "Title";
 var dmuKH3 = "Map";
@@ -51,6 +59,7 @@ var eIiKqX = "Slides";
 var ebsPd4 = "Image";
 var enFs4g = "Advanced";
 var eoW0tZ = "Duration";
+var fIawTr = "Text";
 var g6qbbX = "Log in";
 var h11vXq = "Question?";
 var hbFrBs = "View all stories";
@@ -62,13 +71,15 @@ var liyV7Y = "Size";
 var mv37oK = "Dimension";
 var n2teag = "Add an answer";
 var nqQqsI = "Map";
-var ojZkXk = "Video";
 var p6n6vY = "No answer...";
+var qIw1nW = "Save";
 var qKQCxc = "Add a marker";
 var qWT7a5 = "TimelineCentered";
+var qZItNz = "MapImages";
 var qrMjBI = "Recent stories";
 var r6ZYoE = "SurveyMultipleChoice";
 var s1aoBI = "Medias";
+var t2cFdl = "Active filters";
 var t9Wttt = "Switching organisation...";
 var tAYwqp = "Add a slide";
 var tV78uM = "Confirm password";
@@ -84,14 +95,21 @@ var z4CiV1 = "Text";
 var zRRbVl = "Create";
 var zongsF = "Publish";
 var messages = {
+  "+9akmg": "Audio and Video",
   "+AEVbJ": "Title",
+  "+KWsXh": "Already used",
   "+MPZRu": "Background",
+  "+TT1y6": "Clear",
+  "+b+e40": "All sources",
   "/CStmu": "Main contact",
+  "/T/UDH": "Remove all",
   "/bEns8": "MapImages",
   "/hupzO": "Credits",
   "0gyI2S": "GalleryFeedLegends",
   "0vXXfT": "imagesWithLegends",
+  "15GBmG": "All",
   "169xnt": "Audio",
+  "1dPnDA": "Tags",
   "1fBNmY": "ImageTitle",
   "1fNojU": "{count} {count, plural, one {screen} other {screens}}",
   "2/F1Q7": "#{index}",
@@ -101,6 +119,7 @@ var messages = {
   "3OS3Ms": "Legend",
   "3pqFXb": "Button style",
   "3q9GPv": "Quote",
+  "3uMlsn": "Some other micromag",
   "4E2gbX": "Text",
   "4HWKjP": "Create a story",
   "4iBXj2": "Layout",
@@ -109,24 +128,32 @@ var messages = {
   "55Bp0r": "Please fill all the fields below.",
   "5uH4x7": "Submit",
   "63Kvho": "Images",
+  "6Z1BwP": "Recent searches",
   "6kvjpX": "SurveyYesNo",
+  "6mX2ya": "Images",
   "72Z3Od": "Multiple answers",
   "73hxYw": "Author",
   "88/Ge8": "Quote",
   "8c34nT": "ImageTitleText",
+  "8cVWNh": "Usage",
+  "8vroDx": "Map",
   "96KRj9": "ImageLegend",
+  "9ZdD+Q": "Library for",
   ACSasN: ACSasN,
   Avsnjl: Avsnjl,
   "B1MeY+": "Select an image...",
+  ChnSK6: ChnSK6,
   CrzYgw: CrzYgw,
   D3idYv: D3idYv,
   DWEzCv: DWEzCv,
   "E/qtB2": "TextTitle",
   EcZYpr: EcZYpr,
   "FPBu+U": "Phone",
+  G31Yd0: G31Yd0,
   GE8wrk: GE8wrk,
   Gzx6q5: Gzx6q5,
   IhBOyI: IhBOyI,
+  JV5hRr: JV5hRr,
   K5oXVa: K5oXVa,
   "KGHyr/": "SurveyCheckbox",
   Ke35Pv: Ke35Pv,
@@ -135,6 +162,8 @@ var messages = {
   Mz76RM: Mz76RM,
   N25iDO: N25iDO,
   OdcEna: OdcEna,
+  OkNUmk: OkNUmk,
+  P7UAe2: P7UAe2,
   PKCv5M: PKCv5M,
   PQG8A5: PQG8A5,
   "PQX/ph": "Create account",
@@ -142,6 +171,7 @@ var messages = {
   R1HYj0: R1HYj0,
   Ro8ZOq: Ro8ZOq,
   RvCDph: RvCDph,
+  "S/mavZ": "Text and Images",
   S9YpbV: S9YpbV,
   Spu1AH: Spu1AH,
   StDSlO: StDSlO,
@@ -154,10 +184,12 @@ var messages = {
   UUv8FR: UUv8FR,
   UnYDtO: UnYDtO,
   "V+G2s+": "Add an image",
+  VqyxpU: VqyxpU,
   Xt24Gj: Xt24Gj,
   YG5ohI: YG5ohI,
   "Yyv+N3": "Settings",
   ZA6cIU: ZA6cIU,
+  ZqwBOx: ZqwBOx,
   ZtZjF0: ZtZjF0,
   ZxgNge: ZxgNge,
   aPjV2Q: aPjV2Q,
@@ -169,6 +201,7 @@ var messages = {
   bhEaUt: bhEaUt,
   bxWHkr: bxWHkr,
   "c9VwT/": "Technical details",
+  cGItoy: cGItoy,
   d60tSn: d60tSn,
   dVcog7: dVcog7,
   dmuKH3: dmuKH3,
@@ -178,6 +211,7 @@ var messages = {
   ebsPd4: ebsPd4,
   enFs4g: enFs4g,
   eoW0tZ: eoW0tZ,
+  fIawTr: fIawTr,
   g6qbbX: g6qbbX,
   h11vXq: h11vXq,
   hbFrBs: hbFrBs,
@@ -218,7 +252,6 @@ var messages = {
   "navbars.editor.saving": "Saving...",
   "navbars.preview.close": "Close",
   nqQqsI: nqQqsI,
-  ojZkXk: ojZkXk,
   "organisation-box.profile": "Profile",
   "organisation-box.settings": "Settings",
   "organisation-box.title": "Organisation",
@@ -255,8 +288,10 @@ var messages = {
   "publish_services.archive": "Archive file",
   "publish_services.archive.filename": "Filename",
   "publish_services.archive.format": "Format",
+  qIw1nW: qIw1nW,
   qKQCxc: qKQCxc,
   qWT7a5: qWT7a5,
+  qZItNz: qZItNz,
   qrMjBI: qrMjBI,
   r6ZYoE: r6ZYoE,
   "recent_publications.title": "Recent publications",
@@ -264,6 +299,7 @@ var messages = {
   "roles.user": "User",
   s1aoBI: s1aoBI,
   "t+L1J/": "No image...",
+  t2cFdl: t2cFdl,
   t9Wttt: t9Wttt,
   tAYwqp: tAYwqp,
   tV78uM: tV78uM,
@@ -276,6 +312,7 @@ var messages = {
   vrCfAS: vrCfAS,
   wsUmh9: wsUmh9,
   "wt1+dM": "Select an audio file...",
+  "xKdf/C": "Added by",
   xYqGzM: xYqGzM,
   yUPjCz: yUPjCz,
   z4CiV1: z4CiV1,

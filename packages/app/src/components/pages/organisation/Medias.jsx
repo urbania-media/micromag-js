@@ -22,8 +22,13 @@ const defaultProps = {
 const OrganisationMediasPage = ({ className }) => (
     <MainLayout>
         <Page
-            section={<FormattedMessage defaultMessage="Organisation" descrition="Section title" />}
-            title={<FormattedMessage defaultMessage="Medias" descrition="Page title" />}
+            section={
+                <FormattedMessage
+                    defaultMessage="Organisation"
+                    descrition="Organisation section title"
+                />
+            }
+            title={<FormattedMessage defaultMessage="Medias" descrition="Medias page title" />}
             sidebar={<OrganisationMenu asList />}
             className={classNames([
                 styles.container,

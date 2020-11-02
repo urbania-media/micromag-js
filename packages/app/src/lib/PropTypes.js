@@ -40,6 +40,15 @@ export const teamMember = PropTypes.shape({
 });
 export const team = PropTypes.arrayOf(teamMember);
 
+export const contact = PropTypes.shape({
+    type: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    email: PropTypes.string,
+    phone: PropTypes.string,
+});
+export const contacts = PropTypes.arrayOf(contact);
+
 export const organisation = PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,

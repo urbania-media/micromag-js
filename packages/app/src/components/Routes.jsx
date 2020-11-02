@@ -27,6 +27,7 @@ import OrganisationCreatePage from './pages/organisation/Create';
 import OrganisationSettingsPage from './pages/organisation/Settings';
 import OrganisationBillingPage from './pages/organisation/Billing';
 import OrganisationTeamPage from './pages/organisation/Team';
+import OrganisationStatsPage from './pages/organisation/Stats';
 import OrganisationThemesPage from './pages/organisation/Themes';
 import OrganisationMediasPage from './pages/organisation/Medias';
 import OrganisationSwitchPage from './pages/organisation/Switch';
@@ -115,6 +116,7 @@ const Routes = () => {
                         routes['organisation.settings'],
                         routes['organisation.billing'],
                         routes['organisation.team'],
+                        routes['organisation.stats'],
                         routes['organisation.themes'],
                         routes['organisation.medias'],
                     ]}
@@ -134,6 +136,7 @@ const Routes = () => {
             />
             <Route path={routes['organisation.team']} exact component={OrganisationTeamPage} />
             <Route path={routes['organisation.themes']} exact component={OrganisationThemesPage} />
+            <Route path={routes['organisation.stats']} exact component={OrganisationStatsPage} />
             <Route path={routes['organisation.medias']} exact component={OrganisationMediasPage} />
             <Route
                 path={routes['organisation.switch']}

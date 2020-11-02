@@ -30,8 +30,8 @@ const OrganisationCreatePage = ({ className }) => {
     const { search } = useLocation();
     const { next = null } = parseQueryString(search);
     const onCreated = useCallback(
-        (user) => {
-            setOrganisation(user);
+        (org) => {
+            setOrganisation(org);
             history.push(next !== null ? next : url('home'));
         },
         [history, url, setOrganisation],
@@ -42,7 +42,7 @@ const OrganisationCreatePage = ({ className }) => {
                 title={
                     <FormattedMessage
                         defaultMessage="Create an organisation"
-                        descrition="Page title"
+                        descrition="Create org page title"
                     />
                 }
                 small

@@ -21,8 +21,13 @@ const defaultProps = {
 const OrganisationBillingPage = ({ className }) => (
     <MainLayout>
         <Page
-            section={<FormattedMessage defaultMessage="Organisation" descrition="Section title" />}
-            title={<FormattedMessage defaultMessage="Billing" descrition="Page title" />}
+            section={
+                <FormattedMessage
+                    defaultMessage="Organisation"
+                    descrition="Organisation section title"
+                />
+            }
+            title={<FormattedMessage defaultMessage="Billing" descrition="Billing page title" />}
             sidebar={<OrganisationMenu asList />}
             className={classNames([
                 styles.container,

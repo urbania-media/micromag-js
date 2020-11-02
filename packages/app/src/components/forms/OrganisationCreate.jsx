@@ -10,7 +10,7 @@ import { useOrganisationCreate } from '@micromag/data';
 
 import * as AppPropTypes from '../../lib/PropTypes';
 
-import { organisation as organisationFields } from './fields';
+import { organisation as organisationFields } from './organisationFields';
 
 const propTypes = {
     organisation: AppPropTypes.organisation.isRequired,
@@ -35,7 +35,9 @@ const OrganisationCreateForm = ({ organisation, fields, className, onCreated }) 
             fields={fields}
             initialValue={organisation}
             postForm={postForm}
-            submitButtonLabel={<FormattedMessage defaultMessage="Create" description="Button label" />}
+            submitButtonLabel={
+                <FormattedMessage defaultMessage="Create" description="Button label" />
+            }
             onComplete={onCreated}
             className={className}
         />

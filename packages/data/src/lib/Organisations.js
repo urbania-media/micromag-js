@@ -1,6 +1,7 @@
 import Base from './Base';
 
 import OrganisationsTeam from './OrganisationsTeam';
+import OrganisationsContacts from './OrganisationsContacts';
 
 class OrganisationsApi extends Base {
     constructor(opts = {}) {
@@ -9,12 +10,14 @@ class OrganisationsApi extends Base {
             routes: {
                 index: 'organisations',
                 create: 'organisations',
+                update: 'organisations/:organisation',
                 show: 'organisations/:organisation',
                 ...(opts.routes || null),
             },
         });
 
         this.team = new OrganisationsTeam(opts);
+        this.contacts = new OrganisationsContacts(opts);
     }
 
     find(id) {
@@ -39,6 +42,15 @@ class OrganisationsApi extends Base {
 
     create(data) {
         return this.requestPost(this.route('create'), data);
+    }
+
+    update(id, data) {
+        return this.requestPut(
+            this.route('update', {
+                organisation: id,
+            }),
+            data,
+        );
     }
 }
 
