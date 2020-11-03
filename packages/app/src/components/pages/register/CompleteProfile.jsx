@@ -6,10 +6,12 @@ import { FormattedMessage } from 'react-intl';
 import { useHistory } from 'react-router';
 import { FormPanel } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
+import { useOrganisations } from '@micromag/data';
 
 import { useAuth } from '../../../contexts/AuthContext';
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
+import OrganisationPreview from '../../partials/OrganisationPreview';
 import CompleteProfileForm from '../../forms/CompleteProfile';
 
 import styles from '../../../styles/pages/register/register.module.scss';
@@ -25,6 +27,7 @@ const defaultProps = {
 const CompleteProfile = ({ className }) => {
     const url = useUrlGenerator();
     const history = useHistory();
+    const { organisations } = useOrganisations();
     const { setUser } = useAuth();
     const onContinue = useCallback(
         (showInvite = false) => {
@@ -57,13 +60,27 @@ const CompleteProfile = ({ className }) => {
                     description={
                         <div className={styles.description}>
                             <FormattedMessage
-                                defaultMessage="Your account has been created. Please complete your profile to create your first Micromag."
+                                defaultMessage="Your account has been created. Please complete your profile."
                                 description="Complete profile page description"
                             />
                         </div>
                     }
                 >
                     <CompleteProfileForm onContinue={onContinue} />
+                    {organisations !== null ? (
+                        <>
+                            <hr />
+                            <p>
+                                <FormattedMessage
+                                    defaultMessage="You are a member of the following organisations:"
+                                    description="Complete profile organisations description"
+                                />
+                            </p>
+                            {organisations.map((org) => (
+                                <OrganisationPreview organisation={org} />
+                            ))}
+                        </>
+                    ) : null}
                 </FormPanel>
             </Page>
         </MainLayout>

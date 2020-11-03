@@ -29,7 +29,6 @@ const OrganisationSettingsPage = ({ className }) => {
         currentOrganisation.id,
         'main',
     );
-    console.log(currentOrganisation, organisation);
     return (
         <MainLayout>
             <Page
@@ -50,16 +49,14 @@ const OrganisationSettingsPage = ({ className }) => {
                     },
                 ])}
             >
-                {organisation !== null ? (
-                    <FormPanel>
-                        {!contactLoading ? (
-                            <OrganisationSettingsForm
-                                organisation={organisation}
-                                mainContact={contact}
-                            />
-                        ) : null}
-                    </FormPanel>
-                ) : null}
+                <FormPanel>
+                    {organisation !== null && !contactLoading ? (
+                        <OrganisationSettingsForm
+                            organisation={organisation}
+                            mainContact={contact}
+                        />
+                    ) : null}
+                </FormPanel>
             </Page>
         </MainLayout>
     );

@@ -8,7 +8,7 @@ import { FormattedMessage } from 'react-intl';
 import { Button } from '@micromag/core/components';
 import { Toggle, Text } from '@micromag/fields';
 // import { useUrlGenerator } from '@micromag/core/contexts';
-import { useAccountUpdate, useOrganisationCreate } from '@micromag/data';
+import { useAccountComplete, useOrganisationCreate } from '@micromag/data';
 import { useSetOrganisation } from '../../contexts/OrganisationContext';
 
 import { useAuth } from '../../contexts/AuthContext';
@@ -34,7 +34,7 @@ const CompleteProfileForm = ({ className, onContinue }) => {
     const [orgName, setOrgName] = useState('');
     const complete = !name || (createOrg && !orgName);
 
-    const { update: updateAccount } = useAccountUpdate();
+    const { update: updateAccount } = useAccountComplete();
     const postAccount = useCallback((data) => updateAccount(data), [updateAccount]);
 
     const { create: createOrganisation } = useOrganisationCreate();
@@ -96,7 +96,10 @@ const CompleteProfileForm = ({ className, onContinue }) => {
         >
             <div className="form-group">
                 <label className="label">
-                    <FormattedMessage defaultMessage="Name" description="Name field label label" />
+                    <FormattedMessage
+                        defaultMessage="Your Name"
+                        description="Your Name field label"
+                    />
                 </label>
                 <Text value={name} onChange={onNameChange} />
             </div>
@@ -126,7 +129,7 @@ const CompleteProfileForm = ({ className, onContinue }) => {
                     <label htmlFor="orgName" className="label">
                         <FormattedMessage
                             defaultMessage="Organisation name"
-                            description="Organisation name field label"
+                            description="Organisation name field"
                         />
                     </label>
                     <Text id="orgName" value={orgName} onChange={onOrgNameChange} />

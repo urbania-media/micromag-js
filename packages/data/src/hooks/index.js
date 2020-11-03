@@ -1,3 +1,4 @@
+export { default as useAccountComplete } from './useAccountComplete';
 export { default as useAccountCreate } from './useAccountCreate';
 export { default as useAccountUpdate } from './useAccountUpdate';
 export { default as useAccountDelete } from './useAccountDelete';
@@ -18,6 +19,9 @@ export { default as useOrganisationContact } from './useOrganisationContact';
 export { default as useOrganisationContactCreate } from './useOrganisationContactCreate';
 export { default as useOrganisationContactUpdate } from './useOrganisationContactUpdate';
 export { default as useOrganisationCreate } from './useOrganisationCreate';
+export { default as useOrganisationMemberCreate } from './useOrganisationMemberCreate';
+export { default as useOrganisationMemberDelete } from './useOrganisationMemberDelete';
+export { default as useOrganisationMemberUpdate } from './useOrganisationMemberUpdate';
 export { default as useOrganisations } from './useOrganisations';
 export { default as useOrganisationTeam } from './useOrganisationTeam';
 export { default as useOrganisationRoles } from './useOrganisationRoles';

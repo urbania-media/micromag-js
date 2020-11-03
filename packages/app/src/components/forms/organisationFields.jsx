@@ -1,24 +1,24 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-export const mainContact = [
+export const contact = [
     {
-        name: 'contact_first_name',
+        name: 'first_name',
         type: 'text',
         label: <FormattedMessage defaultMessage="First name" description="Firstname field label" />,
     },
     {
-        name: 'contact_last_name',
+        name: 'last_name',
         type: 'text',
         label: <FormattedMessage defaultMessage="Last name" description="Lastname field label" />,
     },
     {
-        name: 'contact_email',
+        name: 'email',
         type: 'email',
         label: <FormattedMessage defaultMessage="Email" description="Email field label" />,
     },
     {
-        name: 'contact_phone',
+        name: 'phone',
         type: 'text',
         label: <FormattedMessage defaultMessage="Phone" description="Phone field label" />,
     },
@@ -34,18 +34,6 @@ export const organisation = [
                 description="Organisation name field label"
             />
         ),
-    },
-    {
-        type: 'fields',
-        label: (
-            <FormattedMessage
-                defaultMessage="Main contact"
-                description="Main contact field label"
-            />
-        ),
-        isSection: true,
-        isHorizontal: true,
-        fields: mainContact,
     },
 ];
 

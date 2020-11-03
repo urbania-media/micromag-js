@@ -21,7 +21,7 @@ const SettingsButton = ({ className, ...props }) => (
     <Button
         className={classNames([
             styles.container,
-            'btn-dark',
+            'btn-primary',
             {
                 [className]: className !== null,
             },

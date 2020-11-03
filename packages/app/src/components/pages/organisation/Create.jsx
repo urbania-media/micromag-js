@@ -57,8 +57,8 @@ const OrganisationCreatePage = ({ className }) => {
                     description={
                         <div className={styles.description}>
                             <FormattedMessage
-                                defaultMessage="Please fill all the fields below."
-                                descrition="Form description"
+                                defaultMessage="Start by choosing a name for your organisation."
+                                descrition="Choose a name create organisation description"
                             />
                         </div>
                     }

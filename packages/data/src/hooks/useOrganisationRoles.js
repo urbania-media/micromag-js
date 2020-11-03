@@ -1,7 +1,7 @@
 const useOrganisationRoles = () => {
     const roles = [
         {
-            label: 'Administrator',
+            label: 'Admin',
             value: 'admin',
         },
         {

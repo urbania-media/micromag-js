@@ -6,6 +6,8 @@ import { FormattedMessage } from 'react-intl';
 import { Button } from '@micromag/core/components';
 import { Select } from '@micromag/fields';
 import { useOrganisationRoles } from '@micromag/data';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 import * as AppPropTypes from '../../lib/PropTypes';
 import { useUser } from '../../contexts/AuthContext';
@@ -42,10 +44,20 @@ const TeamMember = ({ item, canRemove, canEdit, className, onClickRemove, onChan
             ])}
         >
             <div className="d-flex align-items-center">
-                <strong className="flex-grow-1 mr-4">{user ? user.name : email}</strong>
+                <div className="w-50">
+                    <strong className="mr-2 text-truncate">{user ? user.name : email}</strong>
+                    {!user ? (
+                        <div className="text-truncate font-weight-light">
+                            <FormattedMessage
+                                defaultMessage="Invitation envoyée"
+                                description="Quit button label"
+                            />
+                        </div>
+                    ) : null}
+                </div>
                 {canEdit ? (
                     <Select
-                        className="ml-4"
+                        className="ml-4 w-25"
                         value={role}
                         onChange={onChangeRole}
                         options={roles}
@@ -53,17 +65,11 @@ const TeamMember = ({ item, canRemove, canEdit, className, onClickRemove, onChan
                     />
                 ) : null}
                 {canRemove ? (
-                    <Button className="ml-4" onClick={onClickRemove}>
+                    <Button className="btn btn-primary ml-4 w-25" onClick={onClickRemove}>
                         {isSelf ? (
-                            <FormattedMessage
-                                defaultMessage="Quit team"
-                                description="Quit team button label"
-                            />
+                            <FontAwesomeIcon icon={faTimesCircle} />
                         ) : (
-                            <FormattedMessage
-                                defaultMessage="Remove"
-                                description="Remove button label"
-                            />
+                            <FontAwesomeIcon icon={faTrash} />
                         )}
                     </Button>
                 ) : null}

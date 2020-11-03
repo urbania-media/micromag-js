@@ -14,72 +14,89 @@ import {
 
 import * as AppPropTypes from '../../lib/PropTypes';
 
-import { filterObject } from '../../lib/utils';
-
-import { organisation as organisationFields } from './organisationFields';
+import { organisation as organisationFields, contact as contactFields } from './organisationFields';
 
 const propTypes = {
     organisation: AppPropTypes.organisation.isRequired,
     mainContact: AppPropTypes.contact,
-    fields: MicromagPropTypes.formFields,
+    organisationFields: MicromagPropTypes.formFields,
+    contactFields: MicromagPropTypes.formFields,
     className: PropTypes.string,
     onUpdated: PropTypes.func,
 };
 
 const defaultProps = {
     mainContact: null,
-    fields: organisationFields,
+    organisationFields,
+    contactFields,
     className: null,
     onUpdated: null,
 };
 
-const OrganisationSettingsForm = ({ organisation, mainContact, fields, className, onUpdated }) => {
+const OrganisationSettingsForm = ({
+    organisation,
+    mainContact,
+    organisationFields: organisationFieldsProp,
+    contactFields: contactFieldsProp,
+    className,
+    onUpdated,
+}) => {
     const url = useUrlGenerator();
     const { id } = organisation || {};
     const { update: updateOrganisation } = useOrganisationUpdate(id);
     const { create: createContact } = useOrganisationContactCreate(id);
     const { update: updateContact } = useOrganisationContactUpdate(id);
-    const postForm = useCallback(
-        (action, data) => {
-            const orgData = filterObject(data, (key) => key.indexOf('contact_') === -1);
-            updateOrganisation(orgData).then(() => {
-                const contactData = Object.keys(
-                    filterObject(data, (key) => key.indexOf('contact_') === 0),
-                ).reduce((acc, key) => {
-                    acc[key.replace('contact_', '')] = data[key];
-                    return acc;
-                }, {});
-                if (mainContact && mainContact.id) {
-                    return updateContact(mainContact.id, { ...mainContact, ...contactData });
-                }
-                return createContact({ type: 'main', ...contactData });
-            });
-        },
-        [updateOrganisation, createContact, updateContact, mainContact],
-    );
-    const value = {
-        ...organisation,
-        ...(mainContact !== null
-            ? Object.keys(mainContact).reduce((acc, key) => {
-                  acc[`contact_${key}`] = mainContact[key];
-                  return acc;
-              }, {})
-            : null),
-    };
 
-    console.log(mainContact);
-    return (
-        <Form
-            action={url('organisation.settings')}
-            fields={fields}
-            initialValue={value}
-            postForm={postForm}
-            submitButtonLabel={
-                <FormattedMessage defaultMessage="Save" description="Button label" />
+    const postOrganisation = useCallback(
+        (action, data) => {
+            return updateOrganisation(data);
+        },
+        [updateOrganisation],
+    );
+
+    const postContact = useCallback(
+        (action, data) => {
+            const contact = { ...mainContact, type: 'main' };
+            if (contact && contact.id) {
+                return updateContact(contact.id, { ...contact, ...data });
             }
-            onComplete={onUpdated}
-            className={className}
-        />
+            return createContact({ ...contact, ...data });
+        },
+        [createContact, updateContact, mainContact],
+    );
+
+    return (
+        <div>
+            <Form
+                action={url('organisation.settings')}
+                fields={organisationFieldsProp}
+                initialValue={organisation}
+                postForm={postOrganisation}
+                submitButtonLabel={
+                    <FormattedMessage defaultMessage="Save" description="Button label" />
+                }
+                onComplete={onUpdated}
+                className={className}
+            />
+            <hr />
+            <p>
+                <FormattedMessage
+                    defaultMessage="Main contact"
+                    description="Main contact form label"
+                />
+            </p>
+            <Form
+                action={url('organisation.contact')}
+                fields={contactFieldsProp}
+                initialValue={mainContact}
+                postForm={postContact}
+                submitButtonLabel={
+                    <FormattedMessage defaultMessage="Save" description="Button label" />
+                }
+                onComplete={onUpdated}
+                className={className}
+            />
+        </div>
     );
 };
 

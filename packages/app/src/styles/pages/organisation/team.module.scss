@@ -2,11 +2,5 @@
 @import '../placeholders';
 
 .container {
-    .top {
-        @extend %page-menu-right;
-    }
-
-    .addItem {
-        margin: 5px 0;
-    }
+    //
 }

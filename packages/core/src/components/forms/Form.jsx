@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import * as MicromagPropTypes from '../../PropTypes';
 import { useForm } from '../../hooks';
@@ -11,13 +11,6 @@ import Button from '../buttons/Button';
 import Buttons from '../buttons/Buttons';
 
 import styles from '../../styles/forms/form.module.scss';
-
-const messages = defineMessages({
-    submit: {
-        id: 'forms.submit',
-        defaultMessage: 'Submit',
-    },
-});
 
 const propTypes = {
     action: PropTypes.string.isRequired,
@@ -31,6 +24,7 @@ const propTypes = {
     children: PropTypes.node,
     actionsAlign: PropTypes.oneOf(['left', 'right']),
     withoutActions: PropTypes.bool,
+    withoutComplete: PropTypes.bool,
     onComplete: PropTypes.func,
     onResponse: PropTypes.func,
     onMessage: PropTypes.func,
@@ -44,12 +38,15 @@ const defaultProps = {
     fields: [],
     initialValue: null,
     postForm: null,
-    submitButtonLabel: messages.submit,
+    submitButtonLabel: (
+        <FormattedMessage defaultMessage="Submit" description="Submit form button" />
+    ),
     submitButtonLoadingLabel: null,
     buttons: null,
     children: null,
     actionsAlign: 'left',
     withoutActions: false,
+    withoutComplete: false,
     onComplete: null,
     onResponse: null,
     onMessage: null,
@@ -70,6 +67,7 @@ const Form = ({
     children,
     actionsAlign,
     withoutActions,
+    withoutComplete,
     onComplete,
     onResponse,
     onMessage,
@@ -77,12 +75,35 @@ const Form = ({
     fieldsClassName,
     actionsClassName,
 }) => {
+    const [complete, setComplete] = useState(false);
+
+    useEffect(() => {
+        let id = null;
+        if (complete) {
+            id = setTimeout(() => {
+                setComplete(false);
+            }, 3000);
+        }
+        return () => {
+            clearTimeout(id);
+        };
+    }, [complete]);
+
+    const onCompleteForm = useCallback(() => {
+        if (onComplete !== null) {
+            onComplete();
+        }
+        if (!withoutComplete) {
+            setComplete(true);
+        }
+    }, [onComplete, setComplete]);
+
     const { onSubmit, fields, status, value, setValue, errors, response, generalError } = useForm({
         value: initialValue,
         action,
         fields: initialFields,
         postForm,
-        onComplete: onComplete !== null ? onComplete : () => {},
+        onComplete: onCompleteForm,
     });
     const FieldsComponent = useFieldComponent('fields');
 
@@ -128,8 +149,8 @@ const Form = ({
                     ])}
                 />
             ) : null}
+            {generalError ? <p className="text-danger my-1">{generalError}</p> : null}
             {children}
-            {generalError ? <p>{generalError}</p> : null}
             {!withoutActions ? (
                 <div
                     className={classNames([
@@ -149,6 +170,14 @@ const Form = ({
                                 : submitButtonLabel}
                         </Button>
                     )}
+                    {complete ? (
+                        <p className="text-success mx-2 my-1">
+                            <FormattedMessage
+                                defaultMessage="Success"
+                                description="Success form message"
+                            />
+                        </p>
+                    ) : null}
                 </div>
             ) : null}
         </form>
