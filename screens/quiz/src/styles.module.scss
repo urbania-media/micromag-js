@@ -1,0 +1,76 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/mixins';
+
+.container {
+    @extend %screen;
+
+    .question {
+        padding-bottom: 20px;
+    }
+
+    // .options {
+
+    // }
+
+    .option {
+        padding: 10px 0;
+
+        // &.answer {
+
+        // }
+
+        // &.right {
+
+        // }
+
+        // &.wrong {
+
+        // }
+    }
+
+    .button {
+        position: relative;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .resultIcon {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 32px;
+        height: 32px;
+        margin-top: -16px;
+        padding: 5px;
+        border: 1px solid $black;
+        border-radius: 50%;
+    }
+
+    // .optionLabel {
+
+    // }
+
+    .result {
+        display: none;
+        padding-top: 20px;
+    }
+
+    &.answered {
+        .result {
+            display: block;
+        }
+
+        .option {
+            display: none;
+            
+            &.answer {
+                display: block;
+            }
+        }
+
+        .button {
+            pointer-events: none;
+        }
+    }
+}

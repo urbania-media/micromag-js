@@ -159,7 +159,7 @@ const Title = ({
                         transitions={transitions}
                         stagger={transitionStagger}
                         disabled={!isView && !isPreview}
-                        playing
+                        playing={current}
                     >
                         {items}
                     </TransitionsStagger>
