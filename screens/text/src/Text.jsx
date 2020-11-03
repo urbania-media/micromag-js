@@ -66,7 +66,7 @@ const TextScreen = ({
 }) => {
     const { width, height } = useScreenSize();
 
-    const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
     const hasTitle = title !== null;
     const hasText = text !== null;
@@ -124,13 +124,13 @@ const TextScreen = ({
                     fullscreen
                     verticalAlign={verticalAlign}
                     distribution={distribution}
-                    style={ isView ? { padding } : null }
+                    style={ isView || isPreview ? { padding } : null }
                 >
                     <TransitionsStagger
                         transitions={transitions}
                         stagger={transitionStagger}
                         disabled={!isView}
-                        playing
+                        playing={current}
                     >
                         {items}
                     </TransitionsStagger>

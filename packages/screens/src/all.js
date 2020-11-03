@@ -7,11 +7,9 @@ import map from '@micromag/screen-map';
 import mapPath from '@micromag/screen-map-path';
 import quote from '@micromag/screen-quote';
 import slideshow from '@micromag/screen-slideshow';
-import surveyCheckbox from '@micromag/screen-survey-checkbox';
-import surveyMultipleChoice from '@micromag/screen-survey-multiple-choice';
-import surveyYesNo from '@micromag/screen-survey-yes-no';
+import quiz from '@micromag/screen-quiz';
 import text from '@micromag/screen-text';
-import timelineCentered from '@micromag/screen-timeline-centered';
+import timeline from '@micromag/screen-timeline';
 import title from '@micromag/screen-title';
 import video from '@micromag/screen-video';
 
@@ -25,11 +23,9 @@ const screens = [
     mapPath,
     quote,
     slideshow,
-    surveyCheckbox,
-    surveyMultipleChoice,
-    surveyYesNo,
+    quiz,
     ...text,
-    timelineCentered,
+    ...timeline,
     ...title,
     ...video,
 ];
