@@ -9,6 +9,7 @@ import Button from '../buttons/Button';
 const propTypes = {
     brand: PropTypes.node,
     brandLink: PropTypes.string,
+    breadcrumbs: PropTypes.node,
     theme: PropTypes.oneOf(['light', 'dark', 'primary']),
     size: PropTypes.oneOf(['sm', 'md', 'lg']),
     compact: PropTypes.bool,
@@ -22,6 +23,7 @@ const propTypes = {
 const defaultProps = {
     brand: null,
     brandLink: null,
+    breadcrumbs: null,
     theme: 'light',
     size: 'md',
     compact: false,
@@ -35,6 +37,7 @@ const defaultProps = {
 const Navbar = ({
     brand,
     brandLink,
+    breadcrumbs,
     theme,
     size,
     compact,
@@ -90,6 +93,19 @@ const Navbar = ({
                     ])}
                 >
                     {brand}
+                </span>
+            ) : null}
+            {breadcrumbs !== null ? (
+                <span
+                    className={classNames([
+                        'navbar-breadcrumbs',
+                        {
+                            'py-0': compact,
+                            [brandClassName]: brandClassName !== null,
+                        },
+                    ])}
+                >
+                    {breadcrumbs}
                 </span>
             ) : null}
             {!withoutCollapse ? (

@@ -19,6 +19,7 @@ export { default as useOrganisationContact } from './useOrganisationContact';
 export { default as useOrganisationContactCreate } from './useOrganisationContactCreate';
 export { default as useOrganisationContactUpdate } from './useOrganisationContactUpdate';
 export { default as useOrganisationCreate } from './useOrganisationCreate';
+export { default as useOrganisationMemberBatch } from './useOrganisationMemberBatch';
 export { default as useOrganisationMemberCreate } from './useOrganisationMemberCreate';
 export { default as useOrganisationMemberDelete } from './useOrganisationMemberDelete';
 export { default as useOrganisationMemberUpdate } from './useOrganisationMemberUpdate';

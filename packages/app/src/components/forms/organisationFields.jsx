@@ -37,20 +37,22 @@ export const organisation = [
     },
 ];
 
-export const teamMember = {
-    type: 'fields',
-    label: <FormattedMessage defaultMessage="Team member" description="Team label" />,
-    isSection: true,
-    fields: [
-        {
-            name: 'name',
-            type: 'text',
-            label: <FormattedMessage defaultMessage="Name" description="Team member name label" />,
-        },
-        {
-            name: 'role',
-            type: 'select',
-            label: <FormattedMessage defaultMessage="Role" description="Role label" />,
-        },
-    ],
-};
+export const teamMember = [
+    {
+        type: 'fields',
+        isSection: false,
+        isHorizontal: false,
+        fields: [
+            {
+                name: 'email',
+                type: 'email',
+                label: <FormattedMessage defaultMessage="Email" description="Email field label" />,
+            },
+            {
+                name: 'role',
+                type: 'select',
+                label: <FormattedMessage defaultMessage="Role" description="Role field label" />,
+            },
+        ],
+    },
+];

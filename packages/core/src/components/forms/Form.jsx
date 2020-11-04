@@ -89,14 +89,17 @@ const Form = ({
         };
     }, [complete]);
 
-    const onCompleteForm = useCallback(() => {
-        if (onComplete !== null) {
-            onComplete();
-        }
-        if (!withoutComplete) {
-            setComplete(true);
-        }
-    }, [onComplete, setComplete]);
+    const onCompleteForm = useCallback(
+        (data) => {
+            if (onComplete !== null) {
+                onComplete(data);
+            }
+            if (!withoutComplete) {
+                setComplete(true);
+            }
+        },
+        [onComplete, setComplete],
+    );
 
     const { onSubmit, fields, status, value, setValue, errors, response, generalError } = useForm({
         value: initialValue,

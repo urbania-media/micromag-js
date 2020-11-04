@@ -3,9 +3,8 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-import { useHistory } from 'react-router';
 import { FormPanel } from '@micromag/core/components';
-import { useUrlGenerator } from '@micromag/core/contexts';
+import { useUrlGenerator, useRoutePush } from '@micromag/core/contexts';
 import { useOrganisations } from '@micromag/data';
 
 import { useAuth } from '../../../contexts/AuthContext';
@@ -26,18 +25,18 @@ const defaultProps = {
 
 const CompleteProfile = ({ className }) => {
     const url = useUrlGenerator();
-    const history = useHistory();
+    const push = useRoutePush();
     const { organisations } = useOrganisations();
     const { setUser } = useAuth();
     const onContinue = useCallback(
         (showInvite = false) => {
             if (showInvite) {
-                history.push(url('register.invite'));
+                push(url('register.invite'));
             } else {
-                history.push(url('home'));
+                push(url('home'));
             }
         },
-        [history, url, setUser],
+        [push, url, setUser],
     );
     return (
         <MainLayout>
@@ -67,7 +66,7 @@ const CompleteProfile = ({ className }) => {
                     }
                 >
                     <CompleteProfileForm onContinue={onContinue} />
-                    {organisations !== null ? (
+                    {organisations !== null && organisations.length > 0 ? (
                         <>
                             <hr />
                             <p>

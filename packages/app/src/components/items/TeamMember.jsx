@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -13,27 +13,37 @@ import * as AppPropTypes from '../../lib/PropTypes';
 import { useUser } from '../../contexts/AuthContext';
 
 const propTypes = {
-    item: AppPropTypes.teamMember.isRequired,
-    canRemove: PropTypes.bool,
-    canEdit: PropTypes.bool,
+    member: AppPropTypes.teamMember.isRequired,
     className: PropTypes.string,
     onClickRemove: PropTypes.func,
     onChangeRole: PropTypes.func,
 };
 
 const defaultProps = {
-    canRemove: false,
-    canEdit: false,
     className: null,
     onClickRemove: null,
     onChangeRole: null,
 };
 
-const TeamMember = ({ item, canRemove, canEdit, className, onClickRemove, onChangeRole }) => {
+const TeamMember = ({ member, className, onClickRemove, onChangeRole }) => {
     const currentUser = useUser();
     const { roles } = useOrganisationRoles();
-    const { user = null, email, role } = item;
+    const { user = null, email, role } = member;
     const isSelf = user !== null && currentUser.id === user.id;
+    const canRemove = onClickRemove !== null;
+    const canEdit = onChangeRole !== null;
+
+    const onChange = useCallback(
+        (newRole) => {
+            onChangeRole({ ...member, role: newRole });
+        },
+        [member],
+    );
+
+    const onClick = useCallback(() => {
+        onClickRemove(member);
+    }, [member]);
+
     return (
         <div
             className={classNames([
@@ -59,13 +69,13 @@ const TeamMember = ({ item, canRemove, canEdit, className, onClickRemove, onChan
                     <Select
                         className="ml-4 w-25"
                         value={role}
-                        onChange={onChangeRole}
+                        onChange={onChange}
                         options={roles}
                         disabled={isSelf}
                     />
                 ) : null}
                 {canRemove ? (
-                    <Button className="btn btn-primary ml-4 w-25" onClick={onClickRemove}>
+                    <Button className="btn btn-primary ml-4 w-25" onClick={onClick}>
                         {isSelf ? (
                             <FontAwesomeIcon icon={faTimesCircle} />
                         ) : (

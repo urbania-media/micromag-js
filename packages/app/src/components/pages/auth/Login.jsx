@@ -3,10 +3,10 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-import { useHistory, useLocation } from 'react-router';
+import { useLocation } from 'react-router';
 import { parse as parseQueryString } from 'query-string';
 import { FormPanel, Link } from '@micromag/core/components';
-import { useUrlGenerator } from '@micromag/core/contexts';
+import { useUrlGenerator, useRoutePush } from '@micromag/core/contexts';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
@@ -24,12 +24,12 @@ const defaultProps = {
 
 const LoginPage = ({ className }) => {
     const url = useUrlGenerator();
-    const history = useHistory();
+    const push = useRoutePush();
     const { search } = useLocation();
     const { next = null } = parseQueryString(search);
     const onLoginComplete = useCallback(() => {
-        history.push(next !== null ? next : url('home'));
-    }, [history, url]);
+        push(next !== null ? next : url('home'));
+    }, [push, url]);
     return (
         <MainLayout contentAlign="middle">
             <Page

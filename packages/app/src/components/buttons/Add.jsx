@@ -10,14 +10,16 @@ import { Button } from '@micromag/core/components';
 import styles from '../../styles/buttons/button.module.scss';
 
 const propTypes = {
+    children: PropTypes.node,
     className: PropTypes.string,
 };
 
 const defaultProps = {
+    children: null,
     className: null,
 };
 
-const AddButton = ({ className, ...props }) => (
+const AddButton = ({ className, children, ...props }) => (
     <Button
         className={classNames([
             styles.container,
@@ -28,7 +30,16 @@ const AddButton = ({ className, ...props }) => (
         ])}
         {...props}
     >
-        <FontAwesomeIcon icon={faPlus} />
+        <span
+            className={classNames([
+                {
+                    [styles.withLabel]: children !== null,
+                },
+            ])}
+        >
+            <FontAwesomeIcon icon={faPlus} />
+        </span>
+        {children}
     </Button>
 );
 

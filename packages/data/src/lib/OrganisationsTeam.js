@@ -7,6 +7,7 @@ class OrganisationsApi extends Base {
             routes: {
                 index: 'organisations/:organisation/members',
                 create: 'organisations/:organisation/members',
+                batch: 'organisations/:organisation/members/batch',
                 edit: 'organisations/:organisation/members/:member',
                 show: 'organisations/:organisation/members/:member',
                 show_by_user: 'organisations/:organisation/members/:member',
@@ -48,6 +49,15 @@ class OrganisationsApi extends Base {
         );
     }
 
+    batch(organisation, data) {
+        return this.requestPost(
+            this.route('batch', {
+                organisation,
+            }),
+            data,
+        );
+    }
+
     update(organisation, member, data) {
         return this.requestPut(
             this.route('edit', {
@@ -59,7 +69,7 @@ class OrganisationsApi extends Base {
     }
 
     delete(organisation, member) {
-        return this.requestDelete(this.route('edit'), { organisation, member });
+        return this.requestDelete(this.route('edit', { organisation, member }));
     }
 }
 

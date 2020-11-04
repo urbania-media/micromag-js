@@ -45,17 +45,14 @@ const OrganisationsMenu = ({
     const url = useUrlGenerator();
     const { pathname } = useLocation();
     const { organisations } = useOrganisations();
-    const organisation = useOrganisation();
+    const organisation = useOrganisation() || null;
     const finalItems = useMemo(() => {
         const menuItems = [
             {
                 id: 'settings',
                 href: url('organisation.settings'),
                 label: (
-                    <FormattedMessage
-                        defaultMessage="Settings"
-                        description="Settings and contact menu item"
-                    />
+                    <FormattedMessage defaultMessage="Settings" description="Settings menu item" />
                 ),
             },
             {

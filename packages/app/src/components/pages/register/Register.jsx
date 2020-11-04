@@ -3,10 +3,10 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-import { useHistory, useLocation } from 'react-router';
+import { useLocation } from 'react-router';
 import { parse as parseQueryString } from 'query-string';
 import { FormPanel, Link } from '@micromag/core/components';
-import { useUrlGenerator } from '@micromag/core/contexts';
+import { useUrlGenerator, useRoutePush } from '@micromag/core/contexts';
 
 import { useAuth } from '../../../contexts/AuthContext';
 import MainLayout from '../../layouts/Main';
@@ -25,16 +25,16 @@ const defaultProps = {
 
 const RegisterPage = ({ className }) => {
     const url = useUrlGenerator();
-    const history = useHistory();
+    const push = useRoutePush();
     const { setUser } = useAuth();
     const { search } = useLocation();
     const { next = null } = parseQueryString(search);
     const onRegistered = useCallback(
         (user) => {
             setUser(user);
-            history.push(next !== null ? next : url('register.complete'));
+            push(next !== null ? next : url('register.complete'));
         },
-        [history, url, setUser],
+        [push, url, setUser],
     );
     return (
         <MainLayout>

@@ -3,10 +3,10 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-import { useHistory, useLocation } from 'react-router';
+import { useLocation } from 'react-router';
 import { parse as parseQueryString } from 'query-string';
 import { FormPanel } from '@micromag/core/components';
-import { useUrlGenerator } from '@micromag/core/contexts';
+import { useUrlGenerator, useRoutePush } from '@micromag/core/contexts';
 
 import { useSetOrganisation } from '../../../contexts/OrganisationContext';
 import MainLayout from '../../layouts/Main';
@@ -25,19 +25,19 @@ const defaultProps = {
 
 const OrganisationCreatePage = ({ className }) => {
     const url = useUrlGenerator();
-    const history = useHistory();
+    const push = useRoutePush();
     const setOrganisation = useSetOrganisation();
     const { search } = useLocation();
     const { next = null } = parseQueryString(search);
     const onCreated = useCallback(
         (org) => {
             setOrganisation(org);
-            history.push(next !== null ? next : url('home'));
+            push(next !== null ? next : url('home'));
         },
-        [history, url, setOrganisation],
+        [push, url, setOrganisation],
     );
     return (
-        <MainLayout contentAlign="middle">
+        <MainLayout contentAlign="top">
             <Page
                 title={
                     <FormattedMessage
