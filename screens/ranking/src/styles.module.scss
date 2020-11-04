@@ -1,0 +1,70 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/mixins';
+
+.container {
+    @extend %screen;
+
+    .empty {
+        @extend %empty;
+        height: 50px;
+        margin-right: 10px;
+    }
+
+    .item {
+        position: relative;
+        margin: 20px 0;
+    }
+
+    .rank {
+        font-size: 3em;
+    }
+
+    .title,
+    .description {
+        padding: 8px 0;
+    }
+
+    &.sideLayout {
+        .item {
+            padding-left: 10%;
+        }
+        
+        .rank {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10%;
+        }
+
+        &.isPlaceholder {
+            .item {
+                padding-left: 20px;
+            }
+    
+            .rank {
+                width: 20px;
+            }
+        }
+    }
+
+    &.isPlaceholder {
+        .rank {
+            color: $black;
+            font-size: 1.2em;
+        }
+
+        .scroll {
+            padding: 10px;
+        }
+
+        .title,
+        .description {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            padding: 2px 0;
+        }
+    }
+}

@@ -4,26 +4,89 @@
 
 .container {
     @extend %screen;
+    transition: opacity 0.3s;
+    opacity: 0;
+    pointer-events: none;
 
-    .image {
-        width: 100%;
-        height: auto;
+    .empty {
+        @extend %empty;
+        height: 50px;
+        margin-right: 10px;
+    }
+
+    .item {
+        position: relative;
+    }
+
+    .element {
+        display: flex;
+    }
+
+    .timeline {
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+        align-items: center;
+        width: 10%;
     }
 
     .line {
-        width: 0;
-        height: 20px;
-        margin: 4px auto;
-        border-left: 2px dashed $black;
+        flex-grow: 1;
+        width: 1px;
+        background-color: $black;
+
+        &.hidden {
+            width: auto;
+            background-color: transparent;
+        }
     }
 
-    .timelineBlock {
-        margin: 20px 0;
+    .dot {
+        width: 15px;
+        height: 15px;
+        margin: 2px 0;
+        border: 1px solid $black;
+        border-radius: 50%;
+        background-color: $white;
+    }
 
-        .line {
-            height: 60px;
-            margin: 20px auto;
-            border-left-color: $white;
+    .content {
+        flex-grow: 1;
+    }
+
+    .title,
+    .description,
+    .image {
+        padding: 8px 0;
+    }
+
+    &.ready {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    &.isPlaceholder {
+        .scroll {
+            padding: 10px;
+        }        
+
+        .timeline {
+            width: 20px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+        }
+
+        .title,
+        .description,
+        .image {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            padding: 2px 0;
         }
     }
 }
