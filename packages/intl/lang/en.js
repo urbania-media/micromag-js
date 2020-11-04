@@ -1,9 +1,7 @@
 import manager from '@micromag/intl';
 
-var AANd6m = "Name";
 var ACSasN = "URL";
 var Avsnjl = "Themes";
-var BoNlOS = "Quit team";
 var C2j6zz = "Login";
 var CbHzjs = "Register";
 var ChnSK6 = "This Micromag";
@@ -11,6 +9,8 @@ var CrzYgw = "Quote";
 var D3idYv = "Settings";
 var D3kTvP = "Register";
 var DWEzCv = "Select a video...";
+var DgyZlU = "Start by choosing a name for your organisation.";
+var DjIdzH = "Invitation envoyée";
 var EcZYpr = "Subtitle";
 var EoLB7Z = "Stats";
 var FLMZDH = "Invite your team members to your organisation.";
@@ -39,6 +39,7 @@ var PT23V1 = "Your organisations";
 var PXCkXy = "Billing";
 var PbHeHc = "Markers";
 var QDznJ0 = "Account";
+var QN68P8 = "Main contact";
 var R1HYj0 = "Save";
 var Ro8ZOq = "GalleryLegends";
 var S9YpbV = "Text";
@@ -48,6 +49,7 @@ var TWXRGR = "Organisations";
 var TXPdzG = "Invite";
 var Tbo377 = "Billing";
 var Tdnwlv = "Items";
+var Tlp2I0 = "Your account has been created. Please complete your profile.";
 var Tt4jN1 = "Add";
 var U86B6w = "Stats";
 var UBXIYP = "Video";
@@ -95,7 +97,6 @@ var hbFrBs = "View all stories";
 var jaFXki = "Gallery";
 var kF0tkA = "Role";
 var kIl7G5 = "Published at";
-var kW5nG6 = "Main contact";
 var kmNVJH = "Your account";
 var ktUr5c = "Create an organisation";
 var l7bkY2 = "Update your profile";
@@ -110,6 +111,7 @@ var oSZswp = "Result";
 var ogg7mi = "Are you sure you want to delete your profile? This action cannot be reversed.";
 var p6n6vY = "No answer...";
 var phJeRB = "Your organisation";
+var qHrpc6 = "Organisation name";
 var qIw1nW = "Save";
 var qKQCxc = "Add a marker";
 var qZItNz = "MapImages";
@@ -127,8 +129,6 @@ var uJ9eBc = "Image";
 var uQjihh = "Create an organisation";
 var uWIqbC = "Create a story";
 var upzOTm = "Credits";
-var v3aF3t = "Remove";
-var v89TmR = "Your account has been created. Please complete your profile to create your first Micromag.";
 var vDSsFW = "Create an account";
 var vrCfAS = "GalleryFeed";
 var wRV8PN = "Settings";
@@ -159,6 +159,7 @@ var messages = {
   "0vXXfT": "imagesWithLegends",
   "15GBmG": "All",
   "169xnt": "Audio",
+  "17BMn2": "Ranking",
   "1dPnDA": "Tags",
   "1fBNmY": "ImageTitle",
   "1fNojU": "{count} {count, plural, one {screen} other {screens}}",
@@ -178,7 +179,6 @@ var messages = {
   "4yfet+": "Password",
   "507VAi": "Description",
   "535JXI": "Story",
-  "55Bp0r": "Please fill all the fields below.",
   "63Kvho": "Images",
   "6Z1BwP": "Recent searches",
   "6mX2ya": "Images",
@@ -190,15 +190,15 @@ var messages = {
   "8cVWNh": "Usage",
   "8vroDx": "Map",
   "96KRj9": "ImageLegend",
+  "9DhYaZ": "Ascending",
+  "9IxKom": "Your Name",
   "9WtqV7": "Team",
   "9Yv29u": "Create an organisation",
   "9ZdD+Q": "Library for",
   "9kRiV5": "Email",
-  AANd6m: AANd6m,
   ACSasN: ACSasN,
   Avsnjl: Avsnjl,
   "B1MeY+": "Select an image...",
-  BoNlOS: BoNlOS,
   C2j6zz: C2j6zz,
   CbHzjs: CbHzjs,
   ChnSK6: ChnSK6,
@@ -206,6 +206,8 @@ var messages = {
   D3idYv: D3idYv,
   D3kTvP: D3kTvP,
   DWEzCv: DWEzCv,
+  DgyZlU: DgyZlU,
+  DjIdzH: DjIdzH,
   "E/qtB2": "TextTitle",
   EcZYpr: EcZYpr,
   EoLB7Z: EoLB7Z,
@@ -216,6 +218,7 @@ var messages = {
   GzoKNb: GzoKNb,
   Gzx6q5: Gzx6q5,
   "H+ppSs": "Settings",
+  "IB/AQ9": "You are a member of the following organisations:",
   IMUycF: IMUycF,
   IhBOyI: IhBOyI,
   IwGlNX: IwGlNX,
@@ -238,6 +241,7 @@ var messages = {
   PXCkXy: PXCkXy,
   PbHeHc: PbHeHc,
   QDznJ0: QDznJ0,
+  QN68P8: QN68P8,
   R1HYj0: R1HYj0,
   Ro8ZOq: Ro8ZOq,
   "S/mavZ": "Text and Images",
@@ -249,6 +253,7 @@ var messages = {
   TXPdzG: TXPdzG,
   Tbo377: Tbo377,
   Tdnwlv: Tdnwlv,
+  Tlp2I0: Tlp2I0,
   Tt4jN1: Tt4jN1,
   U86B6w: U86B6w,
   UBXIYP: UBXIYP,
@@ -305,7 +310,6 @@ var messages = {
   jaFXki: jaFXki,
   kF0tkA: kF0tkA,
   kIl7G5: kIl7G5,
-  kW5nG6: kW5nG6,
   kmNVJH: kmNVJH,
   ktUr5c: ktUr5c,
   l7bkY2: l7bkY2,
@@ -348,6 +352,7 @@ var messages = {
   "publish_services.archive": "Archive file",
   "publish_services.archive.filename": "Filename",
   "publish_services.archive.format": "Format",
+  qHrpc6: qHrpc6,
   qIw1nW: qIw1nW,
   qKQCxc: qKQCxc,
   qZItNz: qZItNz,
@@ -370,8 +375,6 @@ var messages = {
   uQjihh: uQjihh,
   uWIqbC: uWIqbC,
   upzOTm: upzOTm,
-  v3aF3t: v3aF3t,
-  v89TmR: v89TmR,
   vDSsFW: vDSsFW,
   vrCfAS: vrCfAS,
   "w+78Hh": "Go back to login",

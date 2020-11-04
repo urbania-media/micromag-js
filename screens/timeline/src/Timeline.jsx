@@ -1,11 +1,10 @@
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { PlaceholderShortText, Transitions } from '@micromag/core/components';
+import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -19,13 +18,13 @@ import styles from './styles.module.scss';
 const propTypes = {
     layout: PropTypes.oneOf([
         'normal',
-        'title-image-description',
         'title-description-image',
+        'title-image-description',
         'image-title-description',
     ]),
     items: PropTypes.arrayOf(MicromagPropTypes.textElement),
-    background: MicromagPropTypes.backgroundElement,
     illustrated: PropTypes.bool,
+    background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
     maxRatio: PropTypes.number,
@@ -36,28 +35,28 @@ const propTypes = {
 
 const defaultProps = {
     layout: 'normal',
-    items: null,
-    background: null,    
+    items: [null],
     illustrated: false,
+    background: null,
     current: true,
     active: true,
     maxRatio: 3 / 4,
     transitions: {
         in: {
             name: 'fade',
-            duration: 1000,
+            duration: 250,
         },
         out: 'scale',
     },
-    transitionStagger: 50,
+    transitionStagger: 75,
     className: null,
 };
 
 const Timeline = ({
     layout,
     items,
-    background,
     illustrated,
+    background,
     current,
     active,
     maxRatio,
@@ -66,81 +65,194 @@ const Timeline = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isView, isEdit } = useScreenRenderContext();
+    const { isPlaceholder, isPreview, isView, isEdit } = useScreenRenderContext();
 
-    let elements = null;
-
-    const hasItems = items !== null && items.length;
-    const imagesCount =
-        !isPlaceholder && hasItems
-            ? items.reduce(
-                  (acc, curr) => acc + (curr.image !== null && curr.image !== undefined ? 1 : 0),
-                  0,
-              )
-            : 0;
+    const itemsCount = items !== null ? items.length : 0;
+    const hasItems = items !== null && itemsCount;
+    const imagesCount = hasItems
+        ? items.reduce((acc, curr) => {
+              const { image = null } = curr || {};
+              return acc + (image !== null ? 1 : 0);
+          }, 0)
+        : 0;
 
     const [imagesLoaded, setImagesLoaded] = useState(0);
     const ready = imagesLoaded === imagesCount;
-    const transitionPlaying = current && ready;
+    const transitionsPlaying = current && ready;
 
     const onImageLoaded = useCallback(() => {
         setImagesLoaded(imagesLoaded + 1);
     }, [imagesLoaded, setImagesLoaded]);
 
-    if (isPlaceholder) {
-        const placeholdersCount = 3;
-        elements = Array.from(Array(placeholdersCount)).map((n, i) => (
-            <div key={i} className={styles.placeholderContainer}>
-                <PlaceholderShortText className={styles.placeholder} />
-                {i < placeholdersCount - 1 ? <div className={styles.line} /> : null}
+    let transitionDelay = 0;
+
+    const timelineElements = items.map((item, itemI) => {
+        const { title = null, description = null, image = null } = item || {};
+
+        const hasTitle = title !== null;
+        const hasDescription = description !== null;
+        const hasImage = image !== null;
+
+        const isEmptyTitle = isEdit && !hasTitle;
+        const isEmptyDescription = isEdit && !hasDescription;
+        const isEmptyImage = isEdit && !hasImage;
+
+        const elementsTypes = (layout === 'normal' ? 'title-description-image' : layout).split('-');
+        const titleIndex = elementsTypes.indexOf('title');
+        const imageIndex = elementsTypes.indexOf('image');
+
+        if (!illustrated) {
+            elementsTypes.splice(imageIndex, 1);
+        }
+
+        return (
+            <div className={styles.item} key={`item-${itemI}`}>
+                {elementsTypes.map((type, typeI) => {
+                    let hasElement = false;
+                    let elementContent;
+                    switch (type) {
+                        case 'title':
+                            hasElement = hasTitle;
+                            elementContent = (
+                                <div className={styles.title}>
+                                    <ScreenElement
+                                        placeholder="title"
+                                        emptyLabel={
+                                            <FormattedMessage
+                                                defaultMessage="Title"
+                                                description="Title placeholder"
+                                            />
+                                        }
+                                        emptyClassName={styles.empty}
+                                        isEmpty={isEmptyTitle}
+                                    >
+                                        {hasElement ? (
+                                            <Transitions
+                                                transitions={transitions}
+                                                playing={transitionsPlaying}
+                                                delay={transitionDelay}
+                                                disabled={isPreview}
+                                            >
+                                                <Heading {...title} />
+                                            </Transitions>
+                                        ) : null}
+                                    </ScreenElement>
+                                </div>
+                            );
+                            break;
+                        case 'description':
+                        default:
+                            hasElement = hasDescription;
+                            elementContent = (
+                                <div className={styles.description}>
+                                    <ScreenElement
+                                        placeholder="text"
+                                        emptyLabel={
+                                            <FormattedMessage
+                                                defaultMessage="Description"
+                                                description="Description placeholder"
+                                            />
+                                        }
+                                        emptyClassName={styles.empty}
+                                        isEmpty={isEmptyDescription}
+                                    >
+                                        {hasElement ? (
+                                            <Transitions
+                                                transitions={transitions}
+                                                playing={transitionsPlaying}
+                                                delay={transitionDelay}
+                                                disabled={isPreview}
+                                            >
+                                                <Text {...description} />
+                                            </Transitions>
+                                        ) : null}
+                                    </ScreenElement>
+                                </div>
+                            );
+                            break;
+                        case 'image':
+                            hasElement = hasImage;
+                            elementContent = (
+                                <div className={styles.image}>
+                                    <ScreenElement
+                                        placeholder="image"
+                                        emptyLabel={
+                                            <FormattedMessage
+                                                defaultMessage="Image"
+                                                description="Image placeholder"
+                                            />
+                                        }
+                                        emptyClassName={styles.empty}
+                                        isEmpty={isEmptyImage}
+                                    >
+                                        {hasElement ? (
+                                            <Transitions
+                                                transitions={transitions}
+                                                playing={transitionsPlaying}
+                                                delay={transitionDelay}
+                                                disabled={isPreview}
+                                            >
+                                                <Image
+                                                    {...image}
+                                                    width="100%"
+                                                    onLoaded={onImageLoaded}
+                                                />
+                                            </Transitions>
+                                        ) : null}
+                                    </ScreenElement>
+                                </div>
+                            );
+                            break;
+                    }
+                    if (hasElement) {
+                        transitionDelay += transitionStagger;
+                    }
+
+                    return (
+                        <div
+                            key={`element-${type}`}
+                            className={classNames([styles.element, styles[`element-${type}`]])}
+                        >
+                            <div className={styles.timeline}>
+                                <div
+                                    className={classNames([
+                                        styles.line,
+                                        {
+                                            [styles.hidden]:
+                                                (itemI === 0 && typeI <= titleIndex) ||
+                                                (itemI === itemsCount - 1 && typeI > titleIndex),
+                                        },
+                                    ])}
+                                />
+                                {type === 'title' ? <div className={styles.dot} /> : null}
+                                <div
+                                    className={classNames([
+                                        styles.line,
+                                        {
+                                            [styles.hidden]:
+                                                (itemI === 0 && typeI < titleIndex) ||
+                                                (itemI === itemsCount - 1 && typeI >= titleIndex),
+                                        },
+                                    ])}
+                                />
+                            </div>
+                            <div className={styles.content}>{elementContent}</div>
+                        </div>
+                    );
+                })}
             </div>
-        ));
-    } else {
-        let transitionDelay = 0;
-
-        const createElement = (children) => {
-            const element = (
-                <Transitions
-                    transitions={transitions}
-                    playing={transitionPlaying}
-                    delay={transitionDelay}
-                >
-                    {children}
-                </Transitions>
-            );
-            transitionDelay += transitionStagger;
-            return element;
-        };
-
-        elements = hasItems
-            ? items.map(({ title, description, image }, index) => (
-                <div className={styles.timelineBlock} key={index}>
-                    {title !== null ? createElement(<Heading {...title} />) : null}
-                    {image !== null
-                        ? createElement(
-                            <Image
-                                className={styles.image}
-                                {...image}
-                                onLoaded={onImageLoaded}
-                            />,
-                        ) : null}
-                    {description !== null ? createElement(<Text {...description} />) : null}
-                    {index < items.length - 1
-                        ? createElement(<div className={styles.line} />)
-                        : null}
-                </div>
-              ))
-            : null;
-    }
-
+        );
+    });
     return (
         <div
-                className={classNames([
-                    styles.container,
-                    {
-                        [className]: className !== null,
-                    },
-                ])}
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                    [styles.ready]: transitionsPlaying,
+                    [styles.isPlaceholder]: isPlaceholder,
+                },
+            ])}
         >
             <Background
                 {...(!isPlaceholder ? background : null)}
@@ -150,7 +262,9 @@ const Timeline = ({
                 playing={(isView && current) || (isEdit && active)}
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <Scroll verticalAlign="center">{elements}</Scroll>
+                <Scroll className={styles.scroll} verticalAlign="center">
+                    {timelineElements}
+                </Scroll>
             </Container>
         </div>
     );
