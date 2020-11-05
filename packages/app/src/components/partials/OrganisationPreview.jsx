@@ -1,10 +1,8 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSitemap } from '@fortawesome/free-solid-svg-icons';
-// import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import * as AppPropTypes from '../../lib/PropTypes';
 

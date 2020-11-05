@@ -13,7 +13,7 @@ const useOrganisationMemberCreate = (organisationId) => {
                 return response;
             });
         },
-        [api, setCreating],
+        [api, organisationId, setCreating],
     );
     return { create, creating };
 };

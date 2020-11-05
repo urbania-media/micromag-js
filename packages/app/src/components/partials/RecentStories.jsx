@@ -15,7 +15,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    count: 3,
+    count: 6,
     className: null,
 };
 
@@ -31,41 +31,21 @@ const RecentStories = ({ count, className }) => {
                     </h5>
                     <StoriesList items={stories} />
                     <div className={classNames(['d-flex', 'mt-4'])}>
+                        <Button href={url('stories')} theme="primary" className="mr-2">
+                            <FormattedMessage
+                                defaultMessage="All stories"
+                                description="All stories button label"
+                            />
+                        </Button>
                         <Button href={url('stories.create')} theme="primary" className="mr-2">
                             <FormattedMessage
                                 defaultMessage="Create a story"
-                                description="Button label"
-                            />
-                        </Button>
-                        <Button href={url('stories')} theme="secondary">
-                            <FormattedMessage
-                                defaultMessage="View all stories"
-                                description="Button label"
+                                description="Create a story button label"
                             />
                         </Button>
                     </div>
                 </>
-            ) : (
-                <div className="jumbotron text-center bg-dark text-light">
-                    <h1 className="display-4">
-                        <FormattedMessage defaultMessage="No story yet" description="Box title" />
-                    </h1>
-                    <p className="lead mt-4 mb-4">
-                        <FormattedMessage
-                            defaultMessage="It’s time to start creating now."
-                            description="Box description"
-                        />
-                    </p>
-                    <p className="lead pt-4">
-                        <Button href={url('stories.create')} theme="primary" size="lg">
-                            <FormattedMessage
-                                defaultMessage="Create your first story"
-                                description="Button label"
-                            />
-                        </Button>
-                    </p>
-                </div>
-            )}
+            ) : null}
         </section>
     ) : null;
 };

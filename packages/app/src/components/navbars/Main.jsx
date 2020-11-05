@@ -1,14 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Navbar } from '@micromag/core/components';
+import { Navbar, Breadcrumb } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth as useAuthContext } from '../../contexts/AuthContext';
+import { useOrganisation as useOrganisationContext } from '../../contexts/OrganisationContext';
+
 import MainGuestMenu from '../menus/MainGuest';
-import AccountMenu from '../menus/Account';
-import StoriesMenu from '../menus/Stories';
-import OrganisationMenu from '../menus/Organisation';
+import MainMenu from '../menus/Main';
 
 import logo from '../../assets/logo-beta.svg';
 
@@ -21,34 +21,37 @@ const defaultProps = {
 };
 
 const MainNavbar = ({ className }) => {
-    const { loggedIn } = useAuth();
+    const { loggedIn } = useAuthContext();
     const url = useUrlGenerator();
+    const organisation = useOrganisationContext() || null;
+
     return (
         <Navbar
             brand={<img src={logo} height="30" alt="Micromag" />}
             brandLink={url('home')}
+            breadcrumbs={
+                organisation !== null ? (
+                    <Breadcrumb
+                        items={[
+                            {
+                                id: 'create',
+                                href: url('home.organisation'),
+                                label: organisation.name,
+                            },
+                        ]}
+                    />
+                ) : null
+            }
             theme="primary"
             className={className}
         >
             {loggedIn ? (
-                <>
-                    <OrganisationMenu
-                        className="navbar-nav"
-                        itemClassName="nav-item"
-                        linkClassName="nav-link"
-                    />
-                    <StoriesMenu
-                        className="navbar-nav"
-                        itemClassName="nav-item"
-                        linkClassName="nav-link"
-                    />
-                    <AccountMenu
-                        className="navbar-nav ml-auto"
-                        itemClassName="nav-item"
-                        linkClassName="nav-link"
-                        dropdownAlign="right"
-                    />
-                </>
+                <MainMenu
+                    className="navbar-nav ml-auto"
+                    itemClassName="nav-item"
+                    linkClassName="nav-link"
+                    dropdownAlign="right"
+                />
             ) : (
                 <MainGuestMenu
                     className="navbar-nav ml-auto"

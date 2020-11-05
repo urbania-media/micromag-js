@@ -3,12 +3,17 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-import { useOrganisationTeam } from '@micromag/data';
-
+import {
+    useOrganisationTeam,
+    useOrganisationMemberUpdate,
+    useOrganisationMemberDelete,
+} from '@micromag/data';
+import { useRoutePush } from '@micromag/core/contexts';
 import { FormPanel } from '@micromag/core/components';
 
 import { useOrganisation as useContextOrganisation } from '../../../contexts/OrganisationContext';
 import { useUser } from '../../../contexts/AuthContext';
+
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
 import OrganisationMenu from '../../menus/Organisation';
@@ -27,8 +32,11 @@ const defaultProps = {
 
 const OrganisationTeamPage = ({ className }) => {
     const user = useUser();
+    const push = useRoutePush();
     const organisation = useContextOrganisation();
     const { team, load } = useOrganisationTeam(organisation.id);
+    const { update } = useOrganisationMemberUpdate(organisation.id);
+    const { deleteMember } = useOrganisationMemberDelete(organisation.id);
     const onCreated = useCallback(() => {
         load();
     }, []);
@@ -36,6 +44,32 @@ const OrganisationTeamPage = ({ className }) => {
     const role = user.role || 'admin';
     const isAdmin = role === 'admin' || true;
     const teamFeatures = isAdmin ? { canAdd: true, canEdit: true, canRemove: true } : null;
+
+    const onClickRemove = useCallback(
+        (member) => {
+            const { user: deletingUser = {} } = member;
+            deleteMember(member.id)
+                .then(() => load())
+                .then(() => {
+                    if (deletingUser.id === user.id) {
+                        push('home');
+                        window.location.reload();
+                    }
+                });
+        },
+        [deleteMember, load],
+    );
+
+    const onChangeRole = useCallback(
+        (member) => {
+            const { user: memberUser = {} } = member;
+            update(member.id, {
+                email: memberUser.email || member.email || null,
+                role: member.role || null,
+            }).then(() => load());
+        },
+        [update, load],
+    );
 
     return (
         <MainLayout>
@@ -59,7 +93,13 @@ const OrganisationTeamPage = ({ className }) => {
                     {teamFeatures && teamFeatures.canAdd ? (
                         <MemberCreateForm organisation={organisation} onCreated={onCreated} />
                     ) : null}
-                    {team !== null ? <TeamList items={team} {...teamFeatures} /> : null}
+                    {team !== null ? (
+                        <TeamList
+                            items={team}
+                            onChangeRole={isAdmin ? onChangeRole : null}
+                            onClickRemove={isAdmin ? onClickRemove : null}
+                        />
+                    ) : null}
                 </FormPanel>
             </Page>
         </MainLayout>

@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 
 import { useApi } from '../contexts/ApiContext';
 
-const useOrganisatioMemberDelete = (organisationId) => {
+const useOrganisationMemberDelete = (organisationId) => {
     const [deleting, setDeleting] = useState(false);
     const api = useApi();
     const deleteMember = useCallback(
@@ -13,9 +13,9 @@ const useOrganisatioMemberDelete = (organisationId) => {
                 return response;
             });
         },
-        [api, setDeleting],
+        [api, organisationId, setDeleting],
     );
     return { deleteMember, deleting };
 };
 
-export default useOrganisatioMemberDelete;
+export default useOrganisationMemberDelete;

@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -8,22 +8,19 @@ import TeamMemberItem from '../items/TeamMember';
 
 const propTypes = {
     items: MicromagPropTypes.team,
-    canEdit: PropTypes.bool,
-    canRemove: PropTypes.bool,
+    onChangeRole: PropTypes.func,
+    onClickRemove: PropTypes.func,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     items: [],
-    canEdit: true,
-    canRemove: true,
+    onChangeRole: true,
+    onClickRemove: true,
     className: null,
 };
 
-const TeamList = ({ items, canEdit, canRemove, className }) => {
-    const onClickMemberRemove = useCallback(() => {}, []);
-    const onChangeMemberRole = useCallback(() => {}, []);
-
+const TeamList = ({ items, onChangeRole, onClickRemove, className }) => {
     return (
         <div
             className={classNames([
@@ -33,14 +30,12 @@ const TeamList = ({ items, canEdit, canRemove, className }) => {
                 },
             ])}
         >
-            {items.map((it) => (
+            {items.map((member) => (
                 <TeamMemberItem
-                    key={`member-${it.id}`}
-                    item={it}
-                    canRemove={canRemove && items.length > 1}
-                    canEdit={canEdit}
-                    onClickRemove={canRemove ? onClickMemberRemove : null}
-                    onChangeRole={onChangeMemberRole}
+                    key={`member-${member.id}`}
+                    member={member}
+                    onClickRemove={onClickRemove}
+                    onChangeRole={onChangeRole}
                 />
             ))}
         </div>

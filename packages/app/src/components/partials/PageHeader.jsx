@@ -8,6 +8,7 @@ import { Label } from '@micromag/core/components';
 const propTypes = {
     title: MicromagPropTypes.label,
     section: MicromagPropTypes.label,
+    menu: PropTypes.node,
     children: PropTypes.node,
     className: PropTypes.string,
     titleClassName: PropTypes.string,
@@ -17,13 +18,22 @@ const propTypes = {
 const defaultProps = {
     title: null,
     section: null,
+    menu: null,
     children: null,
     className: null,
     titleClassName: null,
     sectionClassName: null,
 };
 
-const PageHeader = ({ title, section, children, className, titleClassName, sectionClassName }) => (
+const PageHeader = ({
+    title,
+    section,
+    menu,
+    children,
+    className,
+    titleClassName,
+    sectionClassName,
+}) => (
     <header
         className={classNames([
             'py-4',
@@ -50,6 +60,7 @@ const PageHeader = ({ title, section, children, className, titleClassName, secti
                 </>
             ) : null}
         </h1>
+        {menu}
         {children}
     </header>
 );

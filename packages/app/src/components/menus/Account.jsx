@@ -63,21 +63,21 @@ const AccountMenu = ({
         const subMenu = [
             {
                 id: 'profile',
-                href: url('account.profile'),
+                href: url('account'),
                 label: messages.profile,
             },
             {
                 id: 'logout',
                 href: url('auth.logout'),
                 label: messages.logout,
-                onClick: e => {
+                onClick: (e) => {
                     e.preventDefault();
                     logout();
                 },
             },
         ]
-            .filter(it => it !== null)
-            .map(it =>
+            .filter((it) => it !== null)
+            .map((it) =>
                 it.href === pathname
                     ? {
                           ...it,

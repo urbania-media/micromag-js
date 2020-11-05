@@ -26,7 +26,6 @@ const SidebarContent = ({ sidebar, sidebarFirstOnMobile, children, className }) 
             },
         ])}
     >
-        <div className="col-md-8">{children}</div>
         <aside
             className={classNames([
                 'col-md-4',
@@ -41,6 +40,7 @@ const SidebarContent = ({ sidebar, sidebarFirstOnMobile, children, className }) 
         >
             {sidebar}
         </aside>
+        <div className="col-md-8">{children}</div>
     </div>
 );
 

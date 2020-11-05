@@ -64,7 +64,7 @@ const AccountProfileForm = ({ fields, className, onUpdated }) => {
     const postForm = useCallback((action, data) => updateAccount(data), [updateAccount]);
     return (
         <Form
-            action={url('account.profile')}
+            action={url('account')}
             fields={fields}
             postForm={postForm}
             initialValue={user}

@@ -12,6 +12,7 @@ import styles from '../../styles/partials/page.module.scss';
 const propTypes = {
     title: MicromagPropTypes.label,
     section: MicromagPropTypes.label,
+    menubar: PropTypes.node,
     sidebar: PropTypes.node,
     children: PropTypes.node,
     small: PropTypes.bool,
@@ -21,13 +22,14 @@ const propTypes = {
 const defaultProps = {
     title: null,
     section: null,
+    menubar: null,
     sidebar: null,
     children: null,
     small: false,
     className: null,
 };
 
-const Page = ({ title, section, sidebar, children, small, className }) => (
+const Page = ({ title, section, menubar, sidebar, children, small, className }) => (
     <div
         className={classNames([
             small ? 'container-small' : 'container-lg',
@@ -37,7 +39,7 @@ const Page = ({ title, section, sidebar, children, small, className }) => (
             },
         ])}
     >
-        <PageHeader title={title} section={section} />
+        <PageHeader title={title} section={section} menu={menubar} />
         {sidebar !== null ? (
             <SidebarContent sidebar={sidebar}>{children}</SidebarContent>
         ) : (

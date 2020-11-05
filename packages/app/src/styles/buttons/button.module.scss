@@ -1,5 +1,8 @@
 @import '~@micromag/core/scss/variables';
 
 .container {
-    //
+    .withLabel {
+        display: inline-block;
+        margin-right: 5px;
+    }
 }

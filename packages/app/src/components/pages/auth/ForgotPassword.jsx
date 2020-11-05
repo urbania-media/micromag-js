@@ -3,9 +3,8 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-import { useHistory } from 'react-router';
 import { FormPanel, Link } from '@micromag/core/components';
-import { useUrlGenerator } from '@micromag/core/contexts';
+import { useUrlGenerator, useRoutePush } from '@micromag/core/contexts';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
@@ -22,16 +21,16 @@ const defaultProps = {
 };
 
 const ForgotPasswordPage = ({ className }) => {
-    const history = useHistory();
+    const push = useRoutePush();
     const url = useUrlGenerator();
     const onSuccess = useCallback(
         (email) => {
             const next = url('auth.check_email', {
                 email: email ? encodeURIComponent(email) : 'email',
             });
-            history.push(next);
+            push(next);
         },
-        [url],
+        [url, push],
     );
     return (
         <MainLayout contentAlign="middle">

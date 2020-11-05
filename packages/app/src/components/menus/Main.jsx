@@ -2,25 +2,20 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Menu } from '@micromag/core/components';
 import { useLocation } from 'react-router';
-import { defineMessages } from 'react-intl';
-import { useUrlGenerator } from '@micromag/core/contexts';
+import { FormattedMessage } from 'react-intl';
 
-import { useAuth } from '../../contexts/AuthContext';
+import { Menu } from '@micromag/core/components';
+import { useUrlGenerator } from '@micromag/core/contexts';
+import { useOrganisations } from '@micromag/data';
+
+import {
+    useOrganisation as useOrganisationContext,
+    useSetOrganisation as useSetOrganisationContext,
+} from '../../contexts/OrganisationContext';
+import { useAuth as useAuthContext } from '../../contexts/AuthContext';
 
 import styles from '../../styles/menus/main.module.scss';
-
-const messages = defineMessages({
-    account: {
-        id: 'menus.main.account',
-        defaultMessage: 'Account',
-    },
-    logout: {
-        id: 'menus.main.logout',
-        defaultMessage: 'Logout',
-    },
-});
 
 const propTypes = {
     className: PropTypes.string,
@@ -37,29 +32,114 @@ const defaultProps = {
 const MainMenu = ({ className, itemClassName, linkClassName, ...props }) => {
     const url = useUrlGenerator();
     const { pathname } = useLocation();
-    const { logout } = useAuth();
+    const { logout, user } = useAuthContext();
+    const setOrganisation = useSetOrganisationContext();
+    const organisation = useOrganisationContext() || null;
+    const { organisations } = useOrganisations();
+
+    const organisationsItems =
+        organisations !== null
+            ? organisations
+                  .filter((it) => organisation === null || it.id !== organisation.id)
+                  .map((it) => ({
+                      id: it.id,
+                      href: url('organisation.switch', {
+                          organisation: it.slug,
+                      }),
+                      label: it.name,
+                      active: organisation !== null && organisation.id === it.id,
+                  }))
+            : [];
+
+    const finalOrganisationItems =
+        organisationsItems.length > 0
+            ? [
+                  ...organisationsItems,
+                  {
+                      type: 'divider',
+                      label: null,
+                  },
+              ]
+            : [];
+
+    const onClickMyMicromags = useCallback(() => {
+        setOrganisation(null);
+    }, [setOrganisation]);
+
     const onClickLogout = useCallback(
-        e => {
+        (e) => {
             e.preventDefault();
             logout();
         },
         [logout],
     );
+
     return (
         <Menu
             {...props}
             items={[
                 {
-                    id: 'account',
-                    href: url('account'),
-                    active: pathname === url('account'),
-                    label: messages.account,
-                },
-                {
-                    id: 'logout',
-                    href: url('logout'),
-                    label: messages.logout,
-                    onClick: onClickLogout,
+                    id: 'stories',
+                    href: url('stories'),
+                    label: user ? (
+                        user.name || user.email
+                    ) : (
+                        <FormattedMessage
+                            defaultMessage="Account"
+                            description="Account top menu label"
+                        />
+                    ),
+                    dropdown: [
+                        ...finalOrganisationItems,
+                        {
+                            id: 'create',
+                            href: url('organisation.create'),
+                            label: (
+                                <FormattedMessage
+                                    defaultMessage="Create an organisation"
+                                    description="Create an organisation button"
+                                />
+                            ),
+                        },
+                        {
+                            type: 'divider',
+                            label: null,
+                        },
+                        {
+                            id: 'home',
+                            href: url('home'),
+                            onClick: onClickMyMicromags,
+                            active: pathname === url('home'),
+                            label: (
+                                <FormattedMessage
+                                    defaultMessage="My micromags"
+                                    description="My micromags menu item"
+                                />
+                            ),
+                        },
+                        {
+                            id: 'account',
+                            href: url('account'),
+                            active: pathname === url('account'),
+                            label: (
+                                <FormattedMessage
+                                    defaultMessage="My profile"
+                                    description="My profile menu item"
+                                />
+                            ),
+                        },
+                        {
+                            id: 'logout',
+                            href: url('logout'),
+                            label: (
+                                <FormattedMessage
+                                    defaultMessage="Logout"
+                                    description="Logout menu item"
+                                />
+                            ),
+                            onClick: onClickLogout,
+                        },
+                    ],
                 },
             ]}
             className={classNames([

@@ -3,13 +3,14 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-import { useHistory } from 'react-router';
 import { FormPanel } from '@micromag/core/components';
-import { useUrlGenerator } from '@micromag/core/contexts';
+import { useUrlGenerator, useRoutePush } from '@micromag/core/contexts';
+
+import { useOrganisation as useContextOrganisation } from '../../../contexts/OrganisationContext';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
-import InviteForm from '../../forms/Invite';
+import OrganisationInviteForm from '../../forms/OrganisationInvite';
 
 import styles from '../../../styles/pages/register/register.module.scss';
 
@@ -22,11 +23,12 @@ const defaultProps = {
 };
 
 const InvitePage = ({ className }) => {
+    const organisation = useContextOrganisation();
     const url = useUrlGenerator();
-    const history = useHistory();
+    const push = useRoutePush();
     const onContinue = useCallback(() => {
-        history.push(url('home'));
-    }, [history, url]);
+        push(url('home'));
+    }, [push, url]);
     return (
         <MainLayout>
             <Page
@@ -54,7 +56,7 @@ const InvitePage = ({ className }) => {
                         </div>
                     }
                 >
-                    <InviteForm onContinue={onContinue} />
+                    <OrganisationInviteForm organisation={organisation} onContinue={onContinue} />
                 </FormPanel>
             </Page>
         </MainLayout>

@@ -16,7 +16,6 @@ import CompleteProfilePage from './pages/register/CompleteProfile';
 import InvitePage from './pages/register/Invite';
 
 import AccountPage from './pages/account/Account';
-import AccountProfilePage from './pages/account/Profile';
 
 import LoginPage from './pages/auth/Login';
 import ForgotPasswordPage from './pages/auth/ForgotPassword';
@@ -105,7 +104,6 @@ const Routes = () => {
                 />
             ) : null}
             <Route path={routes.account} exact component={AccountPage} />
-            <Route path={routes['account.profile']} exact component={AccountProfilePage} />
 
             {/*
                 Organisation routes

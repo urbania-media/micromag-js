@@ -13,7 +13,7 @@ const useOrganisationContactCreate = (organisationId) => {
                 return response;
             });
         },
-        [api, setCreating],
+        [api, organisationId, setCreating],
     );
     return { create, creating };
 };
