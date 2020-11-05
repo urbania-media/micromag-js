@@ -7,7 +7,8 @@
     margin: 0 auto;
 
     &.withScroll {
-        overflow-y: scroll;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 
     &.top {

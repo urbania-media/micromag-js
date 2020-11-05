@@ -13,7 +13,7 @@ export default {
         description: 'Audio screen title',
     }),
     component: Audio,
-    layouts: ['center', 'top', 'bottom', 'around'],
+    layouts: ['normal'],
     fields: [
         {
             name: 'layout',

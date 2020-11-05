@@ -17,7 +17,7 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     layout: PropTypes.oneOf(['normal', 'reverse', 'title-top']),
-    image: MicromagPropTypes.imageMedia,
+    image: MicromagPropTypes.imageElement,
     title: MicromagPropTypes.headingElement,
     text: MicromagPropTypes.textElement,
     legend: MicromagPropTypes.textElement,

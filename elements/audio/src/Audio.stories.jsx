@@ -8,6 +8,5 @@ export default {
     title: 'Elements/Audio',
 };
 
-export const Normal = () => <Audio media={audio()} />;
-
-export const Native = () => <Audio media={audio()} native />;
+export const Normal = () => <Audio {...audio()} />;
+export const AutoPlay = () => <Audio {...audio()} autoPlay />;

@@ -83,18 +83,22 @@ export const text = (length = 'normal', style = 'normal') => {
     }
 
     return {
-        style: styleProps,
+        textStyle: styleProps,
         body,
     };
 };
 
-export const image = ({ width = 800, height = 800 } = {}) => ({
-    media: {
-        url: `https://picsum.photos/${width}/${height}`,
+export const imageMedia = ({ width = 800, height = 800 } = {}) => ({
+    url: `https://picsum.photos/${width}/${height}`,
+    metadata: {
         width,
         height,
-    },
-    name: 'Image!',
+    }
+});
+
+export const image = (mediaParams) => ({
+    media: imageMedia(mediaParams),
+    name: 'Image!'
 });
 
 export const imageWithRandomSize = ({ min = 100, max = 800 } = {}) => {
@@ -112,8 +116,10 @@ export const images = ({ count = 3, width = 800, height = 800, rand = false } = 
     return [...Array(count)].map(() => ({
         media: {
             url: `https://picsum.photos/${width}/${height}?random=${rand ? Math.random() : 1}`,
-            width,
-            height,
+            metadata: {
+                width,
+                height,
+            }
         },
         name: 'image-in-array',
     }));
@@ -121,6 +127,7 @@ export const images = ({ count = 3, width = 800, height = 800, rand = false } = 
 
 export const videoFile = () => ({
     media: {
+        type: 'video',
         url: VideoTest,
         metadata: {
             width: 1920,
@@ -131,9 +138,12 @@ export const videoFile = () => ({
 
 export const video = () => ({
     media: {
+        type: 'video',
         url: 'https://www.youtube.com/watch?v=AfeAhCWaMD0',
-        width: 640,
-        height: 480,
+        metadata: {
+            width: 640,
+            height: 480,
+        }
     },
 });
 
@@ -143,21 +153,28 @@ export const backgroundImage = ({ rand = false } = {}) => ({
     color: { color: chance.color({ format: 'rgb' }) },
     image: {
         media: {
+            type: 'image',
             url: `https://picsum.photos/1000/1000/?blur&random=${rand ? Math.random() : 1}`,
-            width: 1000,
-            height: 1000,
+            metadata: {
+                width: 1000,
+                height: 1000,
+            }
         },
     },
 });
 
 export const audio = () => ({
-    type: 'audio',
-    url: AudioTest,
-    duration: 16000,
+    media: {
+        type: 'audio',
+        url: AudioTest,
+        metadata: {
+            duration: 16000,
+        }
+    }
 });
 
-export const advertising = ({ width, height }) => ({
-    image: { media: { url: `https://picsum.photos/${width}/${height}`, width, height } },
+export const advertising = (mediaParams) => ({
+    image: { media: imageMedia(mediaParams) },
     url: { url: 'https://www.urbania.ca', target: '_blank', rel: 'noopener noreferer' },
     text: { body: 'Presented by Paul' },
 });

@@ -255,15 +255,15 @@ export const textElement = PropTypes.shape({
 });
 
 export const imageElement = PropTypes.shape({
-    image: imageMedia,
+    media: imageMedia,
 });
 
 export const videoElement = PropTypes.shape({
-    video: videoMedia,
+    media: videoMedia,
 });
 
 export const audioElement = PropTypes.shape({
-    audio: videoMedia,
+    media: audioMedia,
 });
 
 export const backgroundElement = PropTypes.shape({
@@ -401,10 +401,10 @@ export const containerStyle = PropTypes.shape({});
 
 export const transitionName = PropTypes.oneOf(['fade', 'scale', 'slide']);
 
-export const transitionParams = PropTypes.shape({
+const transitionParams = {
     duration: PropTypes.number,
     easing: PropTypes.oneOf(['ease', 'ease-in', 'ease-out', 'ease-in-out', 'linear']),
-});
+};
 
 export const transition = PropTypes.oneOfType([
     transitionName.isRequired,

@@ -77,7 +77,7 @@ const Timeline = ({
         : 0;
 
     const [imagesLoaded, setImagesLoaded] = useState(0);
-    const ready = imagesLoaded === imagesCount;
+    const ready = isPlaceholder || imagesLoaded === imagesCount;
     const transitionsPlaying = current && ready;
 
     const onImageLoaded = useCallback(() => {

@@ -56,7 +56,6 @@
         "@micromag/screen-gallery-feed": "^0.1.29",
         "@micromag/screen-image": "^0.1.29",
         "@micromag/screen-map": "^0.1.29",
-        "@micromag/screen-map-path": "^0.1.29",
         "@micromag/screen-quiz": "^0.1.29",
         "@micromag/screen-quote": "^0.1.29",
         "@micromag/screen-slideshow": "^0.1.29",        

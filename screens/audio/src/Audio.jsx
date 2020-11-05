@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -16,16 +16,11 @@ import TextElement from '@micromag/element-text';
 import ImageElement from '@micromag/element-image';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
-import { VStack } from '@micromag/element-stack';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
-    layout: PropTypes.oneOf(['center', 'top', 'bottom', 'around']),
-    stack: PropTypes.shape({
-        reverse: PropTypes.bool,
-        spacing: MicromagPropTypes.spacing,
-    }),
+    layout: PropTypes.oneOf(['normal']),
     maxWidth: PropTypes.number,
     audio: MicromagPropTypes.audioElement,
     text: MicromagPropTypes.textElement,
@@ -40,15 +35,11 @@ const propTypes = {
 
 const defaultProps = {
     layout: null,
-    stack: null,
     maxWidth: 300,
     audio: {
         media: {
             src: null,
         },
-        track: null,
-        trackLng: null,
-        controls: true,
         loop: false,
         autoPlay: false,
         muted: false,
@@ -71,7 +62,6 @@ const defaultProps = {
 
 const Audio = ({
     layout,
-    stack,
     maxWidth,
     audio,
     image,
@@ -83,9 +73,10 @@ const Audio = ({
     transitions,
     className,
 }) => {
+    const apiRef = useRef();
+    
     const { width, height } = useScreenSize();
     const { isPlaceholder, isView, isPreview, isEdit } = useScreenRenderContext();
-    const { spacing, reverse } = stack || {};
 
     const withImage = image !== null;
     const [ready, setReady] = useState(!withImage);
@@ -124,7 +115,8 @@ const Audio = ({
             <Transitions transitions={transitions} playing={transitionPlaying}>
                 <AudioElement
                     className={styles.audio}
-                    {...(isPlaceholder || isPreview ? { ...audio, src: null } : audio)}
+                    media={(isPlaceholder ? { ...audio, src: null } : audio)}
+                    ref={apiRef}
                 />
             </Transitions>
         );
@@ -144,12 +136,9 @@ const Audio = ({
         }
     }
 
-    const stackClassNames = classNames([
-        styles.stack,
-        {
-            [styles.full]: layout === 'around',
-        },
-    ]);
+    useEffect( () => {
+        console.log(audio, apiRef.current)
+    }, [audio]);
 
     return (
         <div
@@ -172,15 +161,9 @@ const Audio = ({
             <Container width={width} height={height} maxRatio={maxRatio}>
                 <div className={styles.content}>
                     <div className={styles.inner}>
-                        <VStack
-                            className={stackClassNames}
-                            spacing={layout === 'around' ? 'around' : spacing}
-                            reverse={reverse}
-                        >
-                            {imageElement}
-                            {audioElement}
-                            {textElement}
-                        </VStack>
+                        {imageElement}
+                        {audioElement}
+                        {textElement}
                     </div>
                 </div>
             </Container>

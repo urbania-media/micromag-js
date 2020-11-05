@@ -1,9 +1,7 @@
-/* eslint-disable react/no-array-index-key, jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
-import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
+/* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign */
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
-import MediaControls from '@micromag/element-media-controls';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
@@ -11,156 +9,132 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     media: MicromagPropTypes.audioMedia,
-    track: PropTypes.string,
-    language: PropTypes.number,
-    controls: PropTypes.bool,
-    muted: PropTypes.bool,
+    apiRef: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({
+            current: PropTypes.any,
+        }),
+    ]),
+    // track: PropTypes.string,
+    initialMuted: PropTypes.bool,
     autoPlay: PropTypes.bool,
     loop: PropTypes.bool,
-    native: PropTypes.bool,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     media: null,
-    track: null,
-    language: null,
-    controls: false,
-    muted: false,
+    apiRef: null,
+    // track: null,
+    initialMuted: false,
     autoPlay: false,
     loop: false,
-    native: false,
     className: null,
 };
 
-const AudioComponent = ({
+const Audio = ({
     media: audioField,
-    track,
-    language,
-    controls,
-    muted: initialMuted,
+    apiRef,
+    // track,
+    initialMuted,
     autoPlay,
     loop,
-    native,
     className,
 }) => {
     const { url = null } = audioField || {};
 
     const finalStyle = {};
-    const refAudioElement = useRef(null);
-    const [currentTime, setCurrentTime] = useState(0);
-    const [duration, setDuration] = useState(0);
+    const audioRef = useRef(null);
 
-    const [hasPlayed, setHasPlayed] = useState(false);
-    const [playing, setPlaying] = useState(autoPlay || false);
-    const [ended, setEnded] = useState(false);
-    const [muted, setMuted] = useState(initialMuted || false);
-    const [loaded, setLoaded] = useState(false);
-
-    const playerState = { hasPlayed, playing, ended, muted, loaded };
-
-    const onLoad = useCallback(() => {
-        setDuration(refAudioElement.current ? refAudioElement.current.duration : 0);
-        setCurrentTime(0);
-    }, [setDuration, setCurrentTime]);
-
-    const onReady = useCallback(() => {
-        setLoaded(true);
-    }, [setLoaded]);
-
-    const onPlay = useCallback(() => {
-        setPlaying(true);
-        setHasPlayed(true);
-    }, [setPlaying, setHasPlayed]);
-
-    const onPause = useCallback(() => {
-        setPlaying(false);
-    }, [setPlaying]);
-
-    const onEnd = useCallback(() => {
-        setPlaying(false);
-        setEnded(true);
-    }, [setPlaying, setEnded]);
-
-    const onMute = useCallback(() => {
-        setMuted(true);
-    }, [setMuted]);
-
-    const onUnMute = useCallback(() => {
-        setMuted(false);
-    }, [setMuted]);
-
-    const onTimeUpdate = useCallback(() => {
-        setCurrentTime(refAudioElement.current ? refAudioElement.current.currentTime : 0);
-    }, [setCurrentTime]);
-
-    useEffect(() => {
-        if (!native && refAudioElement.current === null && url !== null) {
-            const audioEl = new Audio(url);
-            audioEl.addEventListener('loadedmetadata', onLoad);
-            audioEl.addEventListener('durationchanged', onLoad);
-            audioEl.addEventListener('canplay', onReady);
-            audioEl.addEventListener('play', onPlay);
-            audioEl.addEventListener('pause', onPause);
-            audioEl.addEventListener('ended', onEnd);
-            audioEl.addEventListener('timeupdate', onTimeUpdate);
-            refAudioElement.current = audioEl;
-        }
-        return () => {
-            if (refAudioElement.current !== null) {
-                refAudioElement.current.pause();
-                refAudioElement.current.removeEventListener('loadedmetadata', onLoad);
-                refAudioElement.current.removeEventListener('durationchanged', onLoad);
-                refAudioElement.current.removeEventListener('canplay', onReady);
-                refAudioElement.current.removeEventListener('play', onPlay);
-                refAudioElement.current.removeEventListener('pause', onPause);
-                refAudioElement.current.removeEventListener('ended', onEnd);
-                refAudioElement.current.removeEventListener('timeupdate', onTimeUpdate);
-                refAudioElement.current = null;
-            }
-        };
-    }, [url, native]);
+    const [muted, setMuted] = useState(initialMuted);
 
     const playerApi = useMemo(
         () => ({
             play: () => {
-                if (refAudioElement.current !== null) {
-                    refAudioElement.current.play();
+                if (audioRef.current !== null) {
+                    audioRef.current.play();
                 }
             },
-            pause: () =>
-                refAudioElement.current !== null ? refAudioElement.current.pause() : null,
+            pause: () => {
+                if (audioRef.current !== null) {
+                    audioRef.current.pause();
+                }
+            },
             stop: () => {
-                if (refAudioElement.current !== null) {
-                    refAudioElement.current.pause();
-                    refAudioElement.current.currentTime = 0;
+                if (audioRef.current !== null) {
+                    audioRef.current.pause();
+                    audioRef.current.currentTime = 0;
                 }
             },
             seek: (time) => {
-                if (refAudioElement.current !== null) {
-                    refAudioElement.current.currentTime = time;
-                    setCurrentTime(time);
+                if (audioRef.current !== null) {
+                    audioRef.current.currentTime = time;
                 }
             },
-            getDuration: () =>
-                refAudioElement.current !== null ? refAudioElement.current.duration : 0,
-            getCurrentTime: () =>
-                refAudioElement.current !== null ? refAudioElement.current.currentTime : 0,
             mute: () => {
-                if (refAudioElement.current !== null) {
-                    refAudioElement.current.muted = true;
-                    onMute();
+                if (audioRef.current !== null) {
+                    setMuted(true);
                 }
             },
             unMute: () => {
-                if (refAudioElement.current !== null) {
-                    refAudioElement.current.muted = false;
-                    onUnMute();
+                if (audioRef.current !== null) {
+                    setMuted(false);
                 }
             },
+            duration: audioRef.current !== null ? audioRef.current.duration : null,
+            currentTime: audioRef.current !== null ? audioRef.current.currentTime : null,
+            muted,
         }),
-        [onMute, onUnMute, setCurrentTime],
+        [muted, setMuted],
     );
+
+    if (apiRef !== null) {
+        apiRef.current = playerApi;
+    }
+
+    // get amplitude levels
+    const [amplitudeLevels, setAmplitudeLevels] = useState(null);
+
+    useEffect(() => {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const request = new XMLHttpRequest();
+        request.open('GET', url, true);
+        request.responseType = 'arraybuffer';
+
+        request.onload = () => {
+            const audioData = request.response;
+            audioCtx.decodeAudioData(
+                audioData,
+                (buffer) => {
+                    const amplitudes = [];
+                    // const channelsCount = buffer.numberOfChannels;
+                    // const channelsData = [...new Array(channelsCount)].map( (channel, channelI) => buffer.getChannelData(channelI)) ;
+                    const firstChannelData = buffer.getChannelData(0);
+                    const samplesCount = 50;
+                    const sampleSize = Math.floor(firstChannelData.length / samplesCount);
+
+                    for (let sampleI = 0; sampleI < samplesCount; sampleI += 1) {
+                        const sampleStart = sampleSize * sampleI;
+                        let sum = 0;
+                        for (let sampleSizeI = 0; sampleSizeI < sampleSize; sampleSizeI += 1) {
+                            sum += Math.abs(firstChannelData[sampleStart + sampleSizeI]);
+                        }
+                        amplitudes.push(sum / sampleSize);
+                    }
+
+                    const normalizedAmplitudes = amplitudes.map(n => n * (Math.max(...amplitudes) **  -1));
+
+                    console.log('normalized audio amplitudes:', normalizedAmplitudes);
+
+                    setAmplitudeLevels(normalizedAmplitudes);
+                },
+                (e) => {
+                    console.log('unabled to decode audio', e.err);
+                },
+            );
+        };
+        request.send();
+    }, [url]);
 
     return (
         <div
@@ -172,33 +146,12 @@ const AudioComponent = ({
             ])}
             style={finalStyle}
         >
-            {native ? (
-                <audio
-                    className={styles.audio}
-                    src={url}
-                    controls
-                    autoPlay={autoPlay}
-                    muted={playerState.muted}
-                    loop={loop}
-                >
-                    {track !== null ? (
-                        <track default kind="captions" srcLang={language} src={track} />
-                    ) : null}
-                </audio>
-            ) : (
-                <MediaControls
-                    {...controls}
-                    {...playerApi}
-                    {...playerState}
-                    currentTime={currentTime}
-                    duration={duration}
-                />
-            )}
+            <audio ref={audioRef} src={url} autoPlay={autoPlay} loop={loop} muted={muted} />
         </div>
     );
 };
 
-AudioComponent.propTypes = propTypes;
-AudioComponent.defaultProps = defaultProps;
+Audio.propTypes = propTypes;
+Audio.defaultProps = defaultProps;
 
-export default AudioComponent;
+export default React.forwardRef((props, ref) => <Audio apiRef={ref} {...props} />);

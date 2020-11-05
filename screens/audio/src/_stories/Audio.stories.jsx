@@ -7,7 +7,7 @@ import Audio from '../Audio';
 import definition from '../definition';
 
 const props = {
-    audio: audio(),
+    audio: {...audio(), autoPlay: true },
     background: background(),
 };
 

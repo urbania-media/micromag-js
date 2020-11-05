@@ -2,20 +2,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import TextElement from '@micromag/element-text';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getSizeWithinBounds } from '@folklore/size';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
-    media: PropTypes.shape({
-        url: PropTypes.string.isRequired,
-        width: PropTypes.number.isRequired,
-        height: PropTypes.number.isRequired,
-    }),
+    media: MicromagPropTypes.imageMedia,
     alt: PropTypes.string,
-    caption: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number,
     shrinkWidth: PropTypes.bool,
@@ -23,7 +17,6 @@ const propTypes = {
     objectFit: MicromagPropTypes.objectFit,
     containerStyle: MicromagPropTypes.containerStyle,
     imageStyle: MicromagPropTypes.containerStyle,
-    captionStyle: MicromagPropTypes.textStyle,    
     className: PropTypes.string,
     imageClassName: PropTypes.string,
     onLoaded: PropTypes.func,
@@ -32,7 +25,6 @@ const propTypes = {
 const defaultProps = {
     media: null,
     alt: 'image',
-    caption: null,
     width: null,
     height: null,
     shrinkWidth: false,
@@ -40,7 +32,6 @@ const defaultProps = {
     objectFit: null,
     containerStyle: {},
     imageStyle: {},
-    captionStyle: {},    
     className: null,
     imageClassName: null,
     onLoaded: null,
@@ -49,7 +40,6 @@ const defaultProps = {
 const Image = ({
     media,
     alt,
-    caption,
     width,
     height,
     shrinkWidth,
@@ -57,12 +47,12 @@ const Image = ({
     objectFit,
     containerStyle,
     imageStyle,
-    captionStyle,    
     className,
     imageClassName,
     onLoaded,
 }) => {
-    const { url = null, width: mediaWidth, height: mediaHeight } = media || {};    
+    const { url = null, metadata = null } = media || {};
+    const { width: mediaWidth, height: mediaHeight } = metadata || {};
 
     const withFit = objectFit !== null;
     
@@ -158,11 +148,6 @@ const Image = ({
             style={finalContainerStyle}
         >
             { img }
-            { url !== null && caption !== null ? (
-                <div className={styles.caption}>
-                    <TextElement body={caption} style={captionStyle} className={styles.text} />
-                </div>
-            ) : null }
         </div>
     );
 };

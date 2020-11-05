@@ -10,23 +10,6 @@
         position: relative;
     }
 
-    .caption {
-        position: absolute;
-        width: 100%;
-        mix-blend-mode: difference;
-    }
-
-    .text {
-        display: inline-block;
-        position: absolute;
-        bottom: 5px;
-        left: 5px;
-
-        p {
-            margin-bottom: 0;
-        }
-    }
-
     .showEmpty {
         @extend %empty;
         width: 300px;
