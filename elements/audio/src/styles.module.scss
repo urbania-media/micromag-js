@@ -1,6 +1,43 @@
+/* stylelint-disable selector-max-compound-selectors */
+@import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 
 .container {
-    margin: 0;
-    padding: 0;
+    .seekbar {
+        position: relative;
+
+        .background,
+        .foreground {
+            height: 200px;
+            font-size: 0;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .background {
+            .levelInner {
+                background-color: $gray-300;
+            }
+        }
+
+        .foreground {
+            @extend %fullscreen;
+            overflow: hidden;
+
+            .levelInner {
+                background-color: $gray-500;
+            }
+        }
+
+        .level {
+            display: inline-block;
+            width: 10px;
+            padding: 2px;
+            vertical-align: middle;
+        }
+
+        .levelInner {
+            height: 100%;
+        }
+    }
 }
