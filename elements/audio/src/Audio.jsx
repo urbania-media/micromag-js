@@ -63,73 +63,71 @@ const Audio = ({
     const paused = !playing;
 
     const [canPlayThrough, setCanPlayThrough] = useState(false);
+    const [seekbarReady, setSeekbarReady] = useState(false);
 
     // create and expose api
 
-    const playerApi = useMemo(
-        () => {
-            const audioEl = audioRef.current;
-            return {
-                play: () => {
-                    if (audioEl !== null) {
+    const playerApi = useMemo(() => {
+        const audioEl = audioRef.current;
+        return {
+            play: () => {
+                if (audioEl !== null) {
+                    audioEl.play();
+                }
+            },
+            pause: () => {
+                if (audioEl !== null) {
+                    audioEl.pause();
+                }
+            },
+            playPause: () => {
+                if (audioEl !== null) {
+                    if (playing) {
+                        audioEl.pause();
+                    } else {
                         audioEl.play();
                     }
-                },
-                pause: () => {
-                    if (audioEl !== null) {
-                        audioEl.pause();
-                    }
-                },
-                playPause: () => {
-                    if (audioEl !== null) {
-                        if (playing) {
-                            audioEl.pause();
-                        } else {
-                            audioEl.play();
-                        }                        
-                    }
-                },
-                stop: () => {
-                    if (audioEl !== null) {
-                        audioEl.pause();
-                        audioEl.currentTime = 0;
-                    }
-                },
-                seek: (time) => {
-                    if (audioEl !== null) {
-                        audioEl.currentTime = time;
-                    }
-                },
-                mute: () => {
-                    if (audioEl !== null) {
-                        audioEl.muted = true;
-                    }
-                },
-                unMute: () => {
-                    if (audioEl !== null) {
-                        audioEl.muted = false;
-                    }
-                },
-                muteUnmute: () => {
-                    if (audioEl !== null) {
-                        audioEl.muted = !muted;
-                    }
-                },
-                setVolume: (vol) => {
-                    if (audioEl !== null) {
-                        audioEl.volume = vol;
-                    }
-                },
-                duration,
-                currentTime,
-                volume,
-                muted,
-                playing,
-                paused,
-            };
-        },
-        [muted, volume, currentTime, duration, playing, paused],
-    );
+                }
+            },
+            stop: () => {
+                if (audioEl !== null) {
+                    audioEl.pause();
+                    audioEl.currentTime = 0;
+                }
+            },
+            seek: (time) => {
+                if (audioEl !== null) {
+                    audioEl.currentTime = time;
+                }
+            },
+            mute: () => {
+                if (audioEl !== null) {
+                    audioEl.muted = true;
+                }
+            },
+            unMute: () => {
+                if (audioEl !== null) {
+                    audioEl.muted = false;
+                }
+            },
+            muteUnmute: () => {
+                if (audioEl !== null) {
+                    audioEl.muted = !muted;
+                }
+            },
+            setVolume: (vol) => {
+                if (audioEl !== null) {
+                    audioEl.volume = vol;
+                }
+            },
+            duration,
+            currentTime,
+            volume,
+            muted,
+            playing,
+            paused,
+        };
+    }, [muted, volume, currentTime, duration, playing, paused]);
 
     if (apiRef !== null) {
         apiRef.current = playerApi;
@@ -155,19 +153,19 @@ const Audio = ({
 
         const onPlay = () => {
             setPlaying(true);
-        }
+        };
 
         const onPause = () => {
             setPlaying(false);
-        }
+        };
 
         const onEnded = () => {
-            audio.currentTime = 0;        
-        }
+            audio.currentTime = 0;
+        };
 
         const onCanPlayThrough = () => {
             setCanPlayThrough(true);
-        }
+        };
 
         audio.addEventListener('timeupdate', onTimeUpdate);
         audio.addEventListener('durationchange', onDurationChange);
@@ -188,21 +186,30 @@ const Audio = ({
         };
     }, [setCurrentTime, setDuration, setMuted, setVolume, setPlaying]);
 
-    useEffect( () => {
-        if (canPlayThrough && onReady !== null) {
+    useEffect(() => {
+        if (canPlayThrough && seekbarReady && onReady !== null) {
             onReady();
         }
-    }, [canPlayThrough, onReady]);
+    }, [canPlayThrough, seekbarReady, onReady]);
+
+    useEffect(() => {
+        setCanPlayThrough(false);
+        setSeekbarReady(false);
+    }, [url, setCanPlayThrough, setSeekbarReady]);
 
     // User events
 
-    const onPlayPauseClick = useCallback( () => {
+    const onPlayPauseClick = useCallback(() => {
         playerApi.playPause();
     }, [playerApi]);
 
-    const onMuteUnmuteClick = useCallback( () => {
+    const onMuteUnmuteClick = useCallback(() => {
         playerApi.muteUnmute();
     }, [playerApi]);
+
+    const onSeekbarReady = useCallback(() => {
+        setSeekbarReady(true);
+    }, [setSeekbarReady]);
 
     return (
         <div
@@ -216,7 +223,14 @@ const Audio = ({
             ])}
         >
             <audio ref={audioRef} src={url} autoPlay={autoPlay} loop={loop} />
-            <AudioWave media={media} currentTime={currentTime} duration={duration} playing={playing} onSeek={ playerApi.seek } />
+            <AudioWave
+                media={media}
+                currentTime={currentTime}
+                duration={duration}
+                playing={playing}
+                onSeek={playerApi.seek}
+                onReady={onSeekbarReady}
+            />
             <div className={styles.controls}>
                 <button type="button" className={styles.playPauseButton} onClick={onPlayPauseClick}>
                     <FontAwesomeIcon className={styles.icon} icon={playing ? faPause : faPlay} />

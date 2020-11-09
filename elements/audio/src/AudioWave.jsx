@@ -20,6 +20,7 @@ const propTypes = {
     progressColor: PropTypes.string,
     className: PropTypes.string,
     onSeek: PropTypes.func,
+    onReady: PropTypes.func,
 };
 
 const defaultProps = {
@@ -34,6 +35,7 @@ const defaultProps = {
     progressColor: 'lightblue',
     className: null,
     onSeek: null,
+    onReady: null,
 };
 
 const AudioWave = ({
@@ -48,6 +50,7 @@ const AudioWave = ({
     progressColor,
     className,
     onSeek,
+    onReady,
 }) => {
     const { url = null } = media || {};
 
@@ -64,11 +67,11 @@ const AudioWave = ({
     const [springProps, setSpringProps] = useSpring(() => ({
         x: 0,
         config: {
-            duration: 0
+            duration: 0,
         },
     }));
 
-    useEffect( () => {
+    useEffect(() => {
         const progress = currentTime / duration;
         setSpringProps({
             reset: true,
@@ -80,8 +83,8 @@ const AudioWave = ({
                 x: playing ? 1 : progress,
             },
             config: {
-                duration: (duration - currentTime) * 1000
-            }
+                duration: (duration - currentTime) * 1000,
+            },
         });
     }, [playing, duration, currentTime]);
 
@@ -109,7 +112,7 @@ const AudioWave = ({
         };
         request.send();
     }, [url, setAudioBuffer]);
-    
+
     // draw canvas
 
     useEffect(() => {
@@ -155,7 +158,7 @@ const AudioWave = ({
 
         const ctxBG = canvasBg.getContext('2d');
         const ctxProgress = canvasProgress.getContext('2d');
-        
+
         ctxBG.clearRect(0, 0, width, height);
         ctxProgress.clearRect(0, 0, width, height);
 
@@ -167,21 +170,46 @@ const AudioWave = ({
             const sampleX = sampleOuterWidth * amplitudeI + offsetLeft + sampleMargin;
             const sampleY = height / 2 - sampleHeight / 2;
 
-            ctxBG.fillRect(Math.round(sampleX), Math.round(sampleY), sampleWidth, Math.round(sampleHeight));
-            ctxProgress.fillRect(Math.round(sampleX), Math.round(sampleY), sampleWidth, Math.round(sampleHeight));
+            ctxBG.fillRect(
+                Math.round(sampleX),
+                Math.round(sampleY),
+                sampleWidth,
+                Math.round(sampleHeight),
+            );
+            ctxProgress.fillRect(
+                Math.round(sampleX),
+                Math.round(sampleY),
+                sampleWidth,
+                Math.round(sampleHeight),
+            );
         });
 
-    }, [audioBuffer, sampleWidth, sampleMargin, minSampleHeight, windowWidth, backgroundColor, progressColor]);
+        if (onReady !== null) {
+            onReady();
+        }
+    }, [
+        audioBuffer,
+        sampleWidth,
+        sampleMargin,
+        minSampleHeight,
+        windowWidth,
+        backgroundColor,
+        progressColor,
+        onReady,
+    ]);
 
     // User events
 
-    const onSeekClick = useCallback( (e) => {
-        if (onSeek !== null) {
-            const currentTargetRect = e.currentTarget.getBoundingClientRect();
-            const seekProgress = (e.pageX - currentTargetRect.left) / currentTargetRect.width;
-            onSeek(seekProgress * duration);
-        }
-    }, [duration]);
+    const onSeekClick = useCallback(
+        (e) => {
+            if (onSeek !== null) {
+                const currentTargetRect = e.currentTarget.getBoundingClientRect();
+                const seekProgress = (e.pageX - currentTargetRect.left) / currentTargetRect.width;
+                onSeek(seekProgress * duration);
+            }
+        },
+        [duration],
+    );
 
     return (
         <div
@@ -189,19 +217,31 @@ const AudioWave = ({
                 styles.container,
                 {
                     [className]: className !== null,
-                },                
+                },
             ])}
             ref={elRef}
         >
             <canvas ref={canvasBackgroundRef} className={styles.canvasBackground} />
-            <animated.div className={styles.progressContainer} style={{
-                transform: springProps.x.interpolate(x => `scaleX(${x}`)
-            }}>
-                <animated.canvas ref={canvasProgressRef} className={styles.canvasProgress} style={{
-                    transform: springProps.x.interpolate(x => `scaleX(${1/x}`)
-                }} />
+            <animated.div
+                className={styles.progressContainer}
+                style={{
+                    transform: springProps.x.interpolate((x) => `scaleX(${x}`),
+                }}
+            >
+                <animated.canvas
+                    ref={canvasProgressRef}
+                    className={styles.canvasProgress}
+                    style={{
+                        transform: springProps.x.interpolate((x) => `scaleX(${1 / x}`),
+                    }}
+                />
             </animated.div>
-            <button type="button" className={styles.button} onClick={onSeekClick} aria-label="Seek" />
+            <button
+                type="button"
+                className={styles.button}
+                onClick={onSeekClick}
+                aria-label="Seek"
+            />
         </div>
     );
 };
