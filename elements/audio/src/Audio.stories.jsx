@@ -9,4 +9,5 @@ export default {
 };
 
 export const Normal = () => <Audio {...audio()} />;
+export const Loop = () => <Audio {...audio()} loop />;
 export const AutoPlay = () => <Audio {...audio()} autoPlay />;

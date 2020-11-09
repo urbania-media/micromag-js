@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { audio, image, text, background } from '../../../../.storybook/data';
+import { audio, background } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import Audio from '../Audio';
@@ -27,12 +27,5 @@ export const Preview = (storyProps) => <Audio {...storyProps} />;
 export const Edit = (storyProps) => <Audio {...storyProps} />;
 
 export const Normal = (storyProps) => <Audio {...storyProps} {...props} />;
-export const WithImage = (storyProps) => <Audio {...storyProps} {...props} image={image()} />;
-export const WithImageAndText = (storyProps) => (
-    <Audio {...storyProps} {...props} text={text()} image={image()} />
-);
-export const Muted = (storyProps) => (
-    <Audio {...storyProps} {...props} audio={{ ...audio(), muted: true }} />
-);
 
 export const Definition = () => <ScreenDefinition definition={definition} />;

@@ -1,30 +1,25 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import {
-    PlaceholderImage,
     PlaceholderAudio,
-    PlaceholderText,
     Transitions,
 } from '@micromag/core/components';
 import AudioElement from '@micromag/element-audio';
-import TextElement from '@micromag/element-text';
-import ImageElement from '@micromag/element-image';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 
 import styles from './styles.module.scss';
+import { useCallback } from 'react';
 
 const propTypes = {
     layout: PropTypes.oneOf(['normal']),
     maxWidth: PropTypes.number,
     audio: MicromagPropTypes.audioElement,
-    text: MicromagPropTypes.textElement,
-    image: MicromagPropTypes.imageElement,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -36,16 +31,7 @@ const propTypes = {
 const defaultProps = {
     layout: null,
     maxWidth: 300,
-    audio: {
-        media: {
-            src: null,
-        },
-        loop: false,
-        autoPlay: false,
-        muted: false,
-    },
-    image: null,
-    text: null,
+    audio: null,
     background: null,
     current: true,
     active: true,
@@ -62,10 +48,7 @@ const defaultProps = {
 
 const Audio = ({
     layout,
-    maxWidth,
     audio,
-    image,
-    text,
     background,
     current,
     active,
@@ -78,67 +61,28 @@ const Audio = ({
     const { width, height } = useScreenSize();
     const { isPlaceholder, isView, isPreview, isEdit } = useScreenRenderContext();
 
-    const withImage = image !== null;
-    const [ready, setReady] = useState(!withImage);
+    const [ready, setReady] = useState(false);
     const transitionPlaying = current && ready;
 
-    let imageElement = null;
-
-    const onImageLoaded = useCallback(() => {
+    const onAudioReady = useCallback( () => {
         setReady(true);
     }, [setReady]);
 
-    if (withImage) {
-        if (isPlaceholder) {
-            imageElement = <PlaceholderImage className={styles.placeholder} />;
-        } else {
-            imageElement = (
-                <Transitions transitions={transitions} playing={transitionPlaying}>
-                    <ImageElement
-                        width={Math.min(width, maxWidth)}
-                        height={Math.min(width, maxWidth)}
-                        objectFit={{ fit: 'cover' }}
-                        className={styles.image}
-                        onLoaded={onImageLoaded}
-                        {...image}
-                    />
-                </Transitions>
-            );
-        }
-    }
-
-    let audioElement = null;
+    let element = null;
     if (isPlaceholder) {
-        audioElement = <PlaceholderAudio className={styles.placeholder} />;
+        element = <PlaceholderAudio className={styles.placeholder} />;
     } else {
-        audioElement = (
+        element = (
             <Transitions transitions={transitions} playing={transitionPlaying}>
                 <AudioElement
                     className={styles.audio}
-                    media={(isPlaceholder ? { ...audio, src: null } : audio)}
+                    {...audio}
                     ref={apiRef}
+                    onReady={onAudioReady}
                 />
             </Transitions>
         );
     }
-
-    let textElement = null;
-    const withText = text !== null;
-    if (withText) {
-        if (isPlaceholder) {
-            textElement = <PlaceholderText className={styles.placeholder} />;
-        } else {
-            textElement = (
-                <Transitions transitions={transitions} playing={transitionPlaying}>
-                    <TextElement {...text} className={styles.text} />
-                </Transitions>
-            );
-        }
-    }
-
-    useEffect( () => {
-        console.log(audio, apiRef.current)
-    }, [audio]);
 
     return (
         <div
@@ -160,11 +104,7 @@ const Audio = ({
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
                 <div className={styles.content}>
-                    <div className={styles.inner}>
-                        {imageElement}
-                        {audioElement}
-                        {textElement}
-                    </div>
+                    {element}
                 </div>
             </Container>
         </div>

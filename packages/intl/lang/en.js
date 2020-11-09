@@ -11,6 +11,7 @@ var D3kTvP = "Register";
 var DWEzCv = "Select a video...";
 var DgyZlU = "Start by choosing a name for your organisation.";
 var DjIdzH = "Invitation envoyée";
+var EOuygN = "My Micromags";
 var EcZYpr = "Subtitle";
 var EoLB7Z = "Stats";
 var FLMZDH = "Invite your team members to your organisation.";
@@ -35,15 +36,14 @@ var OkNUmk = "Type";
 var P7UAe2 = "Unused";
 var PKCv5M = "No item...";
 var PQG8A5 = "Link";
-var PT23V1 = "Your organisations";
 var PXCkXy = "Billing";
 var PbHeHc = "Markers";
+var PdGmQa = "Continue";
 var QDznJ0 = "Account";
 var QN68P8 = "Main contact";
 var R1HYj0 = "Save";
 var Ro8ZOq = "GalleryLegends";
 var S9YpbV = "Text";
-var Spu1AH = "MapPath";
 var StDSlO = "Ad";
 var TWXRGR = "Organisations";
 var TXPdzG = "Invite";
@@ -54,6 +54,7 @@ var Tt4jN1 = "Add";
 var U86B6w = "Stats";
 var UBXIYP = "Video";
 var UGHvSn = "Options";
+var USqJHw = "Create a story";
 var UUv8FR = "Name";
 var UfD0C8 = "Invite collaborators";
 var UhngoA = "Delete profile";
@@ -62,10 +63,10 @@ var UqPxxf = "Create a new story";
 var VqyxpU = "Ad";
 var W82zJ9 = "First name";
 var WhVrDc = "Answer Index";
-var WpZgSv = "Name";
 var Wr8abT = "Forgot password?";
 var Xt24Gj = "It’s time to start creating now.";
 var YQEv1f = "It’s time to start creating!";
+var YS4qTq = "Settings";
 var ZA6cIU = "Organisation";
 var ZqwBOx = "Questions";
 var ZtZjF0 = "TitleSubtitle";
@@ -79,38 +80,35 @@ var b7jY9K = "Map";
 var bhEaUt = "Audio";
 var cGItoy = "List";
 var cldP9G = "Medias";
-var cvatOm = "Account";
 var d60tSn = "Subtitle";
 var dVcog7 = "Title";
 var dmuKH3 = "Map";
 var dqnkQk = "Legend";
 var eIiKqX = "Slides";
+var eNT0tt = "All stories";
 var ebsPd4 = "Image";
 var ehcuYG = "Themes";
 var enFs4g = "Advanced";
 var eoW0tZ = "Duration";
 var fIawTr = "Text";
-var fpzx2Z = "Organisation";
 var g6qbbX = "Log in";
 var hVE7TA = "Question";
-var hbFrBs = "View all stories";
 var jaFXki = "Gallery";
-var kF0tkA = "Role";
 var kIl7G5 = "Published at";
-var kmNVJH = "Your account";
 var ktUr5c = "Create an organisation";
 var l7bkY2 = "Update your profile";
 var lXV3vP = "TitleSubtitleCredits";
 var li7ADr = "Result";
 var liyV7Y = "Size";
 var mv37oK = "Dimension";
+var n1ZJSY = "New story";
 var n2teag = "Add an answer";
 var nqQqsI = "Map";
 var oPvs1N = "You cannot delete your profile because you are part of the following organisations:";
 var oSZswp = "Result";
+var od3Xry = "My micromags";
 var ogg7mi = "Are you sure you want to delete your profile? This action cannot be reversed.";
 var p6n6vY = "No answer...";
-var phJeRB = "Your organisation";
 var qHrpc6 = "Organisation name";
 var qIw1nW = "Save";
 var qKQCxc = "Add a marker";
@@ -124,6 +122,7 @@ var tAYwqp = "Add a slide";
 var tHWdLB = "Delete my profile";
 var tV78uM = "Confirm password";
 var tvl2Zc = "Video";
+var uHS73n = "Role";
 var uIkMtR = "Already have an account?";
 var uJ9eBc = "Image";
 var uQjihh = "Create an organisation";
@@ -155,6 +154,8 @@ var messages = {
   "/T/UDH": "Remove all",
   "/bEns8": "MapImages",
   "/hupzO": "Credits",
+  "0BcvF9": "All",
+  "0R5Jlk": "My profile",
   "0gyI2S": "GalleryFeedLegends",
   "0vXXfT": "imagesWithLegends",
   "15GBmG": "All",
@@ -163,8 +164,8 @@ var messages = {
   "1dPnDA": "Tags",
   "1fBNmY": "ImageTitle",
   "1fNojU": "{count} {count, plural, one {screen} other {screens}}",
-  "1pR9WO": "Create an organisation",
   "2/F1Q7": "#{index}",
+  "2YxE0m": "My stories",
   "2ZOPe+": "Title",
   "36JWTz": "Create your first story",
   "3E57H7": "No marker...",
@@ -174,7 +175,6 @@ var messages = {
   "3q9GPv": "Quote",
   "3uMlsn": "Some other micromag",
   "4E2gbX": "Text",
-  "4HWKjP": "Create a story",
   "4iBXj2": "Layout",
   "4yfet+": "Password",
   "507VAi": "Description",
@@ -192,6 +192,7 @@ var messages = {
   "96KRj9": "ImageLegend",
   "9DhYaZ": "Ascending",
   "9IxKom": "Your Name",
+  "9TIZGH": "Account",
   "9WtqV7": "Team",
   "9Yv29u": "Create an organisation",
   "9ZdD+Q": "Library for",
@@ -209,6 +210,7 @@ var messages = {
   DgyZlU: DgyZlU,
   DjIdzH: DjIdzH,
   "E/qtB2": "TextTitle",
+  EOuygN: EOuygN,
   EcZYpr: EcZYpr,
   EoLB7Z: EoLB7Z,
   FLMZDH: FLMZDH,
@@ -217,7 +219,6 @@ var messages = {
   GrATUZ: GrATUZ,
   GzoKNb: GzoKNb,
   Gzx6q5: Gzx6q5,
-  "H+ppSs": "Settings",
   "IB/AQ9": "You are a member of the following organisations:",
   IMUycF: IMUycF,
   IhBOyI: IhBOyI,
@@ -231,22 +232,20 @@ var messages = {
   MmvRge: MmvRge,
   Mz76RM: Mz76RM,
   N25iDO: N25iDO,
-  "OSD/I1": "Team member",
   OdcEna: OdcEna,
   OkNUmk: OkNUmk,
   P7UAe2: P7UAe2,
   PKCv5M: PKCv5M,
   PQG8A5: PQG8A5,
-  PT23V1: PT23V1,
   PXCkXy: PXCkXy,
   PbHeHc: PbHeHc,
+  PdGmQa: PdGmQa,
   QDznJ0: QDznJ0,
   QN68P8: QN68P8,
   R1HYj0: R1HYj0,
   Ro8ZOq: Ro8ZOq,
   "S/mavZ": "Text and Images",
   S9YpbV: S9YpbV,
-  Spu1AH: Spu1AH,
   StDSlO: StDSlO,
   "TKqTz+": "Type in the number {rando} to confirm.",
   TWXRGR: TWXRGR,
@@ -258,6 +257,7 @@ var messages = {
   U86B6w: U86B6w,
   UBXIYP: UBXIYP,
   UGHvSn: UGHvSn,
+  USqJHw: USqJHw,
   UUv8FR: UUv8FR,
   UfD0C8: UfD0C8,
   UhngoA: UhngoA,
@@ -267,10 +267,11 @@ var messages = {
   VqyxpU: VqyxpU,
   W82zJ9: W82zJ9,
   WhVrDc: WhVrDc,
-  WpZgSv: WpZgSv,
   Wr8abT: Wr8abT,
   Xt24Gj: Xt24Gj,
   YQEv1f: YQEv1f,
+  YS4qTq: YS4qTq,
+  "Ylx+ds": "Logout",
   "Yyv+N3": "Settings",
   ZA6cIU: ZA6cIU,
   ZqwBOx: ZqwBOx,
@@ -289,7 +290,6 @@ var messages = {
   "c9VwT/": "Technical details",
   cGItoy: cGItoy,
   cldP9G: cldP9G,
-  cvatOm: cvatOm,
   d60tSn: d60tSn,
   dVcog7: dVcog7,
   dmuKH3: dmuKH3,
@@ -297,20 +297,17 @@ var messages = {
   "e1I+KU": "Question",
   "e6+aGf": "Select a media...",
   eIiKqX: eIiKqX,
+  eNT0tt: eNT0tt,
   ebsPd4: ebsPd4,
   ehcuYG: ehcuYG,
   enFs4g: enFs4g,
   eoW0tZ: eoW0tZ,
   fIawTr: fIawTr,
-  fpzx2Z: fpzx2Z,
   g6qbbX: g6qbbX,
   hVE7TA: hVE7TA,
-  hbFrBs: hbFrBs,
   "he/FEL": "Organisation",
   jaFXki: jaFXki,
-  kF0tkA: kF0tkA,
   kIl7G5: kIl7G5,
-  kmNVJH: kmNVJH,
   ktUr5c: ktUr5c,
   l7bkY2: l7bkY2,
   lXV3vP: lXV3vP,
@@ -321,8 +318,6 @@ var messages = {
   "menus.account.profile": "Edit profile",
   "menus.guest.login": "Login",
   "menus.guest.register": "Register",
-  "menus.main.account": "Account",
-  "menus.main.logout": "Logout",
   "menus.stories.create": "Create a new story",
   "menus.stories.recent": "Recent stories",
   "menus.stories.stories": "Stories",
@@ -334,6 +329,7 @@ var messages = {
   "menus.story.settings": "Settings",
   mv37oK: mv37oK,
   "n/o4Co": "Send request",
+  n1ZJSY: n1ZJSY,
   n2teag: n2teag,
   "navbars.editor.close": "Close",
   "navbars.editor.save": "Save",
@@ -342,13 +338,13 @@ var messages = {
   nqQqsI: nqQqsI,
   oPvs1N: oPvs1N,
   oSZswp: oSZswp,
+  od3Xry: od3Xry,
   ogg7mi: ogg7mi,
   "organisation-box.profile": "Profile",
   "organisation-box.settings": "Settings",
   "organisation-box.title": "Organisation",
   p6n6vY: p6n6vY,
   "pages.auth.reset_password.title": "Reset password",
-  phJeRB: phJeRB,
   "publish_services.archive": "Archive file",
   "publish_services.archive.filename": "Filename",
   "publish_services.archive.format": "Format",
@@ -367,11 +363,10 @@ var messages = {
   tHWdLB: tHWdLB,
   tV78uM: tV78uM,
   tvl2Zc: tvl2Zc,
-  "u8j+Yn": "Micromag",
   "uD3/zU": "Images (with legend)",
+  uHS73n: uHS73n,
   uIkMtR: uIkMtR,
   uJ9eBc: uJ9eBc,
-  "uOFw+A": "Map with path",
   uQjihh: uQjihh,
   uWIqbC: uWIqbC,
   upzOTm: upzOTm,
