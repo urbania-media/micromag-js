@@ -40,7 +40,7 @@ const withScreenLayouts = (
         return (
             <LayoutSwitcher layouts={layouts}>
                 {(layout) => (
-                    <Screen renderContext={story.toLowerCase()}>
+                    <Screen renderContext={story.toLowerCase()} withScroll>
                         <Story args={{ ...args, layout }} />
                     </Screen>
                 )}
@@ -51,7 +51,7 @@ const withScreenLayouts = (
     return (
         <LayoutSwitcher layouts={layouts}>
             {(layout) => (
-                <Screen>
+                <Screen withScroll>
                     <Story args={{ ...args, layout }} />
                 </Screen>
             )}

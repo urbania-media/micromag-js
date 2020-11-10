@@ -4,6 +4,7 @@ import {
     advertising,
     image,
     images,
+    imageWithRandomSize,
     text,
     audio,
     videoFile,
@@ -27,14 +28,20 @@ export const basic = [
     },
     {
         id: uuid(),
-        type: 'image',
-        layout: 'center',
-        text: {
-            body: 'Another image text',
+        type: 'map-images',
+        layout: 'top',
+        map: map(),
+        markers: markers(),
+        splash: { body: 'Débuter' },
+        background: {
+            color: '#FF0000',
         },
-        image: {
-            ...image(),
-        },
+    },
+    {
+        id: uuid(),
+        type: 'gallery-feed',
+        layout: 'normal',
+        images: [...Array(5)].map(() => ({ image: imageWithRandomSize() })),
         background: {
             color: '#00FF00',
         },
@@ -86,7 +93,7 @@ export const basic = [
         type: 'gallery',
         images: images({ count: 4 }),
         background: {
-            color: '#00FF00',
+            color: '#FFFF00',
         },
     },
     {
@@ -95,7 +102,7 @@ export const basic = [
         layout: 'normal',
         images: images({ count: 10 }),
         background: {
-            color: '#00FF00',
+            color: '#00FFFF',
         },
     },
     {

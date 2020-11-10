@@ -31,11 +31,13 @@ const Container = ({
 }) => {
     const currentRatio = width / height;
     const maxWidth = maxRatio !== null && currentRatio > maxRatio ? height * maxRatio : null;
+    const landscape = width > height;
+    const landscapeWithScroll = landscape && withScroll;
 
     const containerStyle = {
         width: maxWidth,
-        height: withScroll ? null : height,
-        minHeight: withScroll ? height : null
+        height: landscapeWithScroll ? null : height,
+        minHeight: landscapeWithScroll ? height : null
     };
 
     return (

@@ -12,8 +12,6 @@ const propTypes = {
     alt: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number,
-    shrinkWidth: PropTypes.bool,
-    shrinkHeight: PropTypes.bool,
     objectFit: MicromagPropTypes.objectFit,
     containerStyle: MicromagPropTypes.containerStyle,
     imageStyle: MicromagPropTypes.containerStyle,
@@ -27,8 +25,6 @@ const defaultProps = {
     alt: 'image',
     width: null,
     height: null,
-    shrinkWidth: false,
-    shrinkHeight: false,
     objectFit: null,
     containerStyle: {},
     imageStyle: {},
@@ -42,8 +38,6 @@ const Image = ({
     alt,
     width,
     height,
-    shrinkWidth,
-    shrinkHeight,
     objectFit,
     containerStyle,
     imageStyle,
@@ -52,16 +46,26 @@ const Image = ({
     onLoaded,
 }) => {
     const { url = null, metadata = null } = media || {};
-    const { width: mediaWidth, height: mediaHeight } = metadata || {};
+    const { width: mediaWidth = 0, height: mediaHeight = 0 } = metadata || {};
+    const mediaRatio = mediaWidth / mediaHeight;
 
     const withFit = objectFit !== null;
-    
+
     let finalContainerStyle;
     let finalImageStyle;
 
-    if (withFit) {        
-        const { fit = null, horizontalPosition = 'center', verticalPosition = 'center' } = objectFit || {};        
-        const { width: resizedImageWidth, height: resizedImageHeight } = getSizeWithinBounds(mediaWidth, mediaHeight, width, height, { cover: fit === 'cover' });
+    if (withFit) {
+        const {
+            fit = null,
+            horizontalPosition = 'center',
+            verticalPosition = 'center',
+            shrinkWidth = false,
+            shrinkHeight = false,
+        } = objectFit || {};
+        const {
+            width: resizedImageWidth,
+            height: resizedImageHeight,
+        } = getSizeWithinBounds(mediaWidth, mediaHeight, width, height, { cover: fit === 'cover' });
 
         let imageTop;
         let imageLeft;
@@ -83,7 +87,7 @@ const Image = ({
         }
 
         const containerWidth = shrinkWidth ? Math.min(resizedImageWidth, width) : width;
-        const containerHeight = shrinkHeight ? Math.min(resizedImageHeight, height) : height;        
+        const containerHeight = shrinkHeight ? Math.min(resizedImageHeight, height) : height;
 
         if (shrinkWidth && width > resizedImageWidth) {
             imageLeft = 0;
@@ -96,19 +100,25 @@ const Image = ({
         finalContainerStyle = {
             width: containerWidth,
             height: containerHeight,
-        }
-        
+        };
+
         finalImageStyle = {
             position: 'absolute',
             width: resizedImageWidth,
             height: resizedImageHeight,
             top: imageTop,
             left: imageLeft,
-        }
+        };
     } else {
+        const validWidth = width !== null && typeof width === 'number';
+        const validHeight = height !== null && typeof height === 'number';
+
+        const ratioWidth = validHeight ? height * mediaRatio : null;
+        const ratioHeight = validWidth ? width / mediaRatio : null;
+
         finalImageStyle = {
-            width,
-            height,
+            width: width !== null ? width : ratioWidth,
+            height: height !== null ? height : ratioHeight,
         };
     }
 
@@ -147,7 +157,7 @@ const Image = ({
             ])}
             style={finalContainerStyle}
         >
-            { img }
+            {img}
         </div>
     );
 };

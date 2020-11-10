@@ -1,13 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { audio, background } from '../../../../.storybook/data';
+import { audio, background, closedCaptions } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import Audio from '../Audio';
 import definition from '../definition';
 
 const props = {
-    audio: {...audio(), autoPlay: true },
+    audio: {...audio(), autoPlay: true, loop: true },
+    closedCaptions: {...closedCaptions()},
     background: background(),
 };
 

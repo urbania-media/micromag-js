@@ -8,6 +8,7 @@ import subtitles from './data/subtitles';
 
 import AudioTest from './data/test.mp3';
 import VideoTest from './data/test.mp4';
+import ClosedCaptionsTest from './data/test.srt';
 
 const chance = new Chance();
 
@@ -170,6 +171,13 @@ export const audio = () => ({
         metadata: {
             duration: 16000,
         }
+    }
+});
+
+export const closedCaptions = () => ({
+    media: {
+        type: 'closed-captions',
+        url: ClosedCaptionsTest,
     }
 });
 

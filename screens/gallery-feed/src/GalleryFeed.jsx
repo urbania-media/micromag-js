@@ -24,7 +24,6 @@ const propTypes = {
     current: PropTypes.bool,
     active: PropTypes.bool,
     maxRatio: PropTypes.number,
-    maxImageRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
@@ -39,14 +38,13 @@ const defaultProps = {
     current: true,
     active: true,
     maxRatio: 3 / 4,
-    maxImageRatio: 5 / 6,
     transitions: {
         in: {
             name: 'fade',
             duration: 250,
         },
         out: 'scale',
-    },
+    }, 
     transitionStagger: 75,
     className: null,
 };
@@ -60,7 +58,6 @@ const GalleryFeed = ({
     current,
     active,
     maxRatio,
-    maxImageRatio,
     transitions,
     transitionStagger,
     className,
@@ -82,7 +79,6 @@ const GalleryFeed = ({
     const screenRatio = width / height;
     const maxWidth = maxRatio !== null && screenRatio > maxRatio ? height * maxRatio : width;
     const imageWidth = maxWidth - padding * 2;
-    const imageHeight = imageWidth / maxImageRatio;
 
     const items = [];
 
@@ -106,10 +102,8 @@ const GalleryFeed = ({
             >
                 <Image
                     {...image}
+                    className={styles.image}
                     width={imageWidth}
-                    height={imageHeight}
-                    shrinkHeight
-                    objectFit={{ fit: 'contain' }}
                     onLoaded={onImageLoaded}
                 />
             </ScreenElement>,
@@ -129,7 +123,7 @@ const GalleryFeed = ({
                     emptyClassName={styles.empty}
                     isEmpty={isEdit && !hasLegend}
                 >
-                    <Text {...legend} />
+                    <Text className={styles.text} {...legend} />
                 </ScreenElement>,
             );
         }
@@ -157,7 +151,7 @@ const GalleryFeed = ({
             />
 
             <Container width={width} height={height} maxRatio={maxRatio} withScroll>
-                <Scroll>
+                <Scroll disabled={isPlaceholder}>
                     <Layout style={isView || isPreview ? { padding } : null}>
                         <TransitionsStagger
                             transitions={transitions}

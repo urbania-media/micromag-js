@@ -86,6 +86,10 @@ module.exports = {
                             plugins: [require.resolve('@babel/plugin-transform-modules-commonjs')],
                         },
                     },
+                    {
+                        test: /\.(srt)$/,
+                        loader: require.resolve('file-loader'),
+                    },
                 ]
             }
         };

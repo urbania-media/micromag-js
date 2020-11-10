@@ -10,21 +10,27 @@ const propTypes = {
     screen: MicromagPropTypes.screenType,
     current: PropTypes.bool,
     active: PropTypes.bool,
+    onPrevious: PropTypes.func,
+    onNext: PropTypes.func,
 };
 
 const defaultProps = {
     screen: null,
     current: false,
     active: true,
+    onPrevious: null,
+    onNext: null,
 };
 
-const ViewerScreen = ({ screen, active, current }) => {
+const ViewerScreen = ({ screen, active, current, onPrevious, onNext }) => {
     return screen !== null ? (
         <div className={styles.container}>
             <Screen
                 screen={screen}
                 active={active}
                 current={current}
+                onPrevious={onPrevious}
+                onNext={onNext}
             />
         </div>
     ) : null;

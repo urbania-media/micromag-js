@@ -262,7 +262,7 @@ const Timeline = ({
                 playing={(isView && current) || (isEdit && active)}
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <Scroll className={styles.scroll} verticalAlign="center">
+                <Scroll className={styles.scroll} verticalAlign="center" disabled={isPlaceholder}>
                     {timelineElements}
                 </Scroll>
             </Container>

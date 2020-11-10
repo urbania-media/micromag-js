@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -14,12 +14,12 @@ import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 
 import styles from './styles.module.scss';
-import { useCallback } from 'react';
 
 const propTypes = {
     layout: PropTypes.oneOf(['normal']),
     maxWidth: PropTypes.number,
     audio: MicromagPropTypes.audioElement,
+    closedCaptions: MicromagPropTypes.closedCaptionsElement,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -32,6 +32,7 @@ const defaultProps = {
     layout: null,
     maxWidth: 300,
     audio: null,
+    closedCaptions: null,
     background: null,
     current: true,
     active: true,
@@ -49,6 +50,7 @@ const defaultProps = {
 const Audio = ({
     layout,
     audio,
+    closedCaptions,
     background,
     current,
     active,
@@ -77,6 +79,7 @@ const Audio = ({
                 <AudioElement
                     className={styles.audio}
                     {...audio}
+                    closedCaptions={closedCaptions}
                     ref={apiRef}
                     onReady={onAudioReady}
                 />

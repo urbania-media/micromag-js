@@ -62,7 +62,7 @@ const AudioWave = ({
     // ATM the returned value changes every render and height is always null
     const { width: windowWidth } = useScreenSizeFromWindow();
 
-    // Linear animation with react-spring
+    // Linear animation for progress bar
 
     const [springProps, setSpringProps] = useSpring(() => ({
         x: 0,
@@ -131,7 +131,7 @@ const AudioWave = ({
             return;
         }
 
-        // get amplitudes levels
+        // get samples
 
         const firstChannelData = audioBuffer.getChannelData(0);
         const sampleSize = Math.floor(firstChannelData.length / samplesCount);
@@ -146,10 +146,8 @@ const AudioWave = ({
         }
 
         const normalizedAmplitudes = amplitudes.map((n) => n * Math.max(...amplitudes) ** -1);
-        const offsetLeft = (width - samplesCount * sampleOuterWidth) / 2;
 
         // draw samples
-
         const canvasBg = canvasBackgroundRef.current;
         const canvasProgress = canvasProgressRef.current;
 
@@ -164,6 +162,8 @@ const AudioWave = ({
 
         ctxBG.fillStyle = backgroundColor;
         ctxProgress.fillStyle = progressColor;
+
+        const offsetLeft = (width - samplesCount * sampleOuterWidth) / 2;
 
         normalizedAmplitudes.forEach((amplitude, amplitudeI) => {
             const sampleHeight = Math.max(minSampleHeight, amplitude * height);

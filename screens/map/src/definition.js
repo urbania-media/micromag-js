@@ -16,6 +16,7 @@ export default [
         }),
         component: Map,
         layouts: ['normal'],
+        handlesNavigation: true,
         fields: [
             {
                 name: 'layout',
@@ -64,6 +65,7 @@ export default [
         }),
         component: MapImages,
         layouts: ['normal'],
+        handlesNavigation: true,
         fields: [
             {
                 name: 'layout',

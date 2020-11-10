@@ -3,13 +3,16 @@ import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react'
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import ClosedCaptions from '@micromag/element-closed-captions';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import AudioWave from './AudioWave';
 
-import styles from './styles.module.scss';
+import styles from './styles/audio.module.scss';
+
 
 const propTypes = {
     media: MicromagPropTypes.audioMedia,
@@ -19,7 +22,7 @@ const propTypes = {
             current: PropTypes.any,
         }),
     ]),
-    // track: PropTypes.string,
+    closedCaptions: MicromagPropTypes.closedCaptionsMedia,
     initialMuted: PropTypes.bool,
     initialVolume: PropTypes.number,
     autoPlay: PropTypes.bool,
@@ -31,7 +34,7 @@ const propTypes = {
 const defaultProps = {
     media: null,
     apiRef: null,
-    // track: null,
+    closedCaptions: null,
     initialMuted: false,
     initialVolume: 1,
     autoPlay: false,
@@ -43,7 +46,7 @@ const defaultProps = {
 const Audio = ({
     media,
     apiRef,
-    // track,
+    closedCaptions,
     initialMuted,
     initialVolume,
     autoPlay,
@@ -61,9 +64,6 @@ const Audio = ({
     const [duration, setDuration] = useState(null);
     const [playing, setPlaying] = useState(false);
     const paused = !playing;
-
-    const [canPlayThrough, setCanPlayThrough] = useState(false);
-    const [seekbarReady, setSeekbarReady] = useState(false);
 
     // create and expose api
 
@@ -133,6 +133,26 @@ const Audio = ({
         apiRef.current = playerApi;
     }
 
+    // Ready event
+
+    const [canPlayThrough, setCanPlayThrough] = useState(false);
+    const [waveReady, setWaveReady] = useState(false);
+
+    const onWaveReady = useCallback(() => {
+        setWaveReady(true);
+    }, [setWaveReady]);
+
+    useEffect(() => {
+        setCanPlayThrough(false);
+        setWaveReady(false);
+    }, [url, setCanPlayThrough, setWaveReady]);
+
+    useEffect(() => {
+        if (canPlayThrough && waveReady && onReady !== null) {
+            onReady();
+        }
+    }, [canPlayThrough, waveReady, onReady]);
+
     // Audio events handlers
 
     useEffect(() => {
@@ -186,17 +206,6 @@ const Audio = ({
         };
     }, [setCurrentTime, setDuration, setMuted, setVolume, setPlaying]);
 
-    useEffect(() => {
-        if (canPlayThrough && seekbarReady && onReady !== null) {
-            onReady();
-        }
-    }, [canPlayThrough, seekbarReady, onReady]);
-
-    useEffect(() => {
-        setCanPlayThrough(false);
-        setSeekbarReady(false);
-    }, [url, setCanPlayThrough, setSeekbarReady]);
-
     // User events
 
     const onPlayPauseClick = useCallback(() => {
@@ -206,10 +215,6 @@ const Audio = ({
     const onMuteUnmuteClick = useCallback(() => {
         playerApi.muteUnmute();
     }, [playerApi]);
-
-    const onSeekbarReady = useCallback(() => {
-        setSeekbarReady(true);
-    }, [setSeekbarReady]);
 
     return (
         <div
@@ -224,13 +229,15 @@ const Audio = ({
         >
             <audio ref={audioRef} src={url} autoPlay={autoPlay} loop={loop} />
             <AudioWave
+                className={styles.wave}
                 media={media}
                 currentTime={currentTime}
                 duration={duration}
                 playing={playing}
                 onSeek={playerApi.seek}
-                onReady={onSeekbarReady}
+                onReady={onWaveReady}
             />
+            { closedCaptions !== null ? <ClosedCaptions className={styles.closedCaptions} {...closedCaptions} currentTime={currentTime} /> : null }
             <div className={styles.controls}>
                 <button type="button" className={styles.playPauseButton} onClick={onPlayPauseClick}>
                     <FontAwesomeIcon className={styles.icon} icon={playing ? faPause : faPlay} />

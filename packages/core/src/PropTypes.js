@@ -178,6 +178,8 @@ export const objectFit = PropTypes.shape({
     fit: PropTypes.oneOf(['cover', 'contain', null]),
     horizontalPosition: PropTypes.oneOf(['left', 'center', 'right']),
     verticalPosition: PropTypes.oneOf(['top', 'center', 'bottom']),
+    shrinkWidth: PropTypes.bool,
+    shrinkHeight: PropTypes.bool,
 });
 
 export const flexDirection = PropTypes.oneOf(['row', 'column']);
@@ -241,6 +243,11 @@ export const audioMedia = PropTypes.shape({
 });
 export const audioMedias = PropTypes.arrayOf(audioMedia);
 
+export const closedCaptionsMedia = PropTypes.shape({
+    ...mediaShape,
+    type: PropTypes.oneOf(['closed-captions']),
+});
+
 /**
  * Elements
  */
@@ -264,6 +271,10 @@ export const videoElement = PropTypes.shape({
 
 export const audioElement = PropTypes.shape({
     media: audioMedia,
+});
+
+export const closedCaptionsElement = PropTypes.shape({
+    media: closedCaptionsMedia,
 });
 
 export const backgroundElement = PropTypes.shape({

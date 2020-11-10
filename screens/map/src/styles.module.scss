@@ -88,11 +88,31 @@
         width: 44px;
         height: 44px;
         padding: 10px;
-        transition: opacity 0.3s ease;
         border-radius: 50%;
-        opacity: 0;
         background-color: rgba($gray-900, 0.8);
+    }
+
+    .closeButton,
+    .prevButton,
+    .nextButton {
+        transition: opacity 0.3s ease;
+        opacity: 0;
         pointer-events: none;
+    }
+
+    .prevButton,
+    .nextButton {
+        position: absolute;
+        top: 50%;
+        background-color: rgba($gray-900, 0.8);
+    }
+
+    .prevButton {
+        left: 10px;
+    }
+
+    .nextButton {
+        right: 10px;
     }
 
     .image,
@@ -121,6 +141,14 @@
         .closeButton {
             opacity: 1;
             pointer-events: all;
+        }
+
+        &:not(.hasSelectedMarker) {
+            .prevButton,
+            .nextButton {
+                opacity: 1;
+                pointer-events: all;
+            }
         }
     }
 }

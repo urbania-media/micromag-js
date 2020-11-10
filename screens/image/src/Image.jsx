@@ -122,8 +122,7 @@ const ImageScreen = ({
                         {...image}
                         width={imageWidth}
                         height={imageHeight}
-                        shrinkHeight
-                        objectFit={{ fit: 'contain' }}
+                        objectFit={{ fit: 'contain', shrinkHeight: true }}
                         onLoaded={onImageLoaded}
                     />
                 : null }

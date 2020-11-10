@@ -13,6 +13,8 @@ const propTypes = {
     component: PropTypes.node,
     components: MicromagPropTypes.components,
     className: PropTypes.string,
+    onPrevious: PropTypes.func,
+    onNext: PropTypes.func,
 };
 
 const defaultProps = {
@@ -21,9 +23,11 @@ const defaultProps = {
     component: null,
     components: null,
     className: null,
+    onPrevious: null,
+    onNext: null,
 };
 
-const Screen = ({ screen, active, current, components, component, className }) => {
+const Screen = ({ screen, active, current, components, component, className, onPrevious, onNext }) => {
     const { type } = screen;
     const CustomScreenComponent =
         components !== null ? getComponentFromName(type, components) || null : null;
@@ -32,7 +36,13 @@ const Screen = ({ screen, active, current, components, component, className }) =
 
     return ScreenComponent !== null ? (
         <div className={className}>
-            <ScreenComponent {...screen} active={active} current={current} />
+            <ScreenComponent
+                {...screen}
+                active={active}
+                current={current}
+                onPrevious={onPrevious}
+                onNext={onNext}
+            />
         </div>
     ) : (
         <div className={className}>{component}</div>

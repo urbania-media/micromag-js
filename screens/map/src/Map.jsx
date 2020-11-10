@@ -31,6 +31,8 @@ const propTypes = {
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
+    onPrevious: PropTypes.func,
+    onNext: PropTypes.func,
 };
 
 const defaultProps = {
@@ -52,6 +54,8 @@ const defaultProps = {
         out: 'scale',
     },
     className: null,
+    onPrevious: null,
+    onNext: null,
 };
 
 const Map = ({
@@ -67,6 +71,8 @@ const Map = ({
     maxRatio,
     transitions,
     className,
+    onPrevious,
+    onNext,
 }) => {
     const [opened, setOpened] = useState(false);
     
@@ -169,6 +175,12 @@ const Map = ({
                 </div>
                 <Button className={styles.closeButton} onClick={onCloseClick}>
                     X
+                </Button>
+                <Button className={styles.prevButton} onClick={onPrevious}>
+                    Prev
+                </Button>
+                <Button className={styles.nextButton} onClick={onNext}>
+                    Next
                 </Button>
             </Transitions>
         );
