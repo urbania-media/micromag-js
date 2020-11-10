@@ -25,6 +25,9 @@ import CheckEmailPage from './pages/auth/CheckEmail';
 import OrganisationCreatePage from './pages/organisation/Create';
 import OrganisationSettingsPage from './pages/organisation/Settings';
 import OrganisationBillingPage from './pages/organisation/Billing';
+import OrganisationBillingInfoPage from './pages/organisation/BillingInfo';
+import OrganisationBillingHistoryPage from './pages/organisation/BillingHistory';
+import OrganisationBillingPlanPage from './pages/organisation/BillingPlan';
 import OrganisationTeamPage from './pages/organisation/Team';
 import OrganisationStatsPage from './pages/organisation/Stats';
 import OrganisationThemesPage from './pages/organisation/Themes';
@@ -113,6 +116,9 @@ const Routes = () => {
                     from={[
                         routes['organisation.settings'],
                         routes['organisation.billing'],
+                        routes['organisation.billing_history'],
+                        routes['organisation.billing_info'],
+                        routes['organisation.billing_plan'],
                         routes['organisation.team'],
                         routes['organisation.stats'],
                         routes['organisation.themes'],
@@ -131,6 +137,22 @@ const Routes = () => {
                 path={routes['organisation.billing']}
                 exact
                 component={OrganisationBillingPage}
+            />
+
+            <Route
+                path={routes['organisation.billing_history']}
+                exact
+                component={OrganisationBillingHistoryPage}
+            />
+            <Route
+                path={routes['organisation.billing_info']}
+                exact
+                component={OrganisationBillingInfoPage}
+            />
+            <Route
+                path={routes['organisation.billing_plan']}
+                exact
+                component={OrganisationBillingPlanPage}
             />
             <Route path={routes['organisation.team']} exact component={OrganisationTeamPage} />
             <Route path={routes['organisation.themes']} exact component={OrganisationThemesPage} />

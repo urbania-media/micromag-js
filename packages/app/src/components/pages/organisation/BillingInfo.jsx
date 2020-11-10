@@ -3,14 +3,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-import { FormPanel, Link } from '@micromag/core/components';
-import { useUrlGenerator } from '@micromag/core/contexts';
+import { FormPanel } from '@micromag/core/components';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
+import BillingInfoForm from '../../forms/BillingInfo';
 import OrganisationMenu from '../../menus/Organisation';
 
-import styles from '../../../styles/pages/organisation/billing.module.scss';
+import { useOrganisation as useContextOrganisation } from '../../../contexts/OrganisationContext';
+
+import styles from '../../../styles/pages/organisation/billing-info.module.scss';
 
 const propTypes = {
     className: PropTypes.string,
@@ -20,8 +22,9 @@ const defaultProps = {
     className: null,
 };
 
-const OrganisationBillingPage = ({ className }) => {
-    const url = useUrlGenerator();
+const OrganisationBillingInfoPage = ({ className }) => {
+    const organisation = useContextOrganisation();
+    // const { fields } = useOrganisationBillingMethod(organisation.id);
 
     return (
         <MainLayout>
@@ -33,7 +36,10 @@ const OrganisationBillingPage = ({ className }) => {
                     />
                 }
                 title={
-                    <FormattedMessage defaultMessage="Billing" descrition="Billing page title" />
+                    <FormattedMessage
+                        defaultMessage="Billing info"
+                        descrition="Billing info page title"
+                    />
                 }
                 sidebar={<OrganisationMenu asList />}
                 className={classNames([
@@ -44,23 +50,14 @@ const OrganisationBillingPage = ({ className }) => {
                 ])}
             >
                 <FormPanel>
-                    <p>Billing</p>
-                    <p>
-                        <Link href={url('organisation.billing_info')}>Billing info</Link>
-                    </p>
-                    <p>
-                        <Link href={url('organisation.billing_history')}>Billing history</Link>
-                    </p>
-                    <p>
-                        <Link href={url('organisation.billing_plan')}>Billing plan</Link>
-                    </p>
+                    <BillingInfoForm organisation={organisation} />
                 </FormPanel>
             </Page>
         </MainLayout>
     );
 };
 
-OrganisationBillingPage.propTypes = propTypes;
-OrganisationBillingPage.defaultProps = defaultProps;
+OrganisationBillingInfoPage.propTypes = propTypes;
+OrganisationBillingInfoPage.defaultProps = defaultProps;
 
-export default OrganisationBillingPage;
+export default OrganisationBillingInfoPage;

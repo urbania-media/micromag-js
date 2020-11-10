@@ -440,3 +440,17 @@ export const searchFilter = PropTypes.shape({
 });
 
 export const searchFilters = PropTypes.arrayOf(searchFilter);
+
+/**
+ * Payments
+ */
+
+export const paymentItem = PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    date: PropTypes.string,
+    type: PropTypes.string,
+    invoice_link: PropTypes.string,
+    amount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+});
+
+export const paymentItems = PropTypes.arrayOf(paymentItem);
