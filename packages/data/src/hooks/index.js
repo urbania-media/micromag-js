@@ -23,6 +23,8 @@ export { default as useOrganisationMemberBatch } from './useOrganisationMemberBa
 export { default as useOrganisationMemberCreate } from './useOrganisationMemberCreate';
 export { default as useOrganisationMemberDelete } from './useOrganisationMemberDelete';
 export { default as useOrganisationMemberUpdate } from './useOrganisationMemberUpdate';
+export { default as useOrganisationBillingMethod } from './useOrganisationBillingMethod';
+export { default as useOrganisationBillingHistory } from './useOrganisationBillingHistory';
 export { default as useOrganisations } from './useOrganisations';
 export { default as useOrganisationTeam } from './useOrganisationTeam';
 export { default as useOrganisationRoles } from './useOrganisationRoles';

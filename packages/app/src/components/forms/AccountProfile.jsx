@@ -1,8 +1,8 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 // import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Form } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
@@ -69,7 +69,10 @@ const AccountProfileForm = ({ fields, className, onUpdated }) => {
             postForm={postForm}
             initialValue={user}
             submitButtonLabel={
-                <FormattedMessage defaultMessage="Update profile" description="Button label" />
+                <FormattedMessage
+                    defaultMessage="Update profile"
+                    description="Update profile button label"
+                />
             }
             onComplete={onUpdated !== null ? onUpdated : null}
             className={className}
