@@ -1,3 +1,5 @@
+/* stylelint-disable value-no-vendor-prefix, property-no-vendor-prefix */
+
 @import '~@micromag/core/scss/placeholders';
 @import '~@micromag/core/scss/variables';
 
@@ -12,5 +14,11 @@
         height: 80px;
         border: dashed 2px $gray-800;
         color: $gray-800;
+    }
+
+    &.withLineClamp {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 }

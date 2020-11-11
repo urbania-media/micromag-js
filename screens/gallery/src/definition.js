@@ -17,23 +17,26 @@ export default [
         component: Gallery,
         layouts: [
             // 2
-            'two-vertical',
-            'two-horizontal',
+            'two-vertical-equal',
+            'two-vertical-top',
+            'two-vertical-bottom',
             // 3
-            'one-plus-two',
-            'two-plus-one',
             'three-vertical',
+            'one-two',
+            'two-one',
             // 4
-            'four-mosaic',
-            'four-mosaic-reverse',
             'two-by-two',
-            'one-plus-three',
+            'four-vertical',
+            'one-two-one',
+            'four-mosaic',
             // 5
-            'two-wide-plus-three',
-            'three-plus-two-wide',
+            'two-one-two',
+            'one-two-two',
+            'two-two-one',
             // 6
             'two-by-three',
-            'three-by-two',
+            'one-one-two-two',
+            'two-two-one-one',
         ],
         fields: [
             {
@@ -76,23 +79,26 @@ export default [
         component: GalleryLegends,
         layouts: [
             // 2
-            'two-vertical',
-            'two-horizontal',
+            'two-vertical-equal',
+            'two-vertical-top',
+            'two-vertical-bottom',
             // 3
-            'one-plus-two',
-            'two-plus-one',
             'three-vertical',
+            'one-two',
+            'two-one',
             // 4
-            'four-mosaic',
-            'four-mosaic-reverse',
             'two-by-two',
-            'one-plus-three',
+            'four-vertical',
+            'one-two-one',
+            'four-mosaic',
             // 5
-            'two-wide-plus-three',
-            'three-plus-two-wide',
+            'two-one-two',
+            'one-two-two',
+            'two-two-one',
             // 6
             'two-by-three',
-            'three-by-two',
+            'one-one-two-two',
+            'two-two-one-one',
         ],
         fields: [
             {

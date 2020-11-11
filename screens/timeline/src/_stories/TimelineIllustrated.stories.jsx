@@ -15,6 +15,12 @@ const props = {
     background: background(),
 };
 
+const normalProps = {
+    bulletColor: '#FFF',
+    lineColor: '#FFF',
+    bulletFilled: false
+};
+
 export default {
     title: 'Screens/TimelineIllustrated',
     component: TimelineIllustrated,
@@ -26,10 +32,10 @@ export default {
 
 export const Placeholder = (storyProps) => <TimelineIllustrated {...storyProps} {...props}/>;
 
-export const Preview = (storyProps) => <TimelineIllustrated {...storyProps} {...props} />;
+export const Preview = (storyProps) => <TimelineIllustrated {...storyProps} {...props} {...normalProps} />;
 
 export const Edit = (storyProps) => <TimelineIllustrated {...storyProps} />;
 
-export const Normal = (storyProps) => <TimelineIllustrated {...storyProps} {...props} />;
+export const Normal = (storyProps) => <TimelineIllustrated {...storyProps} {...props} {...normalProps} />;
 
 export const Definition = () => <ScreenDefinition definition={definition} />;

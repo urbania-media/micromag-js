@@ -19,7 +19,7 @@ const propTypes = {
     layout: PropTypes.oneOf(['normal', 'reverse']),
     images: MicromagPropTypes.imageElementsWithLegend,
     withLegends: PropTypes.bool,
-    padding: PropTypes.number,
+    spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -33,7 +33,7 @@ const defaultProps = {
     layout: 'normal',
     images: [],
     withLegends: false,
-    padding: 20,
+    spacing: 20,
     background: null,
     current: true,
     active: true,
@@ -53,7 +53,7 @@ const GalleryFeed = ({
     layout,
     images,
     withLegends,
-    padding,
+    spacing,
     background,
     current,
     active,
@@ -78,13 +78,14 @@ const GalleryFeed = ({
 
     const screenRatio = width / height;
     const maxWidth = maxRatio !== null && screenRatio > maxRatio ? height * maxRatio : width;
-    const imageWidth = maxWidth - padding * 2;
+    const imageWidth = maxWidth - spacing * 2;
 
     const items = [];
 
-    const finalImages = isEdit && images.length === 0 ? [{}] : images;
+    const editImages = isEdit && images.length === 0 ? [{}] : images;
+    const finalImages = isPlaceholder ? [...Array(5)] : editImages;
 
-    (isPlaceholder ? [...Array(5)] : finalImages ).forEach((imageEl, index) => {
+    finalImages.forEach((imageEl, index) => {
 
         const { image = null, legend = null } = imageEl || {};
         const hasImage = image !== null;
@@ -102,7 +103,6 @@ const GalleryFeed = ({
             >
                 <Image
                     {...image}
-                    className={styles.image}
                     width={imageWidth}
                     onLoaded={onImageLoaded}
                 />
@@ -123,10 +123,18 @@ const GalleryFeed = ({
                     emptyClassName={styles.empty}
                     isEmpty={isEdit && !hasLegend}
                 >
-                    <Text className={styles.text} {...legend} />
+                    <div className={styles.legend} style={{
+                        marginTop: spacing / 2,
+                        marginBottom: index < finalImages.length - 1 ? spacing / 2 : 0
+                    }}>
+                        <Text {...legend} />
+                    </div>                    
                 </ScreenElement>,
             );
         }
+        if (!isPlaceholder && index < finalImages.length - 1) {
+            items.push(<div style={{height: spacing}} />);
+        }        
     });
 
     if (isReversed) {
@@ -152,7 +160,7 @@ const GalleryFeed = ({
 
             <Container width={width} height={height} maxRatio={maxRatio} withScroll>
                 <Scroll disabled={isPlaceholder}>
-                    <Layout style={isView || isPreview ? { padding } : null}>
+                    <Layout style={isView || isPreview ? { padding: spacing } : null}>
                         <TransitionsStagger
                             transitions={transitions}
                             stagger={transitionStagger}

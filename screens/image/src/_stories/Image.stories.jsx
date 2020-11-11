@@ -7,7 +7,7 @@ import Image from '../Image';
 import definition from '../definition';
 
 const props = {
-    image: imageWithRandomSize(),
+    image: {...imageWithRandomSize(), objectFit: { fit: 'cover' }},
     background: background(),
 };
 

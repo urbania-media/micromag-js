@@ -1,213 +1,95 @@
-/* eslint-disable react/no-array-index-key, jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
-import React, { useRef, useState, useCallback, useEffect } from 'react';
+/* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign */
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { getSizeWithinBounds } from '@folklore/size';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import VideoControls from '@micromag/element-media-controls';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useMediaApi } from '@micromag/core/hooks';
 
 import styles from './styles/video.module.scss';
 
 const propTypes = {
-    media: PropTypes.shape({
-        id: PropTypes.string,
-        url: PropTypes.string,
-        metadata: PropTypes.shape({
-            width: PropTypes.number,
-            height: PropTypes.number,
+    media: MicromagPropTypes.videoMedia,
+    apiRef: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({
+            current: PropTypes.any,
         }),
-    }),
+    ]),
+    initialMuted: PropTypes.bool,
+    initialVolume: PropTypes.number,
     autoPlay: PropTypes.bool,
-    muted: PropTypes.bool,
     loop: PropTypes.bool,
-    controls: MicromagPropTypes.videoControls,
-    players: PropTypes.arrayOf(PropTypes.elementType),
-    width: PropTypes.number,
-    height: PropTypes.number,
-    objectFit: MicromagPropTypes.objectFit,
-    showEmpty: PropTypes.bool,
-    onReady: PropTypes.func,
     className: PropTypes.string,
+    onReady: PropTypes.func,
 };
 
 const defaultProps = {
     media: null,
-    players: null,
-    width: null,
-    height: null,
+    apiRef: null,
+    initialMuted: false,
+    initialVolume: 1,
     autoPlay: false,
-    muted: false,
     loop: false,
-    controls: null,
-    objectFit: null,
-    showEmpty: false,
-    onReady: null,
     className: null,
+    onReady: null,
 };
 
 const Video = ({
-    media: video,
-    players,
-    width: defaultMaxWidth,
-    height: defaultMaxHeight,
+    media,
+    apiRef,
+    initialMuted,
+    initialVolume,
     autoPlay,
-    muted: initialMuted,
     loop,
-    controls,
-    objectFit,
-    showEmpty,
-    onReady,
     className,
+    onReady,
 }) => {
-    const controlsVisible = controls !== null;
+    const { url = null } = media || {};
 
-    const { url = null, metadata = {} } = video || {};
-    const { width = null, height = null } = metadata;
+    // use api
 
-    const maxWidth = defaultMaxWidth || width;
-    const maxHeight = defaultMaxHeight || height;
-    // console.log(width, height);
-    const finalPlayers = players || Video.defaultPlayers;
-    const PlayerComponent =
-        url !== null ? finalPlayers.find((it) => it.testUrl(url)) || null : null;
-    const refPlayer = useRef(null);
-    const [playerReady, setPlayerReady] = useState(false);
-    const [duration, setDuration] = useState(0);
-    const [videoSize, setVideoSize] = useState({
-        width,
-        height,
-    });
-    const [currentTime, setCurrentTime] = useState(0);
-    const [playerState, setPlayerState] = useState({
-        playing: false,
-        paused: false,
-        ended: false,
-        muted: initialMuted,
+    const {
+        ref,
+        api,
+        muted,
+        paused,
+        ready,
+    } = useMediaApi({
+        url,
+        initialMuted,
+        initialVolume,
     });
 
-    const onPlayerReady = useCallback(() => {
-        setPlayerReady(true);
+    // expose api    
 
-        const player = refPlayer.current;
-        const duration = player.getDuration();
-        const size = player.getSize();
+    if (apiRef !== null) {
+        apiRef.current = api;
+    }
 
-        setDuration(duration);
-        setVideoSize(size);
-
-        if (onReady !== null) {
-            onReady({duration, size});
+    useEffect(() => {
+        if (ready && onReady !== null) {
+            onReady();
         }
-    }, [setPlayerReady, setDuration, setVideoSize, onReady]);
-
-    const onPlayerStateChange = useCallback(
-        (newPlayerState) => {
-            setPlayerState(newPlayerState);
-        },
-        [setPlayerState],
-    );
-
-    const onPlayerCurrentTimeChange = useCallback(
-        (newCurrentTime) => {
-            setCurrentTime(newCurrentTime);
-        },
-        [setCurrentTime],
-    );
-
-    useEffect(() => {
-        setVideoSize({ width, height });
-    }, [width, height]);
-
-    useEffect(() => {
-        setPlayerState({ ...playerState, muted: initialMuted });
-    }, [initialMuted, setPlayerState]);
-
-    useEffect(() => {
-        if (refPlayer.current) {
-            if (!autoPlay) {
-                refPlayer.current.pause();
-            } else {
-                refPlayer.current.play();
-            }
-        }
-    }, [autoPlay]);
-
-    const { fit = null } = objectFit || {};
-
-    let playerSize =
-        objectFit === null
-            ? {
-                  width,
-                  height,
-              }
-            : getSizeWithinBounds(videoSize.width, videoSize.height, maxWidth, maxHeight, {
-                  cover: fit === 'cover',
-              });
-    playerSize = showEmpty && !url ? { width: '100%', height: 200 } : playerSize;
+    }, [ready, onReady]);
 
     return (
         <div
             className={classNames([
                 styles.container,
                 {
-                    [styles.isReady]: playerReady,
-                    [className]: className,
+                    [className]: className !== null,
+                    [styles.paused]: paused,
+                    [styles.muted]: muted,
                 },
             ])}
-            style={{
-                width: playerSize.width,
-                height: playerSize.height,
-            }}
         >
-            {(playerReady && controlsVisible) || (!url && showEmpty) ? (
-                <VideoControls
-                    {...refPlayer.current}
-                    {...playerState}
-                    {...(controls !== true ? controls : null)}
-                    duration={duration}
-                    currentTime={currentTime}
-                    width={Math.min(maxWidth, playerSize.width)}
-                    className={styles.controls}
-                />
-            ) : null}
-            {PlayerComponent !== null ? (
-                <div
-                    className={styles.playerContainer}
-                    style={{
-                        width: playerSize.width,
-                        height: playerSize.height,
-                        top: fit === 'cover' ? (maxHeight - playerSize.height) / 2 : 0,
-                        left: fit === 'cover' ? (maxWidth - playerSize.width) / 2 : 0,
-                    }}
-                >
-                    <PlayerComponent
-                        url={url}
-                        width={playerSize.width}
-                        height={playerSize.height}
-                        autoPlay={autoPlay}
-                        muted={initialMuted}
-                        loop={loop}
-                        refPlayer={refPlayer}
-                        className={styles.player}
-                        onReady={onPlayerReady}
-                        onStateChange={onPlayerStateChange}
-                        onCurrentTimeChange={onPlayerCurrentTimeChange}
-                    />
-                </div>
-            ) : null}
+            <video ref={ref} autoPlay={autoPlay} loop={loop} />
         </div>
     );
 };
 
 Video.propTypes = propTypes;
 Video.defaultProps = defaultProps;
-Video.defaultPlayers = [];
-Video.registerPlayer = (Player) => {
-    const playerIndex = Video.defaultPlayers.findIndex((it) => it === Player);
-    if (playerIndex === -1) {
-        Video.defaultPlayers = [...Video.defaultPlayers, Player];
-    }
-};
 
-export default Video;
+export default React.forwardRef((props, ref) => <Video apiRef={ref} {...props} />);

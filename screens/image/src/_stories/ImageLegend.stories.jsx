@@ -7,7 +7,7 @@ import ImageLegend from '../ImageLegend';
 import definition from '../definition';
 
 const props = {
-    image: imageWithRandomSize(),
+    image: {...imageWithRandomSize(), objectFit: { fit: 'cover' }},
     legend: text(),
     background: background(),
 };

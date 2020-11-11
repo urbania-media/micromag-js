@@ -33,21 +33,18 @@
     .line {
         flex-grow: 1;
         width: 1px;
-        background-color: $black;
 
         &.hidden {
             width: auto;
-            background-color: transparent;
         }
     }
 
-    .dot {
+    .bullet {
         width: 15px;
         height: 15px;
         margin: 2px 0;
-        border: 1px solid $black;
-        border-radius: 50%;
-        background-color: $white;
+        border-width: 1px;
+        border-style: solid;
     }
 
     .content {
@@ -74,7 +71,7 @@
             width: 20px;
         }
 
-        .dot {
+        .bullet {
             width: 10px;
             height: 10px;
         }
@@ -87,6 +84,12 @@
             justify-content: center;
             height: 100%;
             padding: 2px 0;
+        }
+    }
+
+    &.circleBulletShape {
+        .bullet {
+            border-radius: 50%;
         }
     }
 }

@@ -18,4 +18,12 @@
             @extend %empty-image;
         }
     }
+
+    .imageContainer {
+        flex-grow: 1;
+    }
+
+    .placeholderImage {
+        height: 100%;
+    }
 }

@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { PlaceholderImage, PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
-import { PlaceholderShortText, ScreenElement, TransitionsStagger } from '@micromag/core/components';
+import { PlaceholderShortText, ScreenElement, Transitions } from '@micromag/core/components';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout /* , { Spacer } */ from '@micromag/element-layout';
@@ -24,14 +24,12 @@ const propTypes = {
     withTitle: PropTypes.bool,
     withText: PropTypes.bool,
     withLegend: PropTypes.bool,
-    padding: PropTypes.number,
+    spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
     maxRatio: PropTypes.number,
-    maxImageRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
-    transitionStagger: PropTypes.number,
     className: PropTypes.string,
 };
 
@@ -44,12 +42,11 @@ const defaultProps = {
     withTitle: false,
     withText: false,
     withLegend: false,
-    padding: 20,
+    spacing: 20,
     background: null,
     current: true,
     active: true,
     maxRatio: 3 / 4,
-    maxImageRatio: 5 / 6,
     transitions: {
         in: {
             name: 'fade',
@@ -57,7 +54,6 @@ const defaultProps = {
         },
         out: 'scale',
     },
-    transitionStagger: 100,
     className: null,
 };
 
@@ -70,24 +66,22 @@ const ImageScreen = ({
     withTitle,
     withText,
     withLegend,
-    padding,
+    spacing,
     background,
     current,
     active,
     maxRatio,
-    maxImageRatio,
     transitions,
-    transitionStagger,
     className,
 }) => {
-    const { width, height } = useScreenSize();    
+    const { width, height } = useScreenSize();
 
-    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
+    const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
 
     const hasImage = image !== null;
     const hasTitle = title !== null;
     const hasText = text !== null;
-    const hasLegend = legend !== null;    
+    const hasLegend = legend !== null;
 
     const isEmpty = isEdit && !hasTitle && !hasImage;
 
@@ -101,34 +95,51 @@ const ImageScreen = ({
     const isReversed = layout === 'reverse';
     const isTitleTop = layout === 'title-top';
 
-    const screenRatio = width / height;
-    const maxWidth = maxRatio !== null && screenRatio > maxRatio ? height * maxRatio : width;
-    const imageWidth = maxWidth - padding * 2;
-    const imageHeight = imageWidth / maxImageRatio;
+    const imageCntRef = useRef(null);
+    const [imageSize, setImageSize] = useState(null);
+
+    useEffect(() => {
+        const currentImageCntRef = imageCntRef.current;
+        if (currentImageCntRef !== null) {
+            setImageSize({
+                width: currentImageCntRef.offsetWidth,
+                height: currentImageCntRef.offsetHeight,
+            });
+        }
+    }, [width, height, setImageSize]);
 
     const items = [
-        (
+        <div
+            key="image"
+            ref={imageCntRef}
+            className={styles.imageContainer}
+            style={!isPlaceholder ? { margin: spacing / 2 } : null}
+        >
             <ScreenElement
-                key="image"
-                placeholder="image"
+                placeholder={
+                    <PlaceholderImage
+                        className={styles.placeholderImage}
+                        width="100%"
+                        height="100%"
+                    />
+                }
                 emptyLabel={
                     <FormattedMessage defaultMessage="Image" description="Image placeholder" />
                 }
                 emptyClassName={styles.empty}
                 isEmpty={isEmpty}
             >
-                { hasImage ?
-                    <Image
-                        {...image}
-                        width={imageWidth}
-                        height={imageHeight}
-                        objectFit={{ fit: 'contain', shrinkHeight: true }}
-                        onLoaded={onImageLoaded}
-                    />
-                : null }
-                
+                {hasImage ? (
+                    <Transitions transitions={transitions} playing={transitionPlaying}>
+                        <Image
+                            {...image}
+                            {...imageSize}
+                            onLoaded={onImageLoaded}
+                        />
+                    </Transitions>
+                ) : null}
             </ScreenElement>
-        ),
+        </div>,
         withTitle && (
             <ScreenElement
                 key="title"
@@ -139,7 +150,15 @@ const ImageScreen = ({
                 emptyClassName={styles.empty}
                 isEmpty={isEmpty}
             >
-                { hasTitle ? <Heading {...title} /> : null }
+                {hasTitle ? (
+                    <Transitions transitions={transitions} playing={transitionPlaying}>
+                        <div
+                            style={!isPlaceholder ? { margin: spacing / 2 } : null}
+                        >
+                            <Heading {...title} />
+                        </div>
+                    </Transitions>
+                ) : null}
             </ScreenElement>
         ),
 
@@ -153,7 +172,15 @@ const ImageScreen = ({
                 emptyClassName={styles.empty}
                 isEmpty={isEmpty}
             >
-                { hasText ? <Text {...text} /> : null }
+                {hasText ? (
+                    <Transitions transitions={transitions} playing={transitionPlaying}>
+                        <div
+                            style={!isPlaceholder ? { margin: spacing / 2 } : null}
+                        >
+                            <Text {...text} />
+                        </div>
+                    </Transitions>
+                ) : null}
             </ScreenElement>
         ),
 
@@ -167,9 +194,17 @@ const ImageScreen = ({
                 emptyClassName={styles.empty}
                 isEmpty={isEmpty}
             >
-                { hasLegend ? <Text {...legend} /> : null }
+                {hasLegend ? (
+                    <Transitions transitions={transitions} playing={transitionPlaying}>
+                        <div
+                            style={!isPlaceholder ? { margin: spacing / 2 } : null}
+                        >
+                            <Text {...legend} />
+                        </div>
+                    </Transitions>
+                ) : null}
             </ScreenElement>
-        )
+        ),
     ];
 
     if (isReversed) {
@@ -186,6 +221,8 @@ const ImageScreen = ({
                 styles.container,
                 {
                     [className]: className !== null,
+                    [styles.isReversed]: isReversed,
+                    [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}
         >
@@ -198,17 +235,11 @@ const ImageScreen = ({
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
                 <Layout
+                    className={styles.layout}
                     fullscreen
-                    style={isView || isPreview ? { padding } : null}
+                    style={!isPlaceholder ? { padding: spacing / 2 } : null}
                 >
-                    <TransitionsStagger
-                        transitions={transitions}
-                        stagger={transitionStagger}
-                        disabled={!isView && !isPreview}
-                        playing={transitionPlaying}
-                    >
-                        {items}
-                    </TransitionsStagger>
+                    {items}
                 </Layout>
             </Container>
         </div>

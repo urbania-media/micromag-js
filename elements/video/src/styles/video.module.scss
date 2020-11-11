@@ -2,55 +2,9 @@
 @import '~@micromag/core/scss/placeholders';
 
 .container {
-    position: relative;
-    // overflow: hidden;
-    background-color: $black;
-
-    .controls {
-        position: absolute;
-        z-index: 3;
-        bottom: -1px;
-        left: 0;
-        // width: 100%;
-        transform: translateZ(0);
-        // This is a browser bugfix, see https://stackoverflow.com/questions/49653475/video-and-z-index-inside-scaled-element-some-divs-disappear
+    display: block;
+    
+    video {
+        background-color: $black;
     }
-
-    .playerContainer {
-        @extend %fullscreen;
-    }
-
-    .poster,
-    .player,
-    .iframe,
-    .blockButton {
-        @extend %fullscreen;
-    }
-
-    .player,
-    .iframe {
-        z-index: 1;
-    }
-
-    .blockButton {
-        @extend %reset-button;
-        display: block;
-        z-index: 3;
-    }
-
-    .poster {
-        z-index: 2;
-        transition: opacity 0.2s ease-out;
-        opacity: 1;
-    }
-
-    &.hasPlayed {
-        .poster {
-            opacity: 0;
-        }
-    }
-}
-
-.videoFile {
-    // max-width: 100%;
 }

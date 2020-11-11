@@ -178,8 +178,6 @@ export const objectFit = PropTypes.shape({
     fit: PropTypes.oneOf(['cover', 'contain', null]),
     horizontalPosition: PropTypes.oneOf(['left', 'center', 'right']),
     verticalPosition: PropTypes.oneOf(['top', 'center', 'bottom']),
-    shrinkWidth: PropTypes.bool,
-    shrinkHeight: PropTypes.bool,
 });
 
 export const flexDirection = PropTypes.oneOf(['row', 'column']);

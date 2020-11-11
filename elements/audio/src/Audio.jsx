@@ -1,9 +1,10 @@
-/* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign, react/no-array-index-key */
-import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react';
+/* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign */
+import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useMediaApi } from '@micromag/core/hooks';
 import ClosedCaptions from '@micromag/element-closed-captions';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,7 +13,6 @@ import { faPlay, faPause, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 import AudioWave from './AudioWave';
 
 import styles from './styles/audio.module.scss';
-
 
 const propTypes = {
     media: MicromagPropTypes.audioMedia,
@@ -56,165 +56,57 @@ const Audio = ({
 }) => {
     const { url = null } = media || {};
 
-    const audioRef = useRef(null);
+    // use api
 
-    const [muted, setMuted] = useState(initialMuted);
-    const [volume, setVolume] = useState(initialVolume);
-    const [currentTime, setCurrentTime] = useState(0);
-    const [duration, setDuration] = useState(null);
-    const [playing, setPlaying] = useState(false);
-    const paused = !playing;
+    const {
+        ref,
+        api,
+        muted,
+        currentTime,
+        duration,
+        playing,
+        paused,
+        ready: audioReady,
+    } = useMediaApi({
+        url,
+        initialMuted,
+        initialVolume,
+    });    
 
-    // create and expose api
-
-    const playerApi = useMemo(() => {
-        const audioEl = audioRef.current;
-        return {
-            play: () => {
-                if (audioEl !== null) {
-                    audioEl.play();
-                }
-            },
-            pause: () => {
-                if (audioEl !== null) {
-                    audioEl.pause();
-                }
-            },
-            playPause: () => {
-                if (audioEl !== null) {
-                    if (playing) {
-                        audioEl.pause();
-                    } else {
-                        audioEl.play();
-                    }
-                }
-            },
-            stop: () => {
-                if (audioEl !== null) {
-                    audioEl.pause();
-                    audioEl.currentTime = 0;
-                }
-            },
-            seek: (time) => {
-                if (audioEl !== null) {
-                    audioEl.currentTime = time;
-                }
-            },
-            mute: () => {
-                if (audioEl !== null) {
-                    audioEl.muted = true;
-                }
-            },
-            unMute: () => {
-                if (audioEl !== null) {
-                    audioEl.muted = false;
-                }
-            },
-            muteUnmute: () => {
-                if (audioEl !== null) {
-                    audioEl.muted = !muted;
-                }
-            },
-            setVolume: (vol) => {
-                if (audioEl !== null) {
-                    audioEl.volume = vol;
-                }
-            },
-            duration,
-            currentTime,
-            volume,
-            muted,
-            playing,
-            paused,
-        };
-    }, [muted, volume, currentTime, duration, playing, paused]);
+    // expose api    
 
     if (apiRef !== null) {
-        apiRef.current = playerApi;
+        apiRef.current = api;
     }
 
     // Ready event
-
-    const [canPlayThrough, setCanPlayThrough] = useState(false);
+    
     const [waveReady, setWaveReady] = useState(false);
+    const ready = audioReady && waveReady;
 
     const onWaveReady = useCallback(() => {
         setWaveReady(true);
     }, [setWaveReady]);
 
     useEffect(() => {
-        setCanPlayThrough(false);
         setWaveReady(false);
-    }, [url, setCanPlayThrough, setWaveReady]);
+    }, [url, setWaveReady]);
 
     useEffect(() => {
-        if (canPlayThrough && waveReady && onReady !== null) {
+        if (ready && onReady !== null) {
             onReady();
         }
-    }, [canPlayThrough, waveReady, onReady]);
-
-    // Audio events handlers
-
-    useEffect(() => {
-        const audio = audioRef.current;
-
-        const onTimeUpdate = () => {
-            setCurrentTime(audio.currentTime);
-        };
-
-        const onDurationChange = () => {
-            setDuration(audio.duration);
-        };
-
-        const onVolumeChange = () => {
-            setMuted(audio.muted);
-            setVolume(audio.volume);
-        };
-
-        const onPlay = () => {
-            setPlaying(true);
-        };
-
-        const onPause = () => {
-            setPlaying(false);
-        };
-
-        const onEnded = () => {
-            audio.currentTime = 0;
-        };
-
-        const onCanPlayThrough = () => {
-            setCanPlayThrough(true);
-        };
-
-        audio.addEventListener('timeupdate', onTimeUpdate);
-        audio.addEventListener('durationchange', onDurationChange);
-        audio.addEventListener('volumechange', onVolumeChange);
-        audio.addEventListener('play', onPlay);
-        audio.addEventListener('pause', onPause);
-        audio.addEventListener('ended', onEnded);
-        audio.addEventListener('canplaythrough', onCanPlayThrough);
-
-        return () => {
-            audio.removeEventListener('timeupdate', onTimeUpdate);
-            audio.removeEventListener('durationchange', onDurationChange);
-            audio.removeEventListener('volumechange', onVolumeChange);
-            audio.removeEventListener('play', onPlay);
-            audio.removeEventListener('pause', onPause);
-            audio.removeEventListener('ended', onEnded);
-            audio.removeEventListener('canplaythrough', onCanPlayThrough);
-        };
-    }, [setCurrentTime, setDuration, setMuted, setVolume, setPlaying]);
+    }, [ready, onReady]);    
 
     // User events
 
     const onPlayPauseClick = useCallback(() => {
-        playerApi.playPause();
-    }, [playerApi]);
+        api.playPause();
+    }, [api]);
 
     const onMuteUnmuteClick = useCallback(() => {
-        playerApi.muteUnmute();
-    }, [playerApi]);
+        api.muteUnmute();
+    }, [api]);
 
     return (
         <div
@@ -227,14 +119,14 @@ const Audio = ({
                 },
             ])}
         >
-            <audio ref={audioRef} src={url} autoPlay={autoPlay} loop={loop} />
+            <audio ref={ref} src={url} autoPlay={autoPlay} loop={loop} />
             <AudioWave
                 className={styles.wave}
                 media={media}
                 currentTime={currentTime}
                 duration={duration}
                 playing={playing}
-                onSeek={playerApi.seek}
+                onSeek={api.seek}
                 onReady={onWaveReady}
             />
             { closedCaptions !== null ? <ClosedCaptions className={styles.closedCaptions} {...closedCaptions} currentTime={currentTime} /> : null }

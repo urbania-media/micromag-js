@@ -23,6 +23,10 @@ const propTypes = {
         'image-title-description',
     ]),
     items: PropTypes.arrayOf(MicromagPropTypes.textElement),
+    bulletColor: PropTypes.string,
+    lineColor: PropTypes.string,
+    bulletShape: PropTypes.oneOf(['circle', 'square']),
+    bulletFilled: PropTypes.bool,
     illustrated: PropTypes.bool,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
@@ -36,6 +40,10 @@ const propTypes = {
 const defaultProps = {
     layout: 'normal',
     items: [null],
+    bulletColor: '#000',
+    lineColor: '#000',
+    bulletShape: 'circle',
+    bulletFilled: true,
     illustrated: false,
     background: null,
     current: true,
@@ -55,6 +63,10 @@ const defaultProps = {
 const Timeline = ({
     layout,
     items,
+    bulletColor,
+    lineColor,
+    bulletShape,
+    bulletFilled,
     illustrated,
     background,
     current,
@@ -208,6 +220,13 @@ const Timeline = ({
                         transitionDelay += transitionStagger;
                     }
 
+                    const firstItem = itemI === 0;
+                    const lastItem = itemI === itemsCount - 1;
+                    const topLineHidden =
+                        (firstItem && typeI <= titleIndex) || (lastItem && typeI > titleIndex);
+                    const bottomLineHidden =
+                        (firstItem && typeI < titleIndex) || (lastItem && typeI >= titleIndex);
+
                     return (
                         <div
                             key={`element-${type}`}
@@ -218,22 +237,28 @@ const Timeline = ({
                                     className={classNames([
                                         styles.line,
                                         {
-                                            [styles.hidden]:
-                                                (itemI === 0 && typeI <= titleIndex) ||
-                                                (itemI === itemsCount - 1 && typeI > titleIndex),
+                                            [styles.hidden]: topLineHidden,
                                         },
                                     ])}
+                                    style={{ backgroundColor: !topLineHidden ? lineColor : null }}
                                 />
-                                {type === 'title' ? <div className={styles.dot} /> : null}
+                                {type === 'title' ? (
+                                    <div
+                                        className={styles.bullet}
+                                        style={{
+                                            borderColor: bulletColor,
+                                            backgroundColor: bulletFilled ? bulletColor : null,
+                                        }}
+                                    />
+                                ) : null}
                                 <div
                                     className={classNames([
                                         styles.line,
                                         {
-                                            [styles.hidden]:
-                                                (itemI === 0 && typeI < titleIndex) ||
-                                                (itemI === itemsCount - 1 && typeI >= titleIndex),
+                                            [styles.hidden]: bottomLineHidden,
                                         },
                                     ])}
+                                    style={{ backgroundColor: !bottomLineHidden ? lineColor : null }}
                                 />
                             </div>
                             <div className={styles.content}>{elementContent}</div>
@@ -251,6 +276,7 @@ const Timeline = ({
                     [className]: className !== null,
                     [styles.ready]: transitionsPlaying,
                     [styles.isPlaceholder]: isPlaceholder,
+                    [styles[`${bulletShape}BulletShape`]]: bulletShape !== null,
                 },
             ])}
         >

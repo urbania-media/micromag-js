@@ -14,6 +14,7 @@ const propTypes = {
     textStyle: MicromagPropTypes.textStyle,
     linksStyle: MicromagPropTypes.textStyle,
     margin: MicromagPropTypes.margin,
+    lineClamp: PropTypes.number,
     showEmpty: PropTypes.bool,
     className: PropTypes.string,
     emptyClassName: PropTypes.string,
@@ -24,13 +25,15 @@ const defaultProps = {
     textStyle: null,
     linksStyle: null,
     margin: null,
+    lineClamp: null,
     showEmpty: false,
     className: null,
     emptyClassName: null,
 };
 
-const Text = ({ body, textStyle, linksStyle, margin, showEmpty, className, emptyClassName }) => {
+const Text = ({ body, textStyle, linksStyle, margin, lineClamp, showEmpty, className, emptyClassName }) => {
     let finalStyle = null;
+
     let finalLinkStyle = null;
     if (textStyle !== null) {
         finalStyle = {
@@ -38,6 +41,11 @@ const Text = ({ body, textStyle, linksStyle, margin, showEmpty, className, empty
             ...getStyleFromText(textStyle),
         };
     }
+
+    if (lineClamp !== null) {
+        finalStyle.WebkitLineClamp = lineClamp;
+    }
+
     if (margin !== null) {
         finalStyle = {
             ...finalStyle,
@@ -50,6 +58,7 @@ const Text = ({ body, textStyle, linksStyle, margin, showEmpty, className, empty
             ...getStyleFromText(linksStyle),
         };
     }
+
     const id = useMemo(() => (finalLinkStyle !== null ? `text-component-${uuid()}` : null), [
         finalLinkStyle !== null,
     ]);
@@ -63,6 +72,7 @@ const Text = ({ body, textStyle, linksStyle, margin, showEmpty, className, empty
                 className={classNames([
                     styles.container,
                     {
+                        [styles.withLineClamp]: lineClamp !== null,
                         [styles.showEmpty]: showEmpty,
                         [emptyClassName]: showEmpty && emptyClassName !== null,
                         [className]: className !== null,

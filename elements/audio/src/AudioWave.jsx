@@ -151,11 +151,16 @@ const AudioWave = ({
         const canvasBg = canvasBackgroundRef.current;
         const canvasProgress = canvasProgressRef.current;
 
-        canvasBg.width = canvasProgress.width = width;
-        canvasBg.height = canvasProgress.height = height;
+        const scale = window.devicePixelRatio;
+
+        canvasBg.width = canvasProgress.width = Math.floor(width * scale);
+        canvasBg.height = canvasProgress.height = Math.floor(height * scale);
 
         const ctxBG = canvasBg.getContext('2d');
         const ctxProgress = canvasProgress.getContext('2d');
+
+        ctxBG.scale(scale, scale);
+        ctxProgress.scale(scale, scale);
 
         ctxBG.clearRect(0, 0, width, height);
         ctxProgress.clearRect(0, 0, width, height);

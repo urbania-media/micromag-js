@@ -59,8 +59,6 @@ const Image = ({
             fit = null,
             horizontalPosition = 'center',
             verticalPosition = 'center',
-            shrinkWidth = false,
-            shrinkHeight = false,
         } = objectFit || {};
         const {
             width: resizedImageWidth,
@@ -86,20 +84,9 @@ const Image = ({
             imageTop = 0;
         }
 
-        const containerWidth = shrinkWidth ? Math.min(resizedImageWidth, width) : width;
-        const containerHeight = shrinkHeight ? Math.min(resizedImageHeight, height) : height;
-
-        if (shrinkWidth && width > resizedImageWidth) {
-            imageLeft = 0;
-        }
-
-        if (shrinkHeight && height > resizedImageHeight) {
-            imageTop = 0;
-        }
-
         finalContainerStyle = {
-            width: containerWidth,
-            height: containerHeight,
+            width,
+            height,
         };
 
         finalImageStyle = {

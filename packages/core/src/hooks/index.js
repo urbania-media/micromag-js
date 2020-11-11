@@ -5,3 +5,4 @@ export * from './useObserver';
 export * from './useScreenSize';
 export * from './useSwipe';
 export { default as useWindowEvent } from './useWindowEvent';
+export { default as useMediaApi } from './useMediaApi';

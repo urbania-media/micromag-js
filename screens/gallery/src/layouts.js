@@ -1,6 +1,15 @@
 export default {
     // 2
-    'two-vertical': {
+    'two-vertical-equal': {
+        vertical: true,
+        layout: [
+            {
+                columns: 1,
+                rows: [1, 1],
+            },
+        ],
+    },
+    'two-vertical-top': {
         vertical: true,
         layout: [
             {
@@ -9,39 +18,16 @@ export default {
             },
         ],
     },
-    'two-horizontal': {
+    'two-vertical-bottom': {
+        vertical: true,
         layout: [
             {
-                rows: 1,
-                columns: [1, 1],
+                columns: 1,
+                rows: [1, 2],
             },
         ],
     },
     // 3
-    'one-plus-two': {
-        layout: [
-            {
-                rows: 1,
-                columns: [1],
-            },
-            {
-                rows: 1,
-                columns: [1, 1],
-            },
-        ],
-    },
-    'two-plus-one': {
-        layout: [
-            {
-                rows: 1,
-                columns: [1, 1],
-            },
-            {
-                rows: 1,
-                columns: [1],
-            },
-        ],
-    },
     'three-vertical': {
         vertical: true,
         layout: [
@@ -51,7 +37,68 @@ export default {
             },
         ],
     },
+    'one-two': {
+        layout: [
+            {
+                rows: 2,
+                columns: [1],
+            },
+            {
+                rows: 1,
+                columns: [1, 1],
+            },
+        ],
+    },
+    'two-one': {
+        layout: [
+            {
+                rows: 1,
+                columns: [1, 1],
+            },
+            {
+                rows: 2,
+                columns: [1],
+            },
+        ],
+    },
     // 4
+    'two-by-two': {
+        layout: [
+            {
+                rows: 1,
+                columns: [1, 1],
+            },
+            {
+                rows: 1,
+                columns: [1, 1],
+            },
+        ],
+    },
+    'four-vertical': {
+        vertical: true,
+        layout: [
+            {
+                columns: 1,
+                rows: [1, 1, 1, 1],
+            },
+        ],
+    },
+    'one-two-one': {
+        layout: [
+            {
+                rows: 3,
+                columns: [1],
+            },
+            {
+                rows: 2,
+                columns: [1, 1],
+            },
+            {
+                rows: 3,
+                columns: [1],
+            },
+        ],
+    },
     'four-mosaic': {
         vertical: true,
         layout: [
@@ -65,74 +112,53 @@ export default {
             },
         ]
     },
-    'four-mosaic-reverse': {
-        vertical: true,
-        layout: [
-            {
-                columns: 1,
-                rows: [1, 3],
-            },
-            {
-                columns: 1,
-                rows: [3, 1],                
-            },
-        ]
-    },
-    'two-by-two': {
-        layout: [
-            {
-                rows: 1,
-                columns: [1, 1],
-            },
-            {
-                rows: 1,
-                columns: [1, 1],
-            },
-        ],
-    },
-    'one-plus-three': {
-        layout: [
-            {
-                rows: 2,
-                columns: [1],
-            },
-            {
-                rows: 1,
-                columns: [1, 1, 1],
-            },
-        ],
-    },
     // 5 
-    'two-wide-plus-three': {
+    'two-one-two': {
         layout: [
             {
                 rows: 2,
+                columns: [1, 1]
+            },
+            {
+                rows: 3,
                 columns: [1]
             },
             {
                 rows: 2,
-                columns: [1]
-            },
-            {
-                rows: 1,
-                columns: [1, 1, 1]
+                columns: [1, 1]
             },
         ]
     },
-    'three-plus-two-wide': {
+    'one-two-two': {
         layout: [
             {
-                rows: 1,
-                columns: [1, 1, 1]
-            },
-            {
-                rows: 2,
+                rows: 3,
                 columns: [1]
             },
             {
                 rows: 2,
+                columns: [1, 1]
+            },            
+            {
+                rows: 2,
+                columns: [1, 1]
+            },
+        ]
+    },
+    'two-two-one': {
+        layout: [
+            {
+                rows: 2,
+                columns: [1, 1]
+            },            
+            {
+                rows: 2,
+                columns: [1, 1]
+            },
+            {
+                rows: 3,
                 columns: [1]
-            },    
+            },
         ]
     },
     // 6
@@ -152,16 +178,44 @@ export default {
             },
         ],
     },
-    'three-by-two': {
+    'one-one-two-two': {
         layout: [
             {
                 rows: 1,
-                columns: [1, 1, 1],
+                columns: [1],
             },
             {
                 rows: 1,
-                columns: [1, 1, 1],
+                columns: [1],
             },
+            {
+                rows: 1,
+                columns: [1, 1],
+            },
+            {
+                rows: 1,
+                columns: [1, 1],
+            },
+        ],
+    },
+    'two-two-one-one': {
+        layout: [
+            {
+                rows: 1,
+                columns: [1, 1],
+            },
+            {
+                rows: 1,
+                columns: [1, 1],
+            },
+            {
+                rows: 1,
+                columns: [1],
+            },
+            {
+                rows: 1,
+                columns: [1],
+            },            
         ],
     }
 };

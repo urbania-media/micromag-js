@@ -126,7 +126,7 @@ export const images = ({ count = 3, width = 800, height = 800, rand = false } = 
     }));
 };
 
-export const videoFile = () => ({
+export const video = () => ({
     media: {
         type: 'video',
         url: VideoTest,
@@ -134,17 +134,6 @@ export const videoFile = () => ({
             width: 1920,
             height: 1080,
         },
-    },
-});
-
-export const video = () => ({
-    media: {
-        type: 'video',
-        url: 'https://www.youtube.com/watch?v=AfeAhCWaMD0',
-        metadata: {
-            width: 640,
-            height: 480,
-        }
     },
 });
 
