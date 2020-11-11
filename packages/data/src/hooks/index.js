@@ -15,6 +15,7 @@ export { default as useMediaCreate } from './useMediaCreate';
 export { default as useMediaTags } from './useMediaTags';
 export { default as useMediaUpdate } from './useMediaUpdate';
 export { default as useOrganisation } from './useOrganisation';
+export { default as useOrganisationBillingHistory } from './useOrganisationBillingHistory';
 export { default as useOrganisationContact } from './useOrganisationContact';
 export { default as useOrganisationContactCreate } from './useOrganisationContactCreate';
 export { default as useOrganisationContactUpdate } from './useOrganisationContactUpdate';
@@ -23,8 +24,7 @@ export { default as useOrganisationMemberBatch } from './useOrganisationMemberBa
 export { default as useOrganisationMemberCreate } from './useOrganisationMemberCreate';
 export { default as useOrganisationMemberDelete } from './useOrganisationMemberDelete';
 export { default as useOrganisationMemberUpdate } from './useOrganisationMemberUpdate';
-export { default as useOrganisationBillingMethod } from './useOrganisationBillingMethod';
-export { default as useOrganisationBillingHistory } from './useOrganisationBillingHistory';
+export { default as useOrganisationPlans } from './useOrganisationPlans';
 export { default as useOrganisations } from './useOrganisations';
 export { default as useOrganisationTeam } from './useOrganisationTeam';
 export { default as useOrganisationRoles } from './useOrganisationRoles';

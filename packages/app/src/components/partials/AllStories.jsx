@@ -38,7 +38,6 @@ const AllStories = ({ count, className }) => {
             {stories !== null ? (
                 <>
                     <StoriesList items={stories} />
-
                     {lastPage > 1 ? (
                         <Pagination
                             page={parseInt(page, 10)}

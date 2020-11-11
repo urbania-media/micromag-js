@@ -1,3 +1,5 @@
+import isArray from 'lodash/isArray';
+
 import ad from '@micromag/screen-ad';
 import audio from '@micromag/screen-audio';
 import gallery from '@micromag/screen-gallery';
@@ -15,17 +17,17 @@ import video from '@micromag/screen-video';
 const screens = [
     ad,
     audio,
-    ...gallery,
-    ...galleryFeed,
-    ...image,
-    ...map,
+    gallery,
+    galleryFeed,
+    image,
+    map,
     quote,
     slideshow,
     quiz,
-    ...text,
-    ...timeline,
-    ...title,
-    ...video,
-];
+    text,
+    timeline,
+    title,
+    video,
+].reduce((allScreens, screen) => [...allScreens, ...(isArray(screen) ? screen : [screen])], []);
 
 export default screens;

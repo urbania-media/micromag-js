@@ -80,10 +80,12 @@ const OrganisationSettingsForm = ({
             />
             <hr />
             <p>
-                <FormattedMessage
-                    defaultMessage="Main contact"
-                    description="Main contact form label"
-                />
+                <span className="text-uppercase text-secondary">
+                    <FormattedMessage
+                        defaultMessage="Main contact"
+                        description="Main contact form label"
+                    />
+                </span>
             </p>
             <Form
                 action={url('organisation.contact')}

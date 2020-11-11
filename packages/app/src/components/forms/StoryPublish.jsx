@@ -31,17 +31,17 @@ const StoryPublishForm = ({ story, services, className, onPublished }) => {
     const onClickPublish = useCallback(() => {
         Promise.all(
             Object.keys(publicationValue)
-                .filter(id =>
+                .filter((id) =>
                     isObject(publicationValue[id])
                         ? publicationValue[id].enabled || false
                         : publicationValue[id] || false,
                 )
-                .map(id => {
+                .map((id) => {
                     const value = publicationValue[id];
                     const settings = isObject(value) ? value.settings || null : null;
                     return createPublication(id, settings);
                 }),
-        ).then(publications => {
+        ).then((publications) => {
             console.log(publications);
         });
     }, [createPublication, onPublished, publicationValue]);
@@ -70,7 +70,7 @@ const StoryPublishForm = ({ story, services, className, onPublished }) => {
                     disabled={!hasServiceEnabled}
                     onClick={onClickPublish}
                 >
-                    <FormattedMessage defaultMessage="Publish" description="Button label" />,
+                    <FormattedMessage defaultMessage="Publish" description="Button label" />
                 </Button>
             </div>
         </form>
