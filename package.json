@@ -22,7 +22,7 @@
         "@babel/plugin-transform-runtime": "^7.12.1",
         "@babel/preset-env": "^7.12.1",
         "@babel/preset-react": "^7.12.5",
-        "@folklore/react-scripts": "3.4.09",
+        "@folklore/react-scripts": "^4.0.0",
         "@formatjs/cli": "^2.13.11",
         "@rollup/plugin-commonjs": "^15.1.0",
         "@rollup/plugin-image": "^2.0.5",
@@ -93,7 +93,8 @@
         "stylelint-config-property-sort-order-smacss": "^6.4.0",
         "stylelint-config-recommended": "^3.0.0",
         "stylelint-config-sass-guidelines": "^7.1.0",
-        "stylelint-scss": "^3.18.0"
+        "stylelint-scss": "^3.18.0",
+        "uuid": "^8.3.1"
     },
     "dependencies": {}
 }

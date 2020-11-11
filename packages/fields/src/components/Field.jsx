@@ -78,6 +78,7 @@ const Field = ({
         components !== null ? getComponentFromName(type, components) || null : null;
     const ContextFieldComponent = useFieldComponent(type);
     const FieldComponent = CustomFieldComponent || ContextFieldComponent;
+    console.log(type, components, ContextFieldComponent);
     const isFields = type === 'fields';
     const asSettings =
         fields !== null
