@@ -1,6 +1,6 @@
 import React from 'react';
 import HStack from '@micromag/element-stack';
-import { image as imageCreator, videoFile, video  } from '../../../.storybook/data';
+import { image as imageCreator, video } from '../../../.storybook/data';
 import Background from './Background';
 
 export default {
@@ -65,9 +65,5 @@ export const imageWithColor = () => (
 );
 
 export const videoUploaded = () => (
-    <Background width={200} height={200} video={videoFile()} playing={false} />
-);
-
-export const videoYoutube = () => (
     <Background width={200} height={200} video={video()} playing={false} />
 );

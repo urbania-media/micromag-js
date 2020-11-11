@@ -7,7 +7,7 @@ import {
     imageWithRandomSize,
     text,
     audio,
-    videoFile,
+    video,
     background,
     backgroundImage,
     map,
@@ -152,7 +152,7 @@ export const medium = [
         id: uuid(),
         type: 'video',
         layout: 'loop',
-        video: videoFile(),
+        video: video(),
         background: backgroundImage({ random: true }),
     },
     {

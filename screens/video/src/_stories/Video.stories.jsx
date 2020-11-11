@@ -1,19 +1,19 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { videoFile, background } from '../../../../.storybook/data';
+import { video, background } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import Video from '../Video';
 import definition from '../definition';
 
 const props = {
-    video: { video: videoFile() },
+    video: { video: video() },
     background: background(),
 };
 
 const propsWithControls = {
     ...props,
-    video: { video: videoFile(), params: { controls: true, muted: true, autoPlay: true } },
+    video: { video: video(), params: { controls: true, muted: true, autoPlay: true } },
 };
 
 export default {
