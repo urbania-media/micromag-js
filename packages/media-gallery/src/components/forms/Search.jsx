@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import { useIntl } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 const propTypes = {
@@ -34,6 +34,12 @@ const Search = ({ value, onChange, onFocus, onBlur, className }) => {
         },
         [onChange],
     );
+
+    const onSearchClear = useCallback(() => {
+        if (onChange !== null) {
+            onChange('');
+        }
+    }, [onChange]);
 
     return (
         <form
@@ -67,6 +73,16 @@ const Search = ({ value, onChange, onFocus, onBlur, className }) => {
                     onFocus={onFocus}
                     onBlur={onBlur}
                 />
+                {value ? (
+                    <button
+                        type="button"
+                        className="btn text-dark position-absolute"
+                        style={{ right: 0 }}
+                        onClick={onSearchClear}
+                    >
+                        <FontAwesomeIcon icon={faTimesCircle} />
+                    </button>
+                ) : null}
             </div>
         </form>
     );

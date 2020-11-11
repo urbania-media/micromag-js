@@ -8,7 +8,7 @@ import { faHeadphonesAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useMediaTags, useMediaUpdate } from '@micromag/data'; // useOrganisationTeam
-import { Tokens } from '@micromag/fields';
+import { Tokens, Text } from '@micromag/fields';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button } from '@micromag/core/components';
 
@@ -25,7 +25,8 @@ const defaultProps = {
 };
 
 const MediaMetadata = ({ media, className }) => {
-    const { id, type, thumbnail_url: thumbnail = null, name, src, metadata = {} } = media || {};
+    const { id, type, thumbnail_url: thumbnail = null, name: initialName, src, metadata = {} } =
+        media || {};
     const {
         filename = null,
         size = null,
@@ -47,28 +48,41 @@ const MediaMetadata = ({ media, className }) => {
             : [];
     };
 
+    const [name, setName] = useState(initialName);
     const [tags, setTags] = useState(getTagsFromOptions(initialTags));
     const [changed, setChanged] = useState(false);
 
     const onTagChange = useCallback(
-        (data) => {
-            setTags(data);
+        (val) => {
+            setTags(val);
             setChanged(true);
         },
         [tags, setTags, setChanged],
     );
 
+    const onNameChange = useCallback(
+        (val) => {
+            setName(val);
+            setChanged(true);
+        },
+        [tags, setName, setChanged],
+    );
+
     const onSave = useCallback(() => {
-        const all = tags !== null ? tags.map((t) => t.value) : [];
+        const allTags = tags !== null ? tags.map((t) => t.value) : [];
         // TODO: refresh upstream data
-        update(id, { metadata: { ...metadata, tags: all } }).then(() => {
+        update(id, { name, metadata: { ...metadata, tags: allTags } }).then(() => {
             setChanged(false);
         });
-    }, [id, tags, metadata, update]);
+    }, [id, name, tags, metadata, update]);
 
     useEffect(() => {
         setChanged(false);
     }, [media]);
+
+    useEffect(() => {
+        setName(initialName);
+    }, [initialName, setName]);
 
     useEffect(() => {
         if (media) {
@@ -112,9 +126,25 @@ const MediaMetadata = ({ media, className }) => {
                 ) : null}
             </div>
             <div className="p-2">
-                <h4 className="mb-4">{name}</h4>
-                <div className="tags mb-4 text-dark">
-                    <Tokens value={tags} options={tagOptions} onChange={onTagChange} />
+                <div className="tags mb-4">
+                    <div className="form-group">
+                        <h6>
+                            <FormattedMessage
+                                defaultMessage="Name"
+                                description="Name in Media Gallery"
+                            />
+                        </h6>
+                        <Text value={name} onChange={onNameChange} />
+                    </div>
+                    <div className="form-group">
+                        <h6>
+                            <FormattedMessage
+                                defaultMessage="Tags"
+                                description="Tags in Media Gallery"
+                            />
+                        </h6>
+                        <Tokens value={tags} options={tagOptions} onChange={onTagChange} />
+                    </div>
                     {changed ? (
                         <Button onClick={onSave}>
                             <FormattedMessage
@@ -124,7 +154,6 @@ const MediaMetadata = ({ media, className }) => {
                         </Button>
                     ) : null}
                 </div>
-
                 <h6>
                     <FormattedMessage
                         defaultMessage="Technical details"
