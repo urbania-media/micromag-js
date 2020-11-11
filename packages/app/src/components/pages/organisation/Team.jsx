@@ -43,6 +43,7 @@ const OrganisationTeamPage = ({ className }) => {
 
     const role = user.role || 'admin';
     const isAdmin = role === 'admin' || true;
+    // TODO: make this dynamic
     const teamFeatures = isAdmin ? { canAdd: true, canEdit: true, canRemove: true } : null;
 
     const onClickRemove = useCallback(

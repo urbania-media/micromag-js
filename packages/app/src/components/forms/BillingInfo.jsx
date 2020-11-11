@@ -7,9 +7,6 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Form } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
-import { useOrganisationBillingMethod } from '@micromag/data';
-
-import { useUser } from '../../contexts/AuthContext';
 
 const propTypes = {
     className: PropTypes.string,
@@ -22,10 +19,66 @@ const defaultProps = {
         {
             type: 'fields',
             label: (
-                <FormattedMessage
-                    defaultMessage="Billing info"
-                    description="Billing info fieldset label"
-                />
+                <span className="text-uppercase text-secondary">
+                    <FormattedMessage
+                        defaultMessage="Payment info"
+                        description="Payment info fieldset label"
+                    />
+                </span>
+            ),
+            isSection: true,
+            fields: [
+                {
+                    name: 'card_name',
+                    type: 'text',
+                    label: (
+                        <FormattedMessage
+                            defaultMessage="Card name"
+                            description="Card name field label"
+                        />
+                    ),
+                },
+                {
+                    name: 'card_number',
+                    type: 'text',
+                    label: (
+                        <FormattedMessage
+                            defaultMessage="Card number"
+                            description="Card number field label"
+                        />
+                    ),
+                },
+                {
+                    name: 'expiration_date',
+                    type: 'text',
+                    label: (
+                        <FormattedMessage
+                            defaultMessage="Expiration date"
+                            description="Expiration date field label"
+                        />
+                    ),
+                },
+                {
+                    name: 'cvv',
+                    type: 'text',
+                    label: (
+                        <FormattedMessage
+                            defaultMessage="Card security code (CVV)"
+                            description="Card security field label"
+                        />
+                    ),
+                },
+            ],
+        },
+        {
+            type: 'fields',
+            label: (
+                <span className="text-uppercase text-secondary">
+                    <FormattedMessage
+                        defaultMessage="Billing info"
+                        description="Billing info fieldset label"
+                    />
+                </span>
             ),
             isSection: true,
             fields: [
@@ -105,58 +158,6 @@ const defaultProps = {
                 },
             ],
         },
-        {
-            type: 'fields',
-            label: (
-                <FormattedMessage
-                    defaultMessage="Payment info"
-                    description="Payment info fieldset label"
-                />
-            ),
-            isSection: true,
-            fields: [
-                {
-                    name: 'card_name',
-                    type: 'text',
-                    label: (
-                        <FormattedMessage
-                            defaultMessage="Card name"
-                            description="Card name field label"
-                        />
-                    ),
-                },
-                {
-                    name: 'card_number',
-                    type: 'text',
-                    label: (
-                        <FormattedMessage
-                            defaultMessage="Card number"
-                            description="Card number field label"
-                        />
-                    ),
-                },
-                {
-                    name: 'expiration_date',
-                    type: 'text',
-                    label: (
-                        <FormattedMessage
-                            defaultMessage="Expiration date"
-                            description="Expiration date field label"
-                        />
-                    ),
-                },
-                {
-                    name: 'cvv',
-                    type: 'text',
-                    label: (
-                        <FormattedMessage
-                            defaultMessage="Card security code (CVV)"
-                            description="Card security field label"
-                        />
-                    ),
-                },
-            ],
-        },
     ],
     className: null,
     onUpdated: null,
@@ -164,21 +165,17 @@ const defaultProps = {
 
 const BillingInfoForm = ({ fields, className, onUpdated }) => {
     const url = useUrlGenerator();
-    const user = useUser();
+    const updateInfo = () => {};
+    const postForm = useCallback((action, data) => updateInfo(data), [updateInfo]);
 
-    const { update: updateAccount } = useOrganisationBillingMethod();
-    const postForm = useCallback((action, data) => updateAccount(data), [updateAccount]);
     return (
         <Form
             action={url('account')}
             fields={fields}
             postForm={postForm}
-            initialValue={user}
+            initialValue={null}
             submitButtonLabel={
-                <FormattedMessage
-                    defaultMessage="Save payment method"
-                    description="Save payment method Button label"
-                />
+                <FormattedMessage defaultMessage="Save" description="Save button label" />
             }
             onComplete={onUpdated !== null ? onUpdated : null}
             className={className}

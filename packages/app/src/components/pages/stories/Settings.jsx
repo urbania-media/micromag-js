@@ -5,10 +5,12 @@ import PropTypes from 'prop-types';
 import { useParams } from 'react-router';
 import { FormattedMessage } from 'react-intl';
 import { useStory } from '@micromag/data';
+import { FormPanel } from '@micromag/core/components';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
 import StoryBox from '../../partials/StoryBox';
+import StorySettingsForm from '../../forms/StorySettings';
 
 const propTypes = {
     className: PropTypes.string,
@@ -31,7 +33,11 @@ const StorySettingsPage = ({ className }) => {
                 sidebar={story !== null ? <StoryBox story={story} /> : <div />}
                 className={className}
             >
-                Story settings
+                {story !== null ? (
+                    <FormPanel>
+                        <StorySettingsForm story={story} />
+                    </FormPanel>
+                ) : null}
             </Page>
         </MainLayout>
     );

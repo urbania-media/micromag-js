@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faChevronLeft, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 import { useRecentSearches, useMediaTags } from '@micromag/data'; // useOrganisationTeam
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -54,7 +54,8 @@ const Navbar = ({
 }) => {
     const [open, setOpen] = useState(false);
 
-    // TODO: get data from api for testing
+    // TODO: get data from api for real testing
+
     const { recent } = useRecentSearches();
     const { tags } = useMediaTags();
     // const { team } = useOrganisationTeam();
@@ -78,7 +79,7 @@ const Navbar = ({
             : false;
 
     const onFilterChange = useCallback(
-        (type, value) => {
+        (type, value, isOpen = false) => {
             const newFiltersValue = {
                 ...filters,
                 [type]: value,
@@ -86,21 +87,21 @@ const Navbar = ({
             if (onFiltersChange !== null) {
                 onFiltersChange(newFiltersValue);
             }
-            setOpen(false);
+            setOpen(isOpen);
         },
         [filters, onFiltersChange, setOpen],
     );
 
     const onSearchChange = useCallback(
-        (newSearchValue) => {
-            onFilterChange('search', newSearchValue);
+        (value) => {
+            onFilterChange('search', value, !!value);
         },
         [onFilterChange],
     );
 
     const onSourceChange = useCallback(
-        (newSourceValue) => {
-            onFilterChange('source', newSourceValue);
+        (value) => {
+            onFilterChange('source', value);
         },
         [onFilterChange],
     );
@@ -172,11 +173,7 @@ const Navbar = ({
                             />
                             <form className={classNames(['form-inline', 'ml-auto'])}>
                                 {open || searchValue || hasFilter ? (
-                                    <Button
-                                        theme="primary"
-                                        icon={<FontAwesomeIcon icon={faTimesCircle} />}
-                                        onClick={onClear}
-                                    >
+                                    <Button theme="primary" outline onClick={onClear}>
                                         {searchValue || hasFilter ? (
                                             <FormattedMessage
                                                 defaultMessage="Clear"

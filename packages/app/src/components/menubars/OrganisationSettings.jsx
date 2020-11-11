@@ -7,6 +7,7 @@ import { useUrlGenerator } from '@micromag/core/contexts';
 
 import TeamPreview from '../partials/TeamPreview';
 import SettingsButton from '../buttons/Settings';
+import OrganisationMenu from '../menus/Organisation';
 
 import * as AppPropTypes from '../../lib/PropTypes';
 
@@ -20,7 +21,7 @@ const defaultProps = {
 };
 
 const OrganisationSettingsMenubar = ({ organisation, className }) => {
-    const url = useUrlGenerator();
+    // const url = useUrlGenerator();
     return (
         <div
             className={classNames([
@@ -33,8 +34,8 @@ const OrganisationSettingsMenubar = ({ organisation, className }) => {
             ])}
         >
             <TeamPreview organisation={organisation} />
-            <SettingsButton href={url('organisation.settings')}>
-                <FormattedMessage defaultMessage="New story" description="New story button label" />
+            <SettingsButton>
+                <OrganisationMenu asList />
             </SettingsButton>
         </div>
     );
