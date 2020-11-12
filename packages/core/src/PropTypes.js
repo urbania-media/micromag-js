@@ -163,28 +163,11 @@ export const gridLayout = PropTypes.arrayOf(
     }),
 );
 
-export const videoControl = PropTypes.shape({
-    visible: PropTypes.bool,
-    color,
-});
-
-export const videoControls = PropTypes.shape({
-    timeline: videoControl,
-    progress: videoControl,
-    volume: videoControl,
-});
-
 export const objectFit = PropTypes.shape({
     fit: PropTypes.oneOf(['cover', 'contain', null]),
     horizontalPosition: PropTypes.oneOf(['left', 'center', 'right']),
     verticalPosition: PropTypes.oneOf(['top', 'center', 'bottom']),
 });
-
-export const flexDirection = PropTypes.oneOf(['row', 'column']);
-// export const axisAlign = PropTypes.oneOf(['top', 'center', 'bottom', 'between', 'around', 'even']);
-// export const crossAlign = PropTypes.oneOf(['top', 'center', 'bottom', 'stretch']);
-// export const stackAlign = PropTypes.oneOf(['top', 'center', 'bottom', 'stretch', 'around', 'even']);
-// export const spacing = PropTypes.number;
 
 /**
  * Medias
@@ -307,13 +290,6 @@ export const stackElement = PropTypes.shape({
 export const gridElement = PropTypes.shape({
     layout: PropTypes.arrayOf(PropTypes.string),
     spacing: PropTypes.number,
-});
-
-export const audioParams = PropTypes.shape({
-    muted: PropTypes.boolean,
-    autoPlay: PropTypes.boolean,
-    loop: PropTypes.boolean,
-    native: PropTypes.boolean,
 });
 
 /**

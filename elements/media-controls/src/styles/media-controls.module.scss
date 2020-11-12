@@ -1,10 +1,13 @@
-/* stylelint-disable selector-max-compound-selectors */
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 
 .container {
-    .controls {
+    .toggles {
         position: relative;
+    }
+
+    .seekBar {
+        margin-bottom: 10px;
     }
 
     .playPauseButton,
@@ -31,10 +34,11 @@
 
     .muteButton {
         position: absolute;
-        top: 0;
+        top: 50%;
         right: 0;
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
+        margin-top: -15px;
 
         .icon {
             display: block;

@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -8,14 +8,18 @@ import { PlaceholderVideo, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
-import Image from '@micromag/element-image';
-import VideoComponent from '@micromag/element-video';
+import ClosedCaptions from '@micromag/element-closed-captions';
+import MediaControls from '@micromag/element-media-controls';
+import Video from '@micromag/element-video';
+import { getSizeWithinBounds } from '@folklore/size';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
-    video: MicromagPropTypes.videoElement,
     layout: PropTypes.oneOf(['full', 'center']),
+    video: MicromagPropTypes.videoElement,
+    closedCaptions: MicromagPropTypes.closedCaptionsElement,
+    withSeekBar: PropTypes.bool,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -25,8 +29,10 @@ const propTypes = {
 };
 
 const defaultProps = {
-    video: null,
     layout: null,
+    video: null,
+    closedCaptions: null,
+    withSeekBar: false,
     background: null,
     current: true,
     active: true,
@@ -34,7 +40,7 @@ const defaultProps = {
     transitions: {
         in: {
             name: 'fade',
-            duration: 1000,
+            duration: 200,
         },
         out: 'scale',
     },
@@ -42,8 +48,10 @@ const defaultProps = {
 };
 
 const VideoScreen = ({
-    video: videoField,
     layout,
+    video,
+    closedCaptions,
+    withSeekBar,
     background,
     current,
     active,
@@ -51,54 +59,121 @@ const VideoScreen = ({
     transitions,
     className,
 }) => {
-    const autoPlay = false; // props?
+    const apiRef = useRef();
+    const { togglePlay, toggleMute, seek } = apiRef.current || {};
+    // Get api state updates from callback
+
+    const [currentTime, setCurrentTime] = useState(null);
+    const [duration, setDuration] = useState(null);
+    const [playing, setPlaying] = useState(false);
+    const [muted, setMuted] = useState(false);
+
+    const onTimeUpdate = useCallback((time) => {
+        setCurrentTime(time);
+    }, []);
+
+    const onDurationChanged = useCallback((dur) => {
+        setDuration(dur);
+    }, []);
+
+    const onPlayChanged = useCallback((isPlaying) => {
+        setPlaying(isPlaying);
+    }, []);
+
+    const onMuteChanged = useCallback((isMuted) => {
+        setMuted(isMuted);
+    }, []);
+
+    // ------------------------------------
+
     const { width, height } = useScreenSize();
-    const { isPreview, isEdit, isPlaceholder, isView } = useScreenRenderContext();
-    const { video = null, params = {} } = videoField || {};
-    const isNonInteractive = isPlaceholder || isPreview;
-    const autoplayCondition = isEdit ? autoPlay && active : autoPlay && !isNonInteractive;
-    const isFullScreen = layout === 'full';
+    const { isEdit, isPlaceholder, isView } = useScreenRenderContext();
+    const fullscreen = layout === 'full';
 
     const withVideo = video !== null;
-    // @TODO enlever le "|| true" après avoir fixé le <Video> qui trigger le onReady
-    const [ready, setReady] = useState(!withVideo || true);
+    const [ready, setReady] = useState(!withVideo);
     const transitionPlaying = current && ready;
+
+    useEffect(() => {
+        setReady(false);
+    }, [video, setReady]);
 
     const onVideoReady = useCallback(() => {
         setReady(true);
     }, [setReady]);
 
-    let videoElement = null;
-    if (isPreview && withVideo && video.thumbnail_url && video.metadata) {
-        videoElement = (
-            <Image
-                image={{ media: { url: video.thumbnail_url }, metadata: video.metadata }}
-                className={styles.preview}
-            />
-        );
-    } else if (isNonInteractive) {
-        videoElement = (
-            <PlaceholderVideo
-                className={styles.placeholder}
-                width={isFullScreen ? '100%' : undefined}
-                height={isFullScreen ? '100%' : undefined}
-            />
-        );
+    // get resized video style props
+
+    const { media: videoMedia = null } = video || {};
+    const { metadata: videoMetadata = null } = videoMedia || {};
+    const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
+
+    const finalMaxRatio = fullscreen ? null : maxRatio;
+    const currentRatio = width / height;
+    const finalWidth =
+        finalMaxRatio !== null && currentRatio > finalMaxRatio ? height * finalMaxRatio : width;
+
+    const { width: resizedVideoWidth, height: resizedVideoHeight } = getSizeWithinBounds(
+        videoWidth,
+        videoHeight,
+        finalWidth,
+        height,
+        { cover: fullscreen },
+    );
+    const resizedVideoLeft = -(resizedVideoWidth - finalWidth) / 2;
+    const resizedVideoTop = -(resizedVideoHeight - height) / 2;
+
+    const items = [];
+
+    if (isPlaceholder) {
+        const placeholderProps = fullscreen ? { width: '100%', height: '100%' } : { width: '100%' };
+        items.push(<PlaceholderVideo className={styles.placeholder} {...placeholderProps} />);
     } else if (withVideo) {
-        videoElement = (
-            <Transitions playing={transitionPlaying} transitions={transitions}>
-                <VideoComponent
-                    {...params}
-                    autoPlay={autoplayCondition}
-                    video={video}
-                    width={Math.min(width, 768)}
-                    height={height}
-                    objectFit={{ fit: isFullScreen ? 'cover' : 'contain' }}
-                    showEmpty={isEdit}
-                    className={styles.video}
-                    onReady={onVideoReady}
+        items.push(
+            <div
+                className={styles.videoContainer}
+                style={{
+                    width: resizedVideoWidth,
+                    height: resizedVideoHeight,
+                    left: resizedVideoLeft,
+                    top: resizedVideoTop,
+                }}
+            >
+                <Transitions playing={transitionPlaying} transitions={transitions}>
+                    <Video
+                        {...video}
+                        ref={apiRef}
+                        className={styles.video}
+                        onReady={onVideoReady}
+                        onPlayChanged={onPlayChanged}
+                        onMuteChanged={onMuteChanged}
+                        onTimeUpdate={onTimeUpdate}
+                        onDurationChanged={onDurationChanged}
+                    />
+                </Transitions>
+            </div>,
+        );
+        items.push(
+            <div className={styles.bottomContent}>
+                {closedCaptions !== null ? (
+                    <ClosedCaptions
+                        className={styles.closedCaptions}
+                        {...closedCaptions}
+                        currentTime={currentTime}
+                    />
+                ) : null}
+                <MediaControls
+                    className={styles.mediaControls}
+                    withSeekBar={withSeekBar}
+                    playing={playing}
+                    muted={muted}
+                    currentTime={currentTime}
+                    duration={duration}
+                    onTogglePlay={togglePlay}
+                    onToggleMute={toggleMute}
+                    onSeek={seek}
                 />
-            </Transitions>
+            </div>,
         );
     }
 
@@ -108,7 +183,7 @@ const VideoScreen = ({
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.fullscreen]: isFullScreen,
+                    [styles.fullscreen]: fullscreen,
                 },
             ])}
         >
@@ -117,16 +192,10 @@ const VideoScreen = ({
                 width={width}
                 height={height}
                 playing={(isView && current) || (isEdit && active)}
-                maxRatio={maxRatio}
+                maxRatio={finalMaxRatio}
             />
-            <Container
-                width={width}
-                height={height}
-                maxRatio={maxRatio}
-                verticalAlign="center"
-                itemClassName={styles.item}
-            >
-                {[videoElement]}
+            <Container width={width} height={height} maxRatio={finalMaxRatio}>
+                <div className={styles.content}>{items}</div>
             </Container>
         </div>
     );

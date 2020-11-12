@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { useSpring, animated } from 'react-spring';
 import { PropTypes as MicromagPropTypes, useScreenSizeFromWindow } from '@micromag/core';
 
-import styles from './styles/audiowave.module.scss';
+import styles from './styles/audio-wave.module.scss';
 
 const propTypes = {
     media: MicromagPropTypes.audioMedia,
@@ -25,8 +25,8 @@ const propTypes = {
 
 const defaultProps = {
     media: null,
-    currentTime: 0,
-    duration: 0,
+    currentTime: null,
+    duration: null,
     playing: false,
     sampleWidth: 3,
     sampleMargin: 1,
@@ -72,6 +72,9 @@ const AudioWave = ({
     }));
 
     useEffect(() => {
+        if (currentTime === null || duration === null) {
+            return;
+        }
         const progress = currentTime / duration;
         setSpringProps({
             reset: true,
@@ -86,7 +89,7 @@ const AudioWave = ({
                 duration: (duration - currentTime) * 1000,
             },
         });
-    }, [playing, duration, currentTime]);
+    }, [playing, duration, currentTime, setSpringProps]);
 
     // AudioWave buffer
 
@@ -207,7 +210,7 @@ const AudioWave = ({
 
     const onSeekClick = useCallback(
         (e) => {
-            if (onSeek !== null) {
+            if (onSeek !== null && duration !== null) {
                 const currentTargetRect = e.currentTarget.getBoundingClientRect();
                 const seekProgress = (e.pageX - currentTargetRect.left) / currentTargetRect.width;
                 onSeek(seekProgress * duration);

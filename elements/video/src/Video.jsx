@@ -6,10 +6,12 @@ import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useMediaApi } from '@micromag/core/hooks';
 
-import styles from './styles/video.module.scss';
+import styles from './styles.module.scss';
 
 const propTypes = {
     media: MicromagPropTypes.videoMedia,
+    width: PropTypes.number,
+    height: PropTypes.number,
     apiRef: PropTypes.oneOfType([
         PropTypes.func,
         PropTypes.shape({
@@ -17,55 +19,88 @@ const propTypes = {
         }),
     ]),
     initialMuted: PropTypes.bool,
-    initialVolume: PropTypes.number,
     autoPlay: PropTypes.bool,
     loop: PropTypes.bool,
     className: PropTypes.string,
     onReady: PropTypes.func,
+    onTimeUpdate: PropTypes.func,
+    onDurationChanged: PropTypes.func,
+    onPlayChanged: PropTypes.func,
+    onMuteChanged: PropTypes.func,
 };
 
 const defaultProps = {
     media: null,
+    width: null,
+    height: null,
     apiRef: null,
     initialMuted: false,
-    initialVolume: 1,
     autoPlay: false,
     loop: false,
     className: null,
     onReady: null,
+    onTimeUpdate: null,
+    onDurationChanged: null,
+    onPlayChanged: null,
+    onMuteChanged: null,
 };
 
 const Video = ({
     media,
+    width,
+    height,
     apiRef,
     initialMuted,
-    initialVolume,
     autoPlay,
     loop,
     className,
     onReady,
+    onTimeUpdate,
+    onDurationChanged,
+    onPlayChanged,
+    onMuteChanged,
 }) => {
     const { url = null } = media || {};
-
-    // use api
-
-    const {
-        ref,
-        api,
-        muted,
-        paused,
-        ready,
-    } = useMediaApi({
+    const { ref, ...api } = useMediaApi({
         url,
         initialMuted,
-        initialVolume,
     });
-
-    // expose api    
 
     if (apiRef !== null) {
         apiRef.current = api;
     }
+
+    const {
+        currentTime,
+        duration,
+        playing,
+        muted,
+        ready,
+    } = api;
+
+    useEffect( () => {
+        if (onTimeUpdate !== null) {
+            onTimeUpdate(currentTime);
+        }
+    }, [currentTime]);
+
+    useEffect( () => {
+        if (onDurationChanged !== null) {
+            onDurationChanged(duration);
+        }
+    }, [duration]);
+
+    useEffect( () => {
+        if (onPlayChanged !== null) {
+            onPlayChanged(playing);
+        }
+    }, [playing]);
+
+    useEffect( () => {
+        if (onMuteChanged !== null) {
+            onMuteChanged(muted);
+        }
+    }, [muted]);
 
     useEffect(() => {
         if (ready && onReady !== null) {
@@ -73,18 +108,24 @@ const Video = ({
         }
     }, [ready, onReady]);
 
+    const withSize = width !== null && height !== null;
+
     return (
         <div
             className={classNames([
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.paused]: paused,
-                    [styles.muted]: muted,
+                    [styles.paused]: !playing,
+                    [styles.withSize]: withSize,
                 },
             ])}
+            style={withSize ? {
+                width,
+                height,
+            } : null }
         >
-            <video ref={ref} autoPlay={autoPlay} loop={loop} />
+            <video ref={ref} src={url} autoPlay={autoPlay} loop={loop} />
         </div>
     );
 };

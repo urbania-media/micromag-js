@@ -8,7 +8,6 @@ import definition from '../definition';
 
 const props = {
     audio: {...audio(), autoPlay: true, loop: true },
-    closedCaptions: {...closedCaptions()},
     background: background(),
 };
 
@@ -23,10 +22,11 @@ export default {
 
 export const Placeholder = (storyProps) => <Audio {...storyProps} />;
 
-export const Preview = (storyProps) => <Audio {...storyProps} />;
+export const Preview = (storyProps) => <Audio {...storyProps} {...props} />;
 
 export const Edit = (storyProps) => <Audio {...storyProps} />;
 
 export const Normal = (storyProps) => <Audio {...storyProps} {...props} />;
+export const WithClosedCaptions = () => <Audio {...props} closedCaptions={closedCaptions()} />;
 
 export const Definition = () => <ScreenDefinition definition={definition} />;
