@@ -29,6 +29,7 @@ const InvitePage = ({ className }) => {
     const onContinue = useCallback(() => {
         push(url('home'));
     }, [push, url]);
+
     return (
         <MainLayout>
             <Page
@@ -56,7 +57,12 @@ const InvitePage = ({ className }) => {
                         </div>
                     }
                 >
-                    <OrganisationInviteForm organisation={organisation} onContinue={onContinue} />
+                    {organisation ? (
+                        <OrganisationInviteForm
+                            organisation={organisation}
+                            onContinue={onContinue}
+                        />
+                    ) : null}
                 </FormPanel>
             </Page>
         </MainLayout>

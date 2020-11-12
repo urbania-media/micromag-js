@@ -78,14 +78,14 @@ const Field = ({
         components !== null ? getComponentFromName(type, components) || null : null;
     const ContextFieldComponent = useFieldComponent(type);
     const FieldComponent = CustomFieldComponent || ContextFieldComponent;
-    console.log(type, components, ContextFieldComponent);
+    // console.log(type, components, ContextFieldComponent);
     const isFields = type === 'fields';
     const asSettings =
         fields !== null
             ? fields.reduce((acc, { setting = false }) => acc || setting, false)
             : false;
-    const gotoForm = useCallback(form => gotoFieldForm(name, form), [name, gotoFieldForm]);
-    const closeForm = useCallback(form => closeFieldForm(name, form), [name, closeFieldForm]);
+    const gotoForm = useCallback((form) => gotoFieldForm(name, form), [name, gotoFieldForm]);
+    const closeForm = useCallback((form) => closeFieldForm(name, form), [name, closeFieldForm]);
     const gotoSettings = useCallback(() => gotoForm('settings'), [gotoForm]);
 
     if (FieldComponent === null) {

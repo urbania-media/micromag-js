@@ -1,6 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import { Switch, Route, Redirect } from 'react-router';
+import { Switch, Route, Redirect, useLocation } from 'react-router';
 import { stringify as stringifyQuery } from 'query-string';
 import { useRoutes, useUrlGenerator } from '@micromag/core/contexts';
 
@@ -47,6 +47,7 @@ const propTypes = {};
 const defaultProps = {};
 
 const Routes = () => {
+    const location = useLocation();
     const routes = useRoutes();
     const url = useUrlGenerator();
     const loggedIn = useLoggedIn();
@@ -55,7 +56,7 @@ const Routes = () => {
     const organisation = useOrganisation();
     const HomePageByType = organisation !== null ? HomeOrganisationPage : HomePage;
     const Home = loggedIn ? HomePageByType : HomeGuestPage;
-
+    console.log('org', organisation, location);
     return (
         <Switch>
             {/*

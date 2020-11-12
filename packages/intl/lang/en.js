@@ -98,6 +98,7 @@ var g6qbbX = "Log in";
 var hVE7TA = "Question";
 var inyvCz = "Save payment method";
 var jaFXki = "Gallery";
+var kBz8vF = "Name";
 var kIl7G5 = "Published at";
 var ktUr5c = "Create an organisation";
 var l7bkY2 = "Update your profile";
@@ -186,6 +187,7 @@ var messages = {
   "3q9GPv": "Quote",
   "3uMlsn": "Some other micromag",
   "4E2gbX": "Text",
+  "4fHMVj": "Tags",
   "4iBXj2": "Layout",
   "4yfet+": "Password",
   "507VAi": "Description",
@@ -330,6 +332,7 @@ var messages = {
   "indcf+": "Address 2",
   inyvCz: inyvCz,
   jaFXki: jaFXki,
+  kBz8vF: kBz8vF,
   kIl7G5: kIl7G5,
   ktUr5c: ktUr5c,
   l7bkY2: l7bkY2,
