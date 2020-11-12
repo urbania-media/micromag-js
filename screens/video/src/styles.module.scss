@@ -4,14 +4,34 @@
 .container {
     @extend %screen;
 
-    .preview,
-    .video {
-        display: block;
-        margin: 0 auto;
+    .content {
+        @extend %fullscreen;
+        overflow: hidden;
     }
 
+    .mediaControls {
+        padding: 10px 20px;
+    }
+    
+    .placeholder {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+    }   
+
+    .videoContainer {
+        position: absolute;
+    }
+
+    .bottomContent {
+        position: absolute;
+        bottom: 0;
+        width: 100%;        
+    }    
+
     &.fullscreen {
-        .item,
+        .video,
         .placeholder {
             @extend %fullscreen;
         }

@@ -8,4 +8,6 @@ export default {
     title: 'Elements/Video',
 };
 
-export const Normal = () => <Video {...video()} />;
+const props = {...video(), autoPlay: true, loop: true };
+
+export const Normal = () => <Video {...props} />;

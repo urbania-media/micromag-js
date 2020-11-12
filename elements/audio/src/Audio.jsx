@@ -5,10 +5,6 @@ import classNames from 'classnames';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useMediaApi } from '@micromag/core/hooks';
-import ClosedCaptions from '@micromag/element-closed-captions';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faPause, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 
 import AudioWave from './AudioWave';
 
@@ -22,65 +18,87 @@ const propTypes = {
             current: PropTypes.any,
         }),
     ]),
-    closedCaptions: MicromagPropTypes.closedCaptionsMedia,
     initialMuted: PropTypes.bool,
-    initialVolume: PropTypes.number,
     autoPlay: PropTypes.bool,
     loop: PropTypes.bool,
     className: PropTypes.string,
     onReady: PropTypes.func,
+    onTimeUpdate: PropTypes.func,
+    onDurationChanged: PropTypes.func,
+    onPlayChanged: PropTypes.func,
+    onMuteChanged: PropTypes.func,
 };
 
 const defaultProps = {
     media: null,
     apiRef: null,
-    closedCaptions: null,
     initialMuted: false,
-    initialVolume: 1,
     autoPlay: false,
     loop: false,
     className: null,
     onReady: null,
+    onTimeUpdate: null,
+    onDurationChanged: null,
+    onPlayChanged: null,
+    onMuteChanged: null,
 };
 
 const Audio = ({
     media,
     apiRef,
-    closedCaptions,
     initialMuted,
-    initialVolume,
     autoPlay,
     loop,
     className,
     onReady,
+    onTimeUpdate,
+    onDurationChanged,
+    onPlayChanged,
+    onMuteChanged,
 }) => {
     const { url = null } = media || {};
-
-    // use api
-
-    const {
-        ref,
-        api,
-        muted,
-        currentTime,
-        duration,
-        playing,
-        paused,
-        ready: audioReady,
-    } = useMediaApi({
+    const { ref, ...api } = useMediaApi({
         url,
         initialMuted,
-        initialVolume,
-    });    
-
-    // expose api    
+    });
 
     if (apiRef !== null) {
         apiRef.current = api;
     }
 
-    // Ready event
-    
+    const {
+        currentTime,
+        duration,
+        playing,
+        seek,
+        muted,
+        ready: audioReady,
+    } = api;
+
+    useEffect( () => {
+        if (onTimeUpdate !== null) {
+            onTimeUpdate(currentTime);
+        }
+    }, [currentTime]);
+
+    useEffect( () => {
+        if (onDurationChanged !== null) {
+            onDurationChanged(duration);
+        }
+    }, [duration]);
+
+    useEffect( () => {
+        if (onPlayChanged !== null) {
+            onPlayChanged(playing);
+        }
+    }, [playing]);
+
+    useEffect( () => {
+        if (onMuteChanged !== null) {
+            onMuteChanged(muted);
+        }
+    }, [muted]);
+
     const [waveReady, setWaveReady] = useState(false);
     const ready = audioReady && waveReady;
 
@@ -96,17 +114,7 @@ const Audio = ({
         if (ready && onReady !== null) {
             onReady();
         }
-    }, [ready, onReady]);    
-
-    // User events
-
-    const onPlayPauseClick = useCallback(() => {
-        api.playPause();
-    }, [api]);
-
-    const onMuteUnmuteClick = useCallback(() => {
-        api.muteUnmute();
-    }, [api]);
+    }, [ready, onReady]);
 
     return (
         <div
@@ -114,8 +122,6 @@ const Audio = ({
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.paused]: paused,
-                    [styles.muted]: muted,
                 },
             ])}
         >
@@ -126,18 +132,9 @@ const Audio = ({
                 currentTime={currentTime}
                 duration={duration}
                 playing={playing}
-                onSeek={api.seek}
+                onSeek={seek}
                 onReady={onWaveReady}
-            />
-            { closedCaptions !== null ? <ClosedCaptions className={styles.closedCaptions} {...closedCaptions} currentTime={currentTime} /> : null }
-            <div className={styles.controls}>
-                <button type="button" className={styles.playPauseButton} onClick={onPlayPauseClick}>
-                    <FontAwesomeIcon className={styles.icon} icon={playing ? faPause : faPlay} />
-                </button>
-                <button type="button" className={styles.muteButton} onClick={onMuteUnmuteClick}>
-                    <FontAwesomeIcon className={styles.icon} icon={faVolumeUp} />
-                </button>
-            </div>
+            />            
         </div>
     );
 };

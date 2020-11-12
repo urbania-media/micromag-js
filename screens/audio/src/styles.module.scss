@@ -3,8 +3,22 @@
 .container {
     @extend %screen;
 
-    .content {
+    .mediaControls {
+        padding: 10px 20px;
+    }
 
+    .audio {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        transform: translateY(-50%);
+    }
+
+    .bottomContent {
+        position: absolute;
+        bottom: 0;
+        width: 100%;        
     }
 
     .empty {
