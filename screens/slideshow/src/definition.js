@@ -1,5 +1,5 @@
 import { defineMessage } from 'react-intl';
-import Slideshow from './Slideshow';
+import SlideshowScreen from './Slideshow';
 
 export default {
     id: 'slideshow',
@@ -12,7 +12,7 @@ export default {
         defaultMessage: 'Slideshow',
         description: 'Slideshow screen title',
     }),
-    component: Slideshow,
+    component: SlideshowScreen,
     layouts: ['center'],
     fields: [
         {

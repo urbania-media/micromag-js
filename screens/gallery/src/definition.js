@@ -1,6 +1,6 @@
 import { defineMessage } from 'react-intl';
-import Gallery from './Gallery';
-import GalleryLegends from './GalleryLegends';
+import GalleryScreen from './Gallery';
+import GalleryLegendsScreen from './GalleryLegends';
 
 export default [
     {
@@ -14,7 +14,7 @@ export default [
             defaultMessage: 'Gallery',
             description: 'Gallery screen title',
         }),
-        component: Gallery,
+        component: GalleryScreen,
         layouts: [
             // 2
             'two-vertical-equal',
@@ -76,7 +76,7 @@ export default [
             defaultMessage: 'GalleryLegends',
             description: 'GalleryLegends screen title',
         }),
-        component: GalleryLegends,
+        component: GalleryLegendsScreen,
         layouts: [
             // 2
             'two-vertical-equal',

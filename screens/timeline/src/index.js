@@ -1,3 +1,3 @@
 export { default } from './definition';
-export { default as Timeline } from './Timeline';
-export { default as TimelineIllustrated } from './TimelineIllustrated';
+export { default as TimelineScreen } from './Timeline';
+export { default as TimelineIllustratedScreen } from './TimelineIllustrated';

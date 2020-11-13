@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import Timeline from './Timeline';
+import TimelineScreen from './Timeline';
 
-const TimelineIllustrated = ({ ...props }) => (
-    <Timeline
+const TimelineIllustratedScreen = ({ ...props }) => (
+    <TimelineScreen
         {...props}
         illustrated
     />
 );
 
-export default TimelineIllustrated;
+export default TimelineIllustratedScreen;

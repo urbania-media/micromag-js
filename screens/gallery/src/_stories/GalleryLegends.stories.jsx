@@ -3,7 +3,7 @@ import React from 'react';
 import { images, background, text } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
-import GalleryLegends from '../GalleryLegends';
+import GalleryLegendsScreen from '../GalleryLegends';
 import definition from '../definition';
 
 const props = {
@@ -13,19 +13,19 @@ const props = {
 
 export default {
     title: 'Screens/GalleryLegends',
-    component: GalleryLegends,
+    component: GalleryLegendsScreen,
     parameters: {
         intl: true,
-        screenDefinition: definition.find((it) => it.component === GalleryLegends),
+        screenDefinition: definition.find((it) => it.component === GalleryLegendsScreen),
     },
 };
 
-export const Placeholder = (storyProps) => <GalleryLegends {...storyProps} />;
+export const Placeholder = (storyProps) => <GalleryLegendsScreen {...storyProps} />;
 
-export const Preview = (storyProps) => <GalleryLegends {...storyProps} {...props} />;
+export const Preview = (storyProps) => <GalleryLegendsScreen {...storyProps} {...props} />;
 
-export const Edit = (storyProps) => <GalleryLegends {...storyProps} />;
+export const Edit = (storyProps) => <GalleryLegendsScreen {...storyProps} />;
 
-export const Normal = (storyProps) => <GalleryLegends {...storyProps} {...props} />;
+export const Normal = (storyProps) => <GalleryLegendsScreen {...storyProps} {...props} />;
 
 export const Definition = () => <ScreenDefinition definition={definition} />;

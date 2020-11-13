@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import Gallery from './Gallery';
+import GalleryScreen from './Gallery';
 
-const GalleryLegends = ({ ...props }) => (
-    <Gallery
+const GalleryLegendsScreen = ({ ...props }) => (
+    <GalleryScreen
         {...props}
         withLegends
     />
 );
 
-export default GalleryLegends;
+export default GalleryLegendsScreen;

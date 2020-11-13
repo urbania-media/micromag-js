@@ -1,5 +1,5 @@
 {
-    "name": "@micromag/screen-quote",
+    "name": "@micromag/element-quote",
     "version": "0.1.29",
     "description": "",
     "keywords": [
@@ -33,7 +33,7 @@
         "assets"
     ],
     "scripts": {
-        "prepare": "../../scripts/prepare-package.sh --intl"
+        "prepare": "../../scripts/prepare-package.sh"
     },
     "devDependencies": {
         "react": ">=15.0.0 || ^16.0.0",
@@ -46,13 +46,7 @@
     "dependencies": {
         "@babel/runtime": "^7.8.7",
         "@micromag/core": "^0.1.29",
-        "@micromag/element-background": "^0.1.29",
-        "@micromag/element-container": "^0.1.29",
-        "@micromag/element-layout": "^0.1.29",
-        "@micromag/element-quote": "^0.1.29",
-        "@micromag/element-text": "^0.1.29",
         "classnames": "^2.2.6",
-        "lodash": "^4.17.15",
         "prop-types": "^15.7.2",
         "react-intl": "^4.5.0",
         "uuid": "^7.0.2"

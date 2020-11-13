@@ -1,5 +1,5 @@
 import { defineMessage } from 'react-intl';
-import Quote from './Quote';
+import QuoteScreen from './Quote';
 
 export default {
     id: 'quote',
@@ -12,7 +12,7 @@ export default {
         defaultMessage: 'Quote',
         description: 'Quote screen title',
     }),
-    component: Quote,
+    component: QuoteScreen,
     layouts: ['top', 'middle', 'bottom', 'split'],
     fields: [
         {

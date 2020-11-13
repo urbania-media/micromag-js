@@ -1,5 +1,5 @@
 import { defineMessage } from 'react-intl';
-import Video from './Video';
+import VideoScreen from './Video';
 
 export default {
     id: 'video',
@@ -12,7 +12,7 @@ export default {
         defaultMessage: 'Video',
         description: 'Video screen title',
     }),
-    component: Video,
+    component: VideoScreen,
     layouts: ['full', 'center'],
     fields: [
         {

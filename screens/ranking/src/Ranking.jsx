@@ -46,7 +46,7 @@ const defaultProps = {
     className: null,
 };
 
-const Ranking = ({
+const RankingScreen = ({
     layout,
     items,
     ascending,
@@ -168,7 +168,7 @@ const Ranking = ({
     );
 };
 
-Ranking.propTypes = propTypes;
-Ranking.defaultProps = defaultProps;
+RankingScreen.propTypes = propTypes;
+RankingScreen.defaultProps = defaultProps;
 
-export default Ranking;
+export default RankingScreen;

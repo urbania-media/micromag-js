@@ -88,7 +88,6 @@ var aPjV2Q = "No story yet";
 var aVPh1B = "Instructions to reset your password have been sent to your {email}.";
 var aeJ9LI = "Forgot password";
 var aovRFH = "Filename";
-var b7jY9K = "Map";
 var bhEaUt = "Audio";
 var cGItoy = "List";
 var cldP9G = "Medias";
@@ -158,6 +157,7 @@ var wRV8PN = "Settings";
 var woLAiB = "First, enter your email and pick a password.";
 var woivfj = "Card name";
 var wxPBp4 = "Organisation name";
+var x8sfWV = "MapScreen";
 var xQo9lx = "Phone";
 var xYqGzM = "Author";
 var yUPjCz = "Slideshow";
@@ -328,7 +328,6 @@ var messages = {
   "account-box.title": "Account",
   aeJ9LI: aeJ9LI,
   aovRFH: aovRFH,
-  b7jY9K: b7jY9K,
   bhEaUt: bhEaUt,
   "c9VwT/": "Technical details",
   cGItoy: cGItoy,
@@ -435,6 +434,7 @@ var messages = {
   woivfj: woivfj,
   "wt1+dM": "Select an audio file...",
   wxPBp4: wxPBp4,
+  x8sfWV: x8sfWV,
   "xKdf/C": "Added by",
   xQo9lx: xQo9lx,
   xYqGzM: xYqGzM,

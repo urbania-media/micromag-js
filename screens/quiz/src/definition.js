@@ -1,5 +1,5 @@
 import { defineMessage } from 'react-intl';
-import Quiz from './Quiz';
+import QuizScreen from './Quiz';
 
 export default {
     id: 'quiz',
@@ -12,7 +12,7 @@ export default {
         defaultMessage: 'Quiz',
         description: 'Quiz screen title',
     }),
-    component: Quiz,
+    component: QuizScreen,
     layouts: ['top', 'middle', 'bottom', 'split'],
     fields: [
         {

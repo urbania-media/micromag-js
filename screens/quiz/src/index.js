@@ -1,2 +1,2 @@
 export { default } from './definition';
-export { default as Quiz } from './Quiz';
+export { default as QuizScreen } from './Quiz';

@@ -8,6 +8,10 @@
     opacity: 0;
     pointer-events: none;
 
+    .scroll {
+        padding: 40px 0;
+    }
+
     .empty {
         @extend %empty;
         height: 50px;
@@ -49,6 +53,10 @@
 
     .content {
         flex-grow: 1;
+
+        &.lastContent {
+            margin-bottom: 40px;
+        }
     }
 
     .title,

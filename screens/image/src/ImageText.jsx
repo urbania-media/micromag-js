@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import Image from './Image';
+import ImageScreen from './Image';
 
-const ImageText = ({ ...props }) => (
-    <Image
+const ImageTextScreen = ({ ...props }) => (
+    <ImageScreen
         {...props}
         withText
     />
 );
 
-export default ImageText;
+export default ImageTextScreen;

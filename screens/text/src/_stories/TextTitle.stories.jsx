@@ -3,7 +3,7 @@ import React from 'react';
 import { title, text } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
-import TextTitle from '../TextTitle';
+import TextTitleScreen from '../TextTitle';
 import definition from '../definition';
 
 const props = {
@@ -13,19 +13,19 @@ const props = {
 
 export default {
     title: 'Screens/TextTitle',
-    component: TextTitle,
+    component: TextTitleScreen,
     parameters: {
         intl: true,
-        screenDefinition: definition.find((it) => it.component === TextTitle),
+        screenDefinition: definition.find((it) => it.component === TextTitleScreen),
     },
 };
 
-export const Placeholder = (storyProps) => <TextTitle {...storyProps} />;
+export const Placeholder = (storyProps) => <TextTitleScreen {...storyProps} />;
 
-export const Preview = (storyProps) => <TextTitle {...storyProps} {...props} />;
+export const Preview = (storyProps) => <TextTitleScreen {...storyProps} {...props} />;
 
-export const Edit = (storyProps) => <TextTitle {...storyProps} />;
+export const Edit = (storyProps) => <TextTitleScreen {...storyProps} />;
 
-export const Normal = (storyProps) => <TextTitle {...storyProps} {...props} />;
+export const Normal = (storyProps) => <TextTitleScreen {...storyProps} {...props} />;
 
 export const Definition = () => <ScreenDefinition definition={definition} />;

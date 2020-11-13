@@ -1,5 +1,5 @@
 import { defineMessage } from 'react-intl';
-import Ad from './Ad';
+import AdScreen from './Ad';
 
 export default {
     id: 'ad',
@@ -12,7 +12,7 @@ export default {
         defaultMessage: 'Ad',
         description: 'Ad screen title',
     }),
-    component: Ad,
+    component: AdScreen,
     layouts: [
         'center',
         'top',

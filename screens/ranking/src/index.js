@@ -1,2 +1,2 @@
 export { default } from './definition';
-export { default as Ranking } from './Ranking';
+export { default as RankingScreen } from './Ranking';

@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import Map from './Map';
+import MapScreen from './Map';
 
-const MapImages = ({ ...props }) => <Map {...props} withMarkerImages />
+const MapImagesScreen = ({ ...props }) => <MapScreen {...props} withMarkerImages />
 
-export default MapImages;
+export default MapImagesScreen;

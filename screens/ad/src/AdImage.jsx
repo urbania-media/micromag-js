@@ -27,7 +27,7 @@ const defaultProps = {
     className: null,
 };
 
-const AdImage = ({
+const AdImageScreen = ({
     image: imageProps,
     link: linkProps,
     text: textProps,
@@ -68,7 +68,7 @@ const AdImage = ({
     );
 };
 
-AdImage.propTypes = propTypes;
-AdImage.defaultProps = defaultProps;
+AdImageScreen.propTypes = propTypes;
+AdImageScreen.defaultProps = defaultProps;
 
-export default AdImage;
+export default AdImageScreen;

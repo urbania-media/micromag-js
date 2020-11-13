@@ -1,5 +1,5 @@
 import { defineMessage } from 'react-intl';
-import Audio from './Audio';
+import AudioScreen from './Audio';
 
 export default {
     id: 'audio',
@@ -12,7 +12,7 @@ export default {
         defaultMessage: 'Audio',
         description: 'Audio screen title',
     }),
-    component: Audio,
+    component: AudioScreen,
     layouts: ['normal'],
     fields: [
         {

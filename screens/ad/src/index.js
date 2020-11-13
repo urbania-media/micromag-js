@@ -1,2 +1,2 @@
 export { default } from './definition';
-export { default as Ad } from './Ad';
+export { default as AdScreen } from './Ad';

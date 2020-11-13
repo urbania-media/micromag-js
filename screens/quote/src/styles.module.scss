@@ -11,4 +11,12 @@
         height: 50px;
         margin: 5px auto;
     }
+
+    .quote {
+        font-size: 2em;
+        
+        &.withMargin {
+            margin-bottom: 1em;
+        }
+    }
 }

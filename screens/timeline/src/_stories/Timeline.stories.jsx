@@ -3,7 +3,7 @@ import React from 'react';
 import { text, title, background } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
-import Timeline from '../Timeline';
+import TimelineScreen from '../Timeline';
 import definition from '../definition';
 
 const props = {
@@ -22,19 +22,19 @@ const normalProps = {
 
 export default {
     title: 'Screens/Timeline',
-    component: Timeline,
+    component: TimelineScreen,
     parameters: {
         intl: true,
-        screenDefinition: definition.find((it) => it.component === Timeline),
+        screenDefinition: definition.find((it) => it.component === TimelineScreen),
     },
 };
 
-export const Placeholder = (storyProps) => <Timeline {...storyProps} {...props} />;
+export const Placeholder = (storyProps) => <TimelineScreen {...storyProps} {...props} />;
 
-export const Preview = (storyProps) => <Timeline {...storyProps} {...props} {...normalProps} />;
+export const Preview = (storyProps) => <TimelineScreen {...storyProps} {...props} {...normalProps} />;
 
-export const Edit = (storyProps) => <Timeline {...storyProps} />;
+export const Edit = (storyProps) => <TimelineScreen {...storyProps} />;
 
-export const Normal = (storyProps) => <Timeline {...storyProps} {...props} {...normalProps} />;
+export const Normal = (storyProps) => <TimelineScreen {...storyProps} {...props} {...normalProps} />;
 
 export const Definition = () => <ScreenDefinition definition={definition} />;

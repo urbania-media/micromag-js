@@ -1,5 +1,5 @@
 import { defineMessage } from 'react-intl';
-import Ranking from './Ranking';
+import RankingScreen from './Ranking';
 
 export default {
     id: 'ranking',
@@ -12,7 +12,7 @@ export default {
         defaultMessage: 'Ranking',
         description: 'Ranking screen title',
     }),
-    component: Ranking,
+    component: RankingScreen,
     layouts: ['side', 'over'],
     fields: [
         {
