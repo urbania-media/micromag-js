@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import { useOrganisations } from '@micromag/data';
 import { Navbar, Breadcrumb } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
@@ -42,7 +43,17 @@ const MainNavbar = ({ className }) => {
                             },
                         ]}
                     />
-                ) : null
+                ) : (
+                    <Breadcrumb
+                        items={[
+                            {
+                                id: 'current',
+                                url: url('home'),
+                                label: <FormattedMessage defaultMessage="My micromags" />,
+                            },
+                        ]}
+                    />
+                )
             }
             theme="primary"
             className={className}

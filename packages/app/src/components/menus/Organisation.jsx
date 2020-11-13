@@ -173,7 +173,6 @@ const OrganisationsMenu = ({
             itemClassName={classNames({
                 'list-group-item': asList,
                 'list-group-item-action': asList,
-                'list-group-item-dark': asList,
                 [itemClassName]: itemClassName !== null,
             })}
             linkClassName={linkClassName}

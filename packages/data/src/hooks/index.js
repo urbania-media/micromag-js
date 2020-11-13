@@ -35,6 +35,8 @@ export { default as useRecentSearches } from './useRecentSearches';
 export { default as useStories } from './useStories';
 export { default as useStory } from './useStory';
 export { default as useStoryCreate } from './useStoryCreate';
+export { default as useStoryDelete } from './useStoryDelete';
+export { default as useStoryDuplicate } from './useStoryDuplicate';
 export { default as useStoryPublicationCreate } from './useStoryPublicationCreate';
 export { default as useStoryPublications } from './useStoryPublications';
 export { default as useStoryUpdate } from './useStoryUpdate';
