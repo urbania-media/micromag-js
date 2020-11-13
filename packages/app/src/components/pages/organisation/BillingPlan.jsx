@@ -9,7 +9,7 @@ import { useUrlGenerator, useRoutePush } from '@micromag/core/contexts';
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
 import OrganisationMenu from '../../menus/Organisation';
-import BillingPlanForm from '../../forms/BillingPlan';
+import OrganisationBillingPlanForm from '../../forms/OrganisationBillingPlan';
 
 import { useOrganisation as useContextOrganisation } from '../../../contexts/OrganisationContext';
 
@@ -50,7 +50,10 @@ const OrganisationBillingPlanPage = ({ className }) => {
                 ])}
             >
                 <FormPanel>
-                    <BillingPlanForm organisation={organisation} onUpdated={onUpdated} />
+                    <OrganisationBillingPlanForm
+                        organisation={organisation}
+                        onUpdated={onUpdated}
+                    />
                 </FormPanel>
             </Page>
         </MainLayout>

@@ -16,7 +16,7 @@ const useItems = ({
         total: parseInt(total, 10),
         items,
     }),
-    getItemsFromResponse = data => data,
+    getItemsFromResponse = (data) => data,
     onItemsLoaded = null,
     onPageLoaded = null,
     onLoaded = null,
@@ -26,7 +26,7 @@ const useItems = ({
     const lastState = useRef(null);
     const initialState = useMemo(() => {
         const finalInitialPages =
-            initialPages !== null ? initialPages.map(it => getPageFromResponse(it)) : null;
+            initialPages !== null ? initialPages.map((it) => getPageFromResponse(it)) : null;
         return {
             lastPage:
                 finalInitialPages !== null
@@ -54,7 +54,7 @@ const useItems = ({
             ? pages.reduce((pagesItems, { items: pageItems }) => pagesItems.concat(pageItems), [])
             : stateItems) ||
         null;
-    const updateState = update => setState({ ...state, ...update });
+    const updateState = (update) => setState({ ...state, ...update });
     const updateFromResponse = (response, error = null, reset = false) => {
         if (error !== null) {
             updateState({
@@ -67,7 +67,7 @@ const useItems = ({
             const newPage = getPageFromResponse(response);
             const newPages = (reset
                 ? [newPage]
-                : [...(pages || []).filter(it => it.page !== newPage.page), newPage]
+                : [...(pages || []).filter((it) => it.page !== newPage.page), newPage]
             ).sort((a, b) => {
                 if (a === b) {
                     return 0;
@@ -99,22 +99,22 @@ const useItems = ({
                 ? Array.call(null, ...Array(lastPage)).map((it, index) => index + 1)
                 : [];
         const remainingPages = allPages.filter(
-            pageNumber => pages.findIndex(it => it.page === pageNumber) === -1,
+            (pageNumber) => pages.findIndex((it) => it.page === pageNumber) === -1,
         );
         const firstItem = remainingPages.length > 0 ? remainingPages.shift() : null;
         return firstItem !== null ? firstItem : null;
     };
 
-    const loadItems = requestPage => {
+    const loadItems = (requestPage) => {
         updateState({
             loading: true,
         });
         let canceled = false;
         const request = isPaginated ? getPage(requestPage, count) : getItems();
         const promise = request
-            .then(response => (!canceled ? updateFromResponse(response) : Promise.reject()))
-            .catch(error => (!canceled ? updateFromResponse(null, error) : Promise.reject()))
-            .then(response => {
+            .then((response) => (!canceled ? updateFromResponse(response) : Promise.reject()))
+            .catch((error) => (!canceled ? updateFromResponse(null, error) : Promise.reject()))
+            .then((response) => {
                 if (isPaginated && onPageLoaded !== null) {
                     onPageLoaded(response);
                 } else if (!isPaginated && onItemsLoaded !== null) {
@@ -125,7 +125,7 @@ const useItems = ({
                 }
                 return response;
             })
-            .catch(error => {
+            .catch((error) => {
                 if (!canceled && onError !== null) {
                     onError(error);
                 }
@@ -136,11 +136,11 @@ const useItems = ({
         return promise;
     };
 
-    const loadPage = pageToLoad => {
+    const loadPage = (pageToLoad) => {
         if (loading) {
             return Promise.reject();
         }
-        if (pages.find(it => it.page === pageToLoad) !== -1) {
+        if (pages.find((it) => it.page === pageToLoad) !== -1) {
             return Promise.reject();
         }
         return loadItems(pageToLoad);

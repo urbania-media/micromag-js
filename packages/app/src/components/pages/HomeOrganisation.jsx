@@ -37,6 +37,7 @@ const HomeOrganisationPage = ({ className }) => {
         },
         [push, pathname, search],
     );
+
     return (
         <MainLayout>
             <Page

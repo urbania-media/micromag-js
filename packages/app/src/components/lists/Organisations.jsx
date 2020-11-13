@@ -1,15 +1,15 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import OrganisationItem from '../items/Organisation';
+
+import * as AppPropTypes from '../../lib/PropTypes';
 
 import styles from '../../styles/lists/organisations.module.scss';
 
 const propTypes = {
-    items: MicromagPropTypes.stories,
+    items: AppPropTypes.organisations,
     className: PropTypes.string,
 };
 
@@ -29,7 +29,7 @@ const OrganisationsList = ({ items, className }) => {
                 },
             ])}
         >
-            {items.map(it => (
+            {items.map((it) => (
                 <OrganisationItem key={`organisation-${it.id}`} item={it} />
             ))}
         </div>

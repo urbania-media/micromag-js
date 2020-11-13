@@ -74,6 +74,7 @@ const OrganisationInviteForm = ({ organisation, className, onContinue }) => {
                             <div className="d-flex w-100 my-1">
                                 <TextField
                                     className="flex-fill"
+                                    type="email"
                                     value={email}
                                     onChange={(val) => {
                                         changeEmail(index, val);

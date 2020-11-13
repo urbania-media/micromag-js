@@ -32,9 +32,9 @@ const OrganisationCreatePage = ({ className }) => {
     const onCreated = useCallback(
         (org) => {
             setOrganisation(org);
-            push(next !== null ? next : url('home'));
+            push(next !== null ? next : url('register.invite'));
         },
-        [push, url, setOrganisation],
+        [push, url, next, setOrganisation],
     );
     return (
         <MainLayout contentAlign="top">

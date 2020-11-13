@@ -2,6 +2,7 @@ import Base from './Base';
 
 import OrganisationsTeam from './OrganisationsTeam';
 import OrganisationsContacts from './OrganisationsContacts';
+import OrganisationsThemes from './OrganisationsThemes';
 
 class OrganisationsApi extends Base {
     constructor(opts = {}) {
@@ -18,6 +19,7 @@ class OrganisationsApi extends Base {
 
         this.team = new OrganisationsTeam(opts);
         this.contacts = new OrganisationsContacts(opts);
+        this.themes = new OrganisationsThemes(opts);
     }
 
     find(id) {
