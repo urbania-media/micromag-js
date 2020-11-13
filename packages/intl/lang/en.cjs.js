@@ -8,12 +8,14 @@ var manager__default = /*#__PURE__*/_interopDefaultLegacy(manager);
 
 var ACSasN = "URL";
 var Avsnjl = "Themes";
+var BVTni9 = "Payment method";
 var C2j6zz = "Login";
 var CbHzjs = "Register";
 var ChnSK6 = "This Micromag";
 var CrzYgw = "Quote";
 var D3idYv = "Settings";
 var D3kTvP = "Register";
+var DUIDEq = "Storage";
 var DVQ1Ls = "Contact us for pricing";
 var DWEzCv = "Select a video...";
 var DgyZlU = "Start by choosing a name for your organisation.";
@@ -77,6 +79,7 @@ var Wr8abT = "Forgot password?";
 var WsCUtr = "{users} users";
 var X9PRNb = "Favicon";
 var Xt24Gj = "It’s time to start creating now.";
+var YDMrKK = "Users";
 var YQEv1f = "It’s time to start creating!";
 var YS4qTq = "Settings";
 var ZA6cIU = "Organisation";
@@ -105,11 +108,13 @@ var fIawTr = "Text";
 var fz0z4c = "Plan";
 var g6qbbX = "Log in";
 var hVE7TA = "Question";
+var iYc3Ld = "Payments";
 var jIlVe2 = "{storage} GB";
 var jaFXki = "Gallery";
 var kBz8vF = "Name";
 var kIl7G5 = "Published at";
 var ktUr5c = "Create an organisation";
+var l3AfOI = "Due date";
 var l7bkY2 = "Update your profile";
 var lHFBgv = "Monthly";
 var lXV3vP = "TitleSubtitleCredits";
@@ -154,6 +159,7 @@ var vrCfAS = "GalleryFeed";
 var vtStU2 = "Payment history";
 var wR9ivY = "Choose the {name} plan";
 var wRV8PN = "Settings";
+var wYsv4Z = "Monthly";
 var woLAiB = "First, enter your email and pick a password.";
 var woivfj = "Card name";
 var wxPBp4 = "Organisation name";
@@ -174,6 +180,7 @@ var messages = {
   "+TT1y6": "Clear",
   "+b+e40": "All sources",
   "+pKF4t": "Publish",
+  "/0TOL5": "Amount",
   "/B/0zj": "Last name",
   "/QKI4D": "Stories",
   "/T/UDH": "Remove all",
@@ -234,12 +241,14 @@ var messages = {
   ACSasN: ACSasN,
   Avsnjl: Avsnjl,
   "B1MeY+": "Select an image...",
+  BVTni9: BVTni9,
   C2j6zz: C2j6zz,
   CbHzjs: CbHzjs,
   ChnSK6: ChnSK6,
   CrzYgw: CrzYgw,
   D3idYv: D3idYv,
   D3kTvP: D3kTvP,
+  DUIDEq: DUIDEq,
   DVQ1Ls: DVQ1Ls,
   DWEzCv: DWEzCv,
   DgyZlU: DgyZlU,
@@ -312,6 +321,7 @@ var messages = {
   WsCUtr: WsCUtr,
   X9PRNb: X9PRNb,
   Xt24Gj: Xt24Gj,
+  YDMrKK: YDMrKK,
   YQEv1f: YQEv1f,
   YS4qTq: YS4qTq,
   "Ylx+ds": "Logout",
@@ -345,17 +355,20 @@ var messages = {
   enFs4g: enFs4g,
   eoW0tZ: eoW0tZ,
   fIawTr: fIawTr,
+  "fQI/i5": "Card ending with {cardEnding}",
   "fkBd/o": "Province",
   fz0z4c: fz0z4c,
   g6qbbX: g6qbbX,
   hVE7TA: hVE7TA,
   "he/FEL": "Organisation",
+  iYc3Ld: iYc3Ld,
   "indcf+": "Address 2",
   jIlVe2: jIlVe2,
   jaFXki: jaFXki,
   kBz8vF: kBz8vF,
   kIl7G5: kIl7G5,
   ktUr5c: ktUr5c,
+  l3AfOI: l3AfOI,
   l7bkY2: l7bkY2,
   lHFBgv: lHFBgv,
   lXV3vP: lXV3vP,
@@ -430,6 +443,7 @@ var messages = {
   "w+78Hh": "Go back to login",
   wR9ivY: wR9ivY,
   wRV8PN: wRV8PN,
+  wYsv4Z: wYsv4Z,
   woLAiB: woLAiB,
   woivfj: woivfj,
   "wt1+dM": "Select an audio file...",
