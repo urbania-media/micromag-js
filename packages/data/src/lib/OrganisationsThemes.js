@@ -1,24 +1,24 @@
 import Base from './Base';
 
-class OrganisationsContactsApi extends Base {
+class OrganisationsThemesApi extends Base {
     constructor(opts = {}) {
         super({
             ...opts,
             routes: {
-                index: 'organisations/:organisation/contacts',
-                create: 'organisations/:organisation/contacts',
-                show: 'organisations/:organisation/contacts/:type',
-                update: 'organisations/:organisation/contacts/:contact',
+                index: 'organisations/:organisation/themes',
+                create: 'organisations/:organisation/themes',
+                edit: 'organisations/:organisation/themes/:theme',
+                show: 'organisations/:organisation/themes/:theme',
                 ...(opts.routes || null),
             },
         });
     }
 
-    findByType(organisation, type) {
+    find(organisation, id) {
         return this.requestGet(
             this.route('show', {
                 organisation,
-                type,
+                theme: id,
             }),
         );
     }
@@ -41,15 +41,19 @@ class OrganisationsContactsApi extends Base {
         );
     }
 
-    update(organisation, contact, data) {
+    update(organisation, theme, data) {
         return this.requestPut(
-            this.route('update', {
+            this.route('edit', {
                 organisation,
-                contact,
+                theme,
             }),
             data,
         );
     }
+
+    delete(organisation, theme) {
+        return this.requestDelete(this.route('edit', { organisation, theme }));
+    }
 }
 
-export default OrganisationsContactsApi;
+export default OrganisationsThemesApi;

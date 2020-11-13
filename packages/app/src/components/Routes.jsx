@@ -1,6 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import { Switch, Route, Redirect, useLocation } from 'react-router';
+import { Switch, Route, Redirect } from 'react-router';
 import { stringify as stringifyQuery } from 'query-string';
 import { useRoutes, useUrlGenerator } from '@micromag/core/contexts';
 
@@ -10,6 +10,7 @@ import { useOrganisation } from '../contexts/OrganisationContext';
 import HomePage from './pages/Home';
 import HomeOrganisationPage from './pages/HomeOrganisation';
 import HomeGuestPage from './pages/HomeGuest';
+import OrganisationsPage from './pages/Organisations';
 
 import RegisterPage from './pages/register/Register';
 import CompleteProfilePage from './pages/register/CompleteProfile';
@@ -47,7 +48,7 @@ const propTypes = {};
 const defaultProps = {};
 
 const Routes = () => {
-    const location = useLocation();
+    // const location = useLocation();
     const routes = useRoutes();
     const url = useUrlGenerator();
     const loggedIn = useLoggedIn();
@@ -56,7 +57,7 @@ const Routes = () => {
     const organisation = useOrganisation();
     const HomePageByType = organisation !== null ? HomeOrganisationPage : HomePage;
     const Home = loggedIn ? HomePageByType : HomeGuestPage;
-    console.log('org', organisation, location);
+    // console.log('org', organisation, location);
     return (
         <Switch>
             {/*
@@ -128,6 +129,7 @@ const Routes = () => {
                     to={routes.home}
                 />
             ) : null}
+            <Route path={routes.organisations} exact component={OrganisationsPage} />
             <Route path={routes['organisation.create']} exact component={OrganisationCreatePage} />
             <Route
                 path={routes['organisation.settings']}

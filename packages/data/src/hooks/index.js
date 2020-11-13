@@ -25,9 +25,10 @@ export { default as useOrganisationMemberCreate } from './useOrganisationMemberC
 export { default as useOrganisationMemberDelete } from './useOrganisationMemberDelete';
 export { default as useOrganisationMemberUpdate } from './useOrganisationMemberUpdate';
 export { default as useOrganisationPlans } from './useOrganisationPlans';
+export { default as useOrganisationRoles } from './useOrganisationRoles';
 export { default as useOrganisations } from './useOrganisations';
 export { default as useOrganisationTeam } from './useOrganisationTeam';
-export { default as useOrganisationRoles } from './useOrganisationRoles';
+export { default as useOrganisationThemes } from './useOrganisationThemes';
 export { default as useOrganisationUpdate } from './useOrganisationUpdate';
 export { default as useRecentStories } from './useRecentStories';
 export { default as useRecentSearches } from './useRecentSearches';

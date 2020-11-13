@@ -15,6 +15,7 @@
     "account": "/account",
     "account.settings": "/account/settings",
 
+    "organisations": "/organisations",
     "organisation": "/organisation",
     "organisation.create": "/organisation/create",
     "organisation.settings": "/organisation/settings",
@@ -27,6 +28,9 @@
     "organisation.medias": "/organisation/medias",
     "organisation.themes": "/organisation/themes",
     "organisation.switch": "/organisation/:organisation",
+
+    "themes.show": "/themes/:theme",
+    "themes.editor": "/themes/:theme/editor",
 
     "stories": "/stories",
     "stories.create": "/stories/create",

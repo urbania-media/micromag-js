@@ -81,3 +81,10 @@ export const storyPublication = PropTypes.shape({
     id: PropTypes.string.isRequired,
 });
 export const storyPublications = PropTypes.arrayOf(storyPublication);
+
+export const theme = PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    components: PropTypes.array,
+});
+export const themes = PropTypes.arrayOf(theme);

@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
-
-import { useUrlGenerator } from '@micromag/core/contexts';
 
 import TeamPreview from '../partials/TeamPreview';
 import SettingsButton from '../buttons/Settings';

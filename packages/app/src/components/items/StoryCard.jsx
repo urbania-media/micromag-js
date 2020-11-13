@@ -8,6 +8,7 @@ import { Card, Link } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
 import ScreensCount from '../partials/ScreensCount';
+import SettingsButton from '../buttons/Settings';
 
 import styles from '../../styles/items/story-card.module.scss';
 
@@ -24,35 +25,60 @@ const StoryCardItem = ({ item, className }) => {
     const url = useUrlGenerator();
     const { components = [] } = item;
     const screensCount = components.length;
+
     return (
         <Card
-            theme="dark"
-            footer={
-                <>
-                    <Link
-                        href={url('stories.editor', {
-                            story: item.id,
-                        })}
-                        className="card-link text-white"
-                    >
-                        <FormattedMessage defaultMessage="Edit" description="Button label" />
-                    </Link>
-                    <Link
-                        href={url('stories.settings', {
-                            story: item.id,
-                        })}
-                        className="card-link text-white"
-                    >
-                        <FormattedMessage defaultMessage="Settings" description="Button label" />
-                    </Link>
-                </>
-            }
             className={classNames([
                 styles.container,
                 {
                     [className]: className !== null,
                 },
             ])}
+            theme="dark"
+            beforeBody={
+                <div className={styles.settings}>
+                    <SettingsButton className={styles.button}>
+                        <ul className="list-group text-dark">
+                            <li className="list-group-item">
+                                <Link
+                                    href={url('stories.editor', {
+                                        story: item.id,
+                                    })}
+                                    className="card-link"
+                                >
+                                    <FormattedMessage
+                                        defaultMessage="Edit"
+                                        description="Edit button label"
+                                    />
+                                </Link>
+                            </li>
+                            <li className="list-group-item">
+                                <Link
+                                    href={url('stories.settings', {
+                                        story: item.id,
+                                    })}
+                                    className="card-link"
+                                >
+                                    <FormattedMessage
+                                        defaultMessage="Settings"
+                                        description="Settings button label"
+                                    />
+                                </Link>
+                            </li>
+                            <li className="list-group-item">Duplicate</li>
+                            <li className="list-group-item">Delete</li>
+                        </ul>
+                    </SettingsButton>
+                </div>
+            }
+            footer={
+                <>
+                    <FormattedMessage
+                        defaultMessage="Members: "
+                        description="Members button label"
+                    />
+                </>
+            }
         >
             <h4
                 className={classNames([
@@ -63,7 +89,7 @@ const StoryCardItem = ({ item, className }) => {
                 ])}
             >
                 <Link
-                    to={url('stories.show', {
+                    to={url('stories.editor', {
                         story: item.id,
                     })}
                     className="text-white"

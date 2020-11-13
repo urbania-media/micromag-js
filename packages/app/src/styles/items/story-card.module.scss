@@ -1,5 +1,9 @@
 @import '~@micromag/core/scss/variables';
 
 .container {
-
+    .button {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+    }
 }
