@@ -49,7 +49,7 @@ const defaultProps = {
     className: null,
 };
 
-const GalleryFeed = ({
+const GalleryFeedScreen = ({
     layout,
     images,
     withLegends,
@@ -176,7 +176,7 @@ const GalleryFeed = ({
     );
 };
 
-GalleryFeed.propTypes = propTypes;
-GalleryFeed.defaultProps = defaultProps;
+GalleryFeedScreen.propTypes = propTypes;
+GalleryFeedScreen.defaultProps = defaultProps;
 
-export default React.memo(GalleryFeed);
+export default React.memo(GalleryFeedScreen);

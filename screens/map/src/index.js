@@ -1,3 +1,3 @@
 export { default } from './definition';
-export { default as Map } from './Map';
-export { default as MapImages } from './MapImages';
+export { default as MapScreen } from './Map';
+export { default as MapImagesScreen } from './MapImages';

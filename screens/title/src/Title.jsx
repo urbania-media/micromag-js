@@ -21,6 +21,7 @@ const propTypes = {
     description: MicromagPropTypes.textElement,
     withSubtitle: PropTypes.bool,
     withDescription: PropTypes.bool,
+    spacing: PropTypes.number,
     descriptionEmptyLabel: MicromagPropTypes.label,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
@@ -38,6 +39,7 @@ const defaultProps = {
     description: null,
     withSubtitle: false,
     withDescription: false,
+    spacing: 20,
     descriptionEmptyLabel: (
         <FormattedMessage defaultMessage="Description" description="Description placeholder" />
     ),
@@ -56,13 +58,14 @@ const defaultProps = {
     className: null,
 };
 
-const Title = ({
+const TitleScreen = ({
     layout,
     title,
     subtitle,
     description,
     withSubtitle,
     withDescription,
+    spacing,
     descriptionEmptyLabel,
     background,
     current,
@@ -84,7 +87,10 @@ const Title = ({
 
     const layoutParts = layout.split('-');
     const isSplitted = layoutParts[0] === 'split';
-    const verticalAlign = isSplitted ? layoutParts[1] || 'top' : layoutParts[0];
+    const verticalAlign = isSplitted ? layoutParts[1] || null : layoutParts[0];
+    
+    const titleWithMargin = hasTitle && (hasSubtitle || hasDescription) && (!isSplitted || verticalAlign === 'top');
+    const subtitleWithMargin = hasSubtitle && hasDescription && (!isSplitted || verticalAlign === 'bottom');
 
     // Create elements
     const items = [
@@ -98,7 +104,7 @@ const Title = ({
                 emptyClassName={styles.empty}
                 isEmpty={isEmpty}
             >
-                { hasTitle ? <Heading {...title} size={1} /> : null }
+                { hasTitle ? <Heading className={classNames([styles.title, { [styles.withMargin] : titleWithMargin }])} {...title} size={1} /> : null }
             </ScreenElement>
         ),
 
@@ -117,11 +123,11 @@ const Title = ({
                 emptyClassName={styles.empty}
                 isEmpty={isEmpty}
             >
-                { hasSubtitle ? <Heading {...subtitle} size={2} /> : null }
+                { hasSubtitle ? <Heading className={classNames([styles.subtitle, { [styles.withMargin] : subtitleWithMargin }])} {...subtitle} size={2} /> : null }
             </ScreenElement>
         ),
 
-        isSplitted && withDescription && verticalAlign !== 'bottom' && <Spacer key="spacer2" />,
+        isSplitted && withDescription && verticalAlign === 'top' && <Spacer key="spacer2" />,
 
         withDescription && (
             <ScreenElement
@@ -154,7 +160,11 @@ const Title = ({
             />
 
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <Layout fullscreen verticalAlign={verticalAlign}>
+                <Layout
+                    fullscreen
+                    verticalAlign={verticalAlign}
+                    style={ isView || isPreview ? { padding: spacing } : null }
+                >
                     <TransitionsStagger
                         transitions={transitions}
                         stagger={transitionStagger}
@@ -169,7 +179,7 @@ const Title = ({
     );
 };
 
-Title.propTypes = propTypes;
-Title.defaultProps = defaultProps;
+TitleScreen.propTypes = propTypes;
+TitleScreen.defaultProps = defaultProps;
 
-export default React.memo(Title);
+export default React.memo(TitleScreen);

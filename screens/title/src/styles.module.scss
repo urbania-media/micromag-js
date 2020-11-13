@@ -11,4 +11,11 @@
         height: 50px;
         margin: 5px auto;
     }
+
+    .title,
+    .subtitle {
+        &.withMargin {
+            margin-bottom: 1em;
+        }
+    }
 }

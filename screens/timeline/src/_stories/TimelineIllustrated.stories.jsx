@@ -3,7 +3,7 @@ import React from 'react';
 import { text, title, image, background } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
-import TimelineIllustrated from '../TimelineIllustrated';
+import TimelineIllustratedScreen from '../TimelineIllustrated';
 import definition from '../definition';
 
 const props = {
@@ -23,19 +23,19 @@ const normalProps = {
 
 export default {
     title: 'Screens/TimelineIllustrated',
-    component: TimelineIllustrated,
+    component: TimelineIllustratedScreen,
     parameters: {
         intl: true,
-        screenDefinition: definition.find((it) => it.component === TimelineIllustrated),
+        screenDefinition: definition.find((it) => it.component === TimelineIllustratedScreen),
     },
 };
 
-export const Placeholder = (storyProps) => <TimelineIllustrated {...storyProps} {...props}/>;
+export const Placeholder = (storyProps) => <TimelineIllustratedScreen {...storyProps} {...props}/>;
 
-export const Preview = (storyProps) => <TimelineIllustrated {...storyProps} {...props} {...normalProps} />;
+export const Preview = (storyProps) => <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} />;
 
-export const Edit = (storyProps) => <TimelineIllustrated {...storyProps} />;
+export const Edit = (storyProps) => <TimelineIllustratedScreen {...storyProps} />;
 
-export const Normal = (storyProps) => <TimelineIllustrated {...storyProps} {...props} {...normalProps} />;
+export const Normal = (storyProps) => <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} />;
 
 export const Definition = () => <ScreenDefinition definition={definition} />;

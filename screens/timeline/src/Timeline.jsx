@@ -3,7 +3,7 @@ import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, useResizeObserver } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import Background from '@micromag/element-background';
@@ -96,6 +96,12 @@ const Timeline = ({
         setImagesLoaded(imagesLoaded + 1);
     }, [imagesLoaded, setImagesLoaded]);
 
+    const {
+        ref: scrollContentRef,
+        entry: { contentRect: scrollContentRefRect },
+    } = useResizeObserver({ disabled: isPlaceholder || !items.length });
+    const { width: scrollContentRefWidth = '100%' } = scrollContentRefRect || {};
+
     let transitionDelay = 0;
 
     const timelineElements = items.map((item, itemI) => {
@@ -110,12 +116,15 @@ const Timeline = ({
         const isEmptyImage = isEdit && !hasImage;
 
         const elementsTypes = (layout === 'normal' ? 'title-description-image' : layout).split('-');
+        
         const titleIndex = elementsTypes.indexOf('title');
         const imageIndex = elementsTypes.indexOf('image');
 
         if (!illustrated) {
             elementsTypes.splice(imageIndex, 1);
         }
+        
+        const typesCount = elementsTypes.length;
 
         return (
             <div className={styles.item} key={`item-${itemI}`}>
@@ -206,7 +215,7 @@ const Timeline = ({
                                             >
                                                 <Image
                                                     {...image}
-                                                    width="100%"
+                                                    width={scrollContentRefWidth}
                                                     onLoaded={onImageLoaded}
                                                 />
                                             </Transitions>
@@ -222,6 +231,7 @@ const Timeline = ({
 
                     const firstItem = itemI === 0;
                     const lastItem = itemI === itemsCount - 1;
+                    const lastType = typeI === typesCount - 1;
                     const topLineHidden =
                         (firstItem && typeI <= titleIndex) || (lastItem && typeI > titleIndex);
                     const bottomLineHidden =
@@ -258,10 +268,20 @@ const Timeline = ({
                                             [styles.hidden]: bottomLineHidden,
                                         },
                                     ])}
-                                    style={{ backgroundColor: !bottomLineHidden ? lineColor : null }}
+                                    style={{
+                                        backgroundColor: !bottomLineHidden ? lineColor : null,
+                                    }}
                                 />
                             </div>
-                            <div className={styles.content}>{elementContent}</div>
+                            <div
+                                className={classNames([
+                                    styles.content,
+                                    { [styles.lastContent]: lastType && !lastItem },
+                                ])}
+                                ref={itemI === 0 ? scrollContentRef : null}
+                            >
+                                {elementContent}
+                            </div>
                         </div>
                     );
                 })}

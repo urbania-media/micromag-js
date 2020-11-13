@@ -3,7 +3,7 @@ import React from 'react';
 import { imageWithRandomSize, text, background } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
-import ImageText from '../ImageText';
+import ImageTextScreen from '../ImageText';
 import definition from '../definition';
 
 const props = {
@@ -14,19 +14,19 @@ const props = {
 
 export default {
     title: 'Screens/ImageText',
-    component: ImageText,
+    component: ImageTextScreen,
     parameters: {
         intl: true,
-        screenDefinition: definition.find((it) => it.component === ImageText),
+        screenDefinition: definition.find((it) => it.component === ImageTextScreen),
     },
 };
 
-export const Placeholder = (storyProps) => <ImageText {...storyProps} />;
+export const Placeholder = (storyProps) => <ImageTextScreen {...storyProps} />;
 
-export const Preview = (storyProps) => <ImageText {...storyProps} {...props} />;
+export const Preview = (storyProps) => <ImageTextScreen {...storyProps} {...props} />;
 
-export const Edit = (storyProps) => <ImageText {...storyProps} />;
+export const Edit = (storyProps) => <ImageTextScreen {...storyProps} />;
 
-export const Normal = (storyProps) => <ImageText {...storyProps} {...props} />;
+export const Normal = (storyProps) => <ImageTextScreen {...storyProps} {...props} />;
 
 export const Definition = () => <ScreenDefinition definition={definition} />;

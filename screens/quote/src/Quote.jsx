@@ -9,6 +9,7 @@ import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
+import Quote from '@micromag/element-quote';
 import Text from '@micromag/element-text';
 
 import styles from './styles.module.scss';
@@ -17,7 +18,7 @@ const propTypes = {
     layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split']),
     quote: MicromagPropTypes.textElement,
     author: MicromagPropTypes.textElement,
-    padding: PropTypes.number,
+    spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -31,21 +32,27 @@ const defaultProps = {
     layout: 'top',
     quote: null,
     author: null,
-    padding: 20,
+    spacing: 20,
     background: null,
     current: true,
     active: true,
     maxRatio: 3 / 4,
-    transitions: null,
+    transitions: {
+        in: {
+            name: 'fade',
+            duration: 250,
+        },
+        out: 'scale',
+    },
     transitionStagger: 100,
     className: null,
 };
 
-const Quote = ({
+const QuoteScreen = ({
     layout,
     quote,
     author,
-    padding,
+    spacing,
     background,
     current,
     active,
@@ -54,6 +61,7 @@ const Quote = ({
     transitionStagger,
     className,
 }) => {
+
     const { width, height } = useScreenSize();
 
     const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
@@ -64,8 +72,9 @@ const Quote = ({
     const isEmpty = isEdit && !hasQuote && !hasAuthor;
 
     const isSplitted = layout === 'split';
-    const distribution = isSplitted ? 'between' : null;
     const verticalAlign = isSplitted ? null : layout;
+
+    const quoteWithMargin = hasQuote && hasAuthor && !isSplitted;
 
     const items = [
         (
@@ -78,7 +87,7 @@ const Quote = ({
                 emptyClassName={styles.empty}
                 isEmpty={isEmpty}
             >
-                { hasQuote ? <Text {...quote} /> : null }
+                { hasQuote ? <Quote className={classNames([styles.quote, { [styles.withMargin] : quoteWithMargin }])} {...quote} /> : null }
             </ScreenElement>
         ),
         isSplitted && hasAuthor && <Spacer key="spacer" />,
@@ -92,7 +101,7 @@ const Quote = ({
                 emptyClassName={styles.empty}
                 isEmpty={isEmpty}
             >
-                { hasAuthor ? <Text {...author} /> : null }
+                { hasAuthor ? <Text className={styles.author} {...author} /> : null }
             </ScreenElement>
         ),
     ];
@@ -118,8 +127,7 @@ const Quote = ({
                 <Layout
                     fullscreen
                     verticalAlign={verticalAlign}
-                    distribution={distribution}
-                    style={isView ? { padding } : null}
+                    style={isView ? { padding: spacing } : null}
                 >
                     <TransitionsStagger
                         transitions={transitions}
@@ -135,7 +143,7 @@ const Quote = ({
     );
 };
 
-Quote.propTypes = propTypes;
-Quote.defaultProps = defaultProps;
+QuoteScreen.propTypes = propTypes;
+QuoteScreen.defaultProps = defaultProps;
 
-export default React.memo(Quote);
+export default React.memo(QuoteScreen);

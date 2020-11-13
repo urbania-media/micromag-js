@@ -18,6 +18,10 @@ const propTypes = {
     active: PropTypes.bool,
     title: PropTypes.string,
     image: MicromagPropTypes.imageElement,
+    imageSize: PropTypes.shape({
+        width: PropTypes.number,
+        height: PropTypes.number,
+    }),
 };
 
 const defaultProps = {
@@ -25,9 +29,13 @@ const defaultProps = {
     active: true,
     title: null,
     image: null,
+    imageSize: {
+        width: 50,
+        height: 50,
+    },
 };
 
-const Marker = ({ mapsApi, position, type, map, events, active, title, image }) => {
+const Marker = ({ mapsApi, position, type, map, events, active, title, image, imageSize }) => {
     const marker = useGoogleMapMarker({
         mapsApi,
         position,
@@ -42,7 +50,10 @@ const Marker = ({ mapsApi, position, type, map, events, active, title, image }) 
             const { media: imageMedia = null } = image || {};
             const { url: imageUrl = null } = imageMedia || {};
             if (imageUrl !== null) {
-                marker.setIcon(imageUrl);
+                marker.setIcon({
+                    url: imageUrl,
+                    scaledSize: new mapsApi.Size(imageSize.width, imageSize.height),
+                });
             } else if (active) {
                 marker.setIcon(Pin);
             } else {

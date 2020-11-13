@@ -80,7 +80,7 @@ const defaultProps = {
     className: null,
 };
 
-const Gallery = ({
+const GalleryScreen = ({
     layout,
     images,
     withLegends,
@@ -236,7 +236,7 @@ const Gallery = ({
     );
 };
 
-Gallery.propTypes = propTypes;
-Gallery.defaultProps = defaultProps;
+GalleryScreen.propTypes = propTypes;
+GalleryScreen.defaultProps = defaultProps;
 
-export default React.memo(Gallery);
+export default React.memo(GalleryScreen);

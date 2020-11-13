@@ -1,3 +1,3 @@
 export { default } from './definition';
-export { default as Gallery } from './Gallery';
-export { default as GalleryLegends } from './GalleryLegends';
+export { default as GalleryScreen } from './Gallery';
+export { default as GalleryLegendsScreen } from './GalleryLegends';

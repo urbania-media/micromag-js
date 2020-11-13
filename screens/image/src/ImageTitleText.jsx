@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import Image from './Image';
+import ImageScreen from './Image';
 
-const ImageTitleText = ({ ...props }) => (
-    <Image
+const ImageTitleTextScreen = ({ ...props }) => (
+    <ImageScreen
         {...props}
         withTitle
         withText
     />
 );
 
-export default ImageTitleText;
+export default ImageTitleTextScreen;

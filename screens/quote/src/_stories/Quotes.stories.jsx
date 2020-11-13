@@ -3,7 +3,7 @@ import React from 'react';
 import { quote, author, background } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
-import Quote from '../Quote';
+import QuoteScreen from '../Quote';
 import definition from '../definition';
 
 const props = {
@@ -14,19 +14,19 @@ const props = {
 
 export default {
     title: 'Screens/Quote',
-    component: Quote,
+    component: QuoteScreen,
     parameters: {
         intl: true,
         screenDefinition: definition,
     },
 };
 
-export const Placeholder = (storyProps) => <Quote {...storyProps} />;
+export const Placeholder = (storyProps) => <QuoteScreen {...storyProps} />;
 
-export const Preview = (storyProps) => <Quote {...storyProps} {...props} />;
+export const Preview = (storyProps) => <QuoteScreen {...storyProps} {...props} />;
 
-export const Edit = (storyProps) => <Quote {...storyProps} />;
+export const Edit = (storyProps) => <QuoteScreen {...storyProps} />;
 
-export const Normal = (storyProps) => <Quote {...storyProps} {...props} />;
+export const Normal = (storyProps) => <QuoteScreen {...storyProps} {...props} />;
 
 export const Definition = () => <ScreenDefinition definition={definition} />;

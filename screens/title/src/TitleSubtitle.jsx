@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import Title from './Title';
+import TitleScreen from './Title';
 
-const TitleSubtitle = ({ ...props }) => (
-    <Title
+const TitleSubtitleScreen = ({ ...props }) => (
+    <TitleScreen
         {...props}
         withSubtitle
     />
 );
 
-export default TitleSubtitle;
+export default TitleSubtitleScreen;

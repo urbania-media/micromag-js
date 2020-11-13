@@ -1,6 +1,6 @@
 import { defineMessage } from 'react-intl';
-import Timeline from './Timeline';
-import TimelineIllustrated from './TimelineIllustrated';
+import TimelineScreen from './Timeline';
+import TimelineIllustratedScreen from './TimelineIllustrated';
 
 export default [
     {
@@ -14,7 +14,7 @@ export default [
             defaultMessage: 'Timeline',
             description: 'Timeline screen title',
         }),
-        component: Timeline,
+        component: TimelineScreen,
         layouts: ['normal'],
         fields: [
             {
@@ -54,7 +54,7 @@ export default [
             defaultMessage: 'Timeline Illustrated',
             description: 'Timeline Illustrated screen title',
         }),
-        component: TimelineIllustrated,
+        component: TimelineIllustratedScreen,
         layouts: ['title-image-description', 'title-description-image', 'image-title-description'],
         fields: [
             {
