@@ -24,7 +24,6 @@ var EOuygN = "My Micromags";
 var EcZYpr = "Subtitle";
 var EoLB7Z = "Stats";
 var F6JbBU = "Duplicate";
-var FFYOZz = "Members:";
 var FLMZDH = "Invite your team members to your organisation.";
 var G31Yd0 = "Cancel";
 var GE8wrk = "Image";
@@ -32,6 +31,8 @@ var GrATUZ = "Login";
 var GzoKNb = "Timeline";
 var Gzx6q5 = "Advertising";
 var H7fYum = "Your plan";
+var HKuWoX = "Settings";
+var IKnyYt = "Editor";
 var IMUycF = "Timeline Illustrated";
 var IwGlNX = "Create your first screen";
 var JV5hRr = "Media gallery";
@@ -53,6 +54,7 @@ var PQG8A5 = "Link";
 var PXCkXy = "Billing";
 var PbHeHc = "Markers";
 var PdGmQa = "Continue";
+var PyDwDF = "Close";
 var QDznJ0 = "Account";
 var QN68P8 = "Main contact";
 var R1HYj0 = "Save";
@@ -97,6 +99,7 @@ var bhEaUt = "Audio";
 var cGItoy = "List";
 var cldP9G = "Medias";
 var d60tSn = "Subtitle";
+var dED5N5 = "Saving...";
 var dVcog7 = "Title";
 var dmuKH3 = "Map";
 var dpQDWT = "Change password";
@@ -143,6 +146,7 @@ var qHrpc6 = "Organisation name";
 var qIw1nW = "Save";
 var qKQCxc = "Add a marker";
 var qZItNz = "MapImages";
+var qZJIxy = "Preview";
 var qrMjBI = "Recent stories";
 var qzzYCQ = "No screen yet";
 var s1aoBI = "Medias";
@@ -163,6 +167,7 @@ var upzOTm = "Credits";
 var vDSsFW = "Create an account";
 var vrCfAS = "GalleryFeed";
 var vtStU2 = "Payment history";
+var w4dVOR = "Versions";
 var wR9ivY = "Choose the {name} plan";
 var wRV8PN = "Settings";
 var wYsv4Z = "Monthly";
@@ -194,6 +199,7 @@ var messages = {
   "/hupzO": "Credits",
   "0BcvF9": "All",
   "0R5Jlk": "My profile",
+  "0btyge": "Latest version",
   "0gyI2S": "GalleryFeedLegends",
   "0vXXfT": "imagesWithLegends",
   "15GBmG": "All",
@@ -203,6 +209,7 @@ var messages = {
   "1ezz2m": "Description",
   "1fBNmY": "ImageTitle",
   "1fNojU": "{count} {count, plural, one {screen} other {screens}}",
+  "1q5+sW": "Publish",
   "2/F1Q7": "#{index}",
   "2HmpAM": "Yearly",
   "2YxE0m": "My stories",
@@ -225,6 +232,8 @@ var messages = {
   "507VAi": "Description",
   "535JXI": "Story",
   "5T6vni": "Postal code",
+  "5u4nkn": "No versions yet",
+  "5uH4x7": "Submit",
   "63Kvho": "Images",
   "650XRF": "Survey",
   "6Z1BwP": "Recent searches",
@@ -232,6 +241,7 @@ var messages = {
   "6mX2ya": "Images",
   "71qOve": "Complete profile",
   "73hxYw": "Author",
+  "78CbPn": "Delete story",
   "88/Ge8": "Quote",
   "8DQdhw": "Please enter your email address to get a password reset link.",
   "8c34nT": "ImageTitleText",
@@ -266,7 +276,6 @@ var messages = {
   EcZYpr: EcZYpr,
   EoLB7Z: EoLB7Z,
   F6JbBU: F6JbBU,
-  FFYOZz: FFYOZz,
   FLMZDH: FLMZDH,
   G31Yd0: G31Yd0,
   "GBq/YG": "Password",
@@ -275,7 +284,9 @@ var messages = {
   GzoKNb: GzoKNb,
   Gzx6q5: Gzx6q5,
   H7fYum: H7fYum,
+  HKuWoX: HKuWoX,
   "IB/AQ9": "You are a member of the following organisations:",
+  IKnyYt: IKnyYt,
   IMUycF: IMUycF,
   IwGlNX: IwGlNX,
   JV5hRr: JV5hRr,
@@ -299,6 +310,7 @@ var messages = {
   PXCkXy: PXCkXy,
   PbHeHc: PbHeHc,
   PdGmQa: PdGmQa,
+  PyDwDF: PyDwDF,
   QDznJ0: QDznJ0,
   QN68P8: QN68P8,
   R1HYj0: R1HYj0,
@@ -354,7 +366,9 @@ var messages = {
   cGItoy: cGItoy,
   cldP9G: cldP9G,
   "cnqNx/": "CVV",
+  "d/DYsH": "Versions",
   d60tSn: d60tSn,
+  dED5N5: dED5N5,
   dVcog7: dVcog7,
   dmuKH3: dmuKH3,
   dpQDWT: dpQDWT,
@@ -379,6 +393,7 @@ var messages = {
   "indcf+": "Address 2",
   jIlVe2: jIlVe2,
   jaFXki: jaFXki,
+  "jnOMk/": "Publish",
   kBz8vF: kBz8vF,
   kIl7G5: kIl7G5,
   ktUr5c: ktUr5c,
@@ -398,20 +413,12 @@ var messages = {
   "menus.stories.recent": "Recent stories",
   "menus.stories.stories": "Stories",
   "menus.stories.view_all": "View all stories",
-  "menus.story.delete": "Delete story",
-  "menus.story.editor": "Launch editor",
-  "menus.story.preview": "Preview",
-  "menus.story.publish": "Publish",
-  "menus.story.settings": "Settings",
   mv37oK: mv37oK,
   "n/o4Co": "Send request",
   n1ZJSY: n1ZJSY,
   n2teag: n2teag,
   nDBdT5: nDBdT5,
   nXVNeg: nXVNeg,
-  "navbars.editor.close": "Close",
-  "navbars.editor.save": "Save",
-  "navbars.editor.saving": "Saving...",
   "navbars.preview.close": "Close",
   nqQqsI: nqQqsI,
   oC1UCA: oC1UCA,
@@ -433,6 +440,7 @@ var messages = {
   qIw1nW: qIw1nW,
   qKQCxc: qKQCxc,
   qZItNz: qZItNz,
+  qZJIxy: qZJIxy,
   qrMjBI: qrMjBI,
   qzzYCQ: qzzYCQ,
   "recent_publications.title": "Recent publications",
@@ -458,6 +466,7 @@ var messages = {
   vrCfAS: vrCfAS,
   vtStU2: vtStU2,
   "w+78Hh": "Go back to login",
+  w4dVOR: w4dVOR,
   wR9ivY: wR9ivY,
   wRV8PN: wRV8PN,
   wYsv4Z: wYsv4Z,

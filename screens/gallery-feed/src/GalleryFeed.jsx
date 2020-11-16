@@ -116,7 +116,6 @@ const GalleryFeedScreen = ({
         let legendElement = null;
 
         if (withLegends) {
-
             legendElement = (
                 <ScreenElement
                     key={`legend-${index}`}
@@ -153,7 +152,7 @@ const GalleryFeedScreen = ({
         }
 
         if (!isPlaceholder && index < finalImages.length - 1) {
-            items.push(<div style={{height: spacing}} />);
+            items.push(<div key={`spacing-${index}`} style={{height: spacing}} />);
         }        
     });
 
