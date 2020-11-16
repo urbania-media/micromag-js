@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -29,6 +29,7 @@ const propTypes = {
     ),
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
+    withPercentLabels: PropTypes.bool,
     current: PropTypes.bool,
     active: PropTypes.bool,
     maxRatio: PropTypes.number,
@@ -43,6 +44,7 @@ const defaultProps = {
     options: null,
     spacing: 20,
     background: null,
+    withPercentLabels: true,
     current: true,
     active: true,
     maxRatio: 3 / 4,
@@ -63,6 +65,7 @@ const SurveyScreen = ({
     options,
     spacing,
     background,
+    withPercentLabels,
     current,
     active,
     maxRatio,
@@ -118,15 +121,25 @@ const SurveyScreen = ({
 
     // Answer
 
+    const buttonsRefs = useRef([]);
+    const labelsRefs = useRef([]);
+    const [buttonMaxWidth, setButtonMaxWidth] = useState(null);
+
+    useEffect(() => {
+        let maxWidth = 0;
+        buttonsRefs.current.forEach((button, buttonI) => {
+            const label = labelsRefs.current[buttonI];
+            const borderWidth = button.offsetWidth - button.clientWidth;
+            const totalWidth = borderWidth + label.offsetWidth + 1;
+            maxWidth = Math.max(maxWidth, totalWidth);
+            setButtonMaxWidth(maxWidth);
+        });
+    }, [width, height, setButtonMaxWidth]);
+
     items.push(
-        <div
-            key="answer"
-            className={styles.answer}
-        >
-            {options !== null ? (// Options
-                <div
-                    className={styles.options}
-                >
+        <div key="answer" className={styles.answer}>
+            {options !== null ? ( // Options
+                <div className={styles.options}>
                     {options.map((option, optionI) => {
                         const hasOption = option !== null;
                         const isEmptyOption = isEdit && !hasOption;
@@ -161,18 +174,41 @@ const SurveyScreen = ({
                                             delay={(optionI + 1) * transitionStagger}
                                         >
                                             <div className={styles.optionContent}>
-                                                <Button
-                                                    className={styles.button}
-                                                    onClick={() => onOptionClick(optionI)}
+                                                <div
+                                                    className={styles.optionInner}
+                                                    style={{
+                                                        width: answered ? buttonMaxWidth : null,
+                                                    }}
                                                 >
-                                                    <Text
-                                                        {...label}
-                                                        className={styles.optionLabel}
-                                                    />
-                                                </Button>
+                                                    <Button
+                                                        className={styles.button}
+                                                        onClick={() => onOptionClick(optionI)}
+                                                        refButton={(el) => {
+                                                            buttonsRefs.current[optionI] = el;
+                                                        }}
+                                                    >
+                                                        <div
+                                                            className={styles.optionLabel}
+                                                            ref={(el) => {
+                                                                labelsRefs.current[optionI] = el;
+                                                            }}
+                                                        >
+                                                            <Text {...label} />
+                                                        </div>
+                                                    </Button>
+                                                </div>
                                                 <div className={styles.resultContainer}>
                                                     <div className={styles.resultContent}>
-                                                        <div className={styles.result} style={{ width: `${percent}%` }} />
+                                                        <div
+                                                            className={styles.result}
+                                                            style={{ width: `${percent}%` }}
+                                                        >
+                                                            {withPercentLabels ? (
+                                                                <div
+                                                                    className={styles.resultLabel}
+                                                                >{`${percent}%`}</div>
+                                                            ) : null}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

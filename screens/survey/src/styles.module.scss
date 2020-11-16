@@ -38,35 +38,61 @@
     .resultContainer {        
         flex-grow: 1;
         align-self: stretch;
-        padding: 10px;
+        padding: 15px 0;
+        transition: padding 0.5s ease;
     }
 
     .resultContent {
         width: 0;
         height: 100%;
-        transition: width 0.5s 0.5s ease;
+        transition: width 0.5s 0.5s ease, opacity 0.5s 0.5s ease;
+        opacity: 0;
     }
 
     .result {
+        position: relative;
         height: 100%;
         background-color: $gray-500;
+    }
+
+    .resultLabel {
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        margin-left: 5px;
+        transform: translateY(-50%);
+    }
+
+    .optionInner {
+        width: 100%;
+        transition: width 0.5s ease;
     }
 
     .button {
         position: relative;
         width: 100%;
-        padding: 10px;
-        transition: width 0.5s ease;
+        padding: 0;
+        text-align: left;
     }
+
+    .optionLabel {
+        display: inline-block;
+        padding: 10px;
+    }    
 
     &.answered {
         .button {
-            width: 10%;
             pointer-events: none;
+        }
+
+        .resultContainer {
+            padding-right: 15px;
+            padding-left: 15px;
         }
 
         .resultContent {
             width: 100%;
+            opacity: 1;
         }
     }
 }
