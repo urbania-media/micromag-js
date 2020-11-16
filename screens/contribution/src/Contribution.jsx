@@ -3,7 +3,7 @@
 import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
@@ -12,8 +12,8 @@ import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Heading from '@micromag/element-heading';
+import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
-import Button from '@micromag/element-button';
 
 import styles from './styles.module.scss';
 
@@ -28,6 +28,10 @@ const propTypes = {
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
+    contributions: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string,
+        message: PropTypes.string,
+    })),
 };
 
 const defaultProps = {
@@ -47,6 +51,20 @@ const defaultProps = {
     },
     transitionStagger: 100,
     className: null,
+    contributions: [
+        {
+            name: 'Nom 1',
+            message: 'Message 1'
+        },
+        {
+            name: 'Nom 2',
+            message: 'Message 2'
+        },
+        {
+            name: 'Nom 3',
+            message: 'Message 3'
+        },
+    ]
 };
 
 const SurveyScreen = ({
@@ -60,40 +78,52 @@ const SurveyScreen = ({
     transitions,
     transitionStagger,
     className,
+    contributions,
 }) => {
     const { width, height } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
+
+    const intl = useIntl();
 
     const hasTitle = title !== null;
 
     const isEmptyTitle = isEdit && !hasTitle;
 
+    const [userName, setUserName] = useState('');
+    const [userMessage, setUserMessage] = useState('');
     const [submitState, setSubmitState] = useState({
         submitted: false,
         submitting: false,
     });
 
+    const onNameChange = useCallback( e => {
+        setUserName(e.currentTarget.value);
+    }, [setUserName]);
+
+    const onMessageChange = useCallback( e => {
+        setUserMessage(e.currentTarget.value);
+    }, [setUserMessage]);
+
     const isSplitted = layout === 'split';
     const verticalAlign = isSplitted ? null : layout;
 
-    const onSubmit = useCallback(
-        () => {
-            const { submitted = false, submitting = false } = submitState;
-            let tmpSubmit = null;
-            if (!submitted && !submitting) {
-                setSubmitState({ ...submitState, submitting: true });
-                // actual submit here
-                tmpSubmit = setTimeout(setSubmitState, 1000, { submitted: true, submitting: false });
-            }
+    const onSubmit = useCallback((e) => {
+        e.preventDefault();
+        
+        const { submitted = false, submitting = false } = submitState;
+        let tmpSubmit = null;
+        if (!submitted && !submitting) {
+            setSubmitState({ ...submitState, submitting: true });
+            // actual submit here
+            tmpSubmit = setTimeout(setSubmitState, 1000, { submitted: true, submitting: false });
+        }
 
-            return () => {
-                if (tmpSubmit !== null) {
-                    clearTimeout(tmpSubmit);
-                }                
+        return () => {
+            if (tmpSubmit !== null) {
+                clearTimeout(tmpSubmit);
             }
-        },
-        [submitState, setSubmitState],
-    );
+        };
+    }, [submitState, setSubmitState]);
 
     // Title
 
@@ -101,9 +131,7 @@ const SurveyScreen = ({
         <ScreenElement
             key="title"
             placeholder="title"
-            emptyLabel={
-                <FormattedMessage defaultMessage="Title" description="Title placeholder" />
-            }
+            emptyLabel={<FormattedMessage defaultMessage="Title" description="Title placeholder" />}
             emptyClassName={styles.empty}
             isEmpty={isEmptyTitle}
         >
@@ -120,6 +148,44 @@ const SurveyScreen = ({
     }
 
     // Form
+
+    items.push(
+        <ScreenElement key="form" placeholder="form">
+            <Transitions transitions={transitions} playing={current} delay={transitionStagger}>
+                <form onSubmit={onSubmit}>
+                    <input
+                        type="text"
+                        placeholder={intl.formatMessage({
+                            defaultMessage: 'Your name',
+                            description: 'Your name placeholder',
+                        })}
+                        value={userName}
+                        onChange={ e => onNameChange(e) }
+                    />
+                    <textarea
+                        placeholder={intl.formatMessage({
+                            defaultMessage: 'Your message',
+                            description: 'Your message placeholder'
+                            
+                        })}
+                        value={userMessage}
+                        onChange={ e => onMessageChange(e) }
+                    >{userMessage}</textarea>
+                    <button type="submit">
+                        <FormattedMessage defaultMessage="Submit" description="Submit placeholder" />
+                    </button>
+                </form>
+                <div className={styles.contributions}>
+                    { contributions.map( (contribution, contributionI) => 
+                        <div key={`contribution${contributionI}`} className={styles.contribution}>
+                            <Text className={styles.contributionName} body={contribution.name} />
+                            <Text className={styles.contributionMessage} body={contribution.message} />
+                        </div>
+                    ) }
+                </div>
+            </Transitions>
+        </ScreenElement>,
+    );
 
     // Uploads
 
@@ -139,13 +205,15 @@ const SurveyScreen = ({
                 playing={(isView && current) || (isEdit && active)}
                 maxRatio={maxRatio}
             />
-            <Container width={width} height={height} maxRatio={maxRatio}>
+            <Container width={width} height={height} maxRatio={maxRatio} withScroll>
                 <Layout
                     fullscreen
                     verticalAlign={verticalAlign}
                     style={isView || isPreview ? { padding: spacing } : null}
                 >
-                    {items}
+                    <Scroll verticalAlign="center" disabled={isPlaceholder}>
+                        {items}
+                    </Scroll>
                 </Layout>
             </Container>
         </div>

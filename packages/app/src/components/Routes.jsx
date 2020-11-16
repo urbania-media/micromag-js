@@ -33,6 +33,8 @@ import OrganisationTeamPage from './pages/organisation/Team';
 import OrganisationStatsPage from './pages/organisation/Stats';
 import OrganisationThemesPage from './pages/organisation/Themes';
 import OrganisationMediasPage from './pages/organisation/Medias';
+import OrganisationPublishingPage from './pages/organisation/Publishing';
+import OrganisationPublishingSettingsPage from './pages/organisation/PublishingSettings';
 import OrganisationSwitchPage from './pages/organisation/Switch';
 
 import StoriesPage from './pages/stories/Stories';
@@ -43,6 +45,7 @@ import StoryPreviewPage from './pages/stories/Preview';
 import StoryPublishPage from './pages/stories/Publish';
 import StoryVersionsPage from './pages/stories/Versions';
 import StorySettingsPage from './pages/stories/Settings';
+import StoryMediasPage from './pages/stories/Medias';
 
 const propTypes = {};
 
@@ -142,7 +145,6 @@ const Routes = () => {
                 exact
                 component={OrganisationBillingPage}
             />
-
             <Route
                 path={routes['organisation.billing_history']}
                 exact
@@ -162,6 +164,16 @@ const Routes = () => {
             <Route path={routes['organisation.themes']} exact component={OrganisationThemesPage} />
             <Route path={routes['organisation.stats']} exact component={OrganisationStatsPage} />
             <Route path={routes['organisation.medias']} exact component={OrganisationMediasPage} />
+            <Route
+                path={routes['organisation.publishing']}
+                exact
+                component={OrganisationPublishingPage}
+            />
+            <Route
+                path={routes['organisation.publishing_settings']}
+                exact
+                component={OrganisationPublishingSettingsPage}
+            />
             <Route
                 path={routes['organisation.switch']}
                 exact
@@ -189,6 +201,7 @@ const Routes = () => {
             <Route path={routes['stories.publish']} component={StoryPublishPage} />
             <Route path={routes['stories.versions']} component={StoryVersionsPage} />
             <Route path={routes['stories.settings']} component={StorySettingsPage} />
+            <Route path={routes['stories.medias']} component={StoryMediasPage} />
         </Switch>
     );
 };

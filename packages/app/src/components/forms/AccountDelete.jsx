@@ -54,6 +54,7 @@ const AccountDeleteForm = ({ fields, className, onUpdated }) => {
     const openForm = useCallback(() => {
         setOpen(true);
     }, [setOpen]);
+
     return open ? (
         <Form
             action={url('account.delete')}

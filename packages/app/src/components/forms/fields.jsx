@@ -138,6 +138,11 @@ export const organisation = [
             />
         ),
     },
+    {
+        name: 'image',
+        type: 'image',
+        label: <FormattedMessage defaultMessage="Image" description="Image field label" />,
+    },
 ];
 
 export const teamMember = [

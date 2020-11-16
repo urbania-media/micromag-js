@@ -44,7 +44,8 @@ const StoryNavbar = ({ story, className }) => {
                                       })
                                     : url('stories')
                             }
-                            theme="secondary"
+                            theme="light"
+                            invert
                             className="mr-1"
                         >
                             <FormattedMessage
@@ -52,7 +53,7 @@ const StoryNavbar = ({ story, className }) => {
                                 description="Publish button label"
                             />
                         </PublishButton>
-                        <SettingsButton>
+                        <SettingsButton theme="light">
                             <StoryMenu story={story} asList withEditor={false} />
                         </SettingsButton>
                     </form>

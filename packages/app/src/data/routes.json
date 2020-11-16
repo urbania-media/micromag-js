@@ -27,6 +27,8 @@
     "organisation.billing_plan": "/organisation/billing-plan",
     "organisation.medias": "/organisation/medias",
     "organisation.themes": "/organisation/themes",
+    "organisation.publishing": "/organisation/publishing",
+    "organisation.publishing_settings": "/organisation/publishing/:type",
     "organisation.switch": "/organisation/:organisation",
 
     "themes.show": "/themes/:theme",
@@ -39,5 +41,6 @@
     "stories.preview": "/stories/:story/preview",
     "stories.publish": "/stories/:story/publish",
     "stories.versions": "/stories/:story/versions",
-    "stories.settings": "/stories/:story/settings"
+    "stories.settings": "/stories/:story/settings",
+    "stories.medias": "/stories/:story/medias"
 }

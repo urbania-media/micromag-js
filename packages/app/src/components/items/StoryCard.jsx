@@ -11,6 +11,7 @@ import { useStoryDuplicate, useStoryDelete } from '@micromag/data';
 import ScreensCount from '../partials/ScreensCount';
 import Authors from '../partials/Authors';
 import SettingsButton from '../buttons/Settings';
+import StoryMenu from '../menus/Story';
 
 import styles from '../../styles/items/story-card.module.scss';
 
@@ -58,33 +59,8 @@ const StoryCardItem = ({ item, className }) => {
             beforeBody={
                 <div className={styles.settings}>
                     <SettingsButton className={styles.button}>
+                        <StoryMenu story={item} asList />
                         <ul className="list-group text-dark">
-                            <li className="list-group-item">
-                                <Link
-                                    href={url('stories.editor', {
-                                        story: item.id,
-                                    })}
-                                    className="card-link"
-                                >
-                                    <FormattedMessage
-                                        defaultMessage="Edit"
-                                        description="Edit button label"
-                                    />
-                                </Link>
-                            </li>
-                            <li className="list-group-item">
-                                <Link
-                                    href={url('stories.settings', {
-                                        story: item.id,
-                                    })}
-                                    className="card-link"
-                                >
-                                    <FormattedMessage
-                                        defaultMessage="Settings"
-                                        description="Settings button label"
-                                    />
-                                </Link>
-                            </li>
                             <li className="list-group-item">
                                 <Button asLink onClick={onClickDuplicate}>
                                     <FormattedMessage
