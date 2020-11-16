@@ -1,6 +1,17 @@
 import { v1 as uuid } from 'uuid';
 
-import { tommy, mans } from './data';
+import {
+    tommy,
+    mans,
+    survey1options,
+    quiz1options,
+    quiz2options,
+    quiz3options,
+    quiz4options,
+    quiz5options,
+    quiz6options,
+    timelineItems,
+} from './data';
 
 const faceAFaceStory = [
     {
@@ -42,11 +53,20 @@ const faceAFaceStory = [
         title: {
             body: 'La face de l’humain au fil du temps',
         },
-        images: mans
+        images: mans,
     },
     {
         id: uuid(),
-        type: 'title',
+        type: 'survey',
+        layout: 'middle',
+        question: {
+            body: 'Qu’est-ce qui vous agace le plus dans votre face?',
+        },
+        options: survey1options,
+    },
+    {
+        id: uuid(),
+        type: 'audio',
         layout: 'middle',
         title: {
             body: 'Face à face avec votre face',
@@ -57,16 +77,132 @@ const faceAFaceStory = [
         type: 'title',
         layout: 'middle',
         title: {
-            body: 'Face à face avec votre face',
+            body: 'Avez-vous du pif au milieu du visage? Testez vos connaissances!',
         },
     },
     {
         id: uuid(),
-        type: 'title',
+        type: 'quiz',
+        layout: 'middle',
+        question: {
+            body: 'Combien d’heures a duré la première greffe de visage au Canada?',
+        },
+        options: quiz1options,
+        result: {
+            text: {
+                body:
+                    'La pose du visage a duré 18 heures, mais il en a fallu 28 de plus pour retirer les visages du donneur et du receveur.',
+            },
+        },
+    },
+    {
+        id: uuid(),
+        type: 'quiz',
+        layout: 'middle',
+        question: {
+            body: 'Combien d’yeux avait Frank and Louie, un chat à deux visages décédé en 2014?',
+        },
+        options: quiz2options,
+        result: {
+            text: {
+                body:
+                    'Trois yeux et deux bouches, mais un seul cerveau. Vous avez le droit d’aller googler.',
+            },
+        },
+    },
+    {
+        id: uuid(),
+        type: 'quiz',
+        layout: 'middle',
+        question: {
+            body:
+                'Dans quelle proportion les systèmes de reconnaissance faciale identifient-ils erronément les Noirs, les Asiatiques et les Autochtones?',
+        },
+        options: quiz3options,
+        result: {
+            text: {
+                body: 'La raison: ces systèmes sont testés sur des Blancs en grand majorité.',
+            },
+        },
+    },
+    {
+        id: uuid(),
+        type: 'quiz',
+        layout: 'middle',
+        question: {
+            body:
+                'Comment appelle-t-on un «faux» sourire qui n’est pas généré de façon authentique?',
+        },
+        options: quiz4options,
+        result: {
+            text: {
+                body:
+                    'Pas qu’on croit pas à la sincérité des agents de bord, mais c’est humainement impossible de sourire constamment quand on est entouré de bébé qui braillent et de voyageurs qui chialent.',
+            },
+        },
+    },
+    {
+        id: uuid(),
+        type: 'quiz',
+        layout: 'middle',
+        question: {
+            body:
+                'Combien d’abonnés Instagram compte Jason Diamond, le chirurgien des stars d’Hollywood?',
+        },
+        options: quiz5options,
+        result: {
+            text: {
+                body:
+                    'Mais l’histoire ne dit pas s’il utilise des filtres Instagram sur les photos de ses patients.',
+            },
+        },
+    },
+    {
+        id: uuid(),
+        type: 'quiz',
+        layout: 'middle',
+        question: {
+            body: 'Combien de caméras de surveillance compte la Chine?',
+        },
+        options: quiz6options,
+        result: {
+            text: {
+                body:
+                    'Une grande partie de ces caméras sont équipées de technologies de reconnaissance faciale qui laisse entrevoir un avenir un peu trop proche de Black Mirror.',
+            },
+        },
+    },
+    {
+        id: uuid(),
+        type: 'title-subtitle',
         layout: 'middle',
         title: {
-            body: 'Face à face avec votre face',
+            body: 'Top 3 des secrets des super-recognizers',
         },
+        subtitle: {
+            body:
+                'Ces gens capables de reconnaître presque n’importe qui n’importe où n’importe quand',
+        },
+    },
+    {
+        id: uuid(),
+        type: 'title-subtitle-credits',
+        layout: 'middle',
+        title: {
+            body: 'Pourriez vous passer une semaine sans vous regarder dans le miroir?',
+        },
+        subtitle: {
+            body: 'On a tenté l’expérience et voici comment ça s’est déroulé',
+        },
+        descrition: {
+            body: 'Par Hugo Meunier',
+        },
+    },
+    {
+        id: uuid(),
+        type: 'timeline',
+        layout: 'normal',
+        items: timelineItems,
     },
 ];
 
