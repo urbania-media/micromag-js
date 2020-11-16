@@ -76,6 +76,16 @@ const OrganisationsMenu = ({
                 type: 'divider',
             },
             {
+                id: 'publishing',
+                href: url('organisation.publishing'),
+                label: (
+                    <FormattedMessage
+                        defaultMessage="Publishing"
+                        description="Publishing menu item"
+                    />
+                ),
+            },
+            {
                 id: 'themes',
                 href: url('organisation.themes'),
                 label: <FormattedMessage defaultMessage="Themes" description="Themes menu item" />,

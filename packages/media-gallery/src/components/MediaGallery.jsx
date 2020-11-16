@@ -15,8 +15,11 @@ import styles from '../styles/media-gallery.module.scss';
 
 const propTypes = {
     type: PropTypes.string,
+    source: PropTypes.string,
     isPicker: PropTypes.bool,
     isSmall: PropTypes.bool,
+    withoutTitle: PropTypes.bool,
+    withoutSource: PropTypes.bool,
     medias: MicromagPropTypes.medias,
     selectedMedia: MicromagPropTypes.media,
     className: PropTypes.string,
@@ -25,8 +28,11 @@ const propTypes = {
 
 const defaultProps = {
     type: null,
+    source: 'all',
     isPicker: false,
     isSmall: false,
+    withoutTitle: false,
+    withoutSource: false,
     medias: null,
     selectedMedia: null,
     className: null,
@@ -35,8 +41,11 @@ const defaultProps = {
 
 const MediaGallery = ({
     type,
+    source,
     isPicker,
     isSmall,
+    withoutTitle,
+    withoutSource,
     medias: initialMedias,
     selectedMedia,
     className,
@@ -45,7 +54,7 @@ const MediaGallery = ({
     // Base state for filters
     const defaultFilters = {
         type,
-        source: 'all',
+        source,
     };
 
     // Filters
@@ -106,8 +115,6 @@ const MediaGallery = ({
         setUploadModalOpened,
     ]);
 
-    // console.log('filters', filtersValue);
-
     return (
         <div
             className={classNames([
@@ -125,6 +132,8 @@ const MediaGallery = ({
                 onClickAdd={onClickAdd}
                 onClickBack={onClickBack}
                 onClickCancel={onClickCancel}
+                withoutTitle={withoutTitle}
+                withoutSource={withoutSource}
             />
             <div className={styles.content}>
                 <div className={styles.gallery}>

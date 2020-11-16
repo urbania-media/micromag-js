@@ -15,6 +15,8 @@ import {
 } from '../../contexts/OrganisationContext';
 import { useAuth as useAuthContext } from '../../contexts/AuthContext';
 
+import Avatar from '../partials/Avatar';
+
 import styles from '../../styles/menus/main.module.scss';
 
 const propTypes = {
@@ -82,7 +84,7 @@ const MainMenu = ({ className, itemClassName, linkClassName, ...props }) => {
                     id: 'stories',
                     href: url('stories'),
                     label: user ? (
-                        user.name || user.email
+                        <Avatar className="d-inline-block" color="#ccc" {...user} />
                     ) : (
                         <FormattedMessage
                             defaultMessage="Account"

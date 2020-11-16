@@ -19,9 +19,24 @@ const propTypes = {
 const defaultProps = {
     fields: [
         {
-            name: 'name',
-            type: 'text',
-            label: <FormattedMessage defaultMessage="Name" description="Name field label" />,
+            type: 'fields',
+            isSection: true,
+            fields: [
+                {
+                    name: 'name',
+                    type: 'text',
+                    label: (
+                        <FormattedMessage defaultMessage="Name" description="Name field label" />
+                    ),
+                },
+                {
+                    name: 'image',
+                    type: 'image',
+                    label: (
+                        <FormattedMessage defaultMessage="Image" description="Image field label" />
+                    ),
+                },
+            ],
         },
         {
             name: 'email',
@@ -29,6 +44,7 @@ const defaultProps = {
             label: <FormattedMessage defaultMessage="Email" description="Email field label" />,
         },
         {
+            name: 'password',
             type: 'fields',
             isSection: true,
             fields: [
@@ -70,7 +86,7 @@ const AccountProfileForm = ({ fields, className, onUpdated }) => {
         setChangePassword((p) => !p);
     }, [setChangePassword]);
     const currentFields = fields.filter(
-        (f) => (!changePassword && f.type !== 'fields') || changePassword,
+        (f) => (!changePassword && f.name !== 'password') || changePassword,
     );
 
     return (

@@ -2,12 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import {
-    faPlayCircle,
-    faInfoCircle,
-    faHeadphonesAlt,
-    faImage,
-} from '@fortawesome/free-solid-svg-icons';
+import { faPlayCircle, faInfoCircle, faHeadphonesAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Card, Button } from '@micromag/core/components';
@@ -66,9 +61,6 @@ const GalleryItem = ({
                             backgroundImage: thumbnail !== null ? `url('${thumbnail}')` : null,
                         }}
                     />
-                    {type === 'image' ? (
-                        <FontAwesomeIcon className={styles.icon} icon={faImage} />
-                    ) : null}
                     {type === 'video' ? (
                         <FontAwesomeIcon className={styles.icon} icon={faPlayCircle} />
                     ) : null}

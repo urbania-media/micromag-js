@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import MediaGallery from '@micromag/media-gallery';
+import { FormPanel } from '@micromag/core/components';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
@@ -37,7 +38,9 @@ const OrganisationMediasPage = ({ className }) => (
                 },
             ])}
         >
-            <MediaGallery />
+            <FormPanel>
+                <MediaGallery source="all" withoutSource withoutTitle />
+            </FormPanel>
         </Page>
     </MainLayout>
 );

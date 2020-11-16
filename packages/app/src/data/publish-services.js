@@ -1,6 +1,14 @@
 import { defineMessages } from 'react-intl';
 
 const messages = defineMessages({
+    slug: {
+        id: 'publish_services.micromag.url',
+        defaultMessage: 'URL',
+    },
+    visibility: {
+        id: 'publish_services.micromag.visibility',
+        defaultMessage: 'Visibility',
+    },
     archive: {
         id: 'publish_services.archive',
         defaultMessage: 'Archive file',
@@ -19,6 +27,30 @@ export default [
     {
         id: 'micromag',
         label: 'Micromag.ca',
+        settings: [
+            {
+                name: 'slug',
+                type: 'text',
+                label: messages.slug,
+                defaultValue: '{Story slug}',
+            },
+            {
+                name: 'visibility',
+                type: 'select',
+                label: messages.visibility,
+                options: [
+                    {
+                        value: 'all',
+                        label: 'Everyone',
+                    },
+                    {
+                        value: 'organisation',
+                        label: 'This organisation',
+                    },
+                ],
+                defaultValue: 'all',
+            },
+        ],
     },
     {
         id: 'archive',

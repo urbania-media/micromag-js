@@ -23,6 +23,8 @@ import styles from '../../styles/partials/navbar.module.scss';
 const propTypes = {
     filters: AppPropTypes.filtersValue,
     media: MicromagPropTypes.media,
+    withoutTitle: PropTypes.bool,
+    withoutSource: PropTypes.bool,
     onClickAdd: PropTypes.func,
     onClickCancel: PropTypes.func,
     onFocusSearch: PropTypes.func,
@@ -34,6 +36,8 @@ const propTypes = {
 const defaultProps = {
     filters: null,
     media: null,
+    withoutTitle: false,
+    withoutSource: false,
     onClickAdd: null,
     onClickCancel: null,
     onFocusSearch: null,
@@ -45,6 +49,8 @@ const defaultProps = {
 const Navbar = ({
     filters,
     media,
+    withoutTitle,
+    withoutSource,
     className,
     onClickAdd,
     onClickCancel,
@@ -120,6 +126,13 @@ const Navbar = ({
         setOpen(false);
     }, [onClickCancel]);
 
+    const title = !withoutTitle ? (
+        <FormattedMessage
+            defaultMessage="Media gallery"
+            description="Top nav title for media gallery"
+        />
+    ) : null;
+
     return (
         <nav
             className={classNames([
@@ -145,25 +158,20 @@ const Navbar = ({
                         </form>
                     ) : null}
                     <strong className="navbar-text ml-2 mr-auto">
-                        {media !== null ? (
-                            media.name
-                        ) : (
-                            <FormattedMessage
-                                defaultMessage="Media gallery"
-                                description="Top nav title for media gallery"
-                            />
-                        )}
+                        {media !== null ? media.name : title}
                     </strong>
                 </div>
                 {media === null ? (
                     <>
-                        <div className="d-flex w-100 flex-nowrap justify-content-center">
-                            <DropdownSection
-                                items={sources}
-                                value={filters.source || null}
-                                onChange={onSourceChange}
-                            />
-                        </div>
+                        {!withoutSource ? (
+                            <div className="d-flex w-100 flex-nowrap justify-content-center">
+                                <DropdownSection
+                                    items={sources}
+                                    value={filters.source || null}
+                                    onChange={onSourceChange}
+                                />
+                            </div>
+                        ) : null}
                         <div className="d-flex w-100 flex-nowrap justify-content-between">
                             <SearchForm
                                 value={searchValue}

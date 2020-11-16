@@ -98,6 +98,14 @@ const StoryMenu = ({
                 className: listItemClassName,
             },
             {
+                id: 'medias',
+                href: url('stories.medias', {
+                    story: story.id,
+                }),
+                label: <FormattedMessage defaultMessage="Medias" description="Medias menu label" />,
+                className: listItemClassName,
+            },
+            {
                 id: 'settings',
                 href: url('stories.settings', {
                     story: story.id,

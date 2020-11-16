@@ -12,6 +12,7 @@ const propTypes = {
     image: PropTypes.string,
     small: PropTypes.bool,
     square: PropTypes.bool,
+    inverted: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -21,10 +22,11 @@ const defaultProps = {
     image: null,
     small: false,
     square: false,
+    inverted: false,
     className: null,
 };
 
-const Avatar = ({ letter, color, image, square, small, className }) => {
+const Avatar = ({ letter, color, image, square, small, inverted, className }) => {
     return (
         <div
             className={classNames([
@@ -32,6 +34,7 @@ const Avatar = ({ letter, color, image, square, small, className }) => {
                 {
                     [styles.small]: small,
                     [styles.square]: square,
+                    [styles.inverted]: inverted,
                     [className]: className !== null,
                 },
             ])}
