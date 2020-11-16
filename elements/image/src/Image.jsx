@@ -49,6 +49,8 @@ const Image = ({
     const { width: mediaWidth = 0, height: mediaHeight = 0 } = metadata || {};
     const mediaRatio = mediaWidth / mediaHeight;
 
+    console.log('Media icicicicic', mediaRatio, mediaWidth, mediaHeight)
+
     const withFit = objectFit !== null;
 
     let finalContainerStyle;
