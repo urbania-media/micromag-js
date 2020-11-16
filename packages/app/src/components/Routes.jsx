@@ -41,6 +41,7 @@ import StoryPage from './pages/stories/Story';
 import StoryEditorPage from './pages/stories/Editor';
 import StoryPreviewPage from './pages/stories/Preview';
 import StoryPublishPage from './pages/stories/Publish';
+import StoryVersionsPage from './pages/stories/Versions';
 import StorySettingsPage from './pages/stories/Settings';
 
 const propTypes = {};
@@ -186,6 +187,7 @@ const Routes = () => {
             <Route path={routes['stories.editor']} component={StoryEditorPage} />
             <Route path={routes['stories.preview']} component={StoryPreviewPage} />
             <Route path={routes['stories.publish']} component={StoryPublishPage} />
+            <Route path={routes['stories.versions']} component={StoryVersionsPage} />
             <Route path={routes['stories.settings']} component={StorySettingsPage} />
         </Switch>
     );

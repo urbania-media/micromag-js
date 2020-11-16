@@ -132,9 +132,9 @@ const ImageScreen = ({
                 {hasImage ? (
                     <Transitions transitions={transitions} playing={transitionPlaying}>
                         <Image
-                            {...image}
-                            {...imageSize}
                             objectFit={{ fit: 'cover' }}
+                            {...image}
+                            {...imageSize}                            
                             onLoaded={onImageLoaded}
                         />
                     </Transitions>

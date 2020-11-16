@@ -9,6 +9,7 @@ import { useUrlGenerator } from '@micromag/core/contexts';
 import { useStoryDuplicate, useStoryDelete } from '@micromag/data';
 
 import ScreensCount from '../partials/ScreensCount';
+import Authors from '../partials/Authors';
 import SettingsButton from '../buttons/Settings';
 
 import styles from '../../styles/items/story-card.module.scss';
@@ -104,18 +105,12 @@ const StoryCardItem = ({ item, className }) => {
                     </SettingsButton>
                 </div>
             }
-            footer={
-                <>
-                    <FormattedMessage
-                        defaultMessage="Members: "
-                        description="Members button label"
-                    />
-                </>
-            }
+            footer={<Authors />}
         >
             <h4
                 className={classNames([
                     'card-title',
+                    'mr-4',
                     {
                         'mb-0': screensCount === 0,
                     },

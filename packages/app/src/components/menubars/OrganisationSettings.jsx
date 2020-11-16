@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import TeamPreview from '../partials/TeamPreview';
+import TeamMembers from '../partials/TeamMembers';
 import SettingsButton from '../buttons/Settings';
 import OrganisationMenu from '../menus/Organisation';
 
@@ -18,7 +18,6 @@ const defaultProps = {
 };
 
 const OrganisationSettingsMenubar = ({ organisation, className }) => {
-    // const url = useUrlGenerator();
     return (
         <div
             className={classNames([
@@ -30,7 +29,7 @@ const OrganisationSettingsMenubar = ({ organisation, className }) => {
                 },
             ])}
         >
-            <TeamPreview organisation={organisation} />
+            <TeamMembers organisation={organisation} />
             <SettingsButton>
                 <OrganisationMenu asList />
             </SettingsButton>

@@ -17,6 +17,12 @@ const propTypes = {
     onClick: PropTypes.func,
     children: PropTypes.node,
     className: PropTypes.string,
+    refButton: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({
+            current: PropTypes.any, // eslint-disable-line
+        }),
+    ]),
 };
 
 const defaultProps = {
@@ -27,6 +33,7 @@ const defaultProps = {
     onClick: null,
     children: null,
     className: null,
+    refButton: null,
 };
 
 const Button = ({
@@ -37,6 +44,7 @@ const Button = ({
     onClick,
     children,
     className,
+    refButton,
 }) => {
     let finalStyle = null;
 
@@ -72,6 +80,7 @@ const Button = ({
             style={finalStyle}
             disabled={disabled}
             onClick={onClick}
+            refButton={refButton}
         >
             {children}
         </CoreButton>
