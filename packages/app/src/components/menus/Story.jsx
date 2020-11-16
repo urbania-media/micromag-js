@@ -40,6 +40,7 @@ const propTypes = {
     asList: PropTypes.bool,
     flush: PropTypes.bool,
     dropdownAlign: MicromagPropTypes.dropdownAlign,
+    withEditor: PropTypes.bool,
     withDelete: PropTypes.bool,
 };
 
@@ -51,6 +52,7 @@ const defaultProps = {
     asList: false,
     flush: false,
     dropdownAlign: null,
+    withEditor: true,
     withDelete: false,
 };
 
@@ -63,28 +65,33 @@ const StoryMenu = ({
     asList,
     flush,
     dropdownAlign,
+    withEditor,
     withDelete,
     ...props
 }) => {
     const url = useUrlGenerator();
     const { pathname } = useLocation();
+    const listItemClassName = asList ? '' : null;
+
     const finalItems = useMemo(() => {
         const subMenu = [
-            {
-                id: 'editor',
-                href: url('stories.editor', {
-                    story: story.id,
-                }),
-                label: messages.editor,
-                className: asList ? 'list-group-item-dark' : null,
-            },
+            withEditor
+                ? {
+                      id: 'editor',
+                      href: url('stories.editor', {
+                          story: story.id,
+                      }),
+                      label: messages.editor,
+                      className: listItemClassName,
+                  }
+                : null,
             {
                 id: 'preview',
                 href: url('stories.preview', {
                     story: story.id,
                 }),
                 label: messages.preview,
-                className: asList ? 'list-group-item-dark' : null,
+                className: listItemClassName,
             },
             {
                 id: 'publish',
@@ -92,7 +99,7 @@ const StoryMenu = ({
                     story: story.id,
                 }),
                 label: messages.publish,
-                className: asList ? 'list-group-item-dark' : null,
+                className: listItemClassName,
             },
             {
                 id: 'settings',
@@ -100,7 +107,7 @@ const StoryMenu = ({
                     story: story.id,
                 }),
                 label: messages.settings,
-                className: asList ? 'list-group-item-dark' : null,
+                className: listItemClassName,
             },
             withDelete
                 ? {
@@ -113,8 +120,8 @@ const StoryMenu = ({
                   }
                 : null,
         ]
-            .filter(it => it !== null)
-            .map(it =>
+            .filter((it) => it !== null)
+            .map((it) =>
                 it.href === pathname
                     ? {
                           ...it,

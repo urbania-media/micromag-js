@@ -1,27 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Navbar, Button } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
 import logo from '../../assets/logo-beta.svg';
-
-const messages = defineMessages({
-    close: {
-        id: 'navbars.editor.close',
-        defaultMessage: 'Close',
-    },
-    saving: {
-        id: 'navbars.editor.saving',
-        defaultMessage: 'Saving...',
-    },
-    save: {
-        id: 'navbars.editor.save',
-        defaultMessage: 'Save',
-    },
-});
 
 const propTypes = {
     story: MicromagPropTypes.story,
@@ -61,10 +46,17 @@ const EditorNavbar = ({ story, saving, onClickSave, className }) => {
                     theme="secondary"
                     className="mr-1"
                 >
-                    {messages.close}
+                    <FormattedMessage defaultMessage="Close" description="Close button label" />
                 </Button>
                 <Button theme="light" disabled={story === null || saving} onClick={onClickSave}>
-                    {saving ? messages.saving : messages.save}
+                    {saving ? (
+                        <FormattedMessage
+                            defaultMessage="Saving..."
+                            description="Saving button label"
+                        />
+                    ) : (
+                        <FormattedMessage defaultMessage="Save" description="Save button label" />
+                    )}
                 </Button>
             </form>
         </Navbar>
