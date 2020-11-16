@@ -1,0 +1,72 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/mixins';
+
+.container {
+    @extend %screen;
+
+    .question {
+        margin-bottom: 20px;
+    }
+
+    .options,
+    .answer {
+        position: relative;
+    }
+
+    .option {
+        padding: 10px 0;
+
+        &.userAnswered {
+            .button {
+                border-color: $white;
+                background-color: $white;
+                color: $black;
+            }
+
+            .result {
+                background-color: $white;
+            }
+        }
+    }
+
+    .optionContent {
+        display: flex;
+        align-items: center;
+    }
+
+    .resultContainer {        
+        flex-grow: 1;
+        align-self: stretch;
+        padding: 10px;
+    }
+
+    .resultContent {
+        width: 0;
+        height: 100%;
+        transition: width 0.5s 0.5s ease;
+    }
+
+    .result {
+        height: 100%;
+        background-color: $gray-500;
+    }
+
+    .button {
+        position: relative;
+        width: 100%;
+        padding: 10px;
+        transition: width 0.5s ease;
+    }
+
+    &.answered {
+        .button {
+            width: 10%;
+            pointer-events: none;
+        }
+
+        .resultContent {
+            width: 100%;
+        }
+    }
+}

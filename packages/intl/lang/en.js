@@ -17,7 +17,10 @@ var DjIdzH = "Invitation envoyée";
 var EOuygN = "My Micromags";
 var EcZYpr = "Subtitle";
 var EoLB7Z = "Stats";
+<<<<<<< HEAD
 var F6JbBU = "Duplicate";
+=======
+>>>>>>> 06139b38b5ab4e9bb315a3c7c44d6335476e1a30
 var FFYOZz = "Members:";
 var FLMZDH = "Invite your team members to your organisation.";
 var G31Yd0 = "Cancel";
@@ -219,6 +222,7 @@ var messages = {
   "535JXI": "Story",
   "5T6vni": "Postal code",
   "63Kvho": "Images",
+  "650XRF": "Survey",
   "6Z1BwP": "Recent searches",
   "6lM8uN": "Billing info",
   "6mX2ya": "Images",
@@ -257,7 +261,10 @@ var messages = {
   EOuygN: EOuygN,
   EcZYpr: EcZYpr,
   EoLB7Z: EoLB7Z,
+<<<<<<< HEAD
   F6JbBU: F6JbBU,
+=======
+>>>>>>> 06139b38b5ab4e9bb315a3c7c44d6335476e1a30
   FFYOZz: FFYOZz,
   FLMZDH: FLMZDH,
   G31Yd0: G31Yd0,

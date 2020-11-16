@@ -1,5 +1,5 @@
 {
-    "name": "@micromag/element-scroll",
+    "name": "@micromag/screen-survey",
     "version": "0.1.29",
     "description": "",
     "keywords": [
@@ -33,7 +33,7 @@
         "assets"
     ],
     "scripts": {
-        "prepare": "../../scripts/prepare-package.sh"
+        "prepare": "../../scripts/prepare-package.sh --intl"
     },
     "devDependencies": {
         "react": ">=15.0.0 || ^16.0.0",
@@ -45,10 +45,13 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.8.7",
-        "@fortawesome/fontawesome-svg-core": "^1.2.27",
-        "@fortawesome/free-solid-svg-icons": "^5.12.1",
-        "@fortawesome/react-fontawesome": "^0.1.9",
         "@micromag/core": "^0.1.29",
+        "@micromag/element-background": "^0.1.29",
+        "@micromag/element-button": "^0.1.29",
+        "@micromag/element-container": "^0.1.29",
+        "@micromag/element-heading": "^0.1.29",
+        "@micromag/element-layout": "^0.1.29",
+        "@micromag/element-text": "^0.1.29",
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",
         "prop-types": "^15.7.2",
