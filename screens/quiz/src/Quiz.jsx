@@ -4,7 +4,6 @@ import React, { useState, useCallback, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-import { useSpring, animated } from 'react-spring';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
@@ -109,13 +108,15 @@ const QuizScreen = ({
         [userAnswerIndex, setUserAnswerIndex],
     );
     
-    // get elements sizes and positions for animation
-    // we animate translate / height during the animation
+    // @TODO update scale + inverted scale inside instead of height for best performance
+
+    // we get .answer's current and future height to animate its height
+    // we also get the right answer's Y to animate its position
 
     const answerRef = useRef(null);
     const optionsRef = useRef(null);
     const rightAnswerRef = useRef(null);
-    const resultsRef = useRef(null);
+    const resultRef = useRef(null);
 
     const [answerTransitionProps, setAnswerTransitionProps] = useState(null);
 
@@ -123,38 +124,36 @@ const QuizScreen = ({
         const answerEl = answerRef.current;
         const optionsEl = optionsRef.current;
         const rightAnswerEl = rightAnswerRef.current;
-        const resultsEl = resultsRef.current;
+        const resultEl = resultRef.current;
 
         if (
             answerEl !== null &&
             optionsEl !== null &&
             rightAnswerEl !== null &&
-            resultsEl !== null
+            resultEl !== null
         ) {
             const answerRect = answerEl.getBoundingClientRect();
             const optionsRect = optionsEl.getBoundingClientRect();
             const rightAnswerRect = rightAnswerEl.getBoundingClientRect();
-            const resultsRect = resultsEl.getBoundingClientRect();
+            const resultRect = resultEl.getBoundingClientRect();
 
             const answerHeight = answerRect.height;
             const optionsY = optionsRect.top;
-            const optionsHeight = optionsRect.height;
             const rightAnswerY = rightAnswerRect.top;
             const rightAnswerHeight = rightAnswerRect.height;
-            const resultsHeight = resultsRect.height;
+            const resultHeight = resultRect.height;
 
             setAnswerTransitionProps({
                 rightAnswerTranslateY: optionsY - rightAnswerY,
-                optionsTranslateY: rightAnswerHeight - optionsHeight,
-                resultY: rightAnswerHeight,
                 answerInitialHeight: answerHeight,
-                answerAnsweredHeight: rightAnswerHeight + resultsHeight,
+                answerAnsweredHeight: rightAnswerHeight + resultHeight,
             });
         }
     }, [setAnswerTransitionProps, width, height]);
 
-    // when the animation is done, we set a state, remove animations props
-    // results is then included in the flow
+    // when the animation is done, we set a state to remove animations props
+    // .results' position changes from absolute to relative
+    // the wrong options are removed from DOM
 
     const [answerTransitionComplete, setAnswerTransitionComplete] = useState(false);
 
@@ -202,14 +201,14 @@ const QuizScreen = ({
             key="answer"
             className={styles.answer}
             ref={answerRef}
-            style={answerTransitionProps !== null ? {
+            style={answerTransitionProps !== null && !answerTransitionComplete ? {
                 transitionDuration: `${resultsTransitionDuration}ms`,
                 height: !answered
                     ? answerTransitionProps.answerInitialHeight
                     : answerTransitionProps.answerAnsweredHeight,
             } : null }
         >
-            {options !== null ? (
+            {options !== null ? (// Options
                 <div
                     className={styles.options}
                     ref={optionsRef}
@@ -291,19 +290,10 @@ const QuizScreen = ({
                 emptyClassName={styles.empty}
                 isEmpty={isEmptyResult}
             >
-                {hasResult ? (
+                {hasResult ? (// Result
                     <div
                         className={styles.result}
-                        ref={resultsRef}
-                        style={
-                            answerTransitionProps !== null
-                                ? {
-                                      top: !answerTransitionComplete
-                                          ? answerTransitionProps.resultY
-                                          : null,
-                                  }
-                                : null
-                        }
+                        ref={resultRef}
                     >
                         <Text {...result} className={styles.resultText} />
                     </div>

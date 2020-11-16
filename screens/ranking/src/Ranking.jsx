@@ -8,6 +8,7 @@ import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
+import Layout from '@micromag/element-layout';
 import Text from '@micromag/element-text';
 import Heading from '@micromag/element-heading';
 import Scroll from '@micromag/element-scroll';
@@ -18,6 +19,7 @@ const propTypes = {
     layout: PropTypes.oneOf(['side', 'over']),
     items: PropTypes.arrayOf(MicromagPropTypes.textElement),
     ascending: PropTypes.bool,
+    spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -31,6 +33,7 @@ const defaultProps = {
     layout: 'side',
     items: [null],
     ascending: false,
+    spacing: 20,
     background: null,
     current: true,
     active: true,
@@ -50,6 +53,7 @@ const RankingScreen = ({
     layout,
     items,
     ascending,
+    spacing,
     background,
     current,
     active,
@@ -155,13 +159,14 @@ const RankingScreen = ({
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
-                height={height}
                 maxRatio={maxRatio}
                 playing={(isView && current) || (isEdit && active)}
             />
-            <Container width={width} height={height} maxRatio={maxRatio}>
-                <Scroll className={styles.scroll} verticalAlign="center">
-                    {elements}
+            <Container width={width} height={height} maxRatio={maxRatio} withScroll>
+                <Scroll className={styles.scroll} verticalAlign="center" disabled={isPlaceholder}>
+                    <Layout style={isView || isPreview ? { padding: spacing } : null}>
+                        {elements}
+                    </Layout>
                 </Scroll>
             </Container>
         </div>

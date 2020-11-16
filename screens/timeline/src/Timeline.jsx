@@ -8,6 +8,7 @@ import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
+import Layout from '@micromag/element-layout';
 import Text from '@micromag/element-text';
 import Image from '@micromag/element-image';
 import Heading from '@micromag/element-heading';
@@ -28,6 +29,7 @@ const propTypes = {
     bulletShape: PropTypes.oneOf(['circle', 'square']),
     bulletFilled: PropTypes.bool,
     illustrated: PropTypes.bool,
+    spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -45,6 +47,7 @@ const defaultProps = {
     bulletShape: 'circle',
     bulletFilled: true,
     illustrated: false,
+    spacing: 20,
     background: null,
     current: true,
     active: true,
@@ -68,6 +71,7 @@ const Timeline = ({
     bulletShape,
     bulletFilled,
     illustrated,
+    spacing,
     background,
     current,
     active,
@@ -303,13 +307,14 @@ const Timeline = ({
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
-                height={height}
                 maxRatio={maxRatio}
                 playing={(isView && current) || (isEdit && active)}
             />
-            <Container width={width} height={height} maxRatio={maxRatio}>
+            <Container width={width} height={height} maxRatio={maxRatio} withScroll>
                 <Scroll className={styles.scroll} verticalAlign="center" disabled={isPlaceholder}>
-                    {timelineElements}
+                    <Layout style={isView || isPreview ? { padding: spacing } : null}>
+                        {timelineElements}
+                    </Layout>
                 </Scroll>
             </Container>
         </div>

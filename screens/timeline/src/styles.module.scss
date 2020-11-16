@@ -3,14 +3,10 @@
 @import '~@micromag/core/scss/mixins';
 
 .container {
-    @extend %screen;
+    position: relative;
     transition: opacity 0.3s;
     opacity: 0;
     pointer-events: none;
-
-    .scroll {
-        padding: 40px 0;
-    }
 
     .empty {
         @extend %empty;
@@ -55,7 +51,7 @@
         flex-grow: 1;
 
         &.lastContent {
-            margin-bottom: 40px;
+            margin-bottom: 20px;
         }
     }
 
