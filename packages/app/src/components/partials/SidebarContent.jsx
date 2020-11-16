@@ -7,6 +7,7 @@ const propTypes = {
     sidebar: PropTypes.node,
     children: PropTypes.node,
     sidebarFirstOnMobile: PropTypes.bool,
+    hideOnMobile: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -14,10 +15,11 @@ const defaultProps = {
     sidebar: null,
     children: null,
     sidebarFirstOnMobile: false,
+    hideOnMobile: true,
     className: null,
 };
 
-const SidebarContent = ({ sidebar, sidebarFirstOnMobile, children, className }) => (
+const SidebarContent = ({ sidebar, sidebarFirstOnMobile, hideOnMobile, children, className }) => (
     <div
         className={classNames([
             'row',
@@ -35,6 +37,9 @@ const SidebarContent = ({ sidebar, sidebarFirstOnMobile, children, className }) 
                     'mt-4': !sidebarFirstOnMobile,
                     'mb-md-0': sidebarFirstOnMobile,
                     'mt-md-0': !sidebarFirstOnMobile,
+                    'd-none': hideOnMobile,
+                    'd-sm-none': hideOnMobile,
+                    'd-md-block': hideOnMobile,
                 },
             ])}
         >

@@ -8,6 +8,7 @@ import { useUrlGenerator } from '@micromag/core/contexts';
 import { useStory, useStoryVersionCreate } from '@micromag/data';
 
 import { useApp } from '../../../contexts/AppContext';
+import StoryNavbar from '../../navbars/Story';
 import EditorNavbar from '../../navbars/Editor';
 import MainLayout from '../../layouts/Main';
 
@@ -47,7 +48,10 @@ const EditorPage = ({ className }) => {
         <MainLayout
             fullscreen
             navbar={
-                <EditorNavbar story={editorStory} onClickSave={onClickSave} saving={creating} />
+                <>
+                    <EditorNavbar story={editorStory} onClickSave={onClickSave} saving={creating} />
+                    <StoryNavbar story={editorStory} />
+                </>
             }
         >
             <div className={className}>

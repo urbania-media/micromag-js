@@ -11,7 +11,7 @@ import Avatar from './Avatar';
 
 import * as AppPropTypes from '../../lib/PropTypes';
 
-import styles from '../../styles/partials/team-preview.module.scss';
+import styles from '../../styles/partials/team-members.module.scss';
 
 const propTypes = {
     organisation: AppPropTypes.organisation,
@@ -25,7 +25,7 @@ const defaultProps = {
     className: null,
 };
 
-const TeamPreview = ({ organisation, withoutAdd, className }) => {
+const TeamMembers = ({ organisation, withoutAdd, className }) => {
     const url = useUrlGenerator();
     const { team } = useOrganisationTeam(organisation.id);
     const plusClassNames = classNames(['btn', 'btn-primary', styles.item, styles.plus]);
@@ -52,7 +52,7 @@ const TeamPreview = ({ organisation, withoutAdd, className }) => {
     );
 };
 
-TeamPreview.propTypes = propTypes;
-TeamPreview.defaultProps = defaultProps;
+TeamMembers.propTypes = propTypes;
+TeamMembers.defaultProps = defaultProps;
 
-export default TeamPreview;
+export default TeamMembers;
