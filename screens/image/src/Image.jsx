@@ -134,6 +134,7 @@ const ImageScreen = ({
                         <Image
                             {...image}
                             {...imageSize}
+                            objectFit={{ fit: 'cover' }}
                             onLoaded={onImageLoaded}
                         />
                     </Transitions>

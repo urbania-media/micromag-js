@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { basic, medium } from '../../../../.storybook/data/screens';
+import faceAFace from '../../../../.storybook/data/stories/faceAFace';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 
 import Viewer from '../components/ViewerContainer';
@@ -19,6 +20,13 @@ const mediumProps = {
     },
 };
 
+const faceAFaceProps = {
+    screenId: faceAFace[0].id,
+    story: {
+        components: faceAFace,
+    },
+};
+
 export default {
     component: Viewer,
     decorators: [withGoogleMaps],
@@ -30,6 +38,8 @@ export default {
 };
 
 export const Default = () => <Viewer {...props} />;
+
+export const FaceAFace = () => <Viewer {...faceAFaceProps} />;
 
 export const Swipe = () => <Viewer {...props} interactions={['swipe']} />;
 
