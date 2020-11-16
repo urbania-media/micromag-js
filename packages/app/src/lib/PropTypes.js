@@ -88,3 +88,10 @@ export const theme = PropTypes.shape({
     components: PropTypes.array, // eslint-disable-line
 });
 export const themes = PropTypes.arrayOf(theme);
+
+export const version = PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    created_at: PropTypes.string.isRequired,
+    components: PropTypes.array, // eslint-disable-line
+});
+export const versions = PropTypes.arrayOf(version);

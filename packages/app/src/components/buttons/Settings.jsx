@@ -35,7 +35,7 @@ const SettingsButton = ({ className, children, ...props }) => {
             ])}
         >
             <Button
-                className={classNames(['btn-primary', 'dropdown-toggle'])}
+                className={classNames(['btn-primary'])}
                 {...props}
                 icon={<FontAwesomeIcon icon={faCogs} color="currentColor" />}
                 onClick={onClick}

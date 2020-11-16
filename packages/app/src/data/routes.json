@@ -38,5 +38,6 @@
     "stories.editor": "/stories/:story/editor",
     "stories.preview": "/stories/:story/preview",
     "stories.publish": "/stories/:story/publish",
+    "stories.versions": "/stories/:story/versions",
     "stories.settings": "/stories/:story/settings"
 }
