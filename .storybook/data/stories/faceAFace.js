@@ -1,6 +1,6 @@
 import { v1 as uuid } from 'uuid';
 
-import { tommy } from './data';
+import { tommy, mans } from './data';
 
 const faceAFaceStory = [
     {
@@ -38,11 +38,11 @@ const faceAFaceStory = [
     },
     {
         id: uuid(),
-        type: 'title',
-        layout: 'middle',
+        type: 'gallery-feed-legends',
         title: {
-            body: 'Face à face avec votre face',
+            body: 'La face de l’humain au fil du temps',
         },
+        images: mans
     },
     {
         id: uuid(),
