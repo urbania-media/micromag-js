@@ -1,31 +1,69 @@
 .container {
-    display: flex;    
     position: relative;
-    flex-direction: column;
-    width: 100%;
     height: 100%;
     margin: 0 auto;
 
+    .inner {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;        
+    }
+
+    .arrowContainer {
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+        transition: opacity 0.3s ease;
+        opacity: 1;
+        text-align: center;
+    }
+
+    .arrow {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        animation: upAndDown 0.5s alternate infinite ease-in-out;
+    }
+
     &.withScroll {
-        overflow-x: hidden;
-        overflow-y: auto;
+        .inner {
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
     }
 
     &.top {
-        .inner {
+        .content {
             margin-top: auto;
         }
     }
 
     &.center {
-        .inner {
+        .content {
             margin: auto 0;
         }
     }
 
     &.bottom {
-        .inner {
+        .content {
             margin-bottom: auto;
+        }
+    }
+
+    &.scrolled {
+        .arrowContainer {
+            opacity: 0;
+        }
+    }
+
+    @keyframes upAndDown {
+        from {
+            transform: translateY(0);
+        }
+
+        to {
+            transform: translateY(100%);
         }
     }
 }
