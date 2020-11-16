@@ -31,6 +31,7 @@ const propTypes = {
     withoutStyle: PropTypes.bool,
     withoutTheme: PropTypes.bool,
     outline: PropTypes.bool,
+    asLink: PropTypes.bool,
     className: PropTypes.string,
     iconClassName: PropTypes.string,
     labelClassName: PropTypes.string,
@@ -38,7 +39,7 @@ const propTypes = {
     refButton: PropTypes.oneOfType([
         PropTypes.func,
         PropTypes.shape({
-            current: PropTypes.any,
+            current: PropTypes.any, // eslint-disable-line
         }),
     ]),
 };
@@ -65,6 +66,7 @@ const defaultProps = {
     withoutStyle: false,
     withoutTheme: false,
     outline: false,
+    asLink: false,
     className: null,
     iconClassName: null,
     labelClassName: null,
@@ -93,6 +95,7 @@ const Button = ({
     withShadow,
     withoutStyle,
     withoutTheme,
+    asLink,
     outline,
     onClick,
     className,
@@ -175,12 +178,13 @@ const Button = ({
         </>
     );
 
+    const withStyle = !withoutTheme && !withoutStyle && !asLink;
+
     const buttonClassNames = classNames([
         {
-            btn: !withoutTheme && !withoutStyle,
-            [`btn-${outline ? 'outline-' : ''}${theme}`]:
-                !withoutTheme && !withoutStyle && theme !== null,
-            [`btn-${size}`]: !withoutTheme && !withoutStyle && size !== null,
+            btn: withStyle,
+            [`btn-${outline ? 'outline-' : ''}${theme}`]: withStyle && theme !== null,
+            [`btn-${size}`]: withStyle && size !== null,
             active: !withoutStyle && active,
         },
         styles.container,
@@ -193,6 +197,7 @@ const Button = ({
             [styles.isSmall]: small,
             [styles.isBig]: big,
             [styles.isLink]: href !== null,
+            [styles.asLink]: asLink,
             [styles.isDisabled]: disabled,
             [styles.isLoading]: loading,
             [className]: className !== null,

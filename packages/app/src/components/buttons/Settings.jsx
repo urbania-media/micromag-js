@@ -25,16 +25,17 @@ const SettingsButton = ({ className, children, ...props }) => {
         setOpen(!open);
     }, [open, setOpen]);
     return (
-        <div className="dropdown">
+        <div
+            className={classNames([
+                styles.container,
+                'dropdown',
+                {
+                    [className]: className !== null,
+                },
+            ])}
+        >
             <Button
-                className={classNames([
-                    styles.container,
-                    'btn-primary',
-                    'dropdown-toggle',
-                    {
-                        [className]: className !== null,
-                    },
-                ])}
+                className={classNames(['btn-primary', 'dropdown-toggle'])}
                 {...props}
                 icon={<FontAwesomeIcon icon={faCogs} color="currentColor" />}
                 onClick={onClick}

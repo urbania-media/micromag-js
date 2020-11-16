@@ -15,24 +15,26 @@ export const creditCard = [
         ),
     },
     {
-        name: 'expiration_date',
-        type: 'text',
-        label: (
-            <FormattedMessage
-                defaultMessage="Expiration date"
-                description="Expiration date field label"
-            />
-        ),
-    },
-    {
-        name: 'cvv',
-        type: 'text',
-        label: (
-            <FormattedMessage
-                defaultMessage="Card security code (CVV)"
-                description="Card security field label"
-            />
-        ),
+        type: 'fields',
+        isSection: true,
+        fieldClassName: 'd-inline-block w-25 mr-4',
+        fields: [
+            {
+                name: 'expiration_date',
+                type: 'text',
+                label: (
+                    <FormattedMessage
+                        defaultMessage="Expiration date"
+                        description="Expiration date field label"
+                    />
+                ),
+            },
+            {
+                name: 'cvv',
+                type: 'text',
+                label: <FormattedMessage defaultMessage="CVV" description="CVV field label" />,
+            },
+        ],
     },
 ];
 
@@ -95,17 +97,33 @@ export const billingContact = [
         type: 'text',
         label: <FormattedMessage defaultMessage="City" description="City field label" />,
     },
+
     {
-        name: 'province',
-        type: 'text',
-        label: <FormattedMessage defaultMessage="Province" description="Province field label" />,
-    },
-    {
-        name: 'postal_code',
-        type: 'text',
-        label: (
-            <FormattedMessage defaultMessage="Postal code" description="Postal code field label" />
-        ),
+        type: 'fields',
+        isSection: true,
+        fieldClassName: 'd-inline-block w-25 mr-4 ',
+        fields: [
+            {
+                name: 'province',
+                type: 'text',
+                label: (
+                    <FormattedMessage
+                        defaultMessage="Province"
+                        description="Province field label"
+                    />
+                ),
+            },
+            {
+                name: 'postal_code',
+                type: 'text',
+                label: (
+                    <FormattedMessage
+                        defaultMessage="Postal code"
+                        description="Postal code field label"
+                    />
+                ),
+            },
+        ],
     },
 ];
 

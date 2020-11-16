@@ -322,6 +322,7 @@ export const storyComponent = PropTypes.shape({
 export const storyComponents = PropTypes.arrayOf(storyComponent);
 
 export const story = PropTypes.shape({
+    id: PropTypes.string,
     components: storyComponents,
 });
 
