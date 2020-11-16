@@ -23,6 +23,7 @@ var DjIdzH = "Invitation envoyée";
 var EOuygN = "My Micromags";
 var EcZYpr = "Subtitle";
 var EoLB7Z = "Stats";
+var F6JbBU = "Duplicate";
 var FFYOZz = "Members:";
 var FLMZDH = "Invite your team members to your organisation.";
 var G31Yd0 = "Cancel";
@@ -62,6 +63,7 @@ var TWXRGR = "Organisations";
 var TXPdzG = "Invite";
 var Tbo377 = "Billing";
 var Tdnwlv = "Items";
+var Tl8jAw = "My micromags";
 var Tlp2I0 = "Your account has been created. Please complete your profile.";
 var Tt4jN1 = "Add";
 var U86B6w = "Stats";
@@ -74,6 +76,7 @@ var UqPxxf = "Create a new story";
 var VqyxpU = "Ad";
 var W82zJ9 = "First name";
 var WhVrDc = "Answer Index";
+var WodcPq = "Delete";
 var Wr8abT = "Forgot password?";
 var WsCUtr = "{users} users";
 var X9PRNb = "Favicon";
@@ -106,6 +109,7 @@ var enFs4g = "Advanced";
 var eoW0tZ = "Duration";
 var fIawTr = "Text";
 var fz0z4c = "Plan";
+var g6b9Lg = "Contribution";
 var g6qbbX = "Log in";
 var hVE7TA = "Question";
 var iYc3Ld = "Payments";
@@ -241,7 +245,6 @@ var messages = {
   "9WtqV7": "Team",
   "9Yv29u": "Create an organisation",
   "9ZdD+Q": "Library for",
-  "9g/vbU": "Card security code (CVV)",
   "9kRiV5": "Email",
   ACSasN: ACSasN,
   Avsnjl: Avsnjl,
@@ -262,6 +265,7 @@ var messages = {
   EOuygN: EOuygN,
   EcZYpr: EcZYpr,
   EoLB7Z: EoLB7Z,
+  F6JbBU: F6JbBU,
   FFYOZz: FFYOZz,
   FLMZDH: FLMZDH,
   G31Yd0: G31Yd0,
@@ -309,6 +313,7 @@ var messages = {
   TXPdzG: TXPdzG,
   Tbo377: Tbo377,
   Tdnwlv: Tdnwlv,
+  Tl8jAw: Tl8jAw,
   Tlp2I0: Tlp2I0,
   Tt4jN1: Tt4jN1,
   U86B6w: U86B6w,
@@ -322,6 +327,7 @@ var messages = {
   VqyxpU: VqyxpU,
   W82zJ9: W82zJ9,
   WhVrDc: WhVrDc,
+  WodcPq: WodcPq,
   Wr8abT: Wr8abT,
   WsCUtr: WsCUtr,
   X9PRNb: X9PRNb,
@@ -347,6 +353,7 @@ var messages = {
   "c9VwT/": "Technical details",
   cGItoy: cGItoy,
   cldP9G: cldP9G,
+  "cnqNx/": "CVV",
   d60tSn: d60tSn,
   dVcog7: dVcog7,
   dmuKH3: dmuKH3,
@@ -364,6 +371,7 @@ var messages = {
   "fQI/i5": "Card ending with {cardEnding}",
   "fkBd/o": "Province",
   fz0z4c: fz0z4c,
+  g6b9Lg: g6b9Lg,
   g6qbbX: g6qbbX,
   hVE7TA: hVE7TA,
   "he/FEL": "Organisation",

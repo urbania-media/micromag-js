@@ -1,7 +1,7 @@
 [main]
 host = https://www.transifex.com
 
-[micromag.screen-survey
+[micromag.screen-contribution
 file_filter = lang/extract/<lang>.json
 source_lang = en
 type = STRUCTURED_JSON

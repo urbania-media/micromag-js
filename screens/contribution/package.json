@@ -1,5 +1,5 @@
 {
-    "name": "@micromag/screens",
+    "name": "@micromag/screen-contribution",
     "version": "0.1.29",
     "description": "",
     "keywords": [
@@ -30,14 +30,10 @@
     "files": [
         "lib",
         "es",
-        "assets",
-        "all.js",
-        "schemas.js"
+        "assets"
     ],
     "scripts": {
-        "scss": "../../scripts/build-packages-styles.js --pattern='@micromag/screen-*' ./src/styles.scss.ejs ./scss/styles.scss",
-        "css": "../../scripts/build-sass.js ./scss/styles.scss ./assets/css/styles.css",
-        "prepare": "../../scripts/prepare-package.sh && npm run scss && npm run css"
+        "prepare": "../../scripts/prepare-package.sh --intl"
     },
     "devDependencies": {
         "react": ">=15.0.0 || ^16.0.0",
@@ -50,25 +46,17 @@
     "dependencies": {
         "@babel/runtime": "^7.8.7",
         "@micromag/core": "^0.1.29",
-        "@micromag/screen-ad": "^0.1.29",
-        "@micromag/screen-audio": "^0.1.29",
-        "@micromag/screen-contribution": "^0.1.29",
-        "@micromag/screen-gallery": "^0.1.29",
-        "@micromag/screen-gallery-feed": "^0.1.29",
-        "@micromag/screen-image": "^0.1.29",
-        "@micromag/screen-map": "^0.1.29",
-        "@micromag/screen-quiz": "^0.1.29",
-        "@micromag/screen-quote": "^0.1.29",
-        "@micromag/screen-ranking": "^0.1.29",
-        "@micromag/screen-slideshow": "^0.1.29",
-        "@micromag/screen-survey": "^0.1.29",
-        "@micromag/screen-text": "^0.1.29",
-        "@micromag/screen-timeline": "^0.1.29",
-        "@micromag/screen-title": "^0.1.29",
-        "@micromag/screen-video": "^0.1.29",
+        "@micromag/element-background": "^0.1.29",
+        "@micromag/element-button": "^0.1.29",
+        "@micromag/element-container": "^0.1.29",
+        "@micromag/element-heading": "^0.1.29",
+        "@micromag/element-layout": "^0.1.29",
+        "@micromag/element-text": "^0.1.29",
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",
-        "prop-types": "^15.7.2"
+        "prop-types": "^15.7.2",
+        "react-intl": "^4.5.0",
+        "uuid": "^7.0.2"
     },
     "publishConfig": {
         "access": "public"
