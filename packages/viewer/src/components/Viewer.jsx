@@ -261,7 +261,7 @@ const Viewer = ({
                     {...(withTap ? { onClick: onTap } : null)}
                 >
                     {components.map((scr, i) => {
-                        const style = landscape ? null : { ...items[i] };
+                        const style = landscape ? { transform: null } : { ...items[i] };
                         const current = i === currentIndex;
                         const active =
                             i > currentIndex - neighborScreensActive &&

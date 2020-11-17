@@ -1,9 +1,13 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/mixins';
+
 .container {
     position: relative;
     height: 100%;
     margin: 0 auto;
 
-    .inner {
+    .scrollable {
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -12,10 +16,11 @@
 
     .arrowContainer {
         position: absolute;
-        bottom: 20px;
+        bottom: 0;
+        left: 0;
         width: 100%;
         transition: opacity 0.3s ease;
-        opacity: 1;
+        opacity: 0;
         text-align: center;
     }
 
@@ -23,47 +28,52 @@
         display: inline-block;
         width: 20px;
         height: 20px;
-        animation: upAndDown 0.5s alternate infinite ease-in-out;
+        animation: upAndDown 0.75s alternate infinite ease-in-out;
+
+        path {
+            stroke-width: 20;
+            stroke: $black;
+        }
     }
 
     &.withScroll {
-        .inner {
+        .scrollable {
             overflow-x: hidden;
             overflow-y: auto;
         }
     }
 
     &.top {
-        .content {
+        .scrollee {
             margin-top: auto;
         }
     }
 
     &.center {
-        .content {
+        .scrollee {
             margin: auto 0;
         }
     }
 
     &.bottom {
-        .content {
+        .scrollee {
             margin-bottom: auto;
         }
     }
 
-    &.scrolled {
+    &.withArrow {
         .arrowContainer {
-            opacity: 0;
+            opacity: 1;
         }
     }
 
     @keyframes upAndDown {
         from {
-            transform: translateY(0);
+            transform: translateY(-100%);
         }
 
         to {
-            transform: translateY(100%);
+            transform: translateY(0%);
         }
     }
 }

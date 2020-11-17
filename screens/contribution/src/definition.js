@@ -14,6 +14,7 @@ export default {
     }),
     component: ContributionScreen,
     layouts: ['top', 'middle', 'bottom', 'split'],
+    handlesNavigation: true,
     fields: [
         {
             name: 'layout',
