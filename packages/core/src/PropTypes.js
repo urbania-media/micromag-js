@@ -313,12 +313,22 @@ export const screenDefinition = PropTypes.shape({
 
 export const screenDefinitions = PropTypes.arrayOf(screenDefinition);
 
+export const fieldDefinition = PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    type: PropTypes.oneOf(['field']).isRequired,
+    title: text.isRequired,
+    fields,
+});
+
+export const fieldDefinitions = PropTypes.arrayOf(fieldDefinition);
+
 /**
  * Story
  */
 export const storyComponent = PropTypes.shape({
     type: PropTypes.string.isRequired,
 });
+export const screen = storyComponent;
 export const storyComponents = PropTypes.arrayOf(storyComponent);
 
 export const story = PropTypes.shape({

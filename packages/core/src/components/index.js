@@ -50,7 +50,6 @@ export { default as PlaceholderTitle } from './placeholders/Title';
 export { default as PlaceholderVideo } from './placeholders/Video';
 export { default as PlaceholderVideoLoop } from './placeholders/VideoLoop';
 
-export { default as createLayoutSwitcher } from './screens/createLayoutSwitcher';
 export { default as ScreenPlaceholder } from './screens/Placeholder';
 export { default as ScreenPreview } from './screens/Preview';
 export { default as Screen } from './screens/Screen';

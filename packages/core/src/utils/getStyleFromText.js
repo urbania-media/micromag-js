@@ -10,7 +10,8 @@ const getStyleFromText = value => {
         fontStyle = null,
         lineHeight = null,
         letterSpacing = null,
-        color = null,
+        uppercase = false,
+        color = null,        
     } = value;
     const { italic = false, bold = false, underline = false, align = null } = fontStyle || {};
     return {
@@ -22,6 +23,7 @@ const getStyleFromText = value => {
         textAlign: align,
         lineHeight,
         letterSpacing,
+        textTransform: uppercase ? 'uppercase' : null,
         ...getStyleFromColor(color, 'color'),
     };
 };

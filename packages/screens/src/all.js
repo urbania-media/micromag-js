@@ -1,4 +1,4 @@
-import isArray from 'lodash/isArray';
+import { ScreensManager } from '@micromag/core';
 
 import ad from '@micromag/screen-ad';
 import audio from '@micromag/screen-audio';
@@ -17,23 +17,22 @@ import timeline from '@micromag/screen-timeline';
 import title from '@micromag/screen-title';
 import video from '@micromag/screen-video';
 
-const screens = [
-    ad,
-    audio,
-    contribution,
-    gallery,
-    galleryFeed,
-    image,
-    map,
-    quiz,
-    quote,
-    ranking,
-    slideshow,
-    survey,    
-    text,
-    timeline,
-    title,
-    video,
-].reduce((allScreens, screen) => [...allScreens, ...(isArray(screen) ? screen : [screen])], []);
+const manager = new ScreensManager();
+manager.addDefinition(ad);
+manager.addDefinition(audio);
+manager.addDefinition(contribution);
+manager.addDefinition(gallery);
+manager.addDefinition(galleryFeed);
+manager.addDefinition(image);
+manager.addDefinition(map);
+manager.addDefinition(quiz);
+manager.addDefinition(quote);
+manager.addDefinition(ranking);
+manager.addDefinition(slideshow);
+manager.addDefinition(survey);
+manager.addDefinition(text);
+manager.addDefinition(timeline);
+manager.addDefinition(title);
+manager.addDefinition(video);
 
-export default screens;
+export default manager;

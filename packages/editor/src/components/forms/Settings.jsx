@@ -1,16 +1,16 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useMemo, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Fields } from '@micromag/fields';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useFieldsManager } from '@micromag/core/contexts';
 
 import styles from '../../styles/forms/settings.module.scss';
 
 const propTypes = {
-    field: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    field: MicromagPropTypes.formField.isRequired,
     value: MicromagPropTypes.component,
-    fields: MicromagPropTypes.formFields,
     className: PropTypes.string,
     gotoFieldForm: PropTypes.func.isRequired,
     closeFieldForm: PropTypes.func.isRequired,
@@ -18,58 +18,33 @@ const propTypes = {
 };
 
 const defaultProps = {
+    name: null,
     value: null,
-    fields: [],
     className: null,
     onChange: null,
 };
 
 const SettingsForm = ({
+    name,
     field,
     value,
-    fields,
     className,
     gotoFieldForm,
     closeFieldForm,
     onChange,
 }) => {
-    const settingsNames = useMemo(
-        () => fields.filter(({ setting = false }) => setting).map(it => it.name),
-        [fields],
-    );
-    const settingsFields = useMemo(
-        () =>
-            (settingsNames !== null
-                ? fields.filter(({ name }) => settingsNames.indexOf(name) !== -1)
-                : fields
-            ).map(it => ({
-                ...it,
-                isSection: true,
-            })),
-        [fields, settingsNames],
-    );
+    const { type = null } = field;
+    const fieldsManager = useFieldsManager();
+    const { component: FieldComponent, settings } = type !== null ? fieldsManager.getDefinition(type): field;
+    const FieldsComponent = fieldsManager.getComponent('fields');
+    const SettingsComponent =
+        FieldComponent !== null ? FieldComponent.settingsComponent || FieldsComponent : FieldsComponent;
 
-    const settingsValue = useMemo(() => {
-        if (value === null || settingsNames === null) {
-            return value;
-        }
-        return Object.keys(value).reduce(
-            (scopedValue, key) =>
-                settingsNames.indexOf(key) !== -1
-                    ? {
-                          ...scopedValue,
-                          [key]: value[key],
-                      }
-                    : scopedValue,
-            null,
-        );
-    }, [fields, settingsNames, value]);
-
-    const settingsOnChange = useCallback(
-        newComponentValue => {
+    const onSettingsChange = useCallback(
+        (newSettingsValue) => {
             const newValue = {
                 ...value,
-                ...newComponentValue,
+                ...newSettingsValue,
             };
             if (onChange !== null) {
                 onChange(newValue);
@@ -77,7 +52,6 @@ const SettingsForm = ({
         },
         [value, onChange],
     );
-
     return (
         <div
             className={classNames([
@@ -88,11 +62,12 @@ const SettingsForm = ({
             ])}
         >
             <div className={styles.inner}>
-                <Fields
-                    name={field}
-                    fields={settingsFields}
-                    value={settingsValue}
-                    onChange={settingsOnChange}
+                <SettingsComponent
+                    name={name}
+                    field={field}
+                    fields={settings}
+                    value={value}
+                    onChange={onSettingsChange}
                     gotoFieldForm={gotoFieldForm}
                     closeFieldForm={closeFieldForm}
                 />

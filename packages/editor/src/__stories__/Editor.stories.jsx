@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Editor from '../components/EditorContainer';
-import IntlProvider from '../../../intl/src/IntlProvider';
 import { ApiProvider } from '../../../data/src/contexts/ApiContext';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 
@@ -13,6 +12,9 @@ export default {
     component: Editor,
     title: 'Editor/Editor',
     decorators: [withGoogleMaps],
+    parameters: {
+        intl: true,
+    },
 };
 
 const defaultStory = createDefaultStory();
@@ -22,11 +24,9 @@ const apiBaseUrl = `${window.location.protocol}//${window.location.host}/api`;
 const EditorContainer = () => {
     const [story, setStory] = useState(defaultStory);
     return (
-        <IntlProvider locale="fr">
-            <ApiProvider baseUrl={apiBaseUrl}>
-                <Editor story={story} fullscreen onChange={setStory} memoryRouter />
-            </ApiProvider>
-        </IntlProvider>
+        <ApiProvider baseUrl={apiBaseUrl}>
+            <Editor story={story} fullscreen onChange={setStory} memoryRouter />
+        </ApiProvider>
     );
 };
 

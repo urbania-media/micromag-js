@@ -6,7 +6,7 @@ import { Route } from 'react-router';
 import { getSizeWithinBounds } from '@folklore/size';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useResizeObserver } from '@micromag/core/hooks';
-import { useScreenSize, useRoutes, ScreenRenderProvider } from '@micromag/core/contexts';
+import { useScreenSize, useRoutes } from '@micromag/core/contexts';
 import { Viewer } from '@micromag/viewer';
 
 import DevicesMenu from './menus/Devices';
@@ -102,15 +102,14 @@ const EditorPreview = ({ story, devices, device: initialDevice, className, onScr
                                         params: { screen: screenId = null },
                                     },
                                 }) => (
-                                    <ScreenRenderProvider context="edit">
-                                        <Viewer
-                                            story={story}
-                                            screen={screenId}
-                                            className={styles.story}
-                                            interactions={null}
-                                            onScreenChange={onScreenChange}
-                                        />
-                                    </ScreenRenderProvider>
+                                    <Viewer
+                                        story={story}
+                                        screen={screenId}
+                                        className={styles.story}
+                                        interactions={null}
+                                        renderContext="edit"
+                                        onScreenChange={onScreenChange}
+                                    />
                                 )}
                             />
                         </div>

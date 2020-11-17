@@ -8,29 +8,47 @@ import styles from '../styles/screen.module.scss';
 
 const propTypes = {
     screen: MicromagPropTypes.screenType,
+    renderContext: MicromagPropTypes.renderContext,
     current: PropTypes.bool,
     active: PropTypes.bool,
     onPrevious: PropTypes.func,
     onNext: PropTypes.func,
+    onEnableInteraction: PropTypes.func,
+    onDisableInteraction: PropTypes.func,
 };
 
 const defaultProps = {
     screen: null,
+    renderContext: null,
     current: false,
     active: true,
     onPrevious: null,
     onNext: null,
+    onEnableInteraction: null,
+    onDisableInteraction: null,
 };
 
-const ViewerScreen = ({ screen, active, current, onPrevious, onNext }) => {
+const ViewerScreen = ({
+    screen,
+    renderContext,
+    active,
+    current,
+    onPrevious,
+    onNext,
+    onEnableInteraction,
+    onDisableInteraction,
+}) => {
     return screen !== null ? (
         <div className={styles.container}>
             <Screen
                 screen={screen}
+                renderContext={renderContext}
                 active={active}
                 current={current}
                 onPrevious={onPrevious}
                 onNext={onNext}
+                onEnableInteraction={onEnableInteraction}
+                onDisableInteraction={onDisableInteraction}
             />
         </div>
     ) : null;

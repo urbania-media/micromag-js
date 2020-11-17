@@ -11,7 +11,6 @@ import {
     useRoutes,
     useRoutePush,
     useUrlGenerator,
-    useScreensManager,
 } from '@micromag/core/contexts';
 import { Empty, Button, Navbar } from '@micromag/core/components';
 
@@ -42,12 +41,10 @@ const EditorScreens = ({ story, isVertical, onClickScreen, onChange, className }
     const routes = useRoutes();
     const push = useRoutePush();
     const url = useUrlGenerator();
-    const screensManager = useScreensManager();
 
-    const createScreenFromType = useCallback(
-        ({ id: screenTypeId }) => {
-            const screen = screensManager.getScreen(screenTypeId);
-            const newScreen = createScreen(screen);
+    const createScreenFromDefinition = useCallback(
+        (definition) => {
+            const newScreen = createScreen(definition);
             const { components: currentComponents = [], ...currentStory } = story || {};
             const newStory = {
                 ...currentStory,
@@ -61,7 +58,7 @@ const EditorScreens = ({ story, isVertical, onClickScreen, onChange, className }
             });
             setCreateModalOpened(false);
         },
-        [story, screensManager, onChange, push, setCreateModalOpened],
+        [story, onChange, push, setCreateModalOpened],
     );
 
     const onOrderChange = useCallback(
@@ -86,8 +83,10 @@ const EditorScreens = ({ story, isVertical, onClickScreen, onChange, className }
         [story, onChange],
     );
 
-    const onClickScreenType = useCallback((e, item) => createScreenFromType(item), [
-        createScreenFromType,
+    const onClickScreenType = useCallback((e, { definition }) => {
+        createScreenFromDefinition(definition);
+    }, [
+        createScreenFromDefinition,
     ]);
     const onClickAdd = useCallback(() => setCreateModalOpened(true), [setCreateModalOpened]);
     const onCreateModalRequestClose = useCallback(() => setCreateModalOpened(false), [

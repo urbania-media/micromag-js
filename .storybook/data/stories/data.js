@@ -1,11 +1,20 @@
 import { v1 as uuid } from 'uuid';
 
+// import { descriptionText } from './styles';
 import tommyBefore from './assets-face-a-face/tommy-before.jpg';
 import man1 from './assets-face-a-face/1.jpg';
 import man2 from './assets-face-a-face/2.jpg';
 import man3 from './assets-face-a-face/3.jpg';
 import man4 from './assets-face-a-face/4.jpg';
 import man5 from './assets-face-a-face/5.jpg';
+
+export const descriptionText = {
+    fontFamily: 'Apercu',
+    fontSize: 16,
+    fontStyle: {
+        bold: false,
+    },
+};
 
 export const tommy = {
     media: {
@@ -23,13 +32,14 @@ export const mans = [
             media: {
                 url: man1,
                 metadata: {
-                    width: 1000,
-                    height: 1340,
+                    width: 500,
+                    height: 670,
                 },
             },
         },
         legend: {
             body: 'Vous auriez pu ressembler à ceci, il y a 3-4 millions d’années',
+            textStyle: descriptionText,
         },
     },
     {
@@ -44,6 +54,7 @@ export const mans = [
         },
         legend: {
             body: 'Retrouvez-vous des airs de famille dans votre ancêtre Homo Erectus?',
+            textStyle: descriptionText,
         },
     },
     {
@@ -59,6 +70,7 @@ export const mans = [
         legend: {
             body:
                 'L’homme de Néandertal est disparu il y a 30 000 ans, mais il reste encore un peu de lui dans votre ADN',
+            textStyle: descriptionText,
         },
     },
     {
@@ -73,6 +85,7 @@ export const mans = [
         },
         legend: {
             body: 'Remerciez la sélection naturelle pour votre beau menton d’Homo Sapiens',
+            textStyle: descriptionText,
         },
     },
     {
@@ -88,6 +101,7 @@ export const mans = [
         legend: {
             body:
                 'À quoi va-t-on ressembler dans 100 000 ans? Grosse tête? Gros yeux? Pigmentation adaptée aux changements climatiques? Les paris sont ouverts!',
+            textStyle: descriptionText,
         },
     },
 ];
@@ -143,28 +157,24 @@ export const quiz1options = [
         label: {
             body: 'Deux minutes, pareil comme dans le film Face/Off',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: 'Deux heures et demi',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: '18 heures',
         },
-        answer: true,
     },
     {
         id: uuid(),
         label: {
             body: '36 heures',
         },
-        answer: false,
     },
 ];
 
@@ -174,28 +184,24 @@ export const quiz2options = [
         label: {
             body: '1',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: '2',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: '3',
         },
-        answer: true,
     },
     {
         id: uuid(),
         label: {
             body: '4',
         },
-        answer: false,
     },
 ];
 
@@ -205,28 +211,24 @@ export const quiz3options = [
         label: {
             body: 'Une à deux fois plus',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: '5 fois plus',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: '1000 fois plus',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: '10 à 100 fois plus',
         },
-        answer: true,
     },
 ];
 
@@ -236,28 +238,24 @@ export const quiz4options = [
         label: {
             body: 'Un sourire Colgate',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: 'Un sourire de Pan Am',
         },
-        answer: true,
     },
     {
         id: uuid(),
         label: {
             body: 'Un sourire de faux cul',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: 'Un hide the pain Harold',
         },
-        answer: false,
     },
 ];
 
@@ -267,28 +265,24 @@ export const quiz5options = [
         label: {
             body: '307 000',
         },
-        answer: true,
     },
     {
         id: uuid(),
         label: {
             body: '1364',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: '1.5 millions',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: '229',
         },
-        answer: false,
     },
 ];
 
@@ -298,28 +292,24 @@ export const quiz6options = [
         label: {
             body: '2 millions',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: '75 000',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: '300 000',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: '200 millions',
         },
-        answer: true,
     },
 ];
 
@@ -332,7 +322,9 @@ export const rankingItems = [
         },
     },
     {
-        title: { body: 'On peut se spécialiser dans une certaine physionomie (ou couleur) de visage' },
+        title: {
+            body: 'On peut se spécialiser dans une certaine physionomie (ou couleur) de visage',
+        },
         description: {
             body:
                 'Quelqu’un a dit profilage? C’est tout de même le cas de certains super-recognizers s’entraînent à reconnaître des suspects d’une certaine origine ethnique',

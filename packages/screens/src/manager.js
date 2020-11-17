@@ -1,7 +1,8 @@
 import { ScreensManager } from '@micromag/core';
 
-import screens from './all';
+import allManager from './all';
 
-const manager = new ScreensManager(screens);
+const manager = new ScreensManager();
+manager.merge(allManager);
 
 export default manager;

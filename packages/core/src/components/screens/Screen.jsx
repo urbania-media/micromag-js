@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 
 import * as MicromagPropTypes from '../../PropTypes';
 import { getComponentFromName } from '../../utils';
+import { ScreenProvider } from '../../contexts/ScreenContext';
 import { useScreenComponent } from '../../contexts/ComponentsContext';
 
 const propTypes = {
     screen: MicromagPropTypes.storyComponent.isRequired,
+    renderContext: MicromagPropTypes.renderContext,
     active: PropTypes.bool,
     current: PropTypes.bool,
     component: PropTypes.node,
@@ -15,37 +17,60 @@ const propTypes = {
     className: PropTypes.string,
     onPrevious: PropTypes.func,
     onNext: PropTypes.func,
+    onEnableInteraction: PropTypes.func,
+    onDisableInteraction: PropTypes.func,
 };
 
 const defaultProps = {
     active: false,
+    renderContext: null,
     current: false,
     component: null,
     components: null,
     className: null,
     onPrevious: null,
     onNext: null,
+    onEnableInteraction: null,
+    onDisableInteraction: null,
 };
 
-const Screen = ({ screen, active, current, components, component, className, onPrevious, onNext }) => {
+const Screen = ({
+    screen,
+    renderContext,
+    active,
+    current,
+    components,
+    component,
+    className,
+    onPrevious,
+    onNext,
+    onEnableInteraction,
+    onDisableInteraction,
+}) => {
     const { type } = screen;
     const CustomScreenComponent =
         components !== null ? getComponentFromName(type, components) || null : null;
     const ContextScreenComponent = useScreenComponent(type);
     const ScreenComponent = CustomScreenComponent || ContextScreenComponent;
 
-    return ScreenComponent !== null ? (
-        <div className={className}>
-            <ScreenComponent
-                {...screen}
-                active={active}
-                current={current}
-                onPrevious={onPrevious}
-                onNext={onNext}
-            />
-        </div>
-    ) : (
-        <div className={className}>{component}</div>
+    return (
+        <ScreenProvider data={screen} renderContext={renderContext}>
+            {ScreenComponent !== null ? (
+                <div className={className}>
+                    <ScreenComponent
+                        {...screen}
+                        active={active}
+                        current={current}
+                        onPrevious={onPrevious}
+                        onNext={onNext}
+                        onEnableInteraction={onEnableInteraction}
+                        onDisableInteraction={onDisableInteraction}
+                    />
+                </div>
+            ) : (
+                <div className={className}>{component}</div>
+            )}
+        </ScreenProvider>
     );
 };
 

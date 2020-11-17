@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { MemoryRouter } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import { ScreensProvider } from '@micromag/screens';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
+// import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { RoutesProvider } from '@micromag/core/contexts';
 
 import * as ViewerPropTypes from '../lib/PropTypes';

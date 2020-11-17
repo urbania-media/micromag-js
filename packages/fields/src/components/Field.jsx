@@ -3,8 +3,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { getComponentFromName } from '@micromag/core/utils';
-import { useFieldComponent } from '@micromag/core/contexts';
+import { useFieldsManager } from '@micromag/core/contexts';
 
 import FieldRow from './FieldRow';
 
@@ -12,7 +11,8 @@ import styles from '../styles/field.module.scss';
 
 const propTypes = {
     name: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
+    type: PropTypes.string,
+    component: PropTypes.nodeType,
     label: MicromagPropTypes.label,
     help: MicromagPropTypes.label,
     errors: MicromagPropTypes.errors,
@@ -20,70 +20,65 @@ const propTypes = {
     fields: MicromagPropTypes.formFields,
     isHorizontal: PropTypes.bool,
     isSection: PropTypes.bool,
-    withoutLabel: PropTypes.bool,
-    withSettings: PropTypes.bool,
-    withoutFieldRow: PropTypes.bool,
     onChange: PropTypes.func,
     gotoFieldForm: PropTypes.func,
     closeFieldForm: PropTypes.func,
     className: PropTypes.string,
     labelClassName: PropTypes.string,
     fieldRowClassName: PropTypes.string,
-    components: MicromagPropTypes.components,
 };
 
 const defaultProps = {
+    type: null,
+    component: null,
     label: null,
     help: null,
     value: null,
     errors: null,
-    fields: null,
+    fields: undefined,
     isHorizontal: false,
     isSection: false,
-    withoutLabel: false,
-    withSettings: false,
-    withoutFieldRow: false,
     onChange: null,
     gotoFieldForm: null,
     closeFieldForm: null,
     className: null,
     labelClassName: null,
     fieldRowClassName: null,
-    components: null,
 };
 
 const Field = ({
     name,
     type,
+    component: providedComponent,
     label,
     help,
     errors,
-    fields,
+    fields: providedFields,
     isHorizontal,
     isSection,
-    withoutLabel,
-    withSettings,
-    withoutFieldRow,
     value,
     onChange,
     gotoFieldForm,
     closeFieldForm,
-    components,
     className,
     labelClassName,
     fieldRowClassName,
     ...props
 }) => {
-    const CustomFieldComponent =
-        components !== null ? getComponentFromName(type, components) || null : null;
-    const ContextFieldComponent = useFieldComponent(type);
-    const FieldComponent = CustomFieldComponent || ContextFieldComponent;
-    // console.log(type, components, ContextFieldComponent);
-    const isFields = type === 'fields';
-    const asSettings =
-        fields !== null
-            ? fields.reduce((acc, { setting = false }) => acc || setting, false)
-            : false;
+    const fieldsManager = useFieldsManager();
+    const FieldsComponent = fieldsManager.getComponent('fields');
+    const {
+        component: FieldComponent = FieldsComponent,
+        fields = providedFields,
+        settings = null,
+        withoutLabel = false,
+        withoutFieldRow = false,
+        isList = false,
+    } = (type !== null ? fieldsManager.getDefinition(type) || null : null) || {
+        component: providedComponent,
+    };
+    const isFields = FieldComponent === FieldsComponent;
+
     const gotoForm = useCallback((form) => gotoFieldForm(name, form), [name, gotoFieldForm]);
     const closeForm = useCallback((form) => closeFieldForm(name, form), [name, closeFieldForm]);
     const gotoSettings = useCallback(() => gotoForm('settings'), [gotoForm]);
@@ -98,12 +93,17 @@ const Field = ({
         FieldComponent.withForm ||
         false;
     const finalWithoutLabel = withoutLabel || FieldComponent.withoutLabel || false;
-    const finalWithSettings = withSettings || asSettings || FieldComponent.withSettings || false;
+    const finalWithSettings =
+        settings !== null ||
+        (typeof FieldComponent.withSettings !== 'undefined' && FieldComponent.withSettings) ||
+        typeof FieldComponent.settingsComponent !== 'undefined' ||
+        false;
     const finalWithForm = FieldComponent.withForm || false;
 
     const fieldElement = (
         <FieldComponent
             isHorizontal={isHorizontal && isFields}
+            isList={isList}
             labelClassName={classNames({
                 'col-sm-3': isHorizontal && isFields,
                 [labelClassName]: labelClassName !== null,

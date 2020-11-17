@@ -14,7 +14,6 @@ export default {
     }),
     component: SurveyScreen,
     layouts: ['top', 'middle', 'bottom', 'split'],
-    handlesNavigation: true,
     fields: [
         {
             name: 'layout',

@@ -10,21 +10,6 @@ export const ScreensContext = React.createContext(new ScreensManager());
 
 export const useScreensManager = () => useContext(ScreensContext);
 
-export const useScreens = () => {
-    const manager = useScreensManager();
-    return manager.getScreens();
-};
-
-export const useScreen = (id) => {
-    const manager = useScreensManager();
-    return manager.getScreen(id);
-};
-
-export const useScreenFields = (id) => {
-    const { fields = [] } = useScreen(id);
-    return fields;
-};
-
 const propTypes = {
     screens: MicromagPropTypes.screenDefinitions,
     manager: PropTypes.instanceOf(ScreensManager),

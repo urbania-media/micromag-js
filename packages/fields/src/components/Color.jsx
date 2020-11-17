@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { FormattedMessage } from 'react-intl';
 import { getStyleFromColor } from '@micromag/core/utils';
 
 import ColorPicker from './ColorPicker';
@@ -52,7 +53,12 @@ const ColorField = ({ value, onChange, isForm, className }) => {
                     </span>
                 </>
             ) : (
-                <span className={styles.noValue}>Sélectionnez une couleur</span>
+                <span className={styles.noValue}>
+                    <FormattedMessage
+                        defaultMessage="Select a color..."
+                        description="No value label"
+                    />
+                </span>
             )}
         </div>
     );

@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getDeviceScreens } from '../../packages/core/src/utils';
 import { useScreenSizeFromElement } from '../../packages/core/src/hooks';
-import { ScreenRenderProvider } from '../../packages/core/src/contexts/ScreenRenderContext';
+import * as MicromagPropTypes from '../../packages/core/src/PropTypes';
+import { ScreenProvider } from '../../packages/core/src/contexts/ScreenContext';
 import { ScreenSizeProvider } from '../../packages/core/src/contexts/ScreenSizeContext';
 
 import styles from './styles/screen.module.scss';
@@ -11,6 +12,8 @@ import styles from './styles/screen.module.scss';
 const propTypes = {
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    definition: MicromagPropTypes.screenDefinition,
+    screen: MicromagPropTypes.screen,
     renderContext: PropTypes.string,
     className: PropTypes.string,
     screenClassName: PropTypes.string,
@@ -22,6 +25,8 @@ const propTypes = {
 const defaultProps = {
     width: null,
     height: null,
+    definition: null,
+    screen: null,
     renderContext: 'view',
     className: null,
     screenClassName: null,
@@ -32,6 +37,8 @@ const defaultProps = {
 const Screen = ({
     width,
     height,
+    screen,
+    definition,
     renderContext,
     className,
     screenClassName,
@@ -52,7 +59,7 @@ const Screen = ({
                 {
                     [styles.withBorder]: withBorder,
                     [styles.withScroll]: withScroll,
-                    [styles.withSize]: width !== null || height !== null,                    
+                    [styles.withSize]: width !== null || height !== null,
                     [className]: className !== null,
                 },
             ])}
@@ -71,7 +78,13 @@ const Screen = ({
                 ])}
             >
                 <ScreenSizeProvider size={screenSize}>
-                    <ScreenRenderProvider context={renderContext}>{children}</ScreenRenderProvider>
+                    <ScreenProvider
+                        definition={definition}
+                        data={screen}
+                        renderContext={renderContext}
+                    >
+                        {children}
+                    </ScreenProvider>
                 </ScreenSizeProvider>
             </div>
         </div>

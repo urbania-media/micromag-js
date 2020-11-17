@@ -3,7 +3,7 @@ import React from 'react';
 
 import * as MicromagPropTypes from '../../packages/core/src/PropTypes';
 import Fields from '../../packages/fields/src/components/Fields';
-import FieldsProvider from '../../packages/fields/src/components/FieldsProvider';
+import FieldsProvider from '../../packages/fields/src/FieldsProvider';
 
 const propTypes = {
     definition: MicromagPropTypes.screenDefinition.isRequired,
