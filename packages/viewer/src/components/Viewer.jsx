@@ -148,14 +148,24 @@ const Viewer = ({
         },
     });
 
+    const screensRefs = useRef([]);
+
     // Handle screen change
     useEffect(() => {
         if (landscape) {
             if (animateScroll.current) {
+
+                let scrollTop = 0;
+                screensRefs.current.forEach((screen, screenI) => {
+                    if (screenI < currentIndex) {
+                        scrollTop += screen.offsetHeight;
+                    }
+                });
+
                 anime({
                     targets: scrollRef.current,
                     duration: 500,
-                    scrollTop: currentIndex * screenHeight,
+                    scrollTop,
                     easing: 'easeInOutQuad',
                     complete: () => {
                         animateScroll.current = false;
@@ -178,10 +188,13 @@ const Viewer = ({
     // handle preview menu item click
     const onClickPreviewMenuItem = useCallback(
         (index) => {
+            if (landscape) {
+                animateScroll.current = true;
+            }
             changeIndex(index);
-            setMenuOpened(false);
+            setMenuOpened(false);            
         },
-        [setMenuOpened, changeIndex],
+        [setMenuOpened, changeIndex, landscape],
     );
 
     const onClickPreviewMenuClose = useCallback(() => {
@@ -194,8 +207,6 @@ const Viewer = ({
             e.stopPropagation();
             const it = components[currentIndex] || null;
             const interactionEnabled = screensInteractionEnabled[currentIndex];
-
-            console.log('tap', interactionEnabled)
 
             if (it === null || !tappingRef.current || !interactionEnabled) {
                 return;
@@ -213,7 +224,7 @@ const Viewer = ({
         [onScreenChange, screenWidth, components, changeIndex, currentIndex, screensInteractionEnabled],
     );
 
-    const screensRefs = useRef([]);
+    
 
     // Handle landscape scroll updating currentScreen
     // @TODO use Observer

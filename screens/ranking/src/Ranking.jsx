@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -39,11 +39,8 @@ const defaultProps = {
     active: true,
     maxRatio: 3 / 4,
     transitions: {
-        in: {
-            name: 'fade',
-            duration: 250,
-        },
-        out: 'scale',
+        in: 'fade',
+        out: 'fade',
     },
     transitionStagger: 75,
     className: null,
@@ -67,7 +64,21 @@ const RankingScreen = ({
 
     const itemsCount = items !== null ? items.length : 0;
 
-    let transitionDelay = 0;
+    const isSideLayout = layout === 'side';
+
+    const ranksRefs = useRef([]);
+    const [maxSideRankWidth, setMaxSideRankWidth] = useState(null);
+    useEffect(() => {
+        if (!isSideLayout) {
+            return;
+        }
+
+        let maxWidth = 0;
+        ranksRefs.current.forEach( rankEl => {
+            maxWidth = Math.max(maxWidth, rankEl.offsetWidth);
+        });
+        setMaxSideRankWidth(maxWidth);
+    }, [isSideLayout, width, height]);
 
     const elements = items.map((item, itemI) => {
         const { title = null, description = null } = item || {};
@@ -92,7 +103,7 @@ const RankingScreen = ({
                         <Transitions
                             transitions={transitions}
                             playing={current}
-                            delay={transitionDelay}
+                            delay={transitionStagger * itemI}
                             disabled={isPreview}
                         >
                             <Heading {...title} />
@@ -102,16 +113,15 @@ const RankingScreen = ({
             </div>
         );
 
-        if (hasTitle) {
-            transitionDelay += transitionStagger;
-        }
-
         const descriptionElement = (
             <div className={styles.description}>
                 <ScreenElement
                     placeholder="text"
                     emptyLabel={
-                        <FormattedMessage defaultMessage="Description" description="Description placeholder" />
+                        <FormattedMessage
+                            defaultMessage="Description"
+                            description="Description placeholder"
+                        />
                     }
                     emptyClassName={styles.empty}
                     isEmpty={isEmptyDescription}
@@ -120,8 +130,8 @@ const RankingScreen = ({
                         <Transitions
                             transitions={transitions}
                             playing={current}
-                            delay={transitionDelay}
-                            disabled={isPreview}
+                            delay={transitionStagger * itemI}
+                            disabled={!isView}
                         >
                             <Text {...description} />
                         </Transitions>
@@ -130,16 +140,22 @@ const RankingScreen = ({
             </div>
         );
 
-        if (hasDescription) {
-            transitionDelay += transitionStagger;
-        }
-
         return (
             <div className={styles.item} key={`item-${itemI}`}>
-                <div className={styles.rank}>{ascending ? itemI + 1 : itemsCount - itemI}</div>
+                <div
+                    className={styles.rank}
+                    ref={(el) => {
+                        ranksRefs.current[itemI] = el;
+                    }}
+                    style={ isSideLayout ? { width: maxSideRankWidth } : null }
+                >
+                    <Transitions transitions={transitions} playing={current} delay={transitionStagger * itemI} disabled={!isView}>
+                        {ascending ? itemI + 1 : itemsCount - itemI}
+                    </Transitions>
+                </div>
                 <div className={styles.content}>
-                    { titleElement }
-                    { descriptionElement }
+                    {titleElement}
+                    {descriptionElement}
                 </div>
             </div>
         );

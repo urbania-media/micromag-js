@@ -143,28 +143,24 @@ export const quiz1options = [
         label: {
             body: 'Deux minutes, pareil comme dans le film Face/Off',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: 'Deux heures et demi',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: '18 heures',
         },
-        answer: true,
     },
     {
         id: uuid(),
         label: {
             body: '36 heures',
         },
-        answer: false,
     },
 ];
 
@@ -174,28 +170,24 @@ export const quiz2options = [
         label: {
             body: '1',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: '2',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: '3',
         },
-        answer: true,
     },
     {
         id: uuid(),
         label: {
             body: '4',
         },
-        answer: false,
     },
 ];
 
@@ -205,28 +197,24 @@ export const quiz3options = [
         label: {
             body: 'Une à deux fois plus',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: '5 fois plus',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: '1000 fois plus',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: '10 à 100 fois plus',
         },
-        answer: true,
     },
 ];
 
@@ -236,28 +224,24 @@ export const quiz4options = [
         label: {
             body: 'Un sourire Colgate',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: 'Un sourire de Pan Am',
         },
-        answer: true,
     },
     {
         id: uuid(),
         label: {
             body: 'Un sourire de faux cul',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: 'Un hide the pain Harold',
         },
-        answer: false,
     },
 ];
 
@@ -267,28 +251,24 @@ export const quiz5options = [
         label: {
             body: '307 000',
         },
-        answer: true,
     },
     {
         id: uuid(),
         label: {
             body: '1364',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: '1.5 millions',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: '229',
         },
-        answer: false,
     },
 ];
 
@@ -298,28 +278,24 @@ export const quiz6options = [
         label: {
             body: '2 millions',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: '75 000',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: '300 000',
         },
-        answer: false,
     },
     {
         id: uuid(),
         label: {
             body: '200 millions',
         },
-        answer: true,
     },
 ];
 

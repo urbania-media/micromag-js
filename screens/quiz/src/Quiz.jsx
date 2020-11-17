@@ -57,11 +57,8 @@ const defaultProps = {
     active: true,
     maxRatio: 3 / 4,
     transitions: {
-        in: {
-            name: 'fade',
-            duration: 250,
-        },
-        out: 'scale',
+        in: 'fade',
+        out: 'fade',
     },
     transitionStagger: 100,
     resultsTransitionDuration: 500,
@@ -113,26 +110,6 @@ const QuizScreen = ({
         },
         [userAnswerIndex, setUserAnswerIndex],
     );
-
-    useEffect( () => {
-        if (!current) {
-            return;
-        }
-        
-        if (answered) {
-            if (onEnableInteraction !== null) {
-                onEnableInteraction();
-            }            
-        } else if (onDisableInteraction !== null) {
-            onDisableInteraction();
-        }
-    }, [current, answered, onEnableInteraction, onDisableInteraction]);
-
-    useEffect( () => {        
-        if (!current && userAnswerIndex !== null) {
-            setUserAnswerIndex(null);
-        }
-    }, [current, userAnswerIndex, setUserAnswerIndex]);
     
     // @TODO update scale + inverted scale inside instead of height for best performance
 
@@ -195,6 +172,27 @@ const QuizScreen = ({
             }
         };
     }, [answered, resultsTransitionDuration, setAnswerTransitionComplete]);
+
+    useEffect( () => {
+        if (!current) {
+            return;
+        }
+
+        if (answered) {
+            if (onEnableInteraction !== null) {
+                onEnableInteraction();
+            }            
+        } else if (onDisableInteraction !== null) {
+            onDisableInteraction();
+        }
+    }, [current, answered, onEnableInteraction, onDisableInteraction]);
+
+    useEffect( () => {        
+        if (!current && userAnswerIndex !== null) {
+            setUserAnswerIndex(null);
+            setAnswerTransitionComplete(false);
+        }
+    }, [current, userAnswerIndex, setUserAnswerIndex, setAnswerTransitionComplete]);
 
     // Question
 

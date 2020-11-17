@@ -188,14 +188,14 @@ const faceAFaceStory = [
     {
         id: uuid(),
         type: 'title-subtitle-credits',
-        layout: 'middle',
+        layout: 'split-top',
         title: {
             body: 'Pourriez vous passer une semaine sans vous regarder dans le miroir?',
         },
         subtitle: {
             body: 'On a tenté l’expérience et voici comment ça s’est déroulé',
         },
-        descrition: {
+        credits: {
             body: 'Par Hugo Meunier',
         },
     },
@@ -204,6 +204,9 @@ const faceAFaceStory = [
         type: 'timeline',
         layout: 'normal',
         items: timelineItems,
+        bulletColor: '#FFF',
+        lineColor: '#FFF',
+        bulletFilled: false,
     },
 ];
 
