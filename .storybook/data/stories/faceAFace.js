@@ -14,6 +14,9 @@ import {
     rankingItems,
 } from './data';
 
+import { bigUppTitle, normalText, normalTitle } from './styles';
+
+
 const faceAFaceStory = [
     {
         id: uuid(),
@@ -21,6 +24,7 @@ const faceAFaceStory = [
         layout: 'middle',
         title: {
             body: 'Face à face avec votre face',
+            textStyle: bigUppTitle,
         },
     },
     {
@@ -30,9 +34,11 @@ const faceAFaceStory = [
         author: {
             body:
                 'Tommy Kruise, qui se rappelle le déclic qui l’a poussé à subir une opération chirurgicale à la mâchoire pour guérir son apnée du sommeil',
+            textStyle: normalText,
         },
         quote: {
             body: '« Soudainement, je m’en crissais de ce que j’allais avoir l’air. »',
+            textStyle: normalTitle,
         },
     },
     {
@@ -41,10 +47,12 @@ const faceAFaceStory = [
         layout: 'normal',
         title: {
             body: 'Changer de visage',
+            textStyle: normalTitle,
         },
         text: {
             body:
                 'Ça faisait longtemps qu’il y pensait, mais c’est après qu’un ami soit décédé de complications reliées à l’apnée du sommeil que Tommy Kruise s’est décidé à faire passer son visage au bistouri. Il s’endormait partout et ça le rendait même irritable et un peu chiant. Son opération à la mâchoire a changé son look de façon subtile, mais il dort nettement mieux depuis. «Maintenant, j’ai vraiment un jawline, alors je suis content!»',
+            textStyle: normalText,
         },
         image: tommy,
     },
@@ -53,6 +61,7 @@ const faceAFaceStory = [
         type: 'gallery-feed-legends',
         title: {
             body: 'La face de l’humain au fil du temps',
+            textStyle: normalTitle,
         },
         images: mans,
     },
@@ -62,6 +71,7 @@ const faceAFaceStory = [
         layout: 'middle',
         question: {
             body: 'Qu’est-ce qui vous agace le plus dans votre face?',
+            textStyle: normalTitle,
         },
         options: survey1options,
     },
@@ -79,6 +89,7 @@ const faceAFaceStory = [
         layout: 'middle',
         title: {
             body: 'Avez-vous du pif au milieu du visage? Testez vos connaissances!',
+            textStyle: bigUppTitle,
         },
     },
     {
@@ -87,6 +98,7 @@ const faceAFaceStory = [
         layout: 'middle',
         question: {
             body: 'Combien d’heures a duré la première greffe de visage au Canada?',
+            textStyle: normalTitle,
         },
         options: quiz1options,
         answerIndex: 2,

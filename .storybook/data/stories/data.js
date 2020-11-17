@@ -1,11 +1,20 @@
 import { v1 as uuid } from 'uuid';
 
+// import { descriptionText } from './styles';
 import tommyBefore from './assets-face-a-face/tommy-before.jpg';
 import man1 from './assets-face-a-face/1.jpg';
 import man2 from './assets-face-a-face/2.jpg';
 import man3 from './assets-face-a-face/3.jpg';
 import man4 from './assets-face-a-face/4.jpg';
 import man5 from './assets-face-a-face/5.jpg';
+
+export const descriptionText = {
+    fontFamily: 'Apercu',
+    fontSize: 16,
+    fontStyle: {
+        bold: false,
+    },
+};
 
 export const tommy = {
     media: {
@@ -23,13 +32,14 @@ export const mans = [
             media: {
                 url: man1,
                 metadata: {
-                    width: 1000,
-                    height: 1340,
+                    width: 500,
+                    height: 670,
                 },
             },
         },
         legend: {
             body: 'Vous auriez pu ressembler à ceci, il y a 3-4 millions d’années',
+            textStyle: descriptionText,
         },
     },
     {
@@ -44,6 +54,7 @@ export const mans = [
         },
         legend: {
             body: 'Retrouvez-vous des airs de famille dans votre ancêtre Homo Erectus?',
+            textStyle: descriptionText,
         },
     },
     {
@@ -59,6 +70,7 @@ export const mans = [
         legend: {
             body:
                 'L’homme de Néandertal est disparu il y a 30 000 ans, mais il reste encore un peu de lui dans votre ADN',
+            textStyle: descriptionText,
         },
     },
     {
@@ -73,6 +85,7 @@ export const mans = [
         },
         legend: {
             body: 'Remerciez la sélection naturelle pour votre beau menton d’Homo Sapiens',
+            textStyle: descriptionText,
         },
     },
     {
@@ -88,6 +101,7 @@ export const mans = [
         legend: {
             body:
                 'À quoi va-t-on ressembler dans 100 000 ans? Grosse tête? Gros yeux? Pigmentation adaptée aux changements climatiques? Les paris sont ouverts!',
+            textStyle: descriptionText,
         },
     },
 ];
@@ -308,7 +322,9 @@ export const rankingItems = [
         },
     },
     {
-        title: { body: 'On peut se spécialiser dans une certaine physionomie (ou couleur) de visage' },
+        title: {
+            body: 'On peut se spécialiser dans une certaine physionomie (ou couleur) de visage',
+        },
         description: {
             body:
                 'Quelqu’un a dit profilage? C’est tout de même le cas de certains super-recognizers s’entraînent à reconnaître des suspects d’une certaine origine ethnique',
