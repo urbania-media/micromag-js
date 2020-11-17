@@ -7,7 +7,7 @@ import { useIntl, FormattedMessage } from 'react-intl';
 import TransitionGroup from 'react-addons-css-transition-group';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { slug } from '@micromag/core/utils';
-import { useRoutePush, useRoutes } from '@micromag/core/contexts';
+import { useRoutePush, useRoutes, ScreenProvider } from '@micromag/core/contexts';
 import { Empty, Navbar } from '@micromag/core/components';
 
 import { updateScreen, duplicateScreen, deleteScreen } from '../utils';
@@ -154,15 +154,6 @@ const EditForm = ({ story, className, onChange }) => {
                 </Navbar>
             ) : null}
             <div className={classNames(['flex-grow-1', 'd-flex', 'w-100', styles.content])}>
-                {screen === null ? (
-                    <Empty className="w-100 m-2">
-                        <FormattedMessage
-                            defaultMessage="Select a screen..."
-                            decription="Indication to select a screen to view the form"
-                        />
-                    </Empty>
-                ) : null}
-
                 {screen !== null ? (
                     <>
                         <TransitionGroup
@@ -176,34 +167,45 @@ const EditForm = ({ story, className, onChange }) => {
                                     className={classNames(['bg-dark', 'w-100', styles.panel])}
                                     key={`field-${fieldParams}-${formParams}`}
                                 >
-                                    <FieldForm
-                                        value={screen}
-                                        field={fieldParams.replace(/\//g, '.')}
-                                        form={formParams}
-                                        className={styles.form}
-                                        gotoFieldForm={gotoFieldForm}
-                                        closeFieldForm={closeFieldForm}
-                                        onChange={onScreenFormChange}
-                                    />
+                                    <ScreenProvider data={screen}>
+                                        <FieldForm
+                                            name={fieldParams.replace(/\//g, '.')}
+                                            value={screen}
+                                            form={formParams}
+                                            className={styles.form}
+                                            gotoFieldForm={gotoFieldForm}
+                                            closeFieldForm={closeFieldForm}
+                                            onChange={onScreenFormChange}
+                                        />
+                                    </ScreenProvider>
                                 </div>
                             ) : (
                                 <div
                                     className={classNames(['bg-dark', 'w-100', styles.panel])}
                                     key={`screen-${screen.id}`}
                                 >
-                                    <ScreenForm
-                                        value={screen}
-                                        className={styles.form}
-                                        onChange={onScreenFormChange}
-                                        gotoFieldForm={gotoFieldForm}
-                                        closeFieldForm={closeFieldForm}
-                                        onClickDelete={onClickScreenDelete}
-                                    />
+                                    <ScreenProvider data={screen}>
+                                        <ScreenForm
+                                            value={screen}
+                                            className={styles.form}
+                                            onChange={onScreenFormChange}
+                                            gotoFieldForm={gotoFieldForm}
+                                            closeFieldForm={closeFieldForm}
+                                            onClickDelete={onClickScreenDelete}
+                                        />
+                                    </ScreenProvider>
                                 </div>
                             )}
                         </TransitionGroup>
                     </>
-                ) : null}
+                ) : (
+                    <Empty className="w-100 m-2">
+                        <FormattedMessage
+                            defaultMessage="Select a screen..."
+                            decription="Indication to select a screen to view the form"
+                        />
+                    </Empty>
+                )}
             </div>
         </div>
     );

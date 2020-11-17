@@ -87,7 +87,7 @@ const FieldRow = ({
                 >
                     {labelElement}
                 </label>
-                <span className="col">{children}</span>
+                <span className="col-auto ml-auto">{children}</span>
                 {isClickable ? (
                     <span className="col-auto">
                         <FontAwesomeIcon icon={faAngleRight} className={styles.icon} />

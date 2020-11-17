@@ -10,7 +10,7 @@ import { useOrganisations } from '@micromag/data';
 import { useAuth } from '../../../contexts/AuthContext';
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
-import OrganisationPreview from '../../partials/OrganisationPreview';
+import OrganisationPartial from '../../partials/Organisation';
 import CompleteProfileForm from '../../forms/CompleteProfile';
 
 import styles from '../../../styles/pages/register/register.module.scss';
@@ -75,8 +75,8 @@ const CompleteProfile = ({ className }) => {
                                     description="Complete profile organisations description"
                                 />
                             </p>
-                            {organisations.map((org) => (
-                                <OrganisationPreview organisation={org} />
+                            {organisations.map((organisation) => (
+                                <OrganisationPartial organisation={organisation} />
                             ))}
                         </>
                     ) : null}

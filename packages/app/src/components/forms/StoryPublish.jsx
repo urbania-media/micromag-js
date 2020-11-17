@@ -41,9 +41,7 @@ const StoryPublishForm = ({ story, services, className, onPublished }) => {
                     const settings = isObject(value) ? value.settings || null : null;
                     return createPublication(id, settings);
                 }),
-        ).then((publications) => {
-            console.log(publications);
-        });
+        );
     }, [createPublication, onPublished, publicationValue]);
 
     const hasServiceEnabled =

@@ -3,7 +3,7 @@ import LayoutGrid from '../components/LayoutGrid';
 import LayoutSwitcher from '../components/LayoutSwitcher';
 import Screen from '../components/Screen';
 
-const withScreenLayouts = (
+const withScreenDefinition = (
     Story,
     {
         story,
@@ -14,16 +14,18 @@ const withScreenLayouts = (
         args,
     },
 ) => {
-    const { layouts = null } = screenDefinition || {};
-    if (layouts === null || story === 'Definition') {
+    if (screenDefinition === null || story === 'Definition') {
         return <Story />;
     }
+
+    const { layouts = null } = screenDefinition || {};
 
     if (story === 'Placeholder') {
         return (
             <LayoutGrid layouts={layouts}>
                 {(layout) => (
                     <Screen
+                        definition={screenDefinition}
                         width={gridWidth}
                         height={gridHeight}
                         withBorder
@@ -40,7 +42,11 @@ const withScreenLayouts = (
         return (
             <LayoutSwitcher layouts={layouts}>
                 {(layout) => (
-                    <Screen renderContext={story.toLowerCase()} withScroll>
+                    <Screen
+                        definition={screenDefinition}
+                        renderContext={story.toLowerCase()}
+                        withScroll
+                    >
                         <Story args={{ ...args, layout }} />
                     </Screen>
                 )}
@@ -48,15 +54,19 @@ const withScreenLayouts = (
         );
     }
 
-    return (
+    return layouts !== null ? (
         <LayoutSwitcher layouts={layouts}>
             {(layout) => (
-                <Screen withScroll>
+                <Screen definition={screenDefinition} withScroll>
                     <Story args={{ ...args, layout }} />
                 </Screen>
             )}
         </LayoutSwitcher>
+    ) : (
+        <Screen definition={screenDefinition} withScroll>
+            <Story />
+        </Screen>
     );
 };
 
-export default withScreenLayouts;
+export default withScreenDefinition;

@@ -29,6 +29,7 @@ export { default as Label } from './partials/Label';
 export { default as Link } from './partials/Link';
 export { default as Media } from './partials/Media';
 export { default as Slideshow } from './partials/Slideshow';
+export { default as Spinner } from './partials/Spinner';
 
 export { default as PlaceholderAdFrame } from './placeholders/AdFrame';
 export { default as PlaceholderAdImage } from './placeholders/AdImage';
@@ -49,7 +50,6 @@ export { default as PlaceholderTitle } from './placeholders/Title';
 export { default as PlaceholderVideo } from './placeholders/Video';
 export { default as PlaceholderVideoLoop } from './placeholders/VideoLoop';
 
-export { default as createLayoutSwitcher } from './screens/createLayoutSwitcher';
 export { default as ScreenPlaceholder } from './screens/Placeholder';
 export { default as ScreenPreview } from './screens/Preview';
 export { default as Screen } from './screens/Screen';

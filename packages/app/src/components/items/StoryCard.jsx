@@ -1,12 +1,9 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FormattedMessage, useIntl } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Card, Link, Button } from '@micromag/core/components';
+import { Card, Link } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
-import { useStoryDuplicate, useStoryDelete } from '@micromag/data';
 
 import ScreensCount from '../partials/ScreensCount';
 import Authors from '../partials/Authors';
@@ -25,27 +22,9 @@ const defaultProps = {
 };
 
 const StoryCardItem = ({ item, className }) => {
-    const intl = useIntl();
     const url = useUrlGenerator();
-
     const { components = [] } = item;
     const screensCount = components.length;
-
-    const { duplicate: duplicateStory } = useStoryDuplicate(item.id);
-    const { deleteStory } = useStoryDelete(item.id);
-
-    const postDuplicate = useCallback((data) => duplicateStory(data), [duplicateStory]);
-    const postDelete = useCallback(() => {
-        deleteStory();
-    }, [deleteStory]);
-
-    const onClickDuplicate = useCallback(() => {
-        postDuplicate(item);
-    }, [intl, item, postDuplicate]);
-
-    const onClickDelete = useCallback(() => {
-        postDelete();
-    }, [postDelete]);
 
     return (
         <Card
@@ -59,25 +38,7 @@ const StoryCardItem = ({ item, className }) => {
             beforeBody={
                 <div className={styles.settings}>
                     <SettingsButton className={styles.button}>
-                        <StoryMenu story={item} asList />
-                        <ul className="list-group text-dark">
-                            <li className="list-group-item">
-                                <Button asLink onClick={onClickDuplicate}>
-                                    <FormattedMessage
-                                        defaultMessage="Duplicate"
-                                        description="Duplicate button label"
-                                    />
-                                </Button>
-                            </li>
-                            <li className="list-group-item">
-                                <Button asLink onClick={onClickDelete}>
-                                    <FormattedMessage
-                                        defaultMessage="Delete"
-                                        description="Delete button label"
-                                    />
-                                </Button>
-                            </li>
-                        </ul>
+                        <StoryMenu story={item} asList withDuplicate withDelete />
                     </SettingsButton>
                 </div>
             }

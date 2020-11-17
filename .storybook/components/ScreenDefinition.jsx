@@ -20,9 +20,7 @@ const ScreenDefinition = ({ definition }) => (
                     <FormattedMessage {...def.title} />
                 </h3>
                 <h4>Fields</h4>
-                <div className="bg-light">
-                    <ScreenFields definition={def} />
-                </div>
+                <ScreenFields definition={def} />
                 <hr />
                 <h4>JSON</h4>
                 <pre className="bg-light color-dark">

@@ -30,7 +30,7 @@ const PaymentItem = ({ payment, className }) => {
                 },
             ])}
         >
-            <div className="d-flex align-items-center">
+            <div className="d-flex align-items-center justify-content-between">
                 <div className="w-50">
                     <strong className="mr-2 text-truncate">{date}</strong>
                     {type === 'refund' ? (
@@ -42,12 +42,12 @@ const PaymentItem = ({ payment, className }) => {
                         </span>
                     ) : null}
                 </div>
-                <div className="w-25">
-                    {amount ? `${parseFloat(amount, 10).toFixed(2)} $` : null}
+                <div className="d-flex align-items-center">
+                    <div>{amount ? `${parseFloat(amount, 10).toFixed(2)} $` : null}</div>
+                    <Button className="btn btn-primary ml-4" href={link}>
+                        <FontAwesomeIcon icon={faArrowCircleDown} />
+                    </Button>
                 </div>
-                <Button className="btn btn-primary ml-4 w-25" href={link}>
-                    <FontAwesomeIcon icon={faArrowCircleDown} />
-                </Button>
             </div>
         </div>
     );

@@ -18,6 +18,7 @@ const propTypes = {
     flush: PropTypes.bool,
     dropdownAlign: MicromagPropTypes.dropdownAlign,
     withEditor: PropTypes.bool,
+    withDuplicate: PropTypes.bool,
     withDelete: PropTypes.bool,
 };
 
@@ -30,6 +31,7 @@ const defaultProps = {
     flush: false,
     dropdownAlign: null,
     withEditor: true,
+    withDuplicate: false,
     withDelete: false,
 };
 
@@ -43,6 +45,7 @@ const StoryMenu = ({
     flush,
     dropdownAlign,
     withEditor,
+    withDuplicate,
     withDelete,
     ...props
 }) => {
@@ -115,6 +118,21 @@ const StoryMenu = ({
                 ),
                 className: listItemClassName,
             },
+            withDuplicate
+                ? {
+                      id: 'duplicate',
+                      href: url('stories.duplicate', {
+                          story: story.id,
+                      }),
+                      label: (
+                          <FormattedMessage
+                              defaultMessage="Duplicate"
+                              description="Duplicate menu label"
+                          />
+                      ),
+                      className: asList ? listItemClassName : null,
+                  }
+                : null,
             withDelete
                 ? {
                       id: 'delete',
@@ -127,7 +145,7 @@ const StoryMenu = ({
                               description="Delete story menu label"
                           />
                       ),
-                      className: asList ? 'list-group-item-danger' : null,
+                      className: asList ? `${listItemClassName} list-group-item-danger` : null,
                   }
                 : null,
         ]

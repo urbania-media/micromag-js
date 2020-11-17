@@ -15,6 +15,7 @@ import { contact as contactFields } from './fields';
 const propTypes = {
     organisation: AppPropTypes.organisation.isRequired,
     contact: AppPropTypes.contact,
+    contactType: PropTypes.string,
     contactFields: MicromagPropTypes.formFields,
     className: PropTypes.string,
     onUpdated: PropTypes.func,
@@ -52,8 +53,6 @@ const OrganisationContactForm = ({
         [createContact, updateContact, contact, contactType],
     );
 
-    console.log('c', contact);
-
     return (
         <div>
             <p>
@@ -66,12 +65,14 @@ const OrganisationContactForm = ({
             </p>
             <Form
                 action={url('organisation.contact')}
-                label="Hello"
                 fields={contactFieldsProp}
                 initialValue={contact}
                 postForm={postContact}
                 submitButtonLabel={
-                    <FormattedMessage defaultMessage="Save" description="Button label" />
+                    <FormattedMessage
+                        defaultMessage="Save contact"
+                        description="Save contact button label"
+                    />
                 }
                 onComplete={onUpdated}
                 className={className}

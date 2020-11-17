@@ -35,11 +35,8 @@ const EditorContainer = ({ memoryRouter, routes, basePath, ...props }) => {
                 <FieldsProvider>
                     <FormsProvider>
                         <ComponentsContext.Consumer>
-                            {({ components }) => {
-                                const formComponents =
-                                    components !== null
-                                        ? components[FORMS_NAMESPACE] || null
-                                        : null;
+                            {(manager) => {
+                                const formComponents = manager.getComponents(FORMS_NAMESPACE);
                                 const formRegEx =
                                     formComponents !== null
                                         ? Object.keys(formComponents)

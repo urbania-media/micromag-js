@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import isString from 'lodash/isString';
 
 import * as MicromagPropTypes from '../../PropTypes';
-import { useScreenRenderContext } from '../../contexts/ScreenRenderContext';
+import { useScreenRenderContext } from '../../contexts/ScreenContext';
 import * as Placeholders from '../placeholders/index';
 import Empty from '../partials/Empty';
 import getComponentFromName from '../../utils/getComponentFromName';

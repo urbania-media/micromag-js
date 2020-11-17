@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 // import classNames from 'classnames';
@@ -37,7 +36,10 @@ const StoryCreateForm = ({ fields, onCreated, className }) => {
             fields={fields}
             postForm={postForm}
             submitButtonLabel={
-                <FormattedMessage defaultMessage="Create" description="Button label" />
+                <FormattedMessage
+                    defaultMessage="Create story"
+                    description="Create story button label"
+                />
             }
             onComplete={onCreated}
             className={className}

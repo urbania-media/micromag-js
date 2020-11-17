@@ -84,7 +84,9 @@ const MainMenu = ({ className, itemClassName, linkClassName, ...props }) => {
                     id: 'stories',
                     href: url('stories'),
                     label: user ? (
-                        <Avatar className="d-inline-block" color="#ccc" {...user} />
+                        <div className="d-inline-block">
+                            <Avatar {...user} />
+                        </div>
                     ) : (
                         <FormattedMessage
                             defaultMessage="Account"

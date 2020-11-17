@@ -44,6 +44,8 @@ const Slideshow = ({ items, auto, delay, width, height, className, children }) =
         };
     }, [index, items, auto, delay]);
 
+    const style = { width, height };
+
     return (
         <div
             className={classNames([
@@ -52,7 +54,7 @@ const Slideshow = ({ items, auto, delay, width, height, className, children }) =
                     [className]: className,
                 },
             ])}
-            style={{ width, height }}
+            style={style}
         >
             <div className={styles.items}>
                 {items.map((it, i) => (
