@@ -9,7 +9,13 @@ import * as AppPropTypes from '../../lib/PropTypes';
 import styles from '../../styles/partials/authors.module.scss';
 
 const propTypes = {
-    authors: AppPropTypes.members,
+    authors: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number,
+            name: PropTypes.string,
+            color: PropTypes.string,
+        }),
+    ),
     maxItems: PropTypes.number,
     className: PropTypes.string,
 };
