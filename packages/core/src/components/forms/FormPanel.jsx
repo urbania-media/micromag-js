@@ -4,22 +4,25 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Card from '../partials/Card';
+import Spinner from '../partials/Spinner';
 
 import styles from '../../styles/forms/form-panel.module.scss';
 
 const propTypes = {
     description: PropTypes.node,
+    loading: PropTypes.bool,
     children: PropTypes.node,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     description: null,
+    loading: false,
     children: null,
     className: null,
 };
 
-const FormPanel = ({ description, children, className, ...props }) => (
+const FormPanel = ({ description, loading, children, className, ...props }) => (
     <Card
         className={classNames([
             styles.container,
@@ -30,7 +33,7 @@ const FormPanel = ({ description, children, className, ...props }) => (
         {...props}
     >
         {description}
-        {children}
+        {loading ? <Spinner /> : children}
     </Card>
 );
 

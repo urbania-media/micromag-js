@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // import classNames from 'classnames';
 import { useLocation } from 'react-router';
 import { parse as parseQuery, stringify as stringifyQuery } from 'query-string';
-import { Pagination } from '@micromag/core/components';
+import { Pagination, Spinner } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 import { useStories } from '@micromag/data';
 
@@ -37,7 +37,7 @@ const AllStories = ({ count, className }) => {
         <section className={className}>
             {stories !== null ? (
                 <>
-                    <StoriesList items={stories} />
+                    {loading ? <Spinner /> : <StoriesList items={stories} />}
                     {lastPage > 1 ? (
                         <Pagination
                             page={parseInt(page, 10)}

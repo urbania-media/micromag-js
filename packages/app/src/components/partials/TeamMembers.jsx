@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -28,6 +29,7 @@ const defaultProps = {
 const TeamMembers = ({ organisation, withoutAdd, className }) => {
     const url = useUrlGenerator();
     const { team } = useOrganisationTeam(organisation.id);
+
     const plusClassNames = classNames(['btn', 'btn-primary', styles.item, styles.plus]);
     return (
         <div
@@ -40,7 +42,9 @@ const TeamMembers = ({ organisation, withoutAdd, className }) => {
         >
             <div className={styles.inner}>
                 {team !== null
-                    ? team.map(() => <Avatar className={styles.item} letter="A" color="#999" />)
+                    ? team.map(({ invitation, user }) =>
+                          user && !invitation ? <Avatar className={styles.item} {...user} /> : null,
+                      )
                     : null}
                 {!withoutAdd ? (
                     <Button href={url('organisation.team')} className={plusClassNames}>

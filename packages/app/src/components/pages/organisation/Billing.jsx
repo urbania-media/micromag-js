@@ -63,8 +63,8 @@ const OrganisationBillingPage = ({ className }) => {
                                 descrition="Payments billing section title"
                             />
                         </h6>
-                        <ul class="list-group">
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <ul className="list-group">
+                            <li className="list-group-item d-flex justify-content-between align-items-center">
                                 <span>
                                     <FormattedMessage
                                         defaultMessage="Amount"
@@ -73,7 +73,7 @@ const OrganisationBillingPage = ({ className }) => {
                                 </span>
                                 <span>{amount}</span>
                             </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <li className="list-group-item d-flex justify-content-between align-items-center">
                                 <span>
                                     <FormattedMessage
                                         defaultMessage="Due date"
@@ -82,7 +82,7 @@ const OrganisationBillingPage = ({ className }) => {
                                 </span>
                                 <span>{dueDate}</span>
                             </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <li className="list-group-item d-flex justify-content-between align-items-center">
                                 <Link href={url('organisation.billing_history')}>
                                     <FormattedMessage
                                         defaultMessage="Payment history"
@@ -99,13 +99,13 @@ const OrganisationBillingPage = ({ className }) => {
                                 descrition="Payment method billing section title"
                             />
                         </h6>
-                        <ul class="list-group my-2">
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <ul className="list-group my-2">
+                            <li className="list-group-item d-flex justify-content-between align-items-center">
                                 <Link href={url('organisation.billing_info')}>
                                     <FormattedMessage
-                                        defaultMessage="Card ending with {cardEnding}"
+                                        defaultMessage="Card ending with {card_ending}"
                                         descrition="Card ending with list item"
-                                        values={{ cardEnding }}
+                                        values={{ card_ending: cardEnding }}
                                     />
                                 </Link>
                             </li>
@@ -118,8 +118,8 @@ const OrganisationBillingPage = ({ className }) => {
                                 descrition="Plan billing section title"
                             />
                         </h6>
-                        <ul class="list-group my-2">
-                            <li class="list-group-item">
+                        <ul className="list-group my-2">
+                            <li className="list-group-item">
                                 <Link href={url('organisation.billing_plan')}>
                                     <span className="d-block">{completePlan.label}</span>
                                     <span className="d-block font-weight-light">
@@ -147,7 +147,6 @@ const OrganisationBillingPage = ({ className }) => {
                                 descrition="Users total section title"
                             />
                         </h6>
-                        <p></p>
                     </div>
                     <div className="form-group mb-4">
                         <h6 className="text-uppercase text-secondary font-weight-bold mb-2">

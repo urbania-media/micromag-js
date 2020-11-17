@@ -18,4 +18,17 @@
     &.square {
         border-radius: 0;
     }
+
+    &.inverted {
+        border: 1px solid $black;
+    }
+
+    .letter {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        color: $white;
+        mix-blend-mode: difference;
+        line-height: 1;
+    }
 }

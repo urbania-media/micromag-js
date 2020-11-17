@@ -26,10 +26,8 @@ const defaultProps = {
 const OrganisationSettingsPage = ({ className }) => {
     const currentOrganisation = useContextOrganisation();
     const { organisation } = useOrganisation(currentOrganisation.id);
-    const { contact, loading: contactLoading } = useOrganisationContact(
-        currentOrganisation.id,
-        'main',
-    );
+    const { contact } = useOrganisationContact(currentOrganisation.id, 'main');
+
     return (
         <MainLayout>
             <Page
@@ -56,13 +54,15 @@ const OrganisationSettingsPage = ({ className }) => {
                     ) : null}
                 </FormPanel>
                 <FormPanel>
-                    {organisation !== null && !contactLoading ? (
+                    {organisation !== null && contact ? (
                         <OrganisationContactForm
                             organisation={organisation}
                             contact={contact}
                             type="main"
                         />
-                    ) : null}
+                    ) : (
+                        <p>Contact</p>
+                    )}
                 </FormPanel>
             </Page>
         </MainLayout>

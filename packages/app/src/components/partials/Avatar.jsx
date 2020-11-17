@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import styles from '../../styles/partials/avatar.module.scss';
 
 const propTypes = {
-    letter: PropTypes.string,
+    short_name: PropTypes.string,
     color: PropTypes.string,
     image: PropTypes.string,
     small: PropTypes.bool,
@@ -17,7 +17,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    letter: null,
+    short_name: null,
     color: null,
     image: null,
     small: false,
@@ -26,7 +26,7 @@ const defaultProps = {
     className: null,
 };
 
-const Avatar = ({ letter, color, image, square, small, inverted, className }) => {
+const Avatar = ({ short_name: shortName, color, image, square, small, inverted, className }) => {
     return (
         <div
             className={classNames([
@@ -43,7 +43,7 @@ const Avatar = ({ letter, color, image, square, small, inverted, className }) =>
                 ...(image ? { backgroundImage: `url(${image})` } : null),
             }}
         >
-            {!image ? letter : null}
+            {!image ? <span className={styles.letter}>{shortName}</span> : null}
         </div>
     );
 };

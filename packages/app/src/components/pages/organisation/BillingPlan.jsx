@@ -27,6 +27,7 @@ const OrganisationBillingPlanPage = ({ className }) => {
     const organisation = useContextOrganisation();
     const url = useUrlGenerator();
     const push = useRoutePush();
+
     const onUpdated = useCallback(() => {
         push(url('organisation.billing'));
     }, [push, url]);
