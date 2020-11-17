@@ -4,6 +4,7 @@ import withScreenSize from './decorators/withScreenSize';
 import withScreenDefinition from './decorators/withScreenDefinition';
 
 import '../packages/core/src/styles/vendor.scss';
+import './fonts/fonts.scss';
 
 export const parameters = {
     viewport: {

@@ -1,6 +1,6 @@
 import { defineMessage } from 'react-intl';
-import GalleryFeed from './GalleryFeed';
-import GalleryFeedLegends from './GalleryFeedLegends';
+import GalleryFeedScreen from './GalleryFeed';
+import GalleryFeedLegendsScreen from './GalleryFeedLegends';
 
 export default [
     {
@@ -14,7 +14,7 @@ export default [
             defaultMessage: 'GalleryFeed',
             description: 'GalleryFeed screen title',
         }),
-        component: GalleryFeed,
+        component: GalleryFeedScreen,
         layouts: ['normal'],
         fields: [
             {
@@ -55,7 +55,7 @@ export default [
             defaultMessage: 'GalleryFeedLegends',
             description: 'GalleryFeedLegends screen title',
         }),
-        component: GalleryFeedLegends,
+        component: GalleryFeedLegendsScreen,
         layouts: ['normal', 'reverse'],
         fields: [
             {

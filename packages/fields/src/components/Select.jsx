@@ -42,7 +42,9 @@ const SelectField = ({ value, options, disabled, className, onChange }) => {
         >
             <option value="">--</option>
             {finalOptions.map(({ value: optionValue, label: optionLabel }) => (
-                <option value={optionValue}>{optionLabel}</option>
+                <option key={`select-${optionValue}`} value={optionValue}>
+                    {optionLabel}
+                </option>
             ))}
         </select>
     );

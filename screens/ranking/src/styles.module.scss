@@ -3,7 +3,7 @@
 @import '~@micromag/core/scss/mixins';
 
 .container {
-    @extend %screen;
+    position: relative;
 
     .empty {
         @extend %empty;
@@ -14,6 +14,14 @@
     .item {
         position: relative;
         margin: 20px 0;
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
 
     .rank {
@@ -27,28 +35,35 @@
 
     &.sideLayout {
         .item {
-            padding-left: 10%;
+            display: flex;
+            justify-content: center;
         }
         
         .rank {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 10%;
+            flex-shrink: 0;
+            padding-right: 20px;
         }
 
         &.isPlaceholder {
-            .item {
-                padding-left: 20px;
-            }
-    
             .rank {
-                width: 20px;
+                padding-right: 10px;
             }
         }
     }
 
     &.isPlaceholder {
+        .item {
+            margin: 6px 0;
+
+            &:first-child {
+                margin-top: 0;
+            }
+    
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
         .rank {
             color: $black;
             font-size: 1.2em;
@@ -63,8 +78,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            height: 100%;
-            padding: 2px 0;
+            padding: 0;
         }
     }
 }

@@ -1,31 +1,79 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/mixins';
+
 .container {
-    display: flex;    
     position: relative;
-    flex-direction: column;
-    width: 100%;
     height: 100%;
     margin: 0 auto;
 
+    .scrollable {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;        
+    }
+
+    .arrowContainer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        transition: opacity 0.3s ease;
+        opacity: 0;
+        text-align: center;
+    }
+
+    .arrow {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        animation: upAndDown 0.75s alternate infinite ease-in-out;
+
+        path {
+            stroke-width: 20;
+            stroke: $black;
+        }
+    }
+
     &.withScroll {
-        overflow-x: hidden;
-        overflow-y: auto;
+        .scrollable {
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
     }
 
     &.top {
-        .inner {
+        .scrollee {
             margin-top: auto;
         }
     }
 
     &.center {
-        .inner {
+        .scrollee {
             margin: auto 0;
         }
     }
 
     &.bottom {
-        .inner {
+        .scrollee {
             margin-bottom: auto;
+        }
+    }
+
+    &.withArrow {
+        .arrowContainer {
+            opacity: 1;
+        }
+    }
+
+    @keyframes upAndDown {
+        from {
+            transform: translateY(-100%);
+        }
+
+        to {
+            transform: translateY(0%);
         }
     }
 }

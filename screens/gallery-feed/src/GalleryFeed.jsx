@@ -3,7 +3,7 @@ import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, useResizeObserver } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
 import Background from '@micromag/element-background';
@@ -39,17 +39,14 @@ const defaultProps = {
     active: true,
     maxRatio: 3 / 4,
     transitions: {
-        in: {
-            name: 'fade',
-            duration: 250,
-        },
-        out: 'scale',
-    }, 
+        in: 'fade',
+        out: 'fade',
+    },
     transitionStagger: 75,
     className: null,
 };
 
-const GalleryFeed = ({
+const GalleryFeedScreen = ({
     layout,
     images,
     withLegends,
@@ -76,14 +73,16 @@ const GalleryFeed = ({
 
     const isReversed = layout === 'reverse';
 
-    const screenRatio = width / height;
-    const maxWidth = maxRatio !== null && screenRatio > maxRatio ? height * maxRatio : width;
-    const imageWidth = maxWidth - spacing * 2;
-
     const items = [];
 
     const editImages = isEdit && images.length === 0 ? [{}] : images;
     const finalImages = isPlaceholder ? [...Array(5)] : editImages;
+
+    const {
+        ref: firstImageRef,
+        entry: { contentRect },
+    } = useResizeObserver();
+    const { width: firstImageRefWidth } = contentRect || {};
 
     finalImages.forEach((imageEl, index) => {
 
@@ -91,7 +90,7 @@ const GalleryFeed = ({
         const hasImage = image !== null;
         const hasLegend = legend !== null;
 
-        items.push(
+        const imageElement = (
             <ScreenElement
                 key={`image-${index}`}
                 placeholder="image"
@@ -101,16 +100,20 @@ const GalleryFeed = ({
                 emptyClassName={styles.empty}
                 isEmpty={isEdit && !hasImage}
             >
-                <Image
-                    {...image}
-                    width={imageWidth}
-                    onLoaded={onImageLoaded}
-                />
-            </ScreenElement>,
+                <div className={styles.imageContainer} ref={ index === 0 ? firstImageRef : null }>
+                    <Image
+                        {...image}
+                        width={firstImageRefWidth}
+                        onLoaded={onImageLoaded}
+                    />
+                </div>
+            </ScreenElement>
         );
 
+        let legendElement = null;
+
         if (withLegends) {
-            items.push(
+            legendElement = (
                 <ScreenElement
                     key={`legend-${index}`}
                     placeholder="shortText"
@@ -124,22 +127,31 @@ const GalleryFeed = ({
                     isEmpty={isEdit && !hasLegend}
                 >
                     <div className={styles.legend} style={{
-                        marginTop: spacing / 2,
-                        marginBottom: index < finalImages.length - 1 ? spacing / 2 : 0
+                        marginTop: !isReversed || index > 0 ? spacing / 2 : 0,
+                        marginBottom: isReversed || index < finalImages.length - 1 ? spacing / 2 : 0
                     }}>
                         <Text {...legend} />
                     </div>                    
-                </ScreenElement>,
+                </ScreenElement>
             );
         }
+
+        if (isReversed) {
+            if (withLegends) {
+                items.push(legendElement);
+            }
+            items.push(imageElement);
+        } else {
+            items.push(imageElement);
+            if (withLegends) {
+                items.push(legendElement);
+            }
+        }
+
         if (!isPlaceholder && index < finalImages.length - 1) {
-            items.push(<div style={{height: spacing}} />);
+            items.push(<div key={`spacing-${index}`} style={{height: spacing}} />);
         }        
     });
-
-    if (isReversed) {
-        items.reverse();
-    }
 
     return (
         <div
@@ -176,7 +188,7 @@ const GalleryFeed = ({
     );
 };
 
-GalleryFeed.propTypes = propTypes;
-GalleryFeed.defaultProps = defaultProps;
+GalleryFeedScreen.propTypes = propTypes;
+GalleryFeedScreen.defaultProps = defaultProps;
 
-export default React.memo(GalleryFeed);
+export default React.memo(GalleryFeedScreen);

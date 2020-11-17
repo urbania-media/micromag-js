@@ -2,34 +2,11 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { useLocation } from 'react-router';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Menu } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
-
-const messages = defineMessages({
-    editor: {
-        id: 'menus.story.editor',
-        defaultMessage: 'Launch editor',
-    },
-    preview: {
-        id: 'menus.story.preview',
-        defaultMessage: 'Preview',
-    },
-    settings: {
-        id: 'menus.story.settings',
-        defaultMessage: 'Settings',
-    },
-    publish: {
-        id: 'menus.story.publish',
-        defaultMessage: 'Publish',
-    },
-    delete: {
-        id: 'menus.story.delete',
-        defaultMessage: 'Delete story',
-    },
-});
 
 const propTypes = {
     story: MicromagPropTypes.story.isRequired,
@@ -40,6 +17,7 @@ const propTypes = {
     asList: PropTypes.bool,
     flush: PropTypes.bool,
     dropdownAlign: MicromagPropTypes.dropdownAlign,
+    withEditor: PropTypes.bool,
     withDelete: PropTypes.bool,
 };
 
@@ -51,6 +29,7 @@ const defaultProps = {
     asList: false,
     flush: false,
     dropdownAlign: null,
+    withEditor: true,
     withDelete: false,
 };
 
@@ -63,44 +42,78 @@ const StoryMenu = ({
     asList,
     flush,
     dropdownAlign,
+    withEditor,
     withDelete,
     ...props
 }) => {
     const url = useUrlGenerator();
     const { pathname } = useLocation();
+    const listItemClassName = asList ? '' : null;
+
     const finalItems = useMemo(() => {
         const subMenu = [
-            {
-                id: 'editor',
-                href: url('stories.editor', {
-                    story: story.id,
-                }),
-                label: messages.editor,
-                className: asList ? 'list-group-item-dark' : null,
-            },
+            withEditor
+                ? {
+                      id: 'editor',
+                      href: url('stories.editor', {
+                          story: story.id,
+                      }),
+                      label: (
+                          <FormattedMessage
+                              defaultMessage="Editor"
+                              description="Editor menu label"
+                          />
+                      ),
+                      className: listItemClassName,
+                  }
+                : null,
             {
                 id: 'preview',
                 href: url('stories.preview', {
                     story: story.id,
                 }),
-                label: messages.preview,
-                className: asList ? 'list-group-item-dark' : null,
+                label: (
+                    <FormattedMessage defaultMessage="Preview" description="Preview menu label" />
+                ),
+                className: listItemClassName,
             },
             {
                 id: 'publish',
                 href: url('stories.publish', {
                     story: story.id,
                 }),
-                label: messages.publish,
-                className: asList ? 'list-group-item-dark' : null,
+                label: (
+                    <FormattedMessage defaultMessage="Publish" description="Publish menu label" />
+                ),
+                className: listItemClassName,
+            },
+            {
+                id: 'versions',
+                href: url('stories.versions', {
+                    story: story.id,
+                }),
+                label: (
+                    <FormattedMessage defaultMessage="Versions" description="Versions menu label" />
+                ),
+                className: listItemClassName,
+            },
+            {
+                id: 'medias',
+                href: url('stories.medias', {
+                    story: story.id,
+                }),
+                label: <FormattedMessage defaultMessage="Medias" description="Medias menu label" />,
+                className: listItemClassName,
             },
             {
                 id: 'settings',
                 href: url('stories.settings', {
                     story: story.id,
                 }),
-                label: messages.settings,
-                className: asList ? 'list-group-item-dark' : null,
+                label: (
+                    <FormattedMessage defaultMessage="Settings" description="Settings menu label" />
+                ),
+                className: listItemClassName,
             },
             withDelete
                 ? {
@@ -108,13 +121,18 @@ const StoryMenu = ({
                       href: url('stories.delete', {
                           story: story.id,
                       }),
-                      label: messages.delete,
+                      label: (
+                          <FormattedMessage
+                              defaultMessage="Delete story"
+                              description="Delete story menu label"
+                          />
+                      ),
                       className: asList ? 'list-group-item-danger' : null,
                   }
                 : null,
         ]
-            .filter(it => it !== null)
-            .map(it =>
+            .filter((it) => it !== null)
+            .map((it) =>
                 it.href === pathname
                     ? {
                           ...it,
@@ -134,7 +152,7 @@ const StoryMenu = ({
                       dropdown: subMenu,
                   },
               ];
-    }, [story, url, messages, withoutDropdown, withDelete, asList]);
+    }, [story, url, withoutDropdown, withDelete, asList]);
     return (
         <Menu
             {...props}

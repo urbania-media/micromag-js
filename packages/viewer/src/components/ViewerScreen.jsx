@@ -13,6 +13,8 @@ const propTypes = {
     active: PropTypes.bool,
     onPrevious: PropTypes.func,
     onNext: PropTypes.func,
+    onEnableInteraction: PropTypes.func,
+    onDisableInteraction: PropTypes.func,
 };
 
 const defaultProps = {
@@ -22,9 +24,20 @@ const defaultProps = {
     active: true,
     onPrevious: null,
     onNext: null,
+    onEnableInteraction: null,
+    onDisableInteraction: null,
 };
 
-const ViewerScreen = ({ screen, renderContext, active, current, onPrevious, onNext }) => {
+const ViewerScreen = ({
+    screen,
+    renderContext,
+    active,
+    current,
+    onPrevious,
+    onNext,
+    onEnableInteraction,
+    onDisableInteraction,
+}) => {
     return screen !== null ? (
         <div className={styles.container}>
             <Screen
@@ -34,6 +47,8 @@ const ViewerScreen = ({ screen, renderContext, active, current, onPrevious, onNe
                 current={current}
                 onPrevious={onPrevious}
                 onNext={onNext}
+                onEnableInteraction={onEnableInteraction}
+                onDisableInteraction={onDisableInteraction}
             />
         </div>
     ) : null;

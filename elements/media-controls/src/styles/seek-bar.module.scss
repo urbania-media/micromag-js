@@ -1,0 +1,21 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+.container {
+    position: relative;
+    height: 10px;
+
+    .progress,
+    .button {
+        @extend %fullscreen;
+    }
+
+    .progress {
+        position: relative;
+        transform-origin: left center;
+    }
+
+    .button {
+        @extend %reset-button;
+    }
+}

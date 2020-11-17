@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { description, subtitle } from '../../../../.storybook/data';
+import { subtitle } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
-import Quiz from '../Quiz';
+import QuizScreen from '../Quiz';
 import definition from '../definition';
 
 const props = {
-    question: { body: description() },
+    question: { body: 'Une vraie question qui se termine par un point d’interrogation?' },
     options: [
         { id: 1, label: { body: subtitle() } },
         { id: 2, label: { body: 'La bonne réponse' } },
@@ -16,25 +16,25 @@ const props = {
     ],
     answerIndex: 1,
     result: {
-        body: 'Le résultat de votre quiz'
+        body: 'Et oui, la bonne réponse était "La bonne réponse". Quand même surprenant hen?'
     },
 };
 
 export default {
     title: 'Screens/Quiz',
-    component: Quiz,
+    component: QuizScreen,
     parameters: {
         intl: true,
         screenDefinition: definition,
     },
 };
 
-export const Placeholder = (storyProps) => <Quiz {...storyProps} />;
+export const Placeholder = (storyProps) => <QuizScreen {...storyProps} />;
 
-export const Preview = (storyProps) => <Quiz {...storyProps} {...props} />;
+export const Preview = (storyProps) => <QuizScreen {...storyProps} {...props} />;
 
-export const Edit = (storyProps) => <Quiz {...storyProps} />;
+export const Edit = (storyProps) => <QuizScreen {...storyProps} />;
 
-export const Normal = (storyProps) => <Quiz {...storyProps} {...props} />;
+export const Normal = (storyProps) => <QuizScreen {...storyProps} {...props} />;
 
 export const Definition = () => <ScreenDefinition definition={definition} />;

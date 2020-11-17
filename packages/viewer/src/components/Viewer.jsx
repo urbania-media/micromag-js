@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { animated } from 'react-spring';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSizeFromElement, useSwipe } from '@micromag/core/hooks';
-import { ScreenSizeProvider, useScreensManager } from '@micromag/core/contexts';
+import { ScreenSizeProvider } from '@micromag/core/contexts';
 import { getDeviceScreens } from '@micromag/core/utils';
 
 import anime from 'animejs';
@@ -76,7 +76,6 @@ const Viewer = ({
         screens: deviceScreens,
     });
     const { width: screenWidth = null, height: screenHeight = null } = screenSize || {};
-    const screensManager = useScreensManager();
 
     const landscape = screenWidth > screenHeight;
 
@@ -106,6 +105,33 @@ const Viewer = ({
         [currentIndex, components, onScreenChange],
     );
 
+    // Handle interaction
+    const onScreenPrevious = useCallback(() => {
+        changeIndex(Math.max(0, currentIndex - 1));
+    }, [changeIndex]);
+
+    const onScreenNext = useCallback(() => {
+        changeIndex(Math.min(components.length - 1, currentIndex + 1));
+    }, [changeIndex]);
+
+    const [screensInteractionEnabled, setScreensInteractionEnabled] = useState(components.map(() => true));
+
+    const onEnableInteraction = useCallback(() => {
+        if (!screensInteractionEnabled[currentIndex]) {
+            const newArray = [...screensInteractionEnabled];
+            newArray[currentIndex] = true;
+            setScreensInteractionEnabled(newArray);
+        }
+    }, [currentIndex, screensInteractionEnabled, setScreensInteractionEnabled]);
+
+    const onDisableInteraction = useCallback(() => {
+        if (screensInteractionEnabled[currentIndex]) {
+            const newArray = [...screensInteractionEnabled];
+            newArray[currentIndex] = false;
+            setScreensInteractionEnabled(newArray);
+        }
+    }, [currentIndex, screensInteractionEnabled, setScreensInteractionEnabled]);
+
     // Swipe mechanics
     const { items, bind, setIndex } = useSwipe({
         width: screenWidth,
@@ -124,14 +150,24 @@ const Viewer = ({
         },
     });
 
+    const screensRefs = useRef([]);
+
     // Handle screen change
     useEffect(() => {
         if (landscape) {
             if (animateScroll.current) {
+
+                let scrollTop = 0;
+                screensRefs.current.forEach((screen, screenI) => {
+                    if (screenI < currentIndex) {
+                        scrollTop += screen.offsetHeight;
+                    }
+                });
+
                 anime({
                     targets: scrollRef.current,
                     duration: 500,
-                    scrollTop: currentIndex * screenHeight,
+                    scrollTop,
                     easing: 'easeInOutQuad',
                     complete: () => {
                         animateScroll.current = false;
@@ -154,10 +190,13 @@ const Viewer = ({
     // handle preview menu item click
     const onClickPreviewMenuItem = useCallback(
         (index) => {
+            if (landscape) {
+                animateScroll.current = true;
+            }
             changeIndex(index);
             setMenuOpened(false);
         },
-        [setMenuOpened, changeIndex],
+        [setMenuOpened, changeIndex, landscape],
     );
 
     const onClickPreviewMenuClose = useCallback(() => {
@@ -169,10 +208,9 @@ const Viewer = ({
         (e) => {
             e.stopPropagation();
             const it = components[currentIndex] || null;
-            const screenDefinition = it !== null ? screensManager.getDefinition(it.type) : null;
-            const { handlesNavigation = false } = screenDefinition || {};
+            const interactionEnabled = screensInteractionEnabled[currentIndex];
 
-            if (it === null || !tappingRef.current || handlesNavigation) {
+            if (it === null || !tappingRef.current || !interactionEnabled) {
                 return;
             }
 
@@ -185,12 +223,13 @@ const Viewer = ({
             }
             changeIndex(nextIndex);
         },
-        [onScreenChange, screenWidth, components, changeIndex, currentIndex, screensManager],
+        [onScreenChange, screenWidth, components, changeIndex, currentIndex, screensInteractionEnabled],
     );
 
-    const screensRefs = useRef([]);
+
 
     // Handle landscape scroll updating currentScreen
+    // @TODO use Observer
     const onContentScrolled = useCallback(() => {
         if (!landscape || animateScroll.current) {
             return;
@@ -199,7 +238,7 @@ const Viewer = ({
         const { scrollTop } = scrollRef.current;
 
         let currentY = 0;
-        const screensY = screensRefs.current.map( screen => {
+        const screensY = screensRefs.current.map((screen) => {
             const screenY = currentY;
             currentY += screen.offsetHeight;
             return screenY;
@@ -207,25 +246,24 @@ const Viewer = ({
 
         const scrollHeightOffset = screenSize.height * scrollIndexHeightPercent;
 
-        const scrollIndex = Math.max(0, Math.min(components.length - 1, screensY.findIndex( (screenY, screenI) => {
-            const afterCurrent = scrollTop >= screenY - scrollHeightOffset;
-            const lastScreen = screenI === screensY.length - 1;
-            const beforeNext = lastScreen || scrollTop < screensY[screenI + 1] - scrollHeightOffset;
-            return afterCurrent && beforeNext;
-        })));
+        const scrollIndex = Math.max(
+            0,
+            Math.min(
+                components.length - 1,
+                screensY.findIndex((screenY, screenI) => {
+                    const afterCurrent = scrollTop >= screenY - scrollHeightOffset;
+                    const lastScreen = screenI === screensY.length - 1;
+                    const beforeNext =
+                        lastScreen || scrollTop < screensY[screenI + 1] - scrollHeightOffset;
+                    return afterCurrent && beforeNext;
+                }),
+            ),
+        );
 
         if (scrollIndex !== currentIndex) {
             changeIndex(scrollIndex);
         }
     }, [landscape, currentIndex, screenHeight, components]);
-
-    const onScreenPrevious = useCallback(() => {
-        changeIndex(Math.max(0, currentIndex - 1));
-    }, [changeIndex]);
-
-    const onScreenNext = useCallback(() => {
-        changeIndex(Math.min(components.length - 1, currentIndex + 1));
-    }, [changeIndex]);
 
     return (
         <ScreenSizeProvider size={screenSize}>
@@ -264,30 +302,40 @@ const Viewer = ({
                     {...(withTap ? { onClick: onTap } : null)}
                 >
                     {components.map((scr, i) => {
-                        const style = landscape ? null : { ...items[i] };
+                        const style = { ...items[i] };
                         const current = i === currentIndex;
                         const active =
                             i > currentIndex - neighborScreensActive &&
                             i < currentIndex + neighborScreensActive;
 
-                        return (
-                            <animated.div
-                                key={`screen-viewer-${scr.id || ''}-${i + 1}`}
-                                style={style}
-                                className={styles.screen}
+                        const viewerScreen = (
+                            <ViewerScreen
+                                screen={scr}
+                                renderContext={renderContext}
+                                index={i}
+                                current={current}
+                                active={active}
+                                onPrevious={onScreenPrevious}
+                                onNext={onScreenNext}
+                                onEnableInteraction={onEnableInteraction}
+                                onDisableInteraction={onDisableInteraction}
+                            />
+                        );
+                        const screenClass = styles.screen;
+                        const key = `screen-viewer-${scr.id || ''}-${i + 1}`;
+                        return landscape ? (
+                            <div
+                                key={key}
+                                className={screenClass}
                                 ref={(el) => {
                                     screensRefs.current[i] = el;
                                 }}
                             >
-                                <ViewerScreen
-                                    screen={scr}
-                                    renderContext={renderContext}
-                                    index={i}
-                                    current={current}
-                                    active={active}
-                                    onPrevious={onScreenPrevious}
-                                    onNext={onScreenNext}
-                                />
+                                {viewerScreen}
+                            </div>
+                        ) : (
+                            <animated.div key={key} style={style} className={screenClass}>
+                                {viewerScreen}
                             </animated.div>
                         );
                     })}

@@ -71,6 +71,7 @@ const AccountPage = ({ className }) => {
                                     </div>
                                     {organisations.map((organisation) => (
                                         <OrganisationPreview
+                                            className="d-block mb-2 mr-2"
                                             organisation={organisation}
                                             withoutHeader
                                         />

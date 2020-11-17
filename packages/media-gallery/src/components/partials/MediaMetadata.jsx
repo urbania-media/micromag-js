@@ -146,7 +146,7 @@ const MediaMetadata = ({ media, className }) => {
                         <Tokens value={tags} options={tagOptions} onChange={onTagChange} />
                     </div>
                     {changed ? (
-                        <Button onClick={onSave}>
+                        <Button theme="primary" onClick={onSave}>
                             <FormattedMessage
                                 defaultMessage="Save"
                                 description="Save in Media Gallery"

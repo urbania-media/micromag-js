@@ -10,6 +10,9 @@ const propTypes = {
     letter: PropTypes.string,
     color: PropTypes.string,
     image: PropTypes.string,
+    small: PropTypes.bool,
+    square: PropTypes.bool,
+    inverted: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -17,15 +20,21 @@ const defaultProps = {
     letter: null,
     color: null,
     image: null,
+    small: false,
+    square: false,
+    inverted: false,
     className: null,
 };
 
-const Avatar = ({ letter, color, image, className }) => {
+const Avatar = ({ letter, color, image, square, small, inverted, className }) => {
     return (
         <div
             className={classNames([
                 styles.container,
                 {
+                    [styles.small]: small,
+                    [styles.square]: square,
+                    [styles.inverted]: inverted,
                     [className]: className !== null,
                 },
             ])}

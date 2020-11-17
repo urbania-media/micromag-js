@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -8,6 +8,7 @@ import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
+import Layout from '@micromag/element-layout';
 import Text from '@micromag/element-text';
 import Heading from '@micromag/element-heading';
 import Scroll from '@micromag/element-scroll';
@@ -18,6 +19,7 @@ const propTypes = {
     layout: PropTypes.oneOf(['side', 'over']),
     items: PropTypes.arrayOf(MicromagPropTypes.textElement),
     ascending: PropTypes.bool,
+    spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -31,25 +33,24 @@ const defaultProps = {
     layout: 'side',
     items: [null],
     ascending: false,
+    spacing: 20,
     background: null,
     current: true,
     active: true,
     maxRatio: 3 / 4,
     transitions: {
-        in: {
-            name: 'fade',
-            duration: 250,
-        },
-        out: 'scale',
+        in: 'fade',
+        out: 'fade',
     },
     transitionStagger: 75,
     className: null,
 };
 
-const Ranking = ({
+const RankingScreen = ({
     layout,
     items,
     ascending,
+    spacing,
     background,
     current,
     active,
@@ -63,7 +64,21 @@ const Ranking = ({
 
     const itemsCount = items !== null ? items.length : 0;
 
-    let transitionDelay = 0;
+    const isSideLayout = layout === 'side';
+
+    const ranksRefs = useRef([]);
+    const [maxSideRankWidth, setMaxSideRankWidth] = useState(null);
+    useEffect(() => {
+        if (!isSideLayout) {
+            return;
+        }
+
+        let maxWidth = 0;
+        ranksRefs.current.forEach( rankEl => {
+            maxWidth = Math.max(maxWidth, rankEl.offsetWidth);
+        });
+        setMaxSideRankWidth(maxWidth);
+    }, [isSideLayout, width, height]);
 
     const elements = items.map((item, itemI) => {
         const { title = null, description = null } = item || {};
@@ -88,7 +103,7 @@ const Ranking = ({
                         <Transitions
                             transitions={transitions}
                             playing={current}
-                            delay={transitionDelay}
+                            delay={transitionStagger * itemI}
                             disabled={isPreview}
                         >
                             <Heading {...title} />
@@ -98,16 +113,15 @@ const Ranking = ({
             </div>
         );
 
-        if (hasTitle) {
-            transitionDelay += transitionStagger;
-        }
-
         const descriptionElement = (
             <div className={styles.description}>
                 <ScreenElement
                     placeholder="text"
                     emptyLabel={
-                        <FormattedMessage defaultMessage="Description" description="Description placeholder" />
+                        <FormattedMessage
+                            defaultMessage="Description"
+                            description="Description placeholder"
+                        />
                     }
                     emptyClassName={styles.empty}
                     isEmpty={isEmptyDescription}
@@ -116,8 +130,8 @@ const Ranking = ({
                         <Transitions
                             transitions={transitions}
                             playing={current}
-                            delay={transitionDelay}
-                            disabled={isPreview}
+                            delay={transitionStagger * itemI}
+                            disabled={!isView}
                         >
                             <Text {...description} />
                         </Transitions>
@@ -126,16 +140,22 @@ const Ranking = ({
             </div>
         );
 
-        if (hasDescription) {
-            transitionDelay += transitionStagger;
-        }
-
         return (
             <div className={styles.item} key={`item-${itemI}`}>
-                <div className={styles.rank}>{ascending ? itemI + 1 : itemsCount - itemI}</div>
+                <div
+                    className={styles.rank}
+                    ref={(el) => {
+                        ranksRefs.current[itemI] = el;
+                    }}
+                    style={ isSideLayout ? { width: maxSideRankWidth } : null }
+                >
+                    <Transitions transitions={transitions} playing={current} delay={transitionStagger * itemI} disabled={!isView}>
+                        {ascending ? itemI + 1 : itemsCount - itemI}
+                    </Transitions>
+                </div>
                 <div className={styles.content}>
-                    { titleElement }
-                    { descriptionElement }
+                    {titleElement}
+                    {descriptionElement}
                 </div>
             </div>
         );
@@ -155,20 +175,21 @@ const Ranking = ({
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
-                height={height}
                 maxRatio={maxRatio}
                 playing={(isView && current) || (isEdit && active)}
             />
-            <Container width={width} height={height} maxRatio={maxRatio}>
-                <Scroll className={styles.scroll} verticalAlign="center">
-                    {elements}
+            <Container width={width} height={height} maxRatio={maxRatio} withScroll>
+                <Scroll className={styles.scroll} verticalAlign="center" disabled={isPlaceholder}>
+                    <Layout style={isView || isPreview ? { padding: spacing } : null}>
+                        {elements}
+                    </Layout>
                 </Scroll>
             </Container>
         </div>
     );
 };
 
-Ranking.propTypes = propTypes;
-Ranking.defaultProps = defaultProps;
+RankingScreen.propTypes = propTypes;
+RankingScreen.defaultProps = defaultProps;
 
-export default Ranking;
+export default RankingScreen;

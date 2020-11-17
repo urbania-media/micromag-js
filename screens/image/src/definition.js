@@ -1,9 +1,9 @@
 import { defineMessage } from 'react-intl';
-import Image from './Image';
-import ImageTitle from './ImageTitle';
-import ImageText from './ImageText';
-import ImageTitleText from './ImageTitleText';
-import ImageLegend from './ImageLegend';
+import ImageScreen from './Image';
+import ImageTitleScreen from './ImageTitle';
+import ImageTextScreen from './ImageText';
+import ImageTitleTextScreen from './ImageTitleText';
+import ImageLegendScreen from './ImageLegend';
 
 export default [
     {
@@ -17,7 +17,7 @@ export default [
             defaultMessage: 'Image',
             description: 'Image screen title',
         }),
-        component: Image,
+        component: ImageScreen,
         layouts: ['normal'],
         fields: [
             {
@@ -57,7 +57,7 @@ export default [
             defaultMessage: 'ImageTitle',
             description: 'ImageTitle screen title',
         }),
-        component: ImageTitle,
+        component: ImageTitleScreen,
         layouts: ['normal', 'reverse'],
         fields: [
             {
@@ -105,7 +105,7 @@ export default [
             defaultMessage: 'ImageText',
             description: 'ImageText screen title',
         }),
-        component: ImageText,
+        component: ImageTextScreen,
         layouts: ['normal', 'reverse'],
         fields: [
             {
@@ -153,7 +153,7 @@ export default [
             defaultMessage: 'ImageTitleText',
             description: 'ImageTitleText screen title',
         }),
-        component: ImageTitleText,
+        component: ImageTitleTextScreen,
         layouts: ['normal', 'reverse', 'title-top'],
         fields: [
             {
@@ -205,7 +205,7 @@ export default [
             defaultMessage: 'ImageLegend',
             description: 'ImageLegend screen title',
         }),
-        component: ImageLegend,
+        component: ImageLegendScreen,
         layouts: ['normal', 'reverse'],
         fields: [
             {

@@ -3,7 +3,7 @@ import React from 'react';
 import { image, text, background } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
-import Slideshow from '../Slideshow';
+import SlideshowScreen from '../Slideshow';
 import definition from '../definition';
 
 const props = {
@@ -26,19 +26,19 @@ const props = {
 
 export default {
     title: 'Screens/Slideshow',
-    component: Slideshow,
+    component: SlideshowScreen,
     parameters: {
         intl: true,
         screenDefinition: definition,
     },
 };
 
-export const Placeholder = (storyProps) => <Slideshow {...storyProps} />;
+export const Placeholder = (storyProps) => <SlideshowScreen {...storyProps} />;
 
-export const Preview = (storyProps) => <Slideshow {...storyProps} />;
+export const Preview = (storyProps) => <SlideshowScreen {...storyProps} />;
 
-export const Edit = (storyProps) => <Slideshow {...storyProps} />;
+export const Edit = (storyProps) => <SlideshowScreen {...storyProps} />;
 
-export const Normal = (storyProps) => <Slideshow {...storyProps} {...props} />;
+export const Normal = (storyProps) => <SlideshowScreen {...storyProps} {...props} />;
 
 export const Definition = () => <ScreenDefinition definition={definition} />;

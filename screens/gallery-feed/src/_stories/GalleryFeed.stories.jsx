@@ -3,7 +3,7 @@ import React from 'react';
 import { imageWithRandomSize, background } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
-import GalleryFeed from '../GalleryFeed';
+import GalleryFeedScreen from '../GalleryFeed';
 import definition from '../definition';
 
 const props = {
@@ -13,19 +13,19 @@ const props = {
 
 export default {
     title: 'Screens/GalleryFeed',
-    component: GalleryFeed,
+    component: GalleryFeedScreen,
     parameters: {
         intl: true,
-        screenDefinition: definition.find((it) => it.component === GalleryFeed),
+        screenDefinition: definition.find((it) => it.component === GalleryFeedScreen),
     },
 };
 
-export const Placeholder = (storyProps) => <GalleryFeed {...storyProps} />;
+export const Placeholder = (storyProps) => <GalleryFeedScreen {...storyProps} />;
 
-export const Preview = (storyProps) => <GalleryFeed {...storyProps} {...props} />;
+export const Preview = (storyProps) => <GalleryFeedScreen {...storyProps} {...props} />;
 
-export const Edit = (storyProps) => <GalleryFeed {...storyProps} />;
+export const Edit = (storyProps) => <GalleryFeedScreen {...storyProps} />;
 
-export const Normal = (storyProps) => <GalleryFeed {...storyProps} {...props} />;
+export const Normal = (storyProps) => <GalleryFeedScreen {...storyProps} {...props} />;
 
 export const Definition = () => <ScreenDefinition definition={definition} />;

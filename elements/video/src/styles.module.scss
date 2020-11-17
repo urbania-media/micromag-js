@@ -1,0 +1,17 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+.container {
+    position: relative;
+
+    video {
+        display: block;
+        width: 100%;
+    }
+
+    &.withSize {
+        video {
+            @extend %fullscreen;
+        }
+    }
+}

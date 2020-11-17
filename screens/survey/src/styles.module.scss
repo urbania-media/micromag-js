@@ -1,0 +1,98 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/mixins';
+
+.container {
+    @extend %screen;
+
+    .question {
+        margin-bottom: 20px;
+    }
+
+    .options,
+    .answer {
+        position: relative;
+    }
+
+    .option {
+        padding: 10px 0;
+
+        &.userAnswered {
+            .button {
+                border-color: $white;
+                background-color: $white;
+                color: $black;
+            }
+
+            .result {
+                background-color: $white;
+            }
+        }
+    }
+
+    .optionContent {
+        display: flex;
+        align-items: center;
+    }
+
+    .resultContainer {        
+        flex-grow: 1;
+        align-self: stretch;
+        padding: 15px 0;
+        transition: padding 0.5s ease;
+    }
+
+    .resultContent {
+        width: 0;
+        height: 100%;
+        transition: width 0.5s 0.5s ease, opacity 0.5s 0.5s ease;
+        opacity: 0;
+    }
+
+    .result {
+        position: relative;
+        height: 100%;
+        background-color: $gray-500;
+    }
+
+    .resultLabel {
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        margin-left: 5px;
+        transform: translateY(-50%);
+    }
+
+    .optionInner {
+        width: 100%;
+        transition: width 0.5s ease;
+    }
+
+    .button {
+        position: relative;
+        width: 100%;
+        padding: 0;
+        text-align: left;
+    }
+
+    .optionLabel {
+        display: inline-block;
+        padding: 10px;
+    }    
+
+    &.answered {
+        .button {
+            pointer-events: none;
+        }
+
+        .resultContainer {
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        .resultContent {
+            width: 100%;
+            opacity: 1;
+        }
+    }
+}

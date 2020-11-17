@@ -6,27 +6,23 @@
     @extend %screen;
 
     .question {
-        padding-bottom: 20px;
+        margin-bottom: 20px;
     }
 
-    // .options {
-
-    // }
+    .options,
+    .answer {
+        position: relative;
+    }
 
     .option {
         padding: 10px 0;
+        transition-property: opacity;
+        transition-duration: 0.1s;
+        transition-timing-function: ease;
 
-        // &.answer {
-
-        // }
-
-        // &.right {
-
-        // }
-
-        // &.wrong {
-
-        // }
+        &.answer {
+            transition-property: transform;
+        }
     }
 
     .button {
@@ -47,30 +43,39 @@
         border-radius: 50%;
     }
 
-    // .optionLabel {
-
-    // }
-
     .result {
-        display: none;
-        padding-top: 20px;
+        position: absolute;
+        padding: 20px 0;
+        transition: opacity 0.5s ease;
+        opacity: 0;
+        pointer-events: none;
     }
 
     &.answered {
-        .result {
-            display: block;
-        }
-
         .option {
-            display: none;
+            opacity: 0;
             
             &.answer {
-                display: block;
+                opacity: 1;
             }
         }
 
         .button {
             pointer-events: none;
+        }
+    }
+
+    &.answerTransitionComplete {
+        .option {
+            &.answer {
+                transition: none;
+            }
+        }
+
+        .result {
+            position: relative;
+            opacity: 1;
+            pointer-events: all;
         }
     }
 }

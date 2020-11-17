@@ -53,8 +53,8 @@ const TeamMember = ({ member, className, onClickRemove, onChangeRole }) => {
                 },
             ])}
         >
-            <div className="d-flex align-items-center">
-                <div className="w-50">
+            <div className="d-flex align-items-center justify-content-between">
+                <div>
                     <strong className="mr-2 text-truncate">{user ? user.name : email}</strong>
                     {!user ? (
                         <div className="text-truncate font-weight-light">
@@ -65,24 +65,26 @@ const TeamMember = ({ member, className, onClickRemove, onChangeRole }) => {
                         </div>
                     ) : null}
                 </div>
-                {canEdit ? (
-                    <Select
-                        className="ml-4 w-25"
-                        value={role}
-                        onChange={onChange}
-                        options={roles}
-                        disabled={isSelf}
-                    />
-                ) : null}
-                {canRemove ? (
-                    <Button className="btn btn-primary ml-4 w-25" onClick={onClick}>
-                        {isSelf ? (
-                            <FontAwesomeIcon icon={faTimesCircle} />
-                        ) : (
-                            <FontAwesomeIcon icon={faTrash} />
-                        )}
-                    </Button>
-                ) : null}
+                <div className="d-flex align-items-center">
+                    {canEdit ? (
+                        <Select
+                            className="ml-4"
+                            value={role}
+                            onChange={onChange}
+                            options={roles}
+                            disabled={isSelf}
+                        />
+                    ) : null}
+                    {canRemove ? (
+                        <Button className="btn btn-primary ml-4" onClick={onClick}>
+                            {isSelf ? (
+                                <FontAwesomeIcon icon={faTimesCircle} />
+                            ) : (
+                                <FontAwesomeIcon icon={faTrash} />
+                            )}
+                        </Button>
+                    ) : null}
+                </div>
             </div>
         </div>
     );

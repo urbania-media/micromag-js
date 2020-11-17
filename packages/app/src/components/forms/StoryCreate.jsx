@@ -19,23 +19,26 @@ const defaultProps = {
         {
             name: 'title',
             type: 'text',
-            label: <FormattedMessage defaultMessage="Title" description="Field label" />,
+            label: <FormattedMessage defaultMessage="Title" description="Title field label" />,
         },
     ],
-    className: null,
     onCreated: null,
+    className: null,
 };
 
-const StoryCreateForm = ({ fields, className, onCreated }) => {
+const StoryCreateForm = ({ fields, onCreated, className }) => {
     const url = useUrlGenerator();
     const { create: createStory } = useStoryCreate();
     const postForm = useCallback((action, data) => createStory(data), [createStory]);
+
     return (
         <Form
             action={url('stories.create')}
             fields={fields}
             postForm={postForm}
-            submitButtonLabel={<FormattedMessage defaultMessage="Create" description="Button label" />}
+            submitButtonLabel={
+                <FormattedMessage defaultMessage="Create" description="Button label" />
+            }
             onComplete={onCreated}
             className={className}
         />

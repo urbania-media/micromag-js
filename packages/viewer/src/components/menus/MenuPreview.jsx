@@ -56,13 +56,12 @@ const ViewerMenuPreview = ({ title, items, current, onClickItem, onClose, screen
                             key={`item-${index}`}
                             style={{paddingBottom: `${screenSizeRatio * 100}%`}}
                         >
+                            <ScreenPreview screen={item} />
                             <button
                                 type="button"
                                 className={styles.button}
                                 onClick={() => (onClickItem !== null ? onClickItem(index) : null)}
-                            >
-                                <ScreenPreview screen={item} />
-                            </button>
+                            />
                         </li>
                     ))}
                 </ul>

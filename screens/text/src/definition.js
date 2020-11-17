@@ -1,6 +1,6 @@
 import { defineMessage } from 'react-intl';
-import Text from './Text';
-import TextTitle from './TextTitle';
+import TextScreen from './Text';
+import TextTitleScreen from './TextTitle';
 
 export default [
     {
@@ -14,7 +14,7 @@ export default [
             defaultMessage: 'Text',
             description: 'Text screen title',
         }),
-        component: Text,
+        component: TextScreen,
         layouts: ['top', 'middle', 'bottom'],
         fields: [
             {
@@ -54,7 +54,7 @@ export default [
             defaultMessage: 'TextTitle',
             description: 'TextTitle screen title',
         }),
-        component: TextTitle,
+        component: TextTitleScreen,
         layouts: ['top', 'middle', 'bottom', 'split'],
         fields: [
             {

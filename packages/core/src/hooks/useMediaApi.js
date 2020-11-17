@@ -1,86 +1,79 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 const useMediaApi = ({
     initialMuted = false,
-    initialVolume = 1,
 }) => {
 
     const ref = useRef(null);
     const [muted, setMuted] = useState(initialMuted);
-    const [volume, setVolume] = useState(initialVolume);
-    const [currentTime, setCurrentTime] = useState(0);
+    const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);
     const [playing, setPlaying] = useState(false);
     const [ready, setReady] = useState(false);
 
-    const paused = !playing;
+    const play = useCallback( () => {
+        const { current: media } = ref;
+        if (media !== null) {
+            media.play();
+        }
+    }, []);
 
-    const api = useMemo(() => {
-        const mediaEl = ref.current;
-        return {
-            play: () => {
-                if (mediaEl !== null) {
-                    mediaEl.play();
-                }
-            },
-            pause: () => {
-                if (mediaEl !== null) {
-                    mediaEl.pause();
-                }
-            },
-            playPause: () => {
-                if (mediaEl !== null) {
-                    if (playing) {
-                        mediaEl.pause();
-                    } else {
-                        mediaEl.play();
-                    }
-                }
-            },
-            stop: () => {
-                if (mediaEl !== null) {
-                    mediaEl.pause();
-                    mediaEl.currentTime = 0;
-                }
-            },
-            seek: (time) => {
-                if (mediaEl !== null) {
-                    mediaEl.currentTime = time;
-                }
-            },
-            mute: () => {
-                if (mediaEl !== null) {
-                    mediaEl.muted = true;
-                }
-            },
-            unMute: () => {
-                if (mediaEl !== null) {
-                    mediaEl.muted = false;
-                }
-            },
-            muteUnmute: () => {
-                if (mediaEl !== null) {
-                    mediaEl.muted = !muted;
-                }
-            },
-            setVolume: (vol) => {
-                if (mediaEl !== null) {
-                    mediaEl.volume = vol;
-                }
-            },
-            duration,
-            currentTime,
-            volume,
-            muted,
-            playing,
-            paused,
-        };
-    }, [muted, volume, currentTime, duration, playing, paused]);
+    const pause = useCallback( () => {
+        const { current: media } = ref;
+        if (media !== null) {
+            media.pause();
+        }
+    }, []);
 
-    // Audio events handlers
+    const togglePlay = useCallback( () => {
+        const { current: media } = ref;
+        if (media !== null) {
+            if (playing) {
+                media.pause()
+            } else {
+                media.play()
+            }
+        }
+    }, [playing]);
+
+    const stop = useCallback( () => {
+        const { current: media } = ref;
+        if (media !== null) {
+            media.pause();
+            media.currentTime = 0;
+        }
+    }, []);
+
+    const seek = useCallback( (time) => {
+        const { current: media } = ref;
+        if (media !== null) {
+            media.currentTime = time;
+        }
+    }, []);
+
+    const mute = useCallback( () => {
+        const { current: media } = ref;
+        if (media !== null) {
+            media.muted = true;
+        }
+    }, []);
+
+    const unMute = useCallback( () => {
+        const { current: media } = ref;
+        if (media !== null) {
+            media.muted = false;
+        }
+    }, []);
+
+    const toggleMute = useCallback( () => {
+        const { current: media } = ref;
+        if (media !== null) {
+            media.muted = !muted;
+        }
+    }, [muted]);
 
     useEffect(() => {
-        const media = ref.current;
+        const { current: media } = ref;
 
         const onTimeUpdate = () => {
             setCurrentTime(media.currentTime);
@@ -92,7 +85,6 @@ const useMediaApi = ({
 
         const onVolumeChange = () => {
             setMuted(media.muted);
-            setVolume(media.volume);
         };
 
         const onPlay = () => {
@@ -114,37 +106,47 @@ const useMediaApi = ({
         const onCanPlayThrough = () => {
             setReady(true);
         };
-
-        media.addEventListener('timeupdate', onTimeUpdate);
-        media.addEventListener('durationchange', onDurationChange);
-        media.addEventListener('volumechange', onVolumeChange);
-        media.addEventListener('play', onPlay);
-        media.addEventListener('pause', onPause);
-        media.addEventListener('ended', onEnded);
-        media.addEventListener('loadstart', onLoadStart);
-        media.addEventListener('canplaythrough', onCanPlayThrough);
+        
+        if (media !== null) {
+            media.addEventListener('timeupdate', onTimeUpdate);
+            media.addEventListener('durationchange', onDurationChange);
+            media.addEventListener('volumechange', onVolumeChange);
+            media.addEventListener('play', onPlay);
+            media.addEventListener('pause', onPause);
+            media.addEventListener('ended', onEnded);
+            media.addEventListener('loadstart', onLoadStart);
+            media.addEventListener('canplaythrough', onCanPlayThrough);
+        }       
 
         return () => {
-            media.removeEventListener('timeupdate', onTimeUpdate);
-            media.removeEventListener('durationchange', onDurationChange);
-            media.removeEventListener('volumechange', onVolumeChange);
-            media.removeEventListener('play', onPlay);
-            media.removeEventListener('pause', onPause);
-            media.removeEventListener('ended', onEnded);
-            media.removeEventListener('loadstart', onLoadStart);
-            media.removeEventListener('canplaythrough', onCanPlayThrough);
+            if (media !== null) {
+                media.removeEventListener('timeupdate', onTimeUpdate);
+                media.removeEventListener('durationchange', onDurationChange);
+                media.removeEventListener('volumechange', onVolumeChange);
+                media.removeEventListener('play', onPlay);
+                media.removeEventListener('pause', onPause);
+                media.removeEventListener('ended', onEnded);
+                media.removeEventListener('loadstart', onLoadStart);
+                media.removeEventListener('canplaythrough', onCanPlayThrough);
+            }            
         };
-    }, [setCurrentTime, setDuration, setMuted, setVolume, setPlaying]);
+    }, [setCurrentTime, setDuration, setMuted, setPlaying]);
 
     return {
         ref,
-        api,
+        play,
+        pause,
+        togglePlay,
+        stop,
+        seek,
+        mute,
+        unMute,
+        toggleMute,
         muted,
-        volume,
         currentTime,
         duration,
         playing,
-        paused,
+        paused: !playing,
         ready,
     };
 };

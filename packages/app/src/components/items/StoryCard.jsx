@@ -1,13 +1,17 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Card, Link } from '@micromag/core/components';
+import { Card, Link, Button } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
+import { useStoryDuplicate, useStoryDelete } from '@micromag/data';
 
 import ScreensCount from '../partials/ScreensCount';
+import Authors from '../partials/Authors';
+import SettingsButton from '../buttons/Settings';
+import StoryMenu from '../menus/Story';
 
 import styles from '../../styles/items/story-card.module.scss';
 
@@ -21,49 +25,75 @@ const defaultProps = {
 };
 
 const StoryCardItem = ({ item, className }) => {
+    const intl = useIntl();
     const url = useUrlGenerator();
+
     const { components = [] } = item;
     const screensCount = components.length;
+
+    const { duplicate: duplicateStory } = useStoryDuplicate(item.id);
+    const { deleteStory } = useStoryDelete(item.id);
+
+    const postDuplicate = useCallback((data) => duplicateStory(data), [duplicateStory]);
+    const postDelete = useCallback(() => {
+        deleteStory();
+    }, [deleteStory]);
+
+    const onClickDuplicate = useCallback(() => {
+        postDuplicate(item);
+    }, [intl, item, postDuplicate]);
+
+    const onClickDelete = useCallback(() => {
+        postDelete();
+    }, [postDelete]);
+
     return (
         <Card
-            theme="dark"
-            footer={
-                <>
-                    <Link
-                        href={url('stories.editor', {
-                            story: item.id,
-                        })}
-                        className="card-link text-white"
-                    >
-                        <FormattedMessage defaultMessage="Edit" description="Button label" />
-                    </Link>
-                    <Link
-                        href={url('stories.settings', {
-                            story: item.id,
-                        })}
-                        className="card-link text-white"
-                    >
-                        <FormattedMessage defaultMessage="Settings" description="Button label" />
-                    </Link>
-                </>
-            }
             className={classNames([
                 styles.container,
                 {
                     [className]: className !== null,
                 },
             ])}
+            theme="dark"
+            beforeBody={
+                <div className={styles.settings}>
+                    <SettingsButton className={styles.button}>
+                        <StoryMenu story={item} asList />
+                        <ul className="list-group text-dark">
+                            <li className="list-group-item">
+                                <Button asLink onClick={onClickDuplicate}>
+                                    <FormattedMessage
+                                        defaultMessage="Duplicate"
+                                        description="Duplicate button label"
+                                    />
+                                </Button>
+                            </li>
+                            <li className="list-group-item">
+                                <Button asLink onClick={onClickDelete}>
+                                    <FormattedMessage
+                                        defaultMessage="Delete"
+                                        description="Delete button label"
+                                    />
+                                </Button>
+                            </li>
+                        </ul>
+                    </SettingsButton>
+                </div>
+            }
+            footer={<Authors />}
         >
             <h4
                 className={classNames([
                     'card-title',
+                    'mr-4',
                     {
                         'mb-0': screensCount === 0,
                     },
                 ])}
             >
                 <Link
-                    to={url('stories.show', {
+                    to={url('stories.editor', {
                         story: item.id,
                     })}
                     className="text-white"
@@ -80,7 +110,7 @@ const StoryCardItem = ({ item, className }) => {
     );
 };
 
-StoryCardItem.propTypes = propTypes;
 StoryCardItem.defaultProps = defaultProps;
+StoryCardItem.propTypes = propTypes;
 
 export default StoryCardItem;

@@ -19,7 +19,7 @@ const propTypes = {
     text: MicromagPropTypes.textElement,
     title: MicromagPropTypes.headingElement,
     withTitle: PropTypes.bool,
-    padding: PropTypes.number,
+    spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -34,17 +34,14 @@ const defaultProps = {
     text: null,
     title: null,
     withTitle: false,
-    padding: 20,
+    spacing: 20,
     background: null,
     current: true,
     active: false,
     maxRatio: 3 / 4,
     transitions: {
-        in: {
-            name: 'fade',
-            duration: 250,
-        },
-        out: 'scale',
+        in: 'fade',
+        out: 'fade',
     },
     transitionStagger: 100,
     className: null,
@@ -55,7 +52,7 @@ const TextScreen = ({
     text,
     title,
     withTitle,
-    padding,
+    spacing,
     background,
     current,
     active,
@@ -74,8 +71,9 @@ const TextScreen = ({
     const isEmpty = isEdit && !hasTitle && !hasText;
 
     const isSplitted = layout === 'split';
-    const distribution = isSplitted ? 'between' : null;
     const verticalAlign = isSplitted ? null : layout;
+
+    const titleWithMargin = hasTitle && hasText && !isSplitted;
 
     // Create elements
     const items = [
@@ -86,7 +84,7 @@ const TextScreen = ({
             emptyClassName={styles.empty}
             isEmpty={isEmpty}
         >
-            { hasTitle ? <Heading {...title} /> : null }
+            { hasTitle ? <Heading className={classNames([styles.title, { [styles.withMargin] : titleWithMargin }])} {...title} /> : null }
         </ScreenElement>,
 
         isSplitted && withTitle && <Spacer key="spacer" />,
@@ -98,7 +96,7 @@ const TextScreen = ({
             emptyClassName={styles.empty}
             isEmpty={isEmpty}
         >
-            { hasText ? <Text {...text} /> : null }
+            { hasText ? <Text className={styles.text} {...text} /> : null }
         </ScreenElement>,
     ];
 
@@ -123,8 +121,7 @@ const TextScreen = ({
                 <Layout
                     fullscreen
                     verticalAlign={verticalAlign}
-                    distribution={distribution}
-                    style={ isView || isPreview ? { padding } : null }
+                    style={ isView || isPreview ? { padding: spacing } : null }
                 >
                     <TransitionsStagger
                         transitions={transitions}

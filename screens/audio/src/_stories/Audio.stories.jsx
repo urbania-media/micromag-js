@@ -3,30 +3,30 @@ import React from 'react';
 import { audio, background, closedCaptions } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
-import Audio from '../Audio';
+import AudioScreen from '../Audio';
 import definition from '../definition';
 
 const props = {
     audio: {...audio(), autoPlay: true, loop: true },
-    closedCaptions: {...closedCaptions()},
     background: background(),
 };
 
 export default {
     title: 'Screens/Audio',
-    component: Audio,
+    component: AudioScreen,
     parameters: {
         intl: true,
         screenDefinition: definition,
     },
 };
 
-export const Placeholder = (storyProps) => <Audio {...storyProps} />;
+export const Placeholder = (storyProps) => <AudioScreen {...storyProps} />;
 
-export const Preview = (storyProps) => <Audio {...storyProps} />;
+export const Preview = (storyProps) => <AudioScreen {...storyProps} {...props} />;
 
-export const Edit = (storyProps) => <Audio {...storyProps} />;
+export const Edit = (storyProps) => <AudioScreen {...storyProps} />;
 
-export const Normal = (storyProps) => <Audio {...storyProps} {...props} />;
+export const Normal = (storyProps) => <AudioScreen {...storyProps} {...props} />;
+export const WithClosedCaptions = () => <AudioScreen {...props} closedCaptions={closedCaptions()} />;
 
 export const Definition = () => <ScreenDefinition definition={definition} />;

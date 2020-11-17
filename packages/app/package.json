@@ -61,7 +61,6 @@
         "@micromag/fields": "^0.1.29",
         "@micromag/intl": "^0.1.29",
         "@micromag/media-gallery": "^0.1.29",
-        "@micromag/schemas": "^0.1.29",
         "@micromag/screens": "^0.1.29",
         "@micromag/viewer": "^0.1.29",
         "bootstrap": "^4.4.1",

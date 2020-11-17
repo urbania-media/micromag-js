@@ -3,7 +3,7 @@ import React from 'react';
 import { images, background } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
-import Gallery from '../Gallery';
+import GalleryScreen from '../Gallery';
 import definition from '../definition';
 
 const props = {
@@ -13,19 +13,19 @@ const props = {
 
 export default {
     title: 'Screens/Gallery',
-    component: Gallery,
+    component: GalleryScreen,
     parameters: {
         intl: true,
-        screenDefinition: definition.find((it) => it.component === Gallery),
+        screenDefinition: definition.find((it) => it.component === GalleryScreen),
     },
 };
 
-export const Placeholder = (storyProps) => <Gallery {...storyProps} />;
+export const Placeholder = (storyProps) => <GalleryScreen {...storyProps} />;
 
-export const Preview = (storyProps) => <Gallery {...storyProps} {...props} />;
+export const Preview = (storyProps) => <GalleryScreen {...storyProps} {...props} />;
 
-export const Edit = (storyProps) => <Gallery {...storyProps} />;
+export const Edit = (storyProps) => <GalleryScreen {...storyProps} />;
 
-export const Normal = (storyProps) => <Gallery {...storyProps} {...props} />;
+export const Normal = (storyProps) => <GalleryScreen {...storyProps} {...props} />;
 
 export const Definition = () => <ScreenDefinition definition={definition} />;

@@ -1,38 +1,34 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { video, background } from '../../../../.storybook/data';
+import { video, background, closedCaptions } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
-import Video from '../Video';
+import VideoScreen from '../Video';
 import definition from '../definition';
 
 const props = {
-    video: { video: video() },
+    video: {...video(), autoPlay: true, loop: true },
     background: background(),
-};
-
-const propsWithControls = {
-    ...props,
-    video: { video: video(), params: { controls: true, muted: true, autoPlay: true } },
 };
 
 export default {
     title: 'Screens/Video',
-    component: Video,
+    component: VideoScreen,
     parameters: {
         intl: true,
-        screenDefinition: definition.find((it) => it.component === Video),
+        screenDefinition: definition,
     },
 };
 
-export const Placeholder = (storyProps) => <Video {...storyProps} />;
+export const Placeholder = (storyProps) => <VideoScreen {...storyProps} />;
 
-export const Preview = (storyProps) => <Video {...storyProps} />;
+export const Preview = (storyProps) => <VideoScreen {...storyProps} {...props} />;
 
-export const Edit = (storyProps) => <Video {...storyProps} />;
+export const Edit = (storyProps) => <VideoScreen {...storyProps} />;
 
-export const Normal = (storyProps) => <Video {...storyProps} {...props} />;
-
-export const WithControls = (storyProps) => <Video {...storyProps} {...propsWithControls} />;
+export const Normal = (storyProps) => <VideoScreen {...storyProps} {...props} />;
+export const WithSeekbar = (storyProps) => <VideoScreen {...storyProps} {...props} withSeekBar />;
+export const WithClosedCaptions = (storyProps) => <VideoScreen {...storyProps} {...props} closedCaptions={closedCaptions()} />;
+export const WithSeekbarAndClosedCaptions = (storyProps) => <VideoScreen {...storyProps} {...props} withSeekBar closedCaptions={closedCaptions()} />;
 
 export const Definition = () => <ScreenDefinition definition={definition} />;

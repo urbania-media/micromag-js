@@ -59,7 +59,7 @@ const defaultProps = {
     className: null,
 };
 
-const Ad = ({
+const AdScreen = ({
     layout,
     image,
     link,
@@ -147,7 +147,7 @@ const Ad = ({
     );
 };
 
-Ad.propTypes = propTypes;
-Ad.defaultProps = defaultProps;
+AdScreen.propTypes = propTypes;
+AdScreen.defaultProps = defaultProps;
 
-export default React.memo(Ad);
+export default React.memo(AdScreen);

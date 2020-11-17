@@ -17,7 +17,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    count: 12,
+    count: 9,
     className: null,
 };
 
@@ -41,7 +41,7 @@ const AllStories = ({ count, className }) => {
                     {lastPage > 1 ? (
                         <Pagination
                             page={parseInt(page, 10)}
-                            total={total}
+                            total={lastPage}
                             url={paginationUrl}
                             className="mt-2"
                         />

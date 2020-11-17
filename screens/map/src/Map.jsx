@@ -1,15 +1,15 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, useResizeObserver } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { PlaceholderMap, Empty, Transitions, Button } from '@micromag/core/components';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
-import MapElement from '@micromag/element-map';
+import Map from '@micromag/element-map';
 import Heading from '@micromag/element-heading';
 import Text from '@micromag/element-text';
 import Image from '@micromag/element-image';
@@ -33,6 +33,7 @@ const propTypes = {
     className: PropTypes.string,
     onPrevious: PropTypes.func,
     onNext: PropTypes.func,
+    onDisableInteraction: PropTypes.func,
 };
 
 const defaultProps = {
@@ -47,18 +48,16 @@ const defaultProps = {
     active: true,
     maxRatio: 3 / 4,
     transitions: {
-        in: {
-            name: 'fade',
-            duration: 250,
-        },
-        out: 'scale',
+        in: 'fade',
+        out: 'fade',
     },
     className: null,
     onPrevious: null,
     onNext: null,
+    onDisableInteraction: null,
 };
 
-const Map = ({
+const MapScreen = ({
     layout,
     map,
     markers,
@@ -73,9 +72,10 @@ const Map = ({
     className,
     onPrevious,
     onNext,
+    onDisableInteraction,
 }) => {
     const [opened, setOpened] = useState(false);
-    
+
     const [selectedMarker, setSelectedMarker] = useState(null);
     const hasSelectedMarker = selectedMarker !== null;
     const lastRenderedMarker = useRef(selectedMarker);
@@ -92,31 +92,50 @@ const Map = ({
     const [ready, setReady] = useState(!hasMap);
     const transitionPlaying = current && ready;
 
+    useEffect( () => {
+        if (!current) {
+            return;
+        }
+
+        if (onDisableInteraction !== null) {
+            onDisableInteraction();
+        }
+    }, [current, onDisableInteraction]);
+
     const onMapReady = useCallback(() => setReady(true), [setReady]);
 
     const onClickMap = useCallback(() => setSelectedMarker(null), []);
 
-    const onClickMarker = useCallback((e, i) => {
-        lastRenderedMarker.current = markers[i];
-        setSelectedMarker(i);
-    }, [
-        markers,
-        setSelectedMarker,
-    ]);
+    const onClickMarker = useCallback(
+        (e, i) => {
+            lastRenderedMarker.current = markers[i];
+            setSelectedMarker(i);
+        },
+        [markers, setSelectedMarker],
+    );
 
     const onSplashClick = useCallback(() => setOpened(true), [setOpened]);
     const onCloseClick = useCallback(() => setOpened(false), [setOpened]);
+
+    const {
+        ref: markerOverContentInnerRef,
+        entry: { contentRect: markerOverContentInnerRect },
+    } = useResizeObserver({ disabled: !isView && !hasMap });
+    const { width: markerOverContentInnerWidth = '100%' } = markerOverContentInnerRect || {};
 
     let element = null;
 
     if (isEmpty) {
         element = (
             <Empty className={styles.empty}>
-                { withMarkerImages ?
-                    <FormattedMessage defaultMessage="MapImages" description="MapImages placeholder" />
-                :
-                    <FormattedMessage defaultMessage="Map" description="Map placeholder" />
-                }                
+                {withMarkerImages ? (
+                    <FormattedMessage
+                        defaultMessage="MapImages"
+                        description="MapImages placeholder"
+                    />
+                ) : (
+                    <FormattedMessage defaultMessage="MapScreen" description="MapScreen placeholder" />
+                )}
             </Empty>
         );
     } else if (isPlaceholder) {
@@ -135,12 +154,20 @@ const Map = ({
             staticUrl += `&key=${gmapsApiKey}`;
         }
         if (markers !== null) {
-            staticUrl += `&markers=${markers.map(marker => {
-                const { lat = null, lng = null } = marker.geoPosition || {};
-                return lat !== null && lng !== null ? `${lat},${lng}` : '';
-            }).join('|')}`;
+            staticUrl += `&markers=${markers
+                .map((marker) => {
+                    const { lat = null, lng = null } = marker.geoPosition || {};
+                    return lat !== null && lng !== null ? `${lat},${lng}` : '';
+                })
+                .join('|')}`;
         }
-        element = <Image {...{ media: { url: staticUrl, width: maxWidth, height } }} width={maxWidth} height={height} />;
+        element = (
+            <Image
+                {...{ media: { url: staticUrl, width: maxWidth, height } }}
+                width={maxWidth}
+                height={height}
+            />
+        );
     } else if (hasMap) {
         const { title = null, description = null, image = null } = lastRenderedMarker.current || {};
         const hasTitle = title !== null;
@@ -148,22 +175,43 @@ const Map = ({
         const hasImage = image !== null;
         element = (
             <Transitions transitions={transitions} playing={transitionPlaying} fullscreen>
-                <MapElement
+                <Map
                     {...map}
-                    markers={markers.map((marker, markerI) => ({...marker, active: markerI === selectedMarker}))}
+                    markers={markers.map((marker, markerI) => ({
+                        ...marker,
+                        active: markerI === selectedMarker,
+                    }))}
                     onClickMarker={onClickMarker}
                     onReady={onMapReady}
                 />
                 <div className={styles.markerOverlayContainer}>
                     <div className={styles.markerOverlayScrollable}>
-                        <Button className={styles.markerOverlaySafe} onClick={onClickMap} withoutStyle style={{height: height * openedMarkerSpacerHeight }} />
-                        <div className={styles.markerOverlay} style={{minHeight: height * (1 - openedMarkerSpacerHeight) }}>
-                            <div className={styles.markerOverlayContent} >
+                        <Button
+                            className={styles.markerOverlaySafe}
+                            onClick={onClickMap}
+                            withoutStyle
+                            style={{ height: height * openedMarkerSpacerHeight }}
+                        />
+                        <div
+                            className={styles.markerOverlay}
+                            style={{ minHeight: height * (1 - openedMarkerSpacerHeight) }}
+                        >
+                            <div className={styles.markerOverlayContent}>
                                 <div className={styles.swipeIndicator} />
-                                <div className={styles.markerOverlayContentInner} key={`markerContent-${selectedMarker}`}>
-                                    { hasImage ? <Image className={styles.image} {...image} width="100%" /> : null }
-                                    { hasTitle ? <Heading className={styles.title} {...title} /> : null }
-                                    { hasDescription ? <Text className={styles.description} {...description} /> : null }
+                                <div
+                                    className={styles.markerOverlayContentInner}
+                                    key={`markerContent-${selectedMarker}`}
+                                    ref={markerOverContentInnerRef}
+                                >
+                                    {hasImage ? (
+                                        <Image className={styles.image} {...image} width={markerOverContentInnerWidth} />
+                                    ) : null}
+                                    {hasTitle ? (
+                                        <Heading className={styles.title} {...title} />
+                                    ) : null}
+                                    {hasDescription ? (
+                                        <Text className={styles.description} {...description} />
+                                    ) : null}
                                 </div>
                             </div>
                         </div>
@@ -212,7 +260,7 @@ const Map = ({
     );
 };
 
-Map.propTypes = propTypes;
-Map.defaultProps = defaultProps;
+MapScreen.propTypes = propTypes;
+MapScreen.defaultProps = defaultProps;
 
-export default React.memo(Map);
+export default React.memo(MapScreen);

@@ -4,7 +4,7 @@ import { map, markers, background } from '../../../../.storybook/data';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
-import Map from '../Map';
+import MapScreen from '../Map';
 import definition from '../definition';
 
 const props = {
@@ -17,19 +17,19 @@ const props = {
 export default {
     title: 'Screens/Map',
     decorators: [withGoogleMaps],
-    component: Map,
+    component: MapScreen,
     parameters: {
         intl: true,
-        screenDefinition: definition.find((it) => it.component === Map),
+        screenDefinition: definition.find((it) => it.component === MapScreen),
     },
 };
 
-export const Placeholder = (storyProps) => <Map {...storyProps} />;
+export const Placeholder = (storyProps) => <MapScreen {...storyProps} />;
 
-export const Preview = (storyProps) => <Map {...storyProps} {...props} />;
+export const Preview = (storyProps) => <MapScreen {...storyProps} {...props} />;
 
-export const Edit = (storyProps) => <Map {...storyProps} />;
+export const Edit = (storyProps) => <MapScreen {...storyProps} />;
 
-export const Normal = (storyProps) => <Map {...storyProps} {...props} />;
+export const Normal = (storyProps) => <MapScreen {...storyProps} {...props} />;
 
 export const Definition = () => <ScreenDefinition definition={definition} />;

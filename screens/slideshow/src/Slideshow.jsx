@@ -25,7 +25,6 @@ const propTypes = {
     current: PropTypes.bool,
     active: PropTypes.bool,
     maxRatio: PropTypes.number,
-    transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
 };
 
@@ -37,19 +36,17 @@ const defaultProps = {
     current: true,
     active: false,
     maxRatio: 3 / 4,
-    transitions: null,
     className: null,
 };
 
-const Slideshow = ({
-    layout,
+const SlideshowScreen = ({
+    layout,// eslint-disable-line no-unused-vars
     slides,
     button,
     background,
     current,
     active,
     maxRatio,
-    transitions,
     className,
 }) => {
     const [parallelIndex, setParallelIndex] = useState(0);
@@ -163,7 +160,7 @@ const Slideshow = ({
     );
 };
 
-Slideshow.propTypes = propTypes;
-Slideshow.defaultProps = defaultProps;
+SlideshowScreen.propTypes = propTypes;
+SlideshowScreen.defaultProps = defaultProps;
 
-export default React.memo(Slideshow);
+export default React.memo(SlideshowScreen);

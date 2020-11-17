@@ -1,6 +1,6 @@
 import Base from './Base';
 
-class OrganisationsApi extends Base {
+class OrganisationsContactsApi extends Base {
     constructor(opts = {}) {
         super({
             ...opts,
@@ -52,4 +52,4 @@ class OrganisationsApi extends Base {
     }
 }
 
-export default OrganisationsApi;
+export default OrganisationsContactsApi;

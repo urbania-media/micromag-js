@@ -70,17 +70,14 @@ const defaultProps = {
     active: false,
     maxRatio: 3 / 4,
     transitions: {
-        in: {
-            name: 'fade',
-            duration: 250,
-        },
-        out: 'scale',
+        in: 'fade',
+        out: 'fade',
     },
     transitionStagger: 50,
     className: null,
 };
 
-const Gallery = ({
+const GalleryScreen = ({
     layout,
     images,
     withLegends,
@@ -236,7 +233,7 @@ const Gallery = ({
     );
 };
 
-Gallery.propTypes = propTypes;
-Gallery.defaultProps = defaultProps;
+GalleryScreen.propTypes = propTypes;
+GalleryScreen.defaultProps = defaultProps;
 
-export default React.memo(Gallery);
+export default React.memo(GalleryScreen);

@@ -25,6 +25,7 @@ const propTypes = {
     isFlushList: PropTypes.bool,
     onChange: PropTypes.func,
     className: PropTypes.string,
+    fieldClassName: PropTypes.string,
     labelClassName: PropTypes.string,
     components: MicromagPropTypes.components,
 };
@@ -43,6 +44,7 @@ const defaultProps = {
     isFlushList: false,
     onChange: null,
     className: null,
+    fieldClassName: null,
     labelClassName: null,
     components: null,
 };
@@ -61,6 +63,7 @@ const Fields = ({
     isFlushList,
     onChange,
     className,
+    fieldClassName,
     labelClassName,
     components,
 }) => {
@@ -140,6 +143,7 @@ const Fields = ({
                                 'py-2': isList || isFlushList,
                                 'px-2': isList || isFlushList,
                                 [styles.isSection]: isSection,
+                                [fieldClassName]: fieldClassName !== null,
                             },
                         ])}
                         labelClassName={labelClassName}

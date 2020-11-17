@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import Text from './Text';
+import TextScreen from './Text';
 
-const TextTitle = ({ ...props }) => (
-    <Text
+const TextTitleScreen = ({ ...props }) => (
+    <TextScreen
         {...props}
         withTitle
     />
 );
 
-export default TextTitle;
+export default TextTitleScreen;

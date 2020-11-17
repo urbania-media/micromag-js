@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
+import { useOrganisations } from '@micromag/data';
 import { Navbar, Breadcrumb } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
@@ -24,23 +26,34 @@ const MainNavbar = ({ className }) => {
     const { loggedIn } = useAuthContext();
     const url = useUrlGenerator();
     const organisation = useOrganisationContext() || null;
+    const { organisations } = useOrganisations();
 
     return (
         <Navbar
             brand={<img src={logo} height="30" alt="Micromag" />}
-            brandLink={url('home')}
+            brandLink={organisations !== null ? url('organisations') : url('home')}
             breadcrumbs={
                 organisation !== null ? (
                     <Breadcrumb
                         items={[
                             {
-                                id: 'create',
-                                href: url('home.organisation'),
+                                id: 'current',
+                                url: url('home'),
                                 label: organisation.name,
                             },
                         ]}
                     />
-                ) : null
+                ) : (
+                    <Breadcrumb
+                        items={[
+                            {
+                                id: 'current',
+                                url: url('home'),
+                                label: <FormattedMessage defaultMessage="My micromags" />,
+                            },
+                        ]}
+                    />
+                )
             }
             theme="primary"
             className={className}

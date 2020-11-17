@@ -10,6 +10,7 @@ import { useOrganisation } from '../contexts/OrganisationContext';
 import HomePage from './pages/Home';
 import HomeOrganisationPage from './pages/HomeOrganisation';
 import HomeGuestPage from './pages/HomeGuest';
+import OrganisationsPage from './pages/Organisations';
 
 import RegisterPage from './pages/register/Register';
 import CompleteProfilePage from './pages/register/CompleteProfile';
@@ -32,6 +33,8 @@ import OrganisationTeamPage from './pages/organisation/Team';
 import OrganisationStatsPage from './pages/organisation/Stats';
 import OrganisationThemesPage from './pages/organisation/Themes';
 import OrganisationMediasPage from './pages/organisation/Medias';
+import OrganisationPublishingPage from './pages/organisation/Publishing';
+import OrganisationPublishingSettingsPage from './pages/organisation/PublishingSettings';
 import OrganisationSwitchPage from './pages/organisation/Switch';
 
 import StoriesPage from './pages/stories/Stories';
@@ -40,13 +43,16 @@ import StoryPage from './pages/stories/Story';
 import StoryEditorPage from './pages/stories/Editor';
 import StoryPreviewPage from './pages/stories/Preview';
 import StoryPublishPage from './pages/stories/Publish';
+import StoryVersionsPage from './pages/stories/Versions';
 import StorySettingsPage from './pages/stories/Settings';
+import StoryMediasPage from './pages/stories/Medias';
 
 const propTypes = {};
 
 const defaultProps = {};
 
 const Routes = () => {
+    // const location = useLocation();
     const routes = useRoutes();
     const url = useUrlGenerator();
     const loggedIn = useLoggedIn();
@@ -55,7 +61,7 @@ const Routes = () => {
     const organisation = useOrganisation();
     const HomePageByType = organisation !== null ? HomeOrganisationPage : HomePage;
     const Home = loggedIn ? HomePageByType : HomeGuestPage;
-
+    // console.log('org', organisation, location);
     return (
         <Switch>
             {/*
@@ -127,6 +133,7 @@ const Routes = () => {
                     to={routes.home}
                 />
             ) : null}
+            <Route path={routes.organisations} exact component={OrganisationsPage} />
             <Route path={routes['organisation.create']} exact component={OrganisationCreatePage} />
             <Route
                 path={routes['organisation.settings']}
@@ -138,7 +145,6 @@ const Routes = () => {
                 exact
                 component={OrganisationBillingPage}
             />
-
             <Route
                 path={routes['organisation.billing_history']}
                 exact
@@ -158,6 +164,16 @@ const Routes = () => {
             <Route path={routes['organisation.themes']} exact component={OrganisationThemesPage} />
             <Route path={routes['organisation.stats']} exact component={OrganisationStatsPage} />
             <Route path={routes['organisation.medias']} exact component={OrganisationMediasPage} />
+            <Route
+                path={routes['organisation.publishing']}
+                exact
+                component={OrganisationPublishingPage}
+            />
+            <Route
+                path={routes['organisation.publishing_settings']}
+                exact
+                component={OrganisationPublishingSettingsPage}
+            />
             <Route
                 path={routes['organisation.switch']}
                 exact
@@ -183,7 +199,9 @@ const Routes = () => {
             <Route path={routes['stories.editor']} component={StoryEditorPage} />
             <Route path={routes['stories.preview']} component={StoryPreviewPage} />
             <Route path={routes['stories.publish']} component={StoryPublishPage} />
+            <Route path={routes['stories.versions']} component={StoryVersionsPage} />
             <Route path={routes['stories.settings']} component={StorySettingsPage} />
+            <Route path={routes['stories.medias']} component={StoryMediasPage} />
         </Switch>
     );
 };

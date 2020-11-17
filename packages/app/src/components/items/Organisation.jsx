@@ -1,11 +1,13 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
+import Avatar from '../partials/Avatar';
+
 import * as AppPropTypes from '../../lib/PropTypes';
+
 import styles from '../../styles/items/organisation.module.scss';
 
 const propTypes = {
@@ -28,16 +30,20 @@ const OrganisationItem = ({ item, className }) => {
                 'list-group-item',
                 'list-group-item-action',
                 'list-group-item-dark',
+                'd-flex',
                 styles.container,
                 {
                     [className]: className !== null,
                 },
             ])}
         >
-            <h6 className="mb-1">{item.name}</h6>
-            <div className="d-flex">
-                <small className="mr-2">12 stories</small>
-                <small>2 users</small>
+            <Avatar square />
+            <div className="ml-3">
+                <h6 className="mb-1">{item.name}</h6>
+                <div className="d-flex">
+                    <small className="mr-2">12 stories</small>
+                    <small>2 users</small>
+                </div>
             </div>
         </Link>
     );

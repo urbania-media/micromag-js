@@ -48,11 +48,8 @@ const defaultProps = {
     active: true,
     maxRatio: 3 / 4,
     transitions: {
-        in: {
-            name: 'fade',
-            duration: 250,
-        },
-        out: 'scale',
+        in: 'fade',
+        out: 'fade',
     },
     className: null,
 };
@@ -132,8 +129,9 @@ const ImageScreen = ({
                 {hasImage ? (
                     <Transitions transitions={transitions} playing={transitionPlaying}>
                         <Image
+                            objectFit={{ fit: 'cover' }}
                             {...image}
-                            {...imageSize}
+                            {...imageSize}                            
                             onLoaded={onImageLoaded}
                         />
                     </Transitions>

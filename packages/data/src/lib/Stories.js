@@ -12,6 +12,7 @@ class StoriesApi extends Base {
                 show: 'stories/:story',
                 store: 'stories',
                 update: 'stories/:story',
+                duplicate: 'stories/:story/duplicate',
                 delete: 'stories/:story',
                 ...(opts.routes || null),
             },
@@ -63,6 +64,15 @@ class StoriesApi extends Base {
 
     create(data) {
         return this.requestPost(this.route('store'), data);
+    }
+
+    duplicate(id, data) {
+        return this.requestPost(
+            this.route('duplicate', {
+                story: id,
+            }),
+            data,
+        );
     }
 
     update(id, data) {

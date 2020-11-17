@@ -9,6 +9,9 @@ import { useRoutePush } from '@micromag/core/contexts';
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
 import StoryCreateForm from '../../forms/StoryCreate';
+import StoryCreateThemesForm from '../../forms/StoryCreateThemes';
+
+import { useOrganisation as useContextOrganisation } from '../../../contexts/OrganisationContext';
 
 import styles from '../../../styles/pages/stories/create.module.scss';
 
@@ -21,6 +24,7 @@ const defaultProps = {
 };
 
 const StoriesCreatePage = ({ className }) => {
+    const organisation = useContextOrganisation();
     const push = useRoutePush();
     const onCreated = useCallback(
         (story) => {
@@ -48,7 +52,14 @@ const StoriesCreatePage = ({ className }) => {
                 ])}
             >
                 <FormPanel>
-                    <StoryCreateForm onCreated={onCreated} />
+                    {organisation ? (
+                        <StoryCreateThemesForm
+                            organisation={organisation || null}
+                            onCreated={onCreated}
+                        />
+                    ) : (
+                        <StoryCreateForm onCreated={onCreated} />
+                    )}
                 </FormPanel>
             </Page>
         </MainLayout>

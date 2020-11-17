@@ -3,11 +3,12 @@ import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, useResizeObserver } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
+import Layout from '@micromag/element-layout';
 import Text from '@micromag/element-text';
 import Image from '@micromag/element-image';
 import Heading from '@micromag/element-heading';
@@ -28,6 +29,7 @@ const propTypes = {
     bulletShape: PropTypes.oneOf(['circle', 'square']),
     bulletFilled: PropTypes.bool,
     illustrated: PropTypes.bool,
+    spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -45,16 +47,14 @@ const defaultProps = {
     bulletShape: 'circle',
     bulletFilled: true,
     illustrated: false,
+    spacing: 20,
     background: null,
     current: true,
     active: true,
     maxRatio: 3 / 4,
     transitions: {
-        in: {
-            name: 'fade',
-            duration: 250,
-        },
-        out: 'scale',
+        in: 'fade',
+        out: 'fade',
     },
     transitionStagger: 75,
     className: null,
@@ -68,6 +68,7 @@ const Timeline = ({
     bulletShape,
     bulletFilled,
     illustrated,
+    spacing,
     background,
     current,
     active,
@@ -96,7 +97,11 @@ const Timeline = ({
         setImagesLoaded(imagesLoaded + 1);
     }, [imagesLoaded, setImagesLoaded]);
 
-    let transitionDelay = 0;
+    const {
+        ref: scrollContentRef,
+        entry: { contentRect: scrollContentRefRect },
+    } = useResizeObserver({ disabled: isPlaceholder || !items.length });
+    const { width: scrollContentRefWidth = '100%' } = scrollContentRefRect || {};
 
     const timelineElements = items.map((item, itemI) => {
         const { title = null, description = null, image = null } = item || {};
@@ -110,161 +115,158 @@ const Timeline = ({
         const isEmptyImage = isEdit && !hasImage;
 
         const elementsTypes = (layout === 'normal' ? 'title-description-image' : layout).split('-');
+        
         const titleIndex = elementsTypes.indexOf('title');
         const imageIndex = elementsTypes.indexOf('image');
 
         if (!illustrated) {
             elementsTypes.splice(imageIndex, 1);
         }
+        
+        const typesCount = elementsTypes.length;
 
         return (
             <div className={styles.item} key={`item-${itemI}`}>
-                {elementsTypes.map((type, typeI) => {
-                    let hasElement = false;
-                    let elementContent;
-                    switch (type) {
-                        case 'title':
-                            hasElement = hasTitle;
-                            elementContent = (
-                                <div className={styles.title}>
-                                    <ScreenElement
-                                        placeholder="title"
-                                        emptyLabel={
-                                            <FormattedMessage
-                                                defaultMessage="Title"
-                                                description="Title placeholder"
-                                            />
-                                        }
-                                        emptyClassName={styles.empty}
-                                        isEmpty={isEmptyTitle}
-                                    >
-                                        {hasElement ? (
-                                            <Transitions
-                                                transitions={transitions}
-                                                playing={transitionsPlaying}
-                                                delay={transitionDelay}
-                                                disabled={isPreview}
-                                            >
+                <Transitions
+                    transitions={transitions}
+                    playing={transitionsPlaying}
+                    delay={transitionStagger * itemI}
+                    disabled={!isView}
+                >
+                    {elementsTypes.map((type, typeI) => {
+                        let hasElement = false;
+                        let elementContent;
+                        switch (type) {
+                            case 'title':
+                                hasElement = hasTitle;
+                                elementContent = (
+                                    <div className={styles.title}>
+                                        <ScreenElement
+                                            placeholder="title"
+                                            emptyLabel={
+                                                <FormattedMessage
+                                                    defaultMessage="Title"
+                                                    description="Title placeholder"
+                                                />
+                                            }
+                                            emptyClassName={styles.empty}
+                                            isEmpty={isEmptyTitle}
+                                        >
+                                            {hasElement ? (
                                                 <Heading {...title} />
-                                            </Transitions>
-                                        ) : null}
-                                    </ScreenElement>
-                                </div>
-                            );
-                            break;
-                        case 'description':
-                        default:
-                            hasElement = hasDescription;
-                            elementContent = (
-                                <div className={styles.description}>
-                                    <ScreenElement
-                                        placeholder="text"
-                                        emptyLabel={
-                                            <FormattedMessage
-                                                defaultMessage="Description"
-                                                description="Description placeholder"
-                                            />
-                                        }
-                                        emptyClassName={styles.empty}
-                                        isEmpty={isEmptyDescription}
-                                    >
-                                        {hasElement ? (
-                                            <Transitions
-                                                transitions={transitions}
-                                                playing={transitionsPlaying}
-                                                delay={transitionDelay}
-                                                disabled={isPreview}
-                                            >
+                                            ) : null}
+                                        </ScreenElement>
+                                    </div>
+                                );
+                                break;
+                            case 'description':
+                            default:
+                                hasElement = hasDescription;
+                                elementContent = (
+                                    <div className={styles.description}>
+                                        <ScreenElement
+                                            placeholder="text"
+                                            emptyLabel={
+                                                <FormattedMessage
+                                                    defaultMessage="Description"
+                                                    description="Description placeholder"
+                                                />
+                                            }
+                                            emptyClassName={styles.empty}
+                                            isEmpty={isEmptyDescription}
+                                        >
+                                            {hasElement ? (
                                                 <Text {...description} />
-                                            </Transitions>
-                                        ) : null}
-                                    </ScreenElement>
-                                </div>
-                            );
-                            break;
-                        case 'image':
-                            hasElement = hasImage;
-                            elementContent = (
-                                <div className={styles.image}>
-                                    <ScreenElement
-                                        placeholder="image"
-                                        emptyLabel={
-                                            <FormattedMessage
-                                                defaultMessage="Image"
-                                                description="Image placeholder"
-                                            />
-                                        }
-                                        emptyClassName={styles.empty}
-                                        isEmpty={isEmptyImage}
-                                    >
-                                        {hasElement ? (
-                                            <Transitions
-                                                transitions={transitions}
-                                                playing={transitionsPlaying}
-                                                delay={transitionDelay}
-                                                disabled={isPreview}
-                                            >
+                                            ) : null}
+                                        </ScreenElement>
+                                    </div>
+                                );
+                                break;
+                            case 'image':
+                                hasElement = hasImage;
+                                elementContent = (
+                                    <div className={styles.image}>
+                                        <ScreenElement
+                                            placeholder="image"
+                                            emptyLabel={
+                                                <FormattedMessage
+                                                    defaultMessage="Image"
+                                                    description="Image placeholder"
+                                                />
+                                            }
+                                            emptyClassName={styles.empty}
+                                            isEmpty={isEmptyImage}
+                                        >
+                                            {hasElement ? (
                                                 <Image
                                                     {...image}
-                                                    width="100%"
+                                                    width={scrollContentRefWidth}
                                                     onLoaded={onImageLoaded}
                                                 />
-                                            </Transitions>
-                                        ) : null}
-                                    </ScreenElement>
-                                </div>
-                            );
-                            break;
-                    }
-                    if (hasElement) {
-                        transitionDelay += transitionStagger;
-                    }
+                                            ) : null}
+                                        </ScreenElement>
+                                    </div>
+                                );
+                                break;
+                        }
 
-                    const firstItem = itemI === 0;
-                    const lastItem = itemI === itemsCount - 1;
-                    const topLineHidden =
-                        (firstItem && typeI <= titleIndex) || (lastItem && typeI > titleIndex);
-                    const bottomLineHidden =
-                        (firstItem && typeI < titleIndex) || (lastItem && typeI >= titleIndex);
+                        const firstItem = itemI === 0;
+                        const lastItem = itemI === itemsCount - 1;
+                        const lastType = typeI === typesCount - 1;
+                        const topLineHidden =
+                            (firstItem && typeI <= titleIndex) || (lastItem && typeI > titleIndex);
+                        const bottomLineHidden =
+                            (firstItem && typeI < titleIndex) || (lastItem && typeI >= titleIndex);
 
-                    return (
-                        <div
-                            key={`element-${type}`}
-                            className={classNames([styles.element, styles[`element-${type}`]])}
-                        >
-                            <div className={styles.timeline}>
-                                <div
-                                    className={classNames([
-                                        styles.line,
-                                        {
-                                            [styles.hidden]: topLineHidden,
-                                        },
-                                    ])}
-                                    style={{ backgroundColor: !topLineHidden ? lineColor : null }}
-                                />
-                                {type === 'title' ? (
+                        return (
+                            <div
+                                key={`element-${type}`}
+                                className={classNames([styles.element, styles[`element-${type}`]])}
+                            >
+                                <div className={styles.timeline}>
                                     <div
-                                        className={styles.bullet}
+                                        className={classNames([
+                                            styles.line,
+                                            {
+                                                [styles.hidden]: topLineHidden,
+                                            },
+                                        ])}
+                                        style={{ backgroundColor: !topLineHidden ? lineColor : null }}
+                                    />
+                                    {type === 'title' ? (
+                                        <div
+                                            className={styles.bullet}
+                                            style={{
+                                                borderColor: bulletColor,
+                                                backgroundColor: bulletFilled ? bulletColor : null,
+                                            }}
+                                        />
+                                    ) : null}
+                                    <div
+                                        className={classNames([
+                                            styles.line,
+                                            {
+                                                [styles.hidden]: bottomLineHidden,
+                                            },
+                                        ])}
                                         style={{
-                                            borderColor: bulletColor,
-                                            backgroundColor: bulletFilled ? bulletColor : null,
+                                            backgroundColor: !bottomLineHidden ? lineColor : null,
                                         }}
                                     />
-                                ) : null}
+                                </div>
                                 <div
                                     className={classNames([
-                                        styles.line,
-                                        {
-                                            [styles.hidden]: bottomLineHidden,
-                                        },
+                                        styles.content,
+                                        { [styles.lastContent]: lastType && !lastItem },
                                     ])}
-                                    style={{ backgroundColor: !bottomLineHidden ? lineColor : null }}
-                                />
+                                    ref={itemI === 0 ? scrollContentRef : null}
+                                >
+                                    {elementContent}
+                                </div>
                             </div>
-                            <div className={styles.content}>{elementContent}</div>
-                        </div>
-                    );
-                })}
+                        );
+                    })}
+                </Transitions>
             </div>
         );
     });
@@ -283,13 +285,14 @@ const Timeline = ({
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
-                height={height}
                 maxRatio={maxRatio}
                 playing={(isView && current) || (isEdit && active)}
             />
-            <Container width={width} height={height} maxRatio={maxRatio}>
+            <Container width={width} height={height} maxRatio={maxRatio} withScroll>
                 <Scroll className={styles.scroll} verticalAlign="center" disabled={isPlaceholder}>
-                    {timelineElements}
+                    <Layout style={isView || isPreview ? { padding: spacing } : null}>
+                        {timelineElements}
+                    </Layout>
                 </Scroll>
             </Container>
         </div>

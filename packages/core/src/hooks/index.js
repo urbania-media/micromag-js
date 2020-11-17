@@ -1,6 +1,7 @@
 export { default as useDocumentEvent } from './useDocumentEvent';
 export { default as useForm } from './useForm';
 export { default as useIsVisible } from './useIsVisible';
+export * from './useDates';
 export * from './useObserver';
 export * from './useScreenSize';
 export * from './useSwipe';

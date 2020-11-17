@@ -1,7 +1,7 @@
 import { defineMessage } from 'react-intl';
-import Title from './Title';
-import TitleSubtitle from './TitleSubtitle';
-import TitleSubtitleCredits from './TitleSubtitleCredits';
+import TitleScreen from './Title';
+import TitleSubtitleScreen from './TitleSubtitle';
+import TitleSubtitleCreditsScreen from './TitleSubtitleCredits';
 
 export default [
     {
@@ -15,7 +15,7 @@ export default [
             defaultMessage: 'Title',
             description: 'Title screen title',
         }),
-        component: Title,
+        component: TitleScreen,
         layouts: ['top', 'middle', 'bottom'],
         fields: [
             {
@@ -63,7 +63,7 @@ export default [
             defaultMessage: 'TitleSubtitle',
             description: 'TitleSubtitle screen title',
         }),
-        component: TitleSubtitle,
+        component: TitleSubtitleScreen,
         layouts: ['top', 'middle', 'bottom', 'split'],
         fields: [
             {
@@ -111,7 +111,7 @@ export default [
             defaultMessage: 'TitleSubtitleCredits',
             description: 'TitleSubtitleCredits screen title',
         }),
-        component: TitleSubtitleCredits,
+        component: TitleSubtitleCreditsScreen,
         layouts: ['top', 'middle', 'bottom', 'split-top', 'split-bottom'],
         fields: [
             {

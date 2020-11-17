@@ -11,6 +11,7 @@ import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
 import OrganisationMenu from '../../menus/Organisation';
 import OrganisationSettingsForm from '../../forms/OrganisationSettings';
+import OrganisationContactForm from '../../forms/OrganisationContact';
 
 import styles from '../../../styles/pages/organisation/settings.module.scss';
 
@@ -49,11 +50,17 @@ const OrganisationSettingsPage = ({ className }) => {
                     },
                 ])}
             >
+                <FormPanel className="mb-4">
+                    {organisation !== null ? (
+                        <OrganisationSettingsForm organisation={organisation} />
+                    ) : null}
+                </FormPanel>
                 <FormPanel>
                     {organisation !== null && !contactLoading ? (
-                        <OrganisationSettingsForm
+                        <OrganisationContactForm
                             organisation={organisation}
-                            mainContact={contact}
+                            contact={contact}
+                            type="main"
                         />
                     ) : null}
                 </FormPanel>

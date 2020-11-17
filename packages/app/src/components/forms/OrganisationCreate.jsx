@@ -10,7 +10,7 @@ import { useOrganisationCreate } from '@micromag/data';
 
 import * as AppPropTypes from '../../lib/PropTypes';
 
-import { organisation as organisationFields } from './organisationFields';
+import { organisation as organisationFields } from './fields';
 
 const propTypes = {
     organisation: AppPropTypes.organisation.isRequired,

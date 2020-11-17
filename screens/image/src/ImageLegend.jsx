@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import Image from './Image';
+import ImageScreen from './Image';
 
-const ImageLegend = ({ ...props }) => (
-    <Image
+const ImageLegendScreen = ({ ...props }) => (
+    <ImageScreen
         {...props}
         withLegend
     />
 );
 
-export default ImageLegend;
+export default ImageLegendScreen;

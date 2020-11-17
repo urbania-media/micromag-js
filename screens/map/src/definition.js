@@ -1,6 +1,6 @@
 import { defineMessage } from 'react-intl';
-import Map from './Map';
-import MapImages from './MapImages';
+import MapScreen from './Map';
+import MapImagesScreen from './MapImages';
 
 export default [
     {
@@ -14,9 +14,8 @@ export default [
             defaultMessage: 'Map',
             description: 'Map screen title',
         }),
-        component: Map,
+        component: MapScreen,
         layouts: ['normal'],
-        handlesNavigation: true,
         fields: [
             {
                 name: 'layout',
@@ -63,9 +62,8 @@ export default [
             defaultMessage: 'MapImages',
             description: 'MapImages screen title',
         }),
-        component: MapImages,
+        component: MapImagesScreen,
         layouts: ['normal'],
-        handlesNavigation: true,
         fields: [
             {
                 name: 'layout',

@@ -72,7 +72,7 @@ export const publicationServiceValue = PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.shape({
         enabled: PropTypes.bool.isRequired,
-        settings: PropTypes.object,
+        settings: PropTypes.object, // eslint-disable-line
     }),
 ]);
 export const publicationServicesValue = PropTypes.objectOf(publicationServiceValue);
@@ -81,3 +81,17 @@ export const storyPublication = PropTypes.shape({
     id: PropTypes.string.isRequired,
 });
 export const storyPublications = PropTypes.arrayOf(storyPublication);
+
+export const theme = PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    components: PropTypes.array, // eslint-disable-line
+});
+export const themes = PropTypes.arrayOf(theme);
+
+export const version = PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    created_at: PropTypes.string.isRequired,
+    components: PropTypes.array, // eslint-disable-line
+});
+export const versions = PropTypes.arrayOf(version);

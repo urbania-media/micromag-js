@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useRef, useState, useCallback, useEffect }  from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-// import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useResizeObserver } from '@micromag/core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './styles.module.scss';
 
@@ -29,6 +31,25 @@ const Scroll = ({ width, height, disabled, verticalAlign, className, children })
         height,
     };
 
+    const [withArrow, setWithArrow] = useState(false);
+    const onScroll = useCallback( () => {
+        setWithArrow(false);
+    }, [setWithArrow]);
+
+    const {
+        ref: scrollableRef,
+        entry: { contentRect },
+    } = useResizeObserver();
+    const { height: scrollableHeight } = contentRect || {};
+
+    const scrolleeRef = useRef(null);
+
+    useEffect( () => {
+        if (scrolleeRef.current !== null && scrollableHeight > 0) {
+            setWithArrow(Math.round(scrolleeRef.current.offsetHeight) > Math.round(scrollableHeight));
+        }
+    }, [scrollableHeight, setWithArrow]);
+
     return (
         <div
             className={classNames([
@@ -37,11 +58,19 @@ const Scroll = ({ width, height, disabled, verticalAlign, className, children })
                     [styles.withScroll]: !disabled,
                     [className]: className !== null,
                     [styles[verticalAlign]]: verticalAlign !== null,
+                    [styles.withArrow]: withArrow,
                 },
             ])}
             style={finalStyle}
         >
-            <div className={styles.inner}>{children}</div>
+            <div className={styles.scrollable} ref={scrollableRef} onScroll={ withArrow ? onScroll : null }>
+                <div className={styles.scrollee} ref={scrolleeRef}>
+                    {children}
+                </div>
+            </div>
+            <div className={styles.arrowContainer}>
+                <FontAwesomeIcon className={styles.arrow} icon={faArrowDown} />
+            </div>
         </div>
     );
 };

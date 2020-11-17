@@ -7,7 +7,7 @@ import { FormPanel } from '@micromag/core/components';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
-import BillingInfoForm from '../../forms/BillingInfo';
+import OrganisationBillingInfoForm from '../../forms/OrganisationBillingInfo';
 import OrganisationMenu from '../../menus/Organisation';
 
 import { useOrganisation as useContextOrganisation } from '../../../contexts/OrganisationContext';
@@ -50,7 +50,7 @@ const OrganisationBillingInfoPage = ({ className }) => {
                 ])}
             >
                 <FormPanel>
-                    <BillingInfoForm organisation={organisation} />
+                    <OrganisationBillingInfoForm organisation={organisation} />
                 </FormPanel>
             </Page>
         </MainLayout>

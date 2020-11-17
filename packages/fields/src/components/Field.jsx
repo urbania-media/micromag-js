@@ -78,6 +78,7 @@ const Field = ({
         component: providedComponent,
     };
     const isFields = FieldComponent === FieldsComponent;
+
     const gotoForm = useCallback((form) => gotoFieldForm(name, form), [name, gotoFieldForm]);
     const closeForm = useCallback((form) => closeFieldForm(name, form), [name, closeFieldForm]);
     const gotoSettings = useCallback(() => gotoForm('settings'), [gotoForm]);

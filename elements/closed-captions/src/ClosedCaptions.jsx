@@ -66,6 +66,7 @@ const ClosedCaptions = ({ currentTime, timeOffset, media, className }) => {
     }, [currentTime, lines, getLineIndexFromTime, setLineIndex]);
 
     const line = lineIndex !== -1 ? lines[lineIndex] : null;
+    const active = line !== null;
 
     return (
         <div
@@ -75,8 +76,9 @@ const ClosedCaptions = ({ currentTime, timeOffset, media, className }) => {
                     [className]: className !== null,
                 },
             ])}
-            dangerouslySetInnerHTML={line !== null ? { __html: line.text } : null}
-        />
+        >
+            { active ? <div className={styles.captions} dangerouslySetInnerHTML={active? { __html: line.text } : null} /> : null }
+        </div>
     );
 };
 

@@ -15,6 +15,7 @@
     "account": "/account",
     "account.settings": "/account/settings",
 
+    "organisations": "/organisations",
     "organisation": "/organisation",
     "organisation.create": "/organisation/create",
     "organisation.settings": "/organisation/settings",
@@ -26,7 +27,12 @@
     "organisation.billing_plan": "/organisation/billing-plan",
     "organisation.medias": "/organisation/medias",
     "organisation.themes": "/organisation/themes",
+    "organisation.publishing": "/organisation/publishing",
+    "organisation.publishing_settings": "/organisation/publishing/:type",
     "organisation.switch": "/organisation/:organisation",
+
+    "themes.show": "/themes/:theme",
+    "themes.editor": "/themes/:theme/editor",
 
     "stories": "/stories",
     "stories.create": "/stories/create",
@@ -34,5 +40,7 @@
     "stories.editor": "/stories/:story/editor",
     "stories.preview": "/stories/:story/preview",
     "stories.publish": "/stories/:story/publish",
-    "stories.settings": "/stories/:story/settings"
+    "stories.versions": "/stories/:story/versions",
+    "stories.settings": "/stories/:story/settings",
+    "stories.medias": "/stories/:story/medias"
 }

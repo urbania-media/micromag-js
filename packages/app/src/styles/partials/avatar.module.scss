@@ -9,4 +9,13 @@
     border: 1px solid $white;
     border-radius: 20px;
     line-height: 1;
+
+    &.small {
+        width: 20px;
+        height: 20px;
+    }
+
+    &.square {
+        border-radius: 0;
+    }
 }

@@ -1,3 +1,5 @@
+import isString from 'lodash/isString';
+
 export const validateEmail = (email) => {
     // eslint-disable-next-line
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -13,4 +15,10 @@ export const filterObject = (object, func) => {
         }, {});
 };
 
-export default {};
+export const getDate = (date = null) => {
+    if (date === null) {
+        return null;
+    }
+    const dateObject = isString(date) ? new Date(date) : date;
+    return `${dateObject.getFullYear()}-${dateObject.getMonth()}-${dateObject.getDate()}`;
+};
