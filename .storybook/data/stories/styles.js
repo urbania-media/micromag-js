@@ -17,7 +17,7 @@ export const normalTitle = {
 
 export const normalText = {
     fontFamily: 'Sina Nova',
-    fontSize: 16,
+    fontSize: 18,
     fontStyle: {
         bold: false,
     },
@@ -25,7 +25,7 @@ export const normalText = {
 
 export const descriptionText = {
     fontFamily: 'Apercu',
-    fontSize: 16,
+    fontSize: 18,
     fontStyle: {
         bold: false,
     },
