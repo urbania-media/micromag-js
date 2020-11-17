@@ -113,6 +113,7 @@ const faceAFaceStory = [
         layout: 'middle',
         question: {
             body: 'Combien d’yeux avait Frank and Louie, un chat à deux visages décédé en 2014?',
+            textStyle: normalTitle,
         },
         options: quiz2options,
         answerIndex: 2,
@@ -128,6 +129,7 @@ const faceAFaceStory = [
         question: {
             body:
                 'Dans quelle proportion les systèmes de reconnaissance faciale identifient-ils erronément les Noirs, les Asiatiques et les Autochtones?',
+            textStyle: normalTitle,
         },
         options: quiz3options,
         answerIndex: 3,
@@ -142,6 +144,7 @@ const faceAFaceStory = [
         question: {
             body:
                 'Comment appelle-t-on un «faux» sourire qui n’est pas généré de façon authentique?',
+            textStyle: normalTitle,
         },
         options: quiz4options,
         answerIndex: 1,
@@ -157,6 +160,7 @@ const faceAFaceStory = [
         question: {
             body:
                 'Combien d’abonnés Instagram compte Jason Diamond, le chirurgien des stars d’Hollywood?',
+            textStyle: normalTitle,
         },
         options: quiz5options,
         answerIndex: 0,
@@ -171,6 +175,7 @@ const faceAFaceStory = [
         layout: 'middle',
         question: {
             body: 'Combien de caméras de surveillance compte la Chine?',
+            textStyle: normalTitle,
         },
         options: quiz6options,
         answerIndex: 3,
@@ -185,10 +190,12 @@ const faceAFaceStory = [
         layout: 'middle',
         title: {
             body: 'Top 3 des secrets des super-recognizers',
+            textStyle: bigUppTitle,
         },
         subtitle: {
             body:
                 'Ces gens capables de reconnaître presque n’importe qui n’importe où n’importe quand',
+            textStyle: normalTitle,
         },
     },
     {
@@ -203,12 +210,15 @@ const faceAFaceStory = [
         layout: 'split-top',
         title: {
             body: 'Pourriez vous passer une semaine sans vous regarder dans le miroir?',
+            textStyle: normalTitle,
         },
         subtitle: {
             body: 'On a tenté l’expérience et voici comment ça s’est déroulé',
+            textStyle: normalText,
         },
         credits: {
             body: 'Par Hugo Meunier',
+            textStyle: normalText,
         },
     },
     {

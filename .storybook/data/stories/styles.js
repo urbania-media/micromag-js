@@ -5,6 +5,7 @@ export const bigUppTitle = {
         bold: true,
         uppercase: true,
     },
+    uppercase: true,
 };
 
 export const normalTitle = {
