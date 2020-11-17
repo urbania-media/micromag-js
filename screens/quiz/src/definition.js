@@ -14,7 +14,6 @@ export default {
     }),
     component: QuizScreen,
     layouts: ['top', 'middle', 'bottom', 'split'],
-    handlesNavigation: true,
     fields: [
         {
             name: 'layout',

@@ -36,6 +36,8 @@ const propTypes = {
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
+    onEnableInteraction: PropTypes.func,
+    onDisableInteraction: PropTypes.func,
 };
 
 const defaultProps = {
@@ -57,6 +59,8 @@ const defaultProps = {
     },
     transitionStagger: 100,
     className: null,
+    onEnableInteraction: null,
+    onDisableInteraction: null,
 };
 
 const SurveyScreen = ({
@@ -72,6 +76,8 @@ const SurveyScreen = ({
     transitions,
     transitionStagger,
     className,
+    onEnableInteraction,
+    onDisableInteraction,
 }) => {
     const { width, height } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
@@ -94,6 +100,26 @@ const SurveyScreen = ({
         },
         [userAnswerIndex, setUserAnswerIndex],
     );
+
+    useEffect( () => {
+        if (!current) {
+            return;
+        }
+
+        if (answered) {
+            if (onEnableInteraction !== null) {
+                onEnableInteraction();
+            }            
+        } else if (onDisableInteraction !== null) {
+            onDisableInteraction();
+        }
+    }, [current, answered, onEnableInteraction, onDisableInteraction]);
+
+    useEffect( () => {
+        if (!current && userAnswerIndex !== null) {
+            setUserAnswerIndex(null);
+        }
+    }, [current, userAnswerIndex, setUserAnswerIndex]);
 
     // Question
 

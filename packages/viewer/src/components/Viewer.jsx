@@ -72,7 +72,7 @@ const Viewer = ({
         height,
         screens: deviceScreens,
     });
-    const { width: screenWidth = null, height: screenHeight = null } = screenSize || {}; 
+    const { width: screenWidth = null, height: screenHeight = null } = screenSize || {};
     const screenDefinitions = useScreens();
 
     const landscape = screenWidth > screenHeight;
@@ -102,6 +102,33 @@ const Viewer = ({
         },
         [currentIndex, components, onScreenChange],
     );
+
+    // Handle interaction
+    const onScreenPrevious = useCallback(() => {
+        changeIndex(Math.max(0, currentIndex - 1));
+    }, [changeIndex]);
+
+    const onScreenNext = useCallback(() => {
+        changeIndex(Math.min(components.length - 1, currentIndex + 1));
+    }, [changeIndex]);
+
+    const [screensInteractionEnabled, setScreensInteractionEnabled] = useState(components.map(() => true));
+
+    const onEnableInteraction = useCallback(() => {        
+        if (!screensInteractionEnabled[currentIndex]) {
+            const newArray = [...screensInteractionEnabled];
+            newArray[currentIndex] = true;
+            setScreensInteractionEnabled(newArray);
+        }
+    }, [currentIndex, screensInteractionEnabled, setScreensInteractionEnabled]);
+
+    const onDisableInteraction = useCallback(() => {        
+        if (screensInteractionEnabled[currentIndex]) {
+            const newArray = [...screensInteractionEnabled];
+            newArray[currentIndex] = false;
+            setScreensInteractionEnabled(newArray);
+        }
+    }, [currentIndex, screensInteractionEnabled, setScreensInteractionEnabled]);
 
     // Swipe mechanics
     const { items, bind, setIndex } = useSwipe({
@@ -166,10 +193,11 @@ const Viewer = ({
         (e) => {
             e.stopPropagation();
             const it = components[currentIndex] || null;
-            const screenDefinition = screenDefinitions.find( definition => definition.id === it.type);
-            const { handlesNavigation = false } = screenDefinition || {};
+            const interactionEnabled = screensInteractionEnabled[currentIndex];
 
-            if (it === null || !tappingRef.current || handlesNavigation) {
+            console.log('tap', interactionEnabled)
+
+            if (it === null || !tappingRef.current || !interactionEnabled) {
                 return;
             }
 
@@ -182,21 +210,22 @@ const Viewer = ({
             }
             changeIndex(nextIndex);
         },
-        [onScreenChange, screenWidth, components, changeIndex, currentIndex, screenDefinitions],
+        [onScreenChange, screenWidth, components, changeIndex, currentIndex, screensInteractionEnabled],
     );
 
     const screensRefs = useRef([]);
 
     // Handle landscape scroll updating currentScreen
+    // @TODO use Observer
     const onContentScrolled = useCallback(() => {
         if (!landscape || animateScroll.current) {
             return;
         }
-        
+
         const { scrollTop } = scrollRef.current;
 
         let currentY = 0;
-        const screensY = screensRefs.current.map( screen => {
+        const screensY = screensRefs.current.map((screen) => {
             const screenY = currentY;
             currentY += screen.offsetHeight;
             return screenY;
@@ -204,25 +233,24 @@ const Viewer = ({
 
         const scrollHeightOffset = screenSize.height * scrollIndexHeightPercent;
 
-        const scrollIndex = Math.max(0, Math.min(components.length - 1, screensY.findIndex( (screenY, screenI) => {
-            const afterCurrent = scrollTop >= screenY - scrollHeightOffset;
-            const lastScreen = screenI === screensY.length - 1;
-            const beforeNext = lastScreen || scrollTop < screensY[screenI + 1] - scrollHeightOffset;
-            return afterCurrent && beforeNext;
-        })));
+        const scrollIndex = Math.max(
+            0,
+            Math.min(
+                components.length - 1,
+                screensY.findIndex((screenY, screenI) => {
+                    const afterCurrent = scrollTop >= screenY - scrollHeightOffset;
+                    const lastScreen = screenI === screensY.length - 1;
+                    const beforeNext =
+                        lastScreen || scrollTop < screensY[screenI + 1] - scrollHeightOffset;
+                    return afterCurrent && beforeNext;
+                }),
+            ),
+        );
 
         if (scrollIndex !== currentIndex) {
             changeIndex(scrollIndex);
         }
     }, [landscape, currentIndex, screenHeight, components]);
-
-    const onScreenPrevious = useCallback(() => {
-        changeIndex(Math.max(0, currentIndex - 1));
-    }, [changeIndex]);
-
-    const onScreenNext = useCallback(() => {
-        changeIndex(Math.min(components.length - 1, currentIndex + 1));
-    }, [changeIndex]);
 
     return (
         <ScreenSizeProvider size={screenSize}>
@@ -261,32 +289,44 @@ const Viewer = ({
                     {...(withTap ? { onClick: onTap } : null)}
                 >
                     {components.map((scr, i) => {
-                        const style = landscape ? { transform: null } : { ...items[i] };
+                        const style = { ...items[i] };
                         const current = i === currentIndex;
                         const active =
                             i > currentIndex - neighborScreensActive &&
                             i < currentIndex + neighborScreensActive;
-                        
-                        const screenDefinition = screenDefinitions.find(definition => definition.id === scr.type) || null;
 
-                        return (
-                            <animated.div
-                                key={`screen-viewer-${scr.id || ''}-${i + 1}`}
-                                style={style}
-                                className={styles.screen}
+                        const screenDefinition =
+                            screenDefinitions.find((definition) => definition.id === scr.type) ||
+                            null;
+
+                        const viewerScreen = (
+                            <ViewerScreen
+                                screen={scr}
+                                definition={screenDefinition}
+                                index={i}
+                                current={current}
+                                active={active}
+                                onPrevious={onScreenPrevious}
+                                onNext={onScreenNext}
+                                onEnableInteraction={onEnableInteraction}
+                                onDisableInteraction={onDisableInteraction}
+                            />
+                        );
+                        const screenClass = styles.screen;
+                        const key = `screen-viewer-${scr.id || ''}-${i + 1}`;
+                        return landscape ? (
+                            <div
+                                key={key}
+                                className={screenClass}
                                 ref={(el) => {
                                     screensRefs.current[i] = el;
                                 }}
                             >
-                                <ViewerScreen
-                                    screen={scr}
-                                    definition={screenDefinition}
-                                    index={i}
-                                    current={current}
-                                    active={active}
-                                    onPrevious={onScreenPrevious}
-                                    onNext={onScreenNext}
-                                />
+                                {viewerScreen}
+                            </div>
+                        ) : (
+                            <animated.div key={key} style={style} className={screenClass}>
+                                {viewerScreen}
                             </animated.div>
                         );
                     })}

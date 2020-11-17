@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -33,6 +33,7 @@ const propTypes = {
     className: PropTypes.string,
     onPrevious: PropTypes.func,
     onNext: PropTypes.func,
+    onDisableInteraction: PropTypes.func,
 };
 
 const defaultProps = {
@@ -56,6 +57,7 @@ const defaultProps = {
     className: null,
     onPrevious: null,
     onNext: null,
+    onDisableInteraction: null,
 };
 
 const MapScreen = ({
@@ -73,6 +75,7 @@ const MapScreen = ({
     className,
     onPrevious,
     onNext,
+    onDisableInteraction,
 }) => {
     const [opened, setOpened] = useState(false);
 
@@ -91,6 +94,16 @@ const MapScreen = ({
 
     const [ready, setReady] = useState(!hasMap);
     const transitionPlaying = current && ready;
+
+    useEffect( () => {
+        if (!current) {
+            return;
+        }
+
+        if (onDisableInteraction !== null) {
+            onDisableInteraction();
+        }
+    }, [current, onDisableInteraction]);
 
     const onMapReady = useCallback(() => setReady(true), [setReady]);
 
