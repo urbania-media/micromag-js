@@ -164,7 +164,6 @@ export const quiz1options = [
             textStyle: descriptionText,
             body: 'Deux minutes, pareil comme dans le film Face/Off',
         },
-        answer: false,
     },
     {
         id: uuid(),
@@ -172,7 +171,6 @@ export const quiz1options = [
             textStyle: descriptionText,
             body: 'Deux heures et demi',
         },
-        answer: false,
     },
     {
         id: uuid(),
@@ -180,7 +178,6 @@ export const quiz1options = [
             textStyle: descriptionText,
             body: '18 heures',
         },
-        answer: true,
     },
     {
         id: uuid(),
@@ -188,7 +185,6 @@ export const quiz1options = [
             textStyle: descriptionText,
             body: '36 heures',
         },
-        answer: false,
     },
 ];
 
@@ -199,7 +195,6 @@ export const quiz2options = [
             textStyle: descriptionText,
             body: '1',
         },
-        answer: false,
     },
     {
         id: uuid(),
@@ -207,7 +202,6 @@ export const quiz2options = [
             textStyle: descriptionText,
             body: '2',
         },
-        answer: false,
     },
     {
         id: uuid(),
@@ -215,7 +209,6 @@ export const quiz2options = [
             textStyle: descriptionText,
             body: '3',
         },
-        answer: true,
     },
     {
         id: uuid(),
@@ -223,7 +216,6 @@ export const quiz2options = [
             textStyle: descriptionText,
             body: '4',
         },
-        answer: false,
     },
 ];
 
@@ -234,7 +226,6 @@ export const quiz3options = [
             textStyle: descriptionText,
             body: 'Une à deux fois plus',
         },
-        answer: false,
     },
     {
         id: uuid(),
@@ -242,7 +233,6 @@ export const quiz3options = [
             textStyle: descriptionText,
             body: '5 fois plus',
         },
-        answer: false,
     },
     {
         id: uuid(),
@@ -250,7 +240,6 @@ export const quiz3options = [
             textStyle: descriptionText,
             body: '1000 fois plus',
         },
-        answer: false,
     },
     {
         id: uuid(),
@@ -258,7 +247,6 @@ export const quiz3options = [
             textStyle: descriptionText,
             body: '10 à 100 fois plus',
         },
-        answer: true,
     },
 ];
 
@@ -269,7 +257,6 @@ export const quiz4options = [
             textStyle: descriptionText,
             body: 'Un sourire Colgate',
         },
-        answer: false,
     },
     {
         id: uuid(),
@@ -277,7 +264,6 @@ export const quiz4options = [
             textStyle: descriptionText,
             body: 'Un sourire de Pan Am',
         },
-        answer: true,
     },
     {
         id: uuid(),
@@ -285,7 +271,6 @@ export const quiz4options = [
             textStyle: descriptionText,
             body: 'Un sourire de faux cul',
         },
-        answer: false,
     },
     {
         id: uuid(),
@@ -293,7 +278,6 @@ export const quiz4options = [
             textStyle: descriptionText,
             body: 'Un hide the pain Harold',
         },
-        answer: false,
     },
 ];
 
@@ -304,7 +288,6 @@ export const quiz5options = [
             textStyle: descriptionText,
             body: '307 000',
         },
-        answer: true,
     },
     {
         id: uuid(),
@@ -312,7 +295,6 @@ export const quiz5options = [
             textStyle: descriptionText,
             body: '1364',
         },
-        answer: false,
     },
     {
         id: uuid(),
@@ -320,7 +302,6 @@ export const quiz5options = [
             textStyle: descriptionText,
             body: '1.5 millions',
         },
-        answer: false,
     },
     {
         id: uuid(),
@@ -328,7 +309,6 @@ export const quiz5options = [
             textStyle: descriptionText,
             body: '229',
         },
-        answer: false,
     },
 ];
 
@@ -339,7 +319,6 @@ export const quiz6options = [
             textStyle: descriptionText,
             body: '2 millions',
         },
-        answer: false,
     },
     {
         id: uuid(),
@@ -347,7 +326,6 @@ export const quiz6options = [
             textStyle: descriptionText,
             body: '75 000',
         },
-        answer: false,
     },
     {
         id: uuid(),
@@ -355,7 +333,6 @@ export const quiz6options = [
             textStyle: descriptionText,
             body: '300 000',
         },
-        answer: false,
     },
     {
         id: uuid(),
@@ -363,7 +340,6 @@ export const quiz6options = [
             textStyle: descriptionText,
             body: '200 millions',
         },
-        answer: true,
     },
 ];
 

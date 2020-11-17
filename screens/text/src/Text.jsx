@@ -40,11 +40,8 @@ const defaultProps = {
     active: false,
     maxRatio: 3 / 4,
     transitions: {
-        in: {
-            name: 'fade',
-            duration: 250,
-        },
-        out: 'scale',
+        in: 'fade',
+        out: 'fade',
     },
     transitionStagger: 100,
     className: null,

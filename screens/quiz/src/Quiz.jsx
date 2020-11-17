@@ -41,6 +41,8 @@ const propTypes = {
     transitionStagger: PropTypes.number,
     resultsTransitionDuration: PropTypes.number,
     className: PropTypes.string,
+    onEnableInteraction: PropTypes.func,
+    onDisableInteraction: PropTypes.func,
 };
 
 const defaultProps = {
@@ -55,15 +57,14 @@ const defaultProps = {
     active: true,
     maxRatio: 3 / 4,
     transitions: {
-        in: {
-            name: 'fade',
-            duration: 250,
-        },
-        out: 'scale',
+        in: 'fade',
+        out: 'fade',
     },
     transitionStagger: 100,
     resultsTransitionDuration: 500,
     className: null,
+    onEnableInteraction: null,
+    onDisableInteraction: null,
 };
 
 const QuizScreen = ({
@@ -81,6 +82,8 @@ const QuizScreen = ({
     transitionStagger,
     resultsTransitionDuration,
     className,
+    onEnableInteraction,
+    onDisableInteraction,
 }) => {
     const { width, height } = useScreenSize();
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
@@ -169,6 +172,27 @@ const QuizScreen = ({
             }
         };
     }, [answered, resultsTransitionDuration, setAnswerTransitionComplete]);
+
+    useEffect( () => {
+        if (!current) {
+            return;
+        }
+
+        if (answered) {
+            if (onEnableInteraction !== null) {
+                onEnableInteraction();
+            }            
+        } else if (onDisableInteraction !== null) {
+            onDisableInteraction();
+        }
+    }, [current, answered, onEnableInteraction, onDisableInteraction]);
+
+    useEffect( () => {        
+        if (!current && userAnswerIndex !== null) {
+            setUserAnswerIndex(null);
+            setAnswerTransitionComplete(false);
+        }
+    }, [current, userAnswerIndex, setUserAnswerIndex, setAnswerTransitionComplete]);
 
     // Question
 
