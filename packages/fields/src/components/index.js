@@ -47,7 +47,7 @@ export { default as StaticField } from './StaticField';
 export { default as Target } from './Target';
 export { default as Text } from './Text';
 export { default as TextEditor } from './TextEditor';
-export { default as TextStyle } from './TextStyle';
+export { default as TextElement } from './TextElement';
 export { default as Toggle } from './Toggle';
 export { default as Tokens } from './Tokens';
 export { default as Url } from './Url';

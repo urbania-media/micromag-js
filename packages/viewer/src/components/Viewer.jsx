@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { animated } from 'react-spring';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSizeFromElement, useSwipe } from '@micromag/core/hooks';
-import { ScreenSizeProvider, useScreens } from '@micromag/core/contexts';
+import { ScreenSizeProvider, useScreensManager } from '@micromag/core/contexts';
 import { getDeviceScreens } from '@micromag/core/utils';
 
 import anime from 'animejs';
@@ -25,6 +25,7 @@ const propTypes = {
     deviceScreens: MicromagPropTypes.deviceScreens,
     interactions: MicromagPropTypes.interactions,
     fullscreen: PropTypes.bool,
+    renderContext: MicromagPropTypes.renderContext,
     onScreenChange: PropTypes.func,
     tapNextScreenWidthPercent: PropTypes.number,
     neighborScreensActive: PropTypes.number,
@@ -39,6 +40,7 @@ const defaultProps = {
     deviceScreens: getDeviceScreens(),
     interactions: ['tap'],
     fullscreen: false,
+    renderContext: null,
     onScreenChange: null,
     tapNextScreenWidthPercent: 0.5,
     neighborScreensActive: 2,
@@ -54,6 +56,7 @@ const Viewer = ({
     deviceScreens,
     interactions,
     fullscreen,
+    renderContext,
     onScreenChange,
     tapNextScreenWidthPercent,
     neighborScreensActive,
@@ -72,8 +75,8 @@ const Viewer = ({
         height,
         screens: deviceScreens,
     });
-    const { width: screenWidth = null, height: screenHeight = null } = screenSize || {}; 
-    const screenDefinitions = useScreens();
+    const { width: screenWidth = null, height: screenHeight = null } = screenSize || {};
+    const screensManager = useScreensManager();
 
     const landscape = screenWidth > screenHeight;
 
@@ -166,7 +169,7 @@ const Viewer = ({
         (e) => {
             e.stopPropagation();
             const it = components[currentIndex] || null;
-            const screenDefinition = screenDefinitions.find( definition => definition.id === it.type);
+            const screenDefinition = it !== null ? screensManager.getDefinition(it.type) : null;
             const { handlesNavigation = false } = screenDefinition || {};
 
             if (it === null || !tappingRef.current || handlesNavigation) {
@@ -182,7 +185,7 @@ const Viewer = ({
             }
             changeIndex(nextIndex);
         },
-        [onScreenChange, screenWidth, components, changeIndex, currentIndex, screenDefinitions],
+        [onScreenChange, screenWidth, components, changeIndex, currentIndex, screensManager],
     );
 
     const screensRefs = useRef([]);
@@ -192,7 +195,7 @@ const Viewer = ({
         if (!landscape || animateScroll.current) {
             return;
         }
-        
+
         const { scrollTop } = scrollRef.current;
 
         let currentY = 0;
@@ -266,8 +269,6 @@ const Viewer = ({
                         const active =
                             i > currentIndex - neighborScreensActive &&
                             i < currentIndex + neighborScreensActive;
-                        
-                        const screenDefinition = screenDefinitions.find(definition => definition.id === scr.type) || null;
 
                         return (
                             <animated.div
@@ -280,7 +281,7 @@ const Viewer = ({
                             >
                                 <ViewerScreen
                                     screen={scr}
-                                    definition={screenDefinition}
+                                    renderContext={renderContext}
                                     index={i}
                                     current={current}
                                     active={active}

@@ -1,7 +1,7 @@
 import { withKnobs } from '@storybook/addon-knobs';
 import withIntlProvider from './decorators/withIntlProvider';
 import withScreenSize from './decorators/withScreenSize';
-import withScreenLayouts from './decorators/withScreenLayouts';
+import withScreenDefinition from './decorators/withScreenDefinition';
 
 import '../packages/core/src/styles/vendor.scss';
 
@@ -68,4 +68,4 @@ export const parameters = {
     },
 };
 
-export const decorators = [withKnobs, withIntlProvider, withScreenSize, withScreenLayouts];
+export const decorators = [withKnobs, withIntlProvider, withScreenSize, withScreenDefinition];

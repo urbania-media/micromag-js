@@ -6,7 +6,7 @@ import { ApiProvider } from '../../../data/src/contexts/ApiContext';
 import { OrganisationProvider } from '../../../app/src/contexts/OrganisationContext';
 import { AuthProvider } from '../../../app/src/contexts/AuthContext';
 
-import FieldsProvider from '../../../fields/src/components/FieldsProvider';
+import FieldsProvider from '../../../fields/src/FieldsProvider';
 
 import video from '../../../../.storybook/data/test.mp4';
 import sound from '../../../../.storybook/data/test.mp3';

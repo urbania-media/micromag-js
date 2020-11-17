@@ -22,7 +22,7 @@ const defaultProps = {
 };
 
 const MarkerField = ({ isForm, value, className, ...props }) => {
-    const { text = null } = value || {};
+    const { title = null } = value || {};
     return isForm ? (
         <div
             className={classNames([
@@ -43,9 +43,9 @@ const MarkerField = ({ isForm, value, className, ...props }) => {
                 },
             ])}
         >
-            {text !== null ? (
+            {title !== null ? (
                 <>
-                    <span className={styles.value}>{text}</span>
+                    <span className={styles.value}>{title.body}</span>
                 </>
             ) : (
                 <span className={styles.noValue}>Entrez les infos...</span>

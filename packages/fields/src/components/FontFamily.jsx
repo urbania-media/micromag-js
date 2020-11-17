@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { FormattedMessage } from 'react-intl';
 
 // import * as AppPropTypes from '../../lib/PropTypes';
 import Select from './Select';
@@ -43,7 +44,12 @@ const FontFamily = ({ fonts, value, isForm, className, onChange }) =>
                     <span className={styles.value}>{value}</span>
                 </>
             ) : (
-                <span className={styles.noValue}>Sélectionnez une police</span>
+                <span className={styles.noValue}>
+                    <FormattedMessage
+                        defaultMessage="Select a font family..."
+                        description="No value label"
+                    />
+                </span>
             )}
         </div>
     );

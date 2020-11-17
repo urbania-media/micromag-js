@@ -4,20 +4,19 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getComponentFromName } from '@micromag/core/utils';
-import { useFormsComponents, useFieldsComponents, useScreenFields } from '@micromag/core/contexts';
+import { useFormsComponents, useScreenDefinition, useFieldsManager } from '@micromag/core/contexts';
 
 import setValue from '../../utils/setFieldValue';
+import getFieldFromPath from '../../utils/getFieldFromPath';
 
 const propTypes = {
+    name: PropTypes.string.isRequired,
     value: MicromagPropTypes.component,
-    field: PropTypes.string.isRequired,
     form: PropTypes.string,
     className: PropTypes.string,
     onChange: PropTypes.func,
     gotoFieldForm: PropTypes.func.isRequired,
     closeFieldForm: PropTypes.func.isRequired,
-    formComponents: MicromagPropTypes.components,
-    fieldComponents: MicromagPropTypes.components,
 };
 
 const defaultProps = {
@@ -25,47 +24,27 @@ const defaultProps = {
     value: null,
     className: null,
     onChange: null,
-    formComponents: null,
-    fieldComponents: null,
 };
 
-const FieldForm = ({
-    value,
-    field: fieldPath,
-    form,
-    className,
-    onChange,
-    gotoFieldForm,
-    closeFieldForm,
-    formComponents,
-    fieldComponents,
-}) => {
-    const { type } = value;
-    const fields = useScreenFields(type);
+const FieldForm = ({ name, value, form, className, onChange, gotoFieldForm, closeFieldForm }) => {
+    const fieldsManager = useFieldsManager();
+    const { fields = [] } = useScreenDefinition();
+    const field = getFieldFromPath(name.split('.'), fields, fieldsManager);
+    const { type = null } = field;
+    const { component: fieldComponent = null, id, settings, ...fieldProps } = (type !== null
+        ? fieldsManager.getDefinition(type) || null
+        : null) || {
+        ...field,
+    };
 
-    const field = fieldPath.split('.').reduce(
-        (foundField, key) => {
-            if (foundField === null) {
-                return null;
-            }
-            const { fields: subFields = [], items = null } = foundField;
-            if (items !== null && key.match(/^[0-9]+$/)) {
-                const it = { ...items, name: fieldPath };
-                return it;
-            }
-            return subFields.find(it => it.name === key) || null;
-        },
-        { fields },
-    );
-
-    const fieldValue = get(value, fieldPath, null);
+    const fieldValue = get(value, name, null);
 
     const onFieldChange = useCallback(
-        newFieldValue => {
+        (newFieldValue) => {
             // const { name, fields: subFields = null } = field || {};
             const newValue = setValue(
                 value,
-                fieldPath.split('.'),
+                name.split('.'),
                 newFieldValue,
                 // field === null || subFields !== null ? newFieldValue : newFieldValue[name],
             );
@@ -73,29 +52,20 @@ const FieldForm = ({
                 onChange(newValue);
             }
         },
-        [field, value, fieldPath, onChange],
+        [value, name, onChange],
     );
 
-    const closeForm = useCallback(() => closeFieldForm(fieldPath, form), [
-        fieldPath,
-        form,
-        closeFieldForm,
-    ]);
+    const closeForm = useCallback(() => closeFieldForm(name, form), [name, form, closeFieldForm]);
 
-    const contextFormComponents = useFormsComponents();
-    const finalFormComponents = formComponents || contextFormComponents;
-    const contextFieldComponents = useFieldsComponents();
-    const finalFieldComponents = fieldComponents || contextFieldComponents;
+    const formComponents = useFormsComponents();
     const FormComponent =
-        form !== null
-            ? getComponentFromName(form, finalFormComponents)
-            : getComponentFromName(field.type, finalFieldComponents);
+        form !== null ? getComponentFromName(form, formComponents) : fieldComponent;
 
     return FormComponent !== null ? (
         <FormComponent
-            {...field}
+            {...fieldProps}
             isForm
-            field={fieldPath}
+            name={name}
             className={className}
             value={fieldValue}
             onChange={onFieldChange}

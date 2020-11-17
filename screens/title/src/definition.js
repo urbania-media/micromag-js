@@ -8,8 +8,8 @@ export default [
         id: 'title',
         type: 'screen',
         group: defineMessage({
-            defaultMessage: 'Text',
-            description: 'Text screen group',
+            defaultMessage: 'Title',
+            description: 'Title screen group',
         }),
         title: defineMessage({
             defaultMessage: 'Title',
@@ -28,7 +28,15 @@ export default [
             },
             {
                 name: 'title',
-                type: 'text',
+                type: 'heading',
+                label: defineMessage({
+                    defaultMessage: 'Title',
+                    description: 'Title field label',
+                }),
+            },
+            {
+                name: 'markers',
+                type: 'markers',
                 label: defineMessage({
                     defaultMessage: 'Title',
                     description: 'Title field label',
@@ -48,8 +56,8 @@ export default [
         id: 'title-subtitle',
         type: 'screen',
         group: defineMessage({
-            defaultMessage: 'Text',
-            description: 'Text screen group',
+            defaultMessage: 'Title',
+            description: 'Title screen group',
         }),
         title: defineMessage({
             defaultMessage: 'TitleSubtitle',
@@ -68,7 +76,7 @@ export default [
             },
             {
                 name: 'title',
-                type: 'text',
+                type: 'heading',
                 label: defineMessage({
                     defaultMessage: 'Title',
                     description: 'Title field label',
@@ -76,7 +84,7 @@ export default [
             },
             {
                 name: 'subtitle',
-                type: 'text',
+                type: 'heading',
                 label: defineMessage({
                     defaultMessage: 'Subtitle',
                     description: 'Subtitle field label',
@@ -96,8 +104,8 @@ export default [
         id: 'title-subtitle-credits',
         type: 'screen',
         group: defineMessage({
-            defaultMessage: 'Text',
-            description: 'Text screen group',
+            defaultMessage: 'Title',
+            description: 'Title screen group',
         }),
         title: defineMessage({
             defaultMessage: 'TitleSubtitleCredits',
@@ -116,7 +124,7 @@ export default [
             },
             {
                 name: 'title',
-                type: 'text',
+                type: 'heading',
                 label: defineMessage({
                     defaultMessage: 'Title',
                     description: 'Title field label',
@@ -124,7 +132,7 @@ export default [
             },
             {
                 name: 'subtitle',
-                type: 'text',
+                type: 'heading',
                 label: defineMessage({
                     defaultMessage: 'Subtitle',
                     description: 'Subtitle field label',

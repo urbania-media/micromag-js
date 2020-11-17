@@ -4,28 +4,28 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenPlaceholder } from '@micromag/core/components';
+import { useScreenDefinition } from '@micromag/core/contexts';
 
 import Radios from './Radios';
 
 import styles from '../styles/layout.module.scss';
 
 const propTypes = {
-    screenType: PropTypes.string,
-    layouts: PropTypes.arrayOf(PropTypes.string),
+    // layouts: PropTypes.arrayOf(PropTypes.string),
     value: PropTypes.string,
     className: PropTypes.string,
     onChange: PropTypes.func,
 };
 
 const defaultProps = {
-    screenType: 'title',
-    layouts: [],
+    // layouts: [],
     value: null,
     className: null,
     onChange: null,
 };
 
-const ScreenLayoutField = ({ screenType: type, layouts, value, className, onChange }) => {
+const ScreenLayoutField = ({ value, className, onChange }) => {
+    const { id, layouts = [] } = useScreenDefinition();
     // console.log('screenlay', props);
     return (
         <Radios
@@ -35,7 +35,7 @@ const ScreenLayoutField = ({ screenType: type, layouts, value, className, onChan
                     <div className={styles.layout}>
                         <ScreenPlaceholder
                             screen={{
-                                type,
+                                type: id,
                                 layout,
                             }}
                             width={80}

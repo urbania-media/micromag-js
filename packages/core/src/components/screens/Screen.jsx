@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 
 import * as MicromagPropTypes from '../../PropTypes';
 import { getComponentFromName } from '../../utils';
+import { ScreenProvider } from '../../contexts/ScreenContext';
 import { useScreenComponent } from '../../contexts/ComponentsContext';
 
 const propTypes = {
     screen: MicromagPropTypes.storyComponent.isRequired,
+    renderContext: MicromagPropTypes.renderContext,
     active: PropTypes.bool,
     current: PropTypes.bool,
     component: PropTypes.node,
@@ -19,6 +21,7 @@ const propTypes = {
 
 const defaultProps = {
     active: false,
+    renderContext: null,
     current: false,
     component: null,
     components: null,
@@ -27,25 +30,39 @@ const defaultProps = {
     onNext: null,
 };
 
-const Screen = ({ screen, active, current, components, component, className, onPrevious, onNext }) => {
+const Screen = ({
+    screen,
+    renderContext,
+    active,
+    current,
+    components,
+    component,
+    className,
+    onPrevious,
+    onNext,
+}) => {
     const { type } = screen;
     const CustomScreenComponent =
         components !== null ? getComponentFromName(type, components) || null : null;
     const ContextScreenComponent = useScreenComponent(type);
     const ScreenComponent = CustomScreenComponent || ContextScreenComponent;
 
-    return ScreenComponent !== null ? (
-        <div className={className}>
-            <ScreenComponent
-                {...screen}
-                active={active}
-                current={current}
-                onPrevious={onPrevious}
-                onNext={onNext}
-            />
-        </div>
-    ) : (
-        <div className={className}>{component}</div>
+    return (
+        <ScreenProvider data={screen} renderContext={renderContext}>
+            {ScreenComponent !== null ? (
+                <div className={className}>
+                    <ScreenComponent
+                        {...screen}
+                        active={active}
+                        current={current}
+                        onPrevious={onPrevious}
+                        onNext={onNext}
+                    />
+                </div>
+            ) : (
+                <div className={className}>{component}</div>
+            )}
+        </ScreenProvider>
     );
 };
 

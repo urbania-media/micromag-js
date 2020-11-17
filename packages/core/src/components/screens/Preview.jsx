@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import * as MicromagPropTypes from '../../PropTypes';
 import { ScreenSizeProvider } from '../../contexts/ScreenSizeContext';
-import { ScreenRenderProvider } from '../../contexts/ScreenRenderContext';
+import { ScreenProvider } from '../../contexts/ScreenContext';
 import Screen from './Screen';
 
 import styles from '../../styles/screens/preview.module.scss';
@@ -35,7 +35,7 @@ const ScreenPreview = ({ screen, width, height, className }) => {
     );
     return (
         <ScreenSizeProvider size={screenSize}>
-            <ScreenRenderProvider context="preview">
+            <ScreenProvider data={screen} renderContext="preview">
                 <Screen
                     screen={screen}
                     className={classNames([
@@ -45,7 +45,7 @@ const ScreenPreview = ({ screen, width, height, className }) => {
                         },
                     ])}
                 />
-            </ScreenRenderProvider>
+            </ScreenProvider>
         </ScreenSizeProvider>
     );
 };

@@ -123,7 +123,7 @@ const Fields = ({
                     <Field
                         {...field}
                         key={`field-${name}-${i + 1}`}
-                        name={namespace !== null ? `${namespace}.${name}` : name}
+                        name={namespace !== null ? `${namespace}${name !== null ? `.${name}` : ''}` : name}
                         value={typeof customValue !== 'undefined' ? customValue : fieldValue}
                         errors={typeof customErrors !== 'undefined' ? customErrors : fieldErrors}
                         onChange={customOnChange || fieldOnChange}

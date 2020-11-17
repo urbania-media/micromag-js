@@ -6,7 +6,7 @@ import { useIntl, FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, CollapsablePanel } from '@micromag/core/components';
 import { Fields } from '@micromag/fields';
-import { useScreenFields } from '@micromag/core/contexts';
+import { useScreenDefinition } from '@micromag/core/contexts';
 
 import styles from '../../styles/forms/screen.module.scss';
 
@@ -35,9 +35,8 @@ const ScreenForm = ({
     onClickDelete,
 }) => {
     const intl = useIntl();
-    const { type } = value;
-
-    const fields = useScreenFields(type);
+    const { fields = [] } = useScreenDefinition();
+    console.log(fields);
     const finalOnClickDelete = useCallback(() => {
         if (
             onClickDelete !== null &&

@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { isMessage } from '@micromag/core/utils';
 import { Label } from '@micromag/core/components';
-import { useScreens } from '@micromag/core/contexts';
+import { useScreensManager } from '@micromag/core/contexts';
 
 import Screens from './Screens';
 
@@ -24,12 +24,12 @@ const defaultProps = {
 };
 
 const ScreenTypes = ({ screens, className, onClickItem }) => {
-    const contextScreens = useScreens();
-    const finalScreens = screens || contextScreens;
+    const screensManager = useScreensManager();
+    const finalDefinitions = screens || screensManager.getDefinitions();
     const groups = useMemo(
         () =>
-            finalScreens.reduce((allGroups, screen) => {
-                const { id, title, group = {} } = screen;
+            finalDefinitions.reduce((allGroups, definition) => {
+                const { id, title, group = {} } = definition;
                 const { id: messageId } = group;
 
                 const { id: groupId, name: groupName } = isMessage(group)
@@ -37,8 +37,9 @@ const ScreenTypes = ({ screens, className, onClickItem }) => {
                     : { id: messageId || id, name: title };
                 const groupIndex = allGroups.findIndex((it) => it.id === groupId);
                 const item = {
-                    ...screen,
+                    id,
                     type: id,
+                    definition,
                 };
                 return groupIndex !== -1
                     ? [
@@ -58,7 +59,7 @@ const ScreenTypes = ({ screens, className, onClickItem }) => {
                           },
                       ];
             }, []),
-        [finalScreens],
+        [finalDefinitions],
     );
     return (
         <div
