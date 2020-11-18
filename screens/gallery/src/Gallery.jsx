@@ -63,7 +63,7 @@ const defaultProps = {
     layout: null,
     withLegends: false,
     images: [],
-    spacing: 10,
+    spacing: 20,
     legendMaxLines: 2,
     background: null,
     current: true,
@@ -92,6 +92,8 @@ const GalleryScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const landscape = width > height;
+
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
     const finalSpacing = isPlaceholder || isPreview ? 4 : spacing;
@@ -120,8 +122,7 @@ const GalleryScreen = ({
         if (imagesEl.current.length) {
             setImagesSizes(
                 imagesEl.current.map((imageEl) => {
-                    const imageRect = imageEl.getBoundingClientRect();
-                    return { width: imageRect.width, height: imageRect.height };
+                    return { width: imageEl.offsetWidth, height: imageEl.offsetHeight };
                 }),
             );
         }
@@ -150,7 +151,7 @@ const GalleryScreen = ({
                         transitions={transitions}
                         delay={itemI * transitionStagger}
                         playing={transitionPlaying}
-                        disabled={isPlaceholder || isEmptyImage}
+                        disabled={!isView}
                     >
                         <ScreenElement
                             placeholder={
@@ -183,7 +184,7 @@ const GalleryScreen = ({
                         transitions={transitions}
                         delay={itemI * transitionStagger}
                         playing={transitionPlaying}
-                        disabled={isPlaceholder || isEmptyLegend}
+                        disabled={!isView}
                     >
                         <ScreenElement
                             placeholder={
@@ -227,7 +228,9 @@ const GalleryScreen = ({
                 maxRatio={maxRatio}
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <Grid className={styles.grid} spacing={finalSpacing} items={items} {...grid} />
+                <div className={styles.content} style={ !landscape && isView ? { paddingTop: spacing } : null }>
+                    <Grid className={styles.grid} spacing={finalSpacing} items={items} {...grid} />
+                </div>                
             </Container>
         </div>
     );

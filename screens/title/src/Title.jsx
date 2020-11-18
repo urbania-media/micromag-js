@@ -45,7 +45,7 @@ const defaultProps = {
     ),
     background: null,
     current: true,
-    active: false,
+    active: true,
     maxRatio: 3 / 4,
     transitions: {
         in: 'fade',
@@ -73,6 +73,7 @@ const TitleScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const landscape = width > height;
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
@@ -160,12 +161,12 @@ const TitleScreen = ({
                 <Layout
                     fullscreen
                     verticalAlign={verticalAlign}
-                    style={ isView || isPreview ? { padding: spacing } : null }
+                    style={ isView || isPreview ? { padding: spacing, paddingTop: isView && !landscape ? spacing * 2 : spacing } : null }
                 >
                     <TransitionsStagger
                         transitions={transitions}
                         stagger={transitionStagger}
-                        disabled={!isView && !isPreview}
+                        disabled={!isView}
                         playing={current}
                     >
                         {items}

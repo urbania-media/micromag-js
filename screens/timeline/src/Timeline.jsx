@@ -78,6 +78,8 @@ const Timeline = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const landscape = width > height;
+
     const { isPlaceholder, isPreview, isView, isEdit } = useScreenRenderContext();
 
     const itemsCount = items !== null ? items.length : 0;
@@ -90,7 +92,7 @@ const Timeline = ({
         : 0;
 
     const [imagesLoaded, setImagesLoaded] = useState(0);
-    const ready = isPlaceholder || imagesLoaded === imagesCount;
+    const ready = imagesLoaded === imagesCount;
     const transitionsPlaying = current && ready;
 
     const onImageLoaded = useCallback(() => {
@@ -276,7 +278,6 @@ const Timeline = ({
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.ready]: transitionsPlaying,
                     [styles.isPlaceholder]: isPlaceholder,
                     [styles[`${bulletShape}BulletShape`]]: bulletShape !== null,
                 },
@@ -290,7 +291,7 @@ const Timeline = ({
             />
             <Container width={width} height={height} maxRatio={maxRatio} withScroll>
                 <Scroll className={styles.scroll} verticalAlign="center" disabled={isPlaceholder}>
-                    <Layout style={isView || isPreview ? { padding: spacing } : null}>
+                    <Layout style={isView || isPreview ? { padding: spacing, paddingTop: isView && !landscape ? spacing * 2 : spacing } : null}>
                         {timelineElements}
                     </Layout>
                 </Scroll>

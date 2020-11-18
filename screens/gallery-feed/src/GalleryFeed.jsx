@@ -60,6 +60,7 @@ const GalleryFeedScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const landscape = width > height;
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
     const imagesCount = images.length;
@@ -172,7 +173,7 @@ const GalleryFeedScreen = ({
 
             <Container width={width} height={height} maxRatio={maxRatio} withScroll>
                 <Scroll disabled={isPlaceholder}>
-                    <Layout style={isView || isPreview ? { padding: spacing } : null}>
+                    <Layout style={isView || isPreview ? { padding: spacing, paddingTop: isView && !landscape ? spacing * 2 : spacing } : null}>
                         <TransitionsStagger
                             transitions={transitions}
                             stagger={transitionStagger}

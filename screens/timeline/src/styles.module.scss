@@ -4,9 +4,6 @@
 
 .container {
     position: relative;
-    transition: opacity 0.3s;
-    opacity: 0;
-    pointer-events: none;
 
     .empty {
         @extend %empty;
@@ -60,11 +57,6 @@
     .description,
     .image {
         padding: 8px 0;
-    }
-
-    &.ready {
-        opacity: 1;
-        pointer-events: all;
     }
 
     &.isPlaceholder {
