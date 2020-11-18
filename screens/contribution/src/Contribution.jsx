@@ -28,10 +28,12 @@ const propTypes = {
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
-    contributions: PropTypes.arrayOf(PropTypes.shape({
-        name: PropTypes.string,
-        message: PropTypes.string,
-    })),
+    contributions: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.string,
+            message: PropTypes.string,
+        }),
+    ),
 };
 
 const defaultProps = {
@@ -51,17 +53,17 @@ const defaultProps = {
     contributions: [
         {
             name: 'Nom 1',
-            message: 'Message 1'
+            message: 'Message 1',
         },
         {
             name: 'Nom 2',
-            message: 'Message 2'
+            message: 'Message 2',
         },
         {
             name: 'Nom 3',
-            message: 'Message 3'
+            message: 'Message 3',
         },
-    ]
+    ],
 };
 
 const SurveyScreen = ({
@@ -93,34 +95,46 @@ const SurveyScreen = ({
         submitting: false,
     });
 
-    const onNameChange = useCallback( e => {
-        setUserName(e.currentTarget.value);
-    }, [setUserName]);
+    const onNameChange = useCallback(
+        (e) => {
+            setUserName(e.currentTarget.value);
+        },
+        [setUserName],
+    );
 
-    const onMessageChange = useCallback( e => {
-        setUserMessage(e.currentTarget.value);
-    }, [setUserMessage]);
+    const onMessageChange = useCallback(
+        (e) => {
+            setUserMessage(e.currentTarget.value);
+        },
+        [setUserMessage],
+    );
 
     const isSplitted = layout === 'split';
     const verticalAlign = isSplitted ? null : layout;
 
-    const onSubmit = useCallback((e) => {
-        e.preventDefault();
-        
-        const { submitted = false, submitting = false } = submitState;
-        let tmpSubmit = null;
-        if (!submitted && !submitting) {
-            setSubmitState({ ...submitState, submitting: true });
-            // actual submit here
-            tmpSubmit = setTimeout(setSubmitState, 1000, { submitted: true, submitting: false });
-        }
+    const onSubmit = useCallback(
+        (e) => {
+            e.preventDefault();
 
-        return () => {
-            if (tmpSubmit !== null) {
-                clearTimeout(tmpSubmit);
+            const { submitted = false, submitting = false } = submitState;
+            let tmpSubmit = null;
+            if (!submitted && !submitting) {
+                setSubmitState({ ...submitState, submitting: true });
+                // actual submit here
+                tmpSubmit = setTimeout(setSubmitState, 1000, {
+                    submitted: true,
+                    submitting: false,
+                });
             }
-        };
-    }, [submitState, setSubmitState]);
+
+            return () => {
+                if (tmpSubmit !== null) {
+                    clearTimeout(tmpSubmit);
+                }
+            };
+        },
+        [submitState, setSubmitState],
+    );
 
     // Title
 
@@ -148,7 +162,12 @@ const SurveyScreen = ({
 
     items.push(
         <ScreenElement key="form" placeholder="form">
-            <Transitions transitions={transitions} playing={current} delay={transitionStagger} disabled={!isView}>
+            <Transitions
+                transitions={transitions}
+                playing={current}
+                delay={transitionStagger}
+                disabled={!isView}
+            >
                 <form onSubmit={onSubmit}>
                     <input
                         type="text"
@@ -157,28 +176,35 @@ const SurveyScreen = ({
                             description: 'Your name placeholder',
                         })}
                         value={userName}
-                        onChange={ e => onNameChange(e) }
+                        onChange={(e) => onNameChange(e)}
                     />
                     <textarea
                         placeholder={intl.formatMessage({
                             defaultMessage: 'Your message',
-                            description: 'Your message placeholder'
-                            
+                            description: 'Your message placeholder',
                         })}
                         value={userMessage}
-                        onChange={ e => onMessageChange(e) }
-                    >{userMessage}</textarea>
+                        onChange={(e) => onMessageChange(e)}
+                    >
+                        {userMessage}
+                    </textarea>
                     <button type="submit">
-                        <FormattedMessage defaultMessage="Submit" description="Submit placeholder" />
+                        <FormattedMessage
+                            defaultMessage="Submit"
+                            description="Submit placeholder"
+                        />
                     </button>
                 </form>
                 <div className={styles.contributions}>
-                    { contributions.map( (contribution, contributionI) => 
+                    {contributions.map((contribution, contributionI) => (
                         <div key={`contribution${contributionI}`} className={styles.contribution}>
                             <Text className={styles.contributionName} body={contribution.name} />
-                            <Text className={styles.contributionMessage} body={contribution.message} />
+                            <Text
+                                className={styles.contributionMessage}
+                                body={contribution.message}
+                            />
                         </div>
-                    ) }
+                    ))}
                 </div>
             </Transitions>
         </ScreenElement>,
@@ -208,7 +234,7 @@ const SurveyScreen = ({
                     verticalAlign={verticalAlign}
                     style={isView || isPreview ? { padding: spacing } : null}
                 >
-                    <Scroll verticalAlign="center" disabled={isPlaceholder}>
+                    <Scroll verticalAlign="center" disabled={isPlaceholder} hideArrow={isPreview}>
                         {items}
                     </Scroll>
                 </Layout>

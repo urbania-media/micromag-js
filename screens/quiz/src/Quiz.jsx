@@ -188,12 +188,14 @@ const QuizScreen = ({
         }
     }, [current, answered, onEnableInteraction, onDisableInteraction]);
 
-    useEffect( () => {        
-        if (!current && userAnswerIndex !== null) {
-            setUserAnswerIndex(null);
-            setAnswerTransitionComplete(false);
-        }
-    }, [current, userAnswerIndex, setUserAnswerIndex, setAnswerTransitionComplete]);
+    // reset screen when !current
+
+    // useEffect( () => {        
+    //     if (!current && userAnswerIndex !== null) {
+    //         setUserAnswerIndex(null);
+    //         setAnswerTransitionComplete(false);
+    //     }
+    // }, [current, userAnswerIndex, setUserAnswerIndex, setAnswerTransitionComplete]);
 
     // Question
 
