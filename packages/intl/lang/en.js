@@ -86,6 +86,7 @@ var YQEv1f = "It’s time to start creating!";
 var YS4qTq = "Settings";
 var Z5jrDS = "Letter spacing";
 var ZA6cIU = "Organisation";
+var ZSRV1q = "Medias";
 var ZqwBOx = "Questions";
 var ZtZjF0 = "TitleSubtitle";
 var ZxgNge = "Add an item";
@@ -125,6 +126,7 @@ var l3AfOI = "Due date";
 var l7bkY2 = "Update your profile";
 var lHFBgv = "Monthly";
 var lXV3vP = "TitleSubtitleCredits";
+var lbOsvW = "Publishing";
 var li7ADr = "Result";
 var liyV7Y = "Size";
 var lnATAe = "Choose an organisation";
@@ -190,13 +192,13 @@ var zW7IVm = "Quiz";
 var zongsF = "Publish";
 var messages = {
   "+9akmg": "Audio and Video",
-  "+AEVbJ": "Title",
   "+KWsXh": "Already used",
   "+MPZRu": "Background",
   "+TT1y6": "Clear",
   "+b+e40": "All sources",
   "+pKF4t": "Publish",
   "/0TOL5": "Amount",
+  "/7AJQd": "Theme",
   "/B/0zj": "Last name",
   "/QKI4D": "Stories",
   "/T/UDH": "Remove all",
@@ -210,6 +212,7 @@ var messages = {
   "15GBmG": "All",
   "169xnt": "Audio",
   "17BMn2": "Ranking",
+  "1R16Yb": "Only show published",
   "1dPnDA": "Tags",
   "1ezz2m": "Description",
   "1fBNmY": "ImageTitle",
@@ -219,7 +222,6 @@ var messages = {
   "2HmpAM": "Yearly",
   "2YxE0m": "My stories",
   "2ZOPe+": "Title",
-  "2rcoOT": "Edit",
   "2y24a/": "Save",
   "31zuCS": "Line height",
   "36JWTz": "Create your first story",
@@ -277,6 +279,7 @@ var messages = {
   DVQ1Ls: DVQ1Ls,
   DWEzCv: DWEzCv,
   DgyZlU: DgyZlU,
+  "DhppA/": "Publishing",
   DjIdzH: DjIdzH,
   "E/qtB2": "TextTitle",
   EOuygN: EOuygN,
@@ -362,6 +365,7 @@ var messages = {
   "Yyv+N3": "Settings",
   Z5jrDS: Z5jrDS,
   ZA6cIU: ZA6cIU,
+  ZSRV1q: ZSRV1q,
   ZqwBOx: ZqwBOx,
   ZtZjF0: ZtZjF0,
   ZxgNge: ZxgNge,
@@ -415,6 +419,7 @@ var messages = {
   l7bkY2: l7bkY2,
   lHFBgv: lHFBgv,
   lXV3vP: lXV3vP,
+  lbOsvW: lbOsvW,
   li7ADr: li7ADr,
   liyV7Y: liyV7Y,
   lnATAe: lnATAe,
@@ -449,6 +454,8 @@ var messages = {
   "publish_services.archive": "Archive file",
   "publish_services.archive.filename": "Filename",
   "publish_services.archive.format": "Format",
+  "publish_services.micromag.url": "URL",
+  "publish_services.micromag.visibility": "Visibility",
   qFZuSl: qFZuSl,
   qFoAnS: qFoAnS,
   qHrpc6: qHrpc6,
@@ -480,7 +487,6 @@ var messages = {
   upzOTm: upzOTm,
   vDSsFW: vDSsFW,
   vERejo: vERejo,
-  "vbXW6+": "Settings",
   vrCfAS: vrCfAS,
   vtStU2: vtStU2,
   "w+78Hh": "Go back to login",

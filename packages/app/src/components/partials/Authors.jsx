@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import Avatar from './Avatar';
 
-import * as AppPropTypes from '../../lib/PropTypes';
+// import * as AppPropTypes from '../../lib/PropTypes';
 
 import styles from '../../styles/partials/authors.module.scss';
 
