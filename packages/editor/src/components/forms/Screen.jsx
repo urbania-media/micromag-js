@@ -36,7 +36,6 @@ const ScreenForm = ({
 }) => {
     const intl = useIntl();
     const { fields = [] } = useScreenDefinition();
-    console.log(fields);
     const finalOnClickDelete = useCallback(() => {
         if (
             onClickDelete !== null &&
