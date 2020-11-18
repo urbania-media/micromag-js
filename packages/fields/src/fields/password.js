@@ -1,6 +1,7 @@
 import Text from '../components/Text';
 
 export default {
-    id: 'text',
+    id: 'password',
     component: Text,
+    type: 'password'
 };

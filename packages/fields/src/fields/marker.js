@@ -6,7 +6,7 @@ export default {
     fields: [
         {
             name: 'title',
-            type: 'heading',
+            type: 'heading-element',
         },
         {
             name: 'position',
