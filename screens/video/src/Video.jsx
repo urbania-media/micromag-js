@@ -136,7 +136,7 @@ const VideoScreen = ({
                     top: resizedVideoTop,
                 }}
             >
-                <Transitions playing={transitionPlaying} transitions={transitions}>
+                <Transitions playing={transitionPlaying} transitions={transitions} disabled={!isView}>
                     <Video
                         {...video}
                         ref={apiRef}

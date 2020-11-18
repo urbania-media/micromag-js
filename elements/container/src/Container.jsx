@@ -30,7 +30,7 @@ const Container = ({
     children,
 }) => {
     const currentRatio = width / height;
-    const maxWidth = maxRatio !== null && currentRatio > maxRatio ? height * maxRatio : null;
+    const maxWidth = maxRatio !== null && currentRatio > maxRatio ? Math.round(height * maxRatio) : null;
     const landscape = width > height;
     const landscapeWithScroll = landscape && withScroll;
 

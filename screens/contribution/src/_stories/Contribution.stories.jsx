@@ -11,7 +11,7 @@ const props = {
 };
 
 export default {
-    title: 'Screens/Contribution',
+    title: 'Screens/Contribution (TODO)',
     component: ContributionScreen,
     parameters: {
         intl: true,

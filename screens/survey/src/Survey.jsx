@@ -100,7 +100,7 @@ const SurveyScreen = ({
         [userAnswerIndex, setUserAnswerIndex],
     );
 
-    useEffect( () => {
+    useEffect(() => {
         if (!current) {
             return;
         }
@@ -108,13 +108,13 @@ const SurveyScreen = ({
         if (answered) {
             if (onEnableInteraction !== null) {
                 onEnableInteraction();
-            }            
+            }
         } else if (onDisableInteraction !== null) {
             onDisableInteraction();
         }
     }, [current, answered, onEnableInteraction, onDisableInteraction]);
 
-    useEffect( () => {
+    useEffect(() => {
         if (!current && userAnswerIndex !== null) {
             setUserAnswerIndex(null);
         }
@@ -133,7 +133,7 @@ const SurveyScreen = ({
             isEmpty={isEmptyQuestion}
         >
             {hasQuestion ? (
-                <Transitions transitions={transitions} playing={current}>
+                <Transitions transitions={transitions} playing={current} disabled={!isView}>
                     <Heading {...question} className={styles.question} />
                 </Transitions>
             ) : null}
@@ -197,6 +197,7 @@ const SurveyScreen = ({
                                             transitions={transitions}
                                             playing={current}
                                             delay={(optionI + 1) * transitionStagger}
+                                            disabled={!isView}
                                         >
                                             <div className={styles.optionContent}>
                                                 <div
@@ -269,7 +270,14 @@ const SurveyScreen = ({
                 <Layout
                     fullscreen
                     verticalAlign={verticalAlign}
-                    style={isView || isPreview ? { padding: spacing, paddingTop: isView && !landscape ? spacing * 2 : spacing } : null}
+                    style={
+                        isView || isPreview
+                            ? {
+                                  padding: spacing,
+                                  paddingTop: isView && !landscape ? spacing * 2 : spacing,
+                              }
+                            : null
+                    }
                 >
                     {items}
                 </Layout>

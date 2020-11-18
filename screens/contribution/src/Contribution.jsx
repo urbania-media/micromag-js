@@ -148,7 +148,7 @@ const SurveyScreen = ({
 
     items.push(
         <ScreenElement key="form" placeholder="form">
-            <Transitions transitions={transitions} playing={current} delay={transitionStagger}>
+            <Transitions transitions={transitions} playing={current} delay={transitionStagger} disabled={!isView}>
                 <form onSubmit={onSubmit}>
                     <input
                         type="text"

@@ -2,6 +2,7 @@
 @import '~@micromag/core/scss/placeholders';
 
 .container {
+    @extend %reset-viewer;
     position: relative;
     width: 100%;
     height: 100%;

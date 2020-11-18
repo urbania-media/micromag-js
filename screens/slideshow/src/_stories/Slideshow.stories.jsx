@@ -25,7 +25,7 @@ const props = {
 };
 
 export default {
-    title: 'Screens/Slideshow',
+    title: 'Screens/Slideshow (TODO)',
     component: SlideshowScreen,
     parameters: {
         intl: true,

@@ -90,7 +90,7 @@ const AudioScreen = ({
         element = <PlaceholderAudio className={styles.placeholder} />;
     } else {
         element = (
-            <Transitions transitions={transitions} playing={transitionPlaying} fullscreen>
+            <Transitions transitions={transitions} playing={transitionPlaying} fullscreen disabled={!isView}>
                 <Audio
                     {...audio}
                     ref={apiRef}

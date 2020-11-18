@@ -45,7 +45,7 @@ const defaultProps = {
     ),
     background: null,
     current: true,
-    active: false,
+    active: true,
     maxRatio: 3 / 4,
     transitions: {
         in: 'fade',
@@ -166,7 +166,7 @@ const TitleScreen = ({
                     <TransitionsStagger
                         transitions={transitions}
                         stagger={transitionStagger}
-                        disabled={!isView && !isPreview}
+                        disabled={!isView}
                         playing={current}
                     >
                         {items}
