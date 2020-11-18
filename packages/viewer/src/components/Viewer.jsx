@@ -226,8 +226,6 @@ const Viewer = ({
         [onScreenChange, screenWidth, components, changeIndex, currentIndex, screensInteractionEnabled],
     );
 
-
-
     // Handle landscape scroll updating currentScreen
     // @TODO use Observer
     const onContentScrolled = useCallback(() => {
@@ -289,6 +287,8 @@ const Viewer = ({
                     className={styles.menuDots}
                 />
                 <MenuPreview
+                    width={screenWidth}
+                    height={screenHeight}
                     items={components}
                     current={currentIndex}
                     onClickItem={onClickPreviewMenuItem}

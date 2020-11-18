@@ -58,17 +58,18 @@
         width: 20%;
         height: 0;
         margin: 10px;
+
+        .screenContainer {
+            @extend %fullscreen;
+            transform: scale(0.2);
+            transform-origin: left top;
+            background-color: $gray-900;
+        }
     
         .button {
             @extend %reset-button;
+            @extend %fullscreen;
             display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            padding: 10px 5px;
-            background-color: $gray-800;
         }
     }
 }

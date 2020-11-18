@@ -76,7 +76,7 @@ const RankingScreen = ({
         }
 
         let maxWidth = 0;
-        ranksRefs.current.forEach( rankEl => {
+        ranksRefs.current.forEach((rankEl) => {
             maxWidth = Math.max(maxWidth, rankEl.offsetWidth);
         });
         setMaxSideRankWidth(maxWidth);
@@ -106,7 +106,7 @@ const RankingScreen = ({
                             transitions={transitions}
                             playing={current}
                             delay={transitionStagger * itemI}
-                            disabled={isPreview}
+                            disabled={!isView}
                         >
                             <Heading {...title} />
                         </Transitions>
@@ -149,9 +149,14 @@ const RankingScreen = ({
                     ref={(el) => {
                         ranksRefs.current[itemI] = el;
                     }}
-                    style={ isSideLayout ? { width: maxSideRankWidth } : null }
+                    style={isSideLayout ? { width: maxSideRankWidth } : null}
                 >
-                    <Transitions transitions={transitions} playing={current} delay={transitionStagger * itemI} disabled={!isView}>
+                    <Transitions
+                        transitions={transitions}
+                        playing={current}
+                        delay={transitionStagger * itemI}
+                        disabled={!isView}
+                    >
                         {ascending ? itemI + 1 : itemsCount - itemI}
                     </Transitions>
                 </div>
@@ -182,7 +187,16 @@ const RankingScreen = ({
             />
             <Container width={width} height={height} maxRatio={maxRatio} withScroll>
                 <Scroll className={styles.scroll} verticalAlign="center" disabled={isPlaceholder}>
-                    <Layout style={isView || isPreview ? { padding: spacing, paddingTop: isView && !landscape ? spacing * 2 : spacing } : null}>
+                    <Layout
+                        style={
+                            isView || isPreview
+                                ? {
+                                      padding: spacing,
+                                      paddingTop: isView && !landscape ? spacing * 2 : spacing,
+                                  }
+                                : null
+                        }
+                    >
                         {elements}
                     </Layout>
                 </Scroll>

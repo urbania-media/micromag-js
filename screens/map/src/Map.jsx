@@ -174,7 +174,7 @@ const MapScreen = ({
         const hasDescription = description !== null;
         const hasImage = image !== null;
         element = (
-            <Transitions transitions={transitions} playing={transitionPlaying} fullscreen>
+            <Transitions transitions={transitions} playing={transitionPlaying} fullscreen disabled={!isView}>
                 <Map
                     {...map}
                     markers={markers.map((marker, markerI) => ({

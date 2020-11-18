@@ -92,7 +92,7 @@ const Timeline = ({
         : 0;
 
     const [imagesLoaded, setImagesLoaded] = useState(0);
-    const ready = isPlaceholder || imagesLoaded === imagesCount;
+    const ready = imagesLoaded === imagesCount;
     const transitionsPlaying = current && ready;
 
     const onImageLoaded = useCallback(() => {
@@ -278,7 +278,6 @@ const Timeline = ({
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.ready]: transitionsPlaying,
                     [styles.isPlaceholder]: isPlaceholder,
                     [styles[`${bulletShape}BulletShape`]]: bulletShape !== null,
                 },

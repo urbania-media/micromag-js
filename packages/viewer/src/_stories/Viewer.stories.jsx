@@ -11,6 +11,7 @@ const props = {
     story: {
         components: basic,
     },
+    fullscreen: true,
 };
 
 // const mediumProps = {
@@ -25,6 +26,7 @@ const faceAFaceProps = {
     story: {
         components: faceAFace,
     },
+    fullscreen: true,
 };
 
 export default {

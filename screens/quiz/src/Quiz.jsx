@@ -208,7 +208,7 @@ const QuizScreen = ({
             isEmpty={isEmptyQuestion}
         >
             {hasQuestion ? (
-                <Transitions transitions={transitions} playing={current}>
+                <Transitions transitions={transitions} playing={current} disabled={!isView}>
                     <Heading {...question} className={styles.question} />
                 </Transitions>
             ) : null}
@@ -226,7 +226,7 @@ const QuizScreen = ({
             key="answer"
             className={styles.answer}
             ref={answerRef}
-            style={answerTransitionProps !== null && !answerTransitionComplete ? {
+            style={answerTransitionProps !== null && !answerTransitionComplete && isView ? {
                 transitionDuration: `${resultsTransitionDuration}ms`,
                 height: !answered
                     ? answerTransitionProps.answerInitialHeight
@@ -284,6 +284,7 @@ const QuizScreen = ({
                                             transitions={transitions}
                                             playing={current}
                                             delay={(optionI + 1) * transitionStagger}
+                                            disabled={!isView}
                                         >
                                             <Button
                                                 className={styles.button}

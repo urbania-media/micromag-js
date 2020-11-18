@@ -128,7 +128,7 @@ const ImageScreen = ({
                 isEmpty={isEmpty}
             >
                 {hasImage ? (
-                    <Transitions transitions={transitions} playing={transitionPlaying}>
+                    <Transitions transitions={transitions} playing={transitionPlaying} disabled={!isView}>
                         <Image
                             objectFit={{ fit: 'cover' }}
                             {...image}
@@ -150,7 +150,7 @@ const ImageScreen = ({
                 isEmpty={isEmpty}
             >
                 {hasTitle ? (
-                    <Transitions transitions={transitions} playing={transitionPlaying}>
+                    <Transitions transitions={transitions} playing={transitionPlaying} disabled={!isView}>
                         <div
                             style={!isPlaceholder ? { margin: spacing / 2 } : null}
                         >
@@ -172,7 +172,7 @@ const ImageScreen = ({
                 isEmpty={isEmpty}
             >
                 {hasText ? (
-                    <Transitions transitions={transitions} playing={transitionPlaying}>
+                    <Transitions transitions={transitions} playing={transitionPlaying} disabled={!isView}>
                         <div
                             style={!isPlaceholder ? { margin: spacing / 2 } : null}
                         >
@@ -194,7 +194,7 @@ const ImageScreen = ({
                 isEmpty={isEmpty}
             >
                 {hasLegend ? (
-                    <Transitions transitions={transitions} playing={transitionPlaying}>
+                    <Transitions transitions={transitions} playing={transitionPlaying} disabled={!isView}>
                         <div
                             style={!isPlaceholder ? { margin: spacing / 2 } : null}
                         >

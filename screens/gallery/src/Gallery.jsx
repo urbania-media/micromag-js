@@ -152,7 +152,7 @@ const GalleryScreen = ({
                         transitions={transitions}
                         delay={itemI * transitionStagger}
                         playing={transitionPlaying}
-                        disabled={isPlaceholder || isEmptyImage}
+                        disabled={!isView}
                     >
                         <ScreenElement
                             placeholder={
@@ -185,7 +185,7 @@ const GalleryScreen = ({
                         transitions={transitions}
                         delay={itemI * transitionStagger}
                         playing={transitionPlaying}
-                        disabled={isPlaceholder || isEmptyLegend}
+                        disabled={!isView}
                     >
                         <ScreenElement
                             placeholder={
