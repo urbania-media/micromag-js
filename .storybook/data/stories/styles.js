@@ -40,15 +40,20 @@ export const bodyText = {
 
 export const background = () => ({ color: { color: chance.color({ format: 'rgb' }) } });
 
-export const backgroundImage = ({ rand = false } = {}) => ({
-    color: { color: chance.color({ format: 'rgb' }) },
-    image: {
-        type: 'image',
-        url: `https://picsum.photos/1000/1000/?blur&random=${rand ? Math.random() : 1}`,
-        metadata: {
-            width: 1000,
-            height: 1000,
+export const backgroundImage = ({ rand = false } = {}) => {
+    const random = rand ? Math.random() : 1;
+    return {
+        color: { color: chance.color({ format: 'rgb' }) },
+        image: {
+            type: 'image',
+            name: 'image.jpg',
+            url: `https://picsum.photos/1000/1000/?blur&random=${random}`,
+            thumbnail_url: `https://picsum.photos/200/200/?blur&random=${random}`,
+            metadata: {
+                width: 1000,
+                height: 1000,
+            },
         },
-    },
-    fit: true,
-});
+        fit: true,
+    };
+};

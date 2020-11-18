@@ -39,7 +39,7 @@ const ScreenTypes = ({ screens, className, onClickItem }) => {
                 const item = {
                     id,
                     type: id,
-                    definition,
+                    screen: definition,
                 };
                 return groupIndex !== -1
                     ? [

@@ -7,11 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import {
-    useRoutes,
-    useRoutePush,
-    useUrlGenerator,
-} from '@micromag/core/contexts';
+import { useRoutes, useRoutePush, useUrlGenerator } from '@micromag/core/contexts';
 import { Empty, Button, Navbar } from '@micromag/core/components';
 
 import createScreen from '../utils/createScreen';
@@ -83,11 +79,12 @@ const EditorScreens = ({ story, isVertical, onClickScreen, onChange, className }
         [story, onChange],
     );
 
-    const onClickScreenType = useCallback((e, { definition }) => {
-        createScreenFromDefinition(definition);
-    }, [
-        createScreenFromDefinition,
-    ]);
+    const onClickScreenType = useCallback(
+        (e, definition) => {
+            createScreenFromDefinition(definition);
+        },
+        [createScreenFromDefinition],
+    );
     const onClickAdd = useCallback(() => setCreateModalOpened(true), [setCreateModalOpened]);
     const onCreateModalRequestClose = useCallback(() => setCreateModalOpened(false), [
         setCreateModalOpened,
@@ -122,7 +119,7 @@ const EditorScreens = ({ story, isVertical, onClickScreen, onChange, className }
                         screens.length > 0 ? (
                             <Screens
                                 items={screens.map((it) => ({
-                                    ...it,
+                                    screen: it,
                                     href: url('screen', {
                                         screen: it.id,
                                     }),

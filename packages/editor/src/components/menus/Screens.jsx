@@ -75,7 +75,7 @@ const ScreensMenu = ({
             transform: `scale(${previewScale}, ${previewScale})`,
         };
     }, [previewMinWidth, contentRect]);
-    const itemsElements = items.map(({ onClick = null, title, ...item }, index) => (
+    const itemsElements = items.map(({ onClick = null, title, screen, ...item }, index) => (
         <li
             key={item.id}
             className={classNames([
@@ -92,17 +92,17 @@ const ScreensMenu = ({
                 title={isMessage(title) ? intl.formatMessage(title) : null}
                 onClick={(e) => {
                     if (onClick !== null) {
-                        onClick(e, item, index);
+                        onClick(e, screen, index);
                     }
                     if (onClickItem !== null) {
-                        onClickItem(e, item, index);
+                        onClickItem(e, screen, index);
                     }
                 }}
             >
                 {withPreview ? (
                     <div className={styles.preview} style={previewStyle}>
                         <ScreenPreview
-                            screen={item}
+                            screen={screen}
                             width={previewStyle.width}
                             height={previewStyle.height}
                             className={styles.screen}
