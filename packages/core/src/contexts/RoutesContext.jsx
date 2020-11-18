@@ -34,6 +34,13 @@ export const useRoutePush = () => {
     return push;
 };
 
+export const useRouteBack = () => {
+    const url = useUrlGenerator();
+    const history = useHistory();
+    const back = useCallback(() => history.goBack(), [history, url]);
+    return back;
+};
+
 const propTypes = {
     children: PropTypes.node.isRequired,
     routes: PropTypes.objectOf(PropTypes.string).isRequired,

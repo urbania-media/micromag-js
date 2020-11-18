@@ -11,8 +11,6 @@ import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
 import OrganisationMenu from '../../menus/Organisation';
 
-import styles from '../../../styles/pages/organisation/team.module.scss';
-
 const propTypes = {
     className: PropTypes.string,
 };
@@ -44,7 +42,6 @@ const OrganisationPublishingSettingsPage = ({ className }) => {
                 }
                 sidebar={<OrganisationMenu asList />}
                 className={classNames([
-                    styles.container,
                     {
                         [className]: className !== null,
                     },

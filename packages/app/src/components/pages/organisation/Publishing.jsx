@@ -5,13 +5,12 @@ import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { FormPanel } from '@micromag/core/components';
 
-// import { useOrganisation as useContextOrganisation } from '../../../contexts/OrganisationContext';
+import { useOrganisation as useContextOrganisation } from '../../../contexts/OrganisationContext';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
 import OrganisationMenu from '../../menus/Organisation';
-
-import styles from '../../../styles/pages/organisation/team.module.scss';
+import OrganisationPublishForm from '../../forms/OrganisationPublish';
 
 const propTypes = {
     className: PropTypes.string,
@@ -22,7 +21,7 @@ const defaultProps = {
 };
 
 const OrganisationPublishingPage = ({ className }) => {
-    // const organisation = useContextOrganisation();
+    const organisation = useContextOrganisation();
     // const onChanged = useCallback(() => {
     //     load();
     // }, []);
@@ -44,13 +43,16 @@ const OrganisationPublishingPage = ({ className }) => {
                 }
                 sidebar={<OrganisationMenu asList />}
                 className={classNames([
-                    styles.container,
                     {
                         [className]: className !== null,
                     },
                 ])}
             >
-                <FormPanel>Manage types of publication and pages/api keys</FormPanel>
+                <FormPanel>
+                    {organisation !== null ? (
+                        <OrganisationPublishForm organisation={organisation} />
+                    ) : null}
+                </FormPanel>
             </Page>
         </MainLayout>
     );

@@ -9,7 +9,7 @@ import { useOrganisations } from '@micromag/data';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
-import OrganisationPreview from '../../partials/OrganisationPreview';
+import OrganisationPartial from '../../partials/Organisation';
 import ProfileForm from '../../forms/AccountProfile';
 import DeleteForm from '../../forms/AccountDelete';
 
@@ -24,10 +24,9 @@ const defaultProps = {
 };
 
 const AccountPage = ({ className }) => {
-    const { organisations: userOrganisations } = useOrganisations();
+    const { organisations: userOrganisations, loading } = useOrganisations();
     const organisations = userOrganisations || [];
     const hasOrganisations = organisations.length > 0;
-
     return (
         <MainLayout>
             <Page
@@ -53,6 +52,7 @@ const AccountPage = ({ className }) => {
                 </FormPanel>
                 <div className={styles.separator} />
                 <FormPanel
+                    loading={loading}
                     description={
                         <div className={styles.description}>
                             <h4>
@@ -70,7 +70,7 @@ const AccountPage = ({ className }) => {
                                         />
                                     </div>
                                     {organisations.map((organisation) => (
-                                        <OrganisationPreview
+                                        <OrganisationPartial
                                             className="d-block mb-2 mr-2"
                                             organisation={organisation}
                                             withoutHeader
@@ -86,7 +86,7 @@ const AccountPage = ({ className }) => {
                         </div>
                     }
                 >
-                    {!hasOrganisations ? <DeleteForm /> : null}
+                    {!hasOrganisations && !loading ? <DeleteForm /> : null}
                 </FormPanel>
             </Page>
         </MainLayout>

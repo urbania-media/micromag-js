@@ -36,6 +36,8 @@
 
     "stories": "/stories",
     "stories.create": "/stories/create",
+    "stories.duplicate": "/stories/:story/duplicate",
+    "stories.delete": "/stories/:story/delete",
     "stories.show": "/stories/:story",
     "stories.editor": "/stories/:story/editor",
     "stories.preview": "/stories/:story/preview",

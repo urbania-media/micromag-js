@@ -142,6 +142,7 @@ export const textStyle = PropTypes.shape({
         bold: PropTypes.bool,
         italic: PropTypes.bool,
         underline: PropTypes.bool,
+        upperCase: PropTypes.bool,
     }),
     textAlign,
 });

@@ -29,6 +29,7 @@ export { default as Label } from './partials/Label';
 export { default as Link } from './partials/Link';
 export { default as Media } from './partials/Media';
 export { default as Slideshow } from './partials/Slideshow';
+export { default as Spinner } from './partials/Spinner';
 
 export { default as PlaceholderAdFrame } from './placeholders/AdFrame';
 export { default as PlaceholderAdImage } from './placeholders/AdImage';
