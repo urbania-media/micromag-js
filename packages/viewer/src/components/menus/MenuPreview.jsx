@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key, jsx-a11y/control-has-associated-label */
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -15,6 +15,7 @@ const propTypes = {
     current: PropTypes.number,
     onClickItem: PropTypes.func,
     onClose: PropTypes.func,
+    thumbsPerLine: PropTypes.number,
     className: PropTypes.string,
 };
 
@@ -26,6 +27,7 @@ const defaultProps = {
     current: 0,
     onClickItem: null,
     onClose: null,
+    thumbsPerLine: 4,
     className: null,
 };
 
@@ -37,10 +39,21 @@ const ViewerMenuPreview = ({
     current,
     onClickItem,
     onClose,
+    thumbsPerLine,
     className,
 }) => {
-    // console.log(screenWidth, screenHeight, screenWidth / screenHeight, screenHeight / screenWidth);
-    // const screenSizeRatio = `${100 - (screenWidth / screenHeight) * 100}%`;
+    const screenSizeRatio = `${(screenHeight / screenWidth / thumbsPerLine) * 100}%`;
+
+    const [thumbSize, setThumbSize] = useState(null);
+    const firstScreenContainerRef = useRef(null);
+
+    useEffect( () => {
+        if (firstScreenContainerRef.current !== null) {
+            const { offsetWidth, offsetHeight } = firstScreenContainerRef.current;
+            setThumbSize({ width: offsetWidth, height: offsetHeight });
+        }
+    }, [screenWidth, screenHeight]);
+
     return (
         <div
             className={classNames([
@@ -71,20 +84,28 @@ const ViewerMenuPreview = ({
                                     },
                                 ])}
                                 key={`item-${index}`}
-                                style={{ paddingBottom: '40%' }}
+                                style={{
+                                    paddingBottom: screenSizeRatio,
+                                    width: `${100 / thumbsPerLine}%`,
+                                }}
                             >
-                                <div
-                                    className={styles.screenContainer}
-                                    style={{
-                                        width: screenWidth,
-                                        height: screenHeight,
-                                    }}
-                                >
-                                    <ScreenPreview
-                                        width={screenWidth}
-                                        height={screenHeight}
-                                        screen={item}
-                                    />
+                                <div className={styles.itemContent}>
+                                    <div className={styles.screenContainer} ref={ index === 0 ? firstScreenContainerRef : null }>
+                                        <div
+                                            className={styles.screenContent}
+                                            style={thumbSize !== null ? {
+                                                width: screenWidth,
+                                                height: screenHeight,
+                                                transform: `scale(${thumbSize.width / screenWidth}, ${thumbSize.height / screenHeight})`,
+                                            } : null }
+                                        >
+                                            <ScreenPreview
+                                                width={screenWidth}
+                                                height={screenHeight}
+                                                screen={item}
+                                            />
+                                        </div>
+                                    </div>
                                 </div>
                                 <button
                                     type="button"

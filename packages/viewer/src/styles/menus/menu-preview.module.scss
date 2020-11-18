@@ -50,26 +50,32 @@
         display: flex;
         position: relative;
         flex-wrap: wrap;
-        margin: -10px;
+        margin: -2px;
     }
     
     .item {
         position: relative;
-        width: 20%;
         height: 0;
-        margin: 10px;
+    }
 
-        .screenContainer {
-            @extend %fullscreen;
-            transform: scale(0.2);
-            transform-origin: left top;
-            background-color: $gray-900;
-        }
-    
-        .button {
-            @extend %reset-button;
-            @extend %fullscreen;
-            display: block;
-        }
+    .itemContent {
+        @extend %fullscreen;
+        padding: 2px;
+    }
+
+    .screenContainer {
+        position: relative;
+        height: 100%;
+    }
+
+    .screenContent {
+        transform-origin: left top;
+        background-color: $gray-900;
+    }
+
+    .button {
+        @extend %reset-button;
+        @extend %fullscreen;
+        display: block;
     }
 }

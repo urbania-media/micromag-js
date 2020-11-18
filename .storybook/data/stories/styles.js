@@ -43,13 +43,12 @@ export const background = () => ({ color: { color: chance.color({ format: 'rgb' 
 export const backgroundImage = ({ rand = false } = {}) => ({
     color: { color: chance.color({ format: 'rgb' }) },
     image: {
-        media: {
-            type: 'image',
-            url: `https://picsum.photos/1000/1000/?blur&random=${rand ? Math.random() : 1}`,
-            metadata: {
-                width: 1000,
-                height: 1000,
-            },
+        type: 'image',
+        url: `https://picsum.photos/1000/1000/?blur&random=${rand ? Math.random() : 1}`,
+        metadata: {
+            width: 1000,
+            height: 1000,
         },
     },
+    fit: true
 });
