@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import Editor from '../components/EditorContainer';
 import { ApiProvider } from '../../../data/src/contexts/ApiContext';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
+import faceAFace from '../../../../.storybook/data/stories/faceAFace';
 
 // import manager from '../../../intl/src/manager';
 
-import createDefaultStory from '../utils/createDefaultStory';
+// import createDefaultStory from '../utils/createDefaultStory';
 import '../../../intl/lang/fr';
 
 export default {
@@ -17,7 +18,9 @@ export default {
     },
 };
 
-const defaultStory = createDefaultStory();
+const defaultStory = {
+    components: faceAFace,
+};
 
 const apiBaseUrl = `${window.location.protocol}//${window.location.host}/api`;
 
