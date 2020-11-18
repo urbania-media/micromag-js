@@ -122,8 +122,7 @@ const GalleryScreen = ({
         if (imagesEl.current.length) {
             setImagesSizes(
                 imagesEl.current.map((imageEl) => {
-                    const imageRect = imageEl.getBoundingClientRect();
-                    return { width: imageRect.width, height: imageRect.height };
+                    return { width: imageEl.offsetWidth, height: imageEl.offsetHeight };
                 }),
             );
         }
