@@ -14,8 +14,7 @@ import {
     rankingItems,
 } from './data';
 
-import { header1, header2, bodyText } from './styles';
-
+import { header1, header2, bodyText, background, backgroundImage } from './styles';
 
 const faceAFaceStory = [
     {
@@ -26,6 +25,7 @@ const faceAFaceStory = [
             body: 'Face à face avec votre face',
             textStyle: header1,
         },
+        background: background(),
     },
     {
         id: uuid(),
@@ -40,6 +40,7 @@ const faceAFaceStory = [
             body: '« Soudainement, je m’en crissais de ce que j’allais avoir l’air. »',
             textStyle: header2,
         },
+        background: backgroundImage(),
     },
     {
         id: uuid(),
@@ -55,6 +56,7 @@ const faceAFaceStory = [
             textStyle: bodyText,
         },
         image: tommy,
+        background: background(),
     },
     {
         id: uuid(),
@@ -75,14 +77,6 @@ const faceAFaceStory = [
         },
         options: survey1options,
     },
-    // {
-    //     id: uuid(),
-    //     type: 'audio',
-    //     layout: 'middle',
-    //     title: {
-    //         body: 'Face à face avec votre face',
-    //     },
-    // },
     {
         id: uuid(),
         type: 'title',
@@ -105,6 +99,7 @@ const faceAFaceStory = [
         result: {
             body:
                 'La pose du visage a duré 18 heures, mais il en a fallu 28 de plus pour retirer les visages du donneur et du receveur.',
+            textStyle: bodyText,
         },
     },
     {
@@ -120,6 +115,7 @@ const faceAFaceStory = [
         result: {
             body:
                 'Trois yeux et deux bouches, mais un seul cerveau. Vous avez le droit d’aller googler.',
+            textStyle: bodyText,
         },
     },
     {
@@ -135,6 +131,7 @@ const faceAFaceStory = [
         answerIndex: 3,
         result: {
             body: 'La raison: ces systèmes sont testés sur des Blancs en grand majorité.',
+            textStyle: bodyText,
         },
     },
     {
@@ -151,6 +148,7 @@ const faceAFaceStory = [
         result: {
             body:
                 'Pas qu’on croit pas à la sincérité des agents de bord, mais c’est humainement impossible de sourire constamment quand on est entouré de bébé qui braillent et de voyageurs qui chialent.',
+            textStyle: bodyText,
         },
     },
     {
@@ -167,6 +165,7 @@ const faceAFaceStory = [
         result: {
             body:
                 'Mais l’histoire ne dit pas s’il utilise des filtres Instagram sur les photos de ses patients.',
+            textStyle: bodyText,
         },
     },
     {
@@ -182,6 +181,7 @@ const faceAFaceStory = [
         result: {
             body:
                 'Une grande partie de ces caméras sont équipées de technologies de reconnaissance faciale qui laisse entrevoir un avenir un peu trop proche de Black Mirror.',
+            textStyle: bodyText,
         },
     },
     {
@@ -189,7 +189,7 @@ const faceAFaceStory = [
         type: 'title-subtitle',
         layout: 'middle',
         title: {
-            body: 'Top 3 des secrets des super-recognizers',
+            body: 'Top 3 des secrets des <br/>super-recognizers',
             textStyle: header1,
         },
         subtitle: {
