@@ -182,7 +182,7 @@ const RankingScreen = ({
             />
             <Container width={width} height={height} maxRatio={maxRatio} withScroll>
                 <Scroll className={styles.scroll} verticalAlign="center" disabled={isPlaceholder}>
-                    <Layout style={isView || isPreview ? { padding: spacing, paddingTop: isView && !landscape ? spacing * 2 : null } : null}>
+                    <Layout style={isView || isPreview ? { padding: spacing, paddingTop: isView && !landscape ? spacing * 2 : spacing } : null}>
                         {elements}
                     </Layout>
                 </Scroll>

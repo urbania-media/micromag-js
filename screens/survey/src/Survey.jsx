@@ -269,7 +269,7 @@ const SurveyScreen = ({
                 <Layout
                     fullscreen
                     verticalAlign={verticalAlign}
-                    style={isView || isPreview ? { padding: spacing, paddingTop: isView && !landscape ? spacing * 2 : null } : null}
+                    style={isView || isPreview ? { padding: spacing, paddingTop: isView && !landscape ? spacing * 2 : spacing } : null}
                 >
                     {items}
                 </Layout>

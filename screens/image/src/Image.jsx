@@ -236,7 +236,7 @@ const ImageScreen = ({
                 <Layout
                     className={styles.layout}
                     fullscreen
-                    style={!isPlaceholder ? { padding: spacing / 2, paddingTop: !landscape ? spacing * 1.5  : null } : null}
+                    style={!isPlaceholder ? { padding: spacing / 2, paddingTop: !landscape ? spacing * 1.5  : spacing / 2 } : null}
                 >
                     {items}
                 </Layout>

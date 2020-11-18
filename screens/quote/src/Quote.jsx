@@ -125,7 +125,7 @@ const QuoteScreen = ({
                 <Layout
                     fullscreen
                     verticalAlign={verticalAlign}
-                    style={isPreview || isView ? { padding: spacing, paddingTop: isView && !landscape ? spacing * 2 : null } : null}
+                    style={isPreview || isView ? { padding: spacing, paddingTop: isView && !landscape ? spacing * 2 : spacing } : null}
                 >
                     <TransitionsStagger
                         transitions={transitions}

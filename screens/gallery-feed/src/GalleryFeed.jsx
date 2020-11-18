@@ -173,7 +173,7 @@ const GalleryFeedScreen = ({
 
             <Container width={width} height={height} maxRatio={maxRatio} withScroll>
                 <Scroll disabled={isPlaceholder}>
-                    <Layout style={isView || isPreview ? { padding: spacing, paddingTop: isView && !landscape ? spacing * 2 : null } : null}>
+                    <Layout style={isView || isPreview ? { padding: spacing, paddingTop: isView && !landscape ? spacing * 2 : spacing } : null}>
                         <TransitionsStagger
                             transitions={transitions}
                             stagger={transitionStagger}
