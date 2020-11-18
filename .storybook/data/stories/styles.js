@@ -52,4 +52,5 @@ export const backgroundImage = ({ rand = false } = {}) => ({
             },
         },
     },
+    fit: true,
 });
