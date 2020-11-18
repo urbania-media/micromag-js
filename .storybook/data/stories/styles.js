@@ -1,19 +1,23 @@
+import Chance from 'chance';
+
+const chance  = new Chance();
+
 export const header1 = {
     fontFamily: '"Garage Gothic", Arial',
-    fontSize: 55,
+    fontSize: 50,
     fontStyle: {
         bold: true,
         uppercase: true,
     },
     uppercase: true,
+    lineHeight: 1,
 };
 
 export const header2 = {
     fontFamily: '"Garage Gothic", Arial',
-    fontSize: 40,
-    fontStyle: {
-        bold: true,
-    },
+    fontSize: 35,
+    uppercase: true,
+    lineHeight: 1,
 };
 
 export const header3 = {
@@ -22,6 +26,7 @@ export const header3 = {
     fontStyle: {
         bold: false,
     },
+    lineHeight: 1,
 };
 
 export const bodyText = {
@@ -30,4 +35,25 @@ export const bodyText = {
     fontStyle: {
         bold: false,
     },
+    lineHeight: 1.1,
+};
+
+export const background = () => ({ color: { color: chance.color({ format: 'rgb' }) } });
+
+export const backgroundImage = ({ rand = false } = {}) => {
+    const random = rand ? Math.random() : 1;
+    return {
+        color: { color: chance.color({ format: 'rgb' }) },
+        image: {
+            type: 'image',
+            name: 'image.jpg',
+            url: `https://picsum.photos/1000/1000/?blur&random=${random}`,
+            thumbnail_url: `https://picsum.photos/200/200/?blur&random=${random}`,
+            metadata: {
+                width: 1000,
+                height: 1000,
+            },
+        },
+        fit: true,
+    };
 };

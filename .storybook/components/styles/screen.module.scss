@@ -2,25 +2,22 @@
 @import '~@micromag/core/scss/placeholders';
 
 .container {
-    .screen {
-        @extend %fullscreen;    
-        box-sizing: content-box;
-        overflow: hidden;
-    }
-
     &.withSize {
         position: relative;
     }
+}
 
-    &.withScroll {
-        .screen {
-            overflow: auto;
-        }
+.screen {
+    @extend %fullscreen;
+    @extend %reset-viewer;
+    box-sizing: content-box;
+    overflow: hidden;
+
+    .withScroll & {
+        overflow: auto;
     }
 
-    &.withBorder {
-        .screen {
-            border: solid 1px $gray-200;
-        }        
+    .withBorder & {
+        border: solid 1px $gray-200;        
     }
 }

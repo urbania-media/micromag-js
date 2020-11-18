@@ -86,6 +86,7 @@ const QuizScreen = ({
     onDisableInteraction,
 }) => {
     const { width, height } = useScreenSize();
+    const landscape = width > height;
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
     const hasQuestion = question !== null;
@@ -187,12 +188,14 @@ const QuizScreen = ({
         }
     }, [current, answered, onEnableInteraction, onDisableInteraction]);
 
-    useEffect( () => {        
-        if (!current && userAnswerIndex !== null) {
-            setUserAnswerIndex(null);
-            setAnswerTransitionComplete(false);
-        }
-    }, [current, userAnswerIndex, setUserAnswerIndex, setAnswerTransitionComplete]);
+    // reset screen when !current
+
+    // useEffect( () => {        
+    //     if (!current && userAnswerIndex !== null) {
+    //         setUserAnswerIndex(null);
+    //         setAnswerTransitionComplete(false);
+    //     }
+    // }, [current, userAnswerIndex, setUserAnswerIndex, setAnswerTransitionComplete]);
 
     // Question
 
@@ -207,7 +210,7 @@ const QuizScreen = ({
             isEmpty={isEmptyQuestion}
         >
             {hasQuestion ? (
-                <Transitions transitions={transitions} playing={current}>
+                <Transitions transitions={transitions} playing={current} disabled={!isView}>
                     <Heading {...question} className={styles.question} />
                 </Transitions>
             ) : null}
@@ -225,7 +228,7 @@ const QuizScreen = ({
             key="answer"
             className={styles.answer}
             ref={answerRef}
-            style={answerTransitionProps !== null && !answerTransitionComplete ? {
+            style={answerTransitionProps !== null && !answerTransitionComplete && isView ? {
                 transitionDuration: `${resultsTransitionDuration}ms`,
                 height: !answered
                     ? answerTransitionProps.answerInitialHeight
@@ -283,6 +286,7 @@ const QuizScreen = ({
                                             transitions={transitions}
                                             playing={current}
                                             delay={(optionI + 1) * transitionStagger}
+                                            disabled={!isView}
                                         >
                                             <Button
                                                 className={styles.button}
@@ -348,7 +352,7 @@ const QuizScreen = ({
                 <Layout
                     fullscreen
                     verticalAlign={verticalAlign}
-                    style={isView || isPreview ? { padding: spacing } : null}
+                    style={isView || isPreview ? { padding: spacing, paddingTop: isView && !landscape ? spacing * 2 : spacing } : null}
                 >
                     {items}
                 </Layout>

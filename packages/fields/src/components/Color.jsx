@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { getStyleFromColor } from '@micromag/core/utils';
+import tinycolor from 'tinycolor2';
 
 import ColorPicker from './ColorPicker';
 
@@ -27,6 +28,7 @@ const defaultProps = {
 
 const ColorField = ({ value, onChange, isForm, className }) => {
     const { color = null, alpha = null } = value || {};
+    const hexColor = useMemo(() => color !== null ? tinycolor(color).toHexString() : null, [color]);
     return isForm ? (
         <div className={classNames(['p-2', 'bg-light', styles.form])}>
             <ColorPicker value={value} onChange={onChange} />
@@ -40,9 +42,9 @@ const ColorField = ({ value, onChange, isForm, className }) => {
                 },
             ])}
         >
-            {color !== null || alpha !== null ? (
+            {hexColor !== null || alpha !== null ? (
                 <>
-                    <span className={styles.value}>{color}</span>
+                    <span className={styles.value}>{hexColor}</span>
                     <span className={styles.preview}>
                         <span
                             className={styles.color}

@@ -60,8 +60,9 @@ const QuoteScreen = ({
 }) => {
 
     const { width, height } = useScreenSize();
+    const landscape = width > height;
 
-    const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
     const hasQuote = quote !== null;
     const hasAuthor = author !== null;
@@ -124,7 +125,7 @@ const QuoteScreen = ({
                 <Layout
                     fullscreen
                     verticalAlign={verticalAlign}
-                    style={isView ? { padding: spacing } : null}
+                    style={isPreview || isView ? { padding: spacing, paddingTop: isView && !landscape ? spacing * 2 : spacing } : null}
                 >
                     <TransitionsStagger
                         transitions={transitions}

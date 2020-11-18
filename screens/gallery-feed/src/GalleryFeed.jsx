@@ -60,6 +60,7 @@ const GalleryFeedScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const landscape = width > height;
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
     const imagesCount = images.length;
@@ -85,7 +86,6 @@ const GalleryFeedScreen = ({
     const { width: firstImageRefWidth } = contentRect || {};
 
     finalImages.forEach((imageEl, index) => {
-
         const { image = null, legend = null } = imageEl || {};
         const hasImage = image !== null;
         const hasLegend = legend !== null;
@@ -100,12 +100,8 @@ const GalleryFeedScreen = ({
                 emptyClassName={styles.empty}
                 isEmpty={isEdit && !hasImage}
             >
-                <div className={styles.imageContainer} ref={ index === 0 ? firstImageRef : null }>
-                    <Image
-                        {...image}
-                        width={firstImageRefWidth}
-                        onLoaded={onImageLoaded}
-                    />
+                <div className={styles.imageContainer} ref={index === 0 ? firstImageRef : null}>
+                    <Image {...image} width={firstImageRefWidth} onLoaded={onImageLoaded} />
                 </div>
             </ScreenElement>
         );
@@ -126,12 +122,16 @@ const GalleryFeedScreen = ({
                     emptyClassName={styles.empty}
                     isEmpty={isEdit && !hasLegend}
                 >
-                    <div className={styles.legend} style={{
-                        marginTop: !isReversed || index > 0 ? spacing / 2 : 0,
-                        marginBottom: isReversed || index < finalImages.length - 1 ? spacing / 2 : 0
-                    }}>
+                    <div
+                        className={styles.legend}
+                        style={{
+                            marginTop: !isReversed || index > 0 ? spacing / 2 : 0,
+                            marginBottom:
+                                isReversed || index < finalImages.length - 1 ? spacing / 2 : 0,
+                        }}
+                    >
                         <Text {...legend} />
-                    </div>                    
+                    </div>
                 </ScreenElement>
             );
         }
@@ -149,8 +149,8 @@ const GalleryFeedScreen = ({
         }
 
         if (!isPlaceholder && index < finalImages.length - 1) {
-            items.push(<div key={`spacing-${index}`} style={{height: spacing}} />);
-        }        
+            items.push(<div key={`spacing-${index}`} style={{ height: spacing }} />);
+        }
     });
 
     return (
@@ -171,8 +171,17 @@ const GalleryFeedScreen = ({
             />
 
             <Container width={width} height={height} maxRatio={maxRatio} withScroll>
-                <Scroll disabled={isPlaceholder}>
-                    <Layout style={isView || isPreview ? { padding: spacing } : null}>
+                <Scroll disabled={isPlaceholder} hideArrow={isPreview}>
+                    <Layout
+                        style={
+                            isView || isPreview
+                                ? {
+                                      padding: spacing,
+                                      paddingTop: isView && !landscape ? spacing * 2 : spacing,
+                                  }
+                                : null
+                        }
+                    >
                         <TransitionsStagger
                             transitions={transitions}
                             stagger={transitionStagger}
@@ -182,7 +191,7 @@ const GalleryFeedScreen = ({
                             {items}
                         </TransitionsStagger>
                     </Layout>
-                </Scroll> 
+                </Scroll>
             </Container>
         </div>
     );

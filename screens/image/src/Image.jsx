@@ -72,6 +72,7 @@ const ImageScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const landscape = width > height;
 
     const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
 
@@ -127,7 +128,7 @@ const ImageScreen = ({
                 isEmpty={isEmpty}
             >
                 {hasImage ? (
-                    <Transitions transitions={transitions} playing={transitionPlaying}>
+                    <Transitions transitions={transitions} playing={transitionPlaying} disabled={!isView}>
                         <Image
                             objectFit={{ fit: 'cover' }}
                             {...image}
@@ -149,7 +150,7 @@ const ImageScreen = ({
                 isEmpty={isEmpty}
             >
                 {hasTitle ? (
-                    <Transitions transitions={transitions} playing={transitionPlaying}>
+                    <Transitions transitions={transitions} playing={transitionPlaying} disabled={!isView}>
                         <div
                             style={!isPlaceholder ? { margin: spacing / 2 } : null}
                         >
@@ -171,7 +172,7 @@ const ImageScreen = ({
                 isEmpty={isEmpty}
             >
                 {hasText ? (
-                    <Transitions transitions={transitions} playing={transitionPlaying}>
+                    <Transitions transitions={transitions} playing={transitionPlaying} disabled={!isView}>
                         <div
                             style={!isPlaceholder ? { margin: spacing / 2 } : null}
                         >
@@ -193,7 +194,7 @@ const ImageScreen = ({
                 isEmpty={isEmpty}
             >
                 {hasLegend ? (
-                    <Transitions transitions={transitions} playing={transitionPlaying}>
+                    <Transitions transitions={transitions} playing={transitionPlaying} disabled={!isView}>
                         <div
                             style={!isPlaceholder ? { margin: spacing / 2 } : null}
                         >
@@ -235,7 +236,7 @@ const ImageScreen = ({
                 <Layout
                     className={styles.layout}
                     fullscreen
-                    style={!isPlaceholder ? { padding: spacing / 2 } : null}
+                    style={!isPlaceholder ? { padding: spacing / 2, paddingTop: isView && !landscape ? spacing * 1.5  : spacing / 2 } : null}
                 >
                     {items}
                 </Layout>

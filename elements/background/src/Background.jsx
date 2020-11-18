@@ -79,7 +79,8 @@ const Background = ({
     };
 
     if (image !== null) {
-        finalStyle.backgroundImage = `url("${image.media.url}")`;
+        const { url: imageUrl = null } = image || {};
+        finalStyle.backgroundImage = `url("${imageUrl}")`;
         finalStyle.backgroundRepeat = repeat ? 'repeat' : 'no-repeat';
         finalStyle.backgroundPosition = [horizontalAlign, verticalAlign].join(' ');
 

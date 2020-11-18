@@ -77,6 +77,8 @@ const SurveyScreen = ({
     onDisableInteraction,
 }) => {
     const { width, height } = useScreenSize();
+    const landscape = width > height;
+
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
     const hasQuestion = question !== null;
@@ -98,7 +100,7 @@ const SurveyScreen = ({
         [userAnswerIndex, setUserAnswerIndex],
     );
 
-    useEffect( () => {
+    useEffect(() => {
         if (!current) {
             return;
         }
@@ -106,17 +108,19 @@ const SurveyScreen = ({
         if (answered) {
             if (onEnableInteraction !== null) {
                 onEnableInteraction();
-            }            
+            }
         } else if (onDisableInteraction !== null) {
             onDisableInteraction();
         }
     }, [current, answered, onEnableInteraction, onDisableInteraction]);
 
-    useEffect( () => {
-        if (!current && userAnswerIndex !== null) {
-            setUserAnswerIndex(null);
-        }
-    }, [current, userAnswerIndex, setUserAnswerIndex]);
+    // reset screen when !current
+
+    // useEffect(() => {
+    //     if (!current && userAnswerIndex !== null) {
+    //         setUserAnswerIndex(null);
+    //     }
+    // }, [current, userAnswerIndex, setUserAnswerIndex]);
 
     // Question
 
@@ -131,7 +135,7 @@ const SurveyScreen = ({
             isEmpty={isEmptyQuestion}
         >
             {hasQuestion ? (
-                <Transitions transitions={transitions} playing={current}>
+                <Transitions transitions={transitions} playing={current} disabled={!isView}>
                     <Heading {...question} className={styles.question} />
                 </Transitions>
             ) : null}
@@ -153,7 +157,7 @@ const SurveyScreen = ({
         buttonsRefs.current.forEach((button, buttonI) => {
             const label = labelsRefs.current[buttonI];
             const borderWidth = button.offsetWidth - button.clientWidth;
-            const totalWidth = borderWidth + label.offsetWidth + 1;
+            const totalWidth = borderWidth + label.offsetWidth + 2;
             maxWidth = Math.max(maxWidth, totalWidth);
             setButtonMaxWidth(maxWidth);
         });
@@ -195,6 +199,7 @@ const SurveyScreen = ({
                                             transitions={transitions}
                                             playing={current}
                                             delay={(optionI + 1) * transitionStagger}
+                                            disabled={!isView}
                                         >
                                             <div className={styles.optionContent}>
                                                 <div
@@ -267,7 +272,14 @@ const SurveyScreen = ({
                 <Layout
                     fullscreen
                     verticalAlign={verticalAlign}
-                    style={isView || isPreview ? { padding: spacing } : null}
+                    style={
+                        isView || isPreview
+                            ? {
+                                  padding: spacing,
+                                  paddingTop: isView && !landscape ? spacing * 2 : spacing,
+                              }
+                            : null
+                    }
                 >
                     {items}
                 </Layout>

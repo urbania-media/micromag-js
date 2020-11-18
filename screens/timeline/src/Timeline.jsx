@@ -78,6 +78,8 @@ const Timeline = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const landscape = width > height;
+
     const { isPlaceholder, isPreview, isView, isEdit } = useScreenRenderContext();
 
     const itemsCount = items !== null ? items.length : 0;
@@ -90,7 +92,7 @@ const Timeline = ({
         : 0;
 
     const [imagesLoaded, setImagesLoaded] = useState(0);
-    const ready = isPlaceholder || imagesLoaded === imagesCount;
+    const ready = imagesLoaded === imagesCount;
     const transitionsPlaying = current && ready;
 
     const onImageLoaded = useCallback(() => {
@@ -115,14 +117,14 @@ const Timeline = ({
         const isEmptyImage = isEdit && !hasImage;
 
         const elementsTypes = (layout === 'normal' ? 'title-description-image' : layout).split('-');
-        
+
         const titleIndex = elementsTypes.indexOf('title');
         const imageIndex = elementsTypes.indexOf('image');
 
         if (!illustrated) {
             elementsTypes.splice(imageIndex, 1);
         }
-        
+
         const typesCount = elementsTypes.length;
 
         return (
@@ -152,9 +154,7 @@ const Timeline = ({
                                             emptyClassName={styles.empty}
                                             isEmpty={isEmptyTitle}
                                         >
-                                            {hasElement ? (
-                                                <Heading {...title} />
-                                            ) : null}
+                                            {hasElement ? <Heading {...title} /> : null}
                                         </ScreenElement>
                                     </div>
                                 );
@@ -175,9 +175,7 @@ const Timeline = ({
                                             emptyClassName={styles.empty}
                                             isEmpty={isEmptyDescription}
                                         >
-                                            {hasElement ? (
-                                                <Text {...description} />
-                                            ) : null}
+                                            {hasElement ? <Text {...description} /> : null}
                                         </ScreenElement>
                                     </div>
                                 );
@@ -231,7 +229,9 @@ const Timeline = ({
                                                 [styles.hidden]: topLineHidden,
                                             },
                                         ])}
-                                        style={{ backgroundColor: !topLineHidden ? lineColor : null }}
+                                        style={{
+                                            backgroundColor: !topLineHidden ? lineColor : null,
+                                        }}
                                     />
                                     {type === 'title' ? (
                                         <div
@@ -276,7 +276,6 @@ const Timeline = ({
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.ready]: transitionsPlaying,
                     [styles.isPlaceholder]: isPlaceholder,
                     [styles[`${bulletShape}BulletShape`]]: bulletShape !== null,
                 },
@@ -289,8 +288,22 @@ const Timeline = ({
                 playing={(isView && current) || (isEdit && active)}
             />
             <Container width={width} height={height} maxRatio={maxRatio} withScroll>
-                <Scroll className={styles.scroll} verticalAlign="center" disabled={isPlaceholder}>
-                    <Layout style={isView || isPreview ? { padding: spacing } : null}>
+                <Scroll
+                    className={styles.scroll}
+                    verticalAlign="center"
+                    disabled={isPlaceholder}
+                    hideArrow={isPreview}
+                >
+                    <Layout
+                        style={
+                            isView || isPreview
+                                ? {
+                                      padding: spacing,
+                                      paddingTop: isView && !landscape ? spacing * 2 : spacing,
+                                  }
+                                : null
+                        }
+                    >
                         {timelineElements}
                     </Layout>
                 </Scroll>

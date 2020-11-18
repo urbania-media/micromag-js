@@ -11,6 +11,7 @@ const propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
     disabled: PropTypes.bool,
+    hideArrow: PropTypes.bool,
     verticalAlign: PropTypes.oneOf(['top', 'center', 'bottom']),
     className: PropTypes.string,
     children: PropTypes.node,
@@ -20,12 +21,13 @@ const defaultProps = {
     width: null,
     height: null,
     disabled: false,
+    hideArrow: false,
     verticalAlign: null,
     className: null,
     children: null,
 };
 
-const Scroll = ({ width, height, disabled, verticalAlign, className, children }) => {
+const Scroll = ({ width, height, disabled, hideArrow, verticalAlign, className, children }) => {
     const finalStyle = {
         width,
         height,
@@ -46,9 +48,9 @@ const Scroll = ({ width, height, disabled, verticalAlign, className, children })
 
     useEffect( () => {
         if (scrolleeRef.current !== null && scrollableHeight > 0) {
-            setWithArrow(Math.round(scrolleeRef.current.offsetHeight) > Math.round(scrollableHeight));
+            setWithArrow(Math.round(scrolleeRef.current.offsetHeight) > Math.round(scrollableHeight) && !hideArrow);
         }
-    }, [scrollableHeight, setWithArrow]);
+    }, [scrollableHeight, setWithArrow, hideArrow]);
 
     return (
         <div

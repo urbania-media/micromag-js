@@ -15,7 +15,8 @@
     }
     
     .content {
-        overflow: auto;    
+        @extend %hide-scrollbars;
+        overflow: auto;
     }
     
     .title {
@@ -49,25 +50,32 @@
         display: flex;
         position: relative;
         flex-wrap: wrap;
-        margin: -10px;
+        margin: -2px;
     }
     
     .item {
         position: relative;
-        width: 20%;
         height: 0;
-        margin: 10px;
-    
-        .button {
-            @extend %reset-button;
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            padding: 10px 5px;
-            background-color: $gray-800;
-        }
+    }
+
+    .itemContent {
+        @extend %fullscreen;
+        padding: 2px;
+    }
+
+    .screenContainer {
+        position: relative;
+        height: 100%;
+    }
+
+    .screenContent {
+        transform-origin: left top;
+        background-color: $gray-900;
+    }
+
+    .button {
+        @extend %reset-button;
+        @extend %fullscreen;
+        display: block;
     }
 }
