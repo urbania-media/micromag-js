@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { basic, medium } from '../../../../.storybook/data/screens';
+import { basic/* , medium */ } from '../../../../.storybook/data/screens';
 import faceAFace from '../../../../.storybook/data/stories/faceAFace';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 
@@ -13,12 +13,12 @@ const props = {
     },
 };
 
-const mediumProps = {
-    screenId: medium[0].id,
-    story: {
-        components: medium,
-    },
-};
+// const mediumProps = {
+//     screenId: medium[0].id,
+//     story: {
+//         components: medium,
+//     },
+// };
 
 const faceAFaceProps = {
     screenId: faceAFace[0].id,
@@ -47,4 +47,4 @@ export const Tap = () => <Viewer {...props} interactions={['tap']} />;
 
 export const Both = () => <Viewer {...props} interactions={['swipe', 'tap']} />;
 
-export const SwipeMedium = () => <Viewer {...mediumProps} interactions={['swipe']} />;
+// export const SwipeMedium = () => <Viewer {...mediumProps} interactions={['swipe']} />;
