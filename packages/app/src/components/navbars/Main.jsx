@@ -1,60 +1,41 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
 import { useOrganisations } from '@micromag/data';
-import { Navbar, Breadcrumb } from '@micromag/core/components';
+import { Navbar } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import { useAuth as useAuthContext } from '../../contexts/AuthContext';
-import { useOrganisation as useOrganisationContext } from '../../contexts/OrganisationContext';
 
 import MainGuestMenu from '../menus/MainGuest';
 import MainMenu from '../menus/Main';
+import Breadcrumbs from '../partials/Breadcrumbs';
 
 import logo from '../../assets/logo-beta.svg';
 
 const propTypes = {
+    nav: MicromagPropTypes.breadcrumbs,
     className: PropTypes.string,
 };
 
 const defaultProps = {
+    nav: null,
     className: null,
 };
 
-const MainNavbar = ({ className }) => {
+const MainNavbar = ({ nav, className }) => {
     const { loggedIn } = useAuthContext();
     const url = useUrlGenerator();
-    const organisation = useOrganisationContext() || null;
     const { organisations } = useOrganisations();
 
     return (
         <Navbar
-            brand={<img src={logo} height="30" alt="Micromag" />}
-            brandLink={organisations !== null ? url('organisations') : url('home')}
-            breadcrumbs={
-                organisation !== null ? (
-                    <Breadcrumb
-                        items={[
-                            {
-                                id: 'current',
-                                url: url('home'),
-                                label: organisation.name,
-                            },
-                        ]}
-                    />
-                ) : (
-                    <Breadcrumb
-                        items={[
-                            {
-                                id: 'current',
-                                url: url('home'),
-                                label: <FormattedMessage defaultMessage="My micromags" />,
-                            },
-                        ]}
-                    />
-                )
+            brand={
+                <img className="d-none d-lg-inline-block" src={logo} height="30" alt="Micromag" />
             }
+            brandLink={organisations !== null ? url('organisations') : url('home')}
+            breadcrumbs={<Breadcrumbs items={nav} />}
             theme="primary"
             className={className}
         >

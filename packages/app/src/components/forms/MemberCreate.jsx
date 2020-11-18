@@ -101,7 +101,7 @@ const MemberCreate = ({ organisation, className, onCreated }) => {
                                     >
                                         <FormattedMessage
                                             defaultMessage="Invite"
-                                            description="Invite member prefix"
+                                            description="Invite member prefix button"
                                         />{' '}
                                         <strong>{email}</strong>
                                     </Button>

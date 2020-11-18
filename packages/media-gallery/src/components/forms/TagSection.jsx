@@ -45,12 +45,11 @@ const TagSection = ({ tags, parent, onChange, className }) => {
                       const itemClassNames = classNames([
                           'btn',
                           'btn-sm',
-
                           'mb-1',
                           'mr-1',
                           {
-                              'btn-primary': active === true,
-                              'btn-outline-primary': active === false,
+                              'btn-secondary': active === true,
+                              'btn-outline-secondary': active === false,
                           },
                       ]);
 

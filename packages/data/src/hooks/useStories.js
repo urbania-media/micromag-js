@@ -9,12 +9,13 @@ const useStories = (query = null, page = null, count = null, opts) => {
         (requestedPage = null) => api.stories.get(query, requestedPage, count),
         [api, query, count],
     );
-    const { items, pageItems, ...request } = useItems({
+    const { items, pageItems, pages, ...request } = useItems({
         getPage: page !== null ? getItems : null,
         getItems: page === null ? getItems : null,
         page,
         ...opts,
     });
+
     return {
         stories: page !== null ? pageItems : items,
         allStories: items,

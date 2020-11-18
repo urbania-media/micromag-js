@@ -97,10 +97,7 @@ const OrganisationInviteForm = ({ organisation, className, onContinue }) => {
                 </div>
                 <hr />
                 <Button className="btn btn-primary" onClick={onSubmit}>
-                    <FormattedMessage
-                        defaultMessage="Continue"
-                        description="Continue form button"
-                    />
+                    <FormattedMessage defaultMessage="Continue" description="Button label" />
                 </Button>
             </div>
         </div>

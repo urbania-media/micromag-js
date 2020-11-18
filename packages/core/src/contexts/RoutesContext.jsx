@@ -2,6 +2,7 @@
 import React, { useContext, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { generatePath, useHistory } from 'react-router';
+import isString from 'lodash/isString';
 
 const RoutesContext = React.createContext(null);
 
@@ -27,10 +28,17 @@ export const useUrlGenerator = () => {
 export const useRoutePush = () => {
     const url = useUrlGenerator();
     const history = useHistory();
-    const push = useCallback((route, data, ...args) => history.push(url(route, data), ...args), [
-        history,
-        url,
-    ]);
+    const push = useCallback(
+        (route, data, ...args) => {
+            if (isString(route)) {
+                history.push(url(route, data), ...args);
+            } else {
+                const { pathname = null, search = null } = route || {};
+                history.push({ pathname: url(pathname, data), search }, ...args);
+            }
+        },
+        [history, url],
+    );
     return push;
 };
 

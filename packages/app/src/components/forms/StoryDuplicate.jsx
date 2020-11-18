@@ -19,14 +19,12 @@ const defaultProps = {
         {
             name: 'title',
             type: 'text',
-            label: <FormattedMessage defaultMessage="Title" description="Title field label" />,
+            label: <FormattedMessage defaultMessage="Title" description="Field label" />,
         },
         {
             name: 'members',
             type: 'toggle',
-            label: (
-                <FormattedMessage defaultMessage="Same team" description="Same team field label" />
-            ),
+            label: <FormattedMessage defaultMessage="Same team" description="Field label" />,
         },
     ],
     onComplete: null,
@@ -57,10 +55,7 @@ const StoryDuplicateForm = ({ story, fields, onComplete, className }) => {
                 type,
             }}
             submitButtonLabel={
-                <FormattedMessage
-                    defaultMessage="Duplicate story"
-                    description="Duplicate story button label"
-                />
+                <FormattedMessage defaultMessage="Duplicate story" description="Button label" />
             }
             onComplete={onComplete}
             className={className}

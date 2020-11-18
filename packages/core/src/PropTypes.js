@@ -9,6 +9,11 @@ export const history = PropTypes.shape({
     push: PropTypes.func.isRequired,
 });
 
+export const location = PropTypes.shape({
+    pathname: PropTypes.string,
+    search: PropTypes.string,
+});
+
 export const intl = PropTypes.shape({
     locale: PropTypes.string.isRequired,
     formatMessage: PropTypes.func.isRequired,

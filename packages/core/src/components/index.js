@@ -23,6 +23,7 @@ export { default as PanelPortal } from './panels/Portal';
 export { default as Card } from './partials/Card';
 export { default as CollapsablePanel } from './partials/CollapsablePanel';
 export { default as Date } from './partials/Date';
+export { default as Detector } from './partials/Detector';
 export { default as Element } from './partials/Element';
 export { default as Empty } from './partials/Empty';
 export { default as Label } from './partials/Label';

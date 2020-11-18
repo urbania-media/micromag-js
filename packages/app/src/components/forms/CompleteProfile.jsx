@@ -96,10 +96,7 @@ const CompleteProfileForm = ({ className, onContinue }) => {
         >
             <div className="form-group">
                 <label className="label">
-                    <FormattedMessage
-                        defaultMessage="Your Name"
-                        description="Your Name field label"
-                    />
+                    <FormattedMessage defaultMessage="Your Name" description="Field label" />
                 </label>
                 <Text value={name} onChange={onNameChange} />
             </div>
@@ -109,13 +106,13 @@ const CompleteProfileForm = ({ className, onContinue }) => {
                     <label className="label">
                         <FormattedMessage
                             defaultMessage="Create an organisation"
-                            description="Create organisation field label"
+                            description="Field label"
                         />
                     </label>
                     <p className={styles.normal}>
                         <FormattedMessage
                             defaultMessage="Organisations make it easier to collaborate with a team on micromags."
-                            description="Organisations description field label"
+                            description="About organisations field label description"
                         />
                     </p>
                 </div>
@@ -129,7 +126,7 @@ const CompleteProfileForm = ({ className, onContinue }) => {
                     <label htmlFor="orgName" className="label">
                         <FormattedMessage
                             defaultMessage="Organisation name"
-                            description="Organisation name field"
+                            description="Field label"
                         />
                     </label>
                     <Text id="orgName" value={orgName} onChange={onOrgNameChange} />

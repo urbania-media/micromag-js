@@ -46,7 +46,7 @@ const RegisterForm = ({ fields, className, onRegistered }) => {
             fields={fields}
             postForm={postForm}
             submitButtonLabel={
-                <FormattedMessage defaultMessage="Continue" description="Continue button label" />
+                <FormattedMessage defaultMessage="Continue" description="Button label" />
             }
             onComplete={onRegistered}
             className={className}

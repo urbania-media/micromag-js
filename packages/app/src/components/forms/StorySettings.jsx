@@ -20,32 +20,22 @@ const defaultProps = {
         {
             name: 'title',
             type: 'text',
-            label: <FormattedMessage defaultMessage="Title" description="Title field label" />,
+            label: <FormattedMessage defaultMessage="Title" description="Field label" />,
         },
         {
             name: 'description',
             type: 'text',
-            label: (
-                <FormattedMessage
-                    defaultMessage="Description"
-                    description="Description field label"
-                />
-            ),
+            label: <FormattedMessage defaultMessage="Description" description="Field label" />,
         },
         {
             name: 'favicon',
             type: 'image',
-            label: <FormattedMessage defaultMessage="Favicon" description="Favicon field label" />,
+            label: <FormattedMessage defaultMessage="Favicon" description="Field label" />,
         },
         {
             name: 'image',
             type: 'image',
-            label: (
-                <FormattedMessage
-                    defaultMessage="Preview image"
-                    description="Preview image field label"
-                />
-            ),
+            label: <FormattedMessage defaultMessage="Share" description="Field label" />,
         },
     ],
     className: null,
@@ -64,7 +54,7 @@ const StorySettingsForm = ({ story, fields, className, onCreated }) => {
             initialValue={story}
             postForm={postForm}
             submitButtonLabel={
-                <FormattedMessage defaultMessage="Save" description="Save button label" />
+                <FormattedMessage defaultMessage="Save" description="Button label" />
             }
             onComplete={onCreated}
             className={className}

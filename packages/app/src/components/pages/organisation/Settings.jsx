@@ -3,8 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+
 import { FormPanel } from '@micromag/core/components';
 import { useOrganisation, useOrganisationContact } from '@micromag/data';
+import { useNav } from '@micromag/core/hooks';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import { useOrganisation as useContextOrganisation } from '../../../contexts/OrganisationContext';
 import MainLayout from '../../layouts/Main';
@@ -16,6 +19,7 @@ import OrganisationContactForm from '../../forms/OrganisationContact';
 import styles from '../../../styles/pages/organisation/settings.module.scss';
 
 const propTypes = {
+    location: MicromagPropTypes.location.isRequired,
     className: PropTypes.string,
 };
 
@@ -23,23 +27,18 @@ const defaultProps = {
     className: null,
 };
 
-const OrganisationSettingsPage = ({ className }) => {
+const OrganisationSettingsPage = ({ location: { pathname }, className }) => {
+    const title = <FormattedMessage defaultMessage="Settings" descrition="Page title" />;
+    const nav = useNav(title, pathname);
+
     const currentOrganisation = useContextOrganisation();
     const { organisation } = useOrganisation(currentOrganisation.id);
     const { contact } = useOrganisationContact(currentOrganisation.id, 'main');
 
     return (
-        <MainLayout>
+        <MainLayout nav={nav}>
             <Page
-                section={
-                    <FormattedMessage
-                        defaultMessage="Organisation"
-                        descrition="Organisation section title"
-                    />
-                }
-                title={
-                    <FormattedMessage defaultMessage="Settings" descrition="Settings page title" />
-                }
+                title={title}
                 sidebar={<OrganisationMenu asList />}
                 className={classNames([
                     styles.container,

@@ -57,10 +57,7 @@ const OrganisationContactForm = ({
         <div>
             <p>
                 <span className="text-uppercase text-secondary">
-                    <FormattedMessage
-                        defaultMessage="Main contact"
-                        description="Main contact form label"
-                    />
+                    <FormattedMessage defaultMessage="Main contact" description="Form label" />
                 </span>
             </p>
             <Form
@@ -69,10 +66,7 @@ const OrganisationContactForm = ({
                 initialValue={contact}
                 postForm={postContact}
                 submitButtonLabel={
-                    <FormattedMessage
-                        defaultMessage="Save contact"
-                        description="Save contact button label"
-                    />
+                    <FormattedMessage defaultMessage="Save contact" description="Button label" />
                 }
                 onComplete={onUpdated}
                 className={className}

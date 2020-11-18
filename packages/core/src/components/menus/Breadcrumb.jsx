@@ -7,9 +7,12 @@ import { Link } from 'react-router-dom';
 import * as MicromagPropTypes from '../../PropTypes';
 import Label from '../partials/Label';
 
+import styles from '../../styles/menus/breadcrumb.module.scss';
+
 const propTypes = {
     items: MicromagPropTypes.menuItems,
     theme: PropTypes.oneOf([null, 'light']),
+    separator: PropTypes.oneOf([null, 'arrow']),
     withoutBar: PropTypes.bool,
     noWrap: PropTypes.bool,
     className: PropTypes.string,
@@ -18,15 +21,17 @@ const propTypes = {
 const defaultProps = {
     items: [],
     theme: null,
+    separator: null,
     withoutBar: false,
     noWrap: false,
     className: null,
 };
 
-const Breadcrumb = ({ items, theme, withoutBar, noWrap, className }) => (
+const Breadcrumb = ({ items, theme, separator, withoutBar, noWrap, className }) => (
     <nav className={className}>
         <ol
             className={classNames([
+                styles.container,
                 'breadcrumb',
                 'mb-0',
                 {
@@ -43,6 +48,7 @@ const Breadcrumb = ({ items, theme, withoutBar, noWrap, className }) => (
                         'breadcrumb-item',
                         {
                             active,
+                            [styles.arrow]: separator === 'arrow',
                             [`text-${theme}`]: active && theme !== null,
                         },
                     ])}

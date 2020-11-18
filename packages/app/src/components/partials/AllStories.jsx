@@ -12,27 +12,30 @@ import StoriesList from '../lists/Stories';
 import EmptyStories from './EmptyStories';
 
 const propTypes = {
+    route: PropTypes.string,
     count: PropTypes.number,
     className: PropTypes.string,
 };
 
 const defaultProps = {
+    route: 'home',
     count: 9,
     className: null,
 };
 
-const AllStories = ({ count, className }) => {
+const AllStories = ({ route, count, className }) => {
     const url = useUrlGenerator();
     const { search } = useLocation();
-    const { page = 1, ...query } = useMemo(
+    const { page = 1 } = useMemo(
         () => (search !== null && search.length > 0 ? parseQuery(search) : {}),
         [search],
     );
-    const finalQuery = Object.keys(query).length > 0 ? query : null;
+    const finalQuery = useMemo(() => ({}), []);
     const { stories, total, lastPage, loading } = useStories(finalQuery, page, count);
-    const paginationUrl = `${url('stories')}${
+    const paginationUrl = `${url(route)}${
         finalQuery !== null ? `?${stringifyQuery(finalQuery)}` : ''
     }`;
+
     return (
         <section className={className}>
             {stories !== null ? (

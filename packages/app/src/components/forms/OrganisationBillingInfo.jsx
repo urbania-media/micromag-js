@@ -22,10 +22,7 @@ const defaultProps = {
             type: 'fields',
             label: (
                 <span className="text-uppercase text-secondary">
-                    <FormattedMessage
-                        defaultMessage="Payment info"
-                        description="Payment info fieldset label"
-                    />
+                    <FormattedMessage defaultMessage="Payment info" description="Fieldset label" />
                 </span>
             ),
             isSection: true,
@@ -35,10 +32,7 @@ const defaultProps = {
             type: 'fields',
             label: (
                 <span className="text-uppercase text-secondary">
-                    <FormattedMessage
-                        defaultMessage="Billing info"
-                        description="Billing info fieldset label"
-                    />
+                    <FormattedMessage defaultMessage="Billing info" description="Fieldset label" />
                 </span>
             ),
             isSection: true,

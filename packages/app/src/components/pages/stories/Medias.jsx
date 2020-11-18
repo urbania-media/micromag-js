@@ -26,7 +26,7 @@ const StoryMediasPage = ({ className }) => {
         <MainLayout>
             <Page
                 section={
-                    <FormattedMessage defaultMessage="Publish" description="Publish page title" />
+                    <FormattedMessage defaultMessage="Medias" description="Medias page title" />
                 }
                 title={story !== null ? story.title : null}
                 sidebar={story !== null ? <StoryBox story={story} /> : <div />}

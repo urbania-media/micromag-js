@@ -5,8 +5,11 @@ import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { useLocation } from 'react-router';
 import { parse as parseQueryString } from 'query-string';
+
 import { FormPanel } from '@micromag/core/components';
 import { useUrlGenerator, useRoutePush } from '@micromag/core/contexts';
+import { useNav } from '@micromag/core/hooks';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import { useSetOrganisation } from '../../../contexts/OrganisationContext';
 import MainLayout from '../../layouts/Main';
@@ -16,6 +19,7 @@ import OrganisationCreateForm from '../../forms/OrganisationCreate';
 import styles from '../../../styles/pages/organisation/create.module.scss';
 
 const propTypes = {
+    location: MicromagPropTypes.location.isRequired,
     className: PropTypes.string,
 };
 
@@ -23,7 +27,12 @@ const defaultProps = {
     className: null,
 };
 
-const OrganisationCreatePage = ({ className }) => {
+const OrganisationCreatePage = ({ location: { pathname }, className }) => {
+    const title = (
+        <FormattedMessage defaultMessage="Create an organisation" descrition="Page title" />
+    );
+    const nav = useNav(title, pathname);
+
     const url = useUrlGenerator();
     const push = useRoutePush();
     const setOrganisation = useSetOrganisation();
@@ -36,15 +45,11 @@ const OrganisationCreatePage = ({ className }) => {
         },
         [push, url, next, setOrganisation],
     );
+
     return (
-        <MainLayout contentAlign="top">
+        <MainLayout contentAlign="top" nav={nav}>
             <Page
-                title={
-                    <FormattedMessage
-                        defaultMessage="Create an organisation"
-                        descrition="Create org page title"
-                    />
-                }
+                title={title}
                 small
                 className={classNames([
                     styles.container,

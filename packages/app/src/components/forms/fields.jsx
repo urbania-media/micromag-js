@@ -5,14 +5,12 @@ export const creditCard = [
     {
         name: 'card_name',
         type: 'text',
-        label: <FormattedMessage defaultMessage="Card name" description="Card name field label" />,
+        label: <FormattedMessage defaultMessage="Card name" description="Field label" />,
     },
     {
         name: 'card_number',
         type: 'text',
-        label: (
-            <FormattedMessage defaultMessage="Card number" description="Card number field label" />
-        ),
+        label: <FormattedMessage defaultMessage="Card number" description="Field label" />,
     },
     {
         type: 'fields',
@@ -32,7 +30,7 @@ export const creditCard = [
             {
                 name: 'cvv',
                 type: 'text',
-                label: <FormattedMessage defaultMessage="CVV" description="CVV field label" />,
+                label: <FormattedMessage defaultMessage="CVV" description="Field label" />,
             },
         ],
     },
@@ -42,22 +40,22 @@ export const contact = [
     {
         name: 'first_name',
         type: 'text',
-        label: <FormattedMessage defaultMessage="First name" description="Firstname field label" />,
+        label: <FormattedMessage defaultMessage="First name" description="Field label" />,
     },
     {
         name: 'last_name',
         type: 'text',
-        label: <FormattedMessage defaultMessage="Last name" description="Lastname field label" />,
+        label: <FormattedMessage defaultMessage="Last name" description="Field label" />,
     },
     {
         name: 'email',
         type: 'email',
-        label: <FormattedMessage defaultMessage="Email" description="Email field label" />,
+        label: <FormattedMessage defaultMessage="Email" description="Field label" />,
     },
     {
         name: 'phone',
         type: 'text',
-        label: <FormattedMessage defaultMessage="Phone" description="Phone field label" />,
+        label: <FormattedMessage defaultMessage="Phone" description="Field label" />,
     },
 ];
 
@@ -65,37 +63,32 @@ export const billingContact = [
     {
         name: 'name',
         type: 'text',
-        label: <FormattedMessage defaultMessage="Name" description="Name field label" />,
+        label: <FormattedMessage defaultMessage="Name" description="Field label" />,
     },
     {
         name: 'company_name',
         type: 'text',
-        label: (
-            <FormattedMessage
-                defaultMessage="Company name"
-                description="Company name field label"
-            />
-        ),
+        label: <FormattedMessage defaultMessage="Company name" description="Field label" />,
     },
     {
         name: 'address_1',
         type: 'text',
-        label: <FormattedMessage defaultMessage="Address 1" description="Address 1 field label" />,
+        label: <FormattedMessage defaultMessage="Address 1" description="Field label" />,
     },
     {
         name: 'address_2',
         type: 'text',
-        label: <FormattedMessage defaultMessage="Address 2" description="Address 2 field label" />,
+        label: <FormattedMessage defaultMessage="Address 2" description="Field label" />,
     },
     {
         name: 'country',
         type: 'select',
-        label: <FormattedMessage defaultMessage="Country" description="Country field label" />,
+        label: <FormattedMessage defaultMessage="Country" description="Field label" />,
     },
     {
         name: 'city',
         type: 'text',
-        label: <FormattedMessage defaultMessage="City" description="City field label" />,
+        label: <FormattedMessage defaultMessage="City" description="Field label" />,
     },
 
     {
@@ -106,22 +99,12 @@ export const billingContact = [
             {
                 name: 'province',
                 type: 'text',
-                label: (
-                    <FormattedMessage
-                        defaultMessage="Province"
-                        description="Province field label"
-                    />
-                ),
+                label: <FormattedMessage defaultMessage="Province" description="Field label" />,
             },
             {
                 name: 'postal_code',
                 type: 'text',
-                label: (
-                    <FormattedMessage
-                        defaultMessage="Postal code"
-                        description="Postal code field label"
-                    />
-                ),
+                label: <FormattedMessage defaultMessage="Postal code" description="Field label" />,
             },
         ],
     },
@@ -131,17 +114,12 @@ export const organisation = [
     {
         name: 'name',
         type: 'text',
-        label: (
-            <FormattedMessage
-                defaultMessage="Organisation name"
-                description="Organisation name field label"
-            />
-        ),
+        label: <FormattedMessage defaultMessage="Organisation name" description="Field label" />,
     },
     {
         name: 'image',
         type: 'image',
-        label: <FormattedMessage defaultMessage="Image" description="Image field label" />,
+        label: <FormattedMessage defaultMessage="Image" description="Field label" />,
     },
 ];
 
@@ -154,12 +132,12 @@ export const teamMember = [
             {
                 name: 'email',
                 type: 'email',
-                label: <FormattedMessage defaultMessage="Email" description="Email field label" />,
+                label: <FormattedMessage defaultMessage="Email" description="Field label" />,
             },
             {
                 name: 'role',
                 type: 'select',
-                label: <FormattedMessage defaultMessage="Role" description="Role field label" />,
+                label: <FormattedMessage defaultMessage="Role" description="Field label" />,
             },
         ],
     },

@@ -32,7 +32,7 @@ const TeamList = ({ items, onChangeRole, onClickRemove, className }) => {
         >
             {items.map((member) => (
                 <TeamMemberItem
-                    key={`member-${member.id}`}
+                    key={`member-${member.id}-${member.name}`}
                     member={member}
                     onClickRemove={onClickRemove}
                     onChangeRole={onChangeRole}

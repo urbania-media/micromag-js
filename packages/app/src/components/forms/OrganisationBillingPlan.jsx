@@ -90,7 +90,7 @@ const BillingPlanForm = ({ organisation, className, onUpdated }) => {
                 },
             ])}
         >
-            <div className="btn-group mb-2" role="group" aria-label="Basic example">
+            <div className="btn-group mb-2">
                 <Button
                     type="button"
                     className={classNames([
@@ -102,7 +102,7 @@ const BillingPlanForm = ({ organisation, className, onUpdated }) => {
                     ])}
                     onClick={onMonthlyChange}
                 >
-                    <FormattedMessage defaultMessage="Monthly" description="Monthly button label" />
+                    <FormattedMessage defaultMessage="Monthly" description="Button group label" />
                 </Button>
                 <Button
                     type="button"
@@ -115,7 +115,7 @@ const BillingPlanForm = ({ organisation, className, onUpdated }) => {
                     ])}
                     onClick={onYearlyChange}
                 >
-                    <FormattedMessage defaultMessage="Yearly" description="Yearly button label" />
+                    <FormattedMessage defaultMessage="Yearly" description="Button group label" />
                 </Button>
             </div>
 
@@ -133,14 +133,14 @@ const BillingPlanForm = ({ organisation, className, onUpdated }) => {
                     <h6>
                         <FormattedMessage
                             defaultMessage="Contact us for pricing"
-                            description="Contact us plan label"
+                            description="Plan label"
                         />
                     </h6>
                 ) : (
                     <h6>
                         <FormattedMessage
                             defaultMessage="This plan includes:"
-                            description="Includes plan label"
+                            description="Plan label"
                         />
                     </h6>
                 )}
@@ -148,7 +148,7 @@ const BillingPlanForm = ({ organisation, className, onUpdated }) => {
                     <p>
                         <FormattedMessage
                             defaultMessage="{users} users"
-                            description="Users plan label"
+                            description="Plan label"
                             values={{ users }}
                         />
                     </p>
@@ -157,7 +157,7 @@ const BillingPlanForm = ({ organisation, className, onUpdated }) => {
                     <p>
                         <FormattedMessage
                             defaultMessage="{storage} GB"
-                            description="Storage plan label"
+                            description="Plan label"
                             values={{ storage }}
                         />
                     </p>
@@ -165,10 +165,7 @@ const BillingPlanForm = ({ organisation, className, onUpdated }) => {
                 {data.map((item) =>
                     item === 'analytics' ? (
                         <p>
-                            <FormattedMessage
-                                defaultMessage="Analytics"
-                                description="Analytics plan label"
-                            />
+                            <FormattedMessage defaultMessage="Analytics" description="Plan label" />
                         </p>
                     ) : null,
                 )}
@@ -177,7 +174,7 @@ const BillingPlanForm = ({ organisation, className, onUpdated }) => {
                         <p>
                             <FormattedMessage
                                 defaultMessage="Monetisation"
-                                description="Monetisation plan label"
+                                description="Plan label"
                             />
                         </p>
                     ) : null,
@@ -195,7 +192,7 @@ const BillingPlanForm = ({ organisation, className, onUpdated }) => {
                 >
                     <FormattedMessage
                         defaultMessage="Choose the {name} plan"
-                        description="Choose plan button label"
+                        description="Plan button label"
                         values={{ name: label }}
                     />
                 </Button>

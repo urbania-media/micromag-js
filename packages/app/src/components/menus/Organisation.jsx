@@ -75,16 +75,16 @@ const OrganisationsMenu = ({
             {
                 type: 'divider',
             },
-            {
-                id: 'publishing',
-                href: url('organisation.publishing'),
-                label: (
-                    <FormattedMessage
-                        defaultMessage="Publishing"
-                        description="Publishing menu item"
-                    />
-                ),
-            },
+            // {
+            //     id: 'publishing',
+            //     href: url('organisation.publishing'),
+            //     label: (
+            //         <FormattedMessage
+            //             defaultMessage="Publishing"
+            //             description="Publishing menu item"
+            //         />
+            //     ),
+            // },
             {
                 id: 'themes',
                 href: url('organisation.themes'),
@@ -98,7 +98,7 @@ const OrganisationsMenu = ({
         ]
             .filter((it) => it !== null)
             .map((it) =>
-                it.href === pathname
+                it.href && pathname.indexOf(it.href) === 0
                     ? {
                           ...it,
                           active: true,

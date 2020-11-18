@@ -26,7 +26,7 @@ const HomePage = ({ className }) => {
             <Page
                 title={
                     <FormattedMessage
-                        defaultMessage="My Micromags"
+                        defaultMessage="My Projects"
                         description="Micromag no org home page title"
                     />
                 }

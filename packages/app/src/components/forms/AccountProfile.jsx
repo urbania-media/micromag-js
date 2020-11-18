@@ -25,38 +25,29 @@ const defaultProps = {
                 {
                     name: 'name',
                     type: 'text',
-                    label: (
-                        <FormattedMessage defaultMessage="Name" description="Name field label" />
-                    ),
+                    label: <FormattedMessage defaultMessage="Name" description="Field label" />,
                 },
                 {
                     name: 'image',
                     type: 'image',
-                    label: (
-                        <FormattedMessage defaultMessage="Image" description="Image field label" />
-                    ),
+                    label: <FormattedMessage defaultMessage="Image" description="Field label" />,
                 },
             ],
         },
         {
             name: 'email',
             type: 'email',
-            label: <FormattedMessage defaultMessage="Email" description="Email field label" />,
+            label: <FormattedMessage defaultMessage="Email" description="Field label" />,
         },
         {
-            name: 'password',
+            group: 'password',
             type: 'fields',
             isSection: true,
             fields: [
                 {
                     name: 'password',
                     type: 'password',
-                    label: (
-                        <FormattedMessage
-                            defaultMessage="Password"
-                            description="Password field label"
-                        />
-                    ),
+                    label: <FormattedMessage defaultMessage="Password" description="Field label" />,
                 },
                 {
                     name: 'password_confirmation',
@@ -64,7 +55,7 @@ const defaultProps = {
                     label: (
                         <FormattedMessage
                             defaultMessage="Confirm password"
-                            description="Confirm password field label"
+                            description="Field label"
                         />
                     ),
                 },
@@ -86,7 +77,7 @@ const AccountProfileForm = ({ fields, className, onUpdated }) => {
         setChangePassword((p) => !p);
     }, [setChangePassword]);
     const currentFields = fields.filter(
-        (f) => (!changePassword && f.name !== 'password') || changePassword,
+        (f) => (!changePassword && f.group !== 'password') || changePassword,
     );
 
     return (

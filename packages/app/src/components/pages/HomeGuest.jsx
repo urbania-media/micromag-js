@@ -43,7 +43,7 @@ const HomeGuestPage = ({ className }) => {
                             <img src={logo} alt="micromag" className={styles.logo} />,
                             <img src={logo} alt="micromag" className={styles.logo} />,
                         ]}
-                    ></Slideshow>
+                    />
                 </div>
                 <div className="mt-4">
                     <div className="mb-4">

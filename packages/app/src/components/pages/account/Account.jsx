@@ -3,9 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-import { FormPanel } from '@micromag/core/components';
 
+import { FormPanel } from '@micromag/core/components';
 import { useOrganisations } from '@micromag/data';
+import { useNav } from '@micromag/core/hooks';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
@@ -16,6 +18,7 @@ import DeleteForm from '../../forms/AccountDelete';
 import styles from '../../../styles/pages/account/account.module.scss';
 
 const propTypes = {
+    location: MicromagPropTypes.location.isRequired,
     className: PropTypes.string,
 };
 
@@ -23,22 +26,17 @@ const defaultProps = {
     className: null,
 };
 
-const AccountPage = ({ className }) => {
+const AccountPage = ({ location: { pathname }, className }) => {
+    const title = <FormattedMessage defaultMessage="My profile" description="Page title" />;
+    const nav = useNav(title, pathname);
+
     const { organisations: userOrganisations, loading } = useOrganisations();
     const organisations = userOrganisations || [];
     const hasOrganisations = organisations.length > 0;
     return (
-        <MainLayout>
+        <MainLayout nav={nav}>
             <Page
-                section={
-                    <FormattedMessage defaultMessage="Account" description="Account page section" />
-                }
-                title={
-                    <FormattedMessage
-                        defaultMessage="Update your profile"
-                        description="Update your profile page title"
-                    />
-                }
+                title={title}
                 sidebar={null}
                 className={classNames([
                     styles.container,

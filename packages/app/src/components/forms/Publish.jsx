@@ -21,10 +21,10 @@ const defaultProps = {
     onComplete: null,
 };
 
-const OrganisationPublishForm = ({ organisation, services, className, onComplete }) => {
+const PublishForm = ({ organisation, services, className, onComplete }) => {
     const [publicationValue, setPublicationValue] = useState(null);
     const onClickSave = useCallback(() => {}, []);
-    console.log(organisation, onComplete);
+    console.log(organisation, onComplete); // eslint-disable-line
     return (
         <form className={className}>
             <PublicationServices
@@ -34,14 +34,14 @@ const OrganisationPublishForm = ({ organisation, services, className, onComplete
             />
             <div className="d-flex mt-4 align-items-center justify-content-end">
                 <Button theme="primary" size="md" onClick={onClickSave}>
-                    <FormattedMessage defaultMessage="Save" description="Save button label" />
+                    <FormattedMessage defaultMessage="Save" description="Button label" />
                 </Button>
             </div>
         </form>
     );
 };
 
-OrganisationPublishForm.propTypes = propTypes;
-OrganisationPublishForm.defaultProps = defaultProps;
+PublishForm.propTypes = propTypes;
+PublishForm.defaultProps = defaultProps;
 
-export default OrganisationPublishForm;
+export default PublishForm;

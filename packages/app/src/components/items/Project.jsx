@@ -32,7 +32,6 @@ const ProjectItem = ({ className }) => {
             className={classNames([
                 'list-group-item',
                 'list-group-item-action',
-                'list-group-item-dark',
                 'd-flex',
                 {
                     [className]: className !== null,
@@ -41,10 +40,10 @@ const ProjectItem = ({ className }) => {
             href={url('home')}
             onClick={onClickMyMicromags}
         >
-            <Avatar />
+            <Avatar inverted />
             <div className="ml-3">
                 <h6 className="mb-1">
-                    <FormattedMessage defaultMessage="My projects" />
+                    <FormattedMessage defaultMessage="My Projects" />
                 </h6>
                 <div className="d-flex">
                     <small className="mr-2">12 stories</small>

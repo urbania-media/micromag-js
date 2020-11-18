@@ -29,7 +29,6 @@ const OrganisationItem = ({ item, className }) => {
             className={classNames([
                 'list-group-item',
                 'list-group-item-action',
-                'list-group-item-dark',
                 'd-flex',
                 styles.container,
                 {
@@ -37,7 +36,7 @@ const OrganisationItem = ({ item, className }) => {
                 },
             ])}
         >
-            <Avatar square />
+            <Avatar square inverted />
             <div className="ml-3">
                 <h6 className="mb-1">{item.name}</h6>
                 <div className="d-flex">

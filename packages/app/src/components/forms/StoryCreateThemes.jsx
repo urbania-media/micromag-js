@@ -24,7 +24,7 @@ const defaultProps = {
         {
             name: 'title',
             type: 'text',
-            label: <FormattedMessage defaultMessage="Title" description="Title field label" />,
+            label: <FormattedMessage defaultMessage="Title" description="Field label" />,
         },
     ],
     onCreated: null,
@@ -48,12 +48,7 @@ const StoryCreateForm = ({ organisation, fields, onCreated, withoutTheme, classN
                   {
                       name: 'theme',
                       type: 'select',
-                      label: (
-                          <FormattedMessage
-                              defaultMessage="Theme"
-                              description="Theme field label"
-                          />
-                      ),
+                      label: <FormattedMessage defaultMessage="Theme" description="Field label" />,
                       options: themes.map((t) => ({ label: t.title, value: t.id })),
                   },
               ])

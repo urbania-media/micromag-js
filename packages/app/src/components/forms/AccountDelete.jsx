@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Form, Button } from '@micromag/core/components';
-import { useUrlGenerator } from '@micromag/core/contexts';
+import { useUrlGenerator, useRoutePush } from '@micromag/core/contexts';
 import { useAccountDelete, useAuthLogout } from '@micromag/data';
 
 import { useUser } from '../../contexts/AuthContext';
@@ -25,9 +25,9 @@ const defaultProps = {
             type: 'text',
             label: (
                 <FormattedMessage
-                    defaultMessage="Type in the number {rando} to confirm."
-                    description="Field label"
-                    values={{ rando: validation }}
+                    defaultMessage="Type in the number {random} to confirm."
+                    description="Field label type in to delete"
+                    values={{ random: validation }}
                 />
             ),
         },
@@ -39,6 +39,7 @@ const defaultProps = {
 const AccountDeleteForm = ({ fields, className, onUpdated }) => {
     const [open, setOpen] = useState();
     const url = useUrlGenerator();
+    const push = useRoutePush();
     const user = useUser();
     const { logout } = useAuthLogout();
     const { deleteAccount } = useAccountDelete();
@@ -46,7 +47,9 @@ const AccountDeleteForm = ({ fields, className, onUpdated }) => {
         (action, data) => {
             const { id = null, word = null } = data;
             if (id && validation.toString(10) === word) {
-                deleteAccount(id).then(() => logout());
+                deleteAccount(id)
+                    .then(() => logout())
+                    .then(() => push('home'));
             }
         },
         [logout, deleteAccount],

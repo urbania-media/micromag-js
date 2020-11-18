@@ -3,6 +3,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+
 import {
     useOrganisationTeam,
     useOrganisationMemberUpdate,
@@ -10,6 +11,8 @@ import {
 } from '@micromag/data';
 import { useRoutePush } from '@micromag/core/contexts';
 import { FormPanel } from '@micromag/core/components';
+import { useNav } from '@micromag/core/hooks';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import { useOrganisation as useContextOrganisation } from '../../../contexts/OrganisationContext';
 import { useUser } from '../../../contexts/AuthContext';
@@ -23,6 +26,7 @@ import MemberCreateForm from '../../forms/MemberCreate';
 import styles from '../../../styles/pages/organisation/team.module.scss';
 
 const propTypes = {
+    location: MicromagPropTypes.location.isRequired,
     className: PropTypes.string,
 };
 
@@ -30,7 +34,10 @@ const defaultProps = {
     className: null,
 };
 
-const OrganisationTeamPage = ({ className }) => {
+const OrganisationTeamPage = ({ location: { pathname }, className }) => {
+    const title = <FormattedMessage defaultMessage="Team" description="Page title" />;
+    const nav = useNav(title, pathname);
+
     const user = useUser();
     const push = useRoutePush();
     const organisation = useContextOrganisation();
@@ -43,6 +50,7 @@ const OrganisationTeamPage = ({ className }) => {
 
     const role = user.role || 'admin';
     const isAdmin = role === 'admin' || true;
+
     // TODO: make this dynamic
     const teamFeatures = isAdmin ? { canAdd: true, canEdit: true, canRemove: true } : null;
 
@@ -73,15 +81,9 @@ const OrganisationTeamPage = ({ className }) => {
     );
 
     return (
-        <MainLayout>
+        <MainLayout nav={nav}>
             <Page
-                section={
-                    <FormattedMessage
-                        defaultMessage="Organisation"
-                        description="Organisation section title"
-                    />
-                }
-                title={<FormattedMessage defaultMessage="Team" description="Team page title" />}
+                title={title}
                 sidebar={<OrganisationMenu asList />}
                 className={classNames([
                     styles.container,

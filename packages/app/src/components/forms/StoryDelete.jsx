@@ -79,10 +79,7 @@ const StoryDeleteForm = ({ story, className, onComplete }) => {
                         active: true,
                     })}
                 >
-                    <FormattedMessage
-                        defaultMessage="Delete story"
-                        description="Delete story button label"
-                    />
+                    <FormattedMessage defaultMessage="Delete story" description="Button label" />
                 </Button>
             </div>
         </div>

@@ -34,7 +34,6 @@ import OrganisationStatsPage from './pages/organisation/Stats';
 import OrganisationThemesPage from './pages/organisation/Themes';
 import OrganisationMediasPage from './pages/organisation/Medias';
 import OrganisationPublishingPage from './pages/organisation/Publishing';
-import OrganisationPublishingSettingsPage from './pages/organisation/PublishingSettings';
 import OrganisationSwitchPage from './pages/organisation/Switch';
 
 import StoriesPage from './pages/stories/Stories';
@@ -170,11 +169,6 @@ const Routes = () => {
                 path={routes['organisation.publishing']}
                 exact
                 component={OrganisationPublishingPage}
-            />
-            <Route
-                path={routes['organisation.publishing_settings']}
-                exact
-                component={OrganisationPublishingSettingsPage}
             />
             <Route
                 path={routes['organisation.switch']}

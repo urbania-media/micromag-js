@@ -18,7 +18,7 @@ const defaultProps = {
         {
             name: 'title',
             type: 'text',
-            label: <FormattedMessage defaultMessage="Title" description="Title field label" />,
+            label: <FormattedMessage defaultMessage="Title" description="Field label" />,
         },
     ],
     onCreated: null,
@@ -36,10 +36,7 @@ const StoryCreateForm = ({ fields, onCreated, className }) => {
             fields={fields}
             postForm={postForm}
             submitButtonLabel={
-                <FormattedMessage
-                    defaultMessage="Create story"
-                    description="Create story button label"
-                />
+                <FormattedMessage defaultMessage="Create story" description="Button label" />
             }
             onComplete={onCreated}
             className={className}

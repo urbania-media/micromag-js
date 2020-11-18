@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import MainNavbar from '../navbars/Main';
 
@@ -9,6 +10,7 @@ import styles from '../../styles/layouts/main.module.scss';
 
 const propTypes = {
     navbar: PropTypes.node,
+    nav: MicromagPropTypes.breadcrumbs,
     children: PropTypes.node,
     contentAlign: PropTypes.oneOf(['top', 'middle', 'bottom']),
     fullscreen: PropTypes.bool,
@@ -18,6 +20,7 @@ const propTypes = {
 
 const defaultProps = {
     navbar: null,
+    nav: null,
     children: null,
     contentAlign: 'top',
     fullscreen: false,
@@ -25,7 +28,15 @@ const defaultProps = {
     className: null,
 };
 
-const MainLayout = ({ navbar, children, contentAlign, fullscreen, withoutHeader, className }) => (
+const MainLayout = ({
+    navbar,
+    nav,
+    children,
+    contentAlign,
+    fullscreen,
+    withoutHeader,
+    className,
+}) => (
     <div
         className={classNames([
             styles.container,
@@ -43,7 +54,7 @@ const MainLayout = ({ navbar, children, contentAlign, fullscreen, withoutHeader,
                 },
             ])}
         >
-            {navbar !== null ? navbar : <MainNavbar />}
+            {navbar !== null ? navbar : <MainNavbar nav={nav} />}
         </header>
         <main
             className={classNames([

@@ -180,7 +180,9 @@ const useItems = ({
 
     const currentPage =
         isPaginated && pages !== null
-            ? pages.find(({ page: pageNumber }) => pageNumber === page) || null
+            ? pages.find(
+                  ({ page: pageNumber }) => parseInt(pageNumber, 10) === parseInt(page, 10),
+              ) || null
             : null;
 
     return {
