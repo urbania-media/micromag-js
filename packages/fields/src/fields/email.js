@@ -1,6 +1,7 @@
 import Text from '../components/Text';
 
 export default {
-    id: 'text',
+    id: 'email',
     component: Text,
+    type: 'email'
 };

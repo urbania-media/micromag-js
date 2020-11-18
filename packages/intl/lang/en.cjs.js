@@ -24,7 +24,6 @@ var EOuygN = "My Micromags";
 var ET527E = "Font family";
 var EcZYpr = "Subtitle";
 var EoLB7Z = "Stats";
-var F6JbBU = "Duplicate";
 var FLMZDH = "Invite your team members to your organisation.";
 var G31Yd0 = "Cancel";
 var GE8wrk = "Image";
@@ -36,6 +35,7 @@ var H7fYum = "Your plan";
 var HKuWoX = "Settings";
 var IKnyYt = "Editor";
 var IMUycF = "Timeline Illustrated";
+var IbZ8po = "Duplicate story";
 var IwGlNX = "Create your first screen";
 var JV5hRr = "Media gallery";
 var JVzmnI = "Organisations make it easier to collaborate with a team on micromags.";
@@ -81,11 +81,11 @@ var VqyxpU = "Ad";
 var W82zJ9 = "First name";
 var Wayj7I = "Add {value}";
 var WhVrDc = "Answer Index";
-var WodcPq = "Delete";
 var Wr8abT = "Forgot password?";
 var Wr9olU = "Typography";
 var WsCUtr = "{users} users";
 var X9PRNb = "Favicon";
+var Xh1mZC = "Back";
 var Xt24Gj = "It’s time to start creating now.";
 var YDMrKK = "Users";
 var YQEv1f = "It’s time to start creating!";
@@ -125,8 +125,11 @@ var hVE7TA = "Question";
 var iYc3Ld = "Payments";
 var jIlVe2 = "{storage} GB";
 var jaFXki = "Gallery";
+var jqzLUs = "Save contact";
 var kBz8vF = "Name";
 var kIl7G5 = "Published at";
+var kYsGUg = "Type in the name of the story ({name}) to confirm.";
+var klA5YX = "Delete story";
 var ktUr5c = "Create an organisation";
 var l3AfOI = "Due date";
 var l7bkY2 = "Update your profile";
@@ -193,11 +196,13 @@ var y7xsPe = "Advanced settings";
 var yUPjCz = "Slideshow";
 var z4CiV1 = "Text";
 var zEOMrg = "Team";
+var zOEp7Q = "Delete story";
 var zRRbVl = "Create";
 var zW7IVm = "Quiz";
 var zongsF = "Publish";
 var messages = {
   "+9akmg": "Audio and Video",
+  "+C8/q6": "Same team",
   "+KWsXh": "Already used",
   "+MPZRu": "Background",
   "+TT1y6": "Clear",
@@ -213,6 +218,7 @@ var messages = {
   "0BcvF9": "All",
   "0R5Jlk": "My profile",
   "0btyge": "Latest version",
+  "0gYrMo": "Cannot find story",
   "0gyI2S": "GalleryFeedLegends",
   "0vXXfT": "imagesWithLegends",
   "15GBmG": "All",
@@ -235,6 +241,7 @@ var messages = {
   "3Irxfp": "Confirm password",
   "3OS3Ms": "Legend",
   "3UtT5H": "Continue",
+  "3fZYih": "Card ending with {card_ending}",
   "3pqFXb": "Button style",
   "3q9GPv": "Quote",
   "3uMlsn": "Some other micromag",
@@ -266,6 +273,7 @@ var messages = {
   "96KRj9": "ImageLegend",
   "9DhYaZ": "Ascending",
   "9IxKom": "Your Name",
+  "9JgORt": "Duplicate story",
   "9TIZGH": "Account",
   "9WtqV7": "Team",
   "9Yv29u": "Create an organisation",
@@ -292,9 +300,9 @@ var messages = {
   ET527E: ET527E,
   EcZYpr: EcZYpr,
   EoLB7Z: EoLB7Z,
-  F6JbBU: F6JbBU,
   FLMZDH: FLMZDH,
   G31Yd0: G31Yd0,
+  "GA/Hac": "Create story",
   "GBq/YG": "Password",
   GE8wrk: GE8wrk,
   GMCLhn: GMCLhn,
@@ -306,9 +314,11 @@ var messages = {
   "IB/AQ9": "You are a member of the following organisations:",
   IKnyYt: IKnyYt,
   IMUycF: IMUycF,
+  IbZ8po: IbZ8po,
   IwGlNX: IwGlNX,
   JV5hRr: JV5hRr,
   JVzmnI: JVzmnI,
+  "KIV+sG": "Duplicate",
   Ke35Pv: Ke35Pv,
   "KzEL+O": "Option",
   LI0Gz4: LI0Gz4,
@@ -358,11 +368,11 @@ var messages = {
   W82zJ9: W82zJ9,
   Wayj7I: Wayj7I,
   WhVrDc: WhVrDc,
-  WodcPq: WodcPq,
   Wr8abT: Wr8abT,
   Wr9olU: Wr9olU,
   WsCUtr: WsCUtr,
   X9PRNb: X9PRNb,
+  Xh1mZC: Xh1mZC,
   Xt24Gj: Xt24Gj,
   YDMrKK: YDMrKK,
   YQEv1f: YQEv1f,
@@ -405,7 +415,6 @@ var messages = {
   enFs4g: enFs4g,
   eoW0tZ: eoW0tZ,
   fIawTr: fIawTr,
-  "fQI/i5": "Card ending with {cardEnding}",
   "fkBd/o": "Province",
   fz0z4c: fz0z4c,
   g6b9Lg: g6b9Lg,
@@ -418,8 +427,11 @@ var messages = {
   jIlVe2: jIlVe2,
   jaFXki: jaFXki,
   "jnOMk/": "Publish",
+  jqzLUs: jqzLUs,
   kBz8vF: kBz8vF,
   kIl7G5: kIl7G5,
+  kYsGUg: kYsGUg,
+  klA5YX: klA5YX,
   ktUr5c: ktUr5c,
   l3AfOI: l3AfOI,
   l7bkY2: l7bkY2,
@@ -514,6 +526,7 @@ var messages = {
   "yaX4/9": "Company name",
   z4CiV1: z4CiV1,
   zEOMrg: zEOMrg,
+  zOEp7Q: zOEp7Q,
   zRRbVl: zRRbVl,
   zW7IVm: zW7IVm,
   zongsF: zongsF
