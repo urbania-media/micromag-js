@@ -114,11 +114,13 @@ const SurveyScreen = ({
         }
     }, [current, answered, onEnableInteraction, onDisableInteraction]);
 
-    useEffect(() => {
-        if (!current && userAnswerIndex !== null) {
-            setUserAnswerIndex(null);
-        }
-    }, [current, userAnswerIndex, setUserAnswerIndex]);
+    // reset screen when !current
+
+    // useEffect(() => {
+    //     if (!current && userAnswerIndex !== null) {
+    //         setUserAnswerIndex(null);
+    //     }
+    // }, [current, userAnswerIndex, setUserAnswerIndex]);
 
     // Question
 
