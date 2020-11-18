@@ -1,13 +1,14 @@
-export const bigUppTitle = {
+export const header1 = {
     fontFamily: '"Garage Gothic", Arial',
-    fontSize: 60,
+    fontSize: 55,
     fontStyle: {
         bold: true,
         uppercase: true,
     },
+    uppercase: true,
 };
 
-export const normalTitle = {
+export const header2 = {
     fontFamily: '"Garage Gothic", Arial',
     fontSize: 40,
     fontStyle: {
@@ -15,17 +16,17 @@ export const normalTitle = {
     },
 };
 
-export const normalText = {
-    fontFamily: 'Sina Nova',
-    fontSize: 16,
+export const header3 = {
+    fontFamily: 'Apercu',
+    fontSize: 18,
     fontStyle: {
         bold: false,
     },
 };
 
-export const descriptionText = {
-    fontFamily: 'Apercu',
-    fontSize: 16,
+export const bodyText = {
+    fontFamily: 'Sina Nova',
+    fontSize: 18,
     fontStyle: {
         bold: false,
     },

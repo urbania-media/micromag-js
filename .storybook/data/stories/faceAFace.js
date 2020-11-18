@@ -14,7 +14,7 @@ import {
     rankingItems,
 } from './data';
 
-import { bigUppTitle, normalText, normalTitle } from './styles';
+import { header1, header2, bodyText } from './styles';
 
 
 const faceAFaceStory = [
@@ -24,7 +24,7 @@ const faceAFaceStory = [
         layout: 'middle',
         title: {
             body: 'Face à face avec votre face',
-            textStyle: bigUppTitle,
+            textStyle: header1,
         },
     },
     {
@@ -34,11 +34,11 @@ const faceAFaceStory = [
         author: {
             body:
                 'Tommy Kruise, qui se rappelle le déclic qui l’a poussé à subir une opération chirurgicale à la mâchoire pour guérir son apnée du sommeil',
-            textStyle: normalText,
+            textStyle: bodyText,
         },
         quote: {
             body: '« Soudainement, je m’en crissais de ce que j’allais avoir l’air. »',
-            textStyle: normalTitle,
+            textStyle: header2,
         },
     },
     {
@@ -47,12 +47,12 @@ const faceAFaceStory = [
         layout: 'normal',
         title: {
             body: 'Changer de visage',
-            textStyle: normalTitle,
+            textStyle: header2,
         },
         text: {
             body:
                 'Ça faisait longtemps qu’il y pensait, mais c’est après qu’un ami soit décédé de complications reliées à l’apnée du sommeil que Tommy Kruise s’est décidé à faire passer son visage au bistouri. Il s’endormait partout et ça le rendait même irritable et un peu chiant. Son opération à la mâchoire a changé son look de façon subtile, mais il dort nettement mieux depuis. «Maintenant, j’ai vraiment un jawline, alors je suis content!»',
-            textStyle: normalText,
+            textStyle: bodyText,
         },
         image: tommy,
     },
@@ -61,7 +61,7 @@ const faceAFaceStory = [
         type: 'gallery-feed-legends',
         title: {
             body: 'La face de l’humain au fil du temps',
-            textStyle: normalTitle,
+            textStyle: header2,
         },
         images: mans,
     },
@@ -71,7 +71,7 @@ const faceAFaceStory = [
         layout: 'middle',
         question: {
             body: 'Qu’est-ce qui vous agace le plus dans votre face?',
-            textStyle: normalTitle,
+            textStyle: header2,
         },
         options: survey1options,
     },
@@ -89,7 +89,7 @@ const faceAFaceStory = [
         layout: 'middle',
         title: {
             body: 'Avez-vous du pif au milieu du visage? Testez vos connaissances!',
-            textStyle: bigUppTitle,
+            textStyle: header1,
         },
     },
     {
@@ -98,7 +98,7 @@ const faceAFaceStory = [
         layout: 'middle',
         question: {
             body: 'Combien d’heures a duré la première greffe de visage au Canada?',
-            textStyle: normalTitle,
+            textStyle: header2,
         },
         options: quiz1options,
         answerIndex: 2,
@@ -113,6 +113,7 @@ const faceAFaceStory = [
         layout: 'middle',
         question: {
             body: 'Combien d’yeux avait Frank and Louie, un chat à deux visages décédé en 2014?',
+            textStyle: header2,
         },
         options: quiz2options,
         answerIndex: 2,
@@ -128,6 +129,7 @@ const faceAFaceStory = [
         question: {
             body:
                 'Dans quelle proportion les systèmes de reconnaissance faciale identifient-ils erronément les Noirs, les Asiatiques et les Autochtones?',
+            textStyle: header2,
         },
         options: quiz3options,
         answerIndex: 3,
@@ -142,6 +144,7 @@ const faceAFaceStory = [
         question: {
             body:
                 'Comment appelle-t-on un «faux» sourire qui n’est pas généré de façon authentique?',
+            textStyle: header2,
         },
         options: quiz4options,
         answerIndex: 1,
@@ -157,6 +160,7 @@ const faceAFaceStory = [
         question: {
             body:
                 'Combien d’abonnés Instagram compte Jason Diamond, le chirurgien des stars d’Hollywood?',
+            textStyle: header2,
         },
         options: quiz5options,
         answerIndex: 0,
@@ -171,6 +175,7 @@ const faceAFaceStory = [
         layout: 'middle',
         question: {
             body: 'Combien de caméras de surveillance compte la Chine?',
+            textStyle: header2,
         },
         options: quiz6options,
         answerIndex: 3,
@@ -185,10 +190,12 @@ const faceAFaceStory = [
         layout: 'middle',
         title: {
             body: 'Top 3 des secrets des super-recognizers',
+            textStyle: header1,
         },
         subtitle: {
             body:
                 'Ces gens capables de reconnaître presque n’importe qui n’importe où n’importe quand',
+            textStyle: header2,
         },
     },
     {
@@ -203,12 +210,15 @@ const faceAFaceStory = [
         layout: 'split-top',
         title: {
             body: 'Pourriez vous passer une semaine sans vous regarder dans le miroir?',
+            textStyle: header2,
         },
         subtitle: {
             body: 'On a tenté l’expérience et voici comment ça s’est déroulé',
+            textStyle: bodyText,
         },
         credits: {
             body: 'Par Hugo Meunier',
+            textStyle: bodyText,
         },
     },
     {

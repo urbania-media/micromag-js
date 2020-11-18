@@ -74,6 +74,7 @@ const Field = ({
         withoutLabel = false,
         withoutFieldRow = false,
         isList = false,
+        ...fieldProps
     } = (type !== null ? fieldsManager.getDefinition(type) || null : null) || {
         component: providedComponent,
     };
@@ -109,6 +110,7 @@ const Field = ({
                 [labelClassName]: labelClassName !== null,
             })}
             {...props}
+            {...fieldProps}
             errors={errors}
             fields={fields}
             name={name}

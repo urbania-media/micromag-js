@@ -28,15 +28,7 @@ export default [
             },
             {
                 name: 'title',
-                type: 'heading',
-                label: defineMessage({
-                    defaultMessage: 'Title',
-                    description: 'Title field label',
-                }),
-            },
-            {
-                name: 'markers',
-                type: 'markers',
+                type: 'heading-element',
                 label: defineMessage({
                     defaultMessage: 'Title',
                     description: 'Title field label',
@@ -76,7 +68,7 @@ export default [
             },
             {
                 name: 'title',
-                type: 'heading',
+                type: 'heading-element',
                 label: defineMessage({
                     defaultMessage: 'Title',
                     description: 'Title field label',
@@ -84,7 +76,7 @@ export default [
             },
             {
                 name: 'subtitle',
-                type: 'heading',
+                type: 'heading-element',
                 label: defineMessage({
                     defaultMessage: 'Subtitle',
                     description: 'Subtitle field label',
@@ -124,7 +116,7 @@ export default [
             },
             {
                 name: 'title',
-                type: 'heading',
+                type: 'heading-element',
                 label: defineMessage({
                     defaultMessage: 'Title',
                     description: 'Title field label',
@@ -132,7 +124,7 @@ export default [
             },
             {
                 name: 'subtitle',
-                type: 'heading',
+                type: 'heading-element',
                 label: defineMessage({
                     defaultMessage: 'Subtitle',
                     description: 'Subtitle field label',
@@ -140,7 +132,7 @@ export default [
             },
             {
                 name: 'credits',
-                type: 'text',
+                type: 'text-element',
                 label: defineMessage({
                     defaultMessage: 'Credits',
                     description: 'Credits field label',
