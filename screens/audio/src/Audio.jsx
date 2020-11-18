@@ -27,7 +27,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    layout: null,
+    layout: 'normal',
     audio: null,
     closedCaptions: null,
     background: null,
