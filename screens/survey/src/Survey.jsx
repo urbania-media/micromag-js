@@ -77,6 +77,8 @@ const SurveyScreen = ({
     onDisableInteraction,
 }) => {
     const { width, height } = useScreenSize();
+    const landscape = width > height;
+
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
     const hasQuestion = question !== null;
@@ -267,7 +269,7 @@ const SurveyScreen = ({
                 <Layout
                     fullscreen
                     verticalAlign={verticalAlign}
-                    style={isView || isPreview ? { padding: spacing } : null}
+                    style={isView || isPreview ? { padding: spacing, paddingTop: isView && !landscape ? spacing * 2 : null } : null}
                 >
                     {items}
                 </Layout>

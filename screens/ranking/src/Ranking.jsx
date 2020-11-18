@@ -60,6 +60,8 @@ const RankingScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const landscape = width > height;
+
     const { isPlaceholder, isPreview, isView, isEdit } = useScreenRenderContext();
 
     const itemsCount = items !== null ? items.length : 0;
@@ -180,7 +182,7 @@ const RankingScreen = ({
             />
             <Container width={width} height={height} maxRatio={maxRatio} withScroll>
                 <Scroll className={styles.scroll} verticalAlign="center" disabled={isPlaceholder}>
-                    <Layout style={isView || isPreview ? { padding: spacing } : null}>
+                    <Layout style={isView || isPreview ? { padding: spacing, paddingTop: isView && !landscape ? spacing * 2 : null } : null}>
                         {elements}
                     </Layout>
                 </Scroll>

@@ -73,6 +73,7 @@ const TitleScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const landscape = width > height;
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
@@ -160,7 +161,7 @@ const TitleScreen = ({
                 <Layout
                     fullscreen
                     verticalAlign={verticalAlign}
-                    style={ isView || isPreview ? { padding: spacing } : null }
+                    style={ isView || isPreview ? { padding: spacing, paddingTop: isView && !landscape ? spacing * 2 : null } : null }
                 >
                     <TransitionsStagger
                         transitions={transitions}

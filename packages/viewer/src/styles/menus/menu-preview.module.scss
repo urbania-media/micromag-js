@@ -15,7 +15,8 @@
     }
     
     .content {
-        overflow: auto;    
+        @extend %hide-scrollbars;
+        overflow: auto;
     }
     
     .title {

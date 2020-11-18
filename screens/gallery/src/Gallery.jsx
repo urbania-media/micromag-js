@@ -63,7 +63,7 @@ const defaultProps = {
     layout: null,
     withLegends: false,
     images: [],
-    spacing: 10,
+    spacing: 20,
     legendMaxLines: 2,
     background: null,
     current: true,
@@ -92,6 +92,8 @@ const GalleryScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const landscape = width > height;
+
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
     const finalSpacing = isPlaceholder || isPreview ? 4 : spacing;
@@ -227,7 +229,9 @@ const GalleryScreen = ({
                 maxRatio={maxRatio}
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <Grid className={styles.grid} spacing={finalSpacing} items={items} {...grid} />
+                <div className={styles.content} style={ !landscape && isView ? { paddingTop: spacing } : null }>
+                    <Grid className={styles.grid} spacing={finalSpacing} items={items} {...grid} />
+                </div>                
             </Container>
         </div>
     );

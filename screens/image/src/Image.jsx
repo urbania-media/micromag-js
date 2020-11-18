@@ -72,6 +72,7 @@ const ImageScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const landscape = width > height;
 
     const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
 
@@ -235,7 +236,7 @@ const ImageScreen = ({
                 <Layout
                     className={styles.layout}
                     fullscreen
-                    style={!isPlaceholder ? { padding: spacing / 2 } : null}
+                    style={!isPlaceholder ? { padding: spacing / 2, paddingTop: !landscape ? spacing * 1.5  : null } : null}
                 >
                     {items}
                 </Layout>
