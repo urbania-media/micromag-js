@@ -2,17 +2,9 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Label, useFieldsManager } from '@micromag/core';
 
-import { pascalCase } from 'change-case';
-import { Checkboxes, Radios } from '@micromag/fields';
-
-import { Label } from '@micromag/core';
 import styles from '../../styles/forms/search-filters-old.module.scss';
-
-const FieldsComponent = {
-    Checkboxes,
-    Radios,
-};
 
 const propTypes = {
     filters: PropTypes.arrayOf(PropTypes.object),
@@ -89,6 +81,7 @@ const defaultProps = {
 };
 
 const SearchFilters = ({ filters, value, onChange, className }) => {
+    const fieldsManager = useFieldsManager();
     const onFieldChange = useCallback(
         (key, newFilterValue) => {
             const newValue =
@@ -119,7 +112,7 @@ const SearchFilters = ({ filters, value, onChange, className }) => {
             ])}
         >
             {filters.map(({ id, title, type, options }) => {
-                const FieldComponent = FieldsComponent[pascalCase(type)] || null;
+                const FieldComponent = fieldsManager.getComponent(type) || null;
                 return (
                     <div key={`${type}-${id}`}>
                         <div className={styles.border} />

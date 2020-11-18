@@ -8,8 +8,8 @@ import { faHeadphonesAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useMediaTags, useMediaUpdate } from '@micromag/data'; // useOrganisationTeam
-import { Tokens, Text } from '@micromag/fields';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useFieldsManager } from '@micromag/core/contexts';
 import { Button } from '@micromag/core/components';
 
 import styles from '../../styles/partials/media-metadata.module.scss';
@@ -37,6 +37,7 @@ const MediaMetadata = ({ media, className }) => {
         tags: initialTags = [],
     } = metadata || {};
 
+    const fieldsManager = useFieldsManager();
     const { tags: tagOptions } = useMediaTags();
     const { update } = useMediaUpdate();
 
@@ -93,6 +94,9 @@ const MediaMetadata = ({ media, className }) => {
         setChanged(false);
     }, [media, setTags, setChanged]);
 
+    const TextField = fieldsManager.getComponent('text');
+    const TokensField = fieldsManager.getComponent('tokens');
+
     return (
         <div
             className={classNames([
@@ -134,7 +138,7 @@ const MediaMetadata = ({ media, className }) => {
                                 description="Name in Media Gallery"
                             />
                         </h6>
-                        <Text value={name} onChange={onNameChange} />
+                        <TextField value={name} onChange={onNameChange} />
                     </div>
                     <div className="form-group">
                         <h6>
@@ -143,7 +147,7 @@ const MediaMetadata = ({ media, className }) => {
                                 description="Tags in Media Gallery"
                             />
                         </h6>
-                        <Tokens value={tags} options={tagOptions} onChange={onTagChange} />
+                        <TokensField value={tags} options={tagOptions} onChange={onTagChange} />
                     </div>
                     {changed ? (
                         <Button theme="primary" onClick={onSave}>
