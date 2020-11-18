@@ -1,7 +1,6 @@
 $black: #000;
 $font-weight-bolder: bolder;
 $font-weight-bold: bold;
-$font-weight-normal: normal;
 $enable-shadows: true;
 $enable-gradients: true;
 $enable-hover-media-query: true;
@@ -28,7 +27,7 @@ $red: #f03;
 $teal: #0cc;
 $cyan: #09f;
 $primary: $indigo;
-$font-weight-base: $font-weight-normal;
+$font-weight-base: $font-weight-bolder;
 $btn-font-weight: $font-weight-bold;
 $list-group-color: $black;
 $jumbotron-color: $gray-900;
