@@ -24,8 +24,8 @@ export const mans = [
             media: {
                 url: man1,
                 metadata: {
-                    width: 500,
-                    height: 670,
+                    width: 1000,
+                    height: 1340,
                 },
             },
         },
