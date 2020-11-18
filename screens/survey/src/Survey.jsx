@@ -155,7 +155,7 @@ const SurveyScreen = ({
         buttonsRefs.current.forEach((button, buttonI) => {
             const label = labelsRefs.current[buttonI];
             const borderWidth = button.offsetWidth - button.clientWidth;
-            const totalWidth = borderWidth + label.offsetWidth + 1;
+            const totalWidth = borderWidth + label.offsetWidth + 2;
             maxWidth = Math.max(maxWidth, totalWidth);
             setButtonMaxWidth(maxWidth);
         });
