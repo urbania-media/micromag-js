@@ -94,9 +94,9 @@ const GalleryScreen = ({
     const { width, height } = useScreenSize();
     const landscape = width > height;
 
-    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
+    const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
 
-    const finalSpacing = isPlaceholder || isPreview ? 4 : spacing;
+    const finalSpacing = isPlaceholder ? 4 : spacing;
 
     const grid = isPlainObject(layoutProps[layout]) ? layoutProps[layout] : {};
     const { layout: gridLayout = [], vertical = false } = grid;

@@ -10,6 +10,43 @@
 }
 
 /* Reset */
+%reset-viewer-fonts {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.1;
+}
+
+%reset-viewer-elements {
+    margin: 0;
+    padding: 0;
+}
+
+%reset-viewer {
+    @extend %reset-viewer-fonts;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    ul,
+    ol,
+    dl,
+    li,
+    address,
+    blockquote,
+    pre,
+    figure,
+    caption,
+    label,
+    legend {
+        @extend %reset-viewer-elements;
+    }
+}
+
 %reset-button {
     display: inline-block;
     position: relative;

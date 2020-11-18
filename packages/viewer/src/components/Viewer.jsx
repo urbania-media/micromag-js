@@ -287,8 +287,8 @@ const Viewer = ({
                     className={styles.menuDots}
                 />
                 <MenuPreview
-                    width={screenWidth}
-                    height={screenHeight}
+                    screenWidth={screenWidth}
+                    screenHeight={screenHeight}
                     items={components}
                     current={currentIndex}
                     onClickItem={onClickPreviewMenuItem}

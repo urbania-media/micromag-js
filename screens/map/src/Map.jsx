@@ -82,7 +82,7 @@ const MapScreen = ({
 
     const { width, height } = useScreenSize();
     const screenRatio = width / height;
-    const maxWidth = maxRatio !== null && screenRatio > maxRatio ? height * maxRatio : width;
+    const maxWidth = Math.round(maxRatio !== null && screenRatio > maxRatio ? height * maxRatio : width);
 
     const { isView, isPlaceholder, isPreview, isEdit } = useScreenRenderContext();
 
@@ -141,33 +141,36 @@ const MapScreen = ({
     } else if (isPlaceholder) {
         element = <PlaceholderMap className={styles.placeholder} withImages={withMarkerImages} />;
     } else if (isPreview) {
-        let staticUrl = `https://maps.googleapis.com/maps/api/staticmap?size=${maxWidth}x${height}`;
-        const { center = null, zoom = null } = map;
-        if (center !== null) {
-            const { lat = null, lng = null } = center;
-            staticUrl += `&center=${lat},${lng}`;
+        if (maxWidth > 0 && height > 0) {
+            let staticUrl = `https://maps.googleapis.com/maps/api/staticmap?size=${maxWidth}x${height}`;
+            const { center = null, zoom = null } = map;
+            if (center !== null) {
+                const { lat = null, lng = null } = center;
+                staticUrl += `&center=${lat},${lng}`;
+            }
+            if (zoom !== null) {
+                staticUrl += `&zoom=${zoom}`;
+            }
+            if (gmapsApiKey !== null) {
+                staticUrl += `&key=${gmapsApiKey}`;
+            }
+            if (markers !== null) {
+                staticUrl += `&markers=${markers
+                    .map((marker) => {
+                        const { lat = null, lng = null } = marker.geoPosition || {};
+                        return lat !== null && lng !== null ? `${lat},${lng}` : '';
+                    })
+                    .join('|')}`;
+            }
+            element = (
+                <Image
+                    {...{ media: { url: staticUrl, metadata: { width: 640, height: 640 } } }}
+                    width={maxWidth}
+                    height={height}
+                    objectFit={{ fit: 'cover' }}
+                />
+            );
         }
-        if (zoom !== null) {
-            staticUrl += `&zoom=${zoom}`;
-        }
-        if (gmapsApiKey !== null) {
-            staticUrl += `&key=${gmapsApiKey}`;
-        }
-        if (markers !== null) {
-            staticUrl += `&markers=${markers
-                .map((marker) => {
-                    const { lat = null, lng = null } = marker.geoPosition || {};
-                    return lat !== null && lng !== null ? `${lat},${lng}` : '';
-                })
-                .join('|')}`;
-        }
-        element = (
-            <Image
-                {...{ media: { url: staticUrl, width: maxWidth, height } }}
-                width={maxWidth}
-                height={height}
-            />
-        );
     } else if (hasMap) {
         const { title = null, description = null, image = null } = lastRenderedMarker.current || {};
         const hasTitle = title !== null;

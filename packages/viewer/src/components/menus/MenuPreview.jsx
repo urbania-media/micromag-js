@@ -8,8 +8,8 @@ import { ScreenPreview } from '@micromag/core/components';
 import styles from '../../styles/menus/menu-preview.module.scss';
 
 const propTypes = {
-    width: PropTypes.number,
-    height: PropTypes.number,
+    screenWidth: PropTypes.number,
+    screenHeight: PropTypes.number,
     title: PropTypes.string,
     items: MicromagPropTypes.menuItems,
     current: PropTypes.number,
@@ -19,8 +19,8 @@ const propTypes = {
 };
 
 const defaultProps = {
-    width: null,
-    height: null,
+    screenWidth: null,
+    screenHeight: null,
     title: 'Titre du micromag',
     items: [],
     current: 0,
@@ -30,8 +30,8 @@ const defaultProps = {
 };
 
 const ViewerMenuPreview = ({
-    width,
-    height,
+    screenWidth,
+    screenHeight,
     title,
     items,
     current,
@@ -39,7 +39,8 @@ const ViewerMenuPreview = ({
     onClose,
     className,
 }) => {
-    const screenSizeRatio = 0.4;
+    // console.log(screenWidth, screenHeight, screenWidth / screenHeight, screenHeight / screenWidth);
+    // const screenSizeRatio = `${100 - (screenWidth / screenHeight) * 100}%`;
     return (
         <div
             className={classNames([
@@ -70,13 +71,20 @@ const ViewerMenuPreview = ({
                                     },
                                 ])}
                                 key={`item-${index}`}
-                                style={{ paddingBottom: `${(screenSizeRatio) * 100}%` }}
+                                style={{ paddingBottom: '40%' }}
                             >
-                                <div className={styles.screenContainer} style={{
-                                    width,
-                                    height,
-                                }}>
-                                    <ScreenPreview width={width} height={height} screen={item} />
+                                <div
+                                    className={styles.screenContainer}
+                                    style={{
+                                        width: screenWidth,
+                                        height: screenHeight,
+                                    }}
+                                >
+                                    <ScreenPreview
+                                        width={screenWidth}
+                                        height={screenHeight}
+                                        screen={item}
+                                    />
                                 </div>
                                 <button
                                     type="button"
