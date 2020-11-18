@@ -186,7 +186,12 @@ const RankingScreen = ({
                 playing={(isView && current) || (isEdit && active)}
             />
             <Container width={width} height={height} maxRatio={maxRatio} withScroll>
-                <Scroll className={styles.scroll} verticalAlign="center" disabled={isPlaceholder}>
+                <Scroll
+                    className={styles.scroll}
+                    verticalAlign="center"
+                    disabled={isPlaceholder}
+                    hideArrow={isPreview}
+                >
                     <Layout
                         style={
                             isView || isPreview

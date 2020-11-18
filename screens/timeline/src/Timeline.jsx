@@ -117,14 +117,14 @@ const Timeline = ({
         const isEmptyImage = isEdit && !hasImage;
 
         const elementsTypes = (layout === 'normal' ? 'title-description-image' : layout).split('-');
-        
+
         const titleIndex = elementsTypes.indexOf('title');
         const imageIndex = elementsTypes.indexOf('image');
 
         if (!illustrated) {
             elementsTypes.splice(imageIndex, 1);
         }
-        
+
         const typesCount = elementsTypes.length;
 
         return (
@@ -154,9 +154,7 @@ const Timeline = ({
                                             emptyClassName={styles.empty}
                                             isEmpty={isEmptyTitle}
                                         >
-                                            {hasElement ? (
-                                                <Heading {...title} />
-                                            ) : null}
+                                            {hasElement ? <Heading {...title} /> : null}
                                         </ScreenElement>
                                     </div>
                                 );
@@ -177,9 +175,7 @@ const Timeline = ({
                                             emptyClassName={styles.empty}
                                             isEmpty={isEmptyDescription}
                                         >
-                                            {hasElement ? (
-                                                <Text {...description} />
-                                            ) : null}
+                                            {hasElement ? <Text {...description} /> : null}
                                         </ScreenElement>
                                     </div>
                                 );
@@ -233,7 +229,9 @@ const Timeline = ({
                                                 [styles.hidden]: topLineHidden,
                                             },
                                         ])}
-                                        style={{ backgroundColor: !topLineHidden ? lineColor : null }}
+                                        style={{
+                                            backgroundColor: !topLineHidden ? lineColor : null,
+                                        }}
                                     />
                                     {type === 'title' ? (
                                         <div
@@ -290,8 +288,22 @@ const Timeline = ({
                 playing={(isView && current) || (isEdit && active)}
             />
             <Container width={width} height={height} maxRatio={maxRatio} withScroll>
-                <Scroll className={styles.scroll} verticalAlign="center" disabled={isPlaceholder}>
-                    <Layout style={isView || isPreview ? { padding: spacing, paddingTop: isView && !landscape ? spacing * 2 : spacing } : null}>
+                <Scroll
+                    className={styles.scroll}
+                    verticalAlign="center"
+                    disabled={isPlaceholder}
+                    hideArrow={isPreview}
+                >
+                    <Layout
+                        style={
+                            isView || isPreview
+                                ? {
+                                      padding: spacing,
+                                      paddingTop: isView && !landscape ? spacing * 2 : spacing,
+                                  }
+                                : null
+                        }
+                    >
                         {timelineElements}
                     </Layout>
                 </Scroll>
