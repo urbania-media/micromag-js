@@ -7,12 +7,11 @@ import { FormattedMessage } from 'react-intl';
 import { FormPanel, Link } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 import { useOrganisationPlans } from '@micromag/data';
-import { useNav } from '@micromag/core/hooks';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
-import OrganisationMenu from '../../menus/Organisation';
+import OrganisationSidebar from '../../sidebars/Organisation';
 
 import styles from '../../../styles/pages/organisation/billing.module.scss';
 
@@ -27,7 +26,7 @@ const defaultProps = {
 
 const OrganisationBillingPage = ({ location: { pathname }, className }) => {
     const title = <FormattedMessage defaultMessage="Billing" descrition="Section title" />;
-    const nav = useNav(title, pathname);
+    const nav = [{ label: title, url: pathname }];
 
     const url = useUrlGenerator();
     const { plans } = useOrganisationPlans();
@@ -46,7 +45,7 @@ const OrganisationBillingPage = ({ location: { pathname }, className }) => {
         <MainLayout nav={nav}>
             <Page
                 title={title}
-                sidebar={<OrganisationMenu asList />}
+                sidebar={<OrganisationSidebar asList />}
                 className={classNames([
                     styles.container,
                     {

@@ -6,7 +6,6 @@ import { FormattedMessage } from 'react-intl';
 
 import { FormPanel } from '@micromag/core/components';
 import { useOrganisations } from '@micromag/data';
-import { useNav } from '@micromag/core/hooks';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import MainLayout from '../../layouts/Main';
@@ -27,8 +26,8 @@ const defaultProps = {
 };
 
 const AccountPage = ({ location: { pathname }, className }) => {
-    const title = <FormattedMessage defaultMessage="My profile" description="Page title" />;
-    const nav = useNav(title, pathname);
+    const title = <FormattedMessage defaultMessage="Profile" description="Page title" />;
+    const nav = [{ label: title, url: pathname }];
 
     const { organisations: userOrganisations, loading } = useOrganisations();
     const organisations = userOrganisations || [];

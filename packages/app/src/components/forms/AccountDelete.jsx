@@ -65,14 +65,14 @@ const AccountDeleteForm = ({ fields, className, onUpdated }) => {
             postForm={postForm}
             initialValue={user}
             submitButtonLabel={
-                <FormattedMessage defaultMessage="Delete profile" description="Button label" />
+                <FormattedMessage defaultMessage="Delete account" description="Button label" />
             }
             onComplete={onUpdated}
             className={className}
         />
     ) : (
         <Button className="btn btn-warning" onClick={openForm}>
-            <FormattedMessage defaultMessage="Delete my profile" description="Button label" />
+            <FormattedMessage defaultMessage="Delete my account" description="Button label" />
         </Button>
     );
 };

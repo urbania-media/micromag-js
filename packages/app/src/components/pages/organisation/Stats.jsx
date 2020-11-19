@@ -6,13 +6,12 @@ import { FormattedMessage } from 'react-intl';
 
 import { FormPanel } from '@micromag/core/components';
 import { useOrganisation } from '@micromag/data';
-import { useNav } from '@micromag/core/hooks';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import { useOrganisation as useContextOrganisation } from '../../../contexts/OrganisationContext';
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
-import OrganisationMenu from '../../menus/Organisation';
+import OrganisationSidebar from '../../sidebars/Organisation';
 
 import styles from '../../../styles/pages/organisation/stats.module.scss';
 
@@ -27,7 +26,7 @@ const defaultProps = {
 
 const StatsPage = ({ location: { pathname }, className }) => {
     const title = <FormattedMessage defaultMessage="Stats" descrition="Page title" />;
-    const nav = useNav(title, pathname);
+    const nav = [{ label: title, url: pathname }];
 
     const currentOrganisation = useContextOrganisation();
     const { organisation } = useOrganisation(currentOrganisation.id);
@@ -35,7 +34,7 @@ const StatsPage = ({ location: { pathname }, className }) => {
         <MainLayout nav={nav}>
             <Page
                 title={title}
-                sidebar={<OrganisationMenu asList />}
+                sidebar={<OrganisationSidebar asList />}
                 className={classNames([
                     styles.container,
                     {

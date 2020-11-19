@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import classNames from 'classnames';
 import { useParams } from 'react-router';
+
 import { useUrlGenerator } from '@micromag/core/contexts';
 import { useStory } from '@micromag/data';
 import Viewer from '@micromag/viewer';
@@ -19,9 +20,10 @@ const defaultProps = {
 };
 
 const StoryPreviewPage = ({ className }) => {
+    const url = useUrlGenerator();
     const { story: storyId } = useParams();
     const { memoryRouter } = useApp();
-    const url = useUrlGenerator();
+
     const { story } = useStory(storyId);
     return (
         <MainLayout fullscreen navbar={<PreviewNavbar story={story} />}>
@@ -41,7 +43,7 @@ const StoryPreviewPage = ({ className }) => {
     );
 };
 
-StoryPreviewPage.propTypes = propTypes;
 StoryPreviewPage.defaultProps = defaultProps;
+StoryPreviewPage.propTypes = propTypes;
 
 export default StoryPreviewPage;

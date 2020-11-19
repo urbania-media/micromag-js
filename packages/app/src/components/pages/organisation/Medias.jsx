@@ -6,12 +6,11 @@ import { FormattedMessage } from 'react-intl';
 
 import MediaGallery from '@micromag/media-gallery';
 import { FormPanel } from '@micromag/core/components';
-import { useNav } from '@micromag/core/hooks';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
-import OrganisationMenu from '../../menus/Organisation';
+import OrganisationSidebar from '../../sidebars/Organisation';
 
 import styles from '../../../styles/pages/organisation/medias.module.scss';
 
@@ -26,13 +25,13 @@ const defaultProps = {
 
 const OrganisationMediasPage = ({ location: { pathname }, className }) => {
     const title = <FormattedMessage defaultMessage="Medias" descrition="Page title" />;
-    const nav = useNav(title, pathname);
+    const nav = [{ label: title, url: pathname }];
 
     return (
         <MainLayout nav={nav}>
             <Page
                 title={title}
-                sidebar={<OrganisationMenu asList />}
+                sidebar={<OrganisationSidebar asList />}
                 className={classNames([
                     styles.container,
                     {

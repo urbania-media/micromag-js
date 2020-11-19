@@ -51,7 +51,7 @@ const StoriesMenu = ({ items, className, itemClassName, linkClassName, ...props 
             items={[
                 {
                     id: 'stories',
-                    href: url('stories'),
+                    href: url('home'),
                     label: messages.stories,
                     dropdown: [
                         {
@@ -59,7 +59,7 @@ const StoriesMenu = ({ items, className, itemClassName, linkClassName, ...props 
                             label: messages.create,
                         },
                         {
-                            href: url('stories'),
+                            href: url('home'),
                             label: messages.viewAll,
                         },
                         {

@@ -8,7 +8,6 @@ import { parse as parseQueryString } from 'query-string';
 
 import { FormPanel } from '@micromag/core/components';
 import { useUrlGenerator, useRoutePush } from '@micromag/core/contexts';
-import { useNav } from '@micromag/core/hooks';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import { useSetOrganisation } from '../../../contexts/OrganisationContext';
@@ -31,7 +30,7 @@ const OrganisationCreatePage = ({ location: { pathname }, className }) => {
     const title = (
         <FormattedMessage defaultMessage="Create an organisation" descrition="Page title" />
     );
-    const nav = useNav(title, pathname);
+    const nav = [{ label: title, url: pathname }];
 
     const url = useUrlGenerator();
     const push = useRoutePush();

@@ -6,22 +6,22 @@ import { defineMessages } from 'react-intl';
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Card } from '@micromag/core/components';
 
-import { useUser } from '../../contexts/AuthContext';
-import AccountMenu from '../menus/Account';
+import OrganisationMenu from '../menus/Organisation';
+import { useOrganisation as useContextOrganisation } from '../../contexts/OrganisationContext';
 
-import styles from '../../styles/partials/account-box.module.scss';
+import styles from '../../styles/partials/organisation-box.module.scss';
 
 const messages = defineMessages({
     title: {
-        id: 'account-box.title',
-        defaultMessage: 'Account',
+        id: 'organisation-box.title',
+        defaultMessage: 'Organisation',
     },
     profile: {
-        id: 'account-box.profile',
+        id: 'organisation-box.profile',
         defaultMessage: 'Profile',
     },
     settings: {
-        id: 'account-box.settings',
+        id: 'organisation-box.settings',
         defaultMessage: 'Settings',
     },
 });
@@ -32,17 +32,16 @@ const propTypes = {
 };
 
 const defaultProps = {
-    withoutHeader: false,
+    withoutHeader: true,
     className: null,
 };
 
-const AccountBox = ({ withoutHeader, className }) => {
-    const user = useUser();
+const OrganisationSidebar = ({ withoutHeader, className }) => {
+    const organisation = useContextOrganisation();
     return (
         <Card
             header={!withoutHeader ? messages.title : null}
-            title={user.name ? user.name : null}
-            afterBody={<AccountMenu asList flush />}
+            afterBody={<OrganisationMenu asList flush />}
             theme="dark"
             className={classNames([
                 styles.container,
@@ -52,12 +51,12 @@ const AccountBox = ({ withoutHeader, className }) => {
             ])}
             bodyClassName={styles.body}
         >
-            <p className="mb-0">{user.email}</p>
+            <h5 className="mb-0">{organisation.name}</h5>
         </Card>
     );
 };
 
-AccountBox.propTypes = propTypes;
-AccountBox.defaultProps = defaultProps;
+OrganisationSidebar.propTypes = propTypes;
+OrganisationSidebar.defaultProps = defaultProps;
 
-export default AccountBox;
+export default OrganisationSidebar;

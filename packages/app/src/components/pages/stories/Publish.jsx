@@ -3,15 +3,19 @@ import PropTypes from 'prop-types';
 // import classNames from 'classnames';
 import { useParams } from 'react-router';
 import { FormattedMessage } from 'react-intl';
+
+import { useUrlGenerator } from '@micromag/core/contexts';
 import { useStory } from '@micromag/data';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
-import StoryBox from '../../partials/StoryBox';
+import StorySidebar from '../../sidebars/Story';
 import PublishForm from '../../forms/StoryPublish';
 import RecentPublications from '../../partials/RecentPublications';
 
 const propTypes = {
+    location: MicromagPropTypes.location.isRequired,
     className: PropTypes.string,
 };
 
@@ -19,17 +23,25 @@ const defaultProps = {
     className: null,
 };
 
-const StoryPublishPage = ({ className }) => {
+const StoryPublishPage = ({ location: { pathname }, className }) => {
+    const url = useUrlGenerator();
     const { story: storyId } = useParams();
     const { story } = useStory(storyId);
+
+    const parent = story !== null ? story.title : null;
+    const parentUrl = story !== null ? url('stories.show', { story: story.id }) : null;
+    const title = <FormattedMessage defaultMessage="Publish" descrition="Page title" />;
+
     return (
-        <MainLayout>
+        <MainLayout
+            nav={[
+                { label: parent, url: parentUrl },
+                { label: title, url: pathname },
+            ]}
+        >
             <Page
-                section={
-                    <FormattedMessage defaultMessage="Publish" description="Publish page title" />
-                }
-                title={story !== null ? story.title : null}
-                sidebar={story !== null ? <StoryBox story={story} /> : <div />}
+                title={title}
+                sidebar={story !== null ? <StorySidebar story={story} /> : <div />}
                 className={className}
             >
                 {story !== null ? (

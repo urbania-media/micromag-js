@@ -9,6 +9,7 @@ import Page from '../partials/Page';
 
 import AllStories from '../partials/AllStories';
 import UserStoriesMenubar from '../menubars/UserStories';
+import UserSettingsMenubar from '../menubars/UserSettings';
 
 import styles from '../../styles/pages/home.module.scss';
 
@@ -24,15 +25,11 @@ const HomePage = ({ className }) => {
     return (
         <MainLayout>
             <Page
-                title={
-                    <FormattedMessage
-                        defaultMessage="My Projects"
-                        description="Micromag no org home page title"
-                    />
-                }
+                title={<FormattedMessage defaultMessage="My Stories" description="Page title" />}
                 sidebar={null}
                 menubar={
                     <>
+                        <UserSettingsMenubar />
                         <hr className="border border-light" />
                         <UserStoriesMenubar />
                     </>

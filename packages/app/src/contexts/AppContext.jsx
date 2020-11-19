@@ -19,6 +19,11 @@ export const useSetNav = () => {
     return setNav;
 };
 
+export const usePage = (name) => {
+    const pages = useContext(AppContext);
+    return pages[name];
+};
+
 const propTypes = {
     children: PropTypes.node.isRequired,
     memoryRouter: PropTypes.bool,
@@ -37,6 +42,7 @@ const defaultProps = {
 
 export const AppProvider = ({ children, memoryRouter, nav: initialNav }) => {
     const [nav, setNav] = useState(initialNav);
+
     return (
         <AppContext.Provider value={{ memoryRouter, nav, setNav }}>{children}</AppContext.Provider>
     );

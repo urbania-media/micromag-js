@@ -3,8 +3,10 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+
 import { FormPanel } from '@micromag/core/components';
 import { useRoutePush } from '@micromag/core/contexts';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
@@ -16,6 +18,7 @@ import { useOrganisation as useContextOrganisation } from '../../../contexts/Org
 import styles from '../../../styles/pages/stories/create.module.scss';
 
 const propTypes = {
+    location: MicromagPropTypes.location.isRequired,
     className: PropTypes.string,
 };
 
@@ -23,9 +26,12 @@ const defaultProps = {
     className: null,
 };
 
-const StoriesCreatePage = ({ className }) => {
+const StoriesCreatePage = ({ location: { pathname }, className }) => {
     const organisation = useContextOrganisation();
     const push = useRoutePush();
+
+    const title = <FormattedMessage defaultMessage="Create a story" descrition="Page title" />;
+
     const onCreated = useCallback(
         (story) => {
             push('stories.show', {
@@ -35,14 +41,9 @@ const StoriesCreatePage = ({ className }) => {
         [push],
     );
     return (
-        <MainLayout contentAlign="middle">
+        <MainLayout contentAlign="middle" nav={[{ label: title, url: pathname }]}>
             <Page
-                title={
-                    <FormattedMessage
-                        defaultMessage="Create a story"
-                        description="Create a story page title"
-                    />
-                }
+                title={title}
                 small
                 className={classNames([
                     styles.container,

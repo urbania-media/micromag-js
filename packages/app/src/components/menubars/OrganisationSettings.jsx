@@ -22,7 +22,7 @@ const OrganisationSettingsMenubar = ({ organisation, className }) => {
         <div
             className={classNames([
                 'd-flex',
-                'align-items-end',
+                'align-items-center',
                 'justify-content-between',
                 {
                     [className]: className !== null,
@@ -31,7 +31,7 @@ const OrganisationSettingsMenubar = ({ organisation, className }) => {
         >
             <TeamMembers organisation={organisation} />
             <SettingsButton>
-                <OrganisationMenu asList />
+                <OrganisationMenu asDropdown withoutDropdown />
             </SettingsButton>
         </div>
     );
