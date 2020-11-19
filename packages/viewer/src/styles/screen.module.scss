@@ -2,7 +2,12 @@
 @import '~@micromag/core/scss/placeholders';
 
 .container {
+    // visibility: hidden;
     position: relative;
     width: 100%;
     height: 100%;
+
+    // &.active {
+    //     visibility: visible;
+    // }
 }

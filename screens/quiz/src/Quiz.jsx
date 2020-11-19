@@ -5,6 +5,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
@@ -33,16 +36,15 @@ const propTypes = {
         text: MicromagPropTypes.textElement,
     }),
     spacing: PropTypes.number,
+    showResultsDelay: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
     maxRatio: PropTypes.number,
-    transitions: MicromagPropTypes.transitions, // @TODO transforme l'objet en string ???
+    transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     resultsTransitionDuration: PropTypes.number,
     className: PropTypes.string,
-    onEnableInteraction: PropTypes.func,
-    onDisableInteraction: PropTypes.func,
 };
 
 const defaultProps = {
@@ -52,19 +54,15 @@ const defaultProps = {
     answerIndex: null,
     result: null,
     spacing: 20,
+    showResultsDelay: 750,
     background: null,
     current: true,
     active: true,
     maxRatio: 3 / 4,
-    transitions: {
-        in: 'fade',
-        out: 'fade',
-    },
+    transitions: { in: 'fade', out: 'fade' },
     transitionStagger: 100,
     resultsTransitionDuration: 500,
     className: null,
-    onEnableInteraction: null,
-    onDisableInteraction: null,
 };
 
 const QuizScreen = ({
@@ -74,6 +72,7 @@ const QuizScreen = ({
     answerIndex,
     result,
     spacing,
+    showResultsDelay,
     background,
     current,
     active,
@@ -82,8 +81,6 @@ const QuizScreen = ({
     transitionStagger,
     resultsTransitionDuration,
     className,
-    onEnableInteraction,
-    onDisableInteraction,
 }) => {
     const { width, height } = useScreenSize();
     const landscape = width > height;
@@ -96,6 +93,7 @@ const QuizScreen = ({
     const isEmptyResult = isEdit && !hasResult;
 
     const [userAnswerIndex, setUserAnswerIndex] = useState(null);
+    const [showResults, setShowResults] = useState(false);
 
     const answered = userAnswerIndex !== null;
     const hasUserAnsweredRight = answered ? userAnswerIndex === answerIndex : null;
@@ -105,11 +103,19 @@ const QuizScreen = ({
 
     const onOptionClick = useCallback(
         (optionIndex) => {
+            let timeout = null;
             if (userAnswerIndex === null) {
                 setUserAnswerIndex(optionIndex);
+                timeout = setTimeout(setShowResults, showResultsDelay, true);
+            }
+
+            return () => {
+                if (timeout !== null) {
+                    clearTimeout(timeout);
+                }                
             }
         },
-        [userAnswerIndex, setUserAnswerIndex],
+        [userAnswerIndex, setUserAnswerIndex, showResultsDelay],
     );
     
     // @TODO update scale + inverted scale inside instead of height for best performance
@@ -163,7 +169,7 @@ const QuizScreen = ({
 
     useEffect(() => {
         let timeout = null;
-        if (answered) {
+        if (showResults) {
             timeout = setTimeout(setAnswerTransitionComplete, resultsTransitionDuration, true);
         }
 
@@ -172,30 +178,7 @@ const QuizScreen = ({
                 clearTimeout(timeout);
             }
         };
-    }, [answered, resultsTransitionDuration, setAnswerTransitionComplete]);
-
-    useEffect( () => {
-        if (!current) {
-            return;
-        }
-
-        if (answered) {
-            if (onEnableInteraction !== null) {
-                onEnableInteraction();
-            }            
-        } else if (onDisableInteraction !== null) {
-            onDisableInteraction();
-        }
-    }, [current, answered, onEnableInteraction, onDisableInteraction]);
-
-    // reset screen when !current
-
-    // useEffect( () => {        
-    //     if (!current && userAnswerIndex !== null) {
-    //         setUserAnswerIndex(null);
-    //         setAnswerTransitionComplete(false);
-    //     }
-    // }, [current, userAnswerIndex, setUserAnswerIndex, setAnswerTransitionComplete]);
+    }, [showResults, resultsTransitionDuration, setAnswerTransitionComplete]);
 
     // Question
 
@@ -230,7 +213,7 @@ const QuizScreen = ({
             ref={answerRef}
             style={answerTransitionProps !== null && !answerTransitionComplete && isView ? {
                 transitionDuration: `${resultsTransitionDuration}ms`,
-                height: !answered
+                height: !showResults
                     ? answerTransitionProps.answerInitialHeight
                     : answerTransitionProps.answerAnsweredHeight,
             } : null }
@@ -244,6 +227,7 @@ const QuizScreen = ({
                         const hasOption = option !== null;
                         const isEmptyOption = isEdit && !hasOption;
                         const rightAnswer = optionI === answerIndex;
+                        const userAnswer = optionI === userAnswerIndex;
 
                         return answerTransitionComplete && !rightAnswer ? null : (
                             <div
@@ -252,15 +236,13 @@ const QuizScreen = ({
                                 className={classNames([
                                     styles.option,
                                     {
-                                        [styles.answer]: rightAnswer,
-                                        [styles[
-                                            hasUserAnsweredRight ? 'right' : 'wrong'
-                                        ]]: rightAnswer,
+                                        [styles.rightAnswer]: rightAnswer,
+                                        [styles.userAnswer]: userAnswer,
                                     },
                                 ])}
                                 style={
                                     answerTransitionProps &&
-                                    answered &&
+                                    showResults &&
                                     rightAnswer &&
                                     !answerTransitionComplete
                                         ? {
@@ -291,14 +273,16 @@ const QuizScreen = ({
                                             <Button
                                                 className={styles.button}
                                                 onClick={() => onOptionClick(optionI)}
+                                                disabled={answered}
                                             >
-                                                {answered && rightAnswer ? (
-                                                    <div className={styles.resultIcon}>
-                                                        {hasUserAnsweredRight ? '✓' : 'x'}
-                                                    </div>
+                                                {rightAnswer ? (
+                                                    <span className={styles.resultIcon}>
+                                                        <FontAwesomeIcon className={styles.faIcon} icon={hasUserAnsweredRight ? faCheck : faTimes } />
+                                                    </span>
                                                 ) : null}
                                                 <Text
                                                     {...option.label}
+                                                    tag="span"
                                                     className={styles.optionLabel}
                                                 />
                                             </Button>
@@ -323,7 +307,14 @@ const QuizScreen = ({
                         className={styles.result}
                         ref={resultRef}
                     >
-                        <Text {...result} className={styles.resultText} />
+                        <Transitions
+                            transitions={transitions}
+                            playing={current}
+                            delay={(1 + options.length) * transitionStagger}
+                            disabled={!isView}
+                        >
+                            <Text {...result} className={styles.resultText} />
+                        </Transitions>
                     </div>
                 ) : null}
             </ScreenElement>
@@ -337,6 +328,7 @@ const QuizScreen = ({
                 {
                     [className]: className !== null,
                     [styles.answered]: answered,
+                    [styles.showResults]: showResults,
                     [styles.answerTransitionComplete]: answerTransitionComplete,
                 },
             ])}

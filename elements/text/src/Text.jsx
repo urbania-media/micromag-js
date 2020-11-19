@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/no-array-index-key, react/no-danger */
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
@@ -18,6 +19,7 @@ const propTypes = {
     showEmpty: PropTypes.bool,
     className: PropTypes.string,
     emptyClassName: PropTypes.string,
+    tag: PropTypes.string,
 };
 
 const defaultProps = {
@@ -29,9 +31,10 @@ const defaultProps = {
     showEmpty: false,
     className: null,
     emptyClassName: null,
+    tag: 'div',
 };
 
-const Text = ({ body, textStyle, linksStyle, margin, lineClamp, showEmpty, className, emptyClassName }) => {
+const Text = ({ body, textStyle, linksStyle, margin, lineClamp, showEmpty, className, emptyClassName, tag }) => {
     let finalStyle = null;
 
     let finalLinkStyle = null;
@@ -62,25 +65,30 @@ const Text = ({ body, textStyle, linksStyle, margin, lineClamp, showEmpty, class
     const id = useMemo(() => (finalLinkStyle !== null ? `text-component-${uuid()}` : null), [
         finalLinkStyle !== null,
     ]);
+
+    const tagProps = {
+        id,
+        className: classNames([
+            styles.container,
+            {
+                [styles.withLineClamp]: lineClamp !== null,
+                [styles.showEmpty]: showEmpty,
+                [emptyClassName]: showEmpty && emptyClassName !== null,
+                [className]: className !== null,
+            },
+        ]),
+        style: finalStyle,
+        dangerouslySetInnerHTML: { __html: body },
+    };
+
+    const Tag = `${tag}`;
+
     return (
         <>
             {finalLinkStyle !== null ? (
                 <LinkStyle selector={`#${id}`} style={finalLinkStyle} />
             ) : null}
-            <div
-                id={id}
-                className={classNames([
-                    styles.container,
-                    {
-                        [styles.withLineClamp]: lineClamp !== null,
-                        [styles.showEmpty]: showEmpty,
-                        [emptyClassName]: showEmpty && emptyClassName !== null,
-                        [className]: className !== null,
-                    },
-                ])}
-                style={finalStyle}
-                dangerouslySetInnerHTML={{ __html: body }}
-            />
+            <Tag {...tagProps} />
         </>
     );
 };

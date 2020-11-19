@@ -38,10 +38,7 @@ const defaultProps = {
     current: true,
     active: true,
     maxRatio: 3 / 4,
-    transitions: {
-        in: 'fade',
-        out: 'fade',
-    },
+    transitions: { in: 'fade', out: 'fade' },
     transitionStagger: 75,
     className: null,
 };
@@ -109,6 +106,8 @@ const GalleryFeedScreen = ({
         let legendElement = null;
 
         if (withLegends) {
+            const marginTop = !isReversed || index > 0 ? spacing / 2 : 0;
+            const marginBottom = isReversed || index < finalImages.length - 1 ? spacing / 2 : 0;
             legendElement = (
                 <ScreenElement
                     key={`legend-${index}`}
@@ -125,9 +124,8 @@ const GalleryFeedScreen = ({
                     <div
                         className={styles.legend}
                         style={{
-                            marginTop: !isReversed || index > 0 ? spacing / 2 : 0,
-                            marginBottom:
-                                isReversed || index < finalImages.length - 1 ? spacing / 2 : 0,
+                            marginTop,
+                            marginBottom,
                         }}
                     >
                         <Text {...legend} />
