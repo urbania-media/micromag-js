@@ -36,8 +36,6 @@ const propTypes = {
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
-    onEnableInteraction: PropTypes.func,
-    onDisableInteraction: PropTypes.func,
 };
 
 const defaultProps = {
@@ -50,14 +48,9 @@ const defaultProps = {
     current: true,
     active: true,
     maxRatio: 3 / 4,
-    transitions: {
-        in: 'fade',
-        out: 'fade',
-    },
+    transitions: { in: 'fade', out: 'fade' },
     transitionStagger: 100,
     className: null,
-    onEnableInteraction: null,
-    onDisableInteraction: null,
 };
 
 const SurveyScreen = ({
@@ -73,8 +66,6 @@ const SurveyScreen = ({
     transitions,
     transitionStagger,
     className,
-    onEnableInteraction,
-    onDisableInteraction,
 }) => {
     const { width, height } = useScreenSize();
     const landscape = width > height;
@@ -99,28 +90,6 @@ const SurveyScreen = ({
         },
         [userAnswerIndex, setUserAnswerIndex],
     );
-
-    useEffect(() => {
-        if (!current) {
-            return;
-        }
-
-        if (answered) {
-            if (onEnableInteraction !== null) {
-                onEnableInteraction();
-            }
-        } else if (onDisableInteraction !== null) {
-            onDisableInteraction();
-        }
-    }, [current, answered, onEnableInteraction, onDisableInteraction]);
-
-    // reset screen when !current
-
-    // useEffect(() => {
-    //     if (!current && userAnswerIndex !== null) {
-    //         setUserAnswerIndex(null);
-    //     }
-    // }, [current, userAnswerIndex, setUserAnswerIndex]);
 
     // Question
 
@@ -214,15 +183,16 @@ const SurveyScreen = ({
                                                         refButton={(el) => {
                                                             buttonsRefs.current[optionI] = el;
                                                         }}
+                                                        disabled={answered}
                                                     >
-                                                        <div
+                                                        <span
                                                             className={styles.optionLabel}
                                                             ref={(el) => {
                                                                 labelsRefs.current[optionI] = el;
                                                             }}
                                                         >
-                                                            <Text {...label} />
-                                                        </div>
+                                                            <Text {...label} tag="span" />
+                                                        </span>
                                                     </Button>
                                                 </div>
                                                 <div className={styles.resultContainer}>

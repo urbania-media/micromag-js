@@ -56,6 +56,12 @@
     .item {
         position: relative;
         height: 0;
+
+        &.active {
+            .screenButton {
+                pointer-events: none;
+            }
+        }
     }
 
     .itemContent {
@@ -68,12 +74,24 @@
         height: 100%;
     }
 
+    .activeScreenBorder {
+        @extend %fullscreen;
+        box-shadow: inset 0 0 0 4px $black;
+
+        &::after {
+            @extend %fullscreen;
+            content: '';
+            display: block;
+            box-shadow: inset 0 0 0 2px $white;
+        }
+    }
+
     .screenContent {
         transform-origin: left top;
         background-color: $gray-900;
     }
 
-    .button {
+    .screenButton {
         @extend %reset-button;
         @extend %fullscreen;
         display: block;

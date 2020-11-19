@@ -17,11 +17,24 @@
     .option {
         padding: 10px 0;
         transition-property: opacity;
-        transition-duration: 0.1s;
+        transition-duration: 0.15s;
         transition-timing-function: ease;
 
-        &.answer {
+        &.rightAnswer {
             transition-property: transform;
+
+            &.userAnswer {
+                .resultIcon {
+                    background-color: $green;
+                }
+            }
+        }
+
+        &.userAnswer {
+            .button {
+                background-color: $white;
+                color: $black;
+            }
         }
     }
 
@@ -29,18 +42,27 @@
         position: relative;
         width: 100%;
         padding: 10px;
+        
+        &:disabled {
+            opacity: 1;
+            pointer-events: none;
+        }
     }
 
     .resultIcon {
+        display: block;
         position: absolute;
         top: 50%;
-        left: 0;
+        left: 5px;
         width: 32px;
         height: 32px;
         margin-top: -16px;
         padding: 5px;
-        border: 1px solid $black;
+        transition: opacity 0.15s ease;
+        border: 2px solid $black;
         border-radius: 50%;
+        opacity: 0;
+        background-color: $red;
     }
 
     .result {
@@ -52,22 +74,24 @@
     }
 
     &.answered {
+        .resultIcon {
+            opacity: 1;
+        }
+    }
+
+    &.showResults {
         .option {
             opacity: 0;
             
-            &.answer {
+            &.rightAnswer {
                 opacity: 1;
             }
-        }
-
-        .button {
-            pointer-events: none;
         }
     }
 
     &.answerTransitionComplete {
         .option {
-            &.answer {
+            &.rightAnswer {
                 transition: none;
             }
         }

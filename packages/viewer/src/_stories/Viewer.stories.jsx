@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { basic/* , medium */ } from '../../../../.storybook/data/screens';
+import { basic } from '../../../../.storybook/data/screens';
 import faceAFace from '../../../../.storybook/data/stories/faceAFace';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 
@@ -13,14 +13,6 @@ const props = {
     },
     fullscreen: true,
 };
-
-// const mediumProps = {
-//     screenId: medium[0].id,
-//     story: {
-//         components: medium,
-//     },
-// };
-
 const faceAFaceProps = {
     screenId: faceAFace[0].id,
     story: {
@@ -31,7 +23,23 @@ const faceAFaceProps = {
 
 export default {
     component: Viewer,
-    decorators: [withGoogleMaps],
+    decorators: [
+        withGoogleMaps,
+        (Story) => (
+            <div
+                style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    overflow: 'hidden',
+                }}
+            >
+                <Story />
+            </div>
+        ),
+    ],
     title: 'Viewer/Viewer',
     parameters: {
         screenSize: true,
@@ -40,13 +48,4 @@ export default {
 };
 
 export const Default = () => <Viewer {...props} />;
-
 export const FaceAFace = () => <Viewer {...faceAFaceProps} />;
-
-export const Swipe = () => <Viewer {...props} interactions={['swipe']} />;
-
-export const Tap = () => <Viewer {...props} interactions={['tap']} />;
-
-export const Both = () => <Viewer {...props} interactions={['swipe', 'tap']} />;
-
-// export const SwipeMedium = () => <Viewer {...mediumProps} interactions={['swipe']} />;
