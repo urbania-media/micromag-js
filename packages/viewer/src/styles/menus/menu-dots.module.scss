@@ -3,6 +3,8 @@
 
 .container {
     position: relative;
+    // display: flex;
+    // align-items: center;
 
     .items,
     .item {
@@ -48,7 +50,16 @@
         }
     }
 
+    // .menu {
+    //     width: 15px;
+    //     height: 15px;
+    //     margin-left: 15px;
+    //     background-color: $gray-600;
+    // }
+
     &.vertical {
+        flex-direction: column;
+
         .items {
             flex-direction: column;
             width: auto;
@@ -70,5 +81,10 @@
                 height: 100%;
             }
         }
+
+        // .menu {
+        //     margin-top: 15px;
+        //     margin-left: 0;
+        // }
     }
 }

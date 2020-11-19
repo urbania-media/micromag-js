@@ -37,7 +37,7 @@ const Container = ({
     const containerStyle = {
         width: maxWidth,
         height: landscapeWithScroll ? null : height,
-        minHeight: landscapeWithScroll ? height : null
+        minHeight: landscapeWithScroll ? height : null,
     };
 
     return (
