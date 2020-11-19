@@ -27,12 +27,14 @@ const OrganisationSwitch = ({ slug, minimumDelay, className }) => {
     const setOrganisation = useSetOrganisation();
     const { organisation, error } = useOrganisation(slug);
     const [delayCompleted, setDelayCompleted] = useState(false);
+
     useEffect(() => {
         const timeout = setTimeout(() => setDelayCompleted(true), minimumDelay);
         return () => {
             clearTimeout(timeout);
         };
     }, [minimumDelay]);
+
     useEffect(() => {
         if (delayCompleted && organisation !== null) {
             setOrganisation(organisation);
@@ -40,6 +42,7 @@ const OrganisationSwitch = ({ slug, minimumDelay, className }) => {
             push('home');
         }
     }, [delayCompleted, organisation, error, setOrganisation]);
+
     return (
         <MainLayout contentAlign="middle">
             <div

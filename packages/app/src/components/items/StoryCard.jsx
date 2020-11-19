@@ -38,7 +38,13 @@ const StoryCardItem = ({ item, className }) => {
             beforeBody={
                 <div className={styles.settings}>
                     <SettingsButton className={styles.button}>
-                        <StoryMenu story={item} asList withDuplicate withDelete />
+                        <StoryMenu
+                            story={item}
+                            asDropdown
+                            withoutDropdown
+                            withDuplicate
+                            withDelete
+                        />
                     </SettingsButton>
                 </div>
             }
@@ -54,7 +60,7 @@ const StoryCardItem = ({ item, className }) => {
                 ])}
             >
                 <Link
-                    to={url('stories.editor', {
+                    to={url('stories.show', {
                         story: item.id,
                     })}
                     className="text-white"

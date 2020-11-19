@@ -3,9 +3,11 @@ import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 // import classNames from 'classnames';
 import { useParams } from 'react-router';
+
 import Editor from '@micromag/editor';
 import { useUrlGenerator } from '@micromag/core/contexts';
 import { useStory, useStoryVersionCreate } from '@micromag/data';
+// import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import { useApp } from '../../../contexts/AppContext';
 import StoryNavbar from '../../navbars/Story';
@@ -13,6 +15,7 @@ import EditorNavbar from '../../navbars/Editor';
 import MainLayout from '../../layouts/Main';
 
 const propTypes = {
+    // location: MicromagPropTypes.location.isRequired,
     className: PropTypes.string,
 };
 
@@ -21,9 +24,10 @@ const defaultProps = {
 };
 
 const EditorPage = ({ className }) => {
+    const url = useUrlGenerator();
     const { memoryRouter } = useApp();
     const { story: storyId } = useParams();
-    const url = useUrlGenerator();
+
     const { story } = useStory(storyId);
     const { create: createStoryVersion, creating } = useStoryVersionCreate(storyId);
     const [editorStory, setEditorStory] = useState(story);
@@ -44,6 +48,7 @@ const EditorPage = ({ className }) => {
             setEditorStory(story);
         }
     }, [story]);
+
     return (
         <MainLayout
             fullscreen

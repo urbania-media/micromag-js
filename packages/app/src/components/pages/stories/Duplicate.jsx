@@ -3,20 +3,22 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+import { useParams } from 'react-router';
+
 import { FormPanel } from '@micromag/core/components';
 import { useRoutePush, useUrlGenerator } from '@micromag/core/contexts';
-import { useParams } from 'react-router';
 import { useStory } from '@micromag/data';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
 import StoryDuplicateForm from '../../forms/StoryDuplicate';
-
 import BackLinks from '../../partials/BackLinks';
 
 import styles from '../../../styles/pages/stories/create.module.scss';
 
 const propTypes = {
+    location: MicromagPropTypes.location.isRequired,
     className: PropTypes.string,
 };
 
@@ -24,25 +26,30 @@ const defaultProps = {
     className: null,
 };
 
-const StoryDuplicatePage = ({ className }) => {
+const StoryDuplicatePage = ({ location: { pathname }, className }) => {
     const url = useUrlGenerator();
     const push = useRoutePush();
     const { story: storyId } = useParams();
     const { story, loading } = useStory(storyId);
+
+    const parent = story !== null ? story.title : null;
+    const parentUrl = story !== null ? url('stories.show', { story: story.id }) : null;
+    const title = <FormattedMessage defaultMessage="Duplicate" descrition="Page title" />;
 
     const onComplete = useCallback(() => {
         push(url('home'));
     }, [push, url]);
 
     return (
-        <MainLayout contentAlign="middle">
+        <MainLayout
+            contentAlign="middle"
+            nav={[
+                { label: parent, url: parentUrl },
+                { label: title, url: pathname },
+            ]}
+        >
             <Page
-                title={
-                    <FormattedMessage
-                        defaultMessage="Duplicate story"
-                        description="Duplicate story page title"
-                    />
-                }
+                title={title}
                 small
                 className={classNames([
                     styles.container,

@@ -36,7 +36,6 @@ import OrganisationMediasPage from './pages/organisation/Medias';
 import OrganisationPublishingPage from './pages/organisation/Publishing';
 import OrganisationSwitchPage from './pages/organisation/Switch';
 
-import StoriesPage from './pages/stories/Stories';
 import StoryCreatePage from './pages/stories/Create';
 import StoryDuplicatePage from './pages/stories/Duplicate';
 import StoryDeletePage from './pages/stories/Delete';
@@ -189,7 +188,6 @@ const Routes = () => {
             {/*
                 Stories routes
             */}
-            <Route path={routes.stories} exact component={StoriesPage} />
             <Route path={routes['stories.create']} exact component={StoryCreatePage} />
             <Route path={routes['stories.duplicate']} component={StoryDuplicatePage} />
             <Route path={routes['stories.delete']} component={StoryDeletePage} />

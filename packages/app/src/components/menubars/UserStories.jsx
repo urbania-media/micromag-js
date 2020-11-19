@@ -21,7 +21,7 @@ const UserStoriesMenubar = ({ className }) => {
         <div
             className={classNames([
                 'd-flex',
-                'align-items-end',
+                'align-items-center',
                 'justify-content-end',
                 {
                     [className]: className !== null,

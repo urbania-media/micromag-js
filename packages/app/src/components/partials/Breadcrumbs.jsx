@@ -66,7 +66,7 @@ const Breadcrumbs = ({ items: parentItems, className }) => {
                     url: url('home'),
                     label: (
                         <FormattedMessage
-                            defaultMessage="My Projects"
+                            defaultMessage="My Stories"
                             description="Home account page title"
                         />
                     ),

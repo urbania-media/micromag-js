@@ -43,7 +43,7 @@ const ProjectItem = ({ className }) => {
             <Avatar inverted />
             <div className="ml-3">
                 <h6 className="mb-1">
-                    <FormattedMessage defaultMessage="My Projects" />
+                    <FormattedMessage defaultMessage="My Stories" description="Menu item" />
                 </h6>
                 <div className="d-flex">
                     <small className="mr-2">12 stories</small>

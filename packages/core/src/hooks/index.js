@@ -5,6 +5,5 @@ export * from './useDates';
 export * from './useObserver';
 export * from './useScreenSize';
 export * from './useSwipe';
-export * from './useNav';
 export { default as useWindowEvent } from './useWindowEvent';
 export { default as useMediaApi } from './useMediaApi';

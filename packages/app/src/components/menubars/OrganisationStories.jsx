@@ -47,7 +47,7 @@ const OrganisationStoriesMenubar = ({
         <div
             className={classNames([
                 'd-flex',
-                'align-items-end',
+                'align-items-center',
                 'justify-content-between',
                 {
                     [className]: className !== null,

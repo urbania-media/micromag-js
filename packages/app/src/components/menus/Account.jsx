@@ -2,7 +2,7 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { useLocation } from 'react-router';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Menu } from '@micromag/core/components';
@@ -11,27 +11,13 @@ import { useUrlGenerator } from '@micromag/core/contexts';
 // import * as AppPropTypes from '../../lib/PropTypes';
 import { useAuth } from '../../contexts/AuthContext';
 
-const messages = defineMessages({
-    account: {
-        id: 'menus.account.account',
-        defaultMessage: 'Account',
-    },
-    profile: {
-        id: 'menus.account.profile',
-        defaultMessage: 'Edit profile',
-    },
-    logout: {
-        id: 'menus.account.logout',
-        defaultMessage: 'Logout',
-    },
-});
-
 const propTypes = {
     className: PropTypes.string,
     itemClassName: PropTypes.string,
     linkClassName: PropTypes.string,
     withoutDropdown: PropTypes.bool,
     asList: PropTypes.bool,
+    asDropdown: PropTypes.bool,
     flush: PropTypes.bool,
     dropdownAlign: MicromagPropTypes.dropdownAlign,
 };
@@ -42,6 +28,7 @@ const defaultProps = {
     linkClassName: null,
     withoutDropdown: false,
     asList: false,
+    asDropdown: false,
     flush: false,
     dropdownAlign: null,
 };
@@ -52,6 +39,7 @@ const AccountMenu = ({
     linkClassName,
     withoutDropdown,
     asList,
+    asDropdown,
     flush,
     dropdownAlign,
     ...props
@@ -64,12 +52,12 @@ const AccountMenu = ({
             {
                 id: 'profile',
                 href: url('account'),
-                label: messages.profile,
+                label: <FormattedMessage defaultMessage="Profile" description="Menu item" />,
             },
             {
                 id: 'logout',
                 href: url('auth.logout'),
-                label: messages.logout,
+                label: <FormattedMessage defaultMessage="Logout" description="Menu item" />,
                 onClick: (e) => {
                     e.preventDefault();
                     logout();
@@ -91,11 +79,11 @@ const AccountMenu = ({
                   {
                       id: 'account',
                       href: url('account'),
-                      label: messages.account,
+                      label: <FormattedMessage defaultMessage="Profile" description="Menu item" />,
                       dropdown: subMenu,
                   },
               ];
-    }, [url, messages, logout, pathname, withoutDropdown, asList]);
+    }, [url, logout, pathname, withoutDropdown, asList]);
     return (
         <Menu
             {...props}
@@ -104,6 +92,9 @@ const AccountMenu = ({
             className={classNames({
                 'list-group': asList,
                 'list-group-flush': asList && flush,
+                'dropdown-menu': asDropdown,
+                'dropdown-menu-right': asDropdown,
+                show: asDropdown,
                 [className]: className !== null,
             })}
             itemClassName={classNames({
@@ -111,7 +102,10 @@ const AccountMenu = ({
                 'list-group-item-action': asList,
                 [itemClassName]: itemClassName !== null,
             })}
-            linkClassName={linkClassName}
+            linkClassName={classNames({
+                'dropdown-item': asDropdown,
+                [linkClassName]: linkClassName !== null,
+            })}
             dropdownAlign={dropdownAlign}
         />
     );

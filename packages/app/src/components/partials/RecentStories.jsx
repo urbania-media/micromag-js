@@ -31,7 +31,7 @@ const RecentStories = ({ count, className }) => {
                     </h5>
                     <StoriesList items={stories} />
                     <div className={classNames(['d-flex', 'mt-4'])}>
-                        <Button href={url('stories')} theme="primary" className="mr-2">
+                        <Button href={url('home')} theme="primary" className="mr-2">
                             <FormattedMessage
                                 defaultMessage="All stories"
                                 description="All stories button label"

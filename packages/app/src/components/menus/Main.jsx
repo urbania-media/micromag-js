@@ -81,17 +81,14 @@ const MainMenu = ({ className, itemClassName, linkClassName, ...props }) => {
             {...props}
             items={[
                 {
-                    id: 'stories',
-                    href: url('stories'),
+                    id: 'home',
+                    href: url('home'),
                     label: user ? (
                         <div className="d-inline-block">
                             <Avatar {...user} />
                         </div>
                     ) : (
-                        <FormattedMessage
-                            defaultMessage="Account"
-                            description="Account top menu label"
-                        />
+                        <FormattedMessage defaultMessage="Account" description="Menu item" />
                     ),
                     dropdown: [
                         ...finalOrganisationItems,
@@ -101,7 +98,7 @@ const MainMenu = ({ className, itemClassName, linkClassName, ...props }) => {
                             label: (
                                 <FormattedMessage
                                     defaultMessage="Create an organisation"
-                                    description="Create an organisation button"
+                                    description="Menu item"
                                 />
                             ),
                         },
@@ -116,8 +113,8 @@ const MainMenu = ({ className, itemClassName, linkClassName, ...props }) => {
                             active: pathname === url('home'),
                             label: (
                                 <FormattedMessage
-                                    defaultMessage="My micromags"
-                                    description="My micromags menu item"
+                                    defaultMessage="My Stories"
+                                    description="Menu item"
                                 />
                             ),
                         },
@@ -127,8 +124,8 @@ const MainMenu = ({ className, itemClassName, linkClassName, ...props }) => {
                             active: pathname === url('account'),
                             label: (
                                 <FormattedMessage
-                                    defaultMessage="My profile"
-                                    description="My profile menu item"
+                                    defaultMessage="Profile"
+                                    description="Menu item"
                                 />
                             ),
                         },
@@ -136,10 +133,7 @@ const MainMenu = ({ className, itemClassName, linkClassName, ...props }) => {
                             id: 'logout',
                             href: url('logout'),
                             label: (
-                                <FormattedMessage
-                                    defaultMessage="Logout"
-                                    description="Logout menu item"
-                                />
+                                <FormattedMessage defaultMessage="Logout" description="Menu item" />
                             ),
                             onClick: onClickLogout,
                         },

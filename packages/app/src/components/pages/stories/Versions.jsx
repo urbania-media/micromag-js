@@ -2,17 +2,21 @@ import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router';
 import { FormattedMessage } from 'react-intl';
+
 import { useStory, useStoryVersions } from '@micromag/data';
 import { FormPanel } from '@micromag/core/components';
 import { useFormattedDate } from '@micromag/core/hooks';
 import { Toggle } from '@micromag/fields';
+import { useUrlGenerator } from '@micromag/core/contexts';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
-import StoryBox from '../../partials/StoryBox';
+import StorySidebar from '../../sidebars/Story';
 import VersionsList from '../../lists/Versions';
 
 const propTypes = {
+    location: MicromagPropTypes.location.isRequired,
     className: PropTypes.string,
 };
 
@@ -20,12 +24,17 @@ const defaultProps = {
     className: null,
 };
 
-const StoryVersionsPage = ({ className }) => {
+const StoryVersionsPage = ({ location: { pathname }, className }) => {
+    const url = useUrlGenerator();
     const [filterPublished, setFilterPublished] = useState();
     const getDate = useFormattedDate();
     const { story: storyId } = useParams();
     const { story } = useStory(storyId);
     const { versions } = useStoryVersions(storyId);
+
+    const parent = story !== null ? story.title : null;
+    const parentUrl = story !== null ? url('stories.show', { story: story.id }) : null;
+    const title = <FormattedMessage defaultMessage="Versions" descrition="Page title" />;
 
     const onFilteredChange = useCallback(() => {
         setFilterPublished((published) => !published);
@@ -53,13 +62,15 @@ const StoryVersionsPage = ({ className }) => {
     const hasPublished = hasData && versions.find((version) => version.published || 1);
 
     return (
-        <MainLayout>
+        <MainLayout
+            nav={[
+                { label: parent, url: parentUrl },
+                { label: title, url: pathname },
+            ]}
+        >
             <Page
-                section={
-                    <FormattedMessage defaultMessage="Versions" description="Versions page title" />
-                }
-                title={story !== null ? story.title : null}
-                sidebar={story !== null ? <StoryBox story={story} /> : <div />}
+                title={title}
+                sidebar={story !== null ? <StorySidebar story={story} /> : <div />}
                 className={className}
             >
                 <FormPanel>
