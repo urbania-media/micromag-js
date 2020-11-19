@@ -10,7 +10,7 @@ import Background from '@micromag/element-background';
 import { PropTypes as MicromagPropTypes, PlaceholderAdImage, Empty } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { getLayoutParts } from '@micromag/core/utils';
-import Transitions from '@micromag/core/src/components/transitions/Transitions';
+import { Transitions } from '@micromag/core/components';
 
 import AdImage from './AdImage';
 
