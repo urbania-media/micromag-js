@@ -10,6 +10,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
+import AccountSidebar from '../../sidebars/Account';
 import OrganisationPartial from '../../partials/Organisation';
 import ProfileForm from '../../forms/AccountProfile';
 import DeleteForm from '../../forms/AccountDelete';
@@ -32,11 +33,12 @@ const AccountPage = ({ location: { pathname }, className }) => {
     const { organisations: userOrganisations, loading } = useOrganisations();
     const organisations = userOrganisations || [];
     const hasOrganisations = organisations.length > 0;
+
     return (
         <MainLayout nav={nav}>
             <Page
                 title={title}
-                sidebar={null}
+                sidebar={<AccountSidebar asList />}
                 className={classNames([
                     styles.container,
                     {

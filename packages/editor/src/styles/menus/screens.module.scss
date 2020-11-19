@@ -23,25 +23,25 @@
         display: block;
         z-index: 2;
         margin: 5px;
+    }
 
-        .button {
-            display: block;
-            width: 100px;
-        }
+    .button {
+        display: block;
+        width: 100px;
+    }
 
-        .preview,
-        .placeholder {
-            @extend %fullscreen;
-            transform-origin: 0 0;
-        }
+    .preview,
+    .placeholder {
+        @extend %fullscreen;
+        transform-origin: 0 0;
+    }
 
-        .screen {
-            @extend %fullscreen;
-        }
+    .screen {
+        @extend %fullscreen;
+    }
 
-        .preview {
-            background: $black;
-        }
+    .preview {
+        background: $black;
     }
 
     &.noWrap {

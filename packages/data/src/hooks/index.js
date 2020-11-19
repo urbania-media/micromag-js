@@ -42,3 +42,4 @@ export { default as useStoryPublications } from './useStoryPublications';
 export { default as useStoryUpdate } from './useStoryUpdate';
 export { default as useStoryVersions } from './useStoryVersions';
 export { default as useStoryVersionCreate } from './useStoryVersionCreate';
+export { default as useThemes } from './useThemes';

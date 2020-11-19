@@ -25,7 +25,7 @@ const defaultProps = {
     className: null,
 };
 
-const StoryPage = ({ location: { pathname }, className }) => {
+const ShowPage = ({ location: { pathname }, className }) => {
     const { story: storyId } = useParams();
     const url = useUrlGenerator();
     const { story } = useStory(storyId);
@@ -96,7 +96,7 @@ const StoryPage = ({ location: { pathname }, className }) => {
     );
 };
 
-StoryPage.propTypes = propTypes;
-StoryPage.defaultProps = defaultProps;
+ShowPage.propTypes = propTypes;
+ShowPage.defaultProps = defaultProps;
 
-export default StoryPage;
+export default ShowPage;

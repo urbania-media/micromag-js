@@ -3,11 +3,12 @@ import { useApi } from '../contexts/ApiContext';
 
 import useData from './useData';
 
-const useOrganisationThemes = (organisationId = null, query = null, opts) => {
+const useThemes = (useId = null, query = null, opts) => {
     const api = useApi();
-    const loader = useCallback(() => api.organisations.themes.get(organisationId, query), [
+    // TODO: plug this
+    const loader = useCallback(() => api.organisations.themes.get(useId, query), [
         api,
-        organisationId,
+        useId,
         query,
     ]);
     const { data, ...request } = useData(loader, opts);
@@ -17,13 +18,13 @@ const useOrganisationThemes = (organisationId = null, query = null, opts) => {
         themes: [
             {
                 id: 1,
-                title: 'My first theme is good',
+                title: "A user's theme",
                 styles: {},
                 components: [{ type: 'Ad' }, { type: 'Text' }],
             },
             {
                 id: 2,
-                title: 'My second theme',
+                title: 'Other theme',
                 styles: {},
                 components: [{ type: 'Ad' }],
             },
@@ -32,4 +33,4 @@ const useOrganisationThemes = (organisationId = null, query = null, opts) => {
     };
 };
 
-export default useOrganisationThemes;
+export default useThemes;
