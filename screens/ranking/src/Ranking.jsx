@@ -191,7 +191,6 @@ const RankingScreen = ({
                     className={styles.scroll}
                     verticalAlign="center"
                     disabled={isPlaceholder || isPreview}
-                    hideArrow={isPreview}
                 >
                     <Layout
                         style={

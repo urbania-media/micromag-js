@@ -109,6 +109,7 @@ const Viewer = ({
     }, [changeIndex]);
 
     const [screensInteractionEnabled, setScreensInteractionEnabled] = useState(components.map(() => true));
+    const currentScreenInteractionEnabled = screensInteractionEnabled[currentIndex];
 
     const onEnableInteraction = useCallback(() => {
         if (!screensInteractionEnabled[currentIndex]) {
@@ -277,6 +278,7 @@ const Viewer = ({
                         [styles.fullscreen]: fullscreen,
                         [styles.landscape]: landscape,
                         [styles.menuOpened]: menuOpened,
+                        [styles.hideMenu]: !currentScreenInteractionEnabled,
                         [className]: className,
                     },
                 ])}

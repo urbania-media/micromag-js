@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback, useEffect }  from 'react';
+import React, { useState, useCallback, useEffect }  from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useResizeObserver } from '@micromag/core';
@@ -11,7 +11,6 @@ const propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
     disabled: PropTypes.bool,
-    hideArrow: PropTypes.bool,
     verticalAlign: PropTypes.oneOf(['top', 'center', 'bottom']),
     className: PropTypes.string,
     children: PropTypes.node,
@@ -21,13 +20,12 @@ const defaultProps = {
     width: null,
     height: null,
     disabled: false,
-    hideArrow: false,
     verticalAlign: null,
     className: null,
     children: null,
 };
 
-const Scroll = ({ width, height, disabled, hideArrow, verticalAlign, className, children }) => {
+const Scroll = ({ width, height, disabled, verticalAlign, className, children }) => {
     const finalStyle = {
         width,
         height,
@@ -40,17 +38,21 @@ const Scroll = ({ width, height, disabled, hideArrow, verticalAlign, className, 
 
     const {
         ref: scrollableRef,
-        entry: { contentRect },
+        entry: { contentRect: scrollableRect },
     } = useResizeObserver();
-    const { height: scrollableHeight } = contentRect || {};
+    const { height: scrollableHeight } = scrollableRect || {};
 
-    const scrolleeRef = useRef(null);
+    const {
+        ref: scrolleeRef,
+        entry: { contentRect: scrolleeRect },
+    } = useResizeObserver();
+    const { height: scrolleeHeight } = scrolleeRect || {};
 
     useEffect( () => {
-        if (scrolleeRef.current !== null && scrollableHeight > 0) {
-            setWithArrow(Math.round(scrolleeRef.current.offsetHeight) > Math.round(scrollableHeight) && !hideArrow);
+        if (scrolleeHeight > 0 && scrollableHeight > 0) {
+            setWithArrow(Math.round(scrolleeHeight) > Math.round(scrollableHeight) && !disabled);
         }
-    }, [scrollableHeight, setWithArrow, hideArrow]);
+    }, [scrollableHeight, scrolleeHeight, setWithArrow, disabled]);
 
     return (
         <div

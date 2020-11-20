@@ -98,7 +98,7 @@ const Map = ({
                                       key={m.id}
                                       active={m.active}
                                       title={`marker id: ${m.id}`}
-                                      image={m.image}
+                                      image={{ media: m.image }}
                                       position={{ lat: m.geoPosition.lat, lng: m.geoPosition.lng }}
                                       events={{
                                           onClick:

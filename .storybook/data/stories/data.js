@@ -9,88 +9,76 @@ import man4 from './assets-face-a-face/4.jpg';
 import man5 from './assets-face-a-face/5.jpg';
 
 export const tommy = {
-    media: {
-        url: tommyBefore,
-        metadata: {
-            width: 1000,
-            height: 645,
-        },
+    url: tommyBefore,
+    metadata: {
+        width: 1000,
+        height: 645,
     },
 };
 
 export const mans = [
     {
-        image: {
-            media: {
-                url: man1,
-                metadata: {
-                    width: 1000,
-                    height: 1340,
-                },
+        media: {
+            url: man1,
+            metadata: {
+                width: 1000,
+                height: 1340,
             },
         },
-        legend: {
+        caption: {
             body: 'Vous auriez pu ressembler à ceci, il y a 3-4 millions d’années',
             textStyle: header3,
         },
     },
     {
-        image: {
-            media: {
-                url: man2,
-                metadata: {
-                    width: 1000,
-                    height: 1340,
-                },
+        media: {
+            url: man2,
+            metadata: {
+                width: 1000,
+                height: 1340,
             },
         },
-        legend: {
+        caption: {
             body: 'Retrouvez-vous des airs de famille dans votre ancêtre Homo Erectus?',
             textStyle: header3,
         },
     },
     {
-        image: {
-            media: {
-                url: man3,
-                metadata: {
-                    width: 1000,
-                    height: 1340,
-                },
+        media: {
+            url: man3,
+            metadata: {
+                width: 1000,
+                height: 1340,
             },
         },
-        legend: {
+        caption: {
             body:
                 'L’homme de Néandertal est disparu il y a 30 000 ans, mais il reste encore un peu de lui dans votre ADN',
             textStyle: header3,
         },
     },
     {
-        image: {
-            media: {
-                url: man4,
-                metadata: {
-                    width: 1000,
-                    height: 1340,
-                },
+        media: {
+            url: man4,
+            metadata: {
+                width: 1000,
+                height: 1340,
             },
         },
-        legend: {
+        caption: {
             body: 'Remerciez la sélection naturelle pour votre beau menton d’Homo Sapiens',
             textStyle: header3,
         },
     },
     {
-        image: {
-            media: {
-                url: man5,
-                metadata: {
-                    width: 1000,
-                    height: 1340,
-                },
+        media: {
+            url: man5,
+            metadata: {
+                width: 1000,
+                height: 1340,
             },
         },
-        legend: {
+        caption: {
             body:
                 'À quoi va-t-on ressembler dans 100 000 ans? Grosse tête? Gros yeux? Pigmentation adaptée aux changements climatiques? Les paris sont ouverts!',
             textStyle: header3,

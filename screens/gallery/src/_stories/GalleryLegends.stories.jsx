@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { images, background, text } from '../../../../.storybook/data';
+import { images, background } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import GalleryLegendsScreen from '../GalleryLegends';
 import definition from '../definition';
 
 const props = {
-    images: images({ count: 20 }).map( image => ({...image, legend: text() })),
+    images: images({ count: 20 }),
     background: background(),
 };
 

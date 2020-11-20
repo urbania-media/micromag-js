@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes, useResizeObserver } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
-import { isTextFilled, isImageFilled } from '@micromag/core/utils';
+import { isTextFilled } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -113,7 +113,7 @@ const Timeline = ({
 
         const hasTitle = isTextFilled(title);
         const hasDescription = isTextFilled(description);
-        const hasImage = isImageFilled(image);
+        const hasImage = image !== null;
 
         const elementsTypes = (layout === 'normal' ? 'title-description-image' : layout).split('-');
 
@@ -196,7 +196,7 @@ const Timeline = ({
                                         >
                                             {hasElement ? (
                                                 <Image
-                                                    {...image}
+                                                    media={image}
                                                     width={scrollContentRefWidth}
                                                     onLoaded={onImageLoaded}
                                                 />
@@ -291,7 +291,6 @@ const Timeline = ({
                     className={styles.scroll}
                     verticalAlign="center"
                     disabled={isPlaceholder || isPreview}
-                    hideArrow={isPreview}
                 >
                     <Layout
                         style={

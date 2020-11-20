@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { PlaceholderImage, PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { PlaceholderShortText, ScreenElement, Transitions } from '@micromag/core/components';
-import { isImageFilled, isTextFilled } from '@micromag/core/utils';
+import { isTextFilled } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -20,7 +20,8 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     layout: PropTypes.oneOf(['normal', 'reverse', 'card', 'title-top']),
-    image: MicromagPropTypes.imageElement,
+    image: MicromagPropTypes.imageMedia,
+    imageFit: MicromagPropTypes.objectFit,
     title: MicromagPropTypes.headingElement,
     text: MicromagPropTypes.textElement,
     legend: MicromagPropTypes.textElement,
@@ -39,6 +40,7 @@ const propTypes = {
 const defaultProps = {
     layout: 'normal',
     image: null,
+    imageFit: { fit: 'cover' },
     title: null,
     text: null,
     legend: null,
@@ -57,6 +59,7 @@ const defaultProps = {
 const ImageScreen = ({
     layout,
     image,
+    imageFit,
     title,
     text,
     legend,
@@ -76,7 +79,7 @@ const ImageScreen = ({
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
-    const hasImage = isImageFilled(image);
+    const hasImage = image !== null;
     const hasTitle = isTextFilled(title);
     const hasText = isTextFilled(text);
     const hasLegend = isTextFilled(legend);
@@ -130,8 +133,8 @@ const ImageScreen = ({
                     <Transitions transitions={transitions} playing={transitionPlaying} disabled={!isView} fullscreen>
                         <Image
                             className={styles.image}
-                            objectFit={{ fit: 'cover' }}
-                            {...image}
+                            media={image}
+                            objectFit={imageFit}
                             {...imageSize}                            
                             onLoaded={onImageLoaded}                            
                         />

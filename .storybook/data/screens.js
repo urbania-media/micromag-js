@@ -2,16 +2,13 @@ import { v1 as uuid } from 'uuid';
 
 import {
     // advertising,
-    image,
     images,
-    imageWithRandomSize,
+    imageMedia,
     text,
     title,
     subtitle,
     audio,
     video,
-    background,
-    backgroundImage,
     map,
     markers,
     quote,
@@ -58,7 +55,7 @@ export const basic = [
         id: uuid(),
         type: 'gallery-feed',
         layout: 'normal',
-        images: [...Array(5)].map(() => ({ image: imageWithRandomSize() })),
+        images: images({ count: 5 }),
         background: {
             color: '#00FF00',
         },
@@ -67,7 +64,7 @@ export const basic = [
         id: uuid(),
         type: 'gallery-feed-legends',
         layout: 'normal',
-        images: [...Array(5)].map(() => ({ image: imageWithRandomSize(), legend: text() })),
+        images: images({ count: 5 }),
         background: {
             color: '#00FFFF',
         },
@@ -76,7 +73,7 @@ export const basic = [
         id: uuid(),
         type: 'image',
         layout: 'normal',
-        image: image({ width: 300, height: 300 }),
+        image: imageMedia(),
         background: {
             color: '#FF00FF',
         },
@@ -85,9 +82,7 @@ export const basic = [
         id: uuid(),
         type: 'image-title-text',
         layout: 'center',
-        image: {
-            ...image(),
-        },
+        image: imageMedia(),
         title: {
             body: title(),
         },
@@ -207,7 +202,7 @@ export const basic = [
         items: [...new Array(10)].map(() => ({
             title: { body: title() },
             description: text('long'),
-            image: image(),
+            image: imageMedia(),
         })),
         bulletColor: '#FFF',
         lineColor: '#FFF',
@@ -227,80 +222,15 @@ export const basic = [
             color: '#FF0000',
         },
     },
-];
-
-export const medium = [
-    {
-        id: uuid(),
-        type: 'title',
-        layout: 'center',
-        title: {
-            body: 'A longer title',
-        },
-        subtitle: {
-            body: 'A subtitle',
-        },
-        description: text('long', 'big'),
-        background: backgroundImage({ random: true }),
-    },
     {
         id: uuid(),
         type: 'video',
-        layout: 'loop',
+        layout: 'full',
         video: video(),
-        background: backgroundImage({ random: true }),
-    },
-    {
-        id: uuid(),
-        type: 'image',
-        layout: 'center',
-        image: image({ width: 300, height: 300 }),
-        background: backgroundImage({ random: true }),
-    },
-    {
-        id: uuid(),
-        type: 'audio',
-        layout: 'center',
-        image: image({ width: 300, height: 300 }),
-        audio: audio(),
-        background: background(),
-    },
-    {
-        id: uuid(),
-        type: 'gallery',
-        layout: 'one-plus-three',
-        images: images({ count: 4, random: true }),
-        background: backgroundImage({ random: true }),
-    },
-    {
-        id: uuid(),
-        type: 'gallery-feed',
-        layout: 'reverse',
-        images: images({ count: 20 }),
-        background: backgroundImage({ random: true }),
-    },
-    {
-        id: uuid(),
-        type: 'text',
-        layout: 'center',
-        text: {
-            ...text(),
-            style: {
-                text: {
-                    color: '#EEE',
-                },
-            },
+        background: {
+            color: '#FF00FF',
         },
-        background: backgroundImage({ random: true }),
-    },
-    {
-        id: uuid(),
-        type: 'image',
-        layout: 'center',
-        text: text('long', 'big'),
-        image: {
-            ...image({ width: 400, height: 400 }),
-        },
-        background: backgroundImage({ random: true }),
     },
 ];
+
+export default basic;
