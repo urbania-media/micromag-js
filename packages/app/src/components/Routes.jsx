@@ -17,6 +17,7 @@ import CompleteProfilePage from './pages/register/CompleteProfile';
 import InvitePage from './pages/register/Invite';
 
 import AccountPage from './pages/account/Account';
+import AccountThemesPage from './pages/account/Themes';
 
 import LoginPage from './pages/auth/Login';
 import ForgotPasswordPage from './pages/auth/ForgotPassword';
@@ -36,17 +37,19 @@ import OrganisationMediasPage from './pages/organisation/Medias';
 import OrganisationPublishingPage from './pages/organisation/Publishing';
 import OrganisationSwitchPage from './pages/organisation/Switch';
 
-import StoriesPage from './pages/stories/Stories';
 import StoryCreatePage from './pages/stories/Create';
 import StoryDuplicatePage from './pages/stories/Duplicate';
 import StoryDeletePage from './pages/stories/Delete';
-import StoryPage from './pages/stories/Story';
+import StoryShowPage from './pages/stories/Show';
 import StoryEditorPage from './pages/stories/Editor';
 import StoryPreviewPage from './pages/stories/Preview';
 import StoryPublishPage from './pages/stories/Publish';
 import StoryVersionsPage from './pages/stories/Versions';
 import StorySettingsPage from './pages/stories/Settings';
 import StoryMediasPage from './pages/stories/Medias';
+
+import ThemeShowPage from './pages/themes/Show';
+import ThemeEditorPage from './pages/themes/Editor';
 
 const propTypes = {};
 
@@ -107,14 +110,14 @@ const Routes = () => {
             */}
             {!loggedIn ? (
                 <Redirect
-                    from={routes.account}
+                    from={[routes.account, routes['account.themes']]}
                     to={`${url('auth.login')}?${stringifyQuery({
                         next: url('account'),
                     })}`}
                 />
             ) : null}
             <Route path={routes.account} exact component={AccountPage} />
-
+            <Route path={routes['account.themes']} exact component={AccountThemesPage} />
             {/*
                 Organisation routes
             */}
@@ -189,17 +192,22 @@ const Routes = () => {
             {/*
                 Stories routes
             */}
-            <Route path={routes.stories} exact component={StoriesPage} />
             <Route path={routes['stories.create']} exact component={StoryCreatePage} />
             <Route path={routes['stories.duplicate']} component={StoryDuplicatePage} />
             <Route path={routes['stories.delete']} component={StoryDeletePage} />
-            <Route path={routes['stories.show']} exact component={StoryPage} />
+            <Route path={routes['stories.show']} exact component={StoryShowPage} />
             <Route path={routes['stories.editor']} component={StoryEditorPage} />
             <Route path={routes['stories.preview']} component={StoryPreviewPage} />
             <Route path={routes['stories.publish']} component={StoryPublishPage} />
             <Route path={routes['stories.versions']} component={StoryVersionsPage} />
             <Route path={routes['stories.settings']} component={StorySettingsPage} />
             <Route path={routes['stories.medias']} component={StoryMediasPage} />
+
+            {/*
+                Themes routes
+            */}
+            <Route path={routes['themes.show']} component={ThemeShowPage} />
+            <Route path={routes['themes.editor']} component={ThemeEditorPage} />
         </Switch>
     );
 };

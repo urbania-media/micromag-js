@@ -1,15 +1,13 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Card, Link } from '@micromag/core/components';
+import { Link } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
-import ScreensCount from '../partials/ScreensCount';
+import { Screens } from '@micromag/editor';
 
-import styles from '../../styles/items/story-card.module.scss';
+import styles from '../../styles/items/theme.module.scss';
 
 const propTypes = {
     item: MicromagPropTypes.story.isRequired,
@@ -22,57 +20,52 @@ const defaultProps = {
 
 const ThemeItem = ({ item, className }) => {
     const url = useUrlGenerator();
-    const { id: theme = 0, title = 'Theme', components = [] } = item || {};
-    const screensCount = components.length;
+    const { id = null, title = null, components: screens = [] } = item || {};
+    const screensCount = screens.length;
+    const screen =
+        screensCount > 0
+            ? screens[0]
+            : {
+                  id: null,
+                  type: null,
+              };
     return (
-        <Card
+        <div
             className={classNames([
                 styles.container,
                 {
                     [className]: className !== null,
                 },
             ])}
-            theme="dark"
-            footer={
-                <>
-                    <Link
-                        href={url('themes.editor', {
-                            theme,
-                        })}
-                        className="card-link text-white"
-                    >
-                        <FormattedMessage defaultMessage="Edit" description="Button label" />
-                    </Link>
-                </>
-            }
         >
-            <h4
-                className={classNames([
-                    'card-title',
+            <Screens
+                items={[
                     {
-                        'mb-0': screensCount === 0,
+                        screen,
+                        href: url('themes.show', {
+                            theme: id,
+                        }),
                     },
-                ])}
-            >
+                ]}
+                withPreview
+                itemClassName={styles.preview}
+                buttonClassName={styles.button}
+            />
+            <h4 className={classNames(['card-title', styles.title])}>
                 <Link
                     to={url('themes.show', {
-                        theme,
+                        theme: id,
                     })}
                     className="text-white"
                 >
                     {title}
                 </Link>
             </h4>
-            {screensCount > 0 ? (
-                <p className="text-muted mb-0">
-                    <ScreensCount count={screensCount} />
-                </p>
-            ) : null}
-        </Card>
+        </div>
     );
 };
 
-ThemeItem.propTypes = propTypes;
 ThemeItem.defaultProps = defaultProps;
+ThemeItem.propTypes = propTypes;
 
 export default ThemeItem;

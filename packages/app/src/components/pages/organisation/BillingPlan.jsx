@@ -6,13 +6,12 @@ import { FormattedMessage } from 'react-intl';
 
 import { FormPanel, Link } from '@micromag/core/components';
 import { useUrlGenerator, useRoutePush } from '@micromag/core/contexts';
-import { useNavItems } from '@micromag/core/hooks';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
-import OrganisationMenu from '../../menus/Organisation';
 import OrganisationBillingPlanForm from '../../forms/OrganisationBillingPlan';
+import OrganisationSidebar from '../../sidebars/Organisation';
 
 import { useOrganisation as useContextOrganisation } from '../../../contexts/OrganisationContext';
 
@@ -33,10 +32,10 @@ const OrganisationBillingPlanPage = ({ location: { pathname }, className }) => {
     const parentUrl = url('organisation.billing');
 
     const title = <FormattedMessage defaultMessage="Choose your plan" descrition="Page title" />;
-    const nav = useNavItems([
+    const nav = [
         { label: parent, url: parentUrl },
         { label: title, url: pathname },
-    ]);
+    ];
 
     const organisation = useContextOrganisation();
     const push = useRoutePush();
@@ -54,7 +53,7 @@ const OrganisationBillingPlanPage = ({ location: { pathname }, className }) => {
                     </Link>
                 }
                 title={title}
-                sidebar={<OrganisationMenu asList />}
+                sidebar={<OrganisationSidebar asList />}
                 className={classNames([
                     styles.container,
                     {

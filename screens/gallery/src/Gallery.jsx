@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isPlainObject from 'lodash/isPlainObject';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import {
@@ -12,6 +13,8 @@ import {
     PlaceholderShortText,
     Transitions,
 } from '@micromag/core/components';
+import { isImageFilled, isTextFilled } from '@micromag/core/utils';
+
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Grid from '@micromag/element-grid';
@@ -69,10 +72,7 @@ const defaultProps = {
     current: true,
     active: false,
     maxRatio: 3 / 4,
-    transitions: {
-        in: 'fade',
-        out: 'fade',
-    },
+    transitions: { in: 'fade', out: 'fade' },
     transitionStagger: 50,
     className: null,
 };
@@ -133,11 +133,8 @@ const GalleryScreen = ({
         const imageSize = imagesSizes[itemI] || {};
         const { legend = null } = image || {};
 
-        const hasImage = image !== null;
-        const hasLegend = legend !== null;
-
-        const isEmptyImage = isEdit && !hasImage;
-        const isEmptyLegend = isEdit && !hasLegend;
+        const hasImage = isImageFilled(image);
+        const hasLegend = isTextFilled(legend);
 
         return (
             <div key={`item-${itemI}`} className={styles.gridItem}>
@@ -168,7 +165,7 @@ const GalleryScreen = ({
                                 />
                             }
                             emptyClassName={styles.empty}
-                            isEmpty={isEmptyImage}
+                            isEmpty={!hasImage}
                         >
                             <Image
                                 {...image}
@@ -199,7 +196,7 @@ const GalleryScreen = ({
                                 />
                             }
                             emptyClassName={styles.empty}
-                            isEmpty={isEmptyLegend}
+                            isEmpty={!hasLegend}
                         >
                             <div className={styles.legend}>
                                 <Text {...legend} className={styles.legendText} lineClamp={legendMaxLines} />
@@ -228,7 +225,7 @@ const GalleryScreen = ({
                 maxRatio={maxRatio}
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <div className={styles.content} style={ !landscape && isView ? { paddingTop: spacing } : null }>
+                <div className={styles.content} style={ !landscape && (isView || isEdit) ? { paddingTop: spacing } : null }>
                     <Grid className={styles.grid} spacing={finalSpacing} items={items} {...grid} />
                 </div>                
             </Container>

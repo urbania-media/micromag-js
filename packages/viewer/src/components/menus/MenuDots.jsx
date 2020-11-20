@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
+import MenuIcon from './MenuIcon';
+
 import styles from '../../styles/menus/menu-dots.module.scss';
 
 const propTypes = {
@@ -11,6 +13,8 @@ const propTypes = {
     items: MicromagPropTypes.menuItems,
     current: PropTypes.number,
     onClickItem: PropTypes.func,
+    colorAccent: PropTypes.string,
+    colorBackground: PropTypes.string,
     className: PropTypes.string,
 };
 
@@ -19,10 +23,20 @@ const defaultProps = {
     items: [],
     current: 0,
     onClickItem: null,
+    colorAccent: '#818181',
+    colorBackground: '#e0e0e0',
     className: null,
 };
 
-const ViewerMenuDots = ({ direction, items, current, onClickItem, className }) => (
+const ViewerMenuDots = ({
+    direction,
+    items,
+    current,
+    onClickItem,
+    className,
+    colorAccent,
+    colorBackground,
+}) => (
     <nav
         className={classNames([
             styles.container,
@@ -48,10 +62,24 @@ const ViewerMenuDots = ({ direction, items, current, onClickItem, className }) =
                         className={styles.button}
                         onClick={() => (onClickItem !== null ? onClickItem(index) : null)}
                     >
-                        <span className={styles.dot} />
+                        <span
+                            className={styles.dot}
+                            style={{
+                                backgroundColor:
+                                    index <= current ? colorAccent : colorBackground,
+                            }}
+                        />
                     </button>
                 </li>
             ))}
+            <li className={styles.menu}>
+                <MenuIcon className={styles.menuIcon} color={colorAccent} />
+                <button
+                    type="button"
+                    className={styles.menuButton}
+                    onClick={() => (onClickItem !== null ? onClickItem(null) : null)}
+                />
+            </li>
         </ul>
     </nav>
 );

@@ -1,0 +1,32 @@
+@import '~@micromag/core/scss/variables';
+
+.container {
+    .preview {
+        width: 100%;
+    }
+
+    .button {
+        width: 100%;
+    }
+
+    .title {
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px 70px 20px 20px;
+    }
+
+    .settings {
+        position: absolute;
+        z-index: 2;
+        top: 15px;
+        right: 15px;
+    }
+
+    .menu {
+        position: absolute;
+        z-index: 4;
+    }
+}

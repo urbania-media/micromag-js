@@ -3,9 +3,12 @@ import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes, useResizeObserver } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { isTextFilled, isImageFilled } from '@micromag/core/utils';
+
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout from '@micromag/element-layout';
@@ -15,6 +18,7 @@ import Heading from '@micromag/element-heading';
 import Scroll from '@micromag/element-scroll';
 
 import styles from './styles.module.scss';
+
 
 const propTypes = {
     layout: PropTypes.oneOf([
@@ -52,10 +56,7 @@ const defaultProps = {
     current: true,
     active: true,
     maxRatio: 3 / 4,
-    transitions: {
-        in: 'fade',
-        out: 'fade',
-    },
+    transitions: { in: 'fade', out: 'fade' },
     transitionStagger: 75,
     className: null,
 };
@@ -108,13 +109,9 @@ const Timeline = ({
     const timelineElements = items.map((item, itemI) => {
         const { title = null, description = null, image = null } = item || {};
 
-        const hasTitle = title !== null;
-        const hasDescription = description !== null;
-        const hasImage = image !== null;
-
-        const isEmptyTitle = isEdit && !hasTitle;
-        const isEmptyDescription = isEdit && !hasDescription;
-        const isEmptyImage = isEdit && !hasImage;
+        const hasTitle = isTextFilled(title);
+        const hasDescription = isTextFilled(description);
+        const hasImage = isImageFilled(image);
 
         const elementsTypes = (layout === 'normal' ? 'title-description-image' : layout).split('-');
 
@@ -152,7 +149,7 @@ const Timeline = ({
                                                 />
                                             }
                                             emptyClassName={styles.empty}
-                                            isEmpty={isEmptyTitle}
+                                            isEmpty={!hasTitle}
                                         >
                                             {hasElement ? <Heading {...title} /> : null}
                                         </ScreenElement>
@@ -173,7 +170,7 @@ const Timeline = ({
                                                 />
                                             }
                                             emptyClassName={styles.empty}
-                                            isEmpty={isEmptyDescription}
+                                            isEmpty={!hasDescription}
                                         >
                                             {hasElement ? <Text {...description} /> : null}
                                         </ScreenElement>
@@ -193,7 +190,7 @@ const Timeline = ({
                                                 />
                                             }
                                             emptyClassName={styles.empty}
-                                            isEmpty={isEmptyImage}
+                                            isEmpty={!hasImage}
                                         >
                                             {hasElement ? (
                                                 <Image
@@ -291,15 +288,15 @@ const Timeline = ({
                 <Scroll
                     className={styles.scroll}
                     verticalAlign="center"
-                    disabled={isPlaceholder}
+                    disabled={isPlaceholder || isPreview}
                     hideArrow={isPreview}
                 >
                     <Layout
                         style={
-                            isView || isPreview
+                            !isPlaceholder
                                 ? {
                                       padding: spacing,
-                                      paddingTop: isView && !landscape ? spacing * 2 : spacing,
+                                      paddingTop: !isPreview && !landscape ? spacing * 2 : spacing,
                                   }
                                 : null
                         }

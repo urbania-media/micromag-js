@@ -14,6 +14,7 @@
 
     "account": "/account",
     "account.settings": "/account/settings",
+    "account.themes": "/account/themes",
 
     "organisations": "/organisations",
     "organisation": "/organisation",
@@ -38,6 +39,7 @@
     "stories.duplicate": "/stories/:story/duplicate",
     "stories.delete": "/stories/:story/delete",
     "stories.show": "/stories/:story",
+    "stories.screens": "/stories/:story/screens",
     "stories.editor": "/stories/:story/editor",
     "stories.preview": "/stories/:story/preview",
     "stories.publish": "/stories/:story/publish",

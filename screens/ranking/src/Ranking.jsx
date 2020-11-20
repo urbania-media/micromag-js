@@ -3,9 +3,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { isTextFilled } from '@micromag/core/utils';
+
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout from '@micromag/element-layout';
@@ -38,10 +41,7 @@ const defaultProps = {
     current: true,
     active: true,
     maxRatio: 3 / 4,
-    transitions: {
-        in: 'fade',
-        out: 'fade',
-    },
+    transitions: { in: 'fade', out: 'fade' },
     transitionStagger: 75,
     className: null,
 };
@@ -76,7 +76,9 @@ const RankingScreen = ({
         }
 
         let maxWidth = 0;
-        ranksRefs.current.forEach((rankEl) => {
+        ranksRefs.current.forEach((rankEl) => {            
+            const { style: rankElStyle } = rankEl;
+            rankElStyle.width = 'auto';
             maxWidth = Math.max(maxWidth, rankEl.offsetWidth);
         });
         setMaxSideRankWidth(maxWidth);
@@ -85,11 +87,8 @@ const RankingScreen = ({
     const elements = items.map((item, itemI) => {
         const { title = null, description = null } = item || {};
 
-        const hasTitle = title !== null;
-        const hasDescription = description !== null;
-
-        const isEmptyTitle = isEdit && !hasTitle;
-        const isEmptyDescription = isEdit && !hasDescription;
+        const hasTitle = isTextFilled(title);
+        const hasDescription = isTextFilled(description);
 
         const titleElement = (
             <div className={styles.title}>
@@ -99,7 +98,7 @@ const RankingScreen = ({
                         <FormattedMessage defaultMessage="Title" description="Title placeholder" />
                     }
                     emptyClassName={styles.empty}
-                    isEmpty={isEmptyTitle}
+                    isEmpty={!hasTitle}
                 >
                     {hasTitle ? (
                         <Transitions
@@ -126,7 +125,7 @@ const RankingScreen = ({
                         />
                     }
                     emptyClassName={styles.empty}
-                    isEmpty={isEmptyDescription}
+                    isEmpty={!hasDescription}
                 >
                     {hasDescription ? (
                         <Transitions
@@ -189,15 +188,15 @@ const RankingScreen = ({
                 <Scroll
                     className={styles.scroll}
                     verticalAlign="center"
-                    disabled={isPlaceholder}
+                    disabled={isPlaceholder || isPreview}
                     hideArrow={isPreview}
                 >
                     <Layout
                         style={
-                            isView || isPreview
+                            !isPlaceholder
                                 ? {
                                       padding: spacing,
-                                      paddingTop: isView && !landscape ? spacing * 2 : spacing,
+                                      paddingTop: !isPreview && !landscape ? spacing * 2 : spacing,
                                   }
                                 : null
                         }

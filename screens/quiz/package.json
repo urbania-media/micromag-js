@@ -45,6 +45,9 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.8.7",
+        "@fortawesome/fontawesome-svg-core": "^1.2.32",
+        "@fortawesome/free-solid-svg-icons": "^5.15.1",
+        "@fortawesome/react-fontawesome": "^0.1.12",
         "@micromag/core": "^0.1.29",
         "@micromag/element-background": "^0.1.29",
         "@micromag/element-button": "^0.1.29",

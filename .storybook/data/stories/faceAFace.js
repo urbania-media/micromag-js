@@ -45,7 +45,7 @@ const faceAFaceStory = [
     {
         id: uuid(),
         type: 'image-title-text',
-        layout: 'normal',
+        layout: 'card',
         title: {
             body: 'Changer de visage',
             textStyle: header2,
@@ -56,7 +56,7 @@ const faceAFaceStory = [
             textStyle: bodyText,
         },
         image: tommy,
-        background: backgroundImage(),
+        background: background(),
     },
     {
         id: uuid(),

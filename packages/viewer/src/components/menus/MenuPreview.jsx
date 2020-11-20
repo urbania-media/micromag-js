@@ -105,11 +105,12 @@ const ViewerMenuPreview = ({
                                                 screen={item}
                                             />
                                         </div>
+                                        { current === index ? <div className={styles.activeScreenBorder} /> : null }
                                     </div>
                                 </div>
                                 <button
                                     type="button"
-                                    className={styles.button}
+                                    className={styles.screenButton}
                                     onClick={() =>
                                         onClickItem !== null ? onClickItem(index) : null
                                     }

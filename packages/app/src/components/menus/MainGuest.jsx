@@ -2,23 +2,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { useLocation } from 'react-router';
 import { Menu } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
 import styles from '../../styles/menus/main-guest.module.scss';
-
-const messages = defineMessages({
-    login: {
-        id: 'menus.guest.login',
-        defaultMessage: 'Login',
-    },
-    register: {
-        id: 'menus.guest.register',
-        defaultMessage: 'Register',
-    },
-});
 
 const propTypes = {
     className: PropTypes.string,
@@ -42,13 +31,13 @@ const MainGuestMenu = ({ className, itemClassName, linkClassName, ...props }) =>
                 {
                     id: 'login',
                     href: url('auth.login'),
-                    label: messages.login,
+                    label: <FormattedMessage defaultMessage="Login" description="Menu item" />,
                     active: pathname === url('auth.login'),
                 },
                 {
                     id: 'register',
                     href: url('register'),
-                    label: messages.register,
+                    label: <FormattedMessage defaultMessage="Register" description="Menu item" />,
                     active: pathname === url('register'),
                 },
             ]}

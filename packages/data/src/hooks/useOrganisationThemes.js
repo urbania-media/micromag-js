@@ -18,11 +18,13 @@ const useOrganisationThemes = (organisationId = null, query = null, opts) => {
             {
                 id: 1,
                 title: 'My first theme is good',
+                styles: {},
                 components: [{ type: 'Ad' }, { type: 'Text' }],
             },
             {
                 id: 2,
                 title: 'My second theme',
+                styles: {},
                 components: [{ type: 'Ad' }],
             },
         ],

@@ -14,6 +14,7 @@ const propTypes = {
     itemClassName: PropTypes.string,
     linkClassName: PropTypes.string,
     withoutDropdown: PropTypes.bool,
+    asDropdown: PropTypes.bool,
     asList: PropTypes.bool,
     flush: PropTypes.bool,
     dropdownAlign: MicromagPropTypes.dropdownAlign,
@@ -28,9 +29,10 @@ const defaultProps = {
     linkClassName: null,
     withoutDropdown: false,
     asList: false,
+    asDropdown: false,
     flush: false,
     dropdownAlign: null,
-    withEditor: true,
+    withEditor: false,
     withDuplicate: false,
     withDelete: false,
 };
@@ -42,6 +44,7 @@ const StoryMenu = ({
     linkClassName,
     withoutDropdown,
     asList,
+    asDropdown,
     flush,
     dropdownAlign,
     withEditor,
@@ -55,18 +58,29 @@ const StoryMenu = ({
 
     const finalItems = useMemo(() => {
         const subMenu = [
+            {
+                id: 'screens',
+                href: url('stories.show', {
+                    story: story.id,
+                }),
+                label: <FormattedMessage defaultMessage="Screens" description="Menu label" />,
+                className: listItemClassName,
+            },
+            {
+                id: 'settings',
+                href: url('stories.settings', {
+                    story: story.id,
+                }),
+                label: <FormattedMessage defaultMessage="Settings" description="Menu label" />,
+                className: listItemClassName,
+            },
             withEditor
                 ? {
                       id: 'editor',
                       href: url('stories.editor', {
                           story: story.id,
                       }),
-                      label: (
-                          <FormattedMessage
-                              defaultMessage="Editor"
-                              description="Editor menu label"
-                          />
-                      ),
+                      label: <FormattedMessage defaultMessage="Editor" description="Menu label" />,
                       className: listItemClassName,
                   }
                 : null,
@@ -75,9 +89,7 @@ const StoryMenu = ({
                 href: url('stories.preview', {
                     story: story.id,
                 }),
-                label: (
-                    <FormattedMessage defaultMessage="Preview" description="Preview menu label" />
-                ),
+                label: <FormattedMessage defaultMessage="Preview" description="Menu label" />,
                 className: listItemClassName,
             },
             {
@@ -85,9 +97,7 @@ const StoryMenu = ({
                 href: url('stories.publish', {
                     story: story.id,
                 }),
-                label: (
-                    <FormattedMessage defaultMessage="Publish" description="Publish menu label" />
-                ),
+                label: <FormattedMessage defaultMessage="Publish" description="Menu label" />,
                 className: listItemClassName,
             },
             {
@@ -95,9 +105,7 @@ const StoryMenu = ({
                 href: url('stories.versions', {
                     story: story.id,
                 }),
-                label: (
-                    <FormattedMessage defaultMessage="Versions" description="Versions menu label" />
-                ),
+                label: <FormattedMessage defaultMessage="Versions" description="Menu label" />,
                 className: listItemClassName,
             },
             {
@@ -105,17 +113,7 @@ const StoryMenu = ({
                 href: url('stories.medias', {
                     story: story.id,
                 }),
-                label: <FormattedMessage defaultMessage="Medias" description="Medias menu label" />,
-                className: listItemClassName,
-            },
-            {
-                id: 'settings',
-                href: url('stories.settings', {
-                    story: story.id,
-                }),
-                label: (
-                    <FormattedMessage defaultMessage="Settings" description="Settings menu label" />
-                ),
+                label: <FormattedMessage defaultMessage="Medias" description="Menu label" />,
                 className: listItemClassName,
             },
             withDuplicate
@@ -125,10 +123,7 @@ const StoryMenu = ({
                           story: story.id,
                       }),
                       label: (
-                          <FormattedMessage
-                              defaultMessage="Duplicate"
-                              description="Duplicate menu label"
-                          />
+                          <FormattedMessage defaultMessage="Duplicate" description="Menu label" />
                       ),
                       className: asList ? listItemClassName : null,
                   }
@@ -142,7 +137,7 @@ const StoryMenu = ({
                       label: (
                           <FormattedMessage
                               defaultMessage="Delete story"
-                              description="Delete story menu label"
+                              description="Menu label"
                           />
                       ),
                       className: asList ? `${listItemClassName} list-group-item-danger` : null,
@@ -179,6 +174,9 @@ const StoryMenu = ({
             className={classNames({
                 'list-group': asList,
                 'list-group-flush': asList && flush,
+                'dropdown-menu': asDropdown,
+                'dropdown-menu-right': asDropdown,
+                show: asDropdown,
                 [className]: className !== null,
             })}
             itemClassName={classNames({
@@ -186,7 +184,10 @@ const StoryMenu = ({
                 'list-group-item-action': asList,
                 [itemClassName]: itemClassName !== null,
             })}
-            linkClassName={linkClassName}
+            linkClassName={classNames({
+                'dropdown-item': asDropdown,
+                [linkClassName]: linkClassName !== null,
+            })}
             dropdownAlign={dropdownAlign}
         />
     );

@@ -3,9 +3,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
+import { isTextFilled } from '@micromag/core/utils';
+
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
@@ -37,10 +40,7 @@ const defaultProps = {
     current: true,
     active: true,
     maxRatio: 3 / 4,
-    transitions: {
-        in: 'fade',
-        out: 'fade',
-    },
+    transitions: { in: 'fade', out: 'fade' },
     transitionStagger: 100,
     className: null,
 };
@@ -58,16 +58,13 @@ const QuoteScreen = ({
     transitionStagger,
     className,
 }) => {
-
     const { width, height } = useScreenSize();
     const landscape = width > height;
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
-    const hasQuote = quote !== null;
-    const hasAuthor = author !== null;
-
-    const isEmpty = isEdit && !hasQuote && !hasAuthor;
+    const hasQuote = isTextFilled(quote);
+    const hasAuthor = isTextFilled(author);
 
     const isSplitted = layout === 'split';
     const verticalAlign = isSplitted ? null : layout;
@@ -75,33 +72,32 @@ const QuoteScreen = ({
     const quoteWithMargin = hasQuote && hasAuthor && !isSplitted;
 
     const items = [
-        (
-            <ScreenElement
-                key="quote"
-                placeholder="quote"
-                emptyLabel={
-                    <FormattedMessage defaultMessage="Quote" description="Quote placeholder" />
-                }
-                emptyClassName={styles.empty}
-                isEmpty={isEmpty}
-            >
-                { hasQuote ? <Quote className={classNames([styles.quote, { [styles.withMargin] : quoteWithMargin }])} {...quote} /> : null }
-            </ScreenElement>
-        ),
+        <ScreenElement
+            key="quote"
+            placeholder="quote"
+            emptyLabel={<FormattedMessage defaultMessage="Quote" description="Quote placeholder" />}
+            emptyClassName={styles.empty}
+            isEmpty={!hasQuote}
+        >
+            {hasQuote ? (
+                <Quote
+                    className={classNames([styles.quote, { [styles.withMargin]: quoteWithMargin }])}
+                    {...quote}
+                />
+            ) : null}
+        </ScreenElement>,
         isSplitted && hasAuthor && <Spacer key="spacer" />,
-        (
-            <ScreenElement
-                key="author"
-                placeholder="subtitle"
-                emptyLabel={
-                    <FormattedMessage defaultMessage="Author" description="Author placeholder" />
-                }
-                emptyClassName={styles.empty}
-                isEmpty={isEmpty}
-            >
-                { hasAuthor ? <Text className={styles.author} {...author} /> : null }
-            </ScreenElement>
-        ),
+        <ScreenElement
+            key="author"
+            placeholder="subtitle"
+            emptyLabel={
+                <FormattedMessage defaultMessage="Author" description="Author placeholder" />
+            }
+            emptyClassName={styles.empty}
+            isEmpty={!hasAuthor}
+        >
+            {hasAuthor ? <Text className={styles.author} {...author} /> : null}
+        </ScreenElement>,
     ];
 
     return (
@@ -125,7 +121,14 @@ const QuoteScreen = ({
                 <Layout
                     fullscreen
                     verticalAlign={verticalAlign}
-                    style={isPreview || isView ? { padding: spacing, paddingTop: isView && !landscape ? spacing * 2 : spacing } : null}
+                    style={
+                        !isPlaceholder
+                            ? {
+                                  padding: spacing,
+                                  paddingTop: !isPreview && !landscape ? spacing * 2 : spacing,
+                              }
+                            : null
+                    }
                 >
                     <TransitionsStagger
                         transitions={transitions}

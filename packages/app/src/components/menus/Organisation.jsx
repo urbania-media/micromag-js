@@ -17,6 +17,7 @@ const propTypes = {
     itemClassName: PropTypes.string,
     linkClassName: PropTypes.string,
     withoutDropdown: PropTypes.bool,
+    asDropdown: PropTypes.bool,
     asList: PropTypes.bool,
     flush: PropTypes.bool,
     dropdownAlign: MicromagPropTypes.dropdownAlign,
@@ -28,6 +29,7 @@ const defaultProps = {
     linkClassName: null,
     withoutDropdown: false,
     asList: false,
+    asDropdown: false,
     flush: false,
     dropdownAlign: null,
 };
@@ -38,6 +40,7 @@ const OrganisationsMenu = ({
     linkClassName,
     withoutDropdown,
     asList,
+    asDropdown,
     flush,
     dropdownAlign,
     ...props
@@ -178,6 +181,9 @@ const OrganisationsMenu = ({
             className={classNames({
                 'list-group': asList,
                 'list-group-flush': asList && flush,
+                'dropdown-menu': asDropdown,
+                'dropdown-menu-right': asDropdown,
+                show: asDropdown,
                 [className]: className !== null,
             })}
             itemClassName={classNames({
@@ -185,7 +191,10 @@ const OrganisationsMenu = ({
                 'list-group-item-action': asList,
                 [itemClassName]: itemClassName !== null,
             })}
-            linkClassName={linkClassName}
+            linkClassName={classNames({
+                'dropdown-item': asDropdown,
+                [linkClassName]: linkClassName !== null,
+            })}
         />
     );
 };

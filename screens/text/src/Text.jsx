@@ -39,10 +39,7 @@ const defaultProps = {
     current: true,
     active: false,
     maxRatio: 3 / 4,
-    transitions: {
-        in: 'fade',
-        out: 'fade',
-    },
+    transitions: { in: 'fade', out: 'fade' },
     transitionStagger: 100,
     className: null,
 };
@@ -122,7 +119,7 @@ const TextScreen = ({
                 <Layout
                     fullscreen
                     verticalAlign={verticalAlign}
-                    style={ isView || isPreview ? { padding: spacing, paddingTop: isView && !landscape ? spacing * 2 : spacing } : null }
+                    style={ !isPlaceholder ? { padding: spacing, paddingTop: !isPreview && !landscape ? spacing * 2 : spacing } : null }
                 >
                     <TransitionsStagger
                         transitions={transitions}

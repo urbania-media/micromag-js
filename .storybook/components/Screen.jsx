@@ -77,15 +77,17 @@ const Screen = ({
                     },
                 ])}
             >
-                <ScreenSizeProvider size={screenSize}>
-                    <ScreenProvider
-                        definition={definition}
-                        data={screen}
-                        renderContext={renderContext}
-                    >
-                        {children}
-                    </ScreenProvider>
-                </ScreenSizeProvider>
+                {screenSize.width > 0 && screenSize.height > 0 ? (
+                    <ScreenSizeProvider size={screenSize}>
+                        <ScreenProvider
+                            definition={definition}
+                            data={screen}
+                            renderContext={renderContext}
+                        >
+                            {children}
+                        </ScreenProvider>
+                    </ScreenSizeProvider>
+                ) : null}
             </div>
         </div>
     );

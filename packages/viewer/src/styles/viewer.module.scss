@@ -17,14 +17,19 @@
         user-select: none;
     }
 
-    .menuDots {
+    .menuDotsContainer {
         position: absolute;
         z-index: 2;
         top: 0;
         right: 50%;
         width: 100%;
-        padding: 5px 20px;
         transform: translateX(50%);
+    }
+
+    .menuDots {
+        position: relative;
+        height: 100%;
+        padding: 5px 20px;
     }
 
     .menuPreview {
@@ -42,7 +47,7 @@
     }
 
     &.landscape {
-        .menuDots {
+        .menuDotsContainer {
             top: 0;
             right: 40px;
             width: auto;
@@ -51,6 +56,11 @@
 
         .content {
             overflow-y: auto;
+        }
+
+        .menuPreview {
+            top: 0;
+            left: 100%;
         }
         
         .screen {
@@ -65,6 +75,12 @@
     &.menuOpened {
         .menuPreview {
             transform: translateY(100%);
+        }
+
+        &.landscape {
+            .menuPreview {
+                transform: translateX(-100%);
+            }
         }
     }
 }

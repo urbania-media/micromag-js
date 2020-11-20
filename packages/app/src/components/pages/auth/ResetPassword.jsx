@@ -36,7 +36,7 @@ const ResetPasswordPage = ({ className }) => (
                 },
             ])}
         >
-            reset password
+            Reset password
         </Page>
     </MainLayout>
 );

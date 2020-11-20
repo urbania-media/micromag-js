@@ -1,16 +1,18 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
 import React, { useState, useRef, useCallback } from 'react';
+import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
-import { PlaceholderAudio, Transitions } from '@micromag/core/components';
+import { ScreenElement, Transitions } from '@micromag/core/components';
 import Audio from '@micromag/element-audio';
 import ClosedCaptions from '@micromag/element-closed-captions';
 import MediaControls from '@micromag/element-media-controls';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
+import Layout from '@micromag/element-layout';
 
 import styles from './styles.module.scss';
 
@@ -34,10 +36,7 @@ const defaultProps = {
     current: true,
     active: true,
     maxRatio: 3 / 4,
-    transitions: {
-        in: 'fade',
-        out: 'fade',
-    },
+    transitions: { in: 'fade', out: 'fade' },
     className: null,
 };
 
@@ -63,15 +62,15 @@ const AudioScreen = ({
 
     const onTimeUpdate = useCallback((time) => {
         setCurrentTime(time);
-    }, []);
+    }, [setCurrentTime]);
 
     const onPlayChanged = useCallback((isPlaying) => {
         setPlaying(isPlaying);
-    }, []);
+    }, [setPlaying]);
 
     const onMuteChanged = useCallback((isMuted) => {
         setMuted(isMuted);
-    }, []);
+    }, [setMuted]);
 
     // ------------------------------------
 
@@ -81,15 +80,19 @@ const AudioScreen = ({
     const [ready, setReady] = useState(false);
     const transitionPlaying = current && ready;
 
+    const hasAudio = audio !== null;
+
     const onAudioReady = useCallback(() => {
         setReady(true);
     }, [setReady]);
 
-    let element = null;
-    if (isPlaceholder) {
-        element = <PlaceholderAudio className={styles.placeholder} />;
-    } else {
-        element = (
+    const element = (
+        <ScreenElement
+            placeholder="audio"
+            emptyLabel={<FormattedMessage defaultMessage="Audio" description="Audio placeholder" />}
+            emptyClassName={styles.empty}
+            isEmpty={!hasAudio}
+        >
             <Transitions transitions={transitions} playing={transitionPlaying} fullscreen disabled={!isView}>
                 <Audio
                     {...audio}
@@ -117,8 +120,8 @@ const AudioScreen = ({
                     />
                 </div>
             </Transitions>
-        );
-    }
+        </ScreenElement>
+    );
 
     return (
         <div
@@ -139,7 +142,9 @@ const AudioScreen = ({
                 playing={(isView && current) || (isEdit && active)}
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <div className={styles.content}>{element}</div>
+                <Layout fullscreen verticalAlign="middle">
+                    {element}
+                </Layout>
             </Container>
         </div>
     );

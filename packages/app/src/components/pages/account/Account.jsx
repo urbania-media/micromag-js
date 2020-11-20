@@ -6,11 +6,11 @@ import { FormattedMessage } from 'react-intl';
 
 import { FormPanel } from '@micromag/core/components';
 import { useOrganisations } from '@micromag/data';
-import { useNav } from '@micromag/core/hooks';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
+import AccountSidebar from '../../sidebars/Account';
 import OrganisationPartial from '../../partials/Organisation';
 import ProfileForm from '../../forms/AccountProfile';
 import DeleteForm from '../../forms/AccountDelete';
@@ -27,17 +27,18 @@ const defaultProps = {
 };
 
 const AccountPage = ({ location: { pathname }, className }) => {
-    const title = <FormattedMessage defaultMessage="My profile" description="Page title" />;
-    const nav = useNav(title, pathname);
+    const title = <FormattedMessage defaultMessage="Profile" description="Page title" />;
+    const nav = [{ label: title, url: pathname }];
 
     const { organisations: userOrganisations, loading } = useOrganisations();
     const organisations = userOrganisations || [];
     const hasOrganisations = organisations.length > 0;
+
     return (
         <MainLayout nav={nav}>
             <Page
                 title={title}
-                sidebar={null}
+                sidebar={<AccountSidebar asList />}
                 className={classNames([
                     styles.container,
                     {

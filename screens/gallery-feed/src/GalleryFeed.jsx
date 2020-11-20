@@ -3,9 +3,12 @@ import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes, useResizeObserver } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
+import { isImageFilled, isTextFilled } from '@micromag/core/utils';
+
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout from '@micromag/element-layout';
@@ -38,10 +41,7 @@ const defaultProps = {
     current: true,
     active: true,
     maxRatio: 3 / 4,
-    transitions: {
-        in: 'fade',
-        out: 'fade',
-    },
+    transitions: { in: 'fade', out: 'fade' },
     transitionStagger: 75,
     className: null,
 };
@@ -87,8 +87,8 @@ const GalleryFeedScreen = ({
 
     finalImages.forEach((imageEl, index) => {
         const { image = null, legend = null } = imageEl || {};
-        const hasImage = image !== null;
-        const hasLegend = legend !== null;
+        const hasImage = isImageFilled(image);
+        const hasLegend = isTextFilled(legend);
 
         const imageElement = (
             <ScreenElement
@@ -98,7 +98,7 @@ const GalleryFeedScreen = ({
                     <FormattedMessage defaultMessage="Image" description="Image placeholder" />
                 }
                 emptyClassName={styles.empty}
-                isEmpty={isEdit && !hasImage}
+                isEmpty={!hasImage}
             >
                 <div className={styles.imageContainer} ref={index === 0 ? firstImageRef : null}>
                     <Image {...image} width={firstImageRefWidth} onLoaded={onImageLoaded} />
@@ -109,6 +109,8 @@ const GalleryFeedScreen = ({
         let legendElement = null;
 
         if (withLegends) {
+            const marginTop = !isReversed || index > 0 ? spacing / 2 : 0;
+            const marginBottom = isReversed || index < finalImages.length - 1 ? spacing / 2 : 0;
             legendElement = (
                 <ScreenElement
                     key={`legend-${index}`}
@@ -120,14 +122,13 @@ const GalleryFeedScreen = ({
                         />
                     }
                     emptyClassName={styles.empty}
-                    isEmpty={isEdit && !hasLegend}
+                    isEmpty={!hasLegend}
                 >
                     <div
                         className={styles.legend}
                         style={{
-                            marginTop: !isReversed || index > 0 ? spacing / 2 : 0,
-                            marginBottom:
-                                isReversed || index < finalImages.length - 1 ? spacing / 2 : 0,
+                            marginTop,
+                            marginBottom,
                         }}
                     >
                         <Text {...legend} />
@@ -171,13 +172,13 @@ const GalleryFeedScreen = ({
             />
 
             <Container width={width} height={height} maxRatio={maxRatio} withScroll>
-                <Scroll disabled={isPlaceholder} hideArrow={isPreview}>
+                <Scroll disabled={isPlaceholder || isPreview} hideArrow={isPreview}>
                     <Layout
                         style={
-                            isView || isPreview
+                            !isPlaceholder
                                 ? {
                                       padding: spacing,
-                                      paddingTop: isView && !landscape ? spacing * 2 : spacing,
+                                      paddingTop: !isPreview && !landscape ? spacing * 2 : spacing,
                                   }
                                 : null
                         }

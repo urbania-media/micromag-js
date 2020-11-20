@@ -42,7 +42,7 @@ const StoryNavbar = ({ story, className }) => {
                                     ? url('stories.publish', {
                                           story: story.id,
                                       })
-                                    : url('stories')
+                                    : url('home')
                             }
                             theme="light"
                             invert

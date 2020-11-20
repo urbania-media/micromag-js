@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import { Screen } from '@micromag/core/components';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -11,6 +12,7 @@ const propTypes = {
     renderContext: MicromagPropTypes.renderContext,
     current: PropTypes.bool,
     active: PropTypes.bool,
+    landscape: PropTypes.bool,
     onPrevious: PropTypes.func,
     onNext: PropTypes.func,
     onEnableInteraction: PropTypes.func,
@@ -22,6 +24,7 @@ const defaultProps = {
     renderContext: null,
     current: false,
     active: true,
+    landscape: false,
     onPrevious: null,
     onNext: null,
     onEnableInteraction: null,
@@ -32,6 +35,7 @@ const ViewerScreen = ({
     screen,
     renderContext,
     active,
+    landscape,
     current,
     onPrevious,
     onNext,
@@ -39,7 +43,16 @@ const ViewerScreen = ({
     onDisableInteraction,
 }) => {
     return screen !== null ? (
-        <div className={styles.container}>
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [styles.active]: active,
+                    [styles.current]: current,
+                    [styles.landscape]: landscape,
+                },
+            ])}
+        >
             <Screen
                 screen={screen}
                 renderContext={renderContext}

@@ -11,7 +11,6 @@ import {
 } from '@micromag/data';
 import { useRoutePush } from '@micromag/core/contexts';
 import { FormPanel } from '@micromag/core/components';
-import { useNav } from '@micromag/core/hooks';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import { useOrganisation as useContextOrganisation } from '../../../contexts/OrganisationContext';
@@ -19,7 +18,7 @@ import { useUser } from '../../../contexts/AuthContext';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
-import OrganisationMenu from '../../menus/Organisation';
+import OrganisationSidebar from '../../sidebars/Organisation';
 import TeamList from '../../lists/Team';
 import MemberCreateForm from '../../forms/MemberCreate';
 
@@ -36,7 +35,7 @@ const defaultProps = {
 
 const OrganisationTeamPage = ({ location: { pathname }, className }) => {
     const title = <FormattedMessage defaultMessage="Team" description="Page title" />;
-    const nav = useNav(title, pathname);
+    const nav = [{ label: title, url: pathname }];
 
     const user = useUser();
     const push = useRoutePush();
@@ -84,7 +83,7 @@ const OrganisationTeamPage = ({ location: { pathname }, className }) => {
         <MainLayout nav={nav}>
             <Page
                 title={title}
-                sidebar={<OrganisationMenu asList />}
+                sidebar={<OrganisationSidebar asList />}
                 className={classNames([
                     styles.container,
                     {

@@ -4,17 +4,20 @@ import PropTypes from 'prop-types';
 // import classNames from 'classnames';
 import { useParams } from 'react-router';
 import { FormattedMessage } from 'react-intl';
+
 import { Button } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 import { Screens } from '@micromag/editor';
 import { ScreensProvider } from '@micromag/screens';
 import { useStory } from '@micromag/data';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
-import StoryBox from '../../partials/StoryBox';
+import StorySidebar from '../../sidebars/Story';
 
 const propTypes = {
+    location: MicromagPropTypes.location.isRequired,
     className: PropTypes.string,
 };
 
@@ -22,24 +25,33 @@ const defaultProps = {
     className: null,
 };
 
-const StoryPage = ({ className }) => {
+const ShowPage = ({ location: { pathname }, className }) => {
     const { story: storyId } = useParams();
     const url = useUrlGenerator();
     const { story } = useStory(storyId);
     const { components: screens = null } = story || {};
+
+    const parent = story !== null ? story.title : null;
+    const parentUrl = story !== null ? url('stories.show', { story: story.id }) : null;
+    const title = <FormattedMessage defaultMessage="Screens" descrition="Page title" />;
+
     return (
-        <MainLayout>
+        <MainLayout
+            nav={[
+                { label: parent, url: parentUrl },
+                { label: title, url: pathname },
+            ]}
+        >
             <Page
-                section={<FormattedMessage defaultMessage="Story" description="Story page title" />}
-                title={story !== null ? story.title : null}
-                sidebar={story !== null ? <StoryBox story={story} /> : <div />}
+                title={title}
+                sidebar={story !== null ? <StorySidebar story={story} /> : <div />}
                 className={className}
             >
                 {screens !== null && screens.length > 0 ? (
                     <ScreensProvider>
                         <Screens
                             items={screens.map((it) => ({
-                                ...it,
+                                screen: it,
                                 href: url('stories.editor', {
                                     story: story.id,
                                 }),
@@ -84,7 +96,7 @@ const StoryPage = ({ className }) => {
     );
 };
 
-StoryPage.propTypes = propTypes;
-StoryPage.defaultProps = defaultProps;
+ShowPage.propTypes = propTypes;
+ShowPage.defaultProps = defaultProps;
 
-export default StoryPage;
+export default ShowPage;

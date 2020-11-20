@@ -2,9 +2,11 @@
 import React, { useCallback, useRef, useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { animated } from 'react-spring';
+
+import { useDrag } from 'react-use-gesture';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useScreenSizeFromElement, useSwipe } from '@micromag/core/hooks';
+import { useScreenSizeFromElement } from '@micromag/core/hooks';
 import { ScreenSizeProvider } from '@micromag/core/contexts';
 import { getDeviceScreens } from '@micromag/core/utils';
 
@@ -23,7 +25,6 @@ const propTypes = {
     height: PropTypes.number,
     screen: PropTypes.string,
     deviceScreens: MicromagPropTypes.deviceScreens,
-    interactions: MicromagPropTypes.interactions,
     fullscreen: PropTypes.bool,
     renderContext: MicromagPropTypes.renderContext,
     onScreenChange: PropTypes.func,
@@ -38,9 +39,8 @@ const defaultProps = {
     height: null,
     screen: null,
     deviceScreens: getDeviceScreens(),
-    interactions: ['tap'],
     fullscreen: false,
-    renderContext: null,
+    renderContext: 'view',
     onScreenChange: null,
     tapNextScreenWidthPercent: 0.5,
     neighborScreensActive: 2,
@@ -54,7 +54,6 @@ const Viewer = ({
     height,
     screen: screenId,
     deviceScreens,
-    interactions,
     fullscreen,
     renderContext,
     onScreenChange,
@@ -65,8 +64,7 @@ const Viewer = ({
 }) => {
     const { components = [] } = story || {};
 
-    const scrollRef = useRef(null);
-    const tappingRef = useRef(true);
+    const contentRef = useRef(null);
     const animateScroll = useRef(false);
 
     // Get screen size
@@ -78,10 +76,6 @@ const Viewer = ({
     const { width: screenWidth = null, height: screenHeight = null } = screenSize || {};
 
     const landscape = screenWidth > screenHeight;
-
-    const hasInteractions = !landscape && interactions !== null;
-    const withSwipe = hasInteractions && interactions.includes('swipe');
-    const withTap = hasInteractions && interactions.includes('tap');
 
     // Index
     const currentIndex = useMemo(
@@ -132,24 +126,6 @@ const Viewer = ({
         }
     }, [currentIndex, screensInteractionEnabled, setScreensInteractionEnabled]);
 
-    // Swipe mechanics
-    const { items, bind, setIndex } = useSwipe({
-        width: screenWidth,
-        items: components,
-        disabled: landscape,
-        withSpring: hasInteractions,
-        animateScale: true,
-        onSwipeStart: () => {
-            tappingRef.current = false;
-        },
-        onSwipeEnd: (index) => {
-            changeIndex(index);
-        },
-        onTap: () => {
-            tappingRef.current = true;
-        },
-    });
-
     const screensRefs = useRef([]);
 
     // Handle screen change
@@ -165,7 +141,7 @@ const Viewer = ({
                 });
 
                 anime({
-                    targets: scrollRef.current,
+                    targets: contentRef.current,
                     duration: 500,
                     scrollTop,
                     easing: 'easeInOutQuad',
@@ -174,10 +150,8 @@ const Viewer = ({
                     },
                 });
             }
-        } else {
-            setIndex(currentIndex);
         }
-    }, [landscape, setIndex, currentIndex, screenHeight]);
+    }, [landscape, currentIndex, screenHeight]);
 
     // Handle menu
     const [menuOpened, setMenuOpened] = useState(false);
@@ -203,37 +177,13 @@ const Viewer = ({
         setMenuOpened(false);
     }, [setMenuOpened]);
 
-    // handle tap
-    const onTap = useCallback(
-        (e) => {
-            e.stopPropagation();
-            const it = components[currentIndex] || null;
-            const interactionEnabled = screensInteractionEnabled[currentIndex];
-
-            if (it === null || !tappingRef.current || !interactionEnabled) {
-                return;
-            }
-
-            let nextIndex = currentIndex;
-
-            if (e.clientX > screenWidth * (1 - tapNextScreenWidthPercent)) {
-                nextIndex = Math.min(components.length - 1, currentIndex + 1);
-            } else {
-                nextIndex = Math.max(0, currentIndex - 1);
-            }
-            changeIndex(nextIndex);
-        },
-        [onScreenChange, screenWidth, components, changeIndex, currentIndex, screensInteractionEnabled],
-    );
-
-    // Handle landscape scroll updating currentScreen
-    // @TODO use Observer
+    // Handle landscape scroll updating currentScreen @TODO use Observer
     const onContentScrolled = useCallback(() => {
         if (!landscape || animateScroll.current) {
             return;
         }
 
-        const { scrollTop } = scrollRef.current;
+        const { scrollTop } = contentRef.current;
 
         let currentY = 0;
         const screensY = screensRefs.current.map((screen) => {
@@ -263,6 +213,60 @@ const Viewer = ({
         }
     }, [landscape, currentIndex, screenHeight, components]);
 
+    // handle tap
+    const onTap = useCallback(
+        (e) => {
+
+            const checkClickable = (el, maxDistance = 5, distance = 1) => {
+                
+                const {tagName = null, parentNode = null, disabled = false } = el || {};
+
+                if (tagName === 'BODY') {
+                    return false;
+                }
+
+                if (tagName === 'BUTTON' && disabled) {
+                    return false;
+                }
+
+                if (tagName === 'BUTTON' || tagName === 'A') {
+                    return true;
+                }
+
+                if (distance < maxDistance) {
+                    return checkClickable(parentNode, maxDistance, distance + 1);
+                }
+
+                return false;
+            }
+
+            if (checkClickable(e.target)) {
+                return;
+            }
+
+            const it = components[currentIndex] || null;
+            const interactionEnabled = screensInteractionEnabled[currentIndex];
+
+            if (it === null || !interactionEnabled) {
+                return;
+            }
+
+            let nextIndex = currentIndex;
+
+            if (e.clientX > screenWidth * (1 - tapNextScreenWidthPercent)) {
+                nextIndex = Math.min(components.length - 1, currentIndex + 1);
+            } else {
+                nextIndex = Math.max(0, currentIndex - 1);
+            }
+            changeIndex(nextIndex);
+        },
+        [onScreenChange, screenWidth, components, changeIndex, currentIndex, screensInteractionEnabled],
+    );
+
+    const bindDrag = useDrag((/* { down, swipe, movement: [, my], vxvy: [, vy] } */) => {
+        // console.log(down, swipe, my, vy);
+    });
+
     return (
         <ScreenSizeProvider size={screenSize}>
             <div
@@ -276,33 +280,33 @@ const Viewer = ({
                         [className]: className,
                     },
                 ])}
-                {...(withSwipe ? bind() : null)}
                 ref={refContainer}
             >
-                <MenuDots
-                    direction={landscape ? 'vertical' : 'horizontal'}
-                    items={components}
-                    current={currentIndex}
-                    onClickItem={onClickDotsMenuItem}
-                    className={styles.menuDots}
-                />
+                <div className={styles.menuDotsContainer} {...bindDrag()}>
+                    <MenuDots
+                        direction={landscape ? 'vertical' : 'horizontal'}
+                        items={components}
+                        current={currentIndex}
+                        onClickItem={onClickDotsMenuItem}
+                        className={styles.menuDots}
+                    />
+                </div>
                 <MenuPreview
+                    className={styles.menuPreview}
                     screenWidth={screenWidth}
                     screenHeight={screenHeight}
                     items={components}
                     current={currentIndex}
                     onClickItem={onClickPreviewMenuItem}
-                    onClose={onClickPreviewMenuClose}
-                    className={styles.menuPreview}
+                    onClose={onClickPreviewMenuClose}                    
                 />
                 <div
-                    ref={scrollRef}
+                    ref={contentRef}
                     className={styles.content}
-                    onScroll={onContentScrolled}
-                    {...(withTap ? { onClick: onTap } : null)}
+                    onScroll={landscape ? onContentScrolled : null}
+                    {...(!landscape ? { onClick: onTap } : null )}
                 >
                     {components.map((scr, i) => {
-                        const style = { ...items[i] };
                         const current = i === currentIndex;
                         const active =
                             i > currentIndex - neighborScreensActive &&
@@ -315,6 +319,7 @@ const Viewer = ({
                                 index={i}
                                 current={current}
                                 active={active}
+                                landscape={landscape}
                                 onPrevious={onScreenPrevious}
                                 onNext={onScreenNext}
                                 onEnableInteraction={onEnableInteraction}
@@ -334,9 +339,9 @@ const Viewer = ({
                                 {viewerScreen}
                             </div>
                         ) : (
-                            <animated.div key={key} style={style} className={screenClass}>
+                            <div key={key} style={{ transform: `translate3d(${screenWidth * (i - currentIndex)}px, 0, 0)` }} className={screenClass}>
                                 {viewerScreen}
-                            </animated.div>
+                            </div>
                         );
                     })}
                 </div>
