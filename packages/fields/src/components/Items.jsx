@@ -70,10 +70,12 @@ const ItemsField = ({
     closeFieldForm,
 }) => {
     const onClickAdd = useCallback(() => {
+        const newValue = [...(value || []), newDefaultValue];
         if (onChange !== null) {
-            onChange([...(value || []), newDefaultValue]);
+            onChange(newValue);
         }
-    }, [value, onChange, newDefaultValue]);
+        gotoFieldForm(`${name}.${newValue.length}`);
+    }, [value, onChange, newDefaultValue, gotoFieldForm, name]);
     const onItemChange = useCallback(
         (index, newValue) => {
             if (onChange !== null) {
