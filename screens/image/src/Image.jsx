@@ -103,7 +103,7 @@ const ImageScreen = ({
                 height: currentImageCntRef.offsetHeight,
             });
         }
-    }, [width, height, setImageSize]);
+    }, [width, height, layout, setImageSize]);
 
     const items = [
         <div
