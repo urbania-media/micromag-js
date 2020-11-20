@@ -7,6 +7,7 @@ export { default as fontFamily } from './font-family';
 export { default as fontSize } from './font-size';
 export { default as headingElement } from './heading-element';
 export { default as image } from './image';
+export { default as images } from './images';
 export { default as letterSpacing } from './letter-spacing';
 export { default as lineHeight } from './line-height';
 export { default as marker } from './marker';
