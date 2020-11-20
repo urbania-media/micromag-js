@@ -263,7 +263,7 @@ const Viewer = ({
         [onScreenChange, screenWidth, components, changeIndex, currentIndex, screensInteractionEnabled],
     );
 
-    const bindDrag = useDrag(({ down, swipe, movement: [, my], vxvy: [, vy] }) => {
+    const bindDrag = useDrag((/* { down, swipe, movement: [, my], vxvy: [, vy] } */) => {
         // console.log(down, swipe, my, vy);
     });
 
@@ -319,6 +319,7 @@ const Viewer = ({
                                 index={i}
                                 current={current}
                                 active={active}
+                                landscape={landscape}
                                 onPrevious={onScreenPrevious}
                                 onNext={onScreenNext}
                                 onEnableInteraction={onEnableInteraction}

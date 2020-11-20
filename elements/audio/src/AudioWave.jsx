@@ -97,23 +97,38 @@ const AudioWave = ({
 
     useEffect(() => {
         setAudioBuffer(null);
+        let audioCtx = null;
+        let canceled = false;
 
-        if (url === null) {
-            return;
+        if (url !== null) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            fetch(url)
+            .then( response => {
+                if (canceled){
+                    throw new Error('Audio loading canceled');
+                } 
+                return response.arrayBuffer();
+            })
+            .then( audioData => {
+                if (canceled){
+                    throw new Error('Audio loading canceled');
+                }
+                audioCtx.decodeAudioData(audioData, (buffer) => {
+                    setAudioBuffer(buffer);
+                });
+            })
+            .catch( (e) => {
+                throw(e);
+            });
         }
 
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const request = new XMLHttpRequest();
-        request.open('GET', url, true);
-        request.responseType = 'arraybuffer';
+        return () => {
+            if (url === null) {
+                audioCtx = null;
+                canceled = true;
+            }
+        }
 
-        request.onload = () => {
-            const audioData = request.response;
-            audioCtx.decodeAudioData(audioData, (buffer) => {
-                setAudioBuffer(buffer);
-            });
-        };
-        request.send();
     }, [url, setAudioBuffer]);
 
     // draw canvas

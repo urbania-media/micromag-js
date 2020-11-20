@@ -8,6 +8,8 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
+import { isTextFilled } from '@micromag/core/utils';
+
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
@@ -72,9 +74,7 @@ const SurveyScreen = ({
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
-    const hasQuestion = question !== null;
-
-    const isEmptyQuestion = isEdit && !hasQuestion;
+    const hasQuestion = isTextFilled(question);
 
     const [userAnswerIndex, setUserAnswerIndex] = useState(null);
     const answered = userAnswerIndex !== null;
@@ -101,7 +101,7 @@ const SurveyScreen = ({
                 <FormattedMessage defaultMessage="Question" description="Question placeholder" />
             }
             emptyClassName={styles.empty}
-            isEmpty={isEmptyQuestion}
+            isEmpty={!hasQuestion}
         >
             {hasQuestion ? (
                 <Transitions transitions={transitions} playing={current} disabled={!isView}>
@@ -138,9 +138,9 @@ const SurveyScreen = ({
                 <div className={styles.options}>
                     {options.map((option, optionI) => {
                         const hasOption = option !== null;
-                        const isEmptyOption = isEdit && !hasOption;
 
                         const { label = null, percent = null } = option || {};
+                        const hasOptionLabel = isTextFilled(label);
 
                         return (
                             <div
@@ -161,7 +161,7 @@ const SurveyScreen = ({
                                         />
                                     }
                                     emptyClassName={styles.empty}
-                                    isEmpty={isEmptyOption}
+                                    isEmpty={!hasOptionLabel}
                                 >
                                     {hasOption ? (
                                         <Transitions
@@ -183,7 +183,7 @@ const SurveyScreen = ({
                                                         refButton={(el) => {
                                                             buttonsRefs.current[optionI] = el;
                                                         }}
-                                                        disabled={answered}
+                                                        disabled={isPreview || answered}
                                                     >
                                                         <span
                                                             className={styles.optionLabel}
@@ -243,10 +243,10 @@ const SurveyScreen = ({
                     fullscreen
                     verticalAlign={verticalAlign}
                     style={
-                        isView || isPreview
+                        !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop: isView && !landscape ? spacing * 2 : spacing,
+                                  paddingTop: !isPreview && !landscape ? spacing * 2 : spacing,
                               }
                             : null
                     }

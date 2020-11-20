@@ -3,9 +3,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
+import { isTextFilled } from '@micromag/core/utils';
+
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
@@ -74,9 +77,9 @@ const TitleScreen = ({
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
-    const hasTitle = title !== null;
-    const hasSubtitle = subtitle !== null;
-    const hasDescription = description !== null;
+    const hasTitle = isTextFilled(title);
+    const hasSubtitle = isTextFilled(subtitle);
+    const hasDescription = isTextFilled(description);
 
     const isEmpty = !hasTitle && !hasSubtitle && (!withDescription || !hasDescription);
 
@@ -158,7 +161,7 @@ const TitleScreen = ({
                 <Layout
                     fullscreen
                     verticalAlign={verticalAlign}
-                    style={ isView || isPreview ? { padding: spacing, paddingTop: isView && !landscape ? spacing * 2 : spacing } : null }
+                    style={ !isPlaceholder ? { padding: spacing, paddingTop: !isPreview && !landscape ? spacing * 2 : spacing } : null }
                 >
                     <TransitionsStagger
                         transitions={transitions}

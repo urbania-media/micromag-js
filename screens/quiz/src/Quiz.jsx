@@ -11,6 +11,8 @@ import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
+import { isTextFilled } from '@micromag/core/utils';
+
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
@@ -86,11 +88,8 @@ const QuizScreen = ({
     const landscape = width > height;
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
-    const hasQuestion = question !== null;
-    const hasResult = result !== null;
-
-    const isEmptyQuestion = isEdit && !hasQuestion;
-    const isEmptyResult = isEdit && !hasResult;
+    const hasQuestion = isTextFilled(question);
+    const hasResult = isTextFilled(result);
 
     const [userAnswerIndex, setUserAnswerIndex] = useState(null);
     const [showResults, setShowResults] = useState(false);
@@ -124,7 +123,6 @@ const QuizScreen = ({
     // we also get the right answer's Y to animate its position
 
     const answerRef = useRef(null);
-    const optionsRef = useRef(null);
     const rightAnswerRef = useRef(null);
     const resultRef = useRef(null);
 
@@ -132,32 +130,26 @@ const QuizScreen = ({
 
     useEffect(() => {
         const answerEl = answerRef.current;
-        const optionsEl = optionsRef.current;
         const rightAnswerEl = rightAnswerRef.current;
         const resultEl = resultRef.current;
 
         if (
             answerEl !== null &&
-            optionsEl !== null &&
             rightAnswerEl !== null &&
             resultEl !== null
         ) {
-            const answerRect = answerEl.getBoundingClientRect();
-            const optionsRect = optionsEl.getBoundingClientRect();
-            const rightAnswerRect = rightAnswerEl.getBoundingClientRect();
-            const resultRect = resultEl.getBoundingClientRect();
+            const answerHeight = answerEl.offsetHeight;
+            const rightAnswerY = rightAnswerEl.offsetTop;
+            const rightAnswerHeight = rightAnswerEl.offsetHeight;
+            const resultHeight = resultEl.offsetHeight;
 
-            const answerHeight = answerRect.height;
-            const optionsY = optionsRect.top;
-            const rightAnswerY = rightAnswerRect.top;
-            const rightAnswerHeight = rightAnswerRect.height;
-            const resultHeight = resultRect.height;
-
-            setAnswerTransitionProps({
-                rightAnswerTranslateY: optionsY - rightAnswerY,
-                answerInitialHeight: answerHeight,
-                answerAnsweredHeight: rightAnswerHeight + resultHeight,
-            });
+            if (answerHeight > 0 && rightAnswerHeight > 0 && resultHeight > 0) {
+                setAnswerTransitionProps({
+                    rightAnswerTranslateY: -rightAnswerY,
+                    answerInitialHeight: answerHeight,
+                    answerAnsweredHeight: rightAnswerHeight + resultHeight,
+                });
+            }
         }
     }, [setAnswerTransitionProps, width, height]);
 
@@ -190,7 +182,7 @@ const QuizScreen = ({
                 <FormattedMessage defaultMessage="Question" description="Question placeholder" />
             }
             emptyClassName={styles.empty}
-            isEmpty={isEmptyQuestion}
+            isEmpty={!hasQuestion}
         >
             {hasQuestion ? (
                 <Transitions transitions={transitions} playing={current} disabled={!isView}>
@@ -211,7 +203,7 @@ const QuizScreen = ({
             key="answer"
             className={styles.answer}
             ref={answerRef}
-            style={answerTransitionProps !== null && !answerTransitionComplete && isView ? {
+            style={answerTransitionProps !== null && !answerTransitionComplete && (isView || isEdit) ? {
                 transitionDuration: `${resultsTransitionDuration}ms`,
                 height: !showResults
                     ? answerTransitionProps.answerInitialHeight
@@ -221,7 +213,6 @@ const QuizScreen = ({
             {options !== null ? (// Options
                 <div
                     className={styles.options}
-                    ref={optionsRef}
                 >
                     {options.map((option, optionI) => {
                         const hasOption = option !== null;
@@ -273,7 +264,7 @@ const QuizScreen = ({
                                             <Button
                                                 className={styles.button}
                                                 onClick={() => onOptionClick(optionI)}
-                                                disabled={answered}
+                                                disabled={isPreview || answered}
                                             >
                                                 {rightAnswer ? (
                                                     <span className={styles.resultIcon}>
@@ -300,7 +291,7 @@ const QuizScreen = ({
                     <FormattedMessage defaultMessage="Result" description="Result placeholder" />
                 }
                 emptyClassName={styles.empty}
-                isEmpty={isEmptyResult}
+                isEmpty={!hasResult}
             >
                 {hasResult ? (// Result
                     <div
@@ -344,7 +335,7 @@ const QuizScreen = ({
                 <Layout
                     fullscreen
                     verticalAlign={verticalAlign}
-                    style={isView || isPreview ? { padding: spacing, paddingTop: isView && !landscape ? spacing * 2 : spacing } : null}
+                    style={!isPlaceholder ? { padding: spacing, paddingTop: !isPreview && !landscape ? spacing * 2 : spacing } : null}
                 >
                     {items}
                 </Layout>

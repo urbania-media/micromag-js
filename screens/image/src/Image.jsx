@@ -3,12 +3,15 @@ import React, { useState, useCallback, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+
 import { PlaceholderImage, PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { PlaceholderShortText, ScreenElement, Transitions } from '@micromag/core/components';
+import { isImageFilled, isTextFilled } from '@micromag/core/utils';
+
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
-import Layout /* , { Spacer } */ from '@micromag/element-layout';
+import Layout from '@micromag/element-layout';
 import Image from '@micromag/element-image';
 import Heading from '@micromag/element-heading';
 import Text from '@micromag/element-text';
@@ -71,14 +74,12 @@ const ImageScreen = ({
     const { width, height } = useScreenSize();
     const landscape = width > height;
 
-    const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
-    const hasImage = image !== null;
-    const hasTitle = title !== null;
-    const hasText = text !== null;
-    const hasLegend = legend !== null;
-
-    const isEmpty = isEdit && !hasTitle && !hasImage;
+    const hasImage = isImageFilled(image);
+    const hasTitle = isTextFilled(title);
+    const hasText = isTextFilled(text);
+    const hasLegend = isTextFilled(legend);
 
     const [ready, setReady] = useState(!hasImage);
     const transitionPlaying = current && ready;
@@ -102,7 +103,7 @@ const ImageScreen = ({
                 height: currentImageCntRef.offsetHeight,
             });
         }
-    }, [width, height, setImageSize]);
+    }, [width, height, layout, setImageSize]);
 
     const items = [
         <div
@@ -123,7 +124,7 @@ const ImageScreen = ({
                     <FormattedMessage defaultMessage="Image" description="Image placeholder" />
                 }
                 emptyClassName={styles.empty}
-                isEmpty={isEmpty}
+                isEmpty={!hasImage}
             >
                 {hasImage ? (
                     <Transitions transitions={transitions} playing={transitionPlaying} disabled={!isView}>
@@ -145,7 +146,7 @@ const ImageScreen = ({
                     <FormattedMessage defaultMessage="Title" description="Title placeholder" />
                 }
                 emptyClassName={styles.empty}
-                isEmpty={isEmpty}
+                isEmpty={!hasTitle}
             >
                 {hasTitle ? (
                     <Transitions transitions={transitions} playing={transitionPlaying} disabled={!isView}>
@@ -167,7 +168,7 @@ const ImageScreen = ({
                     <FormattedMessage defaultMessage="Text" description="Text placeholder" />
                 }
                 emptyClassName={styles.empty}
-                isEmpty={isEmpty}
+                isEmpty={!hasText}
             >
                 {hasText ? (
                     <Transitions transitions={transitions} playing={transitionPlaying} disabled={!isView}>
@@ -189,7 +190,7 @@ const ImageScreen = ({
                     <FormattedMessage defaultMessage="Legend" description="Legend placeholder" />
                 }
                 emptyClassName={styles.empty}
-                isEmpty={isEmpty}
+                isEmpty={!hasLegend}
             >
                 {hasLegend ? (
                     <Transitions transitions={transitions} playing={transitionPlaying} disabled={!isView}>
@@ -212,7 +213,7 @@ const ImageScreen = ({
         }
     }
 
-    let paddingTop = isView && !landscape ? spacing * 1.5 : spacing / 2;
+    let paddingTop = !isPreview && !landscape ? spacing * 1.5 : spacing / 2;
 
     if (isCard) {
         paddingTop = 0;

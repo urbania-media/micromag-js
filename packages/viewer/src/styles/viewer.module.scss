@@ -57,6 +57,11 @@
         .content {
             overflow-y: auto;
         }
+
+        .menuPreview {
+            top: 0;
+            left: 100%;
+        }
         
         .screen {
             position: relative;
@@ -70,6 +75,12 @@
     &.menuOpened {
         .menuPreview {
             transform: translateY(100%);
+        }
+
+        &.landscape {
+            .menuPreview {
+                transform: translateX(-100%);
+            }
         }
     }
 }

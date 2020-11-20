@@ -8,6 +8,8 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
+import { isTextFilled } from '@micromag/core/utils';
+
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
@@ -77,13 +79,13 @@ const SurveyScreen = ({
     contributions,
 }) => {
     const { width, height } = useScreenSize();
+    const landscape = width > height;
+
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
     const intl = useIntl();
 
-    const hasTitle = title !== null;
-
-    const isEmptyTitle = isEdit && !hasTitle;
+    const hasTitle = isTextFilled(title);
 
     const [userName, setUserName] = useState('');
     const [userMessage, setUserMessage] = useState('');
@@ -141,7 +143,7 @@ const SurveyScreen = ({
             placeholder="title"
             emptyLabel={<FormattedMessage defaultMessage="Title" description="Title placeholder" />}
             emptyClassName={styles.empty}
-            isEmpty={isEmptyTitle}
+            isEmpty={!hasTitle}
         >
             {hasTitle ? (
                 <Transitions transitions={transitions} playing={current}>
@@ -229,7 +231,7 @@ const SurveyScreen = ({
                 <Layout
                     fullscreen
                     verticalAlign={verticalAlign}
-                    style={isView || isPreview ? { padding: spacing } : null}
+                    style={!isPlaceholder ? { padding: spacing, paddingTop: !isPreview && !landscape ? spacing * 2 : spacing } : null}
                 >
                     <Scroll verticalAlign="center" disabled={isPlaceholder} hideArrow={isPreview}>
                         {items}

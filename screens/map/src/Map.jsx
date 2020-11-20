@@ -189,6 +189,7 @@ const MapScreen = ({
                             onClick={onClickMap}
                             withoutStyle
                             style={{ height: height * openedMarkerSpacerHeight }}
+                            disabled={isPreview}
                         />
                         <div
                             className={styles.markerOverlay}
