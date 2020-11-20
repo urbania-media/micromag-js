@@ -2,17 +2,8 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { getComponentFromName } from '@micromag/core/utils';
 
-import TextField from './Text';
-import TextareaField from './Textarea';
 import EditorField from './TextEditor';
-
-const Fields = {
-    Single: TextField,
-    Multi: TextareaField,
-    Editor: EditorField,
-}
 
 const propTypes = {
     value: MicromagPropTypes.textElement,
@@ -21,7 +12,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    fieldType: 'text',
+    fieldType: 'single',
     value: null,
     onChange: null,
 };
@@ -40,8 +31,14 @@ const TextElement = ({ value, onChange, fieldType, ...props }) => {
         },
         [value, onChange],
     );
-    const FieldComponent = getComponentFromName(fieldType, Fields, TextField);
-    return <FieldComponent {...props} value={bodyValue} onChange={onBodyChange} />;
+    return (
+        <EditorField
+            {...props}
+            inline={fieldType === 'single' || fieldType === 'multi'}
+            value={bodyValue}
+            onChange={onBodyChange}
+        />
+    );
 };
 
 TextElement.propTypes = propTypes;
