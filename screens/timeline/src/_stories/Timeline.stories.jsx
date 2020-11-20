@@ -29,7 +29,7 @@ export default {
     },
 };
 
-export const Placeholder = (storyProps) => <TimelineScreen {...storyProps} {...props} />;
+export const Placeholder = (storyProps) => <TimelineScreen {...storyProps} />;
 
 export const Preview = (storyProps) => <TimelineScreen {...storyProps} {...props} {...normalProps} />;
 
