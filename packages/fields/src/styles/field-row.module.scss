@@ -9,6 +9,10 @@
 }
 
 .container {
+    @include label {
+        font-weight: normal;
+    }
+
     .label {
         padding-top: 0;
     }
@@ -25,7 +29,7 @@
         width: calc(100% + #{$form-grid-gutter-width});
 
         @include label {
-            max-width: 7em;
+            max-width: 8em;
             padding-top: 0;
             padding-bottom: 0;
             overflow: hidden;
