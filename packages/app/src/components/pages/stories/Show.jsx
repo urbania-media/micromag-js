@@ -34,12 +34,7 @@ const ShowPage = ({ location: { pathname }, className }) => {
 
     const parent = story !== null ? story.title : null;
     const parentUrl = story !== null ? url('stories.show', { story: story.id }) : null;
-    const title =
-        story !== null ? (
-            story.title
-        ) : (
-            <FormattedMessage defaultMessage="Screens" descrition="Page title" />
-        );
+    const title = <FormattedMessage defaultMessage="Screens" descrition="Page title" />;
 
     const preview = loading ? (
         <Spinner />
@@ -80,11 +75,11 @@ const ShowPage = ({ location: { pathname }, className }) => {
         <MainLayout
             nav={[
                 { label: parent, url: parentUrl },
-                { label: title, url: pathname },
+                // { label: title, url: pathname },
             ]}
         >
             <Page
-                title={title}
+                title={story !== null ? story.title : title}
                 menubar={
                     story !== null ? (
                         <>
