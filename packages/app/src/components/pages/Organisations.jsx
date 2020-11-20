@@ -23,6 +23,14 @@ const defaultProps = {
 
 const OrganisationsPage = ({ className }) => {
     const { organisations } = useOrganisations();
+    const list = (
+        <>
+            {organisations !== null ? (
+                <OrganisationsList className="mb-4" items={organisations} />
+            ) : null}
+            <ProjectsList />
+        </>
+    );
     return (
         <MainLayout>
             <Page
@@ -41,11 +49,9 @@ const OrganisationsPage = ({ className }) => {
                     },
                 ])}
             >
-                <div className="w-50 m-auto">
-                    {organisations !== null ? (
-                        <OrganisationsList className="mb-4" items={organisations} />
-                    ) : null}
-                    <ProjectsList />
+                <div>
+                    <div className="d-block d-md-none m-auto">{list}</div>
+                    <div className="d-none d-md-block w-50 m-auto">{list}</div>
                 </div>
             </Page>
         </MainLayout>

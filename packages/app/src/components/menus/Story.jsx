@@ -18,6 +18,7 @@ const propTypes = {
     asList: PropTypes.bool,
     flush: PropTypes.bool,
     dropdownAlign: MicromagPropTypes.dropdownAlign,
+    withScreens: PropTypes.bool,
     withEditor: PropTypes.bool,
     withDuplicate: PropTypes.bool,
     withDelete: PropTypes.bool,
@@ -32,6 +33,7 @@ const defaultProps = {
     asDropdown: false,
     flush: false,
     dropdownAlign: null,
+    withScreens: false,
     withEditor: false,
     withDuplicate: false,
     withDelete: false,
@@ -47,6 +49,7 @@ const StoryMenu = ({
     asDropdown,
     flush,
     dropdownAlign,
+    withScreens,
     withEditor,
     withDuplicate,
     withDelete,
@@ -58,14 +61,16 @@ const StoryMenu = ({
 
     const finalItems = useMemo(() => {
         const subMenu = [
-            {
-                id: 'screens',
-                href: url('stories.show', {
-                    story: story.id,
-                }),
-                label: <FormattedMessage defaultMessage="Screens" description="Menu label" />,
-                className: listItemClassName,
-            },
+            withScreens
+                ? {
+                      id: 'screens',
+                      href: url('stories.show', {
+                          story: story.id,
+                      }),
+                      label: <FormattedMessage defaultMessage="Screens" description="Menu label" />,
+                      className: listItemClassName,
+                  }
+                : null,
             {
                 id: 'settings',
                 href: url('stories.settings', {

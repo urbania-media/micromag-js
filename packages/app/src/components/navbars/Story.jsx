@@ -8,6 +8,7 @@ import { useUrlGenerator } from '@micromag/core/contexts';
 
 import PublishButton from '../buttons/Publish';
 import SettingsButton from '../buttons/Settings';
+import Version from '../partials/Version';
 import StoryMenu from '../menus/Story';
 
 const propTypes = {
@@ -27,13 +28,7 @@ const StoryNavbar = ({ story, className }) => {
             {story !== null ? (
                 <>
                     <div className="d-flex flex-column">
-                        <span className="font-weight-light">
-                            <FormattedMessage
-                                defaultMessage="Latest version"
-                                description="Latest version button label"
-                            />
-                        </span>
-                        <span className="text">Some version</span>
+                        <Version className="text-light" />
                     </div>
                     <form className="form-inline ml-auto">
                         <PublishButton
