@@ -20,7 +20,12 @@
     }
 
     .imageContainer {
+        position: relative;
         flex-grow: 1;
+    }
+
+    .image {
+        @extend %fullscreen;
     }
 
     .placeholderImage {

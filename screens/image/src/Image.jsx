@@ -103,14 +103,14 @@ const ImageScreen = ({
                 height: currentImageCntRef.offsetHeight,
             });
         }
-    }, [width, height, layout, setImageSize]);
+    }, [width, height, setImageSize]);
 
     const items = [
         <div
             key="image"
             ref={imageCntRef}
             className={styles.imageContainer}
-            style={!isPlaceholder ? { margin: isCard ? `0 ${-spacing / 2}px ${spacing / 2}px` : spacing / 2 } : null}
+            style={!isPlaceholder ? {margin: isCard ? `0 ${-spacing / 2}px ${spacing / 2}px` : spacing / 2 } : null}
         >
             <ScreenElement
                 placeholder={
@@ -127,12 +127,13 @@ const ImageScreen = ({
                 isEmpty={!hasImage}
             >
                 {hasImage ? (
-                    <Transitions transitions={transitions} playing={transitionPlaying} disabled={!isView}>
+                    <Transitions transitions={transitions} playing={transitionPlaying} disabled={!isView} fullscreen>
                         <Image
+                            className={styles.image}
                             objectFit={{ fit: 'cover' }}
                             {...image}
                             {...imageSize}                            
-                            onLoaded={onImageLoaded}
+                            onLoaded={onImageLoaded}                            
                         />
                     </Transitions>
                 ) : null}
