@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -31,8 +31,7 @@ const propTypes = {
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
-    onPrevious: PropTypes.func,
-    onNext: PropTypes.func,
+    onEnableInteraction: PropTypes.func,
     onDisableInteraction: PropTypes.func,
 };
 
@@ -49,8 +48,7 @@ const defaultProps = {
     maxRatio: 3 / 4,
     transitions: { in: 'fade', out: 'fade' },
     className: null,
-    onPrevious: null,
-    onNext: null,
+    onEnableInteraction: null,
     onDisableInteraction: null,
 };
 
@@ -67,8 +65,7 @@ const MapScreen = ({
     maxRatio,
     transitions,
     className,
-    onPrevious,
-    onNext,
+    onEnableInteraction,
     onDisableInteraction,
 }) => {
     const [opened, setOpened] = useState(false);
@@ -89,16 +86,6 @@ const MapScreen = ({
     const [ready, setReady] = useState(!hasMap);
     const transitionPlaying = current && ready;
 
-    useEffect( () => {
-        if (!current) {
-            return;
-        }
-
-        if (onDisableInteraction !== null) {
-            onDisableInteraction();
-        }
-    }, [current, onDisableInteraction]);
-
     const onMapReady = useCallback(() => setReady(true), [setReady]);
 
     const onClickMap = useCallback(() => setSelectedMarker(null), []);
@@ -111,8 +98,19 @@ const MapScreen = ({
         [markers, setSelectedMarker],
     );
 
-    const onSplashClick = useCallback(() => setOpened(true), [setOpened]);
-    const onCloseClick = useCallback(() => setOpened(false), [setOpened]);
+    const onSplashClick = useCallback(() => {
+        setOpened(true);
+        if (onDisableInteraction !== null) {
+            onDisableInteraction();
+        }
+    }, [setOpened, onDisableInteraction]);
+
+    const onCloseClick = useCallback(() => {
+        setOpened(false);
+        if (onEnableInteraction !== null) {
+            onEnableInteraction();
+        }
+    }, [setOpened, onEnableInteraction]);
 
     const {
         ref: markerOverContentInnerRef,
@@ -218,17 +216,12 @@ const MapScreen = ({
                     </div>
                 </div>
                 <div className={styles.splash}>
-                    <Text className={styles.splashText} {...splash} />
-                    <Button className={styles.splashButton} onClick={onSplashClick} withoutStyle />
+                    <Button className={styles.splashButton} onClick={onSplashClick} withoutStyle>
+                        <Text className={styles.splashText} {...splash} tag="span" />
+                    </Button>
                 </div>
                 <Button className={styles.closeButton} onClick={onCloseClick}>
                     X
-                </Button>
-                <Button className={styles.prevButton} onClick={onPrevious}>
-                    Prev
-                </Button>
-                <Button className={styles.nextButton} onClick={onNext}>
-                    Next
                 </Button>
             </Transitions>
         );

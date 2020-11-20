@@ -58,7 +58,7 @@ export default [
             description: 'ImageTitle screen title',
         }),
         component: ImageTitleScreen,
-        layouts: ['normal', 'reverse'],
+        layouts: ['normal', 'reverse', 'card'],
         fields: [
             {
                 name: 'layout',
@@ -106,7 +106,7 @@ export default [
             description: 'ImageText screen title',
         }),
         component: ImageTextScreen,
-        layouts: ['normal', 'reverse'],
+        layouts: ['normal', 'reverse', 'card'],
         fields: [
             {
                 name: 'layout',
@@ -154,7 +154,7 @@ export default [
             description: 'ImageTitleText screen title',
         }),
         component: ImageTitleTextScreen,
-        layouts: ['normal', 'reverse', 'title-top'],
+        layouts: ['normal', 'reverse', 'title-top', 'card'],
         fields: [
             {
                 name: 'layout',
@@ -206,7 +206,7 @@ export default [
             description: 'ImageLegend screen title',
         }),
         component: ImageLegendScreen,
-        layouts: ['normal', 'reverse'],
+        layouts: ['normal', 'reverse', 'card'],
         fields: [
             {
                 name: 'layout',

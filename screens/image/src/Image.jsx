@@ -16,7 +16,7 @@ import Text from '@micromag/element-text';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    layout: PropTypes.oneOf(['normal', 'reverse', 'title-top']),
+    layout: PropTypes.oneOf(['normal', 'reverse', 'card', 'title-top']),
     image: MicromagPropTypes.imageElement,
     title: MicromagPropTypes.headingElement,
     text: MicromagPropTypes.textElement,
@@ -89,6 +89,7 @@ const ImageScreen = ({
 
     const isReversed = layout === 'reverse';
     const isTitleTop = layout === 'title-top';
+    const isCard = layout === 'card';
 
     const imageCntRef = useRef(null);
     const [imageSize, setImageSize] = useState(null);
@@ -108,7 +109,7 @@ const ImageScreen = ({
             key="image"
             ref={imageCntRef}
             className={styles.imageContainer}
-            style={!isPlaceholder ? { margin: spacing / 2 } : null}
+            style={!isPlaceholder ? { margin: isCard ? `0 ${-spacing / 2}px ${spacing / 2}px` : spacing / 2 } : null}
         >
             <ScreenElement
                 placeholder={
@@ -211,6 +212,12 @@ const ImageScreen = ({
         }
     }
 
+    let paddingTop = isView && !landscape ? spacing * 1.5 : spacing / 2;
+
+    if (isCard) {
+        paddingTop = 0;
+    }
+
     return (
         <div
             className={classNames([
@@ -233,7 +240,7 @@ const ImageScreen = ({
                 <Layout
                     className={styles.layout}
                     fullscreen
-                    style={!isPlaceholder ? { padding: spacing / 2, paddingTop: isView && !landscape ? spacing * 1.5  : spacing / 2 } : null}
+                    style={!isPlaceholder ? { padding: spacing / 2, paddingTop } : null}
                 >
                     {items}
                 </Layout>
