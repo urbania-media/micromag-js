@@ -56,7 +56,7 @@ const faceAFaceStory = [
             textStyle: bodyText,
         },
         image: tommy,
-        background: backgroundImage(),
+        background: background(),
     },
     {
         id: uuid(),

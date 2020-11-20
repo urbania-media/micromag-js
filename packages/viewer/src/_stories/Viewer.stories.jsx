@@ -42,7 +42,6 @@ export default {
     ],
     title: 'Viewer/Viewer',
     parameters: {
-        screenSize: true,
         intl: true,
     },
 };

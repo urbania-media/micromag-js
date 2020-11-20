@@ -2,6 +2,9 @@
 import React, { useCallback, useRef, useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+
+import { useDrag } from 'react-use-gesture';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSizeFromElement } from '@micromag/core/hooks';
 import { ScreenSizeProvider } from '@micromag/core/contexts';
@@ -260,6 +263,10 @@ const Viewer = ({
         [onScreenChange, screenWidth, components, changeIndex, currentIndex, screensInteractionEnabled],
     );
 
+    const bindDrag = useDrag(({ down, swipe, movement: [, my], vxvy: [, vy] }) => {
+        // console.log(down, swipe, my, vy);
+    });
+
     return (
         <ScreenSizeProvider size={screenSize}>
             <div
@@ -275,13 +282,15 @@ const Viewer = ({
                 ])}
                 ref={refContainer}
             >
-                <MenuDots
-                    direction={landscape ? 'vertical' : 'horizontal'}
-                    items={components}
-                    current={currentIndex}
-                    onClickItem={onClickDotsMenuItem}
-                    className={styles.menuDots}
-                />
+                <div className={styles.menuDotsContainer} {...bindDrag()}>
+                    <MenuDots
+                        direction={landscape ? 'vertical' : 'horizontal'}
+                        items={components}
+                        current={currentIndex}
+                        onClickItem={onClickDotsMenuItem}
+                        className={styles.menuDots}
+                    />
+                </div>
                 <MenuPreview
                     className={styles.menuPreview}
                     screenWidth={screenWidth}
