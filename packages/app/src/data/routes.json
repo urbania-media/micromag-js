@@ -14,6 +14,7 @@
 
     "account": "/account",
     "account.settings": "/account/settings",
+    "account.themes": "/account/themes",
 
     "organisations": "/organisations",
     "organisation": "/organisation",

@@ -55,6 +55,11 @@ const AccountMenu = ({
                 label: <FormattedMessage defaultMessage="Profile" description="Menu item" />,
             },
             {
+                id: 'themes',
+                href: url('account.themes'),
+                label: <FormattedMessage defaultMessage="Themes" description="Menu item" />,
+            },
+            {
                 id: 'logout',
                 href: url('auth.logout'),
                 label: <FormattedMessage defaultMessage="Logout" description="Menu item" />,

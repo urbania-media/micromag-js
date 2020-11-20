@@ -46,7 +46,7 @@ const AllStories = ({ route, count, className }) => {
                             page={parseInt(page, 10)}
                             total={lastPage}
                             url={paginationUrl}
-                            className="mt-2"
+                            className="mt-4"
                         />
                     ) : null}
                 </>

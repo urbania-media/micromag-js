@@ -6,8 +6,11 @@ import { Link } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
 import { Screens } from '@micromag/editor';
+import SettingsButton from '../buttons/Settings';
+import StoryMenu from '../menus/Story';
+// import Authors from '../partials/Authors';
 
-import styles from '../../styles/items/theme.module.scss';
+import styles from '../../styles/items/story.module.scss';
 
 const propTypes = {
     item: MicromagPropTypes.story.isRequired,
@@ -18,9 +21,9 @@ const defaultProps = {
     className: null,
 };
 
-const ThemeItem = ({ item, className }) => {
+const StoryItem = ({ item, className }) => {
     const url = useUrlGenerator();
-    const { id = null, title = null, components: screens = [] } = item || {};
+    const { components: screens = [] } = item;
     const screensCount = screens.length;
     const screen =
         screensCount > 0
@@ -42,8 +45,8 @@ const ThemeItem = ({ item, className }) => {
                 items={[
                     {
                         screen,
-                        href: url('themes.show', {
-                            theme: id,
+                        href: url('stories.show', {
+                            story: item.id,
                         }),
                     },
                 ]}
@@ -53,19 +56,31 @@ const ThemeItem = ({ item, className }) => {
             />
             <h4 className={classNames(['card-title', styles.title])}>
                 <Link
-                    to={url('themes.show', {
-                        theme: id,
+                    to={url('stories.show', {
+                        story: item.id,
                     })}
                     className="text-white"
                 >
-                    {title}
+                    {item.title}
                 </Link>
             </h4>
+            <div className={styles.settings}>
+                <SettingsButton theme="secondary" outline>
+                    <StoryMenu
+                        className={styles.menu}
+                        story={item}
+                        asDropdown
+                        withoutDropdown
+                        withDuplicate
+                        withDelete
+                    />
+                </SettingsButton>
+            </div>
         </div>
     );
 };
 
-ThemeItem.defaultProps = defaultProps;
-ThemeItem.propTypes = propTypes;
+StoryItem.defaultProps = defaultProps;
+StoryItem.propTypes = propTypes;
 
-export default ThemeItem;
+export default StoryItem;

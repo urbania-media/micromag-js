@@ -32,7 +32,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    withoutHeader: false,
+    withoutHeader: true,
     className: null,
 };
 

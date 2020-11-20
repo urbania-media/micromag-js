@@ -24,6 +24,7 @@ const propTypes = {
     noWrap: PropTypes.bool,
     className: PropTypes.string,
     itemClassName: PropTypes.string,
+    buttonClassName: PropTypes.string,
     onClickItem: PropTypes.func,
     onOrderChange: PropTypes.func,
 };
@@ -38,6 +39,7 @@ const defaultProps = {
     noWrap: false,
     className: null,
     itemClassName: null,
+    buttonClassName: null,
     onClickItem: null,
     onOrderChange: null,
 };
@@ -51,6 +53,7 @@ const ScreensMenu = ({
     noWrap,
     className,
     itemClassName,
+    buttonClassName,
     sortable,
     onClickItem,
     onOrderChange,
@@ -88,7 +91,12 @@ const ScreensMenu = ({
         >
             <ScreenButton
                 {...item}
-                className={styles.button}
+                className={classNames([
+                    styles.button,
+                    {
+                        [buttonClassName]: buttonClassName !== null,
+                    },
+                ])}
                 title={isMessage(title) ? intl.formatMessage(title) : null}
                 onClick={(e) => {
                     if (onClick !== null) {
