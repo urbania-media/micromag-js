@@ -31,7 +31,7 @@ const FieldForm = ({ name, value, form, className, onChange, gotoFieldForm, clos
     const { fields = [] } = useScreenDefinition();
     const field = getFieldFromPath(name.split('.'), fields, fieldsManager);
     const { type = null } = field;
-    const { component: fieldComponent = null, id, settings, ...fieldProps } = (type !== null
+    const { component: FieldComponent = null, id, settings, ...fieldProps } = (type !== null
         ? fieldsManager.getDefinition(type) || null
         : null) || {
         ...field,
@@ -57,22 +57,26 @@ const FieldForm = ({ name, value, form, className, onChange, gotoFieldForm, clos
 
     const closeForm = useCallback(() => closeFieldForm(name, form), [name, form, closeFieldForm]);
 
-    const formComponents = useFormsComponents();
-    const FormComponent =
-        form !== null ? getComponentFromName(form, formComponents) : fieldComponent;
+    const formProps = {
+        name,
+        value: fieldValue,
+        onChange: onFieldChange,
+        gotoFieldForm,
+        closeFieldForm,
+        closeForm,
+        className,
+    };
 
-    return FormComponent !== null ? (
-        <FormComponent
-            {...fieldProps}
-            isForm
-            name={name}
-            className={className}
-            value={fieldValue}
-            onChange={onFieldChange}
-            gotoFieldForm={gotoFieldForm}
-            closeFieldForm={closeFieldForm}
-            closeForm={closeForm}
-        />
+    // Use specific form component
+    const formComponents = useFormsComponents();
+    if (form !== null) {
+        const FormComponent = getComponentFromName(form, formComponents);
+        return FormComponent !== null ? <FormComponent field={field} {...formProps} /> : null;
+    }
+
+    // Use field component with isForm props
+    return FieldComponent !== null ? (
+        <FieldComponent {...fieldProps} isForm {...formProps} />
     ) : null;
 };
 

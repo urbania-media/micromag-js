@@ -19,7 +19,7 @@ export default [
         fields: [
             {
                 name: 'layout',
-                component: 'screen-layout',
+                type: 'screen-layout',
                 label: defineMessage({
                     defaultMessage: 'Layout',
                     description: 'Layout field label',
@@ -27,7 +27,7 @@ export default [
             },
             {
                 name: 'text',
-                component: 'text-element',
+                type: 'text-element',
                 label: defineMessage({
                     defaultMessage: 'Text',
                     description: 'Text field label',
@@ -35,7 +35,7 @@ export default [
             },
             {
                 name: 'background',
-                component: 'background',
+                type: 'background',
                 label: defineMessage({
                     defaultMessage: 'Background',
                     description: 'Background field label',
@@ -59,7 +59,7 @@ export default [
         fields: [
             {
                 name: 'layout',
-                component: 'screen-layout',
+                type: 'screen-layout',
                 label: defineMessage({
                     defaultMessage: 'Layout',
                     description: 'Layout field label',
@@ -67,7 +67,7 @@ export default [
             },
             {
                 name: 'text',
-                component: 'text',
+                type: 'text-element',
                 label: defineMessage({
                     defaultMessage: 'Text',
                     description: 'Text field label',
@@ -75,7 +75,7 @@ export default [
             },
             {
                 name: 'title',
-                component: 'text',
+                type: 'text-element',
                 label: defineMessage({
                     defaultMessage: 'Title',
                     description: 'Title field label',
@@ -83,7 +83,7 @@ export default [
             },
             {
                 name: 'background',
-                component: 'background',
+                type: 'background',
                 label: defineMessage({
                     defaultMessage: 'Background',
                     description: 'Background field label',

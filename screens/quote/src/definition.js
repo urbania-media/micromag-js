@@ -25,7 +25,8 @@ export default {
         },
         {
             name: 'quote',
-            type: 'text',
+            type: 'text-element',
+            fieldType: 'multi',
             label: defineMessage({
                 defaultMessage: 'Quote',
                 description: 'Quote field label',
@@ -33,7 +34,7 @@ export default {
         },
         {
             name: 'author',
-            type: 'text',
+            type: 'text-element',
             label: defineMessage({
                 defaultMessage: 'Author',
                 description: 'Author field label',

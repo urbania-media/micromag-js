@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { imageWithRandomSize, background } from '../../../../.storybook/data';
+import { images, background } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import GalleryFeedScreen from '../GalleryFeed';
 import definition from '../definition';
 
 const props = {
-    images: [...Array(5)].map(() => ({ image: imageWithRandomSize() })),
+    images: images({ count: 5 }),
     background: background(),
 };
 

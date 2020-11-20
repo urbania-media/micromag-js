@@ -3,25 +3,38 @@ import Chance from 'chance';
 const chance  = new Chance();
 
 export const header1 = {
-    fontFamily: '"Garage Gothic", Arial',
+    fontFamily: {
+        name: 'Garage Gothic',
+        fallback: 'Arial',
+        type: 'sans-serif',
+    },
     fontSize: 50,
     fontStyle: {
         bold: true,
-        uppercase: true,
+        transform: 'uppercase',
     },
-    uppercase: true,
     lineHeight: 1,
 };
 
 export const header2 = {
-    fontFamily: '"Garage Gothic", Arial',
+    fontFamily: {
+        name: 'Garage Gothic',
+        fallback: 'Arial',
+        type: 'sans-serif',
+    },
     fontSize: 35,
-    uppercase: true,
+    fontStyle: {
+        transform: 'uppercase',
+    },
     lineHeight: 1,
 };
 
 export const header3 = {
-    fontFamily: 'Apercu',
+    fontFamily: {
+        name: 'Apercu',
+        fallback: 'Arial',
+        type: 'sans-serif',
+    },
     fontSize: 18,
     fontStyle: {
         bold: false,
@@ -30,7 +43,11 @@ export const header3 = {
 };
 
 export const bodyText = {
-    fontFamily: 'Sina Nova',
+    fontFamily: {
+        name: 'Sina Nova',
+        fallback: 'Gerogia',
+        type: 'serif',
+    },
     fontSize: 18,
     fontStyle: {
         bold: false,

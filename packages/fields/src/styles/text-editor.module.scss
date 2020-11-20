@@ -4,9 +4,15 @@
 .container {
     /* stylelint-disable selector-class-pattern */
     :global {
+        .ck-editor__editable {
+            border: $input-border-width solid $input-border-color;
+            background: $white;
+        }
+
         .ck-content {
             @extend %text-styles;
             color: $black;
+            font-size: 14px;
         }
     }
     /* stylelint-enable selector-class-pattern */

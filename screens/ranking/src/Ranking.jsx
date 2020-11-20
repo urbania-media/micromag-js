@@ -64,7 +64,9 @@ const RankingScreen = ({
 
     const { isPlaceholder, isPreview, isView, isEdit } = useScreenRenderContext();
 
-    const itemsCount = items !== null ? items.length : 0;
+    const finalItems = isPlaceholder ? [...new Array(10)].map(() => ({})): items;
+
+    const itemsCount = finalItems !== null ? finalItems.length : 0;
 
     const isSideLayout = layout === 'side';
 
@@ -84,7 +86,7 @@ const RankingScreen = ({
         setMaxSideRankWidth(maxWidth);
     }, [isSideLayout, width, height]);
 
-    const elements = items.map((item, itemI) => {
+    const elements = finalItems.map((item, itemI) => {
         const { title = null, description = null } = item || {};
 
         const hasTitle = isTextFilled(title);
@@ -189,7 +191,6 @@ const RankingScreen = ({
                     className={styles.scroll}
                     verticalAlign="center"
                     disabled={isPlaceholder || isPreview}
-                    hideArrow={isPreview}
                 >
                     <Layout
                         style={

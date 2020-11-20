@@ -41,7 +41,7 @@ export default {
         },
         {
             name: 'text',
-            type: 'text',
+            type: 'text-element',
             label: defineMessage({
                 defaultMessage: 'Text',
                 description: 'Text field label',

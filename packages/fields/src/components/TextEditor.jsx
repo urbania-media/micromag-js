@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CKEditor from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import InlineEditor from '@ckeditor/ckeditor5-build-inline';
 
 import styles from '../styles/text-editor.module.scss';
 
@@ -45,6 +45,7 @@ const TextEditorField = ({ value, className, editorConfig, onChange }) => {
         },
         [onChange],
     );
+
     return (
         <div
             className={classNames([
@@ -55,7 +56,7 @@ const TextEditorField = ({ value, className, editorConfig, onChange }) => {
             ])}
         >
             <CKEditor
-                editor={ClassicEditor}
+                editor={InlineEditor}
                 config={editorConfig}
                 data={value || ''}
                 onChange={onEditorChange}

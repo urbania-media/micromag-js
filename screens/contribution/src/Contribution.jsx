@@ -233,7 +233,7 @@ const SurveyScreen = ({
                     verticalAlign={verticalAlign}
                     style={!isPlaceholder ? { padding: spacing, paddingTop: !isPreview && !landscape ? spacing * 2 : spacing } : null}
                 >
-                    <Scroll verticalAlign="center" disabled={isPlaceholder} hideArrow={isPreview}>
+                    <Scroll verticalAlign="center" disabled={isPlaceholder || isPreview}>
                         {items}
                     </Scroll>
                 </Layout>

@@ -97,6 +97,8 @@ export const imageMedia = ({ width = 800, height = 800 } = {}) => ({
     }
 });
 
+// @TODO à enlever
+
 export const image = (mediaParams) => ({
     media: imageMedia(mediaParams),
     name: 'Image!'
@@ -113,6 +115,8 @@ export const imageSquareWithRandomSize = ({ min = 100, max = 800 } = {}) => {
     return image({ width: size, height: size });
 };
 
+// -----------------
+
 export const images = ({ count = 3, width = 800, height = 800, rand = false } = {}) => {
     return [...Array(count)].map(() => ({
         media: {
@@ -122,7 +126,7 @@ export const images = ({ count = 3, width = 800, height = 800, rand = false } = 
                 height,
             }
         },
-        name: 'image-in-array',
+        caption: text(),
     }));
 };
 
@@ -185,7 +189,7 @@ export const markers = ({ count = 3, withTitle = true, withDescription = true, w
         },
         title: withTitle ? { body: title() } : null,
         description: withDescription ? { body: shortText() } : null,
-        image: withImage ? imageWithRandomSize({ min: 100, max: 120 }) : null,
+        image: withImage ? imageMedia({ width: 100, height: 100 }) : null,
     }));
 };
 

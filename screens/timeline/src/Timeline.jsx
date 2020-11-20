@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes, useResizeObserver } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
-import { isTextFilled, isImageFilled } from '@micromag/core/utils';
+import { isTextFilled } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -83,10 +83,12 @@ const Timeline = ({
 
     const { isPlaceholder, isPreview, isView, isEdit } = useScreenRenderContext();
 
-    const itemsCount = items !== null ? items.length : 0;
-    const hasItems = items !== null && itemsCount;
+    const finalItems = isPlaceholder ? [...new Array(5)].map(() => ({})): items;
+
+    const itemsCount = finalItems !== null ? finalItems.length : 0;
+    const hasItems = finalItems !== null && itemsCount;
     const imagesCount = hasItems
-        ? items.reduce((acc, curr) => {
+        ? finalItems.reduce((acc, curr) => {
               const { image = null } = curr || {};
               return acc + (image !== null ? 1 : 0);
           }, 0)
@@ -103,15 +105,15 @@ const Timeline = ({
     const {
         ref: scrollContentRef,
         entry: { contentRect: scrollContentRefRect },
-    } = useResizeObserver({ disabled: isPlaceholder || !items.length });
+    } = useResizeObserver({ disabled: isPlaceholder || !finalItems.length });
     const { width: scrollContentRefWidth = '100%' } = scrollContentRefRect || {};
 
-    const timelineElements = items.map((item, itemI) => {
+    const timelineElements = finalItems.map((item, itemI) => {
         const { title = null, description = null, image = null } = item || {};
 
         const hasTitle = isTextFilled(title);
         const hasDescription = isTextFilled(description);
-        const hasImage = isImageFilled(image);
+        const hasImage = image !== null;
 
         const elementsTypes = (layout === 'normal' ? 'title-description-image' : layout).split('-');
 
@@ -194,7 +196,7 @@ const Timeline = ({
                                         >
                                             {hasElement ? (
                                                 <Image
-                                                    {...image}
+                                                    media={image}
                                                     width={scrollContentRefWidth}
                                                     onLoaded={onImageLoaded}
                                                 />
@@ -289,7 +291,6 @@ const Timeline = ({
                     className={styles.scroll}
                     verticalAlign="center"
                     disabled={isPlaceholder || isPreview}
-                    hideArrow={isPreview}
                 >
                     <Layout
                         style={

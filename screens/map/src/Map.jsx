@@ -76,7 +76,9 @@ const MapScreen = ({
 
     const { width, height } = useScreenSize();
     const screenRatio = width / height;
-    const maxWidth = Math.round(maxRatio !== null && screenRatio > maxRatio ? height * maxRatio : width);
+    const maxWidth = Math.round(
+        maxRatio !== null && screenRatio > maxRatio ? height * maxRatio : width,
+    );
 
     const { isView, isPlaceholder, isPreview, isEdit } = useScreenRenderContext();
 
@@ -129,7 +131,10 @@ const MapScreen = ({
                         description="MapImages placeholder"
                     />
                 ) : (
-                    <FormattedMessage defaultMessage="MapScreen" description="MapScreen placeholder" />
+                    <FormattedMessage
+                        defaultMessage="MapScreen"
+                        description="MapScreen placeholder"
+                    />
                 )}
             </Empty>
         );
@@ -150,16 +155,28 @@ const MapScreen = ({
                 staticUrl += `&key=${gmapsApiKey}`;
             }
             if (markers !== null) {
-                staticUrl += `&markers=${markers
+                staticUrl += markers
                     .map((marker) => {
                         const { lat = null, lng = null } = marker.geoPosition || {};
-                        return lat !== null && lng !== null ? `${lat},${lng}` : '';
+                        const { image = null } = marker;
+                        const { url = null } = image || {};
+                        return lat !== null && lng !== null
+                            ? `&markers=icon:${url}%7C${lat},${lng}`
+                            : '';
                     })
-                    .join('|')}`;
+                    .join('');
             }
             element = (
                 <Image
-                    {...{ media: { url: staticUrl, metadata: { width: 640, height: 640 } } }}
+                    {...{
+                        media: {
+                            url: staticUrl,
+                            metadata: {
+                                width: Math.min(640, maxWidth),
+                                height: Math.min(640, height),
+                            },
+                        },
+                    }}
                     width={maxWidth}
                     height={height}
                     objectFit={{ fit: 'cover' }}
@@ -172,7 +189,12 @@ const MapScreen = ({
         const hasDescription = description !== null;
         const hasImage = image !== null;
         element = (
-            <Transitions transitions={transitions} playing={transitionPlaying} fullscreen disabled={!isView}>
+            <Transitions
+                transitions={transitions}
+                playing={transitionPlaying}
+                fullscreen
+                disabled={!isView}
+            >
                 <Map
                     {...map}
                     markers={markers.map((marker, markerI) => ({
@@ -203,7 +225,11 @@ const MapScreen = ({
                                     ref={markerOverContentInnerRef}
                                 >
                                     {hasImage ? (
-                                        <Image className={styles.image} {...image} width={markerOverContentInnerWidth} />
+                                        <Image
+                                            className={styles.image}
+                                            media={image}
+                                            width={markerOverContentInnerWidth}
+                                        />
                                     ) : null}
                                     {hasTitle ? (
                                         <Heading className={styles.title} {...title} />

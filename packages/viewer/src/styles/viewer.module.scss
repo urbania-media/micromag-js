@@ -29,14 +29,15 @@
     .menuDots {
         position: relative;
         height: 100%;
-        padding: 5px 20px;
+        padding: 8px 10px;
+        transition: opacity 0.25s ease;
     }
 
     .menuPreview {
         @extend %fullscreen;
         z-index: 3;
         top: -100%;
-        transition: transform 0.3s ease;
+        transition: transform 0.25s ease;
     }
 
     .screen {
@@ -81,6 +82,16 @@
             .menuPreview {
                 transform: translateX(-100%);
             }
+        }
+    }
+
+    &.hideMenu {
+        .menuDotsContainer {
+            pointer-events: none;
+        }
+
+        .menuDots {
+            opacity: 0;            
         }
     }
 }

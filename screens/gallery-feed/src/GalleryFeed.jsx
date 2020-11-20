@@ -85,10 +85,10 @@ const GalleryFeedScreen = ({
     } = useResizeObserver();
     const { width: firstImageRefWidth } = contentRect || {};
 
-    finalImages.forEach((imageEl, index) => {
-        const { image = null, legend = null } = imageEl || {};
-        const hasImage = isImageFilled(image);
-        const hasLegend = isTextFilled(legend);
+    finalImages.forEach((image, index) => {
+        const { media = null, caption = null } = image || {};
+        const hasImage = isImageFilled({ media });
+        const hasLegend = isTextFilled(caption);
 
         const imageElement = (
             <ScreenElement
@@ -101,7 +101,7 @@ const GalleryFeedScreen = ({
                 isEmpty={!hasImage}
             >
                 <div className={styles.imageContainer} ref={index === 0 ? firstImageRef : null}>
-                    <Image {...image} width={firstImageRefWidth} onLoaded={onImageLoaded} />
+                    <Image media={media} width={firstImageRefWidth} onLoaded={onImageLoaded} />
                 </div>
             </ScreenElement>
         );
@@ -131,7 +131,7 @@ const GalleryFeedScreen = ({
                             marginBottom,
                         }}
                     >
-                        <Text {...legend} />
+                        <Text {...caption} />
                     </div>
                 </ScreenElement>
             );
@@ -172,7 +172,7 @@ const GalleryFeedScreen = ({
             />
 
             <Container width={width} height={height} maxRatio={maxRatio} withScroll>
-                <Scroll disabled={isPlaceholder || isPreview} hideArrow={isPreview}>
+                <Scroll disabled={isPlaceholder || isPreview}>
                     <Layout
                         style={
                             !isPlaceholder

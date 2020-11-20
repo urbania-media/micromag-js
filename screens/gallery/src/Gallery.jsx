@@ -131,10 +131,10 @@ const GalleryScreen = ({
     const items = [...Array(gridSpaces)].map((item, itemI) => {
         const image = images[itemI] || null;
         const imageSize = imagesSizes[itemI] || {};
-        const { legend = null } = image || {};
+        const { caption = null } = image || {};
 
         const hasImage = isImageFilled(image);
-        const hasLegend = isTextFilled(legend);
+        const hasLegend = isTextFilled(caption);
 
         return (
             <div key={`item-${itemI}`} className={styles.gridItem}>
@@ -199,7 +199,7 @@ const GalleryScreen = ({
                             isEmpty={!hasLegend}
                         >
                             <div className={styles.legend}>
-                                <Text {...legend} className={styles.legendText} lineClamp={legendMaxLines} />
+                                <Text {...caption} className={styles.legendText} lineClamp={legendMaxLines} />
                             </div>
                         </ScreenElement>
                     </Transitions>

@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { text, title, image, background } from '../../../../.storybook/data';
+import { text, title, imageMedia, background } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import TimelineIllustratedScreen from '../TimelineIllustrated';
@@ -10,7 +10,7 @@ const props = {
     items: [...new Array(10)].map(() => ({
         title: { body: title() },
         description: text('long'),
-        image: image(),
+        image: imageMedia(),
     })),
     background: background(),
 };
@@ -30,7 +30,7 @@ export default {
     },
 };
 
-export const Placeholder = (storyProps) => <TimelineIllustratedScreen {...storyProps} {...props}/>;
+export const Placeholder = (storyProps) => <TimelineIllustratedScreen {...storyProps} />;
 
 export const Preview = (storyProps) => <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} />;
 

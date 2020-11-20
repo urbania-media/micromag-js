@@ -23,7 +23,7 @@ export default {
     },
 };
 
-export const Placeholder = (storyProps) => <RankingScreen {...storyProps} {...props} />;
+export const Placeholder = (storyProps) => <RankingScreen {...storyProps} />;
 
 export const Preview = (storyProps) => <RankingScreen {...storyProps} {...props} />;
 

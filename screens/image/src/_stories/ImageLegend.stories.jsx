@@ -1,13 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { imageWithRandomSize, text, background } from '../../../../.storybook/data';
+import { imageMedia, text, background } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import ImageLegendScreen from '../ImageLegend';
 import definition from '../definition';
 
 const props = {
-    image: {...imageWithRandomSize(), objectFit: { fit: 'cover' }},
+    image: imageMedia(),
+    imageFit: { fit: 'cover' },
     legend: text(),
     background: background(),
 };

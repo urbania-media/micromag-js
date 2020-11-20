@@ -123,6 +123,7 @@
 
 /* Text styles */
 %text-styles {
+    @extend %reset-viewer-fonts;
     line-height: 1.3;
 
     h2 {

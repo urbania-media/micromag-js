@@ -3,19 +3,21 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import TextField from './Text';
+import EditorField from './TextEditor';
 
 const propTypes = {
     value: MicromagPropTypes.textElement,
+    fieldType: PropTypes.oneOf(['single', 'multi', 'rich']),
     onChange: PropTypes.func,
 };
 
 const defaultProps = {
+    fieldType: 'single',
     value: null,
     onChange: null,
 };
 
-const TextElement = ({ value, onChange, ...props }) => {
+const TextElement = ({ value, onChange, fieldType, ...props }) => {
     const bodyValue = value !== null ? value.body || null : null;
     const onBodyChange = useCallback(
         (newBody) => {
@@ -29,7 +31,14 @@ const TextElement = ({ value, onChange, ...props }) => {
         },
         [value, onChange],
     );
-    return <TextField {...props} value={bodyValue} onChange={onBodyChange} />;
+    return (
+        <EditorField
+            {...props}
+            inline={fieldType === 'single' || fieldType === 'multi'}
+            value={bodyValue}
+            onChange={onBodyChange}
+        />
+    );
 };
 
 TextElement.propTypes = propTypes;
