@@ -1,4 +1,6 @@
 import { defineMessage } from 'react-intl';
+import FontStyleWithAlign from '../components/FontStyleWithAlign';
+import FontStyleTransform from '../components/FontStyleTransform';
 
 export default {
     id: 'text-style',
@@ -36,8 +38,9 @@ export default {
                     })
                 },
                 {
-                    name: 'fontStyle',
-                    type: 'font-style'
+                    component: FontStyleWithAlign,
+                    fontStyleName: 'fontStyle',
+                    alignName: 'align',
                 },
             ],
         },
@@ -66,8 +69,8 @@ export default {
                     })
                 },
                 {
-                    name: 'textTransform',
-                    type: 'text-transform',
+                    component: FontStyleTransform,
+                    fontStyleName: 'fontStyle',
                     label: defineMessage({
                         defaultMessage: 'Case',
                         description: 'Field label',

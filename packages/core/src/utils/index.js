@@ -5,6 +5,7 @@ export { default as getComponentFromName } from './getComponentFromName';
 export { default as getDeviceScreens } from './getDeviceScreens';
 export { default as getDisplayName } from './getDisplayName';
 export { default as getFileName } from './getFileName';
+export { default as getFontFamilyFromFont } from './getFontFamilyFromFont';
 export { default as getGridLayoutName } from './getGridLayoutName';
 export { default as getSecondsFromTime } from './getSecondsFromTime';
 export { default as getStyleFromColor } from './getStyleFromColor';

@@ -1,6 +1,7 @@
+import getFontFamilyFromFont from './getFontFamilyFromFont';
 import getStyleFromColor from './getStyleFromColor';
 
-const getStyleFromText = value => {
+const getStyleFromText = (value) => {
     if (value == null) {
         return null;
     }
@@ -10,20 +11,20 @@ const getStyleFromText = value => {
         fontStyle = null,
         lineHeight = null,
         letterSpacing = null,
-        uppercase = false,
-        color = null,        
+        align = null,
+        color = null,
     } = value;
-    const { italic = false, bold = false, underline = false, align = null } = fontStyle || {};
+    const { italic = false, bold = false, underline = false, transform: textTransform } = fontStyle || {};
     return {
-        fontFamily,
+        fontFamily: getFontFamilyFromFont(fontFamily),
         fontSize,
         fontStyle: italic ? 'italic' : null,
         fontWeight: bold ? 'bold' : null,
         textDecoration: underline ? 'underline' : null,
+        textTransform,
         textAlign: align,
         lineHeight,
         letterSpacing,
-        textTransform: uppercase ? 'uppercase' : null,
         ...getStyleFromColor(color, 'color'),
     };
 };

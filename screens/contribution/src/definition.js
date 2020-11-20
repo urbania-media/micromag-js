@@ -25,7 +25,7 @@ export default {
         },
         {
             name: 'title',
-            type: 'text',
+            type: 'text-element',
             label: defineMessage({
                 defaultMessage: 'Title',
                 description: 'Title field label',

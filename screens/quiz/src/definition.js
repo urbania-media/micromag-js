@@ -25,7 +25,7 @@ export default {
         },
         {
             name: 'question',
-            type: 'text',
+            type: 'text-element',
             label: defineMessage({
                 defaultMessage: 'Question',
                 description: 'Question field label',

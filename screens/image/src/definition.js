@@ -78,7 +78,7 @@ export default [
             },
             {
                 name: 'title',
-                type: 'text',
+                type: 'text-element',
                 label: defineMessage({
                     defaultMessage: 'Title',
                     description: 'Title field label',
@@ -126,7 +126,7 @@ export default [
             },
             {
                 name: 'text',
-                type: 'text',
+                type: 'text-element',
                 label: defineMessage({
                     defaultMessage: 'Text',
                     description: 'Text field label',
@@ -174,7 +174,7 @@ export default [
             },
             {
                 name: 'title',
-                type: 'text',
+                type: 'text-element',
                 label: defineMessage({
                     defaultMessage: 'Title',
                     description: 'Title field label',
@@ -182,7 +182,7 @@ export default [
             },
             {
                 name: 'text',
-                type: 'text',
+                type: 'text-element',
                 label: defineMessage({
                     defaultMessage: 'Text',
                     description: 'Text field label',
@@ -226,7 +226,7 @@ export default [
             },
             {
                 name: 'legend',
-                type: 'text',
+                type: 'text-element',
                 label: defineMessage({
                     defaultMessage: 'Legend',
                     description: 'Legend field label',

@@ -41,11 +41,17 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
         const { type } = screens[screenIndex];
         const fieldItems = [];
         if (field !== null) {
-            const { fields = [], settings = null } = screensManager.getDefinition(type);
+            const { fields = [] } = screensManager.getDefinition(type);
             const [screenFieldName, ...subFieldsPath] = field.split('/');
             const screenField = getFieldByName(fields, screenFieldName);
-            const currentField = getFieldFromPath([screenFieldName, ...subFieldsPath], fields, fieldsManager);
-            if (settings !== null && screenField !== null && screenFieldName !== field) {
+            const { settings: screenFieldSettings = null} =
+                screenField !== null ? fieldsManager.getDefinition(screenField.type) || screenField : screenField;
+            const currentField = getFieldFromPath(
+                [screenFieldName, ...subFieldsPath],
+                fields,
+                fieldsManager,
+            );
+            if (screenFieldSettings !== null && screenField !== null && screenFieldName !== field) {
                 fieldItems.push({
                     label: screenField.label || null,
                     url: `/${screenId}/${screenField.name}/settings`,
