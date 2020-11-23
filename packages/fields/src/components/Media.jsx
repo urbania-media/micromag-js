@@ -14,6 +14,7 @@ const propTypes = {
     isForm: PropTypes.bool,
     noValueLabel: MicromagPropTypes.label,
     withoutThumbnail: PropTypes.bool,
+    isHorizontal: PropTypes.bool,
     className: PropTypes.string,
     onChange: PropTypes.func,
     closeForm: PropTypes.func,
@@ -30,6 +31,7 @@ const defaultProps = {
         />
     ),
     withoutThumbnail: false,
+    isHorizontal: false,
     className: null,
     onChange: null,
     closeForm: null,
@@ -41,6 +43,7 @@ const MediaField = ({
     isForm,
     noValueLabel,
     withoutThumbnail,
+    isHorizontal,
     className,
     onChange,
     closeForm,
@@ -68,7 +71,8 @@ const MediaField = ({
     ) : (
         <div
             className={classNames([
-                styles.container,
+                'd-flex',
+                'align-items-center',
                 {
                     [className]: className !== null,
                 },
@@ -76,13 +80,27 @@ const MediaField = ({
         >
             {name !== null || (!withoutThumbnail && thumbnailUrl !== null) ? (
                 <>
-                    <span className={styles.value}>{name}</span>
-                    {!withoutThumbnail ? (
+                    {!isHorizontal && !withoutThumbnail ? (
+                        <img src={thumbnailUrl} className={styles.thumbnail} alt={name} />
+                    ) : null}
+                    <span
+                        className={classNames([
+                            'text-monospace',
+                            'text-truncate',
+                            {
+                                'ml-2': !isHorizontal && !withoutThumbnail,
+                                'mr-2': isHorizontal && !withoutThumbnail,
+                            },
+                        ])}
+                    >
+                        {name}
+                    </span>
+                    {isHorizontal && !withoutThumbnail ? (
                         <img src={thumbnailUrl} className={styles.thumbnail} alt={name} />
                     ) : null}
                 </>
             ) : (
-                <span className={styles.noValue}>
+                <span className="text-muted">
                     <Label>{noValueLabel}</Label>
                 </span>
             )}

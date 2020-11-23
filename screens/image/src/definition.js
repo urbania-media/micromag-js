@@ -167,6 +167,7 @@ export default [
             {
                 name: 'image',
                 type: 'image',
+                isHorizontal: false,
                 label: defineMessage({
                     defaultMessage: 'Image',
                     description: 'Image field label',

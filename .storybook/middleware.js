@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const proxyMiddleware = require('./api/proxy');
 const apiMiddleware = require('./api/middleware');
 

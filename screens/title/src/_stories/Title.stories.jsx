@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { title, background } from '../../../../.storybook/data';
+import { title, backgroundColor } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import TitleScreen from '../Title';
@@ -8,7 +8,7 @@ import definition from '../definition';
 
 const screen = {
     title: { body: title() },
-    background: background(),
+    background: backgroundColor(),
 };
 
 export default {

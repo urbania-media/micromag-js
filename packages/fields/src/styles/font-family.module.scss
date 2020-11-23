@@ -1,9 +1,0 @@
-@import 'placeholders';
-
-.container {
-    @extend %field-with-form;
-}
-
-.form {
-    padding: $spacer / 2;
-}

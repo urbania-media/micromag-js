@@ -21,7 +21,7 @@ import styles from './styles.module.scss';
 const propTypes = {
     layout: PropTypes.oneOf(['normal', 'reverse']),
     images: MicromagPropTypes.imageElementsWithLegend,
-    withLegends: PropTypes.bool,
+    withCaptions: PropTypes.bool,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
@@ -35,7 +35,7 @@ const propTypes = {
 const defaultProps = {
     layout: 'normal',
     images: [],
-    withLegends: false,
+    withCaptions: false,
     spacing: 20,
     background: null,
     current: true,
@@ -49,7 +49,7 @@ const defaultProps = {
 const GalleryFeedScreen = ({
     layout,
     images,
-    withLegends,
+    withCaptions,
     spacing,
     background,
     current,
@@ -108,7 +108,7 @@ const GalleryFeedScreen = ({
 
         let legendElement = null;
 
-        if (withLegends) {
+        if (withCaptions) {
             const marginTop = !isReversed || index > 0 ? spacing / 2 : 0;
             const marginBottom = isReversed || index < finalImages.length - 1 ? spacing / 2 : 0;
             legendElement = (
@@ -138,13 +138,13 @@ const GalleryFeedScreen = ({
         }
 
         if (isReversed) {
-            if (withLegends) {
+            if (withCaptions) {
                 items.push(legendElement);
             }
             items.push(imageElement);
         } else {
             items.push(imageElement);
-            if (withLegends) {
+            if (withCaptions) {
                 items.push(legendElement);
             }
         }

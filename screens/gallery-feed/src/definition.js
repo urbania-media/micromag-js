@@ -1,6 +1,6 @@
 import { defineMessage } from 'react-intl';
 import GalleryFeedScreen from './GalleryFeed';
-import GalleryFeedLegendsScreen from './GalleryFeedLegends';
+import GalleryFeedCaptionsScreen from './GalleryFeedCaptions';
 
 export default [
     {
@@ -25,7 +25,6 @@ export default [
                     description: 'Layout field label',
                 }),
             },
-            // Array of {image}
             {
                 name: 'images',
                 type: 'images',
@@ -45,17 +44,17 @@ export default [
         ],
     },
     {
-        id: 'gallery-feed-legends',
+        id: 'gallery-feed-captions',
         type: 'screen',
         group: defineMessage({
             defaultMessage: 'Images',
             description: 'Images screen group',
         }),
         title: defineMessage({
-            defaultMessage: 'GalleryFeedLegends',
-            description: 'GalleryFeedLegends screen title',
+            defaultMessage: 'GalleryFeedCaptions',
+            description: 'GalleryFeedCaptions screen title',
         }),
-        component: GalleryFeedLegendsScreen,
+        component: GalleryFeedCaptionsScreen,
         layouts: ['normal', 'reverse'],
         fields: [
             {
@@ -67,12 +66,11 @@ export default [
                 }),
             },
             {
-                // Array of {image, legend}
                 name: 'images',
-                type: 'images',
+                type: 'images_with_captions',
                 label: defineMessage({
-                    defaultMessage: 'Images (with legend)',
-                    description: 'Images field label (with legend)',
+                    defaultMessage: 'Images',
+                    description: 'Field label',
                 }),
             },
             {

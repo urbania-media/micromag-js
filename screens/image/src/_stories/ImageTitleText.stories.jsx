@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { imageMedia, title, text, background } from '../../../../.storybook/data';
+import { imageMedia, title, text, backgroundColor } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import ImageTitleTextScreen from '../ImageTitleText';
@@ -11,7 +11,7 @@ const props = {
     imageFit: { fit: 'cover' },
     title: { body: title() },
     text: text('verylong'),
-    background: background(),
+    background: backgroundColor(),
 };
 
 export default {

@@ -39,7 +39,7 @@ const defaultProps = {
     gotoFieldForm: null,
     closeFieldForm: null,
     nullEmptyObject: false,
-    isHorizontal: false,
+    isHorizontal: null,
     isList: false,
     isFlushList: false,
     onChange: null,

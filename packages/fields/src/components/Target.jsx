@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 // import * as AppPropTypes from '../../lib/PropTypes';
 import Select from './Select';
 
-import styles from '../styles/font-family.module.scss';
-
 const propTypes = {
     options: PropTypes.arrayOf(PropTypes.string),
     isForm: PropTypes.bool,
@@ -25,11 +23,11 @@ const defaultProps = {
 
 const TargetField = ({ options, value, isForm, className, onChange }) =>
     isForm ? (
-        <div className={styles.form}>
+        <div>
             <Select options={options} value={value} className={className} onChange={onChange} />
         </div>
     ) : (
-        <div className={styles.form}>{value}</div>
+        <div>{value}</div>
     );
 
 TargetField.propTypes = propTypes;
