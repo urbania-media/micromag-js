@@ -12,26 +12,33 @@
         display: flex;
         align-items: center;
         margin-bottom: 20px;
+
+        .button {
+            width: 20px;
+            margin-left: 20px;
+            padding: 0;
+
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+
+        .icon {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
     }
     
     .content {
         @extend %hide-scrollbars;
         overflow: auto;
+        overscroll-behavior: none;
     }
     
     .title {
         margin-right: auto;
     }
-    
-    .share {
-        margin-right: 10px;
-    }
-    
-    /*
-    .close {
-    
-    }
-    */
     
     .nav {
         position: relative;
@@ -95,5 +102,11 @@
         @extend %reset-button;
         @extend %fullscreen;
         display: block;
+    }
+
+    &.disabled {
+        .screenButton {
+            pointer-events: none;
+        }
     }
 }
