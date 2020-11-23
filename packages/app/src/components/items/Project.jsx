@@ -1,9 +1,12 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { Link } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
+
+import { useUser } from '../../contexts/AuthContext';
 
 import Avatar from '../partials/Avatar';
 
@@ -20,6 +23,7 @@ const defaultProps = {
 };
 
 const ProjectItem = ({ className }) => {
+    const user = useUser();
     const url = useUrlGenerator();
     const setOrganisation = useSetOrganisationContext();
 
@@ -40,7 +44,7 @@ const ProjectItem = ({ className }) => {
             href={url('home')}
             onClick={onClickMyMicromags}
         >
-            <Avatar inverted />
+            <Avatar inverted {...user} />
             <div className="ml-3">
                 <h6 className="mb-1">
                     <FormattedMessage defaultMessage="My Stories" description="Menu item" />

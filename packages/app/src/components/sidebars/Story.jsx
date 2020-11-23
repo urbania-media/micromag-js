@@ -24,7 +24,7 @@ const StoryBox = ({ story, className }) => {
     const screensCount = components.length;
     return (
         <Card
-            afterBody={<StoryMenu story={story} asList flush />}
+            afterBody={<StoryMenu story={story} asList flush withScreens />}
             theme="dark"
             className={classNames([
                 styles.container,

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -36,7 +37,7 @@ const OrganisationItem = ({ item, className }) => {
                 },
             ])}
         >
-            <Avatar square inverted />
+            <Avatar square inverted {...item} />
             <div className="ml-3">
                 <h6 className="mb-1">{item.name}</h6>
                 <div className="d-flex">
