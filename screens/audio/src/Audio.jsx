@@ -81,6 +81,7 @@ const AudioScreen = ({
     const transitionPlaying = current && ready;
 
     const hasAudio = audio !== null;
+    const hasClosedCaptions = closedCaptions !== null;
 
     const onAudioReady = useCallback(() => {
         setReady(true);
@@ -104,7 +105,7 @@ const AudioScreen = ({
                     onTimeUpdate={onTimeUpdate}
                 />
                 <div className={styles.bottomContent}>
-                    {closedCaptions !== null ? (
+                    {hasClosedCaptions ? (
                         <ClosedCaptions
                             className={styles.closedCaptions}
                             {...closedCaptions}

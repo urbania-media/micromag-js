@@ -10,8 +10,6 @@ import { useScreenSizeFromElement } from '@micromag/core/hooks';
 import { ScreenSizeProvider } from '@micromag/core/contexts';
 import { getDeviceScreens } from '@micromag/core/utils';
 
-import anime from 'animejs';
-
 import ViewerScreen from './ViewerScreen';
 
 import MenuDots from './menus/MenuDots';
@@ -65,10 +63,10 @@ const Viewer = ({
     const { components = [] } = story || {};
 
     const contentRef = useRef(null);
-    const animateScroll = useRef(false);
+    const scrollIndexChanged = useRef(false);
 
     // Get screen size
-    const { ref: refContainer, screenSize } = useScreenSizeFromElement({
+    const { ref: containerRef, screenSize } = useScreenSizeFromElement({
         width,
         height,
         screens: deviceScreens,
@@ -132,24 +130,16 @@ const Viewer = ({
     // Handle screen change
     useEffect(() => {
         if (landscape) {
-            if (animateScroll.current) {
-
+            if (!scrollIndexChanged.current) {
                 let scrollTop = 0;
                 screensRefs.current.forEach((screen, screenI) => {
                     if (screenI < currentIndex) {
                         scrollTop += screen.offsetHeight;
                     }
                 });
-
-                anime({
-                    targets: contentRef.current,
-                    duration: 500,
-                    scrollTop,
-                    easing: 'easeInOutQuad',
-                    complete: () => {
-                        animateScroll.current = false;
-                    },
-                });
+                contentRef.current.scrollTop = scrollTop;
+            } else {
+                scrollIndexChanged.current = false;
             }
         }
     }, [landscape, currentIndex, screenHeight]);
@@ -165,9 +155,6 @@ const Viewer = ({
     // handle preview menu item click
     const onClickPreviewMenuItem = useCallback(
         (index) => {
-            if (landscape) {
-                animateScroll.current = true;
-            }
             changeIndex(index);
             setMenuOpened(false);
         },
@@ -180,7 +167,7 @@ const Viewer = ({
 
     // Handle landscape scroll updating currentScreen @TODO use Observer
     const onContentScrolled = useCallback(() => {
-        if (!landscape || animateScroll.current) {
+        if (!landscape) {
             return;
         }
 
@@ -210,6 +197,9 @@ const Viewer = ({
         );
 
         if (scrollIndex !== currentIndex) {
+            if (landscape) {
+                scrollIndexChanged.current = true;
+            }
             changeIndex(scrollIndex);
         }
     }, [landscape, currentIndex, screenHeight, components]);
@@ -254,7 +244,13 @@ const Viewer = ({
 
             let nextIndex = currentIndex;
 
-            if (e.clientX > screenWidth * (1 - tapNextScreenWidthPercent)) {
+           
+            const contentEl = contentRef.current;
+            const { left: contentX = 0 } = contentEl.getBoundingClientRect();
+            const tapX = e.clientX;
+            const hasTappedRight = tapX - contentX > screenWidth * (1 - tapNextScreenWidthPercent);
+
+            if (hasTappedRight) {
                 nextIndex = Math.min(components.length - 1, currentIndex + 1);
             } else {
                 nextIndex = Math.max(0, currentIndex - 1);
@@ -282,7 +278,7 @@ const Viewer = ({
                         [className]: className,
                     },
                 ])}
-                ref={refContainer}
+                ref={containerRef}
             >
                 <div className={styles.menuDotsContainer} {...bindDrag()}>
                     <MenuDots

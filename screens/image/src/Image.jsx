@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState, useCallback, useEffect, useRef } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-import { PlaceholderImage, PropTypes as MicromagPropTypes } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, PlaceholderImage, useResizeObserver } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { PlaceholderShortText, ScreenElement, Transitions } from '@micromag/core/components';
 import { isTextFilled } from '@micromag/core/utils';
@@ -19,7 +19,7 @@ import Text from '@micromag/element-text';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    layout: PropTypes.oneOf(['normal', 'reverse', 'card', 'title-top']),
+    layout: PropTypes.oneOf(['normal', 'fullscreen', 'reverse', 'card', 'title-top']),
     image: MicromagPropTypes.imageMedia,
     imageFit: MicromagPropTypes.objectFit,
     title: MicromagPropTypes.headingElement,
@@ -94,26 +94,20 @@ const ImageScreen = ({
     const isReversed = layout === 'reverse';
     const isTitleTop = layout === 'title-top';
     const isCard = layout === 'card';
+    const finalSpacing = layout !== 'fullscreen' ? spacing : 0;
 
-    const imageCntRef = useRef(null);
-    const [imageSize, setImageSize] = useState(null);
-
-    useEffect(() => {
-        const currentImageCntRef = imageCntRef.current;
-        if (currentImageCntRef !== null) {
-            setImageSize({
-                width: currentImageCntRef.offsetWidth,
-                height: currentImageCntRef.offsetHeight,
-            });
-        }
-    }, [width, height, layout, setImageSize]);
+    const {
+        ref: imageCntRef,
+        entry: { contentRect },
+    } = useResizeObserver();
+    const { width: imageWidth, height: imageHeight } = contentRect || {};
 
     const items = [
         <div
             key="image"
             ref={imageCntRef}
             className={styles.imageContainer}
-            style={!isPlaceholder ? {margin: isCard ? `0 ${-spacing / 2}px ${spacing / 2}px` : spacing / 2 } : null}
+            style={!isPlaceholder ? {margin: isCard ? `0 ${-finalSpacing / 2}px ${finalSpacing / 2}px` : finalSpacing / 2 } : null}
         >
             <ScreenElement
                 placeholder={
@@ -135,7 +129,8 @@ const ImageScreen = ({
                             className={styles.image}
                             media={image}
                             objectFit={imageFit}
-                            {...imageSize}                            
+                            width={imageWidth}
+                            height={imageHeight}
                             onLoaded={onImageLoaded}                            
                         />
                     </Transitions>
@@ -155,7 +150,7 @@ const ImageScreen = ({
                 {hasTitle ? (
                     <Transitions transitions={transitions} playing={transitionPlaying} disabled={!isView}>
                         <div
-                            style={!isPlaceholder ? { margin: spacing / 2 } : null}
+                            style={!isPlaceholder ? { margin: finalSpacing / 2 } : null}
                         >
                             <Heading {...title} />
                         </div>
@@ -177,7 +172,7 @@ const ImageScreen = ({
                 {hasText ? (
                     <Transitions transitions={transitions} playing={transitionPlaying} disabled={!isView}>
                         <div
-                            style={!isPlaceholder ? { margin: spacing / 2 } : null}
+                            style={!isPlaceholder ? { margin: finalSpacing / 2 } : null}
                         >
                             <Text {...text} />
                         </div>
@@ -199,7 +194,7 @@ const ImageScreen = ({
                 {hasLegend ? (
                     <Transitions transitions={transitions} playing={transitionPlaying} disabled={!isView}>
                         <div
-                            style={!isPlaceholder ? { margin: spacing / 2 } : null}
+                            style={!isPlaceholder ? { margin: finalSpacing / 2 } : null}
                         >
                             <Text {...legend} />
                         </div>
@@ -217,7 +212,7 @@ const ImageScreen = ({
         }
     }
 
-    let paddingTop = !isPreview && !landscape ? spacing * 1.5 : spacing / 2;
+    let paddingTop = !isPreview && !landscape ? finalSpacing * 1.5 : finalSpacing / 2;
 
     if (isCard) {
         paddingTop = 0;
@@ -245,7 +240,7 @@ const ImageScreen = ({
                 <Layout
                     className={styles.layout}
                     fullscreen
-                    style={!isPlaceholder ? { padding: spacing / 2, paddingTop } : null}
+                    style={!isPlaceholder ? { padding: finalSpacing / 2, paddingTop } : null}
                 >
                     {items}
                 </Layout>

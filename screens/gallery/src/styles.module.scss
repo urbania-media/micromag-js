@@ -24,14 +24,19 @@
         position: relative;
         flex-direction: column;
         height: 100%;
+    }
 
-        .image {
-            flex-grow: 1;
-        }
+    .imageContainer {
+        position: relative;
+        flex-grow: 1;
+    }
 
-        .legend {
-            padding: 10px 0;
-        }
+    .image {
+        @extend %fullscreen;
+    }
+
+    .legend {
+        padding: 10px 0;
     }
 
     .content {

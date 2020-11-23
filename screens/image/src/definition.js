@@ -18,7 +18,7 @@ export default [
             description: 'Image screen title',
         }),
         component: ImageScreen,
-        layouts: ['normal'],
+        layouts: ['normal', 'fullscreen'],
         fields: [
             {
                 name: 'layout',

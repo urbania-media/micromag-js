@@ -32,8 +32,9 @@ const Scroll = ({ width, height, disabled, verticalAlign, className, children })
     };
 
     const [withArrow, setWithArrow] = useState(false);
-    const onScroll = useCallback( () => {
-        setWithArrow(false);
+    const onScroll = useCallback( (e) => {
+        const scrollableEl = e.currentTarget;
+        setWithArrow(scrollableEl.scrollTop < 10);
     }, [setWithArrow]);
 
     const {
@@ -67,7 +68,7 @@ const Scroll = ({ width, height, disabled, verticalAlign, className, children })
             ])}
             style={finalStyle}
         >
-            <div className={styles.scrollable} ref={scrollableRef} onScroll={ withArrow ? onScroll : null }>
+            <div className={styles.scrollable} ref={scrollableRef} onScroll={ !disabled ? onScroll : null }>
                 <div className={styles.scrollee} ref={scrolleeRef}>
                     {children}
                 </div>

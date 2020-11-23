@@ -55,8 +55,13 @@
 
     .title,
     .description,
-    .image {
+    .imageContainer {
         padding: 8px 0;
+    }
+
+    .imageContainer {
+        position: relative;
+        overflow: hidden;
     }
 
     &.isPlaceholder {
@@ -75,7 +80,7 @@
 
         .title,
         .description,
-        .image {
+        .imageContainer {
             display: flex;
             flex-direction: column;
             justify-content: center;

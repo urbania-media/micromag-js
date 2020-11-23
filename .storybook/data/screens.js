@@ -225,7 +225,7 @@ export const basic = [
     {
         id: uuid(),
         type: 'video',
-        layout: 'full',
+        layout: 'normal',
         video: video(),
         background: {
             color: '#FF00FF',

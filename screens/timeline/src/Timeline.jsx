@@ -182,7 +182,7 @@ const Timeline = ({
                             case 'image':
                                 hasElement = hasImage;
                                 elementContent = (
-                                    <div className={styles.image}>
+                                    <div className={styles.imageContainer}>
                                         <ScreenElement
                                             placeholder="image"
                                             emptyLabel={
@@ -196,6 +196,7 @@ const Timeline = ({
                                         >
                                             {hasElement ? (
                                                 <Image
+                                                    className={styles.image}
                                                     media={image}
                                                     width={scrollContentRefWidth}
                                                     onLoaded={onImageLoaded}

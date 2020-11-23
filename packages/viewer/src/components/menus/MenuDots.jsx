@@ -1,4 +1,4 @@
-/* eslint-disable react/no-array-index-key, jsx-a11y/control-has-associated-label */
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -23,8 +23,8 @@ const defaultProps = {
     items: [],
     current: 0,
     onClickItem: null,
-    colorAccent: '#818181',
-    colorBackground: '#e0e0e0',
+    colorAccent: 'rgba(255, 255, 255, 1)',
+    colorBackground: 'rgba(200, 200, 200, 0.3)',
     className: null,
 };
 
@@ -33,9 +33,9 @@ const ViewerMenuDots = ({
     items,
     current,
     onClickItem,
-    className,
     colorAccent,
     colorBackground,
+    className,
 }) => (
     <nav
         className={classNames([
@@ -76,6 +76,7 @@ const ViewerMenuDots = ({
                 <MenuIcon className={styles.menuIcon} color={colorAccent} />
                 <button
                     type="button"
+                    aria-label="menu"
                     className={styles.menuButton}
                     onClick={() => (onClickItem !== null ? onClickItem(null) : null)}
                 />

@@ -139,7 +139,7 @@ const GalleryScreen = ({
         return (
             <div key={`item-${itemI}`} className={styles.gridItem}>
                 <div
-                    className={styles.image}
+                    className={styles.imageContainer}
                     ref={(el) => {
                         imagesEl.current[itemI] = el;
                     }}
@@ -168,6 +168,7 @@ const GalleryScreen = ({
                             isEmpty={!hasImage}
                         >
                             <Image
+                                className={styles.image}
                                 {...image}
                                 {...imageSize}
                                 objectFit={{ fit: 'cover' }}
