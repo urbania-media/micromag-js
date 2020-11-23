@@ -6,7 +6,7 @@ import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition
 import TitleSubtitleScreen from '../TitleSubtitle';
 import definition from '../definition';
 
-const props = {
+const screen = {
     title: { body: title() },
     subtitle: { body: subtitle() },
     background: background(),
@@ -18,15 +18,16 @@ export default {
     parameters: {
         intl: true,
         screenDefinition: definition.find((it) => it.component === TitleSubtitleScreen),
+        defaultScreen: screen,
     },
 };
 
 export const Placeholder = (storyProps) => <TitleSubtitleScreen {...storyProps} />;
 
-export const Preview = (storyProps) => <TitleSubtitleScreen {...storyProps} {...props} />;
+export const Preview = (storyProps) => <TitleSubtitleScreen {...storyProps} {...screen} />;
 
 export const Edit = (storyProps) => <TitleSubtitleScreen {...storyProps} />;
 
-export const Normal = (storyProps) => <TitleSubtitleScreen {...storyProps} {...props} />;
+export const Normal = (storyProps) => <TitleSubtitleScreen {...storyProps} {...screen} />;
 
-export const Definition = () => <ScreenDefinition definition={definition} />;
+export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

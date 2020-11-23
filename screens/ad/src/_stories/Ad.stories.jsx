@@ -43,4 +43,4 @@ export const WithSpacing = (storyProps) => (
     <AdScreen {...storyProps} {...props} image={image({ width: 320, height: 480 })} spacing={20} />
 );
 
-export const Definition = () => <ScreenDefinition definition={definition} />;
+export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

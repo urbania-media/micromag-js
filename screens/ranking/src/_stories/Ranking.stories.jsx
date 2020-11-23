@@ -32,4 +32,4 @@ export const Edit = (storyProps) => <RankingScreen {...storyProps} />;
 export const Normal = (storyProps) => <RankingScreen {...storyProps} {...props} />;
 export const Ascending = (storyProps) => <RankingScreen {...storyProps} {...props} ascending />;
 
-export const Definition = () => <ScreenDefinition definition={definition} />;
+export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

@@ -37,4 +37,4 @@ export const Edit = (storyProps) => <QuizScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <QuizScreen {...storyProps} {...props} />;
 
-export const Definition = () => <ScreenDefinition definition={definition} />;
+export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

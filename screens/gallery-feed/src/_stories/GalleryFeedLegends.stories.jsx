@@ -28,4 +28,4 @@ export const Edit = (storyProps) => <GalleryFeedLegendsScreen {...storyProps} />
 
 export const Normal = (storyProps) => <GalleryFeedLegendsScreen {...storyProps} {...props} />;
 
-export const Definition = () => <ScreenDefinition definition={definition} />;
+export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

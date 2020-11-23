@@ -27,4 +27,4 @@ export const Edit = (storyProps) => <ContributionScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <ContributionScreen {...storyProps} {...props} />;
 
-export const Definition = () => <ScreenDefinition definition={definition} />;
+export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

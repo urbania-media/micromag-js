@@ -27,4 +27,4 @@ export const Edit = (storyProps) => <TextScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <TextScreen {...storyProps} {...props} />;
 
-export const Definition = () => <ScreenDefinition definition={definition} />;
+export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

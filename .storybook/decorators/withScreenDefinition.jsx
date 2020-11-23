@@ -9,13 +9,18 @@ const withScreenDefinition = (
         story,
         parameters: {
             screenDefinition = null,
-            screenOptions: { gridWidth = 100, gridHeight = 200 } = {},
+            defaultScreen = null,
+            screenOptions: { gridWidth = 100, gridHeight = 200 } = {}
         },
         args,
     },
 ) => {
-    if (screenDefinition === null || story === 'Definition') {
+    if (screenDefinition === null) {
         return <Story />;
+    }
+
+    if (story === 'Definition') {
+        return <Story args={{ ...args, definition: screenDefinition, defaultScreen, }} />;
     }
 
     const { layouts = null } = screenDefinition || {};

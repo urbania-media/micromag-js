@@ -29,4 +29,4 @@ export const Edit = (storyProps) => <ImageScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <ImageScreen {...storyProps} {...props} />;
 
-export const Definition = () => <ScreenDefinition definition={definition} />;
+export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

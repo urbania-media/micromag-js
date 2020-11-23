@@ -29,4 +29,4 @@ export const Edit = (storyProps) => <AudioScreen {...storyProps} />;
 export const Normal = (storyProps) => <AudioScreen {...storyProps} {...props} />;
 export const WithClosedCaptions = () => <AudioScreen {...props} closedCaptions={closedCaptions()} />;
 
-export const Definition = () => <ScreenDefinition definition={definition} />;
+export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

@@ -2,6 +2,7 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import InlineEditor from '@ckeditor/ckeditor5-build-inline';
 
@@ -9,6 +10,7 @@ import styles from '../styles/text-editor.module.scss';
 
 const propTypes = {
     value: PropTypes.string,
+    size: MicromagPropTypes.formControlSize,
     className: PropTypes.string,
     onChange: PropTypes.func,
     editorConfig: PropTypes.shape({}),
@@ -16,6 +18,7 @@ const propTypes = {
 
 const defaultProps = {
     value: null,
+    size: null,
     className: null,
     onChange: null,
     editorConfig: {
@@ -35,7 +38,7 @@ const defaultProps = {
     },
 };
 
-const TextEditorField = ({ value, className, editorConfig, onChange }) => {
+const TextEditorField = ({ value, size, className, editorConfig, onChange }) => {
     const onEditorChange = useCallback(
         (event, editor) => {
             const data = editor.getData();
@@ -51,6 +54,7 @@ const TextEditorField = ({ value, className, editorConfig, onChange }) => {
             className={classNames([
                 styles.container,
                 {
+                    [styles[`size-${size}`]]: size !== null,
                     [className]: className !== null,
                 },
             ])}

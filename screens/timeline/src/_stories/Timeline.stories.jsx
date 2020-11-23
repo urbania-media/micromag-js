@@ -37,4 +37,4 @@ export const Edit = (storyProps) => <TimelineScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <TimelineScreen {...storyProps} {...props} {...normalProps} />;
 
-export const Definition = () => <ScreenDefinition definition={definition} />;
+export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

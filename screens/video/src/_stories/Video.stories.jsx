@@ -31,4 +31,4 @@ export const WithSeekbar = (storyProps) => <VideoScreen {...storyProps} {...prop
 export const WithClosedCaptions = (storyProps) => <VideoScreen {...storyProps} {...props} closedCaptions={closedCaptions()} />;
 export const WithSeekbarAndClosedCaptions = (storyProps) => <VideoScreen {...storyProps} {...props} withSeekBar closedCaptions={closedCaptions()} />;
 
-export const Definition = () => <ScreenDefinition definition={definition} />;
+export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

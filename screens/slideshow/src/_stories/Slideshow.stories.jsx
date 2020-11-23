@@ -41,4 +41,4 @@ export const Edit = (storyProps) => <SlideshowScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <SlideshowScreen {...storyProps} {...props} />;
 
-export const Definition = () => <ScreenDefinition definition={definition} />;
+export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
