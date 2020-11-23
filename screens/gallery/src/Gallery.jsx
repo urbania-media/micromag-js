@@ -50,7 +50,7 @@ const propTypes = {
         'two-two-one-one',
     ]),
     images: MicromagPropTypes.imageMedias,
-    withLegends: PropTypes.bool,
+    withCaptions: PropTypes.bool,
     spacing: PropTypes.number,
     legendMaxLines: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
@@ -64,7 +64,7 @@ const propTypes = {
 
 const defaultProps = {
     layout: null,
-    withLegends: false,
+    withCaptions: false,
     images: [],
     spacing: 20,
     legendMaxLines: 2,
@@ -80,7 +80,7 @@ const defaultProps = {
 const GalleryScreen = ({
     layout,
     images,
-    withLegends,
+    withCaptions,
     background,
     current,
     active,
@@ -177,7 +177,7 @@ const GalleryScreen = ({
                         </ScreenElement>
                     </Transitions>
                 </div>
-                {withLegends ? (
+                {withCaptions ? (
                     <Transitions
                         transitions={transitions}
                         delay={itemI * transitionStagger}
@@ -228,7 +228,7 @@ const GalleryScreen = ({
             <Container width={width} height={height} maxRatio={maxRatio}>
                 <div className={styles.content} style={ !landscape && (isView || isEdit) ? { paddingTop: spacing } : null }>
                     <Grid className={styles.grid} spacing={finalSpacing} items={items} {...grid} />
-                </div>                
+                </div>
             </Container>
         </div>
     );

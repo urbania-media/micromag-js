@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { text, title, background } from '../../../../.storybook/data';
+import { text, title, backgroundColor } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import RankingScreen from '../Ranking';
@@ -11,7 +11,7 @@ const props = {
         title: { body: title() },
         description: text('long'),
     })),
-    background: background(),
+    background: backgroundColor(),
 };
 
 export default {
@@ -32,4 +32,4 @@ export const Edit = (storyProps) => <RankingScreen {...storyProps} />;
 export const Normal = (storyProps) => <RankingScreen {...storyProps} {...props} />;
 export const Ascending = (storyProps) => <RankingScreen {...storyProps} {...props} ascending />;
 
-export const Definition = () => <ScreenDefinition definition={definition} />;
+export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

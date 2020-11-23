@@ -60,7 +60,7 @@ const faceAFaceStory = [
     },
     {
         id: uuid(),
-        type: 'gallery-feed-legends',
+        type: 'gallery-feed-captions',
         title: {
             body: 'La face de l’humain au fil du temps',
             textStyle: header2,

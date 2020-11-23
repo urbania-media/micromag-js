@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { imageMedia, text, background } from '../../../../.storybook/data';
+import { imageMedia, text, backgroundColor } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import ImageLegendScreen from '../ImageLegend';
@@ -10,7 +10,7 @@ const props = {
     image: imageMedia(),
     imageFit: { fit: 'cover' },
     legend: text(),
-    background: background(),
+    background: backgroundColor(),
 };
 
 export default {
@@ -30,4 +30,4 @@ export const Edit = (storyProps) => <ImageLegendScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <ImageLegendScreen {...storyProps} {...props} />;
 
-export const Definition = () => <ScreenDefinition definition={definition} />;
+export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

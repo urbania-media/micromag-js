@@ -15,6 +15,7 @@ const propTypes = {
         alpha: PropTypes.number,
     }),
     isForm: PropTypes.bool,
+    isHorizontal: PropTypes.bool,
     className: PropTypes.string,
     onChange: PropTypes.func,
 };
@@ -22,21 +23,40 @@ const propTypes = {
 const defaultProps = {
     value: null,
     isForm: false,
+    isHorizontal: false,
     className: null,
     onChange: null,
 };
 
-const ColorField = ({ value, onChange, isForm, className }) => {
+const ColorField = ({ value, onChange, isForm, isHorizontal, className }) => {
     const { color = null, alpha = null } = value || {};
-    const hexColor = useMemo(() => color !== null ? tinycolor(color).toHexString() : null, [color]);
-    return isForm ? (
-        <div className={classNames(['p-2', 'bg-light', styles.form])}>
-            <ColorPicker value={value} onChange={onChange} />
-        </div>
-    ) : (
+    const hexColor = useMemo(() => (color !== null ? tinycolor(color).toHexString() : null), [
+        color,
+    ]);
+    if (isForm) {
+        return (
+            <div className="p-2 bg-light text-dark">
+                <ColorPicker value={value} onChange={onChange} />
+            </div>
+        );
+    }
+
+    const previewElement =
+        value !== null ? (
+            <span className={styles.preview}>
+                <span
+                    className={styles.color}
+                    style={{
+                        ...getStyleFromColor(value),
+                    }}
+                />
+            </span>
+        ) : null;
+    return (
         <div
             className={classNames([
-                styles.container,
+                'd-flex',
+                'align-items-center',
                 {
                     [className]: className !== null,
                 },
@@ -44,18 +64,23 @@ const ColorField = ({ value, onChange, isForm, className }) => {
         >
             {hexColor !== null || alpha !== null ? (
                 <>
-                    <span className={styles.value}>{hexColor}</span>
-                    <span className={styles.preview}>
-                        <span
-                            className={styles.color}
-                            style={{
-                                ...getStyleFromColor(value),
-                            }}
-                        />
+                    {!isHorizontal ? previewElement : null}
+                    <span
+                        className={classNames([
+                            'text-monospace',
+                            'text-truncate',
+                            {
+                                'ml-2': !isHorizontal,
+                                'mr-2': isHorizontal,
+                            },
+                        ])}
+                    >
+                        {hexColor}
                     </span>
+                    {isHorizontal ? previewElement : null}
                 </>
             ) : (
-                <span className={styles.noValue}>
+                <span className="text-muted">
                     <FormattedMessage
                         defaultMessage="Select a color..."
                         description="No value label"

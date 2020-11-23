@@ -2,11 +2,11 @@
 import React from 'react';
 import GalleryFeedScreen from './GalleryFeed';
 
-const GalleryFeedLegendsScreen = ({ ...props }) => (
+const GalleryFeedCaptionsScreen = ({ ...props }) => (
     <GalleryFeedScreen
         {...props}
-        withLegends
+        withCaptions
     />
 );
 
-export default GalleryFeedLegendsScreen;
+export default GalleryFeedCaptionsScreen;

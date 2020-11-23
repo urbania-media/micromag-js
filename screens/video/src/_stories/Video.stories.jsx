@@ -1,14 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { video, background, closedCaptions } from '../../../../.storybook/data';
+import { videoMedia, backgroundColor, closedCaptionsMedia } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import VideoScreen from '../Video';
 import definition from '../definition';
 
 const props = {
-    video: {...video(), autoPlay: true, loop: true },
-    background: background(),
+    video: { media: videoMedia(), autoPlay: true, loop: true },
+    background: backgroundColor(),
 };
 
 export default {
@@ -28,7 +28,11 @@ export const Edit = (storyProps) => <VideoScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <VideoScreen {...storyProps} {...props} />;
 export const WithSeekbar = (storyProps) => <VideoScreen {...storyProps} {...props} withSeekBar />;
-export const WithClosedCaptions = (storyProps) => <VideoScreen {...storyProps} {...props} closedCaptions={closedCaptions()} />;
-export const WithSeekbarAndClosedCaptions = (storyProps) => <VideoScreen {...storyProps} {...props} withSeekBar closedCaptions={closedCaptions()} />;
+export const WithClosedCaptions = (storyProps) => (
+    <VideoScreen {...storyProps} {...props} closedCaptions={closedCaptionsMedia()} />
+);
+export const WithSeekbarAndClosedCaptions = (storyProps) => (
+    <VideoScreen {...storyProps} {...props} withSeekBar closedCaptions={closedCaptionsMedia()} />
+);
 
-export const Definition = () => <ScreenDefinition definition={definition} />;
+export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

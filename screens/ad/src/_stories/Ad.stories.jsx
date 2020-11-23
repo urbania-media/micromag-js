@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { advertising, image, background } from '../../../../.storybook/data';
+import { advertising, imageMedia, backgroundColor } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import AdScreen from '../Ad';
@@ -8,7 +8,7 @@ import definition from '../definition';
 
 const props = {
     ...advertising({ width: 300, height: 100 }),
-    background: background(),
+    background: backgroundColor(),
 };
 
 export default {
@@ -28,19 +28,19 @@ export const Edit = (storyProps) => <AdScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <AdScreen {...storyProps} {...props} />;
 export const MediumRectangle = (storyProps) => (
-    <AdScreen {...storyProps} {...props} image={image({ width: 300, height: 250 })} />
+    <AdScreen {...storyProps} {...props} image={imageMedia({ width: 300, height: 250 })} />
 );
 export const LargeRectangle = (storyProps) => (
-    <AdScreen {...storyProps} {...props} image={image({ width: 336, height: 280 })} />
+    <AdScreen {...storyProps} {...props} image={imageMedia({ width: 336, height: 280 })} />
 );
 export const Skyscraper = (storyProps) => (
-    <AdScreen {...storyProps} {...props} image={image({ width: 300, height: 600 })} />
+    <AdScreen {...storyProps} {...props} image={imageMedia({ width: 300, height: 600 })} />
 );
 export const MobilePortrait = (storyProps) => (
-    <AdScreen {...storyProps} {...props} image={image({ width: 320, height: 480 })} />
+    <AdScreen {...storyProps} {...props} image={imageMedia({ width: 320, height: 480 })} />
 );
 export const WithSpacing = (storyProps) => (
-    <AdScreen {...storyProps} {...props} image={image({ width: 320, height: 480 })} spacing={20} />
+    <AdScreen {...storyProps} {...props} image={imageMedia({ width: 320, height: 480 })} spacing={20} />
 );
 
-export const Definition = () => <ScreenDefinition definition={definition} />;
+export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

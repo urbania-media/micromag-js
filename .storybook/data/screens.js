@@ -4,11 +4,12 @@ import {
     // advertising,
     images,
     imageMedia,
+    imagesWithCaptions,
     text,
     title,
     subtitle,
-    audio,
-    video,
+    audioMedia,
+    videoMedia,
     map,
     markers,
     quote,
@@ -29,7 +30,7 @@ export const basic = [
         id: uuid(),
         type: 'audio',
         layout: 'normal',
-        audio: audio(),
+        audio: audioMedia(),
         background: {
             color: '#00FF00',
         },
@@ -45,7 +46,7 @@ export const basic = [
     {
         id: uuid(),
         type: 'gallery',
-        layout: 'one-two-one',        
+        layout: 'one-two-one',
         images: images({ count: 4 }),
         background: {
             color: '#FFFF00',
@@ -62,9 +63,9 @@ export const basic = [
     },
     {
         id: uuid(),
-        type: 'gallery-feed-legends',
+        type: 'gallery-feed-captions',
         layout: 'normal',
-        images: images({ count: 5 }),
+        images: imagesWithCaptions({ count: 5 }),
         background: {
             color: '#00FFFF',
         },
@@ -226,7 +227,7 @@ export const basic = [
         id: uuid(),
         type: 'video',
         layout: 'normal',
-        video: video(),
+        video: videoMedia(),
         background: {
             color: '#FF00FF',
         },

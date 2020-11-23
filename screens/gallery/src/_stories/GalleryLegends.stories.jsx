@@ -1,31 +1,31 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { images, background } from '../../../../.storybook/data';
+import { imagesWithCaptions, backgroundColor } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
-import GalleryLegendsScreen from '../GalleryLegends';
+import GalleryCaptionsScreen from '../GalleryCaptions';
 import definition from '../definition';
 
 const props = {
-    images: images({ count: 20 }),
-    background: background(),
+    images: imagesWithCaptions({ count: 20 }),
+    background: backgroundColor(),
 };
 
 export default {
-    title: 'Screens/GalleryLegends',
-    component: GalleryLegendsScreen,
+    title: 'Screens/GalleryCaptions',
+    component: GalleryCaptionsScreen,
     parameters: {
         intl: true,
-        screenDefinition: definition.find((it) => it.component === GalleryLegendsScreen),
+        screenDefinition: definition.find((it) => it.component === GalleryCaptionsScreen),
     },
 };
 
-export const Placeholder = (storyProps) => <GalleryLegendsScreen {...storyProps} />;
+export const Placeholder = (storyProps) => <GalleryCaptionsScreen {...storyProps} />;
 
-export const Preview = (storyProps) => <GalleryLegendsScreen {...storyProps} {...props} />;
+export const Preview = (storyProps) => <GalleryCaptionsScreen {...storyProps} {...props} />;
 
-export const Edit = (storyProps) => <GalleryLegendsScreen {...storyProps} />;
+export const Edit = (storyProps) => <GalleryCaptionsScreen {...storyProps} />;
 
-export const Normal = (storyProps) => <GalleryLegendsScreen {...storyProps} {...props} />;
+export const Normal = (storyProps) => <GalleryCaptionsScreen {...storyProps} {...props} />;
 
-export const Definition = () => <ScreenDefinition definition={definition} />;
+export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

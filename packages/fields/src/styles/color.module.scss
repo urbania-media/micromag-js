@@ -2,22 +2,14 @@
 @import '~@micromag/core/scss/mixins';
 @import 'placeholders';
 
-.container {
-    @extend %field-with-form;
+.preview {
+    @include background-grid(4px, $gray-300);
+    display: block;
+    border: solid 1px $black;
 
-    .value {
-        font-family: $font-family-monospace;
-    }
-
-    .preview {
-        @include background-grid(4px, $gray-300);
+    .color {
         display: block;
-        border: solid 1px $black;
-
-        .color {
-            display: block;
-            width: 1rem;
-            height: 1rem;
-        }
+        width: 1rem;
+        height: 1rem;
     }
 }

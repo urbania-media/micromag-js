@@ -6,9 +6,9 @@ import randomWords from './data/words';
 import titles from './data/titles';
 import subtitles from './data/subtitles';
 
-import AudioTest from './data/test.mp3';
-import VideoTest from './data/test.mp4';
-import ClosedCaptionsTest from './data/test.srt';
+import audioFile from './data/test.mp3';
+import videoFile from './data/test.mp4';
+import closedCaptionsFile from './data/test.srt';
 
 const chance = new Chance();
 
@@ -34,7 +34,8 @@ export const title = () => random(titles);
 
 export const subtitle = () => random(subtitles);
 
-export const quote = ({ likelyhood = 100, min = 7, max = 20 } = {}) => `“ ${words(likelyhood, min, max)} ”`;
+export const quote = ({ likelyhood = 100, min = 7, max = 20 } = {}) =>
+    `“ ${words(likelyhood, min, max)} ”`;
 
 export const author = ({ likelyhood = 100 } = {}) => name(likelyhood);
 
@@ -89,89 +90,69 @@ export const text = (length = 'normal', style = 'normal') => {
     };
 };
 
-export const imageMedia = ({ width = 800, height = 800 } = {}) => ({
-    url: `https://picsum.photos/${width}/${height}`,
+export const imageMedia = ({ width = 800, height = 800, random: randomImage = false } = {}) => ({
+    url: `https://picsum.photos/${width}/${height}?random=${randomImage ? Math.random() : 1}`,
+    thumbnail_url: `https://picsum.photos/100/100?random=${randomImage ? Math.random() : 1}`,
     metadata: {
         width,
         height,
-    }
+    },
 });
 
-// @TODO à enlever
-
-export const image = (mediaParams) => ({
-    media: imageMedia(mediaParams),
-    name: 'Image!'
+export const videoMedia = () => ({
+    type: 'video',
+    url: videoFile,
+    metadata: {
+        width: 1920,
+        height: 1080,
+    },
 });
 
-export const imageWithRandomSize = ({ min = 100, max = 800 } = {}) => {
-    const width = chance.integer({ min, max });
-    const height = chance.integer({ min, max });
-    return image({ width, height });
-};
+export const audioMedia = () => ({
+    type: 'audio',
+    url: audioFile,
+    metadata: {
+        duration: 16000,
+    },
+});
 
-export const imageSquareWithRandomSize = ({ min = 100, max = 800 } = {}) => {
-    const size = chance.integer({ min, max });
-    return image({ width: size, height: size });
-};
+export const closedCaptionsMedia = () => ({
+    type: 'closed-captions',
+    url: closedCaptionsFile,
+});
 
 // -----------------
 
 export const images = ({ count = 3, width = 800, height = 800, rand = false } = {}) => {
+    return [...Array(count)].map(() => ({
+        url: `https://picsum.photos/${width}/${height}?random=${rand ? Math.random() : 1}`,
+        metadata: {
+            width,
+            height,
+        },
+    }));
+};
+
+export const imagesWithCaptions = ({ count = 3, width = 800, height = 800, rand = false } = {}) => {
     return [...Array(count)].map(() => ({
         media: {
             url: `https://picsum.photos/${width}/${height}?random=${rand ? Math.random() : 1}`,
             metadata: {
                 width,
                 height,
-            }
+            },
         },
         caption: text(),
     }));
 };
 
-export const video = () => ({
-    media: {
-        type: 'video',
-        url: VideoTest,
-        metadata: {
-            width: 1920,
-            height: 1080,
-        },
-    },
+export const backgroundColor = () => ({
+    color: { color: chance.color({ format: 'rgb' }), alpha: 1 },
 });
 
-export const background = () => ({ color: { color: chance.color({ format: 'rgb' }) } });
-
-export const backgroundImage = ({ rand = false } = {}) => ({
-    color: { color: chance.color({ format: 'rgb' }) },
-    image: {
-        media: {
-            type: 'image',
-            url: `https://picsum.photos/1000/1000/?blur&random=${rand ? Math.random() : 1}`,
-            metadata: {
-                width: 1000,
-                height: 1000,
-            }
-        },
-    },
-});
-
-export const audio = () => ({
-    media: {
-        type: 'audio',
-        url: AudioTest,
-        metadata: {
-            duration: 16000,
-        }
-    }
-});
-
-export const closedCaptions = () => ({
-    media: {
-        type: 'closed-captions',
-        url: ClosedCaptionsTest,
-    }
+export const backgroundImage = ({ random: randomImage = false } = {}) => ({
+    color: { color: chance.color({ format: 'rgb' }), alpha: 1 },
+    image: imageMedia({ width: 1000, height: 1000, random: randomImage }),
 });
 
 export const advertising = (mediaParams) => ({
@@ -180,7 +161,12 @@ export const advertising = (mediaParams) => ({
     text: { body: 'Presented by Paul' },
 });
 
-export const markers = ({ count = 3, withTitle = true, withDescription = true, withImage = false } = {}) => {
+export const markers = ({
+    count = 3,
+    withTitle = true,
+    withDescription = true,
+    withImage = false,
+} = {}) => {
     return [...Array(count)].map((j, i) => ({
         id: i,
         geoPosition: {

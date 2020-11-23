@@ -10,6 +10,7 @@ import man5 from './assets-face-a-face/5.jpg';
 
 export const tommy = {
     url: tommyBefore,
+    thumbnail_url: tommyBefore,
     metadata: {
         width: 1000,
         height: 645,
@@ -20,6 +21,7 @@ export const mans = [
     {
         media: {
             url: man1,
+            thumbnail_url: man1,
             metadata: {
                 width: 1000,
                 height: 1340,
@@ -33,6 +35,7 @@ export const mans = [
     {
         media: {
             url: man2,
+            thumbnail_url: man2,
             metadata: {
                 width: 1000,
                 height: 1340,
@@ -46,6 +49,7 @@ export const mans = [
     {
         media: {
             url: man3,
+            thumbnail_url: man3,
             metadata: {
                 width: 1000,
                 height: 1340,
@@ -60,6 +64,7 @@ export const mans = [
     {
         media: {
             url: man4,
+            thumbnail_url: man4,
             metadata: {
                 width: 1000,
                 height: 1340,
@@ -73,6 +78,7 @@ export const mans = [
     {
         media: {
             url: man5,
+            thumbnail_url: man5,
             metadata: {
                 width: 1000,
                 height: 1340,

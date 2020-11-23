@@ -7,12 +7,87 @@
         .ck-editor__editable {
             border: $input-border-width solid $input-border-color;
             background: $white;
+
+            &:not(.ck-editor__nested-editable) {
+                &.ck-rounded-corners {
+                    border-radius: $input-border-radius;
+                }
+            }
+        }
+
+        .ck-editor__editable_inline {
+            padding: 0 $input-btn-padding-x;
+
+            > :first-child {
+                margin-top: $input-btn-padding-y;
+            }
+
+            > :last-child {
+                margin-bottom: $input-btn-padding-y;
+            }
         }
 
         .ck-content {
             @extend %text-styles;
             color: $black;
-            font-size: 14px;
+            font-size: $input-font-size;
+            line-height: $input-line-height;
+        }
+    }
+
+    &.size-sm {
+        :global {
+            .ck-editor__editable {
+                &:not(.ck-editor__nested-editable) {
+                    &.ck-rounded-corners {
+                        border-radius: $input-border-radius-sm;
+                    }
+                }
+            }
+
+            .ck-editor__editable_inline {
+                padding: 0 $input-btn-padding-x-sm;
+
+                > :first-child {
+                    margin-top: $input-btn-padding-y-sm;
+                }
+
+                > :last-child {
+                    margin-bottom: $input-btn-padding-y-sm;
+                }
+            }
+
+            .ck-content {
+                font-size: $input-font-size-sm;
+            }
+        }
+    }
+
+    &.size-lg {
+        :global {
+            .ck-editor__editable {
+                &:not(.ck-editor__nested-editable) {
+                    &.ck-rounded-corners {
+                        border-radius: $input-border-radius-lg;
+                    }
+                }
+            }
+
+            .ck-editor__editable_inline {
+                padding: 0 $input-btn-padding-x-lg;
+
+                > :first-child {
+                    margin-top: $input-btn-padding-y-lg;
+                }
+
+                > :last-child {
+                    margin-bottom: $input-btn-padding-y-lg;
+                }
+            }
+
+            .ck-content {
+                font-size: $input-font-size-lg;
+            }
         }
     }
     /* stylelint-enable selector-class-pattern */

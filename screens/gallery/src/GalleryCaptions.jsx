@@ -2,11 +2,11 @@
 import React from 'react';
 import GalleryScreen from './Gallery';
 
-const GalleryLegendsScreen = ({ ...props }) => (
+const GalleryCaptionsScreen = ({ ...props }) => (
     <GalleryScreen
         {...props}
-        withLegends
+        withCaptions
     />
 );
 
-export default GalleryLegendsScreen;
+export default GalleryCaptionsScreen;

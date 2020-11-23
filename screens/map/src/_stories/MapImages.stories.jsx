@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { map, markers, background } from '../../../../.storybook/data';
+import { map, markers, backgroundColor } from '../../../../.storybook/data';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
@@ -11,7 +11,7 @@ const props = {
     map: map(),
     markers: markers({ withImage: true }),
     splash: { body: 'Débuter' },
-    background: background()
+    background: backgroundColor()
 };
 
 export default {
@@ -32,4 +32,4 @@ export const Edit = (storyProps) => <MapImagesScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <MapImagesScreen {...storyProps} {...props} />;
 
-export const Definition = () => <ScreenDefinition definition={definition} />;
+export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

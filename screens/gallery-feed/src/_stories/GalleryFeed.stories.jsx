@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { images, background } from '../../../../.storybook/data';
+import { images, backgroundColor } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import GalleryFeedScreen from '../GalleryFeed';
@@ -8,7 +8,7 @@ import definition from '../definition';
 
 const props = {
     images: images({ count: 5 }),
-    background: background(),
+    background: backgroundColor(),
 };
 
 export default {
@@ -28,4 +28,4 @@ export const Edit = (storyProps) => <GalleryFeedScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <GalleryFeedScreen {...storyProps} {...props} />;
 
-export const Definition = () => <ScreenDefinition definition={definition} />;
+export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

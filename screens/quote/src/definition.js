@@ -25,7 +25,7 @@ export default {
         },
         {
             name: 'quote',
-            type: 'text-element',
+            type: 'heading-element',
             fieldType: 'multi',
             label: defineMessage({
                 defaultMessage: 'Quote',

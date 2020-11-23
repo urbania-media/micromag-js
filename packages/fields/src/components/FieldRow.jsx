@@ -10,8 +10,6 @@ import { Button, Label } from '@micromag/core/components';
 import FieldErrors from './FieldErrors';
 import FieldHelp from './FieldHelp';
 
-import styles from '../styles/field-row.module.scss';
-
 const propTypes = {
     label: MicromagPropTypes.label,
     errors: MicromagPropTypes.errors,
@@ -60,8 +58,7 @@ const FieldRow = ({
     labelClassName,
 }) => {
     const withLabel = !withoutLabel && label !== null;
-
-    const labelElement = <Label>{label}</Label>;
+    const isClickable = withForm;
 
     const onClickRow = useCallback(() => {
         if (typeof withForm === 'string') {
@@ -71,102 +68,67 @@ const FieldRow = ({
         }
     }, [withForm, gotoForm]);
 
-    if (isHorizontal || withForm) {
-        const isClickable = withForm;
+    const containerClassName = classNames([
+        'form-group',
+        {
+            [className]: className !== null,
+        },
+    ]);
+
+    const labelElement = (
+        <label
+            className={classNames({
+                'col-form-label': isHorizontal || withSettings,
+                'col-auto': isHorizontal,
+                col: !isHorizontal && withSettings,
+                'py-0': isHorizontal,
+                'text-truncate': isHorizontal,
+                [labelClassName]: labelClassName !== null,
+            })}
+        >
+            <Label>{label}</Label>
+        </label>
+    );
+
+    const helpElement = help !== null ? <FieldHelp>{help}</FieldHelp> : null;
+
+    const errorsElement =
+        errors !== null && errors.length > 0 ? <FieldErrors errors={errors} /> : null;
+
+    const arrowElement = isClickable ? (
+        <span className="col-auto">
+            <FontAwesomeIcon icon={faAngleRight} />
+        </span>
+    ) : null;
+
+    if (isHorizontal) {
         const rowInner = (
-            <>
-                <label
-                    className={classNames([
-                        'col-auto',
-                        'col-form-label',
-                        styles.label,
-                        {
-                            [labelClassName]: labelClassName !== null,
-                        },
-                    ])}
-                >
-                    {labelElement}
-                </label>
+            <span className={classNames(['form-row', 'align-items-center'])}>
+                {labelElement}
                 <span className="col-auto ml-auto">{children}</span>
-                {isClickable ? (
-                    <span className="col-auto">
-                        <FontAwesomeIcon icon={faAngleRight} className={styles.icon} />
-                    </span>
-                ) : null}
-                {help !== null ? (
-                    <FieldHelp>{help}</FieldHelp>
-                ) : null}
-                {errors !== null && errors.length > 0 ? (
-                    <FieldErrors errors={errors} className={styles.errors} />
-                ) : null}
-            </>
+                {arrowElement}
+                {helpElement}
+                {errorsElement}
+            </span>
         );
 
         return isClickable ? (
             <>
-                <Button
-                    withoutStyle
-                    className={classNames([
-                        'form-group',
-                        'form-row',
-                        'align-items-center',
-                        styles.container,
-                        styles.isHorizontal,
-                        {
-                            [styles.isSection]: isSection,
-                            [className]: className !== null,
-                        },
-                    ])}
-                    onClick={onClickRow}
-                >
+                <button type="button" className={containerClassName} onClick={onClickRow}>
                     {rowInner}
-                </Button>
+                </button>
             </>
         ) : (
-            <div
-                className={classNames([
-                    'form-group',
-                    'form-row',
-                    'align-items-center',
-                    styles.container,
-                    styles.isHorizontal,
-                    {
-                        [styles.isSection]: isSection,
-                        [className]: className !== null,
-                    },
-                ])}
-            >
-                {rowInner}
-            </div>
+            <div className={containerClassName}>{rowInner}</div>
         );
     }
     return (
-        <div
-            className={classNames([
-                'form-group',
-                styles.container,
-                {
-                    [styles.isSection]: isSection,
-                    [className]: className !== null,
-                },
-            ])}
-        >
+        <div className={containerClassName}>
             {withLabel ? (
                 <>
                     {withSettings ? (
                         <div className={classNames(['form-row', 'align-items-center'])}>
-                            <label
-                                className={classNames([
-                                    'col',
-                                    'col-form-label',
-                                    styles.label,
-                                    {
-                                        [labelClassName]: labelClassName !== null,
-                                    },
-                                ])}
-                            >
-                                {labelElement}
-                            </label>
+                            {labelElement}
                             <div className={classNames(['col-auto'])}>
                                 <Button withoutStyle onClick={gotoSettings}>
                                     <FontAwesomeIcon icon={faSlidersH} />
@@ -174,23 +136,26 @@ const FieldRow = ({
                             </div>
                         </div>
                     ) : (
-                        <label
-                            className={classNames([
-                                styles.label,
-                                {
-                                    [labelClassName]: labelClassName !== null,
-                                },
-                            ])}
-                        >
-                            {labelElement}
-                        </label>
+                        labelElement
                     )}
                 </>
             ) : null}
-            <div className={styles.field}>{children}</div>
-            {errors !== null && errors.length > 0 ? (
-                <FieldErrors errors={errors} className={styles.errors} />
-            ) : null}
+            {isClickable ? (
+                <Button
+                    withoutStyle
+                    className="d-block w-100 bg-light text-dark rounded p-2"
+                    onClick={onClickRow}
+                >
+                    <span className="form-row align-items-center">
+                        <span className="col">{children}</span>
+                        {arrowElement}
+                    </span>
+                </Button>
+            ) : (
+                children
+            )}
+            {helpElement}
+            {errorsElement}
         </div>
     );
 };

@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { quote, author, background } from '../../../../.storybook/data';
+import { quote, author, backgroundColor } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import QuoteScreen from '../Quote';
@@ -9,7 +9,7 @@ import definition from '../definition';
 const props = {
     quote: { body: quote() },
     author: { body: author() },
-    background: background(),
+    background: backgroundColor(),
 };
 
 export default {
@@ -29,4 +29,4 @@ export const Edit = (storyProps) => <QuoteScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <QuoteScreen {...storyProps} {...props} />;
 
-export const Definition = () => <ScreenDefinition definition={definition} />;
+export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

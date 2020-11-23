@@ -7,8 +7,6 @@ import { useFieldsManager } from '@micromag/core/contexts';
 
 import FieldRow from './FieldRow';
 
-import styles from '../styles/field.module.scss';
-
 const propTypes = {
     name: PropTypes.string.isRequired,
     type: PropTypes.string,
@@ -25,7 +23,6 @@ const propTypes = {
     closeFieldForm: PropTypes.func,
     className: PropTypes.string,
     labelClassName: PropTypes.string,
-    fieldRowClassName: PropTypes.string,
 };
 
 const defaultProps = {
@@ -36,14 +33,13 @@ const defaultProps = {
     value: null,
     errors: null,
     fields: undefined,
-    isHorizontal: false,
+    isHorizontal: null,
     isSection: false,
     onChange: null,
     gotoFieldForm: null,
     closeFieldForm: null,
     className: null,
     labelClassName: null,
-    fieldRowClassName: null,
 };
 
 const Field = ({
@@ -89,10 +85,9 @@ const Field = ({
     }
 
     const finalIsHorizontal =
-        (isHorizontal && !isFields) ||
-        FieldComponent.isHorizontal ||
-        FieldComponent.withForm ||
-        false;
+        isHorizontal !== null
+            ? isHorizontal
+            : FieldComponent.isHorizontal || typeof FieldComponent.withForm !== 'undefined' || null;
     const finalWithoutLabel = withoutLabel || FieldComponent.withoutLabel || false;
     const finalWithSettings =
         settings !== null ||
@@ -103,7 +98,7 @@ const Field = ({
 
     const fieldElement = (
         <FieldComponent
-            isHorizontal={isHorizontal && isFields}
+            isHorizontal={finalIsHorizontal && !isFields}
             isList={isList}
             labelClassName={classNames({
                 'col-sm-3': isHorizontal && isFields,
@@ -124,51 +119,25 @@ const Field = ({
     // console.log(type, fieldElement, value, props);
 
     return !withoutFieldRow ? (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [styles.isSection]: isSection || isFields,
-                    [className]: className !== null,
-                },
-            ])}
-        >
-            <FieldRow
-                key={`field-${name}`}
-                label={label}
-                errors={errors}
-                help={help}
-                isHorizontal={finalIsHorizontal}
-                isSection={isSection}
-                withoutLabel={finalWithoutLabel}
-                withSettings={finalWithSettings}
-                withForm={finalWithForm}
-                gotoSettings={gotoSettings}
-                gotoForm={gotoForm}
-                closeForm={closeForm}
-                className={classNames([
-                    styles.row,
-                    {
-                        [fieldRowClassName]: fieldRowClassName !== null,
-                    },
-                ])}
-                labelClassName={labelClassName}
-            >
-                {fieldElement}
-            </FieldRow>
-        </div>
-    ) : (
-        <div
-            className={classNames([
-                styles.container,
-                {
-                    [styles.isSection]: isSection || isFields,
-                    [className]: className !== null,
-                },
-            ])}
+        <FieldRow
+            label={label}
+            errors={errors}
+            help={help}
+            isHorizontal={finalIsHorizontal || false}
+            isSection={isSection}
+            withoutLabel={finalWithoutLabel}
+            withSettings={finalWithSettings}
+            withForm={finalWithForm}
+            gotoSettings={gotoSettings}
+            gotoForm={gotoForm}
+            closeForm={closeForm}
+            className={className}
+            labelClassName={labelClassName}
         >
             {fieldElement}
-        </div>
+        </FieldRow>
+    ) : (
+        fieldElement
     );
 };
 

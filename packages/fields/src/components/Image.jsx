@@ -30,5 +30,6 @@ const ImageField = (props) => (
 ImageField.propTypes = propTypes;
 ImageField.defaultProps = defaultProps;
 ImageField.withForm = true;
+ImageField.withForm = true;
 
 export default ImageField;

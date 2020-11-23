@@ -1,6 +1,6 @@
 import { defineMessage } from 'react-intl';
 import GalleryScreen from './Gallery';
-import GalleryLegendsScreen from './GalleryLegends';
+import GalleryCaptionsScreen from './GalleryCaptions';
 
 export default [
     {
@@ -66,17 +66,17 @@ export default [
         ],
     },
     {
-        id: 'gallery-legends',
+        id: 'gallery-captions',
         type: 'screen',
         group: defineMessage({
             defaultMessage: 'Images',
             description: 'Images screen group',
         }),
         title: defineMessage({
-            defaultMessage: 'GalleryLegends',
-            description: 'GalleryLegends screen title',
+            defaultMessage: 'GalleryCaptions',
+            description: 'GalleryCaptions screen title',
         }),
-        component: GalleryLegendsScreen,
+        component: GalleryCaptionsScreen,
         layouts: [
             // 2
             'two-vertical-equal',
@@ -111,10 +111,10 @@ export default [
             },
             {
                 name: 'images',
-                type: 'imagesWithLegends',
+                type: 'images-with-captions',
                 label: defineMessage({
-                    defaultMessage: 'imagesWithLegends',
-                    description: 'imagesWithLegends field label',
+                    defaultMessage: 'imagesWithCaptions',
+                    description: 'imagesWithCaptions field label',
                 }),
             },
             {

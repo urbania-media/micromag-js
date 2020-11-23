@@ -1,24 +1,24 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { image, text, background } from '../../../../.storybook/data';
+import { imageMedia, text, backgroundColor } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import SlideshowScreen from '../Slideshow';
 import definition from '../definition';
 
 const props = {
-    background: background(),
+    background: backgroundColor(),
     slides: [
         {
-            image: image({ width: 500, height: 250 }),
+            image: imageMedia({ width: 500, height: 250 }),
             text: text(),
         },
         {
-            image: image({ width: 500, height: 400 }),
+            image: imageMedia({ width: 500, height: 400 }),
             text: text(),
         },
         {
-            image: image({ width: 500, height: 500 }),
+            image: imageMedia({ width: 500, height: 500 }),
             text: text(),
         },
     ],
@@ -41,4 +41,4 @@ export const Edit = (storyProps) => <SlideshowScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <SlideshowScreen {...storyProps} {...props} />;
 
-export const Definition = () => <ScreenDefinition definition={definition} />;
+export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

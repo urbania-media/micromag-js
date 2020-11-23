@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect, useState } from 'react';
-import { closedCaptions } from '../../../.storybook/data';
+import { closedCaptionsMedia } from '../../../.storybook/data';
 import ClosedCaptions from './ClosedCaptions';
 
 export default {
@@ -8,15 +8,14 @@ export default {
     title: 'Elements/ClosedCaptions',
 };
 
-const props = {...closedCaptions()};
+const props = { media: closedCaptionsMedia() };
 
 export const normal = () => <ClosedCaptions {...props} currentTime={2} />;
 
 export const overTime = () => {
-
     const [currentTime, setCurrentTime] = useState(0);
 
-    useEffect( () => {
+    useEffect(() => {
         let currentSeconds = 0;
         const increaseSeconds = () => {
             currentSeconds += 0.1;
@@ -28,13 +27,13 @@ export const overTime = () => {
         const interval = setInterval(increaseSeconds, 100);
         return () => {
             clearInterval(interval);
-        }
+        };
     }, [setCurrentTime]);
 
     return (
         <>
-            <div>Time: { currentTime.toFixed(1) } </div>
+            <div>Time: {currentTime.toFixed(1)} </div>
             <ClosedCaptions {...props} currentTime={currentTime} />
         </>
-    );    
+    );
 };
