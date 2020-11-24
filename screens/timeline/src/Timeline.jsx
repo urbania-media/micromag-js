@@ -1,10 +1,10 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-import { PropTypes as MicromagPropTypes, useResizeObserver } from '@micromag/core';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { isTextFilled } from '@micromag/core/utils';
@@ -102,11 +102,13 @@ const Timeline = ({
         setImagesLoaded(imagesLoaded + 1);
     }, [imagesLoaded, setImagesLoaded]);
 
-    const {
-        ref: scrollContentRef,
-        entry: { contentRect: scrollContentRefRect },
-    } = useResizeObserver({ disabled: isPlaceholder || !finalItems.length });
-    const { width: scrollContentRefWidth = '100%' } = scrollContentRefRect || {};
+    const firstLineRef = useRef(null);
+    const firstContentRef = useRef(null);
+    const [imageWidth, setImageWidth] = useState(0);
+
+    useEffect( () => {
+        setImageWidth(firstContentRef.current.offsetWidth - firstLineRef.current.offsetWidth);
+    }, [width, height]);
 
     const timelineElements = finalItems.map((item, itemI) => {
         const { title = null, description = null, image = null } = item || {};
@@ -198,7 +200,7 @@ const Timeline = ({
                                                 <Image
                                                     className={styles.image}
                                                     media={image}
-                                                    width={scrollContentRefWidth}
+                                                    width={imageWidth}
                                                     onLoaded={onImageLoaded}
                                                 />
                                             ) : null}
@@ -220,8 +222,9 @@ const Timeline = ({
                             <div
                                 key={`element-${type}`}
                                 className={classNames([styles.element, styles[`element-${type}`]])}
+                                ref={itemI === 0 ? firstContentRef : null}
                             >
-                                <div className={styles.timeline}>
+                                <div className={styles.timeline} ref={itemI === 0 ? firstLineRef : null}>
                                     <div
                                         className={classNames([
                                             styles.line,
@@ -259,7 +262,6 @@ const Timeline = ({
                                         styles.content,
                                         { [styles.lastContent]: lastType && !lastItem },
                                     ])}
-                                    ref={itemI === 0 ? scrollContentRef : null}
                                 >
                                     {elementContent}
                                 </div>

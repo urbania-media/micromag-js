@@ -11,6 +11,7 @@ import nose from './assets-face-a-face/nose.jpg';
 import introBg from './assets-face-a-face/intro-bg.jpg';
 import tuileBlueNoise from './assets-face-a-face/tuile-blue-noise.gif';
 import tuilePeau from './assets-face-a-face/tuile-peau.jpg';
+import hugoMiroir from './assets-face-a-face/hugo-miroir.mp4';
 
 export const colorDarkBlue = '#242235';
 export const colorPink = '#ff4dff';
@@ -504,4 +505,16 @@ export const backgroundSkin = {
         }
     },
     repeat: true,
+}
+
+export const backgroundHugoMiroir = {
+    color: { color: 'black' },
+    video: {
+        type: 'video',
+        url: hugoMiroir,
+        metadata: {
+            width: 1280,
+            height: 1800,
+        }
+    },
 }

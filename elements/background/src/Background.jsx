@@ -2,9 +2,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, useScreenRenderContext } from '@micromag/core';
 import { getStyleFromColor } from '@micromag/core/utils';
 import Video from '@micromag/element-video';
+import { getSizeWithinBounds } from '@folklore/size';
 
 import styles from './styles.module.scss';
 
@@ -18,10 +19,6 @@ const propTypes = {
     color: MicromagPropTypes.color,
     image: MicromagPropTypes.imageMedia,
     video: MicromagPropTypes.videoMedia,
-    autoPlay: PropTypes.bool,
-    loop: PropTypes.bool,
-    muted: PropTypes.bool,
-    controls: MicromagPropTypes.controls,
     maxRatio: PropTypes.number,
     className: PropTypes.string,
     children: PropTypes.node,
@@ -37,10 +34,6 @@ const defaultProps = {
     color: null,
     image: null,
     video: null,
-    autoPlay: true,
-    loop: true,
-    muted: true,
-    controls: false,
     maxRatio: null,
     className: null,
     children: null,
@@ -56,16 +49,14 @@ const Background = ({
     color,
     image,
     video,
-    autoPlay,
-    loop,
-    muted,
-    controls,
     maxRatio,
     className,
     children,
 }) => {
-
+    const { isPreview } = useScreenRenderContext();
     const currentRatio = width / height;
+
+    // eslint-disable-next-line no-unused-vars
     const boxedWidth = maxRatio !== null && currentRatio > maxRatio ? height * maxRatio : width;
     // à utiliser pour les background complexes en desktop (video/image blur)
 
@@ -86,6 +77,20 @@ const Background = ({
         }
     }
 
+    // video
+    
+    const { metadata: videoMetadata = null } = video || {};
+    const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
+    const { width: resizedVideoWidth = 0, height: resizedVideoHeight = 0} = getSizeWithinBounds(
+        videoWidth,
+        videoHeight,
+        width,
+        height,
+        { cover: true },
+    );
+    const resizedVideoLeft = -(resizedVideoWidth - width) / 2;
+    const resizedVideoTop = -(resizedVideoHeight - height) / 2;
+
     return (
         <div
             className={classNames([
@@ -97,16 +102,23 @@ const Background = ({
             style={finalStyle}
         >
             {video !== null ? (
-                <Video
-                    video={video}
-                    className={styles.video}
-                    autoPlay={autoPlay}
-                    loop={loop}
-                    muted={muted}
-                    controls={controls}
-                    width={width}
-                    height={height}
-                />
+                <div
+                    className={styles.videoContainer}
+                    style={{
+                        width: resizedVideoWidth,
+                        height: resizedVideoHeight,
+                        left: resizedVideoLeft,
+                        top: resizedVideoTop,
+                    }}
+                >
+                    <Video
+                        className={styles.video}
+                        media={video}
+                        autoPlay={!isPreview}
+                        initialMuted
+                        loop                        
+                    />
+                </div>
             ) : null}
             <div className={styles.content}>{children}</div>
         </div>

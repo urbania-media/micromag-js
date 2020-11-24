@@ -16,6 +16,7 @@ import {
     backgroundIntro,
     backgroundDarkBlueNoise,
     backgroundSkin,
+    backgroundHugoMiroir,
     colorPink,
     colorDarkBlue,
     colorGreen,
@@ -254,7 +255,7 @@ const faceAFaceStory = {
                 body: 'Par Hugo Meunier',
                 textStyle: bodyText,
             },
-            background: background(),
+            background: backgroundHugoMiroir,
         },
         {
             id: uuid(),
