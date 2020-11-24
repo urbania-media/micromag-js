@@ -15,25 +15,33 @@ import {
     backgroundNose,
     backgroundIntro,
     backgroundDarkBlueNoise,
+    backgroundBlueNoise,
+    backgroundBlackNoise,
     backgroundSkin,
-    backgroundHugoMiroir,
+    backgroundFaces,
+    backgroundHugoMirror,
     colorPink,
     colorDarkBlue,
     colorGreen,
+    colorYellow,
 } from './data';
 
-import { header1, header2, bodyText, background, backgroundImage } from './styles';
+import { header1, header2, bodyText } from './styles';
 
 const faceAFaceStory = {
     title: 'Face à face avec votre face',
     components: [
         {
             id: uuid(),
-            type: 'title',
-            layout: 'top',
+            type: 'title-subtitle',
+            layout: 'bottom',
             title: {
-                body: 'Face à face avec votre face',
-                textStyle: { ...header1, fontSize: 24, align: 'center', color: colorDarkBlue },
+                body: 'Face à face',
+                textStyle: { ...header1, fontSize: 60, align: 'center', color: colorPink, lineHeight: 0.2 },
+            },
+            subtitle: {
+                body: 'avec votre face',
+                textStyle: { ...header1, fontSize: 50, align: 'center', color: colorDarkBlue },
             },
             background: backgroundIntro,
         },
@@ -213,43 +221,48 @@ const faceAFaceStory = {
         },
         {
             id: uuid(),
-            type: 'title-subtitle',
+            type:  'title-subtitle-credits',
             layout: 'middle',
             title: {
-                body: 'Top 3 des secrets des<br/>super-recognizers',
-                textStyle: header1,
+                body: 'Top 3',
+                textStyle: {...header1, align: 'center', fontSize: 90, lineHeight: 0.5 },
             },
             subtitle: {
                 body:
-                    'Ces gens capables de reconnaître presque n’importe qui n’importe où n’importe quand',
-                textStyle: header2,
+                    'des secrets des<br/>super-recognizers',
+                textStyle: {...header2, align: 'center', fontSize: 30, color: colorYellow},
             },
-            background: backgroundImage(),
+            credits: {
+                body:
+                    'Ces gens capables de reconnaître<br/>presque n’importe qui n’importe où<br/>n’importe quand',
+                textStyle: {...bodyText, align: 'center', fontSize: 14, },
+            },
+            background: backgroundFaces,
         },
         {
             id: uuid(),
             layout: 'side',
             type: 'ranking',
             items: rankingItems,
-            background: background(),
+            background: backgroundBlueNoise,
         },
         {
             id: uuid(),
             type: 'title-subtitle-credits',
-            layout: 'split-top',
+            layout: 'bottom',
             title: {
                 body: 'Pourriez vous passer une semaine sans vous regarder dans le miroir?',
-                textStyle: header2,
+                textStyle: {...header2, color: colorYellow, fontSize: 40 },
             },
             subtitle: {
                 body: 'On a tenté l’expérience et voici comment ça s’est déroulé',
-                textStyle: bodyText,
+                textStyle: {...bodyText, fontSize: 20 },
             },
             credits: {
-                body: 'Par Hugo Meunier',
-                textStyle: bodyText,
+                body: '<br/><br/>Par Hugo Meunier',
+                textStyle: {...bodyText, fontSize: 14 },
             },
-            background: backgroundHugoMiroir,
+            background: backgroundHugoMirror,
         },
         {
             id: uuid(),
@@ -259,7 +272,7 @@ const faceAFaceStory = {
             bulletColor: { color: '#fff', alpha: 1 },
             lineColor: { color: '#fff', alpha: 1 },
             bulletFilled: false,
-            background: backgroundImage(),
+            background: backgroundBlackNoise,
         },
     ],
 };

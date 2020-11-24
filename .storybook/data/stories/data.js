@@ -7,34 +7,23 @@ import man2 from './assets-face-a-face/2.jpg';
 import man3 from './assets-face-a-face/3.jpg';
 import man4 from './assets-face-a-face/4.jpg';
 import man5 from './assets-face-a-face/5.jpg';
-import nose from './assets-face-a-face/nose.jpg';
-import introBg from './assets-face-a-face/intro-bg.jpg';
-import tuileBlueNoise from './assets-face-a-face/tuile-blue-noise.gif';
-import tuilePeau from './assets-face-a-face/tuile-peau.jpg';
-import hugoMiroir from './assets-face-a-face/hugo-miroir.mp4';
+import nose from './assets-face-a-face/nose-square.jpg';
+import intro from './assets-face-a-face/intro.mp4';
+import tileDarkBlueNoise from './assets-face-a-face/tile-dark-blue-noise.gif';
+import tileBlueNoise from './assets-face-a-face/tile-blue-noise.gif';
+import tileBlackNoise from './assets-face-a-face/tile-black-noise.gif';
+import tileSkin from './assets-face-a-face/tile-skin.jpg';
+import hugoMirror from './assets-face-a-face/hugo-mirror.mp4';
+import blueNoiseFaces from './assets-face-a-face/blue-noise-faces.gif';
 
 export const colorDarkBlue = '#242235';
 export const colorPink = '#ff4dff';
 export const colorGreen = '#66CCB8';
+export const colorYellow = '#FFFC00';
 export const colorSkin = '#d3a88e';
 
 const surveyLabelStyle = {...header3, color: colorGreen };
 const quizLabelStyle = {...header3, color: 'white' };
-
-export const backgroundIntro = {
-    color: { color: colorPink },
-    image: {
-        type: 'image',
-        name: 'intro-bg.jpg',
-        url: introBg,
-        thumbnail_url: introBg,
-        metadata: {
-            width: 320,
-            height: 540,
-        },
-    },
-    fit: 'cover',
-}
 
 export const tommy = {
     url: tommyBefore,
@@ -468,6 +457,18 @@ export const timelineItems = [
     },
 ];
 
+export const backgroundIntro = {
+    color: { color: 'black' },
+    video: {
+        type: 'video',
+        url: intro,
+        metadata: {
+            width: 1280,
+            height: 1800,
+        }
+    },
+}
+
 export const backgroundNose = {
     color: { color: colorSkin },
     image: {
@@ -477,19 +478,49 @@ export const backgroundNose = {
         thumbnail_url: nose,
         metadata: {
             width: 320,
-            height: 540,
+            height: 320,
         },
     },
-    fit: 'cover',
+    fit: 'contain',
 }
 
 export const backgroundDarkBlueNoise = {
     color: { color: colorDarkBlue },
     image: {
         type: 'image',
-        name: 'tuile.gif',
-        url: tuileBlueNoise,
-        thumbnail_url: tuileBlueNoise,
+        name: 'tile-dark-blue-noise.gif',
+        url: tileDarkBlueNoise,
+        thumbnail_url: tileDarkBlueNoise,
+        metadata: {
+            width: 320,
+            height: 320,
+        },
+    },
+    repeat: true,
+}
+
+export const backgroundBlueNoise = {
+    color: { color: 'blue' },
+    image: {
+        type: 'image',
+        name: 'tile-blue-noise.gif',
+        url: tileBlueNoise,
+        thumbnail_url: tileBlueNoise,
+        metadata: {
+            width: 320,
+            height: 320,
+        },
+    },
+    repeat: true,
+}
+
+export const backgroundBlackNoise = {
+    color: { color: 'black' },
+    image: {
+        type: 'image',
+        name: 'tile-black-noise.gif',
+        url: tileBlackNoise,
+        thumbnail_url: tileBlackNoise,
         metadata: {
             width: 320,
             height: 320,
@@ -502,9 +533,9 @@ export const backgroundSkin = {
     color: { color: colorSkin },
     image: {
         type: 'image',
-        name: 'tuilePeau.jpg',
-        url: tuilePeau,
-        thumbnail_url: tuilePeau,
+        name: 'tileSkin.jpg',
+        url: tileSkin,
+        thumbnail_url: tileSkin,
         metadata: {
             width: 180,
             height: 180,
@@ -513,11 +544,25 @@ export const backgroundSkin = {
     repeat: true,
 }
 
-export const backgroundHugoMiroir = {
+export const backgroundFaces = {
+    color: { color: 'blue' },
+    image: {
+        type: 'image',
+        url: blueNoiseFaces,
+        thumbnail_url: blueNoiseFaces,
+        metadata: {
+            width: 1280,
+            height: 1800,
+        }
+    },
+    fit: 'cover'
+}
+
+export const backgroundHugoMirror = {
     color: { color: 'black' },
     video: {
         type: 'video',
-        url: hugoMiroir,
+        url: hugoMirror,
         metadata: {
             width: 1280,
             height: 1800,

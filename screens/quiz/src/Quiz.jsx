@@ -264,7 +264,7 @@ const QuizScreen = ({
                                             <Button
                                                 className={styles.button}
                                                 onClick={() => onAnswerClick(answerIndex)}
-                                                disabled={isPreview || answered}
+                                                disabled={isPreview}
                                                 borderStyle={
                                                     userAnswer || !answered
                                                         ? {

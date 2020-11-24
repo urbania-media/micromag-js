@@ -185,7 +185,7 @@ const SurveyScreen = ({
                                                         refButton={(el) => {
                                                             buttonsRefs.current[answerIndex] = el;
                                                         }}
-                                                        disabled={isPreview || answered}
+                                                        disabled={isPreview}
                                                         borderStyle={
                                                             userAnswer || !answered
                                                                 ? {
