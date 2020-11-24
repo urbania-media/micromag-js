@@ -160,7 +160,7 @@ const faceAFaceStory = {
             question: {
                 body:
                     'Dans quelle proportion les systèmes de reconnaissance faciale identifient-ils erronément les Noirs, les Asiatiques et les Autochtones?',
-                textStyle: header2,
+                textStyle: {...header2, fontSize: 34 },
             },
             answers: quiz3answers,
             result: {
