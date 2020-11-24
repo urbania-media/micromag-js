@@ -11,6 +11,9 @@ const props = {
         title: { body: title() },
         description: text('long'),
     })),
+    numbersStyle: {
+        fontSize: '3em',
+    },
     background: backgroundColor(),
 };
 

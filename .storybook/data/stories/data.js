@@ -391,7 +391,7 @@ export const rankingItems = [
 export const timelineItems = [
     {
         title: {
-            textStyle: header2,
+            textStyle: {...header2, color: colorYellow },
             body: 'Jour 1',
         },
         description: {
@@ -402,7 +402,7 @@ export const timelineItems = [
     },
     {
         title: {
-            textStyle: header2,
+            textStyle: {...header2, color: colorYellow },
             body: 'Jour 2',
         },
         description: {
@@ -413,7 +413,7 @@ export const timelineItems = [
     },
     {
         title: {
-            textStyle: header2,
+            textStyle: {...header2, color: colorYellow },
             body: 'Jour 3',
         },
         description: {
@@ -424,7 +424,7 @@ export const timelineItems = [
     },
     {
         title: {
-            textStyle: header2,
+            textStyle: {...header2, color: colorYellow },
             body: 'Jour 4',
         },
         description: {
@@ -435,7 +435,7 @@ export const timelineItems = [
     },
     {
         title: {
-            textStyle: header2,
+            textStyle: {...header2, color: colorYellow },
             body: 'Jour 5',
         },
         description: {
@@ -446,7 +446,7 @@ export const timelineItems = [
     },
     {
         title: {
-            textStyle: header2,
+            textStyle: {...header2, color: colorYellow },
             body: 'Resultat',
         },
         description: {

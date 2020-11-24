@@ -21,6 +21,7 @@ import styles from './styles.module.scss';
 const propTypes = {
     layout: PropTypes.oneOf(['side', 'over']),
     items: PropTypes.arrayOf(MicromagPropTypes.textElement),
+    numbersStyle: MicromagPropTypes.textStyle,
     ascending: PropTypes.bool,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
@@ -35,6 +36,7 @@ const propTypes = {
 const defaultProps = {
     layout: 'side',
     items: [null],
+    numbersStyle: null,
     ascending: false,
     spacing: 20,
     background: null,
@@ -49,6 +51,7 @@ const defaultProps = {
 const RankingScreen = ({
     layout,
     items,
+    numbersStyle,
     ascending,
     spacing,
     background,
@@ -158,7 +161,7 @@ const RankingScreen = ({
                         delay={transitionStagger * itemI}
                         disabled={!isView}
                     >
-                        {ascending ? itemI + 1 : itemsCount - itemI}
+                        <Text className={styles.rankText} body={`${ascending ? itemI + 1 : itemsCount - itemI}`} textStyle={numbersStyle} />
                     </Transitions>
                 </div>
                 <div className={styles.content}>

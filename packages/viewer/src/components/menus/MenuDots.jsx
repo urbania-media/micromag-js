@@ -65,8 +65,7 @@ const ViewerMenuDots = ({
                         <span
                             className={styles.dot}
                             style={{
-                                backgroundColor:
-                                    index <= current ? colorAccent : colorBackground,
+                                backgroundColor: index <= current ? colorAccent : colorBackground,
                             }}
                         />
                     </button>
