@@ -125,7 +125,7 @@ const Video = ({
                 height,
             } : null }
         >
-            <video ref={ref} src={url} autoPlay={autoPlay} loop={loop} />
+            <video ref={ref} src={url} autoPlay={autoPlay} loop={loop} muted={muted} />
         </div>
     );
 };
