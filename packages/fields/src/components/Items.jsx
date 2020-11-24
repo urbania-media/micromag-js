@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import React, { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
-// import classNames from 'classnames';
+import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import isFunction from 'lodash/isFunction';
@@ -9,7 +9,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, Empty, Label } from '@micromag/core/components';
 
-import FieldRow from './FieldRow';
+import Field from './Field';
 
 const propTypes = {
     name: PropTypes.string,
@@ -18,8 +18,8 @@ const propTypes = {
     noItemLabel: MicromagPropTypes.label,
     addItemLabel: MicromagPropTypes.label,
     itemFieldLabel: MicromagPropTypes.label,
-    children: PropTypes.func,
-    ItemComponent: PropTypes.elementType,
+    itemComponent: PropTypes.elementType,
+    itemsField: MicromagPropTypes.formField,
     className: PropTypes.string,
     gotoFieldForm: PropTypes.func,
     closeFieldForm: PropTypes.func,
@@ -44,11 +44,11 @@ const defaultProps = {
         <FormattedMessage
             defaultMessage="#{index}"
             description="Item label in items field"
-            values={{ index: index + 1 }}
+            values={{ index }}
         />
     ),
-    children: null,
-    ItemComponent: null,
+    itemComponent: null,
+    itemsField: null,
     className: null,
     gotoFieldForm: null,
     closeFieldForm: null,
@@ -62,8 +62,8 @@ const ItemsField = ({
     noItemLabel,
     addItemLabel,
     itemFieldLabel,
-    children,
-    ItemComponent,
+    itemComponent,
+    itemsField,
     className,
     onChange,
     gotoFieldForm,
@@ -108,46 +108,33 @@ const ItemsField = ({
         <div className={className}>
             {value !== null ? (
                 <div className="list-group">
-                    {value.map((itemValue, index) => {
-                        const itemProps = {
-                            name: `${name}.${index}`,
-                            value: itemValue,
-                            onChange: (newValue) => onItemChange(index, newValue),
-                            closeForm: closeForms[index],
-                            gotoFieldForm,
-                            closeFieldForm,
-                        };
-                        return (
-                            <div className="list-group-item py-2 px-2">
-                                <FieldRow
-                                    key={`item-${index}`}
-                                    label={
-                                        isFunction(itemFieldLabel) ? (
-                                            itemFieldLabel({ item: itemValue, index: index + 1 })
-                                        ) : (
-                                            <Label values={{ index: index + 1 }}>
-                                                {itemFieldLabel}
-                                            </Label>
-                                        )
-                                    }
-                                    name={`${name}.${index}`}
-                                    withForm
-                                    gotoForm={gotoForms[index]}
-                                    closeForm={closeForms[index]}
-                                >
-                                    {children !== null
-                                        ? children(itemValue, index, itemProps)
-                                        : null}
-                                    {ItemComponent !== null ? (
-                                        <ItemComponent {...itemProps} />
-                                    ) : null}
-                                </FieldRow>
-                            </div>
-                        );
-                    })}
+                    {value.map((itemValue, index) => (
+                        <Field
+                            component={itemComponent}
+                            {...itemsField}
+                            isListItem
+                            key={`item-${index}`}
+                            label={
+                                isFunction(itemFieldLabel) ? (
+                                    itemFieldLabel({ item: itemValue, index: index + 1 })
+                                ) : (
+                                    <Label values={{ index: index + 1 }}>{itemFieldLabel}</Label>
+                                )
+                            }
+                            name={`${name}.${index}`}
+                            value={itemValue}
+                            onChange={(newValue) => onItemChange(index, newValue)}
+                            closeForm={closeForms[index]}
+                            gotoForm={gotoForms[index]}
+                            gotoFieldForm={gotoFieldForm}
+                            closeFieldForm={closeFieldForm}
+                        />
+                    ))}
                 </div>
             ) : (
-                <Empty className="p-4">{noItemLabel}</Empty>
+                <Empty className="p-4">
+                    <Label>{noItemLabel}</Label>
+                </Empty>
             )}
             <div className="mt-2">
                 <Button
@@ -156,7 +143,7 @@ const ItemsField = ({
                     icon={<FontAwesomeIcon icon={faPlus} />}
                     onClick={onClickAdd}
                 >
-                    {addItemLabel}
+                    <Label>{addItemLabel}</Label>
                 </Button>
             </div>
         </div>

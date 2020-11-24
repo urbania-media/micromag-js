@@ -9,12 +9,12 @@
         margin-bottom: 10px;
     }
 
-    .options,
-    .answer {
+    .answers,
+    .items {
         position: relative;
     }
 
-    .option {
+    .item {
         padding: 5px 0;
         transition-property: opacity;
         transition-duration: 0.15s;
@@ -23,11 +23,11 @@
         &.rightAnswer {
             transition-property: transform;
 
-            &.userAnswer {
-                .resultIcon {
-                    background-color: $green;
-                }
+            // &.userAnswer {
+            .resultIcon {
+                background-color: $green;
             }
+            // }
         }
     }
 
@@ -36,7 +36,7 @@
         width: 100%;
         padding: 10px;
         border: 2px solid $gray-600;
-        
+
         &:disabled {
             opacity: 1;
             pointer-events: none;
@@ -81,9 +81,9 @@
     }
 
     &.showResults {
-        .option {
+        .item {
             opacity: 0;
-            
+
             &.rightAnswer {
                 opacity: 1;
             }
@@ -91,7 +91,7 @@
     }
 
     &.answerTransitionComplete {
-        .option {
+        .item {
             &.rightAnswer {
                 transition: none;
             }

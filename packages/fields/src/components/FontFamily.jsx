@@ -9,6 +9,8 @@ import { useTheme } from '@micromag/core/contexts';
 
 // import * as AppPropTypes from '../../lib/PropTypes';
 
+import FieldWithForm from './FieldWithForm';
+
 const propTypes = {
     value: PropTypes.string,
     systemFonts: PropTypes.arrayOf(PropTypes.string),
@@ -32,11 +34,9 @@ const defaultProps = {
 const FontFamily = ({
     systemFonts,
     value,
-    isForm,
-    isHorizontal,
-    className,
     onChange,
     closeForm,
+    ...props
 }) => {
     const { fonts: brandingFonts = [] } = useTheme();
     const valueName = value !== null && isObject(value) ? value.name || null : value;
@@ -52,8 +52,29 @@ const FontFamily = ({
         [brandingFonts, systemFonts],
     );
 
-    if (isForm) {
-        return (
+    return (
+        <FieldWithForm
+            value={value}
+            onChange={onChange}
+            label={valueName}
+            thumbnail={
+                value !== null ? (
+                    <strong
+                        className={classNames(['d-inline-block'])}
+                        style={{ fontFamily: getFontFamilyFromFont(value) }}
+                    >
+                        Aa
+                    </strong>
+                ) : null
+            }
+            noValueLabel={
+                <FormattedMessage
+                    defaultMessage="Select a font family..."
+                    description="No value label"
+                />
+            }
+            {...props}
+        >
             <div className="p-2">
                 {fontsGroups.map(({ title, fonts }) => (
                     <div>
@@ -97,54 +118,7 @@ const FontFamily = ({
                     </div>
                 ))}
             </div>
-        );
-    }
-
-    return (
-        <div
-            className={classNames([
-                'd-flex',
-                'align-items-center',
-                {
-                    [className]: className !== null,
-                },
-            ])}
-        >
-            {value !== null ? (
-                <>
-                    {isHorizontal ? (
-                        <span
-                            className={classNames([
-                                'text-monospace',
-                                'text-truncate',
-                                'small',
-                                'mr-2',
-                            ])}
-                        >
-                            {valueName}
-                        </span>
-                    ) : null}
-                    <strong
-                        className={classNames(['d-inline-block'])}
-                        style={{ fontFamily: getFontFamilyFromFont(value) }}
-                    >
-                        Aa
-                    </strong>
-                    {!isHorizontal ? (
-                        <span className={classNames(['text-monospace', 'text-truncate', 'ml-2'])}>
-                            {valueName}
-                        </span>
-                    ) : null}
-                </>
-            ) : (
-                <span className="text-muted">
-                    <FormattedMessage
-                        defaultMessage="Select a font family..."
-                        description="No value label"
-                    />
-                </span>
-            )}
-        </div>
+        </FieldWithForm>
     );
 };
 

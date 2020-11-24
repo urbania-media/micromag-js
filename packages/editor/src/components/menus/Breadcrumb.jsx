@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router';
 import { useIntl } from 'react-intl';
 import { Breadcrumb as BaseBreadcrumb } from '@micromag/core/components';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, isMessage } from '@micromag/core';
 import { useScreensManager, useFieldsManager } from '@micromag/core/contexts';
 
 import getFieldFromPath from '../../utils/getFieldFromPath';
@@ -44,8 +44,10 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
             const { fields = [] } = screensManager.getDefinition(type);
             const [screenFieldName, ...subFieldsPath] = field.split('/');
             const screenField = getFieldByName(fields, screenFieldName);
-            const { settings: screenFieldSettings = null} =
-                screenField !== null ? fieldsManager.getDefinition(screenField.type) || screenField : screenField;
+            const { settings: screenFieldSettings = null } =
+                screenField !== null
+                    ? fieldsManager.getDefinition(screenField.type) || screenField
+                    : screenField;
             const currentField = getFieldFromPath(
                 [screenFieldName, ...subFieldsPath],
                 fields,
@@ -59,11 +61,27 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
                 });
             }
             if (currentField !== null) {
-                fieldItems.push({
-                    label: currentField.label || null,
-                    url: `/${screenId}/${field}${form !== null ? `/${form}` : ''}`,
-                    active: false,
-                });
+                const lastPath =
+                    subFieldsPath.length > 0 ? subFieldsPath[subFieldsPath.length - 1] : null;
+                const currentFieldLabel =
+                    currentField.breadcrumbLabel || currentField.label || screenField.label;
+                if (lastPath !== null && lastPath.match(/^[0-9]+$/) !== null) {
+                    fieldItems.push({
+                        label: `${
+                            isMessage(currentFieldLabel)
+                                ? intl.formatMessage(currentFieldLabel)
+                                : currentFieldLabel
+                        } #${parseInt(lastPath, 10) + 1}`,
+                        url: `/${screenId}/${field}${form !== null ? `/${form}` : ''}`,
+                        active: false,
+                    });
+                } else {
+                    fieldItems.push({
+                        label: currentFieldLabel,
+                        url: `/${screenId}/${field}${form !== null ? `/${form}` : ''}`,
+                        active: false,
+                    });
+                }
             }
         }
 

@@ -8,21 +8,24 @@ import Number from './Number';
 
 const propTypes = {
     icon: PropTypes.node,
+    isHorizontal: PropTypes.number,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     icon: null,
+    isHorizontal: false,
     className: null,
 };
 
-const NumberWithIcon = ({ icon, className, ...props }) => {
+const NumberWithIcon = ({ icon, isHorizontal, className, ...props }) => {
     return (
         <div
             className={classNames([
                 'd-flex',
                 'align-items-center',
                 {
+                    'justify-content-end': isHorizontal,
                     [className]: className !== null,
                 },
             ])}

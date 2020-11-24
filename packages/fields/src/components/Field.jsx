@@ -18,6 +18,8 @@ const propTypes = {
     fields: MicromagPropTypes.formFields,
     isHorizontal: PropTypes.bool,
     isSection: PropTypes.bool,
+    isListItem: PropTypes.bool,
+    withForm: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     onChange: PropTypes.func,
     gotoFieldForm: PropTypes.func,
     closeFieldForm: PropTypes.func,
@@ -35,6 +37,8 @@ const defaultProps = {
     fields: undefined,
     isHorizontal: null,
     isSection: false,
+    isListItem: false,
+    withForm: null,
     onChange: null,
     gotoFieldForm: null,
     closeFieldForm: null,
@@ -52,13 +56,14 @@ const Field = ({
     fields: providedFields,
     isHorizontal,
     isSection,
+    isListItem,
+    withForm: providedWithForm,
     value,
     onChange,
     gotoFieldForm,
     closeFieldForm,
     className,
     labelClassName,
-    fieldRowClassName,
     ...props
 }) => {
     const fieldsManager = useFieldsManager();
@@ -69,6 +74,7 @@ const Field = ({
         settings = null,
         withoutLabel = false,
         withoutFieldRow = false,
+        withForm = providedWithForm,
         isList = false,
         ...fieldProps
     } = (type !== null ? fieldsManager.getDefinition(type) || null : null) || {
@@ -84,17 +90,17 @@ const Field = ({
         return null;
     }
 
+    const finalWithForm = withForm || FieldComponent.withForm || false;
     const finalIsHorizontal =
         isHorizontal !== null
             ? isHorizontal
-            : FieldComponent.isHorizontal || typeof FieldComponent.withForm !== 'undefined' || null;
+            : FieldComponent.isHorizontal || (finalWithForm !== false && isListItem) || null;
     const finalWithoutLabel = withoutLabel || FieldComponent.withoutLabel || false;
     const finalWithSettings =
         settings !== null ||
         (typeof FieldComponent.withSettings !== 'undefined' && FieldComponent.withSettings) ||
         typeof FieldComponent.settingsComponent !== 'undefined' ||
         false;
-    const finalWithForm = FieldComponent.withForm || false;
 
     const fieldElement = (
         <FieldComponent
@@ -125,6 +131,7 @@ const Field = ({
             help={help}
             isHorizontal={finalIsHorizontal || false}
             isSection={isSection}
+            isListItem={isListItem}
             withoutLabel={finalWithoutLabel}
             withSettings={finalWithSettings}
             withForm={finalWithForm}

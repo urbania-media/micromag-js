@@ -10,6 +10,10 @@ export default {
             label: defineMessage({
                 defaultMessage: 'Color',
                 description: 'Field label',
+            }),
+            breadcrumbLabel: defineMessage({
+                defaultMessage: 'Background color',
+                description: 'Field label',
             })
         },
         {
@@ -18,6 +22,10 @@ export default {
             label: defineMessage({
                 defaultMessage: 'Image',
                 description: 'Field label',
+            }),
+            breadcrumbLabel: defineMessage({
+                defaultMessage: 'Background image',
+                description: 'Field label',
             })
         },
         {
@@ -25,6 +33,10 @@ export default {
             type: 'video',
             label: defineMessage({
                 defaultMessage: 'Video',
+                description: 'Field label',
+            }),
+            breadcrumbLabel: defineMessage({
+                defaultMessage: 'Background video',
                 description: 'Field label',
             })
         }

@@ -9,26 +9,26 @@
         margin-bottom: 20px;
     }
 
-    .options,
-    .answer {
+    .answers,
+    .items {
         position: relative;
     }
 
-    .option {
+    .item {
         padding: 5px 0;
     }
 
-    .optionContent {
+    .itemContent {
         display: flex;
         align-items: center;
     }
 
-    .optionText {
+    .itemText {
         transition: color 0.5s ease;
-        color: $gray-600;        
+        color: $gray-600;
     }
 
-    .resultContainer {        
+    .resultContainer {
         flex-grow: 1;
         align-self: stretch;
         padding: 15px 0;
@@ -54,10 +54,10 @@
         left: 100%;
         margin-left: 5px;
         transform: translateY(-50%);
-        color: $gray-600;        
+        color: $gray-600;
     }
 
-    .optionInner {
+    .itemInner {
         width: 100%;
         transition: width 0.5s ease;
     }
@@ -75,7 +75,7 @@
         }
     }
 
-    .optionLabel {
+    .itemLabel {
         display: inline-block;
         padding: 10px;
     }

@@ -190,13 +190,9 @@ const Viewer = ({
     const onTap = useCallback(
         (e) => {
             const checkClickable = (el, maxDistance = 5, distance = 1) => {
-                const { tagName = null, parentNode = null, disabled = false } = el || {};
+                const { tagName = null, parentNode = null } = el || {};
 
                 if (tagName === 'BODY') {
-                    return false;
-                }
-
-                if (tagName === 'BUTTON' && disabled) {
                     return false;
                 }
 
@@ -250,14 +246,14 @@ const Viewer = ({
 
     const onDrag = useCallback(
         ({ swipe: [, swipeY], initial: [, iy] }) => {
-            
+
             if (swipeY !== 0) {
                 const swipeToBottom = swipeY > 0;
                 const swipeFromTop = iy < screenHeight / 5;
                 if (!swipeToBottom || swipeFromTop) {
                     setMenuOpened(swipeToBottom);
                 }
-                
+
             }
         },
         [setMenuOpened, screenHeight],

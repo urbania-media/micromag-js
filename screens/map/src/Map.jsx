@@ -37,7 +37,13 @@ const propTypes = {
 
 const defaultProps = {
     layout: 'normal',
-    map: null,
+    map: {
+        zoom: 9,
+        center: {
+            lat: 45.5,
+            lng: -73.56,
+        },
+    },
     markers: [],
     splash: null,
     openedMarkerSpacerHeight: 0.75,

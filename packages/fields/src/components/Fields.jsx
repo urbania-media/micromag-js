@@ -135,13 +135,10 @@ const Fields = ({
                         components={components}
                         isHorizontal={isHorizontal}
                         isSection={isSection}
+                        isListItem={isList || isFlushList}
                         className={classNames([
                             styles.field,
                             {
-                                'list-group-item': isList || isFlushList,
-                                'mb-0': isList || isFlushList,
-                                'py-2': isList || isFlushList,
-                                'px-2': isList || isFlushList,
                                 [styles.isSection]: isSection,
                                 [fieldClassName]: fieldClassName !== null,
                             },

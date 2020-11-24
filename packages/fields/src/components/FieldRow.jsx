@@ -10,6 +10,8 @@ import { Button, Label } from '@micromag/core/components';
 import FieldErrors from './FieldErrors';
 import FieldHelp from './FieldHelp';
 
+import styles from '../styles/field-row.module.scss';
+
 const propTypes = {
     label: MicromagPropTypes.label,
     errors: MicromagPropTypes.errors,
@@ -17,6 +19,7 @@ const propTypes = {
     children: PropTypes.node,
     isSection: PropTypes.bool,
     isHorizontal: PropTypes.bool,
+    isListItem: PropTypes.bool,
     withoutLabel: PropTypes.bool,
     withSettings: PropTypes.bool,
     withForm: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
@@ -33,6 +36,7 @@ const defaultProps = {
     children: null,
     isSection: false,
     isHorizontal: false,
+    isListItem: false,
     withoutLabel: false,
     withSettings: false,
     withForm: false,
@@ -49,6 +53,7 @@ const FieldRow = ({
     children,
     isSection,
     isHorizontal,
+    isListItem,
     withoutLabel,
     withSettings,
     withForm,
@@ -71,6 +76,10 @@ const FieldRow = ({
     const containerClassName = classNames([
         'form-group',
         {
+            'list-group-item': isListItem,
+            'mb-0': isListItem,
+            'py-2': isListItem,
+            'px-2': isListItem,
             [className]: className !== null,
         },
     ]);
@@ -83,6 +92,8 @@ const FieldRow = ({
                 col: !isHorizontal && withSettings,
                 'py-0': isHorizontal,
                 'text-truncate': isHorizontal,
+                'font-weight-normal': !isSection,
+                'font-weight-bold': isSection,
                 [labelClassName]: labelClassName !== null,
             })}
         >
@@ -103,9 +114,9 @@ const FieldRow = ({
 
     if (isHorizontal) {
         const rowInner = (
-            <span className={classNames(['form-row', 'align-items-center'])}>
+            <span className={classNames(['form-row', 'align-items-center', 'flex-nowrap'])}>
                 {labelElement}
-                <span className="col-auto ml-auto">{children}</span>
+                <span className={classNames(['col', styles.value])}>{children}</span>
                 {arrowElement}
                 {helpElement}
                 {errorsElement}
@@ -114,7 +125,15 @@ const FieldRow = ({
 
         return isClickable ? (
             <>
-                <button type="button" className={containerClassName} onClick={onClickRow}>
+                <button
+                    type="button"
+                    className={classNames([containerClassName, {
+                        [styles.resetButton]: !isListItem,
+                        'd-block': !isListItem,
+                        'p-2': !isListItem,
+                    }])}
+                    onClick={onClickRow}
+                >
                     {rowInner}
                 </button>
             </>

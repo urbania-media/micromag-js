@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
-import { isTextFilled } from '@micromag/core/utils';
+import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -28,8 +28,8 @@ const propTypes = {
         'image-title-description',
     ]),
     items: PropTypes.arrayOf(MicromagPropTypes.textElement),
-    bulletColor: PropTypes.string,
-    lineColor: PropTypes.string,
+    bulletColor: MicromagPropTypes.color,
+    lineColor: MicromagPropTypes.color,
     bulletShape: PropTypes.oneOf(['circle', 'square']),
     bulletFilled: PropTypes.bool,
     illustrated: PropTypes.bool,
@@ -46,8 +46,8 @@ const propTypes = {
 const defaultProps = {
     layout: 'normal',
     items: [null],
-    bulletColor: '#000',
-    lineColor: '#000',
+    bulletColor: null,
+    lineColor: null,
     bulletShape: 'circle',
     bulletFilled: true,
     illustrated: false,
@@ -233,15 +233,15 @@ const Timeline = ({
                                             },
                                         ])}
                                         style={{
-                                            backgroundColor: !topLineHidden ? lineColor : null,
+                                            ...(!topLineHidden ? getStyleFromColor(lineColor, 'backgroundColor') : null),
                                         }}
                                     />
                                     {type === 'title' ? (
                                         <div
                                             className={styles.bullet}
                                             style={{
-                                                borderColor: bulletColor,
-                                                backgroundColor: bulletFilled ? bulletColor : null,
+                                                ...getStyleFromColor(bulletColor, 'borderColor'),
+                                                ...(bulletFilled ? getStyleFromColor(bulletColor, 'backgroundColor') : null),
                                             }}
                                         />
                                     ) : null}
@@ -253,7 +253,7 @@ const Timeline = ({
                                             },
                                         ])}
                                         style={{
-                                            backgroundColor: !bottomLineHidden ? lineColor : null,
+                                            ...(!bottomLineHidden ? getStyleFromColor(lineColor, 'backgroundColor') : null),
                                         }}
                                     />
                                 </div>

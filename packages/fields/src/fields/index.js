@@ -1,3 +1,5 @@
+export { default as answer } from './answer';
+export { default as answers } from './answers';
 export { default as background } from './background';
 export { default as checkboxes } from './checkboxes';
 export { default as color } from './color';
@@ -6,7 +8,9 @@ export { default as fields } from './fields';
 export { default as fontFamily } from './font-family';
 export { default as fontSize } from './font-size';
 export { default as headingElement } from './heading-element';
+export { default as imageWithCaption } from './image-with-caption';
 export { default as image } from './image';
+export { default as imagesWithCaption } from './images-with-caption';
 export { default as images } from './images';
 export { default as letterSpacing } from './letter-spacing';
 export { default as lineHeight } from './line-height';

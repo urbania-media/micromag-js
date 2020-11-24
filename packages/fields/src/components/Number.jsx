@@ -13,6 +13,7 @@ const propTypes = {
     floatStep: PropTypes.number,
     float: PropTypes.bool,
     dataList: PropTypes.arrayOf(PropTypes.number),
+    isHorizontal: PropTypes.bool,
     className: PropTypes.string,
     onChange: PropTypes.func,
 };
@@ -27,6 +28,7 @@ const defaultProps = {
     floatStep: 0.1,
     float: false,
     dataList: null,
+    isHorizontal: false,
     className: null,
     onChange: null,
 };
@@ -41,6 +43,7 @@ const NumberField = ({
     floatStep,
     float,
     dataList,
+    isHorizontal,
     className,
     onChange,
 }) => {
@@ -55,6 +58,8 @@ const NumberField = ({
                 className={classNames([
                     'form-control',
                     {
+                        'w-auto': size !== null,
+                        'ml-auto': isHorizontal,
                         [className]: className !== null,
                     },
                 ])}

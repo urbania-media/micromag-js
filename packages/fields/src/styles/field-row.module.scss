@@ -1,0 +1,12 @@
+@import '~@micromag/core/scss/variables';
+@import './placeholders';
+
+.resetButton {
+    appearance: none;
+    border: 0;
+    background: transparent;
+}
+
+.value {
+    min-width: 0;
+}
