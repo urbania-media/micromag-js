@@ -25,15 +25,15 @@ export default {
         },
         {
             name: 'items',
-            type: 'items',
+            type: 'entries',
             label: defineMessage({
-                defaultMessage: 'Items',
-                description: 'Items field label',
+                defaultMessage: 'Entries',
+                description: 'Entries field label',
             }),
         },
         {
             name: 'ascending',
-            type: 'boolean',
+            type: 'toggle',
             label: defineMessage({
                 defaultMessage: 'Ascending',
                 description: 'Ascending field label',

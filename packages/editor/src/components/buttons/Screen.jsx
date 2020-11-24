@@ -51,6 +51,7 @@ const ScreenButton = ({
         <Button
             className={classNames([
                 styles.container,
+                'bg-secondary',
                 {
                     [styles.active]: active,
                     [className]: className !== null,

@@ -2,6 +2,8 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import orderBy from 'lodash/orderBy';
+import { useIntl } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { isMessage } from '@micromag/core/utils';
 import { Label } from '@micromag/core/components';
@@ -24,11 +26,12 @@ const defaultProps = {
 };
 
 const ScreenTypes = ({ screens, className, onClickItem }) => {
+    const intl = useIntl();
     const screensManager = useScreensManager();
     const finalDefinitions = screens || screensManager.getDefinitions();
     const groups = useMemo(
-        () =>
-            finalDefinitions.reduce((allGroups, definition) => {
+        () => {
+            const groupItems = finalDefinitions.reduce((allGroups, definition) => {
                 const { id, title, group = {} } = definition;
                 const { id: messageId } = group;
 
@@ -58,7 +61,9 @@ const ScreenTypes = ({ screens, className, onClickItem }) => {
                               items: [item],
                           },
                       ];
-            }, []),
+            }, []);
+            return orderBy(groupItems, ({ name }) => isMessage(name) ? intl.formatMessage(name) : name);
+        },
         [finalDefinitions],
     );
     return (
@@ -79,7 +84,7 @@ const ScreenTypes = ({ screens, className, onClickItem }) => {
                                 items={items}
                                 withPlaceholder
                                 itemClassName={styles.item}
-                                previewMinWidth={120}
+                                previewMinWidth={100}
                                 onClickItem={onClickItem}
                             />
                         </div>

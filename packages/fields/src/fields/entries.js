@@ -2,17 +2,17 @@ import { defineMessage } from 'react-intl';
 import Items from '../components/Items';
 
 export default {
-    id: 'images-with-caption',
+    id: 'entries',
     component: Items,
     noItemLabel: defineMessage({
-        defaultMessage: 'No image...',
+        defaultMessage: 'No entry...',
         description: 'Label when there is no item',
     }),
     addItemLabel: defineMessage({
-        defaultMessage: 'Add an image',
+        defaultMessage: 'Add an entry',
         description: 'Button label',
     }),
     itemsField: {
-        type: 'image-with-caption',
+        type: 'entry',
     },
 };
