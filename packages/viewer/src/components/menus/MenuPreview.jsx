@@ -2,8 +2,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShare, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { ScreenPreview } from '@micromag/core/components';
+import { ScreenPreview, Button } from '@micromag/core/components';
 
 import styles from '../../styles/menus/menu-preview.module.scss';
 
@@ -22,7 +24,7 @@ const propTypes = {
 const defaultProps = {
     screenWidth: null,
     screenHeight: null,
-    title: 'Titre du micromag',
+    title: null,
     items: [],
     current: 0,
     onClickItem: null,
@@ -47,7 +49,7 @@ const ViewerMenuPreview = ({
     const [thumbSize, setThumbSize] = useState(null);
     const firstScreenContainerRef = useRef(null);
 
-    useEffect( () => {
+    useEffect(() => {
         if (firstScreenContainerRef.current !== null) {
             const { offsetWidth, offsetHeight } = firstScreenContainerRef.current;
             setThumbSize({ width: offsetWidth, height: offsetHeight });
@@ -65,12 +67,12 @@ const ViewerMenuPreview = ({
         >
             <div className={styles.header}>
                 <div className={styles.title}>{title}</div>
-                <button type="button" className={styles.share}>
-                    Share
-                </button>
-                <button type="button" className={styles.close} onClick={onClose}>
-                    Close
-                </button>
+                <Button className={styles.button} onClick={() => {}}>
+                    <FontAwesomeIcon className={styles.icon} icon={faShare} />
+                </Button>
+                <Button className={styles.button} onClick={onClose}>
+                    <FontAwesomeIcon className={styles.icon} icon={faTimes} />
+                </Button>
             </div>
             <div className={styles.content}>
                 <nav className={styles.nav}>
@@ -90,14 +92,23 @@ const ViewerMenuPreview = ({
                                 }}
                             >
                                 <div className={styles.itemContent}>
-                                    <div className={styles.screenContainer} ref={ index === 0 ? firstScreenContainerRef : null }>
+                                    <div
+                                        className={styles.screenContainer}
+                                        ref={index === 0 ? firstScreenContainerRef : null}
+                                    >
                                         <div
                                             className={styles.screenContent}
-                                            style={thumbSize !== null ? {
-                                                width: screenWidth,
-                                                height: screenHeight,
-                                                transform: `scale(${thumbSize.width / screenWidth}, ${thumbSize.height / screenHeight})`,
-                                            } : null }
+                                            style={
+                                                thumbSize !== null
+                                                    ? {
+                                                          width: screenWidth,
+                                                          height: screenHeight,
+                                                          transform: `scale(${
+                                                              thumbSize.width / screenWidth
+                                                          }, ${thumbSize.height / screenHeight})`,
+                                                      }
+                                                    : null
+                                            }
                                         >
                                             <ScreenPreview
                                                 width={screenWidth}
@@ -105,7 +116,9 @@ const ViewerMenuPreview = ({
                                                 screen={item}
                                             />
                                         </div>
-                                        { current === index ? <div className={styles.activeScreenBorder} /> : null }
+                                        {current === index ? (
+                                            <div className={styles.activeScreenBorder} />
+                                        ) : null}
                                     </div>
                                 </div>
                                 <button

@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import React, { useCallback, useRef, useEffect, useMemo, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -60,7 +61,7 @@ const Viewer = ({
     scrollIndexHeightPercent,
     className,
 }) => {
-    const { components = [] } = story || {};
+    const { components = [], title = 'Story title' } = story || {};
 
     const contentRef = useRef(null);
     const scrollIndexChanged = useRef(false);
@@ -106,7 +107,9 @@ const Viewer = ({
         changeIndex(Math.min(components.length - 1, currentIndex + 1));
     }, [changeIndex]);
 
-    const [screensInteractionEnabled, setScreensInteractionEnabled] = useState(components.map(() => true));
+    const [screensInteractionEnabled, setScreensInteractionEnabled] = useState(
+        components.map(() => true),
+    );
     const currentScreenInteractionEnabled = screensInteractionEnabled[currentIndex];
 
     const onEnableInteraction = useCallback(() => {
@@ -143,27 +146,6 @@ const Viewer = ({
             }
         }
     }, [landscape, currentIndex, screenHeight]);
-
-    // Handle menu
-    const [menuOpened, setMenuOpened] = useState(false);
-
-    // Handle dot menu item click
-    const onClickDotsMenuItem = useCallback(() => {
-        setMenuOpened(!menuOpened);
-    }, [menuOpened, setMenuOpened]);
-
-    // handle preview menu item click
-    const onClickPreviewMenuItem = useCallback(
-        (index) => {
-            changeIndex(index);
-            setMenuOpened(false);
-        },
-        [setMenuOpened, changeIndex, landscape],
-    );
-
-    const onClickPreviewMenuClose = useCallback(() => {
-        setMenuOpened(false);
-    }, [setMenuOpened]);
 
     // Handle landscape scroll updating currentScreen @TODO use Observer
     const onContentScrolled = useCallback(() => {
@@ -207,18 +189,12 @@ const Viewer = ({
     // handle tap
     const onTap = useCallback(
         (e) => {
-
             const checkClickable = (el, maxDistance = 5, distance = 1) => {
-
-                const {tagName = null, parentNode = null} = el || {};
+                const { tagName = null, parentNode = null } = el || {};
 
                 if (tagName === 'BODY') {
                     return false;
                 }
-
-                // if (tagName === 'BUTTON' && disabled) {
-                //     return false;
-                // }
 
                 if (tagName === 'BUTTON' || tagName === 'A') {
                     return true;
@@ -229,7 +205,7 @@ const Viewer = ({
                 }
 
                 return false;
-            }
+            };
 
             if (checkClickable(e.target)) {
                 return;
@@ -244,7 +220,6 @@ const Viewer = ({
 
             let nextIndex = currentIndex;
 
-
             const contentEl = contentRef.current;
             const { left: contentX = 0 } = contentEl.getBoundingClientRect();
             const tapX = e.clientX;
@@ -257,15 +232,62 @@ const Viewer = ({
             }
             changeIndex(nextIndex);
         },
-        [onScreenChange, screenWidth, components, changeIndex, currentIndex, screensInteractionEnabled],
+        [
+            onScreenChange,
+            screenWidth,
+            components,
+            changeIndex,
+            currentIndex,
+            screensInteractionEnabled,
+        ],
     );
 
-    const bindDrag = useDrag((/* { down, swipe, movement: [, my], vxvy: [, vy] } */) => {
-        // console.log(down, swipe, my, vy);
-    });
+    const [menuOpened, setMenuOpened] = useState(false);
+
+    const onDrag = useCallback(
+        ({ swipe: [, swipeY], initial: [, iy] }) => {
+
+            if (swipeY !== 0) {
+                const swipeToBottom = swipeY > 0;
+                const swipeFromTop = iy < screenHeight / 5;
+                if (!swipeToBottom || swipeFromTop) {
+                    setMenuOpened(swipeToBottom);
+                }
+
+            }
+        },
+        [setMenuOpened, screenHeight],
+    );
+
+    const bindDrag = useDrag(onDrag, { enabled: !landscape });
+
+    // Handle dot menu item click
+    const onClickDotsMenuItem = useCallback(() => {
+        setMenuOpened(true);
+    }, [setMenuOpened]);
+
+    // handle preview menu item click
+    const onClickPreviewMenuItem = useCallback(
+        (index) => {
+            changeIndex(index);
+            setMenuOpened(false);
+        },
+        [setMenuOpened, changeIndex],
+    );
+
+    const onClickPreviewMenuClose = useCallback(() => {
+        setMenuOpened(false);
+    }, [setMenuOpened]);
 
     return (
         <ScreenSizeProvider size={screenSize}>
+            <Helmet>
+                <style type="text/css">
+                    {`body {
+                        overscroll-behavior: contain;
+                    }`}
+                </style>
+            </Helmet>
             <div
                 className={classNames([
                     styles.container,
@@ -273,14 +295,15 @@ const Viewer = ({
                     {
                         [styles.fullscreen]: fullscreen,
                         [styles.landscape]: landscape,
-                        [styles.menuOpened]: menuOpened,
                         [styles.hideMenu]: !currentScreenInteractionEnabled,
+                        [styles.menuOpened]: menuOpened,
                         [className]: className,
                     },
                 ])}
                 ref={containerRef}
+                {...(!landscape && currentScreenInteractionEnabled ? bindDrag() : null)}
             >
-                <div className={styles.menuDotsContainer} {...bindDrag()}>
+                <div className={styles.menuDotsContainer}>
                     <MenuDots
                         direction={landscape ? 'vertical' : 'horizontal'}
                         items={components}
@@ -290,6 +313,7 @@ const Viewer = ({
                     />
                 </div>
                 <MenuPreview
+                    title={title}
                     className={styles.menuPreview}
                     screenWidth={screenWidth}
                     screenHeight={screenHeight}
@@ -302,7 +326,7 @@ const Viewer = ({
                     ref={contentRef}
                     className={styles.content}
                     onScroll={landscape ? onContentScrolled : null}
-                    {...(!landscape ? { onClick: onTap } : null )}
+                    {...(!landscape ? { onClick: onTap } : null)}
                 >
                     {components.map((scr, i) => {
                         const current = i === currentIndex;
@@ -337,7 +361,15 @@ const Viewer = ({
                                 {viewerScreen}
                             </div>
                         ) : (
-                            <div key={key} style={{ transform: `translate3d(${screenWidth * (i - currentIndex)}px, 0, 0)` }} className={screenClass}>
+                            <div
+                                key={key}
+                                style={{
+                                    transform: `translate3d(${
+                                        screenWidth * (i - currentIndex)
+                                    }px, 0, 0)`,
+                                }}
+                                className={screenClass}
+                            >
                                 {viewerScreen}
                             </div>
                         );

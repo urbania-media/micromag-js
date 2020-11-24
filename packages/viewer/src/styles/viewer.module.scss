@@ -47,6 +47,12 @@
         min-height: 100%;
     }
 
+    &.menuOpened {
+        .menuPreview {
+            transform: translateY(100%);
+        }
+    }
+
     &.landscape {
         .menuDotsContainer {
             top: 0;
@@ -67,22 +73,16 @@
         .screen {
             position: relative;
         }
-    }
 
-    &.fullscreen {
-        @extend %fullscreen;
-    }
-
-    &.menuOpened {
-        .menuPreview {
-            transform: translateY(100%);
-        }
-
-        &.landscape {
+        &.menuOpened {
             .menuPreview {
                 transform: translateX(-100%);
             }
         }
+    }
+
+    &.fullscreen {
+        @extend %fullscreen;
     }
 
     &.hideMenu {

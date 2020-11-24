@@ -52,6 +52,6 @@ const verticalProps = {
     ]
 };
 
+export const horizontal = () => <Grid {...horizontalProps} spacing={10} />;
+export const vertical = () => <Grid {...verticalProps} spacing={10} />;
 export const withoutSpacing = () => <Grid {...horizontalProps} />;
-export const withSpacing = () => <Grid {...horizontalProps} spacing={10} />;
-export const verticalWithSpacing = () => <Grid {...verticalProps} spacing={10} />;

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import Button from './Button';
 
@@ -6,10 +7,20 @@ export default {
     title: 'Elements/Button',
 };
 
-const testStyle = {
-    color: '#000',
+const style = {
+    textStyle: {
+        color: 'yellow',
+        fontStyle: {
+            italic: true,
+        }
+    },
+    borderStyle: {
+        width: 2,
+        style: 'dashed',
+        color: 'yellow',
+    }
 };
 
 export const Default = () => <Button>Button</Button>;
 
-export const WithStyle = () => <Button style={testStyle} />;
+export const WithStyle = () => <Button {...style}>Button</Button>;

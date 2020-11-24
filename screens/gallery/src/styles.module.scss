@@ -35,9 +35,13 @@
         @extend %fullscreen;
     }
 
-    .legend {
+    .caption {
         padding: 10px 0;
     }
+
+    // .captionText {
+
+    // }
 
     .content {
         position: relative;

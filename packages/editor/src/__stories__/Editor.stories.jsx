@@ -18,9 +18,7 @@ export default {
     },
 };
 
-const defaultStory = {
-    components: faceAFace,
-};
+const defaultStory = faceAFace;
 
 const apiBaseUrl = `${window.location.protocol}//${window.location.host}/api`;
 

@@ -11,7 +11,7 @@ import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { isTextFilled } from '@micromag/core/utils';
+import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -216,6 +216,10 @@ const QuizScreen = ({
                         const isEmptyOption = isEdit && !hasAnswer;
                         const userAnswer = answerIndex === userAnswerIndex;
 
+                        const { label = null } = answer || {};
+                        const { textStyle = null } = label || {};
+                        const { color: labelColor = null } = textStyle || {};
+
                         return answerTransitionComplete && !rightAnswer ? null : (
                             <div
                                 key={`answer-${answerIndex}`}
@@ -261,6 +265,15 @@ const QuizScreen = ({
                                                 className={styles.button}
                                                 onClick={() => onAnswerClick(answerIndex)}
                                                 disabled={isPreview || answered}
+                                                borderStyle={
+                                                    userAnswer || !answered
+                                                        ? {
+                                                              width: 2,
+                                                              style: 'solid',
+                                                              ...getStyleFromColor(labelColor, 'color')
+                                                          }
+                                                        : null
+                                                }
                                             >
                                                 {rightAnswer ? (
                                                     <span className={styles.resultIcon}>
@@ -279,7 +292,7 @@ const QuizScreen = ({
                                                     </span>
                                                 ) : null}
                                                 <Text
-                                                    {...answer.label}
+                                                    {...label}
                                                     tag="span"
                                                     className={styles.optionLabel}
                                                 />

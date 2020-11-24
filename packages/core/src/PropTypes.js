@@ -159,6 +159,13 @@ export const color = PropTypes.shape({
     alpha: PropTypes.number,
 });
 
+export const borderStyle = PropTypes.shape({
+    width: PropTypes.number,
+    style: PropTypes.oneOf(['dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset', 'hidden']),
+    radius: PropTypes.number,
+    color,
+})
+
 export const margin = PropTypes.shape({
     top: PropTypes.number,
     bottom: PropTypes.number,
@@ -272,12 +279,12 @@ export const backgroundElement = PropTypes.shape({
     video: videoMedia,
 });
 
-export const imageElementWithLegend = PropTypes.shape({
+export const imageElementWithCaption = PropTypes.shape({
     image: imageMedia,
-    legend: textElement,
+    caption: textElement,
 });
 
-export const imageElementsWithLegend = PropTypes.arrayOf(imageElementWithLegend);
+export const imageElementsWithCaption = PropTypes.arrayOf(imageElementWithCaption);
 
 export const stackDirection = PropTypes.oneOf(['horizontal', 'vertical']);
 export const stackAlign = PropTypes.oneOf(['start', 'center', 'end']);

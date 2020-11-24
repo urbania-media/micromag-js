@@ -8,7 +8,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { isTextFilled } from '@micromag/core/utils';
+import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -138,9 +138,11 @@ const SurveyScreen = ({
                 <div className={styles.items}>
                     {answers.map((answer, answerIndex) => {
                         const hasAnswer = answer !== null;
-
                         const { label = null, percent = null } = answer || {};
+                        const { textStyle = null } = label || {};
+                        const { color: labelColor = null } = textStyle || {};
                         const hasAnswerLabel = isTextFilled(label);
+                        const userAnswer = userAnswerIndex === answerIndex;
 
                         return (
                             <div
@@ -148,7 +150,7 @@ const SurveyScreen = ({
                                 className={classNames([
                                     styles.item,
                                     {
-                                        [styles.userAnswered]: userAnswerIndex === answerIndex,
+                                        [styles.userAnswer]: userAnswer,
                                     },
                                 ])}
                             >
@@ -184,6 +186,15 @@ const SurveyScreen = ({
                                                             buttonsRefs.current[answerIndex] = el;
                                                         }}
                                                         disabled={isPreview || answered}
+                                                        borderStyle={
+                                                            userAnswer || !answered
+                                                                ? {
+                                                                      width: 2,
+                                                                      style: 'solid',
+                                                                      ...getStyleFromColor(labelColor, 'color')
+                                                                  }
+                                                                : null
+                                                        }
                                                     >
                                                         <span
                                                             className={styles.itemLabel}
@@ -191,7 +202,18 @@ const SurveyScreen = ({
                                                                 labelsRefs.current[answerIndex] = el;
                                                             }}
                                                         >
-                                                            <Text {...label} tag="span" />
+                                                            <Text
+                                                                {...label}
+                                                                textStyle={{
+                                                                    ...textStyle,
+                                                                    color:
+                                                                        userAnswer || !answered
+                                                                            ? labelColor
+                                                                            : null,
+                                                                }}
+                                                                tag="span"
+                                                                className={styles.itemText}
+                                                            />
                                                         </span>
                                                     </Button>
                                                 </div>
@@ -199,11 +221,21 @@ const SurveyScreen = ({
                                                     <div className={styles.resultContent}>
                                                         <div
                                                             className={styles.result}
-                                                            style={{ width: `${percent}%` }}
+                                                            style={{
+                                                                width: `${percent}%`,
+                                                                backgroundColor: userAnswer
+                                                                    ? labelColor
+                                                                    : null,
+                                                            }}
                                                         >
                                                             {withPercentLabels ? (
                                                                 <div
                                                                     className={styles.resultLabel}
+                                                                    style={{
+                                                                        color: userAnswer
+                                                                            ? labelColor
+                                                                            : null,
+                                                                    }}
                                                                 >{`${percent}%`}</div>
                                                             ) : null}
                                                         </div>

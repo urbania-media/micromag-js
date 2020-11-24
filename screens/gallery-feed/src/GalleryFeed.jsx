@@ -20,7 +20,7 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     layout: PropTypes.oneOf(['normal', 'reverse']),
-    images: MicromagPropTypes.imageElementsWithLegend,
+    images: MicromagPropTypes.imageElementsWithCaption,
     withCaptions: PropTypes.bool,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
@@ -86,9 +86,9 @@ const GalleryFeedScreen = ({
     const { width: firstImageRefWidth } = contentRect || {};
 
     finalImages.forEach((image, index) => {
-        const { media = null, caption = null } = image || {};
-        const hasImage = isImageFilled({ media });
-        const hasLegend = isTextFilled(caption);
+        const { caption = null } = image || {};
+        const hasImage = isImageFilled(image);
+        const hasCaption = isTextFilled(caption);
 
         const imageElement = (
             <ScreenElement
@@ -101,37 +101,41 @@ const GalleryFeedScreen = ({
                 isEmpty={!hasImage}
             >
                 <div className={styles.imageContainer} ref={index === 0 ? firstImageRef : null}>
-                    <Image media={media} width={firstImageRefWidth} onLoaded={onImageLoaded} />
+                    <Image
+                        {...image}
+                        width={firstImageRefWidth}
+                        onLoaded={onImageLoaded}
+                    />
                 </div>
             </ScreenElement>
         );
 
-        let legendElement = null;
+        let captionElement = null;
 
         if (withCaptions) {
             const marginTop = !isReversed || index > 0 ? spacing / 2 : 0;
             const marginBottom = isReversed || index < finalImages.length - 1 ? spacing / 2 : 0;
-            legendElement = (
+            captionElement = (
                 <ScreenElement
-                    key={`legend-${index}`}
+                    key={`caption-${index}`}
                     placeholder="shortText"
                     emptyLabel={
                         <FormattedMessage
-                            defaultMessage="Legend"
-                            description="Legend placeholder"
+                            defaultMessage="Caption"
+                            description="Caption placeholder"
                         />
                     }
                     emptyClassName={styles.empty}
-                    isEmpty={!hasLegend}
+                    isEmpty={!hasCaption}
                 >
                     <div
-                        className={styles.legend}
+                        className={styles.caption}
                         style={{
                             marginTop,
                             marginBottom,
                         }}
                     >
-                        <Text {...caption} />
+                        <Text {...caption} className={styles.captionText} />
                     </div>
                 </ScreenElement>
             );
@@ -139,13 +143,13 @@ const GalleryFeedScreen = ({
 
         if (isReversed) {
             if (withCaptions) {
-                items.push(legendElement);
+                items.push(captionElement);
             }
             items.push(imageElement);
         } else {
             items.push(imageElement);
             if (withCaptions) {
-                items.push(legendElement);
+                items.push(captionElement);
             }
         }
 

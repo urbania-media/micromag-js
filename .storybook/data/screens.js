@@ -30,10 +30,11 @@ export const basic = [
         id: uuid(),
         type: 'audio',
         layout: 'normal',
-        audio: audioMedia(),
+        audio: { media: audioMedia() },
         background: {
             color: '#00FF00',
         },
+        transitions: { in: 'fade', out: 'fade' }
     },
     // {
     //     id: uuid(),
@@ -113,7 +114,7 @@ export const basic = [
         markers: markers({ withImage: true }),
         splash: { body: 'Avec images' },
         background: {
-            color: '#FF0000',
+            color: '#0000FF',
         },
     },
     {
@@ -132,7 +133,7 @@ export const basic = [
             body: 'Et oui, la bonne réponse était "La bonne réponse". Quand même surprenant hen?'
         },
         background: {
-            color: '#0000FF',
+            color: '#00FF00',
         },
     },
     {
@@ -227,7 +228,8 @@ export const basic = [
         id: uuid(),
         type: 'video',
         layout: 'normal',
-        video: videoMedia(),
+        video: { media: videoMedia() },
+        withSeekBar: true,
         background: {
             color: '#FF00FF',
         },

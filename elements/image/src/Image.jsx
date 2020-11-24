@@ -26,8 +26,8 @@ const defaultProps = {
     width: null,
     height: null,
     objectFit: null,
-    containerStyle: {},
-    imageStyle: {},
+    containerStyle: { backgroundColor: 'rgba(0, 0, 0, 0.1)' },
+    imageStyle: { },
     className: null,
     imageClassName: null,
     onLoaded: null,
@@ -103,10 +103,20 @@ const Image = ({
         const ratioWidth = validHeight ? height * mediaRatio : null;
         const ratioHeight = validWidth ? width / mediaRatio : null;
 
+        let finalWidth = width !== null ? width : ratioWidth;
+        let finalHeight = height !== null ? height : ratioHeight;
+
+        if (finalWidth === null && finalHeight === null) {
+            finalWidth = mediaWidth !== null ? mediaWidth : null;
+            finalHeight = mediaHeight !== null ? mediaHeight : null;
+        }
+
         finalImageStyle = {
-            width: width !== null ? width : ratioWidth,
-            height: height !== null ? height : ratioHeight,
+            width: finalWidth,
+            height: finalHeight,
         };
+
+        finalContainerStyle = finalImageStyle;
     }
 
     finalContainerStyle = {

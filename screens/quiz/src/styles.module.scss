@@ -29,19 +29,13 @@
             }
             // }
         }
-
-        &.userAnswer {
-            .button {
-                background-color: $white;
-                color: $black;
-            }
-        }
     }
 
     .button {
         position: relative;
         width: 100%;
         padding: 10px;
+        border: 2px solid $gray-600;
 
         &:disabled {
             opacity: 1;

@@ -16,22 +16,16 @@
 
     .item {
         padding: 5px 0;
-
-        &.userAnswered {
-            .button {
-                background-color: $white;
-                color: $black;
-            }
-
-            .result {
-                background-color: $white;
-            }
-        }
     }
 
     .itemContent {
         display: flex;
         align-items: center;
+    }
+
+    .itemText {
+        transition: color 0.5s ease;
+        color: $gray-600;
     }
 
     .resultContainer {
@@ -51,7 +45,7 @@
     .result {
         position: relative;
         height: 100%;
-        background-color: $gray-500;
+        background-color: $gray-600;
     }
 
     .resultLabel {
@@ -60,6 +54,7 @@
         left: 100%;
         margin-left: 5px;
         transform: translateY(-50%);
+        color: $gray-600;
     }
 
     .itemInner {
@@ -71,6 +66,7 @@
         position: relative;
         width: 100%;
         padding: 0;
+        border: 2px solid $gray-600;
         text-align: left;
 
         &:disabled {

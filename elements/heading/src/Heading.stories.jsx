@@ -8,8 +8,11 @@ export default {
 
 export const normal = () => (
     <>
-        <Heading body="This is a heading 1" size={1} />
-        <Heading body="This is a heading 2" size={2} />
-        <Heading body="This is a heading 3" size={3} />
+        <Heading body="Heading 1" size={1} /><br/>
+        <Heading body="Heading 2" size={2} /><br/>
+        <Heading body="Heading 3" size={3} /><br/>
+        <Heading body="Heading 4" size={4} /><br/>
+        <Heading body="Heading 5" size={5} /><br/>
+        <Heading body="Heading 6" size={6} /><br/>
     </>
 );

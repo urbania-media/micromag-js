@@ -11,8 +11,7 @@ import styles from './styles.module.scss';
 const propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
-    fit: PropTypes.bool,
-    noResize: PropTypes.bool,
+    fit: PropTypes.oneOf(['contain', 'cover']),
     horizontalAlign: PropTypes.string,
     verticalAlign: PropTypes.string,
     repeat: PropTypes.bool,
@@ -31,8 +30,7 @@ const propTypes = {
 const defaultProps = {
     width: null,
     height: null,
-    fit: false,
-    noResize: false,
+    fit: null,
     horizontalAlign: 'center',
     verticalAlign: 'center',
     repeat: false,
@@ -52,7 +50,6 @@ const Background = ({
     width,
     height,
     fit,
-    noResize,
     horizontalAlign,
     verticalAlign,
     repeat,
@@ -84,12 +81,8 @@ const Background = ({
         finalStyle.backgroundRepeat = repeat ? 'repeat' : 'no-repeat';
         finalStyle.backgroundPosition = [horizontalAlign, verticalAlign].join(' ');
 
-        if (fit) {
-            finalStyle.backgroundSize = 'cover';
-        } else if (noResize) {
-            finalStyle.backgroundSize = 'auto';
-        } else {
-            finalStyle.backgroundSize = 'contain';
+        if (fit !== null) {
+            finalStyle.backgroundSize = fit;
         }
     }
 
