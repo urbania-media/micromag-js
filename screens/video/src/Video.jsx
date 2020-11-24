@@ -18,7 +18,7 @@ import styles from './styles.module.scss';
 const propTypes = {
     layout: PropTypes.oneOf(['full', 'center']),
     video: MicromagPropTypes.videoElement,
-    closedCaptions: MicromagPropTypes.closedCaptionsElement,
+    closedCaptions: MicromagPropTypes.closedCaptionsMedia,
     withSeekBar: PropTypes.bool,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
@@ -152,7 +152,7 @@ const VideoScreen = ({
                 {closedCaptions !== null ? (
                     <ClosedCaptions
                         className={styles.closedCaptions}
-                        {...closedCaptions}
+                        media={closedCaptions}
                         currentTime={currentTime}
                     />
                 ) : null}

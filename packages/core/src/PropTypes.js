@@ -279,12 +279,12 @@ export const backgroundElement = PropTypes.shape({
     video: videoMedia,
 });
 
-export const imageElementWithLegend = PropTypes.shape({
+export const imageElementWithCaption = PropTypes.shape({
     image: imageMedia,
-    legend: textElement,
+    caption: textElement,
 });
 
-export const imageElementsWithLegend = PropTypes.arrayOf(imageElementWithLegend);
+export const imageElementsWithCaption = PropTypes.arrayOf(imageElementWithCaption);
 
 export const stackDirection = PropTypes.oneOf(['horizontal', 'vertical']);
 export const stackAlign = PropTypes.oneOf(['start', 'center', 'end']);

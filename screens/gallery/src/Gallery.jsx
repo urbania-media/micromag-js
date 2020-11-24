@@ -52,7 +52,7 @@ const propTypes = {
     images: MicromagPropTypes.imageMedias,
     withCaptions: PropTypes.bool,
     spacing: PropTypes.number,
-    legendMaxLines: PropTypes.number,
+    captionMaxLines: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -67,7 +67,7 @@ const defaultProps = {
     withCaptions: false,
     images: [],
     spacing: 20,
-    legendMaxLines: 2,
+    captionMaxLines: 2,
     background: null,
     current: true,
     active: false,
@@ -85,7 +85,7 @@ const GalleryScreen = ({
     current,
     active,
     spacing,
-    legendMaxLines,
+    captionMaxLines,
     maxRatio,
     transitions,
     transitionStagger,
@@ -134,7 +134,7 @@ const GalleryScreen = ({
         const { caption = null } = image || {};
 
         const hasImage = isImageFilled(image);
-        const hasLegend = isTextFilled(caption);
+        const hasCaption = isTextFilled(caption);
 
         return (
             <div key={`item-${itemI}`} className={styles.gridItem}>
@@ -192,15 +192,15 @@ const GalleryScreen = ({
                             }
                             emptyLabel={
                                 <FormattedMessage
-                                    defaultMessage="Legend"
-                                    description="Legend placeholder"
+                                    defaultMessage="Caption"
+                                    description="Caption placeholder"
                                 />
                             }
                             emptyClassName={styles.empty}
-                            isEmpty={!hasLegend}
+                            isEmpty={!hasCaption}
                         >
-                            <div className={styles.legend}>
-                                <Text {...caption} className={styles.legendText} lineClamp={legendMaxLines} />
+                            <div className={styles.caption}>
+                                <Text {...caption} className={styles.captionText} lineClamp={captionMaxLines} />
                             </div>
                         </ScreenElement>
                     </Transitions>

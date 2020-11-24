@@ -221,7 +221,7 @@ const faceAFaceStory = {
             type: 'title-subtitle',
             layout: 'middle',
             title: {
-                body: 'Top 3 des secrets des <br/>super-recognizers',
+                body: 'Top 3 des secrets des<br/>super-recognizers',
                 textStyle: header1,
             },
             subtitle: {

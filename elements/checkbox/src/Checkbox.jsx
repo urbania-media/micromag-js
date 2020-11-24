@@ -23,6 +23,9 @@ const defaultProps = {
 };
 
 const Checkbox = ({ option, value, onChange, checkboxStyle, className }) => {
+
+    const { body } = option;
+
     return (
         <div
             className={classNames([
@@ -37,7 +40,7 @@ const Checkbox = ({ option, value, onChange, checkboxStyle, className }) => {
                 className={classNames([
                     styles.label,
                     {
-                        active: option.props.body === value,
+                        active: body === value,
                     },
                 ])}
             >
@@ -46,10 +49,10 @@ const Checkbox = ({ option, value, onChange, checkboxStyle, className }) => {
                     type="checkbox"
                     autoComplete="off"
                     value={value}
-                    checked={option.props.body === value}
+                    checked={body === value}
                     onChange={e => {
                         if (e.currentTarget.checked && onChange !== null) {
-                            onChange(option.props.body);
+                            onChange(body);
                         }
                     }}
                 />

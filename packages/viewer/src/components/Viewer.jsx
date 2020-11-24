@@ -253,7 +253,7 @@ const Viewer = ({
             
             if (swipeY !== 0) {
                 const swipeToBottom = swipeY > 0;
-                const swipeFromTop = iy < screenHeight / 4;
+                const swipeFromTop = iy < screenHeight / 5;
                 if (!swipeToBottom || swipeFromTop) {
                     setMenuOpened(swipeToBottom);
                 }
