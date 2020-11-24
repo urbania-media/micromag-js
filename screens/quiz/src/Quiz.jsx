@@ -220,6 +220,10 @@ const QuizScreen = ({
                         const rightAnswer = optionI === answerIndex;
                         const userAnswer = optionI === userAnswerIndex;
 
+                        const { label = null } = option || {};
+                        const { textStyle = null } = label || {};
+                        const { color: labelColor = 'white' } = textStyle || {};
+
                         return answerTransitionComplete && !rightAnswer ? null : (
                             <div
                                 key={`option-${optionI}`}
@@ -265,6 +269,15 @@ const QuizScreen = ({
                                                 className={styles.button}
                                                 onClick={() => onOptionClick(optionI)}
                                                 disabled={isPreview || answered}
+                                                borderStyle={
+                                                    userAnswer || !answered
+                                                        ? {
+                                                              width: 2,
+                                                              style: 'solid',
+                                                              color: labelColor,
+                                                          }
+                                                        : null
+                                                }
                                             >
                                                 {rightAnswer ? (
                                                     <span className={styles.resultIcon}>
@@ -272,7 +285,7 @@ const QuizScreen = ({
                                                     </span>
                                                 ) : null}
                                                 <Text
-                                                    {...option.label}
+                                                    {...label}
                                                     tag="span"
                                                     className={styles.optionLabel}
                                                 />

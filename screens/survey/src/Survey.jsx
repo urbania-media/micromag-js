@@ -140,7 +140,10 @@ const SurveyScreen = ({
                         const hasOption = option !== null;
 
                         const { label = null, percent = null } = option || {};
+                        const { textStyle = null } = label || {};
+                        const { color: labelColor = 'white' } = textStyle || {};
                         const hasOptionLabel = isTextFilled(label);
+                        const userAnswer = userAnswerIndex === optionI;
 
                         return (
                             <div
@@ -148,7 +151,7 @@ const SurveyScreen = ({
                                 className={classNames([
                                     styles.option,
                                     {
-                                        [styles.userAnswered]: userAnswerIndex === optionI,
+                                        [styles.userAnswer]: userAnswer,
                                     },
                                 ])}
                             >
@@ -184,6 +187,15 @@ const SurveyScreen = ({
                                                             buttonsRefs.current[optionI] = el;
                                                         }}
                                                         disabled={isPreview || answered}
+                                                        borderStyle={
+                                                            userAnswer || !answered
+                                                                ? {
+                                                                      width: 2,
+                                                                      style: 'solid',
+                                                                      color: labelColor,
+                                                                  }
+                                                                : null
+                                                        }
                                                     >
                                                         <span
                                                             className={styles.optionLabel}
@@ -191,7 +203,18 @@ const SurveyScreen = ({
                                                                 labelsRefs.current[optionI] = el;
                                                             }}
                                                         >
-                                                            <Text {...label} tag="span" />
+                                                            <Text
+                                                                {...label}
+                                                                textStyle={{
+                                                                    ...textStyle,
+                                                                    color:
+                                                                        userAnswer || !answered
+                                                                            ? labelColor
+                                                                            : null,
+                                                                }}
+                                                                tag="span"
+                                                                className={styles.optionText}
+                                                            />
                                                         </span>
                                                     </Button>
                                                 </div>
@@ -199,11 +222,21 @@ const SurveyScreen = ({
                                                     <div className={styles.resultContent}>
                                                         <div
                                                             className={styles.result}
-                                                            style={{ width: `${percent}%` }}
+                                                            style={{
+                                                                width: `${percent}%`,
+                                                                backgroundColor: userAnswer
+                                                                    ? labelColor
+                                                                    : null,
+                                                            }}
                                                         >
                                                             {withPercentLabels ? (
                                                                 <div
                                                                     className={styles.resultLabel}
+                                                                    style={{
+                                                                        color: userAnswer
+                                                                            ? labelColor
+                                                                            : null,
+                                                                    }}
                                                                 >{`${percent}%`}</div>
                                                             ) : null}
                                                         </div>

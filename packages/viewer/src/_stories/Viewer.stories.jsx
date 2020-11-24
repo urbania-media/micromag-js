@@ -14,10 +14,8 @@ const props = {
     fullscreen: true,
 };
 const faceAFaceProps = {
-    screenId: faceAFace[0].id,
-    story: {
-        components: faceAFace,
-    },
+    screenId: faceAFace.components[0].id,
+    story: faceAFace,
     fullscreen: true,
 };
 

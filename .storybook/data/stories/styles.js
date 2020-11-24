@@ -71,6 +71,6 @@ export const backgroundImage = ({ rand = false } = {}) => {
                 height: 1000,
             },
         },
-        fit: true,
+        fit: 'cover',
     };
 };

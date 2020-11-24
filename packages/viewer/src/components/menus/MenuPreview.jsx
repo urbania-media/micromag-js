@@ -24,7 +24,7 @@ const propTypes = {
 const defaultProps = {
     screenWidth: null,
     screenHeight: null,
-    title: 'Titre du micromag',
+    title: null,
     items: [],
     current: 0,
     onClickItem: null,

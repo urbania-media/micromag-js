@@ -14,7 +14,7 @@ const getStyleFromText = (value) => {
         align = null,
         color = null,
     } = value;
-    const { italic = false, bold = false, underline = false, transform: textTransform } = fontStyle || {};
+    const { italic = false, bold = false, underline = false, transform: textTransform, outline = false, } = fontStyle || {};
     return {
         fontFamily: getFontFamilyFromFont(fontFamily),
         fontSize,
@@ -25,7 +25,8 @@ const getStyleFromText = (value) => {
         textAlign: align,
         lineHeight,
         letterSpacing,
-        ...getStyleFromColor(color, 'color'),
+        WebkitTextStroke: outline ? `2px ${getStyleFromColor(color, 'color').color}` : null,
+        ...(outline ? { color: 'transparent' } : getStyleFromColor(color, 'color')),
     };
 };
 

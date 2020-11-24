@@ -7,6 +7,33 @@ import man2 from './assets-face-a-face/2.jpg';
 import man3 from './assets-face-a-face/3.jpg';
 import man4 from './assets-face-a-face/4.jpg';
 import man5 from './assets-face-a-face/5.jpg';
+import nose from './assets-face-a-face/nose.jpg';
+import introBg from './assets-face-a-face/intro-bg.jpg';
+import tuileBlueNoise from './assets-face-a-face/tuile-blue-noise.gif';
+import tuilePeau from './assets-face-a-face/tuile-peau.jpg';
+
+export const colorDarkBlue = '#242235';
+export const colorPink = '#ff4dff';
+export const colorGreen = '#66CCB8';
+export const colorSkin = '#d3a88e';
+
+const surveyLabelStyle = {...header3, color: colorGreen };
+const quizLabelStyle = {...header3, color: 'white' };
+
+export const backgroundIntro = {
+    color: { color: colorPink },
+    image: {
+        type: 'image',
+        name: 'intro-bg.jpg',
+        url: introBg,
+        thumbnail_url: introBg,
+        metadata: {
+            width: 320,
+            height: 540,
+        },
+    },
+    fit: 'cover',
+}
 
 export const tommy = {
     url: tommyBefore,
@@ -97,47 +124,47 @@ export const survey1options = [
         id: uuid(),
         label: {
             body: 'Mes yeux',
-            textStyle: header3,
+            textStyle: surveyLabelStyle,
         },
         percent: 10,
     },
     {
         id: uuid(),
         label: {
-            textStyle: header3,
             body: 'Mon nez',
+            textStyle: surveyLabelStyle,
         },
         percent: 20,
     },
     {
         id: uuid(),
         label: {
-            textStyle: header3,
             body: 'Mes Oreilles',
+            textStyle: surveyLabelStyle,
         },
         percent: 12.5,
     },
     {
         id: uuid(),
         label: {
-            textStyle: header3,
             body: 'Ma bouche',
+            textStyle: surveyLabelStyle,
         },
         percent: 5,
     },
     {
         id: uuid(),
         label: {
-            textStyle: header3,
             body: 'Rien du tout',
+            textStyle: surveyLabelStyle,       
         },
         percent: 15,
     },
     {
         id: uuid(),
         label: {
-            textStyle: header3,
-            body: 'autre',
+            body: 'Autre',
+            textStyle: surveyLabelStyle,      
         },
         percent: 37.5,
     },
@@ -147,28 +174,28 @@ export const quiz1options = [
     {
         id: uuid(),
         label: {
-            textStyle: header3,
+            textStyle: quizLabelStyle,
             body: 'Deux minutes, pareil comme dans le film Face/Off',
         },
     },
     {
         id: uuid(),
         label: {
-            textStyle: header3,
+            textStyle: quizLabelStyle,
             body: 'Deux heures et demi',
         },
     },
     {
         id: uuid(),
         label: {
-            textStyle: header3,
+            textStyle: quizLabelStyle,
             body: '18 heures',
         },
     },
     {
         id: uuid(),
         label: {
-            textStyle: header3,
+            textStyle: quizLabelStyle,
             body: '36 heures',
         },
     },
@@ -178,28 +205,28 @@ export const quiz2options = [
     {
         id: uuid(),
         label: {
-            textStyle: header3,
+            textStyle: quizLabelStyle,
             body: '1',
         },
     },
     {
         id: uuid(),
         label: {
-            textStyle: header3,
+            textStyle: quizLabelStyle,
             body: '2',
         },
     },
     {
         id: uuid(),
         label: {
-            textStyle: header3,
+            textStyle: quizLabelStyle,
             body: '3',
         },
     },
     {
         id: uuid(),
         label: {
-            textStyle: header3,
+            textStyle: quizLabelStyle,
             body: '4',
         },
     },
@@ -209,28 +236,28 @@ export const quiz3options = [
     {
         id: uuid(),
         label: {
-            textStyle: header3,
+            textStyle: quizLabelStyle,
             body: 'Une à deux fois plus',
         },
     },
     {
         id: uuid(),
         label: {
-            textStyle: header3,
+            textStyle: quizLabelStyle,
             body: '5 fois plus',
         },
     },
     {
         id: uuid(),
         label: {
-            textStyle: header3,
+            textStyle: quizLabelStyle,
             body: '1000 fois plus',
         },
     },
     {
         id: uuid(),
         label: {
-            textStyle: header3,
+            textStyle: quizLabelStyle,
             body: '10 à 100 fois plus',
         },
     },
@@ -240,28 +267,28 @@ export const quiz4options = [
     {
         id: uuid(),
         label: {
-            textStyle: header3,
+            textStyle: quizLabelStyle,
             body: 'Un sourire Colgate',
         },
     },
     {
         id: uuid(),
         label: {
-            textStyle: header3,
+            textStyle: quizLabelStyle,
             body: 'Un sourire de Pan Am',
         },
     },
     {
         id: uuid(),
         label: {
-            textStyle: header3,
+            textStyle: quizLabelStyle,
             body: 'Un sourire de faux cul',
         },
     },
     {
         id: uuid(),
         label: {
-            textStyle: header3,
+            textStyle: quizLabelStyle,
             body: 'Un hide the pain Harold',
         },
     },
@@ -271,28 +298,28 @@ export const quiz5options = [
     {
         id: uuid(),
         label: {
-            textStyle: header3,
+            textStyle: quizLabelStyle,
             body: '307 000',
         },
     },
     {
         id: uuid(),
         label: {
-            textStyle: header3,
+            textStyle: quizLabelStyle,
             body: '1364',
         },
     },
     {
         id: uuid(),
         label: {
-            textStyle: header3,
+            textStyle: quizLabelStyle,
             body: '1.5 millions',
         },
     },
     {
         id: uuid(),
         label: {
-            textStyle: header3,
+            textStyle: quizLabelStyle,
             body: '229',
         },
     },
@@ -302,28 +329,28 @@ export const quiz6options = [
     {
         id: uuid(),
         label: {
-            textStyle: header3,
+            textStyle: quizLabelStyle,
             body: '2 millions',
         },
     },
     {
         id: uuid(),
         label: {
-            textStyle: header3,
+            textStyle: quizLabelStyle,
             body: '75 000',
         },
     },
     {
         id: uuid(),
         label: {
-            textStyle: header3,
+            textStyle: quizLabelStyle,
             body: '300 000',
         },
     },
     {
         id: uuid(),
         label: {
-            textStyle: header3,
+            textStyle: quizLabelStyle,
             body: '200 millions',
         },
     },
@@ -433,3 +460,48 @@ export const timelineItems = [
         },
     },
 ];
+
+export const backgroundNose = {
+    color: { color: colorSkin },
+    image: {
+        type: 'image',
+        name: 'nose.jpg',
+        url: nose,
+        thumbnail_url: nose,
+        metadata: {
+            width: 320,
+            height: 540,
+        },
+    },
+    fit: 'cover',
+}
+
+export const backgroundDarkBlueNoise = {
+    color: { color: colorDarkBlue },
+    image: {
+        type: 'image',
+        name: 'tuile.gif',
+        url: tuileBlueNoise,
+        thumbnail_url: tuileBlueNoise,
+        metadata: {
+            width: 320,
+            height: 320,
+        },
+    },
+    repeat: true,
+}
+
+export const backgroundSkin = {
+    color: { color: colorSkin },
+    image: {
+        type: 'image',
+        name: 'tuilePeau.jpg',
+        url: tuilePeau,
+        thumbnail_url: tuilePeau,
+        metadata: {
+            width: 180,
+            height: 180,
+        }
+    },
+    repeat: true,
+}

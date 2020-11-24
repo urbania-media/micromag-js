@@ -61,7 +61,7 @@ const Viewer = ({
     scrollIndexHeightPercent,
     className,
 }) => {
-    const { components = [] } = story || {};
+    const { components = [], title = 'Story title' } = story || {};
 
     const contentRef = useRef(null);
     const scrollIndexChanged = useRef(false);
@@ -317,6 +317,7 @@ const Viewer = ({
                     />
                 </div>
                 <MenuPreview
+                    title={title}
                     className={styles.menuPreview}
                     screenWidth={screenWidth}
                     screenHeight={screenHeight}

@@ -159,6 +159,13 @@ export const color = PropTypes.shape({
     alpha: PropTypes.number,
 });
 
+export const borderStyle = PropTypes.shape({
+    width: PropTypes.number,
+    style: PropTypes.oneOf(['dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset', 'hidden']),
+    radius: PropTypes.number,
+    color,
+})
+
 export const margin = PropTypes.shape({
     top: PropTypes.number,
     bottom: PropTypes.number,
