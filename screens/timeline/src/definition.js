@@ -27,10 +27,10 @@ export default [
             },
             {
                 name: 'items',
-                type: 'items',
+                type: 'entries',
                 label: defineMessage({
-                    defaultMessage: 'Items',
-                    description: 'Items field label',
+                    defaultMessage: 'Entries',
+                    description: 'Field label',
                 }),
             },
             {
@@ -67,10 +67,10 @@ export default [
             },
             {
                 name: 'items',
-                type: 'items',
+                type: 'entries-with-image',
                 label: defineMessage({
-                    defaultMessage: 'Items',
-                    description: 'Items field label',
+                    defaultMessage: 'Entries',
+                    description: 'Field label',
                 }),
             },
             {

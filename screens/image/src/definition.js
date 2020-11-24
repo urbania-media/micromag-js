@@ -202,6 +202,10 @@ export default [
     {
         id: 'image-legend',
         type: 'screen',
+        group: defineMessage({
+            defaultMessage: 'Images',
+            description: 'Images screen group',
+        }),
         title: defineMessage({
             defaultMessage: 'ImageLegend',
             description: 'ImageLegend screen title',
