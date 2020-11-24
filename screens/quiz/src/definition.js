@@ -25,36 +25,26 @@ export default {
         },
         {
             name: 'question',
-            type: 'text-element',
+            type: 'heading-element',
             label: defineMessage({
                 defaultMessage: 'Question',
                 description: 'Question field label',
             }),
         },
         {
-            // [{ id:number, label:String }, ....]
-            name: 'options',
-            type: 'options',
+            name: 'answers',
+            type: 'answers',
             label: defineMessage({
-                defaultMessage: 'Options',
-                description: 'Options field label',
-            }),
-        },
-        {
-            // index of options
-            name: 'answer-index',
-            type: 'number',
-            label: defineMessage({
-                defaultMessage: 'Answer Index',
-                description: 'Answer Index field label',
+                defaultMessage: 'Answers',
+                description: 'Field label',
             }),
         },
         {
             name: 'result',
-            type: 'result',
+            type: 'text-element',
             label: defineMessage({
                 defaultMessage: 'Result',
-                description: 'Result field label',
+                description: 'Field label',
             }),
         },
         {

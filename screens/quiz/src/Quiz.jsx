@@ -25,14 +25,13 @@ import styles from './styles.module.scss';
 const propTypes = {
     layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split']),
     question: MicromagPropTypes.textElement,
-    options: PropTypes.arrayOf(
+    answers: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number,
             label: MicromagPropTypes.textElement,
-            answer: PropTypes.bool,
+            good: PropTypes.bool,
         }),
     ),
-    answerIndex: PropTypes.number,
     result: PropTypes.shape({
         image: MicromagPropTypes.imageElement,
         text: MicromagPropTypes.textElement,
@@ -52,8 +51,7 @@ const propTypes = {
 const defaultProps = {
     layout: 'top',
     question: null,
-    options: null,
-    answerIndex: null,
+    answers: null,
     result: null,
     spacing: 20,
     showResultsDelay: 750,
@@ -70,8 +68,7 @@ const defaultProps = {
 const QuizScreen = ({
     layout,
     question,
-    options,
-    answerIndex,
+    answers,
     result,
     spacing,
     showResultsDelay,
@@ -95,28 +92,29 @@ const QuizScreen = ({
     const [showResults, setShowResults] = useState(false);
 
     const answered = userAnswerIndex !== null;
-    const hasUserAnsweredRight = answered ? userAnswerIndex === answerIndex : null;
+    const { good: hasUserAnsweredRight = false } =
+        userAnswerIndex !== null ? answers[userAnswerIndex] : {};
 
     const isSplitted = layout === 'split';
     const verticalAlign = isSplitted ? null : layout;
 
-    const onOptionClick = useCallback(
-        (optionIndex) => {
+    const onAnswerClick = useCallback(
+        (answerIndex) => {
             let timeout = null;
             if (userAnswerIndex === null) {
-                setUserAnswerIndex(optionIndex);
+                setUserAnswerIndex(answerIndex);
                 timeout = setTimeout(setShowResults, showResultsDelay, true);
             }
 
             return () => {
                 if (timeout !== null) {
                     clearTimeout(timeout);
-                }                
-            }
+                }
+            };
         },
         [userAnswerIndex, setUserAnswerIndex, showResultsDelay],
     );
-    
+
     // @TODO update scale + inverted scale inside instead of height for best performance
 
     // we get .answer's current and future height to animate its height
@@ -133,11 +131,7 @@ const QuizScreen = ({
         const rightAnswerEl = rightAnswerRef.current;
         const resultEl = resultRef.current;
 
-        if (
-            answerEl !== null &&
-            rightAnswerEl !== null &&
-            resultEl !== null
-        ) {
+        if (answerEl !== null && rightAnswerEl !== null && resultEl !== null) {
             const answerHeight = answerEl.offsetHeight;
             const rightAnswerY = rightAnswerEl.offsetTop;
             const rightAnswerHeight = rightAnswerEl.offsetHeight;
@@ -155,7 +149,7 @@ const QuizScreen = ({
 
     // when the animation is done, we set a state to remove animations props
     // .results' position changes from absolute to relative
-    // the wrong options are removed from DOM
+    // the wrong answers are removed from DOM
 
     const [answerTransitionComplete, setAnswerTransitionComplete] = useState(false);
 
@@ -200,32 +194,34 @@ const QuizScreen = ({
 
     items.push(
         <div
-            key="answer"
-            className={styles.answer}
+            key="answers"
+            className={styles.answers}
             ref={answerRef}
-            style={answerTransitionProps !== null && !answerTransitionComplete && (isView || isEdit) ? {
-                transitionDuration: `${resultsTransitionDuration}ms`,
-                height: !showResults
-                    ? answerTransitionProps.answerInitialHeight
-                    : answerTransitionProps.answerAnsweredHeight,
-            } : null }
+            style={
+                answerTransitionProps !== null && !answerTransitionComplete && (isView || isEdit)
+                    ? {
+                          transitionDuration: `${resultsTransitionDuration}ms`,
+                          height: !showResults
+                              ? answerTransitionProps.answerInitialHeight
+                              : answerTransitionProps.answerAnsweredHeight,
+                      }
+                    : null
+            }
         >
-            {options !== null ? (// Options
-                <div
-                    className={styles.options}
-                >
-                    {options.map((option, optionI) => {
-                        const hasOption = option !== null;
-                        const isEmptyOption = isEdit && !hasOption;
-                        const rightAnswer = optionI === answerIndex;
-                        const userAnswer = optionI === userAnswerIndex;
+            {answers !== null ? (
+                <div className={styles.items}>
+                    {answers.map((answer, answerIndex) => {
+                        const hasAnswer = answer !== null;
+                        const { good: rightAnswer = false } = answer || {};
+                        const isEmptyOption = isEdit && !hasAnswer;
+                        const userAnswer = answerIndex === userAnswerIndex;
 
                         return answerTransitionComplete && !rightAnswer ? null : (
                             <div
-                                key={`option-${optionI}`}
+                                key={`answer-${answerIndex}`}
                                 ref={rightAnswer ? rightAnswerRef : null}
                                 className={classNames([
-                                    styles.option,
+                                    styles.item,
                                     {
                                         [styles.rightAnswer]: rightAnswer,
                                         [styles.userAnswer]: userAnswer,
@@ -254,25 +250,36 @@ const QuizScreen = ({
                                     emptyClassName={styles.empty}
                                     isEmpty={isEmptyOption}
                                 >
-                                    {hasOption ? (
+                                    {hasAnswer ? (
                                         <Transitions
                                             transitions={transitions}
                                             playing={current}
-                                            delay={(optionI + 1) * transitionStagger}
+                                            delay={(answerIndex + 1) * transitionStagger}
                                             disabled={!isView}
                                         >
                                             <Button
                                                 className={styles.button}
-                                                onClick={() => onOptionClick(optionI)}
+                                                onClick={() => onAnswerClick(answerIndex)}
                                                 disabled={isPreview || answered}
                                             >
                                                 {rightAnswer ? (
                                                     <span className={styles.resultIcon}>
-                                                        <FontAwesomeIcon className={styles.faIcon} icon={hasUserAnsweredRight ? faCheck : faTimes } />
+                                                        <FontAwesomeIcon
+                                                            className={styles.faIcon}
+                                                            icon={faCheck}
+                                                        />
+                                                    </span>
+                                                ) : null}
+                                                {answered && !hasUserAnsweredRight && userAnswer ? (
+                                                    <span className={styles.resultIcon}>
+                                                        <FontAwesomeIcon
+                                                            className={styles.faIcon}
+                                                            icon={faTimes}
+                                                        />
                                                     </span>
                                                 ) : null}
                                                 <Text
-                                                    {...option.label}
+                                                    {...answer.label}
                                                     tag="span"
                                                     className={styles.optionLabel}
                                                 />
@@ -293,15 +300,12 @@ const QuizScreen = ({
                 emptyClassName={styles.empty}
                 isEmpty={!hasResult}
             >
-                {hasResult ? (// Result
-                    <div
-                        className={styles.result}
-                        ref={resultRef}
-                    >
+                {hasResult ? ( // Result
+                    <div className={styles.result} ref={resultRef}>
                         <Transitions
                             transitions={transitions}
                             playing={current}
-                            delay={(1 + options.length) * transitionStagger}
+                            delay={(1 + answers.length) * transitionStagger}
                             disabled={!isView}
                         >
                             <Text {...result} className={styles.resultText} />
@@ -335,7 +339,14 @@ const QuizScreen = ({
                 <Layout
                     fullscreen
                     verticalAlign={verticalAlign}
-                    style={!isPlaceholder ? { padding: spacing, paddingTop: !isPreview && !landscape ? spacing * 2 : spacing } : null}
+                    style={
+                        !isPlaceholder
+                            ? {
+                                  padding: spacing,
+                                  paddingTop: !isPreview && !landscape ? spacing * 2 : spacing,
+                              }
+                            : null
+                    }
                 >
                     {items}
                 </Layout>

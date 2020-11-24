@@ -25,19 +25,18 @@ export default {
         },
         {
             name: 'question',
-            type: 'text-element',
+            type: 'heading-element',
             label: defineMessage({
                 defaultMessage: 'Question',
                 description: 'Question field label',
             }),
         },
         {
-            // [{ id:number, label:String, percent:number }, ....]
-            name: 'options',
-            type: 'options',
+            name: 'answers',
+            type: 'answers',
             label: defineMessage({
-                defaultMessage: 'Options',
-                description: 'Options field label',
+                defaultMessage: 'Answers',
+                description: 'Field label',
             }),
         },
         {

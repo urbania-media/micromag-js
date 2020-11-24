@@ -10,6 +10,11 @@ export const FieldsContext = React.createContext(new FieldsManager());
 
 export const useFieldsManager = () => useContext(FieldsContext);
 
+export const useFieldDefinition = (id) => {
+    const manager = useFieldsManager();
+    return manager.getDefinition(id);
+};
+
 const propTypes = {
     fields: MicromagPropTypes.fieldDefinitions,
     manager: PropTypes.instanceOf(FieldsManager),

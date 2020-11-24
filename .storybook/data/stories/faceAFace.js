@@ -3,13 +3,13 @@ import { v1 as uuid } from 'uuid';
 import {
     tommy,
     mans,
-    survey1options,
-    quiz1options,
-    quiz2options,
-    quiz3options,
-    quiz4options,
-    quiz5options,
-    quiz6options,
+    survey1answers,
+    quiz1answers,
+    quiz2answers,
+    quiz3answers,
+    quiz4answers,
+    quiz5answers,
+    quiz6answers,
     timelineItems,
     rankingItems,
 } from './data';
@@ -76,7 +76,7 @@ const faceAFaceStory = [
             body: 'Qu’est-ce qui vous agace le plus dans votre face?',
             textStyle: header2,
         },
-        options: survey1options,
+        answers: survey1answers,
         background: background(),
     },
     {
@@ -97,8 +97,7 @@ const faceAFaceStory = [
             body: 'Combien d’heures a duré la première greffe de visage au Canada?',
             textStyle: header2,
         },
-        options: quiz1options,
-        answerIndex: 2,
+        answers: quiz1answers,
         result: {
             body:
                 'La pose du visage a duré 18 heures, mais il en a fallu 28 de plus pour retirer les visages du donneur et du receveur.',
@@ -114,8 +113,7 @@ const faceAFaceStory = [
             body: 'Combien d’yeux avait Frank and Louie, un chat à deux visages décédé en 2014?',
             textStyle: header2,
         },
-        options: quiz2options,
-        answerIndex: 2,
+        answers: quiz2answers,
         result: {
             body:
                 'Trois yeux et deux bouches, mais un seul cerveau. Vous avez le droit d’aller googler.',
@@ -132,8 +130,7 @@ const faceAFaceStory = [
                 'Dans quelle proportion les systèmes de reconnaissance faciale identifient-ils erronément les Noirs, les Asiatiques et les Autochtones?',
             textStyle: header2,
         },
-        options: quiz3options,
-        answerIndex: 3,
+        answers: quiz3answers,
         result: {
             body: 'La raison: ces systèmes sont testés sur des Blancs en grand majorité.',
             textStyle: bodyText,
@@ -149,8 +146,7 @@ const faceAFaceStory = [
                 'Comment appelle-t-on un «faux» sourire qui n’est pas généré de façon authentique?',
             textStyle: header2,
         },
-        options: quiz4options,
-        answerIndex: 1,
+        answers: quiz4answers,
         result: {
             body:
                 'Pas qu’on croit pas à la sincérité des agents de bord, mais c’est humainement impossible de sourire constamment quand on est entouré de bébé qui braillent et de voyageurs qui chialent.',
@@ -167,8 +163,7 @@ const faceAFaceStory = [
                 'Combien d’abonnés Instagram compte Jason Diamond, le chirurgien des stars d’Hollywood?',
             textStyle: header2,
         },
-        options: quiz5options,
-        answerIndex: 0,
+        answers: quiz5answers,
         result: {
             body:
                 'Mais l’histoire ne dit pas s’il utilise des filtres Instagram sur les photos de ses patients.',
@@ -184,8 +179,7 @@ const faceAFaceStory = [
             body: 'Combien de caméras de surveillance compte la Chine?',
             textStyle: header2,
         },
-        options: quiz6options,
-        answerIndex: 3,
+        answers: quiz6answers,
         result: {
             body:
                 'Une grande partie de ces caméras sont équipées de technologies de reconnaissance faciale qui laisse entrevoir un avenir un peu trop proche de Black Mirror.',

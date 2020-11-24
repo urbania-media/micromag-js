@@ -209,16 +209,16 @@ const Viewer = ({
         (e) => {
 
             const checkClickable = (el, maxDistance = 5, distance = 1) => {
-                
-                const {tagName = null, parentNode = null, disabled = false } = el || {};
+
+                const {tagName = null, parentNode = null} = el || {};
 
                 if (tagName === 'BODY') {
                     return false;
                 }
 
-                if (tagName === 'BUTTON' && disabled) {
-                    return false;
-                }
+                // if (tagName === 'BUTTON' && disabled) {
+                //     return false;
+                // }
 
                 if (tagName === 'BUTTON' || tagName === 'A') {
                     return true;
@@ -244,7 +244,7 @@ const Viewer = ({
 
             let nextIndex = currentIndex;
 
-           
+
             const contentEl = contentRef.current;
             const { left: contentX = 0 } = contentEl.getBoundingClientRect();
             const tapX = e.clientX;
@@ -296,7 +296,7 @@ const Viewer = ({
                     items={components}
                     current={currentIndex}
                     onClickItem={onClickPreviewMenuItem}
-                    onClose={onClickPreviewMenuClose}                    
+                    onClose={onClickPreviewMenuClose}
                 />
                 <div
                     ref={contentRef}

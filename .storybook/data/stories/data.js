@@ -92,7 +92,7 @@ export const mans = [
     },
 ];
 
-export const survey1options = [
+export const survey1answers = [
     {
         id: uuid(),
         label: {
@@ -143,7 +143,7 @@ export const survey1options = [
     },
 ];
 
-export const quiz1options = [
+export const quiz1answers = [
     {
         id: uuid(),
         label: {
@@ -164,6 +164,7 @@ export const quiz1options = [
             textStyle: header3,
             body: '18 heures',
         },
+        good: true,
     },
     {
         id: uuid(),
@@ -174,7 +175,7 @@ export const quiz1options = [
     },
 ];
 
-export const quiz2options = [
+export const quiz2answers = [
     {
         id: uuid(),
         label: {
@@ -195,6 +196,7 @@ export const quiz2options = [
             textStyle: header3,
             body: '3',
         },
+        good: true,
     },
     {
         id: uuid(),
@@ -205,7 +207,7 @@ export const quiz2options = [
     },
 ];
 
-export const quiz3options = [
+export const quiz3answers = [
     {
         id: uuid(),
         label: {
@@ -233,10 +235,11 @@ export const quiz3options = [
             textStyle: header3,
             body: '10 à 100 fois plus',
         },
+        good: true,
     },
 ];
 
-export const quiz4options = [
+export const quiz4answers = [
     {
         id: uuid(),
         label: {
@@ -250,6 +253,7 @@ export const quiz4options = [
             textStyle: header3,
             body: 'Un sourire de Pan Am',
         },
+        good: true,
     },
     {
         id: uuid(),
@@ -267,13 +271,14 @@ export const quiz4options = [
     },
 ];
 
-export const quiz5options = [
+export const quiz5answers = [
     {
         id: uuid(),
         label: {
             textStyle: header3,
             body: '307 000',
         },
+        good: true,
     },
     {
         id: uuid(),
@@ -298,7 +303,7 @@ export const quiz5options = [
     },
 ];
 
-export const quiz6options = [
+export const quiz6answers = [
     {
         id: uuid(),
         label: {
@@ -326,6 +331,7 @@ export const quiz6options = [
             textStyle: header3,
             body: '200 millions',
         },
+        good: true,
     },
 ];
 

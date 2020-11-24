@@ -22,7 +22,7 @@ import styles from './styles.module.scss';
 const propTypes = {
     layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split']),
     question: MicromagPropTypes.textElement,
-    options: PropTypes.arrayOf(
+    answers: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number,
             label: MicromagPropTypes.textElement,
@@ -43,7 +43,7 @@ const propTypes = {
 const defaultProps = {
     layout: 'top',
     question: null,
-    options: null,
+    answers: null,
     spacing: 20,
     background: null,
     withPercentLabels: true,
@@ -58,7 +58,7 @@ const defaultProps = {
 const SurveyScreen = ({
     layout,
     question,
-    options,
+    answers,
     spacing,
     background,
     withPercentLabels,
@@ -82,10 +82,10 @@ const SurveyScreen = ({
     const isSplitted = layout === 'split';
     const verticalAlign = isSplitted ? null : layout;
 
-    const onOptionClick = useCallback(
-        (optionIndex) => {
+    const onAnswerClick = useCallback(
+        (answerIndex) => {
             if (userAnswerIndex === null) {
-                setUserAnswerIndex(optionIndex);
+                setUserAnswerIndex(answerIndex);
             }
         },
         [userAnswerIndex, setUserAnswerIndex],
@@ -133,22 +133,22 @@ const SurveyScreen = ({
     }, [width, height, setButtonMaxWidth]);
 
     items.push(
-        <div key="answer" className={styles.answer}>
-            {options !== null ? ( // Options
-                <div className={styles.options}>
-                    {options.map((option, optionI) => {
-                        const hasOption = option !== null;
+        <div key="answers" className={styles.answers}>
+            {answers !== null ? (
+                <div className={styles.items}>
+                    {answers.map((answer, answerIndex) => {
+                        const hasAnswer = answer !== null;
 
-                        const { label = null, percent = null } = option || {};
-                        const hasOptionLabel = isTextFilled(label);
+                        const { label = null, percent = null } = answer || {};
+                        const hasAnswerLabel = isTextFilled(label);
 
                         return (
                             <div
-                                key={`option-${optionI}`}
+                                key={`answer-${answerIndex}`}
                                 className={classNames([
-                                    styles.option,
+                                    styles.item,
                                     {
-                                        [styles.userAnswered]: userAnswerIndex === optionI,
+                                        [styles.userAnswered]: userAnswerIndex === answerIndex,
                                     },
                                 ])}
                             >
@@ -161,34 +161,34 @@ const SurveyScreen = ({
                                         />
                                     }
                                     emptyClassName={styles.empty}
-                                    isEmpty={!hasOptionLabel}
+                                    isEmpty={!hasAnswerLabel}
                                 >
-                                    {hasOption ? (
+                                    {hasAnswer ? (
                                         <Transitions
                                             transitions={transitions}
                                             playing={current}
-                                            delay={(optionI + 1) * transitionStagger}
+                                            delay={(answerIndex + 1) * transitionStagger}
                                             disabled={!isView}
                                         >
-                                            <div className={styles.optionContent}>
+                                            <div className={styles.itemContent}>
                                                 <div
-                                                    className={styles.optionInner}
+                                                    className={styles.itemInner}
                                                     style={{
                                                         width: answered ? buttonMaxWidth : null,
                                                     }}
                                                 >
                                                     <Button
                                                         className={styles.button}
-                                                        onClick={() => onOptionClick(optionI)}
+                                                        onClick={() => onAnswerClick(answerIndex)}
                                                         refButton={(el) => {
-                                                            buttonsRefs.current[optionI] = el;
+                                                            buttonsRefs.current[answerIndex] = el;
                                                         }}
                                                         disabled={isPreview || answered}
                                                     >
                                                         <span
-                                                            className={styles.optionLabel}
+                                                            className={styles.itemLabel}
                                                             ref={(el) => {
-                                                                labelsRefs.current[optionI] = el;
+                                                                labelsRefs.current[answerIndex] = el;
                                                             }}
                                                         >
                                                             <Text {...label} tag="span" />

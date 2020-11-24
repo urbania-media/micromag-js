@@ -9,12 +9,12 @@
         margin-bottom: 20px;
     }
 
-    .options,
-    .answer {
+    .answers,
+    .items {
         position: relative;
     }
 
-    .option {
+    .item {
         padding: 5px 0;
 
         &.userAnswered {
@@ -29,12 +29,12 @@
         }
     }
 
-    .optionContent {
+    .itemContent {
         display: flex;
         align-items: center;
     }
 
-    .resultContainer {        
+    .resultContainer {
         flex-grow: 1;
         align-self: stretch;
         padding: 15px 0;
@@ -62,7 +62,7 @@
         transform: translateY(-50%);
     }
 
-    .optionInner {
+    .itemInner {
         width: 100%;
         transition: width 0.5s ease;
     }
@@ -79,7 +79,7 @@
         }
     }
 
-    .optionLabel {
+    .itemLabel {
         display: inline-block;
         padding: 10px;
     }
