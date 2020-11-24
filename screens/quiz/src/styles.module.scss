@@ -23,18 +23,16 @@
         &.rightAnswer {
             transition-property: transform;
 
-            // &.userAnswer {
             .resultIcon {
                 background-color: $green;
             }
-            // }
         }
     }
 
     .button {
         position: relative;
         width: 100%;
-        padding: 10px;
+        padding: 10px 40px;
         border: 2px solid $gray-600;
 
         &:disabled {

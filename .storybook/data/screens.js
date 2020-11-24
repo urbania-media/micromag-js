@@ -122,13 +122,12 @@ export const basic = [
         type: 'quiz',
         layout: 'middle',
         question: { body: 'Une vraie question qui se termine par un point d’interrogation?' },
-        options: [
+        answers: [
             { id: 1, label: { body: subtitle() } },
-            { id: 2, label: { body: 'La bonne réponse' } },
+            { id: 2, label: { body: 'La bonne réponse' }, good: true },
             { id: 3, label: { body: subtitle() } },
             { id: 4, label: { body: subtitle() } },
         ],
-        answerIndex: 1,
         result: {
             body: 'Et oui, la bonne réponse était "La bonne réponse". Quand même surprenant hen?'
         },
