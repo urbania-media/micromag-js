@@ -2,7 +2,7 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { PropTypes as MicromagPropTypes, getFileName } from '@micromag/core';
 import MediaGallery from '@micromag/media-gallery';
 
 import FieldWithForm from './FieldWithForm';
@@ -51,12 +51,14 @@ const MediaField = ({
         [value, onChange, closeForm],
     );
 
+    const label = value !== null ? value.name || getFileName(value.url) || null : null;
+
     return (
         <FieldWithForm
             value={value}
             onChange={onChange}
             noValueLabel={noValueLabel}
-            labelPath="name"
+            label={label}
             thumbnailPath="thumbnail_url"
             {...props}
         >

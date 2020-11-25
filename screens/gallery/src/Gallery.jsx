@@ -63,7 +63,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    layout: null,
+    layout: 'two-vertical-equal',
     withCaptions: false,
     images: [],
     spacing: 20,

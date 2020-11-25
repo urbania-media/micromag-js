@@ -15,6 +15,7 @@ const propTypes = {
     children: PropTypes.node,
     footer: PropTypes.node,
     buttons: MicromagPropTypes.buttons,
+    theme: PropTypes.oneOf([null, 'dark', 'light']),
     onClickClose: PropTypes.func,
     className: PropTypes.string,
 };
@@ -25,11 +26,21 @@ const defaultProps = {
     children: null,
     footer: null,
     buttons: null,
+    theme: 'dark',
     onClickClose: null,
     className: null,
 };
 
-const ModalDialog = ({ title, header, children, buttons, footer, onClickClose, className }) => (
+const ModalDialog = ({
+    title,
+    header,
+    children,
+    buttons,
+    footer,
+    theme,
+    onClickClose,
+    className,
+}) => (
     <div
         className={classNames([
             'modal-dialog',
@@ -56,7 +67,18 @@ const ModalDialog = ({ title, header, children, buttons, footer, onClickClose, c
                     </button>
                 </div>
             )}
-            <div className={classNames(['modal-body', styles.body])}>{children}</div>
+            <div
+                className={classNames([
+                    'modal-body',
+                    styles.body,
+                    {
+                        [`bg-${theme}`]: theme !== null,
+                        'text-light': theme === 'dark',
+                    },
+                ])}
+            >
+                {children}
+            </div>
             {footer || (
                 <div className={classNames(['modal-footer', styles.footer])}>
                     {buttons !== null ? (

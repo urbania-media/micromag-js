@@ -29,43 +29,42 @@ const ScreenTypes = ({ screens, className, onClickItem }) => {
     const intl = useIntl();
     const screensManager = useScreensManager();
     const finalDefinitions = screens || screensManager.getDefinitions();
-    const groups = useMemo(
-        () => {
-            const groupItems = finalDefinitions.reduce((allGroups, definition) => {
-                const { id, title, group = {} } = definition;
-                const { id: messageId } = group;
+    const groups = useMemo(() => {
+        const groupItems = finalDefinitions.reduce((allGroups, definition) => {
+            const { id, title, group = {} } = definition;
+            const { id: messageId } = group;
 
-                const { id: groupId, name: groupName } = isMessage(group)
-                    ? { id: messageId || id, name: group }
-                    : { id: messageId || id, name: title };
-                const groupIndex = allGroups.findIndex((it) => it.id === groupId);
-                const item = {
-                    id,
-                    type: id,
-                    screen: definition,
-                };
-                return groupIndex !== -1
-                    ? [
-                          ...allGroups.slice(0, groupIndex),
-                          {
-                              ...allGroups[groupIndex],
-                              items: [...allGroups[groupIndex].items, item],
-                          },
-                          ...allGroups.slice(groupIndex + 1),
-                      ]
-                    : [
-                          ...allGroups,
-                          {
-                              id: groupId,
-                              name: groupName,
-                              items: [item],
-                          },
-                      ];
-            }, []);
-            return orderBy(groupItems, ({ name }) => isMessage(name) ? intl.formatMessage(name) : name);
-        },
-        [finalDefinitions],
-    );
+            const { id: groupId, name: groupName } = isMessage(group)
+                ? { id: messageId || id, name: group }
+                : { id: messageId || id, name: title };
+            const groupIndex = allGroups.findIndex((it) => it.id === groupId);
+            const item = {
+                id,
+                type: id,
+                screen: definition,
+            };
+            return groupIndex !== -1
+                ? [
+                      ...allGroups.slice(0, groupIndex),
+                      {
+                          ...allGroups[groupIndex],
+                          items: [...allGroups[groupIndex].items, item],
+                      },
+                      ...allGroups.slice(groupIndex + 1),
+                  ]
+                : [
+                      ...allGroups,
+                      {
+                          id: groupId,
+                          name: groupName,
+                          items: [item],
+                      },
+                  ];
+        }, []);
+        return orderBy(groupItems, ({ name }) =>
+            isMessage(name) ? intl.formatMessage(name) : name,
+        );
+    }, [finalDefinitions]);
     return (
         <div
             className={classNames([
@@ -83,7 +82,7 @@ const ScreenTypes = ({ screens, className, onClickItem }) => {
                             <Screens
                                 items={items}
                                 withPlaceholder
-                                itemClassName={styles.item}
+                                itemClassName={classNames(['border', 'border-secondary', 'rounded'])}
                                 previewMinWidth={100}
                                 onClickItem={onClickItem}
                             />

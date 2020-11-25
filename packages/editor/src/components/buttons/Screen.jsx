@@ -51,7 +51,7 @@ const ScreenButton = ({
         <Button
             className={classNames([
                 styles.container,
-                'bg-secondary',
+                'rounded',
                 {
                     [styles.active]: active,
                     [className]: className !== null,
@@ -64,7 +64,7 @@ const ScreenButton = ({
             onClick={onClick}
             refButton={refButton}
         >
-            <span className={styles.border} />
+            <span className={classNames([styles.border, 'rounded'])} />
             <span className={styles.screen}>
                 {children !== null ? (
                     children

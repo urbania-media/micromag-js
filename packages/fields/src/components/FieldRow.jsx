@@ -116,7 +116,7 @@ const FieldRow = ({
         const rowInner = (
             <span className={classNames(['form-row', 'align-items-center', 'flex-nowrap'])}>
                 {labelElement}
-                <span className={classNames(['col', styles.value])}>{children}</span>
+                <span className={classNames(['col', styles.colValue])}>{children}</span>
                 {arrowElement}
                 {helpElement}
                 {errorsElement}
@@ -166,7 +166,7 @@ const FieldRow = ({
                     onClick={onClickRow}
                 >
                     <span className="form-row align-items-center">
-                        <span className="col">{children}</span>
+                        <span className={classNames(['col', styles.colValue])}>{children}</span>
                         {arrowElement}
                     </span>
                 </Button>

@@ -6,8 +6,6 @@
     display: inline-block;
     position: relative;
     overflow: hidden;
-    border-radius: 10px;
-    background: $gray-200;
 
     .border {
         @extend %fullscreen;
@@ -47,7 +45,6 @@
         .border {
             z-index: 2;
             border: solid 4px $primary;
-            border-radius: 10px;
         }
     }
 }
