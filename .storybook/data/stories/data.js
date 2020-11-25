@@ -25,6 +25,11 @@ export const colorSkin = '#d3a88e';
 const surveyLabelStyle = {...header3, color: colorGreen };
 const quizLabelStyle = {...header3, color: 'white' };
 
+export const transitions = ({ transitionIn = 'fade', transitionOut = 'fade' } = {}) => ({
+    in: transitionIn,
+    out: transitionOut,
+});
+
 export const tommy = {
     url: tommyBefore,
     thumbnail_url: tommyBefore,

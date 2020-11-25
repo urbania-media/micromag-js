@@ -11,7 +11,7 @@ const propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
     disabled: PropTypes.bool,
-    verticalAlign: PropTypes.oneOf(['top', 'center', 'bottom']),
+    verticalAlign: PropTypes.oneOf(['top', 'middle', 'bottom']),
     className: PropTypes.string,
     children: PropTypes.node,
 };

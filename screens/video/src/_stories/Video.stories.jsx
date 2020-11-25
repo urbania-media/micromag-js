@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { videoMedia, backgroundColor, closedCaptionsMedia } from '../../../../.storybook/data';
+import { videoMedia, backgroundColor, closedCaptionsMedia, transitions } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import VideoScreen from '../Video';
@@ -9,6 +9,7 @@ import definition from '../definition';
 const props = {
     video: { media: videoMedia(), autoPlay: true, loop: true },
     background: backgroundColor(),
+    transitions: transitions(),
 };
 
 export default {

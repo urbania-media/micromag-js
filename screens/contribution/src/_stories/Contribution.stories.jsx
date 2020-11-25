@@ -1,13 +1,15 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { title } from '../../../../.storybook/data';
+import { title, backgroundColor, transitions } from '../../../../.storybook/data';
 
 import ContributionScreen from '../Contribution';
 import definition from '../definition';
 
 const props = {
     title: { body: title() },
+    background: backgroundColor(),
+    transitions: transitions(),
 };
 
 export default {

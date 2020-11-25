@@ -14,6 +14,7 @@ import {
     markers,
     quote,
     author,
+    transitions,
 } from '../data';
 
 export const basic = [
@@ -25,25 +26,28 @@ export const basic = [
     //     background: {
     //         color: '#00FFFF',
     //     },
+    //     transitions: transitions(),
     // },
     {
         id: uuid(),
         type: 'audio',
-        layout: 'normal',
+        layout: 'top',
         audio: { media: audioMedia() },
         background: {
             color: '#00FF00',
         },
-        transitions: { in: 'fade', out: 'fade' }
+        transitions: transitions(),
     },
-    // {
-    //     id: uuid(),
-    //     type: 'contribution',
-    //     layout: 'normal',
-    //     background: {
-    //         color: '#00FFFF',
-    //     },
-    // },
+    {
+        id: uuid(),
+        type: 'contribution',
+        layout: 'middle',
+        title: title(),
+        background: {
+            color: '#00FFFF',
+        },
+        transitions: transitions(),
+    },
     {
         id: uuid(),
         type: 'gallery',
@@ -52,6 +56,7 @@ export const basic = [
         background: {
             color: '#FFFF00',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
@@ -61,6 +66,7 @@ export const basic = [
         background: {
             color: '#00FF00',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
@@ -70,6 +76,7 @@ export const basic = [
         background: {
             color: '#00FFFF',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
@@ -79,6 +86,7 @@ export const basic = [
         background: {
             color: '#FF00FF',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
@@ -94,6 +102,7 @@ export const basic = [
         background: {
             color: '#0000FF',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
@@ -105,6 +114,7 @@ export const basic = [
         background: {
             color: '#FF0000',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
@@ -116,6 +126,7 @@ export const basic = [
         background: {
             color: '#0000FF',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
@@ -134,6 +145,7 @@ export const basic = [
         background: {
             color: '#00FF00',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
@@ -144,6 +156,7 @@ export const basic = [
         background: {
             color: '#00FFFF',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
@@ -156,6 +169,7 @@ export const basic = [
         background: {
             color: '#FF00FF',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
@@ -171,6 +185,7 @@ export const basic = [
         background: {
             color: '#333',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
@@ -180,6 +195,7 @@ export const basic = [
         background: {
             color: '#0000FF',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
@@ -195,6 +211,7 @@ export const basic = [
         background: {
             color: '#FF00FF',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
@@ -211,6 +228,7 @@ export const basic = [
         background: {
             color: '#0000FF',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
@@ -222,6 +240,7 @@ export const basic = [
         background: {
             color: '#FF0000',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
@@ -232,6 +251,7 @@ export const basic = [
         background: {
             color: '#FF00FF',
         },
+        transitions: transitions(),
     },
 ];
 

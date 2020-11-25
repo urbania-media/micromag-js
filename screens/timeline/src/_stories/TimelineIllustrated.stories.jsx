@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { text, title, imageMedia, backgroundColor } from '../../../../.storybook/data';
+import { text, title, imageMedia, backgroundColor, transitions } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import TimelineIllustratedScreen from '../TimelineIllustrated';
@@ -13,6 +13,7 @@ const props = {
         image: imageMedia(),
     })),
     background: backgroundColor(),
+    transitions: transitions(),
 };
 
 const normalProps = {

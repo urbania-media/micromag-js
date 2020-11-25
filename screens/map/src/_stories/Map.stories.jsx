@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { map, markers, backgroundColor } from '../../../../.storybook/data';
+import { map, markers, backgroundColor, transitions } from '../../../../.storybook/data';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
@@ -12,6 +12,7 @@ const props = {
     markers: markers(),
     splash: { body: 'Débuter' },
     background: backgroundColor(),
+    transitions: transitions(),
 };
 
 export default {

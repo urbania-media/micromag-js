@@ -13,7 +13,7 @@ export default {
         description: 'Contribution screen title',
     }),
     component: ContributionScreen,
-    layouts: ['top', 'middle', 'bottom', 'split'],
+    layouts: ['top', 'middle', 'bottom'],
     fields: [
         {
             name: 'layout',

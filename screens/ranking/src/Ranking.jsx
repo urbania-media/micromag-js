@@ -43,7 +43,7 @@ const defaultProps = {
     current: true,
     active: true,
     maxRatio: 3 / 4,
-    transitions: { in: 'fade', out: 'fade' },
+    transitions: null,
     transitionStagger: 75,
     className: null,
 };
@@ -192,7 +192,7 @@ const RankingScreen = ({
             <Container width={width} height={height} maxRatio={maxRatio} withScroll>
                 <Scroll
                     className={styles.scroll}
-                    verticalAlign="center"
+                    verticalAlign="middle"
                     disabled={isPlaceholder || isPreview}
                 >
                     <Layout

@@ -24,6 +24,7 @@ import {
     colorDarkBlue,
     colorGreen,
     colorYellow,
+    transitions,
 } from './data';
 
 import { header1, header2, bodyText } from './styles';
@@ -44,6 +45,7 @@ const faceAFaceStory = {
                 textStyle: { ...header1, fontSize: 50, align: 'center', color: colorDarkBlue },
             },
             background: backgroundIntro,
+            transitions: transitions(),
         },
         {
             id: uuid(),
@@ -68,6 +70,7 @@ const faceAFaceStory = {
                 textStyle: bodyText,
             },
             background: backgroundDarkBlueNoise,
+            transitions: transitions(),
         },
         {
             id: uuid(),
@@ -84,6 +87,7 @@ const faceAFaceStory = {
             },
             image: tommy,
             background: backgroundDarkBlueNoise,
+            transitions: transitions(),
         },
         {
             id: uuid(),
@@ -94,6 +98,7 @@ const faceAFaceStory = {
             },
             images: mans,
             background: backgroundDarkBlueNoise,
+            transitions: transitions(),
         },
         {
             id: uuid(),
@@ -105,6 +110,7 @@ const faceAFaceStory = {
             },
             answers: survey1answers,
             background: backgroundDarkBlueNoise,
+            transitions: transitions(),
         },
         {
             id: uuid(),
@@ -119,6 +125,7 @@ const faceAFaceStory = {
                 textStyle: { ...header2, color: colorDarkBlue },
             },
             background: backgroundNose,
+            transitions: transitions(),
         },
         {
             id: uuid(),
@@ -135,6 +142,7 @@ const faceAFaceStory = {
                 textStyle: bodyText,
             },
             background: backgroundSkin,
+            transitions: transitions(),
         },
         {
             id: uuid(),
@@ -152,6 +160,7 @@ const faceAFaceStory = {
                 textStyle: bodyText,
             },
             background: backgroundSkin,
+            transitions: transitions(),
         },
         {
             id: uuid(),
@@ -168,6 +177,7 @@ const faceAFaceStory = {
                 textStyle: bodyText,
             },
             background: backgroundSkin,
+            transitions: transitions(),
         },
         {
             id: uuid(),
@@ -185,6 +195,7 @@ const faceAFaceStory = {
                 textStyle: bodyText,
             },
             background: backgroundSkin,
+            transitions: transitions(),
         },
         {
             id: uuid(),
@@ -202,6 +213,7 @@ const faceAFaceStory = {
                 textStyle: bodyText,
             },
             background: backgroundSkin,
+            transitions: transitions(),
         },
         {
             id: uuid(),
@@ -218,6 +230,7 @@ const faceAFaceStory = {
                 textStyle: bodyText,
             },
             background: backgroundSkin,
+            transitions: transitions(),
         },
         {
             id: uuid(),
@@ -238,6 +251,7 @@ const faceAFaceStory = {
                 textStyle: {...bodyText, align: 'center', fontSize: 14, },
             },
             background: backgroundFaces,
+            transitions: transitions(),
         },
         {
             id: uuid(),
@@ -246,6 +260,7 @@ const faceAFaceStory = {
             items: rankingItems,
             numbersStyle: {...header2, fontSize: 60, lineHeight: 0.9, color: colorYellow },
             background: backgroundBlueNoise,
+            transitions: transitions(),
         },
         {
             id: uuid(),
@@ -264,6 +279,7 @@ const faceAFaceStory = {
                 textStyle: {...bodyText, fontSize: 14 },
             },
             background: backgroundHugoMirror,
+            transitions: transitions(),
         },
         {
             id: uuid(),
@@ -274,6 +290,7 @@ const faceAFaceStory = {
             lineColor: { color: '#fff', alpha: 1 },
             bulletFilled: true,
             background: backgroundBlackNoise,
+            transitions: transitions(),
         },
     ],
 };

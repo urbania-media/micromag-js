@@ -39,7 +39,7 @@ const defaultProps = {
     current: true,
     active: false,
     maxRatio: 3 / 4,
-    transitions: { in: 'fade', out: 'fade' },
+    transitions: null,
     transitionStagger: 100,
     className: null,
 };

@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { imagesWithCaptions, backgroundColor } from '../../../../.storybook/data';
+import { imagesWithCaptions, backgroundColor, transitions } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import GalleryCaptionsScreen from '../GalleryCaptions';
@@ -9,6 +9,7 @@ import definition from '../definition';
 const props = {
     images: imagesWithCaptions({ count: 20 }),
     background: backgroundColor(),
+    transitions: transitions(),
 };
 
 export default {

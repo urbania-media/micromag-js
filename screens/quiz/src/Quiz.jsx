@@ -59,7 +59,7 @@ const defaultProps = {
     current: true,
     active: true,
     maxRatio: 3 / 4,
-    transitions: { in: 'fade', out: 'fade' },
+    transitions: null,
     transitionStagger: 100,
     resultsTransitionDuration: 500,
     className: null,
@@ -114,8 +114,6 @@ const QuizScreen = ({
         },
         [userAnswerIndex, setUserAnswerIndex, showResultsDelay],
     );
-
-    // @TODO update scale + inverted scale inside instead of height for best performance
 
     // we get .answer's current and future height to animate its height
     // we also get the right answer's Y to animate its position

@@ -189,6 +189,11 @@ export const map = () => ({
     },
 });
 
+export const transitions = ({ transitionIn = 'fade', transitionOut = 'fade' } = {}) => ({
+    in: transitionIn,
+    out: transitionOut,
+});
+
 export const renderFormats = {
     View: 'view',
     Preview: 'preview',

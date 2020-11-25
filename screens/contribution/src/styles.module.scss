@@ -5,9 +5,36 @@
 .container {
     position: relative;
 
-    form {
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
 
-        margin-top: 10px;
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .empty {
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+
+    .title {
+        padding-bottom: 20px;
+    }
+
+    .content {
+        @extend %fullscreen;
+    }
+
+    .interactiveContainer {
+        transition-property: height;
+        transition-timing-function: ease;
+    }
+
+    .form {
+        position: relative;
 
         input,
         textarea,
@@ -15,10 +42,104 @@
             display: block;
             width: 100%;
             margin-bottom: 10px;
+            padding: 4px;
 
             &:last-child {
                 margin-bottom: 0;
             }
+        }
+    }
+
+    .formContent {
+        transition-property: opacity;
+        transition-timing-function: ease;
+    }
+
+    .formLoading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 40px;
+        height: 40px;
+        margin-top: -20px;
+        margin-left: -20px;
+
+        transition: opacity 0.25s ease;
+        animation: rotate 1s infinite linear;
+        opacity: 0;
+        pointer-events: none;
+
+        .loadingIcon {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .contributionsContainer {
+        position: relative;
+        transition: opacity 0.25s ease;
+        opacity: 0;
+    }
+
+    .contributionsContent {
+        position: absolute;
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+    }
+
+    .contributions {
+        position: relative;
+        padding-top: 20px;
+        border-top: 1px solid $white;
+    }
+
+    .contribution {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid $white;
+
+        &:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: 0;
+        }
+    }
+
+    &.submitting {
+        .form {
+            pointer-events: none;
+        }
+
+        .formContent {
+            opacity: 0.4;
+        }
+
+        .formLoading {
+            opacity: 1;
+        }
+    }
+
+    &.submitted {
+        .formContent {
+            opacity: 0;
+        }
+    }
+
+    &.showContributions {
+        .form {
+            display: none;
+        }
+
+        .contributionsContainer {
+            opacity: 1;
+        }
+
+        .contributionsContent {
+            position: relative;
+            height: auto;
+            overflow: visible;
         }
     }
 }
