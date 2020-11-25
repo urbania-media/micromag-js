@@ -6,13 +6,8 @@ import isPlainObject from 'lodash/isPlainObject';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
-import {
-    ScreenElement,
-    PlaceholderImage,
-    PlaceholderShortText,
-    Transitions,
-} from '@micromag/core/components';
+import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
+import { ScreenElement, Transitions } from '@micromag/core/components';
 import { isImageFilled, isTextFilled } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
@@ -92,11 +87,12 @@ const GalleryScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const { menuSize } = useViewer();
     const landscape = width > height;
 
-    const { isView, isPlaceholder, isEdit } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
-    const finalSpacing = isPlaceholder ? 4 : spacing;
+    const finalSpacing = isPlaceholder ? 5 : spacing;
 
     const grid = isPlainObject(layoutProps[layout]) ? layoutProps[layout] : {};
     const { layout: gridLayout = [], vertical = false } = grid;
@@ -151,13 +147,8 @@ const GalleryScreen = ({
                         disabled={!isView}
                     >
                         <ScreenElement
-                            placeholder={
-                                <PlaceholderImage
-                                    className={styles.placeholder}
-                                    width="100%"
-                                    height="100%"
-                                />
-                            }
+                            placeholder="image"
+                            placeholderProps={{ className: styles.placeholder, height: '100%' }}
                             emptyLabel={
                                 <FormattedMessage
                                     defaultMessage="Image"
@@ -185,11 +176,7 @@ const GalleryScreen = ({
                         disabled={!isView}
                     >
                         <ScreenElement
-                            placeholder={
-                                <PlaceholderShortText
-                                    width="100%"
-                                />
-                            }
+                            placeholder="shortText"
                             emptyLabel={
                                 <FormattedMessage
                                     defaultMessage="Caption"
@@ -200,7 +187,11 @@ const GalleryScreen = ({
                             isEmpty={!hasCaption}
                         >
                             <div className={styles.caption}>
-                                <Text {...caption} className={styles.captionText} lineClamp={captionMaxLines} />
+                                <Text
+                                    {...caption}
+                                    className={styles.captionText}
+                                    lineClamp={captionMaxLines}
+                                />
                             </div>
                         </ScreenElement>
                     </Transitions>
@@ -226,7 +217,10 @@ const GalleryScreen = ({
                 maxRatio={maxRatio}
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
-                <div className={styles.content} style={ !landscape && (isView || isEdit) ? { paddingTop: spacing } : null }>
+                <div
+                    className={styles.content}
+                    style={!landscape && !isPreview ? { paddingTop: menuSize } : null}
+                >
                     <Grid className={styles.grid} spacing={finalSpacing} items={items} {...grid} />
                 </div>
             </Container>

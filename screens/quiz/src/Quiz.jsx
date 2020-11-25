@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
 
@@ -82,6 +82,8 @@ const QuizScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const { menuSize } = useViewer();
+
     const landscape = width > height;
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
@@ -268,7 +270,10 @@ const QuizScreen = ({
                                                         ? {
                                                               width: 2,
                                                               style: 'solid',
-                                                              ...getStyleFromColor(labelColor, 'color')
+                                                              ...getStyleFromColor(
+                                                                  labelColor,
+                                                                  'color',
+                                                              ),
                                                           }
                                                         : null
                                                 }
@@ -354,7 +359,7 @@ const QuizScreen = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop: !isPreview && !landscape ? spacing * 2 : spacing,
+                                  paddingTop: (!landscape && !isPreview ? menuSize : 0) + spacing,
                               }
                             : null
                     }

@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
 import { isTextFilled } from '@micromag/core/utils';
 
@@ -73,6 +73,8 @@ const TitleScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const { menuSize } = useViewer();
+    
     const landscape = width > height;
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
@@ -86,26 +88,29 @@ const TitleScreen = ({
     const layoutParts = layout.split('-');
     const isSplitted = layoutParts[0] === 'split';
     const verticalAlign = isSplitted ? layoutParts[1] || null : layoutParts[0];
-    
-    const titleWithMargin = hasTitle && (hasSubtitle || hasDescription) && (!isSplitted || verticalAlign === 'top');
-    const subtitleWithMargin = hasSubtitle && hasDescription && (!isSplitted || verticalAlign === 'bottom');
+
+    const titleWithMargin =
+        hasTitle && (hasSubtitle || hasDescription) && (!isSplitted || verticalAlign === 'top');
+    const subtitleWithMargin =
+        hasSubtitle && hasDescription && (!isSplitted || verticalAlign === 'bottom');
 
     // Create elements
     const items = [
-        (
-            <ScreenElement
-                key="title"
-                placeholder="title"
-                emptyLabel={
-                    <FormattedMessage defaultMessage="Title" description="Title placeholder" />
-                }
-                emptyClassName={styles.empty}
-                isEmpty={isEmpty}
-            >
-                { hasTitle ? <Heading className={classNames([styles.title, { [styles.withMargin] : titleWithMargin }])} {...title} size={1} /> : null }
-            </ScreenElement>
-        ),
-
+        <ScreenElement
+            key="title"
+            placeholder="title"
+            emptyLabel={<FormattedMessage defaultMessage="Title" description="Title placeholder" />}
+            emptyClassName={styles.empty}
+            isEmpty={isEmpty}
+        >
+            {hasTitle ? (
+                <Heading
+                    className={classNames([styles.title, { [styles.withMargin]: titleWithMargin }])}
+                    {...title}
+                    size={1}
+                />
+            ) : null}
+        </ScreenElement>,
         isSplitted && (!withDescription || verticalAlign === 'bottom') && <Spacer key="spacer1" />,
 
         withSubtitle && (
@@ -121,7 +126,16 @@ const TitleScreen = ({
                 emptyClassName={styles.empty}
                 isEmpty={isEmpty}
             >
-                { hasSubtitle ? <Heading className={classNames([styles.subtitle, { [styles.withMargin] : subtitleWithMargin }])} {...subtitle} size={2} /> : null }
+                {hasSubtitle ? (
+                    <Heading
+                        className={classNames([
+                            styles.subtitle,
+                            { [styles.withMargin]: subtitleWithMargin },
+                        ])}
+                        {...subtitle}
+                        size={2}
+                    />
+                ) : null}
             </ScreenElement>
         ),
 
@@ -135,7 +149,7 @@ const TitleScreen = ({
                 emptyClassName={styles.empty}
                 isEmpty={isEmpty}
             >
-                { hasDescription ? <Text {...description} /> : null }
+                {hasDescription ? <Text {...description} /> : null}
             </ScreenElement>
         ),
     ];
@@ -161,7 +175,14 @@ const TitleScreen = ({
                 <Layout
                     fullscreen
                     verticalAlign={verticalAlign}
-                    style={ !isPlaceholder ? { padding: spacing, paddingTop: !isPreview && !landscape ? spacing * 2 : spacing } : null }
+                    style={
+                        !isPlaceholder
+                            ? {
+                                  padding: spacing,
+                                  paddingTop: (!landscape && !isPreview ? menuSize : 0) + spacing,
+                              }
+                            : null
+                    }
                 >
                     <TransitionsStagger
                         transitions={transitions}

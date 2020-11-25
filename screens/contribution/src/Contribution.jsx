@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { isTextFilled } from '@micromag/core/utils';
 
@@ -112,6 +112,8 @@ const SurveyScreen = ({
     contributions,
 }) => {
     const { width, height } = useScreenSize();
+    const { menuSize } = useViewer();
+
     const landscape = width > height;
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
@@ -316,7 +318,7 @@ const SurveyScreen = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop: !isPreview && !landscape ? spacing * 2 : spacing,
+                                  paddingTop: (!landscape && !isPreview ? menuSize : 0) + spacing,
                               }
                             : null
                     }

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -59,6 +59,8 @@ const TextScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const { menuSize } = useViewer();
+
     const landscape = width > height;
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
@@ -119,7 +121,10 @@ const TextScreen = ({
                 <Layout
                     fullscreen
                     verticalAlign={verticalAlign}
-                    style={ !isPlaceholder ? { padding: spacing, paddingTop: !isPreview && !landscape ? spacing * 2 : spacing } : null }
+                    style={ !isPlaceholder ? {
+                        padding: spacing,
+                        paddingTop: (!landscape && !isPreview ? menuSize : 0) + spacing,
+                    } : null }
                 >
                     <TransitionsStagger
                         transitions={transitions}

@@ -17,8 +17,8 @@ const propTypes = {
 
 const defaultProps = {
     lines: 1,
-    lineMargin: null,
-    width: '3em',
+    lineMargin: 1,
+    width: '100%',
     height: null,
     fontSize: 16,
     className: null,
@@ -44,6 +44,8 @@ const PlaceholderText = ({ lines, lineMargin, width, height, fontSize, className
                     style={{
                         width,
                         height: lineHeight,
+                        marginTop: lineMargin,
+                        marginBottom: lineMargin,
                     }}
                 />
             ))}

@@ -16,7 +16,7 @@ const propTypes = {
     empty: PropTypes.node,
     emptyLabel: MicromagPropTypes.label,
     isEmpty: PropTypes.bool,
-    placeholderClassName: PropTypes.string,
+    placeholderProps: PropTypes.object,// eslint-disable-line
     emptyClassName: PropTypes.string,
 };
 
@@ -27,7 +27,7 @@ const defaultProps = {
     empty: null,
     emptyLabel: null,
     isEmpty: false,
-    placeholderClassName: null,
+    placeholderProps: null,
     emptyClassName: null,
 };
 
@@ -38,7 +38,7 @@ const ScreenElement = ({
     emptyLabel,
     preview,
     isEmpty,
-    placeholderClassName,
+    placeholderProps,
     emptyClassName,
 }) => {
     const { isPlaceholder, isEdit, isPreview } = useScreenRenderContext();
@@ -47,7 +47,7 @@ const ScreenElement = ({
             ? getComponentFromName(placeholder, Placeholders)
             : null;
         return PlaceholderComponent !== null ? (
-            <PlaceholderComponent className={placeholderClassName} />
+            <PlaceholderComponent {...placeholderProps} />
         ) : (
             placeholder
         );

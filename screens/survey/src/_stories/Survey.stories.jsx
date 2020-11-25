@@ -8,7 +8,7 @@ import definition from '../definition';
 
 const props = {
     question: { body: 'Une vraie question qui se termine par un point d’interrogation?' },
-    options: [
+    answers: [
         { id: 1, label: { body: 'Choix 1' }, percent: 34 },
         { id: 2, label: { body: 'Choix 2' }, percent: 12 },
         { id: 3, label: { body: 'Choix plus long' }, percent: 38 },

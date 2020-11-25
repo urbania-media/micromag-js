@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { isTextFilled } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
@@ -63,6 +63,8 @@ const RankingScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const { menuSize } = useViewer();
+
     const landscape = width > height;
 
     const { isPlaceholder, isPreview, isView, isEdit } = useScreenRenderContext();
@@ -200,7 +202,7 @@ const RankingScreen = ({
                             !isPlaceholder
                                 ? {
                                       padding: spacing,
-                                      paddingTop: !isPreview && !landscape ? spacing * 2 : spacing,
+                                      paddingTop: (!landscape && !isPreview ? menuSize : 0) + spacing,
                                   }
                                 : null
                         }

@@ -6,13 +6,18 @@ import PlaceholderText from '../partials/PlaceholderText';
 
 import styles from '../../styles/placeholders/placeholders.module.scss';
 
-const TextPlaceholder = (props) => (
-    <PlaceholderText
-        {...props}
-        className={classNames([props.className, styles.text])}
-        height={0.2}
-        lines={4}
-    />
-);
+const TextPlaceholder = (props) => {
+    
+    const { lines = 4, height = 0.2 } = props;
+
+    return (
+        <PlaceholderText
+            {...props}
+            height={height}
+            lines={lines}
+            className={classNames([props.className, styles.text])}
+        />
+    );
+}
 
 export default TextPlaceholder;

@@ -12,7 +12,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    width: '3em',
+    width: '100%',
     height: '3em',
     className: null,
     children: null,

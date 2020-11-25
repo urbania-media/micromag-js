@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { pascalCase } from '../../utils';
-import Placeholder from './PlaceholderBlock';
+import PlaceholderBlock from './PlaceholderBlock';
 
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
@@ -13,14 +13,14 @@ const propTypes = {
     props: PropTypes.object, // eslint-disable-line
     isPlaceholder: PropTypes.bool,
     className: PropTypes.string,
-    placeholderClassName: PropTypes.string,
+    placeholderProps: PropTypes.object,// eslint-disable-line
 };
 
 const defaultProps = {
     props: {},
     isPlaceholder: false,
     className: null,
-    placeholderClassName: null,
+    placeholderProps: null,
 };
 
 const ElementComponent = ({
@@ -29,7 +29,7 @@ const ElementComponent = ({
     props,
     isPlaceholder,
     className,
-    placeholderClassName,
+    placeholderProps,
 }) => {
     if (!name) {
         return 'Bad component name';
@@ -38,7 +38,7 @@ const ElementComponent = ({
     if (isPlaceholder) {
         // TODO: figure out what this did
         // const PlaceholderComponent = Placeholders[pascalCase(name)];
-        return <PlaceholderBlock className={placeholderClassName} />;
+        return <PlaceholderBlock {...placeholderProps} />;
     }
 
     const RealComponent = components[pascalCase(name)];

@@ -42,7 +42,7 @@ export const basic = [
         id: uuid(),
         type: 'contribution',
         layout: 'middle',
-        title: title(),
+        title: { body: title() },
         background: {
             color: '#00FFFF',
         },
@@ -131,7 +131,7 @@ export const basic = [
     {
         id: uuid(),
         type: 'quiz',
-        layout: 'middle',
+        layout: 'top',
         question: { body: 'Une vraie question qui se termine par un point d’interrogation?' },
         answers: [
             { id: 1, label: { body: subtitle() } },
@@ -150,7 +150,7 @@ export const basic = [
     {
         id: uuid(),
         type: 'quote',
-        layout: 'middle',
+        layout: 'top',
         quote: { body: quote() },
         author: { body: author() },
         background: {
@@ -161,11 +161,12 @@ export const basic = [
     {
         id: uuid(),
         type: 'ranking',
-        layout: 'middle',
+        layout: 'side',
         items: [...new Array(10)].map(() => ({
             title: { body: title() },
             description: text('long'),
         })),
+        numbersStyle: { fontSize: 50 },
         background: {
             color: '#FF00FF',
         },
@@ -174,9 +175,9 @@ export const basic = [
     {
         id: uuid(),
         type: 'survey',
-        layout: 'middle',
+        layout: 'top',
         question: { body: 'Une vraie question qui se termine par un point d’interrogation?' },
-        options: [
+        answers: [
             { id: 1, label: { body: 'Choix 1' }, percent: 34 },
             { id: 2, label: { body: 'Choix 2' }, percent: 12 },
             { id: 3, label: { body: 'Choix plus long' }, percent: 38 },
@@ -190,7 +191,7 @@ export const basic = [
     {
         id: uuid(),
         type: 'text',
-        layout: 'middle',
+        layout: 'top',
         text: text(),
         background: {
             color: '#0000FF',
@@ -233,9 +234,9 @@ export const basic = [
     {
         id: uuid(),
         type: 'title',
-        layout: 'middle',
+        layout: 'top',
         title: {
-            body: 'A title',
+            body: title(),
         },
         background: {
             color: '#FF0000',

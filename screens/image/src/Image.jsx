@@ -1,12 +1,14 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-import { PropTypes as MicromagPropTypes, PlaceholderImage, useResizeObserver } from '@micromag/core';
-import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
-import { PlaceholderShortText, ScreenElement, Transitions } from '@micromag/core/components';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
+import { ScreenElement, Transitions } from '@micromag/core/components';
+import { useResizeObserver } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
@@ -75,6 +77,7 @@ const ImageScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const { menuSize } = useViewer();
     const landscape = width > height;
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
@@ -94,7 +97,9 @@ const ImageScreen = ({
     const isReversed = layout === 'reverse';
     const isTitleTop = layout === 'title-top';
     const isCard = layout === 'card';
-    const finalSpacing = layout !== 'fullscreen' ? spacing : 0;
+    const isFullscreen = layout === 'fullscreen';
+
+    const finalSpacing = !isFullscreen && !isPlaceholder ? spacing : 0;
 
     const {
         ref: imageCntRef,
@@ -107,16 +112,19 @@ const ImageScreen = ({
             key="image"
             ref={imageCntRef}
             className={styles.imageContainer}
-            style={!isPlaceholder ? {margin: isCard ? `0 ${-finalSpacing / 2}px ${finalSpacing / 2}px` : finalSpacing / 2 } : null}
+            style={
+                !isPlaceholder
+                    ? {
+                          margin: isCard
+                              ? `0 ${-finalSpacing / 2}px ${finalSpacing / 2}px`
+                              : finalSpacing / 2,
+                      }
+                    : null
+            }
         >
             <ScreenElement
-                placeholder={
-                    <PlaceholderImage
-                        className={styles.placeholderImage}
-                        width="100%"
-                        height="100%"
-                    />
-                }
+                placeholder="image"
+                placeholderProps={{ className: styles.placeholderImage, height: '100%' }}
                 emptyLabel={
                     <FormattedMessage defaultMessage="Image" description="Image placeholder" />
                 }
@@ -124,14 +132,19 @@ const ImageScreen = ({
                 isEmpty={!hasImage}
             >
                 {hasImage ? (
-                    <Transitions transitions={transitions} playing={transitionPlaying} disabled={!isView} fullscreen>
+                    <Transitions
+                        transitions={transitions}
+                        playing={transitionPlaying}
+                        disabled={!isView}
+                        fullscreen
+                    >
                         <Image
                             className={styles.image}
                             media={image}
                             objectFit={imageFit}
                             width={imageWidth}
                             height={imageHeight}
-                            onLoaded={onImageLoaded}                            
+                            onLoaded={onImageLoaded}
                         />
                     </Transitions>
                 ) : null}
@@ -148,10 +161,12 @@ const ImageScreen = ({
                 isEmpty={!hasTitle}
             >
                 {hasTitle ? (
-                    <Transitions transitions={transitions} playing={transitionPlaying} disabled={!isView}>
-                        <div
-                            style={!isPlaceholder ? { margin: finalSpacing / 2 } : null}
-                        >
+                    <Transitions
+                        transitions={transitions}
+                        playing={transitionPlaying}
+                        disabled={!isView}
+                    >
+                        <div style={!isPlaceholder ? { margin: finalSpacing / 2 } : null}>
                             <Heading {...title} />
                         </div>
                     </Transitions>
@@ -170,10 +185,12 @@ const ImageScreen = ({
                 isEmpty={!hasText}
             >
                 {hasText ? (
-                    <Transitions transitions={transitions} playing={transitionPlaying} disabled={!isView}>
-                        <div
-                            style={!isPlaceholder ? { margin: finalSpacing / 2 } : null}
-                        >
+                    <Transitions
+                        transitions={transitions}
+                        playing={transitionPlaying}
+                        disabled={!isView}
+                    >
+                        <div style={!isPlaceholder ? { margin: finalSpacing / 2 } : null}>
                             <Text {...text} />
                         </div>
                     </Transitions>
@@ -184,7 +201,7 @@ const ImageScreen = ({
         withLegend && (
             <ScreenElement
                 key="legend"
-                placeholder={<PlaceholderShortText />}
+                placeholder="shortText"
                 emptyLabel={
                     <FormattedMessage defaultMessage="Legend" description="Legend placeholder" />
                 }
@@ -192,10 +209,12 @@ const ImageScreen = ({
                 isEmpty={!hasLegend}
             >
                 {hasLegend ? (
-                    <Transitions transitions={transitions} playing={transitionPlaying} disabled={!isView}>
-                        <div
-                            style={!isPlaceholder ? { margin: finalSpacing / 2 } : null}
-                        >
+                    <Transitions
+                        transitions={transitions}
+                        playing={transitionPlaying}
+                        disabled={!isView}
+                    >
+                        <div style={!isPlaceholder ? { margin: finalSpacing / 2 } : null}>
                             <Text {...legend} />
                         </div>
                     </Transitions>
@@ -212,7 +231,7 @@ const ImageScreen = ({
         }
     }
 
-    let paddingTop = !isPreview && !landscape ? finalSpacing * 1.5 : finalSpacing / 2;
+    let paddingTop = (!landscape && !isPreview ? menuSize : 0) + finalSpacing / 2;
 
     if (isCard) {
         paddingTop = 0;
@@ -226,6 +245,8 @@ const ImageScreen = ({
                     [className]: className !== null,
                     [styles.isReversed]: isReversed,
                     [styles.isPlaceholder]: isPlaceholder,
+                    [styles.isCard]: isCard,
+                    [styles.isFullscreen]: isFullscreen,
                 },
             ])}
         >
@@ -240,7 +261,14 @@ const ImageScreen = ({
                 <Layout
                     className={styles.layout}
                     fullscreen
-                    style={!isPlaceholder ? { padding: finalSpacing / 2, paddingTop } : null}
+                    style={
+                        !isPlaceholder
+                            ? {
+                                  padding: finalSpacing / 2,
+                                  paddingTop,
+                              }
+                            : null
+                    }
                 >
                     {items}
                 </Layout>

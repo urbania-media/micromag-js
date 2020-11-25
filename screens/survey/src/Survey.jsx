@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
 
@@ -70,6 +70,8 @@ const SurveyScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const { menuSize } = useViewer();
+
     const landscape = width > height;
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
@@ -191,7 +193,10 @@ const SurveyScreen = ({
                                                                 ? {
                                                                       width: 2,
                                                                       style: 'solid',
-                                                                      ...getStyleFromColor(labelColor, 'color')
+                                                                      ...getStyleFromColor(
+                                                                          labelColor,
+                                                                          'color',
+                                                                      ),
                                                                   }
                                                                 : null
                                                         }
@@ -199,7 +204,9 @@ const SurveyScreen = ({
                                                         <span
                                                             className={styles.itemLabel}
                                                             ref={(el) => {
-                                                                labelsRefs.current[answerIndex] = el;
+                                                                labelsRefs.current[
+                                                                    answerIndex
+                                                                ] = el;
                                                             }}
                                                         >
                                                             <Text
@@ -278,7 +285,7 @@ const SurveyScreen = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop: !isPreview && !landscape ? spacing * 2 : spacing,
+                                  paddingTop: (!landscape && !isPreview ? menuSize : 0) + spacing,
                               }
                             : null
                     }

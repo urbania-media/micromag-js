@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-import { PropTypes as MicromagPropTypes, useResizeObserver } from '@micromag/core';
-import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
+import { useResizeObserver } from '@micromag/core/hooks';
 import { isImageFilled, isTextFilled } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
@@ -60,6 +61,8 @@ const GalleryFeedScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const { menuSize } = useViewer();
+
     const landscape = width > height;
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
@@ -118,7 +121,8 @@ const GalleryFeedScreen = ({
             captionElement = (
                 <ScreenElement
                     key={`caption-${index}`}
-                    placeholder="shortText"
+                    placeholder="text"
+                    placeholderProps={{ lines: 2 }}
                     emptyLabel={
                         <FormattedMessage
                             defaultMessage="Caption"
@@ -164,7 +168,7 @@ const GalleryFeedScreen = ({
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.placeholder]: isPlaceholder,
+                    [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}
         >
@@ -178,11 +182,12 @@ const GalleryFeedScreen = ({
             <Container width={width} height={height} maxRatio={maxRatio} withScroll>
                 <Scroll disabled={isPlaceholder || isPreview}>
                     <Layout
+                        className={styles.layout}
                         style={
                             !isPlaceholder
                                 ? {
                                       padding: spacing,
-                                      paddingTop: !isPreview && !landscape ? spacing * 2 : spacing,
+                                      paddingTop: (!landscape && !isPreview ? menuSize : 0) + spacing,
                                   }
                                 : null
                         }
