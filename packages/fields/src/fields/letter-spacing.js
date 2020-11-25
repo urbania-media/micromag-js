@@ -14,5 +14,6 @@ export default {
         iconName: 'letter-spacing',
         prefix: 'fas',
     },
+    float: true,
     size: 4,
 };

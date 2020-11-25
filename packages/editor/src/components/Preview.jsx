@@ -31,8 +31,8 @@ const defaultProps = {
         },
         {
             id: 'desktop',
-            width: 1440,
-            height: 800,
+            width: 1200,
+            height: 900,
         },
     ],
     device: null,
