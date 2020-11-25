@@ -53,7 +53,17 @@ const ModalDialog = ({
     >
         <div className="modal-content">
             {header || (
-                <div className={classNames(['modal-header', styles.header])}>
+                <div
+                    className={classNames([
+                        'modal-header',
+                        styles.header,
+                        {
+                            'bg-secondary': theme === 'dark',
+                            'border-secondary': theme === 'dark',
+                            'text-light': theme === 'dark',
+                        },
+                    ])}
+                >
                     <h5 className="modal-title">
                         <Label>{title}</Label>
                     </h5>
@@ -79,13 +89,14 @@ const ModalDialog = ({
             >
                 {children}
             </div>
-            {footer || (
+            {footer !== null || buttons !== null ? (
                 <div className={classNames(['modal-footer', styles.footer])}>
+                    {footer}
                     {buttons !== null ? (
                         <Buttons buttons={buttons} className={styles.buttons} />
                     ) : null}
                 </div>
-            )}
+            ) : null}
         </div>
     </div>
 );
