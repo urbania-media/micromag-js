@@ -146,7 +146,7 @@ export const survey1answers = [
         id: uuid(),
         label: {
             body: 'Rien du tout',
-            textStyle: surveyLabelStyle,       
+            textStyle: surveyLabelStyle,
         },
         percent: 15,
     },
@@ -154,7 +154,7 @@ export const survey1answers = [
         id: uuid(),
         label: {
             body: 'Autre',
-            textStyle: surveyLabelStyle,      
+            textStyle: surveyLabelStyle,
         },
         percent: 37.5,
     },
@@ -461,6 +461,7 @@ export const backgroundIntro = {
     color: { color: 'black' },
     video: {
         type: 'video',
+        name: 'intro.mp4',
         url: intro,
         metadata: {
             width: 1280,
@@ -562,6 +563,7 @@ export const backgroundHugoMirror = {
     color: { color: 'black' },
     video: {
         type: 'video',
+        name: 'hugo.mp4',
         url: hugoMirror,
         metadata: {
             width: 1280,

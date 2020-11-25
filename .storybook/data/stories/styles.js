@@ -39,7 +39,7 @@ export const header3 = {
     fontStyle: {
         bold: false,
     },
-    lineHeight: 1,
+    lineHeight: 1.2,
 };
 
 export const bodyText = {
@@ -52,7 +52,7 @@ export const bodyText = {
     fontStyle: {
         bold: false,
     },
-    lineHeight: 1.1,
+    lineHeight: 1.2,
 };
 
 export const background = () => ({ color: { color: chance.color({ format: 'rgb' }) } });
