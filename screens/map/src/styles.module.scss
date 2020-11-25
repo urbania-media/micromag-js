@@ -79,14 +79,17 @@
     }
 
     .closeButton {
+        display: block;
         position: absolute;
         top: 20px;
         right: 20px;
         width: 44px;
         height: 44px;
-        padding: 10px;
         border-radius: 50%;
         background-color: rgba($gray-900, 0.8);
+        font-size: 30px;
+        line-height: 0;
+        text-align: center;
     }
 
     .closeButton {

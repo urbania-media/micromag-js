@@ -254,7 +254,7 @@ const MapScreen = ({
                     </Button>
                 </div>
                 <Button className={styles.closeButton} onClick={onCloseClick}>
-                    X
+                    &times;
                 </Button>
             </Transitions>
         );
