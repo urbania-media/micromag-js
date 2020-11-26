@@ -100,6 +100,7 @@ const AdScreen = ({
         imageElement = (
             <PlaceholderAdImage
                 className={classNames([styles.placeholder])}
+                width="3em"
                 {...(isFullscreen
                     ? {
                           width: '100%',

@@ -12,7 +12,7 @@ const props = {
 };
 
 export default {
-    title: 'Screens/Ad (TODO)',
+    title: 'Screens/Ad',
     component: AdScreen,
     parameters: {
         intl: true,

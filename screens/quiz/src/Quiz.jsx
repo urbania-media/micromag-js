@@ -49,7 +49,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    layout: 'top',
+    layout: 'middle',
     question: null,
     answers: null,
     result: null,
@@ -92,6 +92,8 @@ const QuizScreen = ({
 
     const [userAnswerIndex, setUserAnswerIndex] = useState(null);
     const [showResults, setShowResults] = useState(false);
+    const [answerTransitionProps, setAnswerTransitionProps] = useState(null);
+    const [answerTransitionComplete, setAnswerTransitionComplete] = useState(false);
 
     const answered = userAnswerIndex !== null;
     const { good: hasUserAnsweredRight = false } =
@@ -101,10 +103,10 @@ const QuizScreen = ({
     const verticalAlign = isSplitted ? null : layout;
 
     const onAnswerClick = useCallback(
-        (answerIndex) => {
+        (answerI) => {
             let timeout = null;
             if (userAnswerIndex === null) {
-                setUserAnswerIndex(answerIndex);
+                setUserAnswerIndex(answerI);
                 timeout = setTimeout(setShowResults, showResultsDelay, true);
             }
 
@@ -115,16 +117,22 @@ const QuizScreen = ({
             };
         },
         [userAnswerIndex, setUserAnswerIndex, showResultsDelay],
-    );
+    );   
+
+    useEffect( () => {
+        if (!current && isEdit && userAnswerIndex !== null) {
+            setUserAnswerIndex(null);
+            setShowResults(false);
+            setAnswerTransitionComplete(false);
+        }
+    }, [isEdit, current, userAnswerIndex, setUserAnswerIndex, setShowResults, setAnswerTransitionComplete]);
 
     // we get .answer's current and future height to animate its height
     // we also get the right answer's Y to animate its position
 
     const answerRef = useRef(null);
     const rightAnswerRef = useRef(null);
-    const resultRef = useRef(null);
-
-    const [answerTransitionProps, setAnswerTransitionProps] = useState(null);
+    const resultRef = useRef(null);    
 
     useEffect(() => {
         const answerEl = answerRef.current;
@@ -145,13 +153,11 @@ const QuizScreen = ({
                 });
             }
         }
-    }, [setAnswerTransitionProps, width, height]);
+    }, [answers, setAnswerTransitionProps, width, height]);
 
     // when the animation is done, we set a state to remove animations props
     // .results' position changes from absolute to relative
     // the wrong answers are removed from DOM
-
-    const [answerTransitionComplete, setAnswerTransitionComplete] = useState(false);
 
     useEffect(() => {
         let timeout = null;
@@ -175,7 +181,7 @@ const QuizScreen = ({
             emptyLabel={
                 <FormattedMessage defaultMessage="Question" description="Question placeholder" />
             }
-            emptyClassName={styles.empty}
+            emptyClassName={styles.emptyTitle}
             isEmpty={!hasQuestion}
         >
             {hasQuestion ? (
@@ -208,21 +214,21 @@ const QuizScreen = ({
                     : null
             }
         >
-            {answers !== null ? (
+            {answers !== null || isPlaceholder ? (
                 <div className={styles.items}>
-                    {answers.map((answer, answerIndex) => {
-                        const hasAnswer = answer !== null;
+                    {(isPlaceholder ? [...new Array(2)] : answers).map((answer, answerI) => {
                         const { good: rightAnswer = false } = answer || {};
-                        const isEmptyOption = isEdit && !hasAnswer;
-                        const userAnswer = answerIndex === userAnswerIndex;
+                        const userAnswer = answerI === userAnswerIndex;
 
                         const { label = null } = answer || {};
                         const { textStyle = null } = label || {};
                         const { color: labelColor = null } = textStyle || {};
 
+                        const hasAnswer = isTextFilled(label);
+
                         return answerTransitionComplete && !rightAnswer ? null : (
                             <div
-                                key={`answer-${answerIndex}`}
+                                key={`answer-${answerI}`}
                                 ref={rightAnswer ? rightAnswerRef : null}
                                 className={classNames([
                                     styles.item,
@@ -244,26 +250,27 @@ const QuizScreen = ({
                                 }
                             >
                                 <ScreenElement
-                                    placeholder="button"
+                                    placeholder="quizAnswer"
+                                    placeholderProps={{ good: answerI === 0 }}
                                     emptyLabel={
                                         <FormattedMessage
-                                            defaultMessage="Option"
-                                            description="Option placeholder"
+                                            defaultMessage="Answer"
+                                            description="Answer placeholder"
                                         />
                                     }
-                                    emptyClassName={styles.empty}
-                                    isEmpty={isEmptyOption}
+                                    emptyClassName={styles.emptyAnswer}
+                                    isEmpty={!hasAnswer}
                                 >
                                     {hasAnswer ? (
                                         <Transitions
                                             transitions={transitions}
                                             playing={current}
-                                            delay={(answerIndex + 1) * transitionStagger}
+                                            delay={(answerI + 1) * transitionStagger}
                                             disabled={!isView}
                                         >
                                             <Button
                                                 className={styles.button}
-                                                onClick={() => onAnswerClick(answerIndex)}
+                                                onClick={() => onAnswerClick(answerI)}
                                                 disabled={isPreview}
                                                 borderStyle={
                                                     userAnswer || !answered
@@ -296,7 +303,7 @@ const QuizScreen = ({
                                                 ) : null}
                                                 <Text
                                                     {...label}
-                                                    tag="span"
+                                                    inline
                                                     className={styles.optionLabel}
                                                 />
                                             </Button>
@@ -308,16 +315,15 @@ const QuizScreen = ({
                     })}
                 </div>
             ) : null}
-            <ScreenElement
-                placeholder="text"
-                emptyLabel={
-                    <FormattedMessage defaultMessage="Result" description="Result placeholder" />
-                }
-                emptyClassName={styles.empty}
-                isEmpty={!hasResult}
-            >
-                {hasResult ? ( // Result
-                    <div className={styles.result} ref={resultRef}>
+            <div className={styles.result} ref={resultRef}>
+                <ScreenElement
+                    emptyLabel={ answered ? 
+                        <FormattedMessage defaultMessage="Result" description="Result placeholder" />
+                    : null }
+                    isEmpty={answered && !hasResult}
+                    emptyClassName={styles.emptyResult}
+                >
+                    {hasResult ? (
                         <Transitions
                             transitions={transitions}
                             playing={current}
@@ -326,9 +332,9 @@ const QuizScreen = ({
                         >
                             <Text {...result} className={styles.resultText} />
                         </Transitions>
-                    </div>
-                ) : null}
-            </ScreenElement>
+                    ) : null}
+                </ScreenElement>
+            </div>
         </div>,
     );
 
@@ -338,6 +344,7 @@ const QuizScreen = ({
                 styles.container,
                 {
                     [className]: className !== null,
+                    [styles.isPlaceholder]: isPlaceholder,
                     [styles.answered]: answered,
                     [styles.showResults]: showResults,
                     [styles.answerTransitionComplete]: answerTransitionComplete,
@@ -353,6 +360,7 @@ const QuizScreen = ({
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
                 <Layout
+                    className={styles.layout}
                     fullscreen
                     verticalAlign={verticalAlign}
                     style={

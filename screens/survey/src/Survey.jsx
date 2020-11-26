@@ -41,7 +41,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    layout: 'top',
+    layout: 'middle',
     question: null,
     answers: null,
     spacing: 20,
@@ -93,6 +93,12 @@ const SurveyScreen = ({
         [userAnswerIndex, setUserAnswerIndex],
     );
 
+    useEffect( () => {
+        if (!current && isEdit && userAnswerIndex !== null) {
+            setUserAnswerIndex(null);
+        }
+    }, [isEdit, current, userAnswerIndex, setUserAnswerIndex]);
+
     // Question
 
     const items = [
@@ -102,7 +108,7 @@ const SurveyScreen = ({
             emptyLabel={
                 <FormattedMessage defaultMessage="Question" description="Question placeholder" />
             }
-            emptyClassName={styles.empty}
+            emptyClassName={styles.emptyQuestion}
             isEmpty={!hasQuestion}
         >
             {hasQuestion ? (
@@ -132,13 +138,13 @@ const SurveyScreen = ({
             maxWidth = Math.max(maxWidth, totalWidth);
             setButtonMaxWidth(maxWidth);
         });
-    }, [width, height, setButtonMaxWidth]);
+    }, [answers, width, height, setButtonMaxWidth]);
 
     items.push(
         <div key="answers" className={styles.answers}>
-            {answers !== null ? (
+            {answers !== null || isPlaceholder ? (
                 <div className={styles.items}>
-                    {answers.map((answer, answerIndex) => {
+                    {(isPlaceholder ? [...new Array(3)] : answers).map((answer, answerIndex) => {
                         const hasAnswer = answer !== null;
                         const { label = null, percent = null } = answer || {};
                         const { textStyle = null } = label || {};
@@ -157,14 +163,15 @@ const SurveyScreen = ({
                                 ])}
                             >
                                 <ScreenElement
-                                    placeholder="button"
+                                    placeholder="surveyAnswer"
+                                    placeholderProps={{ className: styles.placeholderAnswer }}
                                     emptyLabel={
                                         <FormattedMessage
-                                            defaultMessage="Option"
-                                            description="Option placeholder"
+                                            defaultMessage="Answer"
+                                            description="Answer placeholder"
                                         />
                                     }
-                                    emptyClassName={styles.empty}
+                                    emptyClassName={styles.emptyAnswer}
                                     isEmpty={!hasAnswerLabel}
                                 >
                                     {hasAnswer ? (
@@ -218,7 +225,7 @@ const SurveyScreen = ({
                                                                             ? labelColor
                                                                             : null,
                                                                 }}
-                                                                tag="span"
+                                                                inline
                                                                 className={styles.itemText}
                                                             />
                                                         </span>
@@ -267,6 +274,7 @@ const SurveyScreen = ({
                 {
                     [className]: className !== null,
                     [styles.answered]: answered,
+                    [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}
         >
@@ -279,6 +287,7 @@ const SurveyScreen = ({
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
                 <Layout
+                    className={styles.layout}
                     fullscreen
                     verticalAlign={verticalAlign}
                     style={

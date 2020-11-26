@@ -144,7 +144,7 @@ const TitleScreen = ({
         withDescription && (
             <ScreenElement
                 key="description"
-                placeholder="text"
+                placeholder="shortText"
                 emptyLabel={descriptionEmptyLabel}
                 emptyClassName={styles.empty}
                 isEmpty={isEmpty}
@@ -160,6 +160,7 @@ const TitleScreen = ({
                 styles.container,
                 {
                     [className]: className !== null,
+                    [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}
         >
@@ -173,6 +174,7 @@ const TitleScreen = ({
 
             <Container width={width} height={height} maxRatio={maxRatio}>
                 <Layout
+                    className={styles.layout}
                     fullscreen
                     verticalAlign={verticalAlign}
                     style={

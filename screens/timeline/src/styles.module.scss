@@ -79,6 +79,12 @@
             height: 10px;
         }
 
+        .content {
+            &.lastContent {
+                margin-bottom: 4px;
+            }
+        }
+
         .title,
         .description,
         .imageContainer {
@@ -87,6 +93,15 @@
             justify-content: center;
             height: 100%;
             padding: 2px 0;
+        }
+
+        .line {
+            background-color: rgba($black, 0.5);
+        }
+
+        .bullet {
+            border-color: rgba($black, 0.5);
+            background-color: rgba($black, 0.5);
         }
     }
 

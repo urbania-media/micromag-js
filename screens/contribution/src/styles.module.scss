@@ -15,9 +15,16 @@
         }
     }
 
-    .empty {
+    .emptyTitle,
+    .emptyInputName,
+    .emptyInputMessage,
+    .emptySubmit {
         margin-bottom: 10px;
         padding: 10px;
+    }
+
+    .emptyInputMessage {
+        height: 100px;
     }
 
     .title {
@@ -35,18 +42,32 @@
 
     .form {
         position: relative;
+    }
 
-        input,
-        textarea,
-        button {
-            display: block;
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 4px;
+    .inputName,
+    .inputMessage,
+    .buttonSubmit {
+        display: block;
+        width: 100%;
+        padding: 4px;
+    }
 
-            &:last-child {
-                margin-bottom: 0;
-            }
+    .inputName,
+    .inputMessage {
+        margin-bottom: 10px;
+
+        &:disabled {
+            background-color: $white;
+        }
+    }
+
+    .inputMessage {
+        height: 100px;
+    }
+
+    .buttonSubmit {
+        &:disabled {
+            opacity: 1;
         }
     }
 
@@ -140,6 +161,12 @@
             position: relative;
             height: auto;
             overflow: visible;
+        }
+    }
+
+    &.isPlaceholder {
+        .content {
+            padding: 10px;
         }
     }
 }

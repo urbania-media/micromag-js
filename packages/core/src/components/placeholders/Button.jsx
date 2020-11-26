@@ -1,18 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading, react/destructuring-assignment, react/prop-types */
 import React from 'react';
-import classNames from 'classnames';
 
+import PlaceholderBlock from '../partials/PlaceholderBlock';
 import PlaceholderText from '../partials/PlaceholderText';
 
-import styles from '../../styles/placeholders/placeholders.module.scss';
-
-export const Button = (props) => (
-    <PlaceholderText
-        {...props}
-        className={classNames([props.className, styles.button])}
-        height={0.3}
-        lines={1}
-    />
+export const Button = ({ width = '75%', height = '0.75em', className }) => (
+    <PlaceholderBlock outline width={width} height={height} className={className}>
+        <PlaceholderText line={1} height="0.3em" />
+    </PlaceholderBlock>
 );
 
 export default Button;

@@ -58,7 +58,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    layout: 'two-vertical-equal',
+    layout: 'four-mosaic',
     withCaptions: false,
     images: [],
     spacing: 20,
@@ -176,7 +176,7 @@ const GalleryScreen = ({
                         disabled={!isView}
                     >
                         <ScreenElement
-                            placeholder="shortText"
+                            placeholder="line"
                             emptyLabel={
                                 <FormattedMessage
                                     defaultMessage="Caption"
@@ -206,6 +206,7 @@ const GalleryScreen = ({
                 styles.container,
                 {
                     [className]: className !== null,
+                    [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}
         >
@@ -219,7 +220,9 @@ const GalleryScreen = ({
             <Container width={width} height={height} maxRatio={maxRatio}>
                 <div
                     className={styles.content}
-                    style={!landscape && !isPreview ? { paddingTop: menuSize } : null}
+                    style={{
+                        paddingTop: !landscape && !isPreview ? menuSize : null,
+                    }}
                 >
                     <Grid className={styles.grid} spacing={finalSpacing} items={items} {...grid} />
                 </div>

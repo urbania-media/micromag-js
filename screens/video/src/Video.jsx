@@ -29,7 +29,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    layout: null,
+    layout: 'full',
     video: null,
     closedCaptions: null,
     withSeekBar: false,

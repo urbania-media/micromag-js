@@ -148,6 +148,8 @@ const RankingScreen = ({
             </div>
         );
 
+        const rankText = `${ascending ? itemI + 1 : itemsCount - itemI}`;
+
         return (
             <div className={styles.item} key={`item-${itemI}`}>
                 <div
@@ -157,14 +159,16 @@ const RankingScreen = ({
                     }}
                     style={isSideLayout ? { width: maxSideRankWidth } : null}
                 >
-                    <Transitions
-                        transitions={transitions}
-                        playing={current}
-                        delay={transitionStagger * itemI}
-                        disabled={!isView}
-                    >
-                        <Text className={styles.rankText} body={`${ascending ? itemI + 1 : itemsCount - itemI}`} textStyle={numbersStyle} />
-                    </Transitions>
+                    { isPlaceholder ? rankText : (
+                        <Transitions
+                            transitions={transitions}
+                            playing={current}
+                            delay={transitionStagger * itemI}
+                            disabled={!isView}
+                        >
+                            <Text className={styles.rankText} body={rankText} textStyle={numbersStyle} />
+                        </Transitions>
+                    )}                    
                 </div>
                 <div className={styles.content}>
                     {titleElement}

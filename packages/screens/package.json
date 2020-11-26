@@ -60,7 +60,6 @@
         "@micromag/screen-quiz": "^0.1.29",
         "@micromag/screen-quote": "^0.1.29",
         "@micromag/screen-ranking": "^0.1.29",
-        "@micromag/screen-slideshow": "^0.1.29",
         "@micromag/screen-survey": "^0.1.29",
         "@micromag/screen-text": "^0.1.29",
         "@micromag/screen-timeline": "^0.1.29",
