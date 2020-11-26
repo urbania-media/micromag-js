@@ -31,7 +31,7 @@
         }
     }
 
-    &::after {
+    &::before {
         @extend %fullscreen;
         content: '';
         display: block;

@@ -75,7 +75,7 @@ const AudioScreen = ({
     // ------------------------------------
 
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isView, isEdit } = useScreenRenderContext();
+    const { isPlaceholder, isPreview, isView, isEdit } = useScreenRenderContext();
 
     const [ready, setReady] = useState(false);
     const transitionPlaying = current && ready;
@@ -98,6 +98,11 @@ const AudioScreen = ({
                 <Audio
                     {...audio}
                     ref={apiRef}
+                    waveProps={isPreview ? {
+                        sampleWidth: 10,
+                        sampleMargin: 5,
+                        minSampleHeight: 5,
+                    } : null}
                     className={styles.audio}
                     onReady={onAudioReady}
                     onPlayChanged={onPlayChanged}

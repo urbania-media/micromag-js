@@ -21,6 +21,11 @@ const propTypes = {
     initialMuted: PropTypes.bool,
     autoPlay: PropTypes.bool,
     loop: PropTypes.bool,
+    waveProps: PropTypes.shape({
+        sampleWidth: PropTypes.number,
+        sampleMargin: PropTypes.number,
+        minSampleHeight: PropTypes.number,
+    }),
     className: PropTypes.string,
     onReady: PropTypes.func,
     onTimeUpdate: PropTypes.func,
@@ -35,6 +40,7 @@ const defaultProps = {
     initialMuted: false,
     autoPlay: false,
     loop: false,
+    waveProps: null,
     className: null,
     onReady: null,
     onTimeUpdate: null,
@@ -49,6 +55,7 @@ const Audio = ({
     initialMuted,
     autoPlay,
     loop,
+    waveProps,
     className,
     onReady,
     onTimeUpdate,
@@ -130,6 +137,7 @@ const Audio = ({
                 className={styles.wave}
                 media={media}
                 currentTime={currentTime}
+                {...waveProps}
                 duration={duration}
                 playing={playing}
                 onSeek={seek}
