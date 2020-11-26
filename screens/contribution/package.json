@@ -49,6 +49,7 @@
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.12",
         "@micromag/core": "^0.1.29",
+        "@micromag/data": "^0.1.29",
         "@micromag/element-background": "^0.1.29",
         "@micromag/element-button": "^0.1.29",
         "@micromag/element-container": "^0.1.29",

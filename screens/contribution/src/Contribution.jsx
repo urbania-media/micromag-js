@@ -12,6 +12,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { isTextFilled, isLabelFilled } from '@micromag/core/utils';
+import { useContributions } from '@micromag/data';
 
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -22,7 +23,6 @@ import Text from '@micromag/element-text';
 import TextInput from '@micromag/element-text-input';
 
 import styles from './styles.module.scss';
-import useContributions from './useContributions';
 
 const propTypes = {
     layout: PropTypes.oneOf(['top', 'middle', 'bottom']),
@@ -104,7 +104,7 @@ const ContributionScreen = ({
     const {
         contributions,
         submit: submitContribution
-    } = useContributions({ onContributionSubmitted });
+    } = useContributions({ onSubmitSuccess: onContributionSubmitted });
 
     const onNameChange = useCallback(
         (e) => {

@@ -104,11 +104,11 @@ export default {
         layout: [
             {
                 columns: 1,
-                rows: [3, 1],
+                rows: [2, 1],
             },
             {
                 columns: 1,
-                rows: [1, 3],
+                rows: [1, 2],
             },
         ]
     },

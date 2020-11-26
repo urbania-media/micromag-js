@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-const useContributions = ({ onContributionSubmitted = null } = {}) => {
+const useContributions = ({ onSubmitSuccess = null } = {}) => {
 
     // @TODO get actual contributions
     const [contributions, setContributions] = useState(
@@ -12,16 +12,16 @@ const useContributions = ({ onContributionSubmitted = null } = {}) => {
 
     const submit = useCallback(
         (contribution) => {
-            const onSubmitSuccess = () => {
+            const onSuccess = () => {
                 setContributions([contribution, ...contributions]);
-                if (onContributionSubmitted !== null) {
-                    onContributionSubmitted();
+                if (onSubmitSuccess !== null) {
+                    onSubmitSuccess();
                 }
             };
             // @TODO send actual contribution
-            setTimeout(onSubmitSuccess, 1000);
+            setTimeout(onSuccess, 1000);
         },
-        [contributions, setContributions, onContributionSubmitted],
+        [contributions, setContributions, onSubmitSuccess],
     );
 
     return {

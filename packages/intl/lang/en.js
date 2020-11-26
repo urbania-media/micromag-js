@@ -36,7 +36,6 @@ var JVzmnI = "Organisations make it easier to collaborate with a team on microma
 var Ke35Pv = "Edit";
 var LI0Gz4 = "Email";
 var MXiIAx = "Billing info";
-var MhGUaY = "Slideshow";
 var MmvRge = "Delete profile";
 var Mz76RM = "ImageText";
 var N25iDO = "Title";
@@ -105,7 +104,6 @@ var dVcog7 = "Title";
 var dmuKH3 = "Map";
 var dpQDWT = "Change password";
 var dqnkQk = "Legend";
-var eIiKqX = "Slides";
 var eNT0tt = "All stories";
 var ebsPd4 = "Image";
 var ehcuYG = "Themes";
@@ -187,7 +185,6 @@ var x8sfWV = "MapScreen";
 var xQo9lx = "Phone";
 var xYqGzM = "Author";
 var y7xsPe = "Advanced settings";
-var yUPjCz = "Slideshow";
 var z4CiV1 = "Text";
 var zEOMrg = "Team";
 var zOEp7Q = "Delete story";
@@ -236,7 +233,6 @@ var messages = {
   "3OS3Ms": "Legend",
   "3UtT5H": "Continue",
   "3fZYih": "Card ending with {card_ending}",
-  "3pqFXb": "Button style",
   "3q9GPv": "Quote",
   "3uMlsn": "Some other micromag",
   "4E2gbX": "Text",
@@ -317,7 +313,6 @@ var messages = {
   "KzEL+O": "Option",
   LI0Gz4: LI0Gz4,
   MXiIAx: MXiIAx,
-  MhGUaY: MhGUaY,
   MmvRge: MmvRge,
   Mz76RM: Mz76RM,
   N25iDO: N25iDO,
@@ -402,7 +397,6 @@ var messages = {
   dqnkQk: dqnkQk,
   "e1I+KU": "Question",
   "e6+aGf": "Select a media...",
-  eIiKqX: eIiKqX,
   eNT0tt: eNT0tt,
   ebsPd4: ebsPd4,
   ehcuYG: ehcuYG,
@@ -516,7 +510,6 @@ var messages = {
   "xT/onn": "Image",
   xYqGzM: xYqGzM,
   y7xsPe: y7xsPe,
-  yUPjCz: yUPjCz,
   "yaX4/9": "Company name",
   z4CiV1: z4CiV1,
   zEOMrg: zEOMrg,
