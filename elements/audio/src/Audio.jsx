@@ -71,6 +71,7 @@ const Audio = ({
 
     if (apiRef !== null) {
         apiRef.current = api;
+        apiRef.current.mediaRef = ref;
     }
 
     const {

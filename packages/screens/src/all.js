@@ -15,6 +15,7 @@ import text from '@micromag/screen-text';
 import timeline from '@micromag/screen-timeline';
 import title from '@micromag/screen-title';
 import video from '@micromag/screen-video';
+import video360 from '@micromag/screen-video-360';
 
 const manager = new ScreensManager();
 manager.addDefinition(ad);
@@ -32,5 +33,6 @@ manager.addDefinition(text);
 manager.addDefinition(timeline);
 manager.addDefinition(title);
 manager.addDefinition(video);
+manager.addDefinition(video360);
 
 export default manager;
