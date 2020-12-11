@@ -8,12 +8,15 @@ import definition from '../definition';
 
 const props = {
     title: { body: title() },
+    name: { label: 'Votre nom', textStyle: null },
+    message: { label: 'Votre message', textStyle: null },
+    submit: { body: 'Envoyer', textStyle: null },
     background: backgroundColor(),
     transitions: transitions(),
 };
 
 export default {
-    title: 'Screens/Contribution (TODO)',
+    title: 'Screens/Contribution',
     component: ContributionScreen,
     parameters: {
         intl: true,

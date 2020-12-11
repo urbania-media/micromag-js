@@ -250,7 +250,7 @@ const MapScreen = ({
                 </div>
                 <div className={styles.splash}>
                     <Button className={styles.splashButton} onClick={onSplashClick} withoutStyle>
-                        <Text className={styles.splashText} {...splash} tag="span" />
+                        <Text className={styles.splashText} {...splash} inline />
                     </Button>
                 </div>
                 <Button className={styles.closeButton} onClick={onCloseClick}>

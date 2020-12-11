@@ -1,19 +1,19 @@
 import { defineMessage } from 'react-intl';
-import SlideshowScreen from './Slideshow';
+import Video360Screen from './Video360';
 
 export default {
-    id: 'slideshow',
+    id: 'video-360',
     type: 'screen',
     group: defineMessage({
-        defaultMessage: 'Images',
-        description: 'Images screen group',
+        defaultMessage: 'Audio and Video',
+        description: 'Audio and Video screen group',
     }),
     title: defineMessage({
-        defaultMessage: 'Slideshow',
-        description: 'Slideshow screen title',
+        defaultMessage: 'Video 360',
+        description: 'Video 360 screen title',
     }),
-    component: SlideshowScreen,
-    layouts: ['center'],
+    component: Video360Screen,
+    layouts: ['full'],
     fields: [
         {
             name: 'layout',
@@ -24,19 +24,11 @@ export default {
             }),
         },
         {
-            name: 'slides',
-            type: 'slides',
+            name: 'video',
+            type: 'video',
             label: defineMessage({
-                defaultMessage: 'Slides',
-                description: 'Slides field label',
-            }),
-        },
-        {
-            name: 'button',
-            type: 'button',
-            label: defineMessage({
-                defaultMessage: 'Button style',
-                description: 'Button style field label',
+                defaultMessage: 'Video',
+                description: 'Video field label',
             }),
         },
         {

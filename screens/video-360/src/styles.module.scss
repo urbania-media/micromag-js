@@ -1,0 +1,39 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+.container {
+    @extend %screen;
+
+    .content,
+    .canvas,
+    .canvasButton {
+        @extend %fullscreen;
+    }
+
+    .canvasButton {
+        @extend %reset-button;
+        touch-action: none;
+    }
+
+    .video {
+        display: none;
+    }
+
+    .mediaControls {
+        padding: 10px 20px;
+    }
+    
+    .placeholder {
+        @extend %fullscreen;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .bottomContent {
+        position: absolute;
+        bottom: 0;
+        width: 100%;        
+    }
+}

@@ -74,15 +74,13 @@ const ItemsField = ({
         if (onChange !== null) {
             onChange(newValue);
         }
-        gotoFieldForm(`${name}.${newValue.length}`);
+        gotoFieldForm(`${name}.${newValue.length - 1}`);
     }, [value, onChange, newDefaultValue, gotoFieldForm, name]);
     const onItemChange = useCallback(
         (index, newValue) => {
             if (onChange !== null) {
                 onChange(
-                    newValue !== null
-                        ? [...value.slice(0, index), newValue, ...value.slice(index + 1)]
-                        : [...value.slice(0, index), ...value.slice(index + 1)],
+                    [...value.slice(0, index), newValue, ...value.slice(index + 2)]
                 );
             }
         },

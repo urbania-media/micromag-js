@@ -8,6 +8,7 @@ import subtitles from './data/subtitles';
 
 import audioFile from './data/test.mp3';
 import videoFile from './data/test.mp4';
+import video360File from './data/test-360.mp4';
 import closedCaptionsFile from './data/test.srt';
 
 const chance = new Chance();
@@ -102,6 +103,15 @@ export const imageMedia = ({ width = 800, height = 800, random: randomImage = fa
 export const videoMedia = () => ({
     type: 'video',
     url: videoFile,
+    metadata: {
+        width: 1920,
+        height: 1080,
+    },
+});
+
+export const video360Media = () => ({
+    type: 'video-360',
+    url: video360File,
     metadata: {
         width: 1920,
         height: 1080,

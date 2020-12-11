@@ -88,7 +88,7 @@ const QuoteScreen = ({
                 />
             ) : null}
         </ScreenElement>,
-        isSplitted && hasAuthor && <Spacer key="spacer" />,
+        isSplitted && (hasAuthor || isPlaceholder) && <Spacer key="spacer" />,
         <ScreenElement
             key="author"
             placeholder="subtitle"
@@ -108,6 +108,7 @@ const QuoteScreen = ({
                 styles.container,
                 {
                     [className]: className,
+                    [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}
         >
@@ -121,6 +122,7 @@ const QuoteScreen = ({
 
             <Container width={width} height={height} maxRatio={maxRatio}>
                 <Layout
+                    className={styles.layout}
                     fullscreen
                     verticalAlign={verticalAlign}
                     style={

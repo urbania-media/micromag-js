@@ -4,7 +4,8 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useSpring, animated } from 'react-spring';
-import { PropTypes as MicromagPropTypes, useScreenSizeFromWindow } from '@micromag/core';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useResizeObserver } from '@micromag/core/hooks';
 
 import styles from './styles/audio-wave.module.scss';
 
@@ -54,13 +55,14 @@ const AudioWave = ({
 }) => {
     const { url = null } = media || {};
 
-    const elRef = useRef(null);
     const canvasBackgroundRef = useRef(null);
     const canvasProgressRef = useRef(null);
-
-    // @TODO need a better hook for window resize
-    // ATM the returned value changes every render and height is always null
-    const { width: windowWidth } = useScreenSizeFromWindow();
+    
+    const {
+        ref: elRef,
+        entry: { contentRect: elContentRect },
+    } = useResizeObserver();
+    const { width: elWidth = null } = elContentRect || {};
 
     // Linear animation for progress bar
 
@@ -215,7 +217,7 @@ const AudioWave = ({
         sampleWidth,
         sampleMargin,
         minSampleHeight,
-        windowWidth,
+        elWidth,
         backgroundColor,
         progressColor,
         onReady,

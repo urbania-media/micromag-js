@@ -106,7 +106,7 @@ const TextScreen = ({
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.placeholder]: isPlaceholder,
+                    [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}
         >
@@ -119,6 +119,7 @@ const TextScreen = ({
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
                 <Layout
+                    className={styles.layout}
                     fullscreen
                     verticalAlign={verticalAlign}
                     style={ !isPlaceholder ? {

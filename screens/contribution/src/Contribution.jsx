@@ -11,19 +11,25 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { isTextFilled } from '@micromag/core/utils';
+import { isTextFilled, isLabelFilled } from '@micromag/core/utils';
+import { useContributions } from '@micromag/data';
 
 import Background from '@micromag/element-background';
+import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
+import TextInput from '@micromag/element-text-input';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
     layout: PropTypes.oneOf(['top', 'middle', 'bottom']),
     title: MicromagPropTypes.headingElement,
+    name: MicromagPropTypes.inputElement,
+    message: MicromagPropTypes.inputElement,
+    submit: MicromagPropTypes.textElement,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
@@ -33,17 +39,14 @@ const propTypes = {
     transitionStagger: PropTypes.number,
     resizeTransitionDuration: PropTypes.number,
     className: PropTypes.string,
-    contributions: PropTypes.arrayOf(
-        PropTypes.shape({
-            name: PropTypes.string,
-            message: PropTypes.string,
-        }),
-    ),
 };
 
 const defaultProps = {
-    layout: 'top',
+    layout: 'middle',
     title: null,
+    name: null,
+    message: null,
+    submit: null,
     spacing: 20,
     background: null,
     current: true,
@@ -52,54 +55,15 @@ const defaultProps = {
     transitions: null,
     transitionStagger: 100,
     resizeTransitionDuration: 750,
-    className: null,
-    contributions: [
-        {
-            name: 'Nom 1',
-            message: 'Message 1',
-        },
-        {
-            name: 'Nom 2',
-            message: 'Message 2',
-        },
-        {
-            name: 'Nom 3',
-            message: 'Message 3',
-        },
-        {
-            name: 'Nom 4',
-            message: 'Message 4',
-        },
-        {
-            name: 'Nom 5',
-            message: 'Message 5',
-        },
-        {
-            name: 'Nom 6',
-            message: 'Message 6',
-        },
-        {
-            name: 'Nom 7',
-            message: 'Message 7',
-        },
-        {
-            name: 'Nom 8',
-            message: 'Message 8',
-        },
-        {
-            name: 'Nom 9',
-            message: 'Message 9',
-        },
-        {
-            name: 'Nom 10',
-            message: 'Message 10',
-        },
-    ],
+    className: null,    
 };
 
-const SurveyScreen = ({
+const ContributionScreen = ({
     layout,
     title,
+    name,
+    message,
+    submit,
     spacing,
     background,
     current,
@@ -109,21 +73,19 @@ const SurveyScreen = ({
     transitionStagger,
     resizeTransitionDuration,
     className,
-    contributions,
 }) => {
     const { width, height } = useScreenSize();
     const { menuSize } = useViewer();
+    const intl = useIntl();   
 
     const landscape = width > height;
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
-    const intl = useIntl();
-
     const hasTitle = isTextFilled(title);
-
-    // @TODO en attendant de recevoir la prop "contributions" updaté au submit
-    const [finalContributions, setFinalContributions] = useState(contributions);
+    const hasNameLabel = isLabelFilled(name);
+    const hasMessageLabel = isLabelFilled(message);
+    const hasSubmit = isTextFilled(submit);
 
     const contributionsRef = useRef(null);
     const formRef = useRef(null);
@@ -134,6 +96,15 @@ const SurveyScreen = ({
 
     // 0 = default, 1 = submitting, 2 = submitted, 3 = resizing, 4 = done
     const [submitState, setSubmitState] = useState(0);
+
+    const onContributionSubmitted = useCallback( () => {
+        setSubmitState(2);
+    }, [setSubmitState]);
+    
+    const {
+        contributions,
+        submit: submitContribution
+    } = useContributions({ onSubmitSuccess: onContributionSubmitted });
 
     const onNameChange = useCallback(
         (e) => {
@@ -152,28 +123,11 @@ const SurveyScreen = ({
     const onSubmit = useCallback(
         (e) => {
             e.preventDefault();
-
-            let tmpSubmit = null;
             if (submitState === 0) {
                 setInteractiveContainerHeight(formRef.current.offsetHeight);
                 setSubmitState(1);
-
-                const submit = () => {
-                    setFinalContributions([
-                        { name: userName, message: userMessage },
-                        ...contributions,
-                    ]);
-                    setSubmitState(2);
-                };
-                // @TODO faux submit ici
-                tmpSubmit = setTimeout(submit, 1000);
+                submitContribution({ name: userName, message: userMessage });
             }
-
-            return () => {
-                if (tmpSubmit !== null) {
-                    clearTimeout(tmpSubmit);
-                }
-            };
         },
         [submitState, setSubmitState, userName, userMessage, contributions],
     );
@@ -200,11 +154,11 @@ const SurveyScreen = ({
             key="title"
             placeholder="title"
             emptyLabel={<FormattedMessage defaultMessage="Title" description="Title placeholder" />}
-            emptyClassName={styles.empty}
+            emptyClassName={styles.emptyTitle}
             isEmpty={!hasTitle}
         >
             {hasTitle ? (
-                <Transitions transitions={transitions} playing={current}>
+                <Transitions transitions={transitions} playing={current} disabled={!isView}>
                     <Heading {...title} className={styles.title} />
                 </Transitions>
             ) : null}
@@ -214,83 +168,137 @@ const SurveyScreen = ({
     // Form
 
     items.push(
-        <ScreenElement key="form" placeholder="form">
-            <Transitions
-                transitions={transitions}
-                playing={current}
-                delay={transitionStagger}
-                disabled={!isView}
-            >
-                <div
-                    className={styles.interactiveContainer}
-                    style={{
-                        height: submitState < 4 ? interactiveContainerHeight : null,
-                        transitionDuration: `${resizeTransitionDuration}ms`,
-                    }}
-                >
-                    <form className={styles.form} onSubmit={onSubmit} ref={formRef}>
-                        <div className={styles.formContent}>
-                            <input
-                                type="text"
-                                placeholder={intl.formatMessage({
+        <div
+            className={styles.interactiveContainer}
+            style={{
+                height: submitState < 4 ? interactiveContainerHeight : null,
+                transitionDuration: `${resizeTransitionDuration}ms`,
+            }}
+        >
+            <form className={styles.form} onSubmit={onSubmit} ref={formRef}>
+                <div className={styles.formContent}>
+                    <ScreenElement
+                        placeholder="inputText"
+                        emptyLabel={
+                            <FormattedMessage
+                                defaultMessage="Your name"
+                                description="Your name placeholder"
+                            />
+                        }
+                        emptyClassName={styles.emptyInputName}
+                        isEmpty={!hasNameLabel}
+                    >
+                        <Transitions
+                            transitions={transitions}
+                            playing={current}
+                            delay={transitionStagger}
+                            disabled={!isView}
+                        >
+                            <TextInput
+                                className={styles.inputName}
+                                label={intl.formatMessage({
                                     defaultMessage: 'Your name',
                                     description: 'Your name placeholder',
                                 })}
+                                {...name}
                                 value={userName}
                                 onChange={(e) => onNameChange(e)}
+                                disabled={isPreview}
                                 required
                             />
-                            <textarea
-                                placeholder={intl.formatMessage({
+                        </Transitions>
+                    </ScreenElement>
+                    <ScreenElement
+                        placeholder="inputText"
+                        placeholderProps={{ height: '1.5em' }}
+                        emptyLabel={
+                            <FormattedMessage
+                                defaultMessage="Your message"
+                                description="Your message placeholder"
+                            />
+                        }
+                        emptyClassName={styles.emptyInputMessage}
+                        isEmpty={!hasMessageLabel}
+                    >
+                        <Transitions
+                            transitions={transitions}
+                            playing={current}
+                            delay={transitionStagger * 2}
+                            disabled={!isView}
+                        >
+                            <TextInput
+                                className={styles.inputMessage}
+                                label={intl.formatMessage({
                                     defaultMessage: 'Your message',
                                     description: 'Your message placeholder',
                                 })}
-                                rows={6}
+                                {...message}
                                 value={userMessage}
                                 onChange={(e) => onMessageChange(e)}
+                                disabled={isPreview}
+                                multiline
                                 required
-                            >
-                                {userMessage}
-                            </textarea>
-                            <button type="submit">
-                                <FormattedMessage
-                                    defaultMessage="Submit"
-                                    description="Submit placeholder"
+                            />
+                        </Transitions>
+                    </ScreenElement>
+                    <ScreenElement
+                        placeholder="button"
+                        emptyLabel={
+                            <FormattedMessage
+                                defaultMessage="Submit"
+                                description="Submit placeholder"
+                            />
+                        }
+                        emptyClassName={styles.emptySubmit}
+                        isEmpty={!hasSubmit}
+                    >
+                        <Transitions
+                            transitions={transitions}
+                            playing={current}
+                            delay={transitionStagger * 3}
+                            disabled={!isView}
+                        >
+                            <Button type="submit" className={styles.buttonSubmit} disabled={isPreview}>
+                                <Text
+                                    body={intl.formatMessage({
+                                        defaultMessage: 'Submit',
+                                        description: 'Submit placeholder',
+                                    })}
+                                    {...submit}
+                                    inline
                                 />
-                            </button>
-                        </div>
-                        <div className={styles.formLoading}>
-                            <FontAwesomeIcon className={styles.loadingIcon} icon={faSpinner} />
-                        </div>
-                    </form>
-                    <div className={styles.contributionsContainer}>
-                        <div className={styles.contributionsContent}>
-                            <div className={styles.contributions} ref={contributionsRef}>
-                                {finalContributions.map((contribution, contributionI) => (
-                                    <div
-                                        key={`contribution${contributionI}`}
-                                        className={styles.contribution}
-                                    >
-                                        <Text
-                                            className={styles.contributionName}
-                                            body={contribution.name}
-                                            textStyle={{ fontStyle: 'bold' }}
-                                        />
-                                        <Text
-                                            className={styles.contributionMessage}
-                                            body={contribution.message}
-                                        />
-                                    </div>
-                                ))}
+                            </Button>
+                        </Transitions>
+                    </ScreenElement>
+                </div>
+                <div className={styles.formLoading}>
+                    <FontAwesomeIcon className={styles.loadingIcon} icon={faSpinner} />
+                </div>
+            </form>
+            <div className={styles.contributionsContainer}>
+                <div className={styles.contributionsContent}>
+                    <div className={styles.contributions} ref={contributionsRef}>
+                        {contributions.map((contribution, contributionI) => (
+                            <div
+                                key={`contribution${contributionI}`}
+                                className={styles.contribution}
+                            >
+                                <Text
+                                    className={styles.contributionName}
+                                    body={contribution.name}
+                                    textStyle={{ fontStyle: 'bold' }}
+                                />
+                                <Text
+                                    className={styles.contributionMessage}
+                                    body={contribution.message}
+                                />
                             </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
-            </Transitions>
-        </ScreenElement>,
+            </div>
+        </div>,
     );
-
-    // Uploads
 
     return (
         <div
@@ -298,6 +306,7 @@ const SurveyScreen = ({
                 styles.container,
                 {
                     [className]: className !== null,
+                    [styles.isPlaceholder]: isPlaceholder,
                     [styles.submitting]: submitState === 1,
                     [styles.submitted]: submitState > 1,
                     [styles.showContributions]: submitState === 4,
@@ -332,7 +341,7 @@ const SurveyScreen = ({
     );
 };
 
-SurveyScreen.propTypes = propTypes;
-SurveyScreen.defaultProps = defaultProps;
+ContributionScreen.propTypes = propTypes;
+ContributionScreen.defaultProps = defaultProps;
 
-export default SurveyScreen;
+export default ContributionScreen;

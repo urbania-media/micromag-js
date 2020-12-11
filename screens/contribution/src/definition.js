@@ -32,6 +32,30 @@ export default {
             }),
         },
         {
+            name: 'name',
+            type: 'input-element',
+            label: defineMessage({
+                defaultMessage: 'Name',
+                description: 'Name field label',
+            }),
+        },
+        {
+            name: 'message',
+            type: 'input-element',
+            label: defineMessage({
+                defaultMessage: 'Message',
+                description: 'Message field label',
+            }),
+        },
+        {
+            name: 'submit',
+            type: 'text-element',
+            label: defineMessage({
+                defaultMessage: 'Submit',
+                description: 'Submit field label',
+            }),
+        },
+        {
             name: 'background',
             type: 'background',
             label: defineMessage({

@@ -29,7 +29,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    layout: null,
+    layout: 'full',
     video: null,
     closedCaptions: null,
     withSeekBar: false,
@@ -81,7 +81,7 @@ const VideoScreen = ({
     // ------------------------------------
 
     const { width, height } = useScreenSize();
-    const { isEdit, isPlaceholder, isView } = useScreenRenderContext();
+    const { isEdit, isPlaceholder, isPreview, isView } = useScreenRenderContext();
     const fullscreen = layout === 'full';
 
     const withVideo = video !== null;
@@ -136,6 +136,7 @@ const VideoScreen = ({
                 <Transitions playing={transitionPlaying} transitions={transitions} disabled={!isView}>
                     <Video
                         {...video}
+                        autoPlay={isPreview ? false : video.autoPlay}
                         ref={apiRef}
                         className={styles.video}
                         onReady={onVideoReady}

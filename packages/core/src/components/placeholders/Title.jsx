@@ -10,9 +10,9 @@ export const Title = (props) => (
     <PlaceholderText
         {...props}
         className={classNames([props.className, styles.title])}
-        height={0.4}
-        lines={1}
-        lineMargin={1}
+        height={0.5}
+        lines={2}
+        lineMargin={4}
     />
 );
 

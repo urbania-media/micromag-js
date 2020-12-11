@@ -15,4 +15,10 @@
             margin-bottom: 1em;
         }
     }
+
+    &.isPlaceholder {
+        .layout {
+            padding: 10px;
+        }
+    }
 }

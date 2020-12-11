@@ -1,0 +1,10 @@
+/* stylelint-disable value-no-vendor-prefix, property-no-vendor-prefix */
+
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/variables';
+
+.container {
+    @extend %text-styles;
+    margin: 0;
+    padding: 0;
+}

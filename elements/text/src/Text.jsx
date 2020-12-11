@@ -19,7 +19,7 @@ const propTypes = {
     showEmpty: PropTypes.bool,
     className: PropTypes.string,
     emptyClassName: PropTypes.string,
-    tag: PropTypes.string,
+    inline: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -31,11 +31,11 @@ const defaultProps = {
     showEmpty: false,
     className: null,
     emptyClassName: null,
-    tag: 'div',
+    inline: false,
 };
 
-const Text = ({ body, textStyle, linksStyle, margin, lineClamp, showEmpty, className, emptyClassName, tag }) => {
-    let finalStyle = null;
+const Text = ({ body, textStyle, linksStyle, margin, lineClamp, showEmpty, className, emptyClassName, inline }) => {
+    let finalStyle = {};
 
     let finalLinkStyle = null;
     if (textStyle !== null) {
@@ -81,7 +81,7 @@ const Text = ({ body, textStyle, linksStyle, margin, lineClamp, showEmpty, class
         dangerouslySetInnerHTML: { __html: body },
     };
 
-    const Tag = `${tag}`;
+    const Tag = `${inline ? 'span' : 'div'}`;
 
     return (
         <>

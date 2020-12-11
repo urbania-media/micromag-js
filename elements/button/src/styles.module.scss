@@ -13,4 +13,9 @@
     &.active {
         box-shadow: none !important;
     }
+
+    &:disabled,
+    &.disabled {
+        cursor: auto;
+    }
 }
