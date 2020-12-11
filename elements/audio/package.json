@@ -36,12 +36,12 @@
         "prepare": "../../scripts/prepare-package.sh"
     },
     "devDependencies": {
-        "react": ">=15.0.0 || ^16.0.0",
-        "react-dom": ">=15.0.0 || ^16.0.0"
+        "react": ">=15.0.0 || ^16.0.0 || ^17.0.0",
+        "react-dom": ">=15.0.0 || ^16.0.0 || ^17.0.0"
     },
     "peerDependencies": {
-        "react": ">=15.0.0 || ^16.0.0",
-        "react-dom": ">=15.0.0 || ^16.0.0"
+        "react": ">=15.0.0 || ^16.0.0 || ^17.0.0",
+        "react-dom": ">=15.0.0 || ^16.0.0 || ^17.0.0"
     },
     "dependencies": {
         "@babel/runtime": "^7.8.7",
@@ -53,9 +53,9 @@
         "@micromag/element-media-controls": "^0.1.29",
         "classnames": "^2.2.6",
         "prop-types": "^15.7.2",
-        "react-intl": "^4.5.0",
+        "react-intl": "^5.10.6",
         "react-spring": "^8.0.27",
-        "uuid": "^7.0.2"
+        "uuid": "^8.3.2"
     },
     "publishConfig": {
         "access": "public"

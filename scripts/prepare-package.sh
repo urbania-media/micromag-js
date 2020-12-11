@@ -19,6 +19,7 @@ done
 # Set defaults
 scss=false
 intl=false
+languages="en fr"
 
 # Get options
 while getopts 'is?h' c
@@ -66,10 +67,18 @@ copy_scss() {
 build_intl() {
     echo "Building intl..."
     mkdir -p ./lang/extract/
-    ../../scripts/formatjs-extract.js './src/**/*.js*' ./lang/extract/en.json
-    tx push -s
-    tx pull -a
-    ../../scripts/formatjs-compile.js './lang/extract/*.json' ./lang
+
+    ../../scripts/formatjs-extract.js './src/**/*.js*' ./lang/extract/messages.json
+
+    #for lang in $languages
+    #do
+    #    json2po -t ./lang/extract/messages.json ./lang/$lang.json ./lang/po/$lang.po
+    #    po2json -t ./lang/extract/messages.json ./lang/po/$lang.po ./lang/$lang.json
+    #done
+
+    # tx push -s
+    # tx pull -a
+    # ../../scripts/formatjs-compile.js './lang/extract/*.json' ./lang
 }
 
 # Build
@@ -78,4 +87,4 @@ clean
 build_rollup
 if [ -f ./es/styles.css ]; then copy_css; fi
 if [ "$scss" = true ]; then copy_scss; fi
-# if [ "$intl" = true ]; then build_intl; fi
+if [ "$intl" = true ]; then build_intl; fi
