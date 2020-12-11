@@ -19,4 +19,10 @@
     // .captionText {
 
     // }
+
+    &.isPlaceholder {
+        .layout {
+            padding: 10px;
+        }
+    }
 }

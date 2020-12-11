@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { quote, author, backgroundColor } from '../../../../.storybook/data';
+import { quote, author, backgroundColor, transitions } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import QuoteScreen from '../Quote';
@@ -10,6 +10,7 @@ const props = {
     quote: { body: quote() },
     author: { body: author() },
     background: backgroundColor(),
+    transitions: transitions(),
 };
 
 export default {

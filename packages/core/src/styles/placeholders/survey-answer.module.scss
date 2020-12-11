@@ -1,0 +1,21 @@
+@import '../variables';
+@import '../placeholders';
+@import '../mixins';
+
+.container {
+    display: flex;
+    align-items: center;
+
+    .block {
+        flex-grow: 1;
+    }
+
+    .percent {
+        margin-left: 4px;
+    }
+
+    .percentIcon {
+        padding: 1px;
+        color: rgba($black, 0.5);
+    }
+}

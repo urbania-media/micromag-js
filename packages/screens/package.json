@@ -60,12 +60,12 @@
         "@micromag/screen-quiz": "^0.1.29",
         "@micromag/screen-quote": "^0.1.29",
         "@micromag/screen-ranking": "^0.1.29",
-        "@micromag/screen-slideshow": "^0.1.29",
         "@micromag/screen-survey": "^0.1.29",
         "@micromag/screen-text": "^0.1.29",
         "@micromag/screen-timeline": "^0.1.29",
         "@micromag/screen-title": "^0.1.29",
         "@micromag/screen-video": "^0.1.29",
+        "@micromag/screen-video-360": "^0.1.29",
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",
         "prop-types": "^15.7.2"

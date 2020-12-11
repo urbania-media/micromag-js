@@ -6,10 +6,10 @@ import classNames from 'classnames';
 
 import { useDrag } from 'react-use-gesture';
 
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useScreenSizeFromElement } from '@micromag/core/hooks';
+import { PropTypes as MicromagPropTypes, ViewerProvider } from '@micromag/core';
+import { useScreenSizeFromElement, useResizeObserver } from '@micromag/core/hooks';
 import { ScreenSizeProvider } from '@micromag/core/contexts';
-import { getDeviceScreens } from '@micromag/core/utils';
+import { getDeviceScreens,  } from '@micromag/core/utils';
 
 import ViewerScreen from './ViewerScreen';
 
@@ -73,6 +73,14 @@ const Viewer = ({
         screens: deviceScreens,
     });
     const { width: screenWidth = null, height: screenHeight = null } = screenSize || {};
+
+    // Get menu size
+    const {
+        ref: menuDotsContainerRef,
+        entry: { contentRect: menuDotsContainerRect },
+    } = useResizeObserver();
+
+    const { width: menuDotsContainerWidth = null, height: menuDotsContainerHeight = null } = menuDotsContainerRect || {};
 
     const landscape = screenWidth > screenHeight;
 
@@ -196,7 +204,9 @@ const Viewer = ({
                     return false;
                 }
 
-                if (tagName === 'BUTTON' || tagName === 'A') {
+                const tags = ['BUTTON', 'A', 'INPUT', 'TEXTAREA'];
+
+                if (tags.indexOf(tagName) > -1) {
                     return true;
                 }
 
@@ -281,101 +291,109 @@ const Viewer = ({
 
     return (
         <ScreenSizeProvider size={screenSize}>
-            <Helmet>
-                <style type="text/css">
-                    {`body {
-                        overscroll-behavior: contain;
-                    }`}
-                </style>
-            </Helmet>
-            <div
-                className={classNames([
-                    styles.container,
-                    screenSize.screens.map((screenName) => `story-screen-${screenName}`),
-                    {
-                        [styles.fullscreen]: fullscreen,
-                        [styles.landscape]: landscape,
-                        [styles.hideMenu]: !currentScreenInteractionEnabled,
-                        [styles.menuOpened]: menuOpened,
-                        [className]: className,
-                    },
-                ])}
-                ref={containerRef}
-                {...(!landscape && currentScreenInteractionEnabled ? bindDrag() : null)}
+            <ViewerProvider
+                menuVisible={currentScreenInteractionEnabled}
+                menuPosition={landscape ? 'right' : 'top'}
+                menuSize={landscape ? menuDotsContainerWidth : menuDotsContainerHeight}
+                menuOpened={menuOpened}
             >
-                <div className={styles.menuDotsContainer}>
-                    <MenuDots
-                        direction={landscape ? 'vertical' : 'horizontal'}
+                { /* @TODO better way to prevent pull-to-refresh */ }
+                <Helmet>
+                    <style type="text/css">
+                        {`body {
+                            overscroll-behavior: contain;
+                        }`}
+                    </style>
+                </Helmet>
+                <div
+                    className={classNames([
+                        styles.container,
+                        screenSize.screens.map((screenName) => `story-screen-${screenName}`),
+                        {
+                            [styles.fullscreen]: fullscreen,
+                            [styles.landscape]: landscape,
+                            [styles.hideMenu]: !currentScreenInteractionEnabled,
+                            [styles.menuOpened]: menuOpened,
+                            [className]: className,
+                        },
+                    ])}
+                    ref={containerRef}
+                    {...(!landscape && currentScreenInteractionEnabled ? bindDrag() : null)}
+                >
+                    <div className={styles.menuDotsContainer} ref={menuDotsContainerRef}>
+                        <MenuDots
+                            direction={landscape ? 'vertical' : 'horizontal'}
+                            items={components}
+                            current={currentIndex}
+                            onClickItem={onClickDotsMenuItem}
+                            className={styles.menuDots}
+                        />
+                    </div>
+                    <MenuPreview
+                        title={title}
+                        className={styles.menuPreview}
+                        screenWidth={screenWidth}
+                        screenHeight={screenHeight}
                         items={components}
                         current={currentIndex}
-                        onClickItem={onClickDotsMenuItem}
-                        className={styles.menuDots}
+                        onClickItem={onClickPreviewMenuItem}
+                        onClose={onClickPreviewMenuClose}
                     />
-                </div>
-                <MenuPreview
-                    title={title}
-                    className={styles.menuPreview}
-                    screenWidth={screenWidth}
-                    screenHeight={screenHeight}
-                    items={components}
-                    current={currentIndex}
-                    onClickItem={onClickPreviewMenuItem}
-                    onClose={onClickPreviewMenuClose}
-                />
-                <div
-                    ref={contentRef}
-                    className={styles.content}
-                    onScroll={landscape ? onContentScrolled : null}
-                    {...(!landscape ? { onClick: onTap } : null)}
-                >
-                    {components.map((scr, i) => {
-                        const current = i === currentIndex;
-                        const active =
-                            i > currentIndex - neighborScreensActive &&
-                            i < currentIndex + neighborScreensActive;
+                    <div
+                        ref={contentRef}
+                        className={styles.content}
+                        onScroll={landscape ? onContentScrolled : null}
+                        {...(!landscape ? { onClick: onTap } : null)}
+                    >
+                        {components.map((scr, i) => {
+                            const current = i === currentIndex;
+                            const active =
+                                i > currentIndex - neighborScreensActive &&
+                                i < currentIndex + neighborScreensActive;
 
-                        const viewerScreen = (
-                            <ViewerScreen
-                                screen={scr}
-                                renderContext={renderContext}
-                                index={i}
-                                current={current}
-                                active={active}
-                                landscape={landscape}
-                                onPrevious={onScreenPrevious}
-                                onNext={onScreenNext}
-                                onEnableInteraction={onEnableInteraction}
-                                onDisableInteraction={onDisableInteraction}
-                            />
-                        );
-                        const screenClass = styles.screen;
-                        const key = `screen-viewer-${scr.id || ''}-${i + 1}`;
-                        return landscape ? (
-                            <div
-                                key={key}
-                                className={screenClass}
-                                ref={(el) => {
-                                    screensRefs.current[i] = el;
-                                }}
-                            >
-                                {viewerScreen}
-                            </div>
-                        ) : (
-                            <div
-                                key={key}
-                                style={{
-                                    transform: `translate3d(${
-                                        screenWidth * (i - currentIndex)
-                                    }px, 0, 0)`,
-                                }}
-                                className={screenClass}
-                            >
-                                {viewerScreen}
-                            </div>
-                        );
-                    })}
+                            const viewerScreen = (
+                                <ViewerScreen
+                                    screen={scr}
+                                    renderContext={renderContext}
+                                    index={i}
+                                    current={current}
+                                    active={active}
+                                    landscape={landscape}
+                                    onPrevious={onScreenPrevious}
+                                    onNext={onScreenNext}
+                                    onEnableInteraction={onEnableInteraction}
+                                    onDisableInteraction={onDisableInteraction}
+                                />
+                            );
+                            const screenClass = styles.screen;
+                            const key = `screen-viewer-${scr.id || ''}-${i + 1}`;
+                            return landscape ? (
+                                <div
+                                    key={key}
+                                    className={screenClass}
+                                    ref={(el) => {
+                                        screensRefs.current[i] = el;
+                                    }}
+                                >
+                                    {viewerScreen}
+                                </div>
+                            ) : (
+                                <div
+                                    key={key}
+                                    style={{
+                                        transform: `translate3d(${
+                                            screenWidth * (i - currentIndex)
+                                        }px, 0, 0)`,
+                                    }}
+                                    className={screenClass}
+                                >
+                                    {viewerScreen}
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
-            </div>
+            </ViewerProvider>
         </ScreenSizeProvider>
     );
 };

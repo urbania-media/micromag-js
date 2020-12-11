@@ -7,6 +7,7 @@ export { default as useAuthForgot } from './useAuthForgot';
 export { default as useAuthLogin } from './useAuthLogin';
 export { default as useAuthLogout } from './useAuthLogout';
 export { default as useAuthUser } from './useAuthUser';
+export { default as useContributions } from './useContributions';
 export { default as useData } from './useData';
 export { default as useItems } from './useItems';
 export { default as useMedias } from './useMedias';

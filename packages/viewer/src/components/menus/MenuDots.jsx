@@ -24,7 +24,7 @@ const defaultProps = {
     current: 0,
     onClickItem: null,
     colorAccent: 'rgba(255, 255, 255, 1)',
-    colorBackground: 'rgba(200, 200, 200, 0.3)',
+    colorBackground: 'rgba(200, 200, 200, 0.5)',
     className: null,
 };
 

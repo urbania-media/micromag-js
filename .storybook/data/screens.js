@@ -14,6 +14,7 @@ import {
     markers,
     quote,
     author,
+    transitions,
 } from '../data';
 
 export const basic = [
@@ -25,25 +26,28 @@ export const basic = [
     //     background: {
     //         color: '#00FFFF',
     //     },
+    //     transitions: transitions(),
     // },
     {
         id: uuid(),
         type: 'audio',
-        layout: 'normal',
+        layout: 'top',
         audio: { media: audioMedia() },
         background: {
             color: '#00FF00',
         },
-        transitions: { in: 'fade', out: 'fade' }
+        transitions: transitions(),
     },
-    // {
-    //     id: uuid(),
-    //     type: 'contribution',
-    //     layout: 'normal',
-    //     background: {
-    //         color: '#00FFFF',
-    //     },
-    // },
+    {
+        id: uuid(),
+        type: 'contribution',
+        layout: 'middle',
+        title: { body: title() },
+        background: {
+            color: '#00FFFF',
+        },
+        transitions: transitions(),
+    },
     {
         id: uuid(),
         type: 'gallery',
@@ -52,6 +56,7 @@ export const basic = [
         background: {
             color: '#FFFF00',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
@@ -61,6 +66,7 @@ export const basic = [
         background: {
             color: '#00FF00',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
@@ -70,6 +76,7 @@ export const basic = [
         background: {
             color: '#00FFFF',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
@@ -79,6 +86,7 @@ export const basic = [
         background: {
             color: '#FF00FF',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
@@ -94,6 +102,7 @@ export const basic = [
         background: {
             color: '#0000FF',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
@@ -105,6 +114,7 @@ export const basic = [
         background: {
             color: '#FF0000',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
@@ -116,11 +126,12 @@ export const basic = [
         background: {
             color: '#0000FF',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
         type: 'quiz',
-        layout: 'middle',
+        layout: 'top',
         question: { body: 'Une vraie question qui se termine par un point d’interrogation?' },
         answers: [
             { id: 1, label: { body: subtitle() } },
@@ -134,35 +145,39 @@ export const basic = [
         background: {
             color: '#00FF00',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
         type: 'quote',
-        layout: 'middle',
+        layout: 'top',
         quote: { body: quote() },
         author: { body: author() },
         background: {
             color: '#00FFFF',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
         type: 'ranking',
-        layout: 'middle',
+        layout: 'side',
         items: [...new Array(10)].map(() => ({
             title: { body: title() },
             description: text('long'),
         })),
+        numbersStyle: { fontSize: 50 },
         background: {
             color: '#FF00FF',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
         type: 'survey',
-        layout: 'middle',
+        layout: 'top',
         question: { body: 'Une vraie question qui se termine par un point d’interrogation?' },
-        options: [
+        answers: [
             { id: 1, label: { body: 'Choix 1' }, percent: 34 },
             { id: 2, label: { body: 'Choix 2' }, percent: 12 },
             { id: 3, label: { body: 'Choix plus long' }, percent: 38 },
@@ -171,15 +186,17 @@ export const basic = [
         background: {
             color: '#333',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
         type: 'text',
-        layout: 'middle',
+        layout: 'top',
         text: text(),
         background: {
             color: '#0000FF',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
@@ -195,6 +212,7 @@ export const basic = [
         background: {
             color: '#FF00FF',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
@@ -211,17 +229,19 @@ export const basic = [
         background: {
             color: '#0000FF',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
         type: 'title',
-        layout: 'middle',
+        layout: 'top',
         title: {
-            body: 'A title',
+            body: title(),
         },
         background: {
             color: '#FF0000',
         },
+        transitions: transitions(),
     },
     {
         id: uuid(),
@@ -232,6 +252,7 @@ export const basic = [
         background: {
             color: '#FF00FF',
         },
+        transitions: transitions(),
     },
 ];
 

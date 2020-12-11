@@ -31,4 +31,22 @@
     .placeholderImage {
         height: 100%;
     }
+
+    &.isPlaceholder {
+        .layout {
+            padding: 10px;
+        }
+    }
+
+    &.isCard {
+        .placeholderImage {
+            margin: -10px -10px 0;
+        }
+    }
+
+    &.isFullscreen {
+        .layout {
+            padding: 0;
+        }
+    }
 }

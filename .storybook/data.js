@@ -8,6 +8,7 @@ import subtitles from './data/subtitles';
 
 import audioFile from './data/test.mp3';
 import videoFile from './data/test.mp4';
+import video360File from './data/test-360.mp4';
 import closedCaptionsFile from './data/test.srt';
 
 const chance = new Chance();
@@ -108,6 +109,15 @@ export const videoMedia = () => ({
     },
 });
 
+export const video360Media = () => ({
+    type: 'video-360',
+    url: video360File,
+    metadata: {
+        width: 1920,
+        height: 1080,
+    },
+});
+
 export const audioMedia = () => ({
     type: 'audio',
     url: audioFile,
@@ -187,6 +197,11 @@ export const map = () => ({
         lat: 45.5,
         lng: -73.56,
     },
+});
+
+export const transitions = ({ transitionIn = 'fade', transitionOut = 'fade' } = {}) => ({
+    in: transitionIn,
+    out: transitionOut,
 });
 
 export const renderFormats = {

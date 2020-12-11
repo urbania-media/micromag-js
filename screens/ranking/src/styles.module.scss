@@ -44,16 +44,20 @@
             padding-right: 20px;
         }
 
+        .content {
+            flex-grow: 1;
+        }
+
         &.isPlaceholder {
             .rank {
-                padding-right: 10px;
+                padding-right: 4px;
             }
         }
     }
 
     &.isPlaceholder {
         .item {
-            margin: 6px 0;
+            margin: 0;
 
             &:first-child {
                 margin-top: 0;
@@ -66,7 +70,7 @@
 
         .rank {
             color: $black;
-            font-size: 1.2em;
+            font-size: 18px;
         }
 
         .scroll {

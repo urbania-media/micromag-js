@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { images, backgroundColor } from '../../../../.storybook/data';
+import { images, backgroundColor, transitions } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import GalleryScreen from '../Gallery';
@@ -9,6 +9,7 @@ import definition from '../definition';
 const props = {
     images: images({ count: 20 }),
     background: backgroundColor(),
+    transitions: transitions(),
 };
 
 export default {

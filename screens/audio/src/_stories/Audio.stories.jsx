@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { audioMedia, backgroundColor, closedCaptionsMedia } from '../../../../.storybook/data';
+import { audioMedia, backgroundColor, closedCaptionsMedia, transitions } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import AudioScreen from '../Audio';
@@ -9,6 +9,7 @@ import definition from '../definition';
 const props = {
     audio: {media: audioMedia(), autoPlay: true, loop: true },
     background: backgroundColor(),
+    transitions: transitions(),
 };
 
 export default {

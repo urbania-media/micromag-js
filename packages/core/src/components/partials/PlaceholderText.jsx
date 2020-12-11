@@ -17,8 +17,8 @@ const propTypes = {
 
 const defaultProps = {
     lines: 1,
-    lineMargin: null,
-    width: '3em',
+    lineMargin: 1,
+    width: '100%',
     height: null,
     fontSize: 16,
     className: null,
@@ -27,6 +27,8 @@ const defaultProps = {
 const PlaceholderText = ({ lines, lineMargin, width, height, fontSize, className }) => {
     const lineHeight =
         height !== null && isNumber(height) ? `${Math.round(height * fontSize)}px` : height;
+    
+    const oddWidth = isNumber(width) ? width * 0.9 : '90%';
 
     return (
         <div
@@ -42,8 +44,10 @@ const PlaceholderText = ({ lines, lineMargin, width, height, fontSize, className
                     key={`line-${index}`}
                     className={styles.line}
                     style={{
-                        width,
+                        width: index % 2 === 0 ? width : oddWidth,
                         height: lineHeight,
+                        marginTop: lineMargin,
+                        marginBottom: lineMargin,
                     }}
                 />
             ))}

@@ -16,6 +16,18 @@
 
     .item {
         padding: 5px 0;
+
+        &:first-child {
+            .placeholderAnswer {
+                width: 80%;
+            }
+        }
+
+        &:last-child {
+            .placeholderAnswer {
+                width: 90%;
+            }
+        }
     }
 
     .itemContent {
@@ -80,11 +92,19 @@
         padding: 10px;
     }
 
-    .empty {
+    .emptyQuestion,
+    .emptyAnswer {
         @extend %empty;
         width: 100%;
-        height: 100px;
         margin: 0 auto;
+    }
+
+    .emptyQuestion {
+        height: 75px;
+    }
+
+    .emptyAnswer {
+        height: 50px;
     }
 
     &.answered {
@@ -96,6 +116,16 @@
         .resultContent {
             width: 100%;
             opacity: 1;
+        }
+    }
+
+    &.isPlaceholder {
+        .layout {
+            padding: 10px;
+        }
+
+        .item {
+            padding: 1px 0;
         }
     }
 }

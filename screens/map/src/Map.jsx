@@ -52,7 +52,7 @@ const defaultProps = {
     current: true,
     active: true,
     maxRatio: 3 / 4,
-    transitions: { in: 'fade', out: 'fade' },
+    transitions: null,
     className: null,
     onEnableInteraction: null,
     onDisableInteraction: null,
@@ -250,7 +250,7 @@ const MapScreen = ({
                 </div>
                 <div className={styles.splash}>
                     <Button className={styles.splashButton} onClick={onSplashClick} withoutStyle>
-                        <Text className={styles.splashText} {...splash} tag="span" />
+                        <Text className={styles.splashText} {...splash} inline />
                     </Button>
                 </div>
                 <Button className={styles.closeButton} onClick={onCloseClick}>

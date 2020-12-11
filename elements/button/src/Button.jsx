@@ -13,6 +13,7 @@ const propTypes = {
     textStyle: MicromagPropTypes.textStyle,
     borderStyle: MicromagPropTypes.borderStyle,
     backgroundColor: MicromagPropTypes.color,
+    type: PropTypes.oneOf(['button', 'submit']),
     disabled: PropTypes.bool,
     onClick: PropTypes.func,
     children: PropTypes.node,
@@ -29,6 +30,7 @@ const defaultProps = {
     textStyle: null,
     borderStyle: null,
     backgroundColor: null,
+    type: 'button',
     disabled: false,
     onClick: null,
     children: null,
@@ -40,6 +42,7 @@ const Button = ({
     textStyle,
     borderStyle,
     backgroundColor,
+    type,
     disabled,
     onClick,
     children,
@@ -77,10 +80,11 @@ const Button = ({
                     [className]: className !== null,
                 },
             ])}
-            style={finalStyle}
             disabled={disabled}
-            onClick={onClick}
+            style={finalStyle}
+            onClick={onClick}            
             refButton={refButton}
+            type={type}
         >
             {children}
         </CoreButton>

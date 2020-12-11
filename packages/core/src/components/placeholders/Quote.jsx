@@ -11,7 +11,7 @@ export const Quote = (props) => (
         {...props}
         className={classNames([props.className, styles.subtitle])}
         height={0.5}
-        lines={1}
+        lines={6}
     />
 );
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -39,7 +39,7 @@ const defaultProps = {
     current: true,
     active: false,
     maxRatio: 3 / 4,
-    transitions: { in: 'fade', out: 'fade' },
+    transitions: null,
     transitionStagger: 100,
     className: null,
 };
@@ -59,6 +59,8 @@ const TextScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const { menuSize } = useViewer();
+
     const landscape = width > height;
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
@@ -104,7 +106,7 @@ const TextScreen = ({
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.placeholder]: isPlaceholder,
+                    [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}
         >
@@ -117,9 +119,13 @@ const TextScreen = ({
             />
             <Container width={width} height={height} maxRatio={maxRatio}>
                 <Layout
+                    className={styles.layout}
                     fullscreen
                     verticalAlign={verticalAlign}
-                    style={ !isPlaceholder ? { padding: spacing, paddingTop: !isPreview && !landscape ? spacing * 2 : spacing } : null }
+                    style={ !isPlaceholder ? {
+                        padding: spacing,
+                        paddingTop: (!landscape && !isPreview ? menuSize : 0) + spacing,
+                    } : null }
                 >
                     <TransitionsStagger
                         transitions={transitions}

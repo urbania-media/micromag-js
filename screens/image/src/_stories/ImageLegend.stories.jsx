@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { imageMedia, text, backgroundColor } from '../../../../.storybook/data';
+import { imageMedia, text, backgroundColor, transitions } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import ImageLegendScreen from '../ImageLegend';
@@ -11,6 +11,7 @@ const props = {
     imageFit: { fit: 'cover' },
     legend: text(),
     background: backgroundColor(),
+    transitions: transitions(),
 };
 
 export default {

@@ -64,6 +64,7 @@
         "@micromag/element-scroll": "^0.1.29",
         "@micromag/element-stack": "^0.1.29",
         "@micromag/element-text": "^0.1.29",
+        "@micromag/element-text-input": "^0.1.29",
         "@micromag/element-video": "^0.1.29",
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",

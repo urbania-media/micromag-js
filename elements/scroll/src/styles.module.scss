@@ -24,6 +24,7 @@
         transition: opacity 0.3s ease;
         opacity: 0;
         text-align: center;
+        pointer-events: none;
     }
 
     .arrow {
@@ -48,11 +49,11 @@
 
     &.top {
         .scrollee {
-            margin-top: auto;
+            margin-bottom: auto;
         }
     }
 
-    &.center {
+    &.middle {
         .scrollee {
             margin: auto 0;
         }
@@ -60,7 +61,7 @@
 
     &.bottom {
         .scrollee {
-            margin-bottom: auto;
+            margin-top: auto;
         }
     }
 

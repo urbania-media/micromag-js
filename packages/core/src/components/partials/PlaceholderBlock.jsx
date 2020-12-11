@@ -7,24 +7,27 @@ import styles from '../../styles/partials/placeholder-block.module.scss';
 const propTypes = {
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    outline: PropTypes.bool,
     className: PropTypes.string,
     children: PropTypes.node,
 };
 
 const defaultProps = {
-    width: '3em',
+    width: '100%',
     height: '3em',
+    outline: false,
     className: null,
     children: null,
 };
 
-const PlaceholderBlock = ({ width, height, className, children }) => {
+const PlaceholderBlock = ({ width, height, outline, className, children }) => {
     return (
         <div
             className={classNames([
                 styles.container,
                 {
                     [className]: className,
+                    [styles.outline]: outline,
                 },
             ])}
         >

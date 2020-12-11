@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { isTextFilled } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
@@ -43,7 +43,7 @@ const defaultProps = {
     current: true,
     active: true,
     maxRatio: 3 / 4,
-    transitions: { in: 'fade', out: 'fade' },
+    transitions: null,
     transitionStagger: 75,
     className: null,
 };
@@ -63,6 +63,8 @@ const RankingScreen = ({
     className,
 }) => {
     const { width, height } = useScreenSize();
+    const { menuSize } = useViewer();
+
     const landscape = width > height;
 
     const { isPlaceholder, isPreview, isView, isEdit } = useScreenRenderContext();
@@ -146,6 +148,8 @@ const RankingScreen = ({
             </div>
         );
 
+        const rankText = `${ascending ? itemI + 1 : itemsCount - itemI}`;
+
         return (
             <div className={styles.item} key={`item-${itemI}`}>
                 <div
@@ -155,14 +159,16 @@ const RankingScreen = ({
                     }}
                     style={isSideLayout ? { width: maxSideRankWidth } : null}
                 >
-                    <Transitions
-                        transitions={transitions}
-                        playing={current}
-                        delay={transitionStagger * itemI}
-                        disabled={!isView}
-                    >
-                        <Text className={styles.rankText} body={`${ascending ? itemI + 1 : itemsCount - itemI}`} textStyle={numbersStyle} />
-                    </Transitions>
+                    { isPlaceholder ? rankText : (
+                        <Transitions
+                            transitions={transitions}
+                            playing={current}
+                            delay={transitionStagger * itemI}
+                            disabled={!isView}
+                        >
+                            <Text className={styles.rankText} body={rankText} textStyle={numbersStyle} />
+                        </Transitions>
+                    )}                    
                 </div>
                 <div className={styles.content}>
                     {titleElement}
@@ -192,7 +198,7 @@ const RankingScreen = ({
             <Container width={width} height={height} maxRatio={maxRatio} withScroll>
                 <Scroll
                     className={styles.scroll}
-                    verticalAlign="center"
+                    verticalAlign="middle"
                     disabled={isPlaceholder || isPreview}
                 >
                     <Layout
@@ -200,7 +206,7 @@ const RankingScreen = ({
                             !isPlaceholder
                                 ? {
                                       padding: spacing,
-                                      paddingTop: !isPreview && !landscape ? spacing * 2 : spacing,
+                                      paddingTop: (!landscape && !isPreview ? menuSize : 0) + spacing,
                                   }
                                 : null
                         }

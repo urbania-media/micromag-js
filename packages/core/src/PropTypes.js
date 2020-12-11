@@ -257,6 +257,11 @@ export const textElement = PropTypes.shape({
     textStyle,
 });
 
+export const inputElement = PropTypes.shape({
+    label: PropTypes.string,
+    textStyle,
+});
+
 export const imageElement = PropTypes.shape({
     media: imageMedia,
 });

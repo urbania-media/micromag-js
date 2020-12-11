@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { text, title, backgroundColor } from '../../../../.storybook/data';
+import { text, title, backgroundColor, transitions } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import TimelineScreen from '../Timeline';
@@ -12,6 +12,7 @@ const props = {
         description: text('long'),
     })),
     background: backgroundColor(),
+    transitions: transitions(),
 };
 
 const normalProps = {
