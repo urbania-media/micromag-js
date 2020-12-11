@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { useOrganisations } from '@micromag/data';
 import { Navbar } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
@@ -32,10 +33,17 @@ const MainNavbar = ({ nav, className }) => {
     return (
         <Navbar
             brand={
-                <img className="d-none d-lg-inline-block" src={logo} height="30" alt="Micromag" />
+                <img
+                    className={classNames([
+                        { 'd-none': nav !== null, 'd-none d-lg-inline-block': nav !== null },
+                    ])}
+                    src={logo}
+                    height="30"
+                    alt="Micromag"
+                />
             }
             brandLink={organisations !== null ? url('organisations') : url('home')}
-            breadcrumbs={<Breadcrumbs items={nav} />}
+            breadcrumbs={nav !== null ? <Breadcrumbs items={nav} /> : null}
             theme="primary"
             className={className}
         >

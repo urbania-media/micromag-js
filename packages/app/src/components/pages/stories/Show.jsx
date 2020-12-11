@@ -10,7 +10,7 @@ import { useUrlGenerator } from '@micromag/core/contexts';
 import { Screens } from '@micromag/editor';
 import { ScreensProvider } from '@micromag/screens';
 import { useStory } from '@micromag/data';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
+// import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import MainLayout from '../../layouts/Main';
 import Page from '../../partials/Page';
@@ -18,7 +18,7 @@ import StorySettingsMenubar from '../../menubars/StorySettings';
 import StoryScreensMenubar from '../../menubars/StoryScreens';
 
 const propTypes = {
-    location: MicromagPropTypes.location.isRequired,
+    // location: MicromagPropTypes.location.isRequired,
     className: PropTypes.string,
 };
 
@@ -26,7 +26,7 @@ const defaultProps = {
     className: null,
 };
 
-const ShowPage = ({ location: { pathname }, className }) => {
+const ShowPage = ({ className }) => {
     const { story: storyId } = useParams();
     const url = useUrlGenerator();
     const { story, loading } = useStory(storyId);
@@ -72,12 +72,7 @@ const ShowPage = ({ location: { pathname }, className }) => {
     );
 
     return (
-        <MainLayout
-            nav={[
-                { label: parent, url: parentUrl },
-                // { label: title, url: pathname },
-            ]}
-        >
+        <MainLayout nav={[{ label: parent, url: parentUrl }]}>
             <Page
                 title={story !== null ? story.title : title}
                 menubar={
