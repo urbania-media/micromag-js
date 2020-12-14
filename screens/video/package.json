@@ -32,11 +32,6 @@
         "es",
         "assets"
     ],
-    "lang": "lang",
-    "supportedLocales": [
-        "en",
-        "fr"
-    ],
     "scripts": {
         "prepare": "../../scripts/prepare-package.sh"
     },

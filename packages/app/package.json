@@ -30,12 +30,8 @@
     "files": [
         "lib",
         "es",
-        "assets"
-    ],
-    "lang": "lang",
-    "supportedLocales": [
-        "en",
-        "fr"
+        "assets",
+        "scss"
     ],
     "scripts": {
         "prepare": "../../scripts/prepare-package.sh --scss",

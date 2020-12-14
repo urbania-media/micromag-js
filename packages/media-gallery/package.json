@@ -30,7 +30,8 @@
     "files": [
         "lib",
         "es",
-        "assets"
+        "assets",
+        "scss"
     ],
     "scripts": {
         "prepare": "../../scripts/prepare-package.sh --scss",

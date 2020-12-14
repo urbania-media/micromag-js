@@ -31,6 +31,7 @@
         "lib",
         "es",
         "assets",
+        "scss",
         "components.js",
         "contexts.js",
         "hooks.js",

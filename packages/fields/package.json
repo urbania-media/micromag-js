@@ -31,12 +31,8 @@
         "lib",
         "es",
         "assets",
+        "scss",
         "schemas.js"
-    ],
-    "lang": "lang",
-    "supportedLocales": [
-        "en",
-        "fr"
     ],
     "scripts": {
         "prepare": "../../scripts/prepare-package.sh --scss",

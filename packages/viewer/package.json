@@ -31,7 +31,7 @@
         "lib",
         "es",
         "assets",
-        "lang"
+        "scss"
     ],
     "scripts": {
         "prepare": "../../scripts/prepare-package.sh --scss",
