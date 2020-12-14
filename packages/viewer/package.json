@@ -34,7 +34,7 @@
         "lang"
     ],
     "scripts": {
-        "prepare": "../../scripts/prepare-package.sh --scss --intl",
+        "prepare": "../../scripts/prepare-package.sh --scss",
         "start": "PUBLIC_URL=http://localhost/ react-scripts start"
     },
     "devDependencies": {

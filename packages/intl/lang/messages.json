@@ -1,0 +1,1370 @@
+{
+  "+9akmg": {
+    "defaultMessage": "Audio and Video",
+    "description": "Audio and Video screen group"
+  },
+  "+AEVbJ": {
+    "defaultMessage": "Title",
+    "description": "Field label"
+  },
+  "+KWsXh": {
+    "defaultMessage": "Already used",
+    "description": "Media has been use somewhere"
+  },
+  "+MPZRu": {
+    "defaultMessage": "Background",
+    "description": "Background field label"
+  },
+  "+Ok+7S": {
+    "defaultMessage": "Answer",
+    "description": "Answer placeholder"
+  },
+  "+SxcFv": {
+    "defaultMessage": "Organisation name",
+    "description": "Field label"
+  },
+  "+TT1y6": {
+    "defaultMessage": "Clear",
+    "description": "Clear button label in Media Gallery"
+  },
+  "+b+e40": {
+    "defaultMessage": "All sources",
+    "description": "Source from all places"
+  },
+  "+gNgqN": {
+    "defaultMessage": "Profile",
+    "description": "Menu item"
+  },
+  "/0TOL5": {
+    "defaultMessage": "Amount"
+  },
+  "/93hzc": {
+    "defaultMessage": "Delete my account",
+    "description": "Button label"
+  },
+  "/MeuM1": {
+    "defaultMessage": "Background video",
+    "description": "Field label"
+  },
+  "/T/UDH": {
+    "defaultMessage": "Remove all",
+    "description": "Remove all button label"
+  },
+  "/bEns8": {
+    "defaultMessage": "MapImages",
+    "description": "MapImages screen title"
+  },
+  "/hupzO": {
+    "defaultMessage": "Credits",
+    "description": "Credits placeholder"
+  },
+  "/lZ8Nj": {
+    "defaultMessage": "Preview",
+    "description": "Menu label"
+  },
+  "0BcvF9": {
+    "defaultMessage": "All",
+    "description": "All button label"
+  },
+  "0gYrMo": {
+    "defaultMessage": "Cannot find story",
+    "description": "Cannot find story message"
+  },
+  "15GBmG": {
+    "defaultMessage": "All",
+    "description": "Dropdown default all items label"
+  },
+  "169xnt": {
+    "defaultMessage": "Audio",
+    "description": "Audio field label"
+  },
+  "17BMn2": {
+    "defaultMessage": "Ranking",
+    "description": "Ranking screen title"
+  },
+  "1Of0hC": {
+    "defaultMessage": "Duplicate",
+    "description": "Menu label"
+  },
+  "1R16Yb": {
+    "defaultMessage": "Only show published",
+    "description": "Only show published field label"
+  },
+  "1dPnDA": {
+    "defaultMessage": "Tags",
+    "description": "Label for tags search section"
+  },
+  "1fBNmY": {
+    "defaultMessage": "ImageTitle",
+    "description": "ImageTitle screen title"
+  },
+  "1fNojU": {
+    "defaultMessage": "{count} {count, plural, one {screen} other {screens}}",
+    "description": "Screens count label"
+  },
+  "2/F1Q7": {
+    "defaultMessage": "#{index}",
+    "description": "Item label in items field"
+  },
+  "2YxE0m": {
+    "defaultMessage": "My stories",
+    "description": "My stories button label"
+  },
+  "2ZOPe+": {
+    "defaultMessage": "Title",
+    "description": "Title placeholder"
+  },
+  "2y24a/": {
+    "defaultMessage": "Save",
+    "description": "Save button label"
+  },
+  "31zuCS": {
+    "defaultMessage": "Line height",
+    "description": "Field label"
+  },
+  "36JWTz": {
+    "defaultMessage": "Create your first story",
+    "description": "Button label"
+  },
+  "3C3nve": {
+    "defaultMessage": "Delete screen",
+    "description": "Delete screen button"
+  },
+  "3E57H7": {
+    "defaultMessage": "No marker...",
+    "description": "Label when there is no item in markers field"
+  },
+  "3Fyhu6": {
+    "defaultMessage": "Monetisation",
+    "description": "Plan label"
+  },
+  "3OS3Ms": {
+    "defaultMessage": "Legend",
+    "description": "Legend field label"
+  },
+  "3UtT5H": {
+    "defaultMessage": "Continue",
+    "description": "Continue button label"
+  },
+  "3fZYih": {
+    "defaultMessage": "Card ending with {card_ending}"
+  },
+  "3ifj0j": {
+    "defaultMessage": "Entries",
+    "description": "Field label"
+  },
+  "3q9GPv": {
+    "defaultMessage": "Quote",
+    "description": "Quote screen title"
+  },
+  "3uMlsn": {
+    "defaultMessage": "Some other micromag",
+    "description": "Source from another micromag"
+  },
+  "43RaAs": {
+    "defaultMessage": "This plan includes:",
+    "description": "Plan label"
+  },
+  "49F34p": {
+    "defaultMessage": "Address 1",
+    "description": "Field label"
+  },
+  "4B+EJg": {
+    "defaultMessage": "Settings",
+    "description": "Menu label"
+  },
+  "4E2gbX": {
+    "defaultMessage": "Text",
+    "description": "Text field label"
+  },
+  "4POR3B": {
+    "defaultMessage": "View screen",
+    "description": "Button to view a screen"
+  },
+  "4SJxF5": {
+    "defaultMessage": "Versions"
+  },
+  "4YiKNK": {
+    "defaultMessage": "Select a color...",
+    "description": "No value label"
+  },
+  "4fHMVj": {
+    "defaultMessage": "Tags",
+    "description": "Tags in Media Gallery"
+  },
+  "4fHiNl": {
+    "defaultMessage": "Duplicate"
+  },
+  "4iBXj2": {
+    "defaultMessage": "Layout",
+    "description": "Layout field label"
+  },
+  "4vO01C": {
+    "defaultMessage": "Monthly",
+    "description": "Button group label"
+  },
+  "4yfet+": {
+    "defaultMessage": "Password",
+    "description": "Field label"
+  },
+  "507VAi": {
+    "defaultMessage": "Description",
+    "description": "Description placeholder"
+  },
+  "5u4nkn": {
+    "defaultMessage": "No versions yet",
+    "description": "No versions yet message"
+  },
+  "5uH4x7": {
+    "defaultMessage": "Submit",
+    "description": "Submit placeholder"
+  },
+  "63Kvho": {
+    "defaultMessage": "Images",
+    "description": "Images field label"
+  },
+  "650XRF": {
+    "defaultMessage": "Survey",
+    "description": "Survey screen title"
+  },
+  "6De+oT": {
+    "defaultMessage": "GalleryCaptions",
+    "description": "GalleryCaptions screen title"
+  },
+  "6Z1BwP": {
+    "defaultMessage": "Recent searches",
+    "description": "Label for recent search section"
+  },
+  "6mX2ya": {
+    "defaultMessage": "Images",
+    "description": "Images screen group"
+  },
+  "6tIigB": {
+    "defaultMessage": "Caption",
+    "description": "Caption placeholder"
+  },
+  "71qOve": {
+    "defaultMessage": "Complete profile",
+    "description": "Complete profile page title"
+  },
+  "73hxYw": {
+    "defaultMessage": "Author",
+    "description": "Author field label"
+  },
+  "7Wbk6h": {
+    "defaultMessage": "Medias",
+    "description": "Menu label"
+  },
+  "7sCiEn": {
+    "defaultMessage": "Create story",
+    "description": "Button label"
+  },
+  "7ulXis": {
+    "defaultMessage": "Register",
+    "description": "Menu item"
+  },
+  "88/Ge8": {
+    "defaultMessage": "Quote",
+    "description": "Quote field label"
+  },
+  "8DQdhw": {
+    "defaultMessage": "Please enter your email address to get a password reset link.",
+    "description": "Forgot password page description"
+  },
+  "8c34nT": {
+    "defaultMessage": "ImageTitleText",
+    "description": "ImageTitleText screen title"
+  },
+  "8cVWNh": {
+    "defaultMessage": "Usage",
+    "description": "Label for usage search section"
+  },
+  "8vroDx": {
+    "defaultMessage": "Map",
+    "description": "Map screen group"
+  },
+  "96KRj9": {
+    "defaultMessage": "ImageLegend",
+    "description": "ImageLegend screen title"
+  },
+  "97cstG": {
+    "defaultMessage": "Province",
+    "description": "Field label"
+  },
+  "9DhYaZ": {
+    "defaultMessage": "Ascending",
+    "description": "Ascending field label"
+  },
+  "9WtqV7": {
+    "defaultMessage": "Team",
+    "description": "Team menu item"
+  },
+  "9ZdD+Q": {
+    "defaultMessage": "Library for",
+    "description": "Library source menu"
+  },
+  "A+a0kL": {
+    "defaultMessage": "No answer...",
+    "description": "Label when there is no item"
+  },
+  "A88rLg": {
+    "defaultMessage": "Account",
+    "description": "Menu item"
+  },
+  "ACSasN": {
+    "defaultMessage": "URL",
+    "description": "Field label"
+  },
+  "Avsnjl": {
+    "defaultMessage": "Themes"
+  },
+  "B1MeY+": {
+    "defaultMessage": "Select an image...",
+    "description": "Label when no value is provided to Image field"
+  },
+  "BT1+e8": {
+    "defaultMessage": "City",
+    "description": "Field label"
+  },
+  "BVTni9": {
+    "defaultMessage": "Payment method"
+  },
+  "BpZoQZ": {
+    "defaultMessage": "Success",
+    "description": "Success form message"
+  },
+  "C2j6zz": {
+    "defaultMessage": "Login",
+    "description": "Login page title"
+  },
+  "CbHzjs": {
+    "defaultMessage": "Register",
+    "description": "Register page link"
+  },
+  "ChnSK6": {
+    "defaultMessage": "This Micromag",
+    "description": "Source from this micromag"
+  },
+  "CrzYgw": {
+    "defaultMessage": "Quote",
+    "description": "Quote placeholder"
+  },
+  "D3idYv": {
+    "defaultMessage": "Settings"
+  },
+  "D3kTvP": {
+    "defaultMessage": "Register",
+    "description": "Register page title"
+  },
+  "DUIDEq": {
+    "defaultMessage": "Storage"
+  },
+  "DVrK6z": {
+    "defaultMessage": "Click to edit...",
+    "description": "Label when no value is provided to Field with form"
+  },
+  "DWEzCv": {
+    "defaultMessage": "Select a video...",
+    "description": "Label when no value is provided to Video field"
+  },
+  "DgyZlU": {
+    "defaultMessage": "Start by choosing a name for your organisation."
+  },
+  "DjIdzH": {
+    "defaultMessage": "Invitation envoyée",
+    "description": "Quit button label"
+  },
+  "DuIvK6": {
+    "defaultMessage": "Your Name",
+    "description": "Field label"
+  },
+  "DzC1Wh": {
+    "defaultMessage": "Contact us for pricing",
+    "description": "Plan label"
+  },
+  "E/qtB2": {
+    "defaultMessage": "TextTitle",
+    "description": "TextTitle screen title"
+  },
+  "ET527E": {
+    "defaultMessage": "Font family",
+    "description": "Field label"
+  },
+  "EcZYpr": {
+    "defaultMessage": "Subtitle",
+    "description": "Subtitle field label"
+  },
+  "EoLB7Z": {
+    "defaultMessage": "Stats",
+    "description": "Stats menu item"
+  },
+  "Eu3Asc": {
+    "defaultMessage": "Address 2",
+    "description": "Field label"
+  },
+  "FJjjnF": {
+    "defaultMessage": "Video 360",
+    "description": "Video 360 screen title"
+  },
+  "FJygXH": {
+    "defaultMessage": "Result",
+    "description": "Field label"
+  },
+  "FLMZDH": {
+    "defaultMessage": "Invite your team members to your organisation.",
+    "description": "Invite page description"
+  },
+  "FPBu+U": {
+    "defaultMessage": "Phone",
+    "description": "Field label"
+  },
+  "G/ITGY": {
+    "defaultMessage": "Your name",
+    "description": "Your name placeholder"
+  },
+  "G31Yd0": {
+    "defaultMessage": "Cancel",
+    "description": "Cancel button label in Media Gallery"
+  },
+  "GE8wrk": {
+    "defaultMessage": "Image",
+    "description": "Image field label"
+  },
+  "GMCLhn": {
+    "defaultMessage": "Case",
+    "description": "Field label"
+  },
+  "GTLo70": {
+    "defaultMessage": "Delete story",
+    "description": "Button label"
+  },
+  "GrATUZ": {
+    "defaultMessage": "Login",
+    "description": "Login home nutton"
+  },
+  "GzoKNb": {
+    "defaultMessage": "Timeline",
+    "description": "Timeline screen title"
+  },
+  "Gzx6q5": {
+    "defaultMessage": "Advertising",
+    "description": "Ad title"
+  },
+  "H0WHhy": {
+    "defaultMessage": "Country",
+    "description": "Field label"
+  },
+  "H7fYum": {
+    "defaultMessage": "Your plan",
+    "description": "Your plan field label"
+  },
+  "HseFdk": {
+    "defaultMessage": "Edit",
+    "description": "Button to edit a screen"
+  },
+  "I8trjB": {
+    "defaultMessage": "Delete account",
+    "description": "Button label"
+  },
+  "IB/AQ9": {
+    "defaultMessage": "You are a member of the following organisations:",
+    "description": "Complete profile organisations description"
+  },
+  "IMUycF": {
+    "defaultMessage": "Timeline Illustrated",
+    "description": "Timeline Illustrated screen title"
+  },
+  "IS4Tsq": {
+    "defaultMessage": "{users} users",
+    "description": "Plan label"
+  },
+  "IwGlNX": {
+    "defaultMessage": "Create your first screen",
+    "description": "Create first screen button label"
+  },
+  "JAguka": {
+    "defaultMessage": "Your message",
+    "description": "Your message placeholder"
+  },
+  "JDPMlG": {
+    "defaultMessage": "Background color",
+    "description": "Field label"
+  },
+  "JV5hRr": {
+    "defaultMessage": "Media gallery",
+    "description": "Top nav title for media gallery"
+  },
+  "JoWKee": {
+    "defaultMessage": "Create your first screen",
+    "description": "Button to create your first screen"
+  },
+  "K3r6DQ": {
+    "defaultMessage": "Delete"
+  },
+  "K7LgVy": {
+    "defaultMessage": "Card name",
+    "description": "Field label"
+  },
+  "KHWeV7": {
+    "defaultMessage": "Answers",
+    "description": "Field label"
+  },
+  "KfcW64": {
+    "defaultMessage": "Duplicate story",
+    "description": "Button label"
+  },
+  "L1GHkf": {
+    "defaultMessage": "Versions",
+    "description": "Menu label"
+  },
+  "LI0Gz4": {
+    "defaultMessage": "Email",
+    "description": "Field label"
+  },
+  "Lnm6qA": {
+    "defaultMessage": "Payment info",
+    "description": "Fieldset label"
+  },
+  "M0XwpU": {
+    "defaultMessage": "No theme screen yet",
+    "description": "No screen yet status"
+  },
+  "MEB/t4": {
+    "defaultMessage": "Role",
+    "description": "Field label"
+  },
+  "MJZJs2": {
+    "defaultMessage": "First name",
+    "description": "Field label"
+  },
+  "MYZwSA": {
+    "defaultMessage": "Audio",
+    "description": "Audio placeholder"
+  },
+  "MfkU1A": {
+    "defaultMessage": "Publish",
+    "description": "Menu label"
+  },
+  "Mz76RM": {
+    "defaultMessage": "ImageText",
+    "description": "ImageText screen title"
+  },
+  "N25iDO": {
+    "defaultMessage": "Title",
+    "description": "Title field label"
+  },
+  "N4N84O": {
+    "defaultMessage": "New screen",
+    "description": "Button label"
+  },
+  "OJi+eg": {
+    "defaultMessage": "Label",
+    "description": "Field label"
+  },
+  "OdcEna": {
+    "defaultMessage": "No slide...",
+    "description": "Label when there is no item in slides field"
+  },
+  "OkNUmk": {
+    "defaultMessage": "Type",
+    "description": "Type Label in Media Gallery"
+  },
+  "P7UAe2": {
+    "defaultMessage": "Unused",
+    "description": "Media has not been used somewhere"
+  },
+  "PKCv5M": {
+    "defaultMessage": "No item...",
+    "description": "Label when there is no item in items field"
+  },
+  "PQG8A5": {
+    "defaultMessage": "Link",
+    "description": "Link field label"
+  },
+  "PWbd17": {
+    "defaultMessage": "Payment information"
+  },
+  "PXCkXy": {
+    "defaultMessage": "Billing",
+    "description": "Billing menu item"
+  },
+  "PbHeHc": {
+    "defaultMessage": "Markers",
+    "description": "Markers field label"
+  },
+  "Pe0ogR": {
+    "defaultMessage": "Theme"
+  },
+  "PyDwDF": {
+    "defaultMessage": "Close",
+    "description": "Close button label"
+  },
+  "PzW5/u": {
+    "defaultMessage": "{storage} GB",
+    "description": "Plan label"
+  },
+  "Q++P6g": {
+    "defaultMessage": "Card number",
+    "description": "Field label"
+  },
+  "QBaiO0": {
+    "defaultMessage": "Add a screen",
+    "description": "Title of the screen types selection dialog"
+  },
+  "QSmRdP": {
+    "defaultMessage": "Add an image",
+    "description": "Button label"
+  },
+  "QUAHwy": {
+    "defaultMessage": "Continue",
+    "description": "Button label"
+  },
+  "QfpTKK": {
+    "defaultMessage": "Select a screen..."
+  },
+  "R1HYj0": {
+    "defaultMessage": "Save",
+    "description": "Button label"
+  },
+  "RIM5NM": {
+    "defaultMessage": "Billing info",
+    "description": "Fieldset label"
+  },
+  "RcLsua": {
+    "defaultMessage": "Message",
+    "description": "Message field label"
+  },
+  "S/mavZ": {
+    "defaultMessage": "Text and Images",
+    "description": "Text and Images screen group"
+  },
+  "S9YpbV": {
+    "defaultMessage": "Text",
+    "description": "Text screen title"
+  },
+  "SR8H/d": {
+    "defaultMessage": "Refund",
+    "description": "Refund type badge"
+  },
+  "StDSlO": {
+    "defaultMessage": "Ad",
+    "description": "Ad screen title"
+  },
+  "T+uQnE": {
+    "defaultMessage": "Screens",
+    "description": "Menu label"
+  },
+  "T9NZPQ": {
+    "defaultMessage": "Images",
+    "description": "Field label"
+  },
+  "TWXRGR": {
+    "defaultMessage": "Organisations",
+    "description": "Organisations label"
+  },
+  "Tbo377": {
+    "defaultMessage": "Billing"
+  },
+  "Tlp2I0": {
+    "defaultMessage": "Your account has been created. Please complete your profile.",
+    "description": "Complete profile page description"
+  },
+  "Tt4jN1": {
+    "defaultMessage": "Add",
+    "description": "Add button label in Media Gallery"
+  },
+  "U86B6w": {
+    "defaultMessage": "Stats"
+  },
+  "U9aSLt": {
+    "defaultMessage": "CVV",
+    "description": "Field label"
+  },
+  "UBXIYP": {
+    "defaultMessage": "Video",
+    "description": "Video screen title"
+  },
+  "USqJHw": {
+    "defaultMessage": "Create a story",
+    "description": "Create a story button label"
+  },
+  "UUv8FR": {
+    "defaultMessage": "Name",
+    "description": "Field label"
+  },
+  "UfD0C8": {
+    "defaultMessage": "Invite collaborators",
+    "description": "Invite collaborators page title"
+  },
+  "UhngoA": {
+    "defaultMessage": "Delete profile",
+    "description": "Delete profile section title"
+  },
+  "V+G2s+": {
+    "defaultMessage": "Add an image",
+    "description": "Button label in images field"
+  },
+  "VMw6gu": {
+    "defaultMessage": "Save contact",
+    "description": "Button label"
+  },
+  "VqyxpU": {
+    "defaultMessage": "Ad",
+    "description": "Ad screen group"
+  },
+  "W0sd5w": {
+    "defaultMessage": "My Stories",
+    "description": "Home account page title"
+  },
+  "Wr8abT": {
+    "defaultMessage": "Forgot password?",
+    "description": "Forgot password page link"
+  },
+  "Wr9olU": {
+    "defaultMessage": "Typography",
+    "description": "Fields section label"
+  },
+  "Xh1mZC": {
+    "defaultMessage": "Back",
+    "description": "Back page button"
+  },
+  "Xt24Gj": {
+    "defaultMessage": "It’s time to start creating now.",
+    "description": "Box description"
+  },
+  "YDMrKK": {
+    "defaultMessage": "Users"
+  },
+  "YMYhuv": {
+    "defaultMessage": "Theme",
+    "description": "Field label"
+  },
+  "YQEv1f": {
+    "defaultMessage": "It’s time to start creating!",
+    "description": "Time to create status"
+  },
+  "YS4qTq": {
+    "defaultMessage": "Settings",
+    "description": "Settings menu item"
+  },
+  "YnKhxL": {
+    "defaultMessage": "Delete story",
+    "description": "Menu label"
+  },
+  "Yyv+N3": {
+    "defaultMessage": "Settings",
+    "description": "Button label"
+  },
+  "Z5jrDS": {
+    "defaultMessage": "Letter spacing",
+    "description": "Field label"
+  },
+  "ZCe0r4": {
+    "defaultMessage": "Description",
+    "description": "Field label"
+  },
+  "ZLDmja": {
+    "defaultMessage": "Submit",
+    "description": "Submit form button"
+  },
+  "ZQ4Mwo": {
+    "defaultMessage": "Type in the number {random} to confirm.",
+    "description": "Field label type in to delete"
+  },
+  "ZqwBOx": {
+    "defaultMessage": "Questions",
+    "description": "Questions screen group"
+  },
+  "ZtZjF0": {
+    "defaultMessage": "TitleSubtitle",
+    "description": "TitleSubtitle screen title"
+  },
+  "ZxgNge": {
+    "defaultMessage": "Add an item",
+    "description": "Button label in items field"
+  },
+  "a6QaEu": {
+    "defaultMessage": "Check your email",
+    "description": "Check email page title"
+  },
+  "aDbe/Q": {
+    "defaultMessage": "Danger zone",
+    "description": "Title of the danger zone panel"
+  },
+  "aPjV2Q": {
+    "defaultMessage": "No story yet",
+    "description": "Box title"
+  },
+  "aVPh1B": {
+    "defaultMessage": "Instructions to reset your password have been sent to your {email}.",
+    "description": "Check email page description"
+  },
+  "aarOkd": {
+    "defaultMessage": "Color",
+    "description": "Field label"
+  },
+  "account-box.profile": {
+    "defaultMessage": "Profile"
+  },
+  "account-box.settings": {
+    "defaultMessage": "Settings"
+  },
+  "account-box.title": {
+    "defaultMessage": "Account"
+  },
+  "aeJ9LI": {
+    "defaultMessage": "Forgot password",
+    "description": "Forgot password page title"
+  },
+  "aovRFH": {
+    "defaultMessage": "Filename",
+    "description": "Label in Media Gallery"
+  },
+  "bZWJ7a": {
+    "defaultMessage": "Same team",
+    "description": "Field label"
+  },
+  "bh16Yr": {
+    "defaultMessage": "GalleryFeedCaptions",
+    "description": "GalleryFeedCaptions screen title"
+  },
+  "bhEaUt": {
+    "defaultMessage": "Audio",
+    "description": "Audio screen title"
+  },
+  "c8b6V2": {
+    "defaultMessage": "My Stories",
+    "description": "Menu item"
+  },
+  "c9VwT/": {
+    "defaultMessage": "Technical details",
+    "description": "Heading in Media Gallery"
+  },
+  "cGItoy": {
+    "defaultMessage": "List",
+    "description": "List screen group"
+  },
+  "cldP9G": {
+    "defaultMessage": "Medias",
+    "description": "Medias menu item"
+  },
+  "d60tSn": {
+    "defaultMessage": "Subtitle",
+    "description": "Subtitle placeholder"
+  },
+  "dED5N5": {
+    "defaultMessage": "Saving...",
+    "description": "Saving button label"
+  },
+  "dFMzBu": {
+    "defaultMessage": "No image...",
+    "description": "Label when there is no item"
+  },
+  "dVcog7": {
+    "defaultMessage": "Title",
+    "description": "Title screen title"
+  },
+  "dmuKH3": {
+    "defaultMessage": "Map",
+    "description": "Map screen title"
+  },
+  "dpQDWT": {
+    "defaultMessage": "Change password",
+    "description": "Change password button label"
+  },
+  "dqnkQk": {
+    "defaultMessage": "Legend",
+    "description": "Legend placeholder"
+  },
+  "e1I+KU": {
+    "defaultMessage": "Question",
+    "description": "Question placeholder"
+  },
+  "e6+aGf": {
+    "defaultMessage": "Select a media...",
+    "description": "Label when no value is provided to Media field"
+  },
+  "eNT0tt": {
+    "defaultMessage": "All stories",
+    "description": "All stories button label"
+  },
+  "ebsPd4": {
+    "defaultMessage": "Image",
+    "description": "Image placeholder"
+  },
+  "efWBck": {
+    "defaultMessage": "Team",
+    "description": "Page title"
+  },
+  "ehcuYG": {
+    "defaultMessage": "Themes",
+    "description": "Themes menu item"
+  },
+  "enFs4g": {
+    "defaultMessage": "Advanced",
+    "description": "Name of the section in Fields"
+  },
+  "eoW0tZ": {
+    "defaultMessage": "Duration",
+    "description": "Label in Media Gallery"
+  },
+  "fIawTr": {
+    "defaultMessage": "Text",
+    "description": "Text screen group"
+  },
+  "feDskS": {
+    "defaultMessage": "Company name",
+    "description": "Field label"
+  },
+  "forms.add_camera_button": {
+    "defaultMessage": "Add a camera"
+  },
+  "forms.add_item_button": {
+    "defaultMessage": "Add item"
+  },
+  "forms.label_label": {
+    "defaultMessage": "Label"
+  },
+  "forms.no_item": {
+    "defaultMessage": "No item."
+  },
+  "forms.select_show_to_view_artists": {
+    "defaultMessage": "Select a show to view artists..."
+  },
+  "forms.select_show_to_view_segments": {
+    "defaultMessage": "Select a show to view segments..."
+  },
+  "forms.stream_url_label": {
+    "defaultMessage": "Stream URL"
+  },
+  "forms.time_label": {
+    "defaultMessage": "Time"
+  },
+  "fz0z4c": {
+    "defaultMessage": "Plan"
+  },
+  "g6b9Lg": {
+    "defaultMessage": "Contribution",
+    "description": "Contribution screen title"
+  },
+  "g6qbbX": {
+    "defaultMessage": "Log in",
+    "description": "Button label"
+  },
+  "hVE7TA": {
+    "defaultMessage": "Question",
+    "description": "Question field label"
+  },
+  "hraRO0": {
+    "defaultMessage": "Choose the {name} plan",
+    "description": "Plan button label"
+  },
+  "i+3ZrF": {
+    "defaultMessage": "Select a font family...",
+    "description": "No value label"
+  },
+  "i2xVsE": {
+    "defaultMessage": "Organisations make it easier to collaborate with a team on micromags.",
+    "description": "About organisations field label description"
+  },
+  "iHV3W3": {
+    "defaultMessage": "No entry...",
+    "description": "Label when there is no item"
+  },
+  "iN1k0f": {
+    "defaultMessage": "Themes",
+    "description": "Menu item"
+  },
+  "iYc3Ld": {
+    "defaultMessage": "Payments"
+  },
+  "iwp2S0": {
+    "defaultMessage": "Screens"
+  },
+  "jaFXki": {
+    "defaultMessage": "Gallery",
+    "description": "Gallery screen title"
+  },
+  "jf+4Hq": {
+    "defaultMessage": "Screens",
+    "description": "Title of the screens section"
+  },
+  "jnOMk/": {
+    "defaultMessage": "Publish",
+    "description": "Publish button label"
+  },
+  "kBz8vF": {
+    "defaultMessage": "Name",
+    "description": "Name in Media Gallery"
+  },
+  "kIl7G5": {
+    "defaultMessage": "Published at",
+    "description": "Field label"
+  },
+  "kYsGUg": {
+    "defaultMessage": "Type in the name of the story ({name}) to confirm.",
+    "description": "Field label"
+  },
+  "kq4vYx": {
+    "defaultMessage": "Yearly",
+    "description": "Button group label"
+  },
+  "ktUr5c": {
+    "defaultMessage": "Create an organisation",
+    "description": "Create an organisation button"
+  },
+  "l/Y6or": {
+    "defaultMessage": "Add an entry",
+    "description": "Button label"
+  },
+  "l21zl/": {
+    "defaultMessage": "Latest version",
+    "description": "Label"
+  },
+  "l3AfOI": {
+    "defaultMessage": "Due date"
+  },
+  "lGh/NP": {
+    "defaultMessage": "Add an answer",
+    "description": "Button label"
+  },
+  "lXV3vP": {
+    "defaultMessage": "TitleSubtitleCredits",
+    "description": "TitleSubtitleCredits screen title"
+  },
+  "li7ADr": {
+    "defaultMessage": "Result",
+    "description": "Result placeholder"
+  },
+  "liyV7Y": {
+    "defaultMessage": "Size",
+    "description": "Label in Media Gallery"
+  },
+  "lnATAe": {
+    "defaultMessage": "Choose an organisation",
+    "description": "Choose an organisation page title"
+  },
+  "mAf/Yw": {
+    "defaultMessage": "Login",
+    "description": "Menu item"
+  },
+  "menus.pagination.next": {
+    "defaultMessage": "next"
+  },
+  "menus.pagination.previous": {
+    "defaultMessage": "Previous"
+  },
+  "menus.stories.create": {
+    "defaultMessage": "Create a new story"
+  },
+  "menus.stories.recent": {
+    "defaultMessage": "Recent stories"
+  },
+  "menus.stories.stories": {
+    "defaultMessage": "Stories"
+  },
+  "menus.stories.view_all": {
+    "defaultMessage": "View all stories"
+  },
+  "mg7RiU": {
+    "defaultMessage": "My Stories",
+    "description": "Page title"
+  },
+  "mv37oK": {
+    "defaultMessage": "Dimension",
+    "description": "Label in Media Gallery"
+  },
+  "n/o4Co": {
+    "defaultMessage": "Send request",
+    "description": "Forgot password button label"
+  },
+  "n1ZJSY": {
+    "defaultMessage": "New story",
+    "description": "New story button label"
+  },
+  "n2teag": {
+    "defaultMessage": "Add an answer",
+    "description": "Button label in answers field"
+  },
+  "nXVNeg": {
+    "defaultMessage": "Name",
+    "description": "Name field label"
+  },
+  "navbars.preview.close": {
+    "defaultMessage": "Close"
+  },
+  "nqQqsI": {
+    "defaultMessage": "Map",
+    "description": "Map field label"
+  },
+  "o0RmVC": {
+    "defaultMessage": "imagesWithCaptions",
+    "description": "imagesWithCaptions field label"
+  },
+  "o40cSF": {
+    "defaultMessage": "Create an organisation",
+    "description": "Menu item"
+  },
+  "oC1UCA": {
+    "defaultMessage": "Update profile",
+    "description": "Update profile button label"
+  },
+  "oPvs1N": {
+    "defaultMessage": "You cannot delete your profile because you are part of the following organisations:",
+    "description": "Cannot delete profile description"
+  },
+  "ogg7mi": {
+    "defaultMessage": "Are you sure you want to delete your profile? This action cannot be reversed.",
+    "description": "Delete your profile description"
+  },
+  "ojIGhL": {
+    "defaultMessage": "Main contact",
+    "description": "Form label"
+  },
+  "organisation-box.profile": {
+    "defaultMessage": "Profile"
+  },
+  "organisation-box.settings": {
+    "defaultMessage": "Settings"
+  },
+  "organisation-box.title": {
+    "defaultMessage": "Organisation"
+  },
+  "p6Dpso": {
+    "defaultMessage": "Last name",
+    "description": "Field label"
+  },
+  "p6n6vY": {
+    "defaultMessage": "No answer...",
+    "description": "Label when there is no item in answers field"
+  },
+  "p85qJD": {
+    "defaultMessage": "Caption",
+    "description": "Field label"
+  },
+  "pages.auth.reset_password.title": {
+    "defaultMessage": "Reset password"
+  },
+  "publish_services.archive": {
+    "defaultMessage": "Archive file"
+  },
+  "publish_services.archive.filename": {
+    "defaultMessage": "Filename"
+  },
+  "publish_services.archive.format": {
+    "defaultMessage": "Format"
+  },
+  "publish_services.micromag.url": {
+    "defaultMessage": "URL"
+  },
+  "publish_services.micromag.visibility": {
+    "defaultMessage": "Visibility"
+  },
+  "qIw1nW": {
+    "defaultMessage": "Save",
+    "description": "Save in Media Gallery"
+  },
+  "qKQCxc": {
+    "defaultMessage": "Add a marker",
+    "description": "Button label in markers field"
+  },
+  "qNLzyM": {
+    "defaultMessage": "Profile",
+    "description": "Page title"
+  },
+  "qZItNz": {
+    "defaultMessage": "MapImages",
+    "description": "MapImages placeholder"
+  },
+  "qelLNs": {
+    "defaultMessage": "Favicon",
+    "description": "Field label"
+  },
+  "qpW62d": {
+    "defaultMessage": "Invite",
+    "description": "Invite member prefix button"
+  },
+  "qrMjBI": {
+    "defaultMessage": "Recent stories",
+    "description": "Box title"
+  },
+  "qzzYCQ": {
+    "defaultMessage": "No screen yet",
+    "description": "No screen yet status"
+  },
+  "recent_publications.title": {
+    "defaultMessage": "Recent publications"
+  },
+  "rqo+/M": {
+    "defaultMessage": "Logout",
+    "description": "Menu item"
+  },
+  "s1aoBI": {
+    "defaultMessage": "Medias"
+  },
+  "sESmah": {
+    "defaultMessage": "Entries",
+    "description": "Entries field label"
+  },
+  "sYXVBK": {
+    "defaultMessage": "Analytics",
+    "description": "Plan label"
+  },
+  "srKDXd": {
+    "defaultMessage": "Expiration date",
+    "description": "Expiration date field label"
+  },
+  "syEQFE": {
+    "defaultMessage": "Publish"
+  },
+  "t+L1J/": {
+    "defaultMessage": "No image...",
+    "description": "Label when there is no item in images field"
+  },
+  "t2cFdl": {
+    "defaultMessage": "Active filters",
+    "description": "Active filters title"
+  },
+  "t9Wttt": {
+    "defaultMessage": "Switching organisation..."
+  },
+  "tAYwqp": {
+    "defaultMessage": "Add a slide",
+    "description": "Button label in slides field"
+  },
+  "tV78uM": {
+    "defaultMessage": "Confirm password",
+    "description": "Field label"
+  },
+  "tWrNxg": {
+    "defaultMessage": "Share",
+    "description": "Field label"
+  },
+  "tYGev7": {
+    "defaultMessage": "Font size",
+    "description": "Field label"
+  },
+  "tvl2Zc": {
+    "defaultMessage": "Video",
+    "description": "Video field label"
+  },
+  "uAKPQ9": {
+    "defaultMessage": "Submit",
+    "description": "Submit field label"
+  },
+  "uIkMtR": {
+    "defaultMessage": "Already have an account?",
+    "description": "Already have an account page link"
+  },
+  "uJ9eBc": {
+    "defaultMessage": "Image",
+    "description": "Image screen title"
+  },
+  "uKJRh2": {
+    "defaultMessage": "Title",
+    "description": "Title screen group"
+  },
+  "uQjihh": {
+    "defaultMessage": "Create an organisation"
+  },
+  "uWRAQk": {
+    "defaultMessage": "Choose your plan"
+  },
+  "upzOTm": {
+    "defaultMessage": "Credits",
+    "description": "Credits field label"
+  },
+  "vDSsFW": {
+    "defaultMessage": "Create an account",
+    "description": "Create an account home nutton"
+  },
+  "vERejo": {
+    "defaultMessage": "Video",
+    "description": "Field label"
+  },
+  "vrCfAS": {
+    "defaultMessage": "GalleryFeed",
+    "description": "GalleryFeed screen title"
+  },
+  "vtStU2": {
+    "defaultMessage": "Payment history"
+  },
+  "w+78Hh": {
+    "defaultMessage": "Go back to login",
+    "description": "Back to login link"
+  },
+  "wYsv4Z": {
+    "defaultMessage": "Monthly"
+  },
+  "wkysUu": {
+    "defaultMessage": "Screens",
+    "description": "Button to show screens"
+  },
+  "woLAiB": {
+    "defaultMessage": "First, enter your email and pick a password.",
+    "description": "Register page description"
+  },
+  "wt1+dM": {
+    "defaultMessage": "Select an audio file...",
+    "description": "Label when no value is provided to Audio field"
+  },
+  "x8sfWV": {
+    "defaultMessage": "MapScreen",
+    "description": "MapScreen placeholder"
+  },
+  "xKdf/C": {
+    "defaultMessage": "Added by",
+    "description": "Label for users search section"
+  },
+  "xT/onn": {
+    "defaultMessage": "Image",
+    "description": "Field label"
+  },
+  "xVf+jH": {
+    "defaultMessage": "Postal code",
+    "description": "Field label"
+  },
+  "xYqGzM": {
+    "defaultMessage": "Author",
+    "description": "Author placeholder"
+  },
+  "xcOPid": {
+    "defaultMessage": "Create a story"
+  },
+  "xzxHzY": {
+    "defaultMessage": "Editor",
+    "description": "Menu label"
+  },
+  "y7xsPe": {
+    "defaultMessage": "Advanced settings",
+    "description": "Fields section label"
+  },
+  "ySApyR": {
+    "defaultMessage": "Background image",
+    "description": "Field label"
+  },
+  "z4CiV1": {
+    "defaultMessage": "Text",
+    "description": "Text placeholder"
+  },
+  "zIi5W2": {
+    "defaultMessage": "All",
+    "description": "Font family group title"
+  },
+  "zRRbVl": {
+    "defaultMessage": "Create",
+    "description": "Button label"
+  },
+  "zW7IVm": {
+    "defaultMessage": "Quiz",
+    "description": "Quiz screen title"
+  },
+  "zWAZXZ": {
+    "defaultMessage": "Create an organisation",
+    "description": "Field label"
+  },
+  "zongsF": {
+    "defaultMessage": "Publish",
+    "description": "Button label"
+  }
+}

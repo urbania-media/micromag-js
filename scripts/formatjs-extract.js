@@ -23,6 +23,6 @@ extractAndWrite(files, {
     throws: false,
     // format: 'crowdin',
     idInterpolationPattern,
-    extractSourceLocation: true,
+    // extractSourceLocation: true,
     outFile: path.join(process.cwd(), destPath),
 });

@@ -34,8 +34,8 @@
         "assets"
     ],
     "scripts": {
-        "intl:merge": "../../scripts/formatjs-merge.js",
-        "prepare": "npm run intl:merge && ../../scripts/prepare-package.sh"
+        "intl": "../../scripts/build-intl.sh",
+        "prepare": "npm run intl && ../../scripts/prepare-package.sh"
     },
     "devDependencies": {
         "@micromag/editor": "^0.1.29",
@@ -55,7 +55,7 @@
         "prop-types": "^15.7.2",
         "react-intl": "^5.10.6"
     },
-    "lang": "lang",
+    "lang": "locale",
     "supportedLocales": [
         "en",
         "fr"
