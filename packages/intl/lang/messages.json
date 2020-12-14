@@ -146,6 +146,10 @@
     "defaultMessage": "Continue",
     "description": "Continue button label"
   },
+  "3ea3qR": {
+    "defaultMessage": "Account",
+    "description": "Card title"
+  },
   "3fZYih": {
     "defaultMessage": "Card ending with {card_ending}"
   },
@@ -326,6 +330,10 @@
     "defaultMessage": "City",
     "description": "Field label"
   },
+  "BUTLoO": {
+    "defaultMessage": "URL",
+    "description": "Publish URL label"
+  },
   "BVTni9": {
     "defaultMessage": "Payment method"
   },
@@ -366,6 +374,10 @@
   "DWEzCv": {
     "defaultMessage": "Select a video...",
     "description": "Label when no value is provided to Video field"
+  },
+  "Dc+tYE": {
+    "defaultMessage": "Recent publications",
+    "description": "Card title"
   },
   "DgyZlU": {
     "defaultMessage": "Start by choosing a name for your organisation."
@@ -497,6 +509,10 @@
   "JoWKee": {
     "defaultMessage": "Create your first screen",
     "description": "Button to create your first screen"
+  },
+  "JuxiUN": {
+    "defaultMessage": "Format",
+    "description": "Field label"
   },
   "K3r6DQ": {
     "defaultMessage": "Delete"
@@ -803,15 +819,6 @@
     "defaultMessage": "Color",
     "description": "Field label"
   },
-  "account-box.profile": {
-    "defaultMessage": "Profile"
-  },
-  "account-box.settings": {
-    "defaultMessage": "Settings"
-  },
-  "account-box.title": {
-    "defaultMessage": "Account"
-  },
   "aeJ9LI": {
     "defaultMessage": "Forgot password",
     "description": "Forgot password page title"
@@ -840,6 +847,10 @@
     "defaultMessage": "Technical details",
     "description": "Heading in Media Gallery"
   },
+  "cCUGKi": {
+    "defaultMessage": "Archive file",
+    "description": "Field label"
+  },
   "cGItoy": {
     "defaultMessage": "List",
     "description": "List screen group"
@@ -863,6 +874,10 @@
   "dVcog7": {
     "defaultMessage": "Title",
     "description": "Title screen title"
+  },
+  "dj/p/q": {
+    "defaultMessage": "Close",
+    "description": "Button label"
   },
   "dmuKH3": {
     "defaultMessage": "Map",
@@ -993,6 +1008,10 @@
     "defaultMessage": "Publish",
     "description": "Publish button label"
   },
+  "jpfEXm": {
+    "defaultMessage": "Organisation",
+    "description": "Card title"
+  },
   "kBz8vF": {
     "defaultMessage": "Name",
     "description": "Name in Media Gallery"
@@ -1004,6 +1023,10 @@
   "kYsGUg": {
     "defaultMessage": "Type in the name of the story ({name}) to confirm.",
     "description": "Field label"
+  },
+  "kpoYfI": {
+    "defaultMessage": "Reset password",
+    "description": "Page title"
   },
   "kq4vYx": {
     "defaultMessage": "Yearly",
@@ -1090,9 +1113,6 @@
     "defaultMessage": "Name",
     "description": "Name field label"
   },
-  "navbars.preview.close": {
-    "defaultMessage": "Close"
-  },
   "nqQqsI": {
     "defaultMessage": "Map",
     "description": "Map field label"
@@ -1121,15 +1141,6 @@
     "defaultMessage": "Main contact",
     "description": "Form label"
   },
-  "organisation-box.profile": {
-    "defaultMessage": "Profile"
-  },
-  "organisation-box.settings": {
-    "defaultMessage": "Settings"
-  },
-  "organisation-box.title": {
-    "defaultMessage": "Organisation"
-  },
   "p6Dpso": {
     "defaultMessage": "Last name",
     "description": "Field label"
@@ -1141,24 +1152,6 @@
   "p85qJD": {
     "defaultMessage": "Caption",
     "description": "Field label"
-  },
-  "pages.auth.reset_password.title": {
-    "defaultMessage": "Reset password"
-  },
-  "publish_services.archive": {
-    "defaultMessage": "Archive file"
-  },
-  "publish_services.archive.filename": {
-    "defaultMessage": "Filename"
-  },
-  "publish_services.archive.format": {
-    "defaultMessage": "Format"
-  },
-  "publish_services.micromag.url": {
-    "defaultMessage": "URL"
-  },
-  "publish_services.micromag.visibility": {
-    "defaultMessage": "Visibility"
   },
   "qIw1nW": {
     "defaultMessage": "Save",
@@ -1192,9 +1185,6 @@
     "defaultMessage": "No screen yet",
     "description": "No screen yet status"
   },
-  "recent_publications.title": {
-    "defaultMessage": "Recent publications"
-  },
   "rqo+/M": {
     "defaultMessage": "Logout",
     "description": "Menu item"
@@ -1213,6 +1203,10 @@
   "srKDXd": {
     "defaultMessage": "Expiration date",
     "description": "Expiration date field label"
+  },
+  "stcnVa": {
+    "defaultMessage": "Filename",
+    "description": "Field label"
   },
   "syEQFE": {
     "defaultMessage": "Publish"
@@ -1354,6 +1348,10 @@
   "zRRbVl": {
     "defaultMessage": "Create",
     "description": "Button label"
+  },
+  "zTvtLp": {
+    "defaultMessage": "Visibility",
+    "description": "Field label"
   },
   "zW7IVm": {
     "defaultMessage": "Quiz",

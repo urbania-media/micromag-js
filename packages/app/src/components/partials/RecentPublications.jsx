@@ -2,19 +2,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Label } from '@micromag/core/components';
 import { useStoryPublications } from '@micromag/data';
 
 import StoryPublications from '../lists/StoryPublications';
-
-const messages = defineMessages({
-    title: {
-        id: 'recent_publications.title',
-        defaultMessage: 'Recent publications',
-    },
-});
 
 const propTypes = {
     story: MicromagPropTypes.story.isRequired,
@@ -32,7 +24,7 @@ const RecentPublications = ({ story, count, className }) => {
     return publications !== null && publications.length > 0 ? (
         <section className={className}>
             <h4>
-                <Label>{messages.title}</Label>
+                <FormattedMessage defaultMessage="Recent publications" description="Card title" />
             </h4>
             <StoryPublications items={publications} />
         </section>

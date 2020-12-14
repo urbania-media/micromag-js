@@ -4,13 +4,9 @@ var A88rLg = [{
   type: 0,
   value: "Account"
 }];
-var ACSasN = [{
+var BUTLoO = [{
   type: 0,
   value: "URL"
-}];
-var Avsnjl = [{
-  type: 0,
-  value: "Themes"
 }];
 var BVTni9 = [{
   type: 0,
@@ -20,14 +16,6 @@ var BpZoQZ = [{
   type: 0,
   value: "Success"
 }];
-var C2j6zz = [{
-  type: 0,
-  value: "Login"
-}];
-var CbHzjs = [{
-  type: 0,
-  value: "Register"
-}];
 var ChnSK6 = [{
   type: 0,
   value: "This Micromag"
@@ -35,10 +23,6 @@ var ChnSK6 = [{
 var CrzYgw = [{
   type: 0,
   value: "Quote"
-}];
-var D3idYv = [{
-  type: 0,
-  value: "Settings"
 }];
 var D3kTvP = [{
   type: 0,
@@ -76,14 +60,6 @@ var ET527E = [{
   type: 0,
   value: "Font family"
 }];
-var EcZYpr = [{
-  type: 0,
-  value: "Subtitle"
-}];
-var EoLB7Z = [{
-  type: 0,
-  value: "Stats"
-}];
 var Eu3Asc = [{
   type: 0,
   value: "Address 2"
@@ -91,10 +67,6 @@ var Eu3Asc = [{
 var FJjjnF = [{
   type: 0,
   value: "Video 360"
-}];
-var FJygXH = [{
-  type: 0,
-  value: "Result"
 }];
 var FLMZDH = [{
   type: 0,
@@ -104,21 +76,9 @@ var G31Yd0 = [{
   type: 0,
   value: "Cancel"
 }];
-var GE8wrk = [{
-  type: 0,
-  value: "Image"
-}];
 var GMCLhn = [{
   type: 0,
   value: "Case"
-}];
-var GTLo70 = [{
-  type: 0,
-  value: "Delete story"
-}];
-var GrATUZ = [{
-  type: 0,
-  value: "Login"
 }];
 var GzoKNb = [{
   type: 0,
@@ -155,10 +115,6 @@ var IS4Tsq = [{
   type: 0,
   value: " users"
 }];
-var IwGlNX = [{
-  type: 0,
-  value: "Create your first screen"
-}];
 var JAguka = [{
   type: 0,
   value: "Your message"
@@ -174,6 +130,10 @@ var JV5hRr = [{
 var JoWKee = [{
   type: 0,
   value: "Create your first screen"
+}];
+var JuxiUN = [{
+  type: 0,
+  value: "Format"
 }];
 var K3r6DQ = [{
   type: 0,
@@ -211,21 +171,9 @@ var MJZJs2 = [{
   type: 0,
   value: "First name"
 }];
-var MYZwSA = [{
-  type: 0,
-  value: "Audio"
-}];
-var MfkU1A = [{
-  type: 0,
-  value: "Publish"
-}];
 var Mz76RM = [{
   type: 0,
   value: "ImageText"
-}];
-var N25iDO = [{
-  type: 0,
-  value: "Title"
 }];
 var N4N84O = [{
   type: 0,
@@ -255,29 +203,13 @@ var PWbd17 = [{
   type: 0,
   value: "Payment information"
 }];
-var PXCkXy = [{
-  type: 0,
-  value: "Billing"
-}];
 var PbHeHc = [{
   type: 0,
   value: "Markers"
 }];
-var Pe0ogR = [{
-  type: 0,
-  value: "Theme"
-}];
-var PyDwDF = [{
-  type: 0,
-  value: "Close"
-}];
 var QBaiO0 = [{
   type: 0,
   value: "Add a screen"
-}];
-var QSmRdP = [{
-  type: 0,
-  value: "Add an image"
 }];
 var QUAHwy = [{
   type: 0,
@@ -287,10 +219,6 @@ var QfpTKK = [{
   type: 0,
   value: "Select a screen..."
 }];
-var R1HYj0 = [{
-  type: 0,
-  value: "Save"
-}];
 var RIM5NM = [{
   type: 0,
   value: "Billing info"
@@ -298,14 +226,6 @@ var RIM5NM = [{
 var RcLsua = [{
   type: 0,
   value: "Message"
-}];
-var S9YpbV = [{
-  type: 0,
-  value: "Text"
-}];
-var StDSlO = [{
-  type: 0,
-  value: "Ad"
 }];
 var T9NZPQ = [{
   type: 0,
@@ -335,18 +255,6 @@ var U9aSLt = [{
   type: 0,
   value: "CVV"
 }];
-var UBXIYP = [{
-  type: 0,
-  value: "Video"
-}];
-var USqJHw = [{
-  type: 0,
-  value: "Create a story"
-}];
-var UUv8FR = [{
-  type: 0,
-  value: "Name"
-}];
 var UfD0C8 = [{
   type: 0,
   value: "Invite collaborators"
@@ -362,10 +270,6 @@ var VMw6gu = [{
 var VqyxpU = [{
   type: 0,
   value: "Ad"
-}];
-var W0sd5w = [{
-  type: 0,
-  value: "My Stories"
 }];
 var Wr8abT = [{
   type: 0,
@@ -395,10 +299,6 @@ var YQEv1f = [{
   type: 0,
   value: "It’s time to start creating!"
 }];
-var YS4qTq = [{
-  type: 0,
-  value: "Settings"
-}];
 var YnKhxL = [{
   type: 0,
   value: "Delete story"
@@ -410,10 +310,6 @@ var Z5jrDS = [{
 var ZCe0r4 = [{
   type: 0,
   value: "Description"
-}];
-var ZLDmja = [{
-  type: 0,
-  value: "Submit"
 }];
 var ZQ4Mwo = [{
   type: 0,
@@ -463,10 +359,6 @@ var aeJ9LI = [{
   type: 0,
   value: "Forgot password"
 }];
-var aovRFH = [{
-  type: 0,
-  value: "Filename"
-}];
 var bZWJ7a = [{
   type: 0,
   value: "Same team"
@@ -479,17 +371,13 @@ var bhEaUt = [{
   type: 0,
   value: "Audio"
 }];
-var c8b6V2 = [{
+var cCUGKi = [{
   type: 0,
-  value: "My Stories"
+  value: "Archive file"
 }];
 var cGItoy = [{
   type: 0,
   value: "List"
-}];
-var cldP9G = [{
-  type: 0,
-  value: "Medias"
 }];
 var d60tSn = [{
   type: 0,
@@ -498,18 +386,6 @@ var d60tSn = [{
 var dED5N5 = [{
   type: 0,
   value: "Saving..."
-}];
-var dFMzBu = [{
-  type: 0,
-  value: "No image..."
-}];
-var dVcog7 = [{
-  type: 0,
-  value: "Title"
-}];
-var dmuKH3 = [{
-  type: 0,
-  value: "Map"
 }];
 var dpQDWT = [{
   type: 0,
@@ -523,17 +399,9 @@ var eNT0tt = [{
   type: 0,
   value: "All stories"
 }];
-var ebsPd4 = [{
-  type: 0,
-  value: "Image"
-}];
 var efWBck = [{
   type: 0,
   value: "Team"
-}];
-var ehcuYG = [{
-  type: 0,
-  value: "Themes"
 }];
 var enFs4g = [{
   type: 0,
@@ -542,10 +410,6 @@ var enFs4g = [{
 var eoW0tZ = [{
   type: 0,
   value: "Duration"
-}];
-var fIawTr = [{
-  type: 0,
-  value: "Text"
 }];
 var feDskS = [{
   type: 0,
@@ -593,17 +457,13 @@ var iYc3Ld = [{
   type: 0,
   value: "Payments"
 }];
-var iwp2S0 = [{
-  type: 0,
-  value: "Screens"
-}];
 var jaFXki = [{
   type: 0,
   value: "Gallery"
 }];
-var kBz8vF = [{
+var jpfEXm = [{
   type: 0,
-  value: "Name"
+  value: "Organisation"
 }];
 var kIl7G5 = [{
   type: 0,
@@ -619,13 +479,13 @@ var kYsGUg = [{
   type: 0,
   value: ") to confirm."
 }];
+var kpoYfI = [{
+  type: 0,
+  value: "Reset password"
+}];
 var kq4vYx = [{
   type: 0,
   value: "Yearly"
-}];
-var ktUr5c = [{
-  type: 0,
-  value: "Create an organisation"
 }];
 var l3AfOI = [{
   type: 0,
@@ -674,10 +534,6 @@ var nqQqsI = [{
 var o0RmVC = [{
   type: 0,
   value: "imagesWithCaptions"
-}];
-var o40cSF = [{
-  type: 0,
-  value: "Create an organisation"
 }];
 var oC1UCA = [{
   type: 0,
@@ -755,9 +611,9 @@ var srKDXd = [{
   type: 0,
   value: "Expiration date"
 }];
-var syEQFE = [{
+var stcnVa = [{
   type: 0,
-  value: "Publish"
+  value: "Filename"
 }];
 var t2cFdl = [{
   type: 0,
@@ -783,10 +639,6 @@ var tYGev7 = [{
   type: 0,
   value: "Font size"
 }];
-var tvl2Zc = [{
-  type: 0,
-  value: "Video"
-}];
 var uAKPQ9 = [{
   type: 0,
   value: "Submit"
@@ -795,17 +647,9 @@ var uIkMtR = [{
   type: 0,
   value: "Already have an account?"
 }];
-var uJ9eBc = [{
-  type: 0,
-  value: "Image"
-}];
 var uKJRh2 = [{
   type: 0,
   value: "Title"
-}];
-var uQjihh = [{
-  type: 0,
-  value: "Create an organisation"
 }];
 var uWRAQk = [{
   type: 0,
@@ -879,6 +723,10 @@ var zRRbVl = [{
   type: 0,
   value: "Create"
 }];
+var zTvtLp = [{
+  type: 0,
+  value: "Visibility"
+}];
 var zW7IVm = [{
   type: 0,
   value: "Quiz"
@@ -892,14 +740,6 @@ var zongsF = [{
   value: "Publish"
 }];
 var messages = {
-  "+9akmg": [{
-    type: 0,
-    value: "Audio and Video"
-  }],
-  "+AEVbJ": [{
-    type: 0,
-    value: "Title"
-  }],
   "+KWsXh": [{
     type: 0,
     value: "Already used"
@@ -924,10 +764,6 @@ var messages = {
     type: 0,
     value: "All sources"
   }],
-  "+gNgqN": [{
-    type: 0,
-    value: "Profile"
-  }],
   "/0TOL5": [{
     type: 0,
     value: "Amount"
@@ -944,49 +780,21 @@ var messages = {
     type: 0,
     value: "Remove all"
   }],
-  "/bEns8": [{
-    type: 0,
-    value: "MapImages"
-  }],
-  "/hupzO": [{
-    type: 0,
-    value: "Credits"
-  }],
   "/lZ8Nj": [{
     type: 0,
     value: "Preview"
-  }],
-  "0BcvF9": [{
-    type: 0,
-    value: "All"
   }],
   "0gYrMo": [{
     type: 0,
     value: "Cannot find story"
   }],
-  "15GBmG": [{
-    type: 0,
-    value: "All"
-  }],
-  "169xnt": [{
-    type: 0,
-    value: "Audio"
-  }],
   "17BMn2": [{
     type: 0,
     value: "Ranking"
   }],
-  "1Of0hC": [{
-    type: 0,
-    value: "Duplicate"
-  }],
   "1R16Yb": [{
     type: 0,
     value: "Only show published"
-  }],
-  "1dPnDA": [{
-    type: 0,
-    value: "Tags"
   }],
   "1fBNmY": [{
     type: 0,
@@ -1029,14 +837,6 @@ var messages = {
     type: 0,
     value: "My stories"
   }],
-  "2ZOPe+": [{
-    type: 0,
-    value: "Title"
-  }],
-  "2y24a/": [{
-    type: 0,
-    value: "Save"
-  }],
   "31zuCS": [{
     type: 0,
     value: "Line height"
@@ -1057,28 +857,12 @@ var messages = {
     type: 0,
     value: "Monetisation"
   }],
-  "3OS3Ms": [{
-    type: 0,
-    value: "Legend"
-  }],
-  "3UtT5H": [{
-    type: 0,
-    value: "Continue"
-  }],
   "3fZYih": [{
     type: 0,
     value: "Card ending with "
   }, {
     type: 1,
     value: "card_ending"
-  }],
-  "3ifj0j": [{
-    type: 0,
-    value: "Entries"
-  }],
-  "3q9GPv": [{
-    type: 0,
-    value: "Quote"
   }],
   "3uMlsn": [{
     type: 0,
@@ -1092,21 +876,9 @@ var messages = {
     type: 0,
     value: "Address 1"
   }],
-  "4B+EJg": [{
-    type: 0,
-    value: "Settings"
-  }],
-  "4E2gbX": [{
-    type: 0,
-    value: "Text"
-  }],
   "4POR3B": [{
     type: 0,
     value: "View screen"
-  }],
-  "4SJxF5": [{
-    type: 0,
-    value: "Versions"
   }],
   "4YiKNK": [{
     type: 0,
@@ -1124,29 +896,13 @@ var messages = {
     type: 0,
     value: "Layout"
   }],
-  "4vO01C": [{
-    type: 0,
-    value: "Monthly"
-  }],
   "4yfet+": [{
     type: 0,
     value: "Password"
   }],
-  "507VAi": [{
-    type: 0,
-    value: "Description"
-  }],
   "5u4nkn": [{
     type: 0,
     value: "No versions yet"
-  }],
-  "5uH4x7": [{
-    type: 0,
-    value: "Submit"
-  }],
-  "63Kvho": [{
-    type: 0,
-    value: "Images"
   }],
   "650XRF": [{
     type: 0,
@@ -1160,37 +916,13 @@ var messages = {
     type: 0,
     value: "Recent searches"
   }],
-  "6mX2ya": [{
-    type: 0,
-    value: "Images"
-  }],
-  "6tIigB": [{
-    type: 0,
-    value: "Caption"
-  }],
   "71qOve": [{
     type: 0,
     value: "Complete profile"
   }],
-  "73hxYw": [{
-    type: 0,
-    value: "Author"
-  }],
-  "7Wbk6h": [{
-    type: 0,
-    value: "Medias"
-  }],
   "7sCiEn": [{
     type: 0,
     value: "Create story"
-  }],
-  "7ulXis": [{
-    type: 0,
-    value: "Register"
-  }],
-  "88/Ge8": [{
-    type: 0,
-    value: "Quote"
   }],
   "8DQdhw": [{
     type: 0,
@@ -1204,10 +936,6 @@ var messages = {
     type: 0,
     value: "Usage"
   }],
-  "8vroDx": [{
-    type: 0,
-    value: "Map"
-  }],
   "96KRj9": [{
     type: 0,
     value: "ImageLegend"
@@ -1220,21 +948,11 @@ var messages = {
     type: 0,
     value: "Ascending"
   }],
-  "9WtqV7": [{
-    type: 0,
-    value: "Team"
-  }],
   "9ZdD+Q": [{
     type: 0,
     value: "Library for"
   }],
-  "A+a0kL": [{
-    type: 0,
-    value: "No answer..."
-  }],
   A88rLg: A88rLg,
-  ACSasN: ACSasN,
-  Avsnjl: Avsnjl,
   "B1MeY+": [{
     type: 0,
     value: "Select an image..."
@@ -1243,17 +961,19 @@ var messages = {
     type: 0,
     value: "City"
   }],
+  BUTLoO: BUTLoO,
   BVTni9: BVTni9,
   BpZoQZ: BpZoQZ,
-  C2j6zz: C2j6zz,
-  CbHzjs: CbHzjs,
   ChnSK6: ChnSK6,
   CrzYgw: CrzYgw,
-  D3idYv: D3idYv,
   D3kTvP: D3kTvP,
   DUIDEq: DUIDEq,
   DVrK6z: DVrK6z,
   DWEzCv: DWEzCv,
+  "Dc+tYE": [{
+    type: 0,
+    value: "Recent publications"
+  }],
   DgyZlU: DgyZlU,
   DjIdzH: DjIdzH,
   DuIvK6: DuIvK6,
@@ -1263,11 +983,8 @@ var messages = {
     value: "TextTitle"
   }],
   ET527E: ET527E,
-  EcZYpr: EcZYpr,
-  EoLB7Z: EoLB7Z,
   Eu3Asc: Eu3Asc,
   FJjjnF: FJjjnF,
-  FJygXH: FJygXH,
   FLMZDH: FLMZDH,
   "FPBu+U": [{
     type: 0,
@@ -1278,10 +995,7 @@ var messages = {
     value: "Your name"
   }],
   G31Yd0: G31Yd0,
-  GE8wrk: GE8wrk,
   GMCLhn: GMCLhn,
-  GTLo70: GTLo70,
-  GrATUZ: GrATUZ,
   GzoKNb: GzoKNb,
   Gzx6q5: Gzx6q5,
   H0WHhy: H0WHhy,
@@ -1294,11 +1008,11 @@ var messages = {
   }],
   IMUycF: IMUycF,
   IS4Tsq: IS4Tsq,
-  IwGlNX: IwGlNX,
   JAguka: JAguka,
   JDPMlG: JDPMlG,
   JV5hRr: JV5hRr,
   JoWKee: JoWKee,
+  JuxiUN: JuxiUN,
   K3r6DQ: K3r6DQ,
   K7LgVy: K7LgVy,
   KHWeV7: KHWeV7,
@@ -1312,25 +1026,15 @@ var messages = {
     value: "Role"
   }],
   MJZJs2: MJZJs2,
-  MYZwSA: MYZwSA,
-  MfkU1A: MfkU1A,
   Mz76RM: Mz76RM,
-  N25iDO: N25iDO,
   N4N84O: N4N84O,
-  "OJi+eg": [{
-    type: 0,
-    value: "Label"
-  }],
   OdcEna: OdcEna,
   OkNUmk: OkNUmk,
   P7UAe2: P7UAe2,
   PKCv5M: PKCv5M,
   PQG8A5: PQG8A5,
   PWbd17: PWbd17,
-  PXCkXy: PXCkXy,
   PbHeHc: PbHeHc,
-  Pe0ogR: Pe0ogR,
-  PyDwDF: PyDwDF,
   "PzW5/u": [{
     type: 1,
     value: "storage"
@@ -1343,25 +1047,17 @@ var messages = {
     value: "Card number"
   }],
   QBaiO0: QBaiO0,
-  QSmRdP: QSmRdP,
   QUAHwy: QUAHwy,
   QfpTKK: QfpTKK,
-  R1HYj0: R1HYj0,
   RIM5NM: RIM5NM,
   RcLsua: RcLsua,
   "S/mavZ": [{
     type: 0,
     value: "Text and Images"
   }],
-  S9YpbV: S9YpbV,
   "SR8H/d": [{
     type: 0,
     value: "Refund"
-  }],
-  StDSlO: StDSlO,
-  "T+uQnE": [{
-    type: 0,
-    value: "Screens"
   }],
   T9NZPQ: T9NZPQ,
   TWXRGR: TWXRGR,
@@ -1370,9 +1066,6 @@ var messages = {
   Tt4jN1: Tt4jN1,
   U86B6w: U86B6w,
   U9aSLt: U9aSLt,
-  UBXIYP: UBXIYP,
-  USqJHw: USqJHw,
-  UUv8FR: UUv8FR,
   UfD0C8: UfD0C8,
   UhngoA: UhngoA,
   "V+G2s+": [{
@@ -1381,7 +1074,6 @@ var messages = {
   }],
   VMw6gu: VMw6gu,
   VqyxpU: VqyxpU,
-  W0sd5w: W0sd5w,
   Wr8abT: Wr8abT,
   Wr9olU: Wr9olU,
   Xh1mZC: Xh1mZC,
@@ -1389,7 +1081,6 @@ var messages = {
   YDMrKK: YDMrKK,
   YMYhuv: YMYhuv,
   YQEv1f: YQEv1f,
-  YS4qTq: YS4qTq,
   YnKhxL: YnKhxL,
   "Yyv+N3": [{
     type: 0,
@@ -1397,7 +1088,6 @@ var messages = {
   }],
   Z5jrDS: Z5jrDS,
   ZCe0r4: ZCe0r4,
-  ZLDmja: ZLDmja,
   ZQ4Mwo: ZQ4Mwo,
   ZqwBOx: ZqwBOx,
   ZtZjF0: ZtZjF0,
@@ -1410,52 +1100,32 @@ var messages = {
   aPjV2Q: aPjV2Q,
   aVPh1B: aVPh1B,
   aarOkd: aarOkd,
-  "account-box.profile": [{
-    type: 0,
-    value: "Profile"
-  }],
-  "account-box.settings": [{
-    type: 0,
-    value: "Settings"
-  }],
-  "account-box.title": [{
-    type: 0,
-    value: "Account"
-  }],
   aeJ9LI: aeJ9LI,
-  aovRFH: aovRFH,
   bZWJ7a: bZWJ7a,
   bh16Yr: bh16Yr,
   bhEaUt: bhEaUt,
-  c8b6V2: c8b6V2,
   "c9VwT/": [{
     type: 0,
     value: "Technical details"
   }],
+  cCUGKi: cCUGKi,
   cGItoy: cGItoy,
-  cldP9G: cldP9G,
   d60tSn: d60tSn,
   dED5N5: dED5N5,
-  dFMzBu: dFMzBu,
-  dVcog7: dVcog7,
-  dmuKH3: dmuKH3,
+  "dj/p/q": [{
+    type: 0,
+    value: "Close"
+  }],
   dpQDWT: dpQDWT,
   dqnkQk: dqnkQk,
-  "e1I+KU": [{
-    type: 0,
-    value: "Question"
-  }],
   "e6+aGf": [{
     type: 0,
     value: "Select a media..."
   }],
   eNT0tt: eNT0tt,
-  ebsPd4: ebsPd4,
   efWBck: efWBck,
-  ehcuYG: ehcuYG,
   enFs4g: enFs4g,
   eoW0tZ: eoW0tZ,
-  fIawTr: fIawTr,
   feDskS: feDskS,
   "forms.add_camera_button": [{
     type: 0,
@@ -1502,21 +1172,12 @@ var messages = {
   iHV3W3: iHV3W3,
   iN1k0f: iN1k0f,
   iYc3Ld: iYc3Ld,
-  iwp2S0: iwp2S0,
   jaFXki: jaFXki,
-  "jf+4Hq": [{
-    type: 0,
-    value: "Screens"
-  }],
-  "jnOMk/": [{
-    type: 0,
-    value: "Publish"
-  }],
-  kBz8vF: kBz8vF,
+  jpfEXm: jpfEXm,
   kIl7G5: kIl7G5,
   kYsGUg: kYsGUg,
+  kpoYfI: kpoYfI,
   kq4vYx: kq4vYx,
-  ktUr5c: ktUr5c,
   "l/Y6or": [{
     type: 0,
     value: "Add an entry"
@@ -1526,10 +1187,6 @@ var messages = {
     value: "Latest version"
   }],
   l3AfOI: l3AfOI,
-  "lGh/NP": [{
-    type: 0,
-    value: "Add an answer"
-  }],
   lXV3vP: lXV3vP,
   li7ADr: li7ADr,
   liyV7Y: liyV7Y,
@@ -1550,10 +1207,6 @@ var messages = {
     type: 0,
     value: "Create a new story"
   }],
-  "menus.stories.recent": [{
-    type: 0,
-    value: "Recent stories"
-  }],
   "menus.stories.stories": [{
     type: 0,
     value: "Stories"
@@ -1571,56 +1224,15 @@ var messages = {
   n1ZJSY: n1ZJSY,
   n2teag: n2teag,
   nXVNeg: nXVNeg,
-  "navbars.preview.close": [{
-    type: 0,
-    value: "Close"
-  }],
   nqQqsI: nqQqsI,
   o0RmVC: o0RmVC,
-  o40cSF: o40cSF,
   oC1UCA: oC1UCA,
   oPvs1N: oPvs1N,
   ogg7mi: ogg7mi,
   ojIGhL: ojIGhL,
-  "organisation-box.profile": [{
-    type: 0,
-    value: "Profile"
-  }],
-  "organisation-box.settings": [{
-    type: 0,
-    value: "Settings"
-  }],
-  "organisation-box.title": [{
-    type: 0,
-    value: "Organisation"
-  }],
   p6Dpso: p6Dpso,
   p6n6vY: p6n6vY,
   p85qJD: p85qJD,
-  "pages.auth.reset_password.title": [{
-    type: 0,
-    value: "Reset password"
-  }],
-  "publish_services.archive": [{
-    type: 0,
-    value: "Archive file"
-  }],
-  "publish_services.archive.filename": [{
-    type: 0,
-    value: "Filename"
-  }],
-  "publish_services.archive.format": [{
-    type: 0,
-    value: "Format"
-  }],
-  "publish_services.micromag.url": [{
-    type: 0,
-    value: "URL"
-  }],
-  "publish_services.micromag.visibility": [{
-    type: 0,
-    value: "Visibility"
-  }],
   qIw1nW: qIw1nW,
   qKQCxc: qKQCxc,
   qNLzyM: qNLzyM,
@@ -1629,10 +1241,6 @@ var messages = {
   qpW62d: qpW62d,
   qrMjBI: qrMjBI,
   qzzYCQ: qzzYCQ,
-  "recent_publications.title": [{
-    type: 0,
-    value: "Recent publications"
-  }],
   "rqo+/M": [{
     type: 0,
     value: "Logout"
@@ -1641,7 +1249,7 @@ var messages = {
   sESmah: sESmah,
   sYXVBK: sYXVBK,
   srKDXd: srKDXd,
-  syEQFE: syEQFE,
+  stcnVa: stcnVa,
   "t+L1J/": [{
     type: 0,
     value: "No image..."
@@ -1652,12 +1260,9 @@ var messages = {
   tV78uM: tV78uM,
   tWrNxg: tWrNxg,
   tYGev7: tYGev7,
-  tvl2Zc: tvl2Zc,
   uAKPQ9: uAKPQ9,
   uIkMtR: uIkMtR,
-  uJ9eBc: uJ9eBc,
   uKJRh2: uKJRh2,
-  uQjihh: uQjihh,
   uWRAQk: uWRAQk,
   upzOTm: upzOTm,
   vDSsFW: vDSsFW,
@@ -1696,6 +1301,7 @@ var messages = {
   z4CiV1: z4CiV1,
   zIi5W2: zIi5W2,
   zRRbVl: zRRbVl,
+  zTvtLp: zTvtLp,
   zW7IVm: zW7IVm,
   zWAZXZ: zWAZXZ,
   zongsF: zongsF

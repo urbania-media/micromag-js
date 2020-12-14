@@ -10,12 +10,12 @@ echo "Building intl..."
 
 for lang in $languages
 do
-    if [ -f ./lang/$lang.json ]; then
-        json2po --filter="defaultMessage" ./lang/$lang.json ./lang/$lang.po
+    if [ "$lang" = "en" ]; then
+        ../../scripts/json2po.js --default ./lang/messages.json ./lang/$lang.po
     else
-        json2po --filter="defaultMessage" ./lang/messages.json ./lang/$lang.po
+        ../../scripts/json2po.js ./lang/messages.json ./lang/$lang.po
     fi
-    po2json -t ./lang/messages.json ./lang/$lang.po ./lang/$lang.json
+    ../../scripts/po2json.js ./lang/$lang.po ./lang/$lang.json
 done
 
-../../scripts/formatjs-compile.js './lang/+(${languages_pattern}).json' ./locale
+../../scripts/formatjs-compile.js "./lang/+($languages_pattern).json" ./locale

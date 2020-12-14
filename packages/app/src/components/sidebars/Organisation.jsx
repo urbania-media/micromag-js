@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Card } from '@micromag/core/components';
 
@@ -10,21 +10,6 @@ import OrganisationMenu from '../menus/Organisation';
 import { useOrganisation as useContextOrganisation } from '../../contexts/OrganisationContext';
 
 import styles from '../../styles/partials/organisation-box.module.scss';
-
-const messages = defineMessages({
-    title: {
-        id: 'organisation-box.title',
-        defaultMessage: 'Organisation',
-    },
-    profile: {
-        id: 'organisation-box.profile',
-        defaultMessage: 'Profile',
-    },
-    settings: {
-        id: 'organisation-box.settings',
-        defaultMessage: 'Settings',
-    },
-});
 
 const propTypes = {
     withoutHeader: PropTypes.bool,
@@ -40,7 +25,11 @@ const OrganisationSidebar = ({ withoutHeader, className }) => {
     const organisation = useContextOrganisation();
     return (
         <Card
-            header={!withoutHeader ? messages.title : null}
+            header={
+                !withoutHeader ? (
+                    <FormattedMessage defaultMessage="Organisation" description="Card title" />
+                ) : null
+            }
             afterBody={<OrganisationMenu asList flush />}
             theme="dark"
             className={classNames([

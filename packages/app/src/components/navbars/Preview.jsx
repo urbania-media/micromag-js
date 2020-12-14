@@ -1,19 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Navbar, Button } from '@micromag/core/components';
 import { useUrlGenerator } from '@micromag/core/contexts';
 
 import logo from '../../assets/logo-beta.svg';
-
-const messages = defineMessages({
-    close: {
-        id: 'navbars.preview.close',
-        defaultMessage: 'Close',
-    },
-});
 
 const propTypes = {
     story: MicromagPropTypes.story,
@@ -52,7 +45,7 @@ const PreviewNavbar = ({ story, className }) => {
                     size="sm"
                     disabled={story === null}
                 >
-                    {messages.close}
+                    <FormattedMessage defaultMessage="Close" description="Button label" />
                 </Button>
             </form>
         </Navbar>

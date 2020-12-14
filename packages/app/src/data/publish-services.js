@@ -2,24 +2,24 @@ import { defineMessages } from 'react-intl';
 
 const messages = defineMessages({
     slug: {
-        id: 'publish_services.micromag.url',
         defaultMessage: 'URL',
+        description: 'Publish URL label',
     },
     visibility: {
-        id: 'publish_services.micromag.visibility',
         defaultMessage: 'Visibility',
+        description: 'Field label',
     },
     archive: {
-        id: 'publish_services.archive',
         defaultMessage: 'Archive file',
+        description: 'Field label',
     },
     format: {
-        id: 'publish_services.archive.format',
         defaultMessage: 'Format',
+        description: 'Field label',
     },
     filename: {
-        id: 'publish_services.archive.filename',
         defaultMessage: 'Filename',
+        description: 'Field label',
     },
 });
 
