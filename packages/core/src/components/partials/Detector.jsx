@@ -2,7 +2,7 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
-import { useIntersectionObserver } from '../../hooks/useObserver';
+import { useIntersectionObserver } from '../../hooks';
 
 // import * as AppPropTypes from '../../lib/PropTypes';
 
