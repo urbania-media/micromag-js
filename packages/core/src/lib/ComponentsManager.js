@@ -1,5 +1,5 @@
 import EventEmitter from 'wolfy87-eventemitter';
-import getComponentFromName from '../utils/getComponentFromName';
+import { getComponentFromName } from '../utils';
 
 class ComponentsManager extends EventEmitter {
     constructor(components = {}) {
