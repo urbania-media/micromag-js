@@ -347,7 +347,8 @@ msgstr ""
 msgid "ImageText"
 msgstr ""
 
-#: forms.label_label
+# Field label
+#: OJi+eg
 msgid "Label"
 msgstr ""
 
@@ -498,34 +499,6 @@ msgstr ""
 # Label in Media Gallery
 #: eoW0tZ
 msgid "Duration"
-msgstr ""
-
-#: forms.add_camera_button
-msgid "Add a camera"
-msgstr ""
-
-#: forms.add_item_button
-msgid "Add item"
-msgstr ""
-
-#: forms.no_item
-msgid "No item."
-msgstr ""
-
-#: forms.select_show_to_view_artists
-msgid "Select a show to view artists..."
-msgstr ""
-
-#: forms.select_show_to_view_segments
-msgid "Select a show to view segments..."
-msgstr ""
-
-#: forms.stream_url_label
-msgid "Stream URL"
-msgstr ""
-
-#: forms.time_label
-msgid "Time"
 msgstr ""
 
 # Contribution screen title

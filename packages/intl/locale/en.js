@@ -459,6 +459,10 @@ var messages = {
   JoWKee: JoWKee,
   KHWeV7: KHWeV7,
   Mz76RM: Mz76RM,
+  "OJi+eg": [{
+    type: 0,
+    value: "Label"
+  }],
   OdcEna: OdcEna,
   OkNUmk: OkNUmk,
   P7UAe2: P7UAe2,
@@ -506,38 +510,6 @@ var messages = {
   }],
   enFs4g: enFs4g,
   eoW0tZ: eoW0tZ,
-  "forms.add_camera_button": [{
-    type: 0,
-    value: "Add a camera"
-  }],
-  "forms.add_item_button": [{
-    type: 0,
-    value: "Add item"
-  }],
-  "forms.label_label": [{
-    type: 0,
-    value: "Label"
-  }],
-  "forms.no_item": [{
-    type: 0,
-    value: "No item."
-  }],
-  "forms.select_show_to_view_artists": [{
-    type: 0,
-    value: "Select a show to view artists..."
-  }],
-  "forms.select_show_to_view_segments": [{
-    type: 0,
-    value: "Select a show to view segments..."
-  }],
-  "forms.stream_url_label": [{
-    type: 0,
-    value: "Stream URL"
-  }],
-  "forms.time_label": [{
-    type: 0,
-    value: "Time"
-  }],
   g6b9Lg: g6b9Lg,
   hVE7TA: hVE7TA,
   "i+3ZrF": [{

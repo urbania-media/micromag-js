@@ -347,7 +347,8 @@ msgstr "Answers"
 msgid "ImageText"
 msgstr "ImageText"
 
-#: forms.label_label
+# Field label
+#: OJi+eg
 msgid "Label"
 msgstr "Label"
 
@@ -499,34 +500,6 @@ msgstr "Advanced"
 #: eoW0tZ
 msgid "Duration"
 msgstr "Duration"
-
-#: forms.add_camera_button
-msgid "Add a camera"
-msgstr "Add a camera"
-
-#: forms.add_item_button
-msgid "Add item"
-msgstr "Add item"
-
-#: forms.no_item
-msgid "No item."
-msgstr "No item."
-
-#: forms.select_show_to_view_artists
-msgid "Select a show to view artists..."
-msgstr "Select a show to view artists..."
-
-#: forms.select_show_to_view_segments
-msgid "Select a show to view segments..."
-msgstr "Select a show to view segments..."
-
-#: forms.stream_url_label
-msgid "Stream URL"
-msgstr "Stream URL"
-
-#: forms.time_label
-msgid "Time"
-msgstr "Time"
 
 # Contribution screen title
 #: g6b9Lg

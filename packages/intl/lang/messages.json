@@ -470,30 +470,6 @@
     "defaultMessage": "Text",
     "description": "Text screen group"
   },
-  "forms.add_camera_button": {
-    "defaultMessage": "Add a camera"
-  },
-  "forms.add_item_button": {
-    "defaultMessage": "Add item"
-  },
-  "forms.label_label": {
-    "defaultMessage": "Label"
-  },
-  "forms.no_item": {
-    "defaultMessage": "No item."
-  },
-  "forms.select_show_to_view_artists": {
-    "defaultMessage": "Select a show to view artists..."
-  },
-  "forms.select_show_to_view_segments": {
-    "defaultMessage": "Select a show to view segments..."
-  },
-  "forms.stream_url_label": {
-    "defaultMessage": "Stream URL"
-  },
-  "forms.time_label": {
-    "defaultMessage": "Time"
-  },
   "g6b9Lg": {
     "defaultMessage": "Contribution",
     "description": "Contribution screen title"
