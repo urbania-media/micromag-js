@@ -3,8 +3,6 @@ import React from 'react';
 import { MemoryRouter } from 'react-router';
 
 import { ApiProvider } from '../../../data/src/contexts/ApiContext';
-import { OrganisationProvider } from '../../../app/src/contexts/OrganisationContext';
-import { AuthProvider } from '../../../app/src/contexts/AuthContext';
 
 import FieldsProvider from '../../../fields/src/FieldsProvider';
 
@@ -79,13 +77,9 @@ export default {
 export const Normal = () => (
     <ApiProvider baseUrl={apiBaseUrl}>
         <FieldsProvider>
-            <OrganisationProvider>
-                <AuthProvider checkOnMount>
-                    <MemoryRouter>
-                        <MediaGallery />
-                    </MemoryRouter>
-                </AuthProvider>
-            </OrganisationProvider>
+            <MemoryRouter>
+                <MediaGallery />
+            </MemoryRouter>
         </FieldsProvider>
     </ApiProvider>
 );
@@ -93,13 +87,9 @@ export const Normal = () => (
 export const WithTestMedia = () => (
     <ApiProvider baseUrl={apiBaseUrl}>
         <FieldsProvider>
-            <OrganisationProvider>
-                <AuthProvider checkOnMount>
-                    <MemoryRouter>
-                        <MediaGallery {...props} />
-                    </MemoryRouter>
-                </AuthProvider>
-            </OrganisationProvider>
+            <MemoryRouter>
+                <MediaGallery {...props} />
+            </MemoryRouter>
         </FieldsProvider>
     </ApiProvider>
 );
