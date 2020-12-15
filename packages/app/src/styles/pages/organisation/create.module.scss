@@ -1,8 +1,0 @@
-@import '~@micromag/core/scss/variables';
-@import '../placeholders';
-
-.container {
-    .description {
-        @extend %form-panel-description;
-    }
-}

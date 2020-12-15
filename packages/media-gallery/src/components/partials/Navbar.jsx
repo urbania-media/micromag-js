@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
-import { useRecentSearches, useMediaTags } from '@micromag/data'; // useOrganisationTeam
+import { useMediasRecentSearches, useMediaTags } from '@micromag/data'; // useOrganisationTeam
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button } from '@micromag/core/components';
 
@@ -62,7 +62,7 @@ const Navbar = ({
 
     // TODO: get data from api for real testing
 
-    const { recent } = useRecentSearches();
+    const { recent } = useMediasRecentSearches();
     const { tags } = useMediaTags();
     // const { team } = useOrganisationTeam();
     const { sources, sections } = useSearchFilters({ recent, tags });

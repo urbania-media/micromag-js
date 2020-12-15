@@ -11,23 +11,11 @@
     "+Ok+7S": {
         "defaultMessage": "Answer"
     },
-    "+SxcFv": {
-        "defaultMessage": "Organisation name"
-    },
     "+TT1y6": {
         "defaultMessage": "Clear"
     },
     "+b+e40": {
         "defaultMessage": "All sources"
-    },
-    "qNLzyM": {
-        "defaultMessage": "Profile"
-    },
-    "/0TOL5": {
-        "defaultMessage": "Amount"
-    },
-    "/93hzc": {
-        "defaultMessage": "Delete my account"
     },
     "/MeuM1": {
         "defaultMessage": "Background video"
@@ -41,14 +29,8 @@
     "upzOTm": {
         "defaultMessage": "Credits"
     },
-    "/lZ8Nj": {
-        "defaultMessage": "Preview"
-    },
     "zIi5W2": {
         "defaultMessage": "All"
-    },
-    "0gYrMo": {
-        "defaultMessage": "Cannot find story"
     },
     "bhEaUt": {
         "defaultMessage": "Audio"
@@ -56,35 +38,17 @@
     "17BMn2": {
         "defaultMessage": "Ranking"
     },
-    "4fHiNl": {
-        "defaultMessage": "Duplicate"
-    },
-    "1R16Yb": {
-        "defaultMessage": "Only show published"
-    },
     "4fHMVj": {
         "defaultMessage": "Tags"
     },
     "1fBNmY": {
         "defaultMessage": "ImageTitle"
     },
-    "1fNojU": {
-        "defaultMessage": "{count} {count, plural, one {screen} other {screens}}"
-    },
     "2/F1Q7": {
         "defaultMessage": "#{index}"
     },
-    "2YxE0m": {
-        "defaultMessage": "My stories"
-    },
-    "qIw1nW": {
-        "defaultMessage": "Save"
-    },
     "31zuCS": {
         "defaultMessage": "Line height"
-    },
-    "36JWTz": {
-        "defaultMessage": "Create your first story"
     },
     "3C3nve": {
         "defaultMessage": "Delete screen"
@@ -92,20 +56,8 @@
     "3E57H7": {
         "defaultMessage": "No marker..."
     },
-    "3Fyhu6": {
-        "defaultMessage": "Monetisation"
-    },
     "dqnkQk": {
         "defaultMessage": "Legend"
-    },
-    "QUAHwy": {
-        "defaultMessage": "Continue"
-    },
-    "A88rLg": {
-        "defaultMessage": "Account"
-    },
-    "3fZYih": {
-        "defaultMessage": "Card ending with {card_ending}"
     },
     "sESmah": {
         "defaultMessage": "Entries"
@@ -116,23 +68,11 @@
     "3uMlsn": {
         "defaultMessage": "Some other micromag"
     },
-    "43RaAs": {
-        "defaultMessage": "This plan includes:"
-    },
-    "49F34p": {
-        "defaultMessage": "Address 1"
-    },
-    "Yyv+N3": {
-        "defaultMessage": "Settings"
-    },
     "z4CiV1": {
         "defaultMessage": "Text"
     },
     "4POR3B": {
         "defaultMessage": "View screen"
-    },
-    "L1GHkf": {
-        "defaultMessage": "Versions"
     },
     "4YiKNK": {
         "defaultMessage": "Select a color..."
@@ -140,17 +80,8 @@
     "4iBXj2": {
         "defaultMessage": "Layout"
     },
-    "wYsv4Z": {
-        "defaultMessage": "Monthly"
-    },
-    "4yfet+": {
-        "defaultMessage": "Password"
-    },
     "ZCe0r4": {
         "defaultMessage": "Description"
-    },
-    "5u4nkn": {
-        "defaultMessage": "No versions yet"
     },
     "uAKPQ9": {
         "defaultMessage": "Submit"
@@ -170,23 +101,8 @@
     "p85qJD": {
         "defaultMessage": "Caption"
     },
-    "71qOve": {
-        "defaultMessage": "Complete profile"
-    },
     "xYqGzM": {
         "defaultMessage": "Author"
-    },
-    "s1aoBI": {
-        "defaultMessage": "Medias"
-    },
-    "7sCiEn": {
-        "defaultMessage": "Create story"
-    },
-    "D3kTvP": {
-        "defaultMessage": "Register"
-    },
-    "8DQdhw": {
-        "defaultMessage": "Please enter your email address to get a password reset link."
     },
     "8c34nT": {
         "defaultMessage": "ImageTitleText"
@@ -200,14 +116,8 @@
     "96KRj9": {
         "defaultMessage": "ImageLegend"
     },
-    "97cstG": {
-        "defaultMessage": "Province"
-    },
     "9DhYaZ": {
         "defaultMessage": "Ascending"
-    },
-    "efWBck": {
-        "defaultMessage": "Team"
     },
     "9ZdD+Q": {
         "defaultMessage": "Library for"
@@ -215,53 +125,20 @@
     "p6n6vY": {
         "defaultMessage": "No answer..."
     },
-    "BUTLoO": {
-        "defaultMessage": "URL"
-    },
-    "iN1k0f": {
-        "defaultMessage": "Themes"
-    },
     "B1MeY+": {
         "defaultMessage": "Select an image..."
-    },
-    "BT1+e8": {
-        "defaultMessage": "City"
-    },
-    "BVTni9": {
-        "defaultMessage": "Payment method"
     },
     "BpZoQZ": {
         "defaultMessage": "Success"
     },
-    "mAf/Yw": {
-        "defaultMessage": "Login"
-    },
     "ChnSK6": {
         "defaultMessage": "This Micromag"
-    },
-    "DUIDEq": {
-        "defaultMessage": "Storage"
     },
     "DVrK6z": {
         "defaultMessage": "Click to edit..."
     },
     "DWEzCv": {
         "defaultMessage": "Select a video..."
-    },
-    "Dc+tYE": {
-        "defaultMessage": "Recent publications"
-    },
-    "DgyZlU": {
-        "defaultMessage": "Start by choosing a name for your organisation."
-    },
-    "DjIdzH": {
-        "defaultMessage": "Invitation envoyée"
-    },
-    "DuIvK6": {
-        "defaultMessage": "Your Name"
-    },
-    "DzC1Wh": {
-        "defaultMessage": "Contact us for pricing"
     },
     "E/qtB2": {
         "defaultMessage": "TextTitle"
@@ -272,23 +149,11 @@
     "d60tSn": {
         "defaultMessage": "Subtitle"
     },
-    "U86B6w": {
-        "defaultMessage": "Stats"
-    },
-    "Eu3Asc": {
-        "defaultMessage": "Address 2"
-    },
     "FJjjnF": {
         "defaultMessage": "Video 360"
     },
     "li7ADr": {
         "defaultMessage": "Result"
-    },
-    "FLMZDH": {
-        "defaultMessage": "Invite your team members to your organisation."
-    },
-    "FPBu+U": {
-        "defaultMessage": "Phone"
     },
     "G/ITGY": {
         "defaultMessage": "Your name"
@@ -302,38 +167,17 @@
     "GMCLhn": {
         "defaultMessage": "Case"
     },
-    "YnKhxL": {
-        "defaultMessage": "Delete story"
-    },
     "GzoKNb": {
         "defaultMessage": "Timeline"
     },
     "Gzx6q5": {
         "defaultMessage": "Advertising"
     },
-    "H0WHhy": {
-        "defaultMessage": "Country"
-    },
-    "H7fYum": {
-        "defaultMessage": "Your plan"
-    },
     "HseFdk": {
         "defaultMessage": "Edit"
     },
-    "I8trjB": {
-        "defaultMessage": "Delete account"
-    },
-    "IB/AQ9": {
-        "defaultMessage": "You are a member of the following organisations:"
-    },
     "IMUycF": {
         "defaultMessage": "Timeline Illustrated"
-    },
-    "IS4Tsq": {
-        "defaultMessage": "{users} users"
-    },
-    "JoWKee": {
-        "defaultMessage": "Create your first screen"
     },
     "JAguka": {
         "defaultMessage": "Your message"
@@ -344,44 +188,14 @@
     "JV5hRr": {
         "defaultMessage": "Media gallery"
     },
-    "JuxiUN": {
-        "defaultMessage": "Format"
-    },
-    "K3r6DQ": {
-        "defaultMessage": "Delete"
-    },
-    "K7LgVy": {
-        "defaultMessage": "Card name"
+    "JoWKee": {
+        "defaultMessage": "Create your first screen"
     },
     "KHWeV7": {
         "defaultMessage": "Answers"
     },
-    "KfcW64": {
-        "defaultMessage": "Duplicate story"
-    },
-    "LI0Gz4": {
-        "defaultMessage": "Email"
-    },
-    "Lnm6qA": {
-        "defaultMessage": "Payment info"
-    },
-    "M0XwpU": {
-        "defaultMessage": "No theme screen yet"
-    },
-    "MEB/t4": {
-        "defaultMessage": "Role"
-    },
-    "MJZJs2": {
-        "defaultMessage": "First name"
-    },
-    "zongsF": {
-        "defaultMessage": "Publish"
-    },
     "Mz76RM": {
         "defaultMessage": "ImageText"
-    },
-    "N4N84O": {
-        "defaultMessage": "New screen"
     },
     "forms.label_label": {
         "defaultMessage": "Label"
@@ -401,26 +215,8 @@
     "PQG8A5": {
         "defaultMessage": "Link"
     },
-    "PWbd17": {
-        "defaultMessage": "Payment information"
-    },
-    "Tbo377": {
-        "defaultMessage": "Billing"
-    },
     "PbHeHc": {
         "defaultMessage": "Markers"
-    },
-    "YMYhuv": {
-        "defaultMessage": "Theme"
-    },
-    "dj/p/q": {
-        "defaultMessage": "Close"
-    },
-    "PzW5/u": {
-        "defaultMessage": "{storage} GB"
-    },
-    "Q++P6g": {
-        "defaultMessage": "Card number"
     },
     "QBaiO0": {
         "defaultMessage": "Add a screen"
@@ -431,80 +227,26 @@
     "QfpTKK": {
         "defaultMessage": "Select a screen..."
     },
-    "RIM5NM": {
-        "defaultMessage": "Billing info"
-    },
     "RcLsua": {
         "defaultMessage": "Message"
     },
     "S/mavZ": {
         "defaultMessage": "Text and Images"
     },
-    "SR8H/d": {
-        "defaultMessage": "Refund"
-    },
     "VqyxpU": {
         "defaultMessage": "Ad"
-    },
-    "wkysUu": {
-        "defaultMessage": "Screens"
-    },
-    "TWXRGR": {
-        "defaultMessage": "Organisations"
-    },
-    "Tlp2I0": {
-        "defaultMessage": "Your account has been created. Please complete your profile."
     },
     "Tt4jN1": {
         "defaultMessage": "Add"
     },
-    "U9aSLt": {
-        "defaultMessage": "CVV"
-    },
     "vERejo": {
         "defaultMessage": "Video"
-    },
-    "xcOPid": {
-        "defaultMessage": "Create a story"
-    },
-    "nXVNeg": {
-        "defaultMessage": "Name"
-    },
-    "UfD0C8": {
-        "defaultMessage": "Invite collaborators"
-    },
-    "UhngoA": {
-        "defaultMessage": "Delete profile"
-    },
-    "VMw6gu": {
-        "defaultMessage": "Save contact"
-    },
-    "mg7RiU": {
-        "defaultMessage": "My Stories"
-    },
-    "Wr8abT": {
-        "defaultMessage": "Forgot password?"
     },
     "Wr9olU": {
         "defaultMessage": "Typography"
     },
-    "Xh1mZC": {
-        "defaultMessage": "Back"
-    },
-    "Xt24Gj": {
-        "defaultMessage": "It’s time to start creating now."
-    },
-    "YDMrKK": {
-        "defaultMessage": "Users"
-    },
-    "YQEv1f": {
-        "defaultMessage": "It’s time to start creating!"
-    },
     "Z5jrDS": {
         "defaultMessage": "Letter spacing"
-    },
-    "ZQ4Mwo": {
-        "defaultMessage": "Type in the number {random} to confirm."
     },
     "ZqwBOx": {
         "defaultMessage": "Questions"
@@ -515,29 +257,14 @@
     "ZxgNge": {
         "defaultMessage": "Add an item"
     },
-    "a6QaEu": {
-        "defaultMessage": "Check your email"
-    },
     "aDbe/Q": {
         "defaultMessage": "Danger zone"
-    },
-    "aPjV2Q": {
-        "defaultMessage": "No story yet"
-    },
-    "aVPh1B": {
-        "defaultMessage": "Instructions to reset your password have been sent to your {email}."
     },
     "aarOkd": {
         "defaultMessage": "Color"
     },
-    "aeJ9LI": {
-        "defaultMessage": "Forgot password"
-    },
-    "stcnVa": {
+    "aovRFH": {
         "defaultMessage": "Filename"
-    },
-    "bZWJ7a": {
-        "defaultMessage": "Same team"
     },
     "bh16Yr": {
         "defaultMessage": "GalleryFeedCaptions"
@@ -545,20 +272,11 @@
     "c9VwT/": {
         "defaultMessage": "Technical details"
     },
-    "cCUGKi": {
-        "defaultMessage": "Archive file"
-    },
     "cGItoy": {
         "defaultMessage": "List"
     },
-    "dED5N5": {
-        "defaultMessage": "Saving..."
-    },
     "t+L1J/": {
         "defaultMessage": "No image..."
-    },
-    "dpQDWT": {
-        "defaultMessage": "Change password"
     },
     "hVE7TA": {
         "defaultMessage": "Question"
@@ -566,17 +284,11 @@
     "e6+aGf": {
         "defaultMessage": "Select a media..."
     },
-    "eNT0tt": {
-        "defaultMessage": "All stories"
-    },
     "enFs4g": {
         "defaultMessage": "Advanced"
     },
     "eoW0tZ": {
         "defaultMessage": "Duration"
-    },
-    "feDskS": {
-        "defaultMessage": "Company name"
     },
     "forms.add_camera_button": {
         "defaultMessage": "Add a camera"
@@ -599,59 +311,26 @@
     "forms.time_label": {
         "defaultMessage": "Time"
     },
-    "fz0z4c": {
-        "defaultMessage": "Plan"
-    },
     "g6b9Lg": {
         "defaultMessage": "Contribution"
-    },
-    "g6qbbX": {
-        "defaultMessage": "Log in"
-    },
-    "hraRO0": {
-        "defaultMessage": "Choose the {name} plan"
     },
     "i+3ZrF": {
         "defaultMessage": "Select a font family..."
     },
-    "i2xVsE": {
-        "defaultMessage": "Organisations make it easier to collaborate with a team on micromags."
-    },
     "iHV3W3": {
         "defaultMessage": "No entry..."
-    },
-    "iYc3Ld": {
-        "defaultMessage": "Payments"
     },
     "jaFXki": {
         "defaultMessage": "Gallery"
     },
-    "jpfEXm": {
-        "defaultMessage": "Organisation"
+    "wkysUu": {
+        "defaultMessage": "Screens"
     },
-    "kIl7G5": {
-        "defaultMessage": "Published at"
-    },
-    "kYsGUg": {
-        "defaultMessage": "Type in the name of the story ({name}) to confirm."
-    },
-    "kpoYfI": {
-        "defaultMessage": "Reset password"
-    },
-    "kq4vYx": {
-        "defaultMessage": "Yearly"
-    },
-    "zWAZXZ": {
-        "defaultMessage": "Create an organisation"
+    "nXVNeg": {
+        "defaultMessage": "Name"
     },
     "l/Y6or": {
         "defaultMessage": "Add an entry"
-    },
-    "l21zl/": {
-        "defaultMessage": "Latest version"
-    },
-    "l3AfOI": {
-        "defaultMessage": "Due date"
     },
     "n2teag": {
         "defaultMessage": "Add an answer"
@@ -662,113 +341,35 @@
     "liyV7Y": {
         "defaultMessage": "Size"
     },
-    "lnATAe": {
-        "defaultMessage": "Choose an organisation"
-    },
     "menus.pagination.next": {
         "defaultMessage": "next"
     },
     "menus.pagination.previous": {
         "defaultMessage": "Previous"
     },
-    "menus.stories.create": {
-        "defaultMessage": "Create a new story"
-    },
-    "qrMjBI": {
-        "defaultMessage": "Recent stories"
-    },
-    "menus.stories.stories": {
-        "defaultMessage": "Stories"
-    },
-    "menus.stories.view_all": {
-        "defaultMessage": "View all stories"
-    },
     "mv37oK": {
         "defaultMessage": "Dimension"
-    },
-    "n/o4Co": {
-        "defaultMessage": "Send request"
-    },
-    "n1ZJSY": {
-        "defaultMessage": "New story"
     },
     "o0RmVC": {
         "defaultMessage": "imagesWithCaptions"
     },
-    "oC1UCA": {
-        "defaultMessage": "Update profile"
-    },
-    "oPvs1N": {
-        "defaultMessage": "You cannot delete your profile because you are part of the following organisations:"
-    },
-    "ogg7mi": {
-        "defaultMessage": "Are you sure you want to delete your profile? This action cannot be reversed."
-    },
-    "ojIGhL": {
-        "defaultMessage": "Main contact"
-    },
-    "p6Dpso": {
-        "defaultMessage": "Last name"
+    "qIw1nW": {
+        "defaultMessage": "Save"
     },
     "qKQCxc": {
         "defaultMessage": "Add a marker"
     },
-    "qelLNs": {
-        "defaultMessage": "Favicon"
-    },
-    "qpW62d": {
-        "defaultMessage": "Invite"
-    },
-    "qzzYCQ": {
-        "defaultMessage": "No screen yet"
-    },
-    "rqo+/M": {
-        "defaultMessage": "Logout"
-    },
-    "sYXVBK": {
-        "defaultMessage": "Analytics"
-    },
-    "srKDXd": {
-        "defaultMessage": "Expiration date"
-    },
     "t2cFdl": {
         "defaultMessage": "Active filters"
-    },
-    "t9Wttt": {
-        "defaultMessage": "Switching organisation..."
     },
     "tAYwqp": {
         "defaultMessage": "Add a slide"
     },
-    "tV78uM": {
-        "defaultMessage": "Confirm password"
-    },
-    "tWrNxg": {
-        "defaultMessage": "Share"
-    },
     "tYGev7": {
         "defaultMessage": "Font size"
     },
-    "uIkMtR": {
-        "defaultMessage": "Already have an account?"
-    },
-    "uWRAQk": {
-        "defaultMessage": "Choose your plan"
-    },
-    "vDSsFW": {
-        "defaultMessage": "Create an account"
-    },
     "vrCfAS": {
         "defaultMessage": "GalleryFeed"
-    },
-    "vtStU2": {
-        "defaultMessage": "Payment history"
-    },
-    "w+78Hh": {
-        "defaultMessage": "Go back to login"
-    },
-    "woLAiB": {
-        "defaultMessage": "First, enter your email and pick a password."
     },
     "wt1+dM": {
         "defaultMessage": "Select an audio file..."
@@ -779,23 +380,11 @@
     "xKdf/C": {
         "defaultMessage": "Added by"
     },
-    "xVf+jH": {
-        "defaultMessage": "Postal code"
-    },
-    "xzxHzY": {
-        "defaultMessage": "Editor"
-    },
     "y7xsPe": {
         "defaultMessage": "Advanced settings"
     },
     "ySApyR": {
         "defaultMessage": "Background image"
-    },
-    "zRRbVl": {
-        "defaultMessage": "Create"
-    },
-    "zTvtLp": {
-        "defaultMessage": "Visibility"
     },
     "zW7IVm": {
         "defaultMessage": "Quiz"

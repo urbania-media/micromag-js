@@ -37,11 +37,6 @@ msgstr "Background"
 msgid "Answer"
 msgstr "Answer"
 
-# Field label
-#: +SxcFv
-msgid "Organisation name"
-msgstr "Organisation name"
-
 # Clear button label in Media Gallery
 #: +TT1y6
 msgid "Clear"
@@ -51,20 +46,6 @@ msgstr "Clear"
 #: +b+e40
 msgid "All sources"
 msgstr "All sources"
-
-# Page title
-#: qNLzyM
-msgid "Profile"
-msgstr "Profile"
-
-#: /0TOL5
-msgid "Amount"
-msgstr "Amount"
-
-# Button label
-#: /93hzc
-msgid "Delete my account"
-msgstr "Delete my account"
 
 # Field label
 #: /MeuM1
@@ -86,20 +67,10 @@ msgstr "MapImages"
 msgid "Credits"
 msgstr "Credits"
 
-# Menu label
-#: /lZ8Nj
-msgid "Preview"
-msgstr "Preview"
-
 # Font family group title
 #: zIi5W2
 msgid "All"
 msgstr "All"
-
-# Cannot find story message
-#: 0gYrMo
-msgid "Cannot find story"
-msgstr "Cannot find story"
 
 # Audio screen title
 #: bhEaUt
@@ -111,15 +82,6 @@ msgstr "Audio"
 msgid "Ranking"
 msgstr "Ranking"
 
-#: 4fHiNl
-msgid "Duplicate"
-msgstr "Duplicate"
-
-# Only show published field label
-#: 1R16Yb
-msgid "Only show published"
-msgstr "Only show published"
-
 # Tags in Media Gallery
 #: 4fHMVj
 msgid "Tags"
@@ -130,35 +92,15 @@ msgstr "Tags"
 msgid "ImageTitle"
 msgstr "ImageTitle"
 
-# Screens count label
-#: 1fNojU
-msgid "{count} {count, plural, one {screen} other {screens}}"
-msgstr "{count} {count, plural, one {screen} other {screens}}"
-
 # Item label in items field
 #: 2/F1Q7
 msgid "#{index}"
 msgstr "#{index}"
 
-# My stories button label
-#: 2YxE0m
-msgid "My stories"
-msgstr "My stories"
-
-# Save in Media Gallery
-#: qIw1nW
-msgid "Save"
-msgstr "Save"
-
 # Field label
 #: 31zuCS
 msgid "Line height"
 msgstr "Line height"
-
-# Button label
-#: 36JWTz
-msgid "Create your first story"
-msgstr "Create your first story"
 
 # Delete screen button
 #: 3C3nve
@@ -170,29 +112,10 @@ msgstr "Delete screen"
 msgid "No marker..."
 msgstr "No marker..."
 
-# Plan label
-#: 3Fyhu6
-msgid "Monetisation"
-msgstr "Monetisation"
-
 # Legend placeholder
 #: dqnkQk
 msgid "Legend"
 msgstr "Legend"
-
-# Button label
-#: QUAHwy
-msgid "Continue"
-msgstr "Continue"
-
-# Menu item
-#: A88rLg
-msgid "Account"
-msgstr "Account"
-
-#: 3fZYih
-msgid "Card ending with {card_ending}"
-msgstr "Card ending with {card_ending}"
 
 # Entries field label
 #: sESmah
@@ -209,21 +132,6 @@ msgstr "Quote"
 msgid "Some other micromag"
 msgstr "Some other micromag"
 
-# Plan label
-#: 43RaAs
-msgid "This plan includes:"
-msgstr "This plan includes:"
-
-# Field label
-#: 49F34p
-msgid "Address 1"
-msgstr "Address 1"
-
-# Button label
-#: Yyv+N3
-msgid "Settings"
-msgstr "Settings"
-
 # Text placeholder
 #: z4CiV1
 msgid "Text"
@@ -233,11 +141,6 @@ msgstr "Text"
 #: 4POR3B
 msgid "View screen"
 msgstr "View screen"
-
-# Menu label
-#: L1GHkf
-msgid "Versions"
-msgstr "Versions"
 
 # No value label
 #: 4YiKNK
@@ -249,24 +152,10 @@ msgstr "Select a color..."
 msgid "Layout"
 msgstr "Layout"
 
-#: wYsv4Z
-msgid "Monthly"
-msgstr "Monthly"
-
-# Field label
-#: 4yfet+
-msgid "Password"
-msgstr "Password"
-
 # Field label
 #: ZCe0r4
 msgid "Description"
 msgstr "Description"
-
-# No versions yet message
-#: 5u4nkn
-msgid "No versions yet"
-msgstr "No versions yet"
 
 # Submit field label
 #: uAKPQ9
@@ -298,34 +187,10 @@ msgstr "Recent searches"
 msgid "Caption"
 msgstr "Caption"
 
-# Complete profile page title
-#: 71qOve
-msgid "Complete profile"
-msgstr "Complete profile"
-
 # Author placeholder
 #: xYqGzM
 msgid "Author"
 msgstr "Author"
-
-#: s1aoBI
-msgid "Medias"
-msgstr "Medias"
-
-# Button label
-#: 7sCiEn
-msgid "Create story"
-msgstr "Create story"
-
-# Register page title
-#: D3kTvP
-msgid "Register"
-msgstr "Register"
-
-# Forgot password page description
-#: 8DQdhw
-msgid "Please enter your email address to get a password reset link."
-msgstr "Please enter your email address to get a password reset link."
 
 # ImageTitleText screen title
 #: 8c34nT
@@ -347,20 +212,10 @@ msgstr "Map"
 msgid "ImageLegend"
 msgstr "ImageLegend"
 
-# Field label
-#: 97cstG
-msgid "Province"
-msgstr "Province"
-
 # Ascending field label
 #: 9DhYaZ
 msgid "Ascending"
 msgstr "Ascending"
-
-# Page title
-#: efWBck
-msgid "Team"
-msgstr "Team"
 
 # Library source menu
 #: 9ZdD+Q
@@ -372,48 +227,20 @@ msgstr "Library for"
 msgid "No answer..."
 msgstr "No answer..."
 
-# Publish URL label
-#: BUTLoO
-msgid "URL"
-msgstr "URL"
-
-# Menu item
-#: iN1k0f
-msgid "Themes"
-msgstr "Themes"
-
 # Label when no value is provided to Image field
 #: B1MeY+
 msgid "Select an image..."
 msgstr "Select an image..."
-
-# Field label
-#: BT1+e8
-msgid "City"
-msgstr "City"
-
-#: BVTni9
-msgid "Payment method"
-msgstr "Payment method"
 
 # Success form message
 #: BpZoQZ
 msgid "Success"
 msgstr "Success"
 
-# Menu item
-#: mAf/Yw
-msgid "Login"
-msgstr "Login"
-
 # Source from this micromag
 #: ChnSK6
 msgid "This Micromag"
 msgstr "This Micromag"
-
-#: DUIDEq
-msgid "Storage"
-msgstr "Storage"
 
 # Label when no value is provided to Field with form
 #: DVrK6z
@@ -424,30 +251,6 @@ msgstr "Click to edit..."
 #: DWEzCv
 msgid "Select a video..."
 msgstr "Select a video..."
-
-# Card title
-#: Dc+tYE
-msgid "Recent publications"
-msgstr "Recent publications"
-
-#: DgyZlU
-msgid "Start by choosing a name for your organisation."
-msgstr "Start by choosing a name for your organisation."
-
-# Quit button label
-#: DjIdzH
-msgid "Invitation envoyée"
-msgstr "Invitation envoyée"
-
-# Field label
-#: DuIvK6
-msgid "Your Name"
-msgstr "Your Name"
-
-# Plan label
-#: DzC1Wh
-msgid "Contact us for pricing"
-msgstr "Contact us for pricing"
 
 # TextTitle screen title
 #: E/qtB2
@@ -464,15 +267,6 @@ msgstr "Font family"
 msgid "Subtitle"
 msgstr "Subtitle"
 
-#: U86B6w
-msgid "Stats"
-msgstr "Stats"
-
-# Field label
-#: Eu3Asc
-msgid "Address 2"
-msgstr "Address 2"
-
 # Video 360 screen title
 #: FJjjnF
 msgid "Video 360"
@@ -482,16 +276,6 @@ msgstr "Video 360"
 #: li7ADr
 msgid "Result"
 msgstr "Result"
-
-# Invite page description
-#: FLMZDH
-msgid "Invite your team members to your organisation."
-msgstr "Invite your team members to your organisation."
-
-# Field label
-#: FPBu+U
-msgid "Phone"
-msgstr "Phone"
 
 # Your name placeholder
 #: G/ITGY
@@ -513,11 +297,6 @@ msgstr "Image"
 msgid "Case"
 msgstr "Case"
 
-# Menu label
-#: YnKhxL
-msgid "Delete story"
-msgstr "Delete story"
-
 # Timeline screen title
 #: GzoKNb
 msgid "Timeline"
@@ -528,45 +307,15 @@ msgstr "Timeline"
 msgid "Advertising"
 msgstr "Advertising"
 
-# Field label
-#: H0WHhy
-msgid "Country"
-msgstr "Country"
-
-# Your plan field label
-#: H7fYum
-msgid "Your plan"
-msgstr "Your plan"
-
 # Button to edit a screen
 #: HseFdk
 msgid "Edit"
 msgstr "Edit"
 
-# Button label
-#: I8trjB
-msgid "Delete account"
-msgstr "Delete account"
-
-# Complete profile organisations description
-#: IB/AQ9
-msgid "You are a member of the following organisations:"
-msgstr "You are a member of the following organisations:"
-
 # Timeline Illustrated screen title
 #: IMUycF
 msgid "Timeline Illustrated"
 msgstr "Timeline Illustrated"
-
-# Plan label
-#: IS4Tsq
-msgid "{users} users"
-msgstr "{users} users"
-
-# Button to create your first screen
-#: JoWKee
-msgid "Create your first screen"
-msgstr "Create your first screen"
 
 # Your message placeholder
 #: JAguka
@@ -583,69 +332,20 @@ msgstr "Background color"
 msgid "Media gallery"
 msgstr "Media gallery"
 
-# Field label
-#: JuxiUN
-msgid "Format"
-msgstr "Format"
-
-#: K3r6DQ
-msgid "Delete"
-msgstr "Delete"
-
-# Field label
-#: K7LgVy
-msgid "Card name"
-msgstr "Card name"
+# Button to create your first screen
+#: JoWKee
+msgid "Create your first screen"
+msgstr "Create your first screen"
 
 # Field label
 #: KHWeV7
 msgid "Answers"
 msgstr "Answers"
 
-# Button label
-#: KfcW64
-msgid "Duplicate story"
-msgstr "Duplicate story"
-
-# Field label
-#: LI0Gz4
-msgid "Email"
-msgstr "Email"
-
-# Fieldset label
-#: Lnm6qA
-msgid "Payment info"
-msgstr "Payment info"
-
-# No screen yet status
-#: M0XwpU
-msgid "No theme screen yet"
-msgstr "No theme screen yet"
-
-# Field label
-#: MEB/t4
-msgid "Role"
-msgstr "Role"
-
-# Field label
-#: MJZJs2
-msgid "First name"
-msgstr "First name"
-
-# Button label
-#: zongsF
-msgid "Publish"
-msgstr "Publish"
-
 # ImageText screen title
 #: Mz76RM
 msgid "ImageText"
 msgstr "ImageText"
-
-# Button label
-#: N4N84O
-msgid "New screen"
-msgstr "New screen"
 
 #: forms.label_label
 msgid "Label"
@@ -676,38 +376,10 @@ msgstr "No item..."
 msgid "Link"
 msgstr "Link"
 
-#: PWbd17
-msgid "Payment information"
-msgstr "Payment information"
-
-#: Tbo377
-msgid "Billing"
-msgstr "Billing"
-
 # Markers field label
 #: PbHeHc
 msgid "Markers"
 msgstr "Markers"
-
-# Field label
-#: YMYhuv
-msgid "Theme"
-msgstr "Theme"
-
-# Button label
-#: dj/p/q
-msgid "Close"
-msgstr "Close"
-
-# Plan label
-#: PzW5/u
-msgid "{storage} GB"
-msgstr "{storage} GB"
-
-# Field label
-#: Q++P6g
-msgid "Card number"
-msgstr "Card number"
 
 # Title of the screen types selection dialog
 #: QBaiO0
@@ -723,11 +395,6 @@ msgstr "Add an image"
 msgid "Select a screen..."
 msgstr "Select a screen..."
 
-# Fieldset label
-#: RIM5NM
-msgid "Billing info"
-msgstr "Billing info"
-
 # Message field label
 #: RcLsua
 msgid "Message"
@@ -738,30 +405,10 @@ msgstr "Message"
 msgid "Text and Images"
 msgstr "Text and Images"
 
-# Refund type badge
-#: SR8H/d
-msgid "Refund"
-msgstr "Refund"
-
 # Ad screen group
 #: VqyxpU
 msgid "Ad"
 msgstr "Ad"
-
-# Button to show screens
-#: wkysUu
-msgid "Screens"
-msgstr "Screens"
-
-# Organisations label
-#: TWXRGR
-msgid "Organisations"
-msgstr "Organisations"
-
-# Complete profile page description
-#: Tlp2I0
-msgid "Your account has been created. Please complete your profile."
-msgstr "Your account has been created. Please complete your profile."
 
 # Add button label in Media Gallery
 #: Tt4jN1
@@ -769,82 +416,19 @@ msgid "Add"
 msgstr "Add"
 
 # Field label
-#: U9aSLt
-msgid "CVV"
-msgstr "CVV"
-
-# Field label
 #: vERejo
 msgid "Video"
 msgstr "Video"
-
-#: xcOPid
-msgid "Create a story"
-msgstr "Create a story"
-
-# Name field label
-#: nXVNeg
-msgid "Name"
-msgstr "Name"
-
-# Invite collaborators page title
-#: UfD0C8
-msgid "Invite collaborators"
-msgstr "Invite collaborators"
-
-# Delete profile section title
-#: UhngoA
-msgid "Delete profile"
-msgstr "Delete profile"
-
-# Button label
-#: VMw6gu
-msgid "Save contact"
-msgstr "Save contact"
-
-# Page title
-#: mg7RiU
-msgid "My Stories"
-msgstr "My Stories"
-
-# Forgot password page link
-#: Wr8abT
-msgid "Forgot password?"
-msgstr "Forgot password?"
 
 # Fields section label
 #: Wr9olU
 msgid "Typography"
 msgstr "Typography"
 
-# Back page button
-#: Xh1mZC
-msgid "Back"
-msgstr "Back"
-
-# Box description
-#: Xt24Gj
-msgid "It’s time to start creating now."
-msgstr "It’s time to start creating now."
-
-#: YDMrKK
-msgid "Users"
-msgstr "Users"
-
-# Time to create status
-#: YQEv1f
-msgid "It’s time to start creating!"
-msgstr "It’s time to start creating!"
-
 # Field label
 #: Z5jrDS
 msgid "Letter spacing"
 msgstr "Letter spacing"
-
-# Field label type in to delete
-#: ZQ4Mwo
-msgid "Type in the number {random} to confirm."
-msgstr "Type in the number {random} to confirm."
 
 # Questions screen group
 #: ZqwBOx
@@ -861,45 +445,20 @@ msgstr "TitleSubtitle"
 msgid "Add an item"
 msgstr "Add an item"
 
-# Check email page title
-#: a6QaEu
-msgid "Check your email"
-msgstr "Check your email"
-
 # Title of the danger zone panel
 #: aDbe/Q
 msgid "Danger zone"
 msgstr "Danger zone"
-
-# Box title
-#: aPjV2Q
-msgid "No story yet"
-msgstr "No story yet"
-
-# Check email page description
-#: aVPh1B
-msgid "Instructions to reset your password have been sent to your {email}."
-msgstr "Instructions to reset your password have been sent to your {email}."
 
 # Field label
 #: aarOkd
 msgid "Color"
 msgstr "Color"
 
-# Forgot password page title
-#: aeJ9LI
-msgid "Forgot password"
-msgstr "Forgot password"
-
-# Field label
-#: stcnVa
+# Label in Media Gallery
+#: aovRFH
 msgid "Filename"
 msgstr "Filename"
-
-# Field label
-#: bZWJ7a
-msgid "Same team"
-msgstr "Same team"
 
 # GalleryFeedCaptions screen title
 #: bh16Yr
@@ -911,30 +470,15 @@ msgstr "GalleryFeedCaptions"
 msgid "Technical details"
 msgstr "Technical details"
 
-# Field label
-#: cCUGKi
-msgid "Archive file"
-msgstr "Archive file"
-
 # List screen group
 #: cGItoy
 msgid "List"
 msgstr "List"
 
-# Saving button label
-#: dED5N5
-msgid "Saving..."
-msgstr "Saving..."
-
 # Label when there is no item in images field
 #: t+L1J/
 msgid "No image..."
 msgstr "No image..."
-
-# Change password button label
-#: dpQDWT
-msgid "Change password"
-msgstr "Change password"
 
 # Question field label
 #: hVE7TA
@@ -946,11 +490,6 @@ msgstr "Question"
 msgid "Select a media..."
 msgstr "Select a media..."
 
-# All stories button label
-#: eNT0tt
-msgid "All stories"
-msgstr "All stories"
-
 # Name of the section in Fields
 #: enFs4g
 msgid "Advanced"
@@ -960,11 +499,6 @@ msgstr "Advanced"
 #: eoW0tZ
 msgid "Duration"
 msgstr "Duration"
-
-# Field label
-#: feDskS
-msgid "Company name"
-msgstr "Company name"
 
 #: forms.add_camera_button
 msgid "Add a camera"
@@ -994,92 +528,40 @@ msgstr "Stream URL"
 msgid "Time"
 msgstr "Time"
 
-#: fz0z4c
-msgid "Plan"
-msgstr "Plan"
-
 # Contribution screen title
 #: g6b9Lg
 msgid "Contribution"
 msgstr "Contribution"
-
-# Button label
-#: g6qbbX
-msgid "Log in"
-msgstr "Log in"
-
-# Plan button label
-#: hraRO0
-msgid "Choose the {name} plan"
-msgstr "Choose the {name} plan"
 
 # No value label
 #: i+3ZrF
 msgid "Select a font family..."
 msgstr "Select a font family..."
 
-# About organisations field label description
-#: i2xVsE
-msgid "Organisations make it easier to collaborate with a team on micromags."
-msgstr "Organisations make it easier to collaborate with a team on micromags."
-
 # Label when there is no item
 #: iHV3W3
 msgid "No entry..."
 msgstr "No entry..."
-
-#: iYc3Ld
-msgid "Payments"
-msgstr "Payments"
 
 # Gallery screen title
 #: jaFXki
 msgid "Gallery"
 msgstr "Gallery"
 
-# Card title
-#: jpfEXm
-msgid "Organisation"
-msgstr "Organisation"
+# Button to show screens
+#: wkysUu
+msgid "Screens"
+msgstr "Screens"
 
-# Field label
-#: kIl7G5
-msgid "Published at"
-msgstr "Published at"
-
-# Field label
-#: kYsGUg
-msgid "Type in the name of the story ({name}) to confirm."
-msgstr "Type in the name of the story ({name}) to confirm."
-
-# Page title
-#: kpoYfI
-msgid "Reset password"
-msgstr "Reset password"
-
-# Button group label
-#: kq4vYx
-msgid "Yearly"
-msgstr "Yearly"
-
-# Field label
-#: zWAZXZ
-msgid "Create an organisation"
-msgstr "Create an organisation"
+# Name field label
+#: nXVNeg
+msgid "Name"
+msgstr "Name"
 
 # Button label
 #: l/Y6or
 msgid "Add an entry"
 msgstr "Add an entry"
-
-# Label
-#: l21zl/
-msgid "Latest version"
-msgstr "Latest version"
-
-#: l3AfOI
-msgid "Due date"
-msgstr "Due date"
 
 # Button label in answers field
 #: n2teag
@@ -1096,11 +578,6 @@ msgstr "TitleSubtitleCredits"
 msgid "Size"
 msgstr "Size"
 
-# Choose an organisation page title
-#: lnATAe
-msgid "Choose an organisation"
-msgstr "Choose an organisation"
-
 #: menus.pagination.next
 msgid "next"
 msgstr "next"
@@ -1109,119 +586,30 @@ msgstr "next"
 msgid "Previous"
 msgstr "Previous"
 
-#: menus.stories.create
-msgid "Create a new story"
-msgstr "Create a new story"
-
-# Box title
-#: qrMjBI
-msgid "Recent stories"
-msgstr "Recent stories"
-
-#: menus.stories.stories
-msgid "Stories"
-msgstr "Stories"
-
-#: menus.stories.view_all
-msgid "View all stories"
-msgstr "View all stories"
-
 # Label in Media Gallery
 #: mv37oK
 msgid "Dimension"
 msgstr "Dimension"
-
-# Forgot password button label
-#: n/o4Co
-msgid "Send request"
-msgstr "Send request"
-
-# New story button label
-#: n1ZJSY
-msgid "New story"
-msgstr "New story"
 
 # imagesWithCaptions field label
 #: o0RmVC
 msgid "imagesWithCaptions"
 msgstr "imagesWithCaptions"
 
-# Update profile button label
-#: oC1UCA
-msgid "Update profile"
-msgstr "Update profile"
-
-# Cannot delete profile description
-#: oPvs1N
-msgid ""
-"You cannot delete your profile because you are part of the following "
-"organisations:"
-msgstr ""
-"You cannot delete your profile because you are part of the following "
-"organisations:"
-
-# Delete your profile description
-#: ogg7mi
-msgid ""
-"Are you sure you want to delete your profile? This action cannot be "
-"reversed."
-msgstr ""
-"Are you sure you want to delete your profile? This action cannot be "
-"reversed."
-
-# Form label
-#: ojIGhL
-msgid "Main contact"
-msgstr "Main contact"
-
-# Field label
-#: p6Dpso
-msgid "Last name"
-msgstr "Last name"
+# Save in Media Gallery
+#: qIw1nW
+msgid "Save"
+msgstr "Save"
 
 # Button label in markers field
 #: qKQCxc
 msgid "Add a marker"
 msgstr "Add a marker"
 
-# Field label
-#: qelLNs
-msgid "Favicon"
-msgstr "Favicon"
-
-# Invite member prefix button
-#: qpW62d
-msgid "Invite"
-msgstr "Invite"
-
-# No screen yet status
-#: qzzYCQ
-msgid "No screen yet"
-msgstr "No screen yet"
-
-# Menu item
-#: rqo+/M
-msgid "Logout"
-msgstr "Logout"
-
-# Plan label
-#: sYXVBK
-msgid "Analytics"
-msgstr "Analytics"
-
-# Expiration date field label
-#: srKDXd
-msgid "Expiration date"
-msgstr "Expiration date"
-
 # Active filters title
 #: t2cFdl
 msgid "Active filters"
 msgstr "Active filters"
-
-#: t9Wttt
-msgid "Switching organisation..."
-msgstr "Switching organisation..."
 
 # Button label in slides field
 #: tAYwqp
@@ -1229,52 +617,14 @@ msgid "Add a slide"
 msgstr "Add a slide"
 
 # Field label
-#: tV78uM
-msgid "Confirm password"
-msgstr "Confirm password"
-
-# Field label
-#: tWrNxg
-msgid "Share"
-msgstr "Share"
-
-# Field label
 #: tYGev7
 msgid "Font size"
 msgstr "Font size"
-
-# Already have an account page link
-#: uIkMtR
-msgid "Already have an account?"
-msgstr "Already have an account?"
-
-#: uWRAQk
-msgid "Choose your plan"
-msgstr "Choose your plan"
-
-# Create an account home nutton
-#: vDSsFW
-msgid "Create an account"
-msgstr "Create an account"
 
 # GalleryFeed screen title
 #: vrCfAS
 msgid "GalleryFeed"
 msgstr "GalleryFeed"
-
-#: vtStU2
-msgid "Payment history"
-msgstr "Payment history"
-
-# Back to login link
-#: w+78Hh
-msgid "Go back to login"
-msgstr "Go back to login"
-
-# Register page description
-#: woLAiB
-msgid "First, enter your email and pick a password."
-msgstr "First, enter your email and pick a password."
 
 # Label when no value is provided to Audio field
 #: wt1+dM
@@ -1291,16 +641,6 @@ msgstr "MapScreen"
 msgid "Added by"
 msgstr "Added by"
 
-# Field label
-#: xVf+jH
-msgid "Postal code"
-msgstr "Postal code"
-
-# Menu label
-#: xzxHzY
-msgid "Editor"
-msgstr "Editor"
-
 # Fields section label
 #: y7xsPe
 msgid "Advanced settings"
@@ -1310,16 +650,6 @@ msgstr "Advanced settings"
 #: ySApyR
 msgid "Background image"
 msgstr "Background image"
-
-# Button label
-#: zRRbVl
-msgid "Create"
-msgstr "Create"
-
-# Field label
-#: zTvtLp
-msgid "Visibility"
-msgstr "Visibility"
 
 # Quiz screen title
 #: zW7IVm

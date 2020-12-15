@@ -3,7 +3,7 @@ import { useApi } from '../contexts/ApiContext';
 
 import useItems from './useItems';
 
-const useRecentSearches = (count = 5, opts) => {
+const useMediasRecentSearches = (count = 5, opts) => {
     const api = useApi();
     // TODO: implement this
     // api.search.getRecents(count)
@@ -30,4 +30,4 @@ const useRecentSearches = (count = 5, opts) => {
     };
 };
 
-export default useRecentSearches;
+export default useMediasRecentSearches;
