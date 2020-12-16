@@ -7,7 +7,6 @@ import faceAFace from '../../../../.storybook/data/stories/faceAFace';
 // import manager from '../../../intl/src/manager';
 
 // import createDefaultStory from '../utils/createDefaultStory';
-import '../../../intl/lang/fr';
 
 export default {
     component: Editor,
