@@ -16,51 +16,50 @@ export default ({
     resolveOptions = null,
     prependPlugins = [],
     appendPlugins = [],
-} = {}) => {
-    return {
-        input: 'src/index.js',
-        output: [
-            {
-                file: 'lib/index.js',
-                format: 'cjs',
-            },
-            {
-                file: 'es/index.js',
-            },
-        ],
-        plugins: [
-            ...prependPlugins,
-            json(),
-            resolve({
-                extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
-                jail: path.join(process.cwd(), 'src'),
-                ...resolveOptions,
+} = {}) => ({
+    input: 'src/index.js',
+    output: [
+        {
+            file: 'lib/index.js',
+            format: 'cjs',
+            exports: 'auto'
+        },
+        {
+            file: 'es/index.js',
+        },
+    ],
+    plugins: [
+        ...prependPlugins,
+        json(),
+        resolve({
+            extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
+            jail: path.join(process.cwd(), 'src'),
+            ...resolveOptions,
+        }),
+        commonjs(),
+        babel({
+            extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
+            exclude: 'node_modules/**',
+            rootMode: 'upward',
+            runtimeHelpers: true,
+        }),
+        !withoutPostCss &&
+            postcss({
+                extensions: ['.css', '.scss'],
+                modules: {
+                    generateScopedName,
+                },
+                autoModules: true,
+                extract: !withoutPostCssExtract ? 'styles.css' : false,
+                inject: false,
             }),
-            commonjs(),
-            babel({
-                extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
-                exclude: 'node_modules/**',
-                rootMode: 'upward',
-                runtimeHelpers: true,
-            }),
-            !withoutPostCss &&
-                postcss({
-                    extensions: ['.css', '.scss'],
-                    modules: {
-                        generateScopedName,
-                    },
-                    autoModules: true,
-                    extract: !withoutPostCssExtract ? 'styles.css' : false,
-                    inject: false,
-                }),
-            image({
-                // exclude: ['**/*.svg'],
-            }),
-            url({ include: ['**/*.mp4'] }),
-            replace({
-                'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-            }),
-            ...appendPlugins,
-        ].filter(Boolean),
-    };
-};
+        image({
+            // exclude: ['**/*.svg'],
+        }),
+        url({ include: ['**/*.mp4'] }),
+        replace({
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+        }),
+        ...appendPlugins,
+    ].filter(Boolean),
+});

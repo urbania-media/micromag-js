@@ -9,27 +9,26 @@ const ApiContext = React.createContext(null);
 export const useApi = () => useContext(ApiContext);
 
 const propTypes = {
-    children: PropTypes.node.isRequired,
     api: PropTypes.instanceOf(Api),
     baseUrl: PropTypes.string,
-    usesCookie: PropTypes.bool,
+    children: PropTypes.node.isRequired,
 };
 
 const defaultProps = {
     api: null,
     baseUrl: undefined,
-    usesCookie: false,
 };
 
-export const ApiProvider = ({ api: initialApi, baseUrl, usesCookie, children }) => {
+export const ApiProvider = ({ api: initialApi, baseUrl, children }) => {
+    const previousApi = useApi();
     const api = useMemo(
         () =>
             initialApi ||
+            previousApi ||
             new Api({
                 baseUrl,
-                usesCookie,
             }),
-        [initialApi, baseUrl],
+        [previousApi, initialApi, baseUrl],
     );
     return <ApiContext.Provider value={api}>{children}</ApiContext.Provider>;
 };

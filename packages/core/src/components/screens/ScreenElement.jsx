@@ -3,11 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import isString from 'lodash/isString';
 
+import { useScreenRenderContext } from '../../contexts';
+import { getComponentFromName } from '../../utils';
 import * as MicromagPropTypes from '../../PropTypes';
-import { useScreenRenderContext } from '../../contexts/ScreenContext';
 import * as Placeholders from '../placeholders/index';
 import Empty from '../partials/Empty';
-import getComponentFromName from '../../utils/getComponentFromName';
 
 const propTypes = {
     children: PropTypes.node,
@@ -16,7 +16,7 @@ const propTypes = {
     empty: PropTypes.node,
     emptyLabel: MicromagPropTypes.label,
     isEmpty: PropTypes.bool,
-    placeholderProps: PropTypes.object,// eslint-disable-line
+    placeholderProps: PropTypes.object, // eslint-disable-line
     emptyClassName: PropTypes.string,
 };
 

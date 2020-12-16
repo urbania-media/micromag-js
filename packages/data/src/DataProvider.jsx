@@ -3,21 +3,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { ApiProvider } from './contexts/ApiContext';
+import Api from './lib/Api';
 
 const propTypes = {
+    api: PropTypes.instanceOf(Api),
     apiBaseUrl: PropTypes.string,
-    apiUsesCookie: PropTypes.bool,
     children: PropTypes.node,
 };
 
 const defaultProps = {
+    api: null,
     apiBaseUrl: undefined,
-    apiUsesCookie: false,
     children: null,
 };
 
-const DataProvider = ({ apiBaseUrl, apiUsesCookie, children }) => (
-    <ApiProvider baseUrl={apiBaseUrl} usesCookie={apiUsesCookie}>
+const DataProvider = ({ api, apiBaseUrl, children }) => (
+    <ApiProvider api={api} baseUrl={apiBaseUrl}>
         {children}
     </ApiProvider>
 );

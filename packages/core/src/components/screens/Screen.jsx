@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 
 import * as MicromagPropTypes from '../../PropTypes';
 import { getComponentFromName } from '../../utils';
-import { ScreenProvider } from '../../contexts/ScreenContext';
-import { useScreenComponent } from '../../contexts/ComponentsContext';
+import { ScreenProvider, useScreenComponent } from '../../contexts';
 
 const propTypes = {
     screen: MicromagPropTypes.storyComponent.isRequired,

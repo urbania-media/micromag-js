@@ -1,0 +1,630 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-14 14:06-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 3.2.0\n"
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+# Title screen group
+#: uKJRh2
+msgid "Title"
+msgstr ""
+
+# Media has been use somewhere
+#: +KWsXh
+msgid "Already used"
+msgstr ""
+
+# Background field label
+#: +MPZRu
+msgid "Background"
+msgstr ""
+
+# Answer placeholder
+#: +Ok+7S
+msgid "Answer"
+msgstr ""
+
+# Clear button label in Media Gallery
+#: +TT1y6
+msgid "Clear"
+msgstr ""
+
+# Source from all places
+#: +b+e40
+msgid "All sources"
+msgstr ""
+
+# Field label
+#: /MeuM1
+msgid "Background video"
+msgstr ""
+
+# Remove all button label
+#: /T/UDH
+msgid "Remove all"
+msgstr ""
+
+# MapImages placeholder
+#: qZItNz
+msgid "MapImages"
+msgstr ""
+
+# Credits field label
+#: upzOTm
+msgid "Credits"
+msgstr ""
+
+# Font family group title
+#: zIi5W2
+msgid "All"
+msgstr ""
+
+# Audio screen title
+#: bhEaUt
+msgid "Audio"
+msgstr ""
+
+# Ranking screen title
+#: 17BMn2
+msgid "Ranking"
+msgstr ""
+
+# Tags in Media Gallery
+#: 4fHMVj
+msgid "Tags"
+msgstr ""
+
+# ImageTitle screen title
+#: 1fBNmY
+msgid "ImageTitle"
+msgstr ""
+
+# Item label in items field
+#: 2/F1Q7
+msgid "#{index}"
+msgstr ""
+
+# Field label
+#: 31zuCS
+msgid "Line height"
+msgstr ""
+
+# Delete screen button
+#: 3C3nve
+msgid "Delete screen"
+msgstr ""
+
+# Label when there is no item in markers field
+#: 3E57H7
+msgid "No marker..."
+msgstr ""
+
+# Legend placeholder
+#: dqnkQk
+msgid "Legend"
+msgstr ""
+
+# Entries field label
+#: sESmah
+msgid "Entries"
+msgstr ""
+
+# Quote placeholder
+#: CrzYgw
+msgid "Quote"
+msgstr ""
+
+# Source from another micromag
+#: 3uMlsn
+msgid "Some other micromag"
+msgstr ""
+
+# Text placeholder
+#: z4CiV1
+msgid "Text"
+msgstr ""
+
+# Button to view a screen
+#: 4POR3B
+msgid "View screen"
+msgstr ""
+
+# No value label
+#: 4YiKNK
+msgid "Select a color..."
+msgstr ""
+
+# Layout field label
+#: 4iBXj2
+msgid "Layout"
+msgstr ""
+
+# Field label
+#: ZCe0r4
+msgid "Description"
+msgstr ""
+
+# Submit field label
+#: uAKPQ9
+msgid "Submit"
+msgstr ""
+
+# Field label
+#: T9NZPQ
+msgid "Images"
+msgstr ""
+
+# Survey screen title
+#: 650XRF
+msgid "Survey"
+msgstr ""
+
+# GalleryCaptions screen title
+#: 6De+oT
+msgid "GalleryCaptions"
+msgstr ""
+
+# Label for recent search section
+#: 6Z1BwP
+msgid "Recent searches"
+msgstr ""
+
+# Field label
+#: p85qJD
+msgid "Caption"
+msgstr ""
+
+# Author placeholder
+#: xYqGzM
+msgid "Author"
+msgstr ""
+
+# ImageTitleText screen title
+#: 8c34nT
+msgid "ImageTitleText"
+msgstr ""
+
+# Label for usage search section
+#: 8cVWNh
+msgid "Usage"
+msgstr ""
+
+# Map field label
+#: nqQqsI
+msgid "Map"
+msgstr ""
+
+# ImageLegend screen title
+#: 96KRj9
+msgid "ImageLegend"
+msgstr ""
+
+# Ascending field label
+#: 9DhYaZ
+msgid "Ascending"
+msgstr ""
+
+# Library source menu
+#: 9ZdD+Q
+msgid "Library for"
+msgstr ""
+
+# Label when there is no item in answers field
+#: p6n6vY
+msgid "No answer..."
+msgstr ""
+
+# Label when no value is provided to Image field
+#: B1MeY+
+msgid "Select an image..."
+msgstr ""
+
+# Success form message
+#: BpZoQZ
+msgid "Success"
+msgstr ""
+
+# Source from this micromag
+#: ChnSK6
+msgid "This Micromag"
+msgstr ""
+
+# Label when no value is provided to Field with form
+#: DVrK6z
+msgid "Click to edit..."
+msgstr ""
+
+# Label when no value is provided to Video field
+#: DWEzCv
+msgid "Select a video..."
+msgstr ""
+
+# TextTitle screen title
+#: E/qtB2
+msgid "TextTitle"
+msgstr ""
+
+# Field label
+#: ET527E
+msgid "Font family"
+msgstr ""
+
+# Subtitle placeholder
+#: d60tSn
+msgid "Subtitle"
+msgstr ""
+
+# Video 360 screen title
+#: FJjjnF
+msgid "Video 360"
+msgstr ""
+
+# Result placeholder
+#: li7ADr
+msgid "Result"
+msgstr ""
+
+# Your name placeholder
+#: G/ITGY
+msgid "Your name"
+msgstr ""
+
+# Cancel button label in Media Gallery
+#: G31Yd0
+msgid "Cancel"
+msgstr ""
+
+# Field label
+#: xT/onn
+msgid "Image"
+msgstr ""
+
+# Field label
+#: GMCLhn
+msgid "Case"
+msgstr ""
+
+# Timeline screen title
+#: GzoKNb
+msgid "Timeline"
+msgstr ""
+
+# Ad title
+#: Gzx6q5
+msgid "Advertising"
+msgstr ""
+
+# Button to edit a screen
+#: HseFdk
+msgid "Edit"
+msgstr ""
+
+# Timeline Illustrated screen title
+#: IMUycF
+msgid "Timeline Illustrated"
+msgstr ""
+
+# Your message placeholder
+#: JAguka
+msgid "Your message"
+msgstr ""
+
+# Field label
+#: JDPMlG
+msgid "Background color"
+msgstr ""
+
+# Top nav title for media gallery
+#: JV5hRr
+msgid "Media gallery"
+msgstr ""
+
+# Button to create your first screen
+#: JoWKee
+msgid "Create your first screen"
+msgstr ""
+
+# Field label
+#: KHWeV7
+msgid "Answers"
+msgstr ""
+
+# ImageText screen title
+#: Mz76RM
+msgid "ImageText"
+msgstr ""
+
+# Field label
+#: OJi+eg
+msgid "Label"
+msgstr ""
+
+# Label when there is no item in slides field
+#: OdcEna
+msgid "No slide..."
+msgstr ""
+
+# Type Label in Media Gallery
+#: OkNUmk
+msgid "Type"
+msgstr ""
+
+# Media has not been used somewhere
+#: P7UAe2
+msgid "Unused"
+msgstr ""
+
+# Label when there is no item in items field
+#: PKCv5M
+msgid "No item..."
+msgstr ""
+
+# Link field label
+#: PQG8A5
+msgid "Link"
+msgstr ""
+
+# Markers field label
+#: PbHeHc
+msgid "Markers"
+msgstr ""
+
+# Title of the screen types selection dialog
+#: QBaiO0
+msgid "Add a screen"
+msgstr ""
+
+# Button label in images field
+#: V+G2s+
+msgid "Add an image"
+msgstr ""
+
+#: QfpTKK
+msgid "Select a screen..."
+msgstr ""
+
+# Message field label
+#: RcLsua
+msgid "Message"
+msgstr ""
+
+# Text and Images screen group
+#: S/mavZ
+msgid "Text and Images"
+msgstr ""
+
+# Ad screen group
+#: VqyxpU
+msgid "Ad"
+msgstr ""
+
+# Add button label in Media Gallery
+#: Tt4jN1
+msgid "Add"
+msgstr ""
+
+# Field label
+#: vERejo
+msgid "Video"
+msgstr ""
+
+# Fields section label
+#: Wr9olU
+msgid "Typography"
+msgstr ""
+
+# Field label
+#: Z5jrDS
+msgid "Letter spacing"
+msgstr ""
+
+# Questions screen group
+#: ZqwBOx
+msgid "Questions"
+msgstr ""
+
+# TitleSubtitle screen title
+#: ZtZjF0
+msgid "TitleSubtitle"
+msgstr ""
+
+# Button label in items field
+#: ZxgNge
+msgid "Add an item"
+msgstr ""
+
+# Title of the danger zone panel
+#: aDbe/Q
+msgid "Danger zone"
+msgstr ""
+
+# Field label
+#: aarOkd
+msgid "Color"
+msgstr ""
+
+# Label in Media Gallery
+#: aovRFH
+msgid "Filename"
+msgstr ""
+
+# GalleryFeedCaptions screen title
+#: bh16Yr
+msgid "GalleryFeedCaptions"
+msgstr ""
+
+# Heading in Media Gallery
+#: c9VwT/
+msgid "Technical details"
+msgstr ""
+
+# List screen group
+#: cGItoy
+msgid "List"
+msgstr ""
+
+# Label when there is no item in images field
+#: t+L1J/
+msgid "No image..."
+msgstr ""
+
+# Question field label
+#: hVE7TA
+msgid "Question"
+msgstr ""
+
+# Label when no value is provided to Media field
+#: e6+aGf
+msgid "Select a media..."
+msgstr ""
+
+# Name of the section in Fields
+#: enFs4g
+msgid "Advanced"
+msgstr ""
+
+# Label in Media Gallery
+#: eoW0tZ
+msgid "Duration"
+msgstr ""
+
+# Contribution screen title
+#: g6b9Lg
+msgid "Contribution"
+msgstr ""
+
+# No value label
+#: i+3ZrF
+msgid "Select a font family..."
+msgstr ""
+
+# Label when there is no item
+#: iHV3W3
+msgid "No entry..."
+msgstr ""
+
+# Gallery screen title
+#: jaFXki
+msgid "Gallery"
+msgstr ""
+
+# Button to show screens
+#: wkysUu
+msgid "Screens"
+msgstr ""
+
+# Name field label
+#: nXVNeg
+msgid "Name"
+msgstr ""
+
+# Button label
+#: l/Y6or
+msgid "Add an entry"
+msgstr ""
+
+# Button label in answers field
+#: n2teag
+msgid "Add an answer"
+msgstr ""
+
+# TitleSubtitleCredits screen title
+#: lXV3vP
+msgid "TitleSubtitleCredits"
+msgstr ""
+
+# Label in Media Gallery
+#: liyV7Y
+msgid "Size"
+msgstr ""
+
+#: menus.pagination.next
+msgid "next"
+msgstr ""
+
+#: menus.pagination.previous
+msgid "Previous"
+msgstr ""
+
+# Label in Media Gallery
+#: mv37oK
+msgid "Dimension"
+msgstr ""
+
+# imagesWithCaptions field label
+#: o0RmVC
+msgid "imagesWithCaptions"
+msgstr ""
+
+# Save in Media Gallery
+#: qIw1nW
+msgid "Save"
+msgstr ""
+
+# Button label in markers field
+#: qKQCxc
+msgid "Add a marker"
+msgstr ""
+
+# Active filters title
+#: t2cFdl
+msgid "Active filters"
+msgstr ""
+
+# Button label in slides field
+#: tAYwqp
+msgid "Add a slide"
+msgstr ""
+
+# Field label
+#: tYGev7
+msgid "Font size"
+msgstr ""
+
+# GalleryFeed screen title
+#: vrCfAS
+msgid "GalleryFeed"
+msgstr ""
+
+# Label when no value is provided to Audio field
+#: wt1+dM
+msgid "Select an audio file..."
+msgstr ""
+
+# MapScreen placeholder
+#: x8sfWV
+msgid "MapScreen"
+msgstr ""
+
+# Label for users search section
+#: xKdf/C
+msgid "Added by"
+msgstr ""
+
+# Fields section label
+#: y7xsPe
+msgid "Advanced settings"
+msgstr ""
+
+# Field label
+#: ySApyR
+msgid "Background image"
+msgstr ""
+
+# Quiz screen title
+#: zW7IVm
+msgid "Quiz"
+msgstr ""

@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import * as MicromagPropTypes from '../../PropTypes';
-import { ScreenSizeProvider } from '../../contexts/ScreenSizeContext';
-import { ScreenProvider } from '../../contexts/ScreenContext';
+import { ScreenSizeProvider, ScreenProvider } from '../../contexts';
 import Screen from './Screen';
 
 import styles from '../../styles/screens/preview.module.scss';

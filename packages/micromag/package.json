@@ -1,6 +1,6 @@
 {
     "name": "micromag",
-    "version": "0.1.29",
+    "version": "0.2.7",
     "description": "",
     "keywords": [
         "javascript"
@@ -30,7 +30,8 @@
     "files": [
         "lib",
         "es",
-        "assets"
+        "assets",
+        "scss"
     ],
     "scripts": {
         "css:vendor": "../../scripts/build-sass.js ./src/styles/vendor.scss ./assets/css/vendor.css",
@@ -39,19 +40,19 @@
         "prepare": "../../scripts/prepare-package.sh --scss && npm run css"
     },
     "devDependencies": {
-        "react": ">=15.0.0 || ^16.0.0",
-        "react-dom": ">=15.0.0 || ^16.0.0"
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1"
     },
     "peerDependencies": {
-        "react": ">=15.0.0 || ^16.0.0",
-        "react-dom": ">=15.0.0 || ^16.0.0"
+        "react": ">=15.0.0 || ^16.0.0 || ^17.0.0",
+        "react-dom": ">=15.0.0 || ^16.0.0 || ^17.0.0"
     },
     "dependencies": {
-        "@babel/runtime": "^7.8.7",
-        "@micromag/app": "^0.1.29",
-        "@micromag/core": "^0.1.29",
-        "@micromag/editor": "^0.1.29",
-        "bootstrap": "^4.4.1"
+        "@babel/runtime": "^7.12.5",
+        "@micromag/core": "^0.2.7",
+        "@micromag/editor": "^0.2.7",
+        "@micromag/viewer": "^0.2.7",
+        "bootstrap": "^4.5.3"
     },
     "gitHead": "56ea5e35c4d053f49e1272568854e542bfe6e6cf"
 }

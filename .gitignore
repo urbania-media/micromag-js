@@ -42,10 +42,7 @@ node_modules
 
 .env
 .eslintcache
-/*/*/intl/messages
-/*/*/lang/extract
 /*/*/es
 /*/*/lib
 /*/*/assets
 /*/*/scss
-/*/*/package-lock.json

@@ -1,327 +1,371 @@
 {
-    "+9akmg": "Audio and Video",
-    "+C8/q6": "Same team",
-    "+KWsXh": "Already used",
-    "+MPZRu": "Background",
-    "+TT1y6": "Clear",
-    "+b+e40": "All sources",
-    "+pKF4t": "Publish",
-    "/0TOL5": "Amount",
-    "/7AJQd": "Theme",
-    "/B/0zj": "Last name",
-    "/QKI4D": "Stories",
-    "/T/UDH": "Remove all",
-    "/bEns8": "MapImages",
-    "/hupzO": "Credits",
-    "0BcvF9": "All",
-    "0R5Jlk": "My profile",
-    "0btyge": "Latest version",
-    "0gYrMo": "Cannot find story",
-    "0gyI2S": "GalleryFeedLegends",
-    "0vXXfT": "imagesWithLegends",
-    "15GBmG": "All",
-    "169xnt": "Audio",
-    "17BMn2": "Ranking",
-    "1R16Yb": "Only show published",
-    "1dPnDA": "Tags",
-    "1ezz2m": "Description",
-    "1fBNmY": "ImageTitle",
-    "1fNojU": "{count} {count, plural, one {screen} other {screens}}",
-    "1q5+sW": "Publish",
-    "2/F1Q7": "#{index}",
-    "2HmpAM": "Yearly",
-    "2YxE0m": "My stories",
-    "2ZOPe+": "Title",
-    "2y24a/": "Save",
-    "31zuCS": "Line height",
-    "36JWTz": "Create your first story",
-    "3E57H7": "No marker...",
-    "3Irxfp": "Confirm password",
-    "3OS3Ms": "Legend",
-    "3UtT5H": "Continue",
-    "3fZYih": "Card ending with {card_ending}",
-    "3q9GPv": "Quote",
-    "3uMlsn": "Some other micromag",
-    "4E2gbX": "Text",
-    "4YiKNK": "Select a color...",
-    "4fHMVj": "Tags",
-    "4iBXj2": "Layout",
-    "4yaMXE": "Analytics",
-    "4yfet+": "Password",
-    "507VAi": "Description",
-    "535JXI": "Story",
-    "5T6vni": "Postal code",
-    "5u4nkn": "No versions yet",
-    "5uH4x7": "Submit",
-    "63Kvho": "Images",
-    "650XRF": "Survey",
-    "6Z1BwP": "Recent searches",
-    "6lM8uN": "Billing info",
-    "6mX2ya": "Images",
-    "71qOve": "Complete profile",
-    "73hxYw": "Author",
-    "78CbPn": "Delete story",
-    "88/Ge8": "Quote",
-    "8DQdhw": "Please enter your email address to get a password reset link.",
-    "8c34nT": "ImageTitleText",
-    "8cVWNh": "Usage",
-    "8sezvi": "Preview image",
-    "8vroDx": "Map",
-    "96KRj9": "ImageLegend",
-    "9DhYaZ": "Ascending",
-    "9IxKom": "Your Name",
-    "9JgORt": "Duplicate story",
-    "9TIZGH": "Account",
-    "9WtqV7": "Team",
-    "9Yv29u": "Create an organisation",
-    "9ZdD+Q": "Library for",
-    "9kRiV5": "Email",
-    "ACSasN": "URL",
-    "Avsnjl": "Themes",
-    "B1MeY+": "Select an image...",
-    "BVTni9": "Payment method",
-    "C2j6zz": "Login",
-    "CbHzjs": "Register",
-    "ChnSK6": "This Micromag",
-    "CrzYgw": "Quote",
-    "D3idYv": "Settings",
-    "D3kTvP": "Register",
-    "DUIDEq": "Storage",
-    "DVQ1Ls": "Contact us for pricing",
-    "DWEzCv": "Select a video...",
-    "DgyZlU": "Start by choosing a name for your organisation.",
-    "DhppA/": "Publishing",
-    "DjIdzH": "Invitation envoyée",
-    "E/qtB2": "TextTitle",
-    "EOuygN": "My Micromags",
-    "ET527E": "Font family",
-    "EcZYpr": "Subtitle",
-    "EoLB7Z": "Stats",
-    "FLMZDH": "Invite your team members to your organisation.",
-    "G31Yd0": "Cancel",
-    "GA/Hac": "Create story",
-    "GBq/YG": "Password",
-    "GE8wrk": "Image",
-    "GMCLhn": "Case",
-    "GrATUZ": "Login",
-    "GzoKNb": "Timeline",
-    "Gzx6q5": "Advertising",
-    "H7fYum": "Your plan",
-    "HKuWoX": "Settings",
-    "IB/AQ9": "You are a member of the following organisations:",
-    "IKnyYt": "Editor",
-    "IMUycF": "Timeline Illustrated",
-    "IbZ8po": "Duplicate story",
-    "IwGlNX": "Create your first screen",
-    "JV5hRr": "Media gallery",
-    "JVzmnI": "Organisations make it easier to collaborate with a team on micromags.",
-    "KIV+sG": "Duplicate",
-    "Ke35Pv": "Edit",
-    "KzEL+O": "Option",
-    "LI0Gz4": "Email",
-    "MXiIAx": "Billing info",
-    "MmvRge": "Delete profile",
-    "Mz76RM": "ImageText",
-    "N25iDO": "Title",
-    "N97Q83": "Payment info",
-    "Nf+vAs": "Address 1",
-    "O9Q3AU": "Monetisation",
-    "OdcEna": "No slide...",
-    "OkNUmk": "Type",
-    "P7UAe2": "Unused",
-    "PKCv5M": "No item...",
-    "PQG8A5": "Link",
-    "PXCkXy": "Billing",
-    "PbHeHc": "Markers",
-    "PdGmQa": "Continue",
-    "PyDwDF": "Close",
-    "QDznJ0": "Account",
-    "QN68P8": "Main contact",
-    "R1HYj0": "Save",
-    "Ro8ZOq": "GalleryLegends",
-    "S/mavZ": "Text and Images",
-    "S9YpbV": "Text",
-    "SR8H/d": "Refund",
-    "StDSlO": "Ad",
-    "TKqTz+": "Type in the number {rando} to confirm.",
-    "TW7/kX": "Country",
-    "TWXRGR": "Organisations",
-    "TXPdzG": "Invite",
-    "Tbo377": "Billing",
-    "Tdnwlv": "Items",
-    "Tl8jAw": "My micromags",
-    "Tlp2I0": "Your account has been created. Please complete your profile.",
-    "Tt4jN1": "Add",
-    "U86B6w": "Stats",
-    "UBXIYP": "Video",
-    "UGHvSn": "Options",
-    "USqJHw": "Create a story",
-    "UfD0C8": "Invite collaborators",
-    "UhngoA": "Delete profile",
-    "UqPxxf": "Create a new story",
-    "V+G2s+": "Add an image",
-    "VqyxpU": "Ad",
-    "W82zJ9": "First name",
-    "Wayj7I": "Add {value}",
-    "WhVrDc": "Answer Index",
-    "Wr8abT": "Forgot password?",
-    "Wr9olU": "Typography",
-    "WsCUtr": "{users} users",
-    "X9PRNb": "Favicon",
-    "Xh1mZC": "Back",
-    "Xt24Gj": "It’s time to start creating now.",
-    "YDMrKK": "Users",
-    "YQEv1f": "It’s time to start creating!",
-    "YS4qTq": "Settings",
-    "Ylx+ds": "Logout",
-    "Yyv+N3": "Settings",
-    "Z5jrDS": "Letter spacing",
-    "ZA6cIU": "Organisation",
-    "ZSRV1q": "Medias",
-    "ZqwBOx": "Questions",
-    "ZtZjF0": "TitleSubtitle",
-    "ZxgNge": "Add an item",
-    "a6QaEu": "Check your email",
-    "aPjV2Q": "No story yet",
-    "aVPh1B": "Instructions to reset your password have been sent to your {email}.",
-    "aarOkd": "Color",
-    "account-box.profile": "Profile",
-    "account-box.settings": "Settings",
-    "account-box.title": "Account",
-    "aeJ9LI": "Forgot password",
-    "aovRFH": "Filename",
-    "bhEaUt": "Audio",
-    "c9VwT/": "Technical details",
-    "cGItoy": "List",
-    "cldP9G": "Medias",
-    "cnqNx/": "CVV",
-    "d/DYsH": "Versions",
-    "d60tSn": "Subtitle",
-    "dED5N5": "Saving...",
-    "dVcog7": "Title",
-    "dmuKH3": "Map",
-    "dpQDWT": "Change password",
-    "dqnkQk": "Legend",
-    "e1I+KU": "Question",
-    "e6+aGf": "Select a media...",
-    "eNT0tt": "All stories",
-    "ebsPd4": "Image",
-    "ehcuYG": "Themes",
-    "enFs4g": "Advanced",
-    "eoW0tZ": "Duration",
-    "fIawTr": "Text",
-    "fkBd/o": "Province",
-    "fz0z4c": "Plan",
-    "g6b9Lg": "Contribution",
-    "g6qbbX": "Log in",
-    "hVE7TA": "Question",
-    "he/FEL": "Organisation",
-    "i+3ZrF": "Select a font family...",
-    "iYc3Ld": "Payments",
-    "indcf+": "Address 2",
-    "jIlVe2": "{storage} GB",
-    "jaFXki": "Gallery",
-    "jnOMk/": "Publish",
-    "jqzLUs": "Save contact",
-    "kBz8vF": "Name",
-    "kIl7G5": "Published at",
-    "kYsGUg": "Type in the name of the story ({name}) to confirm.",
-    "klA5YX": "Delete story",
-    "ktUr5c": "Create an organisation",
-    "l3AfOI": "Due date",
-    "l7bkY2": "Update your profile",
-    "lHFBgv": "Monthly",
-    "lXV3vP": "TitleSubtitleCredits",
-    "lbOsvW": "Publishing",
-    "li7ADr": "Result",
-    "liyV7Y": "Size",
-    "lnATAe": "Choose an organisation",
-    "menus.account.account": "Account",
-    "menus.account.logout": "Logout",
-    "menus.account.profile": "Edit profile",
-    "menus.guest.login": "Login",
-    "menus.guest.register": "Register",
-    "menus.stories.create": "Create a new story",
-    "menus.stories.recent": "Recent stories",
-    "menus.stories.stories": "Stories",
-    "menus.stories.view_all": "View all stories",
-    "mv37oK": "Dimension",
-    "n/o4Co": "Send request",
-    "n1ZJSY": "New story",
-    "n2teag": "Add an answer",
-    "nDBdT5": "Card number",
-    "nXVNeg": "Name",
-    "navbars.preview.close": "Close",
-    "nqQqsI": "Map",
-    "oC1UCA": "Update profile",
-    "oOKmbJ": "Size",
-    "oPvs1N": "You cannot delete your profile because you are part of the following organisations:",
-    "oSZswp": "Result",
-    "od3Xry": "My micromags",
-    "ogg7mi": "Are you sure you want to delete your profile? This action cannot be reversed.",
-    "organisation-box.profile": "Profile",
-    "organisation-box.settings": "Settings",
-    "organisation-box.title": "Organisation",
-    "p6n6vY": "No answer...",
-    "pages.auth.reset_password.title": "Reset password",
-    "publish_services.archive": "Archive file",
-    "publish_services.archive.filename": "Filename",
-    "publish_services.archive.format": "Format",
-    "publish_services.micromag.url": "URL",
-    "publish_services.micromag.visibility": "Visibility",
-    "qFZuSl": "My projects",
-    "qFoAnS": "City",
-    "qHrpc6": "Organisation name",
-    "qIw1nW": "Save",
-    "qKQCxc": "Add a marker",
-    "qZItNz": "MapImages",
-    "qZJIxy": "Preview",
-    "qrMjBI": "Recent stories",
-    "qzzYCQ": "No screen yet",
-    "recent_publications.title": "Recent publications",
-    "s1aoBI": "Medias",
-    "srKDXd": "Expiration date",
-    "t+L1J/": "No image...",
-    "t2cFdl": "Active filters",
-    "t4wHrv": "This plan includes:",
-    "t9Wttt": "Switching organisation...",
-    "tAYwqp": "Add a slide",
-    "tHWdLB": "Delete my profile",
-    "tV78uM": "Confirm password",
-    "tYGev7": "Font size",
-    "tvl2Zc": "Video",
-    "uD3/zU": "Images (with legend)",
-    "uHS73n": "Role",
-    "uIkMtR": "Already have an account?",
-    "uJ9eBc": "Image",
-    "uKJRh2": "Title",
-    "uQjihh": "Create an organisation",
-    "uWIqbC": "Create a story",
-    "upzOTm": "Credits",
-    "vDSsFW": "Create an account",
-    "vERejo": "Video",
-    "vrCfAS": "GalleryFeed",
-    "vtStU2": "Payment history",
-    "w+78Hh": "Go back to login",
-    "w4dVOR": "Versions",
-    "wR9ivY": "Choose the {name} plan",
-    "wRV8PN": "Settings",
-    "wYsv4Z": "Monthly",
-    "woLAiB": "First, enter your email and pick a password.",
-    "woivfj": "Card name",
-    "wt1+dM": "Select an audio file...",
-    "wxPBp4": "Organisation name",
-    "x8sfWV": "MapScreen",
-    "xKdf/C": "Added by",
-    "xQo9lx": "Phone",
-    "xT/onn": "Image",
-    "xYqGzM": "Author",
-    "y7xsPe": "Advanced settings",
-    "yaX4/9": "Company name",
-    "z4CiV1": "Text",
-    "zEOMrg": "Team",
-    "zOEp7Q": "Delete story",
-    "zRRbVl": "Create",
-    "zW7IVm": "Quiz",
-    "zongsF": "Publish"
+    "uKJRh2": {
+        "defaultMessage": "Title"
+    },
+    "+KWsXh": {
+        "defaultMessage": "Already used"
+    },
+    "+MPZRu": {
+        "defaultMessage": "Background"
+    },
+    "+Ok+7S": {
+        "defaultMessage": "Answer"
+    },
+    "+TT1y6": {
+        "defaultMessage": "Clear"
+    },
+    "+b+e40": {
+        "defaultMessage": "All sources"
+    },
+    "/MeuM1": {
+        "defaultMessage": "Background video"
+    },
+    "/T/UDH": {
+        "defaultMessage": "Remove all"
+    },
+    "qZItNz": {
+        "defaultMessage": "MapImages"
+    },
+    "upzOTm": {
+        "defaultMessage": "Credits"
+    },
+    "zIi5W2": {
+        "defaultMessage": "All"
+    },
+    "bhEaUt": {
+        "defaultMessage": "Audio"
+    },
+    "17BMn2": {
+        "defaultMessage": "Ranking"
+    },
+    "4fHMVj": {
+        "defaultMessage": "Tags"
+    },
+    "1fBNmY": {
+        "defaultMessage": "ImageTitle"
+    },
+    "2/F1Q7": {
+        "defaultMessage": "#{index}"
+    },
+    "31zuCS": {
+        "defaultMessage": "Line height"
+    },
+    "3C3nve": {
+        "defaultMessage": "Delete screen"
+    },
+    "3E57H7": {
+        "defaultMessage": "No marker..."
+    },
+    "dqnkQk": {
+        "defaultMessage": "Legend"
+    },
+    "sESmah": {
+        "defaultMessage": "Entries"
+    },
+    "CrzYgw": {
+        "defaultMessage": "Quote"
+    },
+    "3uMlsn": {
+        "defaultMessage": "Some other micromag"
+    },
+    "z4CiV1": {
+        "defaultMessage": "Text"
+    },
+    "4POR3B": {
+        "defaultMessage": "View screen"
+    },
+    "4YiKNK": {
+        "defaultMessage": "Select a color..."
+    },
+    "4iBXj2": {
+        "defaultMessage": "Layout"
+    },
+    "ZCe0r4": {
+        "defaultMessage": "Description"
+    },
+    "uAKPQ9": {
+        "defaultMessage": "Submit"
+    },
+    "T9NZPQ": {
+        "defaultMessage": "Images"
+    },
+    "650XRF": {
+        "defaultMessage": "Survey"
+    },
+    "6De+oT": {
+        "defaultMessage": "GalleryCaptions"
+    },
+    "6Z1BwP": {
+        "defaultMessage": "Recent searches"
+    },
+    "p85qJD": {
+        "defaultMessage": "Caption"
+    },
+    "xYqGzM": {
+        "defaultMessage": "Author"
+    },
+    "8c34nT": {
+        "defaultMessage": "ImageTitleText"
+    },
+    "8cVWNh": {
+        "defaultMessage": "Usage"
+    },
+    "nqQqsI": {
+        "defaultMessage": "Map"
+    },
+    "96KRj9": {
+        "defaultMessage": "ImageLegend"
+    },
+    "9DhYaZ": {
+        "defaultMessage": "Ascending"
+    },
+    "9ZdD+Q": {
+        "defaultMessage": "Library for"
+    },
+    "p6n6vY": {
+        "defaultMessage": "No answer..."
+    },
+    "B1MeY+": {
+        "defaultMessage": "Select an image..."
+    },
+    "BpZoQZ": {
+        "defaultMessage": "Success"
+    },
+    "ChnSK6": {
+        "defaultMessage": "This Micromag"
+    },
+    "DVrK6z": {
+        "defaultMessage": "Click to edit..."
+    },
+    "DWEzCv": {
+        "defaultMessage": "Select a video..."
+    },
+    "E/qtB2": {
+        "defaultMessage": "TextTitle"
+    },
+    "ET527E": {
+        "defaultMessage": "Font family"
+    },
+    "d60tSn": {
+        "defaultMessage": "Subtitle"
+    },
+    "FJjjnF": {
+        "defaultMessage": "Video 360"
+    },
+    "li7ADr": {
+        "defaultMessage": "Result"
+    },
+    "G/ITGY": {
+        "defaultMessage": "Your name"
+    },
+    "G31Yd0": {
+        "defaultMessage": "Cancel"
+    },
+    "xT/onn": {
+        "defaultMessage": "Image"
+    },
+    "GMCLhn": {
+        "defaultMessage": "Case"
+    },
+    "GzoKNb": {
+        "defaultMessage": "Timeline"
+    },
+    "Gzx6q5": {
+        "defaultMessage": "Advertising"
+    },
+    "HseFdk": {
+        "defaultMessage": "Edit"
+    },
+    "IMUycF": {
+        "defaultMessage": "Timeline Illustrated"
+    },
+    "JAguka": {
+        "defaultMessage": "Your message"
+    },
+    "JDPMlG": {
+        "defaultMessage": "Background color"
+    },
+    "JV5hRr": {
+        "defaultMessage": "Media gallery"
+    },
+    "JoWKee": {
+        "defaultMessage": "Create your first screen"
+    },
+    "KHWeV7": {
+        "defaultMessage": "Answers"
+    },
+    "Mz76RM": {
+        "defaultMessage": "ImageText"
+    },
+    "OJi+eg": {
+        "defaultMessage": "Label"
+    },
+    "OdcEna": {
+        "defaultMessage": "No slide..."
+    },
+    "OkNUmk": {
+        "defaultMessage": "Type"
+    },
+    "P7UAe2": {
+        "defaultMessage": "Unused"
+    },
+    "PKCv5M": {
+        "defaultMessage": "No item..."
+    },
+    "PQG8A5": {
+        "defaultMessage": "Link"
+    },
+    "PbHeHc": {
+        "defaultMessage": "Markers"
+    },
+    "QBaiO0": {
+        "defaultMessage": "Add a screen"
+    },
+    "V+G2s+": {
+        "defaultMessage": "Add an image"
+    },
+    "QfpTKK": {
+        "defaultMessage": "Select a screen..."
+    },
+    "RcLsua": {
+        "defaultMessage": "Message"
+    },
+    "S/mavZ": {
+        "defaultMessage": "Text and Images"
+    },
+    "VqyxpU": {
+        "defaultMessage": "Ad"
+    },
+    "Tt4jN1": {
+        "defaultMessage": "Add"
+    },
+    "vERejo": {
+        "defaultMessage": "Video"
+    },
+    "Wr9olU": {
+        "defaultMessage": "Typography"
+    },
+    "Z5jrDS": {
+        "defaultMessage": "Letter spacing"
+    },
+    "ZqwBOx": {
+        "defaultMessage": "Questions"
+    },
+    "ZtZjF0": {
+        "defaultMessage": "TitleSubtitle"
+    },
+    "ZxgNge": {
+        "defaultMessage": "Add an item"
+    },
+    "aDbe/Q": {
+        "defaultMessage": "Danger zone"
+    },
+    "aarOkd": {
+        "defaultMessage": "Color"
+    },
+    "aovRFH": {
+        "defaultMessage": "Filename"
+    },
+    "bh16Yr": {
+        "defaultMessage": "GalleryFeedCaptions"
+    },
+    "c9VwT/": {
+        "defaultMessage": "Technical details"
+    },
+    "cGItoy": {
+        "defaultMessage": "List"
+    },
+    "t+L1J/": {
+        "defaultMessage": "No image..."
+    },
+    "hVE7TA": {
+        "defaultMessage": "Question"
+    },
+    "e6+aGf": {
+        "defaultMessage": "Select a media..."
+    },
+    "enFs4g": {
+        "defaultMessage": "Advanced"
+    },
+    "eoW0tZ": {
+        "defaultMessage": "Duration"
+    },
+    "g6b9Lg": {
+        "defaultMessage": "Contribution"
+    },
+    "i+3ZrF": {
+        "defaultMessage": "Select a font family..."
+    },
+    "iHV3W3": {
+        "defaultMessage": "No entry..."
+    },
+    "jaFXki": {
+        "defaultMessage": "Gallery"
+    },
+    "wkysUu": {
+        "defaultMessage": "Screens"
+    },
+    "nXVNeg": {
+        "defaultMessage": "Name"
+    },
+    "l/Y6or": {
+        "defaultMessage": "Add an entry"
+    },
+    "n2teag": {
+        "defaultMessage": "Add an answer"
+    },
+    "lXV3vP": {
+        "defaultMessage": "TitleSubtitleCredits"
+    },
+    "liyV7Y": {
+        "defaultMessage": "Size"
+    },
+    "menus.pagination.next": {
+        "defaultMessage": "next"
+    },
+    "menus.pagination.previous": {
+        "defaultMessage": "Previous"
+    },
+    "mv37oK": {
+        "defaultMessage": "Dimension"
+    },
+    "o0RmVC": {
+        "defaultMessage": "imagesWithCaptions"
+    },
+    "qIw1nW": {
+        "defaultMessage": "Save"
+    },
+    "qKQCxc": {
+        "defaultMessage": "Add a marker"
+    },
+    "t2cFdl": {
+        "defaultMessage": "Active filters"
+    },
+    "tAYwqp": {
+        "defaultMessage": "Add a slide"
+    },
+    "tYGev7": {
+        "defaultMessage": "Font size"
+    },
+    "vrCfAS": {
+        "defaultMessage": "GalleryFeed"
+    },
+    "wt1+dM": {
+        "defaultMessage": "Select an audio file..."
+    },
+    "x8sfWV": {
+        "defaultMessage": "MapScreen"
+    },
+    "xKdf/C": {
+        "defaultMessage": "Added by"
+    },
+    "y7xsPe": {
+        "defaultMessage": "Advanced settings"
+    },
+    "ySApyR": {
+        "defaultMessage": "Background image"
+    },
+    "zW7IVm": {
+        "defaultMessage": "Quiz"
+    }
 }

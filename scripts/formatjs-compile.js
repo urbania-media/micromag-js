@@ -19,9 +19,9 @@ globSync(srcPath, {
     cwd: process.cwd(),
 }).forEach((file) => {
     compileAndWrite([path.join(process.cwd(), file)], {
-        // ast: true,
-        throws: false,
-        format: 'transifex',
+        ast: true,
+        throws: true,
+        // format: 'crowdin',
         idInterpolationPattern,
         outFile: path.join(process.cwd(), destPath, path.basename(file)),
     });

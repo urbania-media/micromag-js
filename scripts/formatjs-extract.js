@@ -21,7 +21,8 @@ const files = globSync(srcPath, {
 
 extractAndWrite(files, {
     throws: false,
-    format: 'transifex',
+    // format: 'crowdin',
     idInterpolationPattern,
+    // extractSourceLocation: true,
     outFile: path.join(process.cwd(), destPath),
 });

@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-gallery",
-    "version": "0.1.29",
+    "version": "0.2.7",
     "description": "",
     "keywords": [
         "javascript"
@@ -33,30 +33,30 @@
         "assets"
     ],
     "scripts": {
-        "prepare": "../../scripts/prepare-package.sh --intl"
+        "prepare": "../../scripts/prepare-package.sh"
     },
     "devDependencies": {
-        "react": ">=15.0.0 || ^16.0.0",
-        "react-dom": ">=15.0.0 || ^16.0.0"
+        "react": ">=15.0.0 || ^16.0.0 || ^17.0.0",
+        "react-dom": ">=15.0.0 || ^16.0.0 || ^17.0.0"
     },
     "peerDependencies": {
-        "react": ">=15.0.0 || ^16.0.0",
-        "react-dom": ">=15.0.0 || ^16.0.0"
+        "react": ">=15.0.0 || ^16.0.0 || ^17.0.0",
+        "react-dom": ">=15.0.0 || ^16.0.0 || ^17.0.0"
     },
     "dependencies": {
         "@babel/runtime": "^7.8.7",
-        "@micromag/core": "^0.1.29",
-        "@micromag/element-background": "^0.1.29",
-        "@micromag/element-container": "^0.1.29",
-        "@micromag/element-grid": "^0.1.29",
-        "@micromag/element-image": "^0.1.29",
-        "@micromag/element-layout": "^0.1.29",
-        "@micromag/element-text": "^0.1.29",
+        "@micromag/core": "^0.2.7",
+        "@micromag/element-background": "^0.2.7",
+        "@micromag/element-container": "^0.2.7",
+        "@micromag/element-grid": "^0.2.7",
+        "@micromag/element-image": "^0.2.7",
+        "@micromag/element-layout": "^0.2.7",
+        "@micromag/element-text": "^0.2.7",
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",
         "prop-types": "^15.7.2",
-        "react-intl": "^4.5.0",
-        "uuid": "^7.0.2"
+        "react-intl": "^5.10.6",
+        "uuid": "^8.3.2"
     },
     "publishConfig": {
         "access": "public"

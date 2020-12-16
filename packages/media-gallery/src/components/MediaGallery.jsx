@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useMedias, useMediaCreate, useAuthUser } from '@micromag/data';
+import { useMedias, useMediaCreate } from '@micromag/data';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 // import * as AppPropTypes from '../lib/PropTypes';
@@ -64,9 +64,6 @@ const MediaGallery = ({
     const { allMedias: loadedMedias } = useMedias(filtersValue, 1, 100, {
         ...(initialMedias !== null ? { items: initialMedias } : null),
     });
-
-    // User
-    const { user } = useAuthUser();
 
     // Temporary type filter
     const [addedMedias, setAddedMedias] = useState([]);
@@ -156,7 +153,6 @@ const MediaGallery = ({
                 opened={uploadModalOpened}
                 onUploaded={onUploadCompleted}
                 onRequestClose={onUploadRequestClose}
-                meta={{ user }}
             />
         </div>
     );

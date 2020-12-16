@@ -1,6 +1,6 @@
 {
     "name": "@micromag/elements",
-    "version": "0.1.29",
+    "version": "0.2.7",
     "description": "",
     "keywords": [
         "javascript"
@@ -31,41 +31,42 @@
         "lib",
         "es",
         "assets",
+        "scss",
         "all.js"
     ],
     "scripts": {
         "prepare": "../../scripts/prepare-package.sh --scss"
     },
     "devDependencies": {
-        "react": ">=15.0.0 || ^16.0.0",
-        "react-dom": ">=15.0.0 || ^16.0.0"
+        "react": ">=15.0.0 || ^16.0.0 || ^17.0.0",
+        "react-dom": ">=15.0.0 || ^16.0.0 || ^17.0.0"
     },
     "peerDependencies": {
-        "react": ">=15.0.0 || ^16.0.0",
-        "react-dom": ">=15.0.0 || ^16.0.0"
+        "react": ">=15.0.0 || ^16.0.0 || ^17.0.0",
+        "react-dom": ">=15.0.0 || ^16.0.0 || ^17.0.0"
     },
     "dependencies": {
         "@babel/runtime": "^7.8.7",
-        "@micromag/core": "^0.1.29",
-        "@micromag/element-audio": "^0.1.29",
-        "@micromag/element-background": "^0.1.29",
-        "@micromag/element-button": "^0.1.29",
-        "@micromag/element-checkbox": "^0.1.29",
-        "@micromag/element-closed-captions": "^0.1.29",
-        "@micromag/element-container": "^0.1.29",
-        "@micromag/element-grid": "^0.1.29",
-        "@micromag/element-heading": "^0.1.29",
-        "@micromag/element-image": "^0.1.29",
-        "@micromag/element-layout": "^0.1.29",
-        "@micromag/element-link": "^0.1.29",
-        "@micromag/element-map": "^0.1.29",
-        "@micromag/element-media-controls": "^0.1.29",
-        "@micromag/element-quote": "^0.1.29",
-        "@micromag/element-scroll": "^0.1.29",
-        "@micromag/element-stack": "^0.1.29",
-        "@micromag/element-text": "^0.1.29",
-        "@micromag/element-text-input": "^0.1.29",
-        "@micromag/element-video": "^0.1.29",
+        "@micromag/core": "^0.2.7",
+        "@micromag/element-audio": "^0.2.7",
+        "@micromag/element-background": "^0.2.7",
+        "@micromag/element-button": "^0.2.7",
+        "@micromag/element-checkbox": "^0.2.7",
+        "@micromag/element-closed-captions": "^0.2.7",
+        "@micromag/element-container": "^0.2.7",
+        "@micromag/element-grid": "^0.2.7",
+        "@micromag/element-heading": "^0.2.7",
+        "@micromag/element-image": "^0.2.7",
+        "@micromag/element-layout": "^0.2.7",
+        "@micromag/element-link": "^0.2.7",
+        "@micromag/element-map": "^0.2.7",
+        "@micromag/element-media-controls": "^0.2.7",
+        "@micromag/element-quote": "^0.2.7",
+        "@micromag/element-scroll": "^0.2.7",
+        "@micromag/element-stack": "^0.2.7",
+        "@micromag/element-text": "^0.2.7",
+        "@micromag/element-text-input": "^0.2.7",
+        "@micromag/element-video": "^0.2.7",
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",
         "prop-types": "^15.7.2"

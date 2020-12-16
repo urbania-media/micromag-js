@@ -1,0 +1,659 @@
+{
+  "+9akmg": {
+    "defaultMessage": "Audio and Video",
+    "description": "Audio and Video screen group"
+  },
+  "+AEVbJ": {
+    "defaultMessage": "Title",
+    "description": "Field label"
+  },
+  "+KWsXh": {
+    "defaultMessage": "Already used",
+    "description": "Media has been use somewhere"
+  },
+  "+MPZRu": {
+    "defaultMessage": "Background",
+    "description": "Background field label"
+  },
+  "+Ok+7S": {
+    "defaultMessage": "Answer",
+    "description": "Answer placeholder"
+  },
+  "+TT1y6": {
+    "defaultMessage": "Clear",
+    "description": "Clear button label in Media Gallery"
+  },
+  "+b+e40": {
+    "defaultMessage": "All sources",
+    "description": "Source from all places"
+  },
+  "/MeuM1": {
+    "defaultMessage": "Background video",
+    "description": "Field label"
+  },
+  "/T/UDH": {
+    "defaultMessage": "Remove all",
+    "description": "Remove all button label"
+  },
+  "/bEns8": {
+    "defaultMessage": "MapImages",
+    "description": "MapImages screen title"
+  },
+  "/hupzO": {
+    "defaultMessage": "Credits",
+    "description": "Credits placeholder"
+  },
+  "15GBmG": {
+    "defaultMessage": "All",
+    "description": "Dropdown default all items label"
+  },
+  "169xnt": {
+    "defaultMessage": "Audio",
+    "description": "Audio field label"
+  },
+  "17BMn2": {
+    "defaultMessage": "Ranking",
+    "description": "Ranking screen title"
+  },
+  "1dPnDA": {
+    "defaultMessage": "Tags",
+    "description": "Label for tags search section"
+  },
+  "1fBNmY": {
+    "defaultMessage": "ImageTitle",
+    "description": "ImageTitle screen title"
+  },
+  "2/F1Q7": {
+    "defaultMessage": "#{index}",
+    "description": "Item label in items field"
+  },
+  "2ZOPe+": {
+    "defaultMessage": "Title",
+    "description": "Title placeholder"
+  },
+  "31zuCS": {
+    "defaultMessage": "Line height",
+    "description": "Field label"
+  },
+  "3C3nve": {
+    "defaultMessage": "Delete screen",
+    "description": "Delete screen button"
+  },
+  "3E57H7": {
+    "defaultMessage": "No marker...",
+    "description": "Label when there is no item in markers field"
+  },
+  "3OS3Ms": {
+    "defaultMessage": "Legend",
+    "description": "Legend field label"
+  },
+  "3ifj0j": {
+    "defaultMessage": "Entries",
+    "description": "Field label"
+  },
+  "3q9GPv": {
+    "defaultMessage": "Quote",
+    "description": "Quote screen title"
+  },
+  "3uMlsn": {
+    "defaultMessage": "Some other micromag",
+    "description": "Source from another micromag"
+  },
+  "4E2gbX": {
+    "defaultMessage": "Text",
+    "description": "Text field label"
+  },
+  "4POR3B": {
+    "defaultMessage": "View screen",
+    "description": "Button to view a screen"
+  },
+  "4YiKNK": {
+    "defaultMessage": "Select a color...",
+    "description": "No value label"
+  },
+  "4fHMVj": {
+    "defaultMessage": "Tags",
+    "description": "Tags in Media Gallery"
+  },
+  "4iBXj2": {
+    "defaultMessage": "Layout",
+    "description": "Layout field label"
+  },
+  "507VAi": {
+    "defaultMessage": "Description",
+    "description": "Description placeholder"
+  },
+  "5uH4x7": {
+    "defaultMessage": "Submit",
+    "description": "Submit placeholder"
+  },
+  "63Kvho": {
+    "defaultMessage": "Images",
+    "description": "Images field label"
+  },
+  "650XRF": {
+    "defaultMessage": "Survey",
+    "description": "Survey screen title"
+  },
+  "6De+oT": {
+    "defaultMessage": "GalleryCaptions",
+    "description": "GalleryCaptions screen title"
+  },
+  "6Z1BwP": {
+    "defaultMessage": "Recent searches",
+    "description": "Label for recent search section"
+  },
+  "6mX2ya": {
+    "defaultMessage": "Images",
+    "description": "Images screen group"
+  },
+  "6tIigB": {
+    "defaultMessage": "Caption",
+    "description": "Caption placeholder"
+  },
+  "73hxYw": {
+    "defaultMessage": "Author",
+    "description": "Author field label"
+  },
+  "88/Ge8": {
+    "defaultMessage": "Quote",
+    "description": "Quote field label"
+  },
+  "8c34nT": {
+    "defaultMessage": "ImageTitleText",
+    "description": "ImageTitleText screen title"
+  },
+  "8cVWNh": {
+    "defaultMessage": "Usage",
+    "description": "Label for usage search section"
+  },
+  "8vroDx": {
+    "defaultMessage": "Map",
+    "description": "Map screen group"
+  },
+  "96KRj9": {
+    "defaultMessage": "ImageLegend",
+    "description": "ImageLegend screen title"
+  },
+  "9DhYaZ": {
+    "defaultMessage": "Ascending",
+    "description": "Ascending field label"
+  },
+  "9ZdD+Q": {
+    "defaultMessage": "Library for",
+    "description": "Library source menu"
+  },
+  "A+a0kL": {
+    "defaultMessage": "No answer...",
+    "description": "Label when there is no item"
+  },
+  "B1MeY+": {
+    "defaultMessage": "Select an image...",
+    "description": "Label when no value is provided to Image field"
+  },
+  "BpZoQZ": {
+    "defaultMessage": "Success",
+    "description": "Success form message"
+  },
+  "ChnSK6": {
+    "defaultMessage": "This Micromag",
+    "description": "Source from this micromag"
+  },
+  "CrzYgw": {
+    "defaultMessage": "Quote",
+    "description": "Quote placeholder"
+  },
+  "DVrK6z": {
+    "defaultMessage": "Click to edit...",
+    "description": "Label when no value is provided to Field with form"
+  },
+  "DWEzCv": {
+    "defaultMessage": "Select a video...",
+    "description": "Label when no value is provided to Video field"
+  },
+  "E/qtB2": {
+    "defaultMessage": "TextTitle",
+    "description": "TextTitle screen title"
+  },
+  "ET527E": {
+    "defaultMessage": "Font family",
+    "description": "Field label"
+  },
+  "EcZYpr": {
+    "defaultMessage": "Subtitle",
+    "description": "Subtitle field label"
+  },
+  "FJjjnF": {
+    "defaultMessage": "Video 360",
+    "description": "Video 360 screen title"
+  },
+  "FJygXH": {
+    "defaultMessage": "Result",
+    "description": "Field label"
+  },
+  "G/ITGY": {
+    "defaultMessage": "Your name",
+    "description": "Your name placeholder"
+  },
+  "G31Yd0": {
+    "defaultMessage": "Cancel",
+    "description": "Cancel button label in Media Gallery"
+  },
+  "GE8wrk": {
+    "defaultMessage": "Image",
+    "description": "Image field label"
+  },
+  "GMCLhn": {
+    "defaultMessage": "Case",
+    "description": "Field label"
+  },
+  "GzoKNb": {
+    "defaultMessage": "Timeline",
+    "description": "Timeline screen title"
+  },
+  "Gzx6q5": {
+    "defaultMessage": "Advertising",
+    "description": "Ad title"
+  },
+  "HseFdk": {
+    "defaultMessage": "Edit",
+    "description": "Button to edit a screen"
+  },
+  "IMUycF": {
+    "defaultMessage": "Timeline Illustrated",
+    "description": "Timeline Illustrated screen title"
+  },
+  "JAguka": {
+    "defaultMessage": "Your message",
+    "description": "Your message placeholder"
+  },
+  "JDPMlG": {
+    "defaultMessage": "Background color",
+    "description": "Field label"
+  },
+  "JV5hRr": {
+    "defaultMessage": "Media gallery",
+    "description": "Top nav title for media gallery"
+  },
+  "JoWKee": {
+    "defaultMessage": "Create your first screen",
+    "description": "Button to create your first screen"
+  },
+  "KHWeV7": {
+    "defaultMessage": "Answers",
+    "description": "Field label"
+  },
+  "MYZwSA": {
+    "defaultMessage": "Audio",
+    "description": "Audio placeholder"
+  },
+  "Mz76RM": {
+    "defaultMessage": "ImageText",
+    "description": "ImageText screen title"
+  },
+  "N25iDO": {
+    "defaultMessage": "Title",
+    "description": "Title field label"
+  },
+  "OJi+eg": {
+    "defaultMessage": "Label",
+    "description": "Field label"
+  },
+  "OdcEna": {
+    "defaultMessage": "No slide...",
+    "description": "Label when there is no item in slides field"
+  },
+  "OkNUmk": {
+    "defaultMessage": "Type",
+    "description": "Type Label in Media Gallery"
+  },
+  "P7UAe2": {
+    "defaultMessage": "Unused",
+    "description": "Media has not been used somewhere"
+  },
+  "PKCv5M": {
+    "defaultMessage": "No item...",
+    "description": "Label when there is no item in items field"
+  },
+  "PQG8A5": {
+    "defaultMessage": "Link",
+    "description": "Link field label"
+  },
+  "PbHeHc": {
+    "defaultMessage": "Markers",
+    "description": "Markers field label"
+  },
+  "QBaiO0": {
+    "defaultMessage": "Add a screen",
+    "description": "Title of the screen types selection dialog"
+  },
+  "QSmRdP": {
+    "defaultMessage": "Add an image",
+    "description": "Button label"
+  },
+  "QfpTKK": {
+    "defaultMessage": "Select a screen..."
+  },
+  "RcLsua": {
+    "defaultMessage": "Message",
+    "description": "Message field label"
+  },
+  "S/mavZ": {
+    "defaultMessage": "Text and Images",
+    "description": "Text and Images screen group"
+  },
+  "S9YpbV": {
+    "defaultMessage": "Text",
+    "description": "Text screen title"
+  },
+  "StDSlO": {
+    "defaultMessage": "Ad",
+    "description": "Ad screen title"
+  },
+  "T9NZPQ": {
+    "defaultMessage": "Images",
+    "description": "Field label"
+  },
+  "Tt4jN1": {
+    "defaultMessage": "Add",
+    "description": "Add button label in Media Gallery"
+  },
+  "UBXIYP": {
+    "defaultMessage": "Video",
+    "description": "Video screen title"
+  },
+  "V+G2s+": {
+    "defaultMessage": "Add an image",
+    "description": "Button label in images field"
+  },
+  "VqyxpU": {
+    "defaultMessage": "Ad",
+    "description": "Ad screen group"
+  },
+  "Wr9olU": {
+    "defaultMessage": "Typography",
+    "description": "Fields section label"
+  },
+  "Z5jrDS": {
+    "defaultMessage": "Letter spacing",
+    "description": "Field label"
+  },
+  "ZCe0r4": {
+    "defaultMessage": "Description",
+    "description": "Field label"
+  },
+  "ZLDmja": {
+    "defaultMessage": "Submit",
+    "description": "Submit form button"
+  },
+  "ZqwBOx": {
+    "defaultMessage": "Questions",
+    "description": "Questions screen group"
+  },
+  "ZtZjF0": {
+    "defaultMessage": "TitleSubtitle",
+    "description": "TitleSubtitle screen title"
+  },
+  "ZxgNge": {
+    "defaultMessage": "Add an item",
+    "description": "Button label in items field"
+  },
+  "aDbe/Q": {
+    "defaultMessage": "Danger zone",
+    "description": "Title of the danger zone panel"
+  },
+  "aarOkd": {
+    "defaultMessage": "Color",
+    "description": "Field label"
+  },
+  "aovRFH": {
+    "defaultMessage": "Filename",
+    "description": "Label in Media Gallery"
+  },
+  "bh16Yr": {
+    "defaultMessage": "GalleryFeedCaptions",
+    "description": "GalleryFeedCaptions screen title"
+  },
+  "bhEaUt": {
+    "defaultMessage": "Audio",
+    "description": "Audio screen title"
+  },
+  "c9VwT/": {
+    "defaultMessage": "Technical details",
+    "description": "Heading in Media Gallery"
+  },
+  "cGItoy": {
+    "defaultMessage": "List",
+    "description": "List screen group"
+  },
+  "d60tSn": {
+    "defaultMessage": "Subtitle",
+    "description": "Subtitle placeholder"
+  },
+  "dFMzBu": {
+    "defaultMessage": "No image...",
+    "description": "Label when there is no item"
+  },
+  "dVcog7": {
+    "defaultMessage": "Title",
+    "description": "Title screen title"
+  },
+  "dmuKH3": {
+    "defaultMessage": "Map",
+    "description": "Map screen title"
+  },
+  "dqnkQk": {
+    "defaultMessage": "Legend",
+    "description": "Legend placeholder"
+  },
+  "e1I+KU": {
+    "defaultMessage": "Question",
+    "description": "Question placeholder"
+  },
+  "e6+aGf": {
+    "defaultMessage": "Select a media...",
+    "description": "Label when no value is provided to Media field"
+  },
+  "ebsPd4": {
+    "defaultMessage": "Image",
+    "description": "Image placeholder"
+  },
+  "enFs4g": {
+    "defaultMessage": "Advanced",
+    "description": "Name of the section in Fields"
+  },
+  "eoW0tZ": {
+    "defaultMessage": "Duration",
+    "description": "Label in Media Gallery"
+  },
+  "fIawTr": {
+    "defaultMessage": "Text",
+    "description": "Text screen group"
+  },
+  "g6b9Lg": {
+    "defaultMessage": "Contribution",
+    "description": "Contribution screen title"
+  },
+  "hVE7TA": {
+    "defaultMessage": "Question",
+    "description": "Question field label"
+  },
+  "i+3ZrF": {
+    "defaultMessage": "Select a font family...",
+    "description": "No value label"
+  },
+  "iHV3W3": {
+    "defaultMessage": "No entry...",
+    "description": "Label when there is no item"
+  },
+  "jaFXki": {
+    "defaultMessage": "Gallery",
+    "description": "Gallery screen title"
+  },
+  "jf+4Hq": {
+    "defaultMessage": "Screens",
+    "description": "Title of the screens section"
+  },
+  "kBz8vF": {
+    "defaultMessage": "Name",
+    "description": "Name in Media Gallery"
+  },
+  "l/Y6or": {
+    "defaultMessage": "Add an entry",
+    "description": "Button label"
+  },
+  "lGh/NP": {
+    "defaultMessage": "Add an answer",
+    "description": "Button label"
+  },
+  "lXV3vP": {
+    "defaultMessage": "TitleSubtitleCredits",
+    "description": "TitleSubtitleCredits screen title"
+  },
+  "li7ADr": {
+    "defaultMessage": "Result",
+    "description": "Result placeholder"
+  },
+  "liyV7Y": {
+    "defaultMessage": "Size",
+    "description": "Label in Media Gallery"
+  },
+  "menus.pagination.next": {
+    "defaultMessage": "next"
+  },
+  "menus.pagination.previous": {
+    "defaultMessage": "Previous"
+  },
+  "mv37oK": {
+    "defaultMessage": "Dimension",
+    "description": "Label in Media Gallery"
+  },
+  "n2teag": {
+    "defaultMessage": "Add an answer",
+    "description": "Button label in answers field"
+  },
+  "nXVNeg": {
+    "defaultMessage": "Name",
+    "description": "Name field label"
+  },
+  "nqQqsI": {
+    "defaultMessage": "Map",
+    "description": "Map field label"
+  },
+  "o0RmVC": {
+    "defaultMessage": "imagesWithCaptions",
+    "description": "imagesWithCaptions field label"
+  },
+  "p6n6vY": {
+    "defaultMessage": "No answer...",
+    "description": "Label when there is no item in answers field"
+  },
+  "p85qJD": {
+    "defaultMessage": "Caption",
+    "description": "Field label"
+  },
+  "qIw1nW": {
+    "defaultMessage": "Save",
+    "description": "Save in Media Gallery"
+  },
+  "qKQCxc": {
+    "defaultMessage": "Add a marker",
+    "description": "Button label in markers field"
+  },
+  "qZItNz": {
+    "defaultMessage": "MapImages",
+    "description": "MapImages placeholder"
+  },
+  "sESmah": {
+    "defaultMessage": "Entries",
+    "description": "Entries field label"
+  },
+  "t+L1J/": {
+    "defaultMessage": "No image...",
+    "description": "Label when there is no item in images field"
+  },
+  "t2cFdl": {
+    "defaultMessage": "Active filters",
+    "description": "Active filters title"
+  },
+  "tAYwqp": {
+    "defaultMessage": "Add a slide",
+    "description": "Button label in slides field"
+  },
+  "tYGev7": {
+    "defaultMessage": "Font size",
+    "description": "Field label"
+  },
+  "tvl2Zc": {
+    "defaultMessage": "Video",
+    "description": "Video field label"
+  },
+  "uAKPQ9": {
+    "defaultMessage": "Submit",
+    "description": "Submit field label"
+  },
+  "uJ9eBc": {
+    "defaultMessage": "Image",
+    "description": "Image screen title"
+  },
+  "uKJRh2": {
+    "defaultMessage": "Title",
+    "description": "Title screen group"
+  },
+  "upzOTm": {
+    "defaultMessage": "Credits",
+    "description": "Credits field label"
+  },
+  "vERejo": {
+    "defaultMessage": "Video",
+    "description": "Field label"
+  },
+  "vrCfAS": {
+    "defaultMessage": "GalleryFeed",
+    "description": "GalleryFeed screen title"
+  },
+  "wkysUu": {
+    "defaultMessage": "Screens",
+    "description": "Button to show screens"
+  },
+  "wt1+dM": {
+    "defaultMessage": "Select an audio file...",
+    "description": "Label when no value is provided to Audio field"
+  },
+  "x8sfWV": {
+    "defaultMessage": "MapScreen",
+    "description": "MapScreen placeholder"
+  },
+  "xKdf/C": {
+    "defaultMessage": "Added by",
+    "description": "Label for users search section"
+  },
+  "xT/onn": {
+    "defaultMessage": "Image",
+    "description": "Field label"
+  },
+  "xYqGzM": {
+    "defaultMessage": "Author",
+    "description": "Author placeholder"
+  },
+  "y7xsPe": {
+    "defaultMessage": "Advanced settings",
+    "description": "Fields section label"
+  },
+  "ySApyR": {
+    "defaultMessage": "Background image",
+    "description": "Field label"
+  },
+  "z4CiV1": {
+    "defaultMessage": "Text",
+    "description": "Text placeholder"
+  },
+  "zIi5W2": {
+    "defaultMessage": "All",
+    "description": "Font family group title"
+  },
+  "zW7IVm": {
+    "defaultMessage": "Quiz",
+    "description": "Quiz screen title"
+  }
+}
