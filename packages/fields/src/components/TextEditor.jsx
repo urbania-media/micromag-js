@@ -3,10 +3,12 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import CKEditor from '@ckeditor/ckeditor5-react';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
 import InlineEditor from '@ckeditor/ckeditor5-build-inline';
 
 import styles from '../styles/text-editor.module.scss';
+
+console.log(CKEditor, InlineEditor);
 
 const propTypes = {
     value: PropTypes.string,
