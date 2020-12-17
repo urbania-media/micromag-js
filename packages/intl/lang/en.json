@@ -230,6 +230,9 @@
     "QfpTKK": {
         "defaultMessage": "Select a screen..."
     },
+    "RHMS2f": {
+        "defaultMessage": "Line color"
+    },
     "RcLsua": {
         "defaultMessage": "Message"
     },
@@ -247,6 +250,9 @@
     },
     "Wr9olU": {
         "defaultMessage": "Typography"
+    },
+    "YWcp4v": {
+        "defaultMessage": "Bullet filled"
     },
     "Z5jrDS": {
         "defaultMessage": "Letter spacing"
@@ -352,6 +358,12 @@
     },
     "tYGev7": {
         "defaultMessage": "Font size"
+    },
+    "twTaAZ": {
+        "defaultMessage": "Bullet shape"
+    },
+    "uNpHnA": {
+        "defaultMessage": "Bullet color"
     },
     "vrCfAS": {
         "defaultMessage": "GalleryFeed"

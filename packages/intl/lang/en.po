@@ -401,6 +401,11 @@ msgstr "Add an image"
 msgid "Select a screen..."
 msgstr "Select a screen..."
 
+# Field label
+#: RHMS2f
+msgid "Line color"
+msgstr "Line color"
+
 # Message field label
 #: RcLsua
 msgid "Message"
@@ -430,6 +435,11 @@ msgstr "Video"
 #: Wr9olU
 msgid "Typography"
 msgstr "Typography"
+
+# Field label
+#: YWcp4v
+msgid "Bullet filled"
+msgstr "Bullet filled"
 
 # Field label
 #: Z5jrDS
@@ -603,6 +613,16 @@ msgstr "Add a slide"
 #: tYGev7
 msgid "Font size"
 msgstr "Font size"
+
+# Field label
+#: twTaAZ
+msgid "Bullet shape"
+msgstr "Bullet shape"
+
+# Field label
+#: uNpHnA
+msgid "Bullet color"
+msgstr "Bullet color"
 
 # GalleryFeed screen title
 #: vrCfAS

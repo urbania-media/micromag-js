@@ -338,6 +338,10 @@
   "QfpTKK": {
     "defaultMessage": "Select a screen..."
   },
+  "RHMS2f": {
+    "defaultMessage": "Line color",
+    "description": "Field label"
+  },
   "RcLsua": {
     "defaultMessage": "Message",
     "description": "Message field label"
@@ -373,6 +377,10 @@
   "Wr9olU": {
     "defaultMessage": "Typography",
     "description": "Fields section label"
+  },
+  "YWcp4v": {
+    "defaultMessage": "Bullet filled",
+    "description": "Field label"
   },
   "Z5jrDS": {
     "defaultMessage": "Letter spacing",
@@ -592,6 +600,10 @@
     "defaultMessage": "Video",
     "description": "Video field label"
   },
+  "twTaAZ": {
+    "defaultMessage": "Bullet shape",
+    "description": "Field label"
+  },
   "uAKPQ9": {
     "defaultMessage": "Submit",
     "description": "Submit field label"
@@ -603,6 +615,10 @@
   "uKJRh2": {
     "defaultMessage": "Title",
     "description": "Title screen group"
+  },
+  "uNpHnA": {
+    "defaultMessage": "Bullet color",
+    "description": "Field label"
   },
   "upzOTm": {
     "defaultMessage": "Credits",
