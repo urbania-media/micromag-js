@@ -137,6 +137,11 @@ msgstr "Some other micromag"
 msgid "Text"
 msgstr "Text"
 
+# Field label
+#: 4H2n5r
+msgid "Closed captions"
+msgstr "Closed captions"
+
 # Button to view a screen
 #: 4POR3B
 msgid "View screen"
@@ -232,6 +237,11 @@ msgstr "No answer..."
 msgid "Select an image..."
 msgstr "Select an image..."
 
+# Label when no value is provided to Closed-captions field
+#: B6cvYv
+msgid "Select a closed-captions file..."
+msgstr "Select a closed-captions file..."
+
 # Success form message
 #: BpZoQZ
 msgid "Success"
@@ -267,6 +277,11 @@ msgstr "Font family"
 msgid "Subtitle"
 msgstr "Subtitle"
 
+# Field label
+#: F2SD/0
+msgid "Loop"
+msgstr "Loop"
+
 # Video 360 screen title
 #: FJjjnF
 msgid "Video 360"
@@ -301,11 +316,6 @@ msgstr "Case"
 #: GzoKNb
 msgid "Timeline"
 msgstr "Timeline"
-
-# Ad title
-#: Gzx6q5
-msgid "Advertising"
-msgstr "Advertising"
 
 # Button to edit a screen
 #: HseFdk
@@ -372,11 +382,6 @@ msgstr "Unused"
 msgid "No item..."
 msgstr "No item..."
 
-# Link field label
-#: PQG8A5
-msgid "Link"
-msgstr "Link"
-
 # Markers field label
 #: PbHeHc
 msgid "Markers"
@@ -406,10 +411,10 @@ msgstr "Message"
 msgid "Text and Images"
 msgstr "Text and Images"
 
-# Ad screen group
-#: VqyxpU
-msgid "Ad"
-msgstr "Ad"
+# Field label
+#: T0pi1u
+msgid "With seek bar"
+msgstr "With seek bar"
 
 # Add button label in Media Gallery
 #: Tt4jN1
@@ -568,6 +573,11 @@ msgstr "Dimension"
 #: o0RmVC
 msgid "imagesWithCaptions"
 msgstr "imagesWithCaptions"
+
+# Field label
+#: pJgYyE
+msgid "AutoPlay"
+msgstr "AutoPlay"
 
 # Save in Media Gallery
 #: qIw1nW
