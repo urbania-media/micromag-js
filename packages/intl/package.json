@@ -39,13 +39,9 @@
         "prepare": "npm run intl && ../../scripts/prepare-package.sh"
     },
     "devDependencies": {
-        "@formatjs/cli": "^2.13.16",
         "@micromag/editor": "^0.2.13",
         "@micromag/elements": "^0.2.13",
         "@micromag/screens": "^0.2.13",
-        "commander": "^6.2.1",
-        "fs-extra": "^9.0.1",
-        "glob": "^7.1.6",
         "react": "^17.0.1",
         "react-dom": "^17.0.1"
     },
@@ -55,7 +51,12 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.12.5",
+        "@formatjs/cli": "^2.13.16",
         "@micromag/core": "^0.2.13",
+        "commander": "^6.2.1",
+        "fs-extra": "^9.0.1",
+        "gettext-parser": "^4.0.4",
+        "glob": "^7.1.6",
         "lodash": "^4.17.15",
         "prop-types": "^15.7.2",
         "react-intl": "^5.10.6"
