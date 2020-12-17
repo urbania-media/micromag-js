@@ -1,3 +1,5 @@
+// stylelint-disable max-nesting-depth
+
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 
@@ -6,7 +8,8 @@
 
     .content,
     .canvas,
-    .canvasButton {
+    .canvasButton,
+    .video {
         @extend %fullscreen;
     }
 
@@ -15,8 +18,16 @@
         touch-action: none;
     }
 
+    .videoContainer {
+        position: absolute;
+    }
+
     .video {
         visibility: hidden;
+
+        video {
+            height: 100%;
+        }
     }
 
     .mediaControls {
@@ -35,5 +46,11 @@
         position: absolute;
         bottom: 0;
         width: 100%;        
+    }
+
+    &.isPreview {
+        .video {
+            visibility: visible;
+        }
     }
 }

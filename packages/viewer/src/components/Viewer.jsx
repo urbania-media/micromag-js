@@ -9,7 +9,7 @@ import { useDrag } from 'react-use-gesture';
 import { PropTypes as MicromagPropTypes, ViewerProvider } from '@micromag/core';
 import { useScreenSizeFromElement, useResizeObserver } from '@micromag/core/hooks';
 import { ScreenSizeProvider } from '@micromag/core/contexts';
-import { getDeviceScreens,  } from '@micromag/core/utils';
+import { getDeviceScreens } from '@micromag/core/utils';
 
 import ViewerScreen from './ViewerScreen';
 
@@ -80,7 +80,8 @@ const Viewer = ({
         entry: { contentRect: menuDotsContainerRect },
     } = useResizeObserver();
 
-    const { width: menuDotsContainerWidth = null, height: menuDotsContainerHeight = null } = menuDotsContainerRect || {};
+    const { width: menuDotsContainerWidth = null, height: menuDotsContainerHeight = null } =
+        menuDotsContainerRect || {};
 
     const landscape = screenWidth > screenHeight;
 
@@ -256,14 +257,12 @@ const Viewer = ({
 
     const onDrag = useCallback(
         ({ swipe: [, swipeY], initial: [, iy] }) => {
-
             if (swipeY !== 0) {
                 const swipeToBottom = swipeY > 0;
                 const swipeFromTop = iy < screenHeight / 5;
                 if (!swipeToBottom || swipeFromTop) {
                     setMenuOpened(swipeToBottom);
                 }
-
             }
         },
         [setMenuOpened, screenHeight],
@@ -297,7 +296,7 @@ const Viewer = ({
                 menuSize={landscape ? menuDotsContainerWidth : menuDotsContainerHeight}
                 menuOpened={menuOpened}
             >
-                { /* @TODO better way to prevent pull-to-refresh */ }
+                {/* @TODO better way to prevent pull-to-refresh */}
                 <Helmet>
                     <style type="text/css">
                         {`body {
@@ -381,9 +380,7 @@ const Viewer = ({
                                 <div
                                     key={key}
                                     style={{
-                                        transform: `translate3d(${
-                                            screenWidth * (i - currentIndex)
-                                        }px, 0, 0)`,
+                                        left: screenWidth * (i - currentIndex),
                                     }}
                                     className={screenClass}
                                 >
