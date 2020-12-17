@@ -58,7 +58,8 @@ module.exports = () => {
         if (query === null || Object.keys(query).length === 0) {
             return items;
         }
-        return _.values(_.filter(items, _.matches(query)));
+        const { source, ...queryWithoutSource } = query;
+        return _.values(_.filter(items, _.matches(queryWithoutSource)));
     };
 
     const getNextId = items =>
