@@ -1,10 +1,11 @@
 /* eslint-disable react/no-array-index-key, jsx-a11y/control-has-associated-label */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShare, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useTracking } from '@micromag/data';
 import { ScreenPreview, Button } from '@micromag/core/components';
 
 import styles from '../../styles/menus/menu-preview.module.scss';
@@ -44,6 +45,7 @@ const ViewerMenuPreview = ({
     thumbsPerLine,
     className,
 }) => {
+    const track = useTracking();
     const screenSizeRatio = `${(screenHeight / screenWidth / thumbsPerLine) * 100}%`;
 
     const [thumbSize, setThumbSize] = useState(null);
@@ -56,6 +58,25 @@ const ViewerMenuPreview = ({
         }
     }, [screenWidth, screenHeight]);
 
+    const onShareClick = useCallback( () => {
+        console.log('@TODO SHARE');
+        track('viewer-menu', 'share');
+    }, [track])
+
+    const onCloseClick = useCallback( () => {
+        track('viewer-menu', 'close');
+        if (onClose !== null) {
+            onClose();
+        }
+    }, [onClose, track]);
+
+    const onScreenClick = useCallback( (index) => {
+        track('viewer-menu', 'screen-change', items[index].id);
+        if (onClickItem !== null) {
+            onClickItem(index);
+        }
+    }, [onClickItem, items, track]);
+
     return (
         <div
             className={classNames([
@@ -67,10 +88,10 @@ const ViewerMenuPreview = ({
         >
             <div className={styles.header}>
                 <div className={styles.title}>{title}</div>
-                <Button className={styles.button} onClick={() => {}}>
+                <Button className={styles.button} onClick={onShareClick}>
                     <FontAwesomeIcon className={styles.icon} icon={faShare} />
                 </Button>
-                <Button className={styles.button} onClick={onClose}>
+                <Button className={styles.button} onClick={onCloseClick}>
                     <FontAwesomeIcon className={styles.icon} icon={faTimes} />
                 </Button>
             </div>
@@ -124,9 +145,7 @@ const ViewerMenuPreview = ({
                                 <button
                                     type="button"
                                     className={styles.screenButton}
-                                    onClick={() =>
-                                        onClickItem !== null ? onClickItem(index) : null
-                                    }
+                                    onClick={ () => { onScreenClick(index) } }
                                 />
                             </li>
                         ))}

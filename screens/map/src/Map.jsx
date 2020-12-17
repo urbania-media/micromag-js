@@ -12,9 +12,9 @@ import Map from '@micromag/element-map';
 import Heading from '@micromag/element-heading';
 import Text from '@micromag/element-text';
 import Image from '@micromag/element-image';
+import { isTextFilled } from '@micromag/core/src/utils';
 
 import styles from './styles.module.scss';
-import { isTextFilled } from '@micromag/core/src/utils';
 
 const gmapsApiKey = process.env.GOOGLE_MAPS_API_KEY || null;
 

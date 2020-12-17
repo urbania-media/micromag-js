@@ -1,8 +1,9 @@
 /* eslint-disable react/no-array-index-key */
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useTracking } from '@micromag/data';
 
 import MenuIcon from './MenuIcon';
 
@@ -36,53 +37,72 @@ const ViewerMenuDots = ({
     colorAccent,
     colorBackground,
     className,
-}) => (
-    <nav
-        className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-                [styles.vertical]: direction === 'vertical',
-            },
-        ])}
-    >
-        <ul className={styles.items}>
-            {items.map((item, index) => (
-                <li
-                    className={classNames([
-                        styles.item,
-                        {
-                            [styles.active]: current === index,
-                        },
-                    ])}
-                    key={`item-${index}`}
-                >
+}) => {
+    const track = useTracking();
+
+    const onClickDot = useCallback((index) => {
+        track('viewer-menu', 'open', 'dot', index);
+        if (onClickItem !== null) {
+            onClickItem(index);
+        }
+    }, [onClickItem, track, items]);
+
+    const onClickMenu = useCallback( () => {
+        track('viewer-menu', 'open', 'menu');
+        if (onClickItem !== null) {
+            onClickItem(null);
+        }
+    }, [onClickItem, track]);
+
+    return (
+        <nav
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                    [styles.vertical]: direction === 'vertical',
+                },
+            ])}
+        >
+            <ul className={styles.items}>
+                {items.map((item, index) => (
+                    <li
+                        className={classNames([
+                            styles.item,
+                            {
+                                [styles.active]: current === index,
+                            },
+                        ])}
+                        key={`item-${index}`}
+                    >
+                        <button
+                            type="button"
+                            className={styles.button}
+                            onClick={() => { onClickDot(index) } }
+                        >
+                            <span
+                                className={styles.dot}
+                                style={{
+                                    backgroundColor:
+                                        index <= current ? colorAccent : colorBackground,
+                                }}
+                            />
+                        </button>
+                    </li>
+                ))}
+                <li className={styles.menu}>
+                    <MenuIcon className={styles.menuIcon} color={colorAccent} />
                     <button
                         type="button"
-                        className={styles.button}
-                        onClick={() => (onClickItem !== null ? onClickItem(index) : null)}
-                    >
-                        <span
-                            className={styles.dot}
-                            style={{
-                                backgroundColor: index <= current ? colorAccent : colorBackground,
-                            }}
-                        />
-                    </button>
+                        aria-label="menu"
+                        className={styles.menuButton}
+                        onClick={onClickMenu}
+                    />
                 </li>
-            ))}
-            <li className={styles.menu}>
-                <MenuIcon className={styles.menuIcon} color={colorAccent} />
-                <button
-                    type="button"
-                    aria-label="menu"
-                    className={styles.menuButton}
-                    onClick={() => (onClickItem !== null ? onClickItem(null) : null)}
-                />
-            </li>
-        </ul>
-    </nav>
-);
+            </ul>
+        </nav>
+    );
+};
 
 ViewerMenuDots.propTypes = propTypes;
 ViewerMenuDots.defaultProps = defaultProps;

@@ -8,6 +8,7 @@ import { useDrag } from 'react-use-gesture';
 
 import { PropTypes as MicromagPropTypes, ViewerProvider } from '@micromag/core';
 import { useScreenSizeFromElement, useResizeObserver } from '@micromag/core/hooks';
+import { useTracking } from '@micromag/data';
 import { ScreenSizeProvider } from '@micromag/core/contexts';
 import { getDeviceScreens } from '@micromag/core/utils';
 
@@ -61,6 +62,7 @@ const Viewer = ({
     scrollIndexHeightPercent,
     className,
 }) => {
+    const track = useTracking();
     const { components = [], title = 'Story title' } = story || {};
 
     const contentRef = useRef(null);
@@ -94,18 +96,25 @@ const Viewer = ({
             ),
         [screenId, components],
     );
-
+    
     const changeIndex = useCallback(
         (index) => {
             if (index === currentIndex) {
                 return;
-            }
+            }                
             if (onScreenChange !== null) {
                 onScreenChange(components[index], index);
             }
         },
         [currentIndex, components, onScreenChange],
     );
+
+    useEffect( () => {
+        if (components.length > 0 && currentIndex < components.length - 1) {
+            const screen = components[currentIndex];
+            track('viewer', 'screen-view', screen.id);
+        }        
+    }, [components, currentIndex, track]);
 
     // Handle interaction
     const onScreenPrevious = useCallback(() => {

@@ -7,3 +7,4 @@ export { default as useMedia } from './useMedia';
 export { default as useMediaCreate } from './useMediaCreate';
 export { default as useMediaTags } from './useMediaTags';
 export { default as useMediaUpdate } from './useMediaUpdate';
+export { default as useTracking } from './useTracking';
