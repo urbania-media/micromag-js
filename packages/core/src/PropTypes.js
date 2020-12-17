@@ -266,6 +266,8 @@ export const imageElement = PropTypes.shape({
     media: imageMedia,
 });
 
+export const imageElements = PropTypes.arrayOf(imageElement);
+
 export const videoElement = PropTypes.shape({
     media: videoMedia,
     autoPlay: PropTypes.bool,

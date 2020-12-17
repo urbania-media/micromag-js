@@ -1,7 +1,6 @@
 import { v1 as uuid } from 'uuid';
 
 import {
-    // advertising,
     images,
     imageMedia,
     imagesWithCaptions,
@@ -11,7 +10,7 @@ import {
     subtitle,
     audioMedia,
     videoMedia,
-    video360Media,
+    // video360Media,
     map,
     markers,
     quote,
@@ -206,6 +205,7 @@ export const allScreens = [
             title: { body: title() },
             description: text('long'),
         })),
+        bulletShape: 'circle',
         bulletColor: '#FFF',
         lineColor: '#FFF',
         bulletFilled: false,
@@ -223,6 +223,7 @@ export const allScreens = [
             description: text('long'),
             image: imageMedia(),
         })),
+        bulletShape: 'circle',
         bulletColor: '#FFF',
         lineColor: '#FFF',
         bulletFilled: false,

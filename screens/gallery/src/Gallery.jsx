@@ -117,13 +117,17 @@ const GalleryScreen = ({
     useEffect(() => {
         if (imagesEl.current.length) {
             setImagesSizes(
-                imagesEl.current.map((imageEl) => ({
-                    width: imageEl.offsetWidth,
-                    height: imageEl.offsetHeight,
-                })),
+                imagesEl.current.map((imageEl) =>
+                    imageEl !== null
+                        ? {
+                              width: imageEl.offsetWidth,
+                              height: imageEl.offsetHeight,
+                          }
+                        : {},
+                ),
             );
         }
-    }, [width, height, setImagesSizes, images]);
+    }, [width, height, setImagesSizes, images, layout]);
 
     const items = [...Array(gridSpaces)].map((item, itemI) => {
         const image = images[itemI] || null;

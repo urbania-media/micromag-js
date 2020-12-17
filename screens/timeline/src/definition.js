@@ -34,6 +34,49 @@ export default [
                 }),
             },
             {
+                name: 'bulletShape',
+                type: 'radios',
+                defaultValue: 'circle',
+                options: [
+                    {
+                        value: 'circle',
+                        label: 'Circle',
+                    },
+                    {
+                        value: 'square',
+                        label: 'Square',
+                    },
+                ],
+                label: defineMessage({
+                    defaultMessage: 'Bullet shape',
+                    description: 'Field label',
+                }),
+            },
+            {
+                name: 'bulletFilled',
+                type: 'toggle',
+                label: defineMessage({
+                    defaultMessage: 'Bullet filled',
+                    description: 'Field label',
+                }),
+            },
+            {
+                name: 'bulletColor',
+                type: 'color',
+                label: defineMessage({
+                    defaultMessage: 'Bullet color',
+                    description: 'Field label',
+                }),
+            },
+            {
+                name: 'lineColor',
+                type: 'color',
+                label: defineMessage({
+                    defaultMessage: 'Line color',
+                    description: 'Field label',
+                }),
+            },
+            {
                 name: 'background',
                 type: 'background',
                 label: defineMessage({
@@ -70,6 +113,49 @@ export default [
                 type: 'entries-with-image',
                 label: defineMessage({
                     defaultMessage: 'Entries',
+                    description: 'Field label',
+                }),
+            },
+            {
+                name: 'bulletShape',
+                type: 'radios',
+                defaultValue: 'circle',
+                options: [
+                    {
+                        value: 'circle',
+                        label: 'Circle',
+                    },
+                    {
+                        value: 'square',
+                        label: 'Square',
+                    },
+                ],
+                label: defineMessage({
+                    defaultMessage: 'Bullet shape',
+                    description: 'Field label',
+                }),
+            },
+            {
+                name: 'bulletFilled',
+                type: 'toggle',
+                label: defineMessage({
+                    defaultMessage: 'Bullet filled',
+                    description: 'Field label',
+                }),
+            },
+            {
+                name: 'bulletColor',
+                type: 'color',
+                label: defineMessage({
+                    defaultMessage: 'Bullet color',
+                    description: 'Field label',
+                }),
+            },            
+            {
+                name: 'lineColor',
+                type: 'color',
+                label: defineMessage({
+                    defaultMessage: 'Line color',
                     description: 'Field label',
                 }),
             },

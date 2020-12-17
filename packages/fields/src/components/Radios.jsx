@@ -28,6 +28,7 @@ const defaultProps = {
 
 const Radios = ({ name, value, options, className, buttonClassName, onChange }) => {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
+
     return (
         <div
             className={classNames([
