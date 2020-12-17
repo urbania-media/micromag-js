@@ -106,8 +106,8 @@ export const allScreens = [
     {
         id: uuid(),
         type: 'map',
-        layout: 'bottom',
-        map: map(),
+        layout: 'normal',
+        ...map(),
         markers: markers(),
         splash: { body: 'Débuter' },
         background: {
@@ -118,8 +118,8 @@ export const allScreens = [
     {
         id: uuid(),
         type: 'map-images',
-        layout: 'top',
-        map: map(),
+        layout: 'normal',
+        ...map(),
         markers: markers({ withImage: true }),
         splash: { body: 'Avec images' },
         background: {

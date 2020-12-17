@@ -1,33 +1,74 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useCallback } from 'react';
+import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import NumberField from './Number';
 
-import Fields from './Fields';
+import styles from '../styles/geo-position.module.scss';
 
-const propTypes = {
-    isForm: PropTypes.bool,
+
+const propTypes = {    
+    value: MicromagPropTypes.geoPosition,    
     className: PropTypes.string,
+    onChange: PropTypes.func,
 };
 
 const defaultProps = {
-    isForm: false,
+    value: null,
     className: null,
+    onChange: null,
 };
 
-const GeoPosition = ({ isForm, className, ...props }) => (
-    <Fields
-        {...props}
-        className={classNames([
+const GeoPosition = ({ value, className, onChange }) => {
+    const onLatitudeChange = useCallback(
+        (newLat) => {
+            const newValue = {
+                ...value,
+                lat: newLat,
+            };
+            if (onChange !== null) {
+                onChange(newValue);
+            }
+        },
+        [value, onChange],
+    );
+
+    const onLongitudeChange = useCallback(
+        (newLng) => {
+            const newValue = {
+                ...value,
+                lng: newLng,
+            };
+            if (onChange !== null) {
+                onChange(newValue);
+            }
+        },
+        [value, onChange],
+    );
+
+    const { lat = null, lng = null } = value || {};
+
+    return (
+        <div className={classNames([
+            styles.container,
             {
-                'p-2': isForm,
-                className: className !== null,
+                [className]: className !== null,
             },
-        ])}
-        isList
-        isHorizontal
-    />
-);
+        ])}>
+            <label>
+                <span><FormattedMessage defaultMessage="Latitude" description="Latitude description" />:</span>
+                <NumberField float value={lat} min={-90} max={90} onChange={onLatitudeChange} />
+            </label>
+            <label>
+                <span><FormattedMessage defaultMessage="Longitude" description="Longitude description" />:</span>
+                <NumberField float value={lng} min={-180} max={180} onChange={onLongitudeChange} />
+            </label>
+        </div>
+    );
+};
 
 GeoPosition.propTypes = propTypes;
 GeoPosition.defaultProps = defaultProps;

@@ -26,11 +26,27 @@ export default [
                 }),
             },
             {
-                name: 'map',
-                type: 'map',
+                name: 'splash',
+                type: 'text-element',
                 label: defineMessage({
-                    defaultMessage: 'Map',
-                    description: 'Map field label',
+                    defaultMessage: 'Splash text',
+                    description: 'Splash text field label',
+                }),
+            },
+            {
+                name: 'center',
+                type: 'geo-position',
+                label: defineMessage({
+                    defaultMessage: 'Center',
+                    description: 'Center field label',
+                }),
+            },
+            {
+                name: 'zoom',
+                type: 'map-zoom',
+                label: defineMessage({
+                    defaultMessage: 'Zoom',
+                    description: 'Zoom field label',
                 }),
             },
             {
@@ -74,18 +90,39 @@ export default [
                 }),
             },
             {
-                name: 'map',
-                type: 'map',
+                name: 'splash',
+                type: 'text-element',
                 label: defineMessage({
-                    defaultMessage: 'Map',
-                    description: 'Map field label',
+                    defaultMessage: 'Splash text',
+                    description: 'Splash text field label',
+                }),
+            },
+            {
+                name: 'center',
+                type: 'geo-position',
+                defaultValue: {
+                    lat: 45.5,
+                    lng: -73.56,
+                },
+                label: defineMessage({
+                    defaultMessage: 'Center',
+                    description: 'Center field label',
+                }),
+            },
+            {
+                name: 'zoom',
+                type: 'map-zoom',
+                defaultValue: 9,
+                label: defineMessage({
+                    defaultMessage: 'Zoom',
+                    description: 'Zoom field label',
                 }),
             },
             {
                 name: 'markers',
-                type: 'markers',
+                type: 'markers-with-image',
                 label: defineMessage({
-                    defaultMessage: 'Markers',
+                    defaultMessage: 'Markers with image',
                     description: 'Markers field label',
                 }),
             },

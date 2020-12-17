@@ -56,6 +56,12 @@ const Map = ({
         }
     }, [center.lat, center.lng]);
 
+    useEffect(() => {
+        if (map) {
+            map.setZoom(zoom);
+        }
+    }, [zoom]);
+
     return (
         <div
             className={classNames([
@@ -67,9 +73,7 @@ const Map = ({
         >
             <div ref={mapRef} className={styles.map} />
             {!loading &&
-                React.Children.map(children, child => {
-                    return React.cloneElement(child, { map, maps });
-                })}
+                React.Children.map(children, child => React.cloneElement(child, { map, maps }))}
         </div>
     );
 };
