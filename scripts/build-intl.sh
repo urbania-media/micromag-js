@@ -6,7 +6,7 @@ languages_pattern=$(jq -r '.supportedLocales | join("|")' ./package.json)
 
 echo "Building intl..."
 
-../../scripts/formatjs-extract.js '../../!(node_modules)/!(intl)/src/**/*.js*' ./lang/messages.json
+../../scripts/formatjs-extract.js '../../!(node_modules)/!(intl)/src/**/*.+(js|jsx)' ./lang/messages.json
 
 for lang in $languages
 do
