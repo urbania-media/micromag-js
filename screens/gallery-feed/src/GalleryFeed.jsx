@@ -21,7 +21,7 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     layout: PropTypes.oneOf(['normal', 'reverse']),
-    images: MicromagPropTypes.imageElementsWithCaption,
+    images: PropTypes.oneOf([MicromagPropTypes.imageElementsWithCaption, MicromagPropTypes.imagesMedias]),
     withCaptions: PropTypes.bool,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
@@ -89,8 +89,9 @@ const GalleryFeedScreen = ({
     const { width: firstImageRefWidth } = contentRect || {};
 
     finalImages.forEach((image, index) => {
-        const { caption = null } = image || {};
-        const hasImage = isImageFilled(image);
+        const finalImage = withCaptions ? image : { media: image };
+        const { caption = null } = finalImage || {};
+        const hasImage = isImageFilled(finalImage);
         const hasCaption = isTextFilled(caption);
 
         const imageElement = (
@@ -105,7 +106,7 @@ const GalleryFeedScreen = ({
             >
                 <div className={styles.imageContainer} ref={index === 0 ? firstImageRef : null}>
                     <Image
-                        {...image}
+                        {...finalImage}
                         width={firstImageRefWidth}
                         onLoaded={onImageLoaded}
                     />

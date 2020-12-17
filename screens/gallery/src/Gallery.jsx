@@ -44,7 +44,7 @@ const propTypes = {
         'one-one-two-two',
         'two-two-one-one',
     ]),
-    images: MicromagPropTypes.imageMedias,
+    images: PropTypes.oneOfType([MicromagPropTypes.imageMedias, MicromagPropTypes.imagesElements]),
     withCaptions: PropTypes.bool,
     spacing: PropTypes.number,
     captionMaxLines: PropTypes.number,
@@ -117,9 +117,10 @@ const GalleryScreen = ({
     useEffect(() => {
         if (imagesEl.current.length) {
             setImagesSizes(
-                imagesEl.current.map((imageEl) => {
-                    return { width: imageEl.offsetWidth, height: imageEl.offsetHeight };
-                }),
+                imagesEl.current.map((imageEl) => ({
+                    width: imageEl.offsetWidth,
+                    height: imageEl.offsetHeight,
+                })),
             );
         }
     }, [width, height, setImagesSizes, images]);
@@ -127,9 +128,12 @@ const GalleryScreen = ({
     const items = [...Array(gridSpaces)].map((item, itemI) => {
         const image = images[itemI] || null;
         const imageSize = imagesSizes[itemI] || {};
-        const { caption = null } = image || {};
 
-        const hasImage = isImageFilled(image);
+        const finalImage = withCaptions ? image : { media: image };
+
+        const { caption = null } = finalImage || {};
+
+        const hasImage = isImageFilled(finalImage);
         const hasCaption = isTextFilled(caption);
 
         return (
@@ -160,7 +164,7 @@ const GalleryScreen = ({
                         >
                             <Image
                                 className={styles.image}
-                                {...image}
+                                {...finalImage}
                                 {...imageSize}
                                 objectFit={{ fit: 'cover' }}
                                 onLoaded={onImageLoaded}

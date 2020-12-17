@@ -133,12 +133,10 @@ export const closedCaptionsMedia = () => ({
 
 export const images = ({ count = 3, width = 800, height = 800, rand = false } = {}) =>
     [...Array(count)].map(() => ({
-        media: {
-            url: `https://picsum.photos/${width}/${height}?random=${rand ? Math.random() : 1}`,
-            metadata: {
-                width,
-                height,
-            },
+        url: `https://picsum.photos/${width}/${height}?random=${rand ? Math.random() : 1}`,
+        metadata: {
+            width,
+            height,
         },
     }));
 
