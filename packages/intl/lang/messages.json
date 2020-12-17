@@ -103,6 +103,10 @@
     "defaultMessage": "Text",
     "description": "Text field label"
   },
+  "4H2n5r": {
+    "defaultMessage": "Closed captions",
+    "description": "Field label"
+  },
   "4POR3B": {
     "defaultMessage": "View screen",
     "description": "Button to view a screen"
@@ -191,6 +195,10 @@
     "defaultMessage": "Select an image...",
     "description": "Label when no value is provided to Image field"
   },
+  "B6cvYv": {
+    "defaultMessage": "Select a closed-captions file...",
+    "description": "Label when no value is provided to Closed-captions field"
+  },
   "BpZoQZ": {
     "defaultMessage": "Success",
     "description": "Success form message"
@@ -223,6 +231,10 @@
     "defaultMessage": "Subtitle",
     "description": "Subtitle field label"
   },
+  "F2SD/0": {
+    "defaultMessage": "Loop",
+    "description": "Field label"
+  },
   "FJjjnF": {
     "defaultMessage": "Video 360",
     "description": "Video 360 screen title"
@@ -250,10 +262,6 @@
   "GzoKNb": {
     "defaultMessage": "Timeline",
     "description": "Timeline screen title"
-  },
-  "Gzx6q5": {
-    "defaultMessage": "Advertising",
-    "description": "Ad title"
   },
   "HseFdk": {
     "defaultMessage": "Edit",
@@ -315,10 +323,6 @@
     "defaultMessage": "No item...",
     "description": "Label when there is no item in items field"
   },
-  "PQG8A5": {
-    "defaultMessage": "Link",
-    "description": "Link field label"
-  },
   "PbHeHc": {
     "defaultMessage": "Markers",
     "description": "Markers field label"
@@ -346,9 +350,9 @@
     "defaultMessage": "Text",
     "description": "Text screen title"
   },
-  "StDSlO": {
-    "defaultMessage": "Ad",
-    "description": "Ad screen title"
+  "T0pi1u": {
+    "defaultMessage": "With seek bar",
+    "description": "Field label"
   },
   "T9NZPQ": {
     "defaultMessage": "Images",
@@ -365,10 +369,6 @@
   "V+G2s+": {
     "defaultMessage": "Add an image",
     "description": "Button label in images field"
-  },
-  "VqyxpU": {
-    "defaultMessage": "Ad",
-    "description": "Ad screen group"
   },
   "Wr9olU": {
     "defaultMessage": "Typography",
@@ -550,6 +550,10 @@
   },
   "p85qJD": {
     "defaultMessage": "Caption",
+    "description": "Field label"
+  },
+  "pJgYyE": {
+    "defaultMessage": "AutoPlay",
     "description": "Field label"
   },
   "qIw1nW": {
