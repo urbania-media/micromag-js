@@ -1,3 +1,5 @@
+// stylelint-disable max-nesting-depth
+
 @import '~@micromag/core/scss/placeholders';
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/mixins';
@@ -5,11 +7,19 @@
 .container {
     @extend %screen;
 
-    .empty {
+    .emptyQuote,
+    .emptyAuthor {
         @extend %empty;
-        width: 100%;
+        width: 100%;        
+        margin: 10px auto;
+    }
+
+    .emptyQuote {
+        height: 200px;
+    }
+
+    .emptyAuthor {
         height: 50px;
-        margin: 0 auto;
     }
 
     .quote {

@@ -12,10 +12,19 @@
         height: 100%;
     }
 
-    .empty {
+    .emptyImage,
+    .emptyCaption {
         @extend %empty;
         width: 100%;
+    }
+
+    .emptyImage {
         height: 100%;
+    }
+
+    .emptyCaption {
+        height: 50px;
+        margin-top: 10px;
     }
 
     .gridItem {
@@ -37,10 +46,6 @@
     .caption {
         padding: 10px 0;
     }
-
-    // .captionText {
-
-    // }
 
     .content {
         @extend %fullscreen;

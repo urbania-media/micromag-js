@@ -128,7 +128,7 @@ const ImageScreen = ({
                 emptyLabel={
                     <FormattedMessage defaultMessage="Image" description="Image placeholder" />
                 }
-                emptyClassName={styles.empty}
+                emptyClassName={styles.emptyImage}
                 isEmpty={!hasImage}
             >
                 {hasImage ? (
@@ -157,7 +157,7 @@ const ImageScreen = ({
                 emptyLabel={
                     <FormattedMessage defaultMessage="Title" description="Title placeholder" />
                 }
-                emptyClassName={styles.empty}
+                emptyClassName={styles.emptyTitle}
                 isEmpty={!hasTitle}
             >
                 {hasTitle ? (
@@ -181,7 +181,7 @@ const ImageScreen = ({
                 emptyLabel={
                     <FormattedMessage defaultMessage="Text" description="Text placeholder" />
                 }
-                emptyClassName={styles.empty}
+                emptyClassName={styles.emptyText}
                 isEmpty={!hasText}
             >
                 {hasText ? (
@@ -205,7 +205,7 @@ const ImageScreen = ({
                 emptyLabel={
                     <FormattedMessage defaultMessage="Legend" description="Legend placeholder" />
                 }
-                emptyClassName={styles.empty}
+                emptyClassName={styles.emptyLegend}
                 isEmpty={!hasLegend}
             >
                 {hasLegend ? (
