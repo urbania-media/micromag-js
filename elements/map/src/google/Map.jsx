@@ -52,7 +52,9 @@ const Map = ({
 
     useEffect(() => {
         if (map) {
-            map.panTo(center);
+            const { lat = null, lng = null } = center;
+            const finalCenter = { lat: lat || 0, lng: lng || 0 };
+            map.panTo(finalCenter);
         }
     }, [center.lat, center.lng]);
 
