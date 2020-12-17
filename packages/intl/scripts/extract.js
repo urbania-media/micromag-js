@@ -3,7 +3,7 @@ const path = require('path');
 const { program } = require('commander');
 const { sync: globSync } = require('glob');
 const { extractAndWrite } = require('@formatjs/cli');
-const { idInterpolationPattern } = require('./formatjs');
+const { idInterpolationPattern } = require('./config');
 
 let srcPath;
 let destPath;

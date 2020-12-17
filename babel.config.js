@@ -1,5 +1,5 @@
 // const path = require('path');
-const { idInterpolationPattern } = require('./scripts/formatjs');
+const { idInterpolationPattern } = require('./packages/intl/scripts/config');
 
 module.exports = (api) => ({
     presets: [

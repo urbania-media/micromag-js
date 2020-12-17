@@ -2,7 +2,7 @@
 
 # Help
 usage() {
-    echo "Usage: $0 [--scss|-s] [--intl|-i]"
+    echo "Usage: $0 [--scss|-s]"
 }
 
 # Transform long options to short ones
@@ -11,14 +11,12 @@ for arg in "$@"; do
     case "$arg" in
         "--help") set -- "$@" "-h" ;;
         "--scss") set -- "$@" "-s" ;;
-        "--intl") set -- "$@" "-i" ;;
         *)        set -- "$@" "$arg"
     esac
 done
 
 # Set defaults
 scss=false
-intl=false
 languages="en fr"
 
 # Get options
@@ -26,7 +24,6 @@ while getopts 'is?h' c
 do
     case $c in
         s) scss=true ;;
-        i) intl=true ;;
         h) usage; exit 0 ;;
         ?) usage >&2; exit 1 ;;
     esac
@@ -64,40 +61,9 @@ copy_scss() {
     find ./src -type f -name "*.scss" ! -name "*.module.scss" -exec cp {} ./scss/ \;
 }
 
-build_intl() {
-    echo "Building intl..."
-
-    ../../scripts/formatjs-extract.js './src/**/*.js*' ./lang/messages.json
-
-    for lang in $languages
-    do
-        if [ -f ./lang/$lang.json ]; then
-            json2po -t ./lang/messages.json --filter=defaultMessage ./lang/$lang.json ./lang/$lang.po
-        else
-            json2po --filter=defaultMessage ./lang/messages.json ./lang/$lang.po
-        fi
-        po2json -t ./lang/messages.json ./lang/$lang.po ./lang/$lang.json
-    done
-
-    ../../scripts/formatjs-compile.js './lang/*.json' ./lang
-
-    # for lang in $languages
-    # do
-    #     if [ -f ./lang/$lang.json ]; then
-    #         ../../scripts/json2po.py -t ./lang/messages.json ./lang/$lang.json ./lang/$lang.po
-    #     else
-    #         ../../scripts/json2po.py ./lang/messages.json ./lang/$lang.po
-    #     fi
-    #     python3 ../../scripts/po2json.py -t ./lang/messages.json ./lang/$lang.po ./lang/$lang.json
-    # done
-    #
-    # ../../scripts/formatjs-compile.js './lang/*.json' ./lang
-}
-
 # Build
 export NODE_ENV=production
 clean
 build_rollup
 if [ -f ./es/styles.css ]; then copy_css; fi
 if [ "$scss" = true ]; then copy_scss; fi
-if [ "$intl" = true ]; then build_intl; fi

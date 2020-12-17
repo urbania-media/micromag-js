@@ -31,16 +31,21 @@
         "locale",
         "lib",
         "es",
+        "scripts",
         "assets"
     ],
     "scripts": {
-        "intl": "../../scripts/build-intl.sh",
+        "intl": "./scripts/build-intl.sh",
         "prepare": "npm run intl && ../../scripts/prepare-package.sh"
     },
     "devDependencies": {
+        "@formatjs/cli": "^2.13.16",
         "@micromag/editor": "^0.2.13",
         "@micromag/elements": "^0.2.13",
         "@micromag/screens": "^0.2.13",
+        "commander": "^6.2.1",
+        "fs-extra": "^9.0.1",
+        "glob": "^7.1.6",
         "react": "^17.0.1",
         "react-dom": "^17.0.1"
     },

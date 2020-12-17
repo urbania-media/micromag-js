@@ -2,7 +2,7 @@
 const path = require('path');
 const getPackagesPaths = require('../scripts/lib/getPackagesPaths');
 const getPackagesAliases = require('../scripts/lib/getPackagesAliases');
-const { idInterpolationPattern } = require('../scripts/formatjs');
+const { idInterpolationPattern } = require('../packages/intl/scripts/config');
 require('dotenv').config();
 
 module.exports = {
