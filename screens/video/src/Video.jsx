@@ -2,9 +2,10 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { PlaceholderVideo, Transitions } from '@micromag/core/components';
+import { PlaceholderVideo, Transitions, ScreenElement } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -111,37 +112,47 @@ const VideoScreen = ({
     const resizedVideoLeft = -(resizedVideoWidth - finalWidth) / 2;
     const resizedVideoTop = -(resizedVideoHeight - height) / 2;
 
-    const items = [];
+    const placeholderProps = fullscreen ? { width: '100%', height: '100%' } : { width: '100%' };
 
-    if (isPlaceholder) {
-        const placeholderProps = fullscreen ? { width: '100%', height: '100%' } : { width: '100%' };
-        items.push(<PlaceholderVideo className={styles.placeholder} {...placeholderProps} />);
-    } else if (hasVideo) {
-        items.push(
-            <div
-                className={styles.videoContainer}
-                style={{
-                    width: resizedVideoWidth,
-                    height: resizedVideoHeight,
-                    left: resizedVideoLeft,
-                    top: resizedVideoTop,
-                }}
-            >
-                <Transitions playing={transitionPlaying} transitions={transitions} disabled={!isView}>
-                    <Video
-                        {...finalVideo}
-                        ref={apiRef}
-                        className={styles.video}
-                        onReady={onVideoReady}
-                        onPlayChanged={onPlayChanged}
-                        onMuteChanged={onMuteChanged}
-                        onTimeUpdate={onTimeUpdate}
-                        onDurationChanged={onDurationChanged}
-                    />
-                </Transitions>
-            </div>,
-        );
-        items.push(
+    const items = [
+        <ScreenElement
+            key="video"
+            placeholder={<PlaceholderVideo className={styles.placeholder} {...placeholderProps} />}
+            emptyLabel={
+                <FormattedMessage
+                    defaultMessage="Video"
+                    description="Video placeholder"
+                />
+            }
+            emptyClassName={styles.empty}
+            isEmpty={!hasVideo}
+        >
+            { hasVideo ? 
+                <div
+                    className={styles.videoContainer}
+                    style={{
+                        width: resizedVideoWidth,
+                        height: resizedVideoHeight,
+                        left: resizedVideoLeft,
+                        top: resizedVideoTop,
+                    }}
+                >
+                    <Transitions playing={transitionPlaying} transitions={transitions} disabled={!isView}>
+                        <Video
+                            {...finalVideo}
+                            ref={apiRef}
+                            className={styles.video}
+                            onReady={onVideoReady}
+                            onPlayChanged={onPlayChanged}
+                            onMuteChanged={onMuteChanged}
+                            onTimeUpdate={onTimeUpdate}
+                            onDurationChanged={onDurationChanged}
+                        />
+                    </Transitions>
+                </div>
+            : null }
+        </ScreenElement>,
+        !isPlaceholder ? 
             <div className={styles.bottomContent}>
                 {closedCaptions !== null ? (
                     <ClosedCaptions
@@ -161,9 +172,9 @@ const VideoScreen = ({
                     onToggleMute={toggleMute}
                     onSeek={seek}
                 />
-            </div>,
-        );
-    }
+            </div>
+        : null
+    ];
 
     return (
         <div
