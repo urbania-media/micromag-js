@@ -1,6 +1,6 @@
 {
     "name": "@micromag/intl",
-    "version": "0.2.8",
+    "version": "0.2.10",
     "description": "",
     "keywords": [
         "javascript"
@@ -38,9 +38,9 @@
         "prepare": "npm run intl && ../../scripts/prepare-package.sh"
     },
     "devDependencies": {
-        "@micromag/editor": "^0.2.8",
-        "@micromag/elements": "^0.2.8",
-        "@micromag/screens": "^0.2.8",
+        "@micromag/editor": "^0.2.10",
+        "@micromag/elements": "^0.2.10",
+        "@micromag/screens": "^0.2.10",
         "react": "^17.0.1",
         "react-dom": "^17.0.1"
     },
@@ -50,7 +50,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.12.5",
-        "@micromag/core": "^0.2.7",
+        "@micromag/core": "^0.2.10",
         "lodash": "^4.17.15",
         "prop-types": "^15.7.2",
         "react-intl": "^5.10.6"
