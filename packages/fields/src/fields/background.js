@@ -40,5 +40,30 @@ export default {
                 description: 'Field label',
             })
         }
+    ],
+
+    settings: [
+        {
+            type: 'fields',
+            isList: true,
+            fields: [
+                {
+                    name: 'fit',
+                    type: 'fit',
+                    label: defineMessage({
+                        defaultMessage: 'Fit',
+                        description: 'Field label',
+                    })
+                },
+                {
+                    name: 'repeat',
+                    type: 'toggle',
+                    label: defineMessage({
+                        defaultMessage: 'Repeat',
+                        description: 'Field label',
+                    })
+                }
+            ]
+        }
     ]
 };

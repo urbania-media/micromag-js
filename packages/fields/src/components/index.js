@@ -31,7 +31,7 @@ export { default as Margin } from './Margin';
 export { default as Markers } from './Markers';
 export { default as Marker } from './Marker';
 export { default as Number } from './Number';
-export { default as ObjectFitSize } from './ObjectFitSize';
+export { default as Fit } from './Fit';
 export { default as Radios } from './Radios';
 export { default as Position } from './Position';
 export { default as Question } from './Question';

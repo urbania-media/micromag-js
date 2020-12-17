@@ -12,6 +12,7 @@ export { default as entries } from './entries';
 export { default as entryWithImage } from './entry-with-image';
 export { default as entry } from './entry';
 export { default as fields } from './fields';
+export { default as fit } from './fit';
 export { default as fontFamily } from './font-family';
 export { default as fontSize } from './font-size';
 export { default as headingElement } from './heading-element';

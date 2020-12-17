@@ -78,7 +78,7 @@ const Background = ({
     }
 
     // video
-    
+
     const { metadata: videoMetadata = null } = video || {};
     const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
     const { width: resizedVideoWidth = 0, height: resizedVideoHeight = 0} = getSizeWithinBounds(
@@ -86,7 +86,7 @@ const Background = ({
         videoHeight,
         width,
         height,
-        { cover: true },
+        { cover: fit === 'cover' || fit === null },
     );
     const resizedVideoLeft = -(resizedVideoWidth - width) / 2;
     const resizedVideoTop = -(resizedVideoHeight - height) / 2;
@@ -116,7 +116,7 @@ const Background = ({
                         media={video}
                         autoPlay={!isPreview}
                         initialMuted
-                        loop                        
+                        loop
                     />
                 </div>
             ) : null}

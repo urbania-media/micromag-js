@@ -6,7 +6,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import Radios from './Radios';
 
-import styles from '../styles/object-fit-size.module.scss';
+import styles from '../styles/fit.module.scss';
 
 const propTypes = {
     values: PropTypes.arrayOf(PropTypes.string),
@@ -16,7 +16,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    values: ['cover', 'contain', 'none'], // TODO, maybe add 'fill', 'scale-down', ?
+    values: ['cover', 'contain', null], // TODO, maybe add 'fill', 'scale-down', ?
     value: null,
     className: null,
     onChange: null,
@@ -27,7 +27,7 @@ const ObjectFitSize = ({ values, value, className, onChange }) => (
         options={values.map(val => ({
             value: val,
             label: (
-                <div className={classNames([styles.frame, styles[val]])}>
+                <div className={classNames([styles.frame, styles[val || 'none']])}>
                     <div className={styles.shape}>
                         <div className={styles.inner}>
                             <div className={styles.media} />
