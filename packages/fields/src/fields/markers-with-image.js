@@ -2,7 +2,7 @@ import { defineMessage } from 'react-intl';
 import Items from '../components/Items';
 
 export default {
-    id: 'markers',
+    id: 'markers-with-image',
     component: Items,
     noItemLabel: defineMessage({
         defaultMessage: 'No marker...',
@@ -13,6 +13,6 @@ export default {
         description: 'Button label',
     }),
     itemsField: {
-        type: 'marker',
+        type: 'marker-with-image',
     }
 };

@@ -112,7 +112,7 @@ export const video360Media = () => ({
     url: video360File,
     metadata: {
         width: 1920,
-        height: 1080,
+        height: 960,
     },
 });
 

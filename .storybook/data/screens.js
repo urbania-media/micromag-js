@@ -10,7 +10,7 @@ import {
     subtitle,
     audioMedia,
     videoMedia,
-    // video360Media,
+    video360Media,
     map,
     markers,
     quote,
@@ -106,8 +106,8 @@ export const allScreens = [
     {
         id: uuid(),
         type: 'map',
-        layout: 'bottom',
-        map: map(),
+        layout: 'normal',
+        ...map(),
         markers: markers(),
         splash: { body: 'Débuter' },
         background: {
@@ -118,8 +118,8 @@ export const allScreens = [
     {
         id: uuid(),
         type: 'map-images',
-        layout: 'top',
-        map: map(),
+        layout: 'normal',
+        ...map(),
         markers: markers({ withImage: true }),
         splash: { body: 'Avec images' },
         background: {
@@ -260,22 +260,22 @@ export const allScreens = [
         },
         transitions: transitions(),
     },
-    // {
-    //     id: uuid(),
-    //     type: 'video-360',
-    //     layout: 'full',
-    //     video: {
-    //         media: video360Media(),
-    //         autoPlay: false,
-    //         loop: true,
-    //         closedCaptions: closedCaptionsMedia(),
-    //         withSeekBar: true,
-    //     },        
-    //     background: {
-    //         color: '#FF00FF',
-    //     },
-    //     transitions: transitions(),
-    // },
+    {
+        id: uuid(),
+        type: 'video-360',
+        layout: 'full',
+        video: {
+            media: video360Media(),
+            autoPlay: false,
+            loop: true,
+            closedCaptions: closedCaptionsMedia(),
+            withSeekBar: true,
+        },        
+        background: {
+            color: '#FF00FF',
+        },
+        transitions: transitions(),
+    },
 ];
 
 export default allScreens;

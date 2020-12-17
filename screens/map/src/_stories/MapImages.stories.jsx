@@ -8,7 +8,7 @@ import MapImagesScreen from '../MapImages';
 import definition from '../definition';
 
 const props = {
-    map: map(),
+    ...map(),
     markers: markers({ withImage: true }),
     splash: { body: 'Débuter' },
     background: backgroundColor(),

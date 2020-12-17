@@ -2,7 +2,7 @@ import { defineMessage } from 'react-intl';
 import FieldWithForm from '../components/FieldWithForm';
 
 export default {
-    id: 'marker',
+    id: 'marker-with-image',
     component: FieldWithForm,
     labelPath: 'title.body',
     fields: [
@@ -23,11 +23,19 @@ export default {
             }),
         },
         {
+            name: 'image',
+            type: 'image',
+            label: defineMessage({
+                defaultMessage: 'Image',
+                description: 'Field label',
+            }),
+        },
+        {
             name: 'geoPosition',
             type: 'geo-position',label: defineMessage({
                 defaultMessage: 'Position',
                 description: 'Field label',
             }),
-        }
+        },
     ]
 };

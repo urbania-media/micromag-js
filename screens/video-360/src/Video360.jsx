@@ -13,6 +13,7 @@ import Container from '@micromag/element-container';
 import ClosedCaptions from '@micromag/element-closed-captions';
 import MediaControls from '@micromag/element-media-controls';
 import Video from '@micromag/element-video';
+import { getSizeWithinBounds } from '@folklore/size';
 
 import { 
     Scene,
@@ -94,7 +95,20 @@ const Video360Screen = ({
     const transitionPlaying = current && ready;
 
     const finalVideo = hasVideo ? {...video, autoPlay: isPreview ? false : video.autoPlay } : null;
-    const { closedCaptions = null, withSeekBar = false } = finalVideo || {};
+    const { media: videoMedia = null , closedCaptions = null, withSeekBar = false } = finalVideo || {};
+
+    const { metadata: videoMetadata = null } = videoMedia || {};
+    const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
+
+    const { width: resizedVideoWidth, height: resizedVideoHeight } = getSizeWithinBounds(
+        videoWidth,
+        videoHeight,
+        width,
+        height,
+        { cover: true },
+    );
+    const resizedVideoLeft = -(resizedVideoWidth - width) / 2;
+    const resizedVideoTop = -(resizedVideoHeight - height) / 2;
 
     useEffect(() => {
         setReady(false);
@@ -149,9 +163,9 @@ const Video360Screen = ({
             geometry.scale( - 1, 1, 1 );
 
             const { mediaRef: videoMediaRef = null } = apiRef.current || {};
-            const { current: videoMedia = null } = videoMediaRef || {};
+            const { current: videoElement = null } = videoMediaRef || {};
 
-            const videoTexture = new VideoTexture( videoMedia );
+            const videoTexture = new VideoTexture( videoElement );
             
             const videoMaterial = new MeshBasicMaterial( { map: videoTexture } );
 
@@ -249,6 +263,7 @@ const Video360Screen = ({
                 styles.container,
                 {
                     [className]: className !== null,
+                    [styles.isPreview]: isPreview,
                 },
             ])}
         >
@@ -258,20 +273,30 @@ const Video360Screen = ({
                 height={height}
                 playing={(isView && current) || (isEdit && active)}
             />
-            <Container width={width} height={height}>
-                <div className={styles.content}>{items}</div>
+            <Container width={width} height={height}>                
                 { hasVideo ?
-                    <Video
-                        {...finalVideo}
-                        ref={apiRef}
-                        className={styles.video}
-                        onReady={onVideoReady}
-                        onPlayChanged={onPlayChanged}
-                        onMuteChanged={onMuteChanged}
-                        onTimeUpdate={onTimeUpdate}
-                        onDurationChanged={onDurationChanged}
-                    />
+                    <div
+                        className={styles.videoContainer}
+                        style={{
+                            width: resizedVideoWidth,
+                            height: resizedVideoHeight,
+                            left: resizedVideoLeft,
+                            top: resizedVideoTop,
+                        }}
+                    >
+                        <Video
+                            {...finalVideo}
+                            ref={apiRef}
+                            className={styles.video}
+                            onReady={onVideoReady}
+                            onPlayChanged={onPlayChanged}
+                            onMuteChanged={onMuteChanged}
+                            onTimeUpdate={onTimeUpdate}
+                            onDurationChanged={onDurationChanged}
+                        />
+                    </div>
                 : null }
+                <div className={styles.content}>{items}</div>
             </Container>
         </div>
     );

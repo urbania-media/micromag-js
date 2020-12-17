@@ -2,11 +2,10 @@
 import React, { useState, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes, useResizeObserver } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
-import { PlaceholderMap, Empty, Transitions, Button } from '@micromag/core/components';
+import { PlaceholderMap, Transitions, Button } from '@micromag/core/components';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Map from '@micromag/element-map';
@@ -15,13 +14,15 @@ import Text from '@micromag/element-text';
 import Image from '@micromag/element-image';
 
 import styles from './styles.module.scss';
+import { isTextFilled } from '@micromag/core/src/utils';
 
 const gmapsApiKey = process.env.GOOGLE_MAPS_API_KEY || null;
 
 const propTypes = {
     layout: PropTypes.oneOf(['normal']),
-    map: MicromagPropTypes.map,
-    markers: MicromagPropTypes.markers,
+    zoom: PropTypes.number,
+    center: MicromagPropTypes.geoPosition,
+    markers: PropTypes.oneOfType([MicromagPropTypes.markers, MicromagPropTypes.markersWithImage]),
     splash: PropTypes.string,
     openedMarkerSpacerHeight: PropTypes.number,
     withMarkerImages: PropTypes.bool,
@@ -37,12 +38,10 @@ const propTypes = {
 
 const defaultProps = {
     layout: 'normal',
-    map: {
-        zoom: 9,
-        center: {
-            lat: 45.5,
-            lng: -73.56,
-        },
+    zoom: 9,
+    center: {
+        lat: 45.5,
+        lng: -73.56,
     },
     markers: [],
     splash: null,
@@ -60,7 +59,8 @@ const defaultProps = {
 
 const MapScreen = ({
     layout,
-    map,
+    zoom,
+    center,
     markers,
     splash,
     openedMarkerSpacerHeight,
@@ -88,10 +88,7 @@ const MapScreen = ({
 
     const { isView, isPlaceholder, isPreview, isEdit } = useScreenRenderContext();
 
-    const hasMap = map !== null;
-    const isEmpty = isEdit && !hasMap;
-
-    const [ready, setReady] = useState(!hasMap);
+    const [ready, setReady] = useState(false);
     const transitionPlaying = current && ready;
 
     const onMapReady = useCallback(() => setReady(true), [setReady]);
@@ -123,33 +120,15 @@ const MapScreen = ({
     const {
         ref: markerOverContentInnerRef,
         entry: { contentRect: markerOverContentInnerRect },
-    } = useResizeObserver({ disabled: !isView && !hasMap });
+    } = useResizeObserver({ disabled: !isView });
     const { width: markerOverContentInnerWidth = '100%' } = markerOverContentInnerRect || {};
 
     let element = null;
-
-    if (isEmpty) {
-        element = (
-            <Empty className={styles.empty}>
-                {withMarkerImages ? (
-                    <FormattedMessage
-                        defaultMessage="MapImages"
-                        description="MapImages placeholder"
-                    />
-                ) : (
-                    <FormattedMessage
-                        defaultMessage="MapScreen"
-                        description="MapScreen placeholder"
-                    />
-                )}
-            </Empty>
-        );
-    } else if (isPlaceholder) {
+    if (isPlaceholder) {
         element = <PlaceholderMap className={styles.placeholder} withImages={withMarkerImages} />;
     } else if (isPreview) {
         if (maxWidth > 0 && height > 0) {
             let staticUrl = `https://maps.googleapis.com/maps/api/staticmap?size=${maxWidth}x${height}`;
-            const { center = null, zoom = null } = map;
             if (center !== null) {
                 const { lat = null, lng = null } = center;
                 staticUrl += `&center=${lat},${lng}`;
@@ -189,11 +168,12 @@ const MapScreen = ({
                 />
             );
         }
-    } else if (hasMap) {
+    } else {
         const { title = null, description = null, image = null } = lastRenderedMarker.current || {};
         const hasTitle = title !== null;
         const hasDescription = description !== null;
         const hasImage = image !== null;
+        const hasSplash = isTextFilled(splash);
         element = (
             <Transitions
                 transitions={transitions}
@@ -202,7 +182,8 @@ const MapScreen = ({
                 disabled={!isView}
             >
                 <Map
-                    {...map}
+                    center={center}
+                    zoom={zoom}
                     markers={markers.map((marker, markerI) => ({
                         ...marker,
                         active: markerI === selectedMarker,
@@ -248,7 +229,7 @@ const MapScreen = ({
                         </div>
                     </div>
                 </div>
-                <div className={styles.splash}>
+                <div className={classNames([styles.splash, { [styles.splashEmpty]: !hasSplash }])}>
                     <Button className={styles.splashButton} onClick={onSplashClick} withoutStyle>
                         <Text className={styles.splashText} {...splash} inline />
                     </Button>

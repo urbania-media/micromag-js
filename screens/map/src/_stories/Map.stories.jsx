@@ -8,7 +8,7 @@ import MapScreen from '../Map';
 import definition from '../definition';
 
 const props = {
-    map: map(),
+    ...map(),
     markers: markers(),
     splash: { body: 'Débuter' },
     background: backgroundColor(),

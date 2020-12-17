@@ -1,3 +1,5 @@
+// stylelint-disable max-nesting-depth
+
 @import '~@micromag/core/scss/placeholders';
 @import '~@micromag/core/scss/variables';
 
@@ -75,6 +77,20 @@
             padding: 20px;
             background-color: $white;
             color: $black;
+        }
+
+        &.splashEmpty {
+            .splashButton {
+                padding: 10px;
+
+                &::after {
+                    content: '';
+                    display: block;
+                    position: relative;
+                    height: 40px;
+                    border: 2px dashed $black;
+                }
+            }
         }
     }
 

@@ -321,6 +321,29 @@ export const gridElement = PropTypes.shape({
     spacing: PropTypes.number,
 });
 
+export const geoPosition = PropTypes.shape({
+    lat: PropTypes.number,
+    lng: PropTypes.number,
+});
+
+const markerShape = {
+    id: PropTypes.number,
+    geoPosition,
+    title: PropTypes.string,
+    description: PropTypes.string,
+}
+
+export const marker = PropTypes.shape({
+    ...markerShape,
+});
+export const markers = PropTypes.arrayOf(marker);
+
+export const markerWithImage = PropTypes.shape({
+    ...markerShape,
+    image: imageMedia,
+});
+export const markersWithImage = PropTypes.arrayOf(markerWithImage);
+
 /**
  * Definitions
  */
