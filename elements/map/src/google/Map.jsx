@@ -13,6 +13,7 @@ const propTypes = {
         lng: PropTypes.number,
     }),
     zoom: PropTypes.number,
+    scrollable: PropTypes.bool,
     // Global maps events
     events: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     disableDefaultUI: PropTypes.bool,
@@ -24,6 +25,7 @@ const propTypes = {
 const defaultProps = {
     center: { lat: 45.5, lng: -73.56 },
     zoom: 10,
+    scrollable: true,
     events: null,
     disableDefaultUI: true,
     mapTypeControl: false,
@@ -35,6 +37,7 @@ const Map = ({
     mapsApi,
     center,
     zoom,
+    scrollable,
     events,
     disableDefaultUI,
     mapTypeControl,
@@ -64,12 +67,24 @@ const Map = ({
         }
     }, [zoom]);
 
+    useEffect(() => {
+        if (map) {
+            map.setOptions({
+                draggable: scrollable,
+                scrollWheel: scrollable,
+                disableDoubleClickZoom: !scrollable,
+                gestureHandling: scrollable ? 'cooperative' : 'none',
+            })
+        }
+    }, [scrollable]);
+
     return (
         <div
             className={classNames([
                 styles.container,
                 {
                     [className]: className !== null,
+                    [styles.preventScroll]: !scrollable,
                 },
             ])}
         >

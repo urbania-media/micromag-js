@@ -13,6 +13,7 @@ const propTypes = {
         lng: PropTypes.number,
     }),
     zoom: PropTypes.number,
+    scrollable: PropTypes.bool,
     markers: PropTypes.arrayOf(PropTypes.object),
     layers: PropTypes.arrayOf(PropTypes.string),
     withLine: PropTypes.bool,
@@ -25,6 +26,7 @@ const propTypes = {
 const defaultProps = {
     center: { lat: 45.5, lng: -73.56 },
     zoom: 10,
+    scrollable: true,
     markers: [],
     layers: [],
     onClickMap: null,
@@ -35,8 +37,9 @@ const defaultProps = {
 };
 
 const Map = ({
-    zoom,
     center,
+    zoom,
+    scrollable,
     markers,
     layers,
     withLine,
@@ -80,6 +83,7 @@ const Map = ({
                     mapsApi={mapsApi}
                     zoom={zoom}
                     center={center}
+                    scrollable={scrollable}
                     events={{
                         onBoundsChangerd: () => {},
                         onClick,

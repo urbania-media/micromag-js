@@ -12,9 +12,9 @@ import Map from '@micromag/element-map';
 import Heading from '@micromag/element-heading';
 import Text from '@micromag/element-text';
 import Image from '@micromag/element-image';
+import { isTextFilled } from '@micromag/core/src/utils';
 
 import styles from './styles.module.scss';
-import { isTextFilled } from '@micromag/core/src/utils';
 
 const gmapsApiKey = process.env.GOOGLE_MAPS_API_KEY || null;
 
@@ -22,6 +22,7 @@ const propTypes = {
     layout: PropTypes.oneOf(['normal']),
     zoom: PropTypes.number,
     center: MicromagPropTypes.geoPosition,
+    scrollable: PropTypes.bool,
     markers: PropTypes.oneOfType([MicromagPropTypes.markers, MicromagPropTypes.markersWithImage]),
     splash: PropTypes.string,
     openedMarkerSpacerHeight: PropTypes.number,
@@ -43,6 +44,7 @@ const defaultProps = {
         lat: 45.5,
         lng: -73.56,
     },
+    scrollable: true,
     markers: [],
     splash: null,
     openedMarkerSpacerHeight: 0.75,
@@ -61,6 +63,7 @@ const MapScreen = ({
     layout,
     zoom,
     center,
+    scrollable,
     markers,
     splash,
     openedMarkerSpacerHeight,
@@ -184,6 +187,7 @@ const MapScreen = ({
                 <Map
                     center={center}
                     zoom={zoom}
+                    scrollable={scrollable}
                     markers={markers.map((marker, markerI) => ({
                         ...marker,
                         active: markerI === selectedMarker,

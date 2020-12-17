@@ -33,7 +33,7 @@ export default {
         },
         {
             name: 'answers',
-            type: 'answers',
+            type: 'quiz-answers',
             label: defineMessage({
                 defaultMessage: 'Answers',
                 description: 'Field label',
