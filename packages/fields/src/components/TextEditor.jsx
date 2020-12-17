@@ -8,8 +8,6 @@ import InlineEditor from '@ckeditor/ckeditor5-build-inline';
 
 import styles from '../styles/text-editor.module.scss';
 
-console.log(CKEditor, InlineEditor);
-
 const propTypes = {
     value: PropTypes.string,
     size: MicromagPropTypes.formControlSize,

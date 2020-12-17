@@ -8,3 +8,4 @@ export * from './useSwipe';
 export { default as useWindowEvent } from './useWindowEvent';
 export { default as useMediaApi } from './useMediaApi';
 export { default as useAnimationFrame } from './useAnimationFrame';
+export { default as useScreensWithTheme } from './useScreensWithTheme';

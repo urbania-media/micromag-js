@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { useDrag } from 'react-use-gesture';
 
 import { PropTypes as MicromagPropTypes, ViewerProvider } from '@micromag/core';
-import { useScreenSizeFromElement, useResizeObserver } from '@micromag/core/hooks';
+import { useScreenSizeFromElement, useResizeObserver, useScreensWithTheme } from '@micromag/core/hooks';
 import { ScreenSizeProvider } from '@micromag/core/contexts';
 import { getDeviceScreens } from '@micromag/core/utils';
 
@@ -61,7 +61,8 @@ const Viewer = ({
     scrollIndexHeightPercent,
     className,
 }) => {
-    const { components = [], title = 'Story title' } = story || {};
+    const { theme = null, components = [], title = 'Story title' } = story || {};
+    const screens = useScreensWithTheme(components, theme);
 
     const contentRef = useRef(null);
     const scrollIndexChanged = useRef(false);
@@ -90,9 +91,9 @@ const Viewer = ({
         () =>
             Math.max(
                 0,
-                components.findIndex((it) => String(it.id) === String(screenId)),
+                screens.findIndex((it) => String(it.id) === String(screenId)),
             ),
-        [screenId, components],
+        [screenId, screens],
     );
 
     const changeIndex = useCallback(
@@ -101,10 +102,10 @@ const Viewer = ({
                 return;
             }
             if (onScreenChange !== null) {
-                onScreenChange(components[index], index);
+                onScreenChange(screens[index], index);
             }
         },
-        [currentIndex, components, onScreenChange],
+        [currentIndex, screens, onScreenChange],
     );
 
     // Handle interaction
@@ -113,11 +114,11 @@ const Viewer = ({
     }, [changeIndex]);
 
     const onScreenNext = useCallback(() => {
-        changeIndex(Math.min(components.length - 1, currentIndex + 1));
+        changeIndex(Math.min(screens.length - 1, currentIndex + 1));
     }, [changeIndex]);
 
     const [screensInteractionEnabled, setScreensInteractionEnabled] = useState(
-        components.map(() => true),
+        screens.map(() => true),
     );
     const currentScreenInteractionEnabled = screensInteractionEnabled[currentIndex];
 
@@ -176,7 +177,7 @@ const Viewer = ({
         const scrollIndex = Math.max(
             0,
             Math.min(
-                components.length - 1,
+                screens.length - 1,
                 screensY.findIndex((screenY, screenI) => {
                     const afterCurrent = scrollTop >= screenY - scrollHeightOffset;
                     const lastScreen = screenI === screensY.length - 1;
@@ -193,7 +194,7 @@ const Viewer = ({
             }
             changeIndex(scrollIndex);
         }
-    }, [landscape, currentIndex, screenHeight, components]);
+    }, [landscape, currentIndex, screenHeight, screens]);
 
     // handle tap
     const onTap = useCallback(
@@ -222,7 +223,7 @@ const Viewer = ({
                 return;
             }
 
-            const it = components[currentIndex] || null;
+            const it = screens[currentIndex] || null;
             const interactionEnabled = screensInteractionEnabled[currentIndex];
 
             if (it === null || !interactionEnabled) {
@@ -237,7 +238,7 @@ const Viewer = ({
             const hasTappedRight = tapX - contentX > screenWidth * (1 - tapNextScreenWidthPercent);
 
             if (hasTappedRight) {
-                nextIndex = Math.min(components.length - 1, currentIndex + 1);
+                nextIndex = Math.min(screens.length - 1, currentIndex + 1);
             } else {
                 nextIndex = Math.max(0, currentIndex - 1);
             }
@@ -246,7 +247,7 @@ const Viewer = ({
         [
             onScreenChange,
             screenWidth,
-            components,
+            screens,
             changeIndex,
             currentIndex,
             screensInteractionEnabled,
@@ -322,7 +323,7 @@ const Viewer = ({
                     <div className={styles.menuDotsContainer} ref={menuDotsContainerRef}>
                         <MenuDots
                             direction={landscape ? 'vertical' : 'horizontal'}
-                            items={components}
+                            items={screens}
                             current={currentIndex}
                             onClickItem={onClickDotsMenuItem}
                             className={styles.menuDots}
@@ -333,7 +334,7 @@ const Viewer = ({
                         className={styles.menuPreview}
                         screenWidth={screenWidth}
                         screenHeight={screenHeight}
-                        items={components}
+                        items={screens}
                         current={currentIndex}
                         onClickItem={onClickPreviewMenuItem}
                         onClose={onClickPreviewMenuClose}
@@ -344,7 +345,7 @@ const Viewer = ({
                         onScroll={landscape ? onContentScrolled : null}
                         {...(!landscape ? { onClick: onTap } : null)}
                     >
-                        {components.map((scr, i) => {
+                        {screens.map((scr, i) => {
                             const current = i === currentIndex;
                             const active =
                                 i > currentIndex - neighborScreensActive &&

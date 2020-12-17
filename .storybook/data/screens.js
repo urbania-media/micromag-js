@@ -254,7 +254,7 @@ export const allScreens = [
             loop: true,
             closedCaptions: closedCaptionsMedia(),
             withSeekBar: true,
-        },        
+        },
         background: {
             color: '#FF00FF',
         },
@@ -270,7 +270,7 @@ export const allScreens = [
             loop: true,
             closedCaptions: closedCaptionsMedia(),
             withSeekBar: true,
-        },        
+        },
         background: {
             color: '#FF00FF',
         },
