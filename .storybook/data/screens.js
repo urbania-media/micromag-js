@@ -5,11 +5,13 @@ import {
     images,
     imageMedia,
     imagesWithCaptions,
+    closedCaptionsMedia,
     text,
     title,
     subtitle,
     audioMedia,
     videoMedia,
+    video360Media,
     map,
     markers,
     quote,
@@ -17,22 +19,17 @@ import {
     transitions,
 } from '../data';
 
-export const basic = [
-    // {
-    //     id: uuid(),
-    //     type: 'ad',
-    //     layout: 'center',
-    //     ad: advertising({ width: 300, height: 250 }),
-    //     background: {
-    //         color: '#00FFFF',
-    //     },
-    //     transitions: transitions(),
-    // },
+export const allScreens = [
     {
         id: uuid(),
         type: 'audio',
-        layout: 'top',
-        audio: { media: audioMedia() },
+        layout: 'normal',
+        audio: {
+            media: audioMedia(),
+            autoPlay: false,
+            loop: true,
+            closedCaptions: closedCaptionsMedia(),
+        },
         background: {
             color: '#00FF00',
         },
@@ -43,6 +40,9 @@ export const basic = [
         type: 'contribution',
         layout: 'middle',
         title: { body: title() },
+        name: { label: 'Votre nom' },
+        message: { label: 'Votre message' },
+        submit: { body: 'Envoyer' },
         background: {
             color: '#00FFFF',
         },
@@ -140,7 +140,7 @@ export const basic = [
             { id: 4, label: { body: subtitle() } },
         ],
         result: {
-            body: 'Et oui, la bonne réponse était "La bonne réponse". Quand même surprenant hen?'
+            body: 'Et oui, la bonne réponse était "La bonne réponse". Quand même surprenant hen?',
         },
         background: {
             color: '#00FF00',
@@ -247,13 +247,34 @@ export const basic = [
         id: uuid(),
         type: 'video',
         layout: 'normal',
-        video: { media: videoMedia() },
-        withSeekBar: true,
+        video: {
+            media: videoMedia(),
+            autoPlay: false,
+            loop: true,
+            closedCaptions: closedCaptionsMedia(),
+            withSeekBar: true,
+        },        
         background: {
             color: '#FF00FF',
         },
         transitions: transitions(),
     },
+    // {
+    //     id: uuid(),
+    //     type: 'video-360',
+    //     layout: 'full',
+    //     video: {
+    //         media: video360Media(),
+    //         autoPlay: false,
+    //         loop: true,
+    //         closedCaptions: closedCaptionsMedia(),
+    //         withSeekBar: true,
+    //     },        
+    //     background: {
+    //         color: '#FF00FF',
+    //     },
+    //     transitions: transitions(),
+    // },
 ];
 
-export default basic;
+export default allScreens;

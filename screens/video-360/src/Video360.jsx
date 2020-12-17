@@ -30,8 +30,6 @@ import styles from './styles.module.scss';
 const propTypes = {
     layout: PropTypes.oneOf(['full']),
     video: MicromagPropTypes.videoElement,
-    closedCaptions: MicromagPropTypes.closedCaptionsMedia,
-    withSeekBar: PropTypes.bool,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -42,8 +40,6 @@ const propTypes = {
 const defaultProps = {
     layout: 'full',
     video: null,
-    closedCaptions: null,
-    withSeekBar: false,
     background: null,
     current: true,
     active: true,
@@ -54,8 +50,6 @@ const defaultProps = {
 const Video360Screen = ({
     layout,// eslint-disable-line
     video,
-    closedCaptions,
-    withSeekBar,
     background,
     current,
     active,
@@ -94,10 +88,13 @@ const Video360Screen = ({
     const { width, height } = useScreenSize();
     const { isEdit, isPlaceholder, isView, isPreview } = useScreenRenderContext();
 
-    const withVideo = video !== null;
-    const withVideoSphere = withVideo && (isView || isEdit);
-    const [ready, setReady] = useState(!withVideo);
+    const hasVideo = video !== null;
+    const withVideoSphere = hasVideo && (isView || isEdit);
+    const [ready, setReady] = useState(!hasVideo);
     const transitionPlaying = current && ready;
+
+    const finalVideo = hasVideo ? {...video, autoPlay: isPreview ? false : video.autoPlay } : null;
+    const { closedCaptions = null, withSeekBar = false } = finalVideo || {};
 
     useEffect(() => {
         setReady(false);
@@ -215,9 +212,9 @@ const Video360Screen = ({
 
     if (isPlaceholder) {
         items.push(<PlaceholderVideo className={styles.placeholder} width="100%" height="100%" />);
-    } else if (withVideo) {
+    } else if (hasVideo) {
         items.push(
-            <Transitions playing={transitionPlaying} transitions={transitions} disabled={!isView} fullscreen>
+            <Transitions playing={transitionPlaying} transitions={transitions} disabled={!isView && !isEdit} fullscreen>
                 <canvas ref={canvasRef} className={styles.canvas} />
                 <button className={styles.canvasButton} type="button" aria-label="canvas-interaction" onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp} />
             </Transitions>,
@@ -263,10 +260,9 @@ const Video360Screen = ({
             />
             <Container width={width} height={height}>
                 <div className={styles.content}>{items}</div>
-                { withVideo ?
+                { hasVideo ?
                     <Video
-                        {...video}
-                        autoPlay={isPreview ? false : video.autoPlay}
+                        {...finalVideo}
                         ref={apiRef}
                         className={styles.video}
                         onReady={onVideoReady}

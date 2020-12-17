@@ -25,26 +25,10 @@ export default {
         },
         {
             name: 'audio',
-            type: 'audio',
+            type: 'audio-element',
             label: defineMessage({
                 defaultMessage: 'Audio',
                 description: 'Audio field label',
-            }),
-        },
-        {
-            name: 'image',
-            type: 'image',
-            label: defineMessage({
-                defaultMessage: 'Image',
-                description: 'Image field label',
-            }),
-        },
-        {
-            name: 'text',
-            type: 'text-element',
-            label: defineMessage({
-                defaultMessage: 'Text',
-                description: 'Text field label',
             }),
         },
         {

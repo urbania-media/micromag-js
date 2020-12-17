@@ -6,11 +6,17 @@ import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition
 import VideoScreen from '../Video';
 import definition from '../definition';
 
-const props = {
-    video: { media: videoMedia(), autoPlay: true, loop: true },
+const video = (props) => ({...props,
+    media: videoMedia(),
+    autoPlay: true,
+    loop: true,
+});
+
+const props = (videoProps = {} ) => ({
+    video: video(videoProps),
     background: backgroundColor(),
     transitions: transitions(),
-};
+});
 
 export default {
     title: 'Screens/Video',
@@ -23,17 +29,20 @@ export default {
 
 export const Placeholder = (storyProps) => <VideoScreen {...storyProps} />;
 
-export const Preview = (storyProps) => <VideoScreen {...storyProps} {...props} />;
+export const Preview = (storyProps) => <VideoScreen {...storyProps} {...props()} />;
 
 export const Edit = (storyProps) => <VideoScreen {...storyProps} />;
 
-export const Normal = (storyProps) => <VideoScreen {...storyProps} {...props} />;
-export const WithSeekbar = (storyProps) => <VideoScreen {...storyProps} {...props} withSeekBar />;
+export const Normal = (storyProps) => <VideoScreen {...storyProps} {...props()} />;
+
+export const WithSeekbar = (storyProps) => <VideoScreen {...storyProps} {...{...props({withSeekBar: true})}} />
+
 export const WithClosedCaptions = (storyProps) => (
-    <VideoScreen {...storyProps} {...props} closedCaptions={closedCaptionsMedia()} />
+    <VideoScreen {...storyProps} {...{...props({closedCaptions: closedCaptionsMedia()})}} />
 );
+
 export const WithSeekbarAndClosedCaptions = (storyProps) => (
-    <VideoScreen {...storyProps} {...props} withSeekBar closedCaptions={closedCaptionsMedia()} />
+    <VideoScreen {...storyProps} {...{...props({closedCaptions: closedCaptionsMedia(), withSeekBar: true})}} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

@@ -35,7 +35,7 @@ const SettingsForm = ({
 }) => {
     const { type = null } = field;
     const fieldsManager = useFieldsManager();
-    const { component: FieldComponent, settings } = type !== null ? fieldsManager.getDefinition(type): field;
+    const { component: FieldComponent = null, settings } = type !== null ? fieldsManager.getDefinition(type): field;
     const FieldsComponent = fieldsManager.getComponent('fields');
     const SettingsComponent =
         FieldComponent !== null ? FieldComponent.settingsComponent || FieldsComponent : FieldsComponent;

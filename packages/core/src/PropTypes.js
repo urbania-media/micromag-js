@@ -268,10 +268,17 @@ export const imageElement = PropTypes.shape({
 
 export const videoElement = PropTypes.shape({
     media: videoMedia,
+    autoPlay: PropTypes.bool,
+    loop: PropTypes.bool,
+    closedCaptions: closedCaptionsMedia,
+    withSeekBar: PropTypes.bool,
 });
 
 export const audioElement = PropTypes.shape({
     media: audioMedia,
+    autoPlay: PropTypes.bool,
+    loop: PropTypes.bool,
+    closedCaptions: closedCaptionsMedia,
 });
 
 export const closedCaptionsElement = PropTypes.shape({

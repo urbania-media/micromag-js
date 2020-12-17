@@ -48,14 +48,12 @@ export const description = ({ likelyhood = 100, min = 10, max = 30 } = {}) =>
 export const paragraph = ({ likelyhood = 100, min = 30, max = 60 } = {}) =>
     sentences(likelyhood, min, max);
 
-export const textStyle = () => {
-    return {
-        text: {
-            color: chance.color({ format: 'rgb' }),
-            size: chance.integer({ min: 16, max: 32 }),
-        },
-    };
-};
+export const textStyle = () => ({
+    text: {
+        color: chance.color({ format: 'rgb' }),
+        size: chance.integer({ min: 16, max: 32 }),
+    },
+});
 
 export const text = (length = 'normal', style = 'normal') => {
     let body = '';
@@ -133,8 +131,8 @@ export const closedCaptionsMedia = () => ({
 
 // -----------------
 
-export const images = ({ count = 3, width = 800, height = 800, rand = false } = {}) => {
-    return [...Array(count)].map(() => ({
+export const images = ({ count = 3, width = 800, height = 800, rand = false } = {}) =>
+    [...Array(count)].map(() => ({
         media: {
             url: `https://picsum.photos/${width}/${height}?random=${rand ? Math.random() : 1}`,
             metadata: {
@@ -143,10 +141,9 @@ export const images = ({ count = 3, width = 800, height = 800, rand = false } = 
             },
         },
     }));
-};
 
-export const imagesWithCaptions = ({ count = 3, width = 800, height = 800, rand = false } = {}) => {
-    return [...Array(count)].map(() => ({
+export const imagesWithCaptions = ({ count = 3, width = 800, height = 800, rand = false } = {}) =>
+    [...Array(count)].map(() => ({
         media: {
             url: `https://picsum.photos/${width}/${height}?random=${rand ? Math.random() : 1}`,
             metadata: {
@@ -156,7 +153,6 @@ export const imagesWithCaptions = ({ count = 3, width = 800, height = 800, rand 
         },
         caption: text(),
     }));
-};
 
 export const backgroundColor = () => ({
     color: { color: chance.color({ format: 'rgb' }), alpha: 1 },
@@ -178,8 +174,8 @@ export const markers = ({
     withTitle = true,
     withDescription = true,
     withImage = false,
-} = {}) => {
-    return [...Array(count)].map((j, i) => ({
+} = {}) =>
+    [...Array(count)].map((j, i) => ({
         id: i,
         geoPosition: {
             lat: chance.floating({ min: 45.4, max: 45.6, fixed: 8 }),
@@ -189,7 +185,6 @@ export const markers = ({
         description: withDescription ? { body: shortText() } : null,
         image: withImage ? imageMedia({ width: 100, height: 100 }) : null,
     }));
-};
 
 export const map = () => ({
     zoom: 9,

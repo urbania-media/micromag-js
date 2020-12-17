@@ -1,16 +1,27 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { audioMedia, backgroundColor, closedCaptionsMedia, transitions } from '../../../../.storybook/data';
+import {
+    audioMedia,
+    backgroundColor,
+    closedCaptionsMedia,
+    transitions,
+} from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
 import AudioScreen from '../Audio';
 import definition from '../definition';
 
-const props = {
-    audio: {media: audioMedia(), autoPlay: true, loop: true },
+const audio = (props) => ({...props,
+    media: audioMedia(),
+    autoPlay: true,
+    loop: true,
+});
+
+const props = (audioProps = {} ) => ({
+    audio: audio(audioProps),
     background: backgroundColor(),
     transitions: transitions(),
-};
+});
 
 export default {
     title: 'Screens/Audio',
@@ -23,11 +34,14 @@ export default {
 
 export const Placeholder = (storyProps) => <AudioScreen {...storyProps} />;
 
-export const Preview = (storyProps) => <AudioScreen {...storyProps} {...props} />;
+export const Preview = (storyProps) => <AudioScreen {...storyProps} {...props()} />;
 
 export const Edit = (storyProps) => <AudioScreen {...storyProps} />;
 
-export const Normal = (storyProps) => <AudioScreen {...storyProps} {...props} />;
-export const WithClosedCaptions = () => <AudioScreen {...props} closedCaptions={closedCaptionsMedia()} />;
+export const Normal = (storyProps) => <AudioScreen {...storyProps} {...props()} />;
+
+export const WithClosedCaptions = (storyProps) => (
+    <AudioScreen {...storyProps} {...{...props({closedCaptions: closedCaptionsMedia()})}} />
+);
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

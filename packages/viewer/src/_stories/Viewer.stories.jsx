@@ -1,15 +1,15 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { basic } from '../../../../.storybook/data/screens';
+import { allScreens } from '../../../../.storybook/data/screens';
 import faceAFace from '../../../../.storybook/data/stories/faceAFace';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 
 import Viewer from '../components/ViewerContainer';
 
 const props = {
-    screenId: basic[0].id,
+    screenId: allScreens[0].id,
     story: {
-        components: basic,
+        components: allScreens,
     },
     fullscreen: true,
 };
@@ -47,5 +47,5 @@ export default {
     },
 };
 
-export const Default = () => <Viewer {...props} />;
+export const AllScreens = () => <Viewer {...props} />;
 export const FaceAFace = () => <Viewer {...faceAFaceProps} />;

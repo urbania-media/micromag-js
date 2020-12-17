@@ -19,7 +19,6 @@ import styles from './styles.module.scss';
 const propTypes = {
     layout: PropTypes.oneOf(['normal']),
     audio: MicromagPropTypes.audioElement,
-    closedCaptions: MicromagPropTypes.closedCaptionsElement,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -31,7 +30,6 @@ const propTypes = {
 const defaultProps = {
     layout: 'normal',
     audio: null,
-    closedCaptions: null,
     background: null,
     current: true,
     active: true,
@@ -43,7 +41,6 @@ const defaultProps = {
 const AudioScreen = ({
     layout,
     audio,
-    closedCaptions,
     background,
     current,
     active,
@@ -81,6 +78,8 @@ const AudioScreen = ({
     const transitionPlaying = current && ready;
 
     const hasAudio = audio !== null;
+    const finalAudio = hasAudio ? {...audio, autoPlay: isPreview ? false : audio.autoPlay } : null;
+    const { closedCaptions = null } = finalAudio || {};
     const hasClosedCaptions = closedCaptions !== null;
 
     const onAudioReady = useCallback(() => {
@@ -96,7 +95,7 @@ const AudioScreen = ({
         >
             <Transitions transitions={transitions} playing={transitionPlaying} fullscreen disabled={!isView}>
                 <Audio
-                    {...audio}
+                    {...finalAudio}
                     ref={apiRef}
                     waveProps={isPreview ? {
                         sampleWidth: 10,
@@ -113,7 +112,7 @@ const AudioScreen = ({
                     {hasClosedCaptions ? (
                         <ClosedCaptions
                             className={styles.closedCaptions}
-                            {...closedCaptions}
+                            media={closedCaptions}
                             currentTime={currentTime}
                         />
                     ) : null}
@@ -136,6 +135,7 @@ const AudioScreen = ({
                 {
                     [className]: className !== null,
                     [styles.placeholder]: isPlaceholder,
+                    [styles.isPreview]: isPreview,
                     [styles[layout]]: layout !== null,
                 },
             ])}

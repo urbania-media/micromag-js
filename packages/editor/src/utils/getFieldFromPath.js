@@ -14,7 +14,7 @@ const getFieldFromPath = (path, fields, fieldManager) =>
             if (itemsField !== null && key.match(/^[0-9]+$/)) {
                 return { ...itemsField, name: path };
             }
-            return getFieldByName(subFields || settings || [], key);
+            return getFieldByName([...(subFields || []), ...(settings || [])], key);
         },
         { fields },
     );

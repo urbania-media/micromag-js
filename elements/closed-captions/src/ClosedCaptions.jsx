@@ -10,7 +10,7 @@ import { getSecondsFromTime } from '@micromag/core/utils';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    media: MicromagPropTypes.subtitlesMedia,
+    media: MicromagPropTypes.closedCaptionsMedia,
     currentTime: PropTypes.number, // in seconds
     timeOffset: PropTypes.string, // in srt time format (10:00:01,034)
     className: PropTypes.string,

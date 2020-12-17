@@ -1,6 +1,5 @@
 import { ScreensManager } from '@micromag/core';
 
-import ad from '@micromag/screen-ad';
 import audio from '@micromag/screen-audio';
 import contribution from '@micromag/screen-contribution';
 import gallery from '@micromag/screen-gallery';
@@ -18,7 +17,6 @@ import video from '@micromag/screen-video';
 import video360 from '@micromag/screen-video-360';
 
 const manager = new ScreensManager();
-manager.addDefinition(ad);
 manager.addDefinition(audio);
 manager.addDefinition(contribution);
 manager.addDefinition(gallery);

@@ -18,8 +18,6 @@ import styles from './styles.module.scss';
 const propTypes = {
     layout: PropTypes.oneOf(['full', 'center']),
     video: MicromagPropTypes.videoElement,
-    closedCaptions: MicromagPropTypes.closedCaptionsMedia,
-    withSeekBar: PropTypes.bool,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -31,8 +29,6 @@ const propTypes = {
 const defaultProps = {
     layout: 'full',
     video: null,
-    closedCaptions: null,
-    withSeekBar: false,
     background: null,
     current: true,
     active: true,
@@ -44,8 +40,6 @@ const defaultProps = {
 const VideoScreen = ({
     layout,
     video,
-    closedCaptions,
-    withSeekBar,
     background,
     current,
     active,
@@ -84,8 +78,8 @@ const VideoScreen = ({
     const { isEdit, isPlaceholder, isPreview, isView } = useScreenRenderContext();
     const fullscreen = layout === 'full';
 
-    const withVideo = video !== null;
-    const [ready, setReady] = useState(!withVideo);
+    const hasVideo = video !== null;
+    const [ready, setReady] = useState(!hasVideo);
     const transitionPlaying = current && ready;
 
     useEffect(() => {
@@ -97,8 +91,8 @@ const VideoScreen = ({
     }, [setReady]);
 
     // get resized video style props
-
-    const { media: videoMedia = null } = video || {};
+    const finalVideo = hasVideo ? {...video, autoPlay: isPreview ? false : video.autoPlay } : null;
+    const { media: videoMedia = null, closedCaptions = null, withSeekBar = false } = finalVideo || {};
     const { metadata: videoMetadata = null } = videoMedia || {};
     const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
 
@@ -122,7 +116,7 @@ const VideoScreen = ({
     if (isPlaceholder) {
         const placeholderProps = fullscreen ? { width: '100%', height: '100%' } : { width: '100%' };
         items.push(<PlaceholderVideo className={styles.placeholder} {...placeholderProps} />);
-    } else if (withVideo) {
+    } else if (hasVideo) {
         items.push(
             <div
                 className={styles.videoContainer}
@@ -135,8 +129,7 @@ const VideoScreen = ({
             >
                 <Transitions playing={transitionPlaying} transitions={transitions} disabled={!isView}>
                     <Video
-                        {...video}
-                        autoPlay={isPreview ? false : video.autoPlay}
+                        {...finalVideo}
                         ref={apiRef}
                         className={styles.video}
                         onReady={onVideoReady}
