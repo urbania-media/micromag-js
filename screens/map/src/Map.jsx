@@ -22,6 +22,7 @@ const propTypes = {
     layout: PropTypes.oneOf(['normal']),
     zoom: PropTypes.number,
     center: MicromagPropTypes.geoPosition,
+    scrollable: PropTypes.bool,
     markers: PropTypes.oneOfType([MicromagPropTypes.markers, MicromagPropTypes.markersWithImage]),
     splash: PropTypes.string,
     openedMarkerSpacerHeight: PropTypes.number,
@@ -43,6 +44,7 @@ const defaultProps = {
         lat: 45.5,
         lng: -73.56,
     },
+    scrollable: true,
     markers: [],
     splash: null,
     openedMarkerSpacerHeight: 0.75,
@@ -61,6 +63,7 @@ const MapScreen = ({
     layout,
     zoom,
     center,
+    scrollable,
     markers,
     splash,
     openedMarkerSpacerHeight,
@@ -184,6 +187,7 @@ const MapScreen = ({
                 <Map
                     center={center}
                     zoom={zoom}
+                    scrollable={scrollable}
                     markers={markers.map((marker, markerI) => ({
                         ...marker,
                         active: markerI === selectedMarker,

@@ -106,10 +106,10 @@ export const allScreens = [
     {
         id: uuid(),
         type: 'map',
-        layout: 'normal',
-        ...map(),
-        markers: markers(),
+        layout: 'normal',        
         splash: { body: 'Débuter' },
+        ...map(),
+        markers: markers(),        
         background: {
             color: '#FF0000',
         },

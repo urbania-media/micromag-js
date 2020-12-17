@@ -55,6 +55,7 @@ export default [
             {
                 name: 'bulletFilled',
                 type: 'toggle',
+                defaultValue: false,
                 label: defineMessage({
                     defaultMessage: 'Bullet filled',
                     description: 'Field label',
@@ -63,6 +64,7 @@ export default [
             {
                 name: 'bulletColor',
                 type: 'color',
+                defaultValue: '#FFFFFF',
                 label: defineMessage({
                     defaultMessage: 'Bullet color',
                     description: 'Field label',
@@ -71,6 +73,7 @@ export default [
             {
                 name: 'lineColor',
                 type: 'color',
+                defaultValue: '#FFFFFF',
                 label: defineMessage({
                     defaultMessage: 'Line color',
                     description: 'Field label',
@@ -138,6 +141,7 @@ export default [
             {
                 name: 'bulletFilled',
                 type: 'toggle',
+                defaultValue: false,
                 label: defineMessage({
                     defaultMessage: 'Bullet filled',
                     description: 'Field label',
@@ -146,6 +150,7 @@ export default [
             {
                 name: 'bulletColor',
                 type: 'color',
+                defaultValue: '#FFFFFF',
                 label: defineMessage({
                     defaultMessage: 'Bullet color',
                     description: 'Field label',
@@ -154,6 +159,7 @@ export default [
             {
                 name: 'lineColor',
                 type: 'color',
+                defaultValue: '#FFFFFF',
                 label: defineMessage({
                     defaultMessage: 'Line color',
                     description: 'Field label',

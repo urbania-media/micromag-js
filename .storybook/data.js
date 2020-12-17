@@ -190,6 +190,7 @@ export const map = () => ({
         lat: 45.5,
         lng: -73.56,
     },
+    scrollable: true,
 });
 
 export const transitions = ({ transitionIn = 'fade', transitionOut = 'fade' } = {}) => ({
