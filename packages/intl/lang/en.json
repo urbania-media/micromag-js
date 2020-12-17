@@ -23,7 +23,7 @@
     "/T/UDH": {
         "defaultMessage": "Remove all"
     },
-    "qZItNz": {
+    "/bEns8": {
         "defaultMessage": "MapImages"
     },
     "upzOTm": {
@@ -53,7 +53,7 @@
     "3C3nve": {
         "defaultMessage": "Delete screen"
     },
-    "3E57H7": {
+    "rdFCsN": {
         "defaultMessage": "No marker..."
     },
     "dqnkQk": {
@@ -113,7 +113,13 @@
     "8cVWNh": {
         "defaultMessage": "Usage"
     },
-    "nqQqsI": {
+    "qKQCxc": {
+        "defaultMessage": "Add a marker"
+    },
+    "8qd8eP": {
+        "defaultMessage": "Center"
+    },
+    "dmuKH3": {
         "defaultMessage": "Map"
     },
     "96KRj9": {
@@ -139,6 +145,9 @@
     },
     "ChnSK6": {
         "defaultMessage": "This Micromag"
+    },
+    "D0+Cxr": {
+        "defaultMessage": "Markers with image"
     },
     "DVrK6z": {
         "defaultMessage": "Click to edit..."
@@ -242,11 +251,17 @@
     "T0pi1u": {
         "defaultMessage": "With seek bar"
     },
+    "THKV4v": {
+        "defaultMessage": "Longitude"
+    },
     "Tt4jN1": {
         "defaultMessage": "Add"
     },
     "vERejo": {
         "defaultMessage": "Video"
+    },
+    "WlNxMj": {
+        "defaultMessage": "Repeat"
     },
     "Wr9olU": {
         "defaultMessage": "Typography"
@@ -272,8 +287,14 @@
     "aarOkd": {
         "defaultMessage": "Color"
     },
+    "amEvH1": {
+        "defaultMessage": "Fit"
+    },
     "aovRFH": {
         "defaultMessage": "Filename"
+    },
+    "b1Ha3o": {
+        "defaultMessage": "Splash text"
     },
     "bh16Yr": {
         "defaultMessage": "GalleryFeedCaptions"
@@ -341,14 +362,14 @@
     "o0RmVC": {
         "defaultMessage": "imagesWithCaptions"
     },
+    "p9s3tn": {
+        "defaultMessage": "Zoom"
+    },
     "pJgYyE": {
         "defaultMessage": "AutoPlay"
     },
     "qIw1nW": {
         "defaultMessage": "Save"
-    },
-    "qKQCxc": {
-        "defaultMessage": "Add a marker"
     },
     "t2cFdl": {
         "defaultMessage": "Active filters"
@@ -362,6 +383,9 @@
     "twTaAZ": {
         "defaultMessage": "Bullet shape"
     },
+    "u3ok54": {
+        "defaultMessage": "Position"
+    },
     "uNpHnA": {
         "defaultMessage": "Bullet color"
     },
@@ -371,9 +395,6 @@
     "wt1+dM": {
         "defaultMessage": "Select an audio file..."
     },
-    "x8sfWV": {
-        "defaultMessage": "MapScreen"
-    },
     "xKdf/C": {
         "defaultMessage": "Added by"
     },
@@ -382,6 +403,9 @@
     },
     "ySApyR": {
         "defaultMessage": "Background image"
+    },
+    "zDH24s": {
+        "defaultMessage": "Latitude"
     },
     "zW7IVm": {
         "defaultMessage": "Quiz"

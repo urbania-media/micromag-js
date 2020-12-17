@@ -57,8 +57,8 @@ msgstr "Vidéo d'arrière-plan"
 msgid "Remove all"
 msgstr "Tout effacer"
 
-# MapImages placeholder
-#: qZItNz
+# MapImages screen title
+#: /bEns8
 msgid "MapImages"
 msgstr ""
 
@@ -107,8 +107,8 @@ msgstr "Hauteur de ligne"
 msgid "Delete screen"
 msgstr "Supprimer l’écran"
 
-# Label when there is no item in markers field
-#: 3E57H7
+# Label when there is no item
+#: rdFCsN
 msgid "No marker..."
 msgstr ""
 
@@ -207,8 +207,18 @@ msgstr ""
 msgid "Usage"
 msgstr ""
 
-# Map field label
-#: nqQqsI
+# Button label in markers field
+#: qKQCxc
+msgid "Add a marker"
+msgstr "Ajouter un marqueur"
+
+# Center field label
+#: 8qd8eP
+msgid "Center"
+msgstr ""
+
+# Map screen title
+#: dmuKH3
 msgid "Map"
 msgstr ""
 
@@ -250,6 +260,11 @@ msgstr ""
 # Source from this micromag
 #: ChnSK6
 msgid "This Micromag"
+msgstr ""
+
+# Markers field label
+#: D0+Cxr
+msgid "Markers with image"
 msgstr ""
 
 # Label when no value is provided to Field with form
@@ -421,6 +436,11 @@ msgstr ""
 msgid "With seek bar"
 msgstr ""
 
+# Longitude description
+#: THKV4v
+msgid "Longitude"
+msgstr ""
+
 # Add button label in Media Gallery
 #: Tt4jN1
 msgid "Add"
@@ -429,6 +449,11 @@ msgstr ""
 # Field label
 #: vERejo
 msgid "Video"
+msgstr ""
+
+# Field label
+#: WlNxMj
+msgid "Repeat"
 msgstr ""
 
 # Fields section label
@@ -471,10 +496,20 @@ msgstr "Zone périlleuse"
 msgid "Color"
 msgstr "Couleur"
 
+# Field label
+#: amEvH1
+msgid "Fit"
+msgstr ""
+
 # Label in Media Gallery
 #: aovRFH
 msgid "Filename"
 msgstr "Nom du fichier"
+
+# Splash text field label
+#: b1Ha3o
+msgid "Splash text"
+msgstr ""
 
 # GalleryFeedCaptions screen title
 #: bh16Yr
@@ -584,6 +619,11 @@ msgstr ""
 msgid "imagesWithCaptions"
 msgstr ""
 
+# Zoom field label
+#: p9s3tn
+msgid "Zoom"
+msgstr ""
+
 # Field label
 #: pJgYyE
 msgid "AutoPlay"
@@ -593,11 +633,6 @@ msgstr ""
 #: qIw1nW
 msgid "Save"
 msgstr "Enregistrer"
-
-# Button label in markers field
-#: qKQCxc
-msgid "Add a marker"
-msgstr "Ajouter un marqueur"
 
 # Active filters title
 #: t2cFdl
@@ -620,6 +655,11 @@ msgid "Bullet shape"
 msgstr ""
 
 # Field label
+#: u3ok54
+msgid "Position"
+msgstr ""
+
+# Field label
 #: uNpHnA
 msgid "Bullet color"
 msgstr ""
@@ -633,11 +673,6 @@ msgstr ""
 #: wt1+dM
 msgid "Select an audio file..."
 msgstr "Sélectionnez un fichier audio..."
-
-# MapScreen placeholder
-#: x8sfWV
-msgid "MapScreen"
-msgstr ""
 
 # Label for users search section
 #: xKdf/C
@@ -653,6 +688,11 @@ msgstr "Paramètres avancés"
 #: ySApyR
 msgid "Background image"
 msgstr "Image d’arrière-plan"
+
+# Latitude description
+#: zDH24s
+msgid "Latitude"
+msgstr ""
 
 # Quiz screen title
 #: zW7IVm

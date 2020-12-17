@@ -171,6 +171,14 @@
     "defaultMessage": "Usage",
     "description": "Label for usage search section"
   },
+  "8oczXQ": {
+    "defaultMessage": "Add a marker",
+    "description": "Button label"
+  },
+  "8qd8eP": {
+    "defaultMessage": "Center",
+    "description": "Center field label"
+  },
   "8vroDx": {
     "defaultMessage": "Map",
     "description": "Map screen group"
@@ -210,6 +218,10 @@
   "CrzYgw": {
     "defaultMessage": "Quote",
     "description": "Quote placeholder"
+  },
+  "D0+Cxr": {
+    "defaultMessage": "Markers with image",
+    "description": "Markers field label"
   },
   "DVrK6z": {
     "defaultMessage": "Click to edit...",
@@ -362,6 +374,10 @@
     "defaultMessage": "Images",
     "description": "Field label"
   },
+  "THKV4v": {
+    "defaultMessage": "Longitude",
+    "description": "Longitude description"
+  },
   "Tt4jN1": {
     "defaultMessage": "Add",
     "description": "Add button label in Media Gallery"
@@ -373,6 +389,10 @@
   "V+G2s+": {
     "defaultMessage": "Add an image",
     "description": "Button label in images field"
+  },
+  "WlNxMj": {
+    "defaultMessage": "Repeat",
+    "description": "Field label"
   },
   "Wr9olU": {
     "defaultMessage": "Typography",
@@ -414,9 +434,17 @@
     "defaultMessage": "Color",
     "description": "Field label"
   },
+  "amEvH1": {
+    "defaultMessage": "Fit",
+    "description": "Field label"
+  },
   "aovRFH": {
     "defaultMessage": "Filename",
     "description": "Label in Media Gallery"
+  },
+  "b1Ha3o": {
+    "defaultMessage": "Splash text",
+    "description": "Splash text field label"
   },
   "bh16Yr": {
     "defaultMessage": "GalleryFeedCaptions",
@@ -544,10 +572,6 @@
     "defaultMessage": "Name",
     "description": "Name field label"
   },
-  "nqQqsI": {
-    "defaultMessage": "Map",
-    "description": "Map field label"
-  },
   "o0RmVC": {
     "defaultMessage": "imagesWithCaptions",
     "description": "imagesWithCaptions field label"
@@ -559,6 +583,10 @@
   "p85qJD": {
     "defaultMessage": "Caption",
     "description": "Field label"
+  },
+  "p9s3tn": {
+    "defaultMessage": "Zoom",
+    "description": "Zoom field label"
   },
   "pJgYyE": {
     "defaultMessage": "AutoPlay",
@@ -572,9 +600,9 @@
     "defaultMessage": "Add a marker",
     "description": "Button label in markers field"
   },
-  "qZItNz": {
-    "defaultMessage": "MapImages",
-    "description": "MapImages placeholder"
+  "rdFCsN": {
+    "defaultMessage": "No marker...",
+    "description": "Label when there is no item"
   },
   "sESmah": {
     "defaultMessage": "Entries",
@@ -602,6 +630,10 @@
   },
   "twTaAZ": {
     "defaultMessage": "Bullet shape",
+    "description": "Field label"
+  },
+  "u3ok54": {
+    "defaultMessage": "Position",
     "description": "Field label"
   },
   "uAKPQ9": {
@@ -640,10 +672,6 @@
     "defaultMessage": "Select an audio file...",
     "description": "Label when no value is provided to Audio field"
   },
-  "x8sfWV": {
-    "defaultMessage": "MapScreen",
-    "description": "MapScreen placeholder"
-  },
   "xKdf/C": {
     "defaultMessage": "Added by",
     "description": "Label for users search section"
@@ -667,6 +695,10 @@
   "z4CiV1": {
     "defaultMessage": "Text",
     "description": "Text placeholder"
+  },
+  "zDH24s": {
+    "defaultMessage": "Latitude",
+    "description": "Latitude description"
   },
   "zIi5W2": {
     "defaultMessage": "All",

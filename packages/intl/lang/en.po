@@ -57,8 +57,8 @@ msgstr "Background video"
 msgid "Remove all"
 msgstr "Remove all"
 
-# MapImages placeholder
-#: qZItNz
+# MapImages screen title
+#: /bEns8
 msgid "MapImages"
 msgstr "MapImages"
 
@@ -107,8 +107,8 @@ msgstr "Line height"
 msgid "Delete screen"
 msgstr "Delete screen"
 
-# Label when there is no item in markers field
-#: 3E57H7
+# Label when there is no item
+#: rdFCsN
 msgid "No marker..."
 msgstr "No marker..."
 
@@ -207,8 +207,18 @@ msgstr "ImageTitleText"
 msgid "Usage"
 msgstr "Usage"
 
-# Map field label
-#: nqQqsI
+# Button label in markers field
+#: qKQCxc
+msgid "Add a marker"
+msgstr "Add a marker"
+
+# Center field label
+#: 8qd8eP
+msgid "Center"
+msgstr "Center"
+
+# Map screen title
+#: dmuKH3
 msgid "Map"
 msgstr "Map"
 
@@ -251,6 +261,11 @@ msgstr "Success"
 #: ChnSK6
 msgid "This Micromag"
 msgstr "This Micromag"
+
+# Markers field label
+#: D0+Cxr
+msgid "Markers with image"
+msgstr "Markers with image"
 
 # Label when no value is provided to Field with form
 #: DVrK6z
@@ -421,6 +436,11 @@ msgstr "Text and Images"
 msgid "With seek bar"
 msgstr "With seek bar"
 
+# Longitude description
+#: THKV4v
+msgid "Longitude"
+msgstr "Longitude"
+
 # Add button label in Media Gallery
 #: Tt4jN1
 msgid "Add"
@@ -430,6 +450,11 @@ msgstr "Add"
 #: vERejo
 msgid "Video"
 msgstr "Video"
+
+# Field label
+#: WlNxMj
+msgid "Repeat"
+msgstr "Repeat"
 
 # Fields section label
 #: Wr9olU
@@ -471,10 +496,20 @@ msgstr "Danger zone"
 msgid "Color"
 msgstr "Color"
 
+# Field label
+#: amEvH1
+msgid "Fit"
+msgstr "Fit"
+
 # Label in Media Gallery
 #: aovRFH
 msgid "Filename"
 msgstr "Filename"
+
+# Splash text field label
+#: b1Ha3o
+msgid "Splash text"
+msgstr "Splash text"
 
 # GalleryFeedCaptions screen title
 #: bh16Yr
@@ -584,6 +619,11 @@ msgstr "Dimension"
 msgid "imagesWithCaptions"
 msgstr "imagesWithCaptions"
 
+# Zoom field label
+#: p9s3tn
+msgid "Zoom"
+msgstr "Zoom"
+
 # Field label
 #: pJgYyE
 msgid "AutoPlay"
@@ -593,11 +633,6 @@ msgstr "AutoPlay"
 #: qIw1nW
 msgid "Save"
 msgstr "Save"
-
-# Button label in markers field
-#: qKQCxc
-msgid "Add a marker"
-msgstr "Add a marker"
 
 # Active filters title
 #: t2cFdl
@@ -620,6 +655,11 @@ msgid "Bullet shape"
 msgstr "Bullet shape"
 
 # Field label
+#: u3ok54
+msgid "Position"
+msgstr "Position"
+
+# Field label
 #: uNpHnA
 msgid "Bullet color"
 msgstr "Bullet color"
@@ -633,11 +673,6 @@ msgstr "GalleryFeed"
 #: wt1+dM
 msgid "Select an audio file..."
 msgstr "Select an audio file..."
-
-# MapScreen placeholder
-#: x8sfWV
-msgid "MapScreen"
-msgstr "MapScreen"
 
 # Label for users search section
 #: xKdf/C
@@ -653,6 +688,11 @@ msgstr "Advanced settings"
 #: ySApyR
 msgid "Background image"
 msgstr "Background image"
+
+# Latitude description
+#: zDH24s
+msgid "Latitude"
+msgstr "Latitude"
 
 # Quiz screen title
 #: zW7IVm
