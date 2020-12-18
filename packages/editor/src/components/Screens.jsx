@@ -15,7 +15,8 @@ import Screens from './menus/Screens';
 import ScreenTypesModal from './modals/ScreenTypes';
 
 const propTypes = {
-    story: MicromagPropTypes.story,
+    value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
+    isTheme: PropTypes.bool,
     isVertical: PropTypes.bool,
     onClickScreen: PropTypes.func,
     onChange: PropTypes.func,
@@ -23,15 +24,16 @@ const propTypes = {
 };
 
 const defaultProps = {
-    story: null,
+    value: null,
+    isTheme: false,
     isVertical: false,
     onClickScreen: null,
     onChange: null,
     className: null,
 };
 
-const EditorScreens = ({ story, isVertical, onClickScreen, onChange, className }) => {
-    const { components: screens = [] } = story || {};
+const EditorScreens = ({ value, isTheme, isVertical, onClickScreen, onChange, className }) => {
+    const { components: screens = [] } = value || {};
 
     const [createModalOpened, setCreateModalOpened] = useState(false);
     const routes = useRoutes();
@@ -41,29 +43,26 @@ const EditorScreens = ({ story, isVertical, onClickScreen, onChange, className }
     const createScreenFromDefinition = useCallback(
         (definition) => {
             const newScreen = createScreen(definition);
-            const { components: currentComponents = [], ...currentStory } = story || {};
-            const newStory = {
-                ...currentStory,
-                components: [...currentComponents, newScreen],
+            const { components: currentScreens = [] } = value || {};
+            const newValue = {
+                ...value,
+                components: [...(currentScreens || []), newScreen],
             };
             if (onChange !== null) {
-                onChange(newStory);
+                onChange(newValue);
             }
-            push('screen', {
-                screen: newScreen.id,
-            });
-            setCreateModalOpened(false);
+            return newScreen;
         },
-        [story, onChange, push, setCreateModalOpened],
+        [value, onChange, setCreateModalOpened],
     );
 
     const onOrderChange = useCallback(
         (listItems) => {
             const ids = listItems.map(({ id }) => id);
-            const { components = [], ...currentValue } = story || {};
+            const { components: currentScreens = [] } = value || {};
             const newValue = {
-                ...currentValue,
-                components: [...components].sort(({ id: idA }, { id: idB }) => {
+                ...value,
+                components: [...currentScreens].sort(({ id: idA }, { id: idB }) => {
                     const indexA = ids.indexOf(idA);
                     const indexB = ids.indexOf(idB);
                     if (indexA === indexB) {
@@ -76,14 +75,27 @@ const EditorScreens = ({ story, isVertical, onClickScreen, onChange, className }
                 onChange(newValue);
             }
         },
-        [story, onChange],
+        [value, onChange],
     );
 
     const onClickScreenType = useCallback(
         (e, definition) => {
-            createScreenFromDefinition(definition);
+            setCreateModalOpened(false);
+
+            let currentScreen = isTheme
+                ? screens.find(({ type }) => type === definition.id) || null
+                : null;
+            if (!isTheme || currentScreen === null) {
+                currentScreen = createScreenFromDefinition(definition);
+            }
+
+            push('screen', {
+                screen: currentScreen.id,
+            });
+
+            onClickScreen(currentScreen);
         },
-        [createScreenFromDefinition],
+        [screens, isTheme, createScreenFromDefinition, push, onClickScreen],
     );
     const onClickAdd = useCallback(() => setCreateModalOpened(true), [setCreateModalOpened]);
     const onCreateModalRequestClose = useCallback(() => setCreateModalOpened(false), [
@@ -147,6 +159,7 @@ const EditorScreens = ({ story, isVertical, onClickScreen, onChange, className }
             </div>
             {createModalOpened ? (
                 <ScreenTypesModal
+                    selectedTypes={isTheme ? screens.map(({ type }) => type) : []}
                     onClickScreenType={onClickScreenType}
                     onRequestClose={onCreateModalRequestClose}
                 />

@@ -21,25 +21,28 @@ import EditorForm from './Form';
 import styles from '../styles/editor.module.scss';
 
 const propTypes = {
-    story: MicromagPropTypes.story,
+    value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
     deviceScreens: MicromagPropTypes.deviceScreens,
     mobileView: PropTypes.oneOf(['screens', 'preview', 'form']),
     fullscreen: PropTypes.bool,
+    isTheme: PropTypes.bool,
     onChange: PropTypes.func,
     className: PropTypes.string,
 };
 
 const defaultProps = {
-    story: null,
+    value: null,
     deviceScreens: getDeviceScreens(),
     mobileView: 'screens',
     fullscreen: false,
+    isTheme: false,
     onChange: null,
     className: null,
 };
 
 const Editor = ({
-    story,
+    value,
+    isTheme,
     deviceScreens,
     mobileView: initialMobileView,
     onChange,
@@ -68,12 +71,12 @@ const Editor = ({
 
     const onPreviewScreenChange = useCallback(
         (it) => {
-            onChange(story);
+            onChange(value);
             push('screen', {
                 screen: it.id,
             });
         },
-        [story, push],
+        [value, push],
     );
 
     return (
@@ -135,7 +138,8 @@ const Editor = ({
                                 ])}
                             >
                                 <Screens
-                                    story={story}
+                                    value={value}
+                                    isTheme={isTheme}
                                     onChange={onChange}
                                     onClickScreen={onClickScreen}
                                     isVertical={!isMobile}
@@ -151,7 +155,8 @@ const Editor = ({
                                 ])}
                             >
                                 <EditorPreview
-                                    story={story}
+                                    value={value}
+                                    isTheme={isTheme}
                                     className={styles.preview}
                                     onScreenChange={onPreviewScreenChange}
                                 />
@@ -166,7 +171,8 @@ const Editor = ({
                                 ])}
                             >
                                 <EditorForm
-                                    story={story}
+                                    value={value}
+                                    isTheme={isTheme}
                                     onChange={onChange}
                                     className={styles.inner}
                                 />

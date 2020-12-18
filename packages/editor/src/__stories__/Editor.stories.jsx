@@ -7,6 +7,7 @@ import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import faceAFaceStory from '../../../../.storybook/data/stories/faceAFace';
+import defaultTheme from '../../../../.storybook/data/themes/default';
 
 // import manager from '../../../intl/src/manager';
 
@@ -23,22 +24,27 @@ export default {
 
 const apiBaseUrl = `${window.location.protocol}//${window.location.host}/api`;
 
-const EditorContainer = ({ defaultStory }) => {
-    const [story, setStory] = useState(defaultStory);
+const EditorContainer = ({ defaultValue, isTheme }) => {
+    const [value, setValue] = useState(defaultValue);
     return (
         <ApiProvider baseUrl={apiBaseUrl}>
-            <Editor story={story} fullscreen onChange={setStory} memoryRouter />
+            <Editor value={value} isTheme={isTheme} fullscreen onChange={setValue} memoryRouter />
         </ApiProvider>
     );
 };
 
 EditorContainer.propTypes = {
-    defaultStory: PropTypes.shape({
+    defaultValue: PropTypes.shape({
         title: PropTypes.string,
         components: MicromagPropTypes.components,
     }).isRequired,
-}
+    isTheme: PropTypes.bool,
+};
+EditorContainer.defaultProps = {
+    isTheme: false,
+};
 
 export const Empty = () => <EditorContainer />;
-export const AllScreens = () => <EditorContainer defaultStory={allScreensStory} />;
-export const FaceAFace = () => <EditorContainer defaultStory={faceAFaceStory} />;
+export const AllScreens = () => <EditorContainer defaultValue={allScreensStory} />;
+export const FaceAFace = () => <EditorContainer defaultValue={faceAFaceStory} />;
+export const Theme = () => <EditorContainer defaultValue={defaultTheme} isTheme />;

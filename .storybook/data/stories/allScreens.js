@@ -1,5 +1,5 @@
 import { allScreens } from '../screens';
-import defaultTheme from './themes';
+import defaultTheme from '../themes';
 
 const allScreensStory = {
     title: 'All screens',

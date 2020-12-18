@@ -1,4 +1,7 @@
+import { v1 as uuid } from 'uuid';
+
 export default {
+    type: 'theme',
     title: 'Default Theme',
     colors: {
         primary: '#C00',
@@ -22,6 +25,7 @@ export default {
     },
     components: [
         {
+            id: uuid(),
             type: 'text',
             text: {
                 body: 'Test body'
