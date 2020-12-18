@@ -6,9 +6,18 @@
 .container {
     @extend %screen;
 
+    .emptyContainer {
+        @extend %fullscreen;
+        top: 50%;
+        height: 0;
+        padding-bottom: 56.25%;        
+        transform: translateY(-50%);
+    }
+
     .empty {
         @extend %empty;
-        height: 100%;
+        @extend %fullscreen;
+        
     }
 
     .content {
@@ -41,6 +50,13 @@
         .video,
         .placeholder {
             @extend %fullscreen;
+        }
+
+        .emptyContainer {
+            top: 0;
+            height: 100%;
+            padding-bottom: 0;
+            transform: none;
         }
     }
 }

@@ -2,9 +2,10 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { PlaceholderVideo, Transitions } from '@micromag/core/components';
+import { PlaceholderVideo, Transitions, ScreenElement } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { useAnimationFrame } from '@micromag/core/hooks';
 
@@ -15,7 +16,7 @@ import MediaControls from '@micromag/element-media-controls';
 import Video from '@micromag/element-video';
 import { getSizeWithinBounds } from '@folklore/size';
 
-import { 
+import {
     Scene,
     PerspectiveCamera,
     SphereBufferGeometry,
@@ -49,7 +50,7 @@ const defaultProps = {
 };
 
 const Video360Screen = ({
-    layout,// eslint-disable-line
+    layout, // eslint-disable-line
     video,
     background,
     current,
@@ -57,11 +58,10 @@ const Video360Screen = ({
     transitions,
     className,
 }) => {
-    
     // Media API --------------------------
 
     const apiRef = useRef();
-    const { togglePlay, toggleMute, seek } = apiRef.current || {};    
+    const { togglePlay, toggleMute, seek } = apiRef.current || {};
 
     const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);
@@ -94,8 +94,9 @@ const Video360Screen = ({
     const [ready, setReady] = useState(!hasVideo);
     const transitionPlaying = current && ready;
 
-    const finalVideo = hasVideo ? {...video, autoPlay: isPreview ? false : video.autoPlay } : null;
-    const { media: videoMedia = null , closedCaptions = null, withSeekBar = false } = finalVideo || {};
+    const finalVideo = hasVideo ? { ...video, autoPlay: isPreview ? false : video.autoPlay } : null;
+    const { media: videoMedia = null, closedCaptions = null, withSeekBar = false } =
+        finalVideo || {};
 
     const { metadata: videoMetadata = null } = videoMedia || {};
     const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
@@ -137,44 +138,46 @@ const Video360Screen = ({
 
     // render 3D frame
 
-    const render3D = useCallback( () => {
-        lat.current = Math.max( - 85, Math.min( 85, lat.current ) );
-        phi.current = MathUtils.degToRad( 90 - lat.current );
-        theta.current = MathUtils.degToRad( lon.current );
+    const render3D = useCallback(() => {
+        lat.current = Math.max(-85, Math.min(85, lat.current));
+        phi.current = MathUtils.degToRad(90 - lat.current);
+        theta.current = MathUtils.degToRad(lon.current);
 
-        camera.current.position.x = distance.current * Math.sin( phi.current ) * Math.cos( theta.current );
-        camera.current.position.y = distance.current * Math.cos( phi.current );
-        camera.current.position.z = distance.current * Math.sin( phi.current ) * Math.sin( theta.current );
+        camera.current.position.x =
+            distance.current * Math.sin(phi.current) * Math.cos(theta.current);
+        camera.current.position.y = distance.current * Math.cos(phi.current);
+        camera.current.position.z =
+            distance.current * Math.sin(phi.current) * Math.sin(theta.current);
 
-        camera.current.lookAt( 0, 0, 0 );
+        camera.current.lookAt(0, 0, 0);
 
-        renderer.current.render( scene.current, camera.current );
+        renderer.current.render(scene.current, camera.current);
     }, []);
 
     // Init 3D layer
 
-    useEffect( () => {
+    useEffect(() => {
         if (withVideoSphere) {
-            const { offsetWidth: canvasWidth, offsetHeight: canvasHeight} = canvasRef.current;
-            camera.current = new PerspectiveCamera( 75, canvasWidth / canvasHeight, 1, 1100 );
+            const { offsetWidth: canvasWidth, offsetHeight: canvasHeight } = canvasRef.current;
+            camera.current = new PerspectiveCamera(75, canvasWidth / canvasHeight, 1, 1100);
             scene.current = new Scene();
 
-            const geometry = new SphereBufferGeometry( 500, 60, 40 );
-            geometry.scale( - 1, 1, 1 );
+            const geometry = new SphereBufferGeometry(500, 60, 40);
+            geometry.scale(-1, 1, 1);
 
             const { mediaRef: videoMediaRef = null } = apiRef.current || {};
             const { current: videoElement = null } = videoMediaRef || {};
 
-            const videoTexture = new VideoTexture( videoElement );
-            
-            const videoMaterial = new MeshBasicMaterial( { map: videoTexture } );
+            const videoTexture = new VideoTexture(videoElement);
 
-            const mesh = new Mesh( geometry, videoMaterial );
-            scene.current.add( mesh );
+            const videoMaterial = new MeshBasicMaterial({ map: videoTexture });
+
+            const mesh = new Mesh(geometry, videoMaterial);
+            scene.current.add(mesh);
 
             renderer.current = new WebGLRenderer({ canvas: canvasRef.current });
-            renderer.current.setPixelRatio( window.devicePixelRatio );
-            renderer.current.setSize( canvasWidth, canvasHeight );
+            renderer.current.setPixelRatio(window.devicePixelRatio);
+            renderer.current.setSize(canvasWidth, canvasHeight);
             render3D();
         }
 
@@ -184,24 +187,24 @@ const Video360Screen = ({
                 scene.current = null;
                 renderer.current = null;
             }
-        }
+        };
     }, [withVideoSphere, render3D]);
 
     useAnimationFrame(render3D, { disabled: !withVideoSphere });
 
     // Resize 3D layer
 
-    useEffect( () => {
+    useEffect(() => {
         if (camera.current !== null && renderer.current !== null) {
             camera.current.aspect = width / height;
             camera.current.updateProjectionMatrix();
-            renderer.current.setSize( width, height );
+            renderer.current.setSize(width, height);
         }
     }, [width, height, render3D]);
 
     // Pointer interaction
 
-    const onPointerDown = useCallback( (e) => {
+    const onPointerDown = useCallback((e) => {
         pointerDown.current = true;
         pointerX.current = e.clientX;
         pointerY.current = e.clientY;
@@ -209,31 +212,51 @@ const Video360Screen = ({
         pointerLat.current = lat.current;
     }, []);
 
-    const onPointerMove = useCallback( (e) => {
+    const onPointerMove = useCallback((e) => {
         if (pointerDown.current) {
-            lon.current = ( pointerX.current - e.clientX ) * 0.2 + pointerLon.current;
-            lat.current = ( pointerY.current - e.clientY ) * 0.2 + pointerLat.current;
+            lon.current = (pointerX.current - e.clientX) * 0.2 + pointerLon.current;
+            lat.current = (pointerY.current - e.clientY) * 0.2 + pointerLat.current;
         }
     }, []);
 
-    const onPointerUp = useCallback( () => {
+    const onPointerUp = useCallback(() => {
         pointerDown.current = false;
     }, []);
 
     // Building elements ------------------
 
-    const items = [];
-
-    if (isPlaceholder) {
-        items.push(<PlaceholderVideo className={styles.placeholder} width="100%" height="100%" />);
-    } else if (hasVideo) {
-        items.push(
-            <Transitions playing={transitionPlaying} transitions={transitions} disabled={!isView && !isEdit} fullscreen>
-                <canvas ref={canvasRef} className={styles.canvas} />
-                <button className={styles.canvasButton} type="button" aria-label="canvas-interaction" onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp} />
-            </Transitions>,
-        );
-        items.push(
+    const items = [
+        <ScreenElement
+            key="video"
+            placeholder={
+                <PlaceholderVideo className={styles.placeholder} width="100%" height="100%" />
+            }
+            emptyClassName={styles.empty}
+            emptyLabel={
+                <FormattedMessage defaultMessage="Video 360" description="Video 360 placeholder" />
+            }
+            isEmpty={!hasVideo}
+        >
+            {hasVideo ? (
+                <Transitions
+                    playing={transitionPlaying}
+                    transitions={transitions}
+                    disabled={!isView && !isEdit}
+                    fullscreen
+                >
+                    <canvas ref={canvasRef} className={styles.canvas} />
+                    <button
+                        className={styles.canvasButton}
+                        type="button"
+                        aria-label="canvas-interaction"
+                        onPointerDown={onPointerDown}
+                        onPointerMove={onPointerMove}
+                        onPointerUp={onPointerUp}
+                    />
+                </Transitions>
+            ) : null}
+        </ScreenElement>,
+        !isPlaceholder ? (
             <div className={styles.bottomContent}>
                 {closedCaptions !== null ? (
                     <ClosedCaptions
@@ -253,9 +276,9 @@ const Video360Screen = ({
                     onToggleMute={toggleMute}
                     onSeek={seek}
                 />
-            </div>,
-        );
-    }
+            </div>
+        ) : null,
+    ];
 
     return (
         <div
@@ -273,8 +296,8 @@ const Video360Screen = ({
                 height={height}
                 playing={(isView && current) || (isEdit && active)}
             />
-            <Container width={width} height={height}>                
-                { hasVideo ?
+            <Container width={width} height={height}>
+                {hasVideo ? (
                     <div
                         className={styles.videoContainer}
                         style={{
@@ -295,7 +318,7 @@ const Video360Screen = ({
                             onDurationChanged={onDurationChanged}
                         />
                     </div>
-                : null }
+                ) : null}
                 <div className={styles.content}>{items}</div>
             </Container>
         </div>

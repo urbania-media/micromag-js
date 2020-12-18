@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { PlaceholderVideo, Transitions, ScreenElement } from '@micromag/core/components';
+import { PlaceholderVideo, Transitions, ScreenElement, Empty } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -92,8 +92,9 @@ const VideoScreen = ({
     }, [setReady]);
 
     // get resized video style props
-    const finalVideo = hasVideo ? {...video, autoPlay: isPreview ? false : video.autoPlay } : null;
-    const { media: videoMedia = null, closedCaptions = null, withSeekBar = false } = finalVideo || {};
+    const finalVideo = hasVideo ? { ...video, autoPlay: isPreview ? false : video.autoPlay } : null;
+    const { media: videoMedia = null, closedCaptions = null, withSeekBar = false } =
+        finalVideo || {};
     const { metadata: videoMetadata = null } = videoMedia || {};
     const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
 
@@ -118,16 +119,19 @@ const VideoScreen = ({
         <ScreenElement
             key="video"
             placeholder={<PlaceholderVideo className={styles.placeholder} {...placeholderProps} />}
-            emptyLabel={
-                <FormattedMessage
-                    defaultMessage="Video"
-                    description="Video placeholder"
-                />
+            empty={
+                <div className={styles.emptyContainer}>
+                    <Empty className={styles.empty}>
+                        <FormattedMessage
+                            defaultMessage="Video"
+                            description="Video placeholder"
+                        />
+                    </Empty>
+                </div>
             }
-            emptyClassName={styles.empty}
             isEmpty={!hasVideo}
         >
-            { hasVideo ? 
+            {hasVideo ? (
                 <div
                     className={styles.videoContainer}
                     style={{
@@ -137,7 +141,11 @@ const VideoScreen = ({
                         top: resizedVideoTop,
                     }}
                 >
-                    <Transitions playing={transitionPlaying} transitions={transitions} disabled={!isView}>
+                    <Transitions
+                        playing={transitionPlaying}
+                        transitions={transitions}
+                        disabled={!isView}
+                    >
                         <Video
                             {...finalVideo}
                             ref={apiRef}
@@ -150,9 +158,9 @@ const VideoScreen = ({
                         />
                     </Transitions>
                 </div>
-            : null }
+            ) : null}
         </ScreenElement>,
-        !isPlaceholder ? 
+        !isPlaceholder ? (
             <div className={styles.bottomContent}>
                 {closedCaptions !== null ? (
                     <ClosedCaptions
@@ -173,7 +181,7 @@ const VideoScreen = ({
                     onSeek={seek}
                 />
             </div>
-        : null
+        ) : null,
     ];
 
     return (
