@@ -100,7 +100,7 @@ const TitleScreen = ({
             key="title"
             placeholder="title"
             emptyLabel={<FormattedMessage defaultMessage="Title" description="Title placeholder" />}
-            emptyClassName={styles.empty}
+            emptyClassName={styles.emptyTitle}
             isEmpty={isEmpty}
         >
             {hasTitle ? (
@@ -123,7 +123,7 @@ const TitleScreen = ({
                         description="Subtitle placeholder"
                     />
                 }
-                emptyClassName={styles.empty}
+                emptyClassName={styles.emptySubtitle}
                 isEmpty={isEmpty}
             >
                 {hasSubtitle ? (
@@ -146,7 +146,7 @@ const TitleScreen = ({
                 key="description"
                 placeholder="shortText"
                 emptyLabel={descriptionEmptyLabel}
-                emptyClassName={styles.empty}
+                emptyClassName={styles.emptyDescription}
                 isEmpty={isEmpty}
             >
                 {hasDescription ? <Text {...description} /> : null}

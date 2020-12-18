@@ -81,7 +81,7 @@ const TextScreen = ({
             key="title"
             placeholder="title"
             emptyLabel={<FormattedMessage defaultMessage="Title" description="Title placeholder" />}
-            emptyClassName={styles.empty}
+            emptyClassName={styles.emptyTitle}
             isEmpty={isEmpty}
         >
             { hasTitle ? <Heading className={classNames([styles.title, { [styles.withMargin] : titleWithMargin }])} {...title} /> : null }
@@ -93,7 +93,7 @@ const TextScreen = ({
             key="description"
             placeholder="text"
             emptyLabel={<FormattedMessage defaultMessage="Text" description="Text placeholder" />}
-            emptyClassName={styles.empty}
+            emptyClassName={styles.emptyText}
             isEmpty={isEmpty}
         >
             { hasText ? <Text className={styles.text} {...text} /> : null }

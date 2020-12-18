@@ -1,24 +1,26 @@
 @import '~@micromag/core/scss/placeholders';
+// stylelint-disable max-nesting-depth
+
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/mixins';
 
 .container {
     position: relative;
 
-    .empty {
+    .emptyImage,
+    .emptyCaption {
         @extend %empty;
         width: 100%;
-        height: 100px;
-        margin: 0 auto;
+        margin: 10px auto;
     }
 
-    // .caption {
+    .emptyImage {
+        height: 200px;
+    }
 
-    // }
-
-    // .captionText {
-
-    // }
+    .emptyCaption {
+        height: 50px;
+    }
 
     &.isPlaceholder {
         .layout {

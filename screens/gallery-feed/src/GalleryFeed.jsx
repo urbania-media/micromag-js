@@ -79,7 +79,7 @@ const GalleryFeedScreen = ({
 
     const items = [];
 
-    const editImages = isEdit && images.length === 0 ? [{}] : images;
+    const editImages = isEdit && images.length === 0 ? [null] : images;
     const finalImages = isPlaceholder ? [...Array(5)] : editImages;
 
     const {
@@ -101,7 +101,7 @@ const GalleryFeedScreen = ({
                 emptyLabel={
                     <FormattedMessage defaultMessage="Image" description="Image placeholder" />
                 }
-                emptyClassName={styles.empty}
+                emptyClassName={styles.emptyImage}
                 isEmpty={!hasImage}
             >
                 <div className={styles.imageContainer} ref={index === 0 ? firstImageRef : null}>
@@ -130,7 +130,7 @@ const GalleryFeedScreen = ({
                             description="Caption placeholder"
                         />
                     }
-                    emptyClassName={styles.empty}
+                    emptyClassName={styles.emptyCaption}
                     isEmpty={!hasCaption}
                 >
                     <div
