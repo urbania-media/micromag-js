@@ -43,6 +43,14 @@
         transform-origin: 50% 50%;
     }
 
+    .viewerContainer {
+        position: relative;
+        height: 100%;
+        // fixes this glitch
+        // https://stackoverflow.com/questions/49653475/video-and-z-index-inside-scaled-element-some-divs-disappear
+        transform: translate3d(-1px, 0, 0);
+    }
+
     .noStory {
         @extend %fullscreen;
     }
