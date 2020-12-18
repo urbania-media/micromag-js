@@ -78,13 +78,14 @@ const ScreensMenu = ({
             transform: `scale(${previewScale}, ${previewScale})`,
         };
     }, [previewMinWidth, contentRect]);
-    const itemsElements = items.map(({ onClick = null, title, screen, ...item }, index) => (
+    const itemsElements = items.map(({ onClick = null, title, screen, className: itemCustomClassName = null, ...item }, index) => (
         <li
             key={item.id}
             className={classNames([
                 styles.item,
                 {
                     [itemClassName]: itemClassName !== null,
+                    [itemCustomClassName]: itemCustomClassName !== null,
                 },
             ])}
             ref={index === 0 ? containerRef : null}

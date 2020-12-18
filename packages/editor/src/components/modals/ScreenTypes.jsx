@@ -10,18 +10,20 @@ import ScreenTypesMenu from '../menus/ScreenTypes';
 import styles from '../../styles/modals/screen-types.module.scss';
 
 const propTypes = {
+    selectedTypes: PropTypes.arrayOf(PropTypes.string),
     className: PropTypes.string,
     onRequestClose: PropTypes.func,
     onClickScreenType: PropTypes.func,
 };
 
 const defaultProps = {
+    selectedTypes: null,
     className: null,
     onRequestClose: null,
     onClickScreenType: null,
 };
 
-const ScreenTypesModal = ({ className, onRequestClose, onClickScreenType }) => (
+const ScreenTypesModal = ({ selectedTypes, className, onRequestClose, onClickScreenType }) => (
     <Modal>
         <Dialog
             title={
@@ -38,7 +40,11 @@ const ScreenTypesModal = ({ className, onRequestClose, onClickScreenType }) => (
             ])}
             onClickClose={onRequestClose}
         >
-            <ScreenTypesMenu className={styles.menu} onClickItem={onClickScreenType} />
+            <ScreenTypesMenu
+                selectedTypes={selectedTypes}
+                className={styles.menu}
+                onClickItem={onClickScreenType}
+            />
         </Dialog>
     </Modal>
 );

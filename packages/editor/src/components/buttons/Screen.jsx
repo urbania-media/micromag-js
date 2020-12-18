@@ -46,38 +46,36 @@ const ScreenButton = ({
     title,
     onClick,
     refButton,
-}) => {
-    return (
-        <Button
-            className={classNames([
-                styles.container,
-                'rounded',
-                {
-                    [styles.active]: active,
-                    [className]: className !== null,
-                },
-            ])}
-            withoutStyle
-            id={id}
-            href={href}
-            title={title}
-            onClick={onClick}
-            refButton={refButton}
-        >
-            <span className={classNames([styles.border, 'rounded'])} />
-            <span className={styles.screen}>
-                {children !== null ? (
-                    children
-                ) : (
-                    <span className={styles.inner}>
-                        {icon !== null ? <span className={styles.icon}>{icon}</span> : null}
-                        {label !== null ? <span className={styles.label}>{label}</span> : null}
-                    </span>
-                )}
-            </span>
-        </Button>
-    );
-};
+}) => (
+    <Button
+        className={classNames([
+            styles.container,
+            'rounded',
+            {
+                [styles.active]: active,
+                [className]: className !== null,
+            },
+        ])}
+        withoutStyle
+        id={id}
+        href={href}
+        title={title}
+        onClick={onClick}
+        refButton={refButton}
+    >
+        <span className={classNames([styles.border, 'rounded'])} />
+        <span className={styles.screen}>
+            {children !== null ? (
+                children
+            ) : (
+                <span className={styles.inner}>
+                    {icon !== null ? <span className={styles.icon}>{icon}</span> : null}
+                    {label !== null ? <span className={styles.label}>{label}</span> : null}
+                </span>
+            )}
+        </span>
+    </Button>
+);
 
 ScreenButton.propTypes = propTypes;
 ScreenButton.defaultProps = defaultProps;

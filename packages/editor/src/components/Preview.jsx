@@ -14,15 +14,16 @@ import DevicesMenu from './menus/Devices';
 import styles from '../styles/preview.module.scss';
 
 const propTypes = {
-    story: MicromagPropTypes.story,
+    value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
     devices: MicromagPropTypes.devices,
     device: PropTypes.string,
+    isTheme: PropTypes.bool,
     className: PropTypes.string,
     onScreenChange: PropTypes.func,
 };
 
 const defaultProps = {
-    story: null,
+    value: null,
     devices: [
         {
             id: 'mobile',
@@ -36,13 +37,24 @@ const defaultProps = {
         },
     ],
     device: null,
+    isTheme: false,
     className: null,
     onScreenChange: null,
 };
 
-const EditorPreview = ({ story, devices, device: initialDevice, className, onScreenChange }) => {
+const EditorPreview = ({ value, isTheme, devices, device: initialDevice, className, onScreenChange }) => {
     const routes = useRoutes();
     const { screen = null, screens = [] } = useScreenSize();
+    const valueWithTheme = useMemo(() => {
+        if (!isTheme) {
+            return value;
+        }
+        const { components, ...themeValue } = value || {};
+        return value !== null ? {
+            theme: themeValue,
+            ...value,
+        } : value;
+    }, [value, isTheme]);
 
     // Get device
     const [deviceId, setDeviceId] = useState(initialDevice || devices[0].id);
@@ -104,7 +116,7 @@ const EditorPreview = ({ story, devices, device: initialDevice, className, onScr
                                 }) => (
                                     <div className={styles.viewerContainer}>
                                         <Viewer
-                                            story={story}
+                                            story={valueWithTheme}
                                             screen={screenId}
                                             className={styles.story}
                                             interactions={null}

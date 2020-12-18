@@ -15,17 +15,19 @@ import styles from '../../styles/menus/screen-types.module.scss';
 
 const propTypes = {
     screens: MicromagPropTypes.screenDefinitions,
+    selectedTypes: PropTypes.arrayOf(PropTypes.string),
     className: PropTypes.string,
     onClickItem: PropTypes.func,
 };
 
 const defaultProps = {
     screens: null,
+    selectedTypes: null,
     className: null,
     onClickItem: null,
 };
 
-const ScreenTypes = ({ screens, className, onClickItem }) => {
+const ScreenTypes = ({ screens, selectedTypes, className, onClickItem }) => {
     const intl = useIntl();
     const screensManager = useScreensManager();
     const finalDefinitions = screens || screensManager.getDefinitions();
@@ -38,10 +40,15 @@ const ScreenTypes = ({ screens, className, onClickItem }) => {
                 ? { id: messageId || id, name: group }
                 : { id: messageId || id, name: title };
             const groupIndex = allGroups.findIndex((it) => it.id === groupId);
+            const selected = selectedTypes !== null && selectedTypes.indexOf(id) !== -1;
             const item = {
                 id,
                 type: id,
                 screen: definition,
+                className: classNames({
+                    'bg-light': selected,
+                    'text-light': selected,
+                }),
             };
             return groupIndex !== -1
                 ? [
@@ -64,7 +71,7 @@ const ScreenTypes = ({ screens, className, onClickItem }) => {
         return orderBy(groupItems, ({ name }) =>
             isMessage(name) ? intl.formatMessage(name) : name,
         );
-    }, [finalDefinitions]);
+    }, [finalDefinitions, selectedTypes]);
     return (
         <div
             className={classNames([
@@ -82,7 +89,16 @@ const ScreenTypes = ({ screens, className, onClickItem }) => {
                             <Screens
                                 items={items}
                                 withPlaceholder
-                                itemClassName={classNames(['border', 'border-secondary', 'rounded'])}
+                                itemClassName={classNames([
+                                    'border',
+                                    'rounded',
+                                    {
+                                        'border-secondary': selectedTypes === null,
+                                        'border-dark': selectedTypes !== null,
+                                        'bg-secondary': selectedTypes !== null,
+                                        'text-secondary': selectedTypes !== null,
+                                    },
+                                ])}
                                 previewMinWidth={100}
                                 onClickItem={onClickItem}
                             />

@@ -375,19 +375,45 @@ export const fieldDefinition = PropTypes.shape({
 export const fieldDefinitions = PropTypes.arrayOf(fieldDefinition);
 
 /**
- * Story
+ * Components
  */
-export const storyComponent = PropTypes.shape({
+const storyComponentShape = {
     type: PropTypes.string.isRequired,
+};
+
+export const storyComponent = PropTypes.shape({
+    ...storyComponentShape,
 });
-export const screen = storyComponent;
 export const storyComponents = PropTypes.arrayOf(storyComponent);
 
-export const story = PropTypes.shape({
+export const screenComponent = PropTypes.shape({
+    ...storyComponentShape,
+});
+export const screenComponents = PropTypes.arrayOf(screenComponent);
+export const screen = screenComponent; // @NOTE should be removed
+
+/**
+ * Theme
+ */
+export const theme = PropTypes.shape({
     id: PropTypes.string,
-    components: storyComponents,
+    textStyle: PropTypes.objectOf(textStyle),
+    background: backgroundElement,
+    components: screenComponents,
 });
 
+/**
+ * Story
+ */
+export const story = PropTypes.shape({
+    id: PropTypes.string,
+    theme,
+    components: screenComponents,
+});
+
+/**
+ * Render
+ */
 export const deviceScreen = PropTypes.shape({
     name: PropTypes.string.isRequired,
     mediaQuery: PropTypes.string,

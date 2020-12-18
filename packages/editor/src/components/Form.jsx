@@ -20,18 +20,20 @@ import FieldForm from './forms/Field';
 import styles from '../styles/form.module.scss';
 
 const propTypes = {
-    story: MicromagPropTypes.story,
+    value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
+    // isTheme: PropTypes.bool,
     className: PropTypes.string,
     onChange: PropTypes.func,
 };
 
 const defaultProps = {
-    story: null,
+    value: null,
+    // isTheme: false,
     className: null,
     onChange: null,
 };
 
-const EditForm = ({ story, className, onChange }) => {
+const EditForm = ({ value, className, onChange }) => {
     const intl = useIntl();
     // Match routes
     const history = useHistory();
@@ -44,10 +46,8 @@ const EditForm = ({ story, className, onChange }) => {
         path: [routes['screen.field.form'], routes['screen.field'], routes.screen, '*'],
     });
 
-    // console.log(story, url, screenId, fieldParams, formParams);
-
     // Get screen
-    const { components: screens = [] } = story || {};
+    const { components: screens = [] } = value || {};
     const screenIndex = screens.findIndex((it) => it.id === screenId);
     const screen = screenIndex !== -1 ? screens[screenIndex] : null;
 
@@ -69,17 +69,17 @@ const EditForm = ({ story, className, onChange }) => {
     );
 
     const onScreenFormChange = useCallback(
-        (newScreenValue) => triggerOnChange(updateScreen(story, newScreenValue)),
-        [story, triggerOnChange],
+        (newScreenValue) => triggerOnChange(updateScreen(value, newScreenValue)),
+        [value, triggerOnChange],
     );
 
     const onClickScreenDelete = useCallback(
-        ({ id: deleteScreenId }) => triggerOnChange(deleteScreen(story, deleteScreenId)),
-        [story, triggerOnChange],
+        ({ id: deleteScreenId }) => triggerOnChange(deleteScreen(value, deleteScreenId)),
+        [value, triggerOnChange],
     );
 
-    const onClickDuplicate = useCallback(() => triggerOnChange(duplicateScreen(story, screenId)), [
-        story,
+    const onClickDuplicate = useCallback(() => triggerOnChange(duplicateScreen(value, screenId)), [
+        value,
         screenId,
         triggerOnChange,
     ]);
@@ -91,9 +91,9 @@ const EditForm = ({ story, className, onChange }) => {
         });
         // eslint-disable-next-line no-alert
         if (window.confirm(confirmMessage)) {
-            triggerOnChange(deleteScreen(story, screenId));
+            triggerOnChange(deleteScreen(value, screenId));
         }
-    }, [intl, story, screenId, triggerOnChange]);
+    }, [intl, value, screenId, triggerOnChange]);
 
     const [fieldForms, setFieldForms] = useState({});
 
@@ -140,7 +140,7 @@ const EditForm = ({ story, className, onChange }) => {
             {screenId !== null ? (
                 <Navbar theme="dark" compact noWrap withoutCollapse>
                     <Breadcrumb
-                        story={story}
+                        story={value}
                         url={url}
                         screenId={screenId}
                         field={fieldParams}
