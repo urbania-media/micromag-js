@@ -102,14 +102,16 @@ const EditorPreview = ({ story, devices, device: initialDevice, className, onScr
                                         params: { screen: screenId = null },
                                     },
                                 }) => (
-                                    <Viewer
-                                        story={story}
-                                        screen={screenId}
-                                        className={styles.story}
-                                        interactions={null}
-                                        renderContext="edit"
-                                        onScreenChange={onScreenChange}
-                                    />
+                                    <div className={styles.viewerContainer}>
+                                        <Viewer
+                                            story={story}
+                                            screen={screenId}
+                                            className={styles.story}
+                                            interactions={null}
+                                            renderContext="edit"
+                                            onScreenChange={onScreenChange}
+                                        />
+                                    </div>
                                 )}
                             />
                         </div>
