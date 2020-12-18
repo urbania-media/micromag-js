@@ -83,9 +83,17 @@
     "defaultMessage": "No marker...",
     "description": "Label when there is no item in markers field"
   },
+  "3NghmM": {
+    "defaultMessage": "Good answer",
+    "description": "Field label"
+  },
   "3OS3Ms": {
     "defaultMessage": "Legend",
     "description": "Legend field label"
+  },
+  "3ext9Q": {
+    "defaultMessage": "Video",
+    "description": "Video placeholder"
   },
   "3ifj0j": {
     "defaultMessage": "Entries",
@@ -314,6 +322,10 @@
   "N25iDO": {
     "defaultMessage": "Title",
     "description": "Title field label"
+  },
+  "NGuaKm": {
+    "defaultMessage": "Scrollable",
+    "description": "Scrollable field label"
   },
   "OJi+eg": {
     "defaultMessage": "Label",
@@ -575,6 +587,10 @@
   "o0RmVC": {
     "defaultMessage": "imagesWithCaptions",
     "description": "imagesWithCaptions field label"
+  },
+  "oLtEu6": {
+    "defaultMessage": "Video 360",
+    "description": "Video 360 placeholder"
   },
   "p6n6vY": {
     "defaultMessage": "No answer...",

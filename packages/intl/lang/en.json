@@ -56,8 +56,14 @@
     "rdFCsN": {
         "defaultMessage": "No marker..."
     },
+    "3NghmM": {
+        "defaultMessage": "Good answer"
+    },
     "dqnkQk": {
         "defaultMessage": "Legend"
+    },
+    "vERejo": {
+        "defaultMessage": "Video"
     },
     "sESmah": {
         "defaultMessage": "Entries"
@@ -167,7 +173,7 @@
     "F2SD/0": {
         "defaultMessage": "Loop"
     },
-    "FJjjnF": {
+    "oLtEu6": {
         "defaultMessage": "Video 360"
     },
     "li7ADr": {
@@ -211,6 +217,9 @@
     },
     "Mz76RM": {
         "defaultMessage": "ImageText"
+    },
+    "NGuaKm": {
+        "defaultMessage": "Scrollable"
     },
     "OJi+eg": {
         "defaultMessage": "Label"
@@ -256,9 +265,6 @@
     },
     "Tt4jN1": {
         "defaultMessage": "Add"
-    },
-    "vERejo": {
-        "defaultMessage": "Video"
     },
     "WlNxMj": {
         "defaultMessage": "Repeat"

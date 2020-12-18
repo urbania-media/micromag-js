@@ -1,33 +1,42 @@
 import { useCallback, useState } from 'react';
 
-const useContributions = ({ onSubmitSuccess = null } = {}) => {
+import { useApi } from '../contexts/ApiContext';
 
-    // @TODO get actual contributions
-    const [contributions, setContributions] = useState(
+import useData from './useData';
+
+export const useContributions = (screenId, opts) => {
+    const api = useApi();
+
+    const [defaultContributions] = useState(
         [...new Array(10)].map((el, i) => ({
             name: `Nom ${i + 1}`,
             message: `Message ${i + 1}`,
         })),
     );
 
-    const submit = useCallback(
-        (contribution) => {
-            const onSuccess = () => {
-                setContributions([contribution, ...contributions]);
-                if (onSubmitSuccess !== null) {
-                    onSubmitSuccess();
-                }
-            };
-            // @TODO send actual contribution
-            setTimeout(onSuccess, 1000);
-        },
-        [contributions, setContributions, onSubmitSuccess],
-    );
-
+    const loader = useCallback(() => api.contributions.get(screenId), [api, screenId]);
+    const { data, ...request } = useData(loader, opts);
     return {
-        contributions,
-        submit,
+        contributions: data || defaultContributions,
+        ...request,
     };
 };
 
-export default useContributions;
+export const useCreateContribution = ({ screenId, onSuccess = null } = {}) => {
+    const api = useApi();
+    const [creating, setCreating] = useState(false);
+    const create = useCallback(
+        (data) => {
+            setCreating(true);
+            return api.contributions.create({ screen_id: screenId, ...data }).then((response) => {
+                setCreating(false);
+                if (onSuccess !== null) {
+                    onSuccess(response);
+                }
+                return response;
+            });
+        },
+        [api, setCreating, onSuccess, screenId],
+    );
+    return { create, creating };
+};
