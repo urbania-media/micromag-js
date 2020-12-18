@@ -163,7 +163,7 @@ const GalleryScreen = ({
                                     description="Image placeholder"
                                 />
                             }
-                            emptyClassName={styles.empty}
+                            emptyClassName={styles.emptyImage}
                             isEmpty={!hasImage}
                         >
                             <Image
@@ -191,7 +191,7 @@ const GalleryScreen = ({
                                     description="Caption placeholder"
                                 />
                             }
-                            emptyClassName={styles.empty}
+                            emptyClassName={styles.emptyCaption}
                             isEmpty={!hasCaption}
                         >
                             <div className={styles.caption}>

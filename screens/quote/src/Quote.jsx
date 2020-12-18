@@ -78,7 +78,7 @@ const QuoteScreen = ({
             key="quote"
             placeholder="quote"
             emptyLabel={<FormattedMessage defaultMessage="Quote" description="Quote placeholder" />}
-            emptyClassName={styles.empty}
+            emptyClassName={styles.emptyQuote}
             isEmpty={!hasQuote}
         >
             {hasQuote ? (
@@ -88,14 +88,14 @@ const QuoteScreen = ({
                 />
             ) : null}
         </ScreenElement>,
-        isSplitted && (hasAuthor || isPlaceholder) && <Spacer key="spacer" />,
+        isSplitted && <Spacer key="spacer" />,
         <ScreenElement
             key="author"
             placeholder="subtitle"
             emptyLabel={
                 <FormattedMessage defaultMessage="Author" description="Author placeholder" />
             }
-            emptyClassName={styles.empty}
+            emptyClassName={styles.emptyAuthor}
             isEmpty={!hasAuthor}
         >
             {hasAuthor ? <Text className={styles.author} {...author} /> : null}

@@ -36,6 +36,10 @@ export default [
             {
                 name: 'center',
                 type: 'geo-position',
+                defaultValue: {
+                    lat: 45.5,
+                    lng: -73.56,
+                },
                 label: defineMessage({
                     defaultMessage: 'Center',
                     description: 'Center field label',
@@ -44,9 +48,19 @@ export default [
             {
                 name: 'zoom',
                 type: 'map-zoom',
+                defaultValue: 9,
                 label: defineMessage({
                     defaultMessage: 'Zoom',
                     description: 'Zoom field label',
+                }),
+            },
+            {
+                name: 'scrollable',
+                type: 'toggle',
+                defaultValue: true,
+                label: defineMessage({
+                    defaultMessage: 'Scrollable',
+                    description: 'Scrollable field label',
                 }),
             },
             {
@@ -116,6 +130,15 @@ export default [
                 label: defineMessage({
                     defaultMessage: 'Zoom',
                     description: 'Zoom field label',
+                }),
+            },
+            {
+                name: 'scrollable',
+                type: 'toggle',
+                defaultValue: true,
+                label: defineMessage({
+                    defaultMessage: 'Scrollable',
+                    description: 'Scrollable field label',
                 }),
             },
             {

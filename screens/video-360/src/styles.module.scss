@@ -6,6 +6,11 @@
 .container {
     @extend %screen;
 
+    .empty {
+        @extend %empty;
+        height: 100%;      
+    }
+
     .content,
     .canvas,
     .canvasButton,

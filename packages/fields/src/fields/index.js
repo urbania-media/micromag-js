@@ -30,6 +30,8 @@ export { default as markers } from './markers';
 export { default as markersWithImage } from './markers-with-image';
 export { default as mapZoom } from './map-zoom';
 export { default as password } from './password';
+export { default as quizAnswer } from './quiz-answer';
+export { default as quizAnswers } from './quiz-answers';
 export { default as radios } from './radios';
 export { default as screenLayout } from './screen-layout';
 export { default as textElement } from './text-element';

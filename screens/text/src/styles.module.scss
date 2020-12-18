@@ -1,12 +1,23 @@
+// stylelint-disable max-nesting-depth
+
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 
 .container {
     @extend %screen;
 
-    .empty {
+    .emptyTitle,
+    .emptyText {
         @extend %empty;
         width: 100%;
+        margin: 10px auto;
+    }
+
+    .emptyTitle {
+        height: 100px;
+    }
+
+    .emptyText {
         height: 50px;
     }
 
