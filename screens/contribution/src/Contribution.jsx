@@ -12,7 +12,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { isTextFilled, isLabelFilled } from '@micromag/core/utils';
-import { useContributions } from '@micromag/data';
+import { useContributions, useContributionCreate } from '@micromag/data';
 
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -55,7 +55,7 @@ const defaultProps = {
     transitions: null,
     transitionStagger: 100,
     resizeTransitionDuration: 750,
-    className: null,    
+    className: null,
 };
 
 const ContributionScreen = ({
@@ -76,7 +76,7 @@ const ContributionScreen = ({
 }) => {
     const { width, height } = useScreenSize();
     const { menuSize } = useViewer();
-    const intl = useIntl();   
+    const intl = useIntl();
 
     const landscape = width > height;
 
@@ -97,14 +97,16 @@ const ContributionScreen = ({
     // 0 = default, 1 = submitting, 2 = submitted, 3 = resizing, 4 = done
     const [submitState, setSubmitState] = useState(0);
 
-    const onContributionSubmitted = useCallback( () => {
+    const onContributionSubmitted = useCallback(() => {
         setSubmitState(2);
     }, [setSubmitState]);
-    
-    const {
-        contributions,
-        submit: submitContribution
-    } = useContributions({ onSubmitSuccess: onContributionSubmitted });
+
+    const { create: submitContribution } = useContributionCreate({
+        screenId: 'screen-id',
+        onSubmitSuccess: onContributionSubmitted,
+    });
+
+    const { contributions } = useContributions({ screenId: 'screen-id' });
 
     const onNameChange = useCallback(
         (e) => {
@@ -258,7 +260,11 @@ const ContributionScreen = ({
                             delay={transitionStagger * 3}
                             disabled={!isView}
                         >
-                            <Button type="submit" className={styles.buttonSubmit} disabled={isPreview}>
+                            <Button
+                                type="submit"
+                                className={styles.buttonSubmit}
+                                disabled={isPreview}
+                            >
                                 <Text
                                     body={intl.formatMessage({
                                         defaultMessage: 'Submit',

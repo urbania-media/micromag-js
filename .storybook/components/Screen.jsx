@@ -6,6 +6,7 @@ import { useScreenSizeFromElement } from '../../packages/core/src/hooks';
 import * as MicromagPropTypes from '../../packages/core/src/PropTypes';
 import { ScreenProvider } from '../../packages/core/src/contexts/ScreenContext';
 import { ScreenSizeProvider } from '../../packages/core/src/contexts/ScreenSizeContext';
+import { ApiProvider } from '../../packages/data/src/contexts/ApiContext';
 
 import styles from './styles/screen.module.scss';
 
@@ -78,15 +79,17 @@ const Screen = ({
                 ])}
             >
                 {screenSize.width > 0 && screenSize.height > 0 ? (
-                    <ScreenSizeProvider size={screenSize}>
-                        <ScreenProvider
-                            definition={definition}
-                            data={screen}
-                            renderContext={renderContext}
-                        >
-                            {children}
-                        </ScreenProvider>
-                    </ScreenSizeProvider>
+                    <ApiProvider baseUrl="http://localhost:58800">
+                        <ScreenSizeProvider size={screenSize}>
+                            <ScreenProvider
+                                definition={definition}
+                                data={screen}
+                                renderContext={renderContext}
+                            >
+                                {children}
+                            </ScreenProvider>
+                        </ScreenSizeProvider>
+                    </ApiProvider>
                 ) : null}
             </div>
         </div>
