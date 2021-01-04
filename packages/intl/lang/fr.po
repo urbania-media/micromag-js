@@ -112,10 +112,20 @@ msgstr "Supprimer l’écran"
 msgid "No marker..."
 msgstr ""
 
+# Field label
+#: 3NghmM
+msgid "Good answer"
+msgstr ""
+
 # Legend placeholder
 #: dqnkQk
 msgid "Legend"
 msgstr "Légende"
+
+# Field label
+#: vERejo
+msgid "Video"
+msgstr ""
 
 # Entries field label
 #: sESmah
@@ -297,8 +307,8 @@ msgstr ""
 msgid "Loop"
 msgstr ""
 
-# Video 360 screen title
-#: FJjjnF
+# Video 360 placeholder
+#: oLtEu6
 msgid "Video 360"
 msgstr ""
 
@@ -370,6 +380,11 @@ msgstr ""
 # ImageText screen title
 #: Mz76RM
 msgid "ImageText"
+msgstr ""
+
+# Scrollable field label
+#: NGuaKm
+msgid "Scrollable"
 msgstr ""
 
 # Field label
@@ -444,11 +459,6 @@ msgstr ""
 # Add button label in Media Gallery
 #: Tt4jN1
 msgid "Add"
-msgstr ""
-
-# Field label
-#: vERejo
-msgid "Video"
 msgstr ""
 
 # Field label

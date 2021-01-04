@@ -112,10 +112,20 @@ msgstr "Delete screen"
 msgid "No marker..."
 msgstr "No marker..."
 
+# Field label
+#: 3NghmM
+msgid "Good answer"
+msgstr "Good answer"
+
 # Legend placeholder
 #: dqnkQk
 msgid "Legend"
 msgstr "Legend"
+
+# Field label
+#: vERejo
+msgid "Video"
+msgstr "Video"
 
 # Entries field label
 #: sESmah
@@ -297,8 +307,8 @@ msgstr "Subtitle"
 msgid "Loop"
 msgstr "Loop"
 
-# Video 360 screen title
-#: FJjjnF
+# Video 360 placeholder
+#: oLtEu6
 msgid "Video 360"
 msgstr "Video 360"
 
@@ -371,6 +381,11 @@ msgstr "Answers"
 #: Mz76RM
 msgid "ImageText"
 msgstr "ImageText"
+
+# Scrollable field label
+#: NGuaKm
+msgid "Scrollable"
+msgstr "Scrollable"
 
 # Field label
 #: OJi+eg
@@ -445,11 +460,6 @@ msgstr "Longitude"
 #: Tt4jN1
 msgid "Add"
 msgstr "Add"
-
-# Field label
-#: vERejo
-msgid "Video"
-msgstr "Video"
 
 # Field label
 #: WlNxMj
