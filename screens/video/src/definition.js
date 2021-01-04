@@ -13,7 +13,7 @@ export default {
         description: 'Video screen title',
     }),
     component: VideoScreen,
-    layouts: ['full', 'center'],
+    layouts: ['center', 'full'],
     fields: [
         {
             name: 'layout',

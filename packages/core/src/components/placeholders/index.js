@@ -16,4 +16,5 @@ export { default as Text } from './Text';
 export { default as Timeline } from './Timeline';
 export { default as Title } from './Title';
 export { default as Video } from './Video';
+export { default as Video360 } from './Video360';
 export { default as VideoLoop } from './VideoLoop';

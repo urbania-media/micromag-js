@@ -6,13 +6,15 @@ import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes, useResizeObserver } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { PlaceholderMap, Transitions, Button } from '@micromag/core/components';
+import { useTracking } from '@micromag/core/hooks';
+import { isTextFilled } from '@micromag/core/utils';
+
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Map from '@micromag/element-map';
 import Heading from '@micromag/element-heading';
 import Text from '@micromag/element-text';
 import Image from '@micromag/element-image';
-import { isTextFilled } from '@micromag/core/src/utils';
 
 import styles from './styles.module.scss';
 
@@ -35,6 +37,7 @@ const propTypes = {
     className: PropTypes.string,
     onEnableInteraction: PropTypes.func,
     onDisableInteraction: PropTypes.func,
+    id: PropTypes.string,
 };
 
 const defaultProps = {
@@ -57,6 +60,7 @@ const defaultProps = {
     className: null,
     onEnableInteraction: null,
     onDisableInteraction: null,
+    id: null,
 };
 
 const MapScreen = ({
@@ -76,7 +80,9 @@ const MapScreen = ({
     className,
     onEnableInteraction,
     onDisableInteraction,
+    id,
 }) => {
+    const { trackEvent } = useTracking();
     const [opened, setOpened] = useState(false);
 
     const [selectedMarker, setSelectedMarker] = useState(null);
@@ -96,29 +102,44 @@ const MapScreen = ({
 
     const onMapReady = useCallback(() => setReady(true), [setReady]);
 
-    const onClickMap = useCallback(() => setSelectedMarker(null), []);
+    const onClickMap = useCallback(() => {
+        setSelectedMarker(null);    
+        trackEvent(id, 'map', 'marker-unselect', lastRenderedMarker.current.id);
+    }, [id]);
 
     const onClickMarker = useCallback(
         (e, i) => {
-            lastRenderedMarker.current = markers[i];
+            const marker = markers[i];
+            lastRenderedMarker.current = marker;
             setSelectedMarker(i);
+            trackEvent(id, 'map', 'marker-select', marker.id);
         },
-        [markers, setSelectedMarker],
+        [markers, setSelectedMarker, id],
     );
 
     const onSplashClick = useCallback(() => {
         setOpened(true);
+        trackEvent(id, 'map', 'start');
         if (onDisableInteraction !== null) {
             onDisableInteraction();
         }
-    }, [setOpened, onDisableInteraction]);
+    }, [setOpened, onDisableInteraction, id]);
 
     const onCloseClick = useCallback(() => {
         setOpened(false);
+        trackEvent(id, 'map', 'stop');
         if (onEnableInteraction !== null) {
             onEnableInteraction();
         }
-    }, [setOpened, onEnableInteraction]);
+    }, [setOpened, onEnableInteraction, id]);
+
+    const onMapDragEnd = useCallback(() => {
+        trackEvent(id, 'map', 'dragged');
+    }, [id]);
+
+    const onMapZoomChanged = useCallback(() => {
+        trackEvent(id, 'map', 'zoomed');
+    }, [id]);
 
     const {
         ref: markerOverContentInnerRef,
@@ -194,6 +215,8 @@ const MapScreen = ({
                     }))}
                     onClickMarker={onClickMarker}
                     onReady={onMapReady}
+                    onDragEnd={onMapDragEnd}
+                    onZoomChanged={onMapZoomChanged}
                 />
                 <div className={styles.markerOverlayContainer}>
                     <div className={styles.markerOverlayScrollable}>

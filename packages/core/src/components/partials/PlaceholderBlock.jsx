@@ -9,6 +9,7 @@ const propTypes = {
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     outline: PropTypes.bool,
     className: PropTypes.string,
+    boxClassName: PropTypes.string,
     children: PropTypes.node,
 };
 
@@ -17,32 +18,36 @@ const defaultProps = {
     height: '3em',
     outline: false,
     className: null,
+    boxClassName: null,
     children: null,
 };
 
-const PlaceholderBlock = ({ width, height, outline, className, children }) => {
-    return (
+const PlaceholderBlock = ({ width, height, outline, className, boxClassName, children }) => (
+    <div
+        className={classNames([
+            styles.container,
+            {
+                [className]: className !== null,
+                [styles.outline]: outline,
+            },
+        ])}
+    >
         <div
             className={classNames([
-                styles.container,
-                {
-                    [className]: className,
-                    [styles.outline]: outline,
-                },
-            ])}
+                styles.box,
+            {
+                [boxClassName]: boxClassName !== null,
+            },
+        ])}
+            style={{
+                width,
+                height,
+            }}
         >
-            <div
-                className={styles.box}
-                style={{
-                    width,
-                    height,
-                }}
-            >
-                {children}
-            </div>
+            {children}
         </div>
-    );
-};
+    </div>
+);
 
 PlaceholderBlock.propTypes = propTypes;
 PlaceholderBlock.defaultProps = defaultProps;

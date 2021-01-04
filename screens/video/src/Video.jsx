@@ -7,6 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderVideo, Transitions, ScreenElement, Empty } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { useTracking } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import ClosedCaptions from '@micromag/element-closed-captions';
@@ -17,7 +18,7 @@ import { getSizeWithinBounds } from '@folklore/size';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    layout: PropTypes.oneOf(['full', 'center']),
+    layout: PropTypes.oneOf(['center', 'full']),
     video: MicromagPropTypes.videoElement,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
@@ -25,10 +26,11 @@ const propTypes = {
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
+    id: PropTypes.string,
 };
 
 const defaultProps = {
-    layout: 'full',
+    layout: 'center',
     video: null,
     background: null,
     current: true,
@@ -36,6 +38,7 @@ const defaultProps = {
     maxRatio: 3 / 4,
     transitions: null,
     className: null,
+    id: null,
 };
 
 const VideoScreen = ({
@@ -47,7 +50,14 @@ const VideoScreen = ({
     maxRatio,
     transitions,
     className,
+    id,
 }) => {
+    const { trackVideo } = useTracking();
+
+    const { width, height } = useScreenSize();
+    const { isEdit, isPlaceholder, isPreview, isView } = useScreenRenderContext();
+    const trackingEnabled = isView;
+
     const apiRef = useRef();
     const { togglePlay, toggleMute, seek } = apiRef.current || {};
     // Get api state updates from callback
@@ -57,26 +67,68 @@ const VideoScreen = ({
     const [playing, setPlaying] = useState(false);
     const [muted, setMuted] = useState(false);
 
-    const onTimeUpdate = useCallback((time) => {
-        setCurrentTime(time);
-    }, []);
+    const onTimeUpdate = useCallback(
+        (time) => {
+            setCurrentTime(time);
+        },
+        [setDuration, duration],
+    );
 
-    const onDurationChanged = useCallback((dur) => {
-        setDuration(dur);
-    }, []);
+    const onProgressStep = useCallback(
+        (step) => {
+            trackVideo(id, `progress ${Math.round(step * 100, 10)}%`);
+        },
+        [trackVideo, id],
+    );
 
-    const onPlayChanged = useCallback((isPlaying) => {
-        setPlaying(isPlaying);
-    }, []);
+    const onDurationChanged = useCallback(
+        (dur) => {
+            setDuration(dur);
+        },
+        [setDuration],
+    );
 
-    const onMuteChanged = useCallback((isMuted) => {
-        setMuted(isMuted);
-    }, []);
+    const onPlay = useCallback(
+        ({ initial }) => {
+            setPlaying(true);
+            if (trackingEnabled) {
+                trackVideo(id, initial ? 'play' : 'resume');
+            }
+        },
+        [trackingEnabled, id],
+    );
+
+    const onPause = useCallback(
+        ({ midway }) => {
+            setPlaying(false);
+            if (trackingEnabled) {
+                trackVideo(id, midway ? 'pause' : 'ended');
+            }
+        },
+        [trackingEnabled, id],
+    );
+
+    const onVolumeChanged = useCallback(
+        (isMuted) => {
+            setMuted(isMuted);
+            if (trackingEnabled) {
+                trackVideo(id, isMuted ? 'mute' : 'unmute');
+            }
+        },
+        [trackingEnabled, id],
+    );
+
+    const onSeeked = useCallback(
+        (time) => {
+            if (trackingEnabled && time > 0) {
+                trackVideo(id, 'seek', time);
+            }
+        },
+        [trackingEnabled, id],
+    );
 
     // ------------------------------------
-
-    const { width, height } = useScreenSize();
-    const { isEdit, isPlaceholder, isPreview, isView } = useScreenRenderContext();
+   
     const fullscreen = layout === 'full';
 
     const hasVideo = video !== null;
@@ -151,10 +203,13 @@ const VideoScreen = ({
                             ref={apiRef}
                             className={styles.video}
                             onReady={onVideoReady}
-                            onPlayChanged={onPlayChanged}
-                            onMuteChanged={onMuteChanged}
+                            onPlay={onPlay}
+                            onPause={onPause}
                             onTimeUpdate={onTimeUpdate}
+                            onProgressStep={onProgressStep}
                             onDurationChanged={onDurationChanged}
+                            onSeeked={onSeeked}
+                            onVolumeChanged={onVolumeChanged}
                         />
                     </Transitions>
                 </div>

@@ -10,6 +10,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
+import { useTracking } from '@micromag/core/hooks';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { isTextFilled, isLabelFilled } from '@micromag/core/utils';
 import { useContributions, useContributionCreate } from '@micromag/data';
@@ -39,6 +40,7 @@ const propTypes = {
     transitionStagger: PropTypes.number,
     resizeTransitionDuration: PropTypes.number,
     className: PropTypes.string,
+    id: PropTypes.string,
 };
 
 const defaultProps = {
@@ -55,7 +57,8 @@ const defaultProps = {
     transitions: null,
     transitionStagger: 100,
     resizeTransitionDuration: 750,
-    className: null,
+    className: null,    
+    id: null,
 };
 
 const ContributionScreen = ({
@@ -73,7 +76,10 @@ const ContributionScreen = ({
     transitionStagger,
     resizeTransitionDuration,
     className,
+    id,
 }) => {
+    const { trackEvent } = useTracking();
+
     const { width, height } = useScreenSize();
     const { menuSize } = useViewer();
     const intl = useIntl();
@@ -99,7 +105,9 @@ const ContributionScreen = ({
 
     const onContributionSubmitted = useCallback(() => {
         setSubmitState(2);
-    }, [setSubmitState]);
+        trackEvent(id, 'contributions', 'submit-success');
+
+    }, [setSubmitState, id]);
 
     const { create: submitContribution } = useContributionCreate({
         screenId: 'screen-id',
@@ -121,6 +129,32 @@ const ContributionScreen = ({
         },
         [setUserMessage],
     );
+    
+    const nameFilled = useRef(false);
+    const onNameBlur = useCallback(
+        (e) => {
+            if (!nameFilled.current && e.currentTarget.value.length > 0) {
+                trackEvent(id, 'contributions', 'name-filled');
+                nameFilled.current = true;
+            }
+        },
+        [id],
+    );
+
+    const messageFilled = useRef(false);
+    const onMessageBlur = useCallback(
+        (e) => {
+            if (!messageFilled.current && e.currentTarget.value.length > 0) {
+                trackEvent(id, 'contributions', 'message-filled');
+                messageFilled.current = true;
+            }
+        },
+        [id],
+    );
+
+    const onScrollBottom = useCallback(() => {
+        trackEvent(id, 'scroll', 'scroll-bottom');
+    }, [id])
 
     const onSubmit = useCallback(
         (e) => {
@@ -129,9 +163,10 @@ const ContributionScreen = ({
                 setInteractiveContainerHeight(formRef.current.offsetHeight);
                 setSubmitState(1);
                 submitContribution({ name: userName, message: userMessage });
+                trackEvent(id, 'contributions', 'submit');
             }
         },
-        [submitState, setSubmitState, userName, userMessage, contributions],
+        [submitState, setSubmitState, userName, userMessage],
     );
 
     useEffect(() => {
@@ -205,6 +240,7 @@ const ContributionScreen = ({
                                 {...name}
                                 value={userName}
                                 onChange={(e) => onNameChange(e)}
+                                onBlur={(e) => onNameBlur(e)}
                                 disabled={isPreview}
                                 required
                             />
@@ -237,6 +273,7 @@ const ContributionScreen = ({
                                 {...message}
                                 value={userMessage}
                                 onChange={(e) => onMessageChange(e)}
+                                onBlur={(e) => onMessageBlur(e)}
                                 disabled={isPreview}
                                 multiline
                                 required
@@ -338,7 +375,7 @@ const ContributionScreen = ({
                             : null
                     }
                 >
-                    <Scroll verticalAlign={layout} disabled={isPlaceholder || isPreview}>
+                    <Scroll verticalAlign={layout} disabled={isPlaceholder || isPreview} onScrollBottom={onScrollBottom}>
                         {items}
                     </Scroll>
                 </div>

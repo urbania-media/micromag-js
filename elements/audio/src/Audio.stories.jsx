@@ -8,6 +8,6 @@ export default {
     title: 'Elements/Audio',
 };
 
-const props = { media: audioMedia(), autoPlay: true };
+const props = { media: audioMedia(), autoPlay: true, loop: true };
 
 export const Normal = () => <Audio {...props} />;

@@ -21,6 +21,8 @@ const propTypes = {
     onClickMarker: PropTypes.func,
     className: PropTypes.string,
     onReady: PropTypes.func,
+    onDragEnd: PropTypes.func,
+    onZoomChanged: PropTypes.func,
 };
 
 const defaultProps = {
@@ -34,6 +36,8 @@ const defaultProps = {
     withLine: false,
     className: null,
     onReady: null,
+    onDragEnd: null,
+    onZoomChanged: null,
 };
 
 const Map = ({
@@ -47,6 +51,8 @@ const Map = ({
     onClickMarker,
     className,
     onReady,
+    onDragEnd,
+    onZoomChanged,
 }) => {
     const { maps: mapsApi } = useGoogleMapsClient() || {};
 
@@ -85,8 +91,9 @@ const Map = ({
                     center={center}
                     scrollable={scrollable}
                     events={{
-                        onBoundsChangerd: () => {},
                         onClick,
+                        onDragEnd,
+                        onZoomChanged,
                     }}
                 >
                     <Polyline

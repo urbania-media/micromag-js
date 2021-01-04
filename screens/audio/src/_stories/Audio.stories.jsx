@@ -14,7 +14,7 @@ import definition from '../definition';
 const audio = (props) => ({...props,
     media: audioMedia(),
     autoPlay: true,
-    loop: true,
+    loop: false,
 });
 
 const props = (audioProps = {} ) => ({
