@@ -17,7 +17,7 @@
     .empty {
         @extend %empty;
         @extend %fullscreen;
-        
+        margin: 0;
     }
 
     .content {

@@ -23,10 +23,14 @@ const propTypes = {
     loop: PropTypes.bool,
     className: PropTypes.string,
     onReady: PropTypes.func,
+    onPlay: PropTypes.func,
+    onPause: PropTypes.func,
+    onEnded: PropTypes.func,
+    onSeeked: PropTypes.func,
     onTimeUpdate: PropTypes.func,
+    onProgressStep: PropTypes.func,
     onDurationChanged: PropTypes.func,
-    onPlayChanged: PropTypes.func,
-    onMuteChanged: PropTypes.func,
+    onVolumeChanged: PropTypes.func,
 };
 
 const defaultProps = {
@@ -39,10 +43,14 @@ const defaultProps = {
     loop: false,
     className: null,
     onReady: null,
+    onPlay: null,
+    onPause: null,
+    onEnded: null,
+    onSeeked: null,
     onTimeUpdate: null,
+    onProgressStep: null,
     onDurationChanged: null,
-    onPlayChanged: null,
-    onMuteChanged: null,
+    onVolumeChanged: null,
 };
 
 const Video = ({
@@ -55,15 +63,27 @@ const Video = ({
     loop,
     className,
     onReady,
+    onPlay,
+    onPause,
+    onEnded,
+    onSeeked,
     onTimeUpdate,
+    onProgressStep,
     onDurationChanged,
-    onPlayChanged,
-    onMuteChanged,
+    onVolumeChanged,
 }) => {
     const { url = null } = media || {};
     const { ref, ...api } = useMediaApi({
         url,
         initialMuted,
+        onPlay,
+        onPause,
+        onEnded,
+        onSeeked,
+        onTimeUpdate,
+        onProgressStep,
+        onDurationChanged,
+        onVolumeChanged,
     });
 
     if (apiRef !== null) {
@@ -72,36 +92,10 @@ const Video = ({
     }
 
     const {
-        currentTime,
-        duration,
         playing,
         muted,
         ready,
     } = api;
-
-    useEffect( () => {
-        if (onTimeUpdate !== null) {
-            onTimeUpdate(currentTime);
-        }
-    }, [currentTime]);
-
-    useEffect( () => {
-        if (onDurationChanged !== null) {
-            onDurationChanged(duration);
-        }
-    }, [duration]);
-
-    useEffect( () => {
-        if (onPlayChanged !== null) {
-            onPlayChanged(playing);
-        }
-    }, [playing]);
-
-    useEffect( () => {
-        if (onMuteChanged !== null) {
-            onMuteChanged(muted);
-        }
-    }, [muted]);
 
     useEffect(() => {
         if (ready && onReady !== null) {

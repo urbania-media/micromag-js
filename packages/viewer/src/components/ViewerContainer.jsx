@@ -1,11 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { MemoryRouter } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import { ScreensProvider } from '@micromag/screens';
-// import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { /* PropTypes as MicromagPropTypes */ Tracking } from '@micromag/core';
 import { RoutesProvider } from '@micromag/core/contexts';
+import { TrackingContainer, useTracking } from '@folklore/tracking';
 
 import * as ViewerPropTypes from '../lib/PropTypes';
 import ViewerRoutes from './ViewerRoutes';
@@ -30,11 +31,15 @@ const defaultProps = {
 
 const ViewerContainer = ({ memoryRouter, basePath, routes, ...otherProps }) => {
     const Router = memoryRouter ? MemoryRouter : BrowserRouter;
+    const contextTracking = useTracking();
+    const tracking = useMemo(() => contextTracking || (new Tracking()), [contextTracking]);
     return (
         <Router basename={!memoryRouter ? basePath : null}>
             <RoutesProvider routes={routes}>
                 <ScreensProvider>
-                    <ViewerRoutes {...otherProps} />
+                    <TrackingContainer tracking={tracking}>
+                        <ViewerRoutes {...otherProps} />
+                    </TrackingContainer>
                 </ScreensProvider>
             </RoutesProvider>
         </Router>

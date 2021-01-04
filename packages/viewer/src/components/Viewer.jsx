@@ -7,8 +7,8 @@ import classNames from 'classnames';
 import { useDrag } from 'react-use-gesture';
 
 import { PropTypes as MicromagPropTypes, ViewerProvider } from '@micromag/core';
-import { useScreenSizeFromElement, useResizeObserver } from '@micromag/core/hooks';
-import { useTracking } from '@micromag/data';
+import { useScreenSizeFromElement, useResizeObserver, useTracking } from '@micromag/core/hooks';
+
 import { ScreenSizeProvider } from '@micromag/core/contexts';
 import { getDeviceScreens } from '@micromag/core/utils';
 
@@ -62,7 +62,10 @@ const Viewer = ({
     scrollIndexHeightPercent,
     className,
 }) => {
-    const track = useTracking();
+    const { trackScreenView, trackEvent } = useTracking();
+    // const trackScreenView = useTrackScreenView();
+    // const trackEvent = useTrackEvent();
+    
     const { components = [], title = 'Story title' } = story || {};
 
     const contentRef = useRef(null);
@@ -96,25 +99,18 @@ const Viewer = ({
             ),
         [screenId, components],
     );
-    
+
     const changeIndex = useCallback(
         (index) => {
             if (index === currentIndex) {
                 return;
-            }                
+            }
             if (onScreenChange !== null) {
                 onScreenChange(components[index], index);
             }
         },
         [currentIndex, components, onScreenChange],
     );
-
-    useEffect( () => {
-        if (components.length > 0 && currentIndex < components.length - 1) {
-            const screen = components[currentIndex];
-            track('viewer', 'screen-view', screen.id);
-        }        
-    }, [components, currentIndex, track]);
 
     // Handle interaction
     const onScreenPrevious = useCallback(() => {
@@ -243,12 +239,12 @@ const Viewer = ({
             const contentEl = contentRef.current;
             const { left: contentX = 0 } = contentEl.getBoundingClientRect();
             const tapX = e.clientX;
-            const hasTappedRight = tapX - contentX > screenWidth * (1 - tapNextScreenWidthPercent);
+            const hasTappedLeft = tapX - contentX < screenWidth * (1 - tapNextScreenWidthPercent);
 
-            if (hasTappedRight) {
-                nextIndex = Math.min(components.length - 1, currentIndex + 1);
-            } else {
+            if (hasTappedLeft) {
                 nextIndex = Math.max(0, currentIndex - 1);
+            } else {
+                nextIndex = Math.min(components.length - 1, currentIndex + 1);
             }
             changeIndex(nextIndex);
         },
@@ -279,23 +275,59 @@ const Viewer = ({
 
     const bindDrag = useDrag(onDrag, { enabled: !landscape });
 
+    // Track screen view
+    
+    const trackingEnabled = renderContext === 'view';
+    const validIndex = components.length > 0 && currentIndex < components.length - 1;
+    const currentScreen = validIndex ? components[currentIndex] : null;
+
+    useEffect(() => {
+        if (trackingEnabled && currentScreen !== null) {
+            trackScreenView(currentScreen, currentIndex);
+        }
+    }, [currentScreen, trackScreenView, trackingEnabled]);
+
     // Handle dot menu item click
-    const onClickDotsMenuItem = useCallback(() => {
+
+    const onClickDotsMenuItem = useCallback((index) => {
+        if (trackingEnabled) {
+            trackEvent('viewer-menu', 'open', index !== null ? 'dot' : 'menu', index);
+        }
         setMenuOpened(true);
-    }, [setMenuOpened]);
+    }, [setMenuOpened, trackingEnabled, trackEvent]);
 
     // handle preview menu item click
+
     const onClickPreviewMenuItem = useCallback(
         (index) => {
             changeIndex(index);
             setMenuOpened(false);
+
+            if (trackingEnabled) {
+                const clickedScreen = components[index];
+                trackEvent(currentScreen, 'viewer-menu', 'screen-change', clickedScreen);
+            }
         },
-        [setMenuOpened, changeIndex],
+        [setMenuOpened, changeIndex, trackingEnabled, currentScreen, trackEvent, components],
     );
+
+    // Handle preview menu close click
 
     const onClickPreviewMenuClose = useCallback(() => {
         setMenuOpened(false);
-    }, [setMenuOpened]);
+        if (trackingEnabled) {
+            trackEvent(currentScreen, 'viewer-menu', 'close');
+        }
+    }, [setMenuOpened, trackingEnabled, trackEvent, currentScreen]);
+
+    // Handle preview menu share click
+
+    const onClickShare = useCallback(() => {
+        if (trackingEnabled) {
+            trackEvent(currentScreen, 'viewer-menu', 'share');
+        }
+        console.log('@TODO share');// eslint-disable-line
+    }, [trackingEnabled, trackEvent, currentScreen]);
 
     return (
         <ScreenSizeProvider size={screenSize}>
@@ -346,6 +378,7 @@ const Viewer = ({
                         current={currentIndex}
                         onClickItem={onClickPreviewMenuItem}
                         onClose={onClickPreviewMenuClose}
+                        onShare={onClickShare}
                     />
                     <div
                         ref={contentRef}

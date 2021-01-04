@@ -1,9 +1,8 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useCallback } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useTracking } from '@micromag/data';
 
 import MenuIcon from './MenuIcon';
 
@@ -37,72 +36,61 @@ const ViewerMenuDots = ({
     colorAccent,
     colorBackground,
     className,
-}) => {
-    const track = useTracking();
-
-    const onClickDot = useCallback((index) => {
-        track('viewer-menu', 'open', 'dot', index);
-        if (onClickItem !== null) {
-            onClickItem(index);
-        }
-    }, [onClickItem, track, items]);
-
-    const onClickMenu = useCallback( () => {
-        track('viewer-menu', 'open', 'menu');
-        if (onClickItem !== null) {
-            onClickItem(null);
-        }
-    }, [onClickItem, track]);
-
-    return (
-        <nav
-            className={classNames([
-                styles.container,
-                {
-                    [className]: className !== null,
-                    [styles.vertical]: direction === 'vertical',
-                },
-            ])}
-        >
-            <ul className={styles.items}>
-                {items.map((item, index) => (
-                    <li
-                        className={classNames([
-                            styles.item,
-                            {
-                                [styles.active]: current === index,
-                            },
-                        ])}
-                        key={`item-${index}`}
-                    >
-                        <button
-                            type="button"
-                            className={styles.button}
-                            onClick={() => { onClickDot(index) } }
-                        >
-                            <span
-                                className={styles.dot}
-                                style={{
-                                    backgroundColor:
-                                        index <= current ? colorAccent : colorBackground,
-                                }}
-                            />
-                        </button>
-                    </li>
-                ))}
-                <li className={styles.menu}>
-                    <MenuIcon className={styles.menuIcon} color={colorAccent} />
+}) => (
+    <nav
+        className={classNames([
+            styles.container,
+            {
+                [className]: className !== null,
+                [styles.vertical]: direction === 'vertical',
+            },
+        ])}
+    >
+        <ul className={styles.items}>
+            {items.map((item, index) => (
+                <li
+                    className={classNames([
+                        styles.item,
+                        {
+                            [styles.active]: current === index,
+                        },
+                    ])}
+                    key={`item-${index}`}
+                >
                     <button
                         type="button"
-                        aria-label="menu"
-                        className={styles.menuButton}
-                        onClick={onClickMenu}
-                    />
+                        className={styles.button}
+                        onClick={() => {
+                            if (onClickItem !== null) {
+                                onClickItem(index);
+                            }
+                        }}
+                    >
+                        <span
+                            className={styles.dot}
+                            style={{
+                                backgroundColor: index <= current ? colorAccent : colorBackground,
+                            }}
+                        />
+                    </button>
                 </li>
-            </ul>
-        </nav>
-    );
-};
+            ))}
+            <li className={styles.menu}>
+                <MenuIcon className={styles.menuIcon} color={colorAccent} />
+                <button
+                    type="button"
+                    aria-label="menu"
+                    className={styles.menuButton}
+                    onClick={() => {
+                        if (onClickItem !== null) {
+                            onClickItem(null);
+                        }
+                    }}
+                />
+            </li>
+        </ul>
+    </nav>
+);
 
 ViewerMenuDots.propTypes = propTypes;
 ViewerMenuDots.defaultProps = defaultProps;

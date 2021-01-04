@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -7,6 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
+import { useTracking } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
@@ -31,6 +32,7 @@ const propTypes = {
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
+    id: PropTypes.string,
 };
 
 const defaultProps = {
@@ -46,6 +48,7 @@ const defaultProps = {
     transitions: null,
     transitionStagger: 75,
     className: null,
+    id: null,
 };
 
 const RankingScreen = ({
@@ -61,7 +64,9 @@ const RankingScreen = ({
     transitions,
     transitionStagger,
     className,
+    id,
 }) => {
+    const { trackEvent } = useTracking();
     const { width, height } = useScreenSize();
     const { menuSize } = useViewer();
 
@@ -69,11 +74,15 @@ const RankingScreen = ({
 
     const { isPlaceholder, isPreview, isView, isEdit } = useScreenRenderContext();
 
-    const finalItems = isPlaceholder ? [...new Array(10)].map(() => ({})): items;
+    const finalItems = isPlaceholder ? [...new Array(10)].map(() => ({})) : items;
 
     const itemsCount = finalItems !== null ? finalItems.length : 0;
 
     const isSideLayout = layout === 'side';
+
+    const onScrolledBottom = useCallback(() => {
+        trackEvent(id, 'scroll', 'scroll-bottom');
+    }, [id]);
 
     const ranksRefs = useRef([]);
     const [maxSideRankWidth, setMaxSideRankWidth] = useState(null);
@@ -83,7 +92,7 @@ const RankingScreen = ({
         }
 
         let maxWidth = 0;
-        ranksRefs.current.forEach((rankEl) => {            
+        ranksRefs.current.forEach((rankEl) => {
             const { style: rankElStyle } = rankEl;
             rankElStyle.width = 'auto';
             maxWidth = Math.max(maxWidth, rankEl.offsetWidth);
@@ -159,16 +168,22 @@ const RankingScreen = ({
                     }}
                     style={isSideLayout ? { width: maxSideRankWidth } : null}
                 >
-                    { isPlaceholder ? rankText : (
+                    {isPlaceholder ? (
+                        rankText
+                    ) : (
                         <Transitions
                             transitions={transitions}
                             playing={current}
                             delay={transitionStagger * itemI}
                             disabled={!isView}
                         >
-                            <Text className={styles.rankText} body={rankText} textStyle={numbersStyle} />
+                            <Text
+                                className={styles.rankText}
+                                body={rankText}
+                                textStyle={numbersStyle}
+                            />
                         </Transitions>
-                    )}                    
+                    )}
                 </div>
                 <div className={styles.content}>
                     {titleElement}
@@ -200,13 +215,15 @@ const RankingScreen = ({
                     className={styles.scroll}
                     verticalAlign="middle"
                     disabled={isPlaceholder || isPreview}
+                    onScrolledBottom={onScrolledBottom}
                 >
                     <Layout
                         style={
                             !isPlaceholder
                                 ? {
                                       padding: spacing,
-                                      paddingTop: (!landscape && !isPreview ? menuSize : 0) + spacing,
+                                      paddingTop:
+                                          (!landscape && !isPreview ? menuSize : 0) + spacing,
                                   }
                                 : null
                         }

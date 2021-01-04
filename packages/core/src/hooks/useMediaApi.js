@@ -1,42 +1,55 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
+const progressSteps = [0.1, 0.25, 0.5, 0.75, 0.9];
+
 const useMediaApi = ({
     initialMuted = false,
+    onTimeUpdate = null,
+    onProgressStep = null,
+    onDurationChanged = null,
+    onVolumeChanged = null,
+    onPlay = null,
+    onPause = null,
+    onEnded = null,
+    onSeeked = null,
+    onLoadStart = null,
+    onCanPlayThough = null,
 }) => {
-
     const ref = useRef(null);
     const [muted, setMuted] = useState(initialMuted);
     const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);
     const [playing, setPlaying] = useState(false);
     const [ready, setReady] = useState(false);
+    const [initialPlay, setInitialPlay] = useState(true);
+    const progressStepsReached = useRef({});
 
-    const play = useCallback( () => {
+    const play = useCallback(() => {
         const { current: media } = ref;
         if (media !== null) {
             media.play();
         }
     }, []);
 
-    const pause = useCallback( () => {
+    const pause = useCallback(() => {
         const { current: media } = ref;
         if (media !== null) {
             media.pause();
         }
     }, []);
 
-    const togglePlay = useCallback( () => {
+    const togglePlay = () => {
         const { current: media } = ref;
         if (media !== null) {
             if (playing) {
-                media.pause()
+                media.pause();
             } else {
-                media.play()
+                media.play();
             }
         }
-    }, [playing]);
+    };
 
-    const stop = useCallback( () => {
+    const stop = useCallback(() => {
         const { current: media } = ref;
         if (media !== null) {
             media.pause();
@@ -44,28 +57,28 @@ const useMediaApi = ({
         }
     }, []);
 
-    const seek = useCallback( (time) => {
+    const seek = useCallback((time) => {
         const { current: media } = ref;
         if (media !== null) {
             media.currentTime = time;
         }
     }, []);
 
-    const mute = useCallback( () => {
+    const mute = useCallback(() => {
         const { current: media } = ref;
         if (media !== null) {
             media.muted = true;
         }
     }, []);
 
-    const unMute = useCallback( () => {
+    const unMute = useCallback(() => {
         const { current: media } = ref;
         if (media !== null) {
             media.muted = false;
         }
     }, []);
 
-    const toggleMute = useCallback( () => {
+    const toggleMute = useCallback(() => {
         const { current: media } = ref;
         if (media !== null) {
             media.muted = !muted;
@@ -75,62 +88,129 @@ const useMediaApi = ({
     useEffect(() => {
         const { current: media } = ref;
 
-        const onTimeUpdate = () => {
-            setCurrentTime(media.currentTime);
-        };
+        const onCustomPlay = () => {
+            if (onPlay !== null) {
+                onPlay({ initial: initialPlay });
+            }
 
-        const onDurationChange = () => {
-            setDuration(media.duration);
-        };
-
-        const onVolumeChange = () => {
-            setMuted(media.muted);
-        };
-
-        const onPlay = () => {
+            if (initialPlay) {
+                setInitialPlay(false);
+            }
             setPlaying(true);
         };
 
-        const onPause = () => {
+        const onCustomPause = () => {
             setPlaying(false);
+
+            if (onPause !== null) {
+                onPause({ midway: media.currentTime > 0 && media.currentTime < media.duration });
+            }
         };
 
-        const onEnded = () => {
+        const onCustomEnded = () => {
             media.currentTime = 0;
+            if (onEnded !== null) {
+                onEnded();
+            }
+            setInitialPlay(true);
         };
 
-        const onLoadStart = () => {
+        const onCustomTimeUpdate = () => {
+            setCurrentTime(media.currentTime);
+
+            if (onTimeUpdate !== null) {
+                onTimeUpdate(media.currentTime);
+            }
+
+            const progress = media.currentTime / media.duration;
+            const currentSteps = progressStepsReached.current;
+            const stepsToTrack = progressSteps.filter(
+                (step) => progress > step && typeof currentSteps[step] === 'undefined',
+            );
+            stepsToTrack.forEach((step) => {
+                if (onProgressStep !== null) {
+                    onProgressStep(step);
+                }
+                currentSteps[step] = true;
+            });
+        };
+
+        const onCustomDurationChange = () => {
+            setDuration(media.duration);
+
+            if (onDurationChanged !== null) {
+                onDurationChanged(media.duration);
+            }
+        };
+
+        const onCustomSeeked = () => {
+            if (onSeeked !== null) {
+                onSeeked(media.currentTime);
+            }
+        };
+
+        const onCustomVolumeChange = () => {
+            setMuted(media.muted);
+
+            if (onVolumeChanged !== null) {
+                onVolumeChanged(media.muted, media.volume);
+            }
+        };
+
+        const onCustomLoadStart = () => {
             setReady(false);
+
+            if (onLoadStart !== null) {
+                onLoadStart();
+            }
         };
 
-        const onCanPlayThrough = () => {
+        const onCustomCanPlayThrough = () => {
             setReady(true);
+
+            if (onCanPlayThough !== null) {
+                onCanPlayThough();
+            }
         };
-        
+
         if (media !== null) {
-            media.addEventListener('timeupdate', onTimeUpdate);
-            media.addEventListener('durationchange', onDurationChange);
-            media.addEventListener('volumechange', onVolumeChange);
-            media.addEventListener('play', onPlay);
-            media.addEventListener('pause', onPause);
-            media.addEventListener('ended', onEnded);
-            media.addEventListener('loadstart', onLoadStart);
-            media.addEventListener('canplaythrough', onCanPlayThrough);
-        }       
+            media.addEventListener('timeupdate', onCustomTimeUpdate);
+            media.addEventListener('durationchange', onCustomDurationChange);
+            media.addEventListener('volumechange', onCustomVolumeChange);
+            media.addEventListener('play', onCustomPlay);
+            media.addEventListener('pause', onCustomPause);
+            media.addEventListener('ended', onCustomEnded);
+            media.addEventListener('seeked', onCustomSeeked);
+            media.addEventListener('loadstart', onCustomLoadStart);
+            media.addEventListener('canplaythrough', onCustomCanPlayThrough);
+        }
 
         return () => {
             if (media !== null) {
-                media.removeEventListener('timeupdate', onTimeUpdate);
-                media.removeEventListener('durationchange', onDurationChange);
-                media.removeEventListener('volumechange', onVolumeChange);
-                media.removeEventListener('play', onPlay);
-                media.removeEventListener('pause', onPause);
-                media.removeEventListener('ended', onEnded);
-                media.removeEventListener('loadstart', onLoadStart);
-                media.removeEventListener('canplaythrough', onCanPlayThrough);
-            }            
+                media.removeEventListener('timeupdate', onCustomTimeUpdate);
+                media.removeEventListener('durationchange', onCustomDurationChange);
+                media.removeEventListener('volumechange', onCustomVolumeChange);
+                media.removeEventListener('play', onCustomPlay);
+                media.removeEventListener('pause', onCustomPause);
+                media.removeEventListener('ended', onCustomEnded);
+                media.removeEventListener('seeked', onCustomSeeked);
+                media.removeEventListener('loadstart', onCustomLoadStart);
+                media.removeEventListener('canplaythrough', onCustomCanPlayThrough);
+            }
         };
-    }, [setCurrentTime, setDuration, setMuted, setPlaying]);
+    }, [
+        initialPlay,
+        onPlay,
+        onPause,
+        onEnded,
+        onTimeUpdate,
+        onProgressStep,
+        onDurationChanged,
+        onSeeked,
+        onVolumeChanged,
+        onLoadStart,
+        onCanPlayThough,
+    ]);
 
     return {
         ref,

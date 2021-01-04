@@ -1,3 +1,5 @@
+// stylelint-disable max-nesting-depth
+
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 
@@ -65,6 +67,7 @@
 
     &.vertical {
         flex-direction: column;
+        background: transparent;
 
         .items {
             flex-direction: column;

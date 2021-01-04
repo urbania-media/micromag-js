@@ -5,7 +5,9 @@ import styles from './styles';
 const eventsMapping = {
     onClick: ['click', map => map.getCenter()],
     onCenterChanged: ['center_changed', map => map.getCenter()],
-    onBoundsChangerd: ['bounds_changed', map => map.getBounds()],
+    onBoundsChanged: ['bounds_changed', map => map.getBounds()],
+    onDragEnd: ['dragend', map => map.getCenter()],
+    onZoomChanged: ['zoom_changed', map => map.zoom],
 };
 
 export default function useGoogleMap({

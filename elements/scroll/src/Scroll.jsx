@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect }  from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useResizeObserver } from '@micromag/core';
@@ -14,6 +14,7 @@ const propTypes = {
     verticalAlign: PropTypes.oneOf(['top', 'middle', 'bottom']),
     className: PropTypes.string,
     children: PropTypes.node,
+    onScrolledBottom: PropTypes.func,
 };
 
 const defaultProps = {
@@ -23,19 +24,24 @@ const defaultProps = {
     verticalAlign: null,
     className: null,
     children: null,
+    onScrolledBottom: null,
 };
 
-const Scroll = ({ width, height, disabled, verticalAlign, className, children }) => {
+const Scroll = ({
+    width,
+    height,
+    disabled,
+    verticalAlign,
+    className,
+    children,
+    onScrolledBottom,
+}) => {
     const finalStyle = {
         width,
         height,
     };
 
     const [withArrow, setWithArrow] = useState(false);
-    const onScroll = useCallback( (e) => {
-        const scrollableEl = e.currentTarget;
-        setWithArrow(scrollableEl.scrollTop < 10);
-    }, [setWithArrow]);
 
     const {
         ref: scrollableRef,
@@ -49,7 +55,30 @@ const Scroll = ({ width, height, disabled, verticalAlign, className, children })
     } = useResizeObserver();
     const { height: scrolleeHeight } = scrolleeRect || {};
 
-    useEffect( () => {
+    const scrollBottomOnce = useRef(false);
+    const onScroll = useCallback(
+        (e) => {
+            const scrollableEl = e.currentTarget;
+            const newWithArrow = scrollableEl.scrollTop < 10;
+
+            if (!scrollBottomOnce.current) {
+                const maxScrollAmount = scrolleeHeight - scrollableHeight;
+                if (scrollableEl.scrollTop + 10 >= maxScrollAmount) {
+                    scrollBottomOnce.current = true;
+                    if (onScrolledBottom !== null) {
+                        onScrolledBottom();
+                    }
+                }
+            }
+
+            if (newWithArrow !== withArrow) {
+                setWithArrow(newWithArrow);
+            }
+        },
+        [withArrow, setWithArrow, scrollableHeight, scrolleeHeight],
+    );
+
+    useEffect(() => {
         if (scrolleeHeight > 0 && scrollableHeight > 0) {
             setWithArrow(Math.round(scrolleeHeight) > Math.round(scrollableHeight) && !disabled);
         }
@@ -68,7 +97,11 @@ const Scroll = ({ width, height, disabled, verticalAlign, className, children })
             ])}
             style={finalStyle}
         >
-            <div className={styles.scrollable} ref={scrollableRef} onScroll={ !disabled ? onScroll : null }>
+            <div
+                className={styles.scrollable}
+                ref={scrollableRef}
+                onScroll={!disabled ? onScroll : null}
+            >
                 <div className={styles.scrollee} ref={scrolleeRef}>
                     {children}
                 </div>
