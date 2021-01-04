@@ -60,7 +60,11 @@ const ViewerMenuDots = ({
                     <button
                         type="button"
                         className={styles.button}
-                        onClick={() => (onClickItem !== null ? onClickItem(index) : null)}
+                        onClick={() => {
+                            if (onClickItem !== null) {
+                                onClickItem(index);
+                            }
+                        }}
                     >
                         <span
                             className={styles.dot}
@@ -77,7 +81,11 @@ const ViewerMenuDots = ({
                     type="button"
                     aria-label="menu"
                     className={styles.menuButton}
-                    onClick={() => (onClickItem !== null ? onClickItem(null) : null)}
+                    onClick={() => {
+                        if (onClickItem !== null) {
+                            onClickItem(null);
+                        }
+                    }}
                 />
             </li>
         </ul>

@@ -8,6 +8,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
+import { useTracking } from '@micromag/core/hooks';
 import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
@@ -38,6 +39,7 @@ const propTypes = {
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
+    id: PropTypes.string,
 };
 
 const defaultProps = {
@@ -53,6 +55,7 @@ const defaultProps = {
     transitions: null,
     transitionStagger: 100,
     className: null,
+    id: null,
 };
 
 const SurveyScreen = ({
@@ -68,7 +71,9 @@ const SurveyScreen = ({
     transitions,
     transitionStagger,
     className,
+    id,
 }) => {
+    const { trackEvent } = useTracking();
     const { width, height } = useScreenSize();
     const { menuSize } = useViewer();
 
@@ -88,9 +93,10 @@ const SurveyScreen = ({
         (answerIndex) => {
             if (userAnswerIndex === null) {
                 setUserAnswerIndex(answerIndex);
+                trackEvent(id, 'survey', 'answered', answerIndex);
             }
         },
-        [userAnswerIndex, setUserAnswerIndex],
+        [userAnswerIndex, setUserAnswerIndex, id],
     );
 
     useEffect( () => {

@@ -41,8 +41,8 @@ const ViewerScreen = ({
     onNext,
     onEnableInteraction,
     onDisableInteraction,
-}) => {
-    return screen !== null ? (
+}) =>
+    screen !== null ? (
         <div
             className={classNames([
                 styles.container,
@@ -65,7 +65,6 @@ const ViewerScreen = ({
             />
         </div>
     ) : null;
-};
 
 ViewerScreen.propTypes = propTypes;
 ViewerScreen.defaultProps = defaultProps;

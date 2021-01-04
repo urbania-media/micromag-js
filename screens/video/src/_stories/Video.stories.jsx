@@ -9,7 +9,7 @@ import definition from '../definition';
 const video = (props) => ({...props,
     media: videoMedia(),
     autoPlay: true,
-    loop: true,
+    loop: false,
 });
 
 const props = (videoProps = {} ) => ({

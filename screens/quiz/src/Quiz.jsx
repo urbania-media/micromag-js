@@ -11,6 +11,7 @@ import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
+import { useTracking } from '@micromag/core/hooks';
 import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
@@ -21,6 +22,7 @@ import Text from '@micromag/element-text';
 import Button from '@micromag/element-button';
 
 import styles from './styles.module.scss';
+
 
 const propTypes = {
     layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split']),
@@ -46,6 +48,7 @@ const propTypes = {
     transitionStagger: PropTypes.number,
     resultsTransitionDuration: PropTypes.number,
     className: PropTypes.string,
+    id: PropTypes.string,
 };
 
 const defaultProps = {
@@ -63,6 +66,7 @@ const defaultProps = {
     transitionStagger: 100,
     resultsTransitionDuration: 500,
     className: null,
+    id: null,
 };
 
 const QuizScreen = ({
@@ -80,7 +84,9 @@ const QuizScreen = ({
     transitionStagger,
     resultsTransitionDuration,
     className,
+    id,
 }) => {
+    const { trackEvent } = useTracking();
     const { width, height } = useScreenSize();
     const { menuSize } = useViewer();
 
@@ -107,6 +113,7 @@ const QuizScreen = ({
             let timeout = null;
             if (userAnswerIndex === null) {
                 setUserAnswerIndex(answerI);
+                trackEvent(id, 'quiz', 'answered', answerI);
                 timeout = setTimeout(setShowResults, showResultsDelay, true);
             }
 
@@ -116,7 +123,7 @@ const QuizScreen = ({
                 }
             };
         },
-        [userAnswerIndex, setUserAnswerIndex, showResultsDelay],
+        [userAnswerIndex, setUserAnswerIndex, showResultsDelay, id],
     );   
 
     useEffect( () => {

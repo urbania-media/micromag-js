@@ -7,6 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
+import { useTracking } from '@micromag/core/hooks';
 import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
@@ -40,6 +41,7 @@ const propTypes = {
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
+    id: PropTypes.string,
 };
 
 const defaultProps = {
@@ -58,6 +60,7 @@ const defaultProps = {
     transitions: null,
     transitionStagger: 75,
     className: null,
+    id: null,
 };
 
 const Timeline = ({
@@ -76,7 +79,9 @@ const Timeline = ({
     transitions,
     transitionStagger,
     className,
+    id,
 }) => {
+    const { trackEvent } = useTracking();
     const { width, height } = useScreenSize();
     const { menuSize } = useViewer();
     
@@ -85,6 +90,10 @@ const Timeline = ({
     const { isPlaceholder, isPreview, isView, isEdit } = useScreenRenderContext();
 
     const finalItems = isPlaceholder ? [...new Array(5)].map(() => ({})): items;
+
+    const onScrolledBottom = useCallback(() => {
+        trackEvent(id, 'scroll', 'scroll-bottom');
+    }, [id]);
 
     const itemsCount = finalItems !== null ? finalItems.length : 0;
     const hasItems = finalItems !== null && itemsCount;
@@ -295,6 +304,7 @@ const Timeline = ({
                     className={styles.scroll}
                     verticalAlign="middle"
                     disabled={isPlaceholder || isPreview}
+                    onScrolledBottom={onScrolledBottom}
                 >
                     <Layout
                         style={

@@ -47,6 +47,7 @@ export { default as PlaceholderText } from './placeholders/Text';
 export { default as PlaceholderTimeline } from './placeholders/Timeline';
 export { default as PlaceholderTitle } from './placeholders/Title';
 export { default as PlaceholderVideo } from './placeholders/Video';
+export { default as PlaceholderVideo360 } from './placeholders/Video360';
 export { default as PlaceholderVideoLoop } from './placeholders/VideoLoop';
 
 export { default as ScreenPlaceholder } from './screens/Placeholder';

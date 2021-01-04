@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { useDrag } from 'react-use-gesture';
 
 import { PropTypes as MicromagPropTypes, ViewerProvider } from '@micromag/core';
-import { useScreenSizeFromElement, useResizeObserver, useScreensWithTheme } from '@micromag/core/hooks';
+import { useScreenSizeFromElement, useResizeObserver, useScreensWithTheme, useTracking } from '@micromag/core/hooks';
 import { ScreenSizeProvider } from '@micromag/core/contexts';
 import { getDeviceScreens } from '@micromag/core/utils';
 
@@ -63,6 +63,9 @@ const Viewer = ({
 }) => {
     const { theme = null, components = [], title = 'Story title' } = story || {};
     const screens = useScreensWithTheme(components, theme);
+    const { trackScreenView, trackEvent } = useTracking();
+    // const trackScreenView = useTrackScreenView();
+    // const trackEvent = useTrackEvent();
 
     const contentRef = useRef(null);
     const scrollIndexChanged = useRef(false);
@@ -235,12 +238,12 @@ const Viewer = ({
             const contentEl = contentRef.current;
             const { left: contentX = 0 } = contentEl.getBoundingClientRect();
             const tapX = e.clientX;
-            const hasTappedRight = tapX - contentX > screenWidth * (1 - tapNextScreenWidthPercent);
+            const hasTappedLeft = tapX - contentX < screenWidth * (1 - tapNextScreenWidthPercent);
 
-            if (hasTappedRight) {
-                nextIndex = Math.min(screens.length - 1, currentIndex + 1);
-            } else {
+            if (hasTappedLeft) {
                 nextIndex = Math.max(0, currentIndex - 1);
+            } else {
+                nextIndex = Math.min(screens.length - 1, currentIndex + 1);
             }
             changeIndex(nextIndex);
         },
@@ -271,23 +274,59 @@ const Viewer = ({
 
     const bindDrag = useDrag(onDrag, { enabled: !landscape });
 
+    // Track screen view
+    
+    const trackingEnabled = renderContext === 'view';
+    const validIndex = screens.length > 0 && currentIndex < screens.length - 1;
+    const currentScreen = validIndex ? screens[currentIndex] : null;
+
+    useEffect(() => {
+        if (trackingEnabled && currentScreen !== null) {
+            trackScreenView(currentScreen, currentIndex);
+        }
+    }, [currentScreen, trackScreenView, trackingEnabled]);
+
     // Handle dot menu item click
-    const onClickDotsMenuItem = useCallback(() => {
+
+    const onClickDotsMenuItem = useCallback((index) => {
+        if (trackingEnabled) {
+            trackEvent('viewer-menu', 'open', index !== null ? 'dot' : 'menu', index);
+        }
         setMenuOpened(true);
-    }, [setMenuOpened]);
+    }, [setMenuOpened, trackingEnabled, trackEvent]);
 
     // handle preview menu item click
+
     const onClickPreviewMenuItem = useCallback(
         (index) => {
             changeIndex(index);
             setMenuOpened(false);
+
+            if (trackingEnabled) {
+                const clickedScreen = screens[index];
+                trackEvent(currentScreen, 'viewer-menu', 'screen-change', clickedScreen);
+            }
         },
-        [setMenuOpened, changeIndex],
+        [setMenuOpened, changeIndex, trackingEnabled, currentScreen, trackEvent, screens],
     );
+
+    // Handle preview menu close click
 
     const onClickPreviewMenuClose = useCallback(() => {
         setMenuOpened(false);
-    }, [setMenuOpened]);
+        if (trackingEnabled) {
+            trackEvent(currentScreen, 'viewer-menu', 'close');
+        }
+    }, [setMenuOpened, trackingEnabled, trackEvent, currentScreen]);
+
+    // Handle preview menu share click
+
+    const onClickShare = useCallback(() => {
+        if (trackingEnabled) {
+            trackEvent(currentScreen, 'viewer-menu', 'share');
+        }
+        console.log('@TODO share');// eslint-disable-line
+    }, [trackingEnabled, trackEvent, currentScreen]);
 
     return (
         <ScreenSizeProvider size={screenSize}>
@@ -338,6 +377,7 @@ const Viewer = ({
                         current={currentIndex}
                         onClickItem={onClickPreviewMenuItem}
                         onClose={onClickPreviewMenuClose}
+                        onShare={onClickShare}
                     />
                     <div
                         ref={contentRef}

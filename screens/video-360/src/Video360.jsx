@@ -5,9 +5,9 @@ import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { PlaceholderVideo, Transitions, ScreenElement } from '@micromag/core/components';
+import { PlaceholderVideo360, Transitions, ScreenElement } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
-import { useAnimationFrame } from '@micromag/core/hooks';
+import { useAnimationFrame, useTracking } from '@micromag/core/hooks';
 
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -36,7 +36,10 @@ const propTypes = {
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
+    onPrevious: PropTypes.func,
+    onNext: PropTypes.func,
     className: PropTypes.string,
+    id: PropTypes.string,
 };
 
 const defaultProps = {
@@ -46,7 +49,10 @@ const defaultProps = {
     current: true,
     active: true,
     transitions: null,
+    onPrevious: null,
+    onNext: null,
     className: null,
+    id: null,
 };
 
 const Video360Screen = ({
@@ -56,10 +62,20 @@ const Video360Screen = ({
     current,
     active,
     transitions,
+    onPrevious,
+    onNext,
     className,
+    id,
 }) => {
-    // Media API --------------------------
+    const { trackEvent, trackVideo } = useTracking();
 
+    const { width, height } = useScreenSize();
+    const landscape = width > height;
+
+    const { isEdit, isPlaceholder, isView, isPreview } = useScreenRenderContext();
+    const trackingEnabled = isView;
+
+    const videoContainerRef = useRef();
     const apiRef = useRef();
     const { togglePlay, toggleMute, seek } = apiRef.current || {};
 
@@ -68,26 +84,67 @@ const Video360Screen = ({
     const [playing, setPlaying] = useState(false);
     const [muted, setMuted] = useState(false);
 
-    const onTimeUpdate = useCallback((time) => {
-        setCurrentTime(time);
-    }, []);
+    const onTimeUpdate = useCallback(
+        (time) => {
+            setCurrentTime(time);
+        },
+        [setDuration, duration],
+    );
 
-    const onDurationChanged = useCallback((dur) => {
-        setDuration(dur);
-    }, []);
+    const onProgressStep = useCallback(
+        (step) => {
+            trackVideo(id, `progress ${Math.round(step * 100, 10)}%`);
+        },
+        [trackVideo, id],
+    );
 
-    const onPlayChanged = useCallback((isPlaying) => {
-        setPlaying(isPlaying);
-    }, []);
+    const onDurationChanged = useCallback(
+        (dur) => {
+            setDuration(dur);
+        },
+        [setDuration],
+    );
 
-    const onMuteChanged = useCallback((isMuted) => {
-        setMuted(isMuted);
-    }, []);
+    const onPlay = useCallback(
+        ({ initial }) => {
+            setPlaying(true);
+            if (trackingEnabled) {
+                trackVideo(id, initial ? 'play' : 'resume');
+            }
+        },
+        [trackingEnabled, id],
+    );
+
+    const onPause = useCallback(
+        ({ midway }) => {
+            setPlaying(false);
+            if (trackingEnabled) {
+                trackVideo(id, midway ? 'pause' : 'ended');
+            }
+        },
+        [trackingEnabled, id],
+    );
+
+    const onVolumeChanged = useCallback(
+        (isMuted) => {
+            setMuted(isMuted);
+            if (trackingEnabled) {
+                trackVideo(id, isMuted ? 'mute' : 'unmute');
+            }
+        },
+        [trackingEnabled, id],
+    );
+
+    const onSeeked = useCallback(
+        (time) => {
+            if (trackingEnabled && time > 0) {
+                trackVideo(id, 'seek', time);
+            }
+        },
+        [trackingEnabled, id],
+    );
 
     // ------------------------------------
-
-    const { width, height } = useScreenSize();
-    const { isEdit, isPlaceholder, isView, isPreview } = useScreenRenderContext();
 
     const hasVideo = video !== null;
     const withVideoSphere = hasVideo && (isView || isEdit);
@@ -131,8 +188,8 @@ const Video360Screen = ({
     const theta = useRef(0);
     const distance = useRef(50);
     const pointerDown = useRef(false);
-    const pointerX = useRef(0);
-    const pointerY = useRef(0);
+    const pointerDownX = useRef(0);
+    const pointerDownY = useRef(0);
     const pointerLon = useRef(0);
     const pointerLat = useRef(0);
 
@@ -206,22 +263,71 @@ const Video360Screen = ({
 
     const onPointerDown = useCallback((e) => {
         pointerDown.current = true;
-        pointerX.current = e.clientX;
-        pointerY.current = e.clientY;
+        pointerDownX.current = e.clientX;
+        pointerDownY.current = e.clientY;
         pointerLon.current = lon.current;
         pointerLat.current = lat.current;
     }, []);
 
-    const onPointerMove = useCallback((e) => {
-        if (pointerDown.current) {
-            lon.current = (pointerX.current - e.clientX) * 0.2 + pointerLon.current;
-            lat.current = (pointerY.current - e.clientY) * 0.2 + pointerLat.current;
-        }
-    }, []);
+    const pixelsMoved = useRef(0);
+    const lastPointerClient = useRef(null);
+    const pixelsMovedTracked = useRef(false);
+    const onPointerMove = useCallback(
+        (e) => {
+            if (pointerDown.current) {
+                const { clientX = null, clientY = null } = e || {};
+                const downDeltaX = pointerDownX.current - clientX;
+                const downDeltaY = pointerDownY.current - clientY;
+                lon.current = downDeltaX * (landscape ? 0.1 : 0.2) + pointerLon.current;
+                lat.current = downDeltaY * (landscape ? 0.1 : 0.2) + pointerLat.current;
 
-    const onPointerUp = useCallback(() => {
-        pointerDown.current = false;
-    }, []);
+                const { x: lastX = clientX, y: lastY = clientY } = lastPointerClient.current || {};
+                const deltaX = Math.abs(lastX - clientX) || 0;
+                const deltaY = Math.abs(lastY - clientY) || 0;
+                pixelsMoved.current += deltaX + deltaY;
+
+                if (!pixelsMovedTracked.current && pixelsMoved.current > Math.min(width, height)) {
+                    trackEvent(id, 'interacted');
+                    pixelsMovedTracked.current = true;
+                }
+
+                lastPointerClient.current = { x: clientX, y: clientY };
+            }
+        },
+        [landscape, width, height, trackEvent],
+    );
+
+    const onPointerUp = useCallback(
+        (e) => {
+            const videoContainer = videoContainerRef.current;
+            if (pointerDown.current && videoContainer !== null) {
+                const distX = Math.abs(pointerDownX.current - e.clientX);
+                const distY = Math.abs(pointerDownY.current - e.clientY);
+
+                const pixelsMovedTolerance = 3;
+                const tapNextScreenWidthPercent = 0.5;
+
+                if (distX < pixelsMovedTolerance && distY < pixelsMovedTolerance) {
+                    const {
+                        left: containerX = 0,
+                        width: containerWidth,
+                    } = videoContainer.getBoundingClientRect();
+                    const hasTappedLeft =
+                        e.clientX - containerX < containerWidth * (1 - tapNextScreenWidthPercent);
+
+                    if (hasTappedLeft) {
+                        if (onPrevious !== null) {
+                            onPrevious();
+                        }
+                    } else if (onNext !== null) {
+                        onNext();
+                    }
+                }
+            }
+            pointerDown.current = false;
+        },
+        [onPrevious, onNext],
+    );
 
     // Building elements ------------------
 
@@ -229,7 +335,7 @@ const Video360Screen = ({
         <ScreenElement
             key="video"
             placeholder={
-                <PlaceholderVideo className={styles.placeholder} width="100%" height="100%" />
+                <PlaceholderVideo360 className={styles.placeholder} width="100%" height="100%" />
             }
             emptyClassName={styles.empty}
             emptyLabel={
@@ -299,6 +405,7 @@ const Video360Screen = ({
             <Container width={width} height={height}>
                 {hasVideo ? (
                     <div
+                        ref={videoContainerRef}
                         className={styles.videoContainer}
                         style={{
                             width: resizedVideoWidth,
@@ -312,10 +419,13 @@ const Video360Screen = ({
                             ref={apiRef}
                             className={styles.video}
                             onReady={onVideoReady}
-                            onPlayChanged={onPlayChanged}
-                            onMuteChanged={onMuteChanged}
+                            onPlay={onPlay}
+                            onPause={onPause}
                             onTimeUpdate={onTimeUpdate}
+                            onProgressStep={onProgressStep}
                             onDurationChanged={onDurationChanged}
+                            onSeeked={onSeeked}
+                            onVolumeChanged={onVolumeChanged}
                         />
                     </div>
                 ) : null}

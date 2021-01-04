@@ -11,7 +11,7 @@ import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition
 import Video360Screen from '../Video360';
 import definition from '../definition';
 
-const video360 = (props) => ({ ...props, media: video360Media(), autoPlay: true, loop: true });
+const video360 = (props) => ({ ...props, media: video360Media(), autoPlay: true, loop: false });
 
 const props = (videoProps = {}) => ({
     video: video360(videoProps),

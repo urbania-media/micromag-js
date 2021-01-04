@@ -28,11 +28,17 @@ const propTypes = {
     }),
     className: PropTypes.string,
     onReady: PropTypes.func,
+    onPlay: PropTypes.func,
+    onPause: PropTypes.func,
+    onEnded: PropTypes.func,
+    onSeeked: PropTypes.func,
     onTimeUpdate: PropTypes.func,
+    onProgressStep: PropTypes.func,
     onDurationChanged: PropTypes.func,
-    onPlayChanged: PropTypes.func,
-    onMuteChanged: PropTypes.func,
+    onVolumeChanged: PropTypes.func,
 };
+
+
 
 const defaultProps = {
     media: null,
@@ -43,10 +49,14 @@ const defaultProps = {
     waveProps: null,
     className: null,
     onReady: null,
+    onPlay: null,
+    onPause: null,
+    onEnded: null,
+    onSeeked: null,
     onTimeUpdate: null,
+    onProgressStep: null,
     onDurationChanged: null,
-    onPlayChanged: null,
-    onMuteChanged: null,
+    onVolumeChanged: null,
 };
 
 const Audio = ({
@@ -58,15 +68,27 @@ const Audio = ({
     waveProps,
     className,
     onReady,
+    onPlay,
+    onPause,
+    onEnded,
+    onSeeked,
     onTimeUpdate,
+    onProgressStep,
     onDurationChanged,
-    onPlayChanged,
-    onMuteChanged,
+    onVolumeChanged,
 }) => {
     const { url = null } = media || {};
     const { ref, ...api } = useMediaApi({
         url,
         initialMuted,
+        onPlay,
+        onPause,
+        onEnded,
+        onSeeked,
+        onTimeUpdate,
+        onProgressStep,
+        onDurationChanged,
+        onVolumeChanged,
     });
 
     if (apiRef !== null) {
@@ -74,49 +96,18 @@ const Audio = ({
         apiRef.current.mediaRef = ref;
     }
 
-    const {
-        currentTime,
-        duration,
-        playing,
-        seek,
-        muted,
-        ready: audioReady,
-    } = api;
-
-    useEffect( () => {
-        if (onTimeUpdate !== null) {
-            onTimeUpdate(currentTime);
-        }
-    }, [currentTime]);
-
-    useEffect( () => {
-        if (onDurationChanged !== null) {
-            onDurationChanged(duration);
-        }
-    }, [duration]);
-
-    useEffect( () => {
-        if (onPlayChanged !== null) {
-            onPlayChanged(playing);
-        }
-    }, [playing]);
-
-    useEffect( () => {
-        if (onMuteChanged !== null) {
-            onMuteChanged(muted);
-        }
-    }, [muted]);
+    const { currentTime, duration, playing, seek, ready: audioReady } = api;
 
     const [waveReady, setWaveReady] = useState(false);
     const ready = audioReady && waveReady;
 
     const onWaveReady = useCallback(() => {
         setWaveReady(true);
-    }, [setWaveReady]);
+    }, []);
 
     useEffect(() => {
         setWaveReady(false);
-    }, [url, setWaveReady]);
+    }, [url]);
 
     useEffect(() => {
         if (ready && onReady !== null) {
@@ -143,7 +134,7 @@ const Audio = ({
                 playing={playing}
                 onSeek={seek}
                 onReady={onWaveReady}
-            />            
+            />
         </div>
     );
 };

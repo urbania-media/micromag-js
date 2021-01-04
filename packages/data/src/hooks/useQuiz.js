@@ -4,26 +4,26 @@ import { useApi } from '../contexts/ApiContext';
 
 import useData from './useData';
 
-export const useContributions = ({ screenId, opts = {} } = {}) => {
+export const useQuiz = ({ screenId, opts = {} } = {}) => {
     const api = useApi();
 
-    const [defaultContributions] = useState(
+    const [defaultQuiz] = useState(
         [...new Array(10)].map((el, i) => ({
-            name: `Nom ${i + 1}`,
-            message: `Message ${i + 1}`,
+            choice: `choice-${i + 1}`,
+            value: Math.random() > 0.5 ? 1 : 0,
         })),
     );
 
-    const loader = useCallback(() => (api !== null ? api.contributions.get(screenId) : null), [
+    const loader = useCallback(() => (api !== null ? api.quiz.get(screenId) : null), [
         api,
         screenId,
     ]);
     const { data, ...request } = api !== null ? useData(loader, opts) : { data: null };
 
     return {
-        contributions: data || defaultContributions,
+        quiz: data || defaultQuiz,
         ...request,
     };
 };
 
-export default useContributions;
+export default useQuiz;

@@ -10,9 +10,10 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
+import { useTracking } from '@micromag/core/hooks';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { isTextFilled, isLabelFilled } from '@micromag/core/utils';
-import { useContributions } from '@micromag/data';
+import { useContributions, useContributionCreate } from '@micromag/data';
 
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -39,6 +40,7 @@ const propTypes = {
     transitionStagger: PropTypes.number,
     resizeTransitionDuration: PropTypes.number,
     className: PropTypes.string,
+    id: PropTypes.string,
 };
 
 const defaultProps = {
@@ -56,6 +58,7 @@ const defaultProps = {
     transitionStagger: 100,
     resizeTransitionDuration: 750,
     className: null,    
+    id: null,
 };
 
 const ContributionScreen = ({
@@ -73,10 +76,13 @@ const ContributionScreen = ({
     transitionStagger,
     resizeTransitionDuration,
     className,
+    id,
 }) => {
+    const { trackEvent } = useTracking();
+
     const { width, height } = useScreenSize();
     const { menuSize } = useViewer();
-    const intl = useIntl();   
+    const intl = useIntl();
 
     const landscape = width > height;
 
@@ -97,14 +103,18 @@ const ContributionScreen = ({
     // 0 = default, 1 = submitting, 2 = submitted, 3 = resizing, 4 = done
     const [submitState, setSubmitState] = useState(0);
 
-    const onContributionSubmitted = useCallback( () => {
+    const onContributionSubmitted = useCallback(() => {
         setSubmitState(2);
-    }, [setSubmitState]);
-    
-    const {
-        contributions,
-        submit: submitContribution
-    } = useContributions({ onSubmitSuccess: onContributionSubmitted });
+        trackEvent(id, 'contributions', 'submit-success');
+
+    }, [setSubmitState, id]);
+
+    const { create: submitContribution } = useContributionCreate({
+        screenId: 'screen-id',
+        onSubmitSuccess: onContributionSubmitted,
+    });
+
+    const { contributions } = useContributions({ screenId: 'screen-id' });
 
     const onNameChange = useCallback(
         (e) => {
@@ -119,6 +129,32 @@ const ContributionScreen = ({
         },
         [setUserMessage],
     );
+    
+    const nameFilled = useRef(false);
+    const onNameBlur = useCallback(
+        (e) => {
+            if (!nameFilled.current && e.currentTarget.value.length > 0) {
+                trackEvent(id, 'contributions', 'name-filled');
+                nameFilled.current = true;
+            }
+        },
+        [id],
+    );
+
+    const messageFilled = useRef(false);
+    const onMessageBlur = useCallback(
+        (e) => {
+            if (!messageFilled.current && e.currentTarget.value.length > 0) {
+                trackEvent(id, 'contributions', 'message-filled');
+                messageFilled.current = true;
+            }
+        },
+        [id],
+    );
+
+    const onScrollBottom = useCallback(() => {
+        trackEvent(id, 'scroll', 'scroll-bottom');
+    }, [id])
 
     const onSubmit = useCallback(
         (e) => {
@@ -127,9 +163,10 @@ const ContributionScreen = ({
                 setInteractiveContainerHeight(formRef.current.offsetHeight);
                 setSubmitState(1);
                 submitContribution({ name: userName, message: userMessage });
+                trackEvent(id, 'contributions', 'submit');
             }
         },
-        [submitState, setSubmitState, userName, userMessage, contributions],
+        [submitState, setSubmitState, userName, userMessage],
     );
 
     useEffect(() => {
@@ -203,6 +240,7 @@ const ContributionScreen = ({
                                 {...name}
                                 value={userName}
                                 onChange={(e) => onNameChange(e)}
+                                onBlur={(e) => onNameBlur(e)}
                                 disabled={isPreview}
                                 required
                             />
@@ -235,6 +273,7 @@ const ContributionScreen = ({
                                 {...message}
                                 value={userMessage}
                                 onChange={(e) => onMessageChange(e)}
+                                onBlur={(e) => onMessageBlur(e)}
                                 disabled={isPreview}
                                 multiline
                                 required
@@ -258,7 +297,11 @@ const ContributionScreen = ({
                             delay={transitionStagger * 3}
                             disabled={!isView}
                         >
-                            <Button type="submit" className={styles.buttonSubmit} disabled={isPreview}>
+                            <Button
+                                type="submit"
+                                className={styles.buttonSubmit}
+                                disabled={isPreview}
+                            >
                                 <Text
                                     body={intl.formatMessage({
                                         defaultMessage: 'Submit',
@@ -332,7 +375,7 @@ const ContributionScreen = ({
                             : null
                     }
                 >
-                    <Scroll verticalAlign={layout} disabled={isPlaceholder || isPreview}>
+                    <Scroll verticalAlign={layout} disabled={isPlaceholder || isPreview} onScrollBottom={onScrollBottom}>
                         {items}
                     </Scroll>
                 </div>

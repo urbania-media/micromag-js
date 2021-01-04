@@ -17,6 +17,7 @@ const propTypes = {
     current: PropTypes.number,
     onClickItem: PropTypes.func,
     onClose: PropTypes.func,
+    onShare: PropTypes.func,
     thumbsPerLine: PropTypes.number,
     className: PropTypes.string,
 };
@@ -29,6 +30,7 @@ const defaultProps = {
     current: 0,
     onClickItem: null,
     onClose: null,
+    onShare: null,
     thumbsPerLine: 4,
     className: null,
 };
@@ -41,6 +43,7 @@ const ViewerMenuPreview = ({
     current,
     onClickItem,
     onClose,
+    onShare,
     thumbsPerLine,
     className,
 }) => {
@@ -67,7 +70,7 @@ const ViewerMenuPreview = ({
         >
             <div className={styles.header}>
                 <div className={styles.title}>{title}</div>
-                <Button className={styles.button} onClick={() => {}}>
+                <Button className={styles.button} onClick={onShare}>
                     <FontAwesomeIcon className={styles.icon} icon={faShare} />
                 </Button>
                 <Button className={styles.button} onClick={onClose}>
@@ -124,9 +127,7 @@ const ViewerMenuPreview = ({
                                 <button
                                     type="button"
                                     className={styles.screenButton}
-                                    onClick={() =>
-                                        onClickItem !== null ? onClickItem(index) : null
-                                    }
+                                    onClick={ () => { onClickItem(index) } }
                                 />
                             </li>
                         ))}
