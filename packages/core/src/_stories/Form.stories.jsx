@@ -9,8 +9,34 @@ const props = {
         {
             name: 'email',
             type: 'email',
-        }
-    ]
+        },
+    ],
+};
+
+const withRequiredProps = {
+    fields: [
+        {
+            name: 'text',
+            type: 'text',
+            required: true,
+        },
+        {
+            name: 'email',
+            type: 'email',
+        },
+        {
+            label: 'section',
+            type: 'fields',
+            isSection: true,
+            fields: [
+                {
+                    name: 'text-thing',
+                    type: 'text',
+                    required: true,
+                },
+            ],
+        },
+    ],
 };
 
 export default {
@@ -24,5 +50,11 @@ export default {
 export const Default = () => (
     <FieldsProvider>
         <Form {...props} />
+    </FieldsProvider>
+);
+
+export const withRequired = () => (
+    <FieldsProvider>
+        <Form {...withRequiredProps} />
     </FieldsProvider>
 );

@@ -23,3 +23,4 @@ export { default as pascalCase } from './pascalCase';
 export { default as schemaId } from './schemaId';
 export { default as slug } from './slug';
 export { default as snakeCase } from './snakeCase';
+export { default as validateFields } from './validateFields';

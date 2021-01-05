@@ -10,6 +10,8 @@ import { useFieldComponent } from '../../contexts';
 import Button from '../buttons/Button';
 import Buttons from '../buttons/Buttons';
 
+import { validateFields } from '../../utils';
+
 import styles from '../../styles/forms/form.module.scss';
 
 const propTypes = {
@@ -125,6 +127,8 @@ const Form = ({
         }
     }, [response, onResponse, onMessage]);
 
+    const canSave = validateFields(fields, value);
+
     return (
         <form
             action={action}
@@ -167,7 +171,11 @@ const Form = ({
                     {buttons !== null ? (
                         <Buttons buttons={buttons} className={styles.buttons} />
                     ) : (
-                        <Button type="submit" theme="primary" disabled={status === 'loading'}>
+                        <Button
+                            type="submit"
+                            theme="primary"
+                            disabled={status === 'loading' || !canSave}
+                        >
                             {status === 'loading'
                                 ? submitButtonLoadingLabel || submitButtonLabel
                                 : submitButtonLabel}
