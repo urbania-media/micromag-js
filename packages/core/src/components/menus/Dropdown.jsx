@@ -42,8 +42,12 @@ const Dropdown = ({
 }) => {
     const refContainer = useRef(null);
     const onDocumentClick = useCallback(
-        e => {
-            if (!refContainer.current.contains(e.currentTarget) && onClickOutside !== null) {
+        (e) => {
+            if (
+                refContainer.current &&
+                !refContainer.current.contains(e.currentTarget) &&
+                onClickOutside !== null
+            ) {
                 onClickOutside(e);
             }
         },
@@ -83,7 +87,7 @@ const Dropdown = ({
                       }
                       const finalOnClickItem =
                           customOnClick !== null || (type === 'link' && onClickItem !== null)
-                              ? e => {
+                              ? (e) => {
                                     if (customOnClick !== null) {
                                         customOnClick(e);
                                     }

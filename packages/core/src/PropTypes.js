@@ -161,10 +161,20 @@ export const color = PropTypes.shape({
 
 export const borderStyle = PropTypes.shape({
     width: PropTypes.number,
-    style: PropTypes.oneOf(['dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset', 'hidden']),
+    style: PropTypes.oneOf([
+        'dotted',
+        'dashed',
+        'solid',
+        'double',
+        'groove',
+        'ridge',
+        'inset',
+        'outset',
+        'hidden',
+    ]),
     radius: PropTypes.number,
     color,
-})
+});
 
 export const margin = PropTypes.shape({
     top: PropTypes.number,
@@ -331,7 +341,7 @@ const markerShape = {
     geoPosition,
     title: PropTypes.string,
     description: PropTypes.string,
-}
+};
 
 export const marker = PropTypes.shape({
     ...markerShape,
