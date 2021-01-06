@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import isObject from 'lodash/isObject';
 import isArray from 'lodash/isArray';
-import { useScreensManager } from '../contexts/ScreensContext';
+import { useScreensManager } from '../contexts';
 
 const useScreensWithTheme = (components, theme = null) => {
     const screensManager = useScreensManager();
