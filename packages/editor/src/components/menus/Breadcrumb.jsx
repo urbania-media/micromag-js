@@ -38,6 +38,9 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
 
     const items = useMemo(() => {
         const screenIndex = screens.findIndex((it) => it.id === screenId);
+        if (!screens[screenIndex]) {
+            return [];
+        }
         const { type } = screens[screenIndex];
         const fieldItems = [];
         if (field !== null) {
