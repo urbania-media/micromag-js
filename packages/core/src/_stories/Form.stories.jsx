@@ -39,6 +39,20 @@ const withRequiredProps = {
     ],
 };
 
+// const withSlideProps = {
+//     fields: [
+//         {
+//             name: 'text',
+//             type: 'text',
+//             required: true,
+//         },
+//         {
+//             name: 'text-style',
+//             type: 'text-style',
+//         },
+//     ],
+// };
+
 export default {
     component: Form,
     title: 'Core/Form',
@@ -49,11 +63,17 @@ export default {
 
 export const Default = () => (
     <FieldsProvider>
-        <Form {...props} />
+        <Form {...props} onCancel={() => {}} />
     </FieldsProvider>
 );
 
 export const withRequired = () => (
+    <FieldsProvider>
+        <Form {...withRequiredProps} />
+    </FieldsProvider>
+);
+
+export const withSlide = () => (
     <FieldsProvider>
         <Form {...withRequiredProps} />
     </FieldsProvider>

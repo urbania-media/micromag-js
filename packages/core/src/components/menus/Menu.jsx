@@ -5,7 +5,8 @@ import classNames from 'classnames';
 
 import * as MicromagPropTypes from '../../PropTypes';
 import Link from '../partials/Link';
-import Label from '../partials/Label';
+// import Label from '../partials/Label';
+import Button from '../buttons/Button';
 import Dropdown from './Dropdown';
 
 const propTypes = {
@@ -89,7 +90,7 @@ const Menu = ({
                       } = it;
                       const onClickItem =
                           dropdown !== null
-                              ? e => {
+                              ? (e) => {
                                     e.preventDefault();
                                     setDropdownsVisible([
                                         ...dropdownsVisible.slice(0, index),
@@ -157,9 +158,20 @@ const Menu = ({
                                   >
                                       {label}
                                   </Link>
-                              ) : (
-                                  <Label {...itemProps}>{label}</Label>
-                              )}
+                              ) : null}
+                              {href === null && onClickItem !== null ? (
+                                  <Button
+                                      {...itemProps}
+                                      onClick={onClickItem}
+                                      className={classNames({
+                                          [linkClassName]: linkClassName !== null,
+                                          'dropdown-toggle': dropdown !== null,
+                                          [customLinkClassName]: customLinkClassName !== null,
+                                      })}
+                                  >
+                                      {label}
+                                  </Button>
+                              ) : null}
                               {subItems !== null ? (
                                   <Menu
                                       items={subItems}

@@ -30,9 +30,12 @@ const propTypes = {
     onComplete: PropTypes.func,
     onResponse: PropTypes.func,
     onMessage: PropTypes.func,
+    onCancel: PropTypes.func,
+    onCancelHref: PropTypes.string,
     className: PropTypes.string,
     fieldsClassName: PropTypes.string,
     actionsClassName: PropTypes.string,
+    cancelClassName: PropTypes.string,
 };
 
 const defaultProps = {
@@ -52,9 +55,12 @@ const defaultProps = {
     onComplete: null,
     onResponse: null,
     onMessage: null,
+    onCancel: null,
+    onCancelHref: null,
     className: null,
     fieldsClassName: null,
     actionsClassName: null,
+    cancelClassName: null,
 };
 
 const Form = ({
@@ -73,9 +79,12 @@ const Form = ({
     onComplete,
     onResponse,
     onMessage,
+    onCancel,
+    onCancelHref,
     className,
     fieldsClassName,
     actionsClassName,
+    cancelClassName,
 }) => {
     const [complete, setComplete] = useState(false);
 
@@ -168,6 +177,24 @@ const Form = ({
                         },
                     ])}
                 >
+                    {onCancel !== null || onCancelHref !== null ? (
+                        <Button
+                            type="button"
+                            onClick={onCancel}
+                            href={onCancelHref}
+                            theme="secondary"
+                            outline
+                            disabled={status === 'loading'}
+                            className={classNames([
+                                'mr-2',
+                                {
+                                    [cancelClassName]: cancelClassName !== null,
+                                },
+                            ])}
+                        >
+                            <FormattedMessage defaultMessage="Cancel" description="Button label" />
+                        </Button>
+                    ) : null}
                     {buttons !== null ? (
                         <Buttons buttons={buttons} className={styles.buttons} />
                     ) : (
