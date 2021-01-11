@@ -89,6 +89,7 @@ const ImageScreen = ({
 
     const [ready, setReady] = useState(!hasImage);
     const transitionPlaying = current && ready;
+    const transitionDisabled = !isView && !isEdit;
 
     const onImageLoaded = useCallback(() => {
         setReady(true);
@@ -135,7 +136,7 @@ const ImageScreen = ({
                     <Transitions
                         transitions={transitions}
                         playing={transitionPlaying}
-                        disabled={!isView}
+                        disabled={transitionDisabled}
                         fullscreen
                     >
                         <Image
@@ -164,7 +165,7 @@ const ImageScreen = ({
                     <Transitions
                         transitions={transitions}
                         playing={transitionPlaying}
-                        disabled={!isView}
+                        disabled={transitionDisabled}
                     >
                         <div style={!isPlaceholder ? { margin: finalSpacing / 2 } : null}>
                             <Heading {...title} />
@@ -188,7 +189,7 @@ const ImageScreen = ({
                     <Transitions
                         transitions={transitions}
                         playing={transitionPlaying}
-                        disabled={!isView}
+                        disabled={transitionDisabled}
                     >
                         <div style={!isPlaceholder ? { margin: finalSpacing / 2 } : null}>
                             <Text {...text} />
@@ -212,7 +213,7 @@ const ImageScreen = ({
                     <Transitions
                         transitions={transitions}
                         playing={transitionPlaying}
-                        disabled={!isView}
+                        disabled={transitionDisabled}
                     >
                         <div style={!isPlaceholder ? { margin: finalSpacing / 2 } : null}>
                             <Text {...legend} />

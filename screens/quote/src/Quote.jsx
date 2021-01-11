@@ -72,6 +72,8 @@ const QuoteScreen = ({
     const verticalAlign = isSplitted ? null : layout;
 
     const quoteWithMargin = hasQuote && hasAuthor && !isSplitted;
+    const transitionPlaying = current;
+    const transitionDisabled = !isView && !isEdit;
 
     const items = [
         <ScreenElement
@@ -137,8 +139,8 @@ const QuoteScreen = ({
                     <TransitionsStagger
                         transitions={transitions}
                         stagger={transitionStagger}
-                        disabled={!isView}
-                        playing={current}
+                        disabled={transitionDisabled}
+                        playing={transitionPlaying}
                     >
                         {items}
                     </TransitionsStagger>

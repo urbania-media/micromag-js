@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes, useResizeObserver } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { PlaceholderMap, Transitions, Button } from '@micromag/core/components';
-import { useTracking } from '@micromag/core/hooks';
+import { useTrackEvent } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
@@ -37,7 +37,6 @@ const propTypes = {
     className: PropTypes.string,
     onEnableInteraction: PropTypes.func,
     onDisableInteraction: PropTypes.func,
-    id: PropTypes.string,
 };
 
 const defaultProps = {
@@ -60,7 +59,6 @@ const defaultProps = {
     className: null,
     onEnableInteraction: null,
     onDisableInteraction: null,
-    id: null,
 };
 
 const MapScreen = ({
@@ -80,9 +78,8 @@ const MapScreen = ({
     className,
     onEnableInteraction,
     onDisableInteraction,
-    id,
 }) => {
-    const { trackEvent } = useTracking();
+    const trackEvent = useTrackEvent();
     const [opened, setOpened] = useState(false);
 
     const [selectedMarker, setSelectedMarker] = useState(null);
@@ -99,47 +96,48 @@ const MapScreen = ({
 
     const [ready, setReady] = useState(false);
     const transitionPlaying = current && ready;
+    const transitionDisabled = !isView && !isEdit;
 
     const onMapReady = useCallback(() => setReady(true), [setReady]);
 
     const onClickMap = useCallback(() => {
         setSelectedMarker(null);    
-        trackEvent(id, 'map', 'marker-unselect', lastRenderedMarker.current.id);
-    }, [id]);
+        trackEvent('screen-interaction', 'map', { label: 'marker-unselect', marker: lastRenderedMarker.current });
+    }, [trackEvent]);
 
     const onClickMarker = useCallback(
         (e, i) => {
             const marker = markers[i];
             lastRenderedMarker.current = marker;
             setSelectedMarker(i);
-            trackEvent(id, 'map', 'marker-select', marker.id);
+            trackEvent('screen-interaction', 'map', { label: 'marker-select', marker });
         },
-        [markers, setSelectedMarker, id],
+        [markers, setSelectedMarker, trackEvent],
     );
 
     const onSplashClick = useCallback(() => {
         setOpened(true);
-        trackEvent(id, 'map', 'start');
+        trackEvent('screen-interaction', 'map', { label: 'start' });
         if (onDisableInteraction !== null) {
             onDisableInteraction();
         }
-    }, [setOpened, onDisableInteraction, id]);
+    }, [setOpened, onDisableInteraction, trackEvent]);
 
     const onCloseClick = useCallback(() => {
         setOpened(false);
-        trackEvent(id, 'map', 'stop');
+        trackEvent('screen-interaction', 'map', { label: 'stop' });
         if (onEnableInteraction !== null) {
             onEnableInteraction();
         }
-    }, [setOpened, onEnableInteraction, id]);
+    }, [setOpened, onEnableInteraction, trackEvent]);
 
     const onMapDragEnd = useCallback(() => {
-        trackEvent(id, 'map', 'dragged');
-    }, [id]);
+        trackEvent('screen-interaction', 'map', { label: 'dragged' });
+    }, [trackEvent]);
 
     const onMapZoomChanged = useCallback(() => {
-        trackEvent(id, 'map', 'zoomed');
-    }, [id]);
+        trackEvent('screen-interaction', 'map', { label: 'zoomed' });
+    }, [trackEvent]);
 
     const {
         ref: markerOverContentInnerRef,
@@ -203,7 +201,7 @@ const MapScreen = ({
                 transitions={transitions}
                 playing={transitionPlaying}
                 fullscreen
-                disabled={!isView}
+                disabled={transitionDisabled}
             >
                 <Map
                     center={center}

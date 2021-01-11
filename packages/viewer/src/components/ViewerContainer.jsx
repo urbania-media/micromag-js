@@ -31,8 +31,11 @@ const defaultProps = {
 
 const ViewerContainer = ({ memoryRouter, basePath, routes, ...otherProps }) => {
     const Router = memoryRouter ? MemoryRouter : BrowserRouter;
+
     const contextTracking = useTracking();
-    const tracking = useMemo(() => contextTracking || (new Tracking()), [contextTracking]);
+    
+    const tracking = useMemo(() => (contextTracking) || (new Tracking()), [contextTracking]);
+
     return (
         <Router basename={!memoryRouter ? basePath : null}>
             <RoutesProvider routes={routes}>

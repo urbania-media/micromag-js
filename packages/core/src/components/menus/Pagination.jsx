@@ -57,16 +57,15 @@ const PaginationMenu = ({
     onClickPage,
 }) => {
     const getUrl = useCallback(
-        currentPage => {
-            return url !== null
+        (currentPage) =>
+            url !== null
                 ? `${url}${
                       url.indexOf('?') !== -1 ? `&page=${currentPage}` : `?page=${currentPage}`
                   }`
-                : null;
-        },
+                : null,
         [url],
     );
-    const pages = [...Array(total).keys()].map(it => it + 1);
+    const pages = [...Array(total).keys()].map((it) => it + 1);
     return (
         <nav
             className={classNames([
@@ -122,7 +121,7 @@ const PaginationMenu = ({
                     </li>
                 ) : null}
 
-                {pages.map(pageNumber => (
+                {pages.map((pageNumber) => (
                     <li
                         key={`page-${pageNumber}`}
                         className={classNames([
@@ -180,7 +179,7 @@ const PaginationMenu = ({
                                     },
                                 ])}
                             >
-                                {messages.next}
+                                <Label>{messages.next}</Label>
                             </span>
                         )}
                     </li>

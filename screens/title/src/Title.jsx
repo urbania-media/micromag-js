@@ -94,6 +94,9 @@ const TitleScreen = ({
     const subtitleWithMargin =
         hasSubtitle && hasDescription && (!isSplitted || verticalAlign === 'bottom');
 
+    const transitionPlaying = current;
+    const transitionDisabled = !isView && !isEdit;
+
     // Create elements
     const items = [
         <ScreenElement
@@ -189,8 +192,8 @@ const TitleScreen = ({
                     <TransitionsStagger
                         transitions={transitions}
                         stagger={transitionStagger}
-                        disabled={!isView}
-                        playing={current}
+                        disabled={transitionDisabled}
+                        playing={transitionPlaying}
                     >
                         {items}
                     </TransitionsStagger>

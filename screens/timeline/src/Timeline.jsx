@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
-import { useTracking } from '@micromag/core/hooks';
+import { useTrackEvent } from '@micromag/core/hooks';
 import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
@@ -41,7 +41,6 @@ const propTypes = {
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
-    id: PropTypes.string,
 };
 
 const defaultProps = {
@@ -60,7 +59,6 @@ const defaultProps = {
     transitions: null,
     transitionStagger: 75,
     className: null,
-    id: null,
 };
 
 const Timeline = ({
@@ -79,9 +77,8 @@ const Timeline = ({
     transitions,
     transitionStagger,
     className,
-    id,
 }) => {
-    const { trackEvent } = useTracking();
+    const trackEvent = useTrackEvent();
     const { width, height } = useScreenSize();
     const { menuSize } = useViewer();
     
@@ -92,8 +89,8 @@ const Timeline = ({
     const finalItems = isPlaceholder ? [...new Array(5)].map(() => ({})): items;
 
     const onScrolledBottom = useCallback(() => {
-        trackEvent(id, 'scroll', 'scroll-bottom');
-    }, [id]);
+        trackEvent('screen-interaction', 'scrolled');
+    }, [trackEvent]);
 
     const itemsCount = finalItems !== null ? finalItems.length : 0;
     const hasItems = finalItems !== null && itemsCount;
@@ -107,6 +104,7 @@ const Timeline = ({
     const [imagesLoaded, setImagesLoaded] = useState(0);
     const ready = imagesLoaded === imagesCount;
     const transitionsPlaying = current && ready;
+    const transitionDisabled = !isView && !isEdit;
 
     const onImageLoaded = useCallback(() => {
         setImagesLoaded(imagesLoaded + 1);
@@ -136,7 +134,7 @@ const Timeline = ({
             elementsTypes.splice(imageIndex, 1);
         }
 
-        const typesCount = elementsTypes.length;
+        const typesCount = elementsTypes.length;        
 
         return (
             <div className={styles.item} key={`item-${itemI}`}>
@@ -144,7 +142,7 @@ const Timeline = ({
                     transitions={transitions}
                     playing={transitionsPlaying}
                     delay={transitionStagger * itemI}
-                    disabled={!isView}
+                    disabled={transitionDisabled}
                 >
                     {elementsTypes.map((type, typeI) => {
                         let hasElement = false;

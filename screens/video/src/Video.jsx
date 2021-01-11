@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderVideo, Transitions, ScreenElement, Empty } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
-import { useTracking } from '@micromag/core/hooks';
+import { useTrackVideo } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import ClosedCaptions from '@micromag/element-closed-captions';
@@ -26,7 +26,6 @@ const propTypes = {
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
-    id: PropTypes.string,
 };
 
 const defaultProps = {
@@ -38,7 +37,6 @@ const defaultProps = {
     maxRatio: 3 / 4,
     transitions: null,
     className: null,
-    id: null,
 };
 
 const VideoScreen = ({
@@ -50,9 +48,8 @@ const VideoScreen = ({
     maxRatio,
     transitions,
     className,
-    id,
 }) => {
-    const { trackVideo } = useTracking();
+    const trackVideo = useTrackVideo();
 
     const { width, height } = useScreenSize();
     const { isEdit, isPlaceholder, isPreview, isView } = useScreenRenderContext();
@@ -76,9 +73,11 @@ const VideoScreen = ({
 
     const onProgressStep = useCallback(
         (step) => {
-            trackVideo(id, `progress ${Math.round(step * 100, 10)}%`);
+            if (trackingEnabled) {
+                trackVideo(video, `progress ${Math.round(step * 100, 10)}%`);
+            }
         },
-        [trackVideo, id],
+        [trackingEnabled, trackVideo, video],
     );
 
     const onDurationChanged = useCallback(
@@ -92,62 +91,55 @@ const VideoScreen = ({
         ({ initial }) => {
             setPlaying(true);
             if (trackingEnabled) {
-                trackVideo(id, initial ? 'play' : 'resume');
+                trackVideo(video, initial ? 'play' : 'resume');
             }
         },
-        [trackingEnabled, id],
+        [trackingEnabled, trackVideo, video],
     );
 
     const onPause = useCallback(
         ({ midway }) => {
             setPlaying(false);
             if (trackingEnabled) {
-                trackVideo(id, midway ? 'pause' : 'ended');
+                trackVideo(video, midway ? 'pause' : 'ended');
             }
         },
-        [trackingEnabled, id],
+        [trackingEnabled, trackVideo, video],
     );
 
     const onVolumeChanged = useCallback(
         (isMuted) => {
             setMuted(isMuted);
             if (trackingEnabled) {
-                trackVideo(id, isMuted ? 'mute' : 'unmute');
+                trackVideo(video, isMuted ? 'mute' : 'unmute');
             }
         },
-        [trackingEnabled, id],
+        [trackingEnabled, trackVideo, video],
     );
 
     const onSeeked = useCallback(
         (time) => {
             if (trackingEnabled && time > 0) {
-                trackVideo(id, 'seek', time);
+                trackVideo(video, 'seek', time);
             }
         },
-        [trackingEnabled, id],
+        [trackingEnabled, trackVideo, video],
     );
 
     // ------------------------------------
-   
+
     const fullscreen = layout === 'full';
 
     const hasVideo = video !== null;
     const [ready, setReady] = useState(!hasVideo);
     const transitionPlaying = current && ready;
-
-    useEffect(() => {
-        setReady(false);
-    }, [video, setReady]);
-
-    const onVideoReady = useCallback(() => {
-        setReady(true);
-    }, [setReady]);
+    const transitionDisabled = !isView && !isEdit;
 
     // get resized video style props
     const finalVideo = hasVideo ? { ...video, autoPlay: isPreview ? false : video.autoPlay } : null;
     const { media: videoMedia = null, closedCaptions = null, withSeekBar = false } =
         finalVideo || {};
-    const { metadata: videoMetadata = null } = videoMedia || {};
+    const { metadata: videoMetadata = null, url: videoUrl = null } = videoMedia || {};
     const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
 
     const finalMaxRatio = fullscreen ? null : maxRatio;
@@ -167,6 +159,14 @@ const VideoScreen = ({
 
     const placeholderProps = fullscreen ? { width: '100%', height: '100%' } : { width: '100%' };
 
+    useEffect(() => {
+        setReady(false);
+    }, [videoUrl, setReady]);
+
+    const onVideoReady = useCallback(() => {
+        setReady(true);
+    }, [setReady]);
+
     const items = [
         <ScreenElement
             key="video"
@@ -174,10 +174,7 @@ const VideoScreen = ({
             empty={
                 <div className={styles.emptyContainer}>
                     <Empty className={styles.empty}>
-                        <FormattedMessage
-                            defaultMessage="Video"
-                            description="Video placeholder"
-                        />
+                        <FormattedMessage defaultMessage="Video" description="Video placeholder" />
                     </Empty>
                 </div>
             }
@@ -196,7 +193,7 @@ const VideoScreen = ({
                     <Transitions
                         playing={transitionPlaying}
                         transitions={transitions}
-                        disabled={!isView}
+                        disabled={transitionDisabled}
                     >
                         <Video
                             {...finalVideo}
@@ -217,24 +214,30 @@ const VideoScreen = ({
         </ScreenElement>,
         !isPlaceholder ? (
             <div className={styles.bottomContent}>
-                {closedCaptions !== null ? (
-                    <ClosedCaptions
-                        className={styles.closedCaptions}
-                        media={closedCaptions}
+                <Transitions
+                    playing={transitionPlaying}
+                    transitions={transitions}
+                    disabled={transitionDisabled}
+                >
+                    {closedCaptions !== null ? (
+                        <ClosedCaptions
+                            className={styles.closedCaptions}
+                            media={closedCaptions}
+                            currentTime={currentTime}
+                        />
+                    ) : null}
+                    <MediaControls
+                        className={styles.mediaControls}
+                        withSeekBar={withSeekBar}
+                        playing={playing}
+                        muted={muted}
                         currentTime={currentTime}
+                        duration={duration}
+                        onTogglePlay={togglePlay}
+                        onToggleMute={toggleMute}
+                        onSeek={seek}
                     />
-                ) : null}
-                <MediaControls
-                    className={styles.mediaControls}
-                    withSeekBar={withSeekBar}
-                    playing={playing}
-                    muted={muted}
-                    currentTime={currentTime}
-                    duration={duration}
-                    onTogglePlay={togglePlay}
-                    onToggleMute={toggleMute}
-                    onSeek={seek}
-                />
+                </Transitions>
             </div>
         ) : null,
     ];

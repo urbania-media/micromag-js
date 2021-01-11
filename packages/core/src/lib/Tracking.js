@@ -2,83 +2,71 @@
 import { Tracking as BaseTracking } from '@folklore/tracking';
 
 class Tracking extends BaseTracking {
-    constructor(opts = {}) {        
+    constructor(opts = {}) {
         super(opts);
-        console.log('tracking constructed', this);
+        // console.log('tracking constructed', this);
     }
 
-    trackScreenView(screenId, screenIndex) {
-        console.log('track screen view', screenId, screenIndex, this);
-        // this.push({
-        //     event: 'pageView',
-        //     screenId: id,
-        //     screenIndex,
-        // });
+    trackScreenView(screen, screenIndex) {
+        const { id: screenId = null, type: screenType = null } = screen || {};
+        console.log('trackScreenView', screenId, screenType, screenIndex);
+
+        this.push({
+            event: 'pageView',
+            screenId,
+            screenType,
+            screenIndex,
+        });
     }
 
-    trackEvent(screenId, category, action, label = null, value = null) {
-        console.log('track event', screenId, category, action, label, value , this);
-        // this.push({
-        //     event: 'event',
-        //     eventCategory: category,
-        //     eventAction: action,
-        //     eventLabel: label,
-        //     eventValue: value,
-        //     screenId: id,
-        // });
+    trackEvent(category, action, { label = null, value = null, ...opts } = {}, screenContext) {
+        const { data = null, definition = null } = screenContext || {};
+        const { id: screenId = null, type: screenType } = data || {};
+        const { id: screenDefinition = null } = definition || {};
+        console.log('trackEvent', category, action, label, value, opts);
+        this.push({
+            ...opts,
+            event: 'event',
+            eventCategory: category,
+            eventAction: action,
+            eventLabel: label,
+            eventValue: value,
+            screenId,
+            screenType,
+            screenDefinition,
+        });
     }
 
-    trackVideo(
-        screenId,
-        action,
-        {
-            id = null,
-            title = null,
-            duration = null,
-            currentTime = null,
-        } = {},
-    ) {
-        console.log('track video', screenId, action, id, title, duration, currentTime, this);
-        // this.push({
-        //     event: 'event',
-        //     eventCategory: 'Video',
-        //     eventAction: action,
-        //     eventLabel: title,
-        //     screenId: screenId,
-        //     videoId: id,
-        //     videoCurrentTime: currentTime !== null ? Math.round(currentTime) : null,
-        //     videoProgress:
-        //         currentTime !== null && duration !== null && duration > 0
-        //             ? Math.round(currentTime / duration * 100)
-        //             : null,
-        // });
+    trackMedia(type, media, action, { label = null, value = null, ...opts } = {}, screenContext) {
+        const { id: videoId = null, title = null, duration = null, currentTime = null } = media || {};
+        const { data = null, definition = null } = screenContext || {};
+        const { id: screenId = null, type: screenType } = data || {};
+        const { id: screenDefinition = null } = definition || {};
+        console.log(`track${type}`, action, label, value, opts);
+        this.push({
+            ...opts,
+            event: 'event',
+            eventCategory: type,
+            eventAction: action,
+            eventLabel: title,
+            screenId,
+            screenType,
+            screenDefinition,
+            videoId,
+            videoCurrentTime: currentTime !== null ? Math.round(currentTime) : null,
+            videoProgress:
+                currentTime !== null && duration !== null && duration > 0
+                    ? Math.round(currentTime / duration * 100)
+                    : null,
+        });
     }
 
-    trackAudio(
-        screenId,
-        action,
-        {
-            id = null,
-            title = null,
-            duration = null,
-            currentTime = null,
-        } = {},
-    ) {
-        console.log('track audio', screenId, action, id, title, duration, currentTime, this);
-        // this.push({
-        //     event: 'event',
-        //     eventCategory: 'Audio',
-        //     eventAction: action,
-        //     eventLabel: title,
-        //     screenId: screenId,
-        //     audioId: id,
-        //     audioDuration: duration,
-        //     audioCurrentTime: currentTime !== null ? Math.round(currentTime) : null,
-        //     audioProgress:
-        //         currentTime !== null && duration !== null && duration > 0
-        //             ? Math.round(currentTime / duration * 100)
-        //             : null,        
-        // });
+    trackVideo(...params) {
+        this.trackMedia('Video', ...params);
+    }
+
+    trackAudio(...params) {
+        this.trackMedia('Audio', ...params);
     }
 }
 

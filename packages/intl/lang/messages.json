@@ -287,6 +287,10 @@
     "defaultMessage": "Edit",
     "description": "Button to edit a screen"
   },
+  "IBjY5r": {
+    "defaultMessage": "Duplicate screen",
+    "description": "Duplicate screen item"
+  },
   "IMUycF": {
     "defaultMessage": "Timeline Illustrated",
     "description": "Timeline Illustrated screen title"
@@ -525,6 +529,10 @@
   "hVE7TA": {
     "defaultMessage": "Question",
     "description": "Question field label"
+  },
+  "hpiKce": {
+    "defaultMessage": "Delete screen",
+    "description": "Delete screen item"
   },
   "i+3ZrF": {
     "defaultMessage": "Select a font family...",

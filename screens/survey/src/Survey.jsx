@@ -8,7 +8,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { useTracking } from '@micromag/core/hooks';
+import { useTrackEvent } from '@micromag/core/hooks';
 import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
@@ -39,7 +39,6 @@ const propTypes = {
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
-    id: PropTypes.string,
 };
 
 const defaultProps = {
@@ -55,7 +54,6 @@ const defaultProps = {
     transitions: null,
     transitionStagger: 100,
     className: null,
-    id: null,
 };
 
 const SurveyScreen = ({
@@ -71,9 +69,8 @@ const SurveyScreen = ({
     transitions,
     transitionStagger,
     className,
-    id,
 }) => {
-    const { trackEvent } = useTracking();
+    const trackEvent = useTrackEvent();
     const { width, height } = useScreenSize();
     const { menuSize } = useViewer();
 
@@ -85,18 +82,22 @@ const SurveyScreen = ({
 
     const [userAnswerIndex, setUserAnswerIndex] = useState(null);
     const answered = userAnswerIndex !== null;
-
+    
     const isSplitted = layout === 'split';
     const verticalAlign = isSplitted ? null : layout;
+
+    const transitionPlaying = current;
+    const transitionDisabled = !isView && !isEdit;
 
     const onAnswerClick = useCallback(
         (answerIndex) => {
             if (userAnswerIndex === null) {
                 setUserAnswerIndex(answerIndex);
-                trackEvent(id, 'survey', 'answered', answerIndex);
+                const userAnswer = answers[answerIndex];
+                trackEvent('screen-interaction', 'survey-answered', { userAnswer });
             }
         },
-        [userAnswerIndex, setUserAnswerIndex, id],
+        [userAnswerIndex, setUserAnswerIndex, trackEvent],
     );
 
     useEffect( () => {
@@ -118,7 +119,7 @@ const SurveyScreen = ({
             isEmpty={!hasQuestion}
         >
             {hasQuestion ? (
-                <Transitions transitions={transitions} playing={current} disabled={!isView}>
+                <Transitions transitions={transitions} playing={transitionPlaying} disabled={transitionDisabled}>
                     <Heading {...question} className={styles.question} />
                 </Transitions>
             ) : null}
@@ -183,9 +184,9 @@ const SurveyScreen = ({
                                     {hasAnswer ? (
                                         <Transitions
                                             transitions={transitions}
-                                            playing={current}
+                                            playing={transitionPlaying}
                                             delay={(answerIndex + 1) * transitionStagger}
-                                            disabled={!isView}
+                                            disabled={transitionDisabled}
                                         >
                                             <div className={styles.itemContent}>
                                                 <div

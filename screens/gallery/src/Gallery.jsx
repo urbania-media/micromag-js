@@ -106,6 +106,7 @@ const GalleryScreen = ({
     const imagesCount = images !== null ? Math.min(gridSpaces, images.length) : 0;
     const ready = imagesLoaded >= imagesCount;
     const transitionPlaying = current && ready;
+    const transitionDisabled = !isView && !isEdit;
 
     const onImageLoaded = useCallback(() => {
         setImagesLoaded(imagesLoaded + 1);
@@ -152,7 +153,7 @@ const GalleryScreen = ({
                         transitions={transitions}
                         delay={itemI * transitionStagger}
                         playing={transitionPlaying}
-                        disabled={!isView}
+                        disabled={transitionDisabled}
                     >
                         <ScreenElement
                             placeholder="image"
@@ -181,7 +182,7 @@ const GalleryScreen = ({
                         transitions={transitions}
                         delay={itemI * transitionStagger}
                         playing={transitionPlaying}
-                        disabled={!isView}
+                        disabled={transitionDisabled}
                     >
                         <ScreenElement
                             placeholder="line"

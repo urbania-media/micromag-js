@@ -11,7 +11,7 @@ import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { useTracking } from '@micromag/core/hooks';
+import { useTrackEvent } from '@micromag/core/hooks';
 import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
@@ -48,7 +48,6 @@ const propTypes = {
     transitionStagger: PropTypes.number,
     resultsTransitionDuration: PropTypes.number,
     className: PropTypes.string,
-    id: PropTypes.string,
 };
 
 const defaultProps = {
@@ -66,7 +65,6 @@ const defaultProps = {
     transitionStagger: 100,
     resultsTransitionDuration: 500,
     className: null,
-    id: null,
 };
 
 const QuizScreen = ({
@@ -84,9 +82,8 @@ const QuizScreen = ({
     transitionStagger,
     resultsTransitionDuration,
     className,
-    id,
 }) => {
-    const { trackEvent } = useTracking();
+    const trackEvent = useTrackEvent();
     const { width, height } = useScreenSize();
     const { menuSize } = useViewer();
 
@@ -108,13 +105,18 @@ const QuizScreen = ({
     const isSplitted = layout === 'split';
     const verticalAlign = isSplitted ? null : layout;
 
+    const transitionPlaying = current;
+    const transitionDisabled = !isView && !isEdit;
+
     const onAnswerClick = useCallback(
         (answerI) => {
             let timeout = null;
             if (userAnswerIndex === null) {
                 setUserAnswerIndex(answerI);
-                trackEvent(id, 'quiz', 'answered', answerI);
                 timeout = setTimeout(setShowResults, showResultsDelay, true);
+                
+                const answer = answers[answerI];
+                trackEvent('screen-interaction', 'quiz', { label: 'answered',  answer });
             }
 
             return () => {
@@ -123,7 +125,7 @@ const QuizScreen = ({
                 }
             };
         },
-        [userAnswerIndex, setUserAnswerIndex, showResultsDelay, id],
+        [userAnswerIndex, setUserAnswerIndex, showResultsDelay, trackEvent, answers],
     );   
 
     useEffect( () => {
@@ -192,7 +194,7 @@ const QuizScreen = ({
             isEmpty={!hasQuestion}
         >
             {hasQuestion ? (
-                <Transitions transitions={transitions} playing={current} disabled={!isView}>
+                <Transitions transitions={transitions} playing={transitionPlaying} disabled={transitionDisabled}>
                     <Heading {...question} className={styles.question} />
                 </Transitions>
             ) : null}
@@ -271,9 +273,9 @@ const QuizScreen = ({
                                     {hasAnswer ? (
                                         <Transitions
                                             transitions={transitions}
-                                            playing={current}
+                                            playing={transitionPlaying}
                                             delay={(answerI + 1) * transitionStagger}
-                                            disabled={!isView}
+                                            disabled={transitionDisabled}
                                         >
                                             <Button
                                                 className={styles.button}
@@ -333,9 +335,9 @@ const QuizScreen = ({
                     {hasResult ? (
                         <Transitions
                             transitions={transitions}
-                            playing={current}
+                            playing={transitionPlaying}
                             delay={(1 + answers.length) * transitionStagger}
-                            disabled={!isView}
+                            disabled={transitionDisabled}
                         >
                             <Text {...result} className={styles.resultText} />
                         </Transitions>

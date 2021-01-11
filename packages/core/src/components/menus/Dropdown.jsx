@@ -7,6 +7,7 @@ import * as MicromagPropTypes from '../../PropTypes';
 import { useDocumentEvent } from '../../hooks';
 import Link from '../partials/Link';
 import Label from '../partials/Label';
+import Button from '../buttons/Button';
 
 const propTypes = {
     items: MicromagPropTypes.menuItems,
@@ -82,6 +83,9 @@ const Dropdown = ({
                       let ItemComponent = 'div';
                       if (type === 'link') {
                           ItemComponent = Link;
+                      } else if (type === 'button') {
+                          ItemComponent = Button;
+                          itemProps.type = 'button';
                       } else if (type === 'header') {
                           ItemComponent = 'h6';
                       }
@@ -99,14 +103,18 @@ const Dropdown = ({
                       return ItemComponent !== null ? (
                           <ItemComponent
                               key={`item-${id || index}`}
-                              className={classNames({
-                                  'dropdown-item': type === 'link',
-                                  'dropdown-divider': type === 'divider',
-                                  'dropdown-header': type === 'header',
-                                  active,
-                                  [itemClassName]: itemClassName !== null,
-                                  [customClassName]: customClassName !== null,
-                              })}
+                              className={classNames([
+                                  'd-block',
+                                  'w-100',
+                                  {
+                                      'dropdown-item': type === 'link',
+                                      'dropdown-divider': type === 'divider',
+                                      'dropdown-header': type === 'header',
+                                      active,
+                                      [itemClassName]: itemClassName !== null,
+                                      [customClassName]: customClassName !== null,
+                                  },
+                              ])}
                               onClick={finalOnClickItem}
                               {...itemProps}
                           >

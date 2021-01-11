@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
-import { useTracking } from '@micromag/core/hooks';
+import { useTrackEvent } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
@@ -32,7 +32,6 @@ const propTypes = {
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
-    id: PropTypes.string,
 };
 
 const defaultProps = {
@@ -48,7 +47,6 @@ const defaultProps = {
     transitions: null,
     transitionStagger: 75,
     className: null,
-    id: null,
 };
 
 const RankingScreen = ({
@@ -64,9 +62,8 @@ const RankingScreen = ({
     transitions,
     transitionStagger,
     className,
-    id,
 }) => {
-    const { trackEvent } = useTracking();
+    const trackEvent = useTrackEvent();
     const { width, height } = useScreenSize();
     const { menuSize } = useViewer();
 
@@ -79,10 +76,12 @@ const RankingScreen = ({
     const itemsCount = finalItems !== null ? finalItems.length : 0;
 
     const isSideLayout = layout === 'side';
+    const transitionPlaying = current;
+    const transitionDisabled = !isView && !isEdit;
 
     const onScrolledBottom = useCallback(() => {
-        trackEvent(id, 'scroll', 'scroll-bottom');
-    }, [id]);
+        trackEvent('screen-interaction', 'scrolled');
+    }, [trackEvent]);
 
     const ranksRefs = useRef([]);
     const [maxSideRankWidth, setMaxSideRankWidth] = useState(null);
@@ -119,9 +118,9 @@ const RankingScreen = ({
                     {hasTitle ? (
                         <Transitions
                             transitions={transitions}
-                            playing={current}
+                            playing={transitionPlaying}
                             delay={transitionStagger * itemI}
-                            disabled={!isView}
+                            disabled={transitionDisabled}
                         >
                             <Heading {...title} />
                         </Transitions>
@@ -146,9 +145,9 @@ const RankingScreen = ({
                     {hasDescription ? (
                         <Transitions
                             transitions={transitions}
-                            playing={current}
+                            playing={transitionPlaying}
                             delay={transitionStagger * itemI}
-                            disabled={!isView}
+                            disabled={transitionDisabled}
                         >
                             <Text {...description} />
                         </Transitions>
@@ -173,9 +172,9 @@ const RankingScreen = ({
                     ) : (
                         <Transitions
                             transitions={transitions}
-                            playing={current}
+                            playing={transitionPlaying}
                             delay={transitionStagger * itemI}
-                            disabled={!isView}
+                            disabled={transitionDisabled}
                         >
                             <Text
                                 className={styles.rankText}

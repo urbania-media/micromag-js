@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
-import { useResizeObserver, useTracking } from '@micromag/core/hooks';
+import { useResizeObserver, useTrackEvent } from '@micromag/core/hooks';
 import { isImageFilled, isTextFilled } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
@@ -32,7 +32,6 @@ const propTypes = {
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
-    id: PropTypes.string,
 };
 
 const defaultProps = {
@@ -47,7 +46,6 @@ const defaultProps = {
     transitions: null,
     transitionStagger: 75,
     className: null,
-    id: null,
 };
 
 const GalleryFeedScreen = ({
@@ -62,9 +60,8 @@ const GalleryFeedScreen = ({
     transitions,
     transitionStagger,
     className,
-    id,
 }) => {
-    const { trackEvent } = useTracking();
+    const trackEvent = useTrackEvent();
     const { width, height } = useScreenSize();
     const { menuSize } = useViewer();
 
@@ -75,6 +72,7 @@ const GalleryFeedScreen = ({
     const [imagesLoaded, setImagesLoaded] = useState(0);
     const ready = imagesLoaded >= imagesCount;
     const transitionPlaying = current && ready;
+    const transitionDisabled = !isView && !isEdit;
 
     const onImageLoaded = useCallback(() => {
         setImagesLoaded(imagesLoaded + 1);
@@ -94,8 +92,8 @@ const GalleryFeedScreen = ({
     const { width: firstImageRefWidth } = contentRect || {};
 
     const onScrolledBottom = useCallback(() => {
-        trackEvent(id, 'scroll', 'scroll-reached');
-    }, [id]);
+        trackEvent('screen-interaction', 'scrolled');
+    }, [trackEvent]);
 
     finalImages.forEach((image, index) => {
         const finalImage = withCaptions ? image : { media: image };
@@ -205,7 +203,7 @@ const GalleryFeedScreen = ({
                         <TransitionsStagger
                             transitions={transitions}
                             stagger={transitionStagger}
-                            disabled={!isView}
+                            disabled={transitionDisabled}
                             playing={transitionPlaying}
                         >
                             {items}

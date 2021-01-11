@@ -12,7 +12,7 @@ class Base {
     }
 
     requestGet(path, query = null) {
-        const queryString = query !== null ? stringifyQuery(query) : null;
+        const queryString = query !== null ? stringifyQuery(query, { arrayFormat: 'bracket' }) : null;
         return getJSON(
             `${this.getFullUrl(path)}${
                 queryString !== null && queryString.length > 0 ? `?${queryString}` : ''

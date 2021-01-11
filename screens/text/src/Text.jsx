@@ -75,6 +75,9 @@ const TextScreen = ({
 
     const titleWithMargin = hasTitle && hasText && !isSplitted;
 
+    const transitionPlaying = current;
+    const transitionDisabled = !isView && !isEdit;
+
     // Create elements
     const items = [
         withTitle && <ScreenElement
@@ -130,8 +133,8 @@ const TextScreen = ({
                     <TransitionsStagger
                         transitions={transitions}
                         stagger={transitionStagger}
-                        disabled={!isView}
-                        playing={current}
+                        disabled={transitionDisabled}
+                        playing={transitionPlaying}
                     >
                         {items}
                     </TransitionsStagger>

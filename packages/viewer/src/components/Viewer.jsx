@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { useDrag } from 'react-use-gesture';
 
 import { PropTypes as MicromagPropTypes, ViewerProvider } from '@micromag/core';
-import { useScreenSizeFromElement, useResizeObserver, useScreensWithTheme, useTracking } from '@micromag/core/hooks';
+import { useScreenSizeFromElement, useResizeObserver, useScreensWithTheme, useTrackScreenView, useTrackEvent } from '@micromag/core/hooks';
 import { ScreenSizeProvider } from '@micromag/core/contexts';
 import { getDeviceScreens } from '@micromag/core/utils';
 
@@ -63,9 +63,9 @@ const Viewer = ({
 }) => {
     const { theme = null, components = [], title = 'Story title' } = story || {};
     const screens = useScreensWithTheme(components, theme);
-    const { trackScreenView, trackEvent } = useTracking();
-    // const trackScreenView = useTrackScreenView();
-    // const trackEvent = useTrackEvent();
+
+    const trackScreenView = useTrackScreenView();
+    const trackEvent = useTrackEvent();
 
     const contentRef = useRef(null);
     const scrollIndexChanged = useRef(false);
@@ -123,6 +123,9 @@ const Viewer = ({
     const [screensInteractionEnabled, setScreensInteractionEnabled] = useState(
         screens.map(() => true),
     );
+    useEffect(() => {
+        setScreensInteractionEnabled(screens.map(() => true));
+    }, [screens]);
     const currentScreenInteractionEnabled = screensInteractionEnabled[currentIndex];
 
     const onEnableInteraction = useCallback(() => {
@@ -277,7 +280,7 @@ const Viewer = ({
     // Track screen view
     
     const trackingEnabled = renderContext === 'view';
-    const validIndex = screens.length > 0 && currentIndex < screens.length - 1;
+    const validIndex = screens.length > 0 && currentIndex < screens.length;
     const currentScreen = validIndex ? screens[currentIndex] : null;
 
     useEffect(() => {
@@ -289,11 +292,20 @@ const Viewer = ({
     // Handle dot menu item click
 
     const onClickDotsMenuItem = useCallback((index) => {
-        if (trackingEnabled) {
-            trackEvent('viewer-menu', 'open', index !== null ? 'dot' : 'menu', index);
+        const clickedOnDot = index !== null;
+        const goToScreen = landscape && clickedOnDot;
+
+        if (goToScreen) {
+            changeIndex(index);
+        } else {
+            setMenuOpened(true);
         }
-        setMenuOpened(true);
-    }, [setMenuOpened, trackingEnabled, trackEvent]);
+        if (trackingEnabled) {            
+            const trackAction = goToScreen ? 'viewer-menu' : 'open'; 
+            trackEvent('viewer-menu', trackAction, clickedOnDot ? { label: 'dot', dotIndex: index } : { label: 'menu'});
+        }
+        
+    }, [changeIndex, setMenuOpened, landscape, trackingEnabled, trackEvent]);
 
     // handle preview menu item click
 
@@ -304,7 +316,7 @@ const Viewer = ({
 
             if (trackingEnabled) {
                 const clickedScreen = screens[index];
-                trackEvent(currentScreen, 'viewer-menu', 'screen-change', clickedScreen);
+                trackEvent(currentScreen, 'viewer-menu', 'screen-change', { clickedScreen });
             }
         },
         [setMenuOpened, changeIndex, trackingEnabled, currentScreen, trackEvent, screens],

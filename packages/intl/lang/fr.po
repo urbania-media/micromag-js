@@ -102,10 +102,10 @@ msgstr "#{index}"
 msgid "Line height"
 msgstr "Hauteur de ligne"
 
-# Delete screen button
-#: 3C3nve
+# Delete screen item
+#: hpiKce
 msgid "Delete screen"
-msgstr "Supprimer l’écran"
+msgstr ""
 
 # Label when there is no item
 #: rdFCsN
@@ -345,6 +345,11 @@ msgstr ""
 # Button to edit a screen
 #: HseFdk
 msgid "Edit"
+msgstr ""
+
+# Duplicate screen item
+#: IBjY5r
+msgid "Duplicate screen"
 msgstr ""
 
 # Timeline Illustrated screen title

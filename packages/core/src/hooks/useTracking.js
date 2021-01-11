@@ -1,73 +1,52 @@
+/* eslint-disable no-console */
 import { useCallback } from 'react';
 import { useTracking } from '@folklore/tracking';
 
+import { useScreen } from '../contexts/ScreenContext';
+
+import Tracking from '../lib/Tracking';
+ 
 export { useTracking };
 
+export const useTrackScreenView = () => {
+    const tracking = useTracking() || new Tracking();// @TODO
 
-const useMicromagTracking = () => {
-    const tracking = useTracking();
-
-    const trackScreenView = useCallback((...params) => {
-        console.log('trackScreenView', params);
-        // tracking.trackScreenView(params);
-    }, [tracking]);
-
-    const trackEvent = useCallback((...params) => {
-        console.log('trackEvent', params);
-        // tracking.trackEvent(params);
-    }, [tracking]);
-
-    const trackAudio = useCallback((...params) => {
-        console.log('trackAudio', params);
-        // tracking.trackAudio(params);
-    }, [tracking]);
-
-    const trackVideo = useCallback((...params) => {
-        console.log('trackVideo', params);
-        // tracking.trackVideo(params);
-    }, [tracking]);
-
-    return {trackScreenView, trackEvent, trackAudio, trackVideo};
+    return useCallback((screen = null, index = null) => {
+        if (screen !== null && index !== null) {
+            tracking.trackScreenView(screen, index);
+        }
+    }, []);
 };
 
-// export const useTrackScreenView = () => {
-//     const tracking = useTracking();
+export const useTrackEvent = () => {
+    const tracking = useTracking() || new Tracking();// @TODO
+    const screenContext = useScreen();
 
-//     return useCallback((id = null, category = null, action = null, label, value) => {
-//         if (id !== null && category !== null && action !== null) {
-//             tracking.trackScreenView(id, category, action, label, value);
-//         }
-//     }, []);
-// };
+    return useCallback((category = null, action = null, opts) => {
+        if (category !== null && action !== null) {
+            tracking.trackEvent(category, action, opts, screenContext);
+        }
+    }, []);
+};
 
-// export const useTrackEvent = () => {
-//     const tracking = useTracking();
+export const useTrackVideo = () => {
+    const tracking = useTracking() || new Tracking();// @TODO
+    const screenContext = useScreen();
 
-//     return useCallback((id = null, category = null, action = null, label, value) => {
-//         if (id !== null && category !== null && action !== null) {
-//             tracking.trackEvent(id, category, action, label, value);
-//         }
-//     }, []);
-// };
+    return useCallback((video = null, action = null, opts) => {
+        if (video !== null && action !== null) {
+            tracking.trackVideo(video, action, opts, screenContext);
+        }
+    }, []);
+};
 
-// export const useTrackVideo = () => {
-//     const tracking = useTracking();
+export const useTrackAudio = () => {
+    const tracking = useTracking() || new Tracking();// @TODO
+    const screenContext = useScreen();
 
-//     return useCallback((id = null, action = null, video = null) => {
-//         if (id !== null && action !== null && video !== null) {
-//             tracking.trackVideo(id, action, video);
-//         }
-//     }, []);
-// };
-
-// export const useTrackAudio = () => {
-//     const tracking = useTracking();
-
-//     return useCallback((id = null, action = null, label, audio = null) => {
-//         if (id !== null && action !== null && audio !== null) {
-//             tracking.trackAudio(id, action, audio);
-//         }
-//     }, []);
-// };
-
-export default useMicromagTracking;
+    return useCallback((audio = null, action = null, opts) => {
+        if (audio !== null && action !== null) {
+            tracking.trackAudio(audio, action, opts, screenContext);
+        }
+    }, []);
+};

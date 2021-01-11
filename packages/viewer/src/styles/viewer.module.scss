@@ -87,7 +87,7 @@
         @extend %fullscreen;
     }
 
-    &.hideMenu {
+    &.hideMenu:not(.landscape) {
         .menuDotsContainer {
             pointer-events: none;
         }

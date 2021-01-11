@@ -10,7 +10,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
-import { useTracking } from '@micromag/core/hooks';
+import { useTrackEvent } from '@micromag/core/hooks';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { isTextFilled, isLabelFilled } from '@micromag/core/utils';
 import { useContributions, useContributionCreate } from '@micromag/data';
@@ -40,7 +40,6 @@ const propTypes = {
     transitionStagger: PropTypes.number,
     resizeTransitionDuration: PropTypes.number,
     className: PropTypes.string,
-    id: PropTypes.string,
 };
 
 const defaultProps = {
@@ -57,8 +56,7 @@ const defaultProps = {
     transitions: null,
     transitionStagger: 100,
     resizeTransitionDuration: 750,
-    className: null,    
-    id: null,
+    className: null,
 };
 
 const ContributionScreen = ({
@@ -76,9 +74,8 @@ const ContributionScreen = ({
     transitionStagger,
     resizeTransitionDuration,
     className,
-    id,
 }) => {
-    const { trackEvent } = useTracking();
+    const trackEvent = useTrackEvent();
 
     const { width, height } = useScreenSize();
     const { menuSize } = useViewer();
@@ -103,11 +100,14 @@ const ContributionScreen = ({
     // 0 = default, 1 = submitting, 2 = submitted, 3 = resizing, 4 = done
     const [submitState, setSubmitState] = useState(0);
 
+    const transitionPlaying = current;
+    const transitionDisabled = !isView && !isEdit;
+
     const onContributionSubmitted = useCallback(() => {
         setSubmitState(2);
-        trackEvent(id, 'contributions', 'submit-success');
+        trackEvent('screen-interaction', 'contribution', { label: 'submit-success' });
 
-    }, [setSubmitState, id]);
+    }, [setSubmitState, trackEvent]);
 
     const { create: submitContribution } = useContributionCreate({
         screenId: 'screen-id',
@@ -134,27 +134,27 @@ const ContributionScreen = ({
     const onNameBlur = useCallback(
         (e) => {
             if (!nameFilled.current && e.currentTarget.value.length > 0) {
-                trackEvent(id, 'contributions', 'name-filled');
+                trackEvent('screen-interaction', 'contribution', { label: 'name-filled' });
                 nameFilled.current = true;
             }
         },
-        [id],
+        [trackEvent],
     );
 
     const messageFilled = useRef(false);
     const onMessageBlur = useCallback(
         (e) => {
             if (!messageFilled.current && e.currentTarget.value.length > 0) {
-                trackEvent(id, 'contributions', 'message-filled');
+                trackEvent('screen-interaction', 'contribution', { label: 'message-filled' });
                 messageFilled.current = true;
             }
         },
-        [id],
+        [trackEvent],
     );
 
     const onScrollBottom = useCallback(() => {
-        trackEvent(id, 'scroll', 'scroll-bottom');
-    }, [id])
+        trackEvent('screen-interaction', 'scrolled');
+    }, [trackEvent])
 
     const onSubmit = useCallback(
         (e) => {
@@ -163,10 +163,10 @@ const ContributionScreen = ({
                 setInteractiveContainerHeight(formRef.current.offsetHeight);
                 setSubmitState(1);
                 submitContribution({ name: userName, message: userMessage });
-                trackEvent(id, 'contributions', 'submit');
+                trackEvent('screen-interaction', 'contribution', { label: 'submit' });
             }
         },
-        [submitState, setSubmitState, userName, userMessage],
+        [submitState, setSubmitState, userName, userMessage, trackEvent],
     );
 
     useEffect(() => {
@@ -195,7 +195,7 @@ const ContributionScreen = ({
             isEmpty={!hasTitle}
         >
             {hasTitle ? (
-                <Transitions transitions={transitions} playing={current} disabled={!isView}>
+                <Transitions transitions={transitions} playing={transitionPlaying} disabled={transitionDisabled}>
                     <Heading {...title} className={styles.title} />
                 </Transitions>
             ) : null}
@@ -227,9 +227,9 @@ const ContributionScreen = ({
                     >
                         <Transitions
                             transitions={transitions}
-                            playing={current}
+                            playing={transitionPlaying}
                             delay={transitionStagger}
-                            disabled={!isView}
+                            disabled={transitionDisabled}
                         >
                             <TextInput
                                 className={styles.inputName}
@@ -260,9 +260,9 @@ const ContributionScreen = ({
                     >
                         <Transitions
                             transitions={transitions}
-                            playing={current}
+                            playing={transitionPlaying}
                             delay={transitionStagger * 2}
-                            disabled={!isView}
+                            disabled={transitionDisabled}
                         >
                             <TextInput
                                 className={styles.inputMessage}
@@ -293,9 +293,9 @@ const ContributionScreen = ({
                     >
                         <Transitions
                             transitions={transitions}
-                            playing={current}
+                            playing={transitionPlaying}
                             delay={transitionStagger * 3}
-                            disabled={!isView}
+                            disabled={transitionDisabled}
                         >
                             <Button
                                 type="submit"

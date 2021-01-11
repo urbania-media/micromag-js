@@ -3,12 +3,12 @@ import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useRouteMatch, useHistory } from 'react-router';
-import { useIntl, FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import TransitionGroup from 'react-addons-css-transition-group';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { slug } from '@micromag/core/utils';
 import { useRoutePush, useRoutes, ScreenProvider } from '@micromag/core/contexts';
-import { Empty, Navbar } from '@micromag/core/components';
+import { Empty, Navbar, DropdownMenu } from '@micromag/core/components';
 
 import { updateScreen, duplicateScreen, deleteScreen } from '../utils';
 import useFormTransition from '../hooks/useFormTransition';
@@ -16,6 +16,7 @@ import SettingsButton from './buttons/Settings';
 import Breadcrumb from './menus/Breadcrumb';
 import ScreenForm from './forms/Screen';
 import FieldForm from './forms/Field';
+import DeleteScreenModal from './modals/DeleteScreen';
 
 import styles from '../styles/form.module.scss';
 
@@ -34,7 +35,6 @@ const defaultProps = {
 };
 
 const EditForm = ({ value, className, onChange }) => {
-    const intl = useIntl();
     // Match routes
     const history = useHistory();
     const routePush = useRoutePush();
@@ -58,6 +58,9 @@ const EditForm = ({ value, className, onChange }) => {
         styles,
     );
 
+    const [screenSettingsOpened, setScreenSettingsOpened] = useState(false);
+    const [deleteScreenModalOpened, setDeleteScreenModalOpened] = useState(false);
+
     // Callbacks
     const triggerOnChange = useCallback(
         (newValue) => {
@@ -73,27 +76,32 @@ const EditForm = ({ value, className, onChange }) => {
         [value, triggerOnChange],
     );
 
-    const onClickScreenDelete = useCallback(
-        ({ id: deleteScreenId }) => triggerOnChange(deleteScreen(value, deleteScreenId)),
-        [value, triggerOnChange],
-    );
+    const onClickDuplicate = useCallback(() => {
+        triggerOnChange(duplicateScreen(value, screenId));
+        setScreenSettingsOpened(false);
+    }, [value, screenId, triggerOnChange, setScreenSettingsOpened]);
 
-    const onClickDuplicate = useCallback(() => triggerOnChange(duplicateScreen(value, screenId)), [
-        value,
-        screenId,
-        triggerOnChange,
-    ]);
+    const onDeleteScreenOpenModal = useCallback(() => {
+        setScreenSettingsOpened(false);
+        setDeleteScreenModalOpened(true);
+    }, [setScreenSettingsOpened, setDeleteScreenModalOpened]);
 
-    const onClickDelete = useCallback(() => {
-        const confirmMessage = intl.formatMessage({
-            defaultMessage: 'Are you sure you want to delete this screen?',
-            decription: 'Confirmation message before deleting a screen',
-        });
-        // eslint-disable-next-line no-alert
-        if (window.confirm(confirmMessage)) {
-            triggerOnChange(deleteScreen(value, screenId));
-        }
-    }, [intl, value, screenId, triggerOnChange]);
+    const onSettingsClick = useCallback(() => {
+        setScreenSettingsOpened((opened) => !opened);
+    }, [setScreenSettingsOpened]);
+
+    const onDropdownClickOutside = useCallback(() => {
+        setScreenSettingsOpened(false);
+    }, [setScreenSettingsOpened]);
+
+    const onDeleteScreenConfirm = useCallback(() => {
+        triggerOnChange(deleteScreen(value, screenId));
+        setDeleteScreenModalOpened(false);
+    }, [triggerOnChange, value, screenId, setScreenSettingsOpened]);
+
+    const onDeleteScreenCancel = useCallback(() => {
+        setDeleteScreenModalOpened(false);
+    }, [setDeleteScreenModalOpened]);
 
     const [fieldForms, setFieldForms] = useState({});
 
@@ -146,11 +154,42 @@ const EditForm = ({ value, className, onChange }) => {
                         field={fieldParams}
                         form={formParams}
                     />
-                    <SettingsButton
-                        className="ml-auto"
-                        onClickDuplicate={onClickDuplicate}
-                        onClickDelete={onClickDelete}
-                    />
+                    {fieldParams === null && formParams === null ? (
+                        <>
+                            <SettingsButton className="ml-auto" onClick={onSettingsClick} />
+                            <DropdownMenu
+                                items={[
+                                    {
+                                        id: 'duplicate',
+                                        type: 'button',
+                                        className: 'text-left text-info',
+                                        label: (
+                                            <FormattedMessage
+                                                defaultMessage="Duplicate screen"
+                                                description="Duplicate screen item"
+                                            />
+                                        ),
+                                        onClick: onClickDuplicate,
+                                    },
+                                    {
+                                        id: 'delete',
+                                        type: 'button',
+                                        className: 'text-left text-danger',
+                                        label: (
+                                            <FormattedMessage
+                                                defaultMessage="Delete screen"
+                                                description="Delete screen item"
+                                            />
+                                        ),
+                                        onClick: onDeleteScreenOpenModal,
+                                    },
+                                ]}
+                                visible={screenSettingsOpened}
+                                align="right"
+                                onClickOutside={onDropdownClickOutside}
+                            />
+                        </>
+                    ) : null}
                 </Navbar>
             ) : null}
             <div className={classNames(['flex-grow-1', 'd-flex', 'w-100', styles.content])}>
@@ -191,7 +230,6 @@ const EditForm = ({ value, className, onChange }) => {
                                             onChange={onScreenFormChange}
                                             gotoFieldForm={gotoFieldForm}
                                             closeFieldForm={closeFieldForm}
-                                            onClickDelete={onClickScreenDelete}
                                         />
                                     </ScreenProvider>
                                 </div>
@@ -207,6 +245,12 @@ const EditForm = ({ value, className, onChange }) => {
                     </Empty>
                 )}
             </div>
+            {deleteScreenModalOpened ? (
+                <DeleteScreenModal
+                    onConfirm={onDeleteScreenConfirm}
+                    onCancel={onDeleteScreenCancel}
+                />
+            ) : null}
         </div>
     );
 };
