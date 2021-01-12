@@ -511,6 +511,11 @@ msgstr "Filename"
 msgid "GalleryFeedCaptions"
 msgstr "GalleryFeedCaptions"
 
+# Button field label
+#: enPTxj
+msgid "Button"
+msgstr "Button"
+
 # Heading in Media Gallery
 #: c9VwT/
 msgid "Technical details"
@@ -540,11 +545,6 @@ msgstr "Select a media..."
 #: enFs4g
 msgid "Advanced"
 msgstr "Advanced"
-
-# Button field label
-#: enPTxj
-msgid "Button"
-msgstr "Button"
 
 # Label in Media Gallery
 #: eoW0tZ

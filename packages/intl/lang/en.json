@@ -296,6 +296,9 @@
     "bh16Yr": {
         "defaultMessage": "GalleryFeedCaptions"
     },
+    "enPTxj": {
+        "defaultMessage": "Button"
+    },
     "c9VwT/": {
         "defaultMessage": "Technical details"
     },
@@ -313,9 +316,6 @@
     },
     "enFs4g": {
         "defaultMessage": "Advanced"
-    },
-    "enPTxj": {
-        "defaultMessage": "Button"
     },
     "eoW0tZ": {
         "defaultMessage": "Duration"

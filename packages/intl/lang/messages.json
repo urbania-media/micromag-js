@@ -466,6 +466,10 @@
     "defaultMessage": "Audio",
     "description": "Audio screen title"
   },
+  "bv3rRe": {
+    "defaultMessage": "Button",
+    "description": "Button placeholder"
+  },
   "c9VwT/": {
     "defaultMessage": "Technical details",
     "description": "Heading in Media Gallery"
