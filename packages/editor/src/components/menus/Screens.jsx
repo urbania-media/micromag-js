@@ -139,6 +139,7 @@ const ScreensMenu = ({
                 {
                     [styles.noWrap]: noWrap,
                     [styles.isVertical]: isVertical,
+                    [styles.withPlaceholder]: withPlaceholder,
                     [className]: className,
                 },
             ])}

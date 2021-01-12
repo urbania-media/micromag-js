@@ -64,10 +64,18 @@
 
         .item {
             width: 100%;
-            
-            .button {
-                width: 100%;
-            }
+        }
+    }
+
+    &.withPlaceholder {
+        .item {
+            width: auto;
+            margin: 5px;
+            padding: 0;            
+        }
+
+        .button {
+            width: 100px;
         }
     }
 }
