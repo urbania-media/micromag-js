@@ -11,7 +11,6 @@ import {
     audioMedia,
     videoMedia,
     video360Media,
-    map,
     markers,
     quote,
     author,
@@ -106,9 +105,11 @@ export const allScreens = [
     {
         id: uuid(),
         type: 'map',
-        layout: 'normal',        
-        splash: { body: 'Débuter' },
-        ...map(),
+        layout: 'normal',
+        title: { body: title() },
+        description: text(),
+        button: { body: 'Débuter' },
+        scrollable: true,
         markers: markers(),        
         background: {
             color: '#FF0000',
@@ -119,9 +120,11 @@ export const allScreens = [
         id: uuid(),
         type: 'map-images',
         layout: 'normal',
-        ...map(),
-        markers: markers({ withImage: true }),
-        splash: { body: 'Avec images' },
+        title: { body: title() },
+        description: text(),
+        button: { body: 'Avec images' },
+        scrollable: true,
+        markers: markers({ withImage: true }),        
         background: {
             color: '#0000FF',
         },
@@ -260,22 +263,22 @@ export const allScreens = [
         },
         transitions: transitions(),
     },
-    {
-        id: uuid(),
-        type: 'video-360',
-        layout: 'full',
-        video: {
-            media: video360Media(),
-            autoPlay: false,
-            loop: true,
-            closedCaptions: closedCaptionsMedia(),
-            withSeekBar: true,
-        },
-        background: {
-            color: '#FF00FF',
-        },
-        transitions: transitions(),
-    },
+    // {
+    //     id: uuid(),
+    //     type: 'video-360',
+    //     layout: 'full',
+    //     video: {
+    //         media: video360Media(),
+    //         autoPlay: false,
+    //         loop: true,
+    //         closedCaptions: closedCaptionsMedia(),
+    //         withSeekBar: true,
+    //     },
+    //     background: {
+    //         color: '#FF00FF',
+    //     },
+    //     transitions: transitions(),
+    // },
 ];
 
 export default allScreens;

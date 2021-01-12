@@ -29,6 +29,7 @@
     .right {
         @extend %hide-scrollbars;
         overflow-y: auto;
+        scroll-behavior: smooth;
 
         > .inner {
             min-height: 100%;
@@ -65,8 +66,7 @@
     }
 
     .left {
-        min-width: 150px;
-        max-width: 200px;
+        width: 140px;
     }
 
     .center {

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -22,11 +22,13 @@ const propTypes = {
     className: PropTypes.string,
     onReady: PropTypes.func,
     onDragEnd: PropTypes.func,
-    onZoomChanged: PropTypes.func,
 };
 
 const defaultProps = {
-    center: { lat: 45.5, lng: -73.56 },
+    center: {
+        lat: 45.5,
+        lng: -73.56,
+    },
     zoom: 10,
     scrollable: true,
     markers: [],
@@ -37,7 +39,6 @@ const defaultProps = {
     className: null,
     onReady: null,
     onDragEnd: null,
-    onZoomChanged: null,
 };
 
 const Map = ({
@@ -52,7 +53,6 @@ const Map = ({
     className,
     onReady,
     onDragEnd,
-    onZoomChanged,
 }) => {
     const { maps: mapsApi } = useGoogleMapsClient() || {};
 
@@ -69,11 +69,22 @@ const Map = ({
         // console.log('No mapsApi', mapsApi);
     }
 
+    const [bounds, setBounds] = useState(null);
     useEffect(() => {
-        if (mapsApi && onReady !== null) {
-            onReady(mapsApi);
+        if (mapsApi) {
+            if (markers !== null && markers.length > 0) {
+                const newBounds = new mapsApi.LatLngBounds();
+                markers.forEach(({geoPosition = null}) => {
+                    const { lat = null, lng = null } = geoPosition || {};
+                    newBounds.extend(new mapsApi.LatLng(lat, lng));
+                });
+                setBounds(currentBounds => newBounds.equals(currentBounds) ? currentBounds : newBounds);
+            }
+            if (onReady !== null) {
+                onReady(mapsApi);
+            }
         }
-    }, [mapsApi, onReady]);
+    }, [markers, mapsApi, onReady]);
 
     return (
         <div
@@ -87,13 +98,13 @@ const Map = ({
             {mapsApi ? (
                 <GoogleMap
                     mapsApi={mapsApi}
-                    zoom={zoom}
                     center={center}
+                    zoom={zoom}
+                    bounds={bounds}
                     scrollable={scrollable}
                     events={{
                         onClick,
                         onDragEnd,
-                        onZoomChanged,
                     }}
                 >
                     <Polyline

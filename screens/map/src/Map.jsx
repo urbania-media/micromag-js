@@ -22,11 +22,13 @@ const gmapsApiKey = process.env.GOOGLE_MAPS_API_KEY || null;
 
 const propTypes = {
     layout: PropTypes.oneOf(['normal']),
-    zoom: PropTypes.number,
-    center: MicromagPropTypes.geoPosition,
     scrollable: PropTypes.bool,
+    center: MicromagPropTypes.geoPosition,
+    zoom: PropTypes.number,
     markers: PropTypes.oneOfType([MicromagPropTypes.markers, MicromagPropTypes.markersWithImage]),
-    splash: PropTypes.string,
+    title: MicromagPropTypes.textElement,
+    description: MicromagPropTypes.textElement,
+    button: MicromagPropTypes.textElement,
     openedMarkerSpacerHeight: PropTypes.number,
     withMarkerImages: PropTypes.bool,
     background: MicromagPropTypes.backgroundElement,
@@ -41,14 +43,13 @@ const propTypes = {
 
 const defaultProps = {
     layout: 'normal',
-    zoom: 9,
-    center: {
-        lat: 45.5,
-        lng: -73.56,
-    },
+    center: null,
+    zoom: null,
     scrollable: true,
     markers: [],
-    splash: null,
+    title: null,
+    description: null,
+    button: null,
     openedMarkerSpacerHeight: 0.75,
     withMarkerImages: false,
     background: null,
@@ -62,12 +63,14 @@ const defaultProps = {
 };
 
 const MapScreen = ({
-    layout,
-    zoom,
+    layout,    
     center,
+    zoom, 
     scrollable,
     markers,
-    splash,
+    title,
+    description,
+    button,
     openedMarkerSpacerHeight,
     withMarkerImages,
     background,
@@ -98,45 +101,56 @@ const MapScreen = ({
     const transitionPlaying = current && ready;
     const transitionDisabled = !isView && !isEdit;
 
+    const trackingEnabled = isView;
+
     const onMapReady = useCallback(() => setReady(true), [setReady]);
 
     const onClickMap = useCallback(() => {
-        setSelectedMarker(null);    
-        trackEvent('screen-interaction', 'map', { label: 'marker-unselect', marker: lastRenderedMarker.current });
-    }, [trackEvent]);
+        setSelectedMarker(null);
+        if (trackingEnabled) {
+            trackEvent('screen-interaction', 'map', {
+                label: 'marker-unselect',
+                marker: lastRenderedMarker.current,
+            });
+        }
+    }, [trackEvent, trackingEnabled]);
 
     const onClickMarker = useCallback(
         (e, i) => {
             const marker = markers[i];
             lastRenderedMarker.current = marker;
             setSelectedMarker(i);
-            trackEvent('screen-interaction', 'map', { label: 'marker-select', marker });
+            if (trackingEnabled) {
+                trackEvent('screen-interaction', 'map', { label: 'marker-select', marker });
+            }
         },
-        [markers, setSelectedMarker, trackEvent],
+        [markers, setSelectedMarker, trackEvent, trackingEnabled],
     );
 
     const onSplashClick = useCallback(() => {
         setOpened(true);
-        trackEvent('screen-interaction', 'map', { label: 'start' });
+        if (trackingEnabled) {
+            trackEvent('screen-interaction', 'map', { label: 'start' });
+        }
         if (onDisableInteraction !== null) {
             onDisableInteraction();
         }
-    }, [setOpened, onDisableInteraction, trackEvent]);
+    }, [setOpened, onDisableInteraction, trackEvent, trackingEnabled]);
 
     const onCloseClick = useCallback(() => {
         setOpened(false);
-        trackEvent('screen-interaction', 'map', { label: 'stop' });
+        if (trackingEnabled) {
+            trackEvent('screen-interaction', 'map', { label: 'stop' });
+        }
         if (onEnableInteraction !== null) {
             onEnableInteraction();
         }
-    }, [setOpened, onEnableInteraction, trackEvent]);
+    }, [setOpened, onEnableInteraction, trackEvent, trackingEnabled]);
 
     const onMapDragEnd = useCallback(() => {
-        trackEvent('screen-interaction', 'map', { label: 'dragged' });
-    }, [trackEvent]);
-
-    const onMapZoomChanged = useCallback(() => {
-        trackEvent('screen-interaction', 'map', { label: 'zoomed' });
+        if (trackingEnabled) {
+            trackEvent('screen-interaction', 'map', { label: 'dragged' });
+        }
     }, [trackEvent]);
 
     const {
@@ -152,7 +166,7 @@ const MapScreen = ({
         if (maxWidth > 0 && height > 0) {
             let staticUrl = `https://maps.googleapis.com/maps/api/staticmap?size=${maxWidth}x${height}`;
             if (center !== null) {
-                const { lat = null, lng = null } = center;
+                const { lat = null, lng = null } = center || {};
                 staticUrl += `&center=${lat},${lng}`;
             }
             if (zoom !== null) {
@@ -168,7 +182,7 @@ const MapScreen = ({
                         const { image = null } = marker;
                         const { url = null } = image || {};
                         return lat !== null && lng !== null
-                            ? `&markers=icon:${url}%7C${lat},${lng}`
+                            ? `&markers=${url !== null ? `icon:${url}` : ''}%7C${lat},${lng}`
                             : '';
                     })
                     .join('');
@@ -191,11 +205,20 @@ const MapScreen = ({
             );
         }
     } else {
-        const { title = null, description = null, image = null } = lastRenderedMarker.current || {};
-        const hasTitle = title !== null;
-        const hasDescription = description !== null;
-        const hasImage = image !== null;
-        const hasSplash = isTextFilled(splash);
+        const {
+            title: markerTitle = null,
+            subtitle: markerSubtitle = null,
+            description: markerDescription = null,
+            image: markerImage = null,
+        } = lastRenderedMarker.current || {};
+        const hasMarkerTitle = markerTitle !== null;
+        const hasMarkerSubtitle = markerSubtitle !== null;
+        const hasMarkerDescription = markerDescription !== null;
+        const hasMarkerImage = markerImage !== null;
+
+        const hasTitle = isTextFilled(title);
+        const hasDescription = isTextFilled(description);
+        const hasButton = isTextFilled(button);
         element = (
             <Transitions
                 transitions={transitions}
@@ -214,7 +237,6 @@ const MapScreen = ({
                     onClickMarker={onClickMarker}
                     onReady={onMapReady}
                     onDragEnd={onMapDragEnd}
-                    onZoomChanged={onMapZoomChanged}
                 />
                 <div className={styles.markerOverlayContainer}>
                     <div className={styles.markerOverlayScrollable}>
@@ -236,28 +258,48 @@ const MapScreen = ({
                                     key={`markerContent-${selectedMarker}`}
                                     ref={markerOverContentInnerRef}
                                 >
-                                    {hasImage ? (
+                                    {hasMarkerImage ? (
                                         <Image
-                                            className={styles.image}
-                                            media={image}
+                                            className={styles.markerImage}
+                                            media={markerImage}
                                             width={markerOverContentInnerWidth}
                                         />
                                     ) : null}
-                                    {hasTitle ? (
-                                        <Heading className={styles.title} {...title} />
+                                    {hasMarkerTitle ? (
+                                        <Heading className={styles.markerTitle} {...markerTitle} />
                                     ) : null}
-                                    {hasDescription ? (
-                                        <Text className={styles.description} {...description} />
+                                    {hasMarkerSubtitle ? (
+                                        <Heading
+                                            size={3}
+                                            className={styles.markerSubtitle}
+                                            {...markerSubtitle}
+                                        />
+                                    ) : null}
+                                    {hasMarkerDescription ? (
+                                        <Text
+                                            className={styles.markerDescription}
+                                            {...markerDescription}
+                                        />
                                     ) : null}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className={classNames([styles.splash, { [styles.splashEmpty]: !hasSplash }])}>
-                    <Button className={styles.splashButton} onClick={onSplashClick} withoutStyle>
-                        <Text className={styles.splashText} {...splash} inline />
-                    </Button>
+                <div className={classNames([styles.splash, { [styles.splashEmpty]: !hasButton }])}>
+                    {hasTitle ? <Heading className={styles.title} {...title} /> : null}
+                    {hasDescription ? (
+                        <Text className={styles.description} {...description} />
+                    ) : null}
+                    {hasButton ? (
+                        <Button
+                            className={styles.splashButton}
+                            onClick={onSplashClick}
+                            withoutStyle
+                        >
+                            <Text className={styles.splashText} {...button} inline />
+                        </Button>
+                    ) : null}
                 </div>
                 <Button className={styles.closeButton} onClick={onCloseClick}>
                     &times;

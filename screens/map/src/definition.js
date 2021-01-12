@@ -26,32 +26,27 @@ export default [
                 }),
             },
             {
-                name: 'splash',
+                name: 'title',
                 type: 'text-element',
                 label: defineMessage({
-                    defaultMessage: 'Splash text',
-                    description: 'Splash text field label',
+                    defaultMessage: 'Title',
+                    description: 'Title field label',
                 }),
             },
             {
-                name: 'center',
-                type: 'geo-position',
-                defaultValue: {
-                    lat: 45.5,
-                    lng: -73.56,
-                },
+                name: 'description',
+                type: 'text-element',
                 label: defineMessage({
-                    defaultMessage: 'Center',
-                    description: 'Center field label',
+                    defaultMessage: 'Description',
+                    description: 'Description field label',
                 }),
             },
             {
-                name: 'zoom',
-                type: 'map-zoom',
-                defaultValue: 9,
+                name: 'button',
+                type: 'text-element',
                 label: defineMessage({
-                    defaultMessage: 'Zoom',
-                    description: 'Zoom field label',
+                    defaultMessage: 'Button',
+                    description: 'Button field label',
                 }),
             },
             {
@@ -104,32 +99,27 @@ export default [
                 }),
             },
             {
-                name: 'splash',
+                name: 'title',
                 type: 'text-element',
                 label: defineMessage({
-                    defaultMessage: 'Splash text',
-                    description: 'Splash text field label',
+                    defaultMessage: 'Title',
+                    description: 'Title field label',
                 }),
             },
             {
-                name: 'center',
-                type: 'geo-position',
-                defaultValue: {
-                    lat: 45.5,
-                    lng: -73.56,
-                },
+                name: 'description',
+                type: 'text-element',
                 label: defineMessage({
-                    defaultMessage: 'Center',
-                    description: 'Center field label',
+                    defaultMessage: 'Description',
+                    description: 'Description field label',
                 }),
             },
             {
-                name: 'zoom',
-                type: 'map-zoom',
-                defaultValue: 9,
+                name: 'button',
+                type: 'text-element',
                 label: defineMessage({
-                    defaultMessage: 'Zoom',
-                    description: 'Zoom field label',
+                    defaultMessage: 'Button',
+                    description: 'Button field label',
                 }),
             },
             {

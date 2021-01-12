@@ -13,9 +13,10 @@ const propTypes = {
         lng: PropTypes.number,
     }),
     zoom: PropTypes.number,
+    bounds: PropTypes.object,// eslint-disable-line
     scrollable: PropTypes.bool,
     // Global maps events
-    events: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    events: PropTypes.object, // eslint-disable-line
     disableDefaultUI: PropTypes.bool,
     mapTypeControl: PropTypes.bool,
     className: PropTypes.string,
@@ -23,8 +24,9 @@ const propTypes = {
 };
 
 const defaultProps = {
-    center: { lat: 45.5, lng: -73.56 },
-    zoom: 10,
+    center: null,
+    zoom: null,
+    bounds: null,
     scrollable: true,
     events: null,
     disableDefaultUI: true,
@@ -37,6 +39,7 @@ const Map = ({
     mapsApi,
     center,
     zoom,
+    bounds,
     scrollable,
     events,
     disableDefaultUI,
@@ -54,18 +57,25 @@ const Map = ({
     });
 
     useEffect(() => {
-        if (map) {
-            const { lat = null, lng = null } = center;
+        if (map && center !== null) {
+            const { lat = null, lng = null } = center || {};
             const finalCenter = { lat: lat || 0, lng: lng || 0 };
             map.panTo(finalCenter);
         }
-    }, [center.lat, center.lng]);
+    }, [center]);
 
     useEffect(() => {
-        if (map) {
+        if (map && zoom !== null) {
             map.setZoom(zoom);
         }
     }, [zoom]);
+
+    useEffect(() => {
+        if (map && bounds !== null) {
+            map.fitBounds(bounds);
+            map.panToBounds(bounds);
+        }
+    }, [bounds]);
 
     useEffect(() => {
         if (map) {

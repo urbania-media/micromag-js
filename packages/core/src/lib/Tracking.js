@@ -4,7 +4,6 @@ import { Tracking as BaseTracking } from '@folklore/tracking';
 class Tracking extends BaseTracking {
     constructor(opts = {}) {
         super(opts);
-        // console.log('tracking constructed', this);
     }
 
     trackScreenView(screen, screenIndex) {

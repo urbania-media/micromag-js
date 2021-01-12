@@ -1,5 +1,6 @@
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/mixins';
 
 .items,
 .item {
@@ -22,12 +23,17 @@
     .item {
         display: block;
         z-index: 2;
-        margin: 5px;
+        width: 33.3%;        
+        padding: 5px;
+
+        // @include match-screen('medium') {
+        @media screen and (min-width: 540px) {
+            width: 20%;
+        }
     }
 
     .button {
         display: block;
-        width: 100px;
     }
 
     .preview,
@@ -57,6 +63,8 @@
         }
 
         .item {
+            width: 100%;
+            
             .button {
                 width: 100%;
             }

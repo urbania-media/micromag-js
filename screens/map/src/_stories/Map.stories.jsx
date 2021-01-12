@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { map, markers, backgroundColor, transitions } from '../../../../.storybook/data';
+import { title, text, markers, backgroundColor, transitions } from '../../../../.storybook/data';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 
@@ -8,8 +8,10 @@ import MapScreen from '../Map';
 import definition from '../definition';
 
 const props = {
-    splash: { body: 'Débuter' },
-    ...map(),
+    title: { body: title() },
+    description: text(),
+    button: { body: 'Débuter' },
+    scrollable: true,
     markers: markers(),
     background: backgroundColor(),
     transitions: transitions(),

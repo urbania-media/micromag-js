@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -33,7 +33,7 @@ const propTypes = {
 const defaultProps = {
     value: null,
     deviceScreens: getDeviceScreens(),
-    mobileView: 'screens',
+    mobileView: 'preview',
     fullscreen: false,
     isTheme: false,
     onChange: null,
@@ -50,6 +50,7 @@ const Editor = ({
     className,
 }) => {
     const push = useRoutePush();
+    const scrollableScreensContainer = useRef(null);
 
     // Screen size
     const { ref: refContainer, screenSize } = useScreenSizeFromElement({
@@ -75,6 +76,20 @@ const Editor = ({
             push('screen', {
                 screen: it.id,
             });
+
+            // Auto scroll to current screen
+            const { components = [] } = value;
+            const screenIndex = components.findIndex((component) => component.id === it.id);
+            if (screenIndex > -1) {
+                const scrollable = scrollableScreensContainer.current;
+                const nav = scrollable.getElementsByTagName('nav')[0];
+                const li = scrollable.getElementsByTagName('li')[screenIndex];
+                scrollable.scrollTop =
+                    nav.offsetHeight +
+                    li.offsetTop +
+                    li.offsetHeight / 2 -
+                    scrollable.clientHeight / 2;
+            }
         },
         [value, push],
     );
@@ -99,17 +114,19 @@ const Editor = ({
                         ref={refContainer}
                     >
                         <Navbar theme="light" compact noWrap withoutCollapse className={styles.top}>
-                            <Button
-                                size="sm"
-                                theme="secondary"
-                                onClick={onClickScreens}
-                                className="mr-auto"
-                            >
-                                <FormattedMessage
-                                    defaultMessage="Screens"
-                                    description="Button to show screens"
-                                />
-                            </Button>
+                            {mobileView !== 'screens' ? (
+                                <Button
+                                    size="sm"
+                                    theme="secondary"
+                                    onClick={onClickScreens}
+                                    className="mr-auto"
+                                >
+                                    <FormattedMessage
+                                        defaultMessage="Screens"
+                                        description="Button to show screens"
+                                    />
+                                </Button>
+                            ) : <span />}
                             {mobileView !== 'form' ? (
                                 <Button size="sm" theme="primary" onClick={onClickEdit}>
                                     <FormattedMessage
@@ -136,6 +153,7 @@ const Editor = ({
                                         [styles.visible]: !isMobile || mobileView === 'screens',
                                     },
                                 ])}
+                                ref={scrollableScreensContainer}
                             >
                                 <Screens
                                     value={value}

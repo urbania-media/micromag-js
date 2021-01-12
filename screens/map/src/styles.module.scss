@@ -71,7 +71,12 @@
         justify-content: center;
         padding: 20px;
         transition: opacity 0.3s ease;
-        background-color: rgba($black, 0.4);
+        background-color: rgba($black, 0.75);
+
+        .title,
+        .description {
+            margin-bottom: 20px;
+        }
 
         .splashButton {
             padding: 20px;
@@ -101,22 +106,20 @@
         right: 20px;
         width: 44px;
         height: 44px;
+        transition: opacity 0.3s ease;
         border-radius: 50%;
+        opacity: 0;
         background-color: rgba($gray-900, 0.8);
         font-size: 30px;
         line-height: 0;
         text-align: center;
-    }
-
-    .closeButton {
-        transition: opacity 0.3s ease;
-        opacity: 0;
         pointer-events: none;
     }
 
-    .image,
-    .title,
-    .description {
+    .markerImage,
+    .markerTitle,
+    .markerSubtitle,
+    .markerDescription {
         margin-bottom: 20px;
     }
 

@@ -8,17 +8,4 @@
         display: flex;
         flex-direction: column;
     }
-
-    .dangerZone {
-        &.opened {
-            .content {
-                max-height: 100px;
-            }
-        }
-    }
-
-    .deleteButton {
-        display: block;
-        width: 100%;
-    }
 }

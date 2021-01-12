@@ -170,6 +170,7 @@ export const advertising = (mediaParams) => ({
 export const markers = ({
     count = 3,
     withTitle = true,
+    withSubtitle = true,
     withDescription = true,
     withImage = false,
 } = {}) =>
@@ -180,18 +181,10 @@ export const markers = ({
             lng: chance.floating({ min: -74, max: -73, fixed: 8 }),
         },
         title: withTitle ? { body: title() } : null,
+        subtitle: withSubtitle ? { body: subtitle() } : null,
         description: withDescription ? { body: shortText() } : null,
         image: withImage ? imageMedia({ width: 100, height: 100 }) : null,
     }));
-
-export const map = () => ({
-    zoom: 9,
-    center: {
-        lat: 45.5,
-        lng: -73.56,
-    },
-    scrollable: true,
-});
 
 export const transitions = ({ transitionIn = 'fade', transitionOut = 'fade' } = {}) => ({
     in: transitionIn,

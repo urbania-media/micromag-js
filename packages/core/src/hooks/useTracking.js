@@ -1,15 +1,15 @@
 /* eslint-disable no-console */
 import { useCallback } from 'react';
-import { useTracking } from '@folklore/tracking';
-
-import { useScreen } from '../contexts/ScreenContext';
-
-import Tracking from '../lib/Tracking';
+import { useScreen, useTracking } from '../contexts';
  
 export { useTracking };
 
 export const useTrackScreenView = () => {
-    const tracking = useTracking() || new Tracking();// @TODO
+    const tracking = useTracking();
+
+    if (typeof tracking === 'undefined') {
+        return () => {};
+    }
 
     return useCallback((screen = null, index = null) => {
         if (screen !== null && index !== null) {
@@ -19,7 +19,12 @@ export const useTrackScreenView = () => {
 };
 
 export const useTrackEvent = () => {
-    const tracking = useTracking() || new Tracking();// @TODO
+    const tracking = useTracking();
+
+    if (typeof tracking === 'undefined') {
+        return () => {};
+    }
+
     const screenContext = useScreen();
 
     return useCallback((category = null, action = null, opts) => {
@@ -30,7 +35,12 @@ export const useTrackEvent = () => {
 };
 
 export const useTrackVideo = () => {
-    const tracking = useTracking() || new Tracking();// @TODO
+    const tracking = useTracking();
+
+    if (typeof tracking === 'undefined') {
+        return () => {};
+    }
+
     const screenContext = useScreen();
 
     return useCallback((video = null, action = null, opts) => {
@@ -41,7 +51,12 @@ export const useTrackVideo = () => {
 };
 
 export const useTrackAudio = () => {
-    const tracking = useTracking() || new Tracking();// @TODO
+    const tracking = useTracking();
+
+    if (typeof tracking === 'undefined') {
+        return () => {};
+    }
+
     const screenContext = useScreen();
 
     return useCallback((audio = null, action = null, opts) => {
