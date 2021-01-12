@@ -62,10 +62,6 @@ const Map = ({
         [onClickMap],
     );
 
-    if (!mapsApi) {
-        // console.log('No mapsApi', mapsApi);
-    }
-
     const [bounds, setBounds] = useState(null);
     useEffect(() => {
         if (mapsApi) {
