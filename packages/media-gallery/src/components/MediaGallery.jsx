@@ -23,6 +23,7 @@ const propTypes = {
     medias: MicromagPropTypes.medias,
     selectedMedia: MicromagPropTypes.media,
     className: PropTypes.string,
+    navbarClassName: PropTypes.string,
     onClickMedia: PropTypes.func,
 };
 
@@ -36,6 +37,7 @@ const defaultProps = {
     medias: null,
     selectedMedia: null,
     className: null,
+    navbarClassName: null,
     onClickMedia: null,
 };
 
@@ -49,6 +51,7 @@ const MediaGallery = ({
     medias: initialMedias,
     selectedMedia,
     className,
+    navbarClassName,
     onClickMedia,
 }) => {
     // Base state for filters
@@ -131,6 +134,7 @@ const MediaGallery = ({
                 onClickCancel={onClickCancel}
                 withoutTitle={withoutTitle}
                 withoutSource={withoutSource}
+                navbarClassName={navbarClassName}
             />
             <div className={styles.content}>
                 <div className={styles.gallery}>
