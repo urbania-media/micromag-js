@@ -1,11 +1,12 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
 import React, { useState, useCallback, useRef } from 'react';
+import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { PropTypes as MicromagPropTypes, useResizeObserver } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
-import { PlaceholderMap, Transitions, Button } from '@micromag/core/components';
+import { PlaceholderMap, Transitions, Button, ScreenElement } from '@micromag/core/components';
 import { useTrackEvent } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 
@@ -20,11 +21,15 @@ import styles from './styles.module.scss';
 
 const gmapsApiKey = process.env.GOOGLE_MAPS_API_KEY || null;
 
+const defaultCenter = {
+    lat: 45.5,
+    lng: -73.56,
+};
+const defaultZoom = 10;
+
 const propTypes = {
     layout: PropTypes.oneOf(['normal']),
     scrollable: PropTypes.bool,
-    center: MicromagPropTypes.geoPosition,
-    zoom: PropTypes.number,
     markers: PropTypes.oneOfType([MicromagPropTypes.markers, MicromagPropTypes.markersWithImage]),
     title: MicromagPropTypes.textElement,
     description: MicromagPropTypes.textElement,
@@ -43,8 +48,6 @@ const propTypes = {
 
 const defaultProps = {
     layout: 'normal',
-    center: null,
-    zoom: null,
     scrollable: true,
     markers: [],
     title: null,
@@ -63,9 +66,7 @@ const defaultProps = {
 };
 
 const MapScreen = ({
-    layout,    
-    center,
-    zoom, 
+    layout,
     scrollable,
     markers,
     title,
@@ -165,12 +166,12 @@ const MapScreen = ({
     } else if (isPreview) {
         if (maxWidth > 0 && height > 0) {
             let staticUrl = `https://maps.googleapis.com/maps/api/staticmap?size=${maxWidth}x${height}`;
-            if (center !== null) {
-                const { lat = null, lng = null } = center || {};
+            if (defaultCenter !== null && (markers === null || markers.length === 0)) {
+                const { lat = null, lng = null } = defaultCenter || {};
                 staticUrl += `&center=${lat},${lng}`;
             }
-            if (zoom !== null) {
-                staticUrl += `&zoom=${zoom}`;
+            if (defaultZoom !== null) {
+                staticUrl += `&zoom=${defaultZoom}`;
             }
             if (gmapsApiKey !== null) {
                 staticUrl += `&key=${gmapsApiKey}`;
@@ -227,8 +228,8 @@ const MapScreen = ({
                 disabled={transitionDisabled}
             >
                 <Map
-                    center={center}
-                    zoom={zoom}
+                    center={defaultCenter}
+                    zoom={defaultZoom}
                     scrollable={scrollable}
                     markers={markers.map((marker, markerI) => ({
                         ...marker,
@@ -286,20 +287,50 @@ const MapScreen = ({
                         </div>
                     </div>
                 </div>
-                <div className={classNames([styles.splash, { [styles.splashEmpty]: !hasButton }])}>
-                    {hasTitle ? <Heading className={styles.title} {...title} /> : null}
-                    {hasDescription ? (
+                <div className={classNames([styles.splash])}>
+                    <ScreenElement
+                        emptyLabel={
+                            <FormattedMessage
+                                defaultMessage="Title"
+                                description="Title placeholder"
+                            />
+                        }
+                        emptyClassName={styles.emptyTitle}
+                        isEmpty={!hasTitle}
+                    >
+                        <Heading className={styles.title} {...title} />
+                    </ScreenElement>
+
+                    <ScreenElement
+                        emptyLabel={
+                            <FormattedMessage
+                                defaultMessage="Description"
+                                description="Description placeholder"
+                            />
+                        }
+                        emptyClassName={styles.emptyDescription}
+                        isEmpty={!hasDescription}
+                    >
                         <Text className={styles.description} {...description} />
-                    ) : null}
-                    {hasButton ? (
+                    </ScreenElement>
+                    <ScreenElement
+                        emptyLabel={
+                            <FormattedMessage
+                                defaultMessage="Button"
+                                description="Button placeholder"
+                            />
+                        }
+                        emptyClassName={styles.emptyButton}
+                        isEmpty={!hasButton}
+                    >
                         <Button
                             className={styles.splashButton}
                             onClick={onSplashClick}
                             withoutStyle
                         >
-                            <Text className={styles.splashText} {...button} inline />
+                            <Text className={styles.button} {...button} />
                         </Button>
-                    ) : null}
+                    </ScreenElement>
                 </div>
                 <Button className={styles.closeButton} onClick={onCloseClick}>
                     &times;

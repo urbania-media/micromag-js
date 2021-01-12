@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 const eventMapping = {
     onClick: 'click',
@@ -6,28 +6,32 @@ const eventMapping = {
 };
 
 export default function useGoogleMapMarker({ mapsApi, position, map, events, title }) {
-    const [marker, setMarker] = useState(null);
+    const marker = useRef(null);
     useEffect(() => {
-        let mark = null;
         if (map) {
-            mark = new mapsApi.Marker({
+            marker.current = new mapsApi.Marker({
                 position,
                 map,
                 title,
                 // optimized: false,
             });
             Object.keys(events).forEach(eventName => {
-                mark.addListener(eventMapping[eventName], events[eventName]);
+                marker.current.addListener(eventMapping[eventName], events[eventName]);
             });
-            setMarker(mark);
         }
         return () => {
-            if (marker) {
-                mapsApi.event.clearInstanceListeners(marker);
-                marker.setMap(null);
+            if (marker.current !== null) {
+                mapsApi.event.clearInstanceListeners(marker.current);
+                marker.current.setMap(null);
             }
         };
-    }, [map, position.lat, position.lng]);
+    }, [map]);
 
-    return marker;
+    useEffect(() => {
+        if (position !== null && marker.current !== null) {
+            marker.current.setPosition(position);
+        }
+    },[position]);
+
+    return marker.current;
 }

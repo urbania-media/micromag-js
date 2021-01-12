@@ -13,6 +13,7 @@ const propTypes = {
         lng: PropTypes.number,
     }),
     zoom: PropTypes.number,
+    maxZoom: PropTypes.number,
     bounds: PropTypes.object,// eslint-disable-line
     scrollable: PropTypes.bool,
     // Global maps events
@@ -26,6 +27,7 @@ const propTypes = {
 const defaultProps = {
     center: null,
     zoom: null,
+    maxZoom: 18,
     bounds: null,
     scrollable: true,
     events: null,
@@ -39,6 +41,7 @@ const Map = ({
     mapsApi,
     center,
     zoom,
+    maxZoom,
     bounds,
     scrollable,
     events,
@@ -65,17 +68,17 @@ const Map = ({
     }, [center]);
 
     useEffect(() => {
-        if (map && zoom !== null) {
-            map.setZoom(zoom);
-        }
-    }, [zoom]);
+    }, [zoom, maxZoom]);
 
     useEffect(() => {
-        if (map && bounds !== null) {
-            map.fitBounds(bounds);
+        if (map && bounds !== null) {            
+            map.fitBounds(bounds);            
+            if (map.getZoom() > maxZoom) {
+                map.setZoom(maxZoom);
+            }
             map.panToBounds(bounds);
         }
-    }, [bounds]);
+    }, [maxZoom, bounds]);
 
     useEffect(() => {
         if (map) {

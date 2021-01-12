@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 const propTypes = {
-    id: PropTypes.string,
     type: PropTypes.oneOf(['text', 'email', 'number', 'password']),
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     errors: MicromagPropTypes.errors,
@@ -16,7 +15,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-    id: null,
     type: 'text',
     value: null,
     errors: null,
@@ -25,9 +23,8 @@ const defaultProps = {
     onChange: null,
 };
 
-const TextField = ({ id, type, value, errors, required, className, onChange }) => (
+const TextField = ({ type, value, errors, required, className, onChange }) => (
     <input
-        id={id}
         type={type}
         className={classNames([
             'form-control',

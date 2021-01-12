@@ -60,20 +60,27 @@ const EditorScreens = ({ value, isTheme, isVertical, onClickScreen, onChange, cl
         (listItems) => {
             const ids = listItems.map(({ id }) => id);
             const { components: currentScreens = [] } = value || {};
-            const newValue = {
-                ...value,
-                components: [...currentScreens].sort(({ id: idA }, { id: idB }) => {
-                    const indexA = ids.indexOf(idA);
-                    const indexB = ids.indexOf(idB);
-                    if (indexA === indexB) {
-                        return 0;
-                    }
-                    return indexA > indexB ? 1 : -1;
-                }),
-            };
-            if (onChange !== null) {
-                onChange(newValue);
-            }
+
+            const currentIds = currentScreens.map(({ id }) => id);
+            const sameOrder = listItems.reduce((same, {id}, index) => same && id === currentIds[index], true);
+            
+            if (!sameOrder){
+                const newValue = {
+                    ...value,
+                    components: [...currentScreens].sort(({ id: idA }, { id: idB }) => {
+                        const indexA = ids.indexOf(idA);
+                        const indexB = ids.indexOf(idB);
+                        if (indexA === indexB) {
+                            return 0;
+                        }
+                        return indexA > indexB ? 1 : -1;
+                    }),
+                };
+                
+                if (onChange !== null) {
+                    onChange(newValue);
+                }
+            }            
         },
         [value, onChange],
     );
@@ -131,6 +138,7 @@ const EditorScreens = ({ value, isTheme, isVertical, onClickScreen, onChange, cl
                         screens.length > 0 ? (
                             <Screens
                                 items={screens.map((it) => ({
+                                    id: it.id,
                                     screen: it,
                                     href: url('screen', {
                                         screen: it.id,

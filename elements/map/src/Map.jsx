@@ -25,11 +25,8 @@ const propTypes = {
 };
 
 const defaultProps = {
-    center: {
-        lat: 45.5,
-        lng: -73.56,
-    },
-    zoom: 10,
+    center: null,
+    zoom: null,
     scrollable: true,
     markers: [],
     layers: [],
