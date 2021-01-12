@@ -44,6 +44,9 @@
     "4fHMVj": {
         "defaultMessage": "Tags"
     },
+    "ZCe0r4": {
+        "defaultMessage": "Description"
+    },
     "1fBNmY": {
         "defaultMessage": "ImageTitle"
     },
@@ -89,9 +92,6 @@
     "4iBXj2": {
         "defaultMessage": "Layout"
     },
-    "ZCe0r4": {
-        "defaultMessage": "Description"
-    },
     "uAKPQ9": {
         "defaultMessage": "Submit"
     },
@@ -121,9 +121,6 @@
     },
     "qKQCxc": {
         "defaultMessage": "Add a marker"
-    },
-    "8qd8eP": {
-        "defaultMessage": "Center"
     },
     "dmuKH3": {
         "defaultMessage": "Map"
@@ -296,9 +293,6 @@
     "aovRFH": {
         "defaultMessage": "Filename"
     },
-    "b1Ha3o": {
-        "defaultMessage": "Splash text"
-    },
     "bh16Yr": {
         "defaultMessage": "GalleryFeedCaptions"
     },
@@ -319,6 +313,9 @@
     },
     "enFs4g": {
         "defaultMessage": "Advanced"
+    },
+    "enPTxj": {
+        "defaultMessage": "Button"
     },
     "eoW0tZ": {
         "defaultMessage": "Duration"
@@ -367,9 +364,6 @@
     },
     "o0RmVC": {
         "defaultMessage": "imagesWithCaptions"
-    },
-    "p9s3tn": {
-        "defaultMessage": "Zoom"
     },
     "pJgYyE": {
         "defaultMessage": "AutoPlay"

@@ -92,6 +92,11 @@ msgstr "Classement"
 msgid "Tags"
 msgstr "Mots-clés"
 
+# Field label
+#: ZCe0r4
+msgid "Description"
+msgstr "Description"
+
 # ImageTitle screen title
 #: 1fBNmY
 msgid "ImageTitle"
@@ -167,11 +172,6 @@ msgstr "Sélectionnez une couleur..."
 msgid "Layout"
 msgstr "Disposition"
 
-# Field label
-#: ZCe0r4
-msgid "Description"
-msgstr "Description"
-
 # Submit field label
 #: uAKPQ9
 msgid "Submit"
@@ -221,11 +221,6 @@ msgstr ""
 #: qKQCxc
 msgid "Add a marker"
 msgstr "Ajouter un marqueur"
-
-# Center field label
-#: 8qd8eP
-msgid "Center"
-msgstr ""
 
 # Map screen title
 #: dmuKH3
@@ -511,11 +506,6 @@ msgstr ""
 msgid "Filename"
 msgstr "Nom du fichier"
 
-# Splash text field label
-#: b1Ha3o
-msgid "Splash text"
-msgstr ""
-
 # GalleryFeedCaptions screen title
 #: bh16Yr
 msgid "GalleryFeedCaptions"
@@ -549,6 +539,11 @@ msgstr "Sélectionnez un média..."
 # Name of the section in Fields
 #: enFs4g
 msgid "Advanced"
+msgstr ""
+
+# Button field label
+#: enPTxj
+msgid "Button"
 msgstr ""
 
 # Label in Media Gallery
@@ -627,11 +622,6 @@ msgstr ""
 # imagesWithCaptions field label
 #: o0RmVC
 msgid "imagesWithCaptions"
-msgstr ""
-
-# Zoom field label
-#: p9s3tn
-msgid "Zoom"
 msgstr ""
 
 # Field label
