@@ -22,6 +22,10 @@
         {
             "name": "Nicolas Roy-Bourdages",
             "email": "nrb@folklore.email"
+        },
+        {
+            "name": "Julien Carignan",
+            "email": "jc@folklore.email"
         }
     ],
     "license": "ISC",
