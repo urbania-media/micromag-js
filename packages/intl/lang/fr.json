@@ -38,6 +38,9 @@
     "4fHMVj": {
         "defaultMessage": "Mots-clés"
     },
+    "ZCe0r4": {
+        "defaultMessage": "Description"
+    },
     "2/F1Q7": {
         "defaultMessage": "#{index}"
     },
@@ -61,9 +64,6 @@
     },
     "4iBXj2": {
         "defaultMessage": "Disposition"
-    },
-    "ZCe0r4": {
-        "defaultMessage": "Description"
     },
     "uAKPQ9": {
         "defaultMessage": "Envoyer"

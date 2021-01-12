@@ -63,6 +63,10 @@
     "defaultMessage": "Tags",
     "description": "Label for tags search section"
   },
+  "1ezz2m": {
+    "defaultMessage": "Description",
+    "description": "Description field label"
+  },
   "1fBNmY": {
     "defaultMessage": "ImageTitle",
     "description": "ImageTitle screen title"
@@ -182,10 +186,6 @@
   "8oczXQ": {
     "defaultMessage": "Add a marker",
     "description": "Button label"
-  },
-  "8qd8eP": {
-    "defaultMessage": "Center",
-    "description": "Center field label"
   },
   "8vroDx": {
     "defaultMessage": "Map",
@@ -458,10 +458,6 @@
     "defaultMessage": "Filename",
     "description": "Label in Media Gallery"
   },
-  "b1Ha3o": {
-    "defaultMessage": "Splash text",
-    "description": "Splash text field label"
-  },
   "bh16Yr": {
     "defaultMessage": "GalleryFeedCaptions",
     "description": "GalleryFeedCaptions screen title"
@@ -513,6 +509,10 @@
   "enFs4g": {
     "defaultMessage": "Advanced",
     "description": "Name of the section in Fields"
+  },
+  "enPTxj": {
+    "defaultMessage": "Button",
+    "description": "Button field label"
   },
   "eoW0tZ": {
     "defaultMessage": "Duration",
@@ -615,10 +615,6 @@
   "p85qJD": {
     "defaultMessage": "Caption",
     "description": "Field label"
-  },
-  "p9s3tn": {
-    "defaultMessage": "Zoom",
-    "description": "Zoom field label"
   },
   "pJgYyE": {
     "defaultMessage": "AutoPlay",
