@@ -67,6 +67,11 @@ msgstr "MapImages"
 msgid "Credits"
 msgstr "Credits"
 
+# Button label
+#: PyxZY2
+msgid "Cancel"
+msgstr "Cancel"
+
 # Font family group title
 #: zIi5W2
 msgid "All"
@@ -101,11 +106,6 @@ msgstr "#{index}"
 #: 31zuCS
 msgid "Line height"
 msgstr "Line height"
-
-# Delete screen item
-#: hpiKce
-msgid "Delete screen"
-msgstr "Delete screen"
 
 # Label when there is no item
 #: rdFCsN
@@ -322,11 +322,6 @@ msgstr "Result"
 msgid "Your name"
 msgstr "Your name"
 
-# Cancel button label in Media Gallery
-#: G31Yd0
-msgid "Cancel"
-msgstr "Cancel"
-
 # Field label
 #: xT/onn
 msgid "Image"
@@ -501,11 +496,6 @@ msgstr "TitleSubtitle"
 msgid "Add an item"
 msgstr "Add an item"
 
-# Title of the danger zone panel
-#: aDbe/Q
-msgid "Danger zone"
-msgstr "Danger zone"
-
 # Field label
 #: aarOkd
 msgid "Color"
@@ -570,6 +560,11 @@ msgstr "Duration"
 #: g6b9Lg
 msgid "Contribution"
 msgstr "Contribution"
+
+# Title of the delete screen dialog
+#: p6q/+/
+msgid "Delete screen"
+msgstr "Delete screen"
 
 # No value label
 #: i+3ZrF
@@ -643,6 +638,11 @@ msgstr "Zoom"
 #: pJgYyE
 msgid "AutoPlay"
 msgstr "AutoPlay"
+
+# Confirmation message before deleting a screen
+#: q/tLk0
+msgid "Are you sure you want to delete this screen?"
+msgstr "Are you sure you want to delete this screen?"
 
 # Save in Media Gallery
 #: qIw1nW

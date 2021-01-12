@@ -43,6 +43,10 @@
     "defaultMessage": "Credits",
     "description": "Credits placeholder"
   },
+  "0GT0SI": {
+    "defaultMessage": "Cancel",
+    "description": "Cancel button label"
+  },
   "15GBmG": {
     "defaultMessage": "All",
     "description": "Dropdown default all items label"
@@ -74,10 +78,6 @@
   "31zuCS": {
     "defaultMessage": "Line height",
     "description": "Field label"
-  },
-  "3C3nve": {
-    "defaultMessage": "Delete screen",
-    "description": "Delete screen button"
   },
   "3E57H7": {
     "defaultMessage": "No marker...",
@@ -355,6 +355,10 @@
     "defaultMessage": "Markers",
     "description": "Markers field label"
   },
+  "PyxZY2": {
+    "defaultMessage": "Cancel",
+    "description": "Button label"
+  },
   "QBaiO0": {
     "defaultMessage": "Add a screen",
     "description": "Title of the screen types selection dialog"
@@ -442,10 +446,6 @@
     "defaultMessage": "Add an item",
     "description": "Button label in items field"
   },
-  "aDbe/Q": {
-    "defaultMessage": "Danger zone",
-    "description": "Title of the danger zone panel"
-  },
   "aarOkd": {
     "defaultMessage": "Color",
     "description": "Field label"
@@ -526,6 +526,10 @@
     "defaultMessage": "Contribution",
     "description": "Contribution screen title"
   },
+  "gRxcTc": {
+    "defaultMessage": "Delete screen",
+    "description": "Delete screen button label"
+  },
   "hVE7TA": {
     "defaultMessage": "Question",
     "description": "Question field label"
@@ -604,6 +608,10 @@
     "defaultMessage": "No answer...",
     "description": "Label when there is no item in answers field"
   },
+  "p6q/+/": {
+    "defaultMessage": "Delete screen",
+    "description": "Title of the delete screen dialog"
+  },
   "p85qJD": {
     "defaultMessage": "Caption",
     "description": "Field label"
@@ -615,6 +623,10 @@
   "pJgYyE": {
     "defaultMessage": "AutoPlay",
     "description": "Field label"
+  },
+  "q/tLk0": {
+    "defaultMessage": "Are you sure you want to delete this screen?",
+    "description": "Confirmation message before deleting a screen"
   },
   "qIw1nW": {
     "defaultMessage": "Save",

@@ -29,6 +29,9 @@
     "upzOTm": {
         "defaultMessage": "Credits"
     },
+    "PyxZY2": {
+        "defaultMessage": "Cancel"
+    },
     "zIi5W2": {
         "defaultMessage": "All"
     },
@@ -49,9 +52,6 @@
     },
     "31zuCS": {
         "defaultMessage": "Line height"
-    },
-    "hpiKce": {
-        "defaultMessage": "Delete screen"
     },
     "rdFCsN": {
         "defaultMessage": "No marker..."
@@ -182,9 +182,6 @@
     "G/ITGY": {
         "defaultMessage": "Your name"
     },
-    "G31Yd0": {
-        "defaultMessage": "Cancel"
-    },
     "xT/onn": {
         "defaultMessage": "Image"
     },
@@ -290,9 +287,6 @@
     "ZxgNge": {
         "defaultMessage": "Add an item"
     },
-    "aDbe/Q": {
-        "defaultMessage": "Danger zone"
-    },
     "aarOkd": {
         "defaultMessage": "Color"
     },
@@ -331,6 +325,9 @@
     },
     "g6b9Lg": {
         "defaultMessage": "Contribution"
+    },
+    "p6q/+/": {
+        "defaultMessage": "Delete screen"
     },
     "i+3ZrF": {
         "defaultMessage": "Select a font family..."
@@ -376,6 +373,9 @@
     },
     "pJgYyE": {
         "defaultMessage": "AutoPlay"
+    },
+    "q/tLk0": {
+        "defaultMessage": "Are you sure you want to delete this screen?"
     },
     "qIw1nW": {
         "defaultMessage": "Save"
