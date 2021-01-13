@@ -9,6 +9,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { isImageFilled, isTextFilled } from '@micromag/core/utils';
+import { useResizeObserver} from '@micromag/core/hooks';
 
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -115,6 +116,13 @@ const GalleryScreen = ({
     const imagesEl = useRef([]);
     const [imagesSizes, setImagesSizes] = useState([]);
 
+    const {
+        ref: contentRef,
+        entry: { contentRect },
+    } = useResizeObserver();
+
+    const { width: contentWidth = null, height: contentHeight = null } = contentRect || {};
+
     useEffect(() => {
         if (imagesEl.current.length) {
             setImagesSizes(
@@ -128,7 +136,7 @@ const GalleryScreen = ({
                 ),
             );
         }
-    }, [width, height, setImagesSizes, images, layout]);
+    }, [contentWidth, contentHeight, layout, setImagesSizes]);
 
     const items = [...Array(gridSpaces)].map((item, itemI) => {
         const image = images[itemI] || null;
@@ -154,6 +162,7 @@ const GalleryScreen = ({
                         delay={itemI * transitionStagger}
                         playing={transitionPlaying}
                         disabled={transitionDisabled}
+                        fullscreen
                     >
                         <ScreenElement
                             placeholder="image"
@@ -232,6 +241,7 @@ const GalleryScreen = ({
                     style={{
                         paddingTop: !landscape && !isPreview ? menuSize : null,
                     }}
+                    ref={contentRef}
                 >
                     <Grid className={styles.grid} spacing={finalSpacing} items={items} {...grid} />
                 </div>

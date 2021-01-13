@@ -153,7 +153,7 @@ const EditorScreens = ({ value, isTheme, isVertical, onClickScreen, onChange, cl
                                 onOrderChange={onOrderChange}
                             />
                         ) : (
-                            <Empty className="flex-grow-1">
+                            <Empty className="flex-grow-1 p-2">
                                 <Button theme="primary" onClick={onClickAdd}>
                                     <FormattedMessage
                                         defaultMessage="Create your first screen"

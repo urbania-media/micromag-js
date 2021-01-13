@@ -234,7 +234,7 @@ const ImageScreen = ({
 
     let paddingTop = (!landscape && !isPreview ? menuSize : 0) + finalSpacing / 2;
 
-    if (isCard) {
+    if (isCard || isFullscreen) {
         paddingTop = 0;
     }
 
