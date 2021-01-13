@@ -195,3 +195,87 @@
     float: right;
     clear: both;
 }
+
+%form-disabled {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+%form-transitions {
+    position: relative;
+
+    &.enterRight,
+    &.enterLeft,
+    &.enterTop,
+    &.enterBottom {
+        z-index: 1;
+        opacity: 0.5;
+    }
+
+    &.enterRight {
+        transform: translate(100%, 0);
+    }
+
+    &.enterLeft {
+        transform: translate(-100%, 0);
+    }
+
+    &.enterTop {
+        transform: translate(0, -100%);
+    }
+
+    &.enterBottom {
+        transform: translate(0, 100%);
+    }
+
+    &.enterActiveHorizontal,
+    &.enterActiveVertical {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+
+    &.enterActiveHorizontal {
+        transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+    }
+
+    &.enterActiveVertical {
+        transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+    }
+
+    &.leave {
+        @extend %form-disabled;
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+
+    &.leaveActiveRight,
+    &.leaveActiveLeft {
+        transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+        opacity: 0.5;
+    }
+
+    &.leaveActiveTop,
+    &.leaveActiveBottom {
+        transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+        opacity: 0.5;
+    }
+
+    &.leaveActiveRight {
+        transform: translate(-100%, 0);
+    }
+
+    &.leaveActiveLeft {
+        transform: translate(100%, 0);
+    }
+
+    &.leaveActiveTop {
+        transform: translate(0, 100%);
+    }
+
+    &.leaveActiveBottom {
+        transform: translate(0, -100%);
+    }
+}

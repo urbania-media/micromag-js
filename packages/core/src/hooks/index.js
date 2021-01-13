@@ -1,5 +1,6 @@
 export { default as useDocumentEvent } from './useDocumentEvent';
 export { default as useForm } from './useForm';
+export { default as useFormTransition } from './useFormTransition';
 export { default as useIsVisible } from './useIsVisible';
 export * from './useDates';
 export * from './useObserver';

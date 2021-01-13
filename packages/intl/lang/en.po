@@ -332,6 +332,11 @@ msgstr "Case"
 msgid "Timeline"
 msgstr "Timeline"
 
+# No value label
+#: HXw03G
+msgid "Select a font..."
+msgstr "Select a font..."
+
 # Button to edit a screen
 #: HseFdk
 msgid "Edit"
@@ -381,6 +386,11 @@ msgstr "ImageText"
 #: NGuaKm
 msgid "Scrollable"
 msgstr "Scrollable"
+
+# Empty label
+#: OMmp9X
+msgid "Text style"
+msgstr "Text style"
 
 # Field label
 #: OJi+eg

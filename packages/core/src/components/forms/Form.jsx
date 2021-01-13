@@ -4,10 +4,10 @@ import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-// import TransitionGroup from 'react-addons-css-transition-group';
+import TransitionGroup from 'react-addons-css-transition-group';
 
 import * as MicromagPropTypes from '../../PropTypes';
-import { useForm } from '../../hooks';
+import { useForm, useFormTransition } from '../../hooks';
 import { useFieldComponent } from '../../contexts';
 
 import FieldForm from './Field';
@@ -162,7 +162,14 @@ const Form = ({
         setFieldPaths([...newFields]);
     }, [fieldPaths, setFieldPaths]);
 
+    // The last path
     const fieldParams = fieldPaths.length > 0 ? fieldPaths[fieldPaths.length - 1] : '';
+
+    // Get transition value
+    const { name: transitionName, timeout: transitionTimeout } = useFormTransition(
+        fieldPaths,
+        styles,
+    );
 
     // console.log('fieldParams', fieldParams);
     // console.log('fieldPaths', fieldPaths);
@@ -180,37 +187,47 @@ const Form = ({
             method={method}
             onSubmit={onSubmit}
         >
-            {fields && fields.length > 0 && fieldParams ? (
-                <>
-                    {!withoutBackButton ? (
-                        <BackButton theme="primary" onClick={closeFieldForm} />
-                    ) : null}
-                    <FieldForm
-                        name={fieldParams.replace(/\//g, '.')}
+            {!withoutBackButton && fields && fields.length > 0 && fieldParams ? (
+                <BackButton theme="primary" onClick={closeFieldForm} />
+            ) : null}
+            <TransitionGroup
+                transitionName={transitionName}
+                transitionEnterTimeout={transitionTimeout}
+                transitionLeaveTimeout={transitionTimeout}
+                className="w-100 flex-grow-1"
+            >
+                {fields && fields.length > 0 && fieldParams ? (
+                    <div
+                        className={classNames(['w-100', styles.panel])}
+                        key={`field-${fieldParams}`}
+                    >
+                        <FieldForm
+                            name={fieldParams.replace(/\//g, '.')}
+                            fields={fields}
+                            value={value}
+                            onChange={setValue}
+                            gotoFieldForm={gotoFieldForm}
+                            closeFieldForm={closeFieldForm}
+                        />
+                    </div>
+                ) : null}
+                {FieldsComponent && fields && fields.length > 0 && !fieldParams ? (
+                    <FieldsComponent
                         fields={fields}
                         value={value}
+                        errors={errors}
                         onChange={setValue}
                         gotoFieldForm={gotoFieldForm}
                         closeFieldForm={closeFieldForm}
+                        className={classNames([
+                            styles.fields,
+                            {
+                                [fieldsClassName]: fieldsClassName !== null,
+                            },
+                        ])}
                     />
-                </>
-            ) : null}
-            {FieldsComponent && fields && fields.length > 0 && !fieldParams ? (
-                <FieldsComponent
-                    fields={fields}
-                    value={value}
-                    errors={errors}
-                    onChange={setValue}
-                    gotoFieldForm={gotoFieldForm}
-                    closeFieldForm={closeFieldForm}
-                    className={classNames([
-                        styles.fields,
-                        {
-                            [fieldsClassName]: fieldsClassName !== null,
-                        },
-                    ])}
-                />
-            ) : null}
+                ) : null}
+            </TransitionGroup>
             {generalError ? <p className="text-danger my-1">{generalError}</p> : null}
             {children}
             {!withoutActions ? (
