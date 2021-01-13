@@ -4,13 +4,12 @@ import PropTypes from 'prop-types';
 // import classNames from 'classnames';
 import { useHistory } from 'react-router';
 import { useIntl } from 'react-intl';
-import { Breadcrumb as BaseBreadcrumb } from '@micromag/core/components';
+import { Breadcrumb as BaseBreadcrumb, BackButton } from '@micromag/core/components';
 import { PropTypes as MicromagPropTypes, isMessage } from '@micromag/core';
 import { useScreensManager, useFieldsManager } from '@micromag/core/contexts';
 
 import getFieldFromPath from '../../utils/getFieldFromPath';
 import getFieldByName from '../../utils/getFieldByName';
-import BackButton from '../buttons/Back';
 
 const propTypes = {
     story: MicromagPropTypes.story,

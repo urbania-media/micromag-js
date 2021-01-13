@@ -15,7 +15,7 @@ import useFormTransition from '../hooks/useFormTransition';
 import SettingsButton from './buttons/Settings';
 import Breadcrumb from './menus/Breadcrumb';
 import ScreenForm from './forms/Screen';
-import FieldForm from './forms/Field';
+import FieldWithFieldsAndForms from './forms/FieldWithFieldsAndForms';
 import DeleteScreenModal from './modals/DeleteScreen';
 
 import styles from '../styles/form.module.scss';
@@ -207,7 +207,7 @@ const EditForm = ({ value, className, onChange }) => {
                                     key={`field-${fieldParams}-${formParams}`}
                                 >
                                     <ScreenProvider data={screen}>
-                                        <FieldForm
+                                        <FieldWithFieldsAndForms
                                             name={fieldParams.replace(/\//g, '.')}
                                             value={screen}
                                             form={formParams}

@@ -15,6 +15,7 @@ export { default as fields } from './fields';
 export { default as fit } from './fit';
 export { default as fontFamily } from './font-family';
 export { default as fontSize } from './font-size';
+export { default as fontStyle } from './font-style';
 export { default as geoPosition } from './geo-position';
 export { default as headingElement } from './heading-element';
 export { default as imageWithCaption } from './image-with-caption';

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 import * as MicromagPropTypes from '../../PropTypes';
 import Label from '../partials/Label';
+import Button from '../buttons/Button';
 
 import styles from '../../styles/menus/breadcrumb.module.scss';
 
@@ -54,9 +55,8 @@ const Breadcrumb = ({ items, theme, separator, withoutBar, noWrap, className }) 
                     ])}
                     key={`item-${index}`}
                 >
-                    {active ? (
-                        <Label>{label}</Label>
-                    ) : (
+                    {active ? <Label>{label}</Label> : null}
+                    {!active && url ? (
                         <Link
                             to={url}
                             onClick={onClick}
@@ -66,7 +66,17 @@ const Breadcrumb = ({ items, theme, separator, withoutBar, noWrap, className }) 
                         >
                             <Label>{label}</Label>
                         </Link>
-                    )}
+                    ) : null}
+                    {!active && onClick ? (
+                        <Button
+                            onClick={onClick}
+                            className={classNames({
+                                [`text-${theme}`]: theme !== null,
+                            })}
+                        >
+                            <Label>{label}</Label>
+                        </Button>
+                    ) : null}
                 </li>
             ))}
         </ol>

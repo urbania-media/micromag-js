@@ -1,14 +1,19 @@
+/* eslint-disable no-lone-blocks */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+// import TransitionGroup from 'react-addons-css-transition-group';
 
 import * as MicromagPropTypes from '../../PropTypes';
 import { useForm } from '../../hooks';
 import { useFieldComponent } from '../../contexts';
+
+import FieldForm from './Field';
 import Button from '../buttons/Button';
 import Buttons from '../buttons/Buttons';
+import BackButton from '../buttons/Back';
 
 import { validateFields } from '../../utils';
 
@@ -27,6 +32,7 @@ const propTypes = {
     actionsAlign: PropTypes.oneOf(['left', 'right']),
     withoutActions: PropTypes.bool,
     withoutComplete: PropTypes.bool,
+    withoutBackButton: PropTypes.bool,
     onComplete: PropTypes.func,
     onResponse: PropTypes.func,
     onMessage: PropTypes.func,
@@ -52,6 +58,7 @@ const defaultProps = {
     actionsAlign: 'left',
     withoutActions: false,
     withoutComplete: false,
+    withoutBackButton: false,
     onComplete: null,
     onResponse: null,
     onMessage: null,
@@ -76,6 +83,7 @@ const Form = ({
     actionsAlign,
     withoutActions,
     withoutComplete,
+    withoutBackButton,
     onComplete,
     onResponse,
     onMessage,
@@ -138,6 +146,27 @@ const Form = ({
 
     const canSave = validateFields(fields, value);
 
+    const [fieldPaths, setFieldPaths] = useState([]);
+
+    const gotoFieldForm = useCallback(
+        (field, formName = null) => {
+            const fieldKey = `${field}${formName !== null ? `:${formName}` : ''}`;
+            setFieldPaths([...fieldPaths, fieldKey]);
+        },
+        [fieldPaths, setFieldPaths],
+    );
+
+    const closeFieldForm = useCallback(() => {
+        const newFields = [...fieldPaths];
+        newFields.pop();
+        setFieldPaths([...newFields]);
+    }, [fieldPaths, setFieldPaths]);
+
+    const fieldParams = fieldPaths.length > 0 ? fieldPaths[fieldPaths.length - 1] : '';
+
+    // console.log('fieldParams', fieldParams);
+    // console.log('fieldPaths', fieldPaths);
+
     return (
         <form
             action={action}
@@ -151,12 +180,29 @@ const Form = ({
             method={method}
             onSubmit={onSubmit}
         >
-            {FieldsComponent !== null && fields !== null && fields.length > 0 ? (
+            {fields && fields.length > 0 && fieldParams ? (
+                <>
+                    {!withoutBackButton ? (
+                        <BackButton theme="primary" onClick={closeFieldForm} />
+                    ) : null}
+                    <FieldForm
+                        name={fieldParams.replace(/\//g, '.')}
+                        fields={fields}
+                        value={value}
+                        onChange={setValue}
+                        gotoFieldForm={gotoFieldForm}
+                        closeFieldForm={closeFieldForm}
+                    />
+                </>
+            ) : null}
+            {FieldsComponent && fields && fields.length > 0 && !fieldParams ? (
                 <FieldsComponent
                     fields={fields}
                     value={value}
                     errors={errors}
                     onChange={setValue}
+                    gotoFieldForm={gotoFieldForm}
+                    closeFieldForm={closeFieldForm}
                     className={classNames([
                         styles.fields,
                         {
@@ -221,6 +267,21 @@ const Form = ({
         </form>
     );
 };
+
+{
+    /* <FieldsComponent
+                        fields={fields}
+                        value={value}
+                        errors={errors}
+                        onChange={setValue}
+                        className={classNames([
+                            styles.fields,
+                            {
+                                [fieldsClassName]: fieldsClassName !== null,
+                            },
+                        ])}
+                    /> */
+}
 
 Form.propTypes = propTypes;
 Form.defaultProps = defaultProps;

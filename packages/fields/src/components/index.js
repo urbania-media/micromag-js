@@ -18,6 +18,7 @@ export { default as Fields } from './Fields';
 export { default as Font } from './Font';
 export { default as FontFamily } from './FontFamily';
 export { default as FontSize } from './FontSize';
+export { default as FontStyle } from './FontStyle';
 export { default as FontStyleWithAlign } from './FontStyleWithAlign';
 export { default as GeoPosition } from './GeoPosition';
 export { default as GridLayout } from './GridLayout';
