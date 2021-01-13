@@ -72,7 +72,6 @@ const Editor = ({
 
     const onPreviewScreenChange = useCallback(
         (it) => {
-            onChange(value);
             push('screen', {
                 screen: it.id,
             });
