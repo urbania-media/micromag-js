@@ -4,11 +4,8 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 
 import * as MicromagPropTypes from '../../PropTypes';
-import { getComponentFromName } from '../../utils';
+import { getComponentFromName, setFieldValue, getFieldFromPath } from '../../utils';
 import { useFieldsManager } from '../../contexts';
-
-import setValue from '../../utils/setFieldValue';
-import getFieldFromPath from '../../utils/getFieldFromPath';
 
 const propTypes = {
     name: PropTypes.string.isRequired,
@@ -58,7 +55,7 @@ const FieldForm = ({
     const onFieldChange = useCallback(
         (newFieldValue) => {
             // const { name, fields: subFields = null } = field || {};
-            const newValue = setValue(
+            const newValue = setFieldValue(
                 value,
                 name.split('.'),
                 newFieldValue,
