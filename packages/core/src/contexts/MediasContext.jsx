@@ -29,6 +29,7 @@ export const withFieldMediasProvider = (FieldComponent) => {
                 mediasRepository !== null && value !== null ? mediasRepository.find(value) : value,
             [mediasRepository, value],
         );
+        console.log(value, fieldValue);
         const fieldOnChange = useCallback(
             (newValue) => {
                 const valueId = value !== null ? value.id || null : null;
@@ -40,6 +41,7 @@ export const withFieldMediasProvider = (FieldComponent) => {
                 if (valueId !== newValueId) {
                     mediasRepository.remove(value);
                 }
+                console.log(mediasRepository, finalNewValue, newValue);
                 if (onChange !== null) {
                     onChange(finalNewValue);
                 }

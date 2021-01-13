@@ -10,6 +10,12 @@ class MediasRepository extends EventEmitter {
         this.medias = medias || {};
     }
 
+    find(path) {
+        const { media = null } = this.medias[path] || {};
+        console.log(path, this.medias);
+        return media;
+    }
+
     add(media) {
         if (media === null) {
             return null;

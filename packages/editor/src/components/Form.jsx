@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useRouteMatch, useHistory } from 'react-router';
@@ -46,6 +46,10 @@ const EditForm = ({ value, className, onChange }) => {
         path: [routes['screen.field.form'], routes['screen.field'], routes.screen, '*'],
     });
 
+    // Current value ref
+    const valueRef = useRef(value);
+    valueRef.current = value;
+
     // Get screen
     const { components: screens = [] } = value || {};
     const screenIndex = screens.findIndex((it) => it.id === screenId);
@@ -53,15 +57,6 @@ const EditForm = ({ value, className, onChange }) => {
 
     // Medias
     const medias = value !== null ? value.medias || {} : null;
-    const onMediasChange = useCallback((newMedias) => {
-        const newValue = {
-            ...value,
-            medias: newMedias,
-        };
-        if (onChange !== null) {
-            onChange(newValue);
-        }
-    }, [value, onChange]);
 
     // Get transition value
     const { name: transitionName, timeout: transitionTimeout } = useFormTransition(
@@ -76,6 +71,7 @@ const EditForm = ({ value, className, onChange }) => {
     // Callbacks
     const triggerOnChange = useCallback(
         (newValue) => {
+            valueRef.current = newValue;
             if (onChange !== null) {
                 onChange(newValue);
             }
@@ -83,15 +79,28 @@ const EditForm = ({ value, className, onChange }) => {
         [onChange],
     );
 
+
+    const onMediasChange = useCallback((newMedias) => {
+        const { current: currentValue } = valueRef;
+        triggerOnChange({
+            ...currentValue,
+            medias: newMedias,
+        })
+    }, [triggerOnChange]);
+
     const onScreenFormChange = useCallback(
-        (newScreenValue) => triggerOnChange(updateScreen(value, newScreenValue)),
-        [value, triggerOnChange],
+        (newScreenValue) => {
+            const { current: currentValue } = valueRef;
+            triggerOnChange(updateScreen(currentValue, newScreenValue))
+        },
+        [triggerOnChange],
     );
 
     const onClickDuplicate = useCallback(() => {
-        triggerOnChange(duplicateScreen(value, screenId));
+        const { current: currentValue } = valueRef;
+        triggerOnChange(duplicateScreen(currentValue, screenId));
         setScreenSettingsOpened(false);
-    }, [value, screenId, triggerOnChange, setScreenSettingsOpened]);
+    }, [screenId, triggerOnChange, setScreenSettingsOpened]);
 
     const onDeleteScreenOpenModal = useCallback(() => {
         setScreenSettingsOpened(false);
@@ -107,9 +116,10 @@ const EditForm = ({ value, className, onChange }) => {
     }, [setScreenSettingsOpened]);
 
     const onDeleteScreenConfirm = useCallback(() => {
-        triggerOnChange(deleteScreen(value, screenId));
+        const { current: currentValue } = valueRef;
+        triggerOnChange(deleteScreen(currentValue, screenId));
         setDeleteScreenModalOpened(false);
-    }, [triggerOnChange, value, screenId, setScreenSettingsOpened]);
+    }, [triggerOnChange, screenId, setScreenSettingsOpened]);
 
     const onDeleteScreenCancel = useCallback(() => {
         setDeleteScreenModalOpened(false);
