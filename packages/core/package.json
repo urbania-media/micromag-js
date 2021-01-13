@@ -66,6 +66,7 @@
         "classnames": "^2.2.6",
         "css-mediaquery": "^0.1.2",
         "dayjs": "^1.9.7",
+        "hoist-non-react-statics": "^3.3.2",
         "lodash": "^4.17.20",
         "prop-types": "^15.7.2",
         "react-intl": "^5.10.6",

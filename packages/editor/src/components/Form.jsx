@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import TransitionGroup from 'react-addons-css-transition-group';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { slug } from '@micromag/core/utils';
-import { useRoutePush, useRoutes, ScreenProvider } from '@micromag/core/contexts';
+import { useRoutePush, useRoutes, ScreenProvider, MediasProvider } from '@micromag/core/contexts';
 import { Empty, Navbar, DropdownMenu } from '@micromag/core/components';
 
 import { updateScreen, duplicateScreen, deleteScreen } from '../utils';
@@ -50,6 +50,18 @@ const EditForm = ({ value, className, onChange }) => {
     const { components: screens = [] } = value || {};
     const screenIndex = screens.findIndex((it) => it.id === screenId);
     const screen = screenIndex !== -1 ? screens[screenIndex] : null;
+
+    // Medias
+    const medias = value !== null ? value.medias || {} : null;
+    const onMediasChange = useCallback((newMedias) => {
+        const newValue = {
+            ...value,
+            medias: newMedias,
+        };
+        if (onChange !== null) {
+            onChange(newValue);
+        }
+    }, [value, onChange]);
 
     // Get transition value
     const { name: transitionName, timeout: transitionTimeout } = useFormTransition(
@@ -194,19 +206,19 @@ const EditForm = ({ value, className, onChange }) => {
             ) : null}
             <div className={classNames(['flex-grow-1', 'd-flex', 'w-100', styles.content])}>
                 {screen !== null ? (
-                    <>
-                        <TransitionGroup
-                            transitionName={transitionName}
-                            transitionEnterTimeout={transitionTimeout}
-                            transitionLeaveTimeout={transitionTimeout}
-                            className="w-100 flex-grow-1"
-                        >
-                            {fieldParams !== null ? (
-                                <div
-                                    className={classNames(['bg-dark', 'w-100', styles.panel])}
-                                    key={`field-${fieldParams}-${formParams}`}
-                                >
-                                    <ScreenProvider data={screen}>
+                    <ScreenProvider data={screen}>
+                        <MediasProvider medias={medias} onChange={onMediasChange}>
+                            <TransitionGroup
+                                transitionName={transitionName}
+                                transitionEnterTimeout={transitionTimeout}
+                                transitionLeaveTimeout={transitionTimeout}
+                                className="w-100 flex-grow-1"
+                            >
+                                {fieldParams !== null ? (
+                                    <div
+                                        className={classNames(['bg-dark', 'w-100', styles.panel])}
+                                        key={`field-${fieldParams}-${formParams}`}
+                                    >
                                         <FieldForm
                                             name={fieldParams.replace(/\//g, '.')}
                                             value={screen}
@@ -216,14 +228,12 @@ const EditForm = ({ value, className, onChange }) => {
                                             closeFieldForm={closeFieldForm}
                                             onChange={onScreenFormChange}
                                         />
-                                    </ScreenProvider>
-                                </div>
-                            ) : (
-                                <div
-                                    className={classNames(['bg-dark', 'w-100', styles.panel])}
-                                    key={`screen-${screen.id}`}
-                                >
-                                    <ScreenProvider data={screen}>
+                                    </div>
+                                ) : (
+                                    <div
+                                        className={classNames(['bg-dark', 'w-100', styles.panel])}
+                                        key={`screen-${screen.id}`}
+                                    >
                                         <ScreenForm
                                             value={screen}
                                             className={styles.form}
@@ -231,11 +241,11 @@ const EditForm = ({ value, className, onChange }) => {
                                             gotoFieldForm={gotoFieldForm}
                                             closeFieldForm={closeFieldForm}
                                         />
-                                    </ScreenProvider>
-                                </div>
-                            )}
-                        </TransitionGroup>
-                    </>
+                                    </div>
+                                )}
+                            </TransitionGroup>
+                        </MediasProvider>
+                    </ScreenProvider>
                 ) : (
                     <Empty className="w-100 m-2">
                         <FormattedMessage

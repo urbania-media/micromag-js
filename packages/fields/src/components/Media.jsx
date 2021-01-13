@@ -3,6 +3,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes, getFileName } from '@micromag/core';
+import { withFieldMediasProvider } from '@micromag/core/contexts';
 import MediaGallery from '@micromag/media-gallery';
 
 import FieldWithForm from './FieldWithForm';
@@ -77,4 +78,4 @@ MediaField.propTypes = propTypes;
 MediaField.defaultProps = defaultProps;
 MediaField.withForm = true;
 
-export default MediaField;
+export default withFieldMediasProvider(MediaField);
