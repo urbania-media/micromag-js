@@ -57,17 +57,10 @@ const withSlideProps = {
             name: 'fontStyle',
             type: 'font-style',
         },
-
-        // {
-        //     name: 'textElement',
-        //     type: 'text-element',
-        //     settings: [
-        //         {
-        //             name: 'textStyle',
-        //             type: 'text-style',
-        //         },
-        //     ],
-        // },
+        {
+            name: 'background',
+            type: 'background',
+        },
     ],
 };
 

@@ -22,6 +22,7 @@ const useScreensWithTheme = (components, theme = null) => {
             const themeComponent = {
                 ...themeComponentFields,
             };
+            // console.log(themeComponents, themeComponent);
             if (typeof themeComponent.background !== 'undefined' && themeBackground !== null) {
                 themeComponent.background = {
                     ...themeBackground,

@@ -22,19 +22,19 @@ import styles from '../styles/form.module.scss';
 
 const propTypes = {
     value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
-    // isTheme: PropTypes.bool,
+    isTheme: PropTypes.bool,
     className: PropTypes.string,
     onChange: PropTypes.func,
 };
 
 const defaultProps = {
     value: null,
-    // isTheme: false,
+    isTheme: false,
     className: null,
     onChange: null,
 };
 
-const EditForm = ({ value, className, onChange }) => {
+const EditForm = ({ value, isTheme, className, onChange }) => {
     // Match routes
     const history = useHistory();
     const routePush = useRoutePush();
@@ -143,6 +143,32 @@ const EditForm = ({ value, className, onChange }) => {
         [history, screenId, fieldForms, setFieldForms],
     );
 
+    const dropdownItems = [
+        !isTheme
+            ? {
+                  id: 'duplicate',
+                  type: 'button',
+                  className: 'text-left text-info',
+                  label: (
+                      <FormattedMessage
+                          defaultMessage="Duplicate screen"
+                          description="Duplicate screen item"
+                      />
+                  ),
+                  onClick: onClickDuplicate,
+              }
+            : null,
+        {
+            id: 'delete',
+            type: 'button',
+            className: 'text-left text-danger',
+            label: (
+                <FormattedMessage defaultMessage="Delete screen" description="Delete screen item" />
+            ),
+            onClick: onDeleteScreenOpenModal,
+        },
+    ].filter((it) => it !== null);
+
     return (
         <div className={classNames(['d-flex', 'flex-column', className])}>
             {screenId !== null ? (
@@ -158,32 +184,7 @@ const EditForm = ({ value, className, onChange }) => {
                         <>
                             <SettingsButton className="ml-auto" onClick={onSettingsClick} />
                             <DropdownMenu
-                                items={[
-                                    {
-                                        id: 'duplicate',
-                                        type: 'button',
-                                        className: 'text-left text-info',
-                                        label: (
-                                            <FormattedMessage
-                                                defaultMessage="Duplicate screen"
-                                                description="Duplicate screen item"
-                                            />
-                                        ),
-                                        onClick: onClickDuplicate,
-                                    },
-                                    {
-                                        id: 'delete',
-                                        type: 'button',
-                                        className: 'text-left text-danger',
-                                        label: (
-                                            <FormattedMessage
-                                                defaultMessage="Delete screen"
-                                                description="Delete screen item"
-                                            />
-                                        ),
-                                        onClick: onDeleteScreenOpenModal,
-                                    },
-                                ]}
+                                items={dropdownItems}
                                 visible={screenSettingsOpened}
                                 align="right"
                                 onClickOutside={onDropdownClickOutside}
