@@ -1,4 +1,5 @@
 import EventEmitter from 'wolfy87-eventemitter';
+import isObject from 'lodash/isObject';
 
 class MediasRepository extends EventEmitter {
     static getMediaPath({ id }) {
@@ -11,8 +12,10 @@ class MediasRepository extends EventEmitter {
     }
 
     find(path) {
+        if (isObject(path)) {
+            return path;
+        }
         const { media = null } = this.medias[path] || {};
-        console.log(path, this.medias);
         return media;
     }
 

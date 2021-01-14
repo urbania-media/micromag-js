@@ -88,6 +88,7 @@ const ScreensMenu = ({
                     [itemCustomClassName]: itemCustomClassName !== null,
                 },
             ])}
+            data-screen-id={item.id}
             ref={index === 0 ? containerRef : null}
         >
             <ScreenButton

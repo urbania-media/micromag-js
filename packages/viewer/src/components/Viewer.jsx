@@ -3,16 +3,19 @@ import React, { useCallback, useRef, useEffect, useMemo, useState } from 'react'
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
 import { useDrag } from 'react-use-gesture';
-
 import { PropTypes as MicromagPropTypes, ViewerProvider } from '@micromag/core';
-import { useScreenSizeFromElement, useResizeObserver, useScreensWithTheme, useTrackScreenView, useTrackEvent } from '@micromag/core/hooks';
+import {
+    useScreenSizeFromElement,
+    useResizeObserver,
+    useParsedStory,
+    useTrackScreenView,
+    useTrackEvent,
+} from '@micromag/core/hooks';
 import { ScreenSizeProvider } from '@micromag/core/contexts';
 import { getDeviceScreens } from '@micromag/core/utils';
 
 import ViewerScreen from './ViewerScreen';
-
 import MenuDots from './menus/MenuDots';
 import MenuPreview from './menus/MenuPreview';
 
@@ -30,6 +33,7 @@ const propTypes = {
     tapNextScreenWidthPercent: PropTypes.number,
     neighborScreensActive: PropTypes.number,
     scrollIndexHeightPercent: PropTypes.number,
+    storyIsParsed: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -44,6 +48,7 @@ const defaultProps = {
     tapNextScreenWidthPercent: 0.5,
     neighborScreensActive: 2,
     scrollIndexHeightPercent: 0.5,
+    storyIsParsed: false,
     className: null,
 };
 
@@ -59,10 +64,11 @@ const Viewer = ({
     tapNextScreenWidthPercent,
     neighborScreensActive,
     scrollIndexHeightPercent,
+    storyIsParsed,
     className,
 }) => {
-    const { theme = null, components = [], title = 'Story title' } = story || {};
-    const screens = useScreensWithTheme(components, theme);
+    const { components: screens = [], title = 'Story title' } =
+        useParsedStory(story, { disabled: storyIsParsed }) || {};
 
     const trackScreenView = useTrackScreenView();
     const trackEvent = useTrackEvent();
@@ -120,12 +126,13 @@ const Viewer = ({
         changeIndex(Math.min(screens.length - 1, currentIndex + 1));
     }, [changeIndex]);
 
+    const screensCount = screens.length;
     const [screensInteractionEnabled, setScreensInteractionEnabled] = useState(
         screens.map(() => true),
     );
     useEffect(() => {
-        setScreensInteractionEnabled(screens.map(() => true));
-    }, [screens]);
+        setScreensInteractionEnabled([...Array(screensCount).keys()].map(() => true));
+    }, [screensCount]);
     const currentScreenInteractionEnabled = screensInteractionEnabled[currentIndex];
 
     const onEnableInteraction = useCallback(() => {
@@ -278,7 +285,7 @@ const Viewer = ({
     const bindDrag = useDrag(onDrag, { enabled: !landscape });
 
     // Track screen view
-    
+
     const trackingEnabled = renderContext === 'view';
     const validIndex = screens.length > 0 && currentIndex < screens.length;
     const currentScreen = validIndex ? screens[currentIndex] : null;
@@ -291,21 +298,27 @@ const Viewer = ({
 
     // Handle dot menu item click
 
-    const onClickDotsMenuItem = useCallback((index) => {
-        const clickedOnDot = index !== null;
-        const goToScreen = landscape && clickedOnDot;
+    const onClickDotsMenuItem = useCallback(
+        (index) => {
+            const clickedOnDot = index !== null;
+            const goToScreen = landscape && clickedOnDot;
 
-        if (goToScreen) {
-            changeIndex(index);
-        } else {
-            setMenuOpened(true);
-        }
-        if (trackingEnabled) {            
-            const trackAction = goToScreen ? 'viewer-menu' : 'open'; 
-            trackEvent('viewer-menu', trackAction, clickedOnDot ? { label: 'dot', dotIndex: index } : { label: 'menu'});
-        }
-        
-    }, [changeIndex, setMenuOpened, landscape, trackingEnabled, trackEvent]);
+            if (goToScreen) {
+                changeIndex(index);
+            } else {
+                setMenuOpened(true);
+            }
+            if (trackingEnabled) {
+                const trackAction = goToScreen ? 'viewer-menu' : 'open';
+                trackEvent(
+                    'viewer-menu',
+                    trackAction,
+                    clickedOnDot ? { label: 'dot', dotIndex: index } : { label: 'menu' },
+                );
+            }
+        },
+        [changeIndex, setMenuOpened, landscape, trackingEnabled, trackEvent],
+    );
 
     // handle preview menu item click
 
@@ -337,7 +350,7 @@ const Viewer = ({
         if (trackingEnabled) {
             trackEvent(currentScreen, 'viewer-menu', 'share');
         }
-        console.log('@TODO share');// eslint-disable-line
+        console.log('@TODO share'); // eslint-disable-line
     }, [trackingEnabled, trackEvent, currentScreen]);
 
     return (

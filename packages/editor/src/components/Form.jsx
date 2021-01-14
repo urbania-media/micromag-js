@@ -2,15 +2,16 @@
 import React, { useCallback, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useRouteMatch, useHistory } from 'react-router';
+import { useHistory } from 'react-router';
 import { FormattedMessage } from 'react-intl';
 import TransitionGroup from 'react-addons-css-transition-group';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { slug } from '@micromag/core/utils';
-import { useRoutePush, useRoutes, ScreenProvider, MediasProvider } from '@micromag/core/contexts';
+import { useRoutePush, ScreenProvider } from '@micromag/core/contexts';
 import { Empty, Navbar, DropdownMenu } from '@micromag/core/components';
 
 import { updateScreen, duplicateScreen, deleteScreen } from '../utils';
+import useRouteParams from '../hooks/useRouteParams';
 import useFormTransition from '../hooks/useFormTransition';
 import SettingsButton from './buttons/Settings';
 import Breadcrumb from './menus/Breadcrumb';
@@ -38,25 +39,17 @@ const EditForm = ({ value, className, onChange }) => {
     // Match routes
     const history = useHistory();
     const routePush = useRoutePush();
-    const routes = useRoutes();
     const {
         url,
-        params: { screen: screenId = null, field: fieldParams = null, form: formParams = null },
-    } = useRouteMatch({
-        path: [routes['screen.field.form'], routes['screen.field'], routes.screen, '*'],
-    });
-
-    // Current value ref
-    const valueRef = useRef(value);
-    valueRef.current = value;
+        screen: screenId = null,
+        field: fieldParams = null,
+        form: formParams = null,
+    } = useRouteParams();
 
     // Get screen
     const { components: screens = [] } = value || {};
     const screenIndex = screens.findIndex((it) => it.id === screenId);
     const screen = screenIndex !== -1 ? screens[screenIndex] : null;
-
-    // Medias
-    const medias = value !== null ? value.medias || {} : null;
 
     // Get transition value
     const { name: transitionName, timeout: transitionTimeout } = useFormTransition(
@@ -71,7 +64,6 @@ const EditForm = ({ value, className, onChange }) => {
     // Callbacks
     const triggerOnChange = useCallback(
         (newValue) => {
-            valueRef.current = newValue;
             if (onChange !== null) {
                 onChange(newValue);
             }
@@ -79,28 +71,17 @@ const EditForm = ({ value, className, onChange }) => {
         [onChange],
     );
 
-
-    const onMediasChange = useCallback((newMedias) => {
-        const { current: currentValue } = valueRef;
-        triggerOnChange({
-            ...currentValue,
-            medias: newMedias,
-        })
-    }, [triggerOnChange]);
-
     const onScreenFormChange = useCallback(
         (newScreenValue) => {
-            const { current: currentValue } = valueRef;
-            triggerOnChange(updateScreen(currentValue, newScreenValue))
+            triggerOnChange(updateScreen(value, newScreenValue));
         },
-        [triggerOnChange],
+        [value, triggerOnChange],
     );
 
     const onClickDuplicate = useCallback(() => {
-        const { current: currentValue } = valueRef;
-        triggerOnChange(duplicateScreen(currentValue, screenId));
+        triggerOnChange(duplicateScreen(value, screenId));
         setScreenSettingsOpened(false);
-    }, [screenId, triggerOnChange, setScreenSettingsOpened]);
+    }, [value, screenId, triggerOnChange, setScreenSettingsOpened]);
 
     const onDeleteScreenOpenModal = useCallback(() => {
         setScreenSettingsOpened(false);
@@ -116,10 +97,9 @@ const EditForm = ({ value, className, onChange }) => {
     }, [setScreenSettingsOpened]);
 
     const onDeleteScreenConfirm = useCallback(() => {
-        const { current: currentValue } = valueRef;
-        triggerOnChange(deleteScreen(currentValue, screenId));
+        triggerOnChange(deleteScreen(value, screenId));
         setDeleteScreenModalOpened(false);
-    }, [triggerOnChange, screenId, setScreenSettingsOpened]);
+    }, [value, triggerOnChange, screenId, setScreenSettingsOpened]);
 
     const onDeleteScreenCancel = useCallback(() => {
         setDeleteScreenModalOpened(false);
@@ -217,44 +197,42 @@ const EditForm = ({ value, className, onChange }) => {
             <div className={classNames(['flex-grow-1', 'd-flex', 'w-100', styles.content])}>
                 {screen !== null ? (
                     <ScreenProvider data={screen}>
-                        <MediasProvider medias={medias} onChange={onMediasChange}>
-                            <TransitionGroup
-                                transitionName={transitionName}
-                                transitionEnterTimeout={transitionTimeout}
-                                transitionLeaveTimeout={transitionTimeout}
-                                className="w-100 flex-grow-1"
-                            >
-                                {fieldParams !== null ? (
-                                    <div
-                                        className={classNames(['bg-dark', 'w-100', styles.panel])}
-                                        key={`field-${fieldParams}-${formParams}`}
-                                    >
-                                        <FieldForm
-                                            name={fieldParams.replace(/\//g, '.')}
-                                            value={screen}
-                                            form={formParams}
-                                            className={styles.form}
-                                            gotoFieldForm={gotoFieldForm}
-                                            closeFieldForm={closeFieldForm}
-                                            onChange={onScreenFormChange}
-                                        />
-                                    </div>
-                                ) : (
-                                    <div
-                                        className={classNames(['bg-dark', 'w-100', styles.panel])}
-                                        key={`screen-${screen.id}`}
-                                    >
-                                        <ScreenForm
-                                            value={screen}
-                                            className={styles.form}
-                                            onChange={onScreenFormChange}
-                                            gotoFieldForm={gotoFieldForm}
-                                            closeFieldForm={closeFieldForm}
-                                        />
-                                    </div>
-                                )}
-                            </TransitionGroup>
-                        </MediasProvider>
+                        <TransitionGroup
+                            transitionName={transitionName}
+                            transitionEnterTimeout={transitionTimeout}
+                            transitionLeaveTimeout={transitionTimeout}
+                            className="w-100 flex-grow-1"
+                        >
+                            {fieldParams !== null ? (
+                                <div
+                                    className={classNames(['bg-dark', 'w-100', styles.panel])}
+                                    key={`field-${fieldParams}-${formParams}`}
+                                >
+                                    <FieldForm
+                                        name={fieldParams.replace(/\//g, '.')}
+                                        value={screen}
+                                        form={formParams}
+                                        className={styles.form}
+                                        gotoFieldForm={gotoFieldForm}
+                                        closeFieldForm={closeFieldForm}
+                                        onChange={onScreenFormChange}
+                                    />
+                                </div>
+                            ) : (
+                                <div
+                                    className={classNames(['bg-dark', 'w-100', styles.panel])}
+                                    key={`screen-${screen.id}`}
+                                >
+                                    <ScreenForm
+                                        value={screen}
+                                        className={styles.form}
+                                        onChange={onScreenFormChange}
+                                        gotoFieldForm={gotoFieldForm}
+                                        closeFieldForm={closeFieldForm}
+                                    />
+                                </div>
+                            )}
+                        </TransitionGroup>
                     </ScreenProvider>
                 ) : (
                     <Empty className="w-100 m-2">

@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -11,9 +11,10 @@ import {
     useRoutePush,
 } from '@micromag/core/contexts';
 import { getDeviceScreens } from '@micromag/core/utils';
-import { useScreenSizeFromElement } from '@micromag/core/hooks';
+import { useScreenSizeFromElement, useParsedStory, useMediasParser } from '@micromag/core/hooks';
 import { Button, Modals, Navbar } from '@micromag/core/components';
 
+import useRouteParams from '../hooks/useRouteParams';
 import Screens from './Screens';
 import EditorPreview from './Preview';
 import EditorForm from './Form';
@@ -50,7 +51,8 @@ const Editor = ({
     className,
 }) => {
     const push = useRoutePush();
-    const scrollableScreensContainer = useRef(null);
+    const refScreensContainer = useRef(null);
+    const { screen: screenId } = useRouteParams({ screenOnly: true });
 
     // Screen size
     const { ref: refContainer, screenSize } = useScreenSizeFromElement({
@@ -64,6 +66,17 @@ const Editor = ({
     const onClickEdit = useCallback(() => setMobileView('form'), [setMobileView]);
     const onClickViewScreen = useCallback(() => setMobileView('preview'), [setMobileView]);
 
+    const story = useParsedStory(value);
+    const { toPath: parseMediasToPath } = useMediasParser();
+    const onStoryChange = useCallback((newStory) => {
+        const storyWithMedias = parseMediasToPath(newStory);
+        console.log(storyWithMedias, newStory);
+        if (onChange !== null) {
+            onChange(storyWithMedias);
+        }
+    }, [onChange, parseMediasToPath]);
+    console.log('PARSED', story);
+
     const onClickScreen = useCallback(() => {
         if (screenSize.screen) {
             setMobileView('preview');
@@ -71,27 +84,29 @@ const Editor = ({
     }, [screenSize.screen]);
 
     const onPreviewScreenChange = useCallback(
-        (it) => {
+        ({ id: newScreenId }) =>
             push('screen', {
-                screen: it.id,
-            });
-
-            // Auto scroll to current screen
-            const { components = [] } = value;
-            const screenIndex = components.findIndex((component) => component.id === it.id);
-            if (screenIndex > -1) {
-                const scrollable = scrollableScreensContainer.current;
-                const nav = scrollable.getElementsByTagName('nav')[0];
-                const li = scrollable.getElementsByTagName('li')[screenIndex];
-                scrollable.scrollTop =
-                    nav.offsetHeight +
-                    li.offsetTop +
-                    li.offsetHeight / 2 -
-                    scrollable.clientHeight / 2;
-            }
-        },
-        [value, push],
+                screen: newScreenId,
+            }),
+        [push],
     );
+
+    useEffect(() => {
+        if (screenId === null) {
+            return;
+        }
+        const { current: screens } = refScreensContainer;
+        const items = screens.querySelectorAll(`[data-screen-id="${screenId}"]`);
+        if (items !== null && items.length > 0) {
+            const item = items[0];
+            const nav = item.parentNode;
+            screens.scrollTop =
+                nav.offsetHeight +
+                item.offsetTop +
+                item.offsetHeight / 2 -
+                screens.clientHeight / 2;
+        }
+    }, [screenId]);
 
     return (
         <ModalsProvider>
@@ -125,7 +140,9 @@ const Editor = ({
                                         description="Button to show screens"
                                     />
                                 </Button>
-                            ) : <span />}
+                            ) : (
+                                <span />
+                            )}
                             {mobileView !== 'form' ? (
                                 <Button size="sm" theme="primary" onClick={onClickEdit}>
                                     <FormattedMessage
@@ -152,12 +169,12 @@ const Editor = ({
                                         [styles.visible]: !isMobile || mobileView === 'screens',
                                     },
                                 ])}
-                                ref={scrollableScreensContainer}
+                                ref={refScreensContainer}
                             >
                                 <Screens
-                                    value={value}
+                                    value={story}
                                     isTheme={isTheme}
-                                    onChange={onChange}
+                                    onChange={onStoryChange}
                                     onClickScreen={onClickScreen}
                                     isVertical={!isMobile}
                                     className={styles.inner}
@@ -172,7 +189,7 @@ const Editor = ({
                                 ])}
                             >
                                 <EditorPreview
-                                    value={value}
+                                    value={story}
                                     isTheme={isTheme}
                                     className={styles.preview}
                                     onScreenChange={onPreviewScreenChange}
@@ -188,9 +205,9 @@ const Editor = ({
                                 ])}
                             >
                                 <EditorForm
-                                    value={value}
+                                    value={story}
                                     isTheme={isTheme}
-                                    onChange={onChange}
+                                    onChange={onStoryChange}
                                     className={styles.inner}
                                 />
                             </div>
