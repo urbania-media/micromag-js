@@ -4,7 +4,7 @@ export default {
     type: 'theme',
     title: 'Default Theme',
     colors: {
-        primary: '#C00',
+        primary: '#0F0',
         secondary: '#00C',
     },
     background: {
@@ -26,7 +26,7 @@ export default {
         text: {
             fontSize: 16,
             fontFamily: 'Helvetica',
-            color: '#F00',
+            color: '#F0F',
         },
     },
     components: [

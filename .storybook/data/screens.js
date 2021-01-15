@@ -10,7 +10,7 @@ import {
     subtitle,
     audioMedia,
     videoMedia,
-    video360Media,
+    // video360Media,
     markers,
     quote,
     author,
@@ -104,13 +104,23 @@ export const allScreens = [
     },
     {
         id: uuid(),
+        type: 'image-legend',
+        layout: 'normal',
+        image: imageMedia(),
+        background: {
+            color: '#FF00FF',
+        },
+        transitions: transitions(),
+    },
+    {
+        id: uuid(),
         type: 'map',
         layout: 'normal',
         title: { body: title() },
         description: text(),
         button: { body: 'Débuter' },
         scrollable: true,
-        markers: markers(),        
+        markers: markers(),
         background: {
             color: '#FF0000',
         },
@@ -124,7 +134,7 @@ export const allScreens = [
         description: text(),
         button: { body: 'Avec images' },
         scrollable: true,
-        markers: markers({ withImage: true }),        
+        markers: markers({ withImage: true }),
         background: {
             color: '#0000FF',
         },

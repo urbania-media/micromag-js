@@ -26,6 +26,10 @@ export default {
         {
             name: 'title',
             type: 'text-element',
+            theme: {
+                textStyle: 'heading1',
+                textColor: 'primary',
+            },
             label: defineMessage({
                 defaultMessage: 'Title',
                 description: 'Title field label',
@@ -50,6 +54,10 @@ export default {
         {
             name: 'submit',
             type: 'text-element',
+            theme: {
+                textStyle: 'text',
+                textColor: 'primary',
+            },
             label: defineMessage({
                 defaultMessage: 'Submit',
                 description: 'Submit field label',

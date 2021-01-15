@@ -13,7 +13,7 @@ const defaultProps = {
     children: null,
 };
 
-const FieldWithFieldsAndForms = (props) => {
+const FieldWithContexts = (props) => {
     // Get definitions
     const { fields = [] } = useScreenDefinition();
     // To use a specific form component
@@ -21,7 +21,7 @@ const FieldWithFieldsAndForms = (props) => {
     return <FieldForm fields={fields} formComponents={formComponents} {...props} />;
 };
 
-FieldWithFieldsAndForms.propTypes = propTypes;
-FieldWithFieldsAndForms.defaultProps = defaultProps;
+FieldWithContexts.propTypes = propTypes;
+FieldWithContexts.defaultProps = defaultProps;
 
-export default FieldWithFieldsAndForms;
+export default FieldWithContexts;

@@ -23,7 +23,6 @@ import Button from '@micromag/element-button';
 
 import styles from './styles.module.scss';
 
-
 const propTypes = {
     layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split']),
     question: MicromagPropTypes.textElement,
@@ -100,7 +99,7 @@ const QuizScreen = ({
 
     const answered = userAnswerIndex !== null;
     const { good: hasUserAnsweredRight = false } =
-        userAnswerIndex !== null ? answers[userAnswerIndex] : {};
+        userAnswerIndex !== null && answers ? answers[userAnswerIndex] : {};
 
     const isSplitted = layout === 'split';
     const verticalAlign = isSplitted ? null : layout;
@@ -114,9 +113,9 @@ const QuizScreen = ({
             if (userAnswerIndex === null) {
                 setUserAnswerIndex(answerI);
                 timeout = setTimeout(setShowResults, showResultsDelay, true);
-                
+
                 const answer = answers[answerI];
-                trackEvent('screen-interaction', 'quiz', { label: 'answered',  answer });
+                trackEvent('screen-interaction', 'quiz', { label: 'answered', answer });
             }
 
             return () => {
@@ -126,22 +125,29 @@ const QuizScreen = ({
             };
         },
         [userAnswerIndex, setUserAnswerIndex, showResultsDelay, trackEvent, answers],
-    );   
+    );
 
-    useEffect( () => {
+    useEffect(() => {
         if (!current && isEdit && userAnswerIndex !== null) {
             setUserAnswerIndex(null);
             setShowResults(false);
             setAnswerTransitionComplete(false);
         }
-    }, [isEdit, current, userAnswerIndex, setUserAnswerIndex, setShowResults, setAnswerTransitionComplete]);
+    }, [
+        isEdit,
+        current,
+        userAnswerIndex,
+        setUserAnswerIndex,
+        setShowResults,
+        setAnswerTransitionComplete,
+    ]);
 
     // we get .answer's current and future height to animate its height
     // we also get the right answer's Y to animate its position
 
     const answerRef = useRef(null);
     const rightAnswerRef = useRef(null);
-    const resultRef = useRef(null);    
+    const resultRef = useRef(null);
 
     useEffect(() => {
         const answerEl = answerRef.current;
@@ -194,7 +200,11 @@ const QuizScreen = ({
             isEmpty={!hasQuestion}
         >
             {hasQuestion ? (
-                <Transitions transitions={transitions} playing={transitionPlaying} disabled={transitionDisabled}>
+                <Transitions
+                    transitions={transitions}
+                    playing={transitionPlaying}
+                    disabled={transitionDisabled}
+                >
                     <Heading {...question} className={styles.question} />
                 </Transitions>
             ) : null}
@@ -326,13 +336,18 @@ const QuizScreen = ({
             ) : null}
             <div className={styles.result} ref={resultRef}>
                 <ScreenElement
-                    emptyLabel={ answered ? 
-                        <FormattedMessage defaultMessage="Result" description="Result placeholder" />
-                    : null }
+                    emptyLabel={
+                        answered ? (
+                            <FormattedMessage
+                                defaultMessage="Result"
+                                description="Result placeholder"
+                            />
+                        ) : null
+                    }
                     isEmpty={answered && !hasResult}
                     emptyClassName={styles.emptyResult}
                 >
-                    {hasResult ? (
+                    {hasResult && answers !== null ? (
                         <Transitions
                             transitions={transitions}
                             playing={transitionPlaying}

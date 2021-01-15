@@ -35,6 +35,10 @@ export default {
         {
             name: 'author',
             type: 'text-element',
+            theme: {
+                textStyle: 'text',
+                textColor: 'primary',
+            },
             label: defineMessage({
                 defaultMessage: 'Author',
                 description: 'Author field label',

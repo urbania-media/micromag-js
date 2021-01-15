@@ -48,4 +48,14 @@ export const Empty = () => <EditorContainer />;
 export const IsTheme = () => <EditorContainer defaultValue={defaultTheme} isTheme />;
 export const AllScreens = () => <EditorContainer defaultValue={allScreensStory} />;
 export const FaceAFace = () => <EditorContainer defaultValue={faceAFaceStory} />;
-export const WithTheme = () => <EditorContainer defaultValue={{ theme: defaultTheme }} />;
+export const WithTheme = () => (
+    <EditorContainer
+        defaultValue={{
+            theme: defaultTheme,
+            components: allScreensStory.components.map((c) => ({
+                ...c,
+                background: null,
+            })),
+        }}
+    />
+);

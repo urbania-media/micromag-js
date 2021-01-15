@@ -28,6 +28,10 @@ export default [
             {
                 name: 'text',
                 type: 'text-element',
+                theme: {
+                    textStyle: 'text',
+                    textColor: 'primary',
+                },
                 label: defineMessage({
                     defaultMessage: 'Text',
                     description: 'Text field label',
@@ -66,19 +70,27 @@ export default [
                 }),
             },
             {
-                name: 'text',
-                type: 'text-element',
-                label: defineMessage({
-                    defaultMessage: 'Text',
-                    description: 'Text field label',
-                }),
-            },
-            {
                 name: 'title',
                 type: 'text-element',
+                theme: {
+                    textStyle: 'heading1',
+                    textColor: 'primary',
+                },
                 label: defineMessage({
                     defaultMessage: 'Title',
                     description: 'Title field label',
+                }),
+            },
+            {
+                name: 'text',
+                type: 'text-element',
+                theme: {
+                    textStyle: 'text',
+                    textColor: 'primary',
+                },
+                label: defineMessage({
+                    defaultMessage: 'Text',
+                    description: 'Text field label',
                 }),
             },
             {

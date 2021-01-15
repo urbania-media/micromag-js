@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useCallback, useState, useRef } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useHistory } from 'react-router';
@@ -16,7 +16,7 @@ import useFormTransition from '../hooks/useFormTransition';
 import SettingsButton from './buttons/Settings';
 import Breadcrumb from './menus/Breadcrumb';
 import ScreenForm from './forms/Screen';
-import FieldWithFieldsAndForms from './forms/FieldWithFieldsAndForms';
+import FieldWithContexts from './forms/FieldWithContexts';
 import DeleteScreenModal from './modals/DeleteScreen';
 
 import styles from '../styles/form.module.scss';
@@ -209,7 +209,7 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
                                     className={classNames(['bg-dark', 'w-100', styles.panel])}
                                     key={`field-${fieldParams}-${formParams}`}
                                 >
-                                    <FieldWithFieldsAndForms
+                                    <FieldWithContexts
                                         name={fieldParams.replace(/\//g, '.')}
                                         value={screen}
                                         form={formParams}

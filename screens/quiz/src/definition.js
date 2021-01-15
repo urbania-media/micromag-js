@@ -42,6 +42,10 @@ export default {
         {
             name: 'result',
             type: 'text-element',
+            theme: {
+                textStyle: 'text',
+                textColor: 'primary',
+            },
             label: defineMessage({
                 defaultMessage: 'Result',
                 description: 'Field label',
