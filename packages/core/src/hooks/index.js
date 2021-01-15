@@ -2,6 +2,7 @@ export { default as useAnimationFrame } from './useAnimationFrame';
 export * from './useDates';
 export { default as useDocumentEvent } from './useDocumentEvent';
 export { default as useForm } from './useForm';
+export { default as useFormTransition } from './useFormTransition';
 export { default as useIsVisible } from './useIsVisible';
 export { default as useMediaApi } from './useMediaApi';
 export { default as useMediasParser } from './useMediasParser';

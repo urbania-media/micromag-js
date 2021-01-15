@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
-import { Button } from '@micromag/core/components';
+import Button from './Button';
 
 const propTypes = {
     className: PropTypes.string,
@@ -16,9 +16,12 @@ const defaultProps = {
 
 const BackButton = ({ className, ...props }) => (
     <Button
-        className={classNames(['px-2', {
-            [className]: className,
-        }])}
+        className={classNames([
+            'px-2',
+            {
+                [className]: className,
+            },
+        ])}
         size="sm"
         icon={<FontAwesomeIcon icon={faAngleLeft} />}
         {...props}

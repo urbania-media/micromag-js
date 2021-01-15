@@ -1,8 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
+import { ApiProvider } from '../../../data/src/contexts/ApiContext';
+
 import FieldsProvider from '../../../fields/src/FieldsProvider';
+
 import Form from '../components/forms/Form';
+import FormPanel from '../components/forms/FormPanel';
+
+const apiBaseUrl = `${window.location.protocol}//${window.location.host}/api`;
 
 const props = {
     fields: [
@@ -39,19 +45,24 @@ const withRequiredProps = {
     ],
 };
 
-// const withSlideProps = {
-//     fields: [
-//         {
-//             name: 'text',
-//             type: 'text',
-//             required: true,
-//         },
-//         {
-//             name: 'text-style',
-//             type: 'text-style',
-//         },
-//     ],
-// };
+const withSlideProps = {
+    fields: [
+        {
+            name: 'text',
+            type: 'text',
+            required: true,
+            settings: true,
+        },
+        {
+            name: 'fontStyle',
+            type: 'font-style',
+        },
+        {
+            name: 'background',
+            type: 'background',
+        },
+    ],
+};
 
 export default {
     component: Form,
@@ -74,7 +85,11 @@ export const withRequired = () => (
 );
 
 export const withSlide = () => (
-    <FieldsProvider>
-        <Form {...withRequiredProps} />
-    </FieldsProvider>
+    <ApiProvider baseUrl={apiBaseUrl}>
+        <FieldsProvider>
+            <FormPanel>
+                <Form {...withSlideProps} />
+            </FormPanel>
+        </FieldsProvider>
+    </ApiProvider>
 );

@@ -1,6 +1,6 @@
 {
     "name": "@micromag/core",
-    "version": "0.2.29",
+    "version": "0.2.32",
     "description": "",
     "keywords": [
         "javascript"
@@ -70,6 +70,7 @@
         "hoist-non-react-statics": "^3.3.2",
         "lodash": "^4.17.20",
         "prop-types": "^15.7.2",
+        "react-addons-css-transition-group": "^15.6.2",
         "react-intl": "^5.10.6",
         "react-router": "^5.2.0",
         "react-router-dom": "^5.2.0",

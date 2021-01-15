@@ -14,7 +14,7 @@ export default {
             breadcrumbLabel: defineMessage({
                 defaultMessage: 'Background color',
                 description: 'Field label',
-            })
+            }),
         },
         {
             name: 'image',
@@ -26,7 +26,7 @@ export default {
             breadcrumbLabel: defineMessage({
                 defaultMessage: 'Background image',
                 description: 'Field label',
-            })
+            }),
         },
         {
             name: 'video',
@@ -38,10 +38,9 @@ export default {
             breadcrumbLabel: defineMessage({
                 defaultMessage: 'Background video',
                 description: 'Field label',
-            })
-        }
+            }),
+        },
     ],
-
     settings: [
         {
             type: 'fields',
@@ -53,7 +52,7 @@ export default {
                     label: defineMessage({
                         defaultMessage: 'Fit',
                         description: 'Field label',
-                    })
+                    }),
                 },
                 {
                     name: 'repeat',
@@ -61,9 +60,9 @@ export default {
                     label: defineMessage({
                         defaultMessage: 'Repeat',
                         description: 'Field label',
-                    })
-                }
-            ]
-        }
-    ]
+                    }),
+                },
+            ],
+        },
+    ],
 };

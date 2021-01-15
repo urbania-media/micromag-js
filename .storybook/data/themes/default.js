@@ -5,6 +5,7 @@ export default {
     title: 'Default Theme',
     colors: {
         primary: '#C00',
+        secondary: '#00C',
     },
     background: {
         color: '#fc0',
@@ -12,24 +13,29 @@ export default {
     textStyle: {
         heading1: {
             fontSize: 36,
+            fontFamily: 'Courier',
         },
         heading2: {
             fontSize: 24,
+            fontFamily: 'Courier',
         },
         heading3: {
             fontSize: 18,
+            fontFamily: 'Courier',
         },
         text: {
             fontSize: 16,
-        }
+            fontFamily: 'Helvetica',
+            color: '#F00',
+        },
     },
     components: [
         {
             id: uuid(),
             type: 'text',
             text: {
-                body: 'Test body'
-            }
-        }
-    ]
+                body: 'Test body',
+            },
+        },
+    ],
 };
