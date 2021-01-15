@@ -1,7 +1,6 @@
 {
     "name": "micromag-js",
     "version": "1.0.0",
-    "private": true,
     "description": "",
     "scripts": {
         "storybook": "start-storybook --port 58800",
