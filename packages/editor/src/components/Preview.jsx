@@ -9,6 +9,7 @@ import { useResizeObserver, useParsedStory } from '@micromag/core/hooks';
 import { useScreenSize, useRoutes } from '@micromag/core/contexts';
 import { Viewer } from '@micromag/viewer';
 
+import useThemeValue from '../hooks/useThemeValue';
 import DevicesMenu from './menus/Devices';
 
 import styles from '../styles/preview.module.scss';
@@ -45,16 +46,7 @@ const defaultProps = {
 const EditorPreview = ({ value, isTheme, devices, device: initialDevice, className, onScreenChange }) => {
     const routes = useRoutes();
     const { screen = null, screens = [] } = useScreenSize();
-    const valueWithTheme = useMemo(() => {
-        if (!isTheme) {
-            return value;
-        }
-        const { components, ...themeValue } = value || {};
-        return value !== null ? {
-            theme: themeValue,
-            ...value,
-        } : value;
-    }, [value, isTheme]);
+    const valueWithTheme = useThemeValue(value, isTheme);
     const valueParsed = useParsedStory(valueWithTheme, { withMedias: false });
 
     // Get device

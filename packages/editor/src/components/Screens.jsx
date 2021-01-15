@@ -9,7 +9,9 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useRoutes, useRoutePush, useUrlGenerator } from '@micromag/core/contexts';
 import { Empty, Button, Navbar } from '@micromag/core/components';
+import { useParsedStory } from '@micromag/core/hooks';
 
+import useThemeValue from '../hooks/useThemeValue';
 import createScreen from '../utils/createScreen';
 import Screens from './menus/Screens';
 import ScreenTypesModal from './modals/ScreenTypes';
@@ -32,7 +34,9 @@ const defaultProps = {
     className: null,
 };
 
-const EditorScreens = ({ value, isTheme, isVertical, onClickScreen, onChange, className }) => {
+const EditorScreens = ({ value: unparsedValue, isTheme, isVertical, onClickScreen, onChange, className }) => {
+    const valueWithTheme = useThemeValue(unparsedValue, isTheme);
+    const value = useParsedStory(valueWithTheme, { withMedias: false });
     const { components: screens = [] } = value || {};
 
     const [createModalOpened, setCreateModalOpened] = useState(false);
@@ -63,7 +67,7 @@ const EditorScreens = ({ value, isTheme, isVertical, onClickScreen, onChange, cl
 
             const currentIds = currentScreens.map(({ id }) => id);
             const sameOrder = listItems.reduce((same, {id}, index) => same && id === currentIds[index], true);
-            
+
             if (!sameOrder){
                 const newValue = {
                     ...value,
@@ -76,11 +80,11 @@ const EditorScreens = ({ value, isTheme, isVertical, onClickScreen, onChange, cl
                         return indexA > indexB ? 1 : -1;
                     }),
                 };
-                
+
                 if (onChange !== null) {
                     onChange(newValue);
                 }
-            }            
+            }
         },
         [value, onChange],
     );
