@@ -27,77 +27,86 @@ const getMediaFieldsPattern = (fieldsManager, fields, namePrefix = null) =>
 const replacePathsWithMedias = (data, medias, patterns, keyPrefix = null) => {
     const dataIsArray = isArray(data);
     const keys = dataIsArray ? [...data.keys()] : Object.keys(data);
-    return keys.reduce((newData, key) => {
-        const path = [keyPrefix, key].filter((it) => it !== null).join('.');
-        const patternMatch = patterns.reduce(
-            (found, pattern) => found || pattern.test(path),
-            false,
-        );
-        const value = data[key];
-        let newValue;
-        if (patternMatch) {
-            newValue = isObject(value) ? value : medias[value] || null;
-        } else {
-            newValue =
-                isObject(value) || isArray(value)
-                    ? replacePathsWithMedias(value, medias, patterns, path)
-                    : value;
-        }
-        return dataIsArray
-            ? [...newData, newValue]
-            : {
-                  ...newData,
-                  [key]: newValue,
-              };
-    }, dataIsArray ? [] : {});
+    return keys.reduce(
+        (newData, key) => {
+            const path = [keyPrefix, key].filter((it) => it !== null).join('.');
+            const patternMatch = patterns.reduce(
+                (found, pattern) => found || pattern.test(path),
+                false,
+            );
+            const value = data[key];
+            let newValue;
+            if (patternMatch) {
+                newValue = isObject(value) ? value : medias[value] || null;
+            } else {
+                newValue =
+                    isObject(value) || isArray(value)
+                        ? replacePathsWithMedias(value, medias, patterns, path)
+                        : value;
+            }
+            return dataIsArray
+                ? [...newData, newValue]
+                : {
+                      ...newData,
+                      [key]: newValue,
+                  };
+        },
+        dataIsArray ? [] : {},
+    );
 };
 
-const getMediaPath = ({ id = null }) => id !== null ? `media://${id}` : null;
+const getMediaPath = ({ id = null }) => (id !== null ? `media://${id}` : null);
 
 const replaceMediasWithPaths = (data, patterns, medias = null, keyPrefix = null) => {
     const dataIsArray = isArray(data);
     const keys = dataIsArray ? [...data.keys()] : Object.keys(data);
-    return keys.reduce(({ data: currentData, medias: currentMedias }, key) => {
-        const path = [keyPrefix, key].filter((it) => it !== null).join('.');
-        const patternMatch = patterns.reduce(
-            (found, pattern) => found || pattern.test(path),
-            false,
-        );
-        const value = data[key];
-        let newValue;
-        let media = null;
-        let subMedias = null;
-        if (patternMatch && isObject(value)) {
-            const mediaPath = getMediaPath(value);
-            newValue = mediaPath !== null ? mediaPath : value;
-            media = mediaPath !== null ? value : null;
-        } else if (isObject(value) || isArray(value)) {
-            const subReturn = replaceMediasWithPaths(value, patterns, medias, path);
-            newValue = subReturn.data;
-            subMedias = subReturn.medias;
-        } else {
-            newValue = value;
-        }
-        return {
-            data: dataIsArray
-                ? [...(currentData || []), newValue]
-                : {
-                      ...currentData,
-                      [key]: newValue,
-                  },
-            medias: media !== null ? {
-                ...currentMedias,
-                ...subMedias,
-                [newValue]: media,
-            } : {
-                ...currentMedias,
-                ...subMedias,
-            },
-        };
-    }, {
-        data: null,
-        medias,
-    });
+    return keys.reduce(
+        ({ data: currentData, medias: currentMedias }, key) => {
+            const path = [keyPrefix, key].filter((it) => it !== null).join('.');
+            const patternMatch = patterns.reduce(
+                (found, pattern) => found || pattern.test(path),
+                false,
+            );
+            const value = data[key];
+            let newValue;
+            let media = null;
+            let subMedias = null;
+            if (patternMatch && isObject(value)) {
+                const mediaPath = getMediaPath(value);
+                newValue = mediaPath !== null ? mediaPath : value;
+                media = mediaPath !== null ? value : null;
+            } else if (isObject(value) || isArray(value)) {
+                const subReturn = replaceMediasWithPaths(value, patterns, medias, path);
+                newValue = subReturn.data;
+                subMedias = subReturn.medias;
+            } else {
+                newValue = value;
+            }
+            return {
+                data: dataIsArray
+                    ? [...(currentData || []), newValue]
+                    : {
+                          ...currentData,
+                          [key]: newValue,
+                      },
+                medias:
+                    media !== null
+                        ? {
+                              ...currentMedias,
+                              ...subMedias,
+                              [newValue]: media,
+                          }
+                        : {
+                              ...currentMedias,
+                              ...subMedias,
+                          },
+            };
+        },
+        {
+            data: null,
+            medias,
+        },
+    );
 };
 
 const useMediasParser = () => {
@@ -116,7 +125,10 @@ const useMediasParser = () => {
                     const { type } = screen;
                     const { fields = [] } = screensManager.getDefinition(type) || {};
                     const fieldsPattern = getMediaFieldsPattern(fieldsManager, fields);
-                    const { data: newScreen , medias: newMedias } = replaceMediasWithPaths(screen, fieldsPattern);
+                    const { data: newScreen, medias: newMedias } = replaceMediasWithPaths(
+                        screen,
+                        fieldsPattern,
+                    );
                     return {
                         components: [...previousComponents, newScreen],
                         medias: {
@@ -127,7 +139,7 @@ const useMediasParser = () => {
                 },
                 { components: [], medias: {} },
             );
-            console.log(newComponents, medias);
+            // console.log(newComponents, medias);
             return {
                 ...story,
                 components: newComponents,

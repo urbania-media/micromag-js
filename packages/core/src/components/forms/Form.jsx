@@ -171,9 +171,6 @@ const Form = ({
     //     styles,
     // );
 
-    // console.log('fieldParams', fieldParams);
-    // console.log('fieldPaths', fieldPaths);
-
     return (
         <form
             action={action}

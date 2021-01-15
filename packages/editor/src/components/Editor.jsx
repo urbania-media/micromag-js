@@ -78,6 +78,7 @@ const Editor = ({
         },
         [onChange, parseMediasToPath],
     );
+
     // console.log('PARSED', story);
 
     const onClickScreen = useCallback(() => {
