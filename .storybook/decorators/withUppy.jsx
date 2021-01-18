@@ -1,18 +1,23 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { UppyProvider } from '../../packages/core/src/contexts';
 
-const config = {
-    key: process.env.TRANSLOADIT_KEY || null,
-    templateId: process.env.TRANSLOADIT_TEMPLATE_ID || null,
+const props = {
+    // transport: 'transloadit',
+    // transloadit: {
+    //     key: process.env.TRANSLOADIT_KEY || null,
+    //     templateId: process.env.TRANSLOADIT_TEMPLATE_ID || null,
+    // },
+    transport: 'tus',
+    tus: {
+        endpoint: 'https://micromag.ca.local.flklr.ca:3000/tus',
+    },
 };
 
-const withUppy = (Story) => {
-    if (config.key === null) return <div>Error loading transloadit key</div>;
-    return (
-        <UppyProvider transport="transloadit" transloadit={config}>
-            <Story />
-        </UppyProvider>
-    );
-};
+const withUppy = (Story) => (
+    <UppyProvider {...props}>
+        <Story />
+    </UppyProvider>
+);
 
 export default withUppy;

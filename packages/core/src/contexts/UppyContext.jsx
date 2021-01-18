@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import isString from 'lodash/isString';
 import isObject from 'lodash/isObject';
+import { v1 as uuid } from 'uuid';
 import { useIntl } from 'react-intl';
 
 import useUppyCore from '../hooks/useUppyCore';
@@ -13,8 +14,57 @@ import getTransloaditMediasFromResponse from '../utils/getTransloaditMediasFromR
 
 const UppyContext = React.createContext(null);
 
-export const useUppy = () => {
-    const { uppy = null } = useContext(UppyContext) || null;
+export const useUppy = ({
+    onComplete = null,
+    onFail = null,
+    getFileName = ({ extension = null }) => `${uuid()}${extension !== null ? `.${extension}` : ''}`,
+} = {}) => {
+    const { uppy = null, transport } = useContext(UppyContext) || null;
+
+    useEffect(() => {
+        if (uppy === null) {
+            return () => {};
+        }
+        const onUppyComplete = (response) => {
+            const { successful = [], failed = null } = response;
+            const finalSuccessful =
+                transport === 'transloadit'
+                    ? getTransloaditMediasFromResponse(response)
+                    : successful;
+            if (onComplete !== null) {
+                onComplete(finalSuccessful);
+            }
+            if (onFail !== null) {
+                onFail(failed);
+            }
+        };
+        uppy.on('complete', onUppyComplete);
+        return () => {
+            uppy.off('complete', onUppyComplete);
+        };
+    }, [uppy, transport, onComplete]);
+
+    useEffect(() => {
+        if (uppy === null) {
+            return () => {};
+        }
+        const onUpload = ({ fileIDs: ids = [] }) => {
+            ids.forEach((id) => {
+                const file = uppy.getFile(id);
+                const newName = getFileName(file);
+                if (newName !== null) {
+                    uppy.setFileMeta(id, {
+                        name: newName,
+                    });
+                }
+            });
+        };
+        uppy.on('upload', onUpload);
+        return () => {
+            uppy.off('upload', onUpload);
+        };
+    }, [uppy]);
+
     return uppy;
 };
 
@@ -50,7 +100,6 @@ const propTypes = {
             endpoint: PropTypes.string.isRequired,
         }),
     ]),
-    onComplete: PropTypes.func,
 };
 
 const defaultProps = {
@@ -65,7 +114,6 @@ const defaultProps = {
     companion: null,
     tus: null,
     xhr: null,
-    onComplete: null,
 };
 
 export const UppyProvider = ({
@@ -81,11 +129,9 @@ export const UppyProvider = ({
     companion,
     tus,
     xhr,
-    onComplete,
 }) => {
     const previousUppyContext = useContext(UppyContext) || null;
     const uppyAlreadyExists = previousUppyContext !== null;
-    const { uppy: previousUppy = null } = previousUppyContext || {};
 
     const Uppy = useUppyCore();
     const uppyTransport = useUppyTransport(transport);
@@ -172,25 +218,6 @@ export const UppyProvider = ({
         sources,
     ]);
 
-    useEffect(() => {
-        const finalUppy = previousUppy || uppy;
-        const onUppyComplete = (response) => {
-            const finalResponse =
-                transport === 'transloadit' ? getTransloaditMediasFromResponse(response) : response;
-            if (onComplete !== null) {
-                onComplete(finalResponse);
-            }
-        };
-        if (finalUppy !== null) {
-            finalUppy.on('complete', onUppyComplete);
-        }
-        return () => {
-            if (finalUppy !== null) {
-                finalUppy.off('complete', onUppyComplete);
-            }
-        };
-    }, [previousUppy, uppy, transport, onComplete]);
-
     useEffect(
         () => () => {
             if (uppy !== null) {
@@ -200,9 +227,10 @@ export const UppyProvider = ({
         [uppy],
     );
 
-    const finalUppyContext = useMemo(() => previousUppyContext || { uppy }, [
+    const finalUppyContext = useMemo(() => previousUppyContext || { uppy, transport }, [
         previousUppyContext,
         uppy,
+        transport,
     ]);
 
     return <UppyContext.Provider value={finalUppyContext}>{children}</UppyContext.Provider>;
