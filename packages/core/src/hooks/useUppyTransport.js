@@ -5,14 +5,16 @@ import { useState, useEffect } from 'react';
  */
 const packagesCache = {};
 const defaultPackagesMap = {
-    fr: () => import('@uppy/locales/lib/fr_FR'),
-    en: () => import('@uppy/locales/lib/en_US'),
+    transloadit: () => import('@uppy/transloadit'),
+    tus: () => import('@uppy/tus'),
+    xhr: () => import('@uppy/xhr-upload'),
 };
-const useUppyLocale = (locale, { packagesMap = defaultPackagesMap } = {}) => {
+const useUppyTransport = (transport, { packagesMap = defaultPackagesMap } = {}) => {
+    // transport
     const [{ package: loadedPackage }, setLoadedPackage] = useState({
-        package: packagesCache[locale] || null
+        package: packagesCache[transport] || null,
     });
-    const packageLoader = packagesMap[locale] || null;
+    const packageLoader = packagesMap[transport] || null;
     useEffect(() => {
         let canceled = false;
         if (loadedPackage !== null || packageLoader === null) {
@@ -22,8 +24,12 @@ const useUppyLocale = (locale, { packagesMap = defaultPackagesMap } = {}) => {
         }
 
         packageLoader().then(
-            ({ default: dep }) => {
-                // packagesCache[locale] = dep;
+            ({ default: pack, ...others }) => {
+                const dep = Object.keys(others).reduce((map, key) => {
+                    map[key] = others[key]; // eslint-disable-line no-param-reassign
+                    return map;
+                }, pack);
+                packagesCache[transport] = dep;
                 if (!canceled) {
                     setLoadedPackage({
                         package: dep,
@@ -38,4 +44,4 @@ const useUppyLocale = (locale, { packagesMap = defaultPackagesMap } = {}) => {
     return loadedPackage;
 };
 
-export default useUppyLocale;
+export default useUppyTransport;

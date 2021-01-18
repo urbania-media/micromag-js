@@ -1,11 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, useEffect, useState, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import isString from 'lodash/isString';
 import isObject from 'lodash/isObject';
 import { useIntl } from 'react-intl';
 
+import useUppyCore from '../hooks/useUppyCore';
 import useUppyLocale from '../hooks/useUppyLocale';
+import useUppyTransport from '../hooks/useUppyTransport';
+import useUppySources from '../hooks/useUppySources';
 import getTransloaditMediasFromResponse from '../utils/getTransloaditMediasFromResponse';
 
 const UppyContext = React.createContext(null);
@@ -65,7 +68,6 @@ const defaultProps = {
     onComplete: null,
 };
 
-let packagesCache = null;
 export const UppyProvider = ({
     children,
     transport,
@@ -85,44 +87,21 @@ export const UppyProvider = ({
     const uppyAlreadyExists = previousUppyContext !== null;
     const { uppy: previousUppy = null } = previousUppyContext || {};
 
-    const [packages, setUppyPackages] = useState(packagesCache);
+    const Uppy = useUppyCore();
+    const uppyTransport = useUppyTransport(transport);
+    const uppySources = useUppySources(sources);
 
     const { locale: intlLocale } = useIntl();
-    const finaleLocale = locale || intlLocale;
-    const uppyLocale = useUppyLocale(finaleLocale);
-
-    // Load uppy
-    useEffect(() => {
-        let canceled = false;
-        if (packages !== null || uppyAlreadyExists) {
-            return () => {
-                canceled = true;
-            }
-        }
-        import('../lib/uppy').then(({ default: newPackages }) => {
-            if (!canceled) {
-                packagesCache = newPackages;
-                setUppyPackages(newPackages);
-            }
-        });
-        return () => {
-            canceled = true;
-        }
-    }, [uppyAlreadyExists, packages, setUppyPackages]);
+    const uppyLocale = useUppyLocale(locale || intlLocale);
 
     const uppy = useMemo(() => {
-        const {
-            Uppy = null,
-            Transloadit,
-            Tus,
-            XHRUpload,
-            Webcam,
-            Dropbox,
-            Facebook,
-            Instagram,
-            GoogleDrive,
-        } = packages || {};
-        if (uppyAlreadyExists || Uppy === null || uppyLocale === null) {
+        if (
+            uppyAlreadyExists ||
+            Uppy === null ||
+            uppyLocale === null ||
+            uppyTransport === null ||
+            uppySources === null
+        ) {
             return null;
         }
 
@@ -135,7 +114,7 @@ export const UppyProvider = ({
 
         if (transport === 'transloadit') {
             const { key, templateId, waitForEncoding = true, ...opts } = transloadit;
-            newUppy.use(Transloadit, {
+            newUppy.use(uppyTransport, {
                 params: {
                     auth: { key },
                     template_id: templateId,
@@ -144,40 +123,28 @@ export const UppyProvider = ({
                 waitForEncoding,
             });
         } else if (transport === 'tus') {
-            newUppy.use(Tus, {
+            newUppy.use(uppyTransport, {
                 endpoint: '/tus',
                 resume: true,
                 retryDelays: [0, 1000, 3000, 5000],
                 ...tus,
             });
         } else if (transport === 'xhr') {
-            newUppy.use(XHRUpload, {
+            newUppy.use(uppyTransport, {
                 endpoint: isString(xhr) ? xhr : '/upload',
                 ...(isObject(xhr) ? xhr : null),
             });
         }
 
-        if (sources.indexOf('webcam') !== -1) {
-            newUppy.use(Webcam, {
-                id: 'webcam',
-            });
-        }
-
         if (transport === 'transloadit' || companion !== null) {
-            const uppySources = {
-                facebook: Facebook,
-                dropbox: Dropbox,
-                instagram: Instagram,
-                'google-drive': GoogleDrive,
-            };
             newUppy = sources.reduce((currentUppy, sourceId) => {
                 const source = uppySources[sourceId] || null;
                 if (source === null) {
                     return currentUppy;
                 }
                 const { url: companionUrl, allowedHosts: companionAllowedHosts } = companion || {
-                    url: Transloadit.COMPANION || null,
-                    allowedHosts: Transloadit.COMPANION_PATTERN || null,
+                    url: uppyTransport.COMPANION || null,
+                    allowedHosts: uppyTransport.COMPANION_PATTERN || null,
                 };
                 return newUppy.use(source, {
                     id: sourceId,
@@ -190,8 +157,10 @@ export const UppyProvider = ({
         return newUppy;
     }, [
         uppyAlreadyExists,
-        packages,
+        Uppy,
         uppyLocale,
+        uppyTransport,
+        uppySources,
         meta,
         maxNumberOfFiles,
         allowedFileTypes,
@@ -231,7 +200,10 @@ export const UppyProvider = ({
         [uppy],
     );
 
-    const finalUppyContext = useMemo(() => (previousUppyContext || { uppy }), [previousUppyContext, uppy]);
+    const finalUppyContext = useMemo(() => previousUppyContext || { uppy }, [
+        previousUppyContext,
+        uppy,
+    ]);
 
     return <UppyContext.Provider value={finalUppyContext}>{children}</UppyContext.Provider>;
 };
