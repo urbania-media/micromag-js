@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { useResizeObserver } from '@micromag/core/hooks';
+
 import useGoogleMap from './useGoogleMap';
 
 import styles from './styles.module.scss';
@@ -16,10 +18,16 @@ const propTypes = {
     maxZoom: PropTypes.number,
     bounds: PropTypes.object,// eslint-disable-line
     scrollable: PropTypes.bool,
+    withoutStyle: PropTypes.bool,
     // Global maps events
     events: PropTypes.object, // eslint-disable-line
-    disableDefaultUI: PropTypes.bool,
+    fitBounds: PropTypes.bool, 
+    zoomControl: PropTypes.bool,
     mapTypeControl: PropTypes.bool,
+    scaleControl: PropTypes.bool,
+    streetViewControl: PropTypes.bool,
+    rotateControl: PropTypes.bool,
+    fullscreenControl: PropTypes.bool,
     className: PropTypes.string,
     children: PropTypes.node,
 };
@@ -29,10 +37,16 @@ const defaultProps = {
     zoom: null,
     maxZoom: 18,
     bounds: null,
-    scrollable: true,
     events: null,
-    disableDefaultUI: true,
+    fitBounds: false,
+    scrollable: true,
+    withoutStyle: false,
+    zoomControl: false,
     mapTypeControl: false,
+    scaleControl: false,
+    streetViewControl: false,
+    rotateControl: false,
+    fullscreenControl: false,
     className: null,
     children: null,
 };
@@ -44,9 +58,15 @@ const Map = ({
     maxZoom,
     bounds,
     scrollable,
+    withoutStyle,
     events,
-    disableDefaultUI,
+    fitBounds,
+    zoomControl,
     mapTypeControl,
+    scaleControl,
+    streetViewControl,
+    rotateControl,
+    fullscreenControl,
     className,
     children,
 }) => {
@@ -55,8 +75,13 @@ const Map = ({
         zoom,
         center,
         events,
-        disableDefaultUI,
+        withoutStyle,
+        zoomControl,
         mapTypeControl,
+        scaleControl,
+        streetViewControl,
+        rotateControl,
+        fullscreenControl,
     });
 
     useEffect(() => {
@@ -68,17 +93,26 @@ const Map = ({
     }, [center]);
 
     useEffect(() => {
+        if (map && zoom !== null) {
+            map.setZoom(Math.min(maxZoom, zoom));
+        }
     }, [zoom, maxZoom]);
 
+    const {
+        ref: elRef,
+        entry: { contentRect: elContentRect },
+    } = useResizeObserver();
+    const { width = null, height = null } = elContentRect || {};
+
     useEffect(() => {
-        if (map && bounds !== null) {            
+        if (map && fitBounds && bounds !== null) {            
             map.fitBounds(bounds);            
             if (map.getZoom() > maxZoom) {
                 map.setZoom(maxZoom);
             }
             map.panToBounds(bounds);
         }
-    }, [maxZoom, bounds]);
+    }, [maxZoom, bounds, fitBounds, width, height]);
 
     useEffect(() => {
         if (map) {
@@ -100,6 +134,7 @@ const Map = ({
                     [styles.preventScroll]: !scrollable,
                 },
             ])}
+            ref={elRef}
         >
             <div ref={mapRef} className={styles.map} />
             {!loading &&

@@ -1,5 +1,49 @@
 .container {
-    label {
+    .autoComplete {
+        position: relative;
+        margin-bottom: 10px;
+    }
+
+    .address {
+        padding-left: 30px;
+    }
+
+    .searchIcon {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+        color: #000;
+    }
+
+    .map {
+        position: relative;
+        height: 200px;
+        margin-bottom: 5px;
+        overflow: hidden;
+        border-radius: 4px;        
+    }
+
+    .pin {
+        position: absolute;
+        bottom: 50%;
+        left: 50%;
+        width: 30px;
+        margin-left: -15px;
+        pointer-events: none;
+    }
+
+    .infos {
+        margin-bottom: 20px;
+    }
+
+    .coords {
+        display: flex;
+        margin: 0 -5px;
+    }
+
+    .coord {
         width: 100%;
+        margin: 0 5px;
     }
 }

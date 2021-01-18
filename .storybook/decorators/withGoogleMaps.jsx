@@ -6,7 +6,7 @@ const apiKey = process.env.GOOGLE_MAPS_API_KEY || null;
 const withGoogleMaps = (Story) => {
     if (apiKey === null) return <div>Error loading api key</div>;
     return (
-        <GoogleMapsClientProvider apiKey={apiKey}>
+        <GoogleMapsClientProvider apiKey={apiKey} libraries={['places']}>
             <Story />
         </GoogleMapsClientProvider>
     );
