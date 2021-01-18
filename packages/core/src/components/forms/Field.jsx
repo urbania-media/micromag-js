@@ -43,7 +43,7 @@ const FieldForm = ({
 
     const field = getFieldFromPath(name.split('.'), fields, fieldsManager);
 
-    const { type = null } = field;
+    const { type = null } = field || {};
     const { component: FieldComponent = null, id, settings, ...fieldProps } = (type !== null
         ? fieldsManager.getDefinition(type) || null
         : null) || {

@@ -106,27 +106,30 @@ const MediaMetadata = ({ media, className }) => {
                 },
             ])}
         >
-            <div className={classNames([styles.preview])}>
+            <div
+                className={classNames([
+                    'position-relative',
+                    {
+                        'bg-light': type === 'audio',
+                        'bg-secondary': type === 'image',
+                        [styles.video]: type === 'video',
+                    },
+                ])}
+            >
                 {type === 'video' ? (
                     <>
-                        <video className={styles.video} controls src={src} />
+                        <video className={styles.player} controls src={src} />
                     </>
                 ) : null}
                 {type === 'audio' ? (
                     <>
-                        <FontAwesomeIcon className={styles.playIcon} icon={faHeadphonesAlt} />
                         <div className={styles.audio}>
                             <audio className={styles.player} controls src={src} />
                         </div>
                     </>
                 ) : null}
                 {type !== 'video' ? (
-                    <div
-                        className={styles.image}
-                        style={{
-                            backgroundImage: thumbnail !== null ? `url('${thumbnail}')` : null,
-                        }}
-                    />
+                    <img src={thumbnail} className={styles.image} alt={filename} />
                 ) : null}
             </div>
             <div className="p-2">
