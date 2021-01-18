@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -14,7 +14,7 @@ import { getDeviceScreens } from '@micromag/core/utils';
 import { useScreenSizeFromElement, useParsedStory, useMediasParser } from '@micromag/core/hooks';
 import { Button, Modals, Navbar } from '@micromag/core/components';
 
-// import useRouteParams from '../hooks/useRouteParams';
+import useRouteParams from '../hooks/useRouteParams';
 import Screens from './Screens';
 import EditorPreview from './Preview';
 import EditorForm from './Form';
@@ -52,7 +52,7 @@ const Editor = ({
 }) => {
     const push = useRoutePush();
     const refScreensContainer = useRef(null);
-    // const { screen: screenId } = useRouteParams({ screenOnly: true });
+    const { screen: screenId } = useRouteParams({ screenOnly: true });
 
     // Screen size
     const { ref: refContainer, screenSize } = useScreenSizeFromElement({
@@ -71,7 +71,6 @@ const Editor = ({
     const onStoryChange = useCallback(
         (newStory) => {
             const storyWithMedias = parseMediasToPath(newStory);
-            // console.log(storyWithMedias, newStory);
             if (onChange !== null) {
                 onChange(storyWithMedias);
             }
@@ -79,36 +78,45 @@ const Editor = ({
         [onChange, parseMediasToPath],
     );
 
-    // console.log('PARSED', story);
-
-    const onClickScreen = useCallback(() => {
-        if (screenSize.screen) {
-            setMobileView('preview');
-        }
-    }, [screenSize.screen]);
+    const clickedScreenId = useRef(null);
+    const onClickScreen = useCallback(
+        (e, { id }) => {
+            clickedScreenId.current = id;
+            if (screenSize.screen) {
+                setMobileView('preview');
+            }
+        },
+        [screenSize.screen],
+    );
 
     const onPreviewScreenChange = useCallback(
         ({ id: newScreenId }) => {
             push('screen', {
                 screen: newScreenId,
             });
-
-            // moved here instead of useEffect on screenId
-            // to avoid scrolling when manually clicking on a thumb screen
-            const { current: screens } = refScreensContainer;
-            const nav = screens.querySelector('nav');
-            const items = screens.querySelectorAll(`[data-screen-id="${newScreenId}"]`);
-            if (items !== null && items.length > 0) {
-                const item = items[0];
-                screens.scrollTop =
-                    nav.offsetHeight +
-                    item.offsetTop +
-                    item.offsetHeight / 2 -
-                    screens.clientHeight / 2;
-            }
         },
         [push],
     );
+
+    // Auto-scroll to current screen except when manually clicking one
+    useEffect(() => {
+        if (screenId === null || clickedScreenId.current === screenId) {
+            return;
+        }
+        clickedScreenId.current = null;
+
+        const { current: screens } = refScreensContainer;
+        const nav = screens.querySelector('nav');
+        const items = screens.querySelectorAll(`[data-screen-id="${screenId}"]`);
+        if (items !== null && items.length > 0) {
+            const item = items[0];
+            screens.scrollTop =
+                nav.offsetHeight +
+                item.offsetTop +
+                item.offsetHeight / 2 -
+                screens.clientHeight / 2;
+        }
+    }, [screenId]);
 
     return (
         <ModalsProvider>

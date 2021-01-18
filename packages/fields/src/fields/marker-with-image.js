@@ -32,7 +32,8 @@ export default {
         },
         {
             name: 'geoPosition',
-            type: 'geo-position',label: defineMessage({
+            type: 'geo-position',
+            label: defineMessage({
                 defaultMessage: 'Position',
                 description: 'Field label',
             }),

@@ -430,6 +430,10 @@
     "defaultMessage": "Typography",
     "description": "Fields section label"
   },
+  "XhgKcw": {
+    "defaultMessage": "Move the map to position the place",
+    "description": "Move the map to position the place description"
+  },
   "YWcp4v": {
     "defaultMessage": "Bullet filled",
     "description": "Field label"

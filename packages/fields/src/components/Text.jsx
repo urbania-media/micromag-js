@@ -6,25 +6,33 @@ import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 const propTypes = {
+    inputRef: PropTypes.oneOfType([
+        PropTypes.func, 
+        PropTypes.shape({ current: PropTypes.instanceOf(HTMLInputElement) })
+    ]),
     type: PropTypes.oneOf(['text', 'email', 'number', 'password']),
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     errors: MicromagPropTypes.errors,
     required: PropTypes.bool,
+    placeholder: PropTypes.string,
     className: PropTypes.string,
     onChange: PropTypes.func,
 };
 
 const defaultProps = {
+    inputRef: null,
     type: 'text',
     value: null,
     errors: null,
     required: false,
+    placeholder: null,
     className: null,
     onChange: null,
 };
 
-const TextField = ({ type, value, errors, required, className, onChange }) => (
+const TextField = ({ inputRef, type, value, errors, required, placeholder, className, onChange }) => (
     <input
+        ref={inputRef}
         type={type}
         className={classNames([
             'form-control',
@@ -37,6 +45,7 @@ const TextField = ({ type, value, errors, required, className, onChange }) => (
         onChange={({ currentTarget: { value: newValue = '' } }) =>
             onChange !== null ? onChange(!isEmpty(newValue) ? newValue : null) : null
         }
+        placeholder={placeholder}
         required={required}
     />
 );
@@ -44,4 +53,4 @@ const TextField = ({ type, value, errors, required, className, onChange }) => (
 TextField.propTypes = propTypes;
 TextField.defaultProps = defaultProps;
 
-export default TextField;
+export default React.forwardRef((props, ref) => <TextField {...props} inputRef={ref} />);

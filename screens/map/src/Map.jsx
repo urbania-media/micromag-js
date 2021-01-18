@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef, useMemo, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -106,26 +106,36 @@ const MapScreen = ({
 
     const onMapReady = useCallback(() => setReady(true), [setReady]);
 
+    const finalMarkers = useMemo(
+        () =>
+            markers.map((marker, markerI) => ({
+                ...marker,
+                active: markerI === selectedMarker,
+            })),
+        [markers, active, selectedMarker],
+    );
+
     const onClickMap = useCallback(() => {
+        const lastMarker = finalMarkers[selectedMarker];
+        lastRenderedMarker.current = lastMarker;
         setSelectedMarker(null);
         if (trackingEnabled) {
             trackEvent('screen-interaction', 'map', {
                 label: 'marker-unselect',
-                marker: lastRenderedMarker.current,
+                marker: lastMarker,
             });
         }
-    }, [trackEvent, trackingEnabled]);
+    }, [finalMarkers, selectedMarker, trackEvent, trackingEnabled]);
 
     const onClickMarker = useCallback(
         (e, i) => {
-            const marker = markers[i];
-            lastRenderedMarker.current = marker;
+            const marker = finalMarkers[i];
             setSelectedMarker(i);
             if (trackingEnabled) {
                 trackEvent('screen-interaction', 'map', { label: 'marker-select', marker });
             }
         },
-        [markers, setSelectedMarker, trackEvent, trackingEnabled],
+        [finalMarkers, setSelectedMarker, trackEvent, trackingEnabled],
     );
 
     const onSplashClick = useCallback(() => {
@@ -179,8 +189,9 @@ const MapScreen = ({
             if (markers !== null) {
                 staticUrl += markers
                     .map((marker) => {
-                        const { lat = null, lng = null } = marker.geoPosition || {};
-                        const { image = null } = marker;
+                        const { geoPosition = null } = marker || {};
+                        const { lat = null, lng = null } = geoPosition || {};
+                        const { image = null } = marker || {};
                         const { url = null } = image || {};
                         return lat !== null && lng !== null
                             ? `&markers=${url !== null ? `icon:${url}` : ''}%7C${lat},${lng}`
@@ -206,12 +217,16 @@ const MapScreen = ({
             );
         }
     } else {
+        const renderedMarker = hasSelectedMarker
+            ? finalMarkers[selectedMarker]
+            : lastRenderedMarker.current;
         const {
             title: markerTitle = null,
             subtitle: markerSubtitle = null,
             description: markerDescription = null,
             image: markerImage = null,
-        } = lastRenderedMarker.current || {};
+        } = renderedMarker || {};
+
         const hasMarkerTitle = markerTitle !== null;
         const hasMarkerSubtitle = markerSubtitle !== null;
         const hasMarkerDescription = markerDescription !== null;
@@ -231,10 +246,8 @@ const MapScreen = ({
                     center={defaultCenter}
                     zoom={defaultZoom}
                     scrollable={scrollable}
-                    markers={markers.map((marker, markerI) => ({
-                        ...marker,
-                        active: markerI === selectedMarker,
-                    }))}
+                    markers={finalMarkers}
+                    fitBounds
                     onClickMarker={onClickMarker}
                     onReady={onMapReady}
                     onDragEnd={onMapDragEnd}
@@ -368,4 +381,4 @@ const MapScreen = ({
 MapScreen.propTypes = propTypes;
 MapScreen.defaultProps = defaultProps;
 
-export default React.memo(MapScreen);
+export default MapScreen;
