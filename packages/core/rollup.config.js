@@ -27,7 +27,7 @@ export default [
                 alias({
                     entries: [
                         {
-                            find: /\.\.\/(hooks|utils)/,
+                            find: /\.\.\/(hooks|utils|contexts)\/?$/,
                             replacement: '@micromag/core/$1',
                         },
                     ],
@@ -39,6 +39,8 @@ export default [
                     path.join(__dirname, './src/PropTypes'),
                     new RegExp(path.join(__dirname, './src/components/namespaces')),
                     new RegExp(path.join(__dirname, './src/contexts')),
+                    new RegExp(path.join(__dirname, './src/hooks/useUppyLocale')),
+                    new RegExp(path.join(__dirname, './src/utils/getTransloaditMediasFromResponse')),
                 ],
             },
         }),
@@ -47,9 +49,11 @@ export default [
             {
                 file: 'lib/contexts.js',
                 format: 'cjs',
+                inlineDynamicImports: true,
             },
             {
                 file: 'es/contexts.js',
+                inlineDynamicImports: true,
             },
         ],
     },

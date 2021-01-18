@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useMedias, useMediaCreate } from '@micromag/data';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { UploadModal } from '@micromag/core/components';
 
 // import * as AppPropTypes from '../lib/PropTypes';
 
 import Navbar from './partials/Navbar';
-import UploadModal from './partials/UploadModal';
 import Gallery from './lists/Gallery';
 import MediaMetadata from './partials/MediaMetadata';
 

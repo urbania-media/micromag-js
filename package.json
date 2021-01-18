@@ -40,6 +40,8 @@
         "@storybook/addon-viewport": "^6.1.14",
         "@storybook/preset-scss": "^1.0.3",
         "@storybook/react": "^6.1.14",
+        "@uppy/core": "^1.15.0",
+        "@uppy/react": "^1.11.0",
         "babel-eslint": "^10.1.0",
         "babel-plugin-css-modules-transform": "^1.6.2",
         "babel-plugin-react-intl": "^8.2.25",
