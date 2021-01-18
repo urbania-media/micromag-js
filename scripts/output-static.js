@@ -1,4 +1,5 @@
 #! /usr/bin/env node
+import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { program } from 'commander';
 // import fse from 'fs-extra';
@@ -9,7 +10,8 @@ import Test from '../packages/viewer/src/components/Test';
 
 program.parse(process.argv);
 
-const staticMarkup = ReactDOMServer.renderToStaticMarkup(Test({}));
+const element = React.createElement(Test, {});
+const staticMarkup = ReactDOMServer.renderToStaticMarkup(element);
 // const staticMarkup = ReactDOMServer.renderToStaticMarkup(Viewer({}));
 
 console.log(staticMarkup);

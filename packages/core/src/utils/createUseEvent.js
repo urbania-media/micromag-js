@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 
 const createUseEvent = eventsManager => (event, callback, enabled = true) => {
     useEffect(() => {
-        if (enabled) {
+        if (enabled && eventsManager !== null) {
             eventsManager.subscribe(event, callback);
         }
         return () => {
-            if (enabled) {
+            if (enabled && eventsManager !== null) {
                 eventsManager.unsubscribe(event, callback);
             }
         };

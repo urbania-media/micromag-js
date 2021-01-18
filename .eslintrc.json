@@ -17,7 +17,16 @@
     },
     "overrides": [
         {
-            "files": ["*.config.js", "scripts/**/*.js", "*/*/scripts/**/*.js", ".storybook/**/*.js", ".storybook/**/*.jsx", "**/*.config.js", "public/**/*.jsx"],
+            "files": [
+                "*.config.js",
+                "scripts/**/*.js",
+                "scripts/**/*.mjs",
+                "*/*/scripts/**/*.js",
+                ".storybook/**/*.js",
+                ".storybook/**/*.jsx",
+                "**/*.config.js",
+                "public/**/*.jsx"
+            ],
             "rules": {
                 "import/no-extraneous-dependencies": [
                     "error",
