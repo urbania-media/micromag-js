@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 const path = require('path');
+const webpack = require('webpack');
 const getPackagesPaths = require('../scripts/lib/getPackagesPaths');
 const getPackagesAliases = require('../scripts/lib/getPackagesAliases');
 const { idInterpolationPattern } = require('../packages/intl/scripts/config');
@@ -36,62 +37,67 @@ module.exports = {
         '@storybook/addon-docs',
         '@storybook/addon-actions',
     ],
-    webpackFinal: async (config) => {
-        return {
-            ...config,
+    webpackFinal: async (config) => ({
+        ...config,
 
-            resolve: {
-                ...config.resolve,
-                alias: {
-                    ...config.resolve.alias,
-                    'react-router': require.resolve('react-router'),
-                    'react-router-dom': require.resolve('react-router-dom'),
-                    'react-intl': require.resolve('react-intl'),
-                    ...getPackagesAliases(),
-                }
+        resolve: {
+            ...config.resolve,
+            alias: {
+                ...config.resolve.alias,
+                'react-router': require.resolve('react-router'),
+                'react-router-dom': require.resolve('react-router-dom'),
+                'react-intl': require.resolve('react-intl'),
+                '@uppy/core/dist/style.css': require.resolve('@uppy/core/dist/style.css'),
+                '@uppy/core': require.resolve('@uppy/core'),
+                '@uppy/react': require.resolve('@uppy/react'),
+                ...getPackagesAliases(),
             },
+        },
 
-            module: {
-                ...config.module,
-                rules: [
-                    ...config.module.rules.map((rule, index) => (index === 0 ? {
-                        ...rule,
-                        exclude: [rule.exclude, /@ckeditor/],
-                    } : rule)),
-                    ...getPackagesPaths().map((packagePath) => ({
-                        loader: require.resolve('babel-loader'),
-                        test: /\.(js|jsx)$/,
-                        include: path.join(packagePath, './src/'),
-                        exclude: /\/node_modules\//,
-                        options: {
-                            babelrc: false,
-                            plugins: [
-                                [
-                                    require.resolve('babel-plugin-react-intl'),
-                                    {
-                                        ast: true,
-                                        extractFromFormatMessageCall: true,
-                                        idInterpolationPattern,
-                                    },
-                                ],
+        module: {
+            ...config.module,
+            rules: [
+                ...config.module.rules.map((rule, index) =>
+                    index === 0
+                        ? {
+                              ...rule,
+                              exclude: [rule.exclude, /@ckeditor/],
+                          }
+                        : rule,
+                ),
+                ...getPackagesPaths().map((packagePath) => ({
+                    loader: require.resolve('babel-loader'),
+                    test: /\.(js|jsx)$/,
+                    include: path.join(packagePath, './src/'),
+                    exclude: /\/node_modules\//,
+                    options: {
+                        babelrc: false,
+                        plugins: [
+                            [
+                                require.resolve('babel-plugin-react-intl'),
+                                {
+                                    ast: true,
+                                    extractFromFormatMessageCall: true,
+                                    idInterpolationPattern,
+                                },
                             ],
-                        },
-                    })),
-                    {
-                        loader: require.resolve('babel-loader'),
-                        test: /\.(js|jsx)$/,
-                        include: /\/query-string\//,
-                        options: {
-                            babelrc: false,
-                            plugins: [require.resolve('@babel/plugin-transform-modules-commonjs')],
-                        },
+                        ],
                     },
-                    {
-                        test: /\.(srt)$/,
-                        loader: require.resolve('file-loader'),
+                })),
+                {
+                    loader: require.resolve('babel-loader'),
+                    test: /\.(js|jsx)$/,
+                    include: /\/query-string\//,
+                    options: {
+                        babelrc: false,
+                        plugins: [require.resolve('@babel/plugin-transform-modules-commonjs')],
                     },
-                ]
-            }
-        };
-    },
+                },
+                {
+                    test: /\.(srt)$/,
+                    loader: require.resolve('file-loader'),
+                },
+            ],
+        },
+    }),
 };

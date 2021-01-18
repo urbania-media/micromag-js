@@ -6,7 +6,7 @@ import * as MicromagPropTypes from '../PropTypes';
 import { ComponentsProvider, FIELDS_NAMESPACE } from './ComponentsContext';
 import FieldsManager from '../lib/FieldsManager';
 
-export const FieldsContext = React.createContext(new FieldsManager());
+export const FieldsContext = React.createContext(null);
 
 export const useFieldsManager = () => useContext(FieldsContext);
 
@@ -27,15 +27,13 @@ const defaultProps = {
 };
 
 export const FieldsProvider = ({ fields, manager, children }) => {
-    const previousManager = useFieldsManager();
+    const previousManager = useFieldsManager() || null;
     const finalManager = useMemo(() => {
-        const newManager = manager !== null ? manager : new FieldsManager(fields);
-        if ((previousManager || null) !== null) {
-            return previousManager.merge(newManager);
+        if (previousManager !== null) {
+            return previousManager;
         }
-        return newManager;
+        return manager !== null ? manager : new FieldsManager(fields);
     }, [manager, fields, previousManager]);
-
     const initialComponents = useMemo(() => finalManager.getComponents(), [finalManager]);
     const [components, setComponents] = useState(initialComponents);
     useEffect(() => {
@@ -45,6 +43,12 @@ export const FieldsProvider = ({ fields, manager, children }) => {
             finalManager.off('change', onChange);
         };
     }, [finalManager, setComponents]);
+    useEffect(() => {
+        if (previousManager !== null) {
+            previousManager.addDefinitions(manager !== null ? manager.getDefinitions() : fields);
+            setComponents(previousManager.getComponents());
+        }
+    }, [previousManager, manager, fields]);
 
     return (
         <FieldsContext.Provider value={finalManager}>

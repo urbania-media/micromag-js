@@ -39,6 +39,8 @@ export default [
                     path.join(__dirname, './src/PropTypes'),
                     new RegExp(path.join(__dirname, './src/components/namespaces')),
                     new RegExp(path.join(__dirname, './src/contexts')),
+                    new RegExp(path.join(__dirname, './src/hooks/useUppyLocale')),
+                    new RegExp(path.join(__dirname, './src/utils/getTransloaditMediasFromResponse')),
                 ],
             },
         }),

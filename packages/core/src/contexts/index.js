@@ -11,4 +11,5 @@ export * from './ScreensContext';
 export * from './ScreenSizeContext';
 export * from './ThemeContext';
 export * from './TrackingContext';
+export * from './UppyContext';
 export * from './ViewerContext';

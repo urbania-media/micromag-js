@@ -8,6 +8,7 @@ import FieldsProvider from '../../../fields/src/FieldsProvider';
 
 import video from '../../../../.storybook/data/test.mp4';
 import sound from '../../../../.storybook/data/test.mp3';
+import withUppy from '../../../../.storybook/decorators/withUppy';
 // import { paragraph, image } from '../../../../.storybook/data';
 
 import MediaGallery from '../components/MediaGallery';
@@ -68,6 +69,7 @@ const props = {
 export default {
     component: MediaGallery,
     title: 'Editor/MediaGallery',
+    decorators: [withUppy],
     parameters: {
         screenSize: true,
         intl: true,

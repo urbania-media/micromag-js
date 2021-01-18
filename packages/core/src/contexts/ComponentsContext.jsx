@@ -10,7 +10,7 @@ export const FORMS_NAMESPACE = 'forms';
 export const SCREENS_NAMESPACE = 'screens';
 export const ELEMENTS_NAMESPACE = 'elements';
 
-export const ComponentsContext = React.createContext(new ComponentsManager());
+export const ComponentsContext = React.createContext(null);
 
 /**
  * Hooks
@@ -111,14 +111,17 @@ const defaultProps = {
 };
 
 export const ComponentsProvider = ({ components, manager, namespace, children }) => {
-    const previousManager = useComponentsManager();
+    const previousManager = useComponentsManager() || null;
 
     const finalManager = useMemo(() => {
-        const newManager = manager !== null ? manager : new ComponentsManager(components);
-        if ((previousManager || null) !== null) {
-            return previousManager.merge(newManager, namespace);
+        if (previousManager !== null) {
+            return previousManager;
         }
-        return namespace !== null ? newManager.addNamespace(namespace) : null;
+        const newManager = manager !== null ? manager : new ComponentsManager(components);
+        if (namespace !== null) {
+            newManager.addNamespace(namespace);
+        }
+        return newManager;
     }, [manager, components, previousManager, namespace]);
 
     const initialComponents = useMemo(() => finalManager.getComponents(), [finalManager]);
@@ -130,6 +133,13 @@ export const ComponentsProvider = ({ components, manager, namespace, children })
             finalManager.off('change', onChange);
         };
     }, [finalManager, setComponents]);
+    useEffect(() => {
+        if (previousManager !== null && components !== null) {
+            previousManager.addComponents(components, namespace);
+        } else if (previousManager !== null && manager !== null) {
+            previousManager.addComponents(manager.getComponents())
+        }
+    }, [previousManager, manager, components, namespace]);
 
     return <ComponentsContext.Provider value={finalManager}>{children}</ComponentsContext.Provider>;
 };

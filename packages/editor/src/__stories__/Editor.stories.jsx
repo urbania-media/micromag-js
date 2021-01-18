@@ -4,6 +4,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import Editor from '../components/EditorContainer';
 import { ApiProvider } from '../../../data/src/contexts/ApiContext';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
+import withUppy from '../../../../.storybook/decorators/withUppy';
 
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import faceAFaceStory from '../../../../.storybook/data/stories/faceAFace';
@@ -16,7 +17,7 @@ import defaultTheme from '../../../../.storybook/data/themes/default';
 export default {
     component: Editor,
     title: 'Editor/Editor',
-    decorators: [withGoogleMaps],
+    decorators: [withGoogleMaps, withUppy],
     parameters: {
         intl: true,
     },
