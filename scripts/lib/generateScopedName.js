@@ -1,6 +1,12 @@
-import path from 'path';
-import fs from 'fs';
-import slugify from 'slugify';
+// converted to CommonJS to use from babel.config.js
+
+// import path from 'path';
+// import fs from 'fs';
+// import slugify from 'slugify';
+
+const path = require('path');
+const fs = require('fs');
+const slugify = require('slugify');
 
 const { name: packageName } = require(path.join(process.cwd(), 'package.json'));
 const stylesPath = path.join(process.cwd(), 'src/styles');
@@ -22,4 +28,5 @@ const generateScopedName = (localName, filePath) => {
         .replace(/\[\s*local\s*\]/gi, localName);
 };
 
-export default generateScopedName;
+// export default generateScopedName;
+module.exports = generateScopedName;

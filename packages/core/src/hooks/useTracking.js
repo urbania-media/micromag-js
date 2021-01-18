@@ -1,8 +1,6 @@
 /* eslint-disable no-console */
 import { useCallback } from 'react';
 import { useScreen, useTracking } from '../contexts';
- 
-export { useTracking };
 
 export const useTrackScreenView = () => {
     const tracking = useTracking();
