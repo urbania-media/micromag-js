@@ -27,7 +27,7 @@ export default [
                 alias({
                     entries: [
                         {
-                            find: /\.\.\/(hooks|utils)/,
+                            find: /\.\.\/(hooks|utils|contexts)\/?$/,
                             replacement: '@micromag/core/$1',
                         },
                     ],
