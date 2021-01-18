@@ -49,9 +49,11 @@ export default [
             {
                 file: 'lib/contexts.js',
                 format: 'cjs',
+                inlineDynamicImports: true,
             },
             {
                 file: 'es/contexts.js',
+                inlineDynamicImports: true,
             },
         ],
     },
