@@ -8,13 +8,6 @@
     cursor: pointer;
 
     .imageButton {
-        display: block;
-        position: relative;
-        width: 100%;
-        padding: 0;
-        border: 0;
-        background: $black;
-        text-align: inherit;
         appearance: none;
     }
 
@@ -25,27 +18,32 @@
         padding-bottom: 75%;
         background-repeat: no-repeat;
         background-position: center;
-        background-size: contain;
+        background-size: cover;
     }
 
     .icon {
-        position: absolute;
-        right: 10px;
-        bottom: 10px;
-        width: 36px;
-        height: 36px;
-        color: $white;
+        // display: block;
+        // position: absolute;
+        // right: 10px;
+        // bottom: 10px;
+        width: 16px;
+        height: 16px;
+        margin-right: 5px;
     }
 
     .footer {
-        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
         border: 0;
         background: transparent;
         color: inherit;
         text-align: inherit;
         appearance: none;
-        // text-overflow: ellipsis;
-        white-space: nowrap;
+
+        .label {
+            flex-grow: 1;
+        }
 
         small {
             font-size: 0.8rem;

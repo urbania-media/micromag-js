@@ -52,7 +52,17 @@ const GalleryItem = ({
             image={
                 <button
                     type="button"
-                    className={classNames(['p-0', styles.imageButton])}
+                    className={classNames([
+                        'd-block',
+                        'position-relative',
+                        'p-0',
+                        'border-0',
+                        'w-100',
+                        'text-left',
+                        'bg-light',
+                        'text-black',
+                        styles.imageButton,
+                    ])}
                     onClick={onClick}
                 >
                     <div
@@ -61,12 +71,6 @@ const GalleryItem = ({
                             backgroundImage: thumbnail !== null ? `url('${thumbnail}')` : null,
                         }}
                     />
-                    {type === 'video' ? (
-                        <FontAwesomeIcon className={styles.icon} icon={faPlayCircle} />
-                    ) : null}
-                    {type === 'audio' ? (
-                        <FontAwesomeIcon className={styles.icon} icon={faHeadphonesAlt} />
-                    ) : null}
                 </button>
             }
             beforeBody={
@@ -78,8 +82,16 @@ const GalleryItem = ({
             }
             footer={
                 <>
-                    <small>{title}</small>
-                    <small className="text-muted">{size}</small>
+                    {type === 'video' ? (
+                        <FontAwesomeIcon className={styles.icon} icon={faPlayCircle} />
+                    ) : null}
+                    {type === 'audio' ? (
+                        <FontAwesomeIcon className={styles.icon} icon={faHeadphonesAlt} />
+                    ) : null}
+                    <div className={classNames(['text-truncate', styles.label])}>
+                        <small>{title}</small>
+                        {size !== null ? <small className="text-muted ml-1">{size}</small> : null}
+                    </div>
                 </>
             }
             theme={selected ? 'primary' : null}

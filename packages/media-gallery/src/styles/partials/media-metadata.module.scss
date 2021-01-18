@@ -5,28 +5,27 @@
 .container {
     position: relative;
 
-    .preview {
-        position: relative;
-        background: $black;
-    }
-
     .image {
         display: block;
-        width: 100%;
-        height: 300px;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: contain;
+        max-width: 100%;
+        min-height: 200px;
+        max-height: 40vh;
+        margin: 0 auto;
     }
 
-    .playIcon {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 36px;
-        height: 36px;
-        transform: translate(-50%, -50%);
-        color: $white;
+    .video {
+        position: relative;
+        height: 40vh;
+        min-height: 200px;
+        background-color: $black;
+
+        .player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     }
 
     .audio {
@@ -38,11 +37,5 @@
             display: block;
             margin: 0 auto;
         }
-    }
-
-    .video {
-        display: block;
-        max-width: 80%;
-        margin: 0 auto;
     }
 }
