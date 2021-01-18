@@ -56,7 +56,6 @@
         "@fortawesome/react-fontawesome": "^0.1.13",
         "@micromag/core": "^0.2.34",
         "@micromag/data": "^0.2.34",
-        "@uppy/react": "^1.10.11",
         "bootstrap": "^4.4.1",
         "bootstrap.native": "^3.0.14",
         "change-case": "^4.1.2",
