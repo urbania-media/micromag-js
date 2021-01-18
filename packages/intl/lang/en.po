@@ -476,6 +476,11 @@ msgstr "Repeat"
 msgid "Typography"
 msgstr "Typography"
 
+# Move the map to position the place description
+#: XhgKcw
+msgid "Move the map to position the place"
+msgstr "Move the map to position the place"
+
 # Field label
 #: YWcp4v
 msgid "Bullet filled"
