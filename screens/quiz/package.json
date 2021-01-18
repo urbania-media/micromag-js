@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-quiz",
-    "version": "0.2.36",
+    "version": "0.2.37",
     "description": "",
     "keywords": [
         "javascript"
@@ -52,13 +52,13 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.12",
-        "@micromag/core": "^0.2.36",
-        "@micromag/element-background": "^0.2.36",
-        "@micromag/element-button": "^0.2.36",
-        "@micromag/element-container": "^0.2.36",
-        "@micromag/element-heading": "^0.2.36",
-        "@micromag/element-layout": "^0.2.36",
-        "@micromag/element-text": "^0.2.36",
+        "@micromag/core": "^0.2.37",
+        "@micromag/element-background": "^0.2.37",
+        "@micromag/element-button": "^0.2.37",
+        "@micromag/element-container": "^0.2.37",
+        "@micromag/element-heading": "^0.2.37",
+        "@micromag/element-layout": "^0.2.37",
+        "@micromag/element-text": "^0.2.37",
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",
         "prop-types": "^15.7.2",

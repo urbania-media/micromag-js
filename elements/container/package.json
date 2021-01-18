@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-container",
-    "version": "0.2.36",
+    "version": "0.2.37",
     "description": "",
     "keywords": [
         "javascript"
@@ -49,7 +49,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.12.5",
-        "@micromag/core": "^0.2.36",
+        "@micromag/core": "^0.2.37",
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",
         "prop-types": "^15.7.2",
