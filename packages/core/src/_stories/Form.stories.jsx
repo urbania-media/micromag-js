@@ -8,7 +8,8 @@ import FieldsProvider from '../../../fields/src/FieldsProvider';
 import Form from '../components/forms/Form';
 import FormPanel from '../components/forms/FormPanel';
 
-const apiBaseUrl = `${window.location.protocol}//${window.location.host}/api`;
+const hasWindow = typeof window !== 'undefined';
+const apiBaseUrl = hasWindow ? `${window.location.protocol}//${window.location.host}/api` : '/api';
 
 const props = {
     fields: [

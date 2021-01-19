@@ -23,14 +23,16 @@ const useScreenSize = ({
     );
 
     // Get matching screens
-    const matchingScreens = useMemo(() => {
-        return [...screens]
-            .reverse()
-            .filter(
-                ({ mediaQuery = null }) =>
-                    mediaQuery === null || matchMediaQuery(mediaQuery, media),
-            );
-    }, [screens, media]);
+    const matchingScreens = useMemo(
+        () =>
+            [...screens]
+                .reverse()
+                .filter(
+                    ({ mediaQuery = null }) =>
+                        mediaQuery === null || matchMediaQuery(mediaQuery, media),
+                ),
+        [screens, media],
+    );
 
     return {
         screen: matchingScreens.length > 0 ? matchingScreens[0].name : null,
@@ -40,7 +42,7 @@ const useScreenSize = ({
     };
 };
 
-export const useScreenSizeFromElement = ({ width = null, height = null, ...opts }) => {
+export const useScreenSizeFromElement = ({ width = null, height = null, ...opts } = {}) => {
     const {
         ref,
         entry: { contentRect },
@@ -60,19 +62,23 @@ export const useScreenSizeFromElement = ({ width = null, height = null, ...opts 
 };
 
 const getWindowSize = () => ({
-    width: window.innerWidth,
-    height: window.innerHæeight,
+    width: typeof window !== 'undefined' ? window.innerWidth : null,
+    height: typeof window !== 'undefined' ? window.innerHæeight : null,
 });
 
-export const useScreenSizeFromWindow = opts => {
+export const useScreenSizeFromWindow = (opts) => {
     const [windowSize, setWindowSize] = useState(getWindowSize());
     useEffect(() => {
         const onResize = () => setWindowSize(getWindowSize());
-        window.addEventListener('resize', onResize);
+        if (typeof window !== 'undefined') {
+            window.addEventListener('resize', onResize);
+        }
         return () => {
-            window.removeEventListener('resize', onResize);
+            if (typeof window !== 'undefined') {
+                window.removeEventListener('resize', onResize);
+            }
         };
-    }, [window, setWindowSize]);
+    }, [setWindowSize]);
     return useScreenSize({
         ...opts,
         ...windowSize,

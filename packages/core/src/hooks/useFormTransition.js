@@ -1,7 +1,7 @@
 import { useRef, useMemo } from 'react';
 import classNames from 'classnames';
 
-const useFormTransition = (paths = [], styles) => {
+const useFormTransition = (paths = [], styles = {}) => {
     const lastPageRef = useRef(paths || []);
 
     const direction = useMemo(() => {

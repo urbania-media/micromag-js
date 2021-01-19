@@ -152,8 +152,6 @@ const Video360Screen = ({
     const transitionPlaying = current && ready;
     const transitionDisabled = !isView && !isEdit;
 
-    
-
     const finalVideo = hasVideo ? { ...video, autoPlay: isPreview ? false : video.autoPlay } : null;
     const { media: videoMedia = null, closedCaptions = null, withSeekBar = false } =
         finalVideo || {};
@@ -236,7 +234,9 @@ const Video360Screen = ({
             scene.current.add(mesh);
 
             renderer.current = new WebGLRenderer({ canvas: canvasRef.current });
-            renderer.current.setPixelRatio(window.devicePixelRatio);
+            renderer.current.setPixelRatio(
+                typeof window !== 'undefined' ? window.devicePixelRatio : 1,
+            );
             renderer.current.setSize(canvasWidth, canvasHeight);
             render3D();
         }

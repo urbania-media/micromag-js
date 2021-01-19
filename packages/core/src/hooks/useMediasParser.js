@@ -119,7 +119,7 @@ const useMediasParser = () => {
             if (story === null) {
                 return story;
             }
-            const { components = [] } = story;
+            const { components = [] } = story || {};
             const { components: newComponents, medias } = components.reduce(
                 ({ components: previousComponents, medias: currentMedias }, screen) => {
                     const { type } = screen;
@@ -155,7 +155,7 @@ const useMediasParser = () => {
             if (story === null) {
                 return story;
             }
-            const { components = [], medias = null } = story;
+            const { components = [], medias = null } = story || {};
             if (medias === null) {
                 return story;
             }

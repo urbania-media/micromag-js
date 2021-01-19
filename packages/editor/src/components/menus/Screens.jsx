@@ -100,12 +100,12 @@ const ScreensMenu = ({
                     },
                 ])}
                 title={isMessage(title) ? intl.formatMessage(title) : null}
-                onClick={(e) => {
+                onClick={() => {
                     if (onClick !== null) {
-                        onClick(e, screen, index);
+                        onClick(screen);
                     }
                     if (onClickItem !== null) {
-                        onClickItem(e, screen, index);
+                        onClickItem(screen);
                     }
                 }}
             >

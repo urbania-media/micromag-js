@@ -102,7 +102,7 @@ const AudioWave = ({
         let audioCtx = null;
         let canceled = false;
 
-        if (url !== null) {
+        if (url !== null && typeof window !== 'undefined') {
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             fetch(url)
             .then( response => {
@@ -171,7 +171,7 @@ const AudioWave = ({
         const canvasBg = canvasBackgroundRef.current;
         const canvasProgress = canvasProgressRef.current;
 
-        const scale = window.devicePixelRatio;
+        const scale = typeof window !== 'undefined' ? window.devicePixelRatio : 1;
 
         canvasBg.width = canvasProgress.width = Math.floor(width * scale);
         canvasBg.height = canvasProgress.height = Math.floor(height * scale);

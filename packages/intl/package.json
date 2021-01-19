@@ -67,7 +67,7 @@
         "glob": "^7.1.6",
         "lodash": "^4.17.15",
         "prop-types": "^15.7.2",
-        "react-intl": "^5.10.6"
+        "react-intl": "^5.10.16"
     },
     "lang": "locale",
     "supportedLocales": [

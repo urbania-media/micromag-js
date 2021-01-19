@@ -57,7 +57,7 @@
         "@micromag/element-media-controls": "^0.2.46",
         "classnames": "^2.2.6",
         "prop-types": "^15.7.2",
-        "react-intl": "^5.10.6",
+        "react-intl": "^5.10.16",
         "uuid": "^8.3.2"
     },
     "publishConfig": {

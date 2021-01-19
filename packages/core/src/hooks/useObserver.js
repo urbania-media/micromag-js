@@ -162,7 +162,7 @@ export const useIntersectionObserver = ({
     disabled = false,
 } = {}) =>
     useObserver(
-        IntersectionObserver,
+        typeof window !== 'undefined' ? IntersectionObserver : null,
         {
             root,
             rootMargin,
@@ -182,4 +182,4 @@ const resizeObserverInitialEntry = {
     borderBoxSize: null,
 };
 export const useResizeObserver = ({ disabled = false } = {}) =>
-    useObserver(ResizeObserver, { disabled }, resizeObserverInitialEntry);
+    useObserver(typeof window !== 'undefined' ? ResizeObserver : null, { disabled }, resizeObserverInitialEntry);
