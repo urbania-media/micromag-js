@@ -17,12 +17,12 @@ export const ComponentsContext = React.createContext(null);
  */
 export const useComponentsManager = (namespace = null) => {
     const manager = useContext(ComponentsContext);
-    const newManager = useMemo(
+    const finalManager = useMemo(
         () =>
             namespace !== null ? new ComponentsManager(manager.getComponents(namespace)) : manager,
         [manager, namespace],
     );
-    return newManager;
+    return finalManager;
 };
 
 export const useComponents = (namespace = null, defaultComponents = {}) => {
@@ -112,37 +112,17 @@ const defaultProps = {
 
 export const ComponentsProvider = ({ components, manager, namespace, children }) => {
     const previousManager = useComponentsManager() || null;
-
-    const finalManager = useMemo(() => {
-        if (previousManager !== null) {
-            return previousManager;
-        }
-        const newManager = manager !== null ? manager : new ComponentsManager(components);
-        if (namespace !== null) {
-            newManager.addNamespace(namespace);
-        }
-        return newManager;
-    }, [manager, components, previousManager, namespace]);
-
-    const initialComponents = useMemo(() => finalManager.getComponents(), [finalManager]);
-    const [, setComponents] = useState(initialComponents);
-    useEffect(() => {
-        if (previousManager !== null && components !== null) {
-            previousManager.addComponents(components, namespace);
-            setComponents(previousManager.getComponents());
-        } else if (previousManager !== null && manager !== null) {
-            previousManager.addComponents(manager.getComponents())
-            setComponents(previousManager.getComponents());
-        }
-    }, [previousManager, manager, components, namespace]);
-    useEffect(() => {
-        const onChange = () => setComponents(finalManager.getComponents());
-        finalManager.on('change', onChange);
-        return () => {
-            finalManager.off('change', onChange);
-        };
-    }, [finalManager, setComponents]);
-
+    const finalManager = useMemo(
+        () =>
+            new ComponentsManager({
+                ...(previousManager !== null ? previousManager.getComponents() : null),
+                ...(manager !== null ? manager.getComponents() : null),
+                ...(new ComponentsManager(components)
+                    .addNamespace(namespace)
+                    .getComponents(): null),
+            }),
+        [previousManager, manager, components, namespace],
+    );
     return <ComponentsContext.Provider value={finalManager}>{children}</ComponentsContext.Provider>;
 };
 
