@@ -20,6 +20,16 @@ module.exports = (api) => {
                 ],
             ],
             plugins: [
+                [
+                    require.resolve('babel-plugin-module-resolver'),
+                    {
+                        alias: {
+                            react: require.resolve('react'),
+                            'react-dom/server': require.resolve('react-dom/server'),
+                            'react-dom': require.resolve('react-dom'),
+                        },
+                    },
+                ],
                 require.resolve('@babel/plugin-transform-runtime'),
                 require.resolve('babel-plugin-dynamic-import-node'),
                 require.resolve('@babel/plugin-proposal-export-namespace-from'),
@@ -44,9 +54,9 @@ module.exports = (api) => {
         };
     }
     return {
-        presets: [
-            api.env('development') && require.resolve('babel-preset-react-app/dev'),
-        ].filter(Boolean),
+        presets: [api.env('development') && require.resolve('babel-preset-react-app/dev')].filter(
+            Boolean,
+        ),
         plugins: [
             require.resolve('@babel/plugin-proposal-export-namespace-from'),
             [
