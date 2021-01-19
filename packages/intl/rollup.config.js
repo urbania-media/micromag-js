@@ -1,32 +1,36 @@
 import path from 'path';
 import { sync as syncGlob } from 'glob';
 import replace from '@rollup/plugin-replace';
-import baseConfig from '../../rollup.config';
+import {createConfig} from '../../rollup.config';
 import { supportedLocales as locales } from './package.json';
 
-const localesFiles = locales.map((locale) => ({
-    ...baseConfig({
+const localesFiles = locales.reduce((configs, locale) => ([
+    ...configs,
+    createConfig({
+        input: 'src/lang.js',
+        output: `locale/${locale}.js`,
         prependPlugins: [
             replace({
                 REPLACE_LOCALE: locale,
             }),
         ],
     }),
-    input: 'src/lang.js',
-    output: [
-        {
-            file: `locale/${locale}.js`,
-        },
-        {
-            file: `locale/${locale}.cjs.js`,
-            format: 'cjs',
-        },
-    ],
-}));
+    createConfig({
+        input: 'src/lang.js',
+        output: `locale/${locale}.cjs.js`,
+        format: 'cjs',
+        prependPlugins: [
+            replace({
+                REPLACE_LOCALE: locale,
+            }),
+        ],
+    })
+]), []);
 
 export default [
-    {
-        ...baseConfig(),
-    },
+    createConfig(),
+    createConfig({
+        format: 'cjs',
+    }),
     ...localesFiles,
 ];

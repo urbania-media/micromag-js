@@ -1,22 +1,28 @@
 import path from 'path';
 import resolve from '@rollup/plugin-node-resolve';
 
-import baseConfig from '../../rollup.config';
+import { createConfig } from '../../rollup.config';
 
 export default [
-    baseConfig({
+    createConfig({
         resolveOptions: {
             extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
             resolveOnly: [new RegExp(path.join(__dirname, './src/ElementsProvider'))],
         },
     }),
-    {
-        ...baseConfig(),
-        input: 'src/all.js',
-        output: [
-            {
-                file: 'all.js',
-            },
-        ],
-    },
+    createConfig({
+        format: 'cjs',
+        resolveOptions: {
+            extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
+            resolveOnly: [new RegExp(path.join(__dirname, './src/ElementsProvider'))],
+        },
+    }),
+
+    createConfig({
+        file: 'all.js',
+    }),
+    createConfig({
+        file: 'all.js',
+        format: 'cjs',
+    }),
 ];

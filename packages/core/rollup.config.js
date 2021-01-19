@@ -2,15 +2,15 @@ import path from 'path';
 import resolve from '@rollup/plugin-node-resolve';
 import alias from '@rollup/plugin-alias';
 
-import baseConfig from '../../rollup.config';
+import { createConfig } from '../../rollup.config';
 
-export default [
-    baseConfig({
+const files = {
+    'index.js': {
         prependPlugins: [
             alias({
                 entries: [
                     {
-                        find: /\.\/(contexts|utils|hooks|components)/,
+                        find: /\.\/(contexts|utils|hooks|components)\/?$/,
                         replacement: '@micromag/core/$1',
                     },
                 ],
@@ -20,126 +20,96 @@ export default [
             extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
             resolveOnly: [path.join(__dirname, './src/PropTypes')],
         },
-    }),
-    {
-        ...baseConfig({
-            prependPlugins: [
-                alias({
-                    entries: [
-                        {
-                            find: /\.\.\/(hooks|utils|contexts)\/?$/,
-                            replacement: '@micromag/core/$1',
-                        },
-                    ],
-                }),
+    },
+
+    'components.js': {
+        prependPlugins: [
+            alias({
+                entries: [
+                    {
+                        find: /^(\.\.\/)*\.\.\/\.\.\/(contexts|utils|hooks)/,
+                        replacement: '@micromag/core/$2',
+                    },
+                ],
+            }),
+        ],
+        resolveOptions: {
+            extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
+            resolveOnly: [
+                path.join(__dirname, './src/PropTypes'),
+                new RegExp(path.join(__dirname, './src/components')),
+                new RegExp(path.join(__dirname, './src/styles')),
             ],
-            resolveOptions: {
-                extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
-                resolveOnly: [
-                    path.join(__dirname, './src/PropTypes'),
-                    new RegExp(path.join(__dirname, './src/components/namespaces')),
-                    new RegExp(path.join(__dirname, './src/contexts')),
-                    new RegExp(path.join(__dirname, './src/hooks/useUppyLocale')),
-                    new RegExp(path.join(__dirname, './src/utils/getTransloaditMediasFromResponse')),
-                ],
-            },
-        }),
-        input: 'src/contexts.js',
-        output: [
-            {
-                file: 'lib/contexts.js',
-                format: 'cjs',
-                inlineDynamicImports: true,
-            },
-            {
-                file: 'es/contexts.js',
-                inlineDynamicImports: true,
-            },
-        ],
+        },
     },
-    {
-        ...baseConfig({
-            resolveOptions: {
-                extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
-                resolveOnly: [
-                    path.join(__dirname, './src/PropTypes'),
-                    new RegExp(path.join(__dirname, './src/utils')),
+
+    'contexts.js': {
+        prependPlugins: [
+            alias({
+                entries: [
+                    {
+                        find: /\.\.\/(hooks|utils|contexts)\/?$/,
+                        replacement: '@micromag/core/$1',
+                    },
                 ],
-            },
-        }),
-        input: 'src/utils.js',
-        output: [
-            {
-                file: 'lib/utils.js',
-                format: 'cjs',
-            },
-            {
-                file: 'es/utils.js',
-            },
+            }),
         ],
-    },
-    {
-        ...baseConfig({
-            prependPlugins: [
-                alias({
-                    entries: [
-                        {
-                            find: /\.\.\/(contexts|utils)/,
-                            replacement: '@micromag/core/$1',
-                        },
-                    ],
-                }),
+        resolveOptions: {
+            extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
+            resolveOnly: [
+                path.join(__dirname, './src/PropTypes'),
+                new RegExp(path.join(__dirname, './src/components/namespaces')),
+                new RegExp(path.join(__dirname, './src/contexts')),
+                new RegExp(path.join(__dirname, './src/hooks/useUppyLocale')),
+                new RegExp(path.join(__dirname, './src/utils/getTransloaditMediasFromResponse')),
             ],
-            resolveOptions: {
-                extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
-                resolveOnly: [
-                    path.join(__dirname, './src/PropTypes'),
-                    path.join(__dirname, './src/lib/EventsManager'),
-                    new RegExp(path.join(__dirname, './src/hooks')),
-                ],
-            },
-        }),
-        input: 'src/hooks.js',
-        output: [
-            {
-                file: 'lib/hooks.js',
-                format: 'cjs',
-            },
-            {
-                file: 'es/hooks.js',
-            },
-        ],
+        },
     },
-    {
-        ...baseConfig({
-            prependPlugins: [
-                alias({
-                    entries: [
-                        {
-                            find: /^(\.\.\/)*\.\.\/\.\.\/(contexts|utils|hooks)/,
-                            replacement: '@micromag/core/$2',
-                        },
-                    ],
-                }),
+
+    'hooks.js': {
+        prependPlugins: [
+            alias({
+                entries: [
+                    {
+                        find: /\.\.\/(contexts|utils)/,
+                        replacement: '@micromag/core/$1',
+                    },
+                ],
+            }),
+        ],
+        resolveOptions: {
+            extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
+            resolveOnly: [
+                path.join(__dirname, './src/PropTypes'),
+                path.join(__dirname, './src/lib/EventsManager'),
+                new RegExp(path.join(__dirname, './src/hooks')),
             ],
-            resolveOptions: {
-                extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
-                resolveOnly: [
-                    path.join(__dirname, './src/PropTypes'),
-                    new RegExp(path.join(__dirname, './src/components')),
-                    new RegExp(path.join(__dirname, './src/styles')),
-                ],
-            },
-        }),
-        input: 'src/components.js',
-        output: [
-            {
-                file: 'lib/components.js',
-                format: 'cjs',
-            },
-            {
-                file: 'es/components.js',
-            },
-        ],
+        },
     },
-];
+
+    'utils.js': {
+        resolveOptions: {
+            extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
+            resolveOnly: [
+                path.join(__dirname, './src/PropTypes'),
+                new RegExp(path.join(__dirname, './src/utils')),
+            ],
+        },
+    },
+};
+
+export default Object.keys(files).reduce(
+    (configs, file) => [
+        ...configs,
+        createConfig({
+            file,
+            ...files[file],
+        }),
+        createConfig({
+            file,
+            format: 'cjs',
+            ...files[file],
+        }),
+    ],
+    [],
+);
