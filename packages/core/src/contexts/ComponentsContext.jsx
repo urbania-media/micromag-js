@@ -129,8 +129,10 @@ export const ComponentsProvider = ({ components, manager, namespace, children })
     useEffect(() => {
         if (previousManager !== null && components !== null) {
             previousManager.addComponents(components, namespace);
+            setComponents(previousManager.getComponents());
         } else if (previousManager !== null && manager !== null) {
             previousManager.addComponents(manager.getComponents())
+            setComponents(previousManager.getComponents());
         }
     }, [previousManager, manager, components, namespace]);
     useEffect(() => {
