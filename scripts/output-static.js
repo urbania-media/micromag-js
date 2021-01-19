@@ -7,6 +7,8 @@ import { program } from 'commander';
 
 import Test from '../packages/viewer/src/components/Test';
 
+console.log(process.env.NODE_PATH);
+
 program.parse(process.argv);
 
 const element = React.createElement(Test, {});
