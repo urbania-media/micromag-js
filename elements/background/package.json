@@ -49,7 +49,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.12.5",
-        "@folklore/size": "^0.1.11",
+        "@folklore/size": "^0.1.14",
         "@micromag/core": "^0.2.46",
         "@micromag/element-video": "^0.2.46",
         "classnames": "^2.2.6",

@@ -4,7 +4,7 @@
     "components": [
         {
             "id": "1",
-            "type": "title"
+            "type": "text"
         }
     ],
     "created_at": "2020-02-01 00:00:00",

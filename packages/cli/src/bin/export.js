@@ -1,14 +1,22 @@
-#! /usr/bin/env node
 import program from 'commander';
 
 import readJSON from '../utils/readJSON';
+import exportStory from '../utils/exportStory';
 
+let storyJson = null;
 program
-    .option('-j, --json <path>', 'Path to story JSON file')
+    .arguments('<path>')
+    .description({
+        path: 'Path to story JSON file',
+    })
     .requiredOption('-f, --format <format>', 'Format of the export')
-    .parse();
+    .action((jsonPath) => {
+        storyJson = readJSON(jsonPath);
+    });
+
+program.parse();
 
 const options = program.opts();
 
-const json = readJSON(options.json);
-console.log(json);
+console.log(storyJson);
+console.log(exportStory(storyJson, options.format));

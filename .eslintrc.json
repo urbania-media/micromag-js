@@ -38,6 +38,16 @@
                 "import/no-dynamic-require": 0,
                 "no-console": 0
             }
+        },
+        {
+            "files": [
+                "packages/cli/src/**/*.js"
+            ],
+            "rules": {
+                "global-require": 0,
+                "import/no-dynamic-require": 0,
+                "no-console": 0
+            }
         }
     ]
 }

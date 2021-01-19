@@ -1,8 +1,10 @@
 const path = require('path');
+const getPackagesAliases = require('./scripts/lib/getPackagesAliases');
 
 module.exports = (api) => {
     if (api.env('node')) {
         return {
+            ignore: [/node_modules\/(?!@micromag)/],
             presets: [
                 [
                     require('@babel/preset-env'),
@@ -27,6 +29,7 @@ module.exports = (api) => {
                             react: require.resolve('react'),
                             'react-dom/server': require.resolve('react-dom/server'),
                             'react-dom': require.resolve('react-dom'),
+                            ...getPackagesAliases({ withoutEndSign: true }),
                         },
                     },
                 ],
@@ -48,6 +51,12 @@ module.exports = (api) => {
                     path.join(__dirname, './scripts/babel-plugin-transform-require-ignore'),
                     {
                         extensions: ['.global.scss'],
+                    },
+                ],
+                [
+                    require.resolve('babel-plugin-transform-assets-import-to-string'),
+                    {
+                        extensions: ['.png'],
                     },
                 ],
             ],

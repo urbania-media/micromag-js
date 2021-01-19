@@ -45,7 +45,7 @@ const propTypes = {
         'one-one-two-two',
         'two-two-one-one',
     ]),
-    images: PropTypes.oneOfType([MicromagPropTypes.imageMedias, MicromagPropTypes.imagesElements]),
+    images: PropTypes.oneOfType([MicromagPropTypes.imageMedias, MicromagPropTypes.imageElements]),
     withCaptions: PropTypes.bool,
     spacing: PropTypes.number,
     captionMaxLines: PropTypes.number,

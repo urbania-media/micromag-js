@@ -38,13 +38,15 @@
         "micromag-export": "./bin/export.js"
     },
     "scripts": {
-        "node": "../../node_modules/.bin/babel-node --config-file=../../babel.config.js --env-name=node",
+        "node": "../../node_modules/.bin/babel-node --config-file=../../babel.config.js  -i '[]' --env-name=node",
         "export": "npm run node -- ./src/bin/export.js",
         "prepare": "../../scripts/prepare-package.sh"
     },
     "dependencies": {
         "@babel/runtime": "^7.8.7",
         "@micromag/core": "^0.2.46",
+        "@micromag/screens": "^0.2.46",
+        "change-case": "^4.1.2",
         "classnames": "^2.2.6",
         "commander": "^7.0.0",
         "fs-extra": "^9.0.1",
