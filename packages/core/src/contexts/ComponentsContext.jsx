@@ -117,9 +117,7 @@ export const ComponentsProvider = ({ components, manager, namespace, children })
             new ComponentsManager({
                 ...(previousManager !== null ? previousManager.getComponents() : null),
                 ...(manager !== null ? manager.getComponents() : null),
-                ...(new ComponentsManager(components)
-                    .addNamespace(namespace)
-                    .getComponents(): null),
+                ...new ComponentsManager(components).addNamespace(namespace).getComponents(),
             }),
         [previousManager, manager, components, namespace],
     );

@@ -44,6 +44,9 @@ class ComponentsManager extends EventEmitter {
     }
 
     addNamespace(namespace) {
+        if(namespace === null) {
+            return this;
+        }
         this.components = Object.keys(this.components).reduce(
             (componentsMap, name) => ({
                 ...componentsMap,
