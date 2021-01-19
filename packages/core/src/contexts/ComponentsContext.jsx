@@ -127,19 +127,19 @@ export const ComponentsProvider = ({ components, manager, namespace, children })
     const initialComponents = useMemo(() => finalManager.getComponents(), [finalManager]);
     const [, setComponents] = useState(initialComponents);
     useEffect(() => {
-        const onChange = () => setComponents(finalManager.getComponents());
-        finalManager.on('change', onChange);
-        return () => {
-            finalManager.off('change', onChange);
-        };
-    }, [finalManager, setComponents]);
-    useEffect(() => {
         if (previousManager !== null && components !== null) {
             previousManager.addComponents(components, namespace);
         } else if (previousManager !== null && manager !== null) {
             previousManager.addComponents(manager.getComponents())
         }
     }, [previousManager, manager, components, namespace]);
+    useEffect(() => {
+        const onChange = () => setComponents(finalManager.getComponents());
+        finalManager.on('change', onChange);
+        return () => {
+            finalManager.off('change', onChange);
+        };
+    }, [finalManager, setComponents]);
 
     return <ComponentsContext.Provider value={finalManager}>{children}</ComponentsContext.Provider>;
 };
