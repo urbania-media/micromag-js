@@ -37,13 +37,10 @@ class MediasApi extends Base {
         return this.requestGet(this.route('index'), finalQuery);
     }
 
-    getTags(query = {}, page = 1, count = 10) {
+    getTags(query = {}, count = 10) {
         const finalQuery = {
             ...query,
         };
-        if (page !== null) {
-            finalQuery.page = page;
-        }
         if (count !== null) {
             finalQuery.count = count;
         }
