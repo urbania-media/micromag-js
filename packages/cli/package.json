@@ -1,0 +1,60 @@
+{
+    "name": "@micromag/cli",
+    "version": "0.2.46",
+    "description": "",
+    "keywords": [
+        "javascript"
+    ],
+    "homepage": "https://github.com/urbania-media/micromag-js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/urbania-media/micromag-js.git"
+    },
+    "author": {
+        "name": "Folklore",
+        "email": "info@folklore.email"
+    },
+    "contributors": [
+        {
+            "name": "David Mongeau-Petitpas",
+            "email": "dmp@folklore.email"
+        },
+        {
+            "name": "Nicolas Roy-Bourdages",
+            "email": "nrb@folklore.email"
+        },
+        {
+            "name": "Julien Carignan",
+            "email": "jc@folklore.email"
+        }
+    ],
+    "license": "ISC",
+    "main": "lib/index.js",
+    "files": [
+        "lib",
+        "bin"
+    ],
+    "bin": {
+        "micromag-export": "./bin/export.js"
+    },
+    "scripts": {
+        "node": "../../node_modules/.bin/babel-node --config-file=../../babel.config.js --env-name=node",
+        "export": "npm run node -- ./src/bin/export.js",
+        "prepare": "../../scripts/prepare-package.sh"
+    },
+    "dependencies": {
+        "@babel/runtime": "^7.8.7",
+        "@micromag/core": "^0.2.46",
+        "classnames": "^2.2.6",
+        "commander": "^7.0.0",
+        "fs-extra": "^9.0.1",
+        "lodash": "^4.17.15",
+        "prop-types": "^15.7.2",
+        "react": ">=15.0.0 || ^16.0.0 || ^17.0.0",
+        "react-dom": ">=15.0.0 || ^16.0.0 || ^17.0.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "gitHead": "d5484fa3719af6ccde7488b76e75c557924e94d1"
+}
