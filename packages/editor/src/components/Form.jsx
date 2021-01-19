@@ -197,18 +197,18 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
             ) : null}
             <div className={classNames(['flex-grow-1', 'd-flex', 'w-100', styles.content])}>
                 {screen !== null ? (
-                    <ScreenProvider data={screen}>
-                        <TransitionGroup
-                            transitionName={transitionName}
-                            transitionEnterTimeout={transitionTimeout}
-                            transitionLeaveTimeout={transitionTimeout}
-                            className="w-100 flex-grow-1"
-                        >
-                            {fieldParams !== null ? (
-                                <div
-                                    className={classNames(['bg-dark', 'w-100', styles.panel])}
-                                    key={`field-${fieldParams}-${formParams}`}
-                                >
+                    <TransitionGroup
+                        transitionName={transitionName}
+                        transitionEnterTimeout={transitionTimeout}
+                        transitionLeaveTimeout={transitionTimeout}
+                        className="w-100 flex-grow-1"
+                    >
+                        {fieldParams !== null ? (
+                            <div
+                                className={classNames(['bg-dark', 'w-100', styles.panel])}
+                                key={`field-${fieldParams}-${formParams}`}
+                            >
+                                <ScreenProvider data={screen}>
                                     <FieldWithContexts
                                         name={fieldParams.replace(/\//g, '.')}
                                         value={screen}
@@ -218,12 +218,14 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
                                         closeFieldForm={closeFieldForm}
                                         onChange={onScreenFormChange}
                                     />
-                                </div>
-                            ) : (
-                                <div
-                                    className={classNames(['bg-dark', 'w-100', styles.panel])}
-                                    key={`screen-${screen.id}`}
-                                >
+                                </ScreenProvider>
+                            </div>
+                        ) : (
+                            <div
+                                className={classNames(['bg-dark', 'w-100', styles.panel])}
+                                key={`screen-${screen.id}`}
+                            >
+                                <ScreenProvider data={screen}>
                                     <ScreenForm
                                         value={screen}
                                         className={styles.form}
@@ -231,10 +233,10 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
                                         gotoFieldForm={gotoFieldForm}
                                         closeFieldForm={closeFieldForm}
                                     />
-                                </div>
-                            )}
-                        </TransitionGroup>
-                    </ScreenProvider>
+                                </ScreenProvider>
+                            </div>
+                        )}
+                    </TransitionGroup>
                 ) : (
                     <Empty className="w-100 m-2">
                         <FormattedMessage
