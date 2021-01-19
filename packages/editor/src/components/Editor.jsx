@@ -80,7 +80,7 @@ const Editor = ({
 
     const clickedScreenId = useRef(null);
     const onClickScreen = useCallback(
-        ({ id }) => {
+        (e, { id }) => {
             clickedScreenId.current = id;
             if (screenSize.screen) {
                 setMobileView('preview');
@@ -109,9 +109,9 @@ const Editor = ({
         const items = screens.querySelectorAll(`[data-screen-id="${screenId}"]`);
         if (items !== null && items.length > 0) {
             const item = items[0];
-            const nav = item.parentNode.parentNode;
+            const cnt = item.parentNode.parentNode.parentNode;
             screens.scrollTop =
-                nav.offsetHeight +
+                cnt.offsetTop +
                 item.offsetTop +
                 item.offsetHeight / 2 -
                 screens.clientHeight / 2;
