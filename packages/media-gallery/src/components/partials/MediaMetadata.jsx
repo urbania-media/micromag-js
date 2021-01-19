@@ -55,7 +55,6 @@ const MediaMetadata = ({ media, className }) => {
                 {
                     search: input,
                 },
-                null,
                 5,
             ),
         [api],
