@@ -6,6 +6,7 @@ class MediasApi extends Base {
             ...opts,
             routes: {
                 index: 'medias',
+                tags: 'medias/tags',
                 show: 'medias/:media',
                 store: 'medias',
                 update: 'medias/:media',
@@ -34,6 +35,19 @@ class MediasApi extends Base {
             finalQuery.count = count;
         }
         return this.requestGet(this.route('index'), finalQuery);
+    }
+
+    getTags(query = {}, page = 1, count = 10) {
+        const finalQuery = {
+            ...query,
+        };
+        if (page !== null) {
+            finalQuery.page = page;
+        }
+        if (count !== null) {
+            finalQuery.count = count;
+        }
+        return this.requestGet(this.route('tags'), finalQuery);
     }
 
     create(data) {

@@ -3,21 +3,22 @@ import { useApi } from '../contexts/ApiContext';
 
 import useItems from './useItems';
 
-const useMediaTags = (count = 5, opts) => {
+const useMediaTags = (query = null, page = null, count = 5, opts) => {
     const api = useApi();
-    // TODO: implement this
-    // api.medias.getTags(count)
-    const getItems = useCallback(() => new Promise(() => []), [api, count]);
-    const { items, ...request } = useItems({
-        getItems,
+    const getItems = useCallback(
+        (requestedPage = null) => api.medias.getTags(query, requestedPage, count),
+        [api, query, count],
+    );
+    const { items, pageItems, ...request } = useItems({
+        getPage: page !== null ? getItems : null,
+        getItems: page === null ? getItems : null,
+        page,
         ...opts,
     });
+    // console.log('medias', items);
     return {
-        tags: [
-            { id: 1, label: 'Tag1', value: 'tag1' },
-            { id: 2, label: 'Tag2', value: 'tag2' },
-            { id: 2, label: 'Tag3', value: 'tag3' },
-        ],
+        tags: page !== null ? pageItems : items,
+        allTags: items,
         ...request,
     };
 };

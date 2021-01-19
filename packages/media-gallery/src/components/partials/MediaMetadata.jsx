@@ -1,13 +1,14 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import prettyBytes from 'pretty-bytes';
+import uniqBy from 'lodash/uniqBy';
 import { FormattedMessage } from 'react-intl';
 import { faHeadphonesAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { useMediaTags, useMediaUpdate } from '@micromag/data'; // useOrganisationTeam
+import { useApi, useMediaTags, useMediaUpdate } from '@micromag/data'; // useOrganisationTeam
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useFieldsManager } from '@micromag/core/contexts';
 import { Button } from '@micromag/core/components';
@@ -25,8 +26,14 @@ const defaultProps = {
 };
 
 const MediaMetadata = ({ media, className }) => {
-    const { id, type, thumbnail_url: thumbnail = null, name: initialName, src, metadata = {} } =
-        media || {};
+    const {
+        id: mediaId,
+        type,
+        thumbnail_url: thumbnail = null,
+        name: mediaName,
+        src,
+        metadata = {},
+    } = media || {};
     const {
         filename = null,
         size = null,
@@ -34,25 +41,41 @@ const MediaMetadata = ({ media, className }) => {
         height = null,
         duration = null,
         user = null,
-        tags: initialTags = [],
+        tags: mediaTags = [],
     } = metadata || {};
 
     const fieldsManager = useFieldsManager();
-    const { tags: tagOptions } = useMediaTags();
+    const api = useApi();
+    const { tags: usedTags } = useMediaTags();
     const { update } = useMediaUpdate();
 
-    const getTagsFromOptions = useCallback(
-        (tags) =>
-            tags !== null
-                ? tags
-                      .map((tagValue) => tagOptions.find((o) => o.value === tagValue) || null)
-                      .filter((o) => o !== null)
-                : [],
-        [tagOptions],
+    const loadTags = useCallback(
+        (input) =>
+            api.medias.getTags(
+                {
+                    search: input,
+                },
+                null,
+                5,
+            ),
+        [api],
+    );
+    const getOptionLabel = useCallback(({ name }) => name, []);
+    const getOptionValue = useCallback(({ name }) => name, []);
+    const getNewOptionData = useCallback(
+        (inputValue) => ({
+            name: inputValue,
+        }),
+        [],
     );
 
-    const [name, setName] = useState(initialName);
-    const [tags, setTags] = useState(getTagsFromOptions(initialTags));
+    const allTags = useMemo(
+        () => (usedTags !== null ? uniqBy(mediaTags.concat(usedTags), ({ id }) => id) : mediaTags),
+        [mediaTags, usedTags],
+    );
+
+    const [name, setName] = useState(mediaName);
+    const [tags, setTags] = useState(mediaTags.map(getOptionValue));
     const [changed, setChanged] = useState(false);
 
     const onTagChange = useCallback(
@@ -71,30 +94,24 @@ const MediaMetadata = ({ media, className }) => {
         [tags, setName, setChanged],
     );
 
-    const onSave = useCallback(() => {
-        const allTags = tags !== null ? tags.map((t) => t.value) : [];
-        // TODO: refresh upstream data
-        update(id, { name, tags: allTags }).then(() => {
-            setChanged(false);
-        });
-    }, [id, name, tags, metadata, update]);
+    const onSave = useCallback(
+        () =>
+            update(mediaId, { name, tags }).then(() => {
+                setChanged(false);
+            }),
+        [mediaId, name, tags, metadata, update],
+    );
 
     useEffect(() => {
-        setChanged(false);
-    }, [media]);
-
-    useEffect(() => {
-        setName(initialName);
-    }, [initialName, setName]);
-
-    useEffect(() => {
-        if (media) {
-            setTags(getTagsFromOptions(initialTags));
+        if (media !== null) {
+            setTags(mediaTags);
+            setName(mediaName);
         } else {
             setTags([]);
+            setName(null);
         }
         setChanged(false);
-    }, [media, setTags, setChanged]);
+    }, [media, setTags, setName, setChanged]);
 
     const TextField = fieldsManager.getComponent('text');
     const TokensField = fieldsManager.getComponent('tokens');
@@ -152,7 +169,15 @@ const MediaMetadata = ({ media, className }) => {
                                 description="Tags in Media Gallery"
                             />
                         </h6>
-                        <TokensField value={tags} options={tagOptions} onChange={onTagChange} />
+                        <TokensField
+                            value={tags}
+                            options={allTags}
+                            loadOptions={loadTags}
+                            getOptionLabel={getOptionLabel}
+                            getOptionValue={getOptionValue}
+                            getNewOptionData={getNewOptionData}
+                            onChange={onTagChange}
+                        />
                     </div>
                     {changed ? (
                         <Button theme="primary" onClick={onSave}>

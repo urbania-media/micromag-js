@@ -10,36 +10,48 @@ const propTypes = {
     value: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     onChange: PropTypes.func,
     options: PropTypes.arrayOf(PropTypes.object),
+    loadOptions: PropTypes.func,
+    getOptionLabel: PropTypes.func,
+    getOptionValue: PropTypes.func,
+    getNewOptionData: PropTypes.func,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     value: null,
-    options: [
-        { id: 'logos', label: 'Logos' },
-        { id: 'backgrounds', label: 'Backgrounds' },
-        { id: 'motifs', label: 'Motifs' },
-        { id: 'loops', label: 'Loops' },
-    ],
+    options: [],
+    loadOptions: null,
+    getOptionLabel: undefined,
+    getOptionValue: undefined,
+    getNewOptionData: undefined,
     onChange: null,
     className: null,
 };
 
-const Tokens = ({ value, options, onChange, className }) => {
-
-    const loadOptions = useCallback(
-        inputValue => {
-            return new Promise((resolve) => {
-                const filtered = options.filter(it =>
+const Tokens = ({
+    value,
+    options,
+    loadOptions,
+    getOptionLabel,
+    getOptionValue,
+    getNewOptionData,
+    onChange,
+    className,
+}) => {
+    const filterOptions = useCallback(
+        (inputValue) =>
+            new Promise((resolve) => {
+                const filtered = options.filter((it) =>
                     it.label.toLowerCase().includes(inputValue.toLowerCase()),
                 );
-                resolve(filtered)
-            })
-        },
+                resolve(filtered);
+            }),
         [options],
     );
 
-    const onTokenChange = useCallback(newValue => (onChange !== null ? onChange(newValue) : null));
+    const onTokenChange = useCallback((newValue) =>
+        onChange !== null ? onChange(newValue) : null,
+    );
 
     return (
         <div
@@ -52,8 +64,11 @@ const Tokens = ({ value, options, onChange, className }) => {
         >
             <AsyncCreatableSelect
                 isMulti
-                loadOptions={inputValue => loadOptions(inputValue)}
+                loadOptions={loadOptions || filterOptions}
                 defaultOptions={options}
+                getOptionLabel={getOptionLabel}
+                getOptionValue={getOptionValue}
+                getNewOptionData={getNewOptionData}
                 components={{
                     DropdownIndicator: () => null,
                     IndicatorSeparator: () => null,
