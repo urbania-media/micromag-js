@@ -41,13 +41,15 @@ const MediaMetadata = ({ media, className }) => {
     const { tags: tagOptions } = useMediaTags();
     const { update } = useMediaUpdate();
 
-    const getTagsFromOptions = (tags) => {
-        return tags !== null
-            ? tags
-                  .map((tagValue) => tagOptions.find((o) => o.value === tagValue) || null)
-                  .filter((o) => o !== null)
-            : [];
-    };
+    const getTagsFromOptions = useCallback(
+        (tags) =>
+            tags !== null
+                ? tags
+                      .map((tagValue) => tagOptions.find((o) => o.value === tagValue) || null)
+                      .filter((o) => o !== null)
+                : [],
+        [tagOptions],
+    );
 
     const [name, setName] = useState(initialName);
     const [tags, setTags] = useState(getTagsFromOptions(initialTags));
@@ -72,7 +74,7 @@ const MediaMetadata = ({ media, className }) => {
     const onSave = useCallback(() => {
         const allTags = tags !== null ? tags.map((t) => t.value) : [];
         // TODO: refresh upstream data
-        update(id, { name, metadata: { ...metadata, tags: allTags } }).then(() => {
+        update(id, { name, tags: allTags }).then(() => {
             setChanged(false);
         });
     }, [id, name, tags, metadata, update]);
