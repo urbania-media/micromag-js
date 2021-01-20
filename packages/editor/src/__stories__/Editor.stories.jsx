@@ -22,8 +22,8 @@ export default {
         intl: true,
     },
 };
-
-const apiBaseUrl = `${window.location.protocol}//${window.location.host}/api`;
+const hasWindow = typeof window !== 'undefined';
+const apiBaseUrl = hasWindow ? `${window.location.protocol}//${window.location.host}/api` : '/api';
 
 const EditorContainer = ({ defaultValue, isTheme }) => {
     const [value, setValue] = useState(defaultValue);

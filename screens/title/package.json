@@ -56,9 +56,9 @@
         "@micromag/element-layout": "^0.2.46",
         "@micromag/element-text": "^0.2.46",
         "classnames": "^2.2.6",
-        "lodash": "^4.17.15",
+        "lodash": "^4.17.20",
         "prop-types": "^15.7.2",
-        "react-intl": "^5.10.6",
+        "react-intl": "^5.10.16",
         "uuid": "^8.3.2"
     },
     "publishConfig": {

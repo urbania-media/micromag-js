@@ -72,7 +72,7 @@
         "@micromag/element-text-input": "^0.2.46",
         "@micromag/element-video": "^0.2.46",
         "classnames": "^2.2.6",
-        "lodash": "^4.17.15",
+        "lodash": "^4.17.20",
         "prop-types": "^15.7.2"
     },
     "publishConfig": {

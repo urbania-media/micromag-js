@@ -11,7 +11,7 @@ const useThemeParser = () => {
             if (story === null) {
                 return story;
             }
-            const { theme = null, components = null } = story;
+            const { theme = null, components = null } = story || {};
             if (theme === null || components === null) {
                 return story;
             }

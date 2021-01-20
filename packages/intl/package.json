@@ -65,9 +65,9 @@
         "fs-extra": "^9.0.1",
         "gettext-parser": "^4.0.4",
         "glob": "^7.1.6",
-        "lodash": "^4.17.15",
+        "lodash": "^4.17.20",
         "prop-types": "^15.7.2",
-        "react-intl": "^5.10.6"
+        "react-intl": "^5.10.16"
     },
     "lang": "locale",
     "supportedLocales": [

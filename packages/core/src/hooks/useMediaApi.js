@@ -14,7 +14,7 @@ const useMediaApi = ({
     onSeeked = null,
     onLoadStart = null,
     onCanPlayThough = null,
-}) => {
+} = {}) => {
     const ref = useRef(null);
     const [muted, setMuted] = useState(initialMuted);
     const [currentTime, setCurrentTime] = useState(null);

@@ -80,7 +80,7 @@ const Editor = ({
 
     const clickedScreenId = useRef(null);
     const onClickScreen = useCallback(
-        (e, { id }) => {
+        ({ id }) => {
             clickedScreenId.current = id;
             if (screenSize.screen) {
                 setMobileView('preview');

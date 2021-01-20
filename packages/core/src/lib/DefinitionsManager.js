@@ -28,7 +28,7 @@ class DefinitionsManager extends EventEmitter {
                 ...definitionsMap,
                 [definition.id]: definition,
             }),
-            this.definitions,
+            this.definitions || {},
         );
 
         this.emit('change');
@@ -41,15 +41,15 @@ class DefinitionsManager extends EventEmitter {
     }
 
     getDefinition(id) {
-        return this.definitions[id] || null;
+        return (this.definitions || {})[id] || null;
     }
 
     getDefinitions() {
-        return Object.keys(this.definitions).map((id) => this.definitions[id]);
+        return Object.keys(this.definitions || {}).map((id) => this.definitions[id]);
     }
 
     hasDefinition(id) {
-        return typeof this.definitions[id] !== 'undefined';
+        return typeof (this.definitions || {})[id] !== 'undefined';
     }
 
     getComponent(id) {
@@ -58,7 +58,7 @@ class DefinitionsManager extends EventEmitter {
     }
 
     getComponents() {
-        return Object.keys(this.definitions).reduce(
+        return Object.keys(this.definitions || {}).reduce(
             (allComponents, id) => ({
                 ...allComponents,
                 [id]: this.definitions[id].component,
