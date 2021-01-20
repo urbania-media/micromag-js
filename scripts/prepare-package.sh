@@ -58,7 +58,7 @@ copy_css() {
 copy_scss() {
     echo "Copying scss..."
     mkdir -p ./scss/
-    find ./src -type f -name "*.scss" ! -name "*.module.scss" -exec cp {} ./scss/ \;
+    find ./src -type f -name "*.scss" ! -name "*.module.scss" ! -name "*.global.scss" -exec cp {} ./scss/ \;
 }
 
 # Build

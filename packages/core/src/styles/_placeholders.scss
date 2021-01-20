@@ -25,6 +25,12 @@
 %reset-viewer {
     @extend %reset-viewer-fonts;
 
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box; // 1
+    }
+
     h1,
     h2,
     h3,

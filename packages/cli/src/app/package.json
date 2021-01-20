@@ -1,0 +1,11 @@
+{
+    "private": true,
+    "dependencies": {
+        "@micromag/core": "^0.2.46",
+        "@micromag/screens": "^0.2.46",
+        "@micromag/elements": "^0.2.46",
+        "@micromag/viewer": "^0.2.46",
+        "react": "^16.8.0",
+        "react-dom": "^16.8.0"
+    }
+}

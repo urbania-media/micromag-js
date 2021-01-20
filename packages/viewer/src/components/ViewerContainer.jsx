@@ -12,6 +12,8 @@ import ViewerRoutes from './ViewerRoutes';
 
 import defaultRoutes from '../data/routes.json';
 
+import '../styles/styles.global.scss';
+
 const propTypes = {
     memoryRouter: PropTypes.bool,
     basePath: PropTypes.string,

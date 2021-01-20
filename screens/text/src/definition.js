@@ -1,7 +1,7 @@
 import { defineMessage } from 'react-intl';
 import TextScreen from './Text';
 import TextTitleScreen from './TextTitle';
-import * as formats from './formats/index';
+import * as transforms from './transforms/index';
 
 export default [
     {
@@ -17,7 +17,7 @@ export default [
         }),
         component: TextScreen,
         layouts: ['top', 'middle', 'bottom'],
-        formats,
+        transforms,
         fields: [
             {
                 name: 'layout',

@@ -1,9 +1,10 @@
 import program from 'commander';
 
 import readJSON from '../utils/readJSON';
-import exportStory from '../utils/exportStory';
+import transformStory from '../utils/transformStory';
+import captureStory from '../utils/captureStory';
 
-let storyJson = null;
+let story = null;
 program
     .arguments('<path>')
     .description({
@@ -11,12 +12,26 @@ program
     })
     .requiredOption('-f, --format <format>', 'Format of the export')
     .action((jsonPath) => {
-        storyJson = readJSON(jsonPath);
+        story = readJSON(jsonPath);
     });
 
 program.parse();
 
-const options = program.opts();
+const { format } = program.opts();
 
-console.log(storyJson);
-console.log(exportStory(storyJson, options.format));
+switch (format) {
+    case 'html': {
+        console.log('to be implemented');
+        break;
+    }
+    case 'images': {
+        console.log('to be implemented');
+        captureStory(story);
+        break;
+    }
+    default: {
+        const newStory = transformStory(story, format);
+        console.log(newStory);
+        break;
+    }
+}
