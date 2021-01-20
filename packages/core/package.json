@@ -64,7 +64,7 @@
         "@babel/runtime": "^7.12.5",
         "@folklore/forms": "^0.0.9",
         "@folklore/services": "^0.1.24",
-        "@folklore/tracking": "^0.0.8",
+        "@folklore/tracking": "^0.0.9",
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
