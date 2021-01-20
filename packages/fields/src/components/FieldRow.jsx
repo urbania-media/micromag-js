@@ -23,10 +23,13 @@ const propTypes = {
     withoutLabel: PropTypes.bool,
     withSettings: PropTypes.bool,
     withForm: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+    buttonTheme: MicromagPropTypes.buttonTheme,
+    buttonOutline: PropTypes.bool,
     gotoSettings: PropTypes.func,
     gotoForm: PropTypes.func,
     className: PropTypes.string,
     labelClassName: PropTypes.string,
+    buttonClassName: PropTypes.string,
 };
 
 const defaultProps = {
@@ -40,10 +43,13 @@ const defaultProps = {
     withoutLabel: false,
     withSettings: false,
     withForm: false,
+    buttonTheme: null,
+    buttonOutline: false,
     gotoSettings: null,
     gotoForm: null,
     className: null,
     labelClassName: null,
+    buttonClassName: null,
 };
 
 const FieldRow = ({
@@ -57,10 +63,13 @@ const FieldRow = ({
     withoutLabel,
     withSettings,
     withForm,
+    buttonTheme,
+    buttonOutline,
     gotoForm,
     gotoSettings,
     className,
     labelClassName,
+    buttonClassName,
 }) => {
     const withLabel = !withoutLabel && label !== null;
     const isClickable = withForm;
@@ -127,11 +136,14 @@ const FieldRow = ({
             <>
                 <button
                     type="button"
-                    className={classNames([containerClassName, {
-                        [styles.resetButton]: !isListItem,
-                        'd-block': !isListItem,
-                        'p-2': !isListItem,
-                    }])}
+                    className={classNames([
+                        containerClassName,
+                        {
+                            [styles.resetButton]: !isListItem,
+                            'd-block': !isListItem,
+                            'p-2': !isListItem,
+                        },
+                    ])}
                     onClick={onClickRow}
                 >
                     {rowInner}
@@ -161,8 +173,18 @@ const FieldRow = ({
             ) : null}
             {isClickable ? (
                 <Button
-                    withoutStyle
-                    className="d-block w-100 bg-light text-dark rounded p-2"
+                    className={classNames([
+                        'd-block',
+                        'w-100',
+                        'px-2',
+                        {
+                            'bg-white': buttonTheme === null,
+                            'text-dark': buttonTheme === null,
+                            [buttonClassName]: buttonClassName !== null,
+                        },
+                    ])}
+                    buttonTheme={buttonTheme}
+                    buttonOutline={buttonOutline}
                     onClick={onClickRow}
                 >
                     <span className="form-row align-items-center">

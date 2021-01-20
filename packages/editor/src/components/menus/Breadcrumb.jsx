@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
-// import classNames from 'classnames';
+import classNames from 'classnames';
 import { useHistory } from 'react-router';
 import { useIntl } from 'react-intl';
 import { Breadcrumb as BaseBreadcrumb, BackButton } from '@micromag/core/components';
@@ -128,7 +128,12 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
                 theme="secondary"
                 withoutBar
                 noWrap
-                className={className}
+                className={classNames([
+                    'text-truncate',
+                    {
+                        [className]: className !== null,
+                    },
+                ])}
             />
         </>
     );
