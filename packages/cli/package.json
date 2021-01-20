@@ -41,7 +41,7 @@
         "build:app": "cd src/app && NODE_ENV=production react-scripts build && rm -rf ../../public/ && mv ./build/ ../../public/",
         "node": "../../node_modules/.bin/babel-node --config-file=../../babel.config.js  -i '[]' --env-name=node",
         "export": "npm run node -- ./src/bin/export.js",
-        "prepare": "../../scripts/prepare-package.sh"
+        "prepare": "../../scripts/prepare-package.sh && npm run build:app"
     },
     "dependencies": {
         "@babel/runtime": "^7.8.7",
