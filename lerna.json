@@ -1,15 +1,24 @@
 {
-    "version": "0.2.46",
-    "packages": ["elements/*", "packages/*", "screens/*"],
+    "version": "0.2.47",
+    "packages": [
+        "elements/*",
+        "packages/*",
+        "screens/*"
+    ],
     "command": {
         "publish": {
-            "allowBranch": ["master", "develop"]
+            "allowBranch": [
+                "master",
+                "develop"
+            ]
         },
         "bootstrap": {
             "hoist": true
         }
     },
     "bootstrap": {
-        "npmClientArgs": ["--no-package-lock"]
+        "npmClientArgs": [
+            "--no-package-lock"
+        ]
     }
 }

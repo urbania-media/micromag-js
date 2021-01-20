@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-background",
-    "version": "0.2.46",
+    "version": "0.2.47",
     "description": "",
     "keywords": [
         "javascript"
@@ -40,18 +40,16 @@
         "prepare": "../../scripts/prepare-package.sh"
     },
     "devDependencies": {
-        "react": "^16.8.0",
         "react": "^16.8.0"
     },
     "peerDependencies": {
-        "react": "^16.8.0",
         "react": "^16.8.0"
     },
     "dependencies": {
         "@babel/runtime": "^7.12.5",
         "@folklore/size": "^0.1.14",
-        "@micromag/core": "^0.2.46",
-        "@micromag/element-video": "^0.2.46",
+        "@micromag/core": "^0.2.47",
+        "@micromag/element-video": "^0.2.47",
         "classnames": "^2.2.6",
         "lodash": "^4.17.20",
         "prop-types": "^15.7.2",
