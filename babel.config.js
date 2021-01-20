@@ -33,7 +33,6 @@ module.exports = (api) => {
                             'react-router': require.resolve('react-router'),
                             'react-spring': require.resolve('react-spring'),
                             'react-use-gesture': require.resolve('react-use-gesture'),
-                            '@folklore/forms': require.resolve('@folklore/forms'),
                             ...getPackagesAliases({ withoutEndSign: true }),
                         },
                     },

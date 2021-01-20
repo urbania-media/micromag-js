@@ -3,7 +3,7 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -79,7 +79,6 @@ const ContributionScreen = ({
 
     const { width, height } = useScreenSize();
     const { menuSize } = useViewer();
-    const intl = useIntl();
 
     const landscape = width > height;
 
@@ -233,10 +232,6 @@ const ContributionScreen = ({
                         >
                             <TextInput
                                 className={styles.inputName}
-                                label={intl.formatMessage({
-                                    defaultMessage: 'Your name',
-                                    description: 'Your name placeholder',
-                                })}
                                 {...name}
                                 value={userName}
                                 onChange={(e) => onNameChange(e)}
@@ -266,10 +261,6 @@ const ContributionScreen = ({
                         >
                             <TextInput
                                 className={styles.inputMessage}
-                                label={intl.formatMessage({
-                                    defaultMessage: 'Your message',
-                                    description: 'Your message placeholder',
-                                })}
                                 {...message}
                                 value={userMessage}
                                 onChange={(e) => onMessageChange(e)}
@@ -303,10 +294,6 @@ const ContributionScreen = ({
                                 disabled={isPreview}
                             >
                                 <Text
-                                    body={intl.formatMessage({
-                                        defaultMessage: 'Submit',
-                                        description: 'Submit placeholder',
-                                    })}
                                     {...submit}
                                     inline
                                 />

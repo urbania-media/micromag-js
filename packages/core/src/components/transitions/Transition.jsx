@@ -49,7 +49,7 @@ const Transition = ({
     onStart,
     onComplete,
 }) => {
-    const [springProps, setSpringProps] = useSpring(() => {});
+    const [springProps, setSpringProps] = useSpring(() => ({}));
 
     useEffect(() => {
         const immediate = (!playing && direction === 'in') || (playing && direction === 'out');

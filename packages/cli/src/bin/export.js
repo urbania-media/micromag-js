@@ -3,6 +3,8 @@ import program from 'commander';
 import readJSON from '../utils/readJSON';
 import transformStory from '../utils/transformStory';
 import captureStory from '../utils/captureStory';
+import getStoryHtml from '../utils/getStoryHtml';
+import getStoryHtmlSSR from '../utils/getStoryHtmlSSR';
 
 let story = null;
 program
@@ -19,9 +21,13 @@ program.parse();
 
 const { format } = program.opts();
 
-switch (format) {
+switch (format) {    
     case 'html': {
-        console.log('to be implemented');
+        getStoryHtml(story);
+        break;
+    }
+    case 'html-ssr': {
+        getStoryHtmlSSR(story);
         break;
     }
     case 'images': {

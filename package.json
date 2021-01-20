@@ -24,7 +24,6 @@
         "@babel/plugin-transform-runtime": "^7.12.10",
         "@babel/preset-env": "^7.12.11",
         "@babel/preset-react": "^7.12.10",
-        "@folklore/forms": "0.0.9",
         "@folklore/react-scripts": "^4.0.2",
         "@formatjs/cli": "^2.15.0",
         "@rollup/plugin-alias": "^3.1.1",

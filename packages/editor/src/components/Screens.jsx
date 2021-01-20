@@ -90,7 +90,7 @@ const EditorScreens = ({ value: unparsedValue, isTheme, isVertical, onClickScree
     );
 
     const onClickScreenType = useCallback(
-        (e, definition) => {
+        (definition) => {
             setCreateModalOpened(false);
 
             let currentScreen = isTheme

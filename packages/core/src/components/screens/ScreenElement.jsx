@@ -11,7 +11,7 @@ import Empty from '../partials/Empty';
 
 const propTypes = {
     children: PropTypes.node,
-    placeholder: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
+    placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     preview: PropTypes.node,
     empty: PropTypes.node,
     emptyLabel: MicromagPropTypes.label,

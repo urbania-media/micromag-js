@@ -1,0 +1,715 @@
+{
+    "title": "All screens",
+    "theme": {
+        "type": "theme",
+        "title": "Default Theme",
+        "colors": { "primary": "#0F0", "secondary": "#00C" },
+        "background": { "color": "#fc0" },
+        "textStyle": {
+            "heading1": { "fontSize": 36, "fontFamily": "Courier" },
+            "heading2": { "fontSize": 24, "fontFamily": "Courier" },
+            "heading3": { "fontSize": 18, "fontFamily": "Courier" },
+            "text": { "fontSize": 16, "fontFamily": "Helvetica", "color": "#F0F" }
+        },
+        "components": [
+            {
+                "id": "65140683-5b4e-11eb-916e-e320b8bc4adc",
+                "type": "text",
+                "text": { "body": "Test body" }
+            }
+        ]
+    },
+    "components": [
+        {
+            "id": "9d858360-5b56-11eb-916e-e320b8bc4adc",
+            "type": "audio",
+            "layout": "normal",
+            "audio": {
+                "media": {
+                    "type": "audio",
+                    "url": "static/media/test.5773d121.mp3",
+                    "metadata": { "duration": 16000 }
+                },
+                "autoPlay": false,
+                "loop": true,
+                "closedCaptions": {
+                    "type": "closed-captions",
+                    "url": "cc6ab65ee24a9712ac4b69a96bb96683.srt"
+                }
+            },
+            "background": { "color": "#00FF00" },
+            "transitions": { "in": "fade", "out": "fade" }
+        },
+        {
+            "id": "9d858361-5b56-11eb-916e-e320b8bc4adc",
+            "type": "contribution",
+            "layout": "middle",
+            "title": { "body": "28463 3459834 31459134 3145134" },
+            "name": { "label": "Votre nom" },
+            "message": { "label": "Votre message" },
+            "submit": { "body": "Envoyer" },
+            "background": { "color": "#00FFFF" },
+            "transitions": { "in": "fade", "out": "fade" }
+        },
+        {
+            "id": "9d858362-5b56-11eb-916e-e320b8bc4adc",
+            "type": "gallery",
+            "layout": "one-two-one",
+            "images": [
+                {
+                    "url": "https://picsum.photos/800/800?random=1",
+                    "metadata": { "width": 800, "height": 800 }
+                },
+                {
+                    "url": "https://picsum.photos/800/800?random=1",
+                    "metadata": { "width": 800, "height": 800 }
+                },
+                {
+                    "url": "https://picsum.photos/800/800?random=1",
+                    "metadata": { "width": 800, "height": 800 }
+                },
+                {
+                    "url": "https://picsum.photos/800/800?random=1",
+                    "metadata": { "width": 800, "height": 800 }
+                }
+            ],
+            "background": { "color": "#FFFF00" },
+            "transitions": { "in": "fade", "out": "fade" }
+        },
+        {
+            "id": "9d858363-5b56-11eb-916e-e320b8bc4adc",
+            "type": "gallery-feed",
+            "layout": "normal",
+            "images": [
+                {
+                    "url": "https://picsum.photos/800/800?random=1",
+                    "metadata": { "width": 800, "height": 800 }
+                },
+                {
+                    "url": "https://picsum.photos/800/800?random=1",
+                    "metadata": { "width": 800, "height": 800 }
+                },
+                {
+                    "url": "https://picsum.photos/800/800?random=1",
+                    "metadata": { "width": 800, "height": 800 }
+                },
+                {
+                    "url": "https://picsum.photos/800/800?random=1",
+                    "metadata": { "width": 800, "height": 800 }
+                },
+                {
+                    "url": "https://picsum.photos/800/800?random=1",
+                    "metadata": { "width": 800, "height": 800 }
+                }
+            ],
+            "background": { "color": "#00FF00" },
+            "transitions": { "in": "fade", "out": "fade" }
+        },
+        {
+            "id": "9d858364-5b56-11eb-916e-e320b8bc4adc",
+            "type": "gallery-feed-captions",
+            "layout": "normal",
+            "images": [
+                {
+                    "media": {
+                        "url": "https://picsum.photos/800/800?random=1",
+                        "metadata": { "width": 800, "height": 800 }
+                    },
+                    "caption": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit"
+                    }
+                },
+                {
+                    "media": {
+                        "url": "https://picsum.photos/800/800?random=1",
+                        "metadata": { "width": 800, "height": 800 }
+                    },
+                    "caption": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases"
+                    }
+                },
+                {
+                    "media": {
+                        "url": "https://picsum.photos/800/800?random=1",
+                        "metadata": { "width": 800, "height": 800 }
+                    },
+                    "caption": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less"
+                    }
+                },
+                {
+                    "media": {
+                        "url": "https://picsum.photos/800/800?random=1",
+                        "metadata": { "width": 800, "height": 800 }
+                    },
+                    "caption": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens"
+                    }
+                },
+                {
+                    "media": {
+                        "url": "https://picsum.photos/800/800?random=1",
+                        "metadata": { "width": 800, "height": 800 }
+                    },
+                    "caption": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I"
+                    }
+                }
+            ],
+            "background": { "color": "#00FFFF" },
+            "transitions": { "in": "fade", "out": "fade" }
+        },
+        {
+            "id": "9d85aa70-5b56-11eb-916e-e320b8bc4adc",
+            "type": "image",
+            "layout": "normal",
+            "image": {
+                "url": "https://picsum.photos/800/800?random=1",
+                "thumbnail_url": "https://picsum.photos/100/100?random=1",
+                "metadata": { "width": 800, "height": 800 }
+            },
+            "background": { "color": "#FF00FF" },
+            "transitions": { "in": "fade", "out": "fade" }
+        },
+        {
+            "id": "9d85aa71-5b56-11eb-916e-e320b8bc4adc",
+            "type": "image-title-text",
+            "layout": "center",
+            "image": {
+                "url": "https://picsum.photos/800/800?random=1",
+                "thumbnail_url": "https://picsum.photos/100/100?random=1",
+                "metadata": { "width": 800, "height": 800 }
+            },
+            "title": { "body": "I like this title it's very good and super amazing" },
+            "text": { "body": "Another another image text" },
+            "background": { "color": "#0000FF" },
+            "transitions": { "in": "fade", "out": "fade" }
+        },
+        {
+            "id": "9d85aa72-5b56-11eb-916e-e320b8bc4adc",
+            "type": "image-legend",
+            "layout": "normal",
+            "image": {
+                "url": "https://picsum.photos/800/800?random=1",
+                "thumbnail_url": "https://picsum.photos/100/100?random=1",
+                "metadata": { "width": 800, "height": 800 }
+            },
+            "background": { "color": "#FF00FF" },
+            "transitions": { "in": "fade", "out": "fade" }
+        },
+        {
+            "id": "9d85aa73-5b56-11eb-916e-e320b8bc4adc",
+            "type": "map",
+            "layout": "normal",
+            "title": { "body": "A long longer title" },
+            "description": {
+                "textStyle": {},
+                "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit"
+            },
+            "button": { "body": "Débuter" },
+            "scrollable": true,
+            "markers": [
+                {
+                    "id": 0,
+                    "geoPosition": { "lat": 45.59029673, "lng": -73.92869658 },
+                    "title": { "body": "A better longer title" },
+                    "subtitle": {
+                        "body": "28463 3459834 31459134 3145134 2345134 1345 1345 34523 45"
+                    },
+                    "description": {
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and"
+                    },
+                    "image": null
+                },
+                {
+                    "id": 1,
+                    "geoPosition": { "lat": 45.4864066, "lng": -73.05382379 },
+                    "title": { "body": "28463 3459834 31459134 3145134" },
+                    "subtitle": { "body": "A longer subtitle" },
+                    "description": {
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I"
+                    },
+                    "image": null
+                },
+                {
+                    "id": 2,
+                    "geoPosition": { "lat": 45.56906467, "lng": -73.12332836 },
+                    "title": { "body": "A longer title" },
+                    "subtitle": { "body": "A good subtitle" },
+                    "description": {
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally"
+                    },
+                    "image": null
+                }
+            ],
+            "background": { "color": "#FF0000" },
+            "transitions": { "in": "fade", "out": "fade" }
+        },
+        {
+            "id": "9d85aa74-5b56-11eb-916e-e320b8bc4adc",
+            "type": "map-images",
+            "layout": "normal",
+            "title": { "body": "28463 3459834 31459134 3145134" },
+            "description": {
+                "textStyle": {},
+                "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story"
+            },
+            "button": { "body": "Avec images" },
+            "scrollable": true,
+            "markers": [
+                {
+                    "id": 0,
+                    "geoPosition": { "lat": 45.47601252, "lng": -73.0432917 },
+                    "title": { "body": "A longer title" },
+                    "subtitle": { "body": "A subtitle for something about something" },
+                    "description": {
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story"
+                    },
+                    "image": {
+                        "url": "https://picsum.photos/100/100?random=1",
+                        "thumbnail_url": "https://picsum.photos/100/100?random=1",
+                        "metadata": { "width": 100, "height": 100 }
+                    }
+                },
+                {
+                    "id": 1,
+                    "geoPosition": { "lat": 45.5726147, "lng": -73.1914046 },
+                    "title": { "body": "A better longer title" },
+                    "subtitle": { "body": "A subtitle for something about something" },
+                    "description": {
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens"
+                    },
+                    "image": {
+                        "url": "https://picsum.photos/100/100?random=1",
+                        "thumbnail_url": "https://picsum.photos/100/100?random=1",
+                        "metadata": { "width": 100, "height": 100 }
+                    }
+                },
+                {
+                    "id": 2,
+                    "geoPosition": { "lat": 45.55279672, "lng": -73.97967573 },
+                    "title": { "body": "A long longer title" },
+                    "subtitle": { "body": "A good subtitle" },
+                    "description": {
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had"
+                    },
+                    "image": {
+                        "url": "https://picsum.photos/100/100?random=1",
+                        "thumbnail_url": "https://picsum.photos/100/100?random=1",
+                        "metadata": { "width": 100, "height": 100 }
+                    }
+                }
+            ],
+            "background": { "color": "#0000FF" },
+            "transitions": { "in": "fade", "out": "fade" }
+        },
+        {
+            "id": "9d85aa75-5b56-11eb-916e-e320b8bc4adc",
+            "type": "quiz",
+            "layout": "top",
+            "question": {
+                "body": "Une vraie question qui se termine par un point d’interrogation?"
+            },
+            "answers": [
+                { "id": 1, "label": { "body": "A better somewhat longer longer subtitle" } },
+                { "id": 2, "label": { "body": "La bonne réponse" }, "good": true },
+                { "id": 3, "label": { "body": "A subtitle for something about something" } },
+                { "id": 4, "label": { "body": "Subtitle" } }
+            ],
+            "result": {
+                "body": "Et oui, la bonne réponse était \"La bonne réponse\". Quand même surprenant hen?"
+            },
+            "background": { "color": "#00FF00" },
+            "transitions": { "in": "fade", "out": "fade" }
+        },
+        {
+            "id": "9d85aa76-5b56-11eb-916e-e320b8bc4adc",
+            "type": "quote",
+            "layout": "top",
+            "quote": {
+                "body": "“ The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people ”"
+            },
+            "author": { "body": "Walt Whitman" },
+            "background": { "color": "#00FFFF" },
+            "transitions": { "in": "fade", "out": "fade" }
+        },
+        {
+            "id": "9d85aa77-5b56-11eb-916e-e320b8bc4adc",
+            "type": "ranking",
+            "layout": "side",
+            "items": [
+                {
+                    "title": { "body": "A longer title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally"
+                    }
+                },
+                {
+                    "title": { "body": "A title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel All this happened"
+                    }
+                },
+                {
+                    "title": { "body": "28463 3459834 31459134 3145134" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky"
+                    }
+                },
+                {
+                    "title": { "body": "A better longer title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel All this happened more or less"
+                    }
+                },
+                {
+                    "title": { "body": "A title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was"
+                    }
+                },
+                {
+                    "title": { "body": "A title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time"
+                    }
+                },
+                {
+                    "title": { "body": "I like this title it's very good and super amazing" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was"
+                    }
+                },
+                {
+                    "title": { "body": "A longer title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel"
+                    }
+                },
+                {
+                    "title": { "body": "I like this title it's very good and super amazing" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens"
+                    }
+                },
+                {
+                    "title": { "body": "A better longer title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens"
+                    }
+                }
+            ],
+            "numbersStyle": { "fontSize": 50 },
+            "background": { "color": "#FF00FF" },
+            "transitions": { "in": "fade", "out": "fade" }
+        },
+        {
+            "id": "9d85d180-5b56-11eb-916e-e320b8bc4adc",
+            "type": "survey",
+            "layout": "top",
+            "question": {
+                "body": "Une vraie question qui se termine par un point d’interrogation?"
+            },
+            "answers": [
+                { "id": 1, "label": { "body": "Choix 1" }, "percent": 34 },
+                { "id": 2, "label": { "body": "Choix 2" }, "percent": 12 },
+                { "id": 3, "label": { "body": "Choix plus long" }, "percent": 38 },
+                { "id": 4, "label": { "body": "Choix 4" }, "percent": 16 }
+            ],
+            "background": { "color": "#333" },
+            "transitions": { "in": "fade", "out": "fade" }
+        },
+        {
+            "id": "9d85d181-5b56-11eb-916e-e320b8bc4adc",
+            "type": "text",
+            "layout": "top",
+            "text": {
+                "textStyle": {},
+                "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases"
+            },
+            "background": { "color": "#0000FF" },
+            "transitions": { "in": "fade", "out": "fade" }
+        },
+        {
+            "id": "9d85d182-5b56-11eb-916e-e320b8bc4adc",
+            "type": "timeline",
+            "layout": "normal",
+            "items": [
+                {
+                    "title": { "body": "A title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel All this happened more or less"
+                    }
+                },
+                {
+                    "title": { "body": "I like this title it's very good and super amazing" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port"
+                    }
+                },
+                {
+                    "title": { "body": "A long longer title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel"
+                    }
+                },
+                {
+                    "title": { "body": "A title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was"
+                    }
+                },
+                {
+                    "title": { "body": "28463 3459834 31459134 3145134" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was"
+                    }
+                },
+                {
+                    "title": { "body": "A long longer title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel All this happened more or less"
+                    }
+                },
+                {
+                    "title": { "body": "I like this title it's very good and super amazing" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people"
+                    }
+                },
+                {
+                    "title": { "body": "A long longer title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above"
+                    }
+                },
+                {
+                    "title": { "body": "A long longer title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port"
+                    }
+                },
+                {
+                    "title": { "body": "A title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel All"
+                    }
+                }
+            ],
+            "bulletShape": "circle",
+            "bulletColor": "#FFF",
+            "lineColor": "#FFF",
+            "bulletFilled": false,
+            "background": { "color": "#FF00FF" },
+            "transitions": { "in": "fade", "out": "fade" }
+        },
+        {
+            "id": "9d85d183-5b56-11eb-916e-e320b8bc4adc",
+            "type": "timeline-illustrated",
+            "layout": "normal",
+            "items": [
+                {
+                    "title": { "body": "A better longer title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel All"
+                    },
+                    "image": {
+                        "url": "https://picsum.photos/800/800?random=1",
+                        "thumbnail_url": "https://picsum.photos/100/100?random=1",
+                        "metadata": { "width": 800, "height": 800 }
+                    }
+                },
+                {
+                    "title": { "body": "A long longer title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel All"
+                    },
+                    "image": {
+                        "url": "https://picsum.photos/800/800?random=1",
+                        "thumbnail_url": "https://picsum.photos/100/100?random=1",
+                        "metadata": { "width": 800, "height": 800 }
+                    }
+                },
+                {
+                    "title": { "body": "A title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel"
+                    },
+                    "image": {
+                        "url": "https://picsum.photos/800/800?random=1",
+                        "thumbnail_url": "https://picsum.photos/100/100?random=1",
+                        "metadata": { "width": 800, "height": 800 }
+                    }
+                },
+                {
+                    "title": { "body": "A long longer title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit"
+                    },
+                    "image": {
+                        "url": "https://picsum.photos/800/800?random=1",
+                        "thumbnail_url": "https://picsum.photos/100/100?random=1",
+                        "metadata": { "width": 800, "height": 800 }
+                    }
+                },
+                {
+                    "title": { "body": "A longer title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was"
+                    },
+                    "image": {
+                        "url": "https://picsum.photos/800/800?random=1",
+                        "thumbnail_url": "https://picsum.photos/100/100?random=1",
+                        "metadata": { "width": 800, "height": 800 }
+                    }
+                },
+                {
+                    "title": { "body": "I like this title it's very good and super amazing" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases"
+                    },
+                    "image": {
+                        "url": "https://picsum.photos/800/800?random=1",
+                        "thumbnail_url": "https://picsum.photos/100/100?random=1",
+                        "metadata": { "width": 800, "height": 800 }
+                    }
+                },
+                {
+                    "title": { "body": "I like this title it's very good and super amazing" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel"
+                    },
+                    "image": {
+                        "url": "https://picsum.photos/800/800?random=1",
+                        "thumbnail_url": "https://picsum.photos/100/100?random=1",
+                        "metadata": { "width": 800, "height": 800 }
+                    }
+                },
+                {
+                    "title": { "body": "A title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit"
+                    },
+                    "image": {
+                        "url": "https://picsum.photos/800/800?random=1",
+                        "thumbnail_url": "https://picsum.photos/100/100?random=1",
+                        "metadata": { "width": 800, "height": 800 }
+                    }
+                },
+                {
+                    "title": { "body": "A better longer title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel All"
+                    },
+                    "image": {
+                        "url": "https://picsum.photos/800/800?random=1",
+                        "thumbnail_url": "https://picsum.photos/100/100?random=1",
+                        "metadata": { "width": 800, "height": 800 }
+                    }
+                },
+                {
+                    "title": { "body": "28463 3459834 31459134 3145134" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television"
+                    },
+                    "image": {
+                        "url": "https://picsum.photos/800/800?random=1",
+                        "thumbnail_url": "https://picsum.photos/100/100?random=1",
+                        "metadata": { "width": 800, "height": 800 }
+                    }
+                }
+            ],
+            "bulletShape": "circle",
+            "bulletColor": "#FFF",
+            "lineColor": "#FFF",
+            "bulletFilled": false,
+            "background": { "color": "#0000FF" },
+            "transitions": { "in": "fade", "out": "fade" }
+        },
+        {
+            "id": "9d85d184-5b56-11eb-916e-e320b8bc4adc",
+            "type": "title",
+            "layout": "top",
+            "title": { "body": "A better longer title" },
+            "background": { "color": "#FF0000" },
+            "transitions": { "in": "fade", "out": "fade" }
+        },
+        {
+            "id": "9d85d185-5b56-11eb-916e-e320b8bc4adc",
+            "type": "video",
+            "layout": "normal",
+            "video": {
+                "media": {
+                    "type": "video",
+                    "url": "static/media/test.9fc1449b.mp4",
+                    "metadata": { "width": 1920, "height": 1080 }
+                },
+                "autoPlay": false,
+                "loop": true,
+                "closedCaptions": {
+                    "type": "closed-captions",
+                    "url": "cc6ab65ee24a9712ac4b69a96bb96683.srt"
+                },
+                "withSeekBar": true
+            },
+            "background": { "color": "#FF00FF" },
+            "transitions": { "in": "fade", "out": "fade" }
+        },
+        {
+            "id": "9d85d186-5b56-11eb-916e-e320b8bc4adc",
+            "type": "video-360",
+            "layout": "full",
+            "video": {
+                "media": {
+                    "type": "video-360",
+                    "url": "static/media/test-360.6ed1598c.mp4",
+                    "metadata": { "width": 1920, "height": 960 }
+                },
+                "autoPlay": false,
+                "loop": true,
+                "closedCaptions": {
+                    "type": "closed-captions",
+                    "url": "cc6ab65ee24a9712ac4b69a96bb96683.srt"
+                },
+                "withSeekBar": true
+            },
+            "background": { "color": "#FF00FF" },
+            "transitions": { "in": "fade", "out": "fade" }
+        }
+    ]
+}
