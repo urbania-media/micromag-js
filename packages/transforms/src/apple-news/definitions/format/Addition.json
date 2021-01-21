@@ -1,0 +1,32 @@
+{
+    "name": "Format\\Addition",
+    "description": "Properties shared by all addition types.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/addition",
+    "properties": [
+        {
+            "name": "type",
+            "type": "string",
+            "required": true,
+            "description": "The type of addition. For example, Link.",
+            "typed": false
+        },
+        {
+            "name": "rangeLength",
+            "type": "integer",
+            "required": false,
+            "description": "The length of the range of text the component should be anchored to.",
+            "typed": false
+        },
+        {
+            "name": "rangeStart",
+            "type": "integer",
+            "required": false,
+            "description": "The start index of the range of text the component should be anchored to. When a component is anchored to a component with role of body, the text might be flowed around the component.",
+            "typed": false
+        }
+    ]
+}

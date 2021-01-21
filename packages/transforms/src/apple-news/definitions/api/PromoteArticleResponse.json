@@ -1,0 +1,18 @@
+{
+    "name": "Api\\Objects\\PromoteArticleResponse",
+    "description": "See the field returned by the promote article response.",
+    "version": "1.0.0+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/promotearticleresponse",
+    "properties": [
+        {
+            "name": "promotedArticles",
+            "type": "array:string",
+            "required": false,
+            "description": "List of URLs for the promoted articles.",
+            "typed": false
+        }
+    ]
+}

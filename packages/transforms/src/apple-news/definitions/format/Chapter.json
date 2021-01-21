@@ -1,0 +1,114 @@
+{
+    "name": "Format\\Chapter",
+    "description": "The component for organizing an article into chapters.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": "Format\\Container",
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/chapter",
+    "properties": [
+        {
+            "name": "role",
+            "type": "string",
+            "required": true,
+            "description": "Always chapter for this component.",
+            "value": "chapter",
+            "read_only": true,
+            "typed": false
+        },
+        {
+            "name": "additions",
+            "type": "array:Format\\ComponentLink",
+            "required": false,
+            "description": "An array of ComponentLink objects. This can be used to create a ComponentLink, allowing a link to anywhere in News. Adding a link to a chapter component will make the entire component interactable. Any links used in its child components are not interactable.",
+            "typed": false
+        },
+        {
+            "name": "anchor",
+            "type": "Format\\Anchor",
+            "required": false,
+            "description": "An object that defines vertical alignment with another component.",
+            "typed": false
+        },
+        {
+            "name": "animation",
+            "type": "Format\\ComponentAnimation",
+            "required": false,
+            "description": "An object that defines an animation to be applied to the component.",
+            "typed": true
+        },
+        {
+            "name": "behavior",
+            "type": "Format\\Behavior",
+            "required": false,
+            "description": "An object that defines behavior for a component, like Parallax or Springy.",
+            "typed": true
+        },
+        {
+            "name": "components",
+            "type": "array:Format\\Component",
+            "required": false,
+            "description": "An array of components to display as child components. Child components are positioned and rendered relative to their parent component.",
+            "typed": true
+        },
+        {
+            "name": "conditional",
+            "type": "array:Format\\ConditionalSection",
+            "required": false,
+            "description": "An array of section properties that can be applied conditionally, and the conditions that cause them to be applied.",
+            "typed": false
+        },
+        {
+            "name": "contentDisplay",
+            "type": [
+                "Format\\CollectionDisplay",
+                "Format\\HorizontalStackDisplay"
+            ],
+            "required": false,
+            "description": "A value that defines how child components are positioned within this chapter component. For example, this property can allow for displaying child components side-by-side and can make sure they are sized equally.",
+            "typed": false
+        },
+        {
+            "name": "hidden",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean value that determines whether the component is hidden.",
+            "default": "false",
+            "typed": false
+        },
+        {
+            "name": "identifier",
+            "type": "string",
+            "required": false,
+            "description": "An optional unique identifier for this component. If used, this identifier must be unique across the entire document. You will need an identifier for your component if you want to anchor other components to it.",
+            "typed": false
+        },
+        {
+            "name": "layout",
+            "type": [
+                "Format\\ComponentLayout",
+                "string"
+            ],
+            "required": false,
+            "description": "An inline ComponentLayout object that contains layout information, or a string reference to a ComponentLayout object that is defined at the top level of the document.",
+            "typed": false
+        },
+        {
+            "name": "scene",
+            "type": "Format\\Scene",
+            "required": false,
+            "description": "A set of animations applied to any header component that is a child of this chapter.",
+            "typed": true
+        },
+        {
+            "name": "style",
+            "type": [
+                "Format\\ComponentStyle",
+                "string"
+            ],
+            "required": false,
+            "description": "An inline ComponentStyle object that defines the appearance of this component, or a string reference to a ComponentStyle object that is defined at the top level of the document.",
+            "typed": false
+        }
+    ]
+}

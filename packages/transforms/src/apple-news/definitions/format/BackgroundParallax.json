@@ -1,0 +1,20 @@
+{
+    "name": "Format\\BackgroundParallax",
+    "description": "The behavior whereby the background of a component moves slightly slower than the user\u2019s scroll speed.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": "Format\\Behavior",
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/backgroundparallax",
+    "properties": [
+        {
+            "name": "type",
+            "type": "string",
+            "required": true,
+            "description": "Always background_parallax for this behavior.",
+            "value": "background_parallax",
+            "read_only": true,
+            "typed": false
+        }
+    ]
+}

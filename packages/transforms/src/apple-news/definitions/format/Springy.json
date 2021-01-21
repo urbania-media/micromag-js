@@ -1,0 +1,20 @@
+{
+    "name": "Format\\Springy",
+    "description": "The behavior whereby a component acts as if it is on a short spring.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": "Format\\Behavior",
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/springy",
+    "properties": [
+        {
+            "name": "type",
+            "type": "string",
+            "required": true,
+            "description": "Always springy for this behavior.",
+            "value": "springy",
+            "read_only": true,
+            "typed": false
+        }
+    ]
+}

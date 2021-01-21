@@ -1,0 +1,61 @@
+{
+    "name": "Api\\Objects\\Section",
+    "description": "See the fields returned by the section endpoints.",
+    "version": "1.0.0+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/section",
+    "properties": [
+        {
+            "name": "createdAt",
+            "type": "date-time",
+            "required": false,
+            "description": "The date and time this section was created.",
+            "typed": false
+        },
+        {
+            "name": "id",
+            "type": "uuid",
+            "required": false,
+            "description": "The unique identifier of the specified section.",
+            "typed": false
+        },
+        {
+            "name": "isDefault",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean value that indicates whether this is the default section for the channel.",
+            "default": "false",
+            "typed": false
+        },
+        {
+            "name": "modifiedAt",
+            "type": "date-time",
+            "required": false,
+            "description": "The date and time this section was last modified.",
+            "typed": false
+        },
+        {
+            "name": "name",
+            "type": "string",
+            "required": false,
+            "description": "The name of the section.",
+            "typed": false
+        },
+        {
+            "name": "shareUrl",
+            "type": "string",
+            "required": false,
+            "description": "The URL of the channel in which this section appears.",
+            "typed": false
+        },
+        {
+            "name": "type",
+            "type": "string",
+            "required": false,
+            "description": "Section",
+            "typed": false
+        }
+    ]
+}

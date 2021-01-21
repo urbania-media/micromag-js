@@ -1,0 +1,29 @@
+{
+    "name": "Format\\Offset",
+    "description": "The object for setting an offset value to use with a text shadow.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/offset",
+    "properties": [
+        {
+            "name": "x",
+            "type": "number",
+            "required": true,
+            "description": "The x offset, as a value between -50.0 and 50.0. Implementation is device dependent.",
+            "minimum": -50,
+            "maximum": 50,
+            "typed": false
+        },
+        {
+            "name": "y",
+            "type": "number",
+            "required": true,
+            "description": "The y offset, as a value between -50.0 and 50.0. Implementation is device dependent.",
+            "minimum": -50,
+            "maximum": 50,
+            "typed": false
+        }
+    ]
+}

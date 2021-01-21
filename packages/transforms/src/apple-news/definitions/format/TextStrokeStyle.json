@@ -1,0 +1,27 @@
+{
+    "name": "Format\\TextStrokeStyle",
+    "description": "The object for defining the stroke to use for an outline on text.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/textstrokestyle",
+    "properties": [
+        {
+            "name": "color",
+            "type": "Color",
+            "required": false,
+            "description": "The stroke color.",
+            "typed": false
+        },
+        {
+            "name": "width",
+            "type": "integer",
+            "required": false,
+            "description": "The width of the stroke as a percentage relative to the font size.",
+            "default": 3,
+            "minimum": 0,
+            "typed": false
+        }
+    ]
+}

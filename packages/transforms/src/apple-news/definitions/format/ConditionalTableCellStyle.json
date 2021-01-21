@@ -1,0 +1,106 @@
+{
+    "name": "Format\\ConditionalTableCellStyle",
+    "description": "The object for applying a style to table cells that meet certain conditions.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": "Format\\TableCellStyle",
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/conditionaltablecellstyle",
+    "properties": [
+        {
+            "name": "selectors",
+            "type": "array:Format\\TableCellSelector",
+            "required": true,
+            "description": "An array of one or more selectors, each of which specifies one or more conditions.",
+            "typed": false
+        },
+        {
+            "name": "backgroundColor",
+            "type": "Color",
+            "required": false,
+            "description": "The background color for the cell.",
+            "typed": false
+        },
+        {
+            "name": "border",
+            "type": "Format\\TableBorder",
+            "required": false,
+            "description": "The border for the cell. Because the border is drawn inside the cell, it affects the size of the content within the cell. The bigger the border, the less available space for content.",
+            "typed": false
+        },
+        {
+            "name": "height",
+            "type": [
+                "SupportedUnits",
+                "integer"
+            ],
+            "required": false,
+            "description": "The height of the cell and its row, as an integer in points, or using one of the available units of measure for components.",
+            "typed": false
+        },
+        {
+            "name": "horizontalAlignment",
+            "type": "enum:string",
+            "required": false,
+            "description": "The horizontal alignment of content inside cells.",
+            "default": "left",
+            "enum_values": [
+                "left",
+                "center",
+                "right"
+            ],
+            "typed": false
+        },
+        {
+            "name": "minimumWidth",
+            "type": [
+                "SupportedUnits",
+                "integer"
+            ],
+            "required": false,
+            "description": "The minimum width of the cell and its column, as an integer in points or using one of the available units of measure for components.",
+            "typed": false
+        },
+        {
+            "name": "padding",
+            "type": [
+                "Format\\Padding",
+                "SupportedUnits",
+                "integer"
+            ],
+            "required": false,
+            "description": "The space around the content in a table cell in points, supported units, or a Padding object that specifies padding for each side separately.",
+            "typed": false
+        },
+        {
+            "name": "textStyle",
+            "type": [
+                "Format\\ComponentTextStyle",
+                "string"
+            ],
+            "required": false,
+            "description": "The name string of one of your styles in the Article ArticleDocument.componentTextStyles object.",
+            "typed": false
+        },
+        {
+            "name": "verticalAlignment",
+            "type": "enum:string",
+            "required": false,
+            "description": "A string that defines the vertical alignment of content inside cells.",
+            "default": "center",
+            "enum_values": [
+                "top",
+                "center",
+                "bottom"
+            ],
+            "typed": false
+        },
+        {
+            "name": "width",
+            "type": "integer",
+            "required": false,
+            "description": "The column width, as a percentage only. This property only indicates proportionate width and cannot be used to control exact width. See minimumWidth.",
+            "typed": false
+        }
+    ]
+}

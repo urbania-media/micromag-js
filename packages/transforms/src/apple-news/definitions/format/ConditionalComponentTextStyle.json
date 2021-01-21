@@ -1,0 +1,277 @@
+{
+    "name": "Format\\ConditionalComponentTextStyle",
+    "description": "The object for defining conditional properties for a component text style, and when the conditional properties are in effect.",
+    "version": "1.9+",
+    "from_class": null,
+    "extends": "Format\\TextStyle",
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/conditionalcomponenttextstyle",
+    "properties": [
+        {
+            "name": "conditions",
+            "type": "array:Format\\Condition",
+            "required": true,
+            "description": "An array of conditions that, when met, cause the conditional component text style properties to be in effect.",
+            "typed": false
+        },
+        {
+            "name": "backgroundColor",
+            "type": "Color",
+            "required": false,
+            "description": "The background color for text lines. This value defaults to transparent.",
+            "typed": false
+        },
+        {
+            "name": "dropCapStyle",
+            "type": "Format\\DropCapStyle",
+            "required": false,
+            "description": "The style of drop cap to apply to the first paragraph of the component.",
+            "typed": false
+        },
+        {
+            "name": "firstLineIndent",
+            "type": "integer",
+            "required": false,
+            "description": "The indent, in points, of the first line of each paragraph.",
+            "typed": false
+        },
+        {
+            "name": "fontFamily",
+            "type": "string",
+            "required": false,
+            "description": "The font family to use for text rendering; for example, Gill Sans. Using a combination of fontFamily, fontWeight, and fontStyle, you can define the appearance of the text. Apple News automatically selects the appropriate font variant from the available variants in that family.",
+            "typed": false
+        },
+        {
+            "name": "fontName",
+            "type": "string",
+            "required": false,
+            "description": "The font name to use to refer to an explicit font variant's PostScript name, such as GillSans-Bold. Alternatively, you can use a combination of fontFamily, fontWeight, and fontStyle to have Apple News automatically select the appropriate variant depending on the text formatting used.",
+            "typed": false
+        },
+        {
+            "name": "fontSize",
+            "type": "integer",
+            "required": false,
+            "description": "The size of the font, in points. By default, the font size is inherited from a parent component or a default style. As a best practice, try not to go below 16 points for body text. The fontSize may be automatically resized for different device sizes or for iOS devices with Larger Accessibility Sizes enabled.",
+            "typed": false
+        },
+        {
+            "name": "fontStyle",
+            "type": "enum:string",
+            "required": false,
+            "description": "The font style to apply for the selected font.",
+            "enum_values": [
+                "normal",
+                "italic",
+                "oblique"
+            ],
+            "typed": false
+        },
+        {
+            "name": "fontWeight",
+            "type": "enum:integer|string",
+            "required": false,
+            "description": "The font weight to apply for the selected font. In addition to explicit weights (named or numerical), lighter and bolder are available, to set text in a lighter or bolder font as compared to the surrounding text.",
+            "enum_values": [
+                100,
+                200,
+                300,
+                400,
+                500,
+                600,
+                700,
+                800,
+                900,
+                "thin",
+                "extra-light",
+                "extralight",
+                "ultra-light",
+                "light",
+                "regular",
+                "normal",
+                "book",
+                "roman",
+                "medium",
+                "semi-bold",
+                "semibold",
+                "demi-bold",
+                "demibold",
+                "bold",
+                "extra-bold",
+                "extrabold",
+                "ultra-bold",
+                "ultrabold",
+                "black",
+                "heavy",
+                "lighter",
+                "bolder"
+            ],
+            "typed": false
+        },
+        {
+            "name": "fontWidth",
+            "type": "enum:string",
+            "required": false,
+            "description": "The font width for the selected font (known in CSS as font-stretch). This value defines the width characteristics of a font variant between normal, condensed, and expanded. Some font families are categorized by width (for example, Avenir Next and Avenir Next Condensed), so make sure that the font family you select supports the specified font width.",
+            "enum_values": [
+                "ultra-condensed",
+                "extra-condensed",
+                "condensed",
+                "semi-condensed",
+                "normal",
+                "semi-expanded",
+                "expanded",
+                "extra-expanded",
+                "ultra-expanded"
+            ],
+            "typed": false
+        },
+        {
+            "name": "hangingPunctuation",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean that defines whether punctuation should be positioned outside the margins of the body text.",
+            "default": "false",
+            "typed": false
+        },
+        {
+            "name": "hyphenation",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean that indicates whether text should be hyphenated when necessary. By default, only components with the role body or intro have hyphenation enabled. All other components default to false.",
+            "typed": false
+        },
+        {
+            "name": "lineHeight",
+            "type": "integer",
+            "required": false,
+            "description": "The default line height, in points. The line height is recalculated as necessary, relative to the font size. For example, when the font is automatically resized to fit a smaller screen, the line height is also adjusted accordingly.",
+            "typed": false
+        },
+        {
+            "name": "linkStyle",
+            "type": "Format\\TextStyle",
+            "required": false,
+            "description": "Text styling for all links within a text component.",
+            "typed": false
+        },
+        {
+            "name": "orderedListItems",
+            "type": "Format\\ListItemStyle",
+            "required": false,
+            "description": "An object for use with text components with HTML markup. You can create text styles containing an orderedListItems definition to configure how to display list items inside <ol> tags.",
+            "typed": false
+        },
+        {
+            "name": "paragraphSpacingAfter",
+            "type": "integer",
+            "required": false,
+            "description": "An object that defines the spacing, in points, after each paragraph, relative to the line height.",
+            "typed": false
+        },
+        {
+            "name": "paragraphSpacingBefore",
+            "type": "integer",
+            "required": false,
+            "description": "An object that defines the spacing, in points, before each paragraph, relative to the line height.",
+            "typed": false
+        },
+        {
+            "name": "strikethrough",
+            "type": [
+                "Format\\TextDecoration",
+                "boolean"
+            ],
+            "required": false,
+            "description": "The text strikethrough. Set strikethrough to true to use the text color inherited from the textColor property as the strikethrough color, or provide a text decoration definition with a different color. By default, strikethrough is omitted (false).",
+            "typed": false
+        },
+        {
+            "name": "stroke",
+            "type": "Format\\TextStrokeStyle",
+            "required": false,
+            "description": "The stroke style for the text outline. By default, stroke is omitted.",
+            "typed": false
+        },
+        {
+            "name": "textAlignment",
+            "type": "enum:string",
+            "required": false,
+            "description": "The justification for all text within the component.",
+            "default": "none",
+            "enum_values": [
+                "left",
+                "center",
+                "right",
+                "justified",
+                "none"
+            ],
+            "typed": false
+        },
+        {
+            "name": "textColor",
+            "type": "Color",
+            "required": false,
+            "description": "The text color to apply to the selected text.",
+            "typed": false
+        },
+        {
+            "name": "textShadow",
+            "type": "Format\\Shadow",
+            "required": false,
+            "description": "The text shadow for this style.",
+            "typed": false
+        },
+        {
+            "name": "textTransform",
+            "type": "enum:string",
+            "required": false,
+            "description": "The transform to apply to the text.",
+            "enum_values": [
+                "uppercase",
+                "lowercase",
+                "capitalize",
+                "none"
+            ],
+            "typed": false
+        },
+        {
+            "name": "tracking",
+            "type": "number",
+            "required": false,
+            "description": "The amount of tracking (spacing between characters) in text, as a percentage of the font size. The actual spacing between letters is determined by combining information from the font and font size.",
+            "default": 0,
+            "typed": false
+        },
+        {
+            "name": "underline",
+            "type": [
+                "Format\\TextDecoration",
+                "boolean"
+            ],
+            "required": false,
+            "description": "The text underlining. You can use this style for links. Set underline to true to use the text color as the underline color, or provide a text decoration with a different color. By default, underline is omitted (false).",
+            "typed": false
+        },
+        {
+            "name": "unorderedListItems",
+            "type": "Format\\ListItemStyle",
+            "required": false,
+            "description": "An object for use with text components with HTML markup. You can create text styles containing an unorderedListItems definition to configure how to display list items inside <ul> tags.",
+            "typed": false
+        },
+        {
+            "name": "verticalAlignment",
+            "type": "enum:string",
+            "required": false,
+            "description": "The vertical alignment of the text. You can use this property for superscript and subscript.",
+            "enum_values": [
+                "superscript",
+                "subscript",
+                "baseline"
+            ],
+            "typed": false
+        }
+    ]
+}

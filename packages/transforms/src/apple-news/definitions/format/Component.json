@@ -1,0 +1,134 @@
+{
+    "name": "Format\\Component",
+    "description": "Properties shared by all component types.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": {
+        "property": "role",
+        "types": {
+            "map": "Map",
+            "divider": "Divider",
+            "banner_advertisement": "BannerAdvertisement",
+            "medium_rectangle_advertisement": "MediumRectangleAdvertisement",
+            "container": "Container",
+            "video": "Video",
+            "embedwebvideo": "EmbedWebVideo",
+            "embedvideo": "EmbedWebVideo",
+            "audio": "Audio",
+            "music": "Music",
+            "aside": "Aside",
+            "section": "Section",
+            "header": "Header",
+            "spacer": "FlexibleSpacer",
+            "chapter": "Chapter",
+            "article_link": "ArticleLink",
+            "body": "Body",
+            "article_title": "ArticleTitle",
+            "pullquote": "PullQuote",
+            "title": "Title",
+            "heading": "Heading",
+            "heading1": "Heading",
+            "heading2": "Heading",
+            "heading3": "Heading",
+            "heading4": "Heading",
+            "heading5": "Heading",
+            "heading6": "Heading",
+            "intro": "Intro",
+            "caption": "Caption",
+            "photo": "Photo",
+            "figure": "Figure",
+            "portrait": "Portrait",
+            "logo": "Logo",
+            "image": "Image",
+            "gallery": "Gallery",
+            "mosaic": "Mosaic",
+            "author": "Author",
+            "byline": "Byline",
+            "illustrator": "Illustrator",
+            "photographer": "Photographer",
+            "quote": "Quote",
+            "article_thumbnail": "ArticleThumbnail",
+            "datatable": "DataTable",
+            "htmltable": "HTMLTable",
+            "place": "Place",
+            "tweet": "Tweet",
+            "instagram": "Instagram",
+            "facebook_post": "FacebookPost",
+            "arkit": "ARKit"
+        }
+    },
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/component",
+    "properties": [
+        {
+            "name": "role",
+            "type": "string",
+            "required": true,
+            "description": "The role of a component (for example, title, body, or pullquote) conveys the semantic value of the content or its function within the article.",
+            "typed": false
+        },
+        {
+            "name": "anchor",
+            "type": "Format\\Anchor",
+            "required": false,
+            "description": "An object that defines vertical alignment with another component.",
+            "typed": false
+        },
+        {
+            "name": "animation",
+            "type": "Format\\ComponentAnimation",
+            "required": false,
+            "description": "An object that defines an animation to be applied to the component.",
+            "typed": true
+        },
+        {
+            "name": "behavior",
+            "type": "Format\\Behavior",
+            "required": false,
+            "description": "An object that defines behavior for a component, like Parallax or Springy.",
+            "typed": true
+        },
+        {
+            "name": "conditional",
+            "type": "array:Format\\ConditionalComponent",
+            "required": false,
+            "description": "An array of component properties that can be applied conditionally, and the conditions that cause them to be applied.",
+            "typed": false
+        },
+        {
+            "name": "hidden",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean value that determines whether the component is hidden.",
+            "default": "false",
+            "typed": false
+        },
+        {
+            "name": "identifier",
+            "type": "string",
+            "required": false,
+            "description": "A unique identifier for this component. If used, identifier must be unique across the entire document. An identifier is required if you want to anchor other components to this component.",
+            "typed": false
+        },
+        {
+            "name": "layout",
+            "type": [
+                "Format\\ComponentLayout",
+                "string"
+            ],
+            "required": false,
+            "description": "An inline ComponentLayout object that contains layout information, or a string reference to a ComponentLayout that is defined at the top level of the document.",
+            "typed": false
+        },
+        {
+            "name": "style",
+            "type": [
+                "Format\\ComponentStyle",
+                "string"
+            ],
+            "required": false,
+            "description": "An inline ComponentStyle object that defines the appearance of this component, or a string reference to a ComponentStyle that is defined at the top level of the document.",
+            "typed": false
+        }
+    ]
+}

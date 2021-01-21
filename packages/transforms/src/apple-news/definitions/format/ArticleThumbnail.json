@@ -1,0 +1,167 @@
+{
+    "name": "Format\\ArticleThumbnail",
+    "description": "The component for displaying a thumbnail image with an article link.",
+    "version": "1.9+",
+    "from_class": null,
+    "extends": "Format\\Component",
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/articlethumbnail",
+    "properties": [
+        {
+            "name": "role",
+            "type": "string",
+            "required": true,
+            "description": "Always article_thumbnail for this component.",
+            "value": "article_thumbnail",
+            "read_only": true,
+            "typed": false
+        },
+        {
+            "name": "accessibilityCaption",
+            "type": "string",
+            "required": false,
+            "description": "A caption that describes the image. The text is used for VoiceOver for iOS and VoiceOver for macOS. If accessibilityCaption is not provided, the caption value is used instead.",
+            "typed": false
+        },
+        {
+            "name": "additions",
+            "type": "array:Format\\ComponentLink",
+            "required": false,
+            "description": "Ignored for all children of ArticleLink.",
+            "typed": false
+        },
+        {
+            "name": "anchor",
+            "type": "Format\\Anchor",
+            "required": false,
+            "description": "An object that defines vertical alignment with another component.",
+            "typed": false
+        },
+        {
+            "name": "animation",
+            "type": "Format\\ComponentAnimation",
+            "required": false,
+            "description": "An object that defines an animation to be applied to the component.",
+            "typed": true
+        },
+        {
+            "name": "aspectRatio",
+            "type": "float",
+            "required": false,
+            "description": "The aspect ratio of the component in which the article thumbnail is displayed.",
+            "default": 1,
+            "typed": false
+        },
+        {
+            "name": "behavior",
+            "type": "Format\\Behavior",
+            "required": false,
+            "description": "An object that defines behavior for a component, like Parallax or Springy.",
+            "typed": true
+        },
+        {
+            "name": "caption",
+            "type": [
+                "Format\\CaptionDescriptor",
+                "string"
+            ],
+            "required": false,
+            "description": "A caption that describes the image. The text is seen when the image is in full screen. This text is also used by VoiceOver for iOS and VoiceOver for macOS, if accessibilityCaption text is not provided. The caption text does not appear in the main article view. To display a caption in the main article view, use the Caption component.",
+            "typed": false
+        },
+        {
+            "name": "conditional",
+            "type": "array:Format\\ConditionalComponent",
+            "required": false,
+            "description": "An array of component properties that can be applied conditionally, and the conditions that cause them to be applied.",
+            "typed": false
+        },
+        {
+            "name": "explicitContent",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean that indicates that the image may contain explicit content.",
+            "typed": false
+        },
+        {
+            "name": "fillMode",
+            "type": "enum:string",
+            "required": false,
+            "description": "A string that indicates how to display the image fill.",
+            "default": "cover",
+            "enum_values": [
+                "cover",
+                "fit"
+            ],
+            "typed": false
+        },
+        {
+            "name": "hidden",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean that indicates whether the component is hidden.",
+            "default": "false",
+            "typed": false
+        },
+        {
+            "name": "horizontalAlignment",
+            "type": "enum:string",
+            "required": false,
+            "description": "A string that sets the horizontal alignment of the image fill within its component.",
+            "default": "center",
+            "enum_values": [
+                "left",
+                "center",
+                "right"
+            ],
+            "typed": false
+        },
+        {
+            "name": "identifier",
+            "type": "string",
+            "required": false,
+            "description": "A unique identifier for this component. If used, the identifier must be unique across the entire document. An identifier is required if you want to anchor other components to this component. See Anchor.",
+            "typed": false
+        },
+        {
+            "name": "layout",
+            "type": [
+                "Format\\ComponentLayout",
+                "string"
+            ],
+            "required": false,
+            "description": "An inline ComponentLayout object that contains layout information, or a string reference to a ComponentLayout object that is defined at the top level of the document.",
+            "typed": false
+        },
+        {
+            "name": "style",
+            "type": [
+                "Format\\ComponentStyle",
+                "string"
+            ],
+            "required": false,
+            "description": "An inline ComponentStyle object that defines the appearance of this component, or a string reference to a ComponentStyle object that is defined at the top level of the document.",
+            "typed": false
+        },
+        {
+            "name": "URL",
+            "type": "uri",
+            "required": false,
+            "description": "The URL of an image file.",
+            "typed": false
+        },
+        {
+            "name": "verticalAlignment",
+            "type": "enum:string",
+            "required": false,
+            "description": "A string that defines the vertical alignment of the article thumbnail within the component.",
+            "default": "center",
+            "enum_values": [
+                "top",
+                "center",
+                "bottom"
+            ],
+            "typed": false
+        }
+    ]
+}

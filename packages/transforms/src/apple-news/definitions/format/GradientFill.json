@@ -1,0 +1,37 @@
+{
+    "name": "Format\\GradientFill",
+    "description": "The properties shared by all gradient fill types.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": "Format\\Fill",
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/gradientfill",
+    "properties": [
+        {
+            "name": "colorStops",
+            "type": "array:Format\\ColorStop",
+            "required": true,
+            "description": "An array of color stops. Each stop sets a color and location along the gradient.",
+            "typed": false
+        },
+        {
+            "name": "type",
+            "type": "string",
+            "required": true,
+            "description": "The type of gradient; for example linear_gradient.",
+            "typed": false
+        },
+        {
+            "name": "attachment",
+            "type": "enum:string",
+            "required": false,
+            "description": "A string that indicates how the fill should behave when a user scrolls.",
+            "default": "scroll",
+            "enum_values": [
+                "fixed",
+                "scroll"
+            ],
+            "typed": false
+        }
+    ]
+}

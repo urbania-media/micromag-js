@@ -1,0 +1,42 @@
+{
+    "name": "Format\\ConditionalTableRowStyle",
+    "description": "The object for applying styles to table rows that meet certain conditions.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": "Format\\TableRowStyle",
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/conditionaltablerowstyle",
+    "properties": [
+        {
+            "name": "selectors",
+            "type": "array:Format\\TableRowSelector",
+            "required": true,
+            "description": "An array of one or more selectors, each of which specifies one or more conditions.",
+            "typed": false
+        },
+        {
+            "name": "backgroundColor",
+            "type": "Color",
+            "required": false,
+            "description": "The background color for the row.",
+            "typed": false
+        },
+        {
+            "name": "divider",
+            "type": "Format\\TableStrokeStyle",
+            "required": false,
+            "description": "The stroke style for the divider line below the row.",
+            "typed": false
+        },
+        {
+            "name": "height",
+            "type": [
+                "SupportedUnits",
+                "integer"
+            ],
+            "required": false,
+            "description": "The height of the row, as an integer in points, or using one of the available units of measure for components. See Specifying Measurements for Components.",
+            "typed": false
+        }
+    ]
+}
