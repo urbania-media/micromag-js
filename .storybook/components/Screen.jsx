@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getDeviceScreens } from '../../packages/core/src/utils';
 import { useScreenSizeFromElement } from '../../packages/core/src/hooks';
-import * as MicromagPropTypes from '../../packages/core/src/PropTypes';
+import * as MicromagPropTypes from '../../packages/core/src/lib/PropTypes';
 import { ScreenProvider } from '../../packages/core/src/contexts/ScreenContext';
 import { ScreenSizeProvider } from '../../packages/core/src/contexts/ScreenSizeContext';
 import { ApiProvider } from '../../packages/data/src/contexts/ApiContext';
