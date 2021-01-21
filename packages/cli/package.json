@@ -1,6 +1,6 @@
 {
     "name": "@micromag/cli",
-    "version": "0.2.59",
+    "version": "0.2.60",
     "description": "",
     "keywords": [
         "javascript"
@@ -47,7 +47,7 @@
         "@babel/runtime": "^7.8.7",
         "@micromag/core": "^0.2.59",
         "@micromag/elements": "^0.2.59",
-        "@micromag/fields": "^0.2.59",
+        "@micromag/fields": "^0.2.60",
         "@micromag/screens": "^0.2.59",
         "@micromag/transforms": "^0.2.59",
         "@micromag/viewer": "^0.2.59",
