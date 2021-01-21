@@ -126,6 +126,8 @@ const Field = ({
 
     return !withoutFieldRow ? (
         <FieldRow
+            {...props}
+            {...fieldProps}
             label={label}
             errors={errors}
             help={help}
