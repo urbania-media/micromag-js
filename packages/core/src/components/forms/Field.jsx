@@ -77,17 +77,16 @@ const FieldForm = ({
         gotoFieldForm,
         closeFieldForm,
         closeForm,
-        className,
     };
 
     if (form !== null) {
         const FormComponent = getComponentFromName(form, formComponents);
-        return FormComponent !== null ? <FormComponent field={field} {...formProps} /> : null;
+        return FormComponent !== null ? <FormComponent field={field} {...formProps} className={className} /> : null;
     }
 
     // Use field component with isForm props
     return FieldComponent !== null ? (
-        <FieldComponent {...definitionProps} {...fieldProps} isForm {...formProps} />
+        <FieldComponent className={className} {...definitionProps} {...fieldProps} isForm {...formProps} />
     ) : null;
 };
 
