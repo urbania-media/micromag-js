@@ -283,10 +283,6 @@
     "defaultMessage": "Timeline",
     "description": "Timeline screen title"
   },
-  "HXw03G": {
-    "defaultMessage": "Select a font...",
-    "description": "No value label"
-  },
   "HseFdk": {
     "defaultMessage": "Edit",
     "description": "Button to edit a screen"
@@ -335,17 +331,9 @@
     "defaultMessage": "Scrollable",
     "description": "Scrollable field label"
   },
-  "OEckOD": {
-    "defaultMessage": "Text style",
-    "description": "Field label"
-  },
   "OJi+eg": {
     "defaultMessage": "Label",
     "description": "Field label"
-  },
-  "OMmp9X": {
-    "defaultMessage": "Text style",
-    "description": "Empty label"
   },
   "OdcEna": {
     "defaultMessage": "No slide...",
