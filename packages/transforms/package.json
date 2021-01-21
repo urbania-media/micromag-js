@@ -1,6 +1,6 @@
 {
     "name": "@micromag/transforms",
-    "version": "0.2.47",
+    "version": "0.2.57",
     "description": "",
     "keywords": [
         "javascript"
@@ -57,7 +57,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.12.5",
-        "@micromag/core": "^0.2.47",
+        "@micromag/core": "^0.2.57",
         "prop-types": "^15.7.2"
     },
     "publishConfig": {
