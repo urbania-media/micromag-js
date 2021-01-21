@@ -183,8 +183,8 @@ const FieldRow = ({
                             [buttonClassName]: buttonClassName !== null,
                         },
                     ])}
-                    buttonTheme={buttonTheme}
-                    buttonOutline={buttonOutline}
+                    theme={buttonTheme}
+                    outline={buttonOutline}
                     onClick={onClickRow}
                 >
                     <span className="form-row align-items-center">
