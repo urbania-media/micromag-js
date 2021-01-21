@@ -2,7 +2,8 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { PropTypes as MicromagPropTypes, getFileName } from '@micromag/core';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { getFileName } from '@micromag/core/utils';
 import MediaGallery from '@micromag/media-gallery';
 
 import FieldWithForm from './FieldWithForm';

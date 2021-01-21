@@ -5,7 +5,8 @@ import classNames from 'classnames';
 import { useHistory } from 'react-router';
 import { useIntl } from 'react-intl';
 import { Breadcrumb as BaseBreadcrumb, BackButton } from '@micromag/core/components';
-import { PropTypes as MicromagPropTypes, isMessage } from '@micromag/core';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { isMessage } from '@micromag/core/utils';
 import { useScreensManager, useFieldsManager } from '@micromag/core/contexts';
 
 import getFieldFromPath from '../../utils/getFieldFromPath';
