@@ -163,7 +163,7 @@ const Form = ({
     }, [fieldPaths, setFieldPaths]);
 
     // The last path
-    const fieldParams = fieldPaths.length > 0 ? fieldPaths[fieldPaths.length - 1] : '';
+    const fieldParams = fieldPaths.length > 0 ? fieldPaths[fieldPaths.length - 1] : null;
 
     // Get transition value
     // const { name: transitionName, timeout: transitionTimeout } = useFormTransition(
@@ -184,10 +184,12 @@ const Form = ({
             method={method}
             onSubmit={onSubmit}
         >
-            {!withoutBackButton && fields && fields.length > 0 && fieldParams ? (
-                <BackButton theme="primary" onClick={closeFieldForm} />
+            {!withoutBackButton && fields !== null && fields.length > 0 && fieldParams !== null ? (
+                <div className="mb-2">
+                    <BackButton theme="secondary" outline onClick={closeFieldForm} />
+                </div>
             ) : null}
-            {fields && fields.length > 0 && fieldParams ? (
+            {fields && fields.length > 0 && fieldParams !== null ? (
                 <div className={classNames(['w-100', styles.panel])} key="field">
                     <FieldForm
                         name={fieldParams.replace(/\//g, '.')}
@@ -199,7 +201,7 @@ const Form = ({
                     />
                 </div>
             ) : null}
-            {FieldsComponent && fields && fields.length > 0 && !fieldParams ? (
+            {FieldsComponent && fields !== null && fields.length > 0 && fieldParams === null ? (
                 <FieldsComponent
                     fields={fields}
                     value={value}
