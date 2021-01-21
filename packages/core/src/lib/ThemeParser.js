@@ -51,12 +51,15 @@ class ThemeParser {
                     let newFieldValue = fieldValue;
                     if (fieldValue !== null && fieldType === 'text-element') {
                         newFieldValue = {
-                            color: fieldColor !== null ? themeColors[fieldColor] || null : null,
+                            color:
+                                fieldColor !== null && themeColors !== null
+                                    ? themeColors[fieldColor] || null
+                                    : null,
                             ...themeComponent[key],
                             ...fieldValue,
                             textStyle: {
                                 color:
-                                    fieldTextColor !== null
+                                    fieldTextColor !== null && themeColors !== null
                                         ? themeColors[fieldTextColor] || null
                                         : null,
                                 ...(fieldTextStyle !== null && themeTextSyle !== null

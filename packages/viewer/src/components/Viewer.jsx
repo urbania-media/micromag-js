@@ -353,8 +353,6 @@ const Viewer = ({
         console.log('@TODO share'); // eslint-disable-line
     }, [trackingEnabled, trackEvent, currentScreen]);
 
-    console.log(story);
-
     return (
         <ScreenSizeProvider size={screenSize}>
             <ViewerProvider
