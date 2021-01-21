@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
-import { useTrackEvent } from '@micromag/core/hooks';
+import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
@@ -31,6 +31,7 @@ const propTypes = {
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
+    type: PropTypes.string,
     className: PropTypes.string,
 };
 
@@ -46,6 +47,7 @@ const defaultProps = {
     maxRatio: 3 / 4,
     transitions: null,
     transitionStagger: 75,
+    type: null,
     className: null,
 };
 
@@ -61,9 +63,10 @@ const RankingScreen = ({
     maxRatio,
     transitions,
     transitionStagger,
+    type,
     className,
 }) => {
-    const trackEvent = useTrackEvent();
+    const trackScreenEvent = useTrackScreenEvent();
     const { width, height } = useScreenSize();
     const { menuSize } = useViewer();
 
@@ -78,10 +81,13 @@ const RankingScreen = ({
     const isSideLayout = layout === 'side';
     const transitionPlaying = current;
     const transitionDisabled = !isView && !isEdit;
+    const trackingEnabled = isView;
 
     const onScrolledBottom = useCallback(() => {
-        trackEvent('screen-interaction', 'scrolled');
-    }, [trackEvent]);
+        if (trackingEnabled) {
+            trackScreenEvent(`screen-${type}`, 'scroll', 'ranking-list');
+        }
+    }, [trackScreenEvent, trackingEnabled, type]);
 
     const ranksRefs = useRef([]);
     const [maxSideRankWidth, setMaxSideRankWidth] = useState(null);

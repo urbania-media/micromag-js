@@ -73,7 +73,7 @@ const AudioScreen = ({
     const onProgressStep = useCallback(
         (step) => {
             if (trackingEnabled) {
-                trackAudio(audio, `progress ${Math.round(step * 100, 10)}%`);
+                trackAudio(audio, `progress-${Math.round(step * 100, 10)}%`);
             }
         },
         [trackingEnabled, trackAudio, audio],

@@ -27,7 +27,7 @@
             "audio": {
                 "media": {
                     "type": "audio",
-                    "url": "static/media/test.5773d121.mp3",
+                    "url": "https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3",
                     "metadata": { "duration": 16000 }
                 },
                 "autoPlay": false,

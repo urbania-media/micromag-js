@@ -21,7 +21,7 @@ const getStoryHtml = async (story) => {
     await page.evaluate(storyToRender => renderStory(storyToRender), story);
     const pageContent = await page.content();
     fse.writeFile(path.join(process.cwd(), './story.html'), pageContent);
-    await browser.close();
+    // await browser.close();
     server.close();
 };
 

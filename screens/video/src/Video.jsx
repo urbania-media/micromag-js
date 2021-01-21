@@ -74,7 +74,7 @@ const VideoScreen = ({
     const onProgressStep = useCallback(
         (step) => {
             if (trackingEnabled) {
-                trackVideo(video, `progress ${Math.round(step * 100, 10)}%`);
+                trackVideo(video, `progress-${Math.round(step * 100, 10)}%`);
             }
         },
         [trackingEnabled, trackVideo, video],

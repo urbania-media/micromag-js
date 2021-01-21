@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes, useResizeObserver } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { PlaceholderMap, Transitions, Button, ScreenElement } from '@micromag/core/components';
-import { useTrackEvent } from '@micromag/core/hooks';
+import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
@@ -40,10 +40,11 @@ const propTypes = {
     current: PropTypes.bool,
     active: PropTypes.bool,
     maxRatio: PropTypes.number,
-    transitions: MicromagPropTypes.transitions,
-    className: PropTypes.string,
+    transitions: MicromagPropTypes.transitions,    
     onEnableInteraction: PropTypes.func,
     onDisableInteraction: PropTypes.func,
+    type: PropTypes.string,
+    className: PropTypes.string,
 };
 
 const defaultProps = {
@@ -59,10 +60,11 @@ const defaultProps = {
     current: true,
     active: true,
     maxRatio: 3 / 4,
-    transitions: null,
-    className: null,
+    transitions: null,    
     onEnableInteraction: null,
     onDisableInteraction: null,
+    type: null,
+    className: null,
 };
 
 const MapScreen = ({
@@ -78,12 +80,13 @@ const MapScreen = ({
     current,
     active,
     maxRatio,
-    transitions,
-    className,
+    transitions,    
     onEnableInteraction,
     onDisableInteraction,
+    type,
+    className,
 }) => {
-    const trackEvent = useTrackEvent();
+    const trackScreenEvent = useTrackScreenEvent();
     const [opened, setOpened] = useState(false);
 
     const [selectedMarker, setSelectedMarker] = useState(null);
@@ -120,49 +123,48 @@ const MapScreen = ({
         lastRenderedMarker.current = lastMarker;
         setSelectedMarker(null);
         if (trackingEnabled) {
-            trackEvent('screen-interaction', 'map', {
-                label: 'marker-unselect',
+            trackScreenEvent(`screen-${type}`, 'click-marker-close', lastMarker.title.body, {
                 marker: lastMarker,
             });
         }
-    }, [finalMarkers, selectedMarker, trackEvent, trackingEnabled]);
+    }, [finalMarkers, selectedMarker, trackScreenEvent, type, trackingEnabled]);
 
     const onClickMarker = useCallback(
         (e, i) => {
             const marker = finalMarkers[i];
             setSelectedMarker(i);
             if (trackingEnabled) {
-                trackEvent('screen-interaction', 'map', { label: 'marker-select', marker });
+                trackScreenEvent(`screen-${type}`, 'click-marker-open', marker.title.body, { marker });
             }
         },
-        [finalMarkers, setSelectedMarker, trackEvent, trackingEnabled],
+        [finalMarkers, setSelectedMarker, trackScreenEvent, type, trackingEnabled],
     );
 
     const onSplashClick = useCallback(() => {
         setOpened(true);
         if (trackingEnabled) {
-            trackEvent('screen-interaction', 'map', { label: 'start' });
+            trackScreenEvent(`screen-${type}`, 'click-button', button.body);
         }
         if (onDisableInteraction !== null) {
             onDisableInteraction();
         }
-    }, [setOpened, onDisableInteraction, trackEvent, trackingEnabled]);
+    }, [setOpened, onDisableInteraction, trackScreenEvent, type, trackingEnabled, button]);
 
     const onCloseClick = useCallback(() => {
         setOpened(false);
         if (trackingEnabled) {
-            trackEvent('screen-interaction', 'map', { label: 'stop' });
+            trackScreenEvent(`screen-${type}`, 'click-close', 'close-icon');
         }
         if (onEnableInteraction !== null) {
             onEnableInteraction();
         }
-    }, [setOpened, onEnableInteraction, trackEvent, trackingEnabled]);
+    }, [setOpened, onEnableInteraction, trackScreenEvent, type, trackingEnabled]);
 
     const onMapDragEnd = useCallback(() => {
         if (trackingEnabled) {
-            trackEvent('screen-interaction', 'map', { label: 'dragged' });
+            trackScreenEvent(`screen-${type}`, 'drag-map', 'google-maps');
         }
-    }, [trackEvent]);
+    }, [trackScreenEvent, type]);
 
     const {
         ref: markerOverContentInnerRef,

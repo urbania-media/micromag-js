@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
-import { useResizeObserver, useTrackEvent } from '@micromag/core/hooks';
+import { useResizeObserver, useTrackScreenEvent } from '@micromag/core/hooks';
 import { isImageFilled, isTextFilled } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
@@ -31,6 +31,7 @@ const propTypes = {
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
+    type: PropTypes.string,
     className: PropTypes.string,
 };
 
@@ -45,6 +46,7 @@ const defaultProps = {
     maxRatio: 3 / 4,
     transitions: null,
     transitionStagger: 75,
+    type: null,
     className: null,
 };
 
@@ -59,9 +61,10 @@ const GalleryFeedScreen = ({
     maxRatio,
     transitions,
     transitionStagger,
-    className,
+    type,
+    className,    
 }) => {
-    const trackEvent = useTrackEvent();
+    const trackScreenEvent = useTrackScreenEvent();
     const { width, height } = useScreenSize();
     const { menuSize } = useViewer();
 
@@ -73,6 +76,7 @@ const GalleryFeedScreen = ({
     const ready = imagesLoaded >= imagesCount;
     const transitionPlaying = current && ready;
     const transitionDisabled = !isView && !isEdit;
+    const trackingEnabled = isView;
 
     const onImageLoaded = useCallback(() => {
         setImagesLoaded(imagesLoaded + 1);
@@ -92,8 +96,10 @@ const GalleryFeedScreen = ({
     const { width: firstImageRefWidth } = contentRect || {};
 
     const onScrolledBottom = useCallback(() => {
-        trackEvent('screen-interaction', 'scrolled');
-    }, [trackEvent]);
+        if (trackingEnabled) {
+            trackScreenEvent(`screen-${type}`, 'scroll', 'feed');
+        }
+    }, [trackScreenEvent, type, trackingEnabled]);
 
     finalImages.forEach((image, index) => {
         const finalImage = withCaptions ? image : { media: image };

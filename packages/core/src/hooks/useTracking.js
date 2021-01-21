@@ -23,11 +23,25 @@ export const useTrackEvent = () => {
         return () => {};
     }
 
+    return useCallback((category = null, action = null, label = null, opts) => {
+        if (category !== null && action !== null) {
+            tracking.trackEvent(category, action, label, opts);
+        }
+    }, []);
+};
+
+export const useTrackScreenEvent = () => {
+    const tracking = useTracking();
+
+    if (typeof tracking === 'undefined') {
+        return () => {};
+    }
+
     const screenContext = useScreen();
 
-    return useCallback((category = null, action = null, opts) => {
+    return useCallback((category = null, action = null, label = null, opts) => {
         if (category !== null && action !== null) {
-            tracking.trackEvent(category, action, opts, screenContext);
+            tracking.trackScreenEvent(category, action, label, opts, screenContext);
         }
     }, []);
 };
@@ -44,6 +58,22 @@ export const useTrackVideo = () => {
     return useCallback((video = null, action = null, opts) => {
         if (video !== null && action !== null) {
             tracking.trackVideo(video, action, opts, screenContext);
+        }
+    }, []);
+};
+
+export const useTrackVideo360 = () => {
+    const tracking = useTracking();
+
+    if (typeof tracking === 'undefined') {
+        return () => {};
+    }
+
+    const screenContext = useScreen();
+
+    return useCallback((video = null, action = null, opts) => {
+        if (video !== null && action !== null) {
+            tracking.trackVideo360(video, action, opts, screenContext);
         }
     }, []);
 };

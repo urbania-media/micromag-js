@@ -289,6 +289,7 @@ const Viewer = ({
     const trackingEnabled = renderContext === 'view';
     const validIndex = screens.length > 0 && currentIndex < screens.length;
     const currentScreen = validIndex ? screens[currentIndex] : null;
+    const { type: screenType = null } = currentScreen || {};
 
     useEffect(() => {
         if (trackingEnabled && currentScreen !== null) {
@@ -309,15 +310,16 @@ const Viewer = ({
                 setMenuOpened(true);
             }
             if (trackingEnabled) {
-                const trackAction = goToScreen ? 'viewer-menu' : 'open';
+                const trackAction = goToScreen ? 'click-screen-change' : 'click-open';
                 trackEvent(
                     'viewer-menu',
                     trackAction,
-                    clickedOnDot ? { label: 'dot', dotIndex: index } : { label: 'menu' },
+                    clickedOnDot ? `screen-${index + 1}` : 'menu-icon',
+                    { screenId, screenType },
                 );
             }
         },
-        [changeIndex, setMenuOpened, landscape, trackingEnabled, trackEvent],
+        [changeIndex, setMenuOpened, landscape, trackingEnabled, trackEvent, screenId, screenType],
     );
 
     // handle preview menu item click
@@ -328,11 +330,13 @@ const Viewer = ({
             setMenuOpened(false);
 
             if (trackingEnabled) {
-                const clickedScreen = screens[index];
-                trackEvent(currentScreen, 'viewer-menu', 'screen-change', { clickedScreen });
+                trackEvent('viewer-menu', 'click-screen-change', `screen-${index}`, {
+                    screenId,
+                    screenType,
+                });
             }
         },
-        [setMenuOpened, changeIndex, trackingEnabled, currentScreen, trackEvent, screens],
+        [setMenuOpened, changeIndex, trackingEnabled, trackEvent, screenId, screenType],
     );
 
     // Handle preview menu close click
@@ -340,18 +344,18 @@ const Viewer = ({
     const onClickPreviewMenuClose = useCallback(() => {
         setMenuOpened(false);
         if (trackingEnabled) {
-            trackEvent(currentScreen, 'viewer-menu', 'close');
+            trackEvent('viewer-menu', 'click-close', 'close-icon', { screenId, screenType });
         }
-    }, [setMenuOpened, trackingEnabled, trackEvent, currentScreen]);
+    }, [setMenuOpened, trackingEnabled, trackEvent, screenId, screenType]);
 
     // Handle preview menu share click
 
     const onClickShare = useCallback(() => {
         if (trackingEnabled) {
-            trackEvent(currentScreen, 'viewer-menu', 'share');
+            trackEvent('viewer-menu', 'click-share', 'share-icon', { screenId, screenType });
         }
         console.log('@TODO share'); // eslint-disable-line
-    }, [trackingEnabled, trackEvent, currentScreen]);
+    }, [trackingEnabled, trackEvent, screenId, screenType]);
 
     return (
         <ScreenSizeProvider size={screenSize}>

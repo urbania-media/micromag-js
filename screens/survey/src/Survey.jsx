@@ -8,7 +8,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { useTrackEvent } from '@micromag/core/hooks';
+import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
@@ -38,6 +38,7 @@ const propTypes = {
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
+    type: PropTypes.string,
     className: PropTypes.string,
 };
 
@@ -53,6 +54,7 @@ const defaultProps = {
     maxRatio: 3 / 4,
     transitions: null,
     transitionStagger: 100,
+    type: null,
     className: null,
 };
 
@@ -68,9 +70,10 @@ const SurveyScreen = ({
     maxRatio,
     transitions,
     transitionStagger,
+    type,
     className,
 }) => {
-    const trackEvent = useTrackEvent();
+    const trackScreenEvent = useTrackScreenEvent();
     const { width, height } = useScreenSize();
     const { menuSize } = useViewer();
 
@@ -88,16 +91,19 @@ const SurveyScreen = ({
 
     const transitionPlaying = current;
     const transitionDisabled = !isView && !isEdit;
+    const trackingEnabled = isView;
 
     const onAnswerClick = useCallback(
         (answerIndex) => {
             if (userAnswerIndex === null) {
                 setUserAnswerIndex(answerIndex);
-                const userAnswer = answers[answerIndex];
-                trackEvent('screen-interaction', 'survey-answered', { userAnswer });
+                const answer = answers[answerIndex];
+                if (trackingEnabled) {
+                    trackScreenEvent(`screen-${type}`, 'click-answer', answer.label.body, { answer });
+                }
             }
         },
-        [userAnswerIndex, setUserAnswerIndex, trackEvent],
+        [userAnswerIndex, setUserAnswerIndex, trackScreenEvent, trackingEnabled, type],
     );
 
     useEffect( () => {

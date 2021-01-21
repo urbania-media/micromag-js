@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
-import { useTrackEvent } from '@micromag/core/hooks';
+import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
@@ -40,6 +40,7 @@ const propTypes = {
     maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
+    type: PropTypes.string,
     className: PropTypes.string,
 };
 
@@ -58,6 +59,7 @@ const defaultProps = {
     maxRatio: 3 / 4,
     transitions: null,
     transitionStagger: 75,
+    type: null,
     className: null,
 };
 
@@ -76,21 +78,24 @@ const Timeline = ({
     maxRatio,
     transitions,
     transitionStagger,
+    type,
     className,
 }) => {
-    const trackEvent = useTrackEvent();
+    const trackScreenEvent = useTrackScreenEvent();
     const { width, height } = useScreenSize();
     const { menuSize } = useViewer();
     
     const landscape = width > height;
 
     const { isPlaceholder, isPreview, isView, isEdit } = useScreenRenderContext();
-
+    const trackingEnabled = isView;
     const finalItems = isPlaceholder ? [...new Array(5)].map(() => ({})): items;
 
     const onScrolledBottom = useCallback(() => {
-        trackEvent('screen-interaction', 'scrolled');
-    }, [trackEvent]);
+        if (trackingEnabled) {
+            trackScreenEvent(`screen-${type}`, 'scroll', 'timeline');
+        }
+    }, [trackScreenEvent, trackingEnabled, type]);
 
     const itemsCount = finalItems !== null ? finalItems.length : 0;
     const hasItems = finalItems !== null && itemsCount;

@@ -11,7 +11,7 @@ import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { useTrackEvent } from '@micromag/core/hooks';
+import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
@@ -46,6 +46,7 @@ const propTypes = {
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     resultsTransitionDuration: PropTypes.number,
+    type: PropTypes.string,
     className: PropTypes.string,
 };
 
@@ -63,6 +64,7 @@ const defaultProps = {
     transitions: null,
     transitionStagger: 100,
     resultsTransitionDuration: 500,
+    type: null,
     className: null,
 };
 
@@ -80,9 +82,10 @@ const QuizScreen = ({
     transitions,
     transitionStagger,
     resultsTransitionDuration,
+    type,
     className,
 }) => {
-    const trackEvent = useTrackEvent();
+    const trackScreenEvent = useTrackScreenEvent();
     const { width, height } = useScreenSize();
     const { menuSize } = useViewer();
 
@@ -106,6 +109,7 @@ const QuizScreen = ({
 
     const transitionPlaying = current;
     const transitionDisabled = !isView && !isEdit;
+    const trackingEnabled = isView;
 
     const onAnswerClick = useCallback(
         (answerI) => {
@@ -115,7 +119,9 @@ const QuizScreen = ({
                 timeout = setTimeout(setShowResults, showResultsDelay, true);
 
                 const answer = answers[answerI];
-                trackEvent('screen-interaction', 'quiz', { label: 'answered', answer });
+                if (trackingEnabled) {
+                    trackScreenEvent(`screen-${type}`, 'click-answer', answer.label.body, { answer });
+                }
             }
 
             return () => {
@@ -124,7 +130,7 @@ const QuizScreen = ({
                 }
             };
         },
-        [userAnswerIndex, setUserAnswerIndex, showResultsDelay, trackEvent, answers],
+        [userAnswerIndex, setUserAnswerIndex, showResultsDelay, trackScreenEvent, trackingEnabled, answers],
     );
 
     useEffect(() => {

@@ -8,7 +8,7 @@ class Tracking extends BaseTracking {
 
     trackScreenView(screen, screenIndex) {
         const { id: screenId = null, type: screenType = null } = screen || {};
-        console.log('trackScreenView', screenId, screenType, screenIndex);
+        console.log('track screenView', screenId, screenType, screenIndex);
 
         this.push({
             event: 'pageView',
@@ -18,11 +18,8 @@ class Tracking extends BaseTracking {
         });
     }
 
-    trackEvent(category, action, { label = null, value = null, ...opts } = {}, screenContext) {
-        const { data = null, definition = null } = screenContext || {};
-        const { id: screenId = null, type: screenType } = data || {};
-        const { id: screenDefinition = null } = definition || {};
-        console.log('trackEvent', category, action, label, value, opts);
+    trackEvent(category, action, label, { value = null, screenId = null, screenType = null, ...opts } = {}) {
+        console.log('track event', category, action, label, opts);
         this.push({
             ...opts,
             event: 'event',
@@ -32,28 +29,42 @@ class Tracking extends BaseTracking {
             eventValue: value,
             screenId,
             screenType,
-            screenDefinition,
         });
     }
 
-    trackMedia(type, media, action, { label = null, value = null, ...opts } = {}, screenContext) {
-        const { id: videoId = null, title = null, duration = null, currentTime = null } = media || {};
-        const { data = null, definition = null } = screenContext || {};
+    trackScreenEvent(category, action, label, { value = null, ...opts } = {}, screenContext) {
+        const { data = null } = screenContext || {};
         const { id: screenId = null, type: screenType } = data || {};
-        const { id: screenDefinition = null } = definition || {};
-        console.log(`track${type}`, action, label, value, opts);
+        console.log('track event', category, action, label, opts);
         this.push({
             ...opts,
             event: 'event',
-            eventCategory: type,
+            eventCategory: category,
             eventAction: action,
-            eventLabel: title,
+            eventLabel: label,
+            eventValue: value,
             screenId,
             screenType,
-            screenDefinition,
-            videoId,
-            videoCurrentTime: currentTime !== null ? Math.round(currentTime) : null,
-            videoProgress:
+        });
+    }
+
+    trackMedia(type, media, action, { value = null, ...opts } = {}, screenContext) {
+        const { id: mediaId = null, name = null, duration = null, currentTime = null } = media || {};
+        const { data = null } = screenContext || {};
+        const { id: screenId = null, type: screenType } = data || {};
+        console.log(`track ${type}`, action, name, opts);
+        this.push({
+            ...opts,
+            event: 'event',
+            eventCategory: `screen-${type}`,
+            eventAction: action,
+            eventLabel: name,
+            eventValue: value,
+            screenId,
+            screenType,
+            mediaId,
+            mediaCurrentTime: currentTime !== null ? Math.round(currentTime) : null,
+            mediaProgress:
                 currentTime !== null && duration !== null && duration > 0
                     ? Math.round(currentTime / duration * 100)
                     : null,
@@ -61,11 +72,15 @@ class Tracking extends BaseTracking {
     }
 
     trackVideo(...params) {
-        this.trackMedia('Video', ...params);
+        this.trackMedia('video', ...params);
+    }
+
+    trackVideo360(...params) {
+        this.trackMedia('video-360', ...params);
     }
 
     trackAudio(...params) {
-        this.trackMedia('Audio', ...params);
+        this.trackMedia('audio', ...params);
     }
 }
 
