@@ -1,4 +1,4 @@
-import EventsManager from '../lib/EventsManager';
+import { EventsManager } from '../lib';
 import { createUseEvent } from '../utils';
 
 const eventsManager = typeof window !== 'undefined' ? new EventsManager(window) : null;

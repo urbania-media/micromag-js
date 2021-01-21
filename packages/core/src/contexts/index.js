@@ -2,7 +2,6 @@ export * from './ComponentsContext';
 export * from './FieldsContext';
 export * from './GoogleApiClientContext';
 export * from './GoogleMapsClientContext';
-export * from './MediasContext';
 export * from './ModalsContext';
 export * from './PanelsContext';
 export * from './RoutesContext';

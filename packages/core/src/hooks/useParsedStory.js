@@ -1,21 +1,20 @@
 import { useMemo } from 'react';
-
-import useThemeParser from './useThemeParser';
-import useMediasParser from './useMediasParser';
+import { useScreensManager, useFieldsManager } from '../contexts';
+import { StoryParser } from '../lib';
 
 const useParsedStory = (story, { disabled = false, withTheme = true, withMedias = true } = {}) => {
-    const { fromPath: parseMedias } = useMediasParser();
-    const parseTheme = useThemeParser();
+    const screensManager = useScreensManager();
+    const fieldsManager = useFieldsManager();
+    const parser = useMemo(() => new StoryParser({ screensManager, fieldsManager }), [
+        screensManager,
+        fieldsManager,
+    ]);
     const newStory = useMemo(() => {
-        if (disabled || story === null) {
+        if (disabled) {
             return story;
         }
-        const parsers = [
-            [withMedias, parseMedias],
-            [withTheme, parseTheme]
-        ];
-        return parsers.reduce((parsedStory, [enabled, parse]) => enabled ? parse(parsedStory) : parsedStory, story);
-    }, [story, disabled, withMedias, withTheme, parseMedias, parseTheme]);
+        return parser.parse(story, { withMedias, withTheme });
+    }, [parser, disabled, withMedias, withTheme]);
     return newStory;
 };
 

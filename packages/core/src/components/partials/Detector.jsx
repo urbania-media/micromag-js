@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
 import { useIntersectionObserver } from '../../hooks';
 
-// import * as AppPropTypes from '../../lib/PropTypes';
-
 const propTypes = {
     throttleDelay: PropTypes.number,
     threshold: PropTypes.arrayOf(PropTypes.number),

@@ -10,15 +10,18 @@ const files = {
             alias({
                 entries: [
                     {
-                        find: /\.\/(contexts|utils|hooks|components)\/?$/,
-                        replacement: '@micromag/core/$1',
+                        find: /(\.|\.\.)\/(contexts|utils|hooks|components)\/?$/,
+                        replacement: '@micromag/core/$2',
                     },
                 ],
             }),
         ],
         resolveOptions: {
             extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
-            resolveOnly: [path.join(__dirname, './src/PropTypes')],
+            resolveOnly: [
+                path.join(__dirname, './src/PropTypes'),
+                new RegExp(path.join(__dirname, './src/lib')),
+            ],
         },
     },
 
@@ -27,8 +30,12 @@ const files = {
             alias({
                 entries: [
                     {
-                        find: /^(\.\.\/)*\.\.\/\.\.\/(contexts|utils|hooks)/,
+                        find: /^(\.\.\/)*\.\.\/\.\.\/(contexts|utils|hooks)\/?$/,
                         replacement: '@micromag/core/$2',
+                    },
+                    {
+                        find: /(\.\.\/)*\.\.\/\.\.\/lib\/?$/,
+                        replacement: '@micromag/core',
                     },
                 ],
             }),
@@ -51,6 +58,10 @@ const files = {
                         find: /\.\.\/(hooks|utils|contexts)\/?$/,
                         replacement: '@micromag/core/$1',
                     },
+                    {
+                        find: /\.\.\/lib\/?$/,
+                        replacement: '@micromag/core',
+                    },
                 ],
             }),
         ],
@@ -71,8 +82,12 @@ const files = {
             alias({
                 entries: [
                     {
-                        find: /\.\.\/(contexts|utils)/,
+                        find: /\.\.\/(contexts|utils)\/?$/,
                         replacement: '@micromag/core/$1',
+                    },
+                    {
+                        find: /\.\.\/lib\/?$/,
+                        replacement: '@micromag/core',
                     },
                 ],
             }),

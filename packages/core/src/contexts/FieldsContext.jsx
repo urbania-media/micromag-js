@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import * as MicromagPropTypes from '../PropTypes';
 import { ComponentsProvider, FIELDS_NAMESPACE } from './ComponentsContext';
-import FieldsManager from '../lib/FieldsManager';
+import { FieldsManager } from '../lib';
 
 export const FieldsContext = React.createContext(null);
 
