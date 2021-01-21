@@ -1,0 +1,31 @@
+{
+    "name": "Format\\Margin",
+    "description": "The object for defining the space above and below a component.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/margin",
+    "properties": [
+        {
+            "name": "bottom",
+            "type": [
+                "SupportedUnits",
+                "integer"
+            ],
+            "required": false,
+            "description": "The bottom margin in points, or with any of the units of measure for components. See Specifying Measurements for Components.",
+            "typed": false
+        },
+        {
+            "name": "top",
+            "type": [
+                "SupportedUnits",
+                "integer"
+            ],
+            "required": false,
+            "description": "The top margin in points, or with any of the units of measure for components. See Specifying Measurements for Components.",
+            "typed": false
+        }
+    ]
+}

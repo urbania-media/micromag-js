@@ -1,0 +1,118 @@
+{
+    "name": "Format\\Audio",
+    "description": "The component for adding a playable audio clip.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": "Format\\Component",
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/audio",
+    "properties": [
+        {
+            "name": "role",
+            "type": "string",
+            "required": true,
+            "description": "Always audio for this component.",
+            "value": "audio",
+            "read_only": true,
+            "typed": false
+        },
+        {
+            "name": "URL",
+            "type": "uri",
+            "required": true,
+            "description": "The URL of an audio file (http or https only). This component supports all AVPlayer audio formats, including the following:",
+            "typed": false
+        },
+        {
+            "name": "accessibilityCaption",
+            "type": "string",
+            "required": false,
+            "description": "A caption that describes the content of the audio file. The text is used for VoiceOver for iOS and VoiceOver for macOS. If accessibilityCaption is not provided, the caption value is used for VoiceOver for iOS and VoiceOver for macOS.",
+            "typed": false
+        },
+        {
+            "name": "anchor",
+            "type": "Format\\Anchor",
+            "required": false,
+            "description": "An object that defines vertical alignment with another component.",
+            "typed": false
+        },
+        {
+            "name": "animation",
+            "type": "Format\\ComponentAnimation",
+            "required": false,
+            "description": "An object that defines an animation to be applied to the component.",
+            "typed": true
+        },
+        {
+            "name": "behavior",
+            "type": "Format\\Behavior",
+            "required": false,
+            "description": "An object that defines behavior for a component, like Parallax or Springy.",
+            "typed": true
+        },
+        {
+            "name": "caption",
+            "type": "string",
+            "required": false,
+            "description": "A caption that describes the content of the audio file. This text is also used by VoiceOver for iOS and VoiceOver for macOS if accessibilityCaption is not provided, or it can be shown when the audio cannot be played.",
+            "typed": false
+        },
+        {
+            "name": "conditional",
+            "type": "array:Format\\ConditionalComponent",
+            "required": false,
+            "description": "An array of component properties that can be applied conditionally, and the conditions that cause them to be applied.",
+            "typed": false
+        },
+        {
+            "name": "explicitContent",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean value that indicates the audio may contain explicit content.",
+            "typed": false
+        },
+        {
+            "name": "hidden",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean value that determines whether the component is hidden.",
+            "default": "false",
+            "typed": false
+        },
+        {
+            "name": "identifier",
+            "type": "string",
+            "required": false,
+            "description": "An optional unique identifier for this component. If used, this identifier must be unique across the entire document. You will need an identifier for your component if you want to anchor other components to it.",
+            "typed": false
+        },
+        {
+            "name": "imageURL",
+            "type": "string",
+            "required": false,
+            "description": "The URL of an image file that represents the audio file, such as a cover image.",
+            "typed": false
+        },
+        {
+            "name": "layout",
+            "type": [
+                "Format\\ComponentLayout",
+                "string"
+            ],
+            "required": false,
+            "description": "An inline ComponentLayout object that contains layout information, or a string reference to a ComponentLayout object that is defined at the top level of the document.",
+            "typed": false
+        },
+        {
+            "name": "style",
+            "type": [
+                "Format\\ComponentStyle",
+                "string"
+            ],
+            "required": false,
+            "description": "An inline ComponentStyle object that defines the appearance of this component, or a string reference to a ComponentStyle object that is defined at the top level of the document.",
+            "typed": false
+        }
+    ]
+}

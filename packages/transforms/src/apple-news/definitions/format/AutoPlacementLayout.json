@@ -1,0 +1,21 @@
+{
+    "name": "Format\\AutoPlacementLayout",
+    "description": "The object for defining the margin above and below advertising components.",
+    "version": "1.9+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/autoplacementlayout",
+    "properties": [
+        {
+            "name": "margin",
+            "type": [
+                "Format\\Margin",
+                "integer"
+            ],
+            "required": false,
+            "description": "The top and bottom margin in points, or in any other unit of measure for components. See Specifying Measurements for Components.",
+            "typed": false
+        }
+    ]
+}

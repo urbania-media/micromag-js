@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
-import * as MicromagPropTypes from '../../PropTypes';
+import { PropTypes as MicromagPropTypes } from '../../lib';
 import Label from '../partials/Label';
 
 import styles from '../../styles/buttons/button.module.scss';

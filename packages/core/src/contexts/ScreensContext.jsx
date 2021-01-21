@@ -2,9 +2,8 @@
 import React, { useContext, useMemo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import * as MicromagPropTypes from '../PropTypes';
 import { ComponentsProvider, SCREENS_NAMESPACE } from './ComponentsContext';
-import ScreensManager from '../lib/ScreensManager';
+import { ScreensManager, PropTypes as MicromagPropTypes } from '../lib';
 
 export const ScreensContext = React.createContext(new ScreensManager());
 

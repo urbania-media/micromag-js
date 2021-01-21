@@ -3,7 +3,7 @@ import React, { useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import * as MicromagPropTypes from '../../PropTypes';
+import { PropTypes as MicromagPropTypes } from '../../lib';
 import { useDocumentEvent } from '../../hooks';
 import Link from '../partials/Link';
 import Label from '../partials/Label';

@@ -1,0 +1,68 @@
+{
+    "name": "Format\\AdvertisementAutoPlacement",
+    "description": "The object for defining the automatic placement of advertisements.",
+    "version": "1.9+",
+    "from_class": null,
+    "extends": "Format\\AutoPlacement",
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/advertisementautoplacement",
+    "properties": [
+        {
+            "name": "bannerType",
+            "type": "enum:string",
+            "required": false,
+            "description": "A specific banner type that should be automatically inserted based on the frequency value. If advertisement placement is enabled, only banners of the defined size type are inserted.",
+            "default": "any",
+            "enum_values": [
+                "any",
+                "standard",
+                "double_height",
+                "large"
+            ],
+            "typed": false
+        },
+        {
+            "name": "conditional",
+            "type": "array:Format\\ConditionalAutoPlacement",
+            "required": false,
+            "description": "An array of automatic placement properties that can be applied conditionally, and the conditions that cause them to be applied.",
+            "typed": false
+        },
+        {
+            "name": "distanceFromMedia",
+            "type": [
+                "SupportedUnits",
+                "integer"
+            ],
+            "required": false,
+            "description": "The minimum required distance between automatically inserted advertisement components and media, such as Video and Photo. To maintain a minimum distance of half a screen height from your media content, use a value of around 50vh. For more information, see Specifying Measurements for Components.",
+            "default": 0,
+            "typed": false
+        },
+        {
+            "name": "enabled",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean that defines whether placement of advertisements is enabled.",
+            "default": "false",
+            "typed": false
+        },
+        {
+            "name": "frequency",
+            "type": "integer",
+            "required": false,
+            "description": "A number from 0 to 10, defining the frequency for automatically inserting BannerAdvertisement components into articles.",
+            "default": 0,
+            "minimum": 0,
+            "maximum": 10,
+            "typed": false
+        },
+        {
+            "name": "layout",
+            "type": "Format\\AutoPlacementLayout",
+            "required": false,
+            "description": "The layout properties for automatically inserted components.",
+            "typed": false
+        }
+    ]
+}

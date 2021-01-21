@@ -1,0 +1,51 @@
+{
+    "name": "Format\\Padding",
+    "description": "The object for defining space around the content in a table cell.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/padding",
+    "properties": [
+        {
+            "name": "bottom",
+            "type": [
+                "SupportedUnits",
+                "integer"
+            ],
+            "required": false,
+            "description": "The amount of padding between the bottom of the cell and the content, as an integer in points or using the available units for components. See Specifying Measurements for Components.",
+            "typed": false
+        },
+        {
+            "name": "left",
+            "type": [
+                "SupportedUnits",
+                "integer"
+            ],
+            "required": false,
+            "description": "The amount of padding between the left side of the cell and the content, as an integer in points or using the available units for components.See Specifying Measurements for Components.",
+            "typed": false
+        },
+        {
+            "name": "right",
+            "type": [
+                "SupportedUnits",
+                "integer"
+            ],
+            "required": false,
+            "description": "The amount of padding between the right side of the cell and the content, as an integer in points or using the available units for components. See Specifying Measurements for Components.",
+            "typed": false
+        },
+        {
+            "name": "top",
+            "type": [
+                "SupportedUnits",
+                "integer"
+            ],
+            "required": false,
+            "description": "The amount of padding between the top of the cell and the content, as an integer in points or using the available units for components. See Specifying Measurements for Components",
+            "typed": false
+        }
+    ]
+}

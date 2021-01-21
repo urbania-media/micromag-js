@@ -1,0 +1,44 @@
+{
+    "name": "Format\\Fill",
+    "description": "The object for setting a fill type and attachment for a component\u2019s background fill.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": {
+        "property": "type",
+        "types": {
+            "video": "VideoFill",
+            "image": "ImageFill",
+            "linear_gradient": "LinearGradientFill",
+            "repeatable_image": "RepeatableImageFill"
+        }
+    },
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/fill",
+    "properties": [
+        {
+            "name": "type",
+            "type": "enum:string",
+            "required": true,
+            "description": "The type of fill to apply.",
+            "enum_values": [
+                "linear_gradient",
+                "image",
+                "repeatable_image",
+                "video"
+            ],
+            "typed": false
+        },
+        {
+            "name": "attachment",
+            "type": "enum:string",
+            "required": false,
+            "description": "A string that indicates how the fill should behave when a user scrolls.",
+            "default": "scroll",
+            "enum_values": [
+                "fixed",
+                "scroll"
+            ],
+            "typed": false
+        }
+    ]
+}

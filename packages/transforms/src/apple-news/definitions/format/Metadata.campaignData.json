@@ -1,0 +1,15 @@
+{
+    "name": "Format\\CampaignData",
+    "description": "Custom key-value pairs for use in advertisement campaigns.",
+    "version": "1.7+",
+    "from_class": "Records",
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/metadata\/campaigndata",
+    "properties": [
+        {
+            "name": "data",
+            "type": "map"
+        }
+    ]
+}

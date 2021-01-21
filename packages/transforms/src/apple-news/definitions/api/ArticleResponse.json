@@ -1,0 +1,19 @@
+{
+    "name": "Api\\Objects\\ArticleResponse",
+    "description": "See which objects make up the publish article, read article, and update article responses.",
+    "version": "1.0.0+",
+    "from_class": null,
+    "extends": "Api\\Objects\\Article",
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/articleresponse",
+    "properties": [
+        {
+            "name": "links",
+            "type": "Api\\Objects\\ArticleLinks"
+        },
+        {
+            "name": "meta",
+            "type": "Api\\Objects\\Meta"
+        }
+    ]
+}

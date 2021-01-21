@@ -1,0 +1,117 @@
+{
+    "name": "Format\\Metadata",
+    "description": "Information about your article, including author name, creation date, publication date, keywords, and excerpt.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/metadata",
+    "properties": [
+        {
+            "name": "authors",
+            "type": "array:string",
+            "required": false,
+            "description": "The authors of this article, who may or may not be shown in the byline component.",
+            "typed": false
+        },
+        {
+            "name": "campaignData",
+            "type": "Format\\CampaignData",
+            "required": false,
+            "description": "A set of key-value pairs that can be leveraged to target your advertising campaigns to specific articles or groups of articles. See Targeting in the Advertising Guide for News Publishers.",
+            "typed": false
+        },
+        {
+            "name": "canonicalURL",
+            "type": "uri",
+            "required": false,
+            "description": "The canonical URL of a web version of this article. If this Apple News Format document corresponds to a web version of this article, set this property to the URL of the web article. This property can be used to point to one version of the article as well as to redirect devices that do not support News content.",
+            "typed": false
+        },
+        {
+            "name": "dateCreated",
+            "type": "date-time",
+            "required": false,
+            "description": "The UTC date in ISO 8601 format (YYYY-MM-DDTHH:mm:ss\u00b1ZZ:ZZ) on which this article was created. This value may or may not be the same as datePublished.",
+            "typed": false
+        },
+        {
+            "name": "dateModified",
+            "type": "date-time",
+            "required": false,
+            "description": "The UTC date in ISO 8601 format (YYYY-MM-DDTHH:mm:ss\u00b1ZZ:ZZ) on which this article was last modified after it was published.",
+            "typed": false
+        },
+        {
+            "name": "datePublished",
+            "type": "date-time",
+            "required": false,
+            "description": "The UTC date in ISO 8601 format (YYYY-MM-DDTHH:mm:ss\u00b1ZZ:ZZ) on which this article was first published. This date is used in the feed. Include this date when posting older content to make sure the articles don\u2019t appear at the top of your feed.",
+            "typed": false
+        },
+        {
+            "name": "excerpt",
+            "type": "string",
+            "required": false,
+            "description": "Some text representing your article. Typically it matches the first portion of the article content. It can also be an article summary. Although this property is optional, it\u2019s best to define it in all of your Apple News Format documents.",
+            "typed": false
+        },
+        {
+            "name": "generatorIdentifier",
+            "type": "string",
+            "required": false,
+            "description": "A unique identifier for the generator used to create or provide this JSON document.",
+            "typed": false
+        },
+        {
+            "name": "generatorName",
+            "type": "string",
+            "required": false,
+            "description": "The name of the generator or system that was used to create the JSON document.",
+            "typed": false
+        },
+        {
+            "name": "generatorVersion",
+            "type": "string",
+            "required": false,
+            "description": "The version \u201cnumber,\u201d as a string, of the generator used to create the JSON document.",
+            "typed": false
+        },
+        {
+            "name": "keywords",
+            "type": "array:string",
+            "required": false,
+            "description": "The keywords that describe this article. You can define up to 50 keywords.",
+            "typed": false
+        },
+        {
+            "name": "links",
+            "type": "array:Format\\LinkedArticle",
+            "required": false,
+            "description": "An array of links to other articles in Apple News.",
+            "typed": false
+        },
+        {
+            "name": "thumbnailURL",
+            "type": "string",
+            "required": false,
+            "description": "The URL of an image that can represent this article in a News feed view (channel, topic, or For You). For best results, provide a high-resolution image. The image is automatically scaled down to the correct size.",
+            "typed": false
+        },
+        {
+            "name": "transparentToolbar",
+            "type": "boolean",
+            "required": false,
+            "description": "A boolean value that indicates whether this article should be shown with a transparent top toolbar that is overlaid on the the top portion of the article.",
+            "default": "false",
+            "typed": false
+        },
+        {
+            "name": "videoURL",
+            "type": "uri",
+            "required": false,
+            "description": "The URL for the video that represents this article. A glyph appears on the thumbnail of the article tile, allowing the video to be playable from For You, topic, and channel feeds.",
+            "typed": false
+        }
+    ]
+}

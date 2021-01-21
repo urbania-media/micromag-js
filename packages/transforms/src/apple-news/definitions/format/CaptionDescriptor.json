@@ -1,0 +1,54 @@
+{
+    "name": "Format\\CaptionDescriptor",
+    "description": "The object used in image components for displaying captions when the image is full-screen.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/captiondescriptor",
+    "properties": [
+        {
+            "name": "text",
+            "type": "string",
+            "required": true,
+            "description": "The text to display in the caption, including any formatting tags or markup, depending on the format property.",
+            "typed": false
+        },
+        {
+            "name": "additions",
+            "type": "array:Format\\Addition",
+            "required": false,
+            "description": "An array of Link objects that provide additional information for ranges of the caption text in the text property.",
+            "typed": false
+        },
+        {
+            "name": "format",
+            "type": "enum:string",
+            "required": false,
+            "description": "The formatting or markup method applied to the text.",
+            "enum_values": [
+                "markdown",
+                "html",
+                "none"
+            ],
+            "typed": false
+        },
+        {
+            "name": "inlineTextStyles",
+            "type": "array:Format\\InlineTextStyle",
+            "required": false,
+            "description": "An array of InlineTextStyle objects to be applied to ranges of the caption\u2019s text.",
+            "typed": false
+        },
+        {
+            "name": "textStyle",
+            "type": [
+                "Format\\ComponentTextStyle",
+                "string"
+            ],
+            "required": false,
+            "description": "An inline ComponentTextStyle object that contains styling information, or a string reference to a component text style object that is defined at the top level of the document.",
+            "typed": false
+        }
+    ]
+}

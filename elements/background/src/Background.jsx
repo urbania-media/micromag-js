@@ -2,7 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { PropTypes as MicromagPropTypes, useScreenRenderContext } from '@micromag/core';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useScreenRenderContext } from '@micromag/core/contexts';
 import { getStyleFromColor } from '@micromag/core/utils';
 import Video from '@micromag/element-video';
 import { getSizeWithinBounds } from '@folklore/size';

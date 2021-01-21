@@ -1,0 +1,148 @@
+{
+    "name": "Format\\ComponentLayout",
+    "description": "The object for defining the positioning for a specific component within the article\u2019s column system.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/componentlayout",
+    "properties": [
+        {
+            "name": "columnSpan",
+            "type": "integer",
+            "required": false,
+            "description": "A number that indicates how many columns the component spans, based on the number of columns in the document.",
+            "minimum": 1,
+            "typed": false
+        },
+        {
+            "name": "columnStart",
+            "type": "integer",
+            "required": false,
+            "description": "A number that indicates which column the component\u2018s start position is in, based on the number of columns in the document or parent container.",
+            "minimum": 0,
+            "typed": false
+        },
+        {
+            "name": "conditional",
+            "type": "array:Format\\ConditionalComponentLayout",
+            "required": false,
+            "description": "An array of component layout properties that can be applied conditionally, and the conditions that cause them to be applied.",
+            "typed": false
+        },
+        {
+            "name": "contentInset",
+            "type": [
+                "Format\\ContentInset",
+                "boolean"
+            ],
+            "required": false,
+            "description": "A value that defines a content inset for the component. If applied, the inset is equivalent to half the document gutter. For example, if the article's layout sets the document gutter to 40pt, the content inset is 20 points.",
+            "typed": false
+        },
+        {
+            "name": "horizontalContentAlignment",
+            "type": "enum:string",
+            "required": false,
+            "description": "A string value that sets the alignment of the content within the component. This property applies only when the width of the content is less than the width of the component.",
+            "default": "center",
+            "enum_values": [
+                "left",
+                "center",
+                "right"
+            ],
+            "typed": false
+        },
+        {
+            "name": "ignoreDocumentGutter",
+            "type": "enum:boolean|string",
+            "required": false,
+            "description": "A value that indicates whether the gutters (if any) to the left and right of the component should be ignored. The gutter size is defined in the Layout object at the root level of the document.",
+            "enum_values": [
+                "none",
+                "left",
+                "right",
+                "both",
+                true,
+                false
+            ],
+            "typed": false
+        },
+        {
+            "name": "ignoreDocumentMargin",
+            "type": "enum:boolean|string",
+            "required": false,
+            "description": "A value that indicates whether a document\u2019s margins should be respected or ignored by the parent container. Ignoring document margins will position the component at the edge of the display. This property affects the layout only if the component is in the first or last column.",
+            "enum_values": [
+                "none",
+                "left",
+                "right",
+                "both",
+                true,
+                false
+            ],
+            "typed": false
+        },
+        {
+            "name": "margin",
+            "type": [
+                "Format\\Margin",
+                "integer"
+            ],
+            "required": false,
+            "description": "A value that sets the margins for the top and bottom of the component, as a single integer that gets applied to the top and bottom margins, or as an object containing separate properties for top and bottom.",
+            "typed": false
+        },
+        {
+            "name": "maximumContentWidth",
+            "type": [
+                "SupportedUnits",
+                "integer"
+            ],
+            "required": false,
+            "description": "A value that sets the maximum width of the content within the component. Specify this value as an integer in points or using one of the available units of measure for components. See Specifying Measurements for Components.",
+            "typed": false
+        },
+        {
+            "name": "minimumHeight",
+            "type": [
+                "SupportedUnits",
+                "integer"
+            ],
+            "required": false,
+            "description": "A value that sets the minimum height of the component. A component is taller than its defined minimumHeight when the contents require the component to be taller. The minimum height can be defined as an integer in points or using one of the available units of measure for components. See Specifying Measurements for Components.",
+            "typed": false
+        },
+        {
+            "name": "minimumWidth",
+            "type": [
+                "SupportedUnits",
+                "integer"
+            ],
+            "required": false,
+            "description": "A value that defines the minimum width of the layout when used within a Container with HorizontalStackDisplay as the specified contentDisplay type. The minimum width can be defined as an integer in points or using one of the available units of measure for components. See Specifying Measurements for Components.",
+            "typed": false
+        },
+        {
+            "name": "maximumWidth",
+            "type": [
+                "SupportedUnits",
+                "integer"
+            ],
+            "required": false,
+            "description": "A value that defines the maximum width of the layout when used within a Container with HorizontalStackDisplay as the specified contentDisplay type. The maximum width can be defined as an integer in points or using one of the available units of measure for components. See Specifying Measurements for Components.",
+            "typed": false
+        },
+        {
+            "name": "padding",
+            "type": [
+                "Format\\Padding",
+                "SupportedUnits",
+                "integer"
+            ],
+            "required": false,
+            "description": "A value that defines the padding between the content of the component and the edges of the component. Padding can be defined as an integer in points or using one of the available units of measure for components. See Specifying Measurements for Components.",
+            "typed": false
+        }
+    ]
+}

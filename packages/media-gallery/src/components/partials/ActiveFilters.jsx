@@ -5,8 +5,8 @@ import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Button } from '@micromag/core/components';
 
-import { Button } from '@micromag/core';
 import CloseButton from '../buttons/Close';
 
 import styles from '../../styles/partials/active-filters.module.scss';

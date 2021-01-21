@@ -2,11 +2,9 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
-
-import { Button, Label } from '@micromag/core';
+import { Button, Label } from '@micromag/core/components';
 
 const propTypes = {
     dropdownItems: PropTypes.arrayOf(

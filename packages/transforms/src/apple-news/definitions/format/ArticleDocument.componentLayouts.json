@@ -1,0 +1,18 @@
+{
+    "name": "Format\\ComponentLayouts",
+    "description": "An object containing component layout objects that components in the article can refer to.",
+    "version": "1.7+",
+    "from_class": "Layouts",
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/articledocument\/componentlayouts",
+    "properties": [
+        {
+            "name": "layouts",
+            "type": "map:Format\\ComponentLayout",
+            "required": false,
+            "description": "A component layout, with a name you define that can be referred to by components within this document.",
+            "typed": false
+        }
+    ]
+}

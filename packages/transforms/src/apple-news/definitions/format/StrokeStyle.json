@@ -1,0 +1,42 @@
+{
+    "name": "Format\\StrokeStyle",
+    "description": "The object for defining the color, width, and style of a border or divider.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/strokestyle",
+    "properties": [
+        {
+            "name": "color",
+            "type": "Color",
+            "required": false,
+            "description": "The stroke color.",
+            "typed": false
+        },
+        {
+            "name": "style",
+            "type": "enum:string",
+            "required": false,
+            "description": "A string that defines the style of the stroke. Valid values:",
+            "default": "solid",
+            "enum_values": [
+                "solid",
+                "dashed",
+                "dotted"
+            ],
+            "typed": false
+        },
+        {
+            "name": "width",
+            "type": [
+                "SupportedUnits",
+                "integer"
+            ],
+            "required": false,
+            "description": "The width of the stroke line. Can be either an integer value in points, or a string according to Specifying Measurements for Components.",
+            "default": 1,
+            "typed": false
+        }
+    ]
+}

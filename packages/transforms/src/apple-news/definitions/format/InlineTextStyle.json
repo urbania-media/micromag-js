@@ -1,0 +1,35 @@
+{
+    "name": "Format\\InlineTextStyle",
+    "description": "The object for applying text styling when not using HTML or Markdown formatting.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/inlinetextstyle",
+    "properties": [
+        {
+            "name": "rangeLength",
+            "type": "integer",
+            "required": true,
+            "description": "The length (in characters) of the portion of text to which the alternative styling should be applied.",
+            "typed": false
+        },
+        {
+            "name": "rangeStart",
+            "type": "integer",
+            "required": true,
+            "description": "The starting point of the text to which the alternative styling should be applied. Note: the first available character is at 0, not 1.",
+            "typed": false
+        },
+        {
+            "name": "textStyle",
+            "type": [
+                "Format\\TextStyle",
+                "string"
+            ],
+            "required": true,
+            "description": "A TextStyle or the name of a TextStyle object defined in the ArticleDocument.textStyles object.",
+            "typed": false
+        }
+    ]
+}

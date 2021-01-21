@@ -1,5 +1,5 @@
 import program from 'commander';
-
+import fs from 'fs';
 import readJSON from '../utils/readJSON';
 import transformStory from '../utils/transformStory';
 import captureStory from '../utils/captureStory';
@@ -21,7 +21,7 @@ program.parse();
 
 const { format } = program.opts();
 
-switch (format) {    
+switch (format) {
     case 'html': {
         getStoryHtml(story);
         break;
@@ -37,6 +37,9 @@ switch (format) {
     }
     default: {
         const newStory = transformStory(story, format);
+        fs.writeFileSync('article.json', JSON.stringify(newStory), 'utf-8', () => {
+            console.log('wrote file');
+        });
         console.log(newStory);
         break;
     }

@@ -1,0 +1,32 @@
+{
+    "name": "Format\\ComponentAnimation",
+    "description": "Properties shared by all the animations.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": {
+        "property": "type",
+        "types": {
+            "appear": "AppearAnimation",
+            "fade_in": "FadeInAnimation",
+            "move_in": "MoveInAnimation",
+            "scale_fade": "ScaleFadeAnimation"
+        }
+    },
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/componentanimation",
+    "properties": [
+        {
+            "name": "type",
+            "type": "enum:string",
+            "required": true,
+            "description": "The type of animation, for example, move_in.",
+            "enum_values": [
+                "appear",
+                "fade_in",
+                "move_in",
+                "scale_fade"
+            ],
+            "typed": false
+        }
+    ]
+}

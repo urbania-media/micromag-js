@@ -1,0 +1,1888 @@
+{
+    "title": "Face à face avec votre face",
+    "components": [
+        {
+            "id": "1cb8a4be-5c1a-11eb-985f-ad6fce99d848",
+            "type": "title-subtitle",
+            "layout": "bottom",
+            "title": {
+                "body": "Face à face",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Garage Gothic",
+                        "fallback": "Arial",
+                        "type": "sans-serif"
+                    },
+                    "fontSize": 60,
+                    "fontStyle": {
+                        "bold": true,
+                        "transform": "uppercase"
+                    },
+                    "lineHeight": 0.2,
+                    "align": "center",
+                    "color": "#ff4dff"
+                }
+            },
+            "subtitle": {
+                "body": "avec votre face",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Garage Gothic",
+                        "fallback": "Arial",
+                        "type": "sans-serif"
+                    },
+                    "fontSize": 50,
+                    "fontStyle": {
+                        "bold": true,
+                        "transform": "uppercase"
+                    },
+                    "lineHeight": 1,
+                    "align": "center",
+                    "color": "#242235"
+                }
+            },
+            "background": {
+                "color": {
+                    "color": "black"
+                },
+                "video": {
+                    "type": "video",
+                    "name": "intro.mp4",
+                    "url": "intro.mp4",
+                    "metadata": {
+                        "width": 1280,
+                        "height": 1800
+                    }
+                }
+            },
+            "transitions": {
+                "in": "fade",
+                "out": "fade"
+            }
+        },
+        {
+            "id": "1cb8a4bf-5c1a-11eb-985f-ad6fce99d848",
+            "type": "quote",
+            "layout": "middle",
+            "quote": {
+                "body": "Soudainement,<br/>je m’en crissais<br/>de ce que j’allais<br/>avoir l’air.",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Garage Gothic",
+                        "fallback": "Arial",
+                        "type": "sans-serif"
+                    },
+                    "fontSize": 50,
+                    "fontStyle": {
+                        "transform": "uppercase",
+                        "outline": true
+                    },
+                    "lineHeight": 1,
+                    "color": "#ff4dff"
+                }
+            },
+            "author": {
+                "body": "Tommy Kruise, qui se rappelle le déclic qui l’a poussé à subir une opération chirurgicale à la mâchoire pour guérir son apnée du sommeil",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Sina Nova",
+                        "fallback": "Gerogia",
+                        "type": "serif"
+                    },
+                    "fontSize": 18,
+                    "fontStyle": {
+                        "bold": false
+                    },
+                    "lineHeight": 1.2
+                }
+            },
+            "background": {
+                "color": {
+                    "color": "#242235"
+                },
+                "image": {
+                    "type": "image",
+                    "name": "tile-dark-blue-noise.gif",
+                    "url": "tile-dark-blue-noise.gif",
+                    "thumbnail_url": "tile-dark-blue-noise.gif",
+                    "metadata": {
+                        "width": 320,
+                        "height": 320
+                    }
+                },
+                "repeat": true
+            },
+            "transitions": {
+                "in": "fade",
+                "out": "fade"
+            }
+        },
+        {
+            "id": "1cb8a4c0-5c1a-11eb-985f-ad6fce99d848",
+            "type": "image-title-text",
+            "layout": "card",
+            "title": {
+                "body": "Changer de visage",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Garage Gothic",
+                        "fallback": "Arial",
+                        "type": "sans-serif"
+                    },
+                    "fontSize": 35,
+                    "fontStyle": {
+                        "transform": "uppercase"
+                    },
+                    "lineHeight": 1
+                }
+            },
+            "text": {
+                "body": "Ça faisait longtemps qu’il y pensait, mais c’est après qu’un ami soit décédé de complications reliées à l’apnée du sommeil que Tommy Kruise s’est décidé à faire passer son visage au bistouri. Il s’endormait partout et ça le rendait même irritable et un peu chiant. Son opération à la mâchoire a changé son look de façon subtile, mais il dort nettement mieux depuis. «Maintenant, j’ai vraiment un jawline, alors je suis content!»",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Sina Nova",
+                        "fallback": "Gerogia",
+                        "type": "serif"
+                    },
+                    "fontSize": 18,
+                    "fontStyle": {
+                        "bold": false
+                    },
+                    "lineHeight": 1.2
+                }
+            },
+            "image": {
+                "url": "tommy-before.jpg",
+                "thumbnail_url": "tommy-before.jpg",
+                "metadata": {
+                    "width": 1000,
+                    "height": 645
+                }
+            },
+            "background": {
+                "color": {
+                    "color": "#242235"
+                },
+                "image": {
+                    "type": "image",
+                    "name": "tile-dark-blue-noise.gif",
+                    "url": "tile-dark-blue-noise.gif",
+                    "thumbnail_url": "tile-dark-blue-noise.gif",
+                    "metadata": {
+                        "width": 320,
+                        "height": 320
+                    }
+                },
+                "repeat": true
+            },
+            "transitions": {
+                "in": "fade",
+                "out": "fade"
+            }
+        },
+        {
+            "id": "1cb8a4c1-5c1a-11eb-985f-ad6fce99d848",
+            "type": "gallery-feed-captions",
+            "title": {
+                "body": "La face de l’humain au fil du temps",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Garage Gothic",
+                        "fallback": "Arial",
+                        "type": "sans-serif"
+                    },
+                    "fontSize": 35,
+                    "fontStyle": {
+                        "transform": "uppercase"
+                    },
+                    "lineHeight": 1
+                }
+            },
+            "images": [
+                {
+                    "media": {
+                        "url": "1.jpg",
+                        "thumbnail_url": "1.jpg",
+                        "metadata": {
+                            "width": 1000,
+                            "height": 1340
+                        }
+                    },
+                    "caption": {
+                        "body": "Vous auriez pu ressembler à ceci, il y a 3-4 millions d’années",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2
+                        }
+                    }
+                },
+                {
+                    "media": {
+                        "url": "2.jpg",
+                        "thumbnail_url": "2.jpg",
+                        "metadata": {
+                            "width": 1000,
+                            "height": 1340
+                        }
+                    },
+                    "caption": {
+                        "body": "Retrouvez-vous des airs de famille dans votre ancêtre Homo Erectus?",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2
+                        }
+                    }
+                },
+                {
+                    "media": {
+                        "url": "3.jpg",
+                        "thumbnail_url": "3.jpg",
+                        "metadata": {
+                            "width": 1000,
+                            "height": 1340
+                        }
+                    },
+                    "caption": {
+                        "body": "L’homme de Néandertal est disparu il y a 30 000 ans, mais il reste encore un peu de lui dans votre ADN",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2
+                        }
+                    }
+                },
+                {
+                    "media": {
+                        "url": "4.jpg",
+                        "thumbnail_url": "4.jpg",
+                        "metadata": {
+                            "width": 1000,
+                            "height": 1340
+                        }
+                    },
+                    "caption": {
+                        "body": "Remerciez la sélection naturelle pour votre beau menton d’Homo Sapiens",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2
+                        }
+                    }
+                },
+                {
+                    "media": {
+                        "url": "5.jpg",
+                        "thumbnail_url": "5.jpg",
+                        "metadata": {
+                            "width": 1000,
+                            "height": 1340
+                        }
+                    },
+                    "caption": {
+                        "body": "À quoi va-t-on ressembler dans 100 000 ans? Grosse tête? Gros yeux? Pigmentation adaptée aux changements climatiques? Les paris sont ouverts!",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2
+                        }
+                    }
+                }
+            ],
+            "background": {
+                "color": {
+                    "color": "#242235"
+                },
+                "image": {
+                    "type": "image",
+                    "name": "tile-dark-blue-noise.gif",
+                    "url": "tile-dark-blue-noise.gif",
+                    "thumbnail_url": "tile-dark-blue-noise.gif",
+                    "metadata": {
+                        "width": 320,
+                        "height": 320
+                    }
+                },
+                "repeat": true
+            },
+            "transitions": {
+                "in": "fade",
+                "out": "fade"
+            }
+        },
+        {
+            "id": "1cb8a4c2-5c1a-11eb-985f-ad6fce99d848",
+            "type": "survey",
+            "layout": "middle",
+            "question": {
+                "body": "Qu’est-ce qui vous agace le plus dans votre face?",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Garage Gothic",
+                        "fallback": "Arial",
+                        "type": "sans-serif"
+                    },
+                    "fontSize": 35,
+                    "fontStyle": {
+                        "transform": "uppercase"
+                    },
+                    "lineHeight": 1,
+                    "color": "#66CCB8"
+                }
+            },
+            "answers": [
+                {
+                    "id": "1cb8a4a0-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "body": "Mes yeux",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "#66CCB8"
+                        }
+                    },
+                    "percent": 10
+                },
+                {
+                    "id": "1cb8a4a1-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "body": "Mon nez",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "#66CCB8"
+                        }
+                    },
+                    "percent": 20
+                },
+                {
+                    "id": "1cb8a4a2-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "body": "Mes Oreilles",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "#66CCB8"
+                        }
+                    },
+                    "percent": 12.5
+                },
+                {
+                    "id": "1cb8a4a3-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "body": "Ma bouche",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "#66CCB8"
+                        }
+                    },
+                    "percent": 5
+                },
+                {
+                    "id": "1cb8a4a4-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "body": "Rien du tout",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "#66CCB8"
+                        }
+                    },
+                    "percent": 15
+                },
+                {
+                    "id": "1cb8a4a5-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "body": "Autre",
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "#66CCB8"
+                        }
+                    },
+                    "percent": 37.5
+                }
+            ],
+            "background": {
+                "color": {
+                    "color": "#242235"
+                },
+                "image": {
+                    "type": "image",
+                    "name": "tile-dark-blue-noise.gif",
+                    "url": "tile-dark-blue-noise.gif",
+                    "thumbnail_url": "tile-dark-blue-noise.gif",
+                    "metadata": {
+                        "width": 320,
+                        "height": 320
+                    }
+                },
+                "repeat": true
+            },
+            "transitions": {
+                "in": "fade",
+                "out": "fade"
+            }
+        },
+        {
+            "id": "1cb8a4c3-5c1a-11eb-985f-ad6fce99d848",
+            "type": "title-subtitle",
+            "layout": "split",
+            "title": {
+                "body": "Avez-vous<br/>du pif<br/>au milieu<br/>du visage?",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Garage Gothic",
+                        "fallback": "Arial",
+                        "type": "sans-serif"
+                    },
+                    "fontSize": 50,
+                    "fontStyle": {
+                        "bold": true,
+                        "transform": "uppercase"
+                    },
+                    "lineHeight": 1,
+                    "color": "#242235"
+                }
+            },
+            "subtitle": {
+                "body": "Testez vos<br/>connaissances!",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Garage Gothic",
+                        "fallback": "Arial",
+                        "type": "sans-serif"
+                    },
+                    "fontSize": 35,
+                    "fontStyle": {
+                        "transform": "uppercase"
+                    },
+                    "lineHeight": 1,
+                    "color": "#242235"
+                }
+            },
+            "background": {
+                "color": {
+                    "color": "#d3a88e"
+                },
+                "image": {
+                    "type": "image",
+                    "name": "nose.jpg",
+                    "url": "nose-square.jpg",
+                    "thumbnail_url": "nose-square.jpg",
+                    "metadata": {
+                        "width": 320,
+                        "height": 320
+                    }
+                },
+                "fit": "contain"
+            },
+            "transitions": {
+                "in": "fade",
+                "out": "fade"
+            }
+        },
+        {
+            "id": "1cb8a4c4-5c1a-11eb-985f-ad6fce99d848",
+            "type": "quiz",
+            "layout": "middle",
+            "question": {
+                "body": "Combien d’heures a duré la première greffe de visage au Canada?",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Garage Gothic",
+                        "fallback": "Arial",
+                        "type": "sans-serif"
+                    },
+                    "fontSize": 35,
+                    "fontStyle": {
+                        "transform": "uppercase"
+                    },
+                    "lineHeight": 1
+                }
+            },
+            "answers": [
+                {
+                    "id": "1cb8a4a6-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "white"
+                        },
+                        "body": "Deux minutes, pareil comme dans le film Face/Off"
+                    }
+                },
+                {
+                    "id": "1cb8a4a7-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "white"
+                        },
+                        "body": "Deux heures et demi"
+                    }
+                },
+                {
+                    "id": "1cb8a4a8-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "white"
+                        },
+                        "body": "18 heures"
+                    },
+                    "good": true
+                },
+                {
+                    "id": "1cb8a4a9-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "white"
+                        },
+                        "body": "36 heures"
+                    }
+                }
+            ],
+            "result": {
+                "body": "La pose du visage a duré 18 heures, mais il en a fallu 28 de plus pour retirer les visages du donneur et du receveur.",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Sina Nova",
+                        "fallback": "Gerogia",
+                        "type": "serif"
+                    },
+                    "fontSize": 18,
+                    "fontStyle": {
+                        "bold": false
+                    },
+                    "lineHeight": 1.2
+                }
+            },
+            "background": {
+                "color": {
+                    "color": "#d3a88e"
+                },
+                "image": {
+                    "type": "image",
+                    "name": "tileSkin.jpg",
+                    "url": "tile-skin.jpg",
+                    "thumbnail_url": "tile-skin.jpg",
+                    "metadata": {
+                        "width": 180,
+                        "height": 180
+                    }
+                },
+                "repeat": true
+            },
+            "transitions": {
+                "in": "fade",
+                "out": "fade"
+            }
+        },
+        {
+            "id": "1cb8a4c5-5c1a-11eb-985f-ad6fce99d848",
+            "type": "quiz",
+            "layout": "middle",
+            "question": {
+                "body": "Combien d’yeux avait Frank and Louie, un chat à deux visages décédé en 2014?",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Garage Gothic",
+                        "fallback": "Arial",
+                        "type": "sans-serif"
+                    },
+                    "fontSize": 35,
+                    "fontStyle": {
+                        "transform": "uppercase"
+                    },
+                    "lineHeight": 1
+                }
+            },
+            "answers": [
+                {
+                    "id": "1cb8a4aa-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "white"
+                        },
+                        "body": "1"
+                    }
+                },
+                {
+                    "id": "1cb8a4ab-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "white"
+                        },
+                        "body": "2"
+                    }
+                },
+                {
+                    "id": "1cb8a4ac-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "white"
+                        },
+                        "body": "3"
+                    },
+                    "good": true
+                },
+                {
+                    "id": "1cb8a4ad-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "white"
+                        },
+                        "body": "4"
+                    }
+                }
+            ],
+            "result": {
+                "body": "Trois yeux et deux bouches, mais un seul cerveau. Vous avez le droit d’aller googler.",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Sina Nova",
+                        "fallback": "Gerogia",
+                        "type": "serif"
+                    },
+                    "fontSize": 18,
+                    "fontStyle": {
+                        "bold": false
+                    },
+                    "lineHeight": 1.2
+                }
+            },
+            "background": {
+                "color": {
+                    "color": "#d3a88e"
+                },
+                "image": {
+                    "type": "image",
+                    "name": "tileSkin.jpg",
+                    "url": "tile-skin.jpg",
+                    "thumbnail_url": "tile-skin.jpg",
+                    "metadata": {
+                        "width": 180,
+                        "height": 180
+                    }
+                },
+                "repeat": true
+            },
+            "transitions": {
+                "in": "fade",
+                "out": "fade"
+            }
+        },
+        {
+            "id": "1cb8a4c6-5c1a-11eb-985f-ad6fce99d848",
+            "type": "quiz",
+            "layout": "middle",
+            "question": {
+                "body": "Dans quelle proportion les systèmes de reconnaissance faciale identifient-ils erronément les Noirs, les Asiatiques et les Autochtones?",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Garage Gothic",
+                        "fallback": "Arial",
+                        "type": "sans-serif"
+                    },
+                    "fontSize": 34,
+                    "fontStyle": {
+                        "transform": "uppercase"
+                    },
+                    "lineHeight": 1
+                }
+            },
+            "answers": [
+                {
+                    "id": "1cb8a4ae-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "white"
+                        },
+                        "body": "Une à deux fois plus"
+                    }
+                },
+                {
+                    "id": "1cb8a4af-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "white"
+                        },
+                        "body": "5 fois plus"
+                    }
+                },
+                {
+                    "id": "1cb8a4b0-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "white"
+                        },
+                        "body": "1000 fois plus"
+                    }
+                },
+                {
+                    "id": "1cb8a4b1-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "white"
+                        },
+                        "body": "10 à 100 fois plus"
+                    },
+                    "good": true
+                }
+            ],
+            "result": {
+                "body": "La raison: ces systèmes sont testés sur des Blancs en grand majorité.",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Sina Nova",
+                        "fallback": "Gerogia",
+                        "type": "serif"
+                    },
+                    "fontSize": 18,
+                    "fontStyle": {
+                        "bold": false
+                    },
+                    "lineHeight": 1.2
+                }
+            },
+            "background": {
+                "color": {
+                    "color": "#d3a88e"
+                },
+                "image": {
+                    "type": "image",
+                    "name": "tileSkin.jpg",
+                    "url": "tile-skin.jpg",
+                    "thumbnail_url": "tile-skin.jpg",
+                    "metadata": {
+                        "width": 180,
+                        "height": 180
+                    }
+                },
+                "repeat": true
+            },
+            "transitions": {
+                "in": "fade",
+                "out": "fade"
+            }
+        },
+        {
+            "id": "1cb8cbb0-5c1a-11eb-985f-ad6fce99d848",
+            "type": "quiz",
+            "layout": "middle",
+            "question": {
+                "body": "Comment appelle-t-on un «faux» sourire qui n’est pas généré de façon authentique?",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Garage Gothic",
+                        "fallback": "Arial",
+                        "type": "sans-serif"
+                    },
+                    "fontSize": 35,
+                    "fontStyle": {
+                        "transform": "uppercase"
+                    },
+                    "lineHeight": 1
+                }
+            },
+            "answers": [
+                {
+                    "id": "1cb8a4b2-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "white"
+                        },
+                        "body": "Un sourire Colgate"
+                    }
+                },
+                {
+                    "id": "1cb8a4b3-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "white"
+                        },
+                        "body": "Un sourire de Pan Am"
+                    },
+                    "good": true
+                },
+                {
+                    "id": "1cb8a4b4-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "white"
+                        },
+                        "body": "Un sourire de faux cul"
+                    }
+                },
+                {
+                    "id": "1cb8a4b5-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "white"
+                        },
+                        "body": "Un hide the pain Harold"
+                    }
+                }
+            ],
+            "result": {
+                "body": "Pas qu’on croit pas à la sincérité des agents de bord, mais c’est humainement impossible de sourire constamment quand on est entouré de bébé qui braillent et de voyageurs qui chialent.",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Sina Nova",
+                        "fallback": "Gerogia",
+                        "type": "serif"
+                    },
+                    "fontSize": 18,
+                    "fontStyle": {
+                        "bold": false
+                    },
+                    "lineHeight": 1.2
+                }
+            },
+            "background": {
+                "color": {
+                    "color": "#d3a88e"
+                },
+                "image": {
+                    "type": "image",
+                    "name": "tileSkin.jpg",
+                    "url": "tile-skin.jpg",
+                    "thumbnail_url": "tile-skin.jpg",
+                    "metadata": {
+                        "width": 180,
+                        "height": 180
+                    }
+                },
+                "repeat": true
+            },
+            "transitions": {
+                "in": "fade",
+                "out": "fade"
+            }
+        },
+        {
+            "id": "1cb8cbb1-5c1a-11eb-985f-ad6fce99d848",
+            "type": "quiz",
+            "layout": "middle",
+            "question": {
+                "body": "Combien d’abonnés Instagram compte Jason Diamond, le chirurgien des stars d’Hollywood?",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Garage Gothic",
+                        "fallback": "Arial",
+                        "type": "sans-serif"
+                    },
+                    "fontSize": 35,
+                    "fontStyle": {
+                        "transform": "uppercase"
+                    },
+                    "lineHeight": 1
+                }
+            },
+            "answers": [
+                {
+                    "id": "1cb8a4b6-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "white"
+                        },
+                        "body": "307 000"
+                    },
+                    "good": true
+                },
+                {
+                    "id": "1cb8a4b7-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "white"
+                        },
+                        "body": "1364"
+                    }
+                },
+                {
+                    "id": "1cb8a4b8-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "white"
+                        },
+                        "body": "1.5 millions"
+                    }
+                },
+                {
+                    "id": "1cb8a4b9-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "white"
+                        },
+                        "body": "229"
+                    }
+                }
+            ],
+            "result": {
+                "body": "Mais l’histoire ne dit pas s’il utilise des filtres Instagram sur les photos de ses patients.",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Sina Nova",
+                        "fallback": "Gerogia",
+                        "type": "serif"
+                    },
+                    "fontSize": 18,
+                    "fontStyle": {
+                        "bold": false
+                    },
+                    "lineHeight": 1.2
+                }
+            },
+            "background": {
+                "color": {
+                    "color": "#d3a88e"
+                },
+                "image": {
+                    "type": "image",
+                    "name": "tileSkin.jpg",
+                    "url": "tile-skin.jpg",
+                    "thumbnail_url": "tile-skin.jpg",
+                    "metadata": {
+                        "width": 180,
+                        "height": 180
+                    }
+                },
+                "repeat": true
+            },
+            "transitions": {
+                "in": "fade",
+                "out": "fade"
+            }
+        },
+        {
+            "id": "1cb8cbb2-5c1a-11eb-985f-ad6fce99d848",
+            "type": "quiz",
+            "layout": "middle",
+            "question": {
+                "body": "Combien de caméras de surveillance compte la Chine?",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Garage Gothic",
+                        "fallback": "Arial",
+                        "type": "sans-serif"
+                    },
+                    "fontSize": 35,
+                    "fontStyle": {
+                        "transform": "uppercase"
+                    },
+                    "lineHeight": 1
+                }
+            },
+            "answers": [
+                {
+                    "id": "1cb8a4ba-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "white"
+                        },
+                        "body": "2 millions"
+                    }
+                },
+                {
+                    "id": "1cb8a4bb-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "white"
+                        },
+                        "body": "75 000"
+                    }
+                },
+                {
+                    "id": "1cb8a4bc-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "white"
+                        },
+                        "body": "300 000"
+                    }
+                },
+                {
+                    "id": "1cb8a4bd-5c1a-11eb-985f-ad6fce99d848",
+                    "label": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Apercu",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2,
+                            "color": "white"
+                        },
+                        "body": "200 millions"
+                    },
+                    "good": true
+                }
+            ],
+            "result": {
+                "body": "Une grande partie de ces caméras sont équipées de technologies de reconnaissance faciale qui laisse entrevoir un avenir un peu trop proche de Black Mirror.",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Sina Nova",
+                        "fallback": "Gerogia",
+                        "type": "serif"
+                    },
+                    "fontSize": 18,
+                    "fontStyle": {
+                        "bold": false
+                    },
+                    "lineHeight": 1.2
+                }
+            },
+            "background": {
+                "color": {
+                    "color": "#d3a88e"
+                },
+                "image": {
+                    "type": "image",
+                    "name": "tileSkin.jpg",
+                    "url": "tile-skin.jpg",
+                    "thumbnail_url": "tile-skin.jpg",
+                    "metadata": {
+                        "width": 180,
+                        "height": 180
+                    }
+                },
+                "repeat": true
+            },
+            "transitions": {
+                "in": "fade",
+                "out": "fade"
+            }
+        },
+        {
+            "id": "1cb8cbb3-5c1a-11eb-985f-ad6fce99d848",
+            "type": "title-subtitle-credits",
+            "layout": "middle",
+            "title": {
+                "body": "Top 3",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Garage Gothic",
+                        "fallback": "Arial",
+                        "type": "sans-serif"
+                    },
+                    "fontSize": 90,
+                    "fontStyle": {
+                        "bold": true,
+                        "transform": "uppercase"
+                    },
+                    "lineHeight": 0.5,
+                    "align": "center"
+                }
+            },
+            "subtitle": {
+                "body": "des secrets des<br/>super-recognizers",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Garage Gothic",
+                        "fallback": "Arial",
+                        "type": "sans-serif"
+                    },
+                    "fontSize": 30,
+                    "fontStyle": {
+                        "transform": "uppercase"
+                    },
+                    "lineHeight": 1,
+                    "align": "center",
+                    "color": "#FFFC00"
+                }
+            },
+            "credits": {
+                "body": "Ces gens capables de reconnaître<br/>presque n’importe qui n’importe où<br/>n’importe quand",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Sina Nova",
+                        "fallback": "Gerogia",
+                        "type": "serif"
+                    },
+                    "fontSize": 14,
+                    "fontStyle": {
+                        "bold": false
+                    },
+                    "lineHeight": 1.2,
+                    "align": "center"
+                }
+            },
+            "background": {
+                "color": {
+                    "color": "blue"
+                },
+                "image": {
+                    "type": "image",
+                    "url": "blue-noise-faces.gif",
+                    "thumbnail_url": "blue-noise-faces.gif",
+                    "metadata": {
+                        "width": 1280,
+                        "height": 1800
+                    }
+                },
+                "fit": "cover"
+            },
+            "transitions": {
+                "in": "fade",
+                "out": "fade"
+            }
+        },
+        {
+            "id": "1cb8cbb4-5c1a-11eb-985f-ad6fce99d848",
+            "layout": "side",
+            "type": "ranking",
+            "items": [
+                {
+                    "title": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Garage Gothic",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 35,
+                            "fontStyle": {
+                                "transform": "uppercase"
+                            },
+                            "lineHeight": 1
+                        },
+                        "body": "On naît super-recognizer, on ne le devient pas"
+                    },
+                    "description": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Sina Nova",
+                                "fallback": "Gerogia",
+                                "type": "serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2
+                        },
+                        "body": "Eh oui, on ne voulait pas anéantir vos espoirs de développer un super pouvoir comme ça, mais c’est un fait. On est super héros ou on ne l’est pas."
+                    }
+                },
+                {
+                    "title": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Garage Gothic",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 35,
+                            "fontStyle": {
+                                "transform": "uppercase"
+                            },
+                            "lineHeight": 1
+                        },
+                        "body": "On peut se spécialiser dans une certaine physionomie (ou couleur) de visage"
+                    },
+                    "description": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Sina Nova",
+                                "fallback": "Gerogia",
+                                "type": "serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2
+                        },
+                        "body": "Quelqu’un a dit profilage? C’est tout de même le cas de certains super-recognizers s’entraînent à reconnaître des suspects d’une certaine origine ethnique"
+                    }
+                },
+                {
+                    "title": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Garage Gothic",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 35,
+                            "fontStyle": {
+                                "transform": "uppercase"
+                            },
+                            "lineHeight": 1
+                        },
+                        "body": "Il faut viser le centre"
+                    },
+                    "description": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Sina Nova",
+                                "fallback": "Gerogia",
+                                "type": "serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2
+                        },
+                        "body": "Oubliez les yeux, les nez ou les signes distinctifs. Pour absorber le visage de quelqu’un, il faut se concentrer sur un point juste au-dessus du nez."
+                    }
+                }
+            ],
+            "numbersStyle": {
+                "fontFamily": {
+                    "name": "Garage Gothic",
+                    "fallback": "Arial",
+                    "type": "sans-serif"
+                },
+                "fontSize": 60,
+                "fontStyle": {
+                    "transform": "uppercase"
+                },
+                "lineHeight": 0.9,
+                "color": "#FFFC00"
+            },
+            "background": {
+                "color": {
+                    "color": "blue"
+                },
+                "image": {
+                    "type": "image",
+                    "name": "tile-blue-noise.gif",
+                    "url": "tile-blue-noise.gif",
+                    "thumbnail_url": "tile-blue-noise.gif",
+                    "metadata": {
+                        "width": 320,
+                        "height": 320
+                    }
+                },
+                "repeat": true
+            },
+            "transitions": {
+                "in": "fade",
+                "out": "fade"
+            }
+        },
+        {
+            "id": "1cb8cbb5-5c1a-11eb-985f-ad6fce99d848",
+            "type": "title-subtitle-credits",
+            "layout": "bottom",
+            "title": {
+                "body": "Pourriez vous passer une semaine sans vous regarder dans le miroir?",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Garage Gothic",
+                        "fallback": "Arial",
+                        "type": "sans-serif"
+                    },
+                    "fontSize": 40,
+                    "fontStyle": {
+                        "transform": "uppercase"
+                    },
+                    "lineHeight": 1,
+                    "color": "#FFFC00"
+                }
+            },
+            "subtitle": {
+                "body": "On a tenté l’expérience et voici comment ça s’est déroulé",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Sina Nova",
+                        "fallback": "Gerogia",
+                        "type": "serif"
+                    },
+                    "fontSize": 20,
+                    "fontStyle": {
+                        "bold": false
+                    },
+                    "lineHeight": 1.2
+                }
+            },
+            "credits": {
+                "body": "<br/><br/>Par Hugo Meunier",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Sina Nova",
+                        "fallback": "Gerogia",
+                        "type": "serif"
+                    },
+                    "fontSize": 14,
+                    "fontStyle": {
+                        "bold": false
+                    },
+                    "lineHeight": 1.2
+                }
+            },
+            "background": {
+                "color": {
+                    "color": "black"
+                },
+                "video": {
+                    "type": "video",
+                    "name": "hugo.mp4",
+                    "url": "hugo-mirror.mp4",
+                    "metadata": {
+                        "width": 1280,
+                        "height": 1800
+                    }
+                }
+            },
+            "transitions": {
+                "in": "fade",
+                "out": "fade"
+            }
+        },
+        {
+            "id": "1cb8cbb6-5c1a-11eb-985f-ad6fce99d848",
+            "type": "timeline",
+            "layout": "normal",
+            "items": [
+                {
+                    "title": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Garage Gothic",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 35,
+                            "fontStyle": {
+                                "transform": "uppercase"
+                            },
+                            "lineHeight": 1,
+                            "color": "#FFFC00"
+                        },
+                        "body": "Jour 1"
+                    },
+                    "description": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Sina Nova",
+                                "fallback": "Gerogia",
+                                "type": "serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2
+                        },
+                        "body": "Je masque tous les miroirs de ma maison. Je réalise alors à la dure à quel point on se regarde toujours un peu – même à la dérobée – en allant pisser, en se brossant les dents, en enfilant des vêtements. J’ai même dû détourner les yeux en me lavant, pour éviter mon reflet dans la porte de ma douche. Ne pas tricher est ma devise. Je survis à une séance de gym sans me voir."
+                    }
+                },
+                {
+                    "title": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Garage Gothic",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 35,
+                            "fontStyle": {
+                                "transform": "uppercase"
+                            },
+                            "lineHeight": 1,
+                            "color": "#FFFC00"
+                        },
+                        "body": "Jour 2"
+                    },
+                    "description": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Sina Nova",
+                                "fallback": "Gerogia",
+                                "type": "serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2
+                        },
+                        "body": "La journée se passe bien. Je suis peut-être moins imbu de moi-même que je pensais. Même si je m’arrange encore comme en 1993, j’ai toujours été quand même soucieux de mon apparence. Je ne suis pas fâché de réaliser que je peux vivre sans me voir la face."
+                    }
+                },
+                {
+                    "title": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Garage Gothic",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 35,
+                            "fontStyle": {
+                                "transform": "uppercase"
+                            },
+                            "lineHeight": 1,
+                            "color": "#FFFC00"
+                        },
+                        "body": "Jour 3"
+                    },
+                    "description": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Sina Nova",
+                                "fallback": "Gerogia",
+                                "type": "serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2
+                        },
+                        "body": "J’emprunte la voiture de ma collègue Jasmine. Comme j’ai cinq ans, je décide de prendre un selfie dans son char. Je ne le réalise pas sur le coup, mais je viens d’enfreindre ma seule règle : ne pas me voir. Ce sera la seule fois de la semaine."
+                    }
+                },
+                {
+                    "title": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Garage Gothic",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 35,
+                            "fontStyle": {
+                                "transform": "uppercase"
+                            },
+                            "lineHeight": 1,
+                            "color": "#FFFC00"
+                        },
+                        "body": "Jour 4"
+                    },
+                    "description": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Sina Nova",
+                                "fallback": "Gerogia",
+                                "type": "serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2
+                        },
+                        "body": "Ma blonde Martine soulève le rideau recouvrant le miroir pour se pomponner avant d’aller enseigner. Un bon moyen de ne pas avoir l’air maquillé comme un char volé, comme dirait une amie. Elle avoue avoir négligé ses cheveux cette semaine à cause de cette mission farfelue que je nous impose."
+                    }
+                },
+                {
+                    "title": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Garage Gothic",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 35,
+                            "fontStyle": {
+                                "transform": "uppercase"
+                            },
+                            "lineHeight": 1,
+                            "color": "#FFFC00"
+                        },
+                        "body": "Jour 5"
+                    },
+                    "description": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Sina Nova",
+                                "fallback": "Gerogia",
+                                "type": "serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2
+                        },
+                        "body": "Je pars pour la fin de semaine dans un chalet avec des amis. C’est facile de résister à l’attrait des miroirs quand tu passes deux jours en mou à jouer à Cranium avec une hygiène discutable."
+                    }
+                },
+                {
+                    "title": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Garage Gothic",
+                                "fallback": "Arial",
+                                "type": "sans-serif"
+                            },
+                            "fontSize": 35,
+                            "fontStyle": {
+                                "transform": "uppercase"
+                            },
+                            "lineHeight": 1,
+                            "color": "#FFFC00"
+                        },
+                        "body": "Resultat"
+                    },
+                    "description": {
+                        "textStyle": {
+                            "fontFamily": {
+                                "name": "Sina Nova",
+                                "fallback": "Gerogia",
+                                "type": "serif"
+                            },
+                            "fontSize": 18,
+                            "fontStyle": {
+                                "bold": false
+                            },
+                            "lineHeight": 1.2
+                        },
+                        "body": "En rentrant chez moi le dimanche par contre, j’avais hâte de renouer avec mon visage. Déception. J’étais pareil, juste mal rasé et hangover de ma fin de semaine au chalet. Le buzz de me revoir aura duré 10 secondes, et j’étais à nouveau en train de chialer sur mon poids."
+                    }
+                }
+            ],
+            "bulletColor": {
+                "color": "#FFFC00",
+                "alpha": 1
+            },
+            "lineColor": {
+                "color": "#fff",
+                "alpha": 1
+            },
+            "bulletFilled": true,
+            "background": {
+                "color": {
+                    "color": "black"
+                },
+                "image": {
+                    "type": "image",
+                    "name": "tile-black-noise.gif",
+                    "url": "tile-black-noise.gif",
+                    "thumbnail_url": "tile-black-noise.gif",
+                    "metadata": {
+                        "width": 320,
+                        "height": 320
+                    }
+                },
+                "repeat": true
+            },
+            "transitions": {
+                "in": "fade",
+                "out": "fade"
+            }
+        }
+    ]
+}

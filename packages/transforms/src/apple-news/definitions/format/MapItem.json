@@ -1,0 +1,32 @@
+{
+    "name": "Format\\MapItem",
+    "description": "An object used in a map component for specifying the location of a map pin.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/mapitem",
+    "properties": [
+        {
+            "name": "latitude",
+            "type": "number",
+            "required": true,
+            "description": "The latitude of the map item.",
+            "typed": false
+        },
+        {
+            "name": "longitude",
+            "type": "number",
+            "required": true,
+            "description": "The longitude of the map item.",
+            "typed": false
+        },
+        {
+            "name": "caption",
+            "type": "string",
+            "required": false,
+            "description": "The caption for the map item. This caption is displayed when a user taps on a map pin.",
+            "typed": false
+        }
+    ]
+}

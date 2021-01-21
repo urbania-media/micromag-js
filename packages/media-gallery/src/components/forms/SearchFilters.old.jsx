@@ -2,7 +2,8 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Label, useFieldsManager } from '@micromag/core';
+import { useFieldsManager } from '@micromag/core/contexts';
+import { Label } from '@micromag/core/components';
 
 import styles from '../../styles/forms/search-filters-old.module.scss';
 

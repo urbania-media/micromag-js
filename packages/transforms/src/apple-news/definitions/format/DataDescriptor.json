@@ -1,0 +1,57 @@
+{
+    "name": "Format\\DataDescriptor",
+    "description": "The object for providing the data type, data formatting, and label for a field in a table.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/datadescriptor",
+    "properties": [
+        {
+            "name": "dataType",
+            "type": "enum:string",
+            "required": true,
+            "description": "The data type.",
+            "enum_values": [
+                "string",
+                "text",
+                "image",
+                "number",
+                "integer",
+                "float"
+            ],
+            "typed": false
+        },
+        {
+            "name": "key",
+            "type": "string",
+            "required": true,
+            "description": "The name of this data descriptor. In a data record, you use this name as the key in a key-value pair, where the value is the data itself. This key must be unique across data descriptors in this data record store. See RecordStore.",
+            "typed": false
+        },
+        {
+            "name": "format",
+            "type": "Format\\DataFormat",
+            "required": false,
+            "description": "The object that sets some additional formatting preferences if you are using the float or image data type. For example, use a FloatDataFormat object in this property to control rounding, or use an ImageDataFormat to control image size.",
+            "typed": true
+        },
+        {
+            "name": "identifier",
+            "type": "string",
+            "required": false,
+            "description": "A unique identifier for this data descriptor. If used, identifiers must be unique across descriptors in this data record store. An identifier is required if you want to sort your table by any order other than the order in which the records are provided.",
+            "typed": false
+        },
+        {
+            "name": "label",
+            "type": [
+                "Format\\FormattedText",
+                "string"
+            ],
+            "required": true,
+            "description": "The text to appear in the table header for this data category. This text can be provided as a string or a FormattedText object.",
+            "typed": false
+        }
+    ]
+}

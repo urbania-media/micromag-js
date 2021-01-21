@@ -1,0 +1,74 @@
+{
+    "name": "Format\\ConditionalSection",
+    "description": "The object for defining conditional properties for a section component, and when the conditional properties are in effect.",
+    "version": "1.9+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/conditionalsection",
+    "properties": [
+        {
+            "name": "conditions",
+            "type": "array:Format\\Condition",
+            "required": true,
+            "description": "An array of conditions that, when met, cause the conditional section component properties to be applied.",
+            "typed": false
+        },
+        {
+            "name": "anchor",
+            "type": "Format\\Anchor",
+            "required": false,
+            "description": "An object that defines vertical alignment with another component.",
+            "typed": false
+        },
+        {
+            "name": "animation",
+            "type": "Format\\ComponentAnimation",
+            "required": false,
+            "description": "An object that defines an animation to be applied to the component.",
+            "typed": true
+        },
+        {
+            "name": "behavior",
+            "type": "Format\\Behavior",
+            "required": false,
+            "description": "An object that defines behavior for a component, like Parallax or Springy.",
+            "typed": true
+        },
+        {
+            "name": "hidden",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean value that determines whether the component is hidden.",
+            "default": "false",
+            "typed": false
+        },
+        {
+            "name": "layout",
+            "type": [
+                "Format\\ComponentLayout",
+                "string"
+            ],
+            "required": false,
+            "description": "An inline ComponentLayout object that contains layout information, or a string reference to a ComponentLayout object that is defined at the top level of the document.",
+            "typed": false
+        },
+        {
+            "name": "scene",
+            "type": "Format\\Scene",
+            "required": false,
+            "description": "A set of animations applied to any header component that is a child of this section.",
+            "typed": true
+        },
+        {
+            "name": "style",
+            "type": [
+                "Format\\ComponentStyle",
+                "string"
+            ],
+            "required": false,
+            "description": "An inline ComponentStyle object that defines the appearance of this component, or a string reference to a ComponentStyle object that is defined at the top level of the document.",
+            "typed": false
+        }
+    ]
+}

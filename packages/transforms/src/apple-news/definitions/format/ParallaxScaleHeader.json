@@ -1,0 +1,20 @@
+{
+    "name": "Format\\ParallaxScaleHeader",
+    "description": "The scene that gives the impression of a parallax effect by zooming out and scrolling slightly more slowly than the user\u2019s action.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": "Format\\Scene",
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/parallaxscaleheader",
+    "properties": [
+        {
+            "name": "type",
+            "type": "string",
+            "required": true,
+            "description": "Always parallax_scale for this scene type.",
+            "value": "parallax_scale",
+            "read_only": true,
+            "typed": false
+        }
+    ]
+}

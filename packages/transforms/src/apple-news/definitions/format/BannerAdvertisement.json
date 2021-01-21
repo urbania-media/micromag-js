@@ -1,0 +1,96 @@
+{
+    "name": "Format\\BannerAdvertisement",
+    "description": "The component for adding a full-width banner ad.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": "Format\\Component",
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/banneradvertisement",
+    "properties": [
+        {
+            "name": "role",
+            "type": "string",
+            "required": true,
+            "description": "Always banner_advertisement for this component.",
+            "value": "banner_advertisement",
+            "read_only": true,
+            "typed": false
+        },
+        {
+            "name": "anchor",
+            "type": "Format\\Anchor",
+            "required": false,
+            "description": "An object that defines vertical alignment with another component.",
+            "typed": false
+        },
+        {
+            "name": "animation",
+            "type": "Format\\ComponentAnimation",
+            "required": false,
+            "description": "An object that defines an animation to be applied to the component.",
+            "typed": true
+        },
+        {
+            "name": "bannerType",
+            "type": "enum:string",
+            "required": false,
+            "description": "The type of banner to show.",
+            "enum_values": [
+                "any",
+                "standard",
+                "double_height",
+                "large"
+            ],
+            "typed": false
+        },
+        {
+            "name": "behavior",
+            "type": "Format\\Behavior",
+            "required": false,
+            "description": "An object that defines behavior for a component, like Parallax or Springy.",
+            "typed": true
+        },
+        {
+            "name": "conditional",
+            "type": "array:Format\\ConditionalComponent",
+            "required": false,
+            "description": "An array of component properties that can be applied conditionally, and the conditions that cause them to be applied.",
+            "typed": false
+        },
+        {
+            "name": "hidden",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean value that determines whether the component is hidden.",
+            "default": "false",
+            "typed": false
+        },
+        {
+            "name": "identifier",
+            "type": "string",
+            "required": false,
+            "description": "An optional unique identifier for this component. If used, this identifier must be unique across the entire document. You will need an identifier for your component if you want to anchor other components to it.",
+            "typed": false
+        },
+        {
+            "name": "layout",
+            "type": [
+                "Format\\ComponentLayout",
+                "string"
+            ],
+            "required": false,
+            "description": "An inline ComponentLayout object that contains layout information, or a string reference to a ComponentLayout object that is defined at the top level of the document.",
+            "typed": false
+        },
+        {
+            "name": "style",
+            "type": [
+                "Format\\ComponentStyle",
+                "string"
+            ],
+            "required": false,
+            "description": "An inline ComponentStyle object that defines the appearance of this component, or a string reference to a ComponentStyle object that is defined at the top level of the document.",
+            "typed": false
+        }
+    ]
+}

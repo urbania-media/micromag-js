@@ -1,0 +1,60 @@
+{
+    "name": "Format\\CornerMask",
+    "description": "The object for creating rounded corners.",
+    "version": "1.9+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/cornermask",
+    "properties": [
+        {
+            "name": "bottomLeft",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean that indicates whether the bottom-left corner should be masked.",
+            "default": "true",
+            "typed": false
+        },
+        {
+            "name": "bottomRight",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean that indicates whether the bottom-right corner should be masked.",
+            "default": "true",
+            "typed": false
+        },
+        {
+            "name": "radius",
+            "type": [
+                "SupportedUnits",
+                "integer"
+            ],
+            "required": false,
+            "description": "A supported unit or integer that describes the radius of the corners in points. Corner radius cannot exceed half the component width or height, whichever is smaller.",
+            "typed": false
+        },
+        {
+            "name": "topLeft",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean that indicates whether the top-left corner should be masked.",
+            "default": "true",
+            "typed": false
+        },
+        {
+            "name": "topRight",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean that indicates whether the top-right corner should be masked.",
+            "default": "true",
+            "typed": false
+        },
+        {
+            "name": "type",
+            "type": "string",
+            "required": false,
+            "description": "The type of mask. The value is always corners.",
+            "typed": false
+        }
+    ]
+}

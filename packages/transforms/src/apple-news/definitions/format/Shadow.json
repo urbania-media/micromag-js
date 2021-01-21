@@ -1,0 +1,44 @@
+{
+    "name": "Format\\Shadow",
+    "description": "The object for creating a text shadow.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/shadow",
+    "properties": [
+        {
+            "name": "color",
+            "type": "Color",
+            "required": true,
+            "description": "The stroke color.",
+            "typed": false
+        },
+        {
+            "name": "radius",
+            "type": "number",
+            "required": true,
+            "description": "The shadow\u2019s radius as a value between 0 and 100 in points.",
+            "minimum": 0,
+            "maximum": 100,
+            "typed": false
+        },
+        {
+            "name": "offset",
+            "type": "Format\\Offset",
+            "required": false,
+            "description": "The shadow\u2019s offset.",
+            "typed": false
+        },
+        {
+            "name": "opacity",
+            "type": "number",
+            "required": false,
+            "description": "The opacity of the shadow as a value between 0 and 1.",
+            "default": 1,
+            "minimum": 0,
+            "maximum": 1,
+            "typed": false
+        }
+    ]
+}

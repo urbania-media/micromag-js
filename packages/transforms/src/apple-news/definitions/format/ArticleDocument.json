@@ -1,0 +1,116 @@
+{
+    "name": "Format\\ArticleDocument",
+    "description": "The root object of an Apple News article, containing required properties, metadata, content, layout, and styles.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/articledocument",
+    "properties": [
+        {
+            "name": "components",
+            "type": "array:Format\\Component",
+            "required": true,
+            "description": "An array of components that form the content of this article. Components have different roles and types, such as Photo and Music.",
+            "typed": true
+        },
+        {
+            "name": "componentTextStyles",
+            "type": "Format\\ComponentTextStyles",
+            "required": true,
+            "description": "The component text styles that can be referred to by components in this document. Each article.json file must have, at minimum, a default component text style named default. Defaults by component role can also be set. See Defining and Using Text Styles.",
+            "typed": false
+        },
+        {
+            "name": "identifier",
+            "type": "string",
+            "required": true,
+            "description": "An unique, publisher-provided identifier for this article. This identifier must remain constant; it cannot change when the article is updated.",
+            "typed": false
+        },
+        {
+            "name": "language",
+            "type": "string",
+            "required": true,
+            "description": "A code that indicates the language of the article. Use the IANA.org language subtag registry to find the appropriate code; e.g., en for English, or the more specific en_UK for English (U.K.) or en_US for English (U.S.).",
+            "typed": false
+        },
+        {
+            "name": "layout",
+            "type": "Format\\Layout",
+            "required": true,
+            "description": "The article\u2019s column system. Apple News Format layouts make it possible to recreate print design on iPhone, iPad, iPod touch and Mac. Layout information is also used to calculate relative positioning and size for these devices. See Planning the Layout for Your Article.",
+            "typed": false
+        },
+        {
+            "name": "title",
+            "type": "string",
+            "required": true,
+            "description": "The article title or headline. Should be plain text; formatted text (HTML or Markdown) is not supported.",
+            "typed": false
+        },
+        {
+            "name": "version",
+            "type": "string",
+            "required": true,
+            "description": "The version of Apple News Format used in the JSON document.",
+            "typed": false
+        },
+        {
+            "name": "advertisingSettings",
+            "type": "Format\\AdvertisingSettings",
+            "required": false,
+            "description": "An advertisement to be inserted at a position that is both possible and optimal. You can specify what bannerType you want to have automatically inserted.",
+            "typed": false
+        },
+        {
+            "name": "autoplacement",
+            "type": "Format\\AutoPlacement",
+            "required": false,
+            "description": "The metadata, appearance, and placement of advertising and related content components within Apple News Format articles.",
+            "typed": false
+        },
+        {
+            "name": "componentLayouts",
+            "type": "Format\\ComponentLayouts",
+            "required": false,
+            "description": "The article-level ComponentLayout objects that can be referred to by their key within the ComponentLayouts object. See Positioning the Content in Your Article.",
+            "typed": false
+        },
+        {
+            "name": "componentStyles",
+            "type": "Format\\ComponentStyles",
+            "required": false,
+            "description": "The component styles that can be referred to by components within this document. See Enhancing Your Articles with Styles.",
+            "typed": false
+        },
+        {
+            "name": "documentStyle",
+            "type": "Format\\DocumentStyle",
+            "required": false,
+            "description": "An object containing the background color of the article.",
+            "typed": false
+        },
+        {
+            "name": "metadata",
+            "type": "Format\\Metadata",
+            "required": false,
+            "description": "The article's metadata, such as publication date, ad campaign data, and other information that is not part of the core article content.",
+            "typed": false
+        },
+        {
+            "name": "subtitle",
+            "type": "string",
+            "required": false,
+            "description": "The article subtitle. Should be plain text; formatted text (HTML or Markdown) is not supported.",
+            "typed": false
+        },
+        {
+            "name": "textStyles",
+            "type": "Format\\TextStyles",
+            "required": false,
+            "description": "The TextStyle objects available to use inline for text in Text components. See Using HTML with Apple News Format, Using Markdown with Apple News Format, and InlineTextStyle.",
+            "typed": false
+        }
+    ]
+}

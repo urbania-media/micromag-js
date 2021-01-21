@@ -1,0 +1,29 @@
+{
+    "name": "Format\\LinkedArticle",
+    "description": "A relationship between your article and another Apple News article.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/linkedarticle",
+    "properties": [
+        {
+            "name": "relationship",
+            "type": "enum:string",
+            "required": true,
+            "description": "The type of relationship between the article and the linked document.",
+            "enum_values": [
+                "related",
+                "promoted"
+            ],
+            "typed": false
+        },
+        {
+            "name": "URL",
+            "type": "uri",
+            "required": true,
+            "description": "The URL for the link. This link can  either be an Apple News link, like https:\/\/apple.news\/[article_id], or a link to an article on your website, as long as the website link matches the canonicalURL metadata property of the linked article. For more information about canonicalURL, see Metadata.",
+            "typed": false
+        }
+    ]
+}

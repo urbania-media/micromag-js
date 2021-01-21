@@ -1,0 +1,117 @@
+{
+    "name": "Format\\DataTable",
+    "description": "The component for adding a JSON data table.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": "Format\\Component",
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/datatable",
+    "properties": [
+        {
+            "name": "data",
+            "type": "Format\\RecordStore",
+            "required": true,
+            "description": "An object that provides data for the table. This property also provides information about the data, such as data types and header labels, in the form of the data descriptor.",
+            "typed": false
+        },
+        {
+            "name": "role",
+            "type": "string",
+            "required": true,
+            "description": "Always datatable for this component.",
+            "value": "datatable",
+            "read_only": true,
+            "typed": false
+        },
+        {
+            "name": "anchor",
+            "type": "Format\\Anchor",
+            "required": false,
+            "description": "An object that defines vertical alignment with another component.",
+            "typed": false
+        },
+        {
+            "name": "animation",
+            "type": "Format\\ComponentAnimation",
+            "required": false,
+            "description": "An object that defines an animation to be applied to the component.",
+            "typed": true
+        },
+        {
+            "name": "behavior",
+            "type": "Format\\Behavior",
+            "required": false,
+            "description": "An object that defines behavior for a component, like Parallax or Springy.",
+            "typed": true
+        },
+        {
+            "name": "conditional",
+            "type": "array:Format\\ConditionalComponent",
+            "required": false,
+            "description": "An array of component properties that can be applied conditionally, and the conditions that cause them to be applied.",
+            "typed": false
+        },
+        {
+            "name": "dataOrientation",
+            "type": "enum:string",
+            "required": false,
+            "description": "A string value that determines the table orientation.",
+            "default": "horizontal",
+            "enum_values": [
+                "horizontal",
+                "vertical"
+            ],
+            "typed": false
+        },
+        {
+            "name": "hidden",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean value that determines whether the component is hidden.",
+            "default": "false",
+            "typed": false
+        },
+        {
+            "name": "identifier",
+            "type": "string",
+            "required": false,
+            "description": "An optional unique identifier for this component. If used, this identifier must be unique across the entire document. You will need an identifier for your component if you want to anchor other components to it.",
+            "typed": false
+        },
+        {
+            "name": "layout",
+            "type": [
+                "Format\\ComponentLayout",
+                "string"
+            ],
+            "required": false,
+            "description": "An inline ComponentLayout object that contains layout information, or a string reference to a ComponentLayout object that is defined at the top level of the document.",
+            "typed": false
+        },
+        {
+            "name": "showDescriptorLabels",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean value that determines whether the headers are shown. If true, the headers are visible, with the labels defined in the RecordStore. If false, the headers are not visible.",
+            "default": "true",
+            "typed": false
+        },
+        {
+            "name": "sortBy",
+            "type": "array:Format\\DataTableSorting",
+            "required": false,
+            "description": "An array that determines how table data is sorted. Rules are applied in the order in which they are provided in the array.",
+            "typed": false
+        },
+        {
+            "name": "style",
+            "type": [
+                "Format\\ComponentStyle",
+                "string"
+            ],
+            "required": false,
+            "description": "An inline ComponentStyle object that defines the appearance of this component or a string reference to a ComponentStyle object that is defined at the top level of the document.",
+            "typed": false
+        }
+    ]
+}

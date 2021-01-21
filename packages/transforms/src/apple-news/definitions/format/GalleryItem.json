@@ -1,0 +1,42 @@
+{
+    "name": "Format\\GalleryItem",
+    "description": "An object used in a gallery or mosaic component for displaying an individual image.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/galleryitem",
+    "properties": [
+        {
+            "name": "URL",
+            "type": "uri",
+            "required": true,
+            "description": "The URL of an image to display in a gallery or mosaic.",
+            "typed": false
+        },
+        {
+            "name": "accessibilityCaption",
+            "type": "string",
+            "required": false,
+            "description": "A caption that describes the image. The text is used for VoiceOver for iOS and VoiceOver for macOS. If accessibilityCaption is not provided, the caption value is used for VoiceOver for iOS and VoiceOver for macOS.",
+            "typed": false
+        },
+        {
+            "name": "caption",
+            "type": [
+                "Format\\CaptionDescriptor",
+                "string"
+            ],
+            "required": false,
+            "description": "A caption that describes the image. The text is seen when the image is in full screen. This text is also used by VoiceOver for iOS and VoiceOver for macOS, if accessibilityCaption text is not provided. The caption text does not appear in the main article view. To display a caption in the main article view, use the Caption component.",
+            "typed": false
+        },
+        {
+            "name": "explicitContent",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean value that indicates the image may contain explicit content.",
+            "typed": false
+        }
+    ]
+}

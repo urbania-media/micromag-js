@@ -2,7 +2,7 @@
 import React, { useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-import ComponentsManager from '../lib/ComponentsManager';
+import { ComponentsManager } from '../lib';
 
 export const MODALS_NAMESPACE = 'modals';
 export const FIELDS_NAMESPACE = 'fields';

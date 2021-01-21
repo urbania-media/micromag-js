@@ -1,0 +1,30 @@
+{
+    "name": "Format\\Parallax",
+    "description": "The behavior whereby a component moves at a speed different from the scroll speed.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": "Format\\Behavior",
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/parallax",
+    "properties": [
+        {
+            "name": "type",
+            "type": "string",
+            "required": true,
+            "description": "Always parallax for this behavior.",
+            "value": "parallax",
+            "read_only": true,
+            "typed": false
+        },
+        {
+            "name": "factor",
+            "type": "number",
+            "required": false,
+            "description": "The speed of the component, as a factor of the scroll speed.The value of factor must be between 0.5 and 2.0. Values outside this range will be reset to the minimum or maximum value.",
+            "default": 0.9,
+            "minimum": 0.5,
+            "maximum": 2,
+            "typed": false
+        }
+    ]
+}

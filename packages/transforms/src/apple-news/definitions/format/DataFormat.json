@@ -1,0 +1,30 @@
+{
+    "name": "Format\\DataFormat",
+    "description": "Properties shared by all data format obejct types.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": {
+        "property": "type",
+        "types": {
+            "float": "FloatDataFormat",
+            "image": "ImageDataFormat"
+        }
+    },
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/dataformat",
+    "properties": [
+        {
+            "name": "type",
+            "type": "enum:string",
+            "required": true,
+            "description": "The type of format. This must be float for a FloatDataFormat object or image for an ImageDataFormat object.",
+            "value": "float",
+            "read_only": true,
+            "enum_values": [
+                "float",
+                "image"
+            ],
+            "typed": false
+        }
+    ]
+}
