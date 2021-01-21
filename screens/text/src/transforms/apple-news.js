@@ -1,17 +1,11 @@
 import { Text } from '@micromag/transforms/apple-news';
 
-const transform = (newStory, { text: { body: textBody = null } = {} }) => {
-    console.log(Text({ body: textBody }));
-
+const transform = (newStory, { text }) => {
+    const { body } = text || {};
+    const component = body ? Text({ body }) : null;
     return {
         ...newStory,
-        components: [
-            ...(newStory.components || []),
-            {
-                role: 'text',
-                body: textBody,
-            },
-        ],
+        components: [...(newStory.components || []), ...([component] || {})],
     };
 };
 

@@ -12,7 +12,7 @@ const getPackagesAliases = ({ withoutEndSign = false } = {}) =>
         return {
             ...aliases,
             ...subFiles
-                .filter(filePath => path.basename(filePath, '.js').match(/^[a-z]+$/) !== null)
+                .filter((filePath) => path.basename(filePath, '.js').match(/^[^\.\/]+$/) !== null)
                 .reduce((subAliases, filePath) => {
                     const fileName = path.basename(filePath, '.js');
                     return {
@@ -23,10 +23,18 @@ const getPackagesAliases = ({ withoutEndSign = false } = {}) =>
                         ),
                     };
                 }, {}),
-            ...(!hasStylesTemplate ? {
-                [`${packageName}/scss`]: path.join(packagePath, hasStylesFile ? './src' : './src/styles'),
-            } : null),
-            [`${packageName}${!withoutEndSign ? '$' : ''}`]: path.join(packagePath, './src/index.js'),
+            ...(!hasStylesTemplate
+                ? {
+                      [`${packageName}/scss`]: path.join(
+                          packagePath,
+                          hasStylesFile ? './src' : './src/styles',
+                      ),
+                  }
+                : null),
+            [`${packageName}${!withoutEndSign ? '$' : ''}`]: path.join(
+                packagePath,
+                './src/index.js',
+            ),
         };
     }, {});
 

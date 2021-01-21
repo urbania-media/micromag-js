@@ -61,6 +61,7 @@
         "@micromag/element-scroll": "^0.2.56",
         "@micromag/element-text": "^0.2.56",
         "@micromag/element-text-input": "^0.2.56",
+        "@micromag/transforms": "^0.2.56",
         "classnames": "^2.2.6",
         "lodash": "^4.17.20",
         "prop-types": "^15.7.2",

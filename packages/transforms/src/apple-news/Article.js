@@ -13,6 +13,8 @@ const Article = (newStory) => {
         layout: {
             columns: 12,
             width: 1024,
+            margin: 60,
+            gutter: 20,
         },
         components: [],
         componentStyles: {},

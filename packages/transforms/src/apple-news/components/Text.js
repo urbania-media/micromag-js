@@ -7,7 +7,7 @@ const Text = (text) => {
 
     const content = {
         role: 'text',
-        body,
+        text: body,
     };
     return validate(content, TextDefinition) ? content : null;
 };
