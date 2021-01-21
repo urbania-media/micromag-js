@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import * as MicromagPropTypes from '../../PropTypes';
+import { PropTypes as MicromagPropTypes } from '../../lib';
 import Label from '../partials/Label';
 import Buttons from '../buttons/Buttons';
 

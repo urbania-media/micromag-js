@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 
-import * as MicromagPropTypes from '../../PropTypes';
+import { PropTypes as MicromagPropTypes } from '../../lib';
 import { getComponentFromName, setFieldValue, getFieldFromPath } from '../../utils';
 import { useFieldsManager } from '../../contexts';
 

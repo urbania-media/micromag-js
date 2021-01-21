@@ -2,7 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { PropTypes as MicromagPropTypes, useResizeObserver } from '@micromag/core';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useResizeObserver } from '@micromag/core/hooks';
 
 import GalleryItem from '../items/GalleryItem';
 

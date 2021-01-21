@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useDrag } from 'react-use-gesture';
-import { PropTypes as MicromagPropTypes, ViewerProvider } from '@micromag/core';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     useScreenSizeFromElement,
     useResizeObserver,
@@ -12,7 +12,7 @@ import {
     useTrackScreenView,
     useTrackEvent,
 } from '@micromag/core/hooks';
-import { ScreenSizeProvider } from '@micromag/core/contexts';
+import { ScreenSizeProvider, ViewerProvider } from '@micromag/core/contexts';
 import { getDeviceScreens } from '@micromag/core/utils';
 
 import ViewerScreen from './ViewerScreen';
@@ -352,6 +352,8 @@ const Viewer = ({
         }
         console.log('@TODO share'); // eslint-disable-line
     }, [trackingEnabled, trackEvent, currentScreen]);
+
+    console.log(story);
 
     return (
         <ScreenSizeProvider size={screenSize}>

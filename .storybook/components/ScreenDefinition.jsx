@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import isArray from 'lodash/isArray';
 import { FormattedMessage } from 'react-intl';
 
-import * as MicromagPropTypes from '../../packages/core/src/PropTypes';
+import * as MicromagPropTypes from '../../packages/core/src/lib/PropTypes';
 import { ScreensProvider } from '../../packages/core/src/contexts/ScreensContext';
 import { ScreenProvider } from '../../packages/core/src/contexts/ScreenContext';
 import ScreenFields from './ScreenFields';

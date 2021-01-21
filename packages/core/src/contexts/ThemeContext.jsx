@@ -2,7 +2,7 @@
 import React, { useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-// import * as MicromagPropTypes from '../PropTypes';
+// import { PropTypes as MicromagPropTypes } from '../lib';
 
 const ThemeContext = React.createContext({
     fonts: [],

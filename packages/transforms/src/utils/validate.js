@@ -4,8 +4,6 @@ import isNumber from 'lodash/isNumber';
 import isEmpty from 'lodash/isEmpty';
 
 const validate = (content = {}, definition = null) => {
-    console.log('def', definition);
-
     const validated = content
         ? Object.keys(content).reduce((values, name) => {
               const value = content[name] || null;

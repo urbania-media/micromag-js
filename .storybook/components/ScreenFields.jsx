@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
-import * as MicromagPropTypes from '../../packages/core/src/PropTypes';
+import * as MicromagPropTypes from '../../packages/core/src/lib/PropTypes';
 import Fields from '../../packages/fields/src/components/Fields';
 import FieldsProvider from '../../packages/fields/src/FieldsProvider';
 

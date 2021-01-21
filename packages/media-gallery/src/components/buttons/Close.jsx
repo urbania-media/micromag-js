@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Button } from '@micromag/core/components';
 
 // import * as AppPropTypes from '../../lib/PropTypes';
-import { Button } from '@micromag/core';
 
 import styles from '../../styles/buttons/close.module.scss';
 

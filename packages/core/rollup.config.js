@@ -6,20 +6,19 @@ import { createConfig } from '../../rollup.config';
 
 const files = {
     'index.js': {
-        prependPlugins: [
-            alias({
-                entries: [
-                    {
-                        find: /(\.|\.\.)\/(contexts|utils|hooks|components)\/?$/,
-                        replacement: '@micromag/core/$2',
-                    },
-                ],
-            }),
-        ],
+        // prependPlugins: [
+        //     alias({
+        //         entries: [
+        //             {
+        //                 find: /(\.|\.\.)\/(contexts|utils|hooks|components)\/?$/,
+        //                 replacement: '@micromag/core/$2',
+        //             },
+        //         ],
+        //     }),
+        // ],
         resolveOptions: {
             extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
             resolveOnly: [
-                path.join(__dirname, './src/PropTypes'),
                 new RegExp(path.join(__dirname, './src/lib')),
             ],
         },
@@ -43,7 +42,6 @@ const files = {
         resolveOptions: {
             extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
             resolveOnly: [
-                path.join(__dirname, './src/PropTypes'),
                 new RegExp(path.join(__dirname, './src/components')),
                 new RegExp(path.join(__dirname, './src/styles')),
             ],
@@ -68,7 +66,6 @@ const files = {
         resolveOptions: {
             extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
             resolveOnly: [
-                path.join(__dirname, './src/PropTypes'),
                 new RegExp(path.join(__dirname, './src/components/namespaces')),
                 new RegExp(path.join(__dirname, './src/contexts')),
                 new RegExp(path.join(__dirname, './src/hooks/useUppyLocale')),
@@ -95,7 +92,6 @@ const files = {
         resolveOptions: {
             extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
             resolveOnly: [
-                path.join(__dirname, './src/PropTypes'),
                 path.join(__dirname, './src/lib/EventsManager'),
                 new RegExp(path.join(__dirname, './src/hooks')),
             ],
@@ -106,7 +102,6 @@ const files = {
         resolveOptions: {
             extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
             resolveOnly: [
-                path.join(__dirname, './src/PropTypes'),
                 new RegExp(path.join(__dirname, './src/utils')),
             ],
         },
