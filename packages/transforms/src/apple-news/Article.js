@@ -1,5 +1,5 @@
 import { validate } from '../utils';
-import ArticleDefinition from './definitions/api/Article.json';
+import ArticleDefinition from './definitions/ArticleDocument.json';
 
 const Article = (newStory) => {
     console.log('ARTICLE', newStory); // eslint-disable-line
@@ -18,9 +18,10 @@ const Article = (newStory) => {
         },
         components: [],
         componentStyles: {},
+        componentTextStyles: {},
     };
 
-    return validate(content, ArticleDefinition) ? content : null;
+    return validate(content, ArticleDefinition);
 };
 
 export default Article;

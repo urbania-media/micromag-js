@@ -58,7 +58,10 @@
     "dependencies": {
         "@babel/runtime": "^7.12.5",
         "@micromag/core": "^0.2.57",
-        "prop-types": "^15.7.2"
+        "lodash": "^4.17.20",
+        "object-hash": "^2.1.1",
+        "prop-types": "^15.7.2",
+        "uuid": "^8.3.2"
     },
     "publishConfig": {
         "access": "public"

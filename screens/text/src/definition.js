@@ -62,6 +62,7 @@ export default [
         }),
         component: TextTitleScreen,
         layouts: ['top', 'middle', 'bottom', 'split'],
+        transforms,
         fields: [
             {
                 name: 'layout',

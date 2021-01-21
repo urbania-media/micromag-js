@@ -1,14 +1,14 @@
 import { validate } from '../../utils';
-import TextStyleDefinition from '../definitions/format/TextStyle.json';
+import TextStyleDefinition from '../definitions/TextStyle.json';
 
-const TextStyle = ({ fontFamily = null, fontSize = null }) => {
-    console.log('STYLE', fontFamily, fontSize); // eslint-disable-line
-
+const TextStyle = ({ fontFamily = null, fontSize = null, lineHeight = null, color = null }) => {
     const content = {
         fontFamily,
         fontSize,
+        lineHeight,
+        color,
     };
-    return validate(content, TextStyleDefinition) ? content : null;
+    return validate(content, TextStyleDefinition);
 };
 
 export default TextStyle;

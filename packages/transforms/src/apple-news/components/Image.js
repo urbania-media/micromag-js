@@ -1,7 +1,7 @@
 import { validate } from '../../utils';
-import ImageDefinition from '../definitions/format/Image.json';
+import ImageDefinition from '../definitions/Image.json';
 
-const Image = (image) => {
+const Image = (story, image) => {
     const { url } = image || {};
     console.log('IMAGE', image, url); // eslint-disable-line
 
@@ -9,7 +9,11 @@ const Image = (image) => {
         role: 'image',
         URL: url,
     };
-    return validate(content, ImageDefinition) ? content : null;
+    const component = validate(content, ImageDefinition);
+    return {
+        story,
+        component,
+    };
 };
 
 export default Image;
