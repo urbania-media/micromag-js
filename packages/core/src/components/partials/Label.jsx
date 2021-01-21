@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
-import * as MicromagPropTypes from '../../PropTypes';
+import { PropTypes as MicromagPropTypes } from '../../lib';
 import { isMessage } from '../../utils';
 
 const propTypes = {

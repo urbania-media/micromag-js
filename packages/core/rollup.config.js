@@ -6,16 +6,16 @@ import { createConfig } from '../../rollup.config';
 
 const files = {
     'index.js': {
-        prependPlugins: [
-            alias({
-                entries: [
-                    {
-                        find: /(\.|\.\.)\/(contexts|utils|hooks|components)\/?$/,
-                        replacement: '@micromag/core/$2',
-                    },
-                ],
-            }),
-        ],
+        // prependPlugins: [
+        //     alias({
+        //         entries: [
+        //             {
+        //                 find: /(\.|\.\.)\/(contexts|utils|hooks|components)\/?$/,
+        //                 replacement: '@micromag/core/$2',
+        //             },
+        //         ],
+        //     }),
+        // ],
         resolveOptions: {
             extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
             resolveOnly: [

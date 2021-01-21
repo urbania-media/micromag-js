@@ -5,7 +5,7 @@ import isString from 'lodash/isString';
 
 import { useScreenRenderContext } from '../../contexts';
 import { getComponentFromName } from '../../utils';
-import * as MicromagPropTypes from '../../PropTypes';
+import { PropTypes as MicromagPropTypes } from '../../lib';
 import * as Placeholders from '../placeholders/index';
 import Empty from '../partials/Empty';
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { defineMessages } from 'react-intl';
 
-// import * as MicromagPropTypes from '../../PropTypes';
+// import { PropTypes as MicromagPropTypes } from '../../lib';
 import Link from '../partials/Link';
 import Label from '../partials/Label';
 
