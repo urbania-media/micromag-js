@@ -8,14 +8,22 @@ const getFieldFromPath = (path, fields, fieldManager) =>
             if (foundField === null) {
                 return null;
             }
-            const { type = null } = foundField;
+            const { type = null, fields: fieldFields = null, field = null } = foundField;
+            const finalType = field !== null ? field.type || type : type;
             const { fields: subFields = null, settings = null, itemsField = null } =
-                type !== null ? fieldManager.getDefinition(type) : foundField;
+                finalType !== null ? fieldManager.getDefinition(finalType) : foundField;
             if (itemsField !== null && key.match(/^[0-9]+$/)) {
                 return { ...itemsField, name: path };
             }
 
-            return getFieldByName([...(subFields || []), ...(settings || [])], key);
+            return getFieldByName(
+                [
+                    ...(fieldFields || []),
+                    ...(subFields || []),
+                    ...(settings || []),
+                ],
+                key,
+            );
         },
         { fields },
     );

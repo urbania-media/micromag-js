@@ -8,6 +8,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Label } from '@micromag/core/components';
 
 import Fields from './Fields';
+import Field from './Field';
 
 import styles from '../styles/field-with-form.module.scss';
 
@@ -21,6 +22,7 @@ const propTypes = {
     noValueLabel: MicromagPropTypes.label,
     isHorizontal: PropTypes.bool,
     children: PropTypes.node,
+    field: MicromagPropTypes.formField,
     className: PropTypes.string,
     onChange: PropTypes.func,
     closeForm: PropTypes.func,
@@ -41,6 +43,7 @@ const defaultProps = {
     ),
     isHorizontal: false,
     children: null,
+    field: null,
     className: null,
     onChange: null,
     closeForm: null,
@@ -59,13 +62,17 @@ const FieldWithForm = ({
     onChange,
     closeForm,
     children,
+    field,
     ...props
 }) => {
     if (isForm) {
-        return children !== null ? (
-            children
+        if (children !== null) {
+            return children;
+        }
+        return field !== null ? (
+            <Field className="p-2" {...field} {...props} value={value} onChange={onChange} />
         ) : (
-            <Fields {...props} className="p-2" value={value} onChange={onChange} />
+            <Fields className="p-2" {...props} value={value} onChange={onChange} />
         );
     }
 
