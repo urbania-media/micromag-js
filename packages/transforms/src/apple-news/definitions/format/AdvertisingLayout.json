@@ -1,0 +1,21 @@
+{
+    "name": "Format\\AdvertisingLayout",
+    "description": "The object for defining the margin above and below advertising components.DeprecatedUse AutoPlacementLayout instead.",
+    "version": "1.7",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/advertisinglayout",
+    "properties": [
+        {
+            "name": "margin",
+            "type": [
+                "Format\\Margin",
+                "integer"
+            ],
+            "required": true,
+            "description": "A value that describes margins on top and bottom as a single integer or as an object containing separate properties for top and bottom margins.",
+            "typed": false
+        }
+    ]
+}

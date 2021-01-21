@@ -1,0 +1,20 @@
+{
+    "name": "Format\\AppearAnimation",
+    "description": "The animation whereby a component appears on the screen.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": "Format\\ComponentAnimation",
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/appearanimation",
+    "properties": [
+        {
+            "name": "type",
+            "type": "string",
+            "required": true,
+            "description": "Always appear for this animation type.",
+            "value": "appear",
+            "read_only": true,
+            "typed": false
+        }
+    ]
+}

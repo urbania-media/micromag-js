@@ -1,0 +1,50 @@
+{
+    "name": "Format\\TableBorder",
+    "description": "The object for setting borders for tables.",
+    "version": "1.8+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/tableborder",
+    "properties": [
+        {
+            "name": "all",
+            "type": "Format\\TableStrokeStyle",
+            "required": false,
+            "description": "The object that defines the stroke properties of the border. Stroke properties cannot be set for each side; the border can only be disabled or enabled for each side.",
+            "typed": false
+        },
+        {
+            "name": "bottom",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean that indicates whether the border should be applied to the bottom.",
+            "default": "true",
+            "typed": false
+        },
+        {
+            "name": "left",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean that indicates whether the border should be applied to the left side.",
+            "default": "true",
+            "typed": false
+        },
+        {
+            "name": "right",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean that indicates whether the border should be applied to the right side.",
+            "default": "true",
+            "typed": false
+        },
+        {
+            "name": "top",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean that indicates whether the border should be applied to the top.",
+            "default": "true",
+            "typed": false
+        }
+    ]
+}

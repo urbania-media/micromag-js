@@ -1,0 +1,45 @@
+{
+    "name": "Format\\Layout",
+    "description": "The object for defining columns, gutters, and margins for your article\u2019s designed width.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/layout",
+    "properties": [
+        {
+            "name": "columns",
+            "type": "integer",
+            "required": true,
+            "description": "The number of columns this article was designed for. You must have at least one column.",
+            "minimum": 1,
+            "typed": false
+        },
+        {
+            "name": "width",
+            "type": "integer",
+            "required": true,
+            "description": "The width (in points) this article was designed for. This property is used to calculate down-scaling scenarios for smaller devices.",
+            "minimum": 1,
+            "typed": false
+        },
+        {
+            "name": "gutter",
+            "type": "integer",
+            "required": false,
+            "description": "The gutter size for the article (in points). The gutter provides spacing between columns. This property should always be an even number; odd numbers are rounded up to the next even number. If this property is omitted, a default gutter size of 20 is applied. If the gutter is negative, the number will be set to 0.",
+            "default": 20,
+            "minimum": 0,
+            "typed": false
+        },
+        {
+            "name": "margin",
+            "type": "integer",
+            "required": false,
+            "description": "The outer (left and right) margins of the article, in points. If this property is omitted, a default article margin of 60 is applied. If the margin is negative, the number is set to 0. If the margin is greater than or equal to the width\/2, the article delivery fails.",
+            "default": 60,
+            "minimum": 0,
+            "typed": false
+        }
+    ]
+}

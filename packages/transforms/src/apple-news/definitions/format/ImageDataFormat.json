@@ -1,0 +1,61 @@
+{
+    "name": "Format\\ImageDataFormat",
+    "description": "The object that allows you to specify the minimum and maximum dimensions for images in data table cells.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": "Format\\DataFormat",
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/imagedataformat",
+    "properties": [
+        {
+            "name": "type",
+            "type": "string",
+            "required": true,
+            "description": "Always image for an ImageDataFormat object.",
+            "value": "image",
+            "read_only": true,
+            "typed": false
+        },
+        {
+            "name": "maximumHeight",
+            "type": [
+                "SupportedUnits",
+                "integer"
+            ],
+            "required": false,
+            "description": "The maximum height of an image in a cell as an integer in points or as one of the available units for components.",
+            "typed": false
+        },
+        {
+            "name": "maximumWidth",
+            "type": [
+                "SupportedUnits",
+                "integer"
+            ],
+            "required": false,
+            "description": "The maximum width of an image in a cell as an integer in points or as one of the available units for components.",
+            "typed": false
+        },
+        {
+            "name": "minimumHeight",
+            "type": [
+                "SupportedUnits",
+                "integer"
+            ],
+            "required": false,
+            "description": "The minimum height of an image in a cell as an integer in points or as one of the available units for components.",
+            "typed": false
+        },
+        {
+            "name": "minimumWidth",
+            "type": [
+                "SupportedUnits",
+                "integer"
+            ],
+            "required": false,
+            "description": "The minimum width of an image in a cell as an integer in points or as one of the available units for components.",
+            "default": "20cw",
+            "typed": false
+        }
+    ]
+}

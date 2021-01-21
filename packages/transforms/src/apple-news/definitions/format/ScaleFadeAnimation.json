@@ -1,0 +1,48 @@
+{
+    "name": "Format\\ScaleFadeAnimation",
+    "description": "The animation in which a component scales up and fades into view.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": "Format\\ComponentAnimation",
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/scalefadeanimation",
+    "properties": [
+        {
+            "name": "type",
+            "type": "string",
+            "required": true,
+            "description": "Always scale_fade for this animation type.",
+            "value": "scale_fade",
+            "read_only": true,
+            "typed": false
+        },
+        {
+            "name": "initialAlpha",
+            "type": "number",
+            "required": false,
+            "description": "The initial transparency of the component. Set initialAlpha to a value between 0 (completely transparent) and 1 (completely opaque).",
+            "default": 0.3,
+            "minimum": 0,
+            "maximum": 1,
+            "typed": false
+        },
+        {
+            "name": "initialScale",
+            "type": "number",
+            "required": false,
+            "description": "The initial scale of the component. Set initialScale to a value between 0 (completely scaled down) and 1 (the component\u2019s original size).",
+            "default": 0.75,
+            "minimum": 0,
+            "maximum": 1,
+            "typed": false
+        },
+        {
+            "name": "userControllable",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean value that indicates whether the animation occurs in response to user action (true) or happens automatically (false).",
+            "default": "false",
+            "typed": false
+        }
+    ]
+}

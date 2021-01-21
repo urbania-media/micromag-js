@@ -1,0 +1,35 @@
+{
+    "name": "Format\\CoverArt",
+    "description": "The object for specifying cover art that is required for an article to be considered for inclusion in the Featured Stories section.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/coverart",
+    "properties": [
+        {
+            "name": "URL",
+            "type": "string",
+            "required": true,
+            "description": "The URL of the image file.",
+            "version": "1.2",
+            "typed": false
+        },
+        {
+            "name": "accessibilityCaption",
+            "type": "string",
+            "required": false,
+            "description": "A caption that describes the content of the cover image. The accessibilityCaption is used by VoiceOver for iOS.",
+            "version": "1.2",
+            "typed": false
+        },
+        {
+            "name": "type",
+            "type": "string",
+            "required": true,
+            "description": "The type of cover art provided. Currently, image is supported.",
+            "version": "1.2",
+            "typed": false
+        }
+    ]
+}

@@ -1,0 +1,63 @@
+{
+    "name": "Format\\FormattedText",
+    "description": "The object for specifying formatted text content and styling for captions in table cells.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/formattedtext",
+    "properties": [
+        {
+            "name": "text",
+            "type": "string",
+            "required": true,
+            "description": "The text, including any HTML tags.",
+            "typed": false
+        },
+        {
+            "name": "type",
+            "type": "string",
+            "required": true,
+            "description": "Always formatted_text for this object.",
+            "value": "formatted_text",
+            "read_only": true,
+            "typed": false
+        },
+        {
+            "name": "additions",
+            "type": "array:Format\\Addition",
+            "required": false,
+            "description": "An array of Addition objects that supply additional information for ranges of text in the text property.",
+            "typed": false
+        },
+        {
+            "name": "format",
+            "type": "enum:string",
+            "required": false,
+            "description": "The formatting or markup method applied to the text. If format is set to html, neither additions nor inlineTextStyles are supported.",
+            "default": "none",
+            "enum_values": [
+                "html",
+                "none"
+            ],
+            "typed": false
+        },
+        {
+            "name": "inlineTextStyles",
+            "type": "array:Format\\InlineTextStyle",
+            "required": false,
+            "description": "An array specifying ranges of characters and a TextStyle object to apply to each range.",
+            "typed": false
+        },
+        {
+            "name": "textStyle",
+            "type": [
+                "Format\\ComponentTextStyle",
+                "string"
+            ],
+            "required": false,
+            "description": "A component TextStyle object, or the name string of one of your styles in the ArticleDocument.componentTextStyles object.",
+            "typed": false
+        }
+    ]
+}

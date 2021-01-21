@@ -1,0 +1,41 @@
+{
+    "name": "Format\\Link",
+    "description": "The addition object for defining links in text components that don\u2019t use HTML or Markdown formatting.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": "Format\\Addition",
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/link",
+    "properties": [
+        {
+            "name": "type",
+            "type": "string",
+            "required": true,
+            "description": "Always link for a Link object.",
+            "value": "link",
+            "read_only": true,
+            "typed": false
+        },
+        {
+            "name": "URL",
+            "type": "uri",
+            "required": true,
+            "description": "The URL that should be opened when a user interacts with the range of text specified in the addition.",
+            "typed": false
+        },
+        {
+            "name": "rangeLength",
+            "type": "integer",
+            "required": false,
+            "description": "The length (in characters) of the character range.",
+            "typed": false
+        },
+        {
+            "name": "rangeStart",
+            "type": "integer",
+            "required": false,
+            "description": "The starting character index for which the addition is meant. A text range starts at 0 for the first character.",
+            "typed": false
+        }
+    ]
+}

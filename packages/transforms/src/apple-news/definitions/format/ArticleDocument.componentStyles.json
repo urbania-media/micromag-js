@@ -1,0 +1,18 @@
+{
+    "name": "Format\\ComponentStyles",
+    "description": "An object containing component style objects that components in the article can refer to.",
+    "version": "1.7+",
+    "from_class": "Styles",
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/articledocument\/componentstyles",
+    "properties": [
+        {
+            "name": "styles",
+            "type": "map:Format\\ComponentStyle",
+            "required": false,
+            "description": "A component style, with a name you define that can be referred to by components within this document.",
+            "typed": false
+        }
+    ]
+}

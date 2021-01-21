@@ -1,0 +1,132 @@
+{
+    "name": "Api\\Objects\\Article",
+    "description": "See the fields returned by the article endpoints.",
+    "version": "1.0.0+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/article",
+    "properties": [
+        {
+            "name": "accessoryText",
+            "type": "string",
+            "required": false,
+            "description": "Text that appears alongside article headlines \u2014 author name, channel name, subtitle, and so on.",
+            "typed": false
+        },
+        {
+            "name": "createdAt",
+            "type": "date-time",
+            "required": false,
+            "description": "The date and time the article was created.",
+            "typed": false
+        },
+        {
+            "name": "document",
+            "type": [
+                "Format\\ArticleDocument",
+                "string"
+            ],
+            "required": false,
+            "description": "The content of the article, as an Apple News Format document.",
+            "typed": false
+        },
+        {
+            "name": "id",
+            "type": "uuid",
+            "required": false,
+            "description": "The unique identifier of the article.",
+            "typed": false
+        },
+        {
+            "name": "isCandidateToBeFeatured",
+            "type": "boolean",
+            "required": false,
+            "description": "Indicates whether or not this article should be considered for featuring in News. See Creating Articles for Featured Stories.",
+            "typed": false
+        },
+        {
+            "name": "isPreview",
+            "type": "boolean",
+            "required": false,
+            "description": "Indicates whether this article should be public (live) or should be a preview that is only visible to members of your channel. Set isPreview to false to publish the article right away and make it visible to all News users.",
+            "typed": false
+        },
+        {
+            "name": "isSponsored",
+            "type": "boolean",
+            "required": false,
+            "description": "Indicates whether this article consists of sponsored content for promotional purposes. Sponsored content must be marked as such; channels that do not follow this policy may be suspended.",
+            "typed": false
+        },
+        {
+            "name": "maturityRating",
+            "type": "enum:string",
+            "required": false,
+            "description": "Indicates the viewing audience for the content. The types of audiences or ratings are KIDS, MATURE, and GENERAL or null if unspecified. Note that a MATURE rating indicates explicit content that is only appropriate for a specific audience.",
+            "enum_values": [
+                "KIDS",
+                "MATURE",
+                "GENERAL"
+            ],
+            "typed": false
+        },
+        {
+            "name": "modifiedAt",
+            "type": "date-time",
+            "required": false,
+            "description": "The date and time this article was last modified.",
+            "typed": false
+        },
+        {
+            "name": "revision",
+            "type": "string",
+            "required": false,
+            "description": "The current revision token for the article.",
+            "typed": false
+        },
+        {
+            "name": "shareUrl",
+            "type": "string",
+            "required": false,
+            "description": "The URL to the article within the News app. The shareUrl field applies only on devices with iOS 9 installed.",
+            "typed": false
+        },
+        {
+            "name": "state",
+            "type": "enum:string",
+            "required": false,
+            "description": "The current state of the article which can be one of the following:",
+            "enum_values": [
+                "PROCESSING",
+                "LIVE",
+                "PROCESSING_UPDATE",
+                "TAKEN_DOWN",
+                "FAILED_PROCESSING",
+                "FAILED_PROCESSING_UPDATE"
+            ],
+            "typed": false
+        },
+        {
+            "name": "title",
+            "type": "string",
+            "required": false,
+            "description": "The title of the article, as specified in the Apple News Format document.",
+            "typed": false
+        },
+        {
+            "name": "type",
+            "type": "string",
+            "required": false,
+            "description": "Article",
+            "typed": false
+        },
+        {
+            "name": "warnings",
+            "type": "array:Api\\Objects\\Warning",
+            "required": false,
+            "description": "A list of warning messages indicating problems with the article that are not fatal.",
+            "typed": false
+        }
+    ]
+}

@@ -1,0 +1,60 @@
+{
+    "name": "Format\\TableCellSelector",
+    "description": "The object for defining conditions that will cause a conditional style to be applied to a cell.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/tablecellselector",
+    "properties": [
+        {
+            "name": "columnIndex",
+            "type": "integer",
+            "required": false,
+            "description": "The number that specifies a column index. The leftmost column of data has an index of 0.",
+            "typed": false
+        },
+        {
+            "name": "descriptor",
+            "type": "string",
+            "required": false,
+            "description": "A string that specifies the identifier of a specific data descriptor. All cells for this data descriptor will be selected. See DataDescriptor.",
+            "typed": false
+        },
+        {
+            "name": "evenColumns",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean value when true, selects the cells in even columns.",
+            "typed": false
+        },
+        {
+            "name": "evenRows",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean value when true, selects the cells in even rows.",
+            "typed": false
+        },
+        {
+            "name": "oddColumns",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean value when true, selects the cells in odd columns.",
+            "typed": false
+        },
+        {
+            "name": "oddRows",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean value when true, selects the cells in odd rows.",
+            "typed": false
+        },
+        {
+            "name": "rowIndex",
+            "type": "integer",
+            "required": false,
+            "description": "A number that specifies a row index. The topmost row of data has an index of 0.",
+            "typed": false
+        }
+    ]
+}

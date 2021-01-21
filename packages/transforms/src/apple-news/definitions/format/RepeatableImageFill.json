@@ -1,0 +1,99 @@
+{
+    "name": "Format\\RepeatableImageFill",
+    "description": "The object for adding a background image that can be repeated.",
+    "version": "1.9+",
+    "from_class": null,
+    "extends": "Format\\Fill",
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/repeatableimagefill",
+    "properties": [
+        {
+            "name": "type",
+            "type": "string",
+            "required": true,
+            "description": "Always repeatable_image for this object.",
+            "value": "repeatable_image",
+            "read_only": true,
+            "typed": false
+        },
+        {
+            "name": "URL",
+            "type": "uri",
+            "required": true,
+            "description": "The URL of the image file to use for filling the component.",
+            "typed": false
+        },
+        {
+            "name": "attachment",
+            "type": "enum:string",
+            "required": false,
+            "description": "A string that indicates how the fill should behave when a user scrolls.",
+            "default": "scroll",
+            "enum_values": [
+                "fixed",
+                "scroll"
+            ],
+            "typed": false
+        },
+        {
+            "name": "height",
+            "type": [
+                "SupportedUnits",
+                "integer"
+            ],
+            "required": false,
+            "description": "The height of the image as it is repeated. When height is omitted, the width property is used to determine the size based on the aspect ratio of the provided image.",
+            "typed": false
+        },
+        {
+            "name": "horizontalAlignment",
+            "type": "enum:string",
+            "required": false,
+            "description": "A string that sets the horizontal alignment of the image fill within its component.",
+            "default": "center",
+            "enum_values": [
+                "left",
+                "center",
+                "right"
+            ],
+            "typed": false
+        },
+        {
+            "name": "repeat",
+            "type": "enum:string",
+            "required": false,
+            "description": "A string that defines the direction in which the background image is repeated.",
+            "default": "both",
+            "enum_values": [
+                "none",
+                "x",
+                "y",
+                "both"
+            ],
+            "typed": false
+        },
+        {
+            "name": "verticalAlignment",
+            "type": "enum:string",
+            "required": false,
+            "description": "The vertical alignment of the repeatable image fill within its component.",
+            "default": "center",
+            "enum_values": [
+                "top",
+                "center",
+                "bottom"
+            ],
+            "typed": false
+        },
+        {
+            "name": "width",
+            "type": [
+                "SupportedUnits",
+                "integer"
+            ],
+            "required": false,
+            "description": "The width of the image as it is repeated. When width is omitted, the height property is used to determine the size based on the aspect ratio of the provided image.",
+            "typed": false
+        }
+    ]
+}

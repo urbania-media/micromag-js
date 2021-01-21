@@ -1,0 +1,18 @@
+{
+    "name": "Format\\AutoPlacement",
+    "description": "The object for automatically placing components within Apple News Format articles.",
+    "version": "1.9+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/autoplacement",
+    "properties": [
+        {
+            "name": "advertisement",
+            "type": "Format\\AdvertisementAutoPlacement",
+            "required": false,
+            "description": "The automatic placement of advertisement components. By default, no advertising is automatically inserted.",
+            "typed": false
+        }
+    ]
+}

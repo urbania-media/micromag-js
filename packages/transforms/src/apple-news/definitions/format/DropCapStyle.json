@@ -1,0 +1,60 @@
+{
+    "name": "Format\\DropCapStyle",
+    "description": "The object for defining the drop cap text style for use in the first paragraph in a text component.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/dropcapstyle",
+    "properties": [
+        {
+            "name": "numberOfLines",
+            "type": "integer",
+            "required": true,
+            "description": "The approximate number of text lines this drop cap should span. For example, if numberOfLines is set to 3, and the top of the drop cap is aligned with the top of the first line, the bottom of the drop cap will drop to the bottom of the third line, although the actual drop amount can vary depending on the device and its orientation.",
+            "typed": false
+        },
+        {
+            "name": "backgroundColor",
+            "type": "Color",
+            "required": false,
+            "description": "The background color of the drop cap. By default, no background color is applied, making the background effectively transparent.",
+            "typed": false
+        },
+        {
+            "name": "fontName",
+            "type": "string",
+            "required": false,
+            "description": "The PostScript name of the font to use for the drop cap. By default, the drop cap inherits the font of the component it\u2019s in.",
+            "typed": false
+        },
+        {
+            "name": "numberOfCharacters",
+            "type": "integer",
+            "required": false,
+            "description": "A number that indicates the characters to render in the drop cap style.",
+            "typed": false
+        },
+        {
+            "name": "numberOfRaisedLines",
+            "type": "integer",
+            "required": false,
+            "description": "The number of text lines this drop cap should raise. For example: When numberOfRaisedLines is 3, and numberOfLines is 5, the top of the drop cap is raised above the first line by 3 lines and and the bottom of the drop cap drops to the bottom of the second line.",
+            "typed": false
+        },
+        {
+            "name": "padding",
+            "type": "integer",
+            "required": false,
+            "description": "A number thay sets the padding of the drop cap in points. When padding is applied, the drop cap is smaller than the box that surrounds it.",
+            "typed": false
+        },
+        {
+            "name": "textColor",
+            "type": "Color",
+            "required": false,
+            "description": "The color of the drop cap. The color defaults to the color of the associated text.",
+            "typed": false
+        }
+    ]
+}

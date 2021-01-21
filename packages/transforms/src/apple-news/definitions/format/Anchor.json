@@ -1,0 +1,63 @@
+{
+    "name": "Format\\Anchor",
+    "description": "The object for anchoring one component to another component in your article\u2019s layout.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/anchor",
+    "properties": [
+        {
+            "name": "targetAnchorPosition",
+            "type": "enum:string",
+            "required": true,
+            "description": "A value that sets the anchor point in the target component, relative to the originAnchorPosition.",
+            "enum_values": [
+                "top",
+                "center",
+                "bottom"
+            ],
+            "typed": false
+        },
+        {
+            "name": "originAnchorPosition",
+            "type": "enum:string",
+            "required": false,
+            "description": "A string value that sets which point in the origin component gets anchored to the target component. The originating anchor is positioned as closely as possible to the intended targetAnchorPosition. If this property is omitted, the value of targetAnchorPosition is used.",
+            "enum_values": [
+                "top",
+                "center",
+                "bottom"
+            ],
+            "typed": false
+        },
+        {
+            "name": "rangeLength",
+            "type": "integer",
+            "required": false,
+            "description": "The length of the range of text the component should be anchored to. If rangeLength is specified, rangeStart is required.",
+            "typed": false
+        },
+        {
+            "name": "rangeStart",
+            "type": "integer",
+            "required": false,
+            "description": "The start index of the range of text the component should be anchored to. When a component is anchored to a component with a role of body, the text might be flowed around the component.",
+            "typed": false
+        },
+        {
+            "name": "target",
+            "type": "string",
+            "required": false,
+            "description": "The id or name attribute of an HTML element in another component. The component containing the target element must have format set to html.",
+            "typed": false
+        },
+        {
+            "name": "targetComponentIdentifier",
+            "type": "string",
+            "required": false,
+            "description": "The identifier of the component to anchor to. targetComponentIdentifier cannot refer to the current component\u2019s parent, child components, or components in another container. When this property is omitted, the anchor is applied to the parent component, if one exists.",
+            "typed": false
+        }
+    ]
+}

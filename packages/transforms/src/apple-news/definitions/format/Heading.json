@@ -1,0 +1,135 @@
+{
+    "name": "Format\\Heading",
+    "description": "The text component for adding a heading.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": "Format\\Text",
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/heading",
+    "properties": [
+        {
+            "name": "role",
+            "type": "enum:string",
+            "required": true,
+            "description": "Always one of these roles for this component: heading, heading1, heading2, heading3, heading4, heading5, or heading6.",
+            "enum_values": [
+                "heading",
+                "heading1",
+                "heading2",
+                "heading3",
+                "heading4",
+                "heading5",
+                "heading6"
+            ],
+            "value": "heading",
+            "typed": false
+        },
+        {
+            "name": "text",
+            "type": "string",
+            "required": true,
+            "description": "The text to display in the article, including any formatting tags depending on the format property.",
+            "typed": false
+        },
+        {
+            "name": "additions",
+            "type": "array:Format\\Addition",
+            "required": false,
+            "description": "An array of all the additions that should be applied to ranges of the component's text.",
+            "typed": false
+        },
+        {
+            "name": "anchor",
+            "type": "Format\\Anchor",
+            "required": false,
+            "description": "An object that defines vertical alignment with another component.",
+            "typed": false
+        },
+        {
+            "name": "animation",
+            "type": "Format\\ComponentAnimation",
+            "required": false,
+            "description": "An object that defines an animation to be applied to the component.",
+            "typed": true
+        },
+        {
+            "name": "behavior",
+            "type": "Format\\Behavior",
+            "required": false,
+            "description": "An object that defines behavior for a component, like Parallax or Springy.",
+            "typed": true
+        },
+        {
+            "name": "conditional",
+            "type": "array:Format\\ConditionalText",
+            "required": false,
+            "description": "An array of text components that can be applied conditionally, and the conditions that cause them to be applied.",
+            "typed": false
+        },
+        {
+            "name": "format",
+            "type": "enum:string",
+            "required": false,
+            "description": "The formatting or markup method applied to the text.",
+            "default": "none",
+            "enum_values": [
+                "markdown",
+                "html",
+                "none"
+            ],
+            "typed": false
+        },
+        {
+            "name": "hidden",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean value that determines whether the component is hidden.",
+            "default": "false",
+            "typed": false
+        },
+        {
+            "name": "identifier",
+            "type": "string",
+            "required": false,
+            "description": "An optional unique identifier for this component. If used, this identifier must be unique across the entire document. You will need an identifier for your component if you want to anchor other components to it.",
+            "typed": false
+        },
+        {
+            "name": "inlineTextStyles",
+            "type": "array:Format\\InlineTextStyle",
+            "required": false,
+            "description": "An array of InlineTextStyle objects that you can use to apply different text styles to ranges of text. For each InlineTextStyle, you should supply a rangeStart, a rangeLength, and either a TextStyle object or the identifier of a TextStyle that is defined at the top level of the document.",
+            "typed": false
+        },
+        {
+            "name": "layout",
+            "type": [
+                "Format\\ComponentLayout",
+                "string"
+            ],
+            "required": false,
+            "description": "An inline ComponentLayout object that contains layout information, or a string reference to a ComponentLayout that is defined at the top level of the document.",
+            "typed": false
+        },
+        {
+            "name": "style",
+            "type": [
+                "Format\\ComponentStyle",
+                "string"
+            ],
+            "required": false,
+            "description": "An inline ComponentStyle object that defines the appearance of this component, or a string reference to a ComponentStyle that is defined at the top level of the document.",
+            "typed": false
+        },
+        {
+            "name": "textStyle",
+            "type": [
+                "Format\\ComponentTextStyle",
+                "string"
+            ],
+            "required": false,
+            "description": "An inline ComponentTextStyle object that contains styling information, or a string reference to a ComponentTextStyle object that is defined at the top level of the document.",
+            "typed": false
+        }
+    ]
+}

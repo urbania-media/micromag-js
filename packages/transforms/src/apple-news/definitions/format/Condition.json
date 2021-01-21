@@ -1,0 +1,175 @@
+{
+    "name": "Format\\Condition",
+    "description": "The object for defining a condition that, when met, causes conditional properties to go into effect.",
+    "version": "1.9+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/condition",
+    "properties": [
+        {
+            "name": "horizontalSizeClass",
+            "type": "enum:string",
+            "required": false,
+            "description": "A string describing the width at which the article is displayed. The value indicates whether the article width is considered constrained (compact) or expansive (regular) by iOS. When the article is displayed at the specified size class, the conditional properties are in effect. The horizontal size class is always regular in macOS.",
+            "enum_values": [
+                "any",
+                "regular",
+                "compact"
+            ],
+            "typed": false
+        },
+        {
+            "name": "maxColumns",
+            "type": "integer",
+            "required": false,
+            "description": "The maximum number of columns in which the article is displayed. When the article is viewed with the specified number of columns or fewer, the conditional properties are in effect. For more information about the column system, see Planning the Layout for Your Article.",
+            "minimum": 1,
+            "typed": false
+        },
+        {
+            "name": "maxContentSizeCategory",
+            "type": "enum:string",
+            "required": false,
+            "description": "A string indicating a dynamic type size at which text in the article is displayed. When the article is displayed at the specified size or smaller, the conditional properties are in effect. The default content size category in iOS and macOS is L.",
+            "default": "AX-XXXL",
+            "enum_values": [
+                "XS",
+                "S",
+                "M",
+                "L",
+                "XL",
+                "XXL",
+                "XXXL",
+                "AX-M",
+                "AX-L",
+                "AX-XL",
+                "AX-XXL",
+                "AX-XXXL"
+            ],
+            "typed": false
+        },
+        {
+            "name": "maxSpecVersion",
+            "type": "string",
+            "required": false,
+            "description": "An Apple News Format version that can be used by an Apple News client that is displaying an article. When the Apple News Format version is equal to or less than the specified value, the conditional properties are in effect.",
+            "typed": false
+        },
+        {
+            "name": "maxViewportAspectRatio",
+            "type": "float",
+            "required": false,
+            "description": "A number indicating a width divided by a height. When the aspect ratio of the user\u2019s viewport is the specified value or smaller, the conditional properties are in effect.",
+            "minimum": 0,
+            "typed": false
+        },
+        {
+            "name": "maxViewportWidth",
+            "type": "integer",
+            "required": false,
+            "description": "A number indicating width in points. When the width of the user\u2019s viewport is the specified value or smaller, the conditional properties are in effect.",
+            "typed": false
+        },
+        {
+            "name": "minColumns",
+            "type": "integer",
+            "required": false,
+            "description": "The minimum number of columns in which the article is displayed. When the article is viewed with the specified number of columns or more, the conditional properties are in effect. For more information about the column system, see Planning the Layout for Your Article.",
+            "minimum": 0,
+            "typed": false
+        },
+        {
+            "name": "minContentSizeCategory",
+            "type": "enum:string",
+            "required": false,
+            "description": "A string indicating a dynamic type size at which text in the article is displayed. When the article is displayed at the specified dynamic type size or greater, the conditional properties are in effect. The default content size category in iOS and macOS is L.",
+            "default": "XS",
+            "enum_values": [
+                "XS",
+                "S",
+                "M",
+                "L",
+                "XL",
+                "XXL",
+                "XXXL",
+                "AX-M",
+                "AX-L",
+                "AX-XL",
+                "AX-XXL",
+                "AX-XXXL"
+            ],
+            "typed": false
+        },
+        {
+            "name": "minSpecVersion",
+            "type": "string",
+            "required": false,
+            "description": "An Apple News Format version that can be used by an Apple News client that is displaying an article. When the Apple News Format version is equal to or greater than the specified value, the conditional properties are in effect.",
+            "typed": false
+        },
+        {
+            "name": "minViewportAspectRatio",
+            "type": "float",
+            "required": false,
+            "description": "A number indicating a width divided by a height. When the aspect ratio of the user\u2019s viewport is the specified value or greater, the conditional properties are in effect.",
+            "minimum": 0,
+            "typed": false
+        },
+        {
+            "name": "minViewportWidth",
+            "type": "integer",
+            "required": false,
+            "description": "A number indicating the width in points. When the width of the user\u2019s viewport is the specified value or greater, the conditional properties are in effect.",
+            "typed": false
+        },
+        {
+            "name": "platform",
+            "type": "enum:string",
+            "required": false,
+            "description": "A platform on which an article can be viewed. When the article is viewed on the specfied platform, the conditional properties are in effect.",
+            "enum_values": [
+                "any",
+                "ios",
+                "macos"
+            ],
+            "typed": false
+        },
+        {
+            "name": "subscriptionStatus",
+            "type": "enum:string",
+            "required": false,
+            "description": "The type of subscription the user has. When the subscription is of the specified type, the conditional properties are in effect.",
+            "enum_values": [
+                "bundle",
+                "subscribed"
+            ],
+            "typed": false
+        },
+        {
+            "name": "verticalSizeClass",
+            "type": "enum:string",
+            "required": false,
+            "description": "A string describing the height at which the article is displayed. The value indicates whether the article width is considered constrained (compact) or expansive (regular) by iOS. When the article is displayed at the specified size class, the conditional properties are in effect. The vertical size class is always regular in macOS.",
+            "enum_values": [
+                "any",
+                "regular",
+                "compact"
+            ],
+            "typed": false
+        },
+        {
+            "name": "viewLocation",
+            "type": "enum:string",
+            "required": false,
+            "description": "The context of the article. When the context is of the specified type, the conditional properties are in effect.",
+            "enum_values": [
+                "any",
+                "article",
+                "issue_table_of_contents",
+                "issue"
+            ],
+            "typed": false
+        }
+    ]
+}

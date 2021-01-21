@@ -1,0 +1,27 @@
+{
+    "name": "Format\\ComponentLink",
+    "description": "The component addition object for making a component interactable and making it open a link to elsewhere in News.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": "Format\\ComponentAddition",
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/componentlink",
+    "properties": [
+        {
+            "name": "type",
+            "type": "string",
+            "required": true,
+            "description": "Always link for a ComponentLink object.",
+            "value": "link",
+            "read_only": true,
+            "typed": false
+        },
+        {
+            "name": "URL",
+            "type": "uri",
+            "required": true,
+            "description": "The URL that should be opened when a user interacts with the component. Use a valid Apple News URL beginning with https:\/\/apple.news\/, or a URL that is associated with an Apple News article by its canonicalURL in Metadata, or a URL to the iTunes Store, the App Store, the iBooks Store, Apple Podcasts, or Apple Music.",
+            "typed": false
+        }
+    ]
+}

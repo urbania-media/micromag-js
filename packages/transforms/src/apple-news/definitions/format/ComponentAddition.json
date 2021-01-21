@@ -1,0 +1,18 @@
+{
+    "name": "Format\\ComponentAddition",
+    "description": "Properties shared by all types of component additions.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/componentaddition",
+    "properties": [
+        {
+            "name": "type",
+            "type": "string",
+            "required": true,
+            "description": "The type of componentAddition. For example ComponentLink.",
+            "typed": false
+        }
+    ]
+}

@@ -1,0 +1,29 @@
+{
+    "name": "Format\\DataTableSorting",
+    "description": "A data category by which to sort the table in descending or ascending order.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/datatablesorting",
+    "properties": [
+        {
+            "name": "descriptor",
+            "type": "string",
+            "required": true,
+            "description": "The identifier property of one of the table\u2019s data descriptors. See DataDescriptor.",
+            "typed": false
+        },
+        {
+            "name": "direction",
+            "type": "enum:string",
+            "required": true,
+            "description": "The data sorting direction.",
+            "enum_values": [
+                "ascending",
+                "descending"
+            ],
+            "typed": false
+        }
+    ]
+}

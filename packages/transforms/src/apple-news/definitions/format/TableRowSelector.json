@@ -1,0 +1,39 @@
+{
+    "name": "Format\\TableRowSelector",
+    "description": "The object for defining conditions that will cause a conditional style to be applied to a row.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/tablerowselector",
+    "properties": [
+        {
+            "name": "descriptor",
+            "type": "string",
+            "required": false,
+            "description": "A string that specifies the identifier of a specific data descriptor. All rows for this data descriptor will be selected. See DataDescriptor.",
+            "typed": false
+        },
+        {
+            "name": "rowIndex",
+            "type": "integer",
+            "required": false,
+            "description": "A number that specifies a row index. The topmost row of data has an index of 0. The specified column is selected.",
+            "typed": false
+        },
+        {
+            "name": "odd",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean value when true, selects the odd rows.",
+            "typed": false
+        },
+        {
+            "name": "even",
+            "type": "boolean",
+            "required": false,
+            "description": "A Boolean value when true, selects the even rows.",
+            "typed": false
+        }
+    ]
+}

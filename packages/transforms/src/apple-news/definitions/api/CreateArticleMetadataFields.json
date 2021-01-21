@@ -1,0 +1,65 @@
+{
+    "name": "Api\\Objects\\CreateArticleMetadataFields",
+    "description": "See the optional metadata fields for the create article request.",
+    "version": "1.0.0+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/create_article_metadata_fields",
+    "properties": [
+        {
+            "name": "accessoryText",
+            "type": "string",
+            "required": false,
+            "description": "Text to include below the article excerpt in the channel view, such as a byline or category label.",
+            "default": "metadata.authors",
+            "maximum": 100,
+            "typed": false
+        },
+        {
+            "name": "isCandidateToBeFeatured",
+            "type": "boolean",
+            "required": false,
+            "description": "Indicates whether or not this article should be considered for featuring in News. See Creating Articles for Featured Stories.",
+            "default": "false",
+            "typed": false
+        },
+        {
+            "name": "isHidden",
+            "type": "boolean",
+            "required": false,
+            "description": "Indicates whether or not the article should be temporarily hidden from display in the News feed.",
+            "default": "false",
+            "typed": false
+        },
+        {
+            "name": "isPreview",
+            "type": "boolean",
+            "required": false,
+            "description": "Indicates whether this article should be public (live) or should be a preview that is only visible to members of your channel. Set isPreview to false to publish the article right away and make it visible to all News users. \nIf your channel has not yet been approved to publish articles in Apple News Format, setting isPreview to false will result in an ONLY_PREVIEW_ALLOWED error.",
+            "default": "false",
+            "typed": false
+        },
+        {
+            "name": "isSponsored",
+            "type": "boolean",
+            "required": false,
+            "description": "Indicates whether this article consists of sponsored content for promotional purposes. Sponsored content must be marked as such; channels that do not follow this policy may be suspended.",
+            "default": "false",
+            "typed": false
+        },
+        {
+            "name": "maturityRating",
+            "type": "enum:string",
+            "required": false,
+            "description": "Indicates the viewing audience for the content. Note that a MATURE rating indicates explicit content that is only appropriate for a specific audience.",
+            "default": "null",
+            "enum_values": [
+                "KIDS",
+                "MATURE",
+                "GENERAL"
+            ],
+            "typed": false
+        }
+    ]
+}

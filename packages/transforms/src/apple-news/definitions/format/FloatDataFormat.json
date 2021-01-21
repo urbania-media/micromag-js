@@ -1,0 +1,29 @@
+{
+    "name": "Format\\FloatDataFormat",
+    "description": "The object that allows you to specify the number of digits after the decimal point for numeric values in data table cells.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": "Format\\DataFormat",
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/floatdataformat",
+    "properties": [
+        {
+            "name": "type",
+            "type": "string",
+            "required": true,
+            "description": "Always float for a FloatDataFormat object.",
+            "value": "float",
+            "read_only": true,
+            "typed": false
+        },
+        {
+            "name": "decimals",
+            "type": "integer",
+            "required": false,
+            "description": "The number of digits that can appear after the decimal point. The number will be rounded to this number of digits after the decimal.",
+            "default": 2,
+            "minimum": 0,
+            "typed": false
+        }
+    ]
+}

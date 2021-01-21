@@ -1,0 +1,18 @@
+{
+    "name": "Format\\DocumentStyle",
+    "description": "The object for setting the background color for your article.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/documentstyle",
+    "properties": [
+        {
+            "name": "backgroundColor",
+            "type": "Color",
+            "required": false,
+            "description": "The article\u2019s background color. The value defaults to white.",
+            "typed": false
+        }
+    ]
+}

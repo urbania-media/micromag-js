@@ -1,0 +1,53 @@
+{
+    "name": "Format\\TableStyle",
+    "description": "The object for defining a style for rows, columns, cells, and headers in a table.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": null,
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/tablestyle",
+    "properties": [
+        {
+            "name": "cells",
+            "type": "Format\\TableCellStyle",
+            "required": false,
+            "description": "The object that defines the styling for individual cells in a table.",
+            "typed": false
+        },
+        {
+            "name": "columns",
+            "type": "Format\\TableColumnStyle",
+            "required": false,
+            "description": "The object that defines the styling for table columns.",
+            "typed": false
+        },
+        {
+            "name": "headerCells",
+            "type": "Format\\TableCellStyle",
+            "required": false,
+            "description": "The object that defines the styling for individual cells in table headers.",
+            "typed": false
+        },
+        {
+            "name": "headerColumns",
+            "type": "Format\\TableColumnStyle",
+            "required": false,
+            "description": "The object that defines the styling for the table header columns, which are present if dataOrientation is set to vertical, which is the default.",
+            "typed": false
+        },
+        {
+            "name": "headerRows",
+            "type": "Format\\TableRowStyle",
+            "required": false,
+            "description": "The object that defines the styling for table header rows, which are present if dataOrientation is set to horizontal, which is not the default.",
+            "typed": false
+        },
+        {
+            "name": "rows",
+            "type": "Format\\TableRowStyle",
+            "required": false,
+            "description": "The object that defines the styling for table rows.",
+            "typed": false
+        }
+    ]
+}

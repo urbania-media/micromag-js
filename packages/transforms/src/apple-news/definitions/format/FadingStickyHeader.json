@@ -1,0 +1,27 @@
+{
+    "name": "Format\\FadingStickyHeader",
+    "description": "The scene that briefly keeps a header at the top of the screen as the user scrolls through the article.",
+    "version": "1.7+",
+    "from_class": null,
+    "extends": "Format\\Scene",
+    "typed": null,
+    "url": "https:\/\/developer.apple.com\/documentation\/apple_news\/fadingstickyheader",
+    "properties": [
+        {
+            "name": "fadeColor",
+            "type": "Color",
+            "required": false,
+            "description": "The color the header background will fade to, defined as a 3- to 8-character hexadecimal string or a color name string.",
+            "typed": false
+        },
+        {
+            "name": "type",
+            "type": "string",
+            "required": true,
+            "description": "Always fading_sticky_header for this scene type.",
+            "value": "fading_sticky_header",
+            "read_only": true,
+            "typed": false
+        }
+    ]
+}
