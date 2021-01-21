@@ -14,7 +14,7 @@ const useParsedStory = (story, { disabled = false, withTheme = true, withMedias 
             return story;
         }
         return parser.parse(story, { withMedias, withTheme });
-    }, [parser, disabled, withMedias, withTheme]);
+    }, [parser, disabled, withMedias, withTheme, story]);
     return newStory;
 };
 
