@@ -65,15 +65,12 @@ const TextEditorField = ({ value, size, className, editorConfig, inline, onChang
                 editor.model.schema.extend('paragraph', {
                     isLimit: true,
                 });
-                editor.conversion.for('upcast').elementToElement({
-                    model: (viewElement, { writer }) => {
-                        console.log(viewElement);
-                        return writer.createElement('paragraph');
-                    },
-                    view: /.+/,
-                    converterPriority: 'low',
+                editor.conversion.for('downcast').elementToElement({
+                    model: 'paragraph',
+                    view: 'span',
+                    // view: (element, { writer }) => writer.createText(),
+                    converterPriority: 'high',
                 });
-                console.log(editor.model.schema);
             }
         },
         [inline],
@@ -82,7 +79,6 @@ const TextEditorField = ({ value, size, className, editorConfig, inline, onChang
     const onEditorChange = useCallback(
         (event, editor) => {
             const data = editor.getData();
-            // const finalData = inline ? data.replace(/^<p>(.*)<\/p>$/, '$1') : data;
             if (onChange !== null) {
                 onChange(data);
             }
