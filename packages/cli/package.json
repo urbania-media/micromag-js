@@ -43,7 +43,7 @@
         "prepare": "../../scripts/prepare-package.sh"
     },
     "dependencies": {
-        "@babel/runtime": "^7.8.7",
+        "@babel/runtime": "^7.12.5",
         "@micromag/core": "^0.2.63",
         "@micromag/elements": "^0.2.63",
         "@micromag/fields": "^0.2.63",

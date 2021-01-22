@@ -10,15 +10,14 @@
 .screen {
     @extend %fullscreen;
     @extend %reset-viewer;
-    box-sizing: content-box;
+    display: flex;
     overflow: hidden;
-
-    .withScroll & {
-        @extend %hide-scrollbars;
-        overflow: auto;
-    }
 
     .withBorder & {
         border: solid 1px $gray-200;        
     }
+}
+
+.screenContainer {
+    margin: auto;
 }
