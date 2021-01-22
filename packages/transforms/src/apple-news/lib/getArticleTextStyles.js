@@ -1,6 +1,6 @@
 import TextStyle from '../style/TextStyle';
 
-const getDefaultTheme = (story) => {
+const getArticleTextStyles = (story) => {
     const { theme = {} } = story || {};
     const { textStyle = {} } = theme || {};
     const { heading1 = {}, text = {} } = textStyle || {};
@@ -39,4 +39,4 @@ const getDefaultTheme = (story) => {
     };
 };
 
-export default getDefaultTheme;
+export default getArticleTextStyles;

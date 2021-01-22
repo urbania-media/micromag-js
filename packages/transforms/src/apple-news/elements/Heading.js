@@ -2,8 +2,9 @@ import hash from 'object-hash';
 import TextStyle from '../style/TextStyle';
 import { validate } from '../../utils';
 
-const GenericText = (story, text, role = 'text', definition = null) => {
-    const { body = null, textStyle = null } = text || {};
+const Heading = (story) => {
+    const definition = null;
+    const { body = null, textStyle = null } = story || {};
     // console.log('Generic text', body, textStyle); // eslint-disable-line
 
     const style = textStyle ? TextStyle(textStyle) : null;
@@ -11,11 +12,10 @@ const GenericText = (story, text, role = 'text', definition = null) => {
     const hasStyle = style !== null && styleName !== null;
 
     const content = {
-        role,
+        role: 'heading',
         text: body,
         format: 'html',
         ...(hasStyle ? { style: styleName } : {}),
-        layout: 'default',
     };
     const component = definition ? validate(content, definition) : null;
 
@@ -31,4 +31,4 @@ const GenericText = (story, text, role = 'text', definition = null) => {
     };
 };
 
-export default GenericText;
+export default Heading;

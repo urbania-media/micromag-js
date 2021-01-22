@@ -4,8 +4,7 @@ import { transformer, postProcessor } from '@micromag/transforms';
 
 const transformStory = (story, format) => {
     const transformKey = camelCase(format);
-
-    const baseStory = transformer(story, transformKey);
+    const baseStory = transformer(story, transformKey, story);
 
     const { components = [] } = story;
     const componentsStory = components.reduce((newStory, screen) => {
