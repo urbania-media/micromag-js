@@ -1,7 +1,7 @@
 import TextStyle from '../style/TextStyle';
 
-const getArticleTextStyles = (story) => {
-    const { theme = {} } = story || {};
+const getArticleTextStyles = (newStory, story) => {
+    const { theme = {} } = newStory || {};
     const { textStyle = {} } = theme || {};
     const { heading1 = {}, text = {} } = textStyle || {};
 
