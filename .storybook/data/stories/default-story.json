@@ -233,8 +233,8 @@
             "id": "8",
             "type": "image",
             "name": "600x300.png",
-            "url": "https://micromag.ca.local.flklr.ca:3000/storage/image/2021-01-21/8-021515.png",
-            "thumbnail_url": "https://micromag.ca.local.flklr.ca:3000/storage/image/2021-01-21/8-021515.png",
+            "url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-21/8-021515.png",
+            "thumbnail_url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-21/8-021515.png",
             "metadata": {
                 "filename": "600x300.png",
                 "size": 6447,
@@ -311,8 +311,8 @@
             "id": "9",
             "type": "image",
             "name": "768x1024.png",
-            "url": "https://micromag.ca.local.flklr.ca:3000/storage/image/2021-01-21/9-021515.png",
-            "thumbnail_url": "https://micromag.ca.local.flklr.ca:3000/storage/image/2021-01-21/9-021515.png",
+            "url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-21/9-021515.png",
+            "thumbnail_url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-21/9-021515.png",
             "metadata": {
                 "filename": "768x1024.png",
                 "size": 10173,

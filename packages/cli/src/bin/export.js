@@ -1,9 +1,9 @@
 import program from 'commander';
 import fs from 'fs';
+import path from 'path';
 import { StoryParser } from '@micromag/core';
 import ScreensManager from '@micromag/screens';
 import FieldsManager from '@micromag/fields';
-import path from 'path';
 import readJSON from '../utils/readJSON';
 import transformStory from '../utils/transformStory';
 import captureStory from '../utils/captureStory';
@@ -41,12 +41,18 @@ const exportStory = async (format) => {
             break;
         }
         default: {
-            const screensManager = new ScreensManager();
-            const fieldsManager = new FieldsManager();
-            const storyParser = new StoryParser({ fieldsManager, screensManager });
+            console.log(process.cwd());
+            const storyParser = new StoryParser({
+                fieldsManager: FieldsManager,
+                screensManager: ScreensManager,
+            });
             const storyParsed = storyParser.parse(story);
             const newStory = transformStory(storyParsed, format);
-            fs.writeFileSync('article.json', JSON.stringify(newStory), 'utf-8');
+            fs.writeFileSync(
+                path.join(process.cwd(), '/output/article.json'),
+                JSON.stringify(newStory),
+                'utf-8',
+            );
             console.log(newStory);
             break;
         }
