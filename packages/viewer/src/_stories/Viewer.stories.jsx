@@ -39,9 +39,6 @@ export default {
     title: 'Viewer/Viewer',
     parameters: {
         intl: true,
-        viewport: {
-            defaultViewport: 'mobileSmall',
-        },
     },
 };
 

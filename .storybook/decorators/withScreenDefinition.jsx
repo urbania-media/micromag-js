@@ -50,7 +50,6 @@ const withScreenDefinition = (
                     <Screen
                         definition={screenDefinition}
                         renderContext={story.toLowerCase()}
-                        withScroll
                     >
                         <Story args={{ ...args, layout }} />
                     </Screen>
@@ -62,13 +61,13 @@ const withScreenDefinition = (
     return layouts !== null ? (
         <LayoutSwitcher layouts={layouts}>
             {(layout) => (
-                <Screen definition={screenDefinition} withScroll>
+                <Screen definition={screenDefinition}>
                     <Story args={{ ...args, layout }} />
                 </Screen>
             )}
         </LayoutSwitcher>
     ) : (
-        <Screen definition={screenDefinition} withScroll>
+        <Screen definition={screenDefinition}>
             <Story />
         </Screen>
     );
