@@ -62,6 +62,7 @@ export default [
         }),
         component: TextTitleScreen,
         layouts: ['top', 'middle', 'bottom', 'split'],
+        transforms,
         fields: [
             {
                 name: 'layout',
@@ -74,6 +75,7 @@ export default [
             {
                 name: 'title',
                 type: 'text-element',
+                inline: true,
                 theme: {
                     textStyle: 'heading1',
                     textColor: 'primary',

@@ -1,8 +1,7 @@
-import { mergeStyles } from './apple-news';
-
 const postProcessor = (story, type) => {
     if (type === 'appleNews') {
-        return mergeStyles(story);
+        const { components } = story || {};
+        return { ...story, components: components.filter((c) => c !== null) };
     }
     return story;
 };

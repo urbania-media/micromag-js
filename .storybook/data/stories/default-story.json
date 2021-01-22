@@ -1,0 +1,390 @@
+{
+    "id": "75",
+    "title": "My title",
+    "theme": {
+        "title": "My first theme",
+        "colors": {
+            "primary": { "color": "#50e3c2", "alpha": 1 },
+            "secondary": { "color": "#b8e986", "alpha": 1 }
+        },
+        "background": { "color": { "color": "#9b9b9b", "alpha": 1 }, "image": null },
+        "textStyle": {
+            "heading1": {
+                "fontFamily": "Helvetica",
+                "color": { "color": "#d0021b", "alpha": 1 },
+                "fontSize": 32,
+                "align": "center",
+                "fontStyle": { "bold": true, "italic": false, "underline": false }
+            },
+            "heading2": {
+                "fontFamily": "Helvetica",
+                "fontSize": 20,
+                "color": { "color": "#d0021b", "alpha": 1 }
+            },
+            "heading3": null,
+            "text": {
+                "fontFamily": "Times New Roman",
+                "color": { "color": "#4a90e2", "alpha": 1 },
+                "fontSize": 18,
+                "lineHeight": 1.5
+            }
+        }
+    },
+    "author": {
+        "id": "1",
+        "name": "Paul Atreides 2",
+        "short_name": "P2",
+        "color": "#9013fe",
+        "email": "nrb@atelierfolklore.ca",
+        "organisations": [
+            {
+                "id": "43",
+                "name": "Fremen Krew X",
+                "short_name": "FX",
+                "color": "#CCC",
+                "slug": "fremen-krew",
+                "ga_code": "GaCode2",
+                "active": true,
+                "permissions": {
+                    "can_edit_story": true,
+                    "can_publish_story": true,
+                    "can_edit_team": true,
+                    "can_edit_organisation": true,
+                    "can_edit_theme": true,
+                    "can_edit_medias": true,
+                    "can_read_stats": true
+                }
+            },
+            {
+                "id": "52",
+                "name": "My super org",
+                "short_name": "MO",
+                "color": "#CCC",
+                "slug": "my-super-org",
+                "ga_code": null,
+                "active": true,
+                "permissions": {
+                    "can_edit_story": true,
+                    "can_publish_story": true,
+                    "can_edit_team": true,
+                    "can_edit_organisation": true,
+                    "can_edit_theme": true,
+                    "can_edit_medias": true,
+                    "can_read_stats": true
+                }
+            },
+            {
+                "id": "53",
+                "name": "Cool org",
+                "short_name": "CO",
+                "color": "#CCC",
+                "slug": "cool-org-2",
+                "ga_code": null,
+                "active": true,
+                "permissions": {
+                    "can_edit_story": true,
+                    "can_publish_story": true,
+                    "can_edit_team": true,
+                    "can_edit_organisation": true,
+                    "can_edit_theme": true,
+                    "can_edit_medias": true,
+                    "can_read_stats": true
+                }
+            }
+        ]
+    },
+    "components": [
+        {
+            "id": "948aa870-5c56-11eb-bc29-e3b80032c69a",
+            "type": "text-title",
+            "background": { "color": { "color": "#9b9b9b", "alpha": 1 }, "image": null },
+            "layout": "top",
+            "title": {
+                "color": null,
+                "body": "<p>MON TITRE</p>",
+                "textStyle": {
+                    "color": { "color": "#d0021b", "alpha": 1 },
+                    "fontFamily": "Helvetica",
+                    "fontSize": 32,
+                    "align": "center",
+                    "fontStyle": { "bold": true, "italic": false, "underline": false }
+                }
+            },
+            "text": {
+                "color": null,
+                "body": "<p>Mon texte</p>",
+                "textStyle": {
+                    "color": { "color": "#4a90e2", "alpha": 1 },
+                    "fontFamily": "Times New Roman",
+                    "fontSize": 18,
+                    "lineHeight": 1.5
+                }
+            }
+        },
+        {
+            "id": "6ba10670-5c56-11eb-bc29-e3b80032c69a",
+            "type": "text",
+            "background": { "color": { "color": "#9b9b9b", "alpha": 1 }, "image": null },
+            "layout": "top",
+            "text": {
+                "color": null,
+                "body": "<p>Mon texte vraiment plus long que tu penses</p>",
+                "textStyle": {
+                    "color": { "color": "#4a90e2", "alpha": 1 },
+                    "fontFamily": "Times New Roman",
+                    "fontSize": 18,
+                    "lineHeight": 1.5
+                }
+            }
+        },
+        {
+            "id": "8191f020-5c56-11eb-bc29-e3b80032c69a",
+            "type": "quote",
+            "background": { "color": { "color": "#9b9b9b", "alpha": 1 }, "image": null },
+            "layout": "top",
+            "quote": {
+                "body": "<p>ma quote qui est assez longue en fait</p>",
+                "textStyle": { "color": { "color": "#417505", "alpha": 1 } }
+            },
+            "author": {
+                "color": null,
+                "body": "<p>un auteur inconnu</p>",
+                "textStyle": {
+                    "color": { "color": "#4a90e2", "alpha": 1 },
+                    "fontFamily": "Times New Roman",
+                    "fontSize": 18,
+                    "lineHeight": 1.5
+                }
+            }
+        },
+        {
+            "id": "a6da9da0-5c56-11eb-bc29-e3b80032c69a",
+            "type": "image",
+            "background": { "color": { "color": "#9b9b9b", "alpha": 1 }, "image": null },
+            "layout": "fullscreen",
+            "image": "media://8"
+        },
+        {
+            "id": "fe575050-5c56-11eb-bc29-e3b80032c69a",
+            "type": "image-title",
+            "background": { "color": { "color": "#9b9b9b", "alpha": 1 }, "image": null },
+            "layout": "normal",
+            "image": "media://9",
+            "title": {
+                "color": null,
+                "body": "<p>Un titre en dessous de l'image</p>",
+                "textStyle": {
+                    "color": { "color": "#d0021b", "alpha": 1 },
+                    "fontFamily": "Helvetica",
+                    "fontSize": 32,
+                    "align": "center",
+                    "fontStyle": { "bold": true, "italic": false, "underline": false }
+                }
+            }
+        },
+        {
+            "id": "080b4ac0-5c57-11eb-bc29-e3b80032c69a",
+            "type": "image-text",
+            "background": { "color": { "color": "#9b9b9b", "alpha": 1 }, "image": null },
+            "layout": "reverse",
+            "image": "media://9",
+            "text": {
+                "color": null,
+                "body": "<p>Un texte normal au dessus de l'image</p>",
+                "textStyle": {
+                    "color": { "color": "#4a90e2", "alpha": 1 },
+                    "fontFamily": "Times New Roman",
+                    "fontSize": 18,
+                    "lineHeight": 1.5
+                }
+            }
+        },
+        {
+            "id": "1267ba30-5c57-11eb-bc29-e3b80032c69a",
+            "type": "image-title-text",
+            "background": { "color": { "color": "#9b9b9b", "alpha": 1 }, "image": null },
+            "layout": "normal",
+            "image": "media://9",
+            "title": {
+                "color": null,
+                "body": "<p>Un titre en dessous de l'image\u2026 mais pas tjrs</p>",
+                "textStyle": {
+                    "color": { "color": "#d0021b", "alpha": 1 },
+                    "fontFamily": "Helvetica",
+                    "fontSize": 32,
+                    "align": "center",
+                    "fontStyle": { "bold": true, "italic": false, "underline": false }
+                }
+            },
+            "text": {
+                "color": null,
+                "body": "<p>Un texte en dessous de l'image\u2026&nbsp;</p>",
+                "textStyle": {
+                    "color": { "color": "#4a90e2", "alpha": 1 },
+                    "fontFamily": "Times New Roman",
+                    "fontSize": 18,
+                    "lineHeight": 1.5
+                }
+            }
+        }
+    ],
+    "medias": {
+        "media://8": {
+            "id": "8",
+            "type": "image",
+            "name": "600x300.png",
+            "url": "https://micromag.ca.local.flklr.ca:3000/storage/image/2021-01-21/8-021515.png",
+            "thumbnail_url": "https://micromag.ca.local.flklr.ca:3000/storage/image/2021-01-21/8-021515.png",
+            "metadata": {
+                "filename": "600x300.png",
+                "size": 6447,
+                "mime": "image/png",
+                "tags": [],
+                "author": {
+                    "id": "1",
+                    "name": "Paul Atreides 2",
+                    "short_name": "P2",
+                    "color": "#9013fe",
+                    "email": "nrb@atelierfolklore.ca",
+                    "organisations": [
+                        {
+                            "id": "43",
+                            "name": "Fremen Krew X",
+                            "short_name": "FX",
+                            "color": "#CCC",
+                            "slug": "fremen-krew",
+                            "ga_code": "GaCode2",
+                            "active": true,
+                            "permissions": {
+                                "can_edit_story": true,
+                                "can_publish_story": true,
+                                "can_edit_team": true,
+                                "can_edit_organisation": true,
+                                "can_edit_theme": true,
+                                "can_edit_medias": true,
+                                "can_read_stats": true
+                            }
+                        },
+                        {
+                            "id": "52",
+                            "name": "My super org",
+                            "short_name": "MO",
+                            "color": "#CCC",
+                            "slug": "my-super-org",
+                            "ga_code": null,
+                            "active": true,
+                            "permissions": {
+                                "can_edit_story": true,
+                                "can_publish_story": true,
+                                "can_edit_team": true,
+                                "can_edit_organisation": true,
+                                "can_edit_theme": true,
+                                "can_edit_medias": true,
+                                "can_read_stats": true
+                            }
+                        },
+                        {
+                            "id": "53",
+                            "name": "Cool org",
+                            "short_name": "CO",
+                            "color": "#CCC",
+                            "slug": "cool-org-2",
+                            "ga_code": null,
+                            "active": true,
+                            "permissions": {
+                                "can_edit_story": true,
+                                "can_publish_story": true,
+                                "can_edit_team": true,
+                                "can_edit_organisation": true,
+                                "can_edit_theme": true,
+                                "can_edit_medias": true,
+                                "can_read_stats": true
+                            }
+                        }
+                    ]
+                },
+                "width": 600,
+                "height": 300
+            }
+        },
+        "media://9": {
+            "id": "9",
+            "type": "image",
+            "name": "768x1024.png",
+            "url": "https://micromag.ca.local.flklr.ca:3000/storage/image/2021-01-21/9-021515.png",
+            "thumbnail_url": "https://micromag.ca.local.flklr.ca:3000/storage/image/2021-01-21/9-021515.png",
+            "metadata": {
+                "filename": "768x1024.png",
+                "size": 10173,
+                "mime": "image/png",
+                "tags": [],
+                "author": {
+                    "id": "1",
+                    "name": "Paul Atreides 2",
+                    "short_name": "P2",
+                    "color": "#9013fe",
+                    "email": "nrb@atelierfolklore.ca",
+                    "organisations": [
+                        {
+                            "id": "43",
+                            "name": "Fremen Krew X",
+                            "short_name": "FX",
+                            "color": "#CCC",
+                            "slug": "fremen-krew",
+                            "ga_code": "GaCode2",
+                            "active": true,
+                            "permissions": {
+                                "can_edit_story": true,
+                                "can_publish_story": true,
+                                "can_edit_team": true,
+                                "can_edit_organisation": true,
+                                "can_edit_theme": true,
+                                "can_edit_medias": true,
+                                "can_read_stats": true
+                            }
+                        },
+                        {
+                            "id": "52",
+                            "name": "My super org",
+                            "short_name": "MO",
+                            "color": "#CCC",
+                            "slug": "my-super-org",
+                            "ga_code": null,
+                            "active": true,
+                            "permissions": {
+                                "can_edit_story": true,
+                                "can_publish_story": true,
+                                "can_edit_team": true,
+                                "can_edit_organisation": true,
+                                "can_edit_theme": true,
+                                "can_edit_medias": true,
+                                "can_read_stats": true
+                            }
+                        },
+                        {
+                            "id": "53",
+                            "name": "Cool org",
+                            "short_name": "CO",
+                            "color": "#CCC",
+                            "slug": "cool-org-2",
+                            "ga_code": null,
+                            "active": true,
+                            "permissions": {
+                                "can_edit_story": true,
+                                "can_publish_story": true,
+                                "can_edit_team": true,
+                                "can_edit_organisation": true,
+                                "can_edit_theme": true,
+                                "can_edit_medias": true,
+                                "can_read_stats": true
+                            }
+                        }
+                    ]
+                },
+                "width": 768,
+                "height": 1024
+            }
+        }
+    },
+    "created_at": "2021-01-21T21:06:34-05:00"
+}

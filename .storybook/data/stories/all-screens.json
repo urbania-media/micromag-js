@@ -803,6 +803,93 @@
             }
         },
         {
+            "id": "1cb82f73-5c1a-11eb-985f-ad6fce99d848",
+            "title": {
+                "color": null,
+                "body": "The sky above the port",
+                "textStyle": {
+                    "color": "#F0F",
+                    "fontSize": 20,
+                    "fontFamily": "AmericanTypewriter"
+                }
+            },
+            "text": {
+                "color": null,
+                "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less",
+                "textStyle": {
+                    "color": "#F0F",
+                    "fontSize": 16,
+                    "fontFamily": "Helvetica"
+                }
+            },
+            "background": {
+                "color": "#0000FF"
+            },
+            "type": "text-title",
+            "layout": "top",
+            "transitions": {
+                "in": "fade",
+                "out": "fade"
+            }
+        },
+        {
+            "id": "1cb8a4bf-5c1a-11eb-985f-ad6fce99d848",
+            "type": "quote",
+            "layout": "middle",
+            "quote": {
+                "body": "Soudainement,<br/>je m’en crissais<br/>de ce que j’allais<br/>avoir l’air.",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Garage Gothic",
+                        "fallback": "Arial",
+                        "type": "sans-serif"
+                    },
+                    "fontSize": 50,
+                    "fontStyle": {
+                        "transform": "uppercase",
+                        "outline": true
+                    },
+                    "lineHeight": 1,
+                    "color": "#ff4dff"
+                }
+            },
+            "author": {
+                "body": "Tommy Kruise, qui se rappelle le déclic qui l’a poussé à subir une opération chirurgicale à la mâchoire pour guérir son apnée du sommeil",
+                "textStyle": {
+                    "fontFamily": {
+                        "name": "Sina Nova",
+                        "fallback": "Gerogia",
+                        "type": "serif"
+                    },
+                    "fontSize": 18,
+                    "fontStyle": {
+                        "bold": false
+                    },
+                    "lineHeight": 1.2
+                }
+            },
+            "background": {
+                "color": {
+                    "color": "#242235"
+                },
+                "image": {
+                    "type": "image",
+                    "name": "tile-dark-blue-noise.gif",
+                    "url": "tile-dark-blue-noise.gif",
+                    "thumbnail_url": "tile-dark-blue-noise.gif",
+                    "metadata": {
+                        "width": 320,
+                        "height": 320
+                    }
+                },
+                "repeat": true
+            },
+            "transitions": {
+                "in": "fade",
+                "out": "fade"
+            }
+        },
+        {
             "background": {
                 "color": "#FF00FF"
             },

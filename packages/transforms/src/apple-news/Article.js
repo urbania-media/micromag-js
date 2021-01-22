@@ -1,8 +1,9 @@
 import { validate } from '../utils';
-import ArticleDefinition from './definitions/api/Article.json';
+import getDefaultTheme from './lib/getDefaultTheme';
+import ArticleDefinition from './definitions/ArticleDocument.json';
 
 const Article = (newStory) => {
-    console.log('ARTICLE', newStory); // eslint-disable-line
+    // console.log('ARTICLE', newStory); // eslint-disable-line
     const { title } = newStory;
 
     const content = {
@@ -18,9 +19,11 @@ const Article = (newStory) => {
         },
         components: [],
         componentStyles: {},
+        componentTextStyles: {},
+        ...getDefaultTheme(newStory),
     };
 
-    return validate(content, ArticleDefinition) ? content : null;
+    return validate(content, ArticleDefinition);
 };
 
 export default Article;

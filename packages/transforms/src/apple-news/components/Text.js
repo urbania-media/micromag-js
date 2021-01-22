@@ -1,15 +1,6 @@
-import { validate } from '../../utils';
-import TextDefinition from '../definitions/format/Text.json';
+import TextDefinition from '../definitions/Text.json';
+import GenericText from '../elements/GenericText';
 
-const Text = (text) => {
-    const { body } = text || {};
-    console.log('TEXT', body); // eslint-disable-line
-
-    const content = {
-        role: 'text',
-        text: body,
-    };
-    return validate(content, TextDefinition) ? content : null;
-};
+const Text = (story, text) => GenericText(story, text, 'text', TextDefinition);
 
 export default Text;

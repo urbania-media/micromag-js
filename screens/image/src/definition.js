@@ -4,6 +4,7 @@ import ImageTitleScreen from './ImageTitle';
 import ImageTextScreen from './ImageText';
 import ImageTitleTextScreen from './ImageTitleText';
 import ImageLegendScreen from './ImageLegend';
+import * as transforms from './transforms/index';
 
 export default [
     {
@@ -19,6 +20,7 @@ export default [
         }),
         component: ImageScreen,
         layouts: ['normal', 'fullscreen'],
+        transforms,
         fields: [
             {
                 name: 'layout',
@@ -59,6 +61,7 @@ export default [
         }),
         component: ImageTitleScreen,
         layouts: ['normal', 'reverse', 'card'],
+        transforms,
         fields: [
             {
                 name: 'layout',
@@ -79,6 +82,7 @@ export default [
             {
                 name: 'title',
                 type: 'text-element',
+                inline: true,
                 theme: {
                     textStyle: 'heading1',
                     textColor: 'primary',
@@ -111,6 +115,7 @@ export default [
         }),
         component: ImageTextScreen,
         layouts: ['normal', 'reverse', 'card'],
+        transforms,
         fields: [
             {
                 name: 'layout',
@@ -163,6 +168,7 @@ export default [
         }),
         component: ImageTitleTextScreen,
         layouts: ['normal', 'reverse', 'title-top', 'card'],
+        transforms,
         fields: [
             {
                 name: 'layout',
@@ -184,6 +190,7 @@ export default [
             {
                 name: 'title',
                 type: 'text-element',
+                inline: true,
                 theme: {
                     textStyle: 'heading1',
                     textColor: 'primary',
@@ -228,6 +235,7 @@ export default [
         }),
         component: ImageLegendScreen,
         layouts: ['normal', 'reverse', 'card'],
+        transforms,
         fields: [
             {
                 name: 'layout',

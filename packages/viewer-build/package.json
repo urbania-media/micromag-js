@@ -1,0 +1,55 @@
+{
+    "name": "@micromag/viewer-build",
+    "version": "0.2.62",
+    "description": "",
+    "keywords": [
+        "javascript"
+    ],
+    "homepage": "https://github.com/urbania-media/micromag-js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/urbania-media/micromag-js.git"
+    },
+    "author": {
+        "name": "Folklore",
+        "email": "info@folklore.email"
+    },
+    "contributors": [
+        {
+            "name": "David Mongeau-Petitpas",
+            "email": "dmp@folklore.email"
+        },
+        {
+            "name": "Nicolas Roy-Bourdages",
+            "email": "nrb@folklore.email"
+        },
+        {
+            "name": "Julien Carignan",
+            "email": "jc@folklore.email"
+        }
+    ],
+    "license": "ISC",
+    "files": [
+        "build"
+    ],
+    "scripts": {
+        "prepare": "PUBLIC_URL=/ NODE_ENV=production react-scripts build",
+        "start": "PUBLIC_URL=http://localhost/ react-scripts start"
+    },
+    "devDependencies": {
+        "@micromag/core": "^0.2.62",
+        "@micromag/elements": "^0.2.62",
+        "@micromag/screens": "^0.2.62",
+        "@micromag/viewer": "^0.2.62",
+        "react": "^16.8.0",
+        "react-dom": "^16.8.0",
+        "react-scripts": "^4.0.1"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "gitHead": "d5484fa3719af6ccde7488b76e75c557924e94d1",
+    "dependencies": {
+        "@micromag/transforms": "^0.2.62"
+    }
+}

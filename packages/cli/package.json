@@ -1,6 +1,6 @@
 {
     "name": "@micromag/cli",
-    "version": "0.2.61",
+    "version": "0.2.62",
     "description": "",
     "keywords": [
         "javascript"
@@ -38,19 +38,19 @@
         "micromag-export": "./bin/export.js"
     },
     "scripts": {
-        "build:app": "cd src/app && NODE_ENV=production react-scripts build && rm -rf ../../public/ && mv ./build/ ../../public/",
         "node": "../../node_modules/.bin/babel-node --config-file=../../babel.config.js  -i '[]' --env-name=node",
         "export": "npm run node -- ./src/bin/export.js",
-        "prepare": "../../scripts/prepare-package.sh && npm run build:app"
+        "prepare": "../../scripts/prepare-package.sh"
     },
     "dependencies": {
         "@babel/runtime": "^7.8.7",
-        "@micromag/core": "^0.2.61",
-        "@micromag/elements": "^0.2.61",
-        "@micromag/fields": "^0.2.61",
-        "@micromag/screens": "^0.2.61",
-        "@micromag/transforms": "^0.2.61",
-        "@micromag/viewer": "^0.2.61",
+        "@micromag/core": "^0.2.62",
+        "@micromag/elements": "^0.2.62",
+        "@micromag/fields": "^0.2.62",
+        "@micromag/screens": "^0.2.62",
+        "@micromag/transforms": "^0.2.62",
+        "@micromag/viewer": "^0.2.62",
+        "@micromag/viewer-build": "^0.2.62",
         "change-case": "^4.1.2",
         "classnames": "^2.2.6",
         "commander": "^7.0.0",
@@ -61,9 +61,6 @@
         "puppeteer": "^5.5.0",
         "react": "^16.8.0",
         "react-dom": "^16.8.0"
-    },
-    "devDependencies": {
-        "react-scripts": "^4.0.1"
     },
     "publishConfig": {
         "access": "public"
