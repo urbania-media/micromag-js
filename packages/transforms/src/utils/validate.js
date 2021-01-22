@@ -7,7 +7,7 @@ const validate = (content = {}, definition = null) => {
     const validated = content
         ? Object.keys(content).reduce((values, name) => {
               const value = content[name] || null;
-
+              // Find the reference
               if (definition && definition.properties) {
                   const property = definition.properties.find((prop) => prop.name === name) || null;
                   if (property !== null) {

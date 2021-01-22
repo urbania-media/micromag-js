@@ -4,7 +4,7 @@ import { validate } from '../../utils';
 
 const GenericText = (story, text, role = 'text', definition = null) => {
     const { body = null, textStyle = null } = text || {};
-    console.log('Generic text', body, textStyle); // eslint-disable-line
+    // console.log('Generic text', body, textStyle); // eslint-disable-line
 
     const style = textStyle ? TextStyle(textStyle) : null;
     const styleName = style !== null ? hash(style) : null;

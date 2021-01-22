@@ -5,8 +5,8 @@ const TextStyle = ({ fontFamily = null, fontSize = null, lineHeight = null, colo
     const content = {
         fontFamily,
         fontSize,
-        lineHeight,
-        color,
+        lineHeight: lineHeight ? Math.floor(fontSize * lineHeight) : null,
+        textColor: color && color.color ? color.color : null,
     };
     return validate(content, TextStyleDefinition);
 };
