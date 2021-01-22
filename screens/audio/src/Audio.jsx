@@ -6,7 +6,7 @@ import classNames from 'classnames';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
-import { useTrackAudio } from '@micromag/core/hooks';
+import { useTrackScreenMedia } from '@micromag/core/hooks';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import Audio from '@micromag/element-audio';
 import ClosedCaptions from '@micromag/element-closed-captions';
@@ -23,7 +23,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
 };
@@ -34,7 +33,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    maxRatio: 3 / 4,
     transitions: null,
     className: null,
 };
@@ -45,11 +43,10 @@ const AudioScreen = ({
     background,
     current,
     active,
-    maxRatio,
     transitions,
     className,
 }) => {
-    const trackAudio = useTrackAudio();
+    const trackScreenMedia = useTrackScreenMedia('audio');
 
     const { width, height } = useScreenSize();
     const { isPlaceholder, isPreview, isView, isEdit } = useScreenRenderContext();
@@ -73,10 +70,10 @@ const AudioScreen = ({
     const onProgressStep = useCallback(
         (step) => {
             if (trackingEnabled) {
-                trackAudio(audio, `progress-${Math.round(step * 100, 10)}%`);
+                trackScreenMedia(audio, `progress_${Math.round(step * 100, 10)}%`);
             }
         },
-        [trackingEnabled, trackAudio, audio],
+        [trackingEnabled, trackScreenMedia, audio],
     );
 
     const onDurationChanged = useCallback(
@@ -90,39 +87,39 @@ const AudioScreen = ({
         ({ initial }) => {
             setPlaying(true);
             if (trackingEnabled) {
-                trackAudio(audio, initial ? 'play' : 'resume');
+                trackScreenMedia(audio, initial ? 'play' : 'resume');
             }
         },
-        [setPlaying, trackingEnabled, trackAudio, audio],
+        [setPlaying, trackingEnabled, trackScreenMedia, audio],
     );
 
     const onPause = useCallback(
         ({ midway }) => {
             setPlaying(false);
             if (trackingEnabled) {
-                trackAudio(audio, midway ? 'pause' : 'ended');
+                trackScreenMedia(audio, midway ? 'pause' : 'ended');
             }
         },
-        [setPlaying, trackingEnabled, trackAudio, audio],
+        [setPlaying, trackingEnabled, trackScreenMedia, audio],
     );
 
     const onVolumeChanged = useCallback(
         (isMuted) => {
             setMuted(isMuted);
             if (trackingEnabled) {
-                trackAudio(audio, isMuted ? 'mute' : 'unmute');
+                trackScreenMedia(audio, isMuted ? 'mute' : 'unmute');
             }
         },
-        [setPlaying, trackingEnabled, trackAudio, audio],
+        [setPlaying, trackingEnabled, trackScreenMedia, audio],
     );
 
     const onSeeked = useCallback(
         (time) => {
             if (trackingEnabled && time > 0) {
-                trackAudio(audio, 'seek');
+                trackScreenMedia(audio, 'seek');
             }
         },
-        [trackingEnabled, trackAudio, audio],
+        [trackingEnabled, trackScreenMedia, audio],
     );
 
     // ------------------------------------
@@ -211,10 +208,9 @@ const AudioScreen = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                maxRatio={maxRatio}
                 playing={(isView && current) || (isEdit && active)}
             />
-            <Container width={width} height={height} maxRatio={maxRatio}>
+            <Container width={width} height={height}>
                 <Layout fullscreen verticalAlign="middle">
                     {element}
                 </Layout>

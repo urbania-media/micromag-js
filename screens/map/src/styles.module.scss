@@ -20,8 +20,6 @@
 
     .markerOverlayScrollable {
         @extend %fullscreen;
-        @extend %hide-scrollbars;
-        overflow: auto;
     }
 
     .markerOverlaySafe {

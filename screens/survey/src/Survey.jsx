@@ -35,7 +35,6 @@ const propTypes = {
     withPercentLabels: PropTypes.bool,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     type: PropTypes.string,
@@ -51,7 +50,6 @@ const defaultProps = {
     withPercentLabels: true,
     current: true,
     active: true,
-    maxRatio: 3 / 4,
     transitions: null,
     transitionStagger: 100,
     type: null,
@@ -67,17 +65,14 @@ const SurveyScreen = ({
     withPercentLabels,
     current,
     active,
-    maxRatio,
     transitions,
     transitionStagger,
     type,
     className,
 }) => {
-    const trackScreenEvent = useTrackScreenEvent();
-    const { width, height } = useScreenSize();
+    const trackScreenEvent = useTrackScreenEvent(type);
+    const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
-
-    const landscape = width > height;
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
@@ -99,11 +94,11 @@ const SurveyScreen = ({
                 setUserAnswerIndex(answerIndex);
                 const answer = answers[answerIndex];
                 if (trackingEnabled) {
-                    trackScreenEvent(`screen-${type}`, 'click-answer', answer.label.body, { answer });
+                    trackScreenEvent('click_answer', `${userAnswerIndex}_${answer.label.body}`, { answer });
                 }
             }
         },
-        [userAnswerIndex, setUserAnswerIndex, trackScreenEvent, trackingEnabled, type],
+        [userAnswerIndex, setUserAnswerIndex, trackScreenEvent, trackingEnabled],
     );
 
     useEffect( () => {
@@ -296,9 +291,8 @@ const SurveyScreen = ({
                 width={width}
                 height={height}
                 playing={(isView && current) || (isEdit && active)}
-                maxRatio={maxRatio}
             />
-            <Container width={width} height={height} maxRatio={maxRatio}>
+            <Container width={width} height={height}>
                 <Layout
                     className={styles.layout}
                     fullscreen

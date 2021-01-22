@@ -42,7 +42,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     resultsTransitionDuration: PropTypes.number,
@@ -60,7 +59,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    maxRatio: 3 / 4,
     transitions: null,
     transitionStagger: 100,
     resultsTransitionDuration: 500,
@@ -78,18 +76,15 @@ const QuizScreen = ({
     background,
     current,
     active,
-    maxRatio,
     transitions,
     transitionStagger,
     resultsTransitionDuration,
     type,
     className,
 }) => {
-    const trackScreenEvent = useTrackScreenEvent();
-    const { width, height } = useScreenSize();
+    const trackScreenEvent = useTrackScreenEvent(type);
+    const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
-
-    const landscape = width > height;
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
     const hasQuestion = isTextFilled(question);
@@ -120,7 +115,7 @@ const QuizScreen = ({
 
                 const answer = answers[answerI];
                 if (trackingEnabled) {
-                    trackScreenEvent(`screen-${type}`, 'click-answer', answer.label.body, { answer });
+                    trackScreenEvent('click_answer', `${userAnswerIndex}_${answer.label.body}`, { answer });
                 }
             }
 
@@ -386,9 +381,8 @@ const QuizScreen = ({
                 width={width}
                 height={height}
                 playing={(isView && current) || (isEdit && active)}
-                maxRatio={maxRatio}
             />
-            <Container width={width} height={height} maxRatio={maxRatio}>
+            <Container width={width} height={height}>
                 <Layout
                     className={styles.layout}
                     fullscreen

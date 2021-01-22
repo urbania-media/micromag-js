@@ -6,81 +6,51 @@ class Tracking extends BaseTracking {
         super(opts);
     }
 
-    trackScreenView(screen, screenIndex) {
+    trackScreenView(screen, screenIndex, ...opts) {
         const { id: screenId = null, type: screenType = null } = screen || {};
-        console.log('track screenView', screenId, screenType, screenIndex);
-
-        this.push({
+        const data = {
+            ...opts,
             event: 'pageView',
             screenId,
             screenType,
             screenIndex,
-        });
+        };
+        console.log('track', data);
+        this.push(data);
     }
 
-    trackEvent(category, action, label, { value = null, screenId = null, screenType = null, ...opts } = {}) {
-        console.log('track event', category, action, label, opts);
-        this.push({
+    trackEvent(category, action, label, { value = null, ...opts } = {}) {
+        const data = {
             ...opts,
             event: 'event',
             eventCategory: category,
             eventAction: action,
             eventLabel: label,
             eventValue: value,
-            screenId,
-            screenType,
-        });
+        };
+        console.log('track', data);
+        this.push(data);
     }
 
-    trackScreenEvent(category, action, label, { value = null, ...opts } = {}, screenContext) {
-        const { data = null } = screenContext || {};
-        const { id: screenId = null, type: screenType } = data || {};
-        console.log('track event', category, action, label, opts);
-        this.push({
-            ...opts,
-            event: 'event',
-            eventCategory: category,
-            eventAction: action,
-            eventLabel: label,
-            eventValue: value,
-            screenId,
-            screenType,
-        });
-    }
-
-    trackMedia(type, media, action, { value = null, ...opts } = {}, screenContext) {
+    trackMedia(type, media, action, { value = null, ...opts } = {}) {
         const { id: mediaId = null, name = null, duration = null, currentTime = null } = media || {};
-        const { data = null } = screenContext || {};
-        const { id: screenId = null, type: screenType } = data || {};
-        console.log(`track ${type}`, action, name, opts);
-        this.push({
+        const label = name;
+        const data = {
             ...opts,
             event: 'event',
-            eventCategory: `screen-${type}`,
+            eventCategory: type,
             eventAction: action,
-            eventLabel: name,
+            eventLabel: label,
             eventValue: value,
-            screenId,
-            screenType,
             mediaId,
             mediaCurrentTime: currentTime !== null ? Math.round(currentTime) : null,
             mediaProgress:
                 currentTime !== null && duration !== null && duration > 0
                     ? Math.round(currentTime / duration * 100)
                     : null,
-        });
-    }
-
-    trackVideo(...params) {
-        this.trackMedia('video', ...params);
-    }
-
-    trackVideo360(...params) {
-        this.trackMedia('video-360', ...params);
-    }
-
-    trackAudio(...params) {
-        this.trackMedia('audio', ...params);
+        };
+        console.log('track', data);
+        this.push(data);
     }
 }
 

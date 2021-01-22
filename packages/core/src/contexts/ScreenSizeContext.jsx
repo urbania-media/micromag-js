@@ -9,6 +9,7 @@ const ScreenSizeContext = React.createContext({
     screens: [],
     width: 0,
     height: 0,
+    landscape: false,
 });
 
 export const useScreenSize = () => useContext(ScreenSizeContext);

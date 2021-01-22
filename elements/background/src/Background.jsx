@@ -20,7 +20,6 @@ const propTypes = {
     color: MicromagPropTypes.color,
     image: MicromagPropTypes.imageMedia,
     video: MicromagPropTypes.videoMedia,
-    maxRatio: PropTypes.number,
     className: PropTypes.string,
     children: PropTypes.node,
 };
@@ -35,7 +34,6 @@ const defaultProps = {
     color: null,
     image: null,
     video: null,
-    maxRatio: null,
     className: null,
     children: null,
 };
@@ -50,16 +48,10 @@ const Background = ({
     color,
     image,
     video,
-    maxRatio,
     className,
     children,
 }) => {
-    const { isPreview } = useScreenRenderContext();
-    const currentRatio = width / height;
-
-    // eslint-disable-next-line no-unused-vars
-    const boxedWidth = maxRatio !== null && currentRatio > maxRatio ? height * maxRatio : width;
-    // à utiliser pour les background complexes en desktop (video/image blur)
+    const { isPreview, isStatic } = useScreenRenderContext();
 
     const finalStyle = {
         width,
@@ -80,17 +72,27 @@ const Background = ({
 
     // video
 
-    const { metadata: videoMetadata = null } = video || {};
-    const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
-    const { width: resizedVideoWidth = 0, height: resizedVideoHeight = 0} = getSizeWithinBounds(
-        videoWidth,
-        videoHeight,
-        width,
-        height,
-        { cover: fit === 'cover' || fit === null },
-    );
-    const resizedVideoLeft = -(resizedVideoWidth - width) / 2;
-    const resizedVideoTop = -(resizedVideoHeight - height) / 2;
+    const videoContainerStyle = {};
+
+    if (!isStatic) {
+        const { metadata: videoMetadata = null } = video || {};
+        const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
+        const { width: resizedVideoWidth = 0, height: resizedVideoHeight = 0} = getSizeWithinBounds(
+            videoWidth,
+            videoHeight,
+            width,
+            height,
+            { cover: fit === 'cover' || fit === null },
+        );
+        const resizedVideoLeft = -(resizedVideoWidth - width) / 2;
+        const resizedVideoTop = -(resizedVideoHeight - height) / 2;
+        videoContainerStyle.width = resizedVideoWidth;
+        videoContainerStyle.height = resizedVideoHeight;
+        videoContainerStyle.left = resizedVideoLeft;
+        videoContainerStyle.top = resizedVideoTop;
+    } else {
+        videoContainerStyle.objectFit = 'cover';
+    }    
 
     return (
         <div
@@ -105,12 +107,7 @@ const Background = ({
             {video !== null ? (
                 <div
                     className={styles.videoContainer}
-                    style={{
-                        width: resizedVideoWidth,
-                        height: resizedVideoHeight,
-                        left: resizedVideoLeft,
-                        top: resizedVideoTop,
-                    }}
+                    style={videoContainerStyle}
                 >
                     <Video
                         className={styles.video}

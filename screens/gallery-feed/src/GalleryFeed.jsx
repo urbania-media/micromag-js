@@ -28,7 +28,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     type: PropTypes.string,
@@ -43,7 +42,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    maxRatio: 3 / 4,
     transitions: null,
     transitionStagger: 75,
     type: null,
@@ -58,17 +56,15 @@ const GalleryFeedScreen = ({
     background,
     current,
     active,
-    maxRatio,
     transitions,
     transitionStagger,
     type,
     className,    
 }) => {
-    const trackScreenEvent = useTrackScreenEvent();
-    const { width, height } = useScreenSize();
+    const trackScreenEvent = useTrackScreenEvent(type);
+    const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
 
-    const landscape = width > height;
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
     const imagesCount = images.length;
@@ -97,9 +93,9 @@ const GalleryFeedScreen = ({
 
     const onScrolledBottom = useCallback(() => {
         if (trackingEnabled) {
-            trackScreenEvent(`screen-${type}`, 'scroll', 'feed');
+            trackScreenEvent('scroll', 'screen');
         }
-    }, [trackScreenEvent, type, trackingEnabled]);
+    }, [trackScreenEvent, trackingEnabled]);
 
     finalImages.forEach((image, index) => {
         const finalImage = withCaptions ? image : { media: image };
@@ -189,12 +185,12 @@ const GalleryFeedScreen = ({
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
+                height={height}
                 playing={(isView && current) || (isEdit && active)}
-                maxRatio={maxRatio}
             />
 
-            <Container width={width} height={height} maxRatio={maxRatio} withScroll>
-                <Scroll disabled={isPlaceholder || isPreview} onScrolledBottom={onScrolledBottom}>
+            <Container width={width} height={height}>
+                <Scroll disabled={isPlaceholder || isPreview || !current} onScrolledBottom={onScrolledBottom}>
                     <Layout
                         className={styles.layout}
                         style={

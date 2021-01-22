@@ -35,7 +35,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     resizeTransitionDuration: PropTypes.number,
@@ -53,7 +52,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    maxRatio: 3 / 4,
     transitions: null,
     transitionStagger: 100,
     resizeTransitionDuration: 750,
@@ -71,19 +69,16 @@ const ContributionScreen = ({
     background,
     current,
     active,
-    maxRatio,
     transitions,
     transitionStagger,
     resizeTransitionDuration,
     type,
     className,
 }) => {
-    const trackScreenEvent = useTrackScreenEvent();
+    const trackScreenEvent = useTrackScreenEvent(type);
 
-    const { width, height } = useScreenSize();
+    const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
-
-    const landscape = width > height;
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
@@ -109,9 +104,9 @@ const ContributionScreen = ({
     const onContributionSubmitted = useCallback(() => {
         setSubmitState(2);
         if (trackingEnabled) {
-            trackScreenEvent(`screen-${type}`, 'submit-success', `${userName} - ${userMessage}`);
+            trackScreenEvent('submit_success', `${userName}_${userMessage}`);
         }
-    }, [setSubmitState, trackScreenEvent, type, trackingEnabled, userName, userMessage]);
+    }, [setSubmitState, trackScreenEvent, trackingEnabled, userName, userMessage]);
 
     const { create: submitContribution } = useContributionCreate({
         screenId: 'screen-id',
@@ -140,14 +135,14 @@ const ContributionScreen = ({
             if (!nameFilled.current && e.currentTarget.value.length > 0) {
                 nameFilled.current = true;
                 if (trackingEnabled) {
-                    trackScreenEvent(`screen-${type}`, 'input-filled', 'field-name', {
+                    trackScreenEvent('input_filled', 'field_name', {
                         userName: e.currentTarget.value,
                         userMessage,
                     });
                 }
             }
         },
-        [trackScreenEvent, type, trackingEnabled, userMessage],
+        [trackScreenEvent, trackingEnabled, userMessage],
     );
 
     const messageFilled = useRef(false);
@@ -156,19 +151,21 @@ const ContributionScreen = ({
             if (!messageFilled.current && e.currentTarget.value.length > 0) {
                 messageFilled.current = true;
                 if (trackingEnabled) {
-                    trackScreenEvent(`screen-${type}`, 'input-filled', 'field-message', {
+                    trackScreenEvent('input_filled', 'field_message', {
                         userName,
                         userMessage: e.currentTarget.value,
                     });
                 }
             }
         },
-        [trackScreenEvent, type, trackingEnabled, userName],
+        [trackScreenEvent, trackingEnabled, userName],
     );
 
-    const onScrollBottom = useCallback(() => {
-        trackScreenEvent(`screen-${type}`, 'scroll', 'contributions-list');
-    }, [trackScreenEvent, type, trackingEnabled]);
+    const onScrolledBottom = useCallback(() => {
+        if (trackingEnabled) {
+            trackScreenEvent('scroll', 'contributions');
+        }
+    }, [trackScreenEvent, trackingEnabled]);
 
     const onSubmit = useCallback(
         (e) => {
@@ -178,14 +175,14 @@ const ContributionScreen = ({
                 setSubmitState(1);
                 submitContribution({ name: userName, message: userMessage });
                 if (trackingEnabled) {
-                    trackScreenEvent(`screen-${type}`, 'click-submit', userName, {
+                    trackScreenEvent('click_submit', userName, {
                         userName,
                         userMessage,
                     });
                 }
             }
         },
-        [submitState, setSubmitState, userName, userMessage, trackScreenEvent, type, trackingEnabled],
+        [submitState, setSubmitState, userName, userMessage, trackScreenEvent, trackingEnabled],
     );
 
     useEffect(() => {
@@ -369,9 +366,8 @@ const ContributionScreen = ({
                 width={width}
                 height={height}
                 playing={(isView && current) || (isEdit && active)}
-                maxRatio={maxRatio}
             />
-            <Container width={width} height={height} maxRatio={maxRatio} withScroll>
+            <Container width={width} height={height}>
                 <div
                     className={styles.content}
                     style={
@@ -385,8 +381,8 @@ const ContributionScreen = ({
                 >
                     <Scroll
                         verticalAlign={layout}
-                        disabled={isPlaceholder || isPreview}
-                        onScrollBottom={onScrollBottom}
+                        disabled={isPlaceholder || isPreview || !current}
+                        onScrolledBottom={onScrolledBottom}
                     >
                         {items}
                     </Scroll>

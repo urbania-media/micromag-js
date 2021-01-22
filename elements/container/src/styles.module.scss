@@ -1,6 +1,7 @@
 @import '~@micromag/core/scss/variables';
 
 .container {
-    position: relative;
+    position: relative;    
     margin: 0 auto;
+    overflow: hidden;
 }

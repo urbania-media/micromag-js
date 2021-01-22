@@ -28,7 +28,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     type: PropTypes.string,
@@ -44,7 +43,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    maxRatio: 3 / 4,
     transitions: null,
     transitionStagger: 75,
     type: null,
@@ -60,17 +58,14 @@ const RankingScreen = ({
     background,
     current,
     active,
-    maxRatio,
     transitions,
     transitionStagger,
     type,
     className,
 }) => {
-    const trackScreenEvent = useTrackScreenEvent();
-    const { width, height } = useScreenSize();
+    const trackScreenEvent = useTrackScreenEvent(type);
+    const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
-
-    const landscape = width > height;
 
     const { isPlaceholder, isPreview, isView, isEdit } = useScreenRenderContext();
 
@@ -85,9 +80,9 @@ const RankingScreen = ({
 
     const onScrolledBottom = useCallback(() => {
         if (trackingEnabled) {
-            trackScreenEvent(`screen-${type}`, 'scroll', 'ranking-list');
+            trackScreenEvent('scroll', 'screen');
         }
-    }, [trackScreenEvent, trackingEnabled, type]);
+    }, [trackScreenEvent, trackingEnabled]);
 
     const ranksRefs = useRef([]);
     const [maxSideRankWidth, setMaxSideRankWidth] = useState(null);
@@ -212,14 +207,14 @@ const RankingScreen = ({
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
-                maxRatio={maxRatio}
+                height={height}
                 playing={(isView && current) || (isEdit && active)}
             />
-            <Container width={width} height={height} maxRatio={maxRatio} withScroll>
+            <Container width={width} height={height}>
                 <Scroll
                     className={styles.scroll}
                     verticalAlign="middle"
-                    disabled={isPlaceholder || isPreview}
+                    disabled={isPlaceholder || isPreview || !current}
                     onScrolledBottom={onScrolledBottom}
                 >
                     <Layout

@@ -14,6 +14,7 @@ import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Map from '@micromag/element-map';
 import Heading from '@micromag/element-heading';
+import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 import Image from '@micromag/element-image';
 
@@ -39,8 +40,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    maxRatio: PropTypes.number,
-    transitions: MicromagPropTypes.transitions,    
+    transitions: MicromagPropTypes.transitions,
     onEnableInteraction: PropTypes.func,
     onDisableInteraction: PropTypes.func,
     type: PropTypes.string,
@@ -59,8 +59,7 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    maxRatio: 3 / 4,
-    transitions: null,    
+    transitions: null,
     onEnableInteraction: null,
     onDisableInteraction: null,
     type: null,
@@ -79,25 +78,20 @@ const MapScreen = ({
     background,
     current,
     active,
-    maxRatio,
-    transitions,    
+    transitions,
     onEnableInteraction,
     onDisableInteraction,
     type,
     className,
 }) => {
-    const trackScreenEvent = useTrackScreenEvent();
+    const trackScreenEvent = useTrackScreenEvent(type);
     const [opened, setOpened] = useState(false);
 
-    const [selectedMarker, setSelectedMarker] = useState(null);
-    const hasSelectedMarker = selectedMarker !== null;
-    const lastRenderedMarker = useRef(selectedMarker);
+    const [selectedMarkerIndex, setSelectedMarkerIndex] = useState(null);
+    const hasSelectedMarker = selectedMarkerIndex !== null;
+    const lastRenderedMarker = useRef(null);
 
     const { width, height } = useScreenSize();
-    const screenRatio = width / height;
-    const maxWidth = Math.round(
-        maxRatio !== null && screenRatio > maxRatio ? height * maxRatio : width,
-    );
 
     const { isView, isPlaceholder, isPreview, isEdit } = useScreenRenderContext();
 
@@ -113,58 +107,68 @@ const MapScreen = ({
         () =>
             markers.map((marker, markerI) => ({
                 ...marker,
-                active: markerI === selectedMarker,
+                active: markerI === selectedMarkerIndex,
             })),
-        [markers, active, selectedMarker],
+        [markers, active, selectedMarkerIndex],
     );
 
     const onClickMap = useCallback(() => {
-        const lastMarker = finalMarkers[selectedMarker];
+        const lastMarker = finalMarkers[selectedMarkerIndex];
         lastRenderedMarker.current = lastMarker;
-        setSelectedMarker(null);
+        setSelectedMarkerIndex(null);
         if (trackingEnabled) {
-            trackScreenEvent(`screen-${type}`, 'click-marker-close', lastMarker.title.body, {
+            trackScreenEvent('click_marker_close', lastMarker.title.body, {
                 marker: lastMarker,
             });
         }
-    }, [finalMarkers, selectedMarker, trackScreenEvent, type, trackingEnabled]);
+    }, [finalMarkers, selectedMarkerIndex, trackScreenEvent, trackingEnabled]);
 
     const onClickMarker = useCallback(
-        (e, i) => {
-            const marker = finalMarkers[i];
-            setSelectedMarker(i);
+        (e, index) => {
+            const marker = finalMarkers[index];
+            setSelectedMarkerIndex(index);
             if (trackingEnabled) {
-                trackScreenEvent(`screen-${type}`, 'click-marker-open', marker.title.body, { marker });
+                trackScreenEvent('click_marker_open', `marker_${index}_${marker.title.body}`, { marker });
             }
         },
-        [finalMarkers, setSelectedMarker, trackScreenEvent, type, trackingEnabled],
+        [finalMarkers, setSelectedMarkerIndex, trackScreenEvent, trackingEnabled],
     );
 
-    const onSplashClick = useCallback(() => {
+    const onButtonClick = useCallback(() => {
         setOpened(true);
         if (trackingEnabled) {
-            trackScreenEvent(`screen-${type}`, 'click-button', button.body);
+            trackScreenEvent('click_button', button.body);
         }
         if (onDisableInteraction !== null) {
             onDisableInteraction();
         }
-    }, [setOpened, onDisableInteraction, trackScreenEvent, type, trackingEnabled, button]);
+    }, [setOpened, onDisableInteraction, trackScreenEvent, trackingEnabled, button]);
 
     const onCloseClick = useCallback(() => {
         setOpened(false);
         if (trackingEnabled) {
-            trackScreenEvent(`screen-${type}`, 'click-close', 'close-icon');
+            trackScreenEvent('click_close', 'close_icon');
         }
         if (onEnableInteraction !== null) {
             onEnableInteraction();
         }
-    }, [setOpened, onEnableInteraction, trackScreenEvent, type, trackingEnabled]);
+    }, [setOpened, onEnableInteraction, trackScreenEvent, trackingEnabled]);
 
-    const onMapDragEnd = useCallback(() => {
+    const onMapDragEnd = useCallback(
+        (center) => {
+            if (trackingEnabled) {
+                trackScreenEvent('drag_map', center.toString());
+            }
+        },
+        [trackScreenEvent],
+    );
+
+    const onScrolledBottom = useCallback(() => {
         if (trackingEnabled) {
-            trackScreenEvent(`screen-${type}`, 'drag-map', 'google-maps');
+            const selectedMarker = markers[selectedMarkerIndex];
+            trackScreenEvent('scroll', `marker_${selectedMarkerIndex}_${selectedMarker.title.body}`);
         }
-    }, [trackScreenEvent, type]);
+    }, [trackScreenEvent, trackingEnabled, markers, selectedMarkerIndex]);
 
     const {
         ref: markerOverContentInnerRef,
@@ -176,8 +180,8 @@ const MapScreen = ({
     if (isPlaceholder) {
         element = <PlaceholderMap className={styles.placeholder} withImages={withMarkerImages} />;
     } else if (isPreview) {
-        if (maxWidth > 0 && height > 0) {
-            let staticUrl = `https://maps.googleapis.com/maps/api/staticmap?size=${maxWidth}x${height}`;
+        if (width > 0 && height > 0) {
+            let staticUrl = `https://maps.googleapis.com/maps/api/staticmap?size=${width}x${height}`;
             if (defaultCenter !== null && (markers === null || markers.length === 0)) {
                 const { lat = null, lng = null } = defaultCenter || {};
                 staticUrl += `&center=${lat},${lng}`;
@@ -207,12 +211,12 @@ const MapScreen = ({
                         media: {
                             url: staticUrl,
                             metadata: {
-                                width: Math.min(640, maxWidth),
+                                width: Math.min(640, width),
                                 height: Math.min(640, height),
                             },
                         },
                     }}
-                    width={maxWidth}
+                    width={width}
                     height={height}
                     objectFit={{ fit: 'cover' }}
                 />
@@ -220,7 +224,7 @@ const MapScreen = ({
         }
     } else {
         const renderedMarker = hasSelectedMarker
-            ? finalMarkers[selectedMarker]
+            ? finalMarkers[selectedMarkerIndex]
             : lastRenderedMarker.current;
         const {
             title: markerTitle = null,
@@ -256,50 +260,60 @@ const MapScreen = ({
                 />
                 <div className={styles.markerOverlayContainer}>
                     <div className={styles.markerOverlayScrollable}>
-                        <Button
-                            className={styles.markerOverlaySafe}
-                            onClick={onClickMap}
-                            withoutStyle
-                            style={{ height: height * openedMarkerSpacerHeight }}
-                            disabled={isPreview}
-                        />
-                        <div
-                            className={styles.markerOverlay}
-                            style={{ minHeight: height * (1 - openedMarkerSpacerHeight) }}
+                        <Scroll
+                            key={`scroll-${selectedMarkerIndex}`}
+                            fullscreen
+                            disabled={!current}
+                            onScrolledBottom={onScrolledBottom}
                         >
-                            <div className={styles.markerOverlayContent}>
-                                <div className={styles.swipeIndicator} />
-                                <div
-                                    className={styles.markerOverlayContentInner}
-                                    key={`markerContent-${selectedMarker}`}
-                                    ref={markerOverContentInnerRef}
-                                >
-                                    {hasMarkerImage ? (
-                                        <Image
-                                            className={styles.markerImage}
-                                            media={markerImage}
-                                            width={markerOverContentInnerWidth}
-                                        />
-                                    ) : null}
-                                    {hasMarkerTitle ? (
-                                        <Heading className={styles.markerTitle} {...markerTitle} />
-                                    ) : null}
-                                    {hasMarkerSubtitle ? (
-                                        <Heading
-                                            size={3}
-                                            className={styles.markerSubtitle}
-                                            {...markerSubtitle}
-                                        />
-                                    ) : null}
-                                    {hasMarkerDescription ? (
-                                        <Text
-                                            className={styles.markerDescription}
-                                            {...markerDescription}
-                                        />
-                                    ) : null}
+                            <Button
+                                className={styles.markerOverlaySafe}
+                                onClick={onClickMap}
+                                withoutStyle
+                                style={{ height: height * openedMarkerSpacerHeight }}
+                                disabled={isPreview}
+                            />
+                            <div
+                                className={styles.markerOverlay}
+                                style={{ minHeight: height * (1 - openedMarkerSpacerHeight) }}
+                            >
+                                <div className={styles.markerOverlayContent}>
+                                    <div className={styles.swipeIndicator} />
+                                    <div
+                                        className={styles.markerOverlayContentInner}
+                                        key={`markerContent-${selectedMarkerIndex}`}
+                                        ref={markerOverContentInnerRef}
+                                    >
+                                        {hasMarkerImage ? (
+                                            <Image
+                                                className={styles.markerImage}
+                                                media={markerImage}
+                                                width={markerOverContentInnerWidth}
+                                            />
+                                        ) : null}
+                                        {hasMarkerTitle ? (
+                                            <Heading
+                                                className={styles.markerTitle}
+                                                {...markerTitle}
+                                            />
+                                        ) : null}
+                                        {hasMarkerSubtitle ? (
+                                            <Heading
+                                                size={3}
+                                                className={styles.markerSubtitle}
+                                                {...markerSubtitle}
+                                            />
+                                        ) : null}
+                                        {hasMarkerDescription ? (
+                                            <Text
+                                                className={styles.markerDescription}
+                                                {...markerDescription}
+                                            />
+                                        ) : null}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </Scroll>
                     </div>
                 </div>
                 <div className={classNames([styles.splash])}>
@@ -340,7 +354,7 @@ const MapScreen = ({
                     >
                         <Button
                             className={styles.splashButton}
-                            onClick={onSplashClick}
+                            onClick={onButtonClick}
                             withoutStyle
                         >
                             <Text className={styles.button} {...button} />
@@ -371,9 +385,8 @@ const MapScreen = ({
                 width={width}
                 height={height}
                 playing={(isView && current) || (isEdit && active)}
-                maxRatio={maxRatio}
             />
-            <Container width={width} height={height} maxRatio={maxRatio}>
+            <Container width={width} height={height}>
                 {element}
             </Container>
         </div>
