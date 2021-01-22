@@ -19,7 +19,6 @@ const propTypes = {
     className: PropTypes.string,
     screenClassName: PropTypes.string,
     withBorder: PropTypes.bool,
-    withScroll: PropTypes.bool,
     children: PropTypes.node.isRequired,
 };
 
@@ -32,7 +31,6 @@ const defaultProps = {
     className: null,
     screenClassName: null,
     withBorder: false,
-    withScroll: false,
 };
 
 const Screen = ({
@@ -44,7 +42,6 @@ const Screen = ({
     className,
     screenClassName,
     withBorder,
-    withScroll,
     children,
 }) => {
     const { ref: refContainer, screenSize } = useScreenSizeFromElement({
@@ -59,7 +56,6 @@ const Screen = ({
                 styles.container,
                 {
                     [styles.withBorder]: withBorder,
-                    [styles.withScroll]: withScroll,
                     [styles.withSize]: width !== null || height !== null,
                     [className]: className !== null,
                 },
@@ -86,7 +82,7 @@ const Screen = ({
                                 data={screen}
                                 renderContext={renderContext}
                             >
-                                {children}
+                                <div className={styles.screenContainer}>{children}</div>
                             </ScreenProvider>
                         </ScreenSizeProvider>
                     </ApiProvider>
