@@ -5,7 +5,7 @@ import puppeteer from 'puppeteer';
 import startServer from './startServer';
 
 const captureStory = async (story) => {
-    const server = await startServer(path.join(process.cwd(), './public/'));
+    const server = await startServer(path.join(process.cwd(), './node_modules/@micromag/viewer-build/build/'));
     const browser = await puppeteer.launch({
         devtools: true,
         defaultViewport: {
