@@ -338,6 +338,7 @@ const Viewer = ({
                     <div className={styles.menuDotsContainer} ref={menuDotsContainerRef}>
                         <MenuDots
                             direction="horizontal"
+                            landscape={landscape}
                             items={screens}
                             current={currentIndex}
                             onClickItem={onClickDotsMenuItem}
