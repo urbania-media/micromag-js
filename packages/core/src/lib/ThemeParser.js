@@ -40,7 +40,6 @@ class ThemeParser {
                 ...themeComponent,
                 ...Object.keys(screen).reduce((newScreen, key) => {
                     const {
-                        type: fieldType,
                         theme: {
                             textStyle: fieldTextStyle = null,
                             textColor: fieldTextColor = null,
@@ -49,30 +48,37 @@ class ThemeParser {
                     } = fields.find((it) => it.name === key) || {};
                     const fieldValue = screen[key];
                     let newFieldValue = fieldValue;
-                    if (fieldValue !== null && fieldType === 'text-element') {
+                    if (isObject(fieldValue) && !isArray(fieldValue)) {
+                        const colorValue =
+                            fieldColor !== null
+                                ? {
+                                      color:
+                                          fieldColor !== null && themeColors !== null
+                                              ? themeColors[fieldColor] || null
+                                              : null,
+                                  }
+                                : null;
+                        const textStyleValue =
+                            fieldTextStyle !== null || fieldTextColor !== null
+                                ? {
+                                      textStyle: {
+                                          color:
+                                              fieldTextColor !== null && themeColors !== null
+                                                  ? themeColors[fieldTextColor] || null
+                                                  : null,
+                                          ...(fieldTextStyle !== null && themeTextSyle !== null
+                                              ? themeTextSyle[fieldTextStyle] || null
+                                              : null),
+                                          ...((themeComponent[key] || {}).textStyle || null),
+                                          ...(fieldValue.textStyle || null),
+                                      },
+                                  }
+                                : null;
                         newFieldValue = {
-                            color:
-                                fieldColor !== null && themeColors !== null
-                                    ? themeColors[fieldColor] || null
-                                    : null,
+                            ...colorValue,
                             ...themeComponent[key],
                             ...fieldValue,
-                            textStyle: {
-                                color:
-                                    fieldTextColor !== null && themeColors !== null
-                                        ? themeColors[fieldTextColor] || null
-                                        : null,
-                                ...(fieldTextStyle !== null && themeTextSyle !== null
-                                    ? themeTextSyle[fieldTextStyle] || null
-                                    : null),
-                                ...((themeComponent[key] || {}).textStyle || null),
-                                ...(fieldValue.textStyle || null),
-                            },
-                        };
-                    } else if (isObject(fieldValue) && !isArray(fieldValue)) {
-                        newFieldValue = {
-                            ...themeComponent[key],
-                            ...fieldValue,
+                            ...textStyleValue,
                         };
                     }
                     return {

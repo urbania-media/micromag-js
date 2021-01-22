@@ -79,6 +79,7 @@ export default [
             {
                 name: 'title',
                 type: 'text-element',
+                inline: true,
                 theme: {
                     textStyle: 'heading1',
                     textColor: 'primary',
@@ -184,6 +185,7 @@ export default [
             {
                 name: 'title',
                 type: 'text-element',
+                inline: true,
                 theme: {
                     textStyle: 'heading1',
                     textColor: 'primary',
