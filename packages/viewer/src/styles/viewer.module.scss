@@ -9,6 +9,7 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
+    color: $white;
 
     .content {
         position: relative;
@@ -38,47 +39,50 @@
     .menuPreview {
         @extend %fullscreen;
         z-index: 3;
-        top: -100%;
-        transition: transform 0.25s ease;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -100%);
+        transition: transform 0.25s ease;        
     }
 
     .screen {
+        @extend %fullscreen;
         display: flex;
-        position: absolute;
-        width: 100%;
-        min-height: 100%;
+        opacity: 0;
+
+        &.current {
+            opacity: 1;
+        }
+    }
+
+    .screenInner {
+        @extend %fullscreen;
     }
 
     &.menuOpened {
         .menuPreview {
-            transform: translateY(100%);
+            transform: translate(-50%, 0%);
         }
     }
 
-    &.landscape {
-        .menuDotsContainer {
-            top: 0;
-            right: 40px;
-            width: auto;
-            height: 100%;
-        }
-
-        .content {
-            overflow-y: auto;
-        }
-
-        .menuPreview {
-            top: 0;
-            left: 100%;
-        }
-        
+    &.landscape {        
         .screen {
-            position: relative;
-        }
+            top: 0;
+            right: auto;
+            bottom: 0;
+            left: 50%;
+            margin: auto;
+            transition: transform .3s ease, opacity .3s ease;
+            opacity: 0.1;
+            cursor: pointer;
 
-        &.menuOpened {
-            .menuPreview {
-                transform: translateX(-100%);
+            &:hover {
+                opacity: 0.2;
+            }
+
+            &.current {
+                opacity: 1;
+                cursor: auto;
             }
         }
     }

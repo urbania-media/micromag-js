@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
-import { useTrackEvent } from '@micromag/core/hooks';
+import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
@@ -37,9 +37,9 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
+    type: PropTypes.string,
     className: PropTypes.string,
 };
 
@@ -55,9 +55,9 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    maxRatio: 3 / 4,
     transitions: null,
     transitionStagger: 75,
+    type: null,
     className: null,
 };
 
@@ -73,24 +73,24 @@ const Timeline = ({
     background,
     current,
     active,
-    maxRatio,
     transitions,
     transitionStagger,
+    type,
     className,
 }) => {
-    const trackEvent = useTrackEvent();
-    const { width, height } = useScreenSize();
+    const trackScreenEvent = useTrackScreenEvent(type);
+    const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
-    
-    const landscape = width > height;
 
     const { isPlaceholder, isPreview, isView, isEdit } = useScreenRenderContext();
-
+    const trackingEnabled = isView;
     const finalItems = isPlaceholder ? [...new Array(5)].map(() => ({})): items;
 
     const onScrolledBottom = useCallback(() => {
-        trackEvent('screen-interaction', 'scrolled');
-    }, [trackEvent]);
+        if (trackingEnabled) {
+            trackScreenEvent('scroll', 'screen');
+        }
+    }, [trackScreenEvent, trackingEnabled]);
 
     const itemsCount = finalItems !== null ? finalItems.length : 0;
     const hasItems = finalItems !== null && itemsCount;
@@ -294,14 +294,14 @@ const Timeline = ({
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
-                maxRatio={maxRatio}
+                height={height}
                 playing={(isView && current) || (isEdit && active)}
             />
-            <Container width={width} height={height} maxRatio={maxRatio} withScroll>
+            <Container width={width} height={height}>
                 <Scroll
                     className={styles.scroll}
                     verticalAlign="middle"
-                    disabled={isPlaceholder || isPreview}
+                    disabled={isPlaceholder || isPreview || !current}
                     onScrolledBottom={onScrolledBottom}
                 >
                     <Layout

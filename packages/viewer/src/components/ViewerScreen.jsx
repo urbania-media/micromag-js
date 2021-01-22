@@ -12,7 +12,6 @@ const propTypes = {
     renderContext: MicromagPropTypes.renderContext,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    landscape: PropTypes.bool,
     onPrevious: PropTypes.func,
     onNext: PropTypes.func,
     onEnableInteraction: PropTypes.func,
@@ -24,7 +23,6 @@ const defaultProps = {
     renderContext: null,
     current: false,
     active: true,
-    landscape: false,
     onPrevious: null,
     onNext: null,
     onEnableInteraction: null,
@@ -35,7 +33,6 @@ const ViewerScreen = ({
     screen,
     renderContext,
     active,
-    landscape,
     current,
     onPrevious,
     onNext,
@@ -49,7 +46,6 @@ const ViewerScreen = ({
                 {
                     [styles.active]: active,
                     [styles.current]: current,
-                    [styles.landscape]: landscape,
                 },
             ])}
         >

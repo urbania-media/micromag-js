@@ -29,7 +29,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
@@ -49,7 +48,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    maxRatio: 3 / 4,
     transitions: null,
     transitionStagger: 100,
     className: null,
@@ -67,15 +65,12 @@ const TitleScreen = ({
     background,
     current,
     active,
-    maxRatio,
     transitions,
     transitionStagger,
     className,
 }) => {
-    const { width, height } = useScreenSize();
+    const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
-    
-    const landscape = width > height;
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
@@ -172,10 +167,9 @@ const TitleScreen = ({
                 width={width}
                 height={height}
                 playing={(isView && current) || (isEdit && active)}
-                maxRatio={maxRatio}
             />
 
-            <Container width={width} height={height} maxRatio={maxRatio}>
+            <Container width={width} height={height}>
                 <Layout
                     className={styles.layout}
                     fullscreen

@@ -7,7 +7,7 @@
     display: flex;
     position: relative;
     flex-direction: column;
-    padding: 20px;
+    padding: 10px;
     background-color: $black;
 
     .header {
@@ -36,6 +36,12 @@
         @extend %hide-scrollbars;
         overflow: auto;
         overscroll-behavior: none;
+    }
+
+    .screenButton {
+        @extend %reset-button;
+        @extend %fullscreen;
+        display: block;
     }
     
     .title {
@@ -98,13 +104,7 @@
     .screenContent {
         transform-origin: left top;
         background-color: $gray-900;
-    }
-
-    .screenButton {
-        @extend %reset-button;
-        @extend %fullscreen;
-        display: block;
-    }
+    }    
 
     &.disabled {
         .screenButton {

@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
-import { useResizeObserver, useTrackEvent } from '@micromag/core/hooks';
+import { useResizeObserver, useTrackScreenEvent } from '@micromag/core/hooks';
 import { isImageFilled, isTextFilled } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
@@ -28,9 +28,9 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
+    type: PropTypes.string,
     className: PropTypes.string,
 };
 
@@ -42,9 +42,9 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    maxRatio: 3 / 4,
     transitions: null,
     transitionStagger: 75,
+    type: null,
     className: null,
 };
 
@@ -56,16 +56,15 @@ const GalleryFeedScreen = ({
     background,
     current,
     active,
-    maxRatio,
     transitions,
     transitionStagger,
-    className,
+    type,
+    className,    
 }) => {
-    const trackEvent = useTrackEvent();
-    const { width, height } = useScreenSize();
+    const trackScreenEvent = useTrackScreenEvent(type);
+    const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
 
-    const landscape = width > height;
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
     const imagesCount = images.length;
@@ -73,6 +72,7 @@ const GalleryFeedScreen = ({
     const ready = imagesLoaded >= imagesCount;
     const transitionPlaying = current && ready;
     const transitionDisabled = !isView && !isEdit;
+    const trackingEnabled = isView;
 
     const onImageLoaded = useCallback(() => {
         setImagesLoaded(imagesLoaded + 1);
@@ -92,8 +92,10 @@ const GalleryFeedScreen = ({
     const { width: firstImageRefWidth } = contentRect || {};
 
     const onScrolledBottom = useCallback(() => {
-        trackEvent('screen-interaction', 'scrolled');
-    }, [trackEvent]);
+        if (trackingEnabled) {
+            trackScreenEvent('scroll', 'screen');
+        }
+    }, [trackScreenEvent, trackingEnabled]);
 
     finalImages.forEach((image, index) => {
         const finalImage = withCaptions ? image : { media: image };
@@ -183,12 +185,12 @@ const GalleryFeedScreen = ({
             <Background
                 {...(!isPlaceholder ? background : null)}
                 width={width}
+                height={height}
                 playing={(isView && current) || (isEdit && active)}
-                maxRatio={maxRatio}
             />
 
-            <Container width={width} height={height} maxRatio={maxRatio} withScroll>
-                <Scroll disabled={isPlaceholder || isPreview} onScrolledBottom={onScrolledBottom}>
+            <Container width={width} height={height}>
+                <Scroll disabled={isPlaceholder || isPreview || !current} onScrolledBottom={onScrolledBottom}>
                     <Layout
                         className={styles.layout}
                         style={

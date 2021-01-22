@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderVideo, Transitions, ScreenElement, Empty } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
-import { useTrackVideo } from '@micromag/core/hooks';
+import { useTrackScreenMedia } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import ClosedCaptions from '@micromag/element-closed-captions';
@@ -23,7 +23,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
 };
@@ -34,7 +33,6 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    maxRatio: 3 / 4,
     transitions: null,
     className: null,
 };
@@ -45,11 +43,10 @@ const VideoScreen = ({
     background,
     current,
     active,
-    maxRatio,
     transitions,
     className,
 }) => {
-    const trackVideo = useTrackVideo();
+    const trackScreenMedia = useTrackScreenMedia('video');
 
     const { width, height } = useScreenSize();
     const { isEdit, isPlaceholder, isPreview, isView } = useScreenRenderContext();
@@ -74,10 +71,10 @@ const VideoScreen = ({
     const onProgressStep = useCallback(
         (step) => {
             if (trackingEnabled) {
-                trackVideo(video, `progress ${Math.round(step * 100, 10)}%`);
+                trackScreenMedia(video, `progress_${Math.round(step * 100, 10)}%`);
             }
         },
-        [trackingEnabled, trackVideo, video],
+        [trackingEnabled, trackScreenMedia, video],
     );
 
     const onDurationChanged = useCallback(
@@ -91,39 +88,39 @@ const VideoScreen = ({
         ({ initial }) => {
             setPlaying(true);
             if (trackingEnabled) {
-                trackVideo(video, initial ? 'play' : 'resume');
+                trackScreenMedia(video, initial ? 'play' : 'resume');
             }
         },
-        [trackingEnabled, trackVideo, video],
+        [trackingEnabled, trackScreenMedia, video],
     );
 
     const onPause = useCallback(
         ({ midway }) => {
             setPlaying(false);
             if (trackingEnabled) {
-                trackVideo(video, midway ? 'pause' : 'ended');
+                trackScreenMedia(video, midway ? 'pause' : 'ended');
             }
         },
-        [trackingEnabled, trackVideo, video],
+        [trackingEnabled, trackScreenMedia, video],
     );
 
     const onVolumeChanged = useCallback(
         (isMuted) => {
             setMuted(isMuted);
             if (trackingEnabled) {
-                trackVideo(video, isMuted ? 'mute' : 'unmute');
+                trackScreenMedia(video, isMuted ? 'mute' : 'unmute');
             }
         },
-        [trackingEnabled, trackVideo, video],
+        [trackingEnabled, trackScreenMedia, video],
     );
 
     const onSeeked = useCallback(
         (time) => {
             if (trackingEnabled && time > 0) {
-                trackVideo(video, 'seek', time);
+                trackScreenMedia(video, 'seek');
             }
         },
-        [trackingEnabled, trackVideo, video],
+        [trackingEnabled, trackScreenMedia, video],
     );
 
     // ------------------------------------
@@ -142,19 +139,14 @@ const VideoScreen = ({
     const { metadata: videoMetadata = null, url: videoUrl = null } = videoMedia || {};
     const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
 
-    const finalMaxRatio = fullscreen ? null : maxRatio;
-    const currentRatio = width / height;
-    const finalWidth =
-        finalMaxRatio !== null && currentRatio > finalMaxRatio ? height * finalMaxRatio : width;
-
     const { width: resizedVideoWidth, height: resizedVideoHeight } = getSizeWithinBounds(
         videoWidth,
         videoHeight,
-        finalWidth,
+        width,
         height,
         { cover: fullscreen },
     );
-    const resizedVideoLeft = -(resizedVideoWidth - finalWidth) / 2;
+    const resizedVideoLeft = -(resizedVideoWidth - width) / 2;
     const resizedVideoTop = -(resizedVideoHeight - height) / 2;
 
     const placeholderProps = fullscreen ? { width: '100%', height: '100%' } : { width: '100%' };
@@ -257,9 +249,8 @@ const VideoScreen = ({
                 width={width}
                 height={height}
                 playing={(isView && current) || (isEdit && active)}
-                maxRatio={finalMaxRatio}
             />
-            <Container width={width} height={height} maxRatio={finalMaxRatio}>
+            <Container width={width} height={height}>
                 <div className={styles.content}>{items}</div>
             </Container>
         </div>

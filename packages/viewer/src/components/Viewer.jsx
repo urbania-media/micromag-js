@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import React, { useCallback, useRef, useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet';
@@ -32,8 +33,8 @@ const propTypes = {
     onScreenChange: PropTypes.func,
     tapNextScreenWidthPercent: PropTypes.number,
     neighborScreensActive: PropTypes.number,
-    scrollIndexHeightPercent: PropTypes.number,
     storyIsParsed: PropTypes.bool,
+    landscapeScreenMargin: PropTypes.number,
     className: PropTypes.string,
 };
 
@@ -47,8 +48,8 @@ const defaultProps = {
     onScreenChange: null,
     tapNextScreenWidthPercent: 0.5,
     neighborScreensActive: 2,
-    scrollIndexHeightPercent: 0.5,
     storyIsParsed: false,
+    landscapeScreenMargin: 50,
     className: null,
 };
 
@@ -63,8 +64,8 @@ const Viewer = ({
     onScreenChange,
     tapNextScreenWidthPercent,
     neighborScreensActive,
-    scrollIndexHeightPercent,
     storyIsParsed,
+    landscapeScreenMargin,
     className,
 }) => {
     const { components: screens = [], title = 'Story title' } =
@@ -74,7 +75,6 @@ const Viewer = ({
     const trackEvent = useTrackEvent();
 
     const contentRef = useRef(null);
-    const scrollIndexChanged = useRef(false);
 
     // Get screen size
     const { ref: containerRef, screenSize } = useScreenSizeFromElement({
@@ -82,7 +82,7 @@ const Viewer = ({
         height,
         screens: deviceScreens,
     });
-    const { width: screenWidth = null, height: screenHeight = null } = screenSize || {};
+    const { width: screenWidth = null, height: screenHeight = null, landscape = false } = screenSize || {};
 
     // Get menu size
     const {
@@ -90,10 +90,7 @@ const Viewer = ({
         entry: { contentRect: menuDotsContainerRect },
     } = useResizeObserver();
 
-    const { width: menuDotsContainerWidth = null, height: menuDotsContainerHeight = null } =
-        menuDotsContainerRect || {};
-
-    const landscape = screenWidth > screenHeight;
+    const { height: menuDotsContainerHeight = null } = menuDotsContainerRect || {};
 
     // Index
     const currentIndex = useMemo(
@@ -151,67 +148,12 @@ const Viewer = ({
         }
     }, [currentIndex, screensInteractionEnabled, setScreensInteractionEnabled]);
 
-    const screensRefs = useRef([]);
-
     // Handle screen change
-    useEffect(() => {
-        if (landscape) {
-            if (!scrollIndexChanged.current) {
-                let scrollTop = 0;
-                screensRefs.current.forEach((screen, screenI) => {
-                    if (screenI < currentIndex) {
-                        scrollTop += screen.offsetHeight;
-                    }
-                });
-                contentRef.current.scrollTop = scrollTop;
-            } else {
-                scrollIndexChanged.current = false;
-            }
-        }
-    }, [landscape, currentIndex, screenHeight]);
-
-    // Handle landscape scroll updating currentScreen @TODO use Observer
-    const onContentScrolled = useCallback(() => {
-        if (!landscape) {
-            return;
-        }
-
-        const { scrollTop } = contentRef.current;
-
-        let currentY = 0;
-        const screensY = screensRefs.current.map((screen) => {
-            const screenY = currentY;
-            currentY += screen.offsetHeight;
-            return screenY;
-        });
-
-        const scrollHeightOffset = screenSize.height * scrollIndexHeightPercent;
-
-        const scrollIndex = Math.max(
-            0,
-            Math.min(
-                screens.length - 1,
-                screensY.findIndex((screenY, screenI) => {
-                    const afterCurrent = scrollTop >= screenY - scrollHeightOffset;
-                    const lastScreen = screenI === screensY.length - 1;
-                    const beforeNext =
-                        lastScreen || scrollTop < screensY[screenI + 1] - scrollHeightOffset;
-                    return afterCurrent && beforeNext;
-                }),
-            ),
-        );
-
-        if (scrollIndex !== currentIndex) {
-            if (landscape) {
-                scrollIndexChanged.current = true;
-            }
-            changeIndex(scrollIndex);
-        }
-    }, [landscape, currentIndex, screenHeight, screens]);
+    useEffect(() => {}, [currentIndex, screenHeight]);
 
     // handle tap
     const onTap = useCallback(
-        (e) => {
+        (e, index) => {
             const checkClickable = (el, maxDistance = 5, distance = 1) => {
                 const { tagName = null, parentNode = null } = el || {};
 
@@ -236,19 +178,22 @@ const Viewer = ({
                 return;
             }
 
+            const tappedCurrent = currentIndex === index;
+
             const it = screens[currentIndex] || null;
             const interactionEnabled = screensInteractionEnabled[currentIndex];
 
-            if (it === null || !interactionEnabled) {
+            if (it === null || (tappedCurrent && !interactionEnabled)) {
                 return;
             }
 
             let nextIndex = currentIndex;
 
-            const contentEl = contentRef.current;
-            const { left: contentX = 0 } = contentEl.getBoundingClientRect();
+            const { left: contentX = 0 } = e.currentTarget.getBoundingClientRect();
             const tapX = e.clientX;
-            const hasTappedLeft = tapX - contentX < screenWidth * (1 - tapNextScreenWidthPercent);
+            const hasTappedLeft = tappedCurrent
+                ? tapX - contentX < screenWidth * (1 - tapNextScreenWidthPercent)
+                : currentIndex > index;
 
             if (hasTappedLeft) {
                 nextIndex = Math.max(0, currentIndex - 1);
@@ -289,6 +234,7 @@ const Viewer = ({
     const trackingEnabled = renderContext === 'view';
     const validIndex = screens.length > 0 && currentIndex < screens.length;
     const currentScreen = validIndex ? screens[currentIndex] : null;
+    const { type: screenType = null } = currentScreen || {};
 
     useEffect(() => {
         if (trackingEnabled && currentScreen !== null) {
@@ -306,18 +252,19 @@ const Viewer = ({
             if (goToScreen) {
                 changeIndex(index);
             } else {
-                setMenuOpened(true);
+                setMenuOpened((opened) => !opened);
             }
             if (trackingEnabled) {
-                const trackAction = goToScreen ? 'viewer-menu' : 'open';
+                const trackAction = goToScreen ? 'click_screen_change' : 'click_open';
                 trackEvent(
-                    'viewer-menu',
+                    'viewer_menu',
                     trackAction,
-                    clickedOnDot ? { label: 'dot', dotIndex: index } : { label: 'menu' },
+                    clickedOnDot ? `screen_${index}` : 'menu_icon',
+                    { screenId, screenType },
                 );
             }
         },
-        [changeIndex, setMenuOpened, landscape, trackingEnabled, trackEvent],
+        [changeIndex, setMenuOpened, landscape, trackingEnabled, trackEvent, screenId, screenType],
     );
 
     // handle preview menu item click
@@ -328,11 +275,13 @@ const Viewer = ({
             setMenuOpened(false);
 
             if (trackingEnabled) {
-                const clickedScreen = screens[index];
-                trackEvent(currentScreen, 'viewer-menu', 'screen-change', { clickedScreen });
+                trackEvent('viewer_menu', 'click_screen_change', `screen_${index}`, {
+                    screenId,
+                    screenType,
+                });
             }
         },
-        [setMenuOpened, changeIndex, trackingEnabled, currentScreen, trackEvent, screens],
+        [setMenuOpened, changeIndex, trackingEnabled, trackEvent, screenId, screenType],
     );
 
     // Handle preview menu close click
@@ -340,18 +289,18 @@ const Viewer = ({
     const onClickPreviewMenuClose = useCallback(() => {
         setMenuOpened(false);
         if (trackingEnabled) {
-            trackEvent(currentScreen, 'viewer-menu', 'close');
+            trackEvent('viewer_menu', 'click_close', 'close_icon', { screenId, screenType });
         }
-    }, [setMenuOpened, trackingEnabled, trackEvent, currentScreen]);
+    }, [setMenuOpened, trackingEnabled, trackEvent, screenId, screenType]);
 
     // Handle preview menu share click
 
     const onClickShare = useCallback(() => {
         if (trackingEnabled) {
-            trackEvent(currentScreen, 'viewer-menu', 'share');
+            trackEvent('viewer_menu', 'click_share', 'share_icon', { screenId, screenType });
         }
         console.log('@TODO share'); // eslint-disable-line
-    }, [trackingEnabled, trackEvent, currentScreen]);
+    }, [trackingEnabled, trackEvent, screenId, screenType]);
 
     // console.log(story);
 
@@ -359,8 +308,8 @@ const Viewer = ({
         <ScreenSizeProvider size={screenSize}>
             <ViewerProvider
                 menuVisible={currentScreenInteractionEnabled}
-                menuPosition={landscape ? 'right' : 'top'}
-                menuSize={landscape ? menuDotsContainerWidth : menuDotsContainerHeight}
+                menuPosition="top"
+                menuSize={menuDotsContainerHeight}
                 menuOpened={menuOpened}
             >
                 {/* @TODO better way to prevent pull-to-refresh */}
@@ -388,7 +337,8 @@ const Viewer = ({
                 >
                     <div className={styles.menuDotsContainer} ref={menuDotsContainerRef}>
                         <MenuDots
-                            direction={landscape ? 'vertical' : 'horizontal'}
+                            direction="horizontal"
+                            landscape={landscape}
                             items={screens}
                             current={currentIndex}
                             onClickItem={onClickDotsMenuItem}
@@ -406,12 +356,7 @@ const Viewer = ({
                         onClose={onClickPreviewMenuClose}
                         onShare={onClickShare}
                     />
-                    <div
-                        ref={contentRef}
-                        className={styles.content}
-                        onScroll={landscape ? onContentScrolled : null}
-                        {...(!landscape ? { onClick: onTap } : null)}
-                    >
+                    <div ref={contentRef} className={styles.content}>
                         {screens.map((scr, i) => {
                             const current = i === currentIndex;
                             const active =
@@ -425,32 +370,35 @@ const Viewer = ({
                                     index={i}
                                     current={current}
                                     active={active}
-                                    landscape={landscape}
                                     onPrevious={onScreenPrevious}
                                     onNext={onScreenNext}
                                     onEnableInteraction={onEnableInteraction}
                                     onDisableInteraction={onDisableInteraction}
                                 />
                             );
-                            const screenClass = styles.screen;
                             const key = `screen-viewer-${scr.id || ''}-${i + 1}`;
-                            return landscape ? (
-                                <div
-                                    key={key}
-                                    className={screenClass}
-                                    ref={(el) => {
-                                        screensRefs.current[i] = el;
-                                    }}
-                                >
-                                    {viewerScreen}
-                                </div>
-                            ) : (
+                            return (
                                 <div
                                     key={key}
                                     style={{
-                                        left: screenWidth * (i - currentIndex),
+                                        width: landscape ? screenWidth : null,
+                                        height: landscape ? screenHeight : null,
+                                        transform: landscape
+                                            ? `translateX(calc(${
+                                                  (screenWidth + landscapeScreenMargin) *
+                                                  (i - currentIndex)
+                                              }px - 50%)) scale(${current ? 1 : 0.9})`
+                                            : `translateX(${current ? 0 : '100%'})`,
                                     }}
-                                    className={screenClass}
+                                    className={classNames([
+                                        styles.screen,
+                                        { [styles.current]: current },
+                                    ])}
+                                    {...{
+                                        onClick: (e) => {
+                                            onTap(e, i);
+                                        },
+                                    }}
                                 >
                                     {viewerScreen}
                                 </div>

@@ -1,0 +1,40 @@
+{
+    "title": "All screens",
+    "theme": {
+        "type": "theme",
+        "title": "Default Theme",
+        "colors": { "primary": "#0F0", "secondary": "#00C" },
+        "background": { "color": "#fc0" },
+        "textStyle": {
+            "heading1": { "fontSize": 36, "fontFamily": "Courier" },
+            "heading2": { "fontSize": 24, "fontFamily": "Courier" },
+            "heading3": { "fontSize": 18, "fontFamily": "Courier" },
+            "text": { "fontSize": 16, "fontFamily": "Helvetica", "color": "#F0F" }
+        },
+        "components": [
+            {
+                "id": "65140683-5b4e-11eb-916e-e320b8bc4adc",
+                "type": "text",
+                "text": { "body": "Test body" }
+            }
+        ]
+    },
+    "components": [
+        {
+            "id": "9d858360-5b56-11eb-916e-e320b8bc4adc",
+            "type": "audio",
+            "layout": "normal",
+            "audio": {
+                "media": {
+                    "type": "audio",
+                    "url": "https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3",
+                    "metadata": { "duration": 16000 }
+                },
+                "autoPlay": false,
+                "loop": true
+            },
+            "background": { "color": "#00FF00" },
+            "transitions": { "in": "fade", "out": "fade" }
+        }
+    ]
+}

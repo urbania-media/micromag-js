@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderVideo360, Transitions, ScreenElement } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
-import { useAnimationFrame, useTrackEvent, useTrackVideo } from '@micromag/core/hooks';
+import { useAnimationFrame, useTrackScreenEvent, useTrackScreenMedia } from '@micromag/core/hooks';
 
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -38,6 +38,7 @@ const propTypes = {
     transitions: MicromagPropTypes.transitions,
     onPrevious: PropTypes.func,
     onNext: PropTypes.func,
+    type: PropTypes.string,
     className: PropTypes.string,
 };
 
@@ -50,6 +51,7 @@ const defaultProps = {
     transitions: null,
     onPrevious: null,
     onNext: null,
+    type: null,
     className: null,
 };
 
@@ -62,13 +64,13 @@ const Video360Screen = ({
     transitions,
     onPrevious,
     onNext,
+    type,
     className,
 }) => {
-    const trackEvent = useTrackEvent();
-    const trackVideo = useTrackVideo();
+    const trackScreenEvent = useTrackScreenEvent(type);
+    const trackScreenMedia = useTrackScreenMedia('video_360');
 
-    const { width, height } = useScreenSize();
-    const landscape = width > height;
+    const { width, height, landscape } = useScreenSize();
 
     const { isEdit, isPlaceholder, isView, isPreview } = useScreenRenderContext();
     const trackingEnabled = isView;
@@ -92,10 +94,10 @@ const Video360Screen = ({
     const onProgressStep = useCallback(
         (step) => {
             if (trackingEnabled) {
-                trackVideo(video, `progress ${Math.round(step * 100, 10)}%`);
+                trackScreenMedia(video, `progress_${Math.round(step * 100, 10)}%`);
             }
         },
-        [trackVideo, video],
+        [trackingEnabled, trackScreenMedia, video],
     );
 
     const onDurationChanged = useCallback(
@@ -109,39 +111,39 @@ const Video360Screen = ({
         ({ initial }) => {
             setPlaying(true);
             if (trackingEnabled) {
-                trackVideo(video, initial ? 'play' : 'resume');
+                trackScreenMedia(video, initial ? 'play' : 'resume');
             }
         },
-        [trackingEnabled, video],
+        [trackingEnabled, trackScreenMedia, video],
     );
 
     const onPause = useCallback(
         ({ midway }) => {
             setPlaying(false);
             if (trackingEnabled) {
-                trackVideo(video, midway ? 'pause' : 'ended');
+                trackScreenMedia(video, midway ? 'pause' : 'ended');
             }
         },
-        [trackingEnabled, video],
+        [trackingEnabled, trackScreenMedia, video],
     );
 
     const onVolumeChanged = useCallback(
         (isMuted) => {
             setMuted(isMuted);
             if (trackingEnabled) {
-                trackVideo(video, isMuted ? 'mute' : 'unmute');
+                trackScreenMedia(video, isMuted ? 'mute' : 'unmute');
             }
         },
-        [trackingEnabled, video],
+        [trackingEnabled, trackScreenMedia, video],
     );
 
     const onSeeked = useCallback(
         (time) => {
             if (trackingEnabled && time > 0) {
-                trackVideo(video, 'seek');
+                trackScreenMedia(video, 'seek');
             }
         },
-        [trackingEnabled, video],
+        [trackingEnabled, trackScreenMedia, video],
     );
 
     // ------------------------------------
@@ -277,7 +279,7 @@ const Video360Screen = ({
     const pixelsMovedTracked = useRef(false);
     const onPointerMove = useCallback(
         (e) => {
-            if (pointerDown.current) {
+            if (pointerDown.current && trackingEnabled) {
                 const { clientX = null, clientY = null } = e || {};
                 const downDeltaX = pointerDownX.current - clientX;
                 const downDeltaY = pointerDownY.current - clientY;
@@ -290,14 +292,14 @@ const Video360Screen = ({
                 pixelsMoved.current += deltaX + deltaY;
 
                 if (!pixelsMovedTracked.current && pixelsMoved.current > Math.min(width, height)) {
-                    trackEvent('screen-interaction', 'video-360-rotated');
+                    trackScreenEvent('drag_sphere', video.name);
                     pixelsMovedTracked.current = true;
                 }
 
                 lastPointerClient.current = { x: clientX, y: clientY };
             }
         },
-        [landscape, width, height, trackEvent],
+        [landscape, width, height, trackScreenEvent, trackingEnabled, video],
     );
 
     const onPointerUp = useCallback(

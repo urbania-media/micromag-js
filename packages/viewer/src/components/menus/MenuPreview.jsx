@@ -67,6 +67,7 @@ const ViewerMenuPreview = ({
                     [className]: className !== null,
                 },
             ])}
+            style={{ width: screenWidth, height: screenHeight }}
         >
             <div className={styles.header}>
                 <div className={styles.title}>{title}</div>

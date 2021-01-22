@@ -2,14 +2,9 @@
 @import '~@micromag/core/scss/placeholders';
 
 .container {
-    position: absolute;
+    @extend %fullscreen;
     z-index: 0;
-    height: 100%;
     overflow: hidden;
-
-    .videoContainer {
-        overflow: hidden;
-    }
 
     .videoContainer,
     .video {

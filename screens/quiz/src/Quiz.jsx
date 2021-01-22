@@ -11,7 +11,7 @@ import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { useTrackEvent } from '@micromag/core/hooks';
+import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
 
 import Background from '@micromag/element-background';
@@ -42,10 +42,10 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     resultsTransitionDuration: PropTypes.number,
+    type: PropTypes.string,
     className: PropTypes.string,
 };
 
@@ -59,10 +59,10 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    maxRatio: 3 / 4,
     transitions: null,
     transitionStagger: 100,
     resultsTransitionDuration: 500,
+    type: null,
     className: null,
 };
 
@@ -76,17 +76,15 @@ const QuizScreen = ({
     background,
     current,
     active,
-    maxRatio,
     transitions,
     transitionStagger,
     resultsTransitionDuration,
+    type,
     className,
 }) => {
-    const trackEvent = useTrackEvent();
-    const { width, height } = useScreenSize();
+    const trackScreenEvent = useTrackScreenEvent(type);
+    const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
-
-    const landscape = width > height;
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
     const hasQuestion = isTextFilled(question);
@@ -106,6 +104,7 @@ const QuizScreen = ({
 
     const transitionPlaying = current;
     const transitionDisabled = !isView && !isEdit;
+    const trackingEnabled = isView;
 
     const onAnswerClick = useCallback(
         (answerI) => {
@@ -115,7 +114,9 @@ const QuizScreen = ({
                 timeout = setTimeout(setShowResults, showResultsDelay, true);
 
                 const answer = answers[answerI];
-                trackEvent('screen-interaction', 'quiz', { label: 'answered', answer });
+                if (trackingEnabled) {
+                    trackScreenEvent('click_answer', `${userAnswerIndex}_${answer.label.body}`, { answer });
+                }
             }
 
             return () => {
@@ -124,7 +125,7 @@ const QuizScreen = ({
                 }
             };
         },
-        [userAnswerIndex, setUserAnswerIndex, showResultsDelay, trackEvent, answers],
+        [userAnswerIndex, setUserAnswerIndex, showResultsDelay, trackScreenEvent, trackingEnabled, answers],
     );
 
     useEffect(() => {
@@ -380,9 +381,8 @@ const QuizScreen = ({
                 width={width}
                 height={height}
                 playing={(isView && current) || (isEdit && active)}
-                maxRatio={maxRatio}
             />
-            <Container width={width} height={height} maxRatio={maxRatio}>
+            <Container width={width} height={height}>
                 <Layout
                     className={styles.layout}
                     fullscreen

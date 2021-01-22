@@ -10,7 +10,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
-import { useTrackEvent } from '@micromag/core/hooks';
+import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { isTextFilled, isLabelFilled } from '@micromag/core/utils';
 import { useContributions, useContributionCreate } from '@micromag/data';
@@ -35,10 +35,10 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
-    maxRatio: PropTypes.number,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     resizeTransitionDuration: PropTypes.number,
+    type: PropTypes.string,
     className: PropTypes.string,
 };
 
@@ -52,10 +52,10 @@ const defaultProps = {
     background: null,
     current: true,
     active: true,
-    maxRatio: 3 / 4,
     transitions: null,
     transitionStagger: 100,
     resizeTransitionDuration: 750,
+    type: null,
     className: null,
 };
 
@@ -69,18 +69,16 @@ const ContributionScreen = ({
     background,
     current,
     active,
-    maxRatio,
     transitions,
     transitionStagger,
     resizeTransitionDuration,
+    type,
     className,
 }) => {
-    const trackEvent = useTrackEvent();
+    const trackScreenEvent = useTrackScreenEvent(type);
 
-    const { width, height } = useScreenSize();
+    const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
-
-    const landscape = width > height;
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
 
@@ -101,12 +99,14 @@ const ContributionScreen = ({
 
     const transitionPlaying = current;
     const transitionDisabled = !isView && !isEdit;
+    const trackingEnabled = isView;
 
     const onContributionSubmitted = useCallback(() => {
         setSubmitState(2);
-        trackEvent('screen-interaction', 'contribution', { label: 'submit-success' });
-
-    }, [setSubmitState, trackEvent]);
+        if (trackingEnabled) {
+            trackScreenEvent('submit_success', `${userName}_${userMessage}`);
+        }
+    }, [setSubmitState, trackScreenEvent, trackingEnabled, userName, userMessage]);
 
     const { create: submitContribution } = useContributionCreate({
         screenId: 'screen-id',
@@ -128,32 +128,44 @@ const ContributionScreen = ({
         },
         [setUserMessage],
     );
-    
+
     const nameFilled = useRef(false);
     const onNameBlur = useCallback(
         (e) => {
             if (!nameFilled.current && e.currentTarget.value.length > 0) {
-                trackEvent('screen-interaction', 'contribution', { label: 'name-filled' });
                 nameFilled.current = true;
+                if (trackingEnabled) {
+                    trackScreenEvent('input_filled', 'field_name', {
+                        userName: e.currentTarget.value,
+                        userMessage,
+                    });
+                }
             }
         },
-        [trackEvent],
+        [trackScreenEvent, trackingEnabled, userMessage],
     );
 
     const messageFilled = useRef(false);
     const onMessageBlur = useCallback(
         (e) => {
             if (!messageFilled.current && e.currentTarget.value.length > 0) {
-                trackEvent('screen-interaction', 'contribution', { label: 'message-filled' });
                 messageFilled.current = true;
+                if (trackingEnabled) {
+                    trackScreenEvent('input_filled', 'field_message', {
+                        userName,
+                        userMessage: e.currentTarget.value,
+                    });
+                }
             }
         },
-        [trackEvent],
+        [trackScreenEvent, trackingEnabled, userName],
     );
 
-    const onScrollBottom = useCallback(() => {
-        trackEvent('screen-interaction', 'scrolled');
-    }, [trackEvent])
+    const onScrolledBottom = useCallback(() => {
+        if (trackingEnabled) {
+            trackScreenEvent('scroll', 'contributions');
+        }
+    }, [trackScreenEvent, trackingEnabled]);
 
     const onSubmit = useCallback(
         (e) => {
@@ -162,10 +174,15 @@ const ContributionScreen = ({
                 setInteractiveContainerHeight(formRef.current.offsetHeight);
                 setSubmitState(1);
                 submitContribution({ name: userName, message: userMessage });
-                trackEvent('screen-interaction', 'contribution', { label: 'submit' });
+                if (trackingEnabled) {
+                    trackScreenEvent('click_submit', userName, {
+                        userName,
+                        userMessage,
+                    });
+                }
             }
         },
-        [submitState, setSubmitState, userName, userMessage, trackEvent],
+        [submitState, setSubmitState, userName, userMessage, trackScreenEvent, trackingEnabled],
     );
 
     useEffect(() => {
@@ -194,7 +211,11 @@ const ContributionScreen = ({
             isEmpty={!hasTitle}
         >
             {hasTitle ? (
-                <Transitions transitions={transitions} playing={transitionPlaying} disabled={transitionDisabled}>
+                <Transitions
+                    transitions={transitions}
+                    playing={transitionPlaying}
+                    disabled={transitionDisabled}
+                >
                     <Heading {...title} className={styles.title} />
                 </Transitions>
             ) : null}
@@ -293,10 +314,7 @@ const ContributionScreen = ({
                                 className={styles.buttonSubmit}
                                 disabled={isPreview}
                             >
-                                <Text
-                                    {...submit}
-                                    inline
-                                />
+                                <Text {...submit} inline />
                             </Button>
                         </Transitions>
                     </ScreenElement>
@@ -348,9 +366,8 @@ const ContributionScreen = ({
                 width={width}
                 height={height}
                 playing={(isView && current) || (isEdit && active)}
-                maxRatio={maxRatio}
             />
-            <Container width={width} height={height} maxRatio={maxRatio} withScroll>
+            <Container width={width} height={height}>
                 <div
                     className={styles.content}
                     style={
@@ -362,7 +379,11 @@ const ContributionScreen = ({
                             : null
                     }
                 >
-                    <Scroll verticalAlign={layout} disabled={isPlaceholder || isPreview} onScrollBottom={onScrollBottom}>
+                    <Scroll
+                        verticalAlign={layout}
+                        disabled={isPlaceholder || isPreview || !current}
+                        onScrolledBottom={onScrolledBottom}
+                    >
                         {items}
                     </Scroll>
                 </div>

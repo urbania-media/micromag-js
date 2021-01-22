@@ -2,18 +2,11 @@
 @import '~@micromag/core/scss/placeholders';
 
 .container {
-    // visibility: hidden;
     position: relative;
-    width: 100%;
     height: 100%;
-    opacity: 0;
+    pointer-events: none;
 
-    // &.active {
-    //     visibility: visible;
-    // }
-
-    &.landscape,
     &.current {
-        opacity: 1;
+        pointer-events: auto;
     }
 }
