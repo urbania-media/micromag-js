@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import { useScreenRenderContext } from '../../video/node_modules/@micromag/core/contexts';
+import { useScreenRenderContext } from '@micromag/core/contexts';
 
 import styles from './styles.module.scss';
 

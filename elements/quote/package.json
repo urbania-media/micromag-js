@@ -48,7 +48,7 @@
         "react-dom": "^16.8.0"
     },
     "dependencies": {
-        "@babel/runtime": "^7.8.7",
+        "@babel/runtime": "^7.12.5",
         "@micromag/core": "^0.2.63",
         "classnames": "^2.2.6",
         "prop-types": "^15.7.2",
