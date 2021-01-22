@@ -9,19 +9,19 @@ import EditorField from './TextEditor';
 
 const propTypes = {
     value: MicromagPropTypes.textElement,
-    multiline: PropTypes.bool,
+    inline: PropTypes.bool,
     textOnly: PropTypes.bool,
     onChange: PropTypes.func,
 };
 
 const defaultProps = {
-    multiline: false,
+    inline: true,
     textOnly: false,
     value: null,
     onChange: null,
 };
 
-const TextElement = ({ value, onChange, multiline, textOnly, ...props }) => {
+const TextElement = ({ value, onChange, inline, textOnly, ...props }) => {
     const bodyValue = value !== null ? value.body || null : null;
     const onBodyChange = useCallback(
         (newBody) => {
@@ -36,13 +36,13 @@ const TextElement = ({ value, onChange, multiline, textOnly, ...props }) => {
         [value, onChange],
     );
     if (textOnly) {
-        return multiline ? (
-            <TextareaField {...props} value={bodyValue} onChange={onBodyChange} />
-        ) : (
+        return inline ? (
             <TextField {...props} value={bodyValue} onChange={onBodyChange} />
+        ) : (
+            <TextareaField {...props} value={bodyValue} onChange={onBodyChange} />
         );
     }
-    return <EditorField {...props} inline value={bodyValue} onChange={onBodyChange} />;
+    return <EditorField {...props} inline={inline} value={bodyValue} onChange={onBodyChange} />;
 };
 
 TextElement.propTypes = propTypes;
