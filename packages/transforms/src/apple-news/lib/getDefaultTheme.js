@@ -1,8 +1,8 @@
 import TextStyle from '../style/TextStyle';
 
 const getDefaultTheme = (story) => {
-    const { theme = {}, components = [] } = story || {};
-    const { textStyle = {}, background = {}, colors = {} } = theme || {};
+    const { theme = {} } = story || {};
+    const { textStyle = {} } = theme || {};
     const { heading1 = {}, text = {} } = textStyle || {};
 
     const titleStyles = TextStyle(heading1);
