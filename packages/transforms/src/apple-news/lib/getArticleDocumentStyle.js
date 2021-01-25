@@ -1,10 +1,7 @@
 import DocumentStyle from '../style/DocumentStyle';
 
-const getArticleDocumentStyle = (newStory, story) => {
-    // const { theme = {} } = newStory || {};
-    // const layoutStyles = Layout();
-
-    const documentStyle = DocumentStyle();
+const getArticleDocumentStyle = () => {
+    const documentStyle = DocumentStyle({ backgroundColor: '#FFF' });
 
     return {
         documentStyle,

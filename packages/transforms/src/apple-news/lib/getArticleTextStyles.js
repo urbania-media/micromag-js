@@ -1,14 +1,12 @@
 import TextStyle from '../style/TextStyle';
 
-const getArticleTextStyles = (newStory, story) => {
-    const { theme = {} } = newStory || {};
+const getArticleTextStyles = (story) => {
+    const { theme = {} } = story || {};
     const { textStyle = {} } = theme || {};
     const { heading1 = {}, text = {} } = textStyle || {};
 
     const titleStyles = TextStyle(heading1);
     const textStyles = TextStyle(text);
-
-    // console.log('THEME STUFF', heading1, titleStyles, textStyles);
 
     return {
         componentTextStyles: {

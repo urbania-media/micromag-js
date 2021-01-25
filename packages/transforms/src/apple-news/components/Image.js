@@ -8,6 +8,7 @@ const Image = (story, image) => {
     const content = {
         role: 'image',
         URL: url,
+        layout: 'default',
     };
     const component = validate(content, ImageDefinition);
     return {

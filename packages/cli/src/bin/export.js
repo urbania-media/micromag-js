@@ -56,11 +56,11 @@ const exportStory = async (format, output, jsonSettings) => {
             break;
         }
         default: {
-            const newStory = transformStory(storyParsed, format);
+            const newStory = transformStory(storyParsed, format, settings);
             // const mediaDestination = getOutputPath(output);
-            const fileDestination = getOutputPath(output, '/output/article.json');
+            const fileDestination = getOutputPath(output, 'article.json');
+            console.log('output', newStory);
             fs.writeFileSync(fileDestination, JSON.stringify(newStory), 'utf-8');
-            // console.log(storyParsed);
             break;
         }
     }

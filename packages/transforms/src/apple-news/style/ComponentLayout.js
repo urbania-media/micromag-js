@@ -5,7 +5,7 @@ const ComponentLayout = ({
     columnStart = 0,
     columnSpan = 12,
     marginTop = 0,
-    marginBottom = 12,
+    marginBottom = 20,
 } = {}) => {
     const content = {
         columnStart,
