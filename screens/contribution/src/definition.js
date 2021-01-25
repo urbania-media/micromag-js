@@ -26,7 +26,7 @@ export default {
         },
         {
             name: 'title',
-            type: 'text-element',
+            type: 'heading-element',
             theme: {
                 textStyle: 'heading1',
                 textColor: 'primary',

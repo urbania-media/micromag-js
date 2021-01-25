@@ -82,7 +82,7 @@ export default [
             },
             {
                 name: 'title',
-                type: 'text-element',
+                type: 'heading-element',
                 inline: true,
                 theme: {
                     textStyle: 'heading1',
