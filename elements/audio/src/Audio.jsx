@@ -2,7 +2,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useMediaApi } from '@micromag/core/hooks';
 
@@ -37,8 +36,6 @@ const propTypes = {
     onDurationChanged: PropTypes.func,
     onVolumeChanged: PropTypes.func,
 };
-
-
 
 const defaultProps = {
     media: null,

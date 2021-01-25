@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import MapScreen from './Map';
 import MapImagesScreen from './MapImages';
 
@@ -27,7 +28,7 @@ export default [
             },
             {
                 name: 'title',
-                type: 'text-element',
+                type: 'heading-element',
                 theme: {
                     textStyle: 'heading1',
                     textColor: 'primary',
@@ -108,7 +109,7 @@ export default [
             },
             {
                 name: 'title',
-                type: 'text-element',
+                type: 'heading-element',
                 theme: {
                     textStyle: 'heading1',
                     textColor: 'primary',

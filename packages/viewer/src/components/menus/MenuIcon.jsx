@@ -20,7 +20,6 @@ const defaultProps = {
 };
 
 const MenuIcon = ({ size, spacing, color, className }) => {
-    
     const squareSize = (size - 2 * spacing) / 3;
 
     return (
@@ -29,7 +28,7 @@ const MenuIcon = ({ size, spacing, color, className }) => {
                 styles.container,
                 {
                     [className]: className !== null,
-                }
+                },
             ])}
             xmlns="http://www.w3.org/2000/svg"
             viewBox={`0 0 ${size} ${size}`}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import TextEditor from '../components/TextEditor';
 
 export default {

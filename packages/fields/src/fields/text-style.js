@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import FontStyleWithAlign from '../components/FontStyleWithAlign';
 import FontStyleTransform from '../components/FontStyleTransform';
 
@@ -19,7 +20,7 @@ export default {
                     label: defineMessage({
                         defaultMessage: 'Font family',
                         description: 'Field label',
-                    })
+                    }),
                 },
                 {
                     name: 'color',
@@ -27,7 +28,7 @@ export default {
                     label: defineMessage({
                         defaultMessage: 'Color',
                         description: 'Field label',
-                    })
+                    }),
                 },
                 {
                     name: 'fontSize',
@@ -35,7 +36,7 @@ export default {
                     label: defineMessage({
                         defaultMessage: 'Font size',
                         description: 'Field label',
-                    })
+                    }),
                 },
                 {
                     component: FontStyleWithAlign,
@@ -58,7 +59,7 @@ export default {
                     label: defineMessage({
                         defaultMessage: 'Line height',
                         description: 'Field label',
-                    })
+                    }),
                 },
                 {
                     name: 'letterSpacing',
@@ -66,7 +67,7 @@ export default {
                     label: defineMessage({
                         defaultMessage: 'Letter spacing',
                         description: 'Field label',
-                    })
+                    }),
                 },
                 {
                     component: FontStyleTransform,
@@ -74,7 +75,7 @@ export default {
                     label: defineMessage({
                         defaultMessage: 'Case',
                         description: 'Field label',
-                    })
+                    }),
                 },
             ],
         },

@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import RankingScreen from './Ranking';
 
 export default {

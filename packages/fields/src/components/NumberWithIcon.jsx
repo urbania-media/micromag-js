@@ -18,23 +18,21 @@ const defaultProps = {
     className: null,
 };
 
-const NumberWithIcon = ({ icon, isHorizontal, className, ...props }) => {
-    return (
-        <div
-            className={classNames([
-                'd-flex',
-                'align-items-center',
-                {
-                    'justify-content-end': isHorizontal,
-                    [className]: className !== null,
-                },
-            ])}
-        >
-            <FontAwesomeIcon icon={icon} className="mr-2" />
-            <Number {...props} />
-        </div>
-    );
-};
+const NumberWithIcon = ({ icon, isHorizontal, className, ...props }) => (
+    <div
+        className={classNames([
+            'd-flex',
+            'align-items-center',
+            {
+                'justify-content-end': isHorizontal,
+                [className]: className !== null,
+            },
+        ])}
+    >
+        <FontAwesomeIcon icon={icon} className="mr-2" />
+        <Number {...props} />
+    </div>
+);
 
 NumberWithIcon.propTypes = propTypes;
 NumberWithIcon.defaultProps = defaultProps;

@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import TitleScreen from './Title';
 import TitleSubtitleScreen from './TitleSubtitle';
 import TitleSubtitleCreditsScreen from './TitleSubtitleCredits';

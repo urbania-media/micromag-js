@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import {
     video360Media,
     backgroundColor,
@@ -7,7 +8,6 @@ import {
     transitions,
 } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-
 import Video360Screen from '../Video360';
 import definition from '../definition';
 

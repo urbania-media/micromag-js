@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import { subtitle, backgroundColor, transitions } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-
 import QuizScreen from '../Quiz';
 import definition from '../definition';
 
@@ -15,7 +15,7 @@ const props = {
         { id: 4, label: { body: subtitle() } },
     ],
     result: {
-        body: 'Et oui, la bonne réponse était "La bonne réponse". Quand même surprenant hen?'
+        body: 'Et oui, la bonne réponse était "La bonne réponse". Quand même surprenant hen?',
     },
     background: backgroundColor(),
     transitions: transitions(),

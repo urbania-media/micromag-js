@@ -26,9 +26,8 @@ const defaultProps = {
 };
 
 const Transitions = ({ fullscreen, playing, delay, transitions, disabled, children }) => {
-
     const { landscape = false } = useScreenSize();
-    const finalDisabled = disabled || landscape;
+    const finalPlaying = playing || landscape;
 
     const finalTransitions = { in: null, out: null };
     Object.keys(transitions || []).forEach((transitionKey) => {
@@ -59,17 +58,22 @@ const Transitions = ({ fullscreen, playing, delay, transitions, disabled, childr
         finalTransitionOut !== null ? { ...finalTransitionOut, name: undefined, delay } : null;
 
     const renderTransitionOut =
-        TransitionOut !== null && !finalDisabled ? (
-            <TransitionOut fullscreen={fullscreen} playing={playing} direction="out" {...transitionOutProps}>
+        TransitionOut !== null && !disabled ? (
+            <TransitionOut
+                fullscreen={fullscreen}
+                playing={finalPlaying}
+                direction="out"
+                {...transitionOutProps}
+            >
                 {children}
             </TransitionOut>
         ) : (
             children
         );
-    return TransitionIn !== null && !finalDisabled ? (
+    return TransitionIn !== null && !disabled ? (
         <TransitionIn
             fullscreen={fullscreen}
-            playing={playing}
+            playing={finalPlaying}
             direction={!sameTransitionInOut ? 'in' : null}
             {...transitionInProps}
         >

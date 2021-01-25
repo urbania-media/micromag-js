@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import Image from './Image';
 import { imageMedia } from '../../../.storybook/data';
 
@@ -12,17 +13,11 @@ export const normal = () => (
     <>
         <div style={{ marginBottom: 20 }}>
             <div>Width set to 100px</div>
-            <Image
-                media={imageMedia({ width: 200, height: 400 })}
-                width={100}
-            />
+            <Image media={imageMedia({ width: 200, height: 400 })} width={100} />
         </div>
         <div style={{ marginBottom: 20 }}>
             <div>Height set to 100px</div>
-            <Image
-                media={imageMedia({ width: 200, height: 400 })}
-                height={100}
-            />
+            <Image media={imageMedia({ width: 200, height: 400 })} height={100} />
         </div>
         <div style={{ marginBottom: 20 }}>
             <div>No size set (using metadata)</div>
@@ -53,11 +48,7 @@ export const fit = () => (
         </div>
         <div style={{ marginBottom: 20 }}>
             <div>No fit (stretch)</div>
-            <Image
-                media={imageMedia({ width: 200, height: 400 })}
-                width={200}
-                height={200}
-            />
+            <Image media={imageMedia({ width: 200, height: 400 })} width={200} height={200} />
         </div>
     </>
 );

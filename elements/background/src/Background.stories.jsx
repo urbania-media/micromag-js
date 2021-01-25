@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { imageMedia, videoMedia } from '../../../.storybook/data';
 import Background from './Background';
 
@@ -8,11 +9,7 @@ export default {
 };
 
 export const color = () => (
-    <Background
-        width={200}
-        height={350}
-        color={{ color: '#ff0000', alpha: 0.5 }}
-    />
+    <Background width={200} height={350} color={{ color: '#ff0000', alpha: 0.5 }} />
 );
 
 export const image = () => (
@@ -26,10 +23,5 @@ export const image = () => (
 );
 
 export const video = () => (
-    <Background
-        width={200}
-        height={350}
-        color={{ color: 'black' }}
-        video={videoMedia()}
-    />
+    <Background width={200} height={350} color={{ color: 'black' }} video={videoMedia()} />
 );

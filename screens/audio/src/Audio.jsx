@@ -1,9 +1,8 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { useTrackScreenMedia } from '@micromag/core/hooks';
@@ -22,7 +21,6 @@ const propTypes = {
     audio: MicromagPropTypes.audioElement,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
-    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
 };
@@ -32,28 +30,32 @@ const defaultProps = {
     audio: null,
     background: null,
     current: true,
-    active: true,
     transitions: null,
     className: null,
 };
 
-const AudioScreen = ({
-    layout,
-    audio,
-    background,
-    current,
-    active,
-    transitions,
-    className,
-}) => {
+const AudioScreen = ({ layout, audio, background, current, transitions, className }) => {
     const trackScreenMedia = useTrackScreenMedia('audio');
 
     const { width, height } = useScreenSize();
     const { isPlaceholder, isPreview, isView, isEdit } = useScreenRenderContext();
-    const trackingEnabled = isView;
+    const [ready, setReady] = useState(false);
+
+    const backgroundPlaying = current && (isView || isEdit);
+    const transitionPlaying = current && ready;
+    const transitionDisabled = !isView && !isEdit;
+
+    const hasAudio = audio !== null;
+    const finalAudio = hasAudio ? { ...audio, autoPlay: isPreview ? false : audio.autoPlay } : null;
+    const { closedCaptions = null } = finalAudio || {};
+    const hasClosedCaptions = closedCaptions !== null;
+
+    const onAudioReady = useCallback(() => {
+        setReady(true);
+    }, []);
 
     const apiRef = useRef();
-    const { togglePlay, toggleMute } = apiRef.current || {};
+    const { togglePlay, toggleMute, pause } = apiRef.current || {};
 
     const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);
@@ -69,11 +71,9 @@ const AudioScreen = ({
 
     const onProgressStep = useCallback(
         (step) => {
-            if (trackingEnabled) {
-                trackScreenMedia(audio, `progress_${Math.round(step * 100, 10)}%`);
-            }
+            trackScreenMedia(audio, `progress_${Math.round(step * 100, 10)}%`);
         },
-        [trackingEnabled, trackScreenMedia, audio],
+        [trackScreenMedia, audio],
     );
 
     const onDurationChanged = useCallback(
@@ -86,56 +86,43 @@ const AudioScreen = ({
     const onPlay = useCallback(
         ({ initial }) => {
             setPlaying(true);
-            if (trackingEnabled) {
-                trackScreenMedia(audio, initial ? 'play' : 'resume');
-            }
+            trackScreenMedia(audio, initial ? 'play' : 'resume');
         },
-        [setPlaying, trackingEnabled, trackScreenMedia, audio],
+        [setPlaying, trackScreenMedia, audio],
     );
 
     const onPause = useCallback(
         ({ midway }) => {
             setPlaying(false);
-            if (trackingEnabled) {
-                trackScreenMedia(audio, midway ? 'pause' : 'ended');
-            }
+            trackScreenMedia(audio, midway ? 'pause' : 'ended');
         },
-        [setPlaying, trackingEnabled, trackScreenMedia, audio],
+        [setPlaying, trackScreenMedia, audio],
     );
 
     const onVolumeChanged = useCallback(
         (isMuted) => {
             setMuted(isMuted);
-            if (trackingEnabled) {
-                trackScreenMedia(audio, isMuted ? 'mute' : 'unmute');
-            }
+            trackScreenMedia(audio, isMuted ? 'mute' : 'unmute');
         },
-        [setPlaying, trackingEnabled, trackScreenMedia, audio],
+        [setPlaying, trackScreenMedia, audio],
     );
 
     const onSeeked = useCallback(
         (time) => {
-            if (trackingEnabled && time > 0) {
+            if (time > 0) {
                 trackScreenMedia(audio, 'seek');
             }
         },
-        [trackingEnabled, trackScreenMedia, audio],
+        [trackScreenMedia, audio],
     );
 
+    useEffect(() => {
+        if (!current && playing) {
+            pause();
+        }
+    }, [playing, current]);
+
     // ------------------------------------
-
-    const [ready, setReady] = useState(false);
-    const transitionPlaying = current && ready;
-    const transitionDisabled = !isView && !isEdit;
-
-    const hasAudio = audio !== null;
-    const finalAudio = hasAudio ? { ...audio, autoPlay: isPreview ? false : audio.autoPlay } : null;
-    const { closedCaptions = null } = finalAudio || {};
-    const hasClosedCaptions = closedCaptions !== null;
-
-    const onAudioReady = useCallback(() => {
-        setReady(true);
-    }, []);
 
     const element = (
         <ScreenElement
@@ -208,7 +195,7 @@ const AudioScreen = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEdit && active)}
+                playing={backgroundPlaying}
             />
             <Container width={width} height={height}>
                 <Layout fullscreen verticalAlign="middle">

@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import { title, backgroundColor, transitions } from '../../../../.storybook/data';
-
 import ContributionScreen from '../Contribution';
 import definition from '../definition';
 

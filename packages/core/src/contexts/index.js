@@ -8,6 +8,7 @@ export * from './RoutesContext';
 export * from './ScreenContext';
 export * from './ScreensContext';
 export * from './ScreenSizeContext';
+export * from './StoryContext';
 export * from './ThemeContext';
 export * from './TrackingContext';
 export * from './UppyContext';

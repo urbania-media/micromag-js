@@ -2,7 +2,6 @@ import React, { useRef, useEffect, useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Fuse from 'fuse.js';
-
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import TextField from './Text';

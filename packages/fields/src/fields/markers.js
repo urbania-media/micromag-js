@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import Items from '../components/Items';
 
 export default {

@@ -3,13 +3,11 @@ import React, { useState, useCallback, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
-
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout from '@micromag/element-layout';
@@ -36,7 +34,6 @@ const propTypes = {
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
-    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     type: PropTypes.string,
@@ -54,7 +51,6 @@ const defaultProps = {
     spacing: 20,
     background: null,
     current: true,
-    active: true,
     transitions: null,
     transitionStagger: 75,
     type: null,
@@ -72,7 +68,6 @@ const Timeline = ({
     spacing,
     background,
     current,
-    active,
     transitions,
     transitionStagger,
     type,
@@ -83,14 +78,11 @@ const Timeline = ({
     const { menuSize } = useViewer();
 
     const { isPlaceholder, isPreview, isView, isEdit } = useScreenRenderContext();
-    const trackingEnabled = isView;
-    const finalItems = isPlaceholder ? [...new Array(5)].map(() => ({})): items;
+    const finalItems = isPlaceholder ? [...new Array(5)].map(() => ({})) : items;
 
     const onScrolledBottom = useCallback(() => {
-        if (trackingEnabled) {
-            trackScreenEvent('scroll', 'screen');
-        }
-    }, [trackScreenEvent, trackingEnabled]);
+        trackScreenEvent('scroll', 'Screen');
+    }, [trackScreenEvent]);
 
     const itemsCount = finalItems !== null ? finalItems.length : 0;
     const hasItems = finalItems !== null && itemsCount;
@@ -105,6 +97,7 @@ const Timeline = ({
     const ready = imagesLoaded === imagesCount;
     const transitionsPlaying = current && ready;
     const transitionDisabled = !isView && !isEdit;
+    const backgroundPlaying = current && (isView || isEdit);
 
     const onImageLoaded = useCallback(() => {
         setImagesLoaded(imagesLoaded + 1);
@@ -114,7 +107,7 @@ const Timeline = ({
     const firstContentRef = useRef(null);
     const [imageWidth, setImageWidth] = useState(0);
 
-    useEffect( () => {
+    useEffect(() => {
         setImageWidth(firstContentRef.current.offsetWidth - firstLineRef.current.offsetWidth);
     }, [width, height]);
 
@@ -134,7 +127,7 @@ const Timeline = ({
             elementsTypes.splice(imageIndex, 1);
         }
 
-        const typesCount = elementsTypes.length;        
+        const typesCount = elementsTypes.length;
 
         return (
             <div className={styles.item} key={`item-${itemI}`}>
@@ -144,10 +137,10 @@ const Timeline = ({
                     delay={transitionStagger * itemI}
                     disabled={transitionDisabled}
                 >
-                    {elementsTypes.map((type, typeI) => {
+                    {elementsTypes.map((elementType, typeI) => {
                         let hasElement = false;
                         let elementContent;
-                        switch (type) {
+                        switch (elementType) {
                             case 'title':
                                 hasElement = hasTitle;
                                 elementContent = (
@@ -228,11 +221,17 @@ const Timeline = ({
 
                         return (
                             <div
-                                key={`element-${type}`}
-                                className={classNames([styles.element, styles[`element-${type}`]])}
+                                key={`element-${elementType}`}
+                                className={classNames([
+                                    styles.element,
+                                    styles[`element-${elementType}`],
+                                ])}
                                 ref={itemI === 0 ? firstContentRef : null}
                             >
-                                <div className={styles.timeline} ref={itemI === 0 ? firstLineRef : null}>
+                                <div
+                                    className={styles.timeline}
+                                    ref={itemI === 0 ? firstLineRef : null}
+                                >
                                     <div
                                         className={classNames([
                                             styles.line,
@@ -241,15 +240,22 @@ const Timeline = ({
                                             },
                                         ])}
                                         style={{
-                                            ...(!topLineHidden ? getStyleFromColor(lineColor, 'backgroundColor') : null),
+                                            ...(!topLineHidden
+                                                ? getStyleFromColor(lineColor, 'backgroundColor')
+                                                : null),
                                         }}
                                     />
-                                    {type === 'title' ? (
+                                    {elementType === 'title' ? (
                                         <div
                                             className={styles.bullet}
                                             style={{
                                                 ...getStyleFromColor(bulletColor, 'borderColor'),
-                                                ...(bulletFilled ? getStyleFromColor(bulletColor, 'backgroundColor') : null),
+                                                ...(bulletFilled
+                                                    ? getStyleFromColor(
+                                                          bulletColor,
+                                                          'backgroundColor',
+                                                      )
+                                                    : null),
                                             }}
                                         />
                                     ) : null}
@@ -261,7 +267,9 @@ const Timeline = ({
                                             },
                                         ])}
                                         style={{
-                                            ...(!bottomLineHidden ? getStyleFromColor(lineColor, 'backgroundColor') : null),
+                                            ...(!bottomLineHidden
+                                                ? getStyleFromColor(lineColor, 'backgroundColor')
+                                                : null),
                                         }}
                                     />
                                 </div>
@@ -295,7 +303,7 @@ const Timeline = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEdit && active)}
+                playing={backgroundPlaying}
             />
             <Container width={width} height={height}>
                 <Scroll
@@ -309,7 +317,8 @@ const Timeline = ({
                             !isPlaceholder
                                 ? {
                                       padding: spacing,
-                                      paddingTop: (!landscape && !isPreview ? menuSize : 0) + spacing,
+                                      paddingTop:
+                                          (!landscape && !isPreview ? menuSize : 0) + spacing,
                                   }
                                 : null
                         }

@@ -2,7 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useScreenDefinition, useFormsComponents } from '@micromag/core/contexts';
-
 import { FieldForm } from '@micromag/core/components';
 
 const propTypes = {

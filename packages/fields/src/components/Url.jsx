@@ -11,13 +11,11 @@ const getScheme = (url, schemesPattern) => {
     return match !== null && match[1].length !== url.length ? match[1].toLowerCase() : null;
 };
 
-const removeScheme = (url, schemesPattern) => {
-    return url !== null ? url.replace(schemesPattern, '') : null;
-};
+const removeScheme = (url, schemesPattern) =>
+    url !== null ? url.replace(schemesPattern, '') : null;
 
-const withScheme = (url, prefix, schemesPattern) => {
-    return url !== null && !url.match(schemesPattern) ? `${prefix}${url}` : url;
-};
+const withScheme = (url, prefix, schemesPattern) =>
+    url !== null && !url.match(schemesPattern) ? `${prefix}${url}` : url;
 
 const propTypes = {
     value: PropTypes.string,
@@ -47,7 +45,7 @@ const UrlField = ({ schemes, value, className, onChange }) => {
     ]);
 
     const onFieldChange = useCallback(
-        newValue => {
+        (newValue) => {
             const valueWithScheme = !isEmpty(newValue)
                 ? withScheme(newValue, scheme, schemesPattern)
                 : null;

@@ -1,16 +1,14 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useCallback } from 'react';
+import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
-
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useResizeObserver } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
-
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout from '@micromag/element-layout';
@@ -33,7 +31,6 @@ const propTypes = {
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
-    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
 };
@@ -51,7 +48,6 @@ const defaultProps = {
     spacing: 20,
     background: null,
     current: true,
-    active: true,
     transitions: null,
     className: null,
 };
@@ -69,15 +65,15 @@ const ImageScreen = ({
     spacing,
     background,
     current,
-    active,
     transitions,
     className,
 }) => {
-    const { width, height, landscape } = useScreenSize();    
+    const { width, height, landscape } = useScreenSize();
 
     const { menuSize } = useViewer();
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
+    const backgroundPlaying = current && (isView || isEdit);
 
     const hasImage = image !== null;
     const hasTitle = isTextFilled(title);
@@ -252,7 +248,7 @@ const ImageScreen = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEdit && active)}
+                playing={backgroundPlaying}
             />
             <Container width={width} height={height}>
                 <Layout

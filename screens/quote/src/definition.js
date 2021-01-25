@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import QuoteScreen from './Quote';
 import * as transforms from './transforms/index';
 

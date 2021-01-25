@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import TextScreen from './Text';
 import TextTitleScreen from './TextTitle';
 import * as transforms from './transforms/index';
@@ -74,7 +75,7 @@ export default [
             },
             {
                 name: 'title',
-                type: 'text-element',
+                type: 'heading-element',
                 inline: true,
                 theme: {
                     textStyle: 'heading1',

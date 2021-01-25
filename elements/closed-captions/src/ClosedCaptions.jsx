@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import parseSRT from 'parse-srt';
 import fetch from 'node-fetch';
-
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getSecondsFromTime } from '@micromag/core/utils';
 

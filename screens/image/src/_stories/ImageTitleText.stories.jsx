@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import { imageMedia, title, text, backgroundColor, transitions } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-
 import ImageTitleTextScreen from '../ImageTitleText';
 import definition from '../definition';
 

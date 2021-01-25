@@ -1,5 +1,6 @@
 import { useMemo, useState, useEffect } from 'react';
 import { match as matchMediaQuery } from 'css-mediaquery';
+
 import { useResizeObserver } from './useObserver';
 
 const useScreenSize = ({
@@ -52,9 +53,9 @@ export const useScreenSizeFromElement = ({ width = null, height = null, ...opts 
     const { width: calculatedWidth = 0, height: calculatedHeight = 0 } = contentRect || {};
     const finalWidth = width !== null ? width : calculatedWidth;
     const finalHeight = height !== null ? height : calculatedHeight;
-    
+
     const landscape = finalHeight > 0 && finalWidth > finalHeight;
-    const {withoutMaxSize = false } = opts;
+    const { withoutMaxSize = false } = opts;
     const screenSize = useScreenSize({
         width: landscape && !withoutMaxSize ? Math.max(320, 0.45 * finalHeight) : finalWidth,
         height: landscape && !withoutMaxSize ? Math.max(533, 0.75 * finalHeight) : finalHeight,

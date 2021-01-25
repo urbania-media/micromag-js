@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import { text, title, imageMedia, backgroundColor, transitions } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-
 import TimelineIllustratedScreen from '../TimelineIllustrated';
 import definition from '../definition';
 
@@ -19,7 +19,7 @@ const props = {
 const normalProps = {
     bulletColor: '#FFF',
     lineColor: '#FFF',
-    bulletFilled: false
+    bulletFilled: false,
 };
 
 export default {
@@ -33,10 +33,14 @@ export default {
 
 export const Placeholder = (storyProps) => <TimelineIllustratedScreen {...storyProps} />;
 
-export const Preview = (storyProps) => <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} />;
+export const Preview = (storyProps) => (
+    <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} />
+);
 
 export const Edit = (storyProps) => <TimelineIllustratedScreen {...storyProps} />;
 
-export const Normal = (storyProps) => <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} />;
+export const Normal = (storyProps) => (
+    <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} />
+);
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

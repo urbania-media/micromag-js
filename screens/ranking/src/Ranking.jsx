@@ -3,13 +3,11 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
-
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout from '@micromag/element-layout';
@@ -27,7 +25,6 @@ const propTypes = {
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
-    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     type: PropTypes.string,
@@ -42,7 +39,6 @@ const defaultProps = {
     spacing: 20,
     background: null,
     current: true,
-    active: true,
     transitions: null,
     transitionStagger: 75,
     type: null,
@@ -57,7 +53,6 @@ const RankingScreen = ({
     spacing,
     background,
     current,
-    active,
     transitions,
     transitionStagger,
     type,
@@ -76,13 +71,11 @@ const RankingScreen = ({
     const isSideLayout = layout === 'side';
     const transitionPlaying = current;
     const transitionDisabled = !isView && !isEdit;
-    const trackingEnabled = isView;
+    const backgroundPlaying = current && (isView || isEdit);
 
     const onScrolledBottom = useCallback(() => {
-        if (trackingEnabled) {
-            trackScreenEvent('scroll', 'screen');
-        }
-    }, [trackScreenEvent, trackingEnabled]);
+        trackScreenEvent('scroll', 'Screen');
+    }, [trackScreenEvent]);
 
     const ranksRefs = useRef([]);
     const [maxSideRankWidth, setMaxSideRankWidth] = useState(null);
@@ -208,7 +201,7 @@ const RankingScreen = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEdit && active)}
+                playing={backgroundPlaying}
             />
             <Container width={width} height={height}>
                 <Scroll

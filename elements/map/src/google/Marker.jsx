@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import useGoogleMapMarker from './useGoogleMapMarker';
+
 import Pin from './pin.png';
 import PinInactive from './pin-inactive.png';
 

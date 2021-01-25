@@ -3,7 +3,7 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-
+import { getSizeWithinBounds } from '@folklore/size';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderVideo, Transitions, ScreenElement, Empty } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
@@ -13,7 +13,6 @@ import Container from '@micromag/element-container';
 import ClosedCaptions from '@micromag/element-closed-captions';
 import MediaControls from '@micromag/element-media-controls';
 import Video from '@micromag/element-video';
-import { getSizeWithinBounds } from '@folklore/size';
 
 import styles from './styles.module.scss';
 
@@ -22,7 +21,6 @@ const propTypes = {
     video: MicromagPropTypes.videoElement,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
-    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
 };
@@ -32,28 +30,19 @@ const defaultProps = {
     video: null,
     background: null,
     current: true,
-    active: true,
     transitions: null,
     className: null,
 };
 
-const VideoScreen = ({
-    layout,
-    video,
-    background,
-    current,
-    active,
-    transitions,
-    className,
-}) => {
+const VideoScreen = ({ layout, video, background, current, transitions, className }) => {
     const trackScreenMedia = useTrackScreenMedia('video');
 
     const { width, height } = useScreenSize();
     const { isEdit, isPlaceholder, isPreview, isView } = useScreenRenderContext();
-    const trackingEnabled = isView;
+    const backgroundPlaying = current && (isView || isEdit);
 
     const apiRef = useRef();
-    const { togglePlay, toggleMute, seek } = apiRef.current || {};
+    const { togglePlay, toggleMute, seek, pause } = apiRef.current || {};
     // Get api state updates from callback
 
     const [currentTime, setCurrentTime] = useState(null);
@@ -70,11 +59,9 @@ const VideoScreen = ({
 
     const onProgressStep = useCallback(
         (step) => {
-            if (trackingEnabled) {
-                trackScreenMedia(video, `progress_${Math.round(step * 100, 10)}%`);
-            }
+            trackScreenMedia(video, `progress_${Math.round(step * 100, 10)}%`);
         },
-        [trackingEnabled, trackScreenMedia, video],
+        [trackScreenMedia, video],
     );
 
     const onDurationChanged = useCallback(
@@ -87,41 +74,41 @@ const VideoScreen = ({
     const onPlay = useCallback(
         ({ initial }) => {
             setPlaying(true);
-            if (trackingEnabled) {
-                trackScreenMedia(video, initial ? 'play' : 'resume');
-            }
+            trackScreenMedia(video, initial ? 'play' : 'resume');
         },
-        [trackingEnabled, trackScreenMedia, video],
+        [trackScreenMedia, video],
     );
 
     const onPause = useCallback(
         ({ midway }) => {
             setPlaying(false);
-            if (trackingEnabled) {
-                trackScreenMedia(video, midway ? 'pause' : 'ended');
-            }
+            trackScreenMedia(video, midway ? 'pause' : 'ended');
         },
-        [trackingEnabled, trackScreenMedia, video],
+        [trackScreenMedia, video],
     );
 
     const onVolumeChanged = useCallback(
         (isMuted) => {
             setMuted(isMuted);
-            if (trackingEnabled) {
-                trackScreenMedia(video, isMuted ? 'mute' : 'unmute');
-            }
+            trackScreenMedia(video, isMuted ? 'mute' : 'unmute');
         },
-        [trackingEnabled, trackScreenMedia, video],
+        [trackScreenMedia, video],
     );
 
     const onSeeked = useCallback(
         (time) => {
-            if (trackingEnabled && time > 0) {
+            if (time > 0) {
                 trackScreenMedia(video, 'seek');
             }
         },
-        [trackingEnabled, trackScreenMedia, video],
+        [trackScreenMedia, video],
     );
+
+    useEffect(() => {
+        if (!current && playing) {
+            pause();
+        }
+    }, [playing, current]);
 
     // ------------------------------------
 
@@ -248,7 +235,7 @@ const VideoScreen = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEdit && active)}
+                playing={backgroundPlaying}
             />
             <Container width={width} height={height}>
                 <div className={styles.content}>{items}</div>

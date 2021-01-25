@@ -1,4 +1,5 @@
 import React from 'react';
+
 import MediaControls from './MediaControls';
 
 export default {

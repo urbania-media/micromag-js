@@ -20,7 +20,7 @@ const ViewerRoutes = ({ children, onScreenChange, ...otherProps }) => {
     const routes = useRoutes();
     const push = useRoutePush();
     const finalOnScreenChange = useCallback(
-        it => {
+        (it) => {
             push('screen', {
                 screen: it.id,
             });

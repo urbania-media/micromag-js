@@ -10,6 +10,18 @@
     padding: 10px;
     background-color: $black;
 
+    .screenButton {
+        @extend %reset-button;
+        @extend %fullscreen;
+        display: block;
+    }
+
+    &.disabled {
+        .screenButton {
+            pointer-events: none;
+        }
+    }
+
     .header {
         display: flex;
         align-items: center;
@@ -33,15 +45,12 @@
     }
     
     .content {
-        @extend %hide-scrollbars;
-        overflow: auto;
-        overscroll-behavior: none;
-    }
+        position: relative;
+        flex-grow: 1;
+    }    
 
-    .screenButton {
-        @extend %reset-button;
+    .scroll {
         @extend %fullscreen;
-        display: block;
     }
     
     .title {
@@ -104,11 +113,5 @@
     .screenContent {
         transform-origin: left top;
         background-color: $gray-900;
-    }    
-
-    &.disabled {
-        .screenButton {
-            pointer-events: none;
-        }
     }
 }

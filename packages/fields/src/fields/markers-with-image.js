@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import Items from '../components/Items';
 
 export default {
@@ -14,5 +15,5 @@ export default {
     }),
     itemsField: {
         type: 'marker-with-image',
-    }
+    },
 };

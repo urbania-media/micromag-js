@@ -15,7 +15,7 @@ export default function useGoogleMapMarker({ mapsApi, position, map, events, tit
                 title,
                 // optimized: false,
             });
-            Object.keys(events).forEach(eventName => {
+            Object.keys(events).forEach((eventName) => {
                 marker.current.addListener(eventMapping[eventName], events[eventName]);
             });
         }
@@ -31,7 +31,7 @@ export default function useGoogleMapMarker({ mapsApi, position, map, events, tit
         if (position !== null && marker.current !== null) {
             marker.current.setPosition(position);
         }
-    },[position]);
+    }, [position]);
 
     return marker.current;
 }

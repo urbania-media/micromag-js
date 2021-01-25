@@ -110,12 +110,16 @@ const TextInput = ({
         <textarea {...elementProps} />
     ) : (
         <input {...elementProps} type="text" />
-    )
+    );
 
-    return !labelOutside ? element : (
+    return !labelOutside ? (
+        element
+    ) : (
         <label {...containerProps}>
-            <div className={labelClassName} style={labelStyle}>{label}</div>
-            { element }
+            <div className={labelClassName} style={labelStyle}>
+                {label}
+            </div>
+            {element}
         </label>
     );
 };

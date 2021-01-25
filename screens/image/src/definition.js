@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import ImageScreen from './Image';
 import ImageTitleScreen from './ImageTitle';
 import ImageTextScreen from './ImageText';
@@ -81,7 +82,7 @@ export default [
             },
             {
                 name: 'title',
-                type: 'text-element',
+                type: 'heading-element',
                 inline: true,
                 theme: {
                     textStyle: 'heading1',

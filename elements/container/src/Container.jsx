@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-// import { PropTypes as MicromagPropTypes } from '@micromag/core';
-
-import { useScreenRenderContext } from '@micromag/core/contexts';
 
 import styles from './styles.module.scss';
 
@@ -25,9 +22,8 @@ const Container = ({
     className,
     children,
 }) => {
-    const { isStatic } = useScreenRenderContext();
-
-    const containerStyle = !isStatic ? {
+    const hasSize = width > 0 && height > 0;
+    const containerStyle = hasSize ? {
         width,
         height,
     } : null;

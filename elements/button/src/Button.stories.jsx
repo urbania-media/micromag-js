@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import Button from './Button';
 
 export default {
@@ -12,13 +13,13 @@ const style = {
         color: 'yellow',
         fontStyle: {
             italic: true,
-        }
+        },
     },
     borderStyle: {
         width: 2,
         style: 'dashed',
         color: 'yellow',
-    }
+    },
 };
 
 export const Default = () => <Button>Button</Button>;

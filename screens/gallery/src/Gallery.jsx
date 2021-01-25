@@ -1,16 +1,14 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import React, { useState, useCallback, useRef, useEffect } from 'react';
+import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isPlainObject from 'lodash/isPlainObject';
-import { FormattedMessage } from 'react-intl';
-
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { isImageFilled, isTextFilled } from '@micromag/core/utils';
-import { useResizeObserver} from '@micromag/core/hooks';
-
+import { useResizeObserver } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Grid from '@micromag/element-grid';
@@ -51,7 +49,6 @@ const propTypes = {
     captionMaxLines: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
-    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
@@ -65,7 +62,6 @@ const defaultProps = {
     captionMaxLines: 2,
     background: null,
     current: true,
-    active: false,
     transitions: null,
     transitionStagger: 50,
     className: null,
@@ -77,7 +73,6 @@ const GalleryScreen = ({
     withCaptions,
     background,
     current,
-    active,
     spacing,
     captionMaxLines,
     transitions,
@@ -88,6 +83,7 @@ const GalleryScreen = ({
     const { menuSize } = useViewer();
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
+    const backgroundPlaying = current && (isView || isEdit);
 
     const finalSpacing = isPlaceholder ? 5 : spacing;
 
@@ -228,7 +224,7 @@ const GalleryScreen = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEdit && active)}
+                playing={backgroundPlaying}
             />
             <Container width={width} height={height}>
                 <div

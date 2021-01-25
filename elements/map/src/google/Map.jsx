@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
 import { useResizeObserver } from '@micromag/core/hooks';
 
 import useGoogleMap from './useGoogleMap';
@@ -16,12 +15,12 @@ const propTypes = {
     }),
     zoom: PropTypes.number,
     maxZoom: PropTypes.number,
-    bounds: PropTypes.object,// eslint-disable-line
+    bounds: PropTypes.object, // eslint-disable-line
     scrollable: PropTypes.bool,
     withoutStyle: PropTypes.bool,
     // Global maps events
     events: PropTypes.object, // eslint-disable-line
-    fitBounds: PropTypes.bool, 
+    fitBounds: PropTypes.bool,
     zoomControl: PropTypes.bool,
     mapTypeControl: PropTypes.bool,
     scaleControl: PropTypes.bool,
@@ -105,8 +104,8 @@ const Map = ({
     const { width = null, height = null } = elContentRect || {};
 
     useEffect(() => {
-        if (map && fitBounds && bounds !== null) {            
-            map.fitBounds(bounds);            
+        if (map && fitBounds && bounds !== null) {
+            map.fitBounds(bounds);
             if (map.getZoom() > maxZoom) {
                 map.setZoom(maxZoom);
             }
@@ -121,7 +120,7 @@ const Map = ({
                 scrollWheel: scrollable,
                 disableDoubleClickZoom: !scrollable,
                 gestureHandling: scrollable ? 'cooperative' : 'none',
-            })
+            });
         }
     }, [scrollable]);
 
@@ -138,7 +137,7 @@ const Map = ({
         >
             <div ref={mapRef} className={styles.map} />
             {!loading &&
-                React.Children.map(children, child => React.cloneElement(child, { map, maps }))}
+                React.Children.map(children, (child) => React.cloneElement(child, { map, maps }))}
         </div>
     );
 };
