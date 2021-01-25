@@ -25,12 +25,22 @@ export const useScreenData = () => {
 
 export const useScreenRenderContext = () => {
     const { renderContext = 'view' } = useScreen() || {};
+
+    const isPlaceholder = renderContext === 'placeholder';
+    const isPreview = renderContext === 'preview';
+    const isEdit = renderContext === 'edit';
+    const isView = renderContext === 'view';
+    const isStatic = renderContext === 'static';
+    const isCapture = renderContext === 'capture';
+
     return {
         renderContext,
-        isPlaceholder: renderContext === 'placeholder',
-        isPreview: renderContext === 'preview',
-        isEdit: renderContext === 'edit',
-        isView: renderContext === 'view',
+        isPlaceholder,
+        isPreview,
+        isEdit,
+        isView: isView || isStatic || isCapture,
+        isStatic,
+        isCapture,
     };
 };
 

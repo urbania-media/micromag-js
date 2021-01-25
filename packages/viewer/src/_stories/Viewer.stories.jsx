@@ -17,6 +17,8 @@ const faceAFaceProps = {
     fullscreen: true,
 };
 
+const twoScreensProps = {...faceAFaceProps, story: {...faceAFace.story, components: faceAFace.components.slice(0, 2) }}
+
 export default {
     component: Viewer,
     decorators: [
@@ -44,3 +46,5 @@ export default {
 
 export const AllScreens = () => <Viewer {...props} />;
 export const FaceAFace = () => <Viewer {...faceAFaceProps} />;
+export const Empty = () => <Viewer fullscreen />;
+export const TwoScreens = () => <Viewer {...twoScreensProps} />;

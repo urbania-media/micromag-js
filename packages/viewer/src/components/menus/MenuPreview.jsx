@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key, jsx-a11y/control-has-associated-label */
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,15 +8,15 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenPreview, Button } from '@micromag/core/components';
 import Scroll from '@micromag/element-scroll';
 
-import ShareStoryModal from '../modals/ShareStory';
+import ShareButton from '../partials/ShareButton';
 
 import styles from '../../styles/menus/menu-preview.module.scss';
-
 
 const propTypes = {
     screenWidth: PropTypes.number,
     screenHeight: PropTypes.number,
     title: PropTypes.string,
+    shareUrl: PropTypes.string,
     items: MicromagPropTypes.menuItems,
     current: PropTypes.number,
     onClickItem: PropTypes.func,
@@ -30,6 +30,7 @@ const defaultProps = {
     screenWidth: null,
     screenHeight: null,
     title: null,
+    shareUrl: null,
     items: [],
     current: 0,
     onClickItem: null,
@@ -43,6 +44,7 @@ const ViewerMenuPreview = ({
     screenWidth,
     screenHeight,
     title,
+    shareUrl,
     items,
     current,
     onClickItem,
@@ -63,24 +65,6 @@ const ViewerMenuPreview = ({
         }
     }, [screenWidth, screenHeight]);
 
-    // Share
-    const hasWindow = typeof window !== 'undefined';
-    const shareUrl = hasWindow ? window.location.href : null;
-
-    const [storyShareModalOpened, setStoryShareModalOpened] = useState(false);
-    const onShareIconClick = useCallback( () => {
-        setStoryShareModalOpened(true);
-    }, [setStoryShareModalOpened]);
-    const onStoryShared = useCallback((type) => {
-        setStoryShareModalOpened(false);
-        if (onShare !== null) {
-            onShare(type);
-        }
-    }, [setStoryShareModalOpened, onShare]);
-    const onStoryShareCanceled = useCallback( () => {
-        setStoryShareModalOpened(false);
-    }, [setStoryShareModalOpened]);
-
     return (
         <div
             className={classNames([
@@ -93,9 +77,9 @@ const ViewerMenuPreview = ({
         >
             <div className={styles.header}>
                 <div className={styles.title}>{title}</div>
-                <Button className={styles.button} onClick={onShareIconClick}>
+                <ShareButton className={styles.button} onShare={onShare} url={shareUrl} title={title}>
                     <FontAwesomeIcon className={styles.icon} icon={faShare} />
-                </Button>
+                </ShareButton>
                 <Button className={styles.button} onClick={onClose}>
                     <FontAwesomeIcon className={styles.icon} icon={faTimes} />
                 </Button>
@@ -128,12 +112,14 @@ const ViewerMenuPreview = ({
                                                 style={
                                                     thumbSize !== null
                                                         ? {
-                                                            width: screenWidth,
-                                                            height: screenHeight,
-                                                            transform: `scale(${
-                                                                thumbSize.width / screenWidth
-                                                            }, ${thumbSize.height / screenHeight})`,
-                                                        }
+                                                              width: screenWidth,
+                                                              height: screenHeight,
+                                                              transform: `scale(${
+                                                                  thumbSize.width / screenWidth
+                                                              }, ${
+                                                                  thumbSize.height / screenHeight
+                                                              })`,
+                                                          }
                                                         : null
                                                 }
                                             >
@@ -151,7 +137,9 @@ const ViewerMenuPreview = ({
                                     <button
                                         type="button"
                                         className={styles.screenButton}
-                                        onClick={ () => { onClickItem(index) } }
+                                        onClick={() => {
+                                            onClickItem(index);
+                                        }}
                                     />
                                 </li>
                             ))}
@@ -159,14 +147,6 @@ const ViewerMenuPreview = ({
                     </nav>
                 </Scroll>
             </div>
-            { storyShareModalOpened ? (
-                <ShareStoryModal
-                    title={title}
-                    url={shareUrl}
-                    onShare={onStoryShared}
-                    onCancel={onStoryShareCanceled}
-                />
-            ) : null}
         </div>
     );
 };

@@ -6,16 +6,14 @@ class Tracking extends BaseTracking {
         super(opts);
     }
 
-    trackScreenView(screen, screenIndex, organisation = null) {
+    trackScreenView(screen, screenIndex) {
         const { id: screenId = null, type: screenType = null } = screen || {};
         const data = {
             event: 'pageView',
             screenId,
             screenType,
             screenIndex,
-            organisation,
         };
-        console.log('track', data);
         this.push(data);
     }
 
@@ -28,7 +26,6 @@ class Tracking extends BaseTracking {
             eventLabel: label,
             eventValue: value,
         };
-        console.log('track', data);
         this.push(data);
     }
 
@@ -49,7 +46,6 @@ class Tracking extends BaseTracking {
                     ? Math.round(currentTime / duration * 100)
                     : null,
         };
-        console.log('track', data);
         this.push(data);
     }
 }
