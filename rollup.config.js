@@ -79,7 +79,7 @@ export const createConfig = ({
                         {
                             version: require('@babel/helpers/package.json').version,
                             helpers: true,
-                            useESModules: isCjs,
+                            useESModules: !isCjs,
                         },
                     ],
                     require.resolve('@babel/plugin-proposal-export-namespace-from'),
