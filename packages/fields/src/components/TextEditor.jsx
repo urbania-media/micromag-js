@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import InlineEditor from '@ckeditor/ckeditor5-build-inline';
+
+import useCKEditor from '../hooks/useCKEditor';
+import useCKEditorInline from '../hooks/useCKEditorInline';
 
 import styles from '../styles/text-editor.module.scss';
 
@@ -35,6 +36,8 @@ const defaultProps = {
 
 const TextEditorField = ({ value, size, className, editorConfig, inline, onChange }) => {
     const { locale } = useIntl();
+    const CKEditor = useCKEditor();
+    const InlineEditor = useCKEditorInline();
 
     const finalEditorConfig = useMemo(
         () => ({
@@ -88,13 +91,15 @@ const TextEditorField = ({ value, size, className, editorConfig, inline, onChang
                 },
             ])}
         >
-            <CKEditor
-                editor={InlineEditor}
-                config={finalEditorConfig}
-                data={value || ''}
-                onReady={onEditorReady}
-                onChange={onEditorChange}
-            />
+            {CKEditor !== null && InlineEditor !== null ? (
+                <CKEditor
+                    editor={InlineEditor}
+                    config={finalEditorConfig}
+                    data={value || ''}
+                    onReady={onEditorReady}
+                    onChange={onEditorChange}
+                />
+            ) : null}
         </div>
     );
 };

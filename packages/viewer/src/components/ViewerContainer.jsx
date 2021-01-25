@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { MemoryRouter } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import { ScreensProvider } from '@micromag/screens';
+import { FieldsProvider } from '@micromag/fields';
 import { RoutesProvider, TrackingProvider } from '@micromag/core/contexts';
 
 import * as ViewerPropTypes from '../lib/PropTypes';
@@ -34,11 +35,13 @@ const ViewerContainer = ({ memoryRouter, basePath, routes, ...otherProps }) => {
     return (
         <Router basename={!memoryRouter ? basePath : null}>
             <RoutesProvider routes={routes}>
-                <ScreensProvider>
-                    <TrackingProvider>
-                        <ViewerRoutes {...otherProps} />
-                    </TrackingProvider>
-                </ScreensProvider>
+                <FieldsProvider>
+                    <ScreensProvider>
+                        <TrackingProvider>
+                            <ViewerRoutes {...otherProps} />
+                        </TrackingProvider>
+                    </ScreensProvider>
+                </FieldsProvider>
             </RoutesProvider>
         </Router>
     );

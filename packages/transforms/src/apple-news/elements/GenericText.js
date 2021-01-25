@@ -15,6 +15,7 @@ const GenericText = (story, text, role = 'text', definition = null) => {
         text: body,
         format: 'html',
         ...(hasStyle ? { style: styleName } : {}),
+        layout: 'default',
     };
     const component = definition ? validate(content, definition) : null;
 

@@ -1,26 +1,29 @@
-import { validate } from '../utils';
-import getDefaultTheme from './lib/getDefaultTheme';
+import getArticleTextStyles from './lib/getArticleTextStyles';
+import getArticleLayouts from './lib/getArticleLayouts';
+import getArticleDocumentStyle from './lib/getArticleDocumentStyle';
 import ArticleDefinition from './definitions/ArticleDocument.json';
 
-const Article = (newStory) => {
+import { validate } from '../utils';
+
+const Article = (newStory, story, settings) => {
     // console.log('ARTICLE', newStory); // eslint-disable-line
-    const { title } = newStory;
+    const { title = 'Article' } = newStory;
+    const { identifier = 'testArticle' } = settings || {};
 
     const content = {
         title,
-        version: '1.0',
-        identifier: 'testArticle',
+        version: `${1}.0`.toString(), // Note: for some reason only 1.0 works
+        identifier,
         language: 'fr',
-        layout: {
-            columns: 12,
-            width: 1024,
-            margin: 60,
-            gutter: 20,
-        },
+        layout: {},
+        documentStyle: {},
         components: [],
         componentStyles: {},
         componentTextStyles: {},
-        ...getDefaultTheme(newStory),
+        componentLayouts: {},
+        ...getArticleDocumentStyle(newStory, story),
+        ...getArticleTextStyles(newStory, story),
+        ...getArticleLayouts(newStory, story),
     };
 
     return validate(content, ArticleDefinition);

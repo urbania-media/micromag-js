@@ -1,16 +1,19 @@
-import { Text, Title } from '@micromag/transforms/apple-news';
+import { Container, Text, Title, Image } from '@micromag/transforms/apple-news';
 
-const transform = (newStory, { text, title }) => {
-    const { story: titleStory, component: titleComponent } = Title(newStory, title);
+const transform = (newStory, { image, text, title }) => {
+    const { story: imageStory, component: imageComponent } = Image(newStory, image);
+    const { story: titleStory, component: titleComponent } = Title(imageStory, title);
     const { story: textStory, component: textComponent } = Text(titleStory, text);
 
+    const { story: containerStory, component } = Container(textStory, [
+        ...(imageComponent ? [imageComponent] : []),
+        ...(titleComponent ? [titleComponent] : []),
+        ...(textComponent ? [textComponent] : []),
+    ]);
+
     return {
-        ...textStory,
-        components: [
-            ...(newStory.components || []),
-            ...(titleComponent ? [titleComponent] : []),
-            ...(textComponent ? [textComponent] : []),
-        ],
+        ...containerStory,
+        components: [...(newStory.components || []), ...(component ? [component] : [])],
     };
 };
 

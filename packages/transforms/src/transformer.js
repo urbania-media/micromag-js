@@ -1,10 +1,10 @@
 import { Article } from './apple-news';
 
-const transformer = (story, type) => {
+const transformer = (newStory, type, story) => {
     if (type === 'appleNews') {
-        return Article(story);
+        return Article(newStory, story);
     }
-    return story;
+    return newStory;
 };
 
 export default transformer;
