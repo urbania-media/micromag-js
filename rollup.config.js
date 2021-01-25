@@ -14,97 +14,111 @@ export const createConfig = ({
     file = 'index.js',
     input = null,
     output = null,
+    banner = null,
     format = null,
     withoutPostCss = false,
     withoutPostCssExtract = false,
     resolveOptions = null,
     prependPlugins = [],
     appendPlugins = [],
-} = {}) => ({
-    input: input || `src/${file}`,
-    output:
-        format === 'cjs'
+} = {}) => {
+    const isNode = format === 'node';
+    const isCjs = format === 'cjs' || format === 'node';
+    return {
+        input: input || `src/${file}`,
+        output: isCjs
             ? {
                   file: output || `lib/${file}`,
                   format: 'cjs',
+                  banner,
               }
             : {
                   file: output || `es/${file}`,
+                  banner,
               },
-    plugins: [
-        ...prependPlugins,
-        json(),
-        resolve({
-            extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
-            jail: path.join(process.cwd(), 'src'),
-            ...resolveOptions,
-        }),
-        commonjs(),
-        babel({
-            extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
-            exclude: 'node_modules/**',
-            // rootMode: 'upward',
-            babelHelpers: 'runtime',
-            presets: [
-                [
-                    require('@babel/preset-env'),
-                    {
-                        modules: false,
-                        useBuiltIns: false,
-                    },
-                ],
-                [
-                    require('@babel/preset-react'),
-                    {
-                        useBuiltIns: true,
-                    },
-                ],
-            ],
-            plugins: [
-                [
-                    require.resolve('@babel/plugin-transform-runtime'),
-                    {
-                        version: require('@babel/helpers/package.json').version,
-                        helpers: true,
-                        useESModules: format !== 'cjs',
-                    },
-                ],
-                require.resolve('@babel/plugin-proposal-export-namespace-from'),
-                [
-                    require.resolve('babel-plugin-static-fs'),
-                    {
-                        target: 'browser', // defaults to node
-                    },
-                ],
-                [
-                    require.resolve('babel-plugin-react-intl'),
-                    {
-                        ast: true,
-                        extractFromFormatMessageCall: true,
-                        idInterpolationPattern: '[sha512:contenthash:base64:6]',
-                    },
-                ],
-            ],
-        }),
-        !withoutPostCss &&
-            postcss({
-                extensions: ['.css', '.scss'],
-                modules: {
-                    generateScopedName,
-                },
-                autoModules: true,
-                extract: !withoutPostCssExtract ? 'styles.css' : false,
-                inject: false,
+        plugins: [
+            ...prependPlugins,
+            json(),
+            resolve({
+                extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
+                jail: path.join(process.cwd(), 'src'),
+                ...resolveOptions,
             }),
-        image({
-            // exclude: ['**/*.svg'],
-        }),
-        url({ include: ['**/*.mp4'] }),
-        replace({
-            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-        }),
-        ...appendPlugins,
-    ].filter(Boolean),
-});
+            commonjs(),
+            babel({
+                extensions: ['.mjs', '.js', '.jsx', '.json', '.node'],
+                exclude: 'node_modules/**',
+                // rootMode: 'upward',
+                babelHelpers: 'runtime',
+                presets: [
+                    [
+                        require('@babel/preset-env'),
+                        isNode
+                            ? {
+                                  modules: false,
+                                  useBuiltIns: false,
+                                  targets: {
+                                      node: '12',
+                                  },
+                              }
+                            : {
+                                  modules: false,
+                                  useBuiltIns: false,
+                              },
+                    ],
+                    [
+                        require('@babel/preset-react'),
+                        {
+                            useBuiltIns: true,
+                        },
+                    ],
+                ],
+                plugins: [
+                    [
+                        require.resolve('@babel/plugin-transform-runtime'),
+                        {
+                            version: require('@babel/helpers/package.json').version,
+                            helpers: true,
+                            useESModules: isCjs,
+                        },
+                    ],
+                    require.resolve('@babel/plugin-proposal-export-namespace-from'),
+                    [
+                        require.resolve('babel-plugin-static-fs'),
+                        {
+                            target: isNode ? 'node' : 'browser', // defaults to node
+                        },
+                    ],
+                    [
+                        require.resolve('babel-plugin-react-intl'),
+                        {
+                            ast: true,
+                            extractFromFormatMessageCall: true,
+                            idInterpolationPattern: '[sha512:contenthash:base64:6]',
+                        },
+                    ],
+                ],
+            }),
+            !withoutPostCss &&
+                postcss({
+                    extensions: ['.css', '.scss'],
+                    modules: {
+                        generateScopedName,
+                    },
+                    autoModules: true,
+                    extract: !withoutPostCssExtract ? 'styles.css' : false,
+                    inject: false,
+                }),
+            image({
+                // exclude: ['**/*.svg'],
+            }),
+            url({ include: ['**/*.mp4'] }),
+            replace({
+                'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+            }),
+            ...appendPlugins,
+        ].filter(Boolean),
+    };
+};
 
 export default [createConfig(), createConfig({ format: 'cjs' })];
