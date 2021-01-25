@@ -75,8 +75,7 @@ if (process.stdin.isTTY) {
     startProgram(program);
 } else {
     process.stdin.on('readable', () => {
-        const chunk = this.read();
-        console.log(this.read());
+        const chunk = process.stdin.read();
         if (chunk !== null) {
             if (stdin === null) {
                 stdin = '';
