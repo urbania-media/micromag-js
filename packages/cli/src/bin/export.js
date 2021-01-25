@@ -25,14 +25,13 @@ program
     });
 
 const exportStory = async (format, output, jsonSettings) => {
+    // eslint-disable-next-line
     const settings = jsonSettings !== null ? JSON.parse(jsonSettings) : {};
     const storyParser = new StoryParser({
         fieldsManager: FieldsManager,
         screensManager: ScreensManager,
     });
     const storyParsed = storyParser.parse(story);
-
-    console.log('cli-out', storyParsed, format, output, settings);
 
     switch (format) {
         case 'html': {
@@ -56,7 +55,7 @@ const exportStory = async (format, output, jsonSettings) => {
         default: {
             const newStory = transformStory(storyParsed, format);
             // const mediaDestination = getOutputPath(output);
-            const fileDestination = getOutputPath(output, '/output/article.json');
+            const fileDestination = getOutputPath(output, 'article.json');
             fs.writeFileSync(fileDestination, JSON.stringify(newStory), 'utf-8');
             // console.log(storyParsed);
             break;
@@ -75,7 +74,7 @@ if (process.stdin.isTTY) {
     startProgram(program);
 } else {
     process.stdin.on('readable', () => {
-        const chunk = this.read();
+        const chunk = process.stdin.read();
         if (chunk !== null) {
             if (stdin === null) {
                 stdin = '';
