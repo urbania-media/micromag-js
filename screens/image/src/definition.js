@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import ImageScreen from './Image';
 import ImageTitleScreen from './ImageTitle';
 import ImageTextScreen from './ImageText';

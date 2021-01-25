@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import {
     audioMedia,
     backgroundColor,
@@ -7,17 +8,12 @@ import {
     transitions,
 } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-
 import AudioScreen from '../Audio';
 import definition from '../definition';
 
-const audio = (props) => ({...props,
-    media: audioMedia(),
-    autoPlay: true,
-    loop: false,
-});
+const audio = (props) => ({ ...props, media: audioMedia(), autoPlay: true, loop: false });
 
-const props = (audioProps = {} ) => ({
+const props = (audioProps = {}) => ({
     audio: audio(audioProps),
     background: backgroundColor(),
     transitions: transitions(),
@@ -41,7 +37,7 @@ export const Edit = (storyProps) => <AudioScreen {...storyProps} />;
 export const Normal = (storyProps) => <AudioScreen {...storyProps} {...props()} />;
 
 export const WithClosedCaptions = (storyProps) => (
-    <AudioScreen {...storyProps} {...{...props({closedCaptions: closedCaptionsMedia()})}} />
+    <AudioScreen {...storyProps} {...{ ...props({ closedCaptions: closedCaptionsMedia() }) }} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

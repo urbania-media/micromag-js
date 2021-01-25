@@ -1,4 +1,5 @@
 import EventEmitter from 'wolfy87-eventemitter';
+
 import { getComponentFromName } from '../utils';
 
 class ComponentsManager extends EventEmitter {
@@ -44,7 +45,7 @@ class ComponentsManager extends EventEmitter {
     }
 
     addNamespace(namespace) {
-        if(namespace === null) {
+        if (namespace === null) {
             return this;
         }
         this.components = Object.keys(this.components).reduce(

@@ -3,7 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useScreenRenderContext } from '@micromag/core/contexts';
 import { getStyleFromColor } from '@micromag/core/utils';
 import Video from '@micromag/element-video';
 import { getSizeWithinBounds } from '@folklore/size';
@@ -21,6 +20,7 @@ const propTypes = {
     image: MicromagPropTypes.imageMedia,
     video: MicromagPropTypes.videoMedia,
     className: PropTypes.string,
+    playing: PropTypes.bool,
     children: PropTypes.node,
 };
 
@@ -35,6 +35,7 @@ const defaultProps = {
     image: null,
     video: null,
     className: null,
+    playing: false,
     children: null,
 };
 
@@ -49,16 +50,21 @@ const Background = ({
     image,
     video,
     className,
+    playing,
     children,
 }) => {
-    const { isPreview, isStatic } = useScreenRenderContext();
+    const hasSize = width > 0 && height > 0;
+    const sizeStyle = hasSize ? {
+        width, height
+    } : null;
 
+    // color
     const finalStyle = {
-        width,
-        height,
+        ...sizeStyle,
         ...getStyleFromColor(color),
     };
 
+    // image
     if (image !== null) {
         const { url: imageUrl = null } = image || {};
         finalStyle.backgroundImage = `url("${imageUrl}")`;
@@ -71,28 +77,29 @@ const Background = ({
     }
 
     // video
-
+    const hasVideo = video !== null;
     const videoContainerStyle = {};
-
-    if (!isStatic) {
-        const { metadata: videoMetadata = null } = video || {};
-        const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
-        const { width: resizedVideoWidth = 0, height: resizedVideoHeight = 0} = getSizeWithinBounds(
-            videoWidth,
-            videoHeight,
-            width,
-            height,
-            { cover: fit === 'cover' || fit === null },
-        );
-        const resizedVideoLeft = -(resizedVideoWidth - width) / 2;
-        const resizedVideoTop = -(resizedVideoHeight - height) / 2;
-        videoContainerStyle.width = resizedVideoWidth;
-        videoContainerStyle.height = resizedVideoHeight;
-        videoContainerStyle.left = resizedVideoLeft;
-        videoContainerStyle.top = resizedVideoTop;
-    } else {
-        videoContainerStyle.objectFit = 'cover';
-    }    
+    if (hasVideo) {
+        if (hasSize) {
+            const { metadata: videoMetadata = null } = video || {};
+            const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
+            const { width: resizedVideoWidth = 0, height: resizedVideoHeight = 0} = getSizeWithinBounds(
+                videoWidth,
+                videoHeight,
+                width,
+                height,
+                { cover: fit === 'cover' || fit === null },
+            );
+            const resizedVideoLeft = -(resizedVideoWidth - width) / 2;
+            const resizedVideoTop = -(resizedVideoHeight - height) / 2;
+            videoContainerStyle.width = resizedVideoWidth;
+            videoContainerStyle.height = resizedVideoHeight;
+            videoContainerStyle.left = resizedVideoLeft;
+            videoContainerStyle.top = resizedVideoTop;
+        } else {
+            videoContainerStyle.objectFit = 'cover';
+        }    
+    }
 
     return (
         <div
@@ -104,7 +111,7 @@ const Background = ({
             ])}
             style={finalStyle}
         >
-            {video !== null ? (
+            {hasVideo ? (
                 <div
                     className={styles.videoContainer}
                     style={videoContainerStyle}
@@ -112,7 +119,7 @@ const Background = ({
                     <Video
                         className={styles.video}
                         media={video}
-                        autoPlay={!isPreview}
+                        autoPlay={playing}
                         initialMuted
                         loop
                     />

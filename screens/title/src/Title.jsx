@@ -3,12 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
 import { isTextFilled } from '@micromag/core/utils';
-
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
@@ -28,7 +26,6 @@ const propTypes = {
     descriptionEmptyLabel: MicromagPropTypes.label,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
-    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
@@ -47,7 +44,6 @@ const defaultProps = {
     ),
     background: null,
     current: true,
-    active: true,
     transitions: null,
     transitionStagger: 100,
     className: null,
@@ -64,7 +60,6 @@ const TitleScreen = ({
     descriptionEmptyLabel,
     background,
     current,
-    active,
     transitions,
     transitionStagger,
     className,
@@ -91,6 +86,7 @@ const TitleScreen = ({
 
     const transitionPlaying = current;
     const transitionDisabled = !isView && !isEdit;
+    const backgroundPlaying = current && (isView || isEdit);
 
     // Create elements
     const items = [
@@ -166,7 +162,7 @@ const TitleScreen = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEdit && active)}
+                playing={backgroundPlaying}
             />
 
             <Container width={width} height={height}>

@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import Grid from './Grid';
 
 export default {
@@ -15,7 +16,7 @@ const cellStyle = {
     height: '100%',
 };
 
-const items = [1, 2, 3, 4, 5, 6].map(number => (
+const items = [1, 2, 3, 4, 5, 6].map((number) => (
     <div style={cellStyle} key={`cell-${number}`}>
         {number}
     </div>
@@ -33,7 +34,7 @@ const horizontalProps = {
             rows: 1,
             columns: [1, 2, 1],
         },
-    ]
+    ],
 };
 
 const verticalProps = {
@@ -49,7 +50,7 @@ const verticalProps = {
             columns: 1,
             rows: [1, 3],
         },
-    ]
+    ],
 };
 
 export const horizontal = () => <Grid {...horizontalProps} spacing={10} />;

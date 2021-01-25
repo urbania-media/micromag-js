@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-props-no-spreading, react/destructuring-assignment, react/prop-types */
+/* eslint-disable react/prop-types */
 import React from 'react';
 
 import PlaceholderBlock from '../partials/PlaceholderBlock';

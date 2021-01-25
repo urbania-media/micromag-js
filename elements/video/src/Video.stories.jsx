@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import { videoMedia } from '../../../.storybook/data';
 import Video from './Video';
 

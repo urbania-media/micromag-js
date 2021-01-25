@@ -24,6 +24,8 @@ const useMediaApi = ({
     const [initialPlay, setInitialPlay] = useState(true);
     const progressStepsReached = useRef({});
 
+    // Exposed methods
+
     const play = useCallback(() => {
         const { current: media } = ref;
         if (media !== null) {
@@ -38,7 +40,7 @@ const useMediaApi = ({
         }
     }, []);
 
-    const togglePlay = () => {
+    const togglePlay = useCallback(() => {
         const { current: media } = ref;
         if (media !== null) {
             if (playing) {
@@ -47,7 +49,7 @@ const useMediaApi = ({
                 media.play();
             }
         }
-    };
+    }, [playing]);
 
     const stop = useCallback(() => {
         const { current: media } = ref;
@@ -85,93 +87,105 @@ const useMediaApi = ({
         }
     }, [muted]);
 
-    useEffect(() => {
+    // Media events callbacks
+
+    const onCustomPlay = useCallback(() => {
+        if (onPlay !== null) {
+            onPlay({ initial: initialPlay });
+        }
+
+        if (initialPlay) {
+            setInitialPlay(false);
+        }
+        setPlaying(true);
+    }, [initialPlay, setPlaying, onPlay]);
+
+    const onCustomPause = useCallback(() => {
+        const { current: media } = ref; 
+        setPlaying(false);
+
+        if (onPause !== null) {
+            onPause({ midway: media.currentTime > 0 && media.currentTime < media.duration });
+        }
+    }, [setPlaying, onPause]);
+
+    const onCustomEnded = useCallback(() => {
+        const { current: media } = ref; 
+        media.currentTime = 0;
+        if (onEnded !== null) {
+            onEnded();
+        }
+        setInitialPlay(true);
+    }, [setInitialPlay, onEnded]);
+
+    const onCustomTimeUpdate = useCallback(() => {
         const { current: media } = ref;
 
-        const onCustomPlay = () => {
-            if (onPlay !== null) {
-                onPlay({ initial: initialPlay });
+        setCurrentTime(media.currentTime);
+
+        if (onTimeUpdate !== null) {
+            onTimeUpdate(media.currentTime);
+        }
+
+        const progress = media.currentTime / media.duration;
+        const currentSteps = progressStepsReached.current;
+        const stepsToTrack = progressSteps.filter(
+            (step) => progress > step && typeof currentSteps[step] === 'undefined',
+        );
+        stepsToTrack.forEach((step) => {
+            if (onProgressStep !== null) {
+                onProgressStep(step);
             }
+            currentSteps[step] = true;
+        });
+    }, [setCurrentTime, onTimeUpdate, onProgressStep]);
 
-            if (initialPlay) {
-                setInitialPlay(false);
-            }
-            setPlaying(true);
-        };
+    const onCustomDurationChange = useCallback(() => {
+        const { current: media } = ref;
 
-        const onCustomPause = () => {
-            setPlaying(false);
+        setDuration(media.duration);
 
-            if (onPause !== null) {
-                onPause({ midway: media.currentTime > 0 && media.currentTime < media.duration });
-            }
-        };
+        if (onDurationChanged !== null) {
+            onDurationChanged(media.duration);
+        }
+    }, [setDuration, onDurationChanged]);
 
-        const onCustomEnded = () => {
-            media.currentTime = 0;
-            if (onEnded !== null) {
-                onEnded();
-            }
-            setInitialPlay(true);
-        };
+    const onCustomSeeked = useCallback(() => {
+        const { current: media } = ref;
 
-        const onCustomTimeUpdate = () => {
-            setCurrentTime(media.currentTime);
+        if (onSeeked !== null) {
+            onSeeked(media.currentTime);
+        }
+    }, [onSeeked]);
 
-            if (onTimeUpdate !== null) {
-                onTimeUpdate(media.currentTime);
-            }
+    const onCustomVolumeChange = useCallback(() => {
+        const { current: media } = ref;
 
-            const progress = media.currentTime / media.duration;
-            const currentSteps = progressStepsReached.current;
-            const stepsToTrack = progressSteps.filter(
-                (step) => progress > step && typeof currentSteps[step] === 'undefined',
-            );
-            stepsToTrack.forEach((step) => {
-                if (onProgressStep !== null) {
-                    onProgressStep(step);
-                }
-                currentSteps[step] = true;
-            });
-        };
+        setMuted(media.muted);
 
-        const onCustomDurationChange = () => {
-            setDuration(media.duration);
+        if (onVolumeChanged !== null) {
+            onVolumeChanged(media.muted, media.volume);
+        }
+    }, [setMuted, onVolumeChanged]);
 
-            if (onDurationChanged !== null) {
-                onDurationChanged(media.duration);
-            }
-        };
+    const onCustomLoadStart = useCallback(() => {
+        setReady(false);
 
-        const onCustomSeeked = () => {
-            if (onSeeked !== null) {
-                onSeeked(media.currentTime);
-            }
-        };
+        if (onLoadStart !== null) {
+            onLoadStart();
+        }
+    }, [setReady, onLoadStart]);
 
-        const onCustomVolumeChange = () => {
-            setMuted(media.muted);
+    const onCustomCanPlayThrough = useCallback(() => {
+        setReady(true);
 
-            if (onVolumeChanged !== null) {
-                onVolumeChanged(media.muted, media.volume);
-            }
-        };
+        if (onCanPlayThough !== null) {
+            onCanPlayThough();
+        }
+    }, [setReady, onCanPlayThough]);
 
-        const onCustomLoadStart = () => {
-            setReady(false);
-
-            if (onLoadStart !== null) {
-                onLoadStart();
-            }
-        };
-
-        const onCustomCanPlayThrough = () => {
-            setReady(true);
-
-            if (onCanPlayThough !== null) {
-                onCanPlayThough();
-            }
-        };
+    useEffect(() => {
+        const { current: media } = ref;
 
         if (media !== null) {
             media.addEventListener('timeupdate', onCustomTimeUpdate);
@@ -185,7 +199,7 @@ const useMediaApi = ({
             media.addEventListener('canplaythrough', onCustomCanPlayThrough);
         }
 
-        return () => {
+        return () => {            
             if (media !== null) {
                 media.removeEventListener('timeupdate', onCustomTimeUpdate);
                 media.removeEventListener('durationchange', onCustomDurationChange);
@@ -198,19 +212,7 @@ const useMediaApi = ({
                 media.removeEventListener('canplaythrough', onCustomCanPlayThrough);
             }
         };
-    }, [
-        initialPlay,
-        onPlay,
-        onPause,
-        onEnded,
-        onTimeUpdate,
-        onProgressStep,
-        onDurationChanged,
-        onSeeked,
-        onVolumeChanged,
-        onLoadStart,
-        onCanPlayThough,
-    ]);
+    }, []);
 
     return {
         ref,

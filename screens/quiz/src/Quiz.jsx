@@ -1,19 +1,16 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useCallback, useEffect, useRef } from 'react';
+import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
-
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
-
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
@@ -41,7 +38,6 @@ const propTypes = {
     showResultsDelay: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
-    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     resultsTransitionDuration: PropTypes.number,
@@ -58,7 +54,6 @@ const defaultProps = {
     showResultsDelay: 750,
     background: null,
     current: true,
-    active: true,
     transitions: null,
     transitionStagger: 100,
     resultsTransitionDuration: 500,
@@ -75,7 +70,6 @@ const QuizScreen = ({
     showResultsDelay,
     background,
     current,
-    active,
     transitions,
     transitionStagger,
     resultsTransitionDuration,
@@ -104,7 +98,7 @@ const QuizScreen = ({
 
     const transitionPlaying = current;
     const transitionDisabled = !isView && !isEdit;
-    const trackingEnabled = isView;
+    const backgroundPlaying = current && (isView || isEdit);
 
     const onAnswerClick = useCallback(
         (answerI) => {
@@ -114,9 +108,10 @@ const QuizScreen = ({
                 timeout = setTimeout(setShowResults, showResultsDelay, true);
 
                 const answer = answers[answerI];
-                if (trackingEnabled) {
-                    trackScreenEvent('click_answer', `${userAnswerIndex}_${answer.label.body}`, { answer });
-                }
+                trackScreenEvent('click_answer', `${userAnswerIndex + 1}: ${answer.label.body}`, {
+                    answer,
+                    answerIndex: answerI,
+                });
             }
 
             return () => {
@@ -125,7 +120,7 @@ const QuizScreen = ({
                 }
             };
         },
-        [userAnswerIndex, setUserAnswerIndex, showResultsDelay, trackScreenEvent, trackingEnabled, answers],
+        [userAnswerIndex, setUserAnswerIndex, showResultsDelay, trackScreenEvent, answers],
     );
 
     useEffect(() => {
@@ -380,7 +375,7 @@ const QuizScreen = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEdit && active)}
+                playing={backgroundPlaying}
             />
             <Container width={width} height={height}>
                 <Layout

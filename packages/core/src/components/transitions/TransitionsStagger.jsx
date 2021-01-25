@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { PropTypes as MicromagPropTypes } from '../../lib';
 
+import { PropTypes as MicromagPropTypes } from '../../lib';
 import Transitions from './Transitions';
 
 const propTypes = {

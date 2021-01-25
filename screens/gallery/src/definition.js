@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import GalleryScreen from './Gallery';
 import GalleryCaptionsScreen from './GalleryCaptions';
 

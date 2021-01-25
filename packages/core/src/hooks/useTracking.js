@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { useCallback } from 'react';
-import { useScreen, useTracking } from '../contexts';
+
+import { useStory, useScreen, useTracking } from '../contexts';
 
 const getScreenOptions = (screenContext, opts) => {
     const { data: ctxData = null } = screenContext || {};
@@ -23,9 +24,9 @@ export const useTrackScreenView = () => {
         return () => {};
     }
 
-    return useCallback((screen = null, index = null) => {
+    return useCallback((screen = null, index = null, organisation = null) => {
         if (screen !== null && index !== null) {
-            tracking.trackScreenView(screen, index);
+            tracking.trackScreenView(screen, index, organisation);
         }
     }, []);
 };
@@ -37,7 +38,14 @@ export const useTrackScreenEvent = (type = null) => {
         return () => {};
     }
 
-    const screenContext = useScreen();
+    const storyContext = useStory();
+    const screenContext = useScreen();    
+
+    if (screenContext.renderContext !== 'view') {
+        return () => {};
+    }
+
+    const { organisation = null } = storyContext || {};
 
     return useCallback(
         (action = null, label = null, opts) => {
@@ -45,6 +53,7 @@ export const useTrackScreenEvent = (type = null) => {
                 tracking.trackEvent(`screen_${type}`, action, label, {
                     ...opts,
                     ...getScreenOptions(screenContext, opts),
+                    organisation,
                 });
             }
         },
@@ -59,14 +68,22 @@ export const useTrackScreenMedia = (type = null) => {
         return () => {};
     }
 
+    const storyContext = useStory();    
     const screenContext = useScreen();
+
+    if (screenContext.renderContext !== 'view') {
+        return () => {};
+    }
+
+    const { organisation = null } = storyContext || {};
 
     return useCallback(
         (media = null, action = null, opts) => {
             if (type !== null && media !== null && action !== null) {
                 tracking.trackMedia(`screen_${type}`, media, action, {
-                    ...opts,
+                    ...opts,                    
                     ...getScreenOptions(screenContext, opts),
+                    organisation,
                 });
             }
         },
@@ -81,14 +98,11 @@ export const useTrackEvent = () => {
         return () => {};
     }
 
-    return useCallback(
-        (category = null, action = null, label = null, opts) => {
-            if (category !== null && action !== null) {
-                tracking.trackEvent(category, action, label, opts);
-            }
-        },
-        [],
-    );
+    return useCallback((category = null, action = null, label = null, opts) => {
+        if (category !== null && action !== null) {
+            tracking.trackEvent(category, action, label, opts);
+        }
+    }, []);
 };
 
 export const useTrackMedia = (type = null) => {
@@ -98,12 +112,9 @@ export const useTrackMedia = (type = null) => {
         return () => {};
     }
 
-    return useCallback(
-        (media = null, action = null, opts) => {
-            if (type !== null && media !== null && action !== null) {
-                tracking.trackMedia(type, media, action, opts);
-            }
-        },
-        [],
-    );
+    return useCallback((media = null, action = null, opts) => {
+        if (type !== null && media !== null && action !== null) {
+            tracking.trackMedia(type, media, action, opts);
+        }
+    }, []);
 };

@@ -2,6 +2,7 @@ import program from 'commander';
 import fs from 'fs';
 import { StoryParser, ScreensManager, FieldsManager } from '@micromag/core';
 import path from 'path';
+
 import readJSON from '../utils/readJSON';
 import transformStory from '../utils/transformStory';
 import captureStory from '../utils/captureStory';

@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
 import { useGoogleMapsClient } from '@micromag/core/contexts';
 
 import { Map as GoogleMap, Marker } from './google';
@@ -93,11 +92,13 @@ const Map = ({
         if (mapsApi) {
             if (markers !== null && markers.length > 0) {
                 const newBounds = new mapsApi.LatLngBounds();
-                markers.forEach(({geoPosition = null}) => {
+                markers.forEach(({ geoPosition = null }) => {
                     const { lat = null, lng = null } = geoPosition || {};
                     newBounds.extend(new mapsApi.LatLng(lat, lng));
                 });
-                setBounds(currentBounds => newBounds.equals(currentBounds) ? currentBounds : newBounds);                
+                setBounds((currentBounds) =>
+                    newBounds.equals(currentBounds) ? currentBounds : newBounds,
+                );
             }
         }
     }, [markers, mapsApi, setBounds]);

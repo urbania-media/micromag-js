@@ -413,12 +413,22 @@ export const theme = PropTypes.shape({
 });
 
 /**
+ * Organisation
+ */
+export const organisation = PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+});
+
+/**
  * Story
  */
 export const story = PropTypes.shape({
     id: PropTypes.string,
     theme,
     components: screenComponents,
+    organisation,
+    withMetadata: PropTypes.bool,
 });
 
 /**

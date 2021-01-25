@@ -3,19 +3,6 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { PlaceholderVideo360, Transitions, ScreenElement } from '@micromag/core/components';
-import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
-import { useAnimationFrame, useTrackScreenEvent, useTrackScreenMedia } from '@micromag/core/hooks';
-
-import Background from '@micromag/element-background';
-import Container from '@micromag/element-container';
-import ClosedCaptions from '@micromag/element-closed-captions';
-import MediaControls from '@micromag/element-media-controls';
-import Video from '@micromag/element-video';
-import { getSizeWithinBounds } from '@folklore/size';
-
 import {
     Scene,
     PerspectiveCamera,
@@ -26,6 +13,16 @@ import {
     WebGLRenderer,
     MathUtils,
 } from 'three';
+import { getSizeWithinBounds } from '@folklore/size';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { PlaceholderVideo360, Transitions, ScreenElement } from '@micromag/core/components';
+import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { useAnimationFrame, useTrackScreenEvent, useTrackScreenMedia } from '@micromag/core/hooks';
+import Background from '@micromag/element-background';
+import Container from '@micromag/element-container';
+import ClosedCaptions from '@micromag/element-closed-captions';
+import MediaControls from '@micromag/element-media-controls';
+import Video from '@micromag/element-video';
 
 import styles from './styles.module.scss';
 
@@ -34,7 +31,6 @@ const propTypes = {
     video: MicromagPropTypes.videoElement,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
-    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     onPrevious: PropTypes.func,
     onNext: PropTypes.func,
@@ -47,7 +43,6 @@ const defaultProps = {
     video: null,
     background: null,
     current: true,
-    active: true,
     transitions: null,
     onPrevious: null,
     onNext: null,
@@ -60,7 +55,6 @@ const Video360Screen = ({
     video,
     background,
     current,
-    active,
     transitions,
     onPrevious,
     onNext,
@@ -73,11 +67,11 @@ const Video360Screen = ({
     const { width, height, landscape } = useScreenSize();
 
     const { isEdit, isPlaceholder, isView, isPreview } = useScreenRenderContext();
-    const trackingEnabled = isView;
+    const backgroundPlaying = current && (isView || isEdit);
 
     const videoContainerRef = useRef();
     const apiRef = useRef();
-    const { togglePlay, toggleMute, seek } = apiRef.current || {};
+    const { togglePlay, toggleMute, seek, pause } = apiRef.current || {};
 
     const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);
@@ -93,11 +87,9 @@ const Video360Screen = ({
 
     const onProgressStep = useCallback(
         (step) => {
-            if (trackingEnabled) {
-                trackScreenMedia(video, `progress_${Math.round(step * 100, 10)}%`);
-            }
+            trackScreenMedia(video, `progress_${Math.round(step * 100, 10)}%`);
         },
-        [trackingEnabled, trackScreenMedia, video],
+        [trackScreenMedia, video],
     );
 
     const onDurationChanged = useCallback(
@@ -110,41 +102,41 @@ const Video360Screen = ({
     const onPlay = useCallback(
         ({ initial }) => {
             setPlaying(true);
-            if (trackingEnabled) {
-                trackScreenMedia(video, initial ? 'play' : 'resume');
-            }
+            trackScreenMedia(video, initial ? 'play' : 'resume');
         },
-        [trackingEnabled, trackScreenMedia, video],
+        [trackScreenMedia, video],
     );
 
     const onPause = useCallback(
         ({ midway }) => {
             setPlaying(false);
-            if (trackingEnabled) {
-                trackScreenMedia(video, midway ? 'pause' : 'ended');
-            }
+            trackScreenMedia(video, midway ? 'pause' : 'ended');
         },
-        [trackingEnabled, trackScreenMedia, video],
+        [trackScreenMedia, video],
     );
 
     const onVolumeChanged = useCallback(
         (isMuted) => {
             setMuted(isMuted);
-            if (trackingEnabled) {
-                trackScreenMedia(video, isMuted ? 'mute' : 'unmute');
-            }
+            trackScreenMedia(video, isMuted ? 'mute' : 'unmute');
         },
-        [trackingEnabled, trackScreenMedia, video],
+        [trackScreenMedia, video],
     );
 
     const onSeeked = useCallback(
         (time) => {
-            if (trackingEnabled && time > 0) {
+            if (time > 0) {
                 trackScreenMedia(video, 'seek');
             }
         },
-        [trackingEnabled, trackScreenMedia, video],
+        [trackScreenMedia, video],
     );
+
+    useEffect(() => {
+        if (!current && playing) {
+            pause();
+        }
+    }, [playing, current]);
 
     // ------------------------------------
 
@@ -279,7 +271,7 @@ const Video360Screen = ({
     const pixelsMovedTracked = useRef(false);
     const onPointerMove = useCallback(
         (e) => {
-            if (pointerDown.current && trackingEnabled) {
+            if (pointerDown.current) {
                 const { clientX = null, clientY = null } = e || {};
                 const downDeltaX = pointerDownX.current - clientX;
                 const downDeltaY = pointerDownY.current - clientY;
@@ -299,7 +291,7 @@ const Video360Screen = ({
                 lastPointerClient.current = { x: clientX, y: clientY };
             }
         },
-        [landscape, width, height, trackScreenEvent, trackingEnabled, video],
+        [landscape, width, height, trackScreenEvent, video],
     );
 
     const onPointerUp = useCallback(
@@ -411,7 +403,7 @@ const Video360Screen = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEdit && active)}
+                playing={backgroundPlaying}
             />
             <Container width={width} height={height}>
                 {hasVideo ? (

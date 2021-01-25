@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import ColorPicker from '../components/ColorPicker';
 
 export default {

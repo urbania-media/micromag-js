@@ -4,13 +4,11 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
-
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
@@ -34,7 +32,6 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     withPercentLabels: PropTypes.bool,
     current: PropTypes.bool,
-    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     type: PropTypes.string,
@@ -49,7 +46,6 @@ const defaultProps = {
     background: null,
     withPercentLabels: true,
     current: true,
-    active: true,
     transitions: null,
     transitionStagger: 100,
     type: null,
@@ -64,7 +60,6 @@ const SurveyScreen = ({
     background,
     withPercentLabels,
     current,
-    active,
     transitions,
     transitionStagger,
     type,
@@ -80,28 +75,33 @@ const SurveyScreen = ({
 
     const [userAnswerIndex, setUserAnswerIndex] = useState(null);
     const answered = userAnswerIndex !== null;
-    
+
     const isSplitted = layout === 'split';
     const verticalAlign = isSplitted ? null : layout;
 
     const transitionPlaying = current;
     const transitionDisabled = !isView && !isEdit;
-    const trackingEnabled = isView;
+    const backgroundPlaying = current && (isView || isEdit);
 
     const onAnswerClick = useCallback(
         (answerIndex) => {
             if (userAnswerIndex === null) {
                 setUserAnswerIndex(answerIndex);
                 const answer = answers[answerIndex];
-                if (trackingEnabled) {
-                    trackScreenEvent('click_answer', `${userAnswerIndex}_${answer.label.body}`, { answer });
-                }
+                trackScreenEvent(
+                    'click_answer',
+                    `Answer ${userAnswerIndex + 1}: ${answer.label.body}`,
+                    {
+                        answer,
+                        answerIndex,
+                    },
+                );
             }
         },
-        [userAnswerIndex, setUserAnswerIndex, trackScreenEvent, trackingEnabled],
+        [userAnswerIndex, setUserAnswerIndex, trackScreenEvent],
     );
 
-    useEffect( () => {
+    useEffect(() => {
         if (!current && isEdit && userAnswerIndex !== null) {
             setUserAnswerIndex(null);
         }
@@ -120,7 +120,11 @@ const SurveyScreen = ({
             isEmpty={!hasQuestion}
         >
             {hasQuestion ? (
-                <Transitions transitions={transitions} playing={transitionPlaying} disabled={transitionDisabled}>
+                <Transitions
+                    transitions={transitions}
+                    playing={transitionPlaying}
+                    disabled={transitionDisabled}
+                >
                     <Heading {...question} className={styles.question} />
                 </Transitions>
             ) : null}
@@ -290,7 +294,7 @@ const SurveyScreen = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEdit && active)}
+                playing={backgroundPlaying}
             />
             <Container width={width} height={height}>
                 <Layout

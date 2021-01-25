@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import SurveyScreen from './Survey';
 
 export default {

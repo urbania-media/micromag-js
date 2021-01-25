@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import { imagesWithCaptions, backgroundColor, transitions } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-
 import GalleryFeedCaptionsScreen from '../GalleryFeedCaptions';
 import definition from '../definition';
 
 const props = {
-    images: imagesWithCaptions({count: 5}),
+    images: imagesWithCaptions({ count: 5 }),
     background: backgroundColor(),
     transitions: transitions(),
 };

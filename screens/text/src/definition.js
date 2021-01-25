@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import TextScreen from './Text';
 import TextTitleScreen from './TextTitle';
 import * as transforms from './transforms/index';

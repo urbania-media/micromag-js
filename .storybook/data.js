@@ -161,6 +161,10 @@ export const backgroundImage = ({ random: randomImage = false } = {}) => ({
     image: imageMedia({ width: 1000, height: 1000, random: randomImage }),
 });
 
+export const backgroundVideo = () => ({
+    video: videoMedia(),
+});
+
 export const advertising = (mediaParams) => ({
     image: { media: imageMedia(mediaParams) },
     url: { url: 'https://www.urbania.ca', target: '_blank', rel: 'noopener noreferer' },

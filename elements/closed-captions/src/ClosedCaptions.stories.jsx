@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect, useState } from 'react';
+
 import { closedCaptionsMedia } from '../../../.storybook/data';
 import ClosedCaptions from './ClosedCaptions';
 

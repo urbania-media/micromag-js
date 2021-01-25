@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import { title, text, markers, backgroundColor, transitions } from '../../../../.storybook/data';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-
 import MapImagesScreen from '../MapImages';
 import definition from '../definition';
 

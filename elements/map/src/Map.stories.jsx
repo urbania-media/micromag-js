@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import withGoogleMapsApi from '../../../.storybook/decorators/withGoogleMaps';
 
+import withGoogleMapsApi from '../../../.storybook/decorators/withGoogleMaps';
 import MapComponent from './Map';
 
 const props = {

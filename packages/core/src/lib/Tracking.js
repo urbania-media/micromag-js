@@ -6,14 +6,14 @@ class Tracking extends BaseTracking {
         super(opts);
     }
 
-    trackScreenView(screen, screenIndex, ...opts) {
+    trackScreenView(screen, screenIndex, organisation = null) {
         const { id: screenId = null, type: screenType = null } = screen || {};
         const data = {
-            ...opts,
             event: 'pageView',
             screenId,
             screenType,
             screenIndex,
+            organisation,
         };
         console.log('track', data);
         this.push(data);

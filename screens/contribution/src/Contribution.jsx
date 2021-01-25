@@ -4,17 +4,14 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { isTextFilled, isLabelFilled } from '@micromag/core/utils';
 import { useContributions, useContributionCreate } from '@micromag/data';
-
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
@@ -34,7 +31,6 @@ const propTypes = {
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
-    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     resizeTransitionDuration: PropTypes.number,
@@ -51,7 +47,6 @@ const defaultProps = {
     spacing: 20,
     background: null,
     current: true,
-    active: true,
     transitions: null,
     transitionStagger: 100,
     resizeTransitionDuration: 750,
@@ -68,7 +63,6 @@ const ContributionScreen = ({
     spacing,
     background,
     current,
-    active,
     transitions,
     transitionStagger,
     resizeTransitionDuration,
@@ -81,6 +75,10 @@ const ContributionScreen = ({
     const { menuSize } = useViewer();
 
     const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
+
+    const backgroundPlaying = current && (isView || isEdit);
+    const transitionPlaying = current;
+    const transitionDisabled = !isView && !isEdit;
 
     const hasTitle = isTextFilled(title);
     const hasNameLabel = isLabelFilled(name);
@@ -97,16 +95,10 @@ const ContributionScreen = ({
     // 0 = default, 1 = submitting, 2 = submitted, 3 = resizing, 4 = done
     const [submitState, setSubmitState] = useState(0);
 
-    const transitionPlaying = current;
-    const transitionDisabled = !isView && !isEdit;
-    const trackingEnabled = isView;
-
     const onContributionSubmitted = useCallback(() => {
         setSubmitState(2);
-        if (trackingEnabled) {
-            trackScreenEvent('submit_success', `${userName}_${userMessage}`);
-        }
-    }, [setSubmitState, trackScreenEvent, trackingEnabled, userName, userMessage]);
+        trackScreenEvent('submit_success', `${userName}: ${userMessage}`);
+    }, [setSubmitState, trackScreenEvent, userName, userMessage]);
 
     const { create: submitContribution } = useContributionCreate({
         screenId: 'screen-id',
@@ -134,15 +126,13 @@ const ContributionScreen = ({
         (e) => {
             if (!nameFilled.current && e.currentTarget.value.length > 0) {
                 nameFilled.current = true;
-                if (trackingEnabled) {
-                    trackScreenEvent('input_filled', 'field_name', {
-                        userName: e.currentTarget.value,
-                        userMessage,
-                    });
-                }
+                trackScreenEvent('input_filled', 'Name', {
+                    userName: e.currentTarget.value,
+                    userMessage,
+                });
             }
         },
-        [trackScreenEvent, trackingEnabled, userMessage],
+        [trackScreenEvent, userMessage],
     );
 
     const messageFilled = useRef(false);
@@ -150,22 +140,18 @@ const ContributionScreen = ({
         (e) => {
             if (!messageFilled.current && e.currentTarget.value.length > 0) {
                 messageFilled.current = true;
-                if (trackingEnabled) {
-                    trackScreenEvent('input_filled', 'field_message', {
-                        userName,
-                        userMessage: e.currentTarget.value,
-                    });
-                }
+                trackScreenEvent('input_filled', 'Message', {
+                    userName,
+                    userMessage: e.currentTarget.value,
+                });
             }
         },
-        [trackScreenEvent, trackingEnabled, userName],
+        [trackScreenEvent, userName],
     );
 
     const onScrolledBottom = useCallback(() => {
-        if (trackingEnabled) {
-            trackScreenEvent('scroll', 'contributions');
-        }
-    }, [trackScreenEvent, trackingEnabled]);
+        trackScreenEvent('scroll', 'Contributions list');
+    }, [trackScreenEvent]);
 
     const onSubmit = useCallback(
         (e) => {
@@ -174,15 +160,13 @@ const ContributionScreen = ({
                 setInteractiveContainerHeight(formRef.current.offsetHeight);
                 setSubmitState(1);
                 submitContribution({ name: userName, message: userMessage });
-                if (trackingEnabled) {
-                    trackScreenEvent('click_submit', userName, {
-                        userName,
-                        userMessage,
-                    });
-                }
+                trackScreenEvent('click_submit', `${userName}: ${userMessage}`, {
+                    userName,
+                    userMessage,
+                });
             }
         },
-        [submitState, setSubmitState, userName, userMessage, trackScreenEvent, trackingEnabled],
+        [submitState, setSubmitState, userName, userMessage, trackScreenEvent],
     );
 
     useEffect(() => {
@@ -365,7 +349,7 @@ const ContributionScreen = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEdit && active)}
+                playing={backgroundPlaying}
             />
             <Container width={width} height={height}>
                 <div

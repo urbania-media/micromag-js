@@ -31,7 +31,11 @@
                     "metadata": { "duration": 16000 }
                 },
                 "autoPlay": false,
-                "loop": true
+                "loop": true,
+                "closedCaptions": {
+                    "type": "closed-captions",
+                    "url": "cc6ab65ee24a9712ac4b69a96bb96683.srt"
+                }
             },
             "background": { "color": "#00FF00" },
             "transitions": { "in": "fade", "out": "fade" }

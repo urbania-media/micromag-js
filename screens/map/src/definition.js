@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import MapScreen from './Map';
 import MapImagesScreen from './MapImages';
 

@@ -2,9 +2,7 @@
 import React from 'react';
 
 import { ApiProvider } from '../../../data/src/contexts/ApiContext';
-
 import FieldsProvider from '../../../fields/src/FieldsProvider';
-
 import Form from '../components/forms/Form';
 import FormPanel from '../components/forms/FormPanel';
 

@@ -3,13 +3,11 @@ import React, { useState, useCallback, useRef, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { PlaceholderMap, Transitions, Button, ScreenElement } from '@micromag/core/components';
 import { useTrackScreenEvent, useResizeObserver } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
-
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Map from '@micromag/element-map';
@@ -39,7 +37,6 @@ const propTypes = {
     withMarkerImages: PropTypes.bool,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
-    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     onEnableInteraction: PropTypes.func,
     onDisableInteraction: PropTypes.func,
@@ -58,7 +55,6 @@ const defaultProps = {
     withMarkerImages: false,
     background: null,
     current: true,
-    active: true,
     transitions: null,
     onEnableInteraction: null,
     onDisableInteraction: null,
@@ -77,7 +73,6 @@ const MapScreen = ({
     withMarkerImages,
     background,
     current,
-    active,
     transitions,
     onEnableInteraction,
     onDisableInteraction,
@@ -98,8 +93,7 @@ const MapScreen = ({
     const [ready, setReady] = useState(false);
     const transitionPlaying = current && ready;
     const transitionDisabled = !isView && !isEdit;
-
-    const trackingEnabled = isView;
+    const backgroundPlaying = current && (isView || isEdit);
 
     const onMapReady = useCallback(() => setReady(true), [setReady]);
 
@@ -109,66 +103,71 @@ const MapScreen = ({
                 ...marker,
                 active: markerI === selectedMarkerIndex,
             })),
-        [markers, active, selectedMarkerIndex],
+        [markers, selectedMarkerIndex],
     );
 
     const onClickMap = useCallback(() => {
         const lastMarker = finalMarkers[selectedMarkerIndex];
         lastRenderedMarker.current = lastMarker;
         setSelectedMarkerIndex(null);
-        if (trackingEnabled) {
-            trackScreenEvent('click_marker_close', lastMarker.title.body, {
+        trackScreenEvent(
+            'click_marker_close',
+            `Marker ${selectedMarkerIndex + 1}: ${lastMarker.title.body}`,
+            {
                 marker: lastMarker,
-            });
-        }
-    }, [finalMarkers, selectedMarkerIndex, trackScreenEvent, trackingEnabled]);
+                markerIndex: selectedMarkerIndex,
+            },
+        );
+    }, [finalMarkers, selectedMarkerIndex, trackScreenEvent]);
 
     const onClickMarker = useCallback(
         (e, index) => {
             const marker = finalMarkers[index];
             setSelectedMarkerIndex(index);
-            if (trackingEnabled) {
-                trackScreenEvent('click_marker_open', `marker_${index}_${marker.title.body}`, { marker });
-            }
+            trackScreenEvent('click_marker_open', `Marker ${index + 1}: ${marker.title.body}`, {
+                marker,
+                markerIndex: index,
+            });
         },
-        [finalMarkers, setSelectedMarkerIndex, trackScreenEvent, trackingEnabled],
+        [finalMarkers, setSelectedMarkerIndex, trackScreenEvent],
     );
 
     const onButtonClick = useCallback(() => {
         setOpened(true);
-        if (trackingEnabled) {
-            trackScreenEvent('click_button', button.body);
-        }
         if (onDisableInteraction !== null) {
             onDisableInteraction();
         }
-    }, [setOpened, onDisableInteraction, trackScreenEvent, trackingEnabled, button]);
+        trackScreenEvent('click_button', button.body);
+    }, [setOpened, onDisableInteraction, trackScreenEvent, button]);
 
     const onCloseClick = useCallback(() => {
         setOpened(false);
-        if (trackingEnabled) {
-            trackScreenEvent('click_close', 'close_icon');
-        }
         if (onEnableInteraction !== null) {
             onEnableInteraction();
         }
-    }, [setOpened, onEnableInteraction, trackScreenEvent, trackingEnabled]);
+        trackScreenEvent('click_close', 'Close icon');
+    }, [setOpened, onEnableInteraction, trackScreenEvent]);
 
     const onMapDragEnd = useCallback(
         (center) => {
-            if (trackingEnabled) {
-                trackScreenEvent('drag_map', center.toString());
-            }
+            const coords = center.toJSON();
+            trackScreenEvent(
+                'drag_map',
+                `Latitude: ${coords.lat.toFixed(4)}, Longitude: ${coords.lng.toFixed(4)}`,
+                { coords },
+            );
         },
         [trackScreenEvent],
     );
 
     const onScrolledBottom = useCallback(() => {
-        if (trackingEnabled) {
-            const selectedMarker = markers[selectedMarkerIndex];
-            trackScreenEvent('scroll', `marker_${selectedMarkerIndex}_${selectedMarker.title.body}`);
-        }
-    }, [trackScreenEvent, trackingEnabled, markers, selectedMarkerIndex]);
+        const selectedMarker = markers[selectedMarkerIndex];
+        trackScreenEvent(
+            'scroll',
+            `Marker ${selectedMarkerIndex + 1}: ${selectedMarker.title.body}`,
+            { marker: selectedMarker, markerIndex: selectedMarkerIndex },
+        );
+    }, [trackScreenEvent, markers, selectedMarkerIndex]);
 
     const {
         ref: markerOverContentInnerRef,
@@ -384,7 +383,7 @@ const MapScreen = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEdit && active)}
+                playing={backgroundPlaying}
             />
             <Container width={width} height={height}>
                 {element}

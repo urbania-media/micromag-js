@@ -8,7 +8,6 @@ import { RoutesProvider, TrackingProvider } from '@micromag/core/contexts';
 
 import * as ViewerPropTypes from '../lib/PropTypes';
 import ViewerRoutes from './ViewerRoutes';
-
 import defaultRoutes from '../data/routes.json';
 
 import '../styles/styles.global.scss';

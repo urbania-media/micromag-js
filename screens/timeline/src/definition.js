@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import TimelineScreen from './Timeline';
 import TimelineIllustratedScreen from './TimelineIllustrated';
 
@@ -155,7 +156,7 @@ export default [
                     defaultMessage: 'Bullet color',
                     description: 'Field label',
                 }),
-            },            
+            },
             {
                 name: 'lineColor',
                 type: 'color',
@@ -174,5 +175,5 @@ export default [
                 }),
             },
         ],
-    }
+    },
 ];

@@ -2,6 +2,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+
 import TitleScreen from './Title';
 
 const propTypes = {

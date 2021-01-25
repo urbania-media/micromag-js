@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import ContributionScreen from './Contribution';
 
 export default {

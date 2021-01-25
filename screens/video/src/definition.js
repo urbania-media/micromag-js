@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import VideoScreen from './Video';
 
 export default {

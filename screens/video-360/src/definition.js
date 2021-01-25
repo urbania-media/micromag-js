@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import Video360Screen from './Video360';
 
 export default {

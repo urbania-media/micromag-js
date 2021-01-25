@@ -4,7 +4,6 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useGoogleMapsClient } from '@micromag/core/contexts';
 import Map, { Pin } from '@micromag/element-map';
@@ -41,7 +40,7 @@ const getFixedCoords = ({ lat, lng }, precision = 4) => ({
 });
 
 const GeoPosition = ({ value, defaultCenter, defaultZoom, className, onChange }) => {
-    const [address, setAddress] = useState(null); 
+    const [address, setAddress] = useState(null);
     const [mapReady, setMapReady] = useState(false);
     const [zoom, setZoom] = useState(defaultZoom);
     const { maps: mapsApi } = useGoogleMapsClient() || {};

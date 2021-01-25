@@ -8,6 +8,7 @@ import isNumber from 'lodash/isNumber';
 
 import { StackProvider } from './StackContext';
 import Spacer from './Spacer';
+
 import styles from './styles/stack.module.scss';
 
 const propTypes = {

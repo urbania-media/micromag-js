@@ -15,42 +15,39 @@ import Text from '@micromag/element-text';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split']),    
+    layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split']),
     text: MicromagPropTypes.textElement,
     title: MicromagPropTypes.headingElement,
     withTitle: PropTypes.bool,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
-    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
 };
 
 const defaultProps = {
-    layout: 'top',    
+    layout: 'top',
     text: null,
     title: null,
     withTitle: false,
     spacing: 20,
     background: null,
     current: true,
-    active: false,
     transitions: null,
     transitionStagger: 100,
     className: null,
 };
 
 const TextScreen = ({
-    layout,    
+    layout,
     text,
     title,
     withTitle,
     spacing,
     background,
     current,
-    active,
     transitions,
     transitionStagger,
     className,
@@ -72,18 +69,31 @@ const TextScreen = ({
 
     const transitionPlaying = current;
     const transitionDisabled = !isView && !isEdit;
+    const backgroundPlaying = current && (isView || isEdit);
 
     // Create elements
     const items = [
-        withTitle && <ScreenElement
-            key="title"
-            placeholder="title"
-            emptyLabel={<FormattedMessage defaultMessage="Title" description="Title placeholder" />}
-            emptyClassName={styles.emptyTitle}
-            isEmpty={isEmpty}
-        >
-            { hasTitle ? <Heading className={classNames([styles.title, { [styles.withMargin] : titleWithMargin }])} {...title} /> : null }
-        </ScreenElement>,
+        withTitle && (
+            <ScreenElement
+                key="title"
+                placeholder="title"
+                emptyLabel={
+                    <FormattedMessage defaultMessage="Title" description="Title placeholder" />
+                }
+                emptyClassName={styles.emptyTitle}
+                isEmpty={isEmpty}
+            >
+                {hasTitle ? (
+                    <Heading
+                        className={classNames([
+                            styles.title,
+                            { [styles.withMargin]: titleWithMargin },
+                        ])}
+                        {...title}
+                    />
+                ) : null}
+            </ScreenElement>
+        ),
 
         isSplitted && withTitle && <Spacer key="spacer" />,
 
@@ -94,7 +104,7 @@ const TextScreen = ({
             emptyClassName={styles.emptyText}
             isEmpty={isEmpty}
         >
-            { hasText ? <Text className={styles.text} {...text} /> : null }
+            {hasText ? <Text className={styles.text} {...text} /> : null}
         </ScreenElement>,
     ];
 
@@ -112,17 +122,21 @@ const TextScreen = ({
                 {...(!isPlaceholder ? background : null)}
                 width={width}
                 height={height}
-                playing={(isView && current) || (isEdit && active)}
+                playing={backgroundPlaying}
             />
             <Container width={width} height={height}>
                 <Layout
                     className={styles.layout}
                     fullscreen
                     verticalAlign={verticalAlign}
-                    style={ !isPlaceholder ? {
-                        padding: spacing,
-                        paddingTop: (!landscape && !isPreview ? menuSize : 0) + spacing,
-                    } : null }
+                    style={
+                        !isPlaceholder
+                            ? {
+                                  padding: spacing,
+                                  paddingTop: (!landscape && !isPreview ? menuSize : 0) + spacing,
+                              }
+                            : null
+                    }
                 >
                     <TransitionsStagger
                         transitions={transitions}

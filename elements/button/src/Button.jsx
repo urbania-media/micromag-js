@@ -2,7 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button as CoreButton } from '@micromag/core/components';
 import { getStyleFromText, getStyleFromColor, getStyleFromBorder } from '@micromag/core/utils';
@@ -82,7 +81,7 @@ const Button = ({
             ])}
             disabled={disabled}
             style={finalStyle}
-            onClick={onClick}            
+            onClick={onClick}
             refButton={refButton}
             type={type}
         >

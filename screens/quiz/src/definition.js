@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import QuizScreen from './Quiz';
 
 export default {

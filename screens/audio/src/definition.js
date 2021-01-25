@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import AudioScreen from './Audio';
 
 export default {

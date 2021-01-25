@@ -1,4 +1,5 @@
 import { defineMessage } from 'react-intl';
+
 import FieldWithForm from '../components/FieldWithForm';
 
 export default {

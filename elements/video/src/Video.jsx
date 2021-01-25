@@ -2,7 +2,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useMediaApi } from '@micromag/core/hooks';
 
@@ -91,11 +90,7 @@ const Video = ({
         apiRef.current.mediaRef = ref;
     }
 
-    const {
-        playing,
-        muted,
-        ready,
-    } = api;
+    const { playing, muted, ready } = api;
 
     useEffect(() => {
         if (ready && onReady !== null) {
@@ -115,10 +110,14 @@ const Video = ({
                     [styles.withSize]: withSize,
                 },
             ])}
-            style={withSize ? {
-                width,
-                height,
-            } : null }
+            style={
+                withSize
+                    ? {
+                          width,
+                          height,
+                      }
+                    : null
+            }
         >
             <video ref={ref} src={url} autoPlay={autoPlay} loop={loop} muted={muted} />
         </div>

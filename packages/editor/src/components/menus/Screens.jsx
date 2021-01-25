@@ -78,60 +78,65 @@ const ScreensMenu = ({
             transform: `scale(${previewScale}, ${previewScale})`,
         };
     }, [previewMinWidth, contentRect]);
-    const itemsElements = items.map(({ onClick = null, title, screen, className: itemCustomClassName = null, ...item }, index) => (
-        <li
-            key={item.id}
-            className={classNames([
-                styles.item,
-                {
-                    [itemClassName]: itemClassName !== null,
-                    [itemCustomClassName]: itemCustomClassName !== null,
-                },
-            ])}
-            data-screen-id={item.id}
-            ref={index === 0 ? containerRef : null}
-        >
-            <ScreenButton
-                {...item}
+    const itemsElements = items.map(
+        (
+            { onClick = null, title, screen, className: itemCustomClassName = null, ...item },
+            index,
+        ) => (
+            <li
+                key={item.id}
                 className={classNames([
-                    styles.button,
+                    styles.item,
                     {
-                        [buttonClassName]: buttonClassName !== null,
+                        [itemClassName]: itemClassName !== null,
+                        [itemCustomClassName]: itemCustomClassName !== null,
                     },
                 ])}
-                title={isMessage(title) ? intl.formatMessage(title) : null}
-                onClick={() => {
-                    if (onClick !== null) {
-                        onClick(screen, index);
-                    }
-                    if (onClickItem !== null) {
-                        onClickItem(screen, index);
-                    }
-                }}
+                data-screen-id={item.id}
+                ref={index === 0 ? containerRef : null}
             >
-                {withPreview ? (
-                    <div className={styles.preview} style={previewStyle}>
-                        <ScreenPreview
-                            screen={screen}
-                            width={previewStyle.width}
-                            height={previewStyle.height}
-                            className={styles.screen}
-                        />
-                    </div>
-                ) : null}
-                {withPlaceholder ? (
-                    <div className={styles.placeholder} style={previewStyle}>
-                        <ScreenPlaceholder
-                            screen={item}
-                            width={previewStyle.width}
-                            height={previewStyle.height}
-                            className={styles.screen}
-                        />
-                    </div>
-                ) : null}
-            </ScreenButton>
-        </li>
-    ));
+                <ScreenButton
+                    {...item}
+                    className={classNames([
+                        styles.button,
+                        {
+                            [buttonClassName]: buttonClassName !== null,
+                        },
+                    ])}
+                    title={isMessage(title) ? intl.formatMessage(title) : null}
+                    onClick={() => {
+                        if (onClick !== null) {
+                            onClick(screen, index);
+                        }
+                        if (onClickItem !== null) {
+                            onClickItem(screen, index);
+                        }
+                    }}
+                >
+                    {withPreview ? (
+                        <div className={styles.preview} style={previewStyle}>
+                            <ScreenPreview
+                                screen={screen}
+                                width={previewStyle.width}
+                                height={previewStyle.height}
+                                className={styles.screen}
+                            />
+                        </div>
+                    ) : null}
+                    {withPlaceholder ? (
+                        <div className={styles.placeholder} style={previewStyle}>
+                            <ScreenPlaceholder
+                                screen={item}
+                                width={previewStyle.width}
+                                height={previewStyle.height}
+                                className={styles.screen}
+                            />
+                        </div>
+                    ) : null}
+                </ScreenButton>
+            </li>
+        ),
+    );
     const sortableItems = useMemo(() => items.map(({ id }) => ({ id })), [items]);
     return (
         <div

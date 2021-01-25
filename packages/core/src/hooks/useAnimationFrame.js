@@ -12,12 +12,10 @@ const useAnimationFrame = (onFrame, { disabled = false } = {}) => {
         requestRef.current = requestAnimationFrame(callback);
     };
 
-    // console.log(disabled)
-
     useEffect(() => {
         if (!disabled) {
             requestRef.current = requestAnimationFrame(callback);
-        }        
+        }
         return () => {
             if (requestRef.current !== null) {
                 cancelAnimationFrame(requestRef.current);

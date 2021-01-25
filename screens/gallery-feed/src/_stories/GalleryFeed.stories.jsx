@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import { images, backgroundColor, transitions } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-
 import GalleryFeedScreen from '../GalleryFeed';
 import definition from '../definition';
 
