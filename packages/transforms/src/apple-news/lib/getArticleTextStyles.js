@@ -12,14 +12,14 @@ const getArticleTextStyles = () => {
     const lineHeight = 1.35;
 
     const titleStyles = TextStyle({
-        fontFamily: 'Futura',
+        fontFamily: 'Futura', // stylelint-disable-line
         fontSize: fontSize * 2,
         fontWeight: 'bold',
         lineHeight,
     });
 
     const textStyles = TextStyle({
-        fontFamily: 'Palatino',
+        fontFamily: 'Palatino', // stylelint-disable-line
         fontSize,
         lineHeight,
     });
