@@ -23,6 +23,7 @@ import TextInput from '@micromag/element-text-input';
 import styles from './styles.module.scss';
 
 const propTypes = {
+    id: PropTypes.string,
     layout: PropTypes.oneOf(['top', 'middle', 'bottom']),
     title: MicromagPropTypes.headingElement,
     name: MicromagPropTypes.inputElement,
@@ -39,6 +40,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    id: null,
     layout: 'middle',
     title: null,
     name: null,
@@ -55,6 +57,7 @@ const defaultProps = {
 };
 
 const ContributionScreen = ({
+    id,
     layout,
     title,
     name,
@@ -69,12 +72,20 @@ const ContributionScreen = ({
     type,
     className,
 }) => {
+    const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);
 
     const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
 
-    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } = useScreenRenderContext();
+    const {
+        isView,
+        isPreview,
+        isPlaceholder,
+        isEdit,
+        isStatic,
+        isCapture,
+    } = useScreenRenderContext();
 
     const backgroundPlaying = current && (isView || isEdit);
     const transitionPlaying = current;
@@ -95,7 +106,6 @@ const ContributionScreen = ({
 
     // 0 = default, 1 = submitting, 2 = submitted, 3 = resizing, 4 = done
     const [submitState, setSubmitState] = useState(isStatic || isCapture ? 4 : 0);
-    
 
     const onContributionSubmitted = useCallback(() => {
         setSubmitState(2);
@@ -103,11 +113,11 @@ const ContributionScreen = ({
     }, [setSubmitState, trackScreenEvent, userName, userMessage]);
 
     const { create: submitContribution } = useContributionCreate({
-        screenId: 'screen-id',
+        screenId,
         onSubmitSuccess: onContributionSubmitted,
     });
 
-    const { contributions } = useContributions({ screenId: 'screen-id' });
+    const { contributions } = useContributions({ screenId });
 
     const onNameChange = useCallback(
         (e) => {

@@ -11,6 +11,7 @@ import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
+import { useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
@@ -21,6 +22,7 @@ import Button from '@micromag/element-button';
 import styles from './styles.module.scss';
 
 const propTypes = {
+    id: PropTypes.string,
     layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split']),
     question: MicromagPropTypes.textElement,
     answers: PropTypes.arrayOf(
@@ -46,6 +48,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    id: null,
     layout: 'middle',
     question: null,
     answers: null,
@@ -62,6 +65,7 @@ const defaultProps = {
 };
 
 const QuizScreen = ({
+    id,
     layout,
     question,
     answers,
@@ -76,10 +80,18 @@ const QuizScreen = ({
     type,
     className,
 }) => {
+    const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
-    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } = useScreenRenderContext();
+    const {
+        isView,
+        isPreview,
+        isPlaceholder,
+        isEdit,
+        isStatic,
+        isCapture,
+    } = useScreenRenderContext();
 
     const hasQuestion = isTextFilled(question);
     const hasResult = isTextFilled(result);
@@ -87,7 +99,9 @@ const QuizScreen = ({
     const showInstantAnswer = isStatic || isCapture;
     const goodAnswerIndex = answers !== null ? answers.findIndex(({ good }) => good) : null;
 
-    const [userAnswerIndex, setUserAnswerIndex] = useState(showInstantAnswer ? goodAnswerIndex : null);
+    const [userAnswerIndex, setUserAnswerIndex] = useState(
+        showInstantAnswer ? goodAnswerIndex : null,
+    );
     const [showResults, setShowResults] = useState(showInstantAnswer);
     const [answerTransitionProps, setAnswerTransitionProps] = useState(null);
     const [answerTransitionComplete, setAnswerTransitionComplete] = useState(showInstantAnswer);
@@ -102,6 +116,10 @@ const QuizScreen = ({
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
     const backgroundPlaying = current && (isView || isEdit);
+
+    const { create: submitQuiz } = useQuizCreate({
+        screenId,
+    });
 
     const onAnswerClick = useCallback(
         (answerI) => {
@@ -187,6 +205,15 @@ const QuizScreen = ({
             }
         };
     }, [showResults, resultsTransitionDuration, setAnswerTransitionComplete, showInstantAnswer]);
+
+    useEffect(() => {
+        if (userAnswerIndex !== null) {
+            const { good: isGood = false, label = {} } =
+                userAnswerIndex !== null && answers ? answers[userAnswerIndex] : {};
+            const { body = '' } = label || {};
+            submitQuiz({ choice: body || userAnswerIndex, value: isGood ? 1 : 0 });
+        }
+    }, [userAnswerIndex, answers, submitQuiz]);
 
     // Question
 
