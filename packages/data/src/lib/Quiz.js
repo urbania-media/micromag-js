@@ -5,10 +5,10 @@ class QuizApi extends Base {
         super({
             ...opts,
             routes: {
-                results: 'quiz/:screen',
-                store: 'quiz',
-                update: 'quiz/:quiz',
-                delete: 'quiz/:quiz',
+                results: '/api/quiz/:screen',
+                store: '/api/quiz',
+                update: '/api/quiz/:quiz',
+                delete: '/api/quiz/:quiz',
                 ...(opts.routes || null),
             },
         });
