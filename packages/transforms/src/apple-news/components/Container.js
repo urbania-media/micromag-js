@@ -2,8 +2,6 @@ import { validate } from '../../utils';
 import ContainerDefinition from '../definitions/Container.json';
 
 const Container = (story, components) => {
-    console.log('CONTAINER', components); // eslint-disable-line
-
     const content = {
         role: 'container',
         components,

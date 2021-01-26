@@ -2,6 +2,7 @@ import { defineMessage } from 'react-intl';
 
 import MapScreen from './Map';
 import MapImagesScreen from './MapImages';
+import * as transforms from './transforms/index';
 
 export default [
     {
@@ -17,6 +18,7 @@ export default [
         }),
         component: MapScreen,
         layouts: ['normal'],
+        transforms,
         fields: [
             {
                 name: 'layout',
@@ -98,6 +100,7 @@ export default [
         }),
         component: MapImagesScreen,
         layouts: ['normal'],
+        transforms,
         fields: [
             {
                 name: 'layout',

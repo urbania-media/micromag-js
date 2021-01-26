@@ -7,7 +7,8 @@ import ArticleDefinition from './definitions/ArticleDocument.json';
 import { validate } from '../utils';
 
 const Article = (story, settings) => {
-    // console.log('ARTICLE', newStory); // eslint-disable-line
+    // console.log('ARTICLE', story); // eslint-disable-line
+
     const { title = 'Article' } = story;
     const { identifier = 'testArticle' } = settings || {};
 
@@ -27,6 +28,8 @@ const Article = (story, settings) => {
         ...getArticleLayouts(story),
         ...getArticleComponents(story),
     };
+
+    // console.log('KONTENT', content);
 
     return validate(content, ArticleDefinition);
 };

@@ -1,6 +1,6 @@
 import TextDefinition from '../definitions/Text.json';
-import GenericText from '../elements/GenericText';
+import TextElement from '../elements/TextElement';
 
-const Text = (story, text) => GenericText(story, text, 'text', TextDefinition);
+const Text = (story, text) => TextElement(story, text, 'text', TextDefinition);
 
 export default Text;

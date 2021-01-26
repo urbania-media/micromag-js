@@ -1,6 +1,6 @@
 import HeadingDefinition from '../definitions/Heading.json';
-import GenericText from '../elements/GenericText';
+import TextElement from '../elements/TextElement';
 
-const Heading1 = (story, heading) => GenericText(story, heading, 'heading1', HeadingDefinition);
+const Heading1 = (story, heading) => TextElement(story, heading, 'heading1', HeadingDefinition);
 
 export default Heading1;

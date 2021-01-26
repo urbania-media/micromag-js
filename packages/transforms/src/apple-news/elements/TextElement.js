@@ -2,7 +2,7 @@ import hash from 'object-hash';
 import TextStyle from '../style/TextStyle';
 import { validate } from '../../utils';
 
-const GenericText = (story, text, role = 'text', definition = null) => {
+const TextElement = (story, text, role = 'text', definition = null) => {
     const { body = null, textStyle = null } = text || {};
 
     const style = textStyle ? TextStyle(textStyle) : null;
@@ -14,7 +14,7 @@ const GenericText = (story, text, role = 'text', definition = null) => {
         text: body,
         format: 'html',
         // Uncomment for styles // ...(hasStyle ? { style: styleName } : {}),
-        // layout: 'body_text',
+        layout: role,
     };
     const component = definition ? validate(content, definition) : null;
 
@@ -30,4 +30,4 @@ const GenericText = (story, text, role = 'text', definition = null) => {
     };
 };
 
-export default GenericText;
+export default TextElement;

@@ -1,20 +1,6 @@
-import { validate } from '../../utils';
 import ImageDefinition from '../definitions/Image.json';
+import ImageElement from '../elements/ImageElement';
 
-const Image = (story, image) => {
-    const { url } = image || {};
-    console.log('IMAGE', image, url); // eslint-disable-line
-
-    const content = {
-        role: 'image',
-        URL: url,
-        layout: 'default',
-    };
-    const component = validate(content, ImageDefinition);
-    return {
-        story,
-        component,
-    };
-};
+const Image = (story, image) => ImageElement(story, image, 'image', ImageDefinition);
 
 export default Image;

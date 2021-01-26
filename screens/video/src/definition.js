@@ -1,6 +1,7 @@
 import { defineMessage } from 'react-intl';
 
 import VideoScreen from './Video';
+import * as transforms from './transforms/index';
 
 export default {
     id: 'video',
@@ -15,6 +16,7 @@ export default {
     }),
     component: VideoScreen,
     layouts: ['center', 'full'],
+    transforms,
     fields: [
         {
             name: 'layout',

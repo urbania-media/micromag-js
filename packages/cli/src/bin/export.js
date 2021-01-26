@@ -11,6 +11,7 @@ import getStoryHtmlSSR from '../utils/getStoryHtmlSSR';
 import getOutputPath from '../utils/getOutputPath';
 
 let story = null;
+let stdin = null;
 program
     .arguments('<path>')
     .description({
@@ -20,20 +21,17 @@ program
     .option('-o, --output <output>', 'Output path')
     .option('-s, --settings <settings>', 'Settings')
     .action((jsonPath) => {
-        story = readJSON(jsonPath);
+        story = jsonPath === '-' ? JSON.parse(stdin) : readJSON(jsonPath);
     });
 
-program.parse();
-
 const exportStory = async (format, output, jsonSettings) => {
-    const settings = jsonSettings ? JSON.parse(jsonSettings) : {};
+    // eslint-disable-next-line
+    const settings = jsonSettings !== null ? JSON.parse(jsonSettings) : {};
     const storyParser = new StoryParser({
         fieldsManager: FieldsManager,
         screensManager: ScreensManager,
     });
     const storyParsed = storyParser.parse(story);
-
-    console.log('cli-out', storyParsed, format, output, settings);
 
     switch (format) {
         case 'html': {
@@ -59,12 +57,32 @@ const exportStory = async (format, output, jsonSettings) => {
             const newStory = transformStory(storyParsed, format, settings);
             // const mediaDestination = getOutputPath(output);
             const fileDestination = getOutputPath(output, 'article.json');
-            console.log('output', newStory);
             fs.writeFileSync(fileDestination, JSON.stringify(newStory), 'utf-8');
             break;
         }
     }
 };
 
-const { format, output, settings } = program.opts();
-exportStory(format, output, settings);
+const startProgram = (prog) => {
+    prog.parse();
+    const { format, output = null, settings = null } = prog.opts();
+    exportStory(format, output, settings);
+};
+
+// Read stdin for the story
+if (process.stdin.isTTY) {
+    startProgram(program);
+} else {
+    process.stdin.on('readable', () => {
+        const chunk = process.stdin.read();
+        if (chunk !== null) {
+            if (stdin === null) {
+                stdin = '';
+            }
+            stdin += chunk;
+        }
+    });
+    process.stdin.on('end', () => {
+        startProgram(program);
+    });
+}

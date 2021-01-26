@@ -97,7 +97,7 @@
         {
             "id": "948aa870-5c56-11eb-bc29-e3b80032c69a",
             "type": "text-title",
-            "background": { "color": { "color": "#9b9b9b", "alpha": 1 }, "image": null },
+            "background": { "color": { "color": "#9b9b9b", "alpha": 1 }, "image": "media://9" },
             "layout": "top",
             "title": {
                 "color": null,
