@@ -46,7 +46,7 @@ const Radios = ({ name, value, options, className, buttonClassName, onChange }) 
                     key={`radio-${optionValue}-${index + 1}`}
                     className={classNames([
                         'btn',
-                        'btn-outline-secondary',
+                        'btn-secondary',
                         {
                             active: optionValue === value,
                             [buttonClassName]: buttonClassName !== null,

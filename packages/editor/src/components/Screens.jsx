@@ -117,7 +117,7 @@ const EditorScreens = ({ value: unparsedValue, isTheme, isVertical, onClickScree
 
     return (
         <div className={classNames(['d-flex', 'flex-column', className])}>
-            <Navbar theme="dark" compact noWrap withoutCollapse>
+            <Navbar compact noWrap withoutCollapse>
                 <strong className="mb-0 mr-auto">
                     <FormattedMessage
                         defaultMessage="Screens"

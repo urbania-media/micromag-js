@@ -54,7 +54,6 @@ const DropdownSection = ({ value, items, onChange, className }) => {
             className={classNames([
                 styles.container,
                 'dropdown',
-                'text-dark',
                 {
                     [className]: className !== null,
                 },
