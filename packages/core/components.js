@@ -1,1 +1,1 @@
-export * from './es/components';
+module.exports = require('./lib/components');

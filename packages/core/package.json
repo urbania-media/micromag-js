@@ -1,6 +1,6 @@
 {
     "name": "@micromag/core",
-    "version": "0.2.66",
+    "version": "0.2.68",
     "description": "",
     "keywords": [
         "javascript"
@@ -37,6 +37,13 @@
         "./contexts": "./lib/contexts.js",
         "./hooks": "./lib/hooks.js",
         "./utils": "./lib/utils.js"
+    },
+    "browser": {
+        ".": "./es/index.js",
+        "./components": "./es/components.js",
+        "./contexts": "./es/contexts.js",
+        "./hooks": "./es/hooks.js",
+        "./utils": "./es/utils.js"
     },
     "files": [
         "lib",

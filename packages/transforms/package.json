@@ -1,6 +1,6 @@
 {
     "name": "@micromag/transforms",
-    "version": "0.2.66",
+    "version": "0.2.68",
     "description": "",
     "keywords": [
         "javascript"
@@ -36,6 +36,11 @@
         "./apple-news": "./lib/apple-news.js",
         "./utils": "./lib/utils.js"
     },
+    "browser": {
+        ".": "./es/index.js",
+        "./apple-news": "./es/apple-news.js",
+        "./utils": "./es/utils.js"
+    },
     "files": [
         "lib",
         "es",
@@ -57,7 +62,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.12.5",
-        "@micromag/core": "^0.2.66",
+        "@micromag/core": "^0.2.68",
         "lodash": "^4.17.20",
         "object-hash": "^2.1.1",
         "prop-types": "^15.7.2",

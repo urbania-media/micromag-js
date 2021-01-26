@@ -1,1 +1,1 @@
-export * from './es/hooks';
+module.exports = require('./lib/hooks');
