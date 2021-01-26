@@ -205,7 +205,7 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
                     >
                         {fieldParams !== null ? (
                             <div
-                                className={classNames(['bg-dark', 'w-100', styles.panel])}
+                                className={classNames(['w-100', styles.panel])}
                                 key={`field-${fieldParams}-${formParams}`}
                             >
                                 <ScreenProvider data={screen}>
@@ -222,7 +222,7 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
                             </div>
                         ) : (
                             <div
-                                className={classNames(['bg-dark', 'w-100', styles.panel])}
+                                className={classNames(['w-100', styles.panel])}
                                 key={`screen-${screen.id}`}
                             >
                                 <ScreenProvider data={screen}>
