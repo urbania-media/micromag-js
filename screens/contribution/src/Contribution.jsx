@@ -114,7 +114,7 @@ const ContributionScreen = ({
 
     const { create: submitContribution } = useContributionCreate({
         screenId,
-        onSubmitSuccess: onContributionSubmitted,
+        onSuccess: onContributionSubmitted,
     });
 
     const { contributions } = useContributions({ screenId });
