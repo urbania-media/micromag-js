@@ -1,30 +1,60 @@
 import TextStyle from '../style/TextStyle';
 
-const getArticleTextStyles = (newStory, story) => {
-    const { theme = {} } = newStory || {};
-    const { textStyle = {} } = theme || {};
-    const { heading1 = {}, text = {} } = textStyle || {};
+const getArticleTextStyles = () => {
+    // const { theme = {} } = story || {};
+    // const { textStyle = {} } = theme || {};
+    // const { heading1 = {}, text = {} } = textStyle || {};
 
-    const titleStyles = TextStyle(heading1);
-    const textStyles = TextStyle(text);
+    // const titleStyles = TextStyle(heading1);
+    // const textStyles = TextStyle(text);
 
-    // console.log('THEME STUFF', heading1, titleStyles, textStyles);
+    const fontSize = 18;
+    const lineHeight = 1.35;
+
+    const titleStyles = TextStyle({
+        fontFamily: 'Futura', // stylelint-disable-line
+        fontSize: fontSize * 2,
+        fontWeight: 'bold',
+        lineHeight,
+    });
+
+    const textStyles = TextStyle({
+        fontFamily: 'Palatino', // stylelint-disable-line
+        fontSize,
+        lineHeight,
+    });
 
     return {
         componentTextStyles: {
             default: {
-                fontName: 'Helvetica',
                 textColor: '#000',
-                fontSize: 18,
-                lineHeight: 22,
                 linkStyle: {
-                    textColor: '#000',
-                    underline: false,
+                    textColor: '#F0F',
+                    underline: true,
                 },
                 ...(textStyles !== null ? textStyles : {}),
             },
+            'default-heading1': {
+                ...(titleStyles !== null ? titleStyles : {}),
+                fontSize: fontSize * 2,
+                lineHeight: 36,
+                fontWeight: 'regular',
+                fontWidth: 'expanded',
+                textTransform: 'uppercase',
+            },
+            'default-heading2': {
+                ...(titleStyles !== null ? titleStyles : {}),
+                fontSize: 26,
+                fontWeight: 'regular',
+                fontWidth: 'expanded',
+                textTransform: 'uppercase',
+            },
             'default-title': {
                 ...(titleStyles !== null ? titleStyles : {}),
+                fontSize: 26,
+                fontWeight: 'regular',
+                fontWidth: 'expanded',
+                textTransform: 'uppercase',
             },
             'default-body': {
                 ...(textStyles !== null ? textStyles : {}),
@@ -34,6 +64,7 @@ const getArticleTextStyles = (newStory, story) => {
             },
             'default-quote': {
                 ...(textStyles !== null ? textStyles : {}),
+                fontSize: 26,
             },
         },
     };

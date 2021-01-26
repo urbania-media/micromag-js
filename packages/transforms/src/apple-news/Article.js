@@ -1,3 +1,4 @@
+import getArticleComponents from './lib/getArticleComponents';
 import getArticleTextStyles from './lib/getArticleTextStyles';
 import getArticleLayouts from './lib/getArticleLayouts';
 import getArticleDocumentStyle from './lib/getArticleDocumentStyle';
@@ -5,9 +6,10 @@ import ArticleDefinition from './definitions/ArticleDocument.json';
 
 import { validate } from '../utils';
 
-const Article = (newStory, story, settings) => {
-    // console.log('ARTICLE', newStory); // eslint-disable-line
-    const { title = 'Article' } = newStory;
+const Article = (story, settings) => {
+    // console.log('ARTICLE', story); // eslint-disable-line
+
+    const { title = 'Article' } = story;
     const { identifier = 'testArticle' } = settings || {};
 
     const content = {
@@ -21,10 +23,13 @@ const Article = (newStory, story, settings) => {
         componentStyles: {},
         componentTextStyles: {},
         componentLayouts: {},
-        ...getArticleDocumentStyle(newStory, story),
-        ...getArticleTextStyles(newStory, story),
-        ...getArticleLayouts(newStory, story),
+        ...getArticleDocumentStyle(story),
+        ...getArticleTextStyles(story),
+        ...getArticleLayouts(story),
+        ...getArticleComponents(story),
     };
+
+    // console.log('KONTENT', content);
 
     return validate(content, ArticleDefinition);
 };

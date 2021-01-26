@@ -2,6 +2,7 @@ import { defineMessage } from 'react-intl';
 
 import GalleryScreen from './Gallery';
 import GalleryCaptionsScreen from './GalleryCaptions';
+import * as transforms from './transforms/index';
 
 export default [
     {
@@ -39,6 +40,7 @@ export default [
             'one-one-two-two',
             'two-two-one-one',
         ],
+        transforms,
         fields: [
             {
                 name: 'layout',
@@ -101,6 +103,7 @@ export default [
             'one-one-two-two',
             'two-two-one-one',
         ],
+        transforms,
         fields: [
             {
                 name: 'layout',

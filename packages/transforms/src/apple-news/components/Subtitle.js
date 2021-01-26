@@ -1,7 +1,6 @@
 import TitleDefinition from '../definitions/Title.json';
-import GenericText from '../elements/GenericText';
+import TextElement from '../elements/TextElement';
 
-// Check for this one
-const Subtitle = (story, subtitle) => GenericText(story, subtitle, 'title', TitleDefinition);
+const Subtitle = (story, subtitle) => TextElement(story, subtitle, 'title', TitleDefinition);
 
 export default Subtitle;

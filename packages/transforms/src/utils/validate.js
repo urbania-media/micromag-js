@@ -37,7 +37,7 @@ const validate = (content = {}, definition = null) => {
                               [name]: value,
                           };
                       }
-                      console.log('VALIDATION ERROR: VALID TYPE', content, name); // eslint-disable-line
+                      console.log('VALIDATION ERROR: VALID TYPE', name, content); // eslint-disable-line
                   }
               }
 
