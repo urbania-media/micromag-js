@@ -36,6 +36,11 @@
         "./apple-news": "./lib/apple-news.js",
         "./utils": "./lib/utils.js"
     },
+    "browser": {
+        ".": "./es/index.js",
+        "./apple-news": "./es/apple-news.js",
+        "./utils": "./es/utils.js"
+    },
     "files": [
         "lib",
         "es",

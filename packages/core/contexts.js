@@ -1,1 +1,1 @@
-export * from './es/contexts';
+module.exports = require('lib/contexts');

@@ -31,6 +31,14 @@
     "license": "ISC",
     "main": "lib/index.js",
     "module": "es/index.js",
+    "exports": {
+        ".": "./lib/index.js",
+        "./all": "./lib/all.js"
+    },
+    "browser": {
+        ".": "./es/index.js",
+        "./all": "./es/all.js"
+    },
     "files": [
         "lib",
         "es",

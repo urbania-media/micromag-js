@@ -38,6 +38,13 @@
         "./hooks": "./lib/hooks.js",
         "./utils": "./lib/utils.js"
     },
+    "browser": {
+        ".": "./es/index.js",
+        "./components": "./es/components.js",
+        "./contexts": "./es/contexts.js",
+        "./hooks": "./es/hooks.js",
+        "./utils": "./es/utils.js"
+    },
     "files": [
         "lib",
         "es",
