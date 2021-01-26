@@ -31,13 +31,20 @@
                     "metadata": { "duration": 16000 }
                 },
                 "autoPlay": false,
-                "loop": true,
-                "closedCaptions": {
-                    "type": "closed-captions",
-                    "url": "cc6ab65ee24a9712ac4b69a96bb96683.srt"
-                }
+                "loop": true
             },
             "background": { "color": "#00FF00" },
+            "transitions": { "in": "fade", "out": "fade" }
+        },
+        {
+            "id": "9d858361-5b56-11eb-916e-e320b8bc4adc",
+            "type": "contribution",
+            "layout": "middle",
+            "title": { "body": "28463 3459834 31459134 3145134" },
+            "name": { "label": "Votre nom" },
+            "message": { "label": "Votre message" },
+            "submit": { "body": "Envoyer" },
+            "background": { "color": "#00FFFF" },
             "transitions": { "in": "fade", "out": "fade" }
         }
     ]

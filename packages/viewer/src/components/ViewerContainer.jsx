@@ -14,7 +14,6 @@ import defaultRoutes from '../data/routes.json';
 
 import '../styles/styles.global.scss';
 
-
 const propTypes = {
     memoryRouter: PropTypes.bool,
     basePath: PropTypes.string,
@@ -36,17 +35,21 @@ const defaultProps = {
 const ViewerContainer = ({ memoryRouter, basePath, routes, withoutRouter, ...otherProps }) => {
     const Router = memoryRouter ? MemoryRouter : BrowserRouter;
 
-    return (
+    const content = (
+        <FieldsProvider>
+            <ScreensProvider>
+                <TrackingProvider>
+                    {withoutRouter ? <Viewer {...otherProps} /> : <ViewerRoutes {...otherProps} />}
+                </TrackingProvider>
+            </ScreensProvider>
+        </FieldsProvider>
+    );
+
+    return withoutRouter ? (
+        content
+    ) : (
         <Router basename={!memoryRouter ? basePath : null}>
-            <RoutesProvider routes={routes}>
-                <FieldsProvider>
-                    <ScreensProvider>
-                        <TrackingProvider >
-                            { withoutRouter ? <Viewer {...otherProps} /> : <ViewerRoutes {...otherProps} /> }
-                        </TrackingProvider>
-                    </ScreensProvider>
-                </FieldsProvider>
-            </RoutesProvider>
+            <RoutesProvider routes={routes}>{content}</RoutesProvider>
         </Router>
     );
 };

@@ -55,7 +55,7 @@ const TextScreen = ({
     const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
 
-    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } = useScreenRenderContext();
 
     const hasTitle = title !== null;
     const hasText = text !== null;
@@ -68,7 +68,7 @@ const TextScreen = ({
     const titleWithMargin = hasTitle && hasText && !isSplitted;
 
     const transitionPlaying = current;
-    const transitionDisabled = !isView && !isEdit;
+    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
     const backgroundPlaying = current && (isView || isEdit);
 
     // Create elements
@@ -117,6 +117,7 @@ const TextScreen = ({
                     [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}
+            data-screen-ready
         >
             <Background
                 {...(!isPlaceholder ? background : null)}

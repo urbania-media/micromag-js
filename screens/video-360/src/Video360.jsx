@@ -66,7 +66,7 @@ const Video360Screen = ({
 
     const { width, height, landscape } = useScreenSize();
 
-    const { isEdit, isPlaceholder, isView, isPreview } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } = useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
 
     const videoContainerRef = useRef();
@@ -144,7 +144,7 @@ const Video360Screen = ({
     const withVideoSphere = hasVideo && (isView || isEdit);
     const [ready, setReady] = useState(!hasVideo);
     const transitionPlaying = current && ready;
-    const transitionDisabled = !isView && !isEdit;
+    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
 
     const finalVideo = hasVideo ? { ...video, autoPlay: isPreview ? false : video.autoPlay } : null;
     const { media: videoMedia = null, closedCaptions = null, withSeekBar = false } =
@@ -189,6 +189,7 @@ const Video360Screen = ({
     const pointerLat = useRef(0);
 
     // render 3D frame
+    const [ready3d, setReady3d] = useState(false);
 
     const render3D = useCallback(() => {
         lat.current = Math.max(-85, Math.min(85, lat.current));
@@ -204,7 +205,12 @@ const Video360Screen = ({
         camera.current.lookAt(0, 0, 0);
 
         renderer.current.render(scene.current, camera.current);
-    }, []);
+
+        if (!ready3d) {
+            setReady3d(true);
+        }
+
+    }, [ready3d, setReady3d]);
 
     // Init 3D layer
 
@@ -254,7 +260,7 @@ const Video360Screen = ({
             camera.current.updateProjectionMatrix();
             renderer.current.setSize(width, height);
         }
-    }, [width, height, render3D]);
+    }, [width, height]);
 
     // Pointer interaction
 
@@ -398,6 +404,7 @@ const Video360Screen = ({
                     [styles.isPreview]: isPreview,
                 },
             ])}
+            data-screen-ready={ready && (!withVideoSphere || ready3d)}
         >
             <Background
                 {...(!isPlaceholder ? background : null)}

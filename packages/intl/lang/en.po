@@ -207,11 +207,6 @@ msgstr "Caption"
 msgid "Author"
 msgstr "Author"
 
-# Share modal title
-#: 7MyxeW
-msgid "Share"
-msgstr "Share"
-
 # ImageTitleText screen title
 #: 8c34nT
 msgid "ImageTitleText"

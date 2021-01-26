@@ -69,18 +69,21 @@ const SurveyScreen = ({
     const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
 
-    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } = useScreenRenderContext();
 
     const hasQuestion = isTextFilled(question);
 
-    const [userAnswerIndex, setUserAnswerIndex] = useState(null);
+    const showInstantAnswer = isStatic || isCapture;
+    const goodAnswerIndex = answers !== null ? answers.findIndex(({ good }) => good) : null;
+
+    const [userAnswerIndex, setUserAnswerIndex] = useState(showInstantAnswer ? goodAnswerIndex : null);
     const answered = userAnswerIndex !== null;
 
     const isSplitted = layout === 'split';
     const verticalAlign = isSplitted ? null : layout;
 
     const transitionPlaying = current;
-    const transitionDisabled = !isView && !isEdit;
+    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
     const backgroundPlaying = current && (isView || isEdit);
 
     const onAnswerClick = useCallback(
@@ -289,6 +292,7 @@ const SurveyScreen = ({
                     [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}
+            data-screen-ready
         >
             <Background
                 {...(!isPlaceholder ? background : null)}

@@ -74,11 +74,12 @@ const ContributionScreen = ({
     const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
 
-    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } = useScreenRenderContext();
 
     const backgroundPlaying = current && (isView || isEdit);
     const transitionPlaying = current;
-    const transitionDisabled = !isView && !isEdit;
+    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
+    const scrollingDisabled = transitionDisabled || !current;
 
     const hasTitle = isTextFilled(title);
     const hasNameLabel = isLabelFilled(name);
@@ -93,7 +94,8 @@ const ContributionScreen = ({
     const [userMessage, setUserMessage] = useState('');
 
     // 0 = default, 1 = submitting, 2 = submitted, 3 = resizing, 4 = done
-    const [submitState, setSubmitState] = useState(0);
+    const [submitState, setSubmitState] = useState(isStatic || isCapture ? 4 : 0);
+    
 
     const onContributionSubmitted = useCallback(() => {
         setSubmitState(2);
@@ -344,6 +346,7 @@ const ContributionScreen = ({
                     [styles.showContributions]: submitState === 4,
                 },
             ])}
+            data-screen-ready
         >
             <Background
                 {...(!isPlaceholder ? background : null)}
@@ -365,7 +368,7 @@ const ContributionScreen = ({
                 >
                     <Scroll
                         verticalAlign={layout}
-                        disabled={isPlaceholder || isPreview || !current}
+                        disabled={scrollingDisabled}
                         onScrolledBottom={onScrolledBottom}
                     >
                         {items}

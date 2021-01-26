@@ -48,8 +48,7 @@ const exportStory = async (format, output, jsonSettings) => {
             break;
         }
         case 'images': {
-            const destination = getOutputPath(output);
-            captureStory(storyParsed, destination);
+            captureStory(storyParsed, output);
             break;
         }
         default: {

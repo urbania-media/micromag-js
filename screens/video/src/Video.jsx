@@ -38,7 +38,7 @@ const VideoScreen = ({ layout, video, background, current, transitions, classNam
     const trackScreenMedia = useTrackScreenMedia('video');
 
     const { width, height } = useScreenSize();
-    const { isEdit, isPlaceholder, isPreview, isView } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } = useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
 
     const apiRef = useRef();
@@ -117,7 +117,7 @@ const VideoScreen = ({ layout, video, background, current, transitions, classNam
     const hasVideo = video !== null;
     const [ready, setReady] = useState(!hasVideo);
     const transitionPlaying = current && ready;
-    const transitionDisabled = !isView && !isEdit;
+    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
 
     // get resized video style props
     const finalVideo = hasVideo ? { ...video, autoPlay: isPreview ? false : video.autoPlay } : null;
@@ -230,6 +230,7 @@ const VideoScreen = ({ layout, video, background, current, transitions, classNam
                     [styles.fullscreen]: fullscreen,
                 },
             ])}
+            data-screen-ready={ready}
         >
             <Background
                 {...(!isPlaceholder ? background : null)}

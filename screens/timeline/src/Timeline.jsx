@@ -77,7 +77,7 @@ const Timeline = ({
     const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
 
-    const { isPlaceholder, isPreview, isView, isEdit } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } = useScreenRenderContext();
     const finalItems = isPlaceholder ? [...new Array(5)].map(() => ({})) : items;
 
     const onScrolledBottom = useCallback(() => {
@@ -96,7 +96,8 @@ const Timeline = ({
     const [imagesLoaded, setImagesLoaded] = useState(0);
     const ready = imagesLoaded === imagesCount;
     const transitionsPlaying = current && ready;
-    const transitionDisabled = !isView && !isEdit;
+    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
+    const scrollingDisabled = transitionDisabled || !current;
     const backgroundPlaying = current && (isView || isEdit);
 
     const onImageLoaded = useCallback(() => {
@@ -298,6 +299,7 @@ const Timeline = ({
                     [styles[`${bulletShape}BulletShape`]]: bulletShape !== null,
                 },
             ])}
+            data-screen-ready={ready}
         >
             <Background
                 {...(!isPlaceholder ? background : null)}
@@ -309,7 +311,7 @@ const Timeline = ({
                 <Scroll
                     className={styles.scroll}
                     verticalAlign="middle"
-                    disabled={isPlaceholder || isPreview || !current}
+                    disabled={scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
                 >
                     <Layout

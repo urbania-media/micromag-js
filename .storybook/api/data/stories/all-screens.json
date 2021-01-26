@@ -31,11 +31,7 @@
                     "metadata": { "duration": 16000 }
                 },
                 "autoPlay": false,
-                "loop": true,
-                "closedCaptions": {
-                    "type": "closed-captions",
-                    "url": "cc6ab65ee24a9712ac4b69a96bb96683.srt"
-                }
+                "loop": true
             },
             "background": { "color": "#00FF00" },
             "transitions": { "in": "fade", "out": "fade" }
@@ -676,15 +672,11 @@
             "video": {
                 "media": {
                     "type": "video",
-                    "url": "static/media/test.9fc1449b.mp4",
+                    "url": "https://www.w3schools.com/html/mov_bbb.mp4",
                     "metadata": { "width": 1920, "height": 1080 }
                 },
                 "autoPlay": false,
                 "loop": true,
-                "closedCaptions": {
-                    "type": "closed-captions",
-                    "url": "cc6ab65ee24a9712ac4b69a96bb96683.srt"
-                },
                 "withSeekBar": true
             },
             "background": { "color": "#FF00FF" },
@@ -697,15 +689,11 @@
             "video": {
                 "media": {
                     "type": "video-360",
-                    "url": "static/media/test-360.6ed1598c.mp4",
+                    "url": "https://www.w3schools.com/html/mov_bbb.mp4",
                     "metadata": { "width": 1920, "height": 960 }
                 },
                 "autoPlay": false,
                 "loop": true,
-                "closedCaptions": {
-                    "type": "closed-captions",
-                    "url": "cc6ab65ee24a9712ac4b69a96bb96683.srt"
-                },
                 "withSeekBar": true
             },
             "background": { "color": "#FF00FF" },
