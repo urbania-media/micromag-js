@@ -1,11 +1,15 @@
 import { validate } from '../../utils';
 
 const GalleryElement = (story, gallery, role = 'gallery', definition = null) => {
-    const { items = [] } = gallery || {};
+    const { componentLayouts = {} } = story;
+
+    const { images = [] } = gallery || {};
+    const galleryImages = images !== null ? images.map((image) => ({ URL: image.url })) : [];
+
     const content = {
         role,
-        layout: role,
-        items,
+        ...(componentLayouts[role] ? { layout: role } : {}),
+        items: galleryImages,
     };
     const component = validate(content, definition);
     return {

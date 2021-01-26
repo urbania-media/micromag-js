@@ -1,9 +1,11 @@
 export { default as Audio } from './Audio';
 export { default as Container } from './Container';
+export { default as Gallery } from './Gallery';
 export { default as Heading1 } from './Heading1';
 export { default as Heading2 } from './Heading2';
 export { default as Image } from './Image';
 export { default as Map } from './Map';
+export { default as Mosaic } from './Mosaic';
 export { default as Quote } from './Quote';
 export { default as Subtitle } from './Subtitle';
 export { default as Text } from './Text';

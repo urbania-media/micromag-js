@@ -3,6 +3,7 @@ import TextStyle from '../style/TextStyle';
 import { validate } from '../../utils';
 
 const TextElement = (story, text, role = 'text', definition = null) => {
+    const { componentLayouts = {} } = story;
     const { body = null, textStyle = null } = text || {};
 
     const style = textStyle ? TextStyle(textStyle) : null;
@@ -11,10 +12,10 @@ const TextElement = (story, text, role = 'text', definition = null) => {
 
     const content = {
         role,
+        ...(componentLayouts[role] ? { layout: role } : {}),
         text: body,
         format: 'html',
         // Uncomment for styles // ...(hasStyle ? { style: styleName } : {}),
-        layout: role,
     };
     const component = definition ? validate(content, definition) : null;
 

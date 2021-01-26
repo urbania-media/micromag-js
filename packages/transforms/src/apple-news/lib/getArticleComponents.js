@@ -1,12 +1,8 @@
-import Heading1 from '../components/Heading1';
-import Heading2 from '../components/Heading2';
-import Image from '../components/Image';
-
 const getArticleComponents = (story) => {
     const { title = null, metadata = {}, components = [] } = story || {};
     const { description = 'Ma description' } = metadata || {};
-    const { component: heading1 } = title ? Heading1(story, { body: title }) : null;
-    const { component: heading2 } = description ? Heading2(story, { body: description }) : null;
+    const { component: heading1 } = title ? { role: 'heading1', body: title } : {};
+    const { component: heading2 } = description ? { role: 'heading2', body: description } : {};
 
     const titleScreen = components.reduce((comp, next, i) => {
         if (comp === null && i < 3) {
@@ -17,16 +13,15 @@ const getArticleComponents = (story) => {
         return comp;
     }, null);
 
-    let imageResult = {};
+    let imageComponent = null;
     if (titleScreen !== null) {
-        const { image = null, background = null } = titleScreen;
+        const { image = null, background = null } = titleScreen || {};
         if (image !== null) {
-            imageResult = Image(story, image);
+            imageComponent = { role: 'image', URL: image.url };
         } else if (background !== null && background.image !== null) {
-            imageResult = Image(story, background.image);
+            imageComponent = { role: 'image', URL: background.image.url };
         }
     }
-    const { component: imageComponent } = imageResult;
 
     const headerComponents = [imageComponent, heading1, heading2].filter((it) => it !== null);
 

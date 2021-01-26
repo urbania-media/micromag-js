@@ -60,6 +60,11 @@ const getArticleLayouts = () => {
                     bottom: 20,
                 },
             },
+            gallery: {
+                margin: {
+                    bottom: 20,
+                },
+            },
             quote: {
                 columnStart: 1,
                 columnSpan: 5,

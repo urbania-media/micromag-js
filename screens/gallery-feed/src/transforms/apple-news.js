@@ -1,9 +1,8 @@
 import { Container, Gallery } from '@micromag/transforms/apple-news';
 
 const transform = (newStory, { images }) => {
-    const galleryImages = images !== null ? images.map((image) => image.url) : [];
     const { story: titleStory, component: titleComponent } = Gallery(newStory, {
-        items: galleryImages,
+        images,
     });
 
     const { story: containerStory, component: containerComponent } = Container(titleStory, [
