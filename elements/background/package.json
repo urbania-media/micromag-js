@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-background",
-    "version": "0.2.70",
+    "version": "0.2.71",
     "description": "",
     "keywords": [
         "javascript"
@@ -48,8 +48,8 @@
     "dependencies": {
         "@babel/runtime": "^7.12.5",
         "@folklore/size": "^0.1.14",
-        "@micromag/core": "^0.2.70",
-        "@micromag/element-video": "^0.2.70",
+        "@micromag/core": "^0.2.71",
+        "@micromag/element-video": "^0.2.71",
         "classnames": "^2.2.6",
         "lodash": "^4.17.20",
         "prop-types": "^15.7.2",
