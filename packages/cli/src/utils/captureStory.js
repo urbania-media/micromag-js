@@ -5,7 +5,6 @@ import puppeteer from 'puppeteer';
 
 import startServer from './startServer';
 import getOutputPath from './getOutputPath';
-import { components } from '../../../fields/node_modules/@micromag/core/src/lib/PropTypes';
 
 const captureStory = async (story, location, width = 320, height = 640) => {
     const server = await startServer(
