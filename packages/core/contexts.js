@@ -1,1 +1,1 @@
-module.exports = require('lib/contexts');
+module.exports = require('./lib/contexts');

@@ -1,1 +1,1 @@
-module.exports  = require('lib/apple-news');
+module.exports  = require('./lib/apple-news');
