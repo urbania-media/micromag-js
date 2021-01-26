@@ -124,6 +124,7 @@ const FieldWithForm = ({
                 <span
                     className={classNames([
                         'col',
+                        'text-muted',
                         {
                             'text-left': !isHorizontal,
                             'text-right': isHorizontal,
