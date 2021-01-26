@@ -174,17 +174,18 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
     return (
         <div className={classNames(['d-flex', 'flex-column', className])}>
             {screenId !== null ? (
-                <Navbar theme="dark" compact noWrap withoutCollapse>
+                <Navbar compact noWrap withoutCollapse className="border-bottom border-dark">
                     <Breadcrumb
                         story={value}
                         url={url}
                         screenId={screenId}
                         field={fieldParams}
                         form={formParams}
+                        className="mr-auto"
                     />
                     {fieldParams === null && formParams === null ? (
                         <>
-                            <SettingsButton className="ml-auto" onClick={onSettingsClick} />
+                            <SettingsButton onClick={onSettingsClick} />
                             <DropdownMenu
                                 items={dropdownItems}
                                 visible={screenSettingsOpened}

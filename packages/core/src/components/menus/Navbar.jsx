@@ -10,7 +10,7 @@ const propTypes = {
     brand: PropTypes.node,
     brandLink: PropTypes.string,
     breadcrumbs: PropTypes.node,
-    theme: PropTypes.oneOf(['light', 'dark', 'primary']),
+    theme: PropTypes.oneOf(['light', 'dark', 'primary', null]),
     size: PropTypes.oneOf(['sm', 'md', 'lg']),
     compact: PropTypes.bool,
     noWrap: PropTypes.bool,
@@ -24,7 +24,7 @@ const defaultProps = {
     brand: null,
     brandLink: null,
     breadcrumbs: null,
-    theme: 'light',
+    theme: null,
     size: 'md',
     compact: false,
     noWrap: false,
@@ -56,10 +56,10 @@ const Navbar = ({
         <nav
             className={classNames([
                 'navbar',
-                `bg-${theme}`,
-                `navbar-${theme === 'light' ? 'light' : 'dark'}`,
-                `text-${theme === 'light' ? 'dark' : 'light'}`,
                 {
+                    [`bg-${theme}`]: theme !== null,
+                    [`navbar-${theme === 'light' ? 'light' : 'dark'}`]: theme !== null,
+                    [`text-${theme === 'light' ? 'dark' : 'light'}`]: theme !== null,
                     [`navbar-expand-${size}`]: !withoutCollapse,
                     'py-2': compact,
                     'px-2': compact,
