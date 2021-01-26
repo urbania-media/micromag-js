@@ -79,15 +79,18 @@ const QuizScreen = ({
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
-    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } = useScreenRenderContext();
 
     const hasQuestion = isTextFilled(question);
     const hasResult = isTextFilled(result);
 
-    const [userAnswerIndex, setUserAnswerIndex] = useState(null);
-    const [showResults, setShowResults] = useState(false);
+    const showInstantAnswer = isStatic || isCapture;
+    const goodAnswerIndex = answers !== null ? answers.findIndex(({ good }) => good) : null;
+
+    const [userAnswerIndex, setUserAnswerIndex] = useState(showInstantAnswer ? goodAnswerIndex : null);
+    const [showResults, setShowResults] = useState(showInstantAnswer);
     const [answerTransitionProps, setAnswerTransitionProps] = useState(null);
-    const [answerTransitionComplete, setAnswerTransitionComplete] = useState(false);
+    const [answerTransitionComplete, setAnswerTransitionComplete] = useState(showInstantAnswer);
 
     const answered = userAnswerIndex !== null;
     const { good: hasUserAnsweredRight = false } =
@@ -97,7 +100,7 @@ const QuizScreen = ({
     const verticalAlign = isSplitted ? null : layout;
 
     const transitionPlaying = current;
-    const transitionDisabled = !isView && !isEdit;
+    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
     const backgroundPlaying = current && (isView || isEdit);
 
     const onAnswerClick = useCallback(
@@ -146,25 +149,27 @@ const QuizScreen = ({
     const resultRef = useRef(null);
 
     useEffect(() => {
-        const answerEl = answerRef.current;
-        const rightAnswerEl = rightAnswerRef.current;
-        const resultEl = resultRef.current;
+        if (!showInstantAnswer) {
+            const answerEl = answerRef.current;
+            const rightAnswerEl = rightAnswerRef.current;
+            const resultEl = resultRef.current;
 
-        if (answerEl !== null && rightAnswerEl !== null && resultEl !== null) {
-            const answerHeight = answerEl.offsetHeight;
-            const rightAnswerY = rightAnswerEl.offsetTop;
-            const rightAnswerHeight = rightAnswerEl.offsetHeight;
-            const resultHeight = resultEl.offsetHeight;
+            if (answerEl !== null && rightAnswerEl !== null && resultEl !== null) {
+                const answerHeight = answerEl.offsetHeight;
+                const rightAnswerY = rightAnswerEl.offsetTop;
+                const rightAnswerHeight = rightAnswerEl.offsetHeight;
+                const resultHeight = resultEl.offsetHeight;
 
-            if (answerHeight > 0 && rightAnswerHeight > 0 && resultHeight > 0) {
-                setAnswerTransitionProps({
-                    rightAnswerTranslateY: -rightAnswerY,
-                    answerInitialHeight: answerHeight,
-                    answerAnsweredHeight: rightAnswerHeight + resultHeight,
-                });
+                if (answerHeight > 0 && rightAnswerHeight > 0 && resultHeight > 0) {
+                    setAnswerTransitionProps({
+                        rightAnswerTranslateY: -rightAnswerY,
+                        answerInitialHeight: answerHeight,
+                        answerAnsweredHeight: rightAnswerHeight + resultHeight,
+                    });
+                }
             }
         }
-    }, [answers, setAnswerTransitionProps, width, height]);
+    }, [answers, setAnswerTransitionProps, width, height, showInstantAnswer]);
 
     // when the animation is done, we set a state to remove animations props
     // .results' position changes from absolute to relative
@@ -172,7 +177,7 @@ const QuizScreen = ({
 
     useEffect(() => {
         let timeout = null;
-        if (showResults) {
+        if (!showInstantAnswer && showResults) {
             timeout = setTimeout(setAnswerTransitionComplete, resultsTransitionDuration, true);
         }
 
@@ -181,7 +186,7 @@ const QuizScreen = ({
                 clearTimeout(timeout);
             }
         };
-    }, [showResults, resultsTransitionDuration, setAnswerTransitionComplete]);
+    }, [showResults, resultsTransitionDuration, setAnswerTransitionComplete, showInstantAnswer]);
 
     // Question
 
@@ -370,6 +375,7 @@ const QuizScreen = ({
                     [styles.answerTransitionComplete]: answerTransitionComplete,
                 },
             ])}
+            data-screen-ready
         >
             <Background
                 {...(!isPlaceholder ? background : null)}

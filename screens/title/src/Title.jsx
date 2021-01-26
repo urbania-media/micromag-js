@@ -67,7 +67,7 @@ const TitleScreen = ({
     const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
 
-    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } = useScreenRenderContext();
 
     const hasTitle = isTextFilled(title);
     const hasSubtitle = isTextFilled(subtitle);
@@ -85,7 +85,7 @@ const TitleScreen = ({
         hasSubtitle && hasDescription && (!isSplitted || verticalAlign === 'bottom');
 
     const transitionPlaying = current;
-    const transitionDisabled = !isView && !isEdit;
+    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
     const backgroundPlaying = current && (isView || isEdit);
 
     // Create elements
@@ -157,6 +157,7 @@ const TitleScreen = ({
                     [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}
+            data-screen-ready
         >
             <Background
                 {...(!isPlaceholder ? background : null)}

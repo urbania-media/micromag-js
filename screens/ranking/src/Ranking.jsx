@@ -62,7 +62,7 @@ const RankingScreen = ({
     const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
 
-    const { isPlaceholder, isPreview, isView, isEdit } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } = useScreenRenderContext();
 
     const finalItems = isPlaceholder ? [...new Array(10)].map(() => ({})) : items;
 
@@ -70,7 +70,8 @@ const RankingScreen = ({
 
     const isSideLayout = layout === 'side';
     const transitionPlaying = current;
-    const transitionDisabled = !isView && !isEdit;
+    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
+    const scrollingDisabled = transitionDisabled || !current;
     const backgroundPlaying = current && (isView || isEdit);
 
     const onScrolledBottom = useCallback(() => {
@@ -196,6 +197,7 @@ const RankingScreen = ({
                     [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}
+            data-screen-ready
         >
             <Background
                 {...(!isPlaceholder ? background : null)}
@@ -207,7 +209,7 @@ const RankingScreen = ({
                 <Scroll
                     className={styles.scroll}
                     verticalAlign="middle"
-                    disabled={isPlaceholder || isPreview || !current}
+                    disabled={scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
                 >
                     <Layout

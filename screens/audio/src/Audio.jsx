@@ -38,12 +38,12 @@ const AudioScreen = ({ layout, audio, background, current, transitions, classNam
     const trackScreenMedia = useTrackScreenMedia('audio');
 
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isPreview, isView, isEdit } = useScreenRenderContext();
-    const [ready, setReady] = useState(false);
+    const { isPlaceholder, isPreview, isView, isEdit, isStatic, isCapture } = useScreenRenderContext();
+    const [ready, setReady] = useState(isStatic || isPlaceholder);
 
     const backgroundPlaying = current && (isView || isEdit);
     const transitionPlaying = current && ready;
-    const transitionDisabled = !isView && !isEdit;
+    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
 
     const hasAudio = audio !== null;
     const finalAudio = hasAudio ? { ...audio, autoPlay: isPreview ? false : audio.autoPlay } : null;
@@ -52,7 +52,7 @@ const AudioScreen = ({ layout, audio, background, current, transitions, classNam
 
     const onAudioReady = useCallback(() => {
         setReady(true);
-    }, []);
+    }, [setReady]);
 
     const apiRef = useRef();
     const { togglePlay, toggleMute, pause } = apiRef.current || {};
@@ -190,6 +190,7 @@ const AudioScreen = ({ layout, audio, background, current, transitions, classNam
                     [styles[layout]]: layout !== null,
                 },
             ])}
+            data-screen-ready={ready}
         >
             <Background
                 {...(!isPlaceholder ? background : null)}

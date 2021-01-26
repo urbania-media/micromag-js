@@ -53,7 +53,7 @@ const QuoteScreen = ({
     const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
 
-    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } = useScreenRenderContext();
 
     const hasQuote = isTextFilled(quote);
     const hasAuthor = isTextFilled(author);
@@ -63,7 +63,7 @@ const QuoteScreen = ({
 
     const quoteWithMargin = hasQuote && hasAuthor && !isSplitted;
     const transitionPlaying = current;
-    const transitionDisabled = !isView && !isEdit;
+    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
     const backgroundPlaying = current && (isView || isEdit);
 
     const items = [
@@ -104,6 +104,7 @@ const QuoteScreen = ({
                     [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}
+            data-screen-ready
         >
             <Background
                 {...(!isPlaceholder ? background : null)}

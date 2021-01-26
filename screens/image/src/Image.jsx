@@ -72,7 +72,7 @@ const ImageScreen = ({
 
     const { menuSize } = useViewer();
 
-    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } = useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
 
     const hasImage = image !== null;
@@ -82,7 +82,7 @@ const ImageScreen = ({
 
     const [ready, setReady] = useState(!hasImage);
     const transitionPlaying = current && ready;
-    const transitionDisabled = !isView && !isEdit;
+    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
 
     const onImageLoaded = useCallback(() => {
         setReady(true);
@@ -243,6 +243,7 @@ const ImageScreen = ({
                     [styles.isFullscreen]: isFullscreen,
                 },
             ])}
+            data-screen-ready={ready}
         >
             <Background
                 {...(!isPlaceholder ? background : null)}

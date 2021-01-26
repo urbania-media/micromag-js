@@ -8,6 +8,7 @@ import { FieldsProvider } from '@micromag/fields';
 import { RoutesProvider, TrackingProvider } from '@micromag/core/contexts';
 
 import * as ViewerPropTypes from '../lib/PropTypes';
+import Viewer from './Viewer';
 import ViewerRoutes from './ViewerRoutes';
 import defaultRoutes from '../data/routes.json';
 
@@ -18,6 +19,7 @@ const propTypes = {
     basePath: PropTypes.string,
     routes: ViewerPropTypes.routes,
     screen: PropTypes.string,
+    withoutRouter: PropTypes.bool,
     children: PropTypes.func,
 };
 
@@ -26,23 +28,28 @@ const defaultProps = {
     basePath: null,
     routes: defaultRoutes,
     screen: null,
+    withoutRouter: false,
     children: null,
 };
 
-const ViewerContainer = ({ memoryRouter, basePath, routes, ...otherProps }) => {
+const ViewerContainer = ({ memoryRouter, basePath, routes, withoutRouter, ...otherProps }) => {
     const Router = memoryRouter ? MemoryRouter : BrowserRouter;
 
-    return (
+    const content = (
+        <FieldsProvider>
+            <ScreensProvider>
+                <TrackingProvider>
+                    {withoutRouter ? <Viewer {...otherProps} /> : <ViewerRoutes {...otherProps} />}
+                </TrackingProvider>
+            </ScreensProvider>
+        </FieldsProvider>
+    );
+
+    return withoutRouter ? (
+        content
+    ) : (
         <Router basename={!memoryRouter ? basePath : null}>
-            <RoutesProvider routes={routes}>
-                <FieldsProvider>
-                    <ScreensProvider>
-                        <TrackingProvider>
-                            <ViewerRoutes {...otherProps} />
-                        </TrackingProvider>
-                    </ScreensProvider>
-                </FieldsProvider>
-            </RoutesProvider>
+            <RoutesProvider routes={routes}>{content}</RoutesProvider>
         </Router>
     );
 };

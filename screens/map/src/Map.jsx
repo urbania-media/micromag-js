@@ -80,7 +80,7 @@ const MapScreen = ({
     className,
 }) => {
     const trackScreenEvent = useTrackScreenEvent(type);
-    const [opened, setOpened] = useState(false);
+    
 
     const [selectedMarkerIndex, setSelectedMarkerIndex] = useState(null);
     const hasSelectedMarker = selectedMarkerIndex !== null;
@@ -88,12 +88,14 @@ const MapScreen = ({
 
     const { width, height } = useScreenSize();
 
-    const { isView, isPlaceholder, isPreview, isEdit } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } = useScreenRenderContext();
 
     const [ready, setReady] = useState(false);
     const transitionPlaying = current && ready;
-    const transitionDisabled = !isView && !isEdit;
+    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
+    const scrollingDisabled = transitionDisabled || !current;
     const backgroundPlaying = current && (isView || isEdit);
+    const [opened, setOpened] = useState(isStatic || isCapture);
 
     const onMapReady = useCallback(() => setReady(true), [setReady]);
 
@@ -180,7 +182,7 @@ const MapScreen = ({
         element = <PlaceholderMap className={styles.placeholder} withImages={withMarkerImages} />;
     } else if (isPreview) {
         if (width > 0 && height > 0) {
-            let staticUrl = `https://maps.googleapis.com/maps/api/staticmap?size=${width}x${height}`;
+            let staticUrl = `https://maps.googleapis.com/maps/api/staticmap?size=${Math.round(width)}x${Math.round(height)}`;
             if (defaultCenter !== null && (markers === null || markers.length === 0)) {
                 const { lat = null, lng = null } = defaultCenter || {};
                 staticUrl += `&center=${lat},${lng}`;
@@ -262,7 +264,7 @@ const MapScreen = ({
                         <Scroll
                             key={`scroll-${selectedMarkerIndex}`}
                             fullscreen
-                            disabled={!current}
+                            disabled={scrollingDisabled}
                             onScrolledBottom={onScrolledBottom}
                         >
                             <Button
@@ -378,6 +380,7 @@ const MapScreen = ({
                     [styles.hasSelectedMarker]: hasSelectedMarker,
                 },
             ])}
+            data-screen-ready={ready}
         >
             <Background
                 {...(!isPlaceholder ? background : null)}

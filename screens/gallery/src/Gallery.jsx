@@ -82,7 +82,7 @@ const GalleryScreen = ({
     const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
 
-    const { isView, isPreview, isPlaceholder, isEdit } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } = useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
 
     const finalSpacing = isPlaceholder ? 5 : spacing;
@@ -99,7 +99,7 @@ const GalleryScreen = ({
     const imagesCount = images !== null ? Math.min(gridSpaces, images.length) : 0;
     const ready = imagesLoaded >= imagesCount;
     const transitionPlaying = current && ready;
-    const transitionDisabled = !isView && !isEdit;
+    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
 
     const onImageLoaded = useCallback(() => {
         setImagesLoaded(imagesLoaded + 1);
@@ -219,6 +219,7 @@ const GalleryScreen = ({
                     [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}
+            data-screen-ready={ready}
         >
             <Background
                 {...(!isPlaceholder ? background : null)}

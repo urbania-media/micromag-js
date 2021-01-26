@@ -61,7 +61,6 @@
         "lodash": "^4.17.20",
         "prop-types": "^15.7.2",
         "react-intl": "^5.10.16",
-        "react-spring": "^9.0.0-canary.808.17.55c5691",
         "react-use-gesture": "^8.0.1",
         "three": "^0.123.0",
         "uuid": "^8.3.2"

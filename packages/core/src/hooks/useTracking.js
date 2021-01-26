@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { useCallback } from 'react';
 
-import { useStory, useScreen, useTracking } from '../contexts';
+import { useScreen, useTracking } from '../contexts';
 
 const getScreenOptions = (screenContext, opts) => {
     const { data: ctxData = null } = screenContext || {};
@@ -24,9 +24,9 @@ export const useTrackScreenView = () => {
         return () => {};
     }
 
-    return useCallback((screen = null, index = null, organisation = null) => {
+    return useCallback((screen = null, index = null) => {
         if (screen !== null && index !== null) {
-            tracking.trackScreenView(screen, index, organisation);
+            tracking.trackScreenView(screen, index);
         }
     }, []);
 };
@@ -38,14 +38,11 @@ export const useTrackScreenEvent = (type = null) => {
         return () => {};
     }
 
-    const storyContext = useStory();
     const screenContext = useScreen();    
 
     if (screenContext.renderContext !== 'view') {
         return () => {};
     }
-
-    const { organisation = null } = storyContext || {};
 
     return useCallback(
         (action = null, label = null, opts) => {
@@ -53,7 +50,6 @@ export const useTrackScreenEvent = (type = null) => {
                 tracking.trackEvent(`screen_${type}`, action, label, {
                     ...opts,
                     ...getScreenOptions(screenContext, opts),
-                    organisation,
                 });
             }
         },
@@ -67,15 +63,12 @@ export const useTrackScreenMedia = (type = null) => {
     if (!hasTracking(tracking)) {
         return () => {};
     }
-
-    const storyContext = useStory();    
+ 
     const screenContext = useScreen();
 
     if (screenContext.renderContext !== 'view') {
         return () => {};
     }
-
-    const { organisation = null } = storyContext || {};
 
     return useCallback(
         (media = null, action = null, opts) => {
@@ -83,7 +76,6 @@ export const useTrackScreenMedia = (type = null) => {
                 tracking.trackMedia(`screen_${type}`, media, action, {
                     ...opts,                    
                     ...getScreenOptions(screenContext, opts),
-                    organisation,
                 });
             }
         },

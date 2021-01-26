@@ -413,11 +413,13 @@ export const theme = PropTypes.shape({
 });
 
 /**
- * Organisation
+ * Metadata
  */
-export const organisation = PropTypes.shape({
-    id: PropTypes.string,
-    name: PropTypes.string,
+export const metadata = PropTypes.shape({
+    description: PropTypes.string,
+    shareUrl: PropTypes.string,
+    shareImage: PropTypes.string,
+    favIcon: PropTypes.string,
 });
 
 /**
@@ -427,8 +429,7 @@ export const story = PropTypes.shape({
     id: PropTypes.string,
     theme,
     components: screenComponents,
-    organisation,
-    withMetadata: PropTypes.bool,
+    metadata,
 });
 
 /**
