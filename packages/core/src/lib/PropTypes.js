@@ -44,6 +44,10 @@ export const interaction = PropTypes.oneOf(['tap', 'swipe']);
 
 export const interactions = PropTypes.arrayOf(interaction);
 
+export const trackingVariables = PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
+);
+
 /**
  * Site
  */

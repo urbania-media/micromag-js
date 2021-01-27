@@ -138,8 +138,7 @@ const Navbar = ({
             className={classNames([
                 styles.container,
                 'navbar',
-                'navbar-light',
-                'bg-light',
+                'small',
                 {
                     [className]: className !== null,
                 },
@@ -152,6 +151,7 @@ const Navbar = ({
                             <Button
                                 theme="secondary"
                                 outline
+                                size="sm"
                                 icon={<FontAwesomeIcon icon={faChevronLeft} />}
                                 onClick={onClickBack}
                             />

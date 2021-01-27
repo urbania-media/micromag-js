@@ -25,7 +25,7 @@ const MarkersField = (props) => (
                 description="Button label in markers field"
             />
         }
-        ItemComponent={MarkerField}
+        itemComponent={MarkerField}
         {...props}
     />
 );

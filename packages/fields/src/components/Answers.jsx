@@ -30,7 +30,7 @@ const AnswersField = (props) => (
                 description="Button label in answers field"
             />
         }
-        ItemComponent={AnswerField}
+        itemComponent={AnswerField}
         {...props}
     />
 );

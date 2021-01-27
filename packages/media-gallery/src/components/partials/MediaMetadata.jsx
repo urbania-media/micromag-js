@@ -129,7 +129,7 @@ const MediaMetadata = ({ media, className }) => {
                     'position-relative',
                     {
                         'bg-light': type === 'audio',
-                        'bg-secondary': type === 'image',
+                        'bg-black': type === 'image',
                         [styles.video]: type === 'video',
                     },
                 ])}

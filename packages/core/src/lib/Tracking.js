@@ -4,12 +4,28 @@ import { Tracking as BaseTracking } from '@folklore/tracking';
 class Tracking extends BaseTracking {
     constructor(opts = {}) {
         super(opts);
+        const { variables = null } = this.options;
+        this.variables = null;
+        if (variables !== null) {
+            this.setVariables(variables);
+        }
+    }
+
+    setVariables(variables) {
+        this.variables = variables;
+        if (variables !== null) {
+            this.push(variables);
+        }
+    }
+
+    getVariables() {
+        return this.variables;
     }
 
     trackScreenView(screen, screenIndex) {
         const { id: screenId = null, type: screenType = null } = screen || {};
         const data = {
-            event: 'pageView',
+            event: 'screenView',
             screenId,
             screenType,
             screenIndex,
@@ -20,7 +36,7 @@ class Tracking extends BaseTracking {
     trackEvent(category, action, label, { value = null, ...opts } = {}) {
         const data = {
             ...opts,
-            event: 'event',
+            event: 'eventInteraction',
             eventCategory: category,
             eventAction: action,
             eventLabel: label,
@@ -34,7 +50,7 @@ class Tracking extends BaseTracking {
         const label = name;
         const data = {
             ...opts,
-            event: 'event',
+            event: 'eventInteraction',
             eventCategory: type,
             eventAction: action,
             eventLabel: label,

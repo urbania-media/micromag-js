@@ -1,10 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { MemoryRouter } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import { ScreensProvider } from '@micromag/screens';
 import { FieldsProvider } from '@micromag/fields';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { GoogleMapsClientProvider, RoutesProvider, TrackingProvider } from '@micromag/core/contexts';
 
 import * as ViewerPropTypes from '../lib/PropTypes';
@@ -15,34 +16,64 @@ import defaultRoutes from '../data/routes.json';
 import '../styles/styles.global.scss';
 
 const propTypes = {
+    story: MicromagPropTypes.story,
+    screen: PropTypes.string,
     memoryRouter: PropTypes.bool,
     basePath: PropTypes.string,
     routes: ViewerPropTypes.routes,
-    screen: PropTypes.string,
     withoutRouter: PropTypes.bool,
     gmapsApiKey: PropTypes.string,
+    trackingVariables: MicromagPropTypes.trackingVariables,
     children: PropTypes.func,
 };
 
 const defaultProps = {
+    story: null,
+    screen: null,
     memoryRouter: false,
     basePath: null,
     routes: defaultRoutes,
-    screen: null,
     withoutRouter: false,
     gmapsApiKey: null,
+    trackingVariables: null,
     children: null,
 };
 
-const ViewerContainer = ({ memoryRouter, basePath, routes, withoutRouter, gmapsApiKey, ...otherProps }) => {
+const ViewerContainer = ({
+    story,
+    memoryRouter,
+    basePath,
+    routes,
+    withoutRouter,
+    gmapsApiKey,
+    trackingVariables,
+    ...otherProps
+}) => {
     const Router = memoryRouter ? MemoryRouter : BrowserRouter;
+
+    const finalTrackingVariables = useMemo(() => {
+        if (story === null && trackingVariables === null) {
+            return null;
+        }
+        const { id = null, slug = null, title = null } = story;
+        return {
+            storyId: id,
+            storySlug: slug,
+            storyTitle: title,
+            ...trackingVariables,
+        };
+    }, [story, trackingVariables]);
 
     const content = (
         <GoogleMapsClientProvider apiKey={gmapsApiKey}>
             <FieldsProvider>
                 <ScreensProvider>
-                    <TrackingProvider>
-                        {withoutRouter ? <Viewer {...otherProps} /> : <ViewerRoutes {...otherProps} />}
+                    <TrackingProvider variables={finalTrackingVariables}>
+                        {withoutRouter ? (
+                            <Viewer story={story} {...otherProps} />
+                        ) : (
+                            <ViewerRoutes story={story} {...otherProps} />
+                        )}
                     </TrackingProvider>
                 </ScreensProvider>
             </FieldsProvider>

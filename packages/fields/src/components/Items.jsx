@@ -21,6 +21,7 @@ const propTypes = {
     itemComponent: PropTypes.elementType,
     itemsField: MicromagPropTypes.formField,
     className: PropTypes.string,
+    isFieldForm: PropTypes.bool,
     gotoFieldForm: PropTypes.func,
     closeFieldForm: PropTypes.func,
     onChange: PropTypes.func,
@@ -50,6 +51,7 @@ const defaultProps = {
     itemComponent: null,
     itemsField: null,
     className: null,
+    isFieldForm: false,
     gotoFieldForm: null,
     closeFieldForm: null,
     onChange: null,
@@ -66,16 +68,20 @@ const ItemsField = ({
     itemsField,
     className,
     onChange,
+    isFieldForm,
     gotoFieldForm,
     closeFieldForm,
 }) => {
+    const finalIsFieldForm = isFieldForm || (itemComponent !== null ? itemComponent.withForm || false : false);
     const onClickAdd = useCallback(() => {
         const newValue = [...(value || []), newDefaultValue];
         if (onChange !== null) {
             onChange(newValue);
         }
-        gotoFieldForm(`${name}.${newValue.length - 1}`);
-    }, [value, onChange, newDefaultValue, gotoFieldForm, name]);
+        if (finalIsFieldForm) {
+            gotoFieldForm(`${name}.${newValue.length - 1}`);
+        }
+    }, [value, onChange, newDefaultValue, finalIsFieldForm, gotoFieldForm, name]);
     const onItemChange = useCallback(
         (index, newValue) => {
             if (onChange !== null) {
