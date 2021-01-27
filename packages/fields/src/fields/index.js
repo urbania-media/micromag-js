@@ -14,6 +14,8 @@ export { default as entry } from './entry';
 export { default as fieldWithForm } from './field-with-form';
 export { default as fields } from './fields';
 export { default as fit } from './fit';
+export { default as font } from './font';
+export { default as fonts } from './fonts';
 export { default as fontFamily } from './font-family';
 export { default as fontSize } from './font-size';
 export { default as geoPosition } from './geo-position';
