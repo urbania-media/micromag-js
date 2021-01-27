@@ -73,7 +73,7 @@ const Navbar = ({
     const team = [];
     const { sources, sections } = useSearchFilters({
         recent: recent.map((val) => ({ value: val, label: val })),
-        tags: tags !== null ? tags.map((t) => ({ value: t.id, label: t.name })) : [],
+        tags: tags !== null ? tags.map((t) => ({ value: t.name, label: t.name })) : [],
         team,
     });
 
