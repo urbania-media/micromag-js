@@ -5,6 +5,7 @@ import { MemoryRouter } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import { ScreensProvider } from '@micromag/screens';
 import { FieldsProvider } from '@micromag/fields';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { RoutesProvider, TrackingProvider } from '@micromag/core/contexts';
 
 import * as ViewerPropTypes from '../lib/PropTypes';
@@ -20,6 +21,7 @@ const propTypes = {
     routes: ViewerPropTypes.routes,
     screen: PropTypes.string,
     withoutRouter: PropTypes.bool,
+    trackingVariables: MicromagPropTypes.trackingVariables,
     children: PropTypes.func,
 };
 
@@ -29,16 +31,24 @@ const defaultProps = {
     routes: defaultRoutes,
     screen: null,
     withoutRouter: false,
+    trackingVariables: null,
     children: null,
 };
 
-const ViewerContainer = ({ memoryRouter, basePath, routes, withoutRouter, ...otherProps }) => {
+const ViewerContainer = ({
+    memoryRouter,
+    basePath,
+    routes,
+    withoutRouter,
+    trackingVariables,
+    ...otherProps
+}) => {
     const Router = memoryRouter ? MemoryRouter : BrowserRouter;
 
     const content = (
         <FieldsProvider>
             <ScreensProvider>
-                <TrackingProvider>
+                <TrackingProvider variables={trackingVariables}>
                     {withoutRouter ? <Viewer {...otherProps} /> : <ViewerRoutes {...otherProps} />}
                 </TrackingProvider>
             </ScreensProvider>
