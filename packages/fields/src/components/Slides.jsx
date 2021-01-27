@@ -25,7 +25,7 @@ const SlidesField = (props) => (
                 description="Button label in slides field"
             />
         }
-        ItemComponent={SlideField}
+        itemComponent={SlideField}
         {...props}
     />
 );

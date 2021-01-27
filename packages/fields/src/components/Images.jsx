@@ -30,7 +30,7 @@ const ImagesField = (props) => (
                 description="Button label in images field"
             />
         }
-        ItemComponent={ImageField}
+        itemComponent={ImageField}
         {...props}
     />
 );
