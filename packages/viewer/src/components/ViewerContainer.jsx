@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { MemoryRouter } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
@@ -16,26 +16,29 @@ import defaultRoutes from '../data/routes.json';
 import '../styles/styles.global.scss';
 
 const propTypes = {
+    story: MicromagPropTypes.story,
+    screen: PropTypes.string,
     memoryRouter: PropTypes.bool,
     basePath: PropTypes.string,
     routes: ViewerPropTypes.routes,
-    screen: PropTypes.string,
     withoutRouter: PropTypes.bool,
     trackingVariables: MicromagPropTypes.trackingVariables,
     children: PropTypes.func,
 };
 
 const defaultProps = {
+    story: null,
+    screen: null,
     memoryRouter: false,
     basePath: null,
     routes: defaultRoutes,
-    screen: null,
     withoutRouter: false,
     trackingVariables: null,
     children: null,
 };
 
 const ViewerContainer = ({
+    story,
     memoryRouter,
     basePath,
     routes,
@@ -45,11 +48,28 @@ const ViewerContainer = ({
 }) => {
     const Router = memoryRouter ? MemoryRouter : BrowserRouter;
 
+    const finalTrackingVariables = useMemo(() => {
+        if (story === null && trackingVariables === null) {
+            return null;
+        }
+        const { id = null, slug = null, title = null } = story;
+        return {
+            storyId: id,
+            storySlug: slug,
+            storyTitle: title,
+            ...trackingVariables,
+        };
+    }, [story, trackingVariables]);
+
     const content = (
         <FieldsProvider>
             <ScreensProvider>
-                <TrackingProvider variables={trackingVariables}>
-                    {withoutRouter ? <Viewer {...otherProps} /> : <ViewerRoutes {...otherProps} />}
+                <TrackingProvider variables={finalTrackingVariables}>
+                    {withoutRouter ? (
+                        <Viewer story={story} {...otherProps} />
+                    ) : (
+                        <ViewerRoutes story={story} {...otherProps} />
+                    )}
                 </TrackingProvider>
             </ScreensProvider>
         </FieldsProvider>
