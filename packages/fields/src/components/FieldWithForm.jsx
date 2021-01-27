@@ -35,12 +35,7 @@ const defaultProps = {
     thumbnail: null,
     labelPath: 'label',
     thumbnailPath: 'thumbnail',
-    noValueLabel: (
-        <FormattedMessage
-            defaultMessage="Click to edit..."
-            description="Label when no value is provided to Field with form"
-        />
-    ),
+    noValueLabel: null,
     isHorizontal: false,
     children: null,
     field: null,
@@ -85,6 +80,7 @@ const FieldWithForm = ({
     } else if (thumbnailSrc !== null) {
         thumbnailElement = <img src={thumbnailSrc} className={styles.thumbnail} alt={label} />;
     }
+
     return (
         <span
             className={classNames([
@@ -131,7 +127,14 @@ const FieldWithForm = ({
                         },
                     ])}
                 >
-                    <Label>{noValueLabel}</Label>
+                    <Label>
+                        {noValueLabel || (
+                            <FormattedMessage
+                                defaultMessage="Click to edit..."
+                                description="Label when no value is provided to Field with form"
+                            />
+                        )}
+                    </Label>
                 </span>
             )}
         </span>

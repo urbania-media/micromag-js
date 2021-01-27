@@ -80,7 +80,6 @@ const MapScreen = ({
     className,
 }) => {
     const trackScreenEvent = useTrackScreenEvent(type);
-    
 
     const [selectedMarkerIndex, setSelectedMarkerIndex] = useState(null);
     const hasSelectedMarker = selectedMarkerIndex !== null;
@@ -88,7 +87,14 @@ const MapScreen = ({
 
     const { width, height } = useScreenSize();
 
-    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } = useScreenRenderContext();
+    const {
+        isView,
+        isPreview,
+        isPlaceholder,
+        isEdit,
+        isStatic,
+        isCapture,
+    } = useScreenRenderContext();
 
     const [ready, setReady] = useState(false);
     const transitionPlaying = current && ready;
@@ -182,7 +188,9 @@ const MapScreen = ({
         element = <PlaceholderMap className={styles.placeholder} withImages={withMarkerImages} />;
     } else if (isPreview) {
         if (width > 0 && height > 0) {
-            let staticUrl = `https://maps.googleapis.com/maps/api/staticmap?size=${Math.round(width)}x${Math.round(height)}`;
+            let staticUrl = `https://maps.googleapis.com/maps/api/staticmap?size=${Math.round(
+                width,
+            )}x${Math.round(height)}`;
             if (defaultCenter !== null && (markers === null || markers.length === 0)) {
                 const { lat = null, lng = null } = defaultCenter || {};
                 staticUrl += `&center=${lat},${lng}`;
