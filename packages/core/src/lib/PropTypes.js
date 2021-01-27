@@ -231,6 +231,17 @@ export const imageMedia = PropTypes.shape({
 });
 export const imageMedias = PropTypes.arrayOf(imageMedia);
 
+export const fontMedia = PropTypes.shape({
+    ...mediaShape,
+    type: PropTypes.oneOf(['font']),
+    metadata: PropTypes.shape({
+        ...mediaMetadataShape,
+        width: PropTypes.number,
+        height: PropTypes.number,
+    }),
+});
+export const fontMedias = PropTypes.arrayOf(fontMedia);
+
 export const videoMedia = PropTypes.shape({
     ...mediaShape,
     type: PropTypes.oneOf(['video']),

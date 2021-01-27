@@ -17,6 +17,7 @@ export { default as ElementList } from './ElementList';
 export { default as Fields } from './Fields';
 export { default as Font } from './Font';
 export { default as FontFamily } from './FontFamily';
+export { default as Fonts } from './Fonts';
 export { default as FontSize } from './FontSize';
 export { default as FontStyleWithAlign } from './FontStyleWithAlign';
 export { default as GeoPosition } from './GeoPosition';
