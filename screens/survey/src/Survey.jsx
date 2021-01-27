@@ -34,6 +34,7 @@ const propTypes = {
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
+    resultTransitionDuration: PropTypes.number,
     type: PropTypes.string,
     className: PropTypes.string,
 };
@@ -48,6 +49,7 @@ const defaultProps = {
     current: true,
     transitions: null,
     transitionStagger: 100,
+    resultTransitionDuration: 500,
     type: null,
     className: null,
 };
@@ -62,6 +64,7 @@ const SurveyScreen = ({
     current,
     transitions,
     transitionStagger,
+    resultTransitionDuration,
     type,
     className,
 }) => {
@@ -69,14 +72,19 @@ const SurveyScreen = ({
     const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
 
-    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } = useScreenRenderContext();
+    const {
+        isView,
+        isPreview,
+        isPlaceholder,
+        isEdit,
+        isStatic,
+        isCapture,
+    } = useScreenRenderContext();
 
     const hasQuestion = isTextFilled(question);
 
     const showInstantAnswer = isStatic || isCapture;
-    const goodAnswerIndex = answers !== null ? answers.findIndex(({ good }) => good) : null;
-
-    const [userAnswerIndex, setUserAnswerIndex] = useState(showInstantAnswer ? goodAnswerIndex : null);
+    const [userAnswerIndex, setUserAnswerIndex] = useState(showInstantAnswer ? -1 : null);
     const answered = userAnswerIndex !== null;
 
     const isSplitted = layout === 'split';
@@ -144,6 +152,8 @@ const SurveyScreen = ({
     const labelsRefs = useRef([]);
     const [buttonMaxWidth, setButtonMaxWidth] = useState(null);
 
+    const finalTransitionDuration = showInstantAnswer ? 0 : `${resultTransitionDuration}ms`;
+    const [ready, setReady] = useState(false);
     useEffect(() => {
         let maxWidth = 0;
         buttonsRefs.current.forEach((button, buttonI) => {
@@ -153,7 +163,8 @@ const SurveyScreen = ({
             maxWidth = Math.max(maxWidth, totalWidth);
             setButtonMaxWidth(maxWidth);
         });
-    }, [answers, width, height, setButtonMaxWidth]);
+        setReady(true);
+    }, [answers, width, height, setButtonMaxWidth, finalTransitionDuration]);
 
     items.push(
         <div key="answers" className={styles.answers}>
@@ -173,7 +184,7 @@ const SurveyScreen = ({
                                 className={classNames([
                                     styles.item,
                                     {
-                                        [styles.userAnswer]: userAnswer,
+                                        // [styles.userAnswer]: userAnswer,
                                     },
                                 ])}
                             >
@@ -201,6 +212,7 @@ const SurveyScreen = ({
                                                     className={styles.itemInner}
                                                     style={{
                                                         width: answered ? buttonMaxWidth : null,
+                                                        transitionDuration: finalTransitionDuration,
                                                     }}
                                                 >
                                                     <Button
@@ -246,8 +258,19 @@ const SurveyScreen = ({
                                                         </span>
                                                     </Button>
                                                 </div>
-                                                <div className={styles.resultContainer}>
-                                                    <div className={styles.resultContent}>
+                                                <div
+                                                    className={styles.resultContainer}
+                                                    style={{
+                                                        transitionDuration: finalTransitionDuration,
+                                                    }}
+                                                >
+                                                    <div
+                                                        className={styles.resultContent}
+                                                        style={{
+                                                            transitionDelay: finalTransitionDuration,
+                                                            transitionDuration: finalTransitionDuration,
+                                                        }}
+                                                    >
                                                         <div
                                                             className={styles.result}
                                                             style={{
@@ -292,7 +315,7 @@ const SurveyScreen = ({
                     [styles.isPlaceholder]: isPlaceholder,
                 },
             ])}
-            data-screen-ready
+            data-screen-ready={ready}
         >
             <Background
                 {...(!isPlaceholder ? background : null)}

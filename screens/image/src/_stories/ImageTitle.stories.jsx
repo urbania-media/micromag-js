@@ -26,6 +26,8 @@ export default {
 export const Placeholder = (storyProps) => <ImageTitleScreen {...storyProps} />;
 
 export const Preview = (storyProps) => <ImageTitleScreen {...storyProps} {...props} />;
+export const Static = (storyProps) => <ImageTitleScreen {...storyProps} {...props} />;
+export const Capture = (storyProps) => <ImageTitleScreen {...storyProps} {...props} />;
 
 export const Edit = (storyProps) => <ImageTitleScreen {...storyProps} />;
 

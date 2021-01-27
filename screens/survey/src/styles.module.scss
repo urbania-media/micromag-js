@@ -1,3 +1,5 @@
+/* stylelint-disable max-nesting-depth */
+
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 @import '~@micromag/core/scss/mixins';
@@ -28,6 +30,24 @@
                 width: 90%;
             }
         }
+
+        // &.userAnswer {
+        //     .itemText {
+        //         color: $black;
+        //     }
+
+        //     .button {
+        //         border-color: $black;
+        //     }
+
+        //     .result {
+        //         background-color: $black;
+        //     }
+
+        //     .resultLabel {
+        //         color: $black;
+        //     }
+        // }
     }
 
     .itemContent {
@@ -36,7 +56,7 @@
     }
 
     .itemText {
-        transition: color 0.5s ease;
+        // transition: color 0.5s ease;
         color: $gray-600;
     }
 
@@ -44,13 +64,15 @@
         flex-grow: 1;
         align-self: stretch;
         padding: 15px 0;
-        transition: padding 0.5s ease;
+        transition-property: padding;
+        transition-timing-function: ease;
     }
 
     .resultContent {
         width: 0;
         height: 100%;
-        transition: width 0.5s 0.5s ease, opacity 0.5s 0.5s ease;
+        transition-property: width opacity;
+        transition-timing-function: ease;
         opacity: 0;
     }
 
@@ -71,7 +93,8 @@
 
     .itemInner {
         width: 100%;
-        transition: width 0.5s ease;
+        transition-property: width;
+        transition-timing-function: ease;
     }
 
     .button {

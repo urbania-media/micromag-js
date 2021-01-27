@@ -163,19 +163,32 @@
         {
             "id": "9d85aa70-5b56-11eb-916e-e320b8bc4adc",
             "type": "image",
-            "layout": "normal",
+            "layout": "fullscreen",
             "image": {
                 "url": "https://picsum.photos/800/800?random=1",
                 "thumbnail_url": "https://picsum.photos/100/100?random=1",
                 "metadata": { "width": 800, "height": 800 }
             },
-            "background": { "color": "#FF00FF" },
+            "background": { "color": "#F000FF" },
+            "transitions": { "in": "fade", "out": "fade" }
+        },
+        {
+            "id": "9d85aa70-5b56-11eb-916e-e320b8bc4add",
+            "type": "image-title",
+            "layout": "card",
+            "image": {
+                "url": "https://picsum.photos/800/800?random=1",
+                "thumbnail_url": "https://picsum.photos/100/100?random=1",
+                "metadata": { "width": 800, "height": 800 }
+            },
+            "title": { "body": "I like this title it's very good and super amazing" },
+            "background": { "color": "#FF000F" },
             "transitions": { "in": "fade", "out": "fade" }
         },
         {
             "id": "9d85aa71-5b56-11eb-916e-e320b8bc4adc",
             "type": "image-title-text",
-            "layout": "center",
+            "layout": "normal",
             "image": {
                 "url": "https://picsum.photos/800/800?random=1",
                 "thumbnail_url": "https://picsum.photos/100/100?random=1",
@@ -307,7 +320,7 @@
         {
             "id": "9d85aa75-5b56-11eb-916e-e320b8bc4adc",
             "type": "quiz",
-            "layout": "top",
+            "layout": "middle",
             "question": {
                 "body": "Une vraie question qui se termine par un point d’interrogation?"
             },
@@ -326,7 +339,7 @@
         {
             "id": "9d85aa76-5b56-11eb-916e-e320b8bc4adc",
             "type": "quote",
-            "layout": "top",
+            "layout": "middle",
             "quote": {
                 "body": "“ The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people ”"
             },
@@ -415,9 +428,89 @@
             "transitions": { "in": "fade", "out": "fade" }
         },
         {
+            "id": "9d85aa77-5b56-11eb-916e-e320b8bc4adc",
+            "type": "ranking",
+            "layout": "over",
+            "items": [
+                {
+                    "title": { "body": "A longer title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally"
+                    }
+                },
+                {
+                    "title": { "body": "A title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel All this happened"
+                    }
+                },
+                {
+                    "title": { "body": "28463 3459834 31459134 3145134" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky"
+                    }
+                },
+                {
+                    "title": { "body": "A better longer title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel All this happened more or less"
+                    }
+                },
+                {
+                    "title": { "body": "A title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was"
+                    }
+                },
+                {
+                    "title": { "body": "A title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time"
+                    }
+                },
+                {
+                    "title": { "body": "I like this title it's very good and super amazing" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was"
+                    }
+                },
+                {
+                    "title": { "body": "A longer title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel"
+                    }
+                },
+                {
+                    "title": { "body": "I like this title it's very good and super amazing" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens"
+                    }
+                },
+                {
+                    "title": { "body": "A better longer title" },
+                    "description": {
+                        "textStyle": {},
+                        "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases each time it was a different story It was a pleasure to burn The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens"
+                    }
+                }
+            ],
+            "numbersStyle": { "fontSize": 50 },
+            "background": { "color": "#0000FF" },
+            "transitions": { "in": "fade", "out": "fade" }
+        },
+        {
             "id": "9d85d180-5b56-11eb-916e-e320b8bc4adc",
             "type": "survey",
-            "layout": "top",
+            "layout": "middle",
             "question": {
                 "body": "Une vraie question qui se termine par un point d’interrogation?"
             },
@@ -433,7 +526,7 @@
         {
             "id": "9d85d181-5b56-11eb-916e-e320b8bc4adc",
             "type": "text",
-            "layout": "top",
+            "layout": "middle",
             "text": {
                 "textStyle": {},
                 "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases"
@@ -672,7 +765,8 @@
             "video": {
                 "media": {
                     "type": "video",
-                    "url": "https://www.w3schools.com/html/mov_bbb.mp4",
+                    "url": "http://podcasts.apple.com/resources/462787156.mp4",
+                    "thumbnail_url": "https://picsum.photos/1920/1080?random=1",
                     "metadata": { "width": 1920, "height": 1080 }
                 },
                 "autoPlay": false,
@@ -689,7 +783,8 @@
             "video": {
                 "media": {
                     "type": "video-360",
-                    "url": "https://www.w3schools.com/html/mov_bbb.mp4",
+                    "url": "http://podcasts.apple.com/resources/462787156.mp4",
+                    "thumbnail_url": "https://picsum.photos/1920/1080?random=1",
                     "metadata": { "width": 1920, "height": 960 }
                 },
                 "autoPlay": false,

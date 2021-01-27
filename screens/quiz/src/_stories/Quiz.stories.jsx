@@ -33,6 +33,8 @@ export default {
 export const Placeholder = (storyProps) => <QuizScreen {...storyProps} />;
 
 export const Preview = (storyProps) => <QuizScreen {...storyProps} {...props} />;
+export const Static = (storyProps) => <QuizScreen {...storyProps} {...props} />;
+export const Capture = (storyProps) => <QuizScreen {...storyProps} {...props} />;
 
 export const Edit = (storyProps) => <QuizScreen {...storyProps} />;
 

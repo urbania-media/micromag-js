@@ -7,6 +7,7 @@ const eventsMapping = {
     onCenterChanged: ['center_changed', (map) => map.getCenter()],
     onBoundsChanged: ['bounds_changed', (map) => map.getBounds()],
     onDragEnd: ['dragend', (map) => map.getCenter()],
+    onTilesLoaded: ['tilesloaded', () => {}]
 };
 
 export default function useGoogleMap({

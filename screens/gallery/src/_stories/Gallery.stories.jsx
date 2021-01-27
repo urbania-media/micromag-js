@@ -24,6 +24,8 @@ export default {
 export const Placeholder = (storyProps) => <GalleryScreen {...storyProps} />;
 
 export const Preview = (storyProps) => <GalleryScreen {...storyProps} {...props} />;
+export const Static = (storyProps) => <GalleryScreen {...storyProps} {...props} />;
+export const Capture = (storyProps) => <GalleryScreen {...storyProps} {...props} />;
 
 export const Edit = (storyProps) => <GalleryScreen {...storyProps} />;
 

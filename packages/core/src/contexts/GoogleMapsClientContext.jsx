@@ -7,13 +7,13 @@ const GoogleMapsClientContext = React.createContext(null);
 
 export const useGoogleMapsClient = () => useContext(GoogleMapsClientContext);
 
-export const withGoogleMapsClient = WrappedComponent => {
+export const withGoogleMapsClient = (WrappedComponent) => {
     const getDisplayName = ({ displayName = null, name = null }) =>
         displayName || name || 'Component';
 
-    const WithGoogleMapsClientComponent = props => (
+    const WithGoogleMapsClientComponent = (props) => (
         <GoogleMapsClientContext.Consumer>
-            {client => <WrappedComponent googleApiClient={client} {...props} />}
+            {(client) => <WrappedComponent googleApiClient={client} {...props} />}
         </GoogleMapsClientContext.Consumer>
     );
     WithGoogleMapsClientComponent.displayName = `WithGoogleMapsClient(${getDisplayName(
@@ -35,10 +35,17 @@ const defaultProps = {
 };
 
 export const GoogleMapsClientProvider = ({ children, apiKey, locale, libraries }) => {
-    const [client, setClient] = useState(null);
+    const exisitingClient = useGoogleMapsClient();
+    const [client, setClient] = useState(exisitingClient);
+
     useEffect(() => {
-        loadGoogleMaps({ apiKey, locale, libraries }).then(mapsApi => setClient(mapsApi));
-    }, [apiKey, setClient]);
+        if (client === null) {
+            loadGoogleMaps({ apiKey, locale, libraries }).then((mapsApi) =>
+                setClient(mapsApi !== null ? { ...mapsApi, apiKey } : null),
+            );
+        }
+    }, [apiKey, client, setClient]);
+
     return (
         <GoogleMapsClientContext.Provider value={client}>
             {children}

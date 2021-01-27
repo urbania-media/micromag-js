@@ -103,13 +103,19 @@ const Map = ({
         }
     }, [markers, mapsApi, setBounds]);
 
+    const [loaded, setLoaded] = useState(false);
+
     useEffect(() => {
-        if (mapsApi) {
+        if (mapsApi && loaded) {
             if (onReady !== null) {
                 onReady(mapsApi);
             }
         }
-    }, [mapsApi, onReady]);
+    }, [mapsApi, loaded, onReady]);
+
+    const onTilesLoaded = useCallback( () => {
+        setLoaded(true);
+    }, [setLoaded]);
 
     return (
         <div
@@ -133,6 +139,7 @@ const Map = ({
                         onCenterChanged,
                         onBoundsChanged,
                         onDragEnd,
+                        onTilesLoaded,
                     }}
                     fitBounds={fitBounds}
                     zoomControl={zoomControl}

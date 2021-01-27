@@ -30,6 +30,7 @@ const propTypes = {
     onProgressStep: PropTypes.func,
     onDurationChanged: PropTypes.func,
     onVolumeChanged: PropTypes.func,
+    onPosterLoaded: PropTypes.func,
 };
 
 const defaultProps = {
@@ -50,6 +51,7 @@ const defaultProps = {
     onProgressStep: null,
     onDurationChanged: null,
     onVolumeChanged: null,
+    onPosterLoaded: null,
 };
 
 const Video = ({
@@ -70,6 +72,7 @@ const Video = ({
     onProgressStep,
     onDurationChanged,
     onVolumeChanged,
+    onPosterLoaded,
 }) => {
     const { url = null } = media || {};
     const { ref, ...api } = useMediaApi({
@@ -99,6 +102,19 @@ const Video = ({
     }, [ready, onReady]);
 
     const withSize = width !== null && height !== null;
+    const { thumbnail_url: thumbnailUrl = null } = media || {};
+
+    useEffect( () => {
+        if (thumbnailUrl !== null) {
+            const img = new Image();
+            img.src = thumbnailUrl;
+            img.onload = () => {
+                if (onPosterLoaded) {
+                    onPosterLoaded();
+                }
+            }
+        }
+    }, [thumbnailUrl]);
 
     return (
         <div
@@ -119,7 +135,7 @@ const Video = ({
                     : null
             }
         >
-            <video ref={ref} src={url} autoPlay={autoPlay} loop={loop} muted={muted} />
+            <video ref={ref} src={url} autoPlay={autoPlay} loop={loop} muted={muted} poster={thumbnailUrl} />
         </div>
     );
 };

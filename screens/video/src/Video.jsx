@@ -38,7 +38,14 @@ const VideoScreen = ({ layout, video, background, current, transitions, classNam
     const trackScreenMedia = useTrackScreenMedia('video');
 
     const { width, height } = useScreenSize();
-    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } = useScreenRenderContext();
+    const {
+        isView,
+        isPreview,
+        isPlaceholder,
+        isEdit,
+        isStatic,
+        isCapture,
+    } = useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
 
     const apiRef = useRef();
@@ -120,10 +127,15 @@ const VideoScreen = ({ layout, video, background, current, transitions, classNam
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
 
     // get resized video style props
-    const finalVideo = hasVideo ? { ...video, autoPlay: isPreview ? false : video.autoPlay } : null;
+    const finalVideo = hasVideo
+        ? { ...video, autoPlay: isPreview || isStatic || isCapture ? false : video.autoPlay }
+        : null;
     const { media: videoMedia = null, closedCaptions = null, withSeekBar = false } =
         finalVideo || {};
-    const { metadata: videoMetadata = null, url: videoUrl = null } = videoMedia || {};
+    const { metadata: videoMetadata = null, url: videoUrl = null, thumbnail_url:thumbnailUrl = null } = videoMedia || {};
+    const hasThumbnail = thumbnailUrl !== null;
+    const [posterReady, setPosterReady] = useState(!hasThumbnail);
+
     const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
 
     const { width: resizedVideoWidth, height: resizedVideoHeight } = getSizeWithinBounds(
@@ -139,12 +151,20 @@ const VideoScreen = ({ layout, video, background, current, transitions, classNam
     const placeholderProps = fullscreen ? { width: '100%', height: '100%' } : { width: '100%' };
 
     useEffect(() => {
-        setReady(false);
-    }, [videoUrl, setReady]);
+        setReady(!hasVideo);
+    }, [videoUrl, hasVideo, setReady]);
+
+    useEffect(() => {
+        setPosterReady(!hasThumbnail);
+    }, [thumbnailUrl, hasThumbnail, setPosterReady]);
 
     const onVideoReady = useCallback(() => {
         setReady(true);
     }, [setReady]);
+    
+    const onPosterLoaded = useCallback(() => {
+        setPosterReady(true);
+    }, [isStatic, isCapture, setPosterReady]);
 
     const items = [
         <ScreenElement
@@ -186,6 +206,7 @@ const VideoScreen = ({ layout, video, background, current, transitions, classNam
                             onDurationChanged={onDurationChanged}
                             onSeeked={onSeeked}
                             onVolumeChanged={onVolumeChanged}
+                            onPosterLoaded={onPosterLoaded}
                         />
                     </Transitions>
                 </div>
@@ -198,7 +219,7 @@ const VideoScreen = ({ layout, video, background, current, transitions, classNam
                     transitions={transitions}
                     disabled={transitionDisabled}
                 >
-                    {closedCaptions !== null ? (
+                    {closedCaptions !== null && !isPreview && !isCapture && !isStatic ? (
                         <ClosedCaptions
                             className={styles.closedCaptions}
                             media={closedCaptions}
@@ -230,7 +251,7 @@ const VideoScreen = ({ layout, video, background, current, transitions, classNam
                     [styles.fullscreen]: fullscreen,
                 },
             ])}
-            data-screen-ready={ready}
+            data-screen-ready={((isStatic || isCapture) && posterReady) || ready}
         >
             <Background
                 {...(!isPlaceholder ? background : null)}

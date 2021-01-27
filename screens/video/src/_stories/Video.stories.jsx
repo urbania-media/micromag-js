@@ -31,10 +31,13 @@ export default {
 export const Placeholder = (storyProps) => <VideoScreen {...storyProps} />;
 
 export const Preview = (storyProps) => <VideoScreen {...storyProps} {...props()} />;
+export const Static = (storyProps) => <VideoScreen {...storyProps} {...props()} />;
+export const Capture = (storyProps) => <VideoScreen {...storyProps} {...props()} />;
 
 export const Edit = (storyProps) => <VideoScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <VideoScreen {...storyProps} {...props()} />;
+
 
 export const WithSeekbar = (storyProps) => (
     <VideoScreen {...storyProps} {...{ ...props({ withSeekBar: true }) }} />

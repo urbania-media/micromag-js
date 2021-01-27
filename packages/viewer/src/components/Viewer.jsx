@@ -81,6 +81,9 @@ const Viewer = ({
         metadata || {};
 
     const isView = renderContext === 'view';
+    const isStatic = renderContext === 'static';
+    const isCapture = renderContext === 'capture';
+
     const trackScreenView = useTrackScreenView();
     const trackEvent = useTrackEvent();
 
@@ -325,6 +328,8 @@ const Viewer = ({
         [trackingEnabled, trackEvent, screenId, screenIndex, screenType],
     );
 
+    const withoutScreensTransforms = isStatic || isCapture;
+
     return (
         <ScreenSizeProvider size={screenSize}>
             <ViewerProvider
@@ -406,18 +411,18 @@ const Viewer = ({
                                 />
                             );
                             const key = `screen-viewer-${scr.id || ''}-${i + 1}`;
+                            const screenTransform = landscape
+                                ? `translateX(calc(${
+                                      (screenWidth + landscapeScreenMargin) * (i - screenIndex)
+                                  }px - 50%)) scale(${current ? 1 : 0.9})`
+                                : `translateX(${current ? 0 : '100%'})`;
                             return (
                                 <div
                                     key={key}
                                     style={{
                                         width: landscape ? screenWidth : null,
                                         height: landscape ? screenHeight : null,
-                                        transform: landscape
-                                            ? `translateX(calc(${
-                                                  (screenWidth + landscapeScreenMargin) *
-                                                  (i - screenIndex)
-                                              }px - 50%)) scale(${current ? 1 : 0.9})`
-                                            : `translateX(${current ? 0 : '100%'})`,
+                                        transform: !withoutScreensTransforms ? screenTransform : null,
                                     }}
                                     className={classNames([
                                         styles.screen,

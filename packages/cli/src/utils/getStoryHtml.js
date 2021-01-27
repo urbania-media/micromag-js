@@ -4,8 +4,13 @@ import puppeteer from 'puppeteer';
 
 import startServer from './startServer';
 
-const getStoryHtml = async (story) => {
-    const server = await startServer(path.join(process.cwd(), './node_modules/@micromag/viewer-build/build/'));
+const getStoryHtml = async (story, keys = null) => {
+    const server = await startServer(
+        path.join(process.cwd(), './node_modules/@micromag/viewer-build/build/'),
+    );
+    const serverPort = server.address().port;
+    const { gmaps = null } = keys || {};
+
     const browser = await puppeteer.launch({
         devtools: true,
         defaultViewport: {
@@ -15,9 +20,22 @@ const getStoryHtml = async (story) => {
             isMobile: true,
         },
     });
-    const page = await browser.newPage();
-    await page.goto(`http://127.0.0.1:3003`);
-    await page.evaluate(storyToRender => renderStory(storyToRender), story);
+
+    const pages = await browser.pages();
+    const hasPage = pages.length > 0;
+    const page = hasPage ? pages[0] : await browser.newPage();
+    await page.goto(`http://127.0.0.1:${serverPort}`);
+
+    await page.evaluate(
+        (storyToRender, storyProps) => renderStory(storyToRender, storyProps),
+        story,
+        {
+            renderContext: 'static',
+            withoutRouter: true,
+            withoutMenu: true,
+            gmapsApiKey: gmaps,
+        },
+    );
     const pageContent = await page.content();
     await browser.close();
     server.close();

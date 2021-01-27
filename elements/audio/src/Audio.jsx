@@ -100,11 +100,11 @@ const Audio = ({
 
     const onWaveReady = useCallback(() => {
         setWaveReady(true);
-    }, []);
+    }, [setWaveReady]);
 
     useEffect(() => {
         setWaveReady(false);
-    }, [url]);
+    }, [setWaveReady, url]);
 
     useEffect(() => {
         if (ready && onReady !== null) {

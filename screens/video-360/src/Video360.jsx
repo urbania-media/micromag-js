@@ -141,17 +141,20 @@ const Video360Screen = ({
     // ------------------------------------
 
     const hasVideo = video !== null;
-    const withVideoSphere = hasVideo && (isView || isEdit);
+    const withVideoSphere = hasVideo && (isView || isEdit) && !isCapture && !isStatic;
     const [ready, setReady] = useState(!hasVideo);
+    
     const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
 
-    const finalVideo = hasVideo ? { ...video, autoPlay: isPreview ? false : video.autoPlay } : null;
+    const finalVideo = hasVideo ? { ...video, autoPlay: isPreview || isStatic || isCapture ? false : video.autoPlay } : null;
     const { media: videoMedia = null, closedCaptions = null, withSeekBar = false } =
         finalVideo || {};
 
-    const { metadata: videoMetadata = null, url: videoUrl = null } = videoMedia || {};
+    const { metadata: videoMetadata = null, url: videoUrl = null, thumbnail_url: thumbnailUrl = null } = videoMedia || {};
     const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
+    const hasThumbnail = thumbnailUrl !== null;
+    const [posterReady, setPosterReady] = useState(!hasThumbnail);
 
     const { width: resizedVideoWidth, height: resizedVideoHeight } = getSizeWithinBounds(
         videoWidth,
@@ -164,12 +167,20 @@ const Video360Screen = ({
     const resizedVideoTop = -(resizedVideoHeight - height) / 2;
 
     useEffect(() => {
-        setReady(false);
-    }, [videoUrl, setReady]);
+        setReady(!hasVideo);
+    }, [videoUrl, hasVideo, setReady]);
+
+    useEffect(() => {
+        setPosterReady(!hasThumbnail);
+    }, [thumbnailUrl, hasThumbnail, setPosterReady]);
 
     const onVideoReady = useCallback(() => {
         setReady(true);
     }, [setReady]);
+    
+    const onPosterLoaded = useCallback(() => {
+        setPosterReady(true);
+    }, [posterReady]);
 
     // 3D layer  --------------------------
 
@@ -189,7 +200,6 @@ const Video360Screen = ({
     const pointerLat = useRef(0);
 
     // render 3D frame
-    const [ready3d, setReady3d] = useState(false);
 
     const render3D = useCallback(() => {
         lat.current = Math.max(-85, Math.min(85, lat.current));
@@ -206,11 +216,7 @@ const Video360Screen = ({
 
         renderer.current.render(scene.current, camera.current);
 
-        if (!ready3d) {
-            setReady3d(true);
-        }
-
-    }, [ready3d, setReady3d]);
+    }, []);
 
     // Init 3D layer
 
@@ -372,7 +378,7 @@ const Video360Screen = ({
                     transitions={transitions}
                     disabled={transitionDisabled}
                 >
-                    {closedCaptions !== null ? (
+                    {closedCaptions !== null && !isPreview && !isCapture && !isStatic ? (
                         <ClosedCaptions
                             className={styles.closedCaptions}
                             media={closedCaptions}
@@ -401,10 +407,10 @@ const Video360Screen = ({
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.isPreview]: isPreview,
+                    [styles.showVideo]: isPreview || isStatic || isCapture,
                 },
             ])}
-            data-screen-ready={ready && (!withVideoSphere || ready3d)}
+            data-screen-ready={((isStatic || isCapture) && posterReady) || ready}
         >
             <Background
                 {...(!isPlaceholder ? background : null)}
@@ -436,6 +442,7 @@ const Video360Screen = ({
                             onDurationChanged={onDurationChanged}
                             onSeeked={onSeeked}
                             onVolumeChanged={onVolumeChanged}
+                            onPosterLoaded={onPosterLoaded}
                         />
                     </div>
                 ) : null}

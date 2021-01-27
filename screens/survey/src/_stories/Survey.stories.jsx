@@ -30,6 +30,8 @@ export default {
 export const Placeholder = (storyProps) => <SurveyScreen {...storyProps} />;
 
 export const Preview = (storyProps) => <SurveyScreen {...storyProps} {...props} />;
+export const Static = (storyProps) => <SurveyScreen {...storyProps} {...props} />;
+export const Capture = (storyProps) => <SurveyScreen {...storyProps} {...props} />;
 
 export const Edit = (storyProps) => <SurveyScreen {...storyProps} />;
 

@@ -449,7 +449,7 @@ export const screenSize = PropTypes.shape({
     height: PropTypes.number,
 });
 
-export const renderContext = PropTypes.oneOf(['view', 'placeholder', 'edit', 'preview']);
+export const renderContext = PropTypes.oneOf(['view', 'placeholder', 'edit', 'preview', 'static', 'capture']);
 
 /**
  * Screens

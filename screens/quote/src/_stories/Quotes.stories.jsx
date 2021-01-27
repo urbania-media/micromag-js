@@ -25,6 +25,8 @@ export default {
 export const Placeholder = (storyProps) => <QuoteScreen {...storyProps} />;
 
 export const Preview = (storyProps) => <QuoteScreen {...storyProps} {...props} />;
+export const Static = (storyProps) => <QuoteScreen {...storyProps} {...props} />;
+export const Capture = (storyProps) => <QuoteScreen {...storyProps} {...props} />;
 
 export const Edit = (storyProps) => <QuoteScreen {...storyProps} />;
 

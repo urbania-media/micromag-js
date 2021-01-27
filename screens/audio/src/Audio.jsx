@@ -38,7 +38,14 @@ const AudioScreen = ({ layout, audio, background, current, transitions, classNam
     const trackScreenMedia = useTrackScreenMedia('audio');
 
     const { width, height } = useScreenSize();
-    const { isPlaceholder, isPreview, isView, isEdit, isStatic, isCapture } = useScreenRenderContext();
+    const {
+        isPlaceholder,
+        isPreview,
+        isView,
+        isEdit,
+        isStatic,
+        isCapture,
+    } = useScreenRenderContext();
     const [ready, setReady] = useState(isStatic || isPlaceholder);
 
     const backgroundPlaying = current && (isView || isEdit);
@@ -46,7 +53,9 @@ const AudioScreen = ({ layout, audio, background, current, transitions, classNam
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
 
     const hasAudio = audio !== null;
-    const finalAudio = hasAudio ? { ...audio, autoPlay: isPreview ? false : audio.autoPlay } : null;
+    const finalAudio = hasAudio
+        ? { ...audio, autoPlay: isPreview || isStatic || isCapture ? false : audio.autoPlay }
+        : null;
     const { closedCaptions = null } = finalAudio || {};
     const hasClosedCaptions = closedCaptions !== null;
 
@@ -160,7 +169,7 @@ const AudioScreen = ({ layout, audio, background, current, transitions, classNam
                     onVolumeChanged={onVolumeChanged}
                 />
                 <div className={styles.bottomContent}>
-                    {hasClosedCaptions ? (
+                    {hasClosedCaptions && !isPreview && !isCapture && !isStatic ? (
                         <ClosedCaptions
                             className={styles.closedCaptions}
                             media={closedCaptions}

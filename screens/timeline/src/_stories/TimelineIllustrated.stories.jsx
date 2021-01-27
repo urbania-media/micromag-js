@@ -36,6 +36,12 @@ export const Placeholder = (storyProps) => <TimelineIllustratedScreen {...storyP
 export const Preview = (storyProps) => (
     <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} />
 );
+export const Static = (storyProps) => (
+    <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} />
+);
+export const Capture = (storyProps) => (
+    <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} />
+);
 
 export const Edit = (storyProps) => <TimelineIllustratedScreen {...storyProps} />;
 

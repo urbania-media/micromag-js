@@ -24,6 +24,8 @@ export default {
 export const Placeholder = (storyProps) => <TextScreen {...storyProps} />;
 
 export const Preview = (storyProps) => <TextScreen {...storyProps} {...props} />;
+export const Static = (storyProps) => <TextScreen {...storyProps} {...props} />;
+export const Capture = (storyProps) => <TextScreen {...storyProps} {...props} />;
 
 export const Edit = (storyProps) => <TextScreen {...storyProps} />;
 

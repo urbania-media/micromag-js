@@ -6,21 +6,38 @@ import puppeteer from 'puppeteer';
 import startServer from './startServer';
 import getOutputPath from './getOutputPath';
 
-const captureStory = async (story, location, width = 320, height = 640) => {
+
+const DEBUG = true;
+const READY_WAIT_TIMEOUT = 20000;// ms
+const DEFAULT_SIZE = {
+    width: 320,
+    height: 640,
+    deviceScaleFactor: 2,
+    isMobile: true,
+};
+
+const captureStory = async (story, location, keys = null, size = null) => {
     const server = await startServer(
-        path.join(process.cwd(), './node_modules/@micromag/viewer-build/build/'),
+        path.join(process.cwd(), './node_modules/@micromag/viewer-build/build/')
     );
+    const serverPort = server.address().port;
+    const { gmaps = null } = keys || {};
+
+    const finalSize = {
+        ...DEFAULT_SIZE,
+        ...size,
+    };
+    const { width, height } = finalSize;
+    
     const browser = await puppeteer.launch({
-        devtools: true,
-        defaultViewport: {
-            width,
-            height,
-            deviceScaleFactor: 2,
-            isMobile: true,
-        },
+        devtools: DEBUG,
+        defaultViewport: finalSize,
     });
-    const page = await browser.newPage();
-    await page.goto(`http://127.0.0.1:3003`);
+
+    const pages = await browser.pages();
+    const hasPage = pages.length > 0;
+    const page = hasPage ? pages[0] : await browser.newPage();
+    await page.goto(`http://127.0.0.1:${serverPort}`);
 
     const { components: screens = null } = story || {};
     if (screens !== null) {
@@ -28,7 +45,7 @@ const captureStory = async (story, location, width = 320, height = 640) => {
         for (let index = 0; index < count; index += 1) {
             const { id, type } = screens[index];
             const singleScreenStory = {...story, components: screens.slice(index, index + 1)};
-            console.log(`Rendering ${index+1}/${count} (${type})...`)
+            console.log(`Screen ${index+1}/${count} (${type})...`)
             await page.evaluate(
                 (storyToRender, storyProps) => renderStory(storyToRender, storyProps),
                 singleScreenStory,
@@ -39,15 +56,14 @@ const captureStory = async (story, location, width = 320, height = 640) => {
                     withoutMenu: true,
                     width,
                     height,
+                    gmapsApiKey: gmaps,
                 },
             );
 
-            const screenReadyAttribute = 'data-screen-ready';
             try {
-                await page.waitForSelector(`[${screenReadyAttribute}="true"]`, { timeout: 10000 });
-                await page.waitForTimeout(500);
+                await page.waitForSelector('[data-screen-ready="true"]', { timeout: READY_WAIT_TIMEOUT });
             } catch(e) {
-                console.log('Timeout reached.');
+                console.log(`Timeout reached: ${id}`);
             }
             
             await page.screenshot({
@@ -58,7 +74,6 @@ const captureStory = async (story, location, width = 320, height = 640) => {
 
     await browser.close();
     server.close();
-    console.log('Success');
 };
 
 export default captureStory;

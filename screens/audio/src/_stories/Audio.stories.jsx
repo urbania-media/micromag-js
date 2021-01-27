@@ -31,6 +31,8 @@ export default {
 export const Placeholder = (storyProps) => <AudioScreen {...storyProps} />;
 
 export const Preview = (storyProps) => <AudioScreen {...storyProps} {...props()} />;
+export const Static = (storyProps) => <AudioScreen {...storyProps} {...props()} />;
+export const Capture = (storyProps) => <AudioScreen {...storyProps} {...props()} />;
 
 export const Edit = (storyProps) => <AudioScreen {...storyProps} />;
 

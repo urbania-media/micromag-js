@@ -27,6 +27,8 @@ export default {
 export const Placeholder = (storyProps) => <ContributionScreen {...storyProps} />;
 
 export const Preview = (storyProps) => <ContributionScreen {...storyProps} {...props} />;
+export const Static = (storyProps) => <ContributionScreen {...storyProps} {...props} />;
+export const Capture = (storyProps) => <ContributionScreen {...storyProps} {...props} />;
 
 export const Edit = (storyProps) => <ContributionScreen {...storyProps} />;
 

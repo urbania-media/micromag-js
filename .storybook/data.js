@@ -89,9 +89,12 @@ export const text = (length = 'normal', style = 'normal') => {
     };
 };
 
-export const imageMedia = ({ width = 800, height = 800, random: randomImage = false } = {}) => ({
-    url: `https://picsum.photos/${width}/${height}?random=${randomImage ? Math.random() : 1}`,
-    thumbnail_url: `https://picsum.photos/100/100?random=${randomImage ? Math.random() : 1}`,
+export const imageUrl = ({ width = 800, height = 800, rand = false } = {}) =>
+    `https://picsum.photos/${width}/${height}?random=${rand ? Math.random() : 1}`;
+
+export const imageMedia = ({ width = 800, height = 800, rand = false } = {}) => ({
+    url: imageUrl({ width, height, rand }),
+    thumbnail_url: imageUrl({ width: 100, height: 100, rand }),
     metadata: {
         width,
         height,
@@ -101,6 +104,7 @@ export const imageMedia = ({ width = 800, height = 800, random: randomImage = fa
 export const videoMedia = () => ({
     type: 'video',
     url: videoFile,
+    thumbnail_url: imageUrl({ width: 1920, height: 1080, rand: true }),
     metadata: {
         width: 1920,
         height: 1080,
@@ -110,6 +114,7 @@ export const videoMedia = () => ({
 export const video360Media = () => ({
     type: 'video-360',
     url: video360File,
+    thumbnail_url: imageUrl({ width: 1920, height: 960, rand: true }),
     metadata: {
         width: 1920,
         height: 960,
@@ -133,7 +138,7 @@ export const closedCaptionsMedia = () => ({
 
 export const images = ({ count = 3, width = 800, height = 800, rand = false } = {}) =>
     [...Array(count)].map(() => ({
-        url: `https://picsum.photos/${width}/${height}?random=${rand ? Math.random() : 1}`,
+        url: imageUrl({ width, height, rand }),
         metadata: {
             width,
             height,
@@ -143,7 +148,7 @@ export const images = ({ count = 3, width = 800, height = 800, rand = false } = 
 export const imagesWithCaptions = ({ count = 3, width = 800, height = 800, rand = false } = {}) =>
     [...Array(count)].map(() => ({
         media: {
-            url: `https://picsum.photos/${width}/${height}?random=${rand ? Math.random() : 1}`,
+            url: imageUrl({ width, height, rand }),
             metadata: {
                 width,
                 height,

@@ -30,6 +30,8 @@ export default {
 export const Placeholder = (storyProps) => <MapImagesScreen {...storyProps} />;
 
 export const Preview = (storyProps) => <MapImagesScreen {...storyProps} {...props} />;
+export const Static = (storyProps) => <MapImagesScreen {...storyProps} {...props} />;
+export const Capture = (storyProps) => <MapImagesScreen {...storyProps} {...props} />;
 
 export const Edit = (storyProps) => <MapImagesScreen {...storyProps} />;
 

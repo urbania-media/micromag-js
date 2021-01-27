@@ -5,7 +5,7 @@ const startServer = async (path, port = null) => {
     const finalPort =
         port ||
         (await getPort({
-            port: getPort.makeRange(3000, 3100),
+            port: getPort.makeRange(3050, 3100),
         }));
     return new Promise((resolve) => {
         const app = express();

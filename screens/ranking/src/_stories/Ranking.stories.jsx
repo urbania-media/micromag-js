@@ -30,6 +30,8 @@ export default {
 export const Placeholder = (storyProps) => <RankingScreen {...storyProps} />;
 
 export const Preview = (storyProps) => <RankingScreen {...storyProps} {...props} />;
+export const Static = (storyProps) => <RankingScreen {...storyProps} {...props} />;
+export const Capture = (storyProps) => <RankingScreen {...storyProps} {...props} />;
 
 export const Edit = (storyProps) => <RankingScreen {...storyProps} />;
 

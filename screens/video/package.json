@@ -54,6 +54,7 @@
         "@micromag/element-background": "^0.2.68",
         "@micromag/element-closed-captions": "^0.2.68",
         "@micromag/element-container": "^0.2.68",
+        "@micromag/element-image": "^0.2.68",
         "@micromag/element-media-controls": "^0.2.68",
         "@micromag/element-video": "^0.2.68",
         "@micromag/transforms": "^0.2.68",

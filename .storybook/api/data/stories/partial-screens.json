@@ -21,30 +21,21 @@
     },
     "components": [
         {
-            "id": "9d858360-5b56-11eb-916e-e320b8bc4adc",
-            "type": "audio",
+            "id": "9d85d185-5b56-11eb-916e-e320b8bc4adc",
+            "type": "video",
             "layout": "normal",
-            "audio": {
+            "video": {
                 "media": {
-                    "type": "audio",
-                    "url": "https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3",
-                    "metadata": { "duration": 16000 }
+                    "type": "video",
+                    "url": "http://podcasts.apple.com/resources/462787156.mp4",
+                    "thumbnail_url": "https://picsum.photos/1920/1080?random=1",
+                    "metadata": { "width": 1920, "height": 1080 }
                 },
                 "autoPlay": false,
-                "loop": true
+                "loop": true,
+                "withSeekBar": true
             },
-            "background": { "color": "#00FF00" },
-            "transitions": { "in": "fade", "out": "fade" }
-        },
-        {
-            "id": "9d858361-5b56-11eb-916e-e320b8bc4adc",
-            "type": "contribution",
-            "layout": "middle",
-            "title": { "body": "28463 3459834 31459134 3145134" },
-            "name": { "label": "Votre nom" },
-            "message": { "label": "Votre message" },
-            "submit": { "body": "Envoyer" },
-            "background": { "color": "#00FFFF" },
+            "background": { "color": "#FF00FF" },
             "transitions": { "in": "fade", "out": "fade" }
         }
     ]

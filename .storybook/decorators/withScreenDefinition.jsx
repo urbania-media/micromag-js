@@ -43,7 +43,7 @@ const withScreenDefinition = (
         );
     }
 
-    if (story === 'Preview' || story === 'Edit') {
+    if (story === 'Preview' || story === 'Edit' || story === 'Static' || story === 'Capture') {
         return (
             <LayoutSwitcher layouts={layouts}>
                 {(layout) => (

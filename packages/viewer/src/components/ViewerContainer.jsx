@@ -5,7 +5,7 @@ import { MemoryRouter } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import { ScreensProvider } from '@micromag/screens';
 import { FieldsProvider } from '@micromag/fields';
-import { RoutesProvider, TrackingProvider } from '@micromag/core/contexts';
+import { GoogleMapsClientProvider, RoutesProvider, TrackingProvider } from '@micromag/core/contexts';
 
 import * as ViewerPropTypes from '../lib/PropTypes';
 import Viewer from './Viewer';
@@ -20,6 +20,7 @@ const propTypes = {
     routes: ViewerPropTypes.routes,
     screen: PropTypes.string,
     withoutRouter: PropTypes.bool,
+    gmapsApiKey: PropTypes.string,
     children: PropTypes.func,
 };
 
@@ -29,20 +30,23 @@ const defaultProps = {
     routes: defaultRoutes,
     screen: null,
     withoutRouter: false,
+    gmapsApiKey: null,
     children: null,
 };
 
-const ViewerContainer = ({ memoryRouter, basePath, routes, withoutRouter, ...otherProps }) => {
+const ViewerContainer = ({ memoryRouter, basePath, routes, withoutRouter, gmapsApiKey, ...otherProps }) => {
     const Router = memoryRouter ? MemoryRouter : BrowserRouter;
 
     const content = (
-        <FieldsProvider>
-            <ScreensProvider>
-                <TrackingProvider>
-                    {withoutRouter ? <Viewer {...otherProps} /> : <ViewerRoutes {...otherProps} />}
-                </TrackingProvider>
-            </ScreensProvider>
-        </FieldsProvider>
+        <GoogleMapsClientProvider apiKey={gmapsApiKey}>
+            <FieldsProvider>
+                <ScreensProvider>
+                    <TrackingProvider>
+                        {withoutRouter ? <Viewer {...otherProps} /> : <ViewerRoutes {...otherProps} />}
+                    </TrackingProvider>
+                </ScreensProvider>
+            </FieldsProvider>
+        </GoogleMapsClientProvider>
     );
 
     return withoutRouter ? (

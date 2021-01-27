@@ -31,6 +31,8 @@ export default {
 export const Placeholder = (storyProps) => <Video360Screen {...storyProps} />;
 
 export const Preview = (storyProps) => <Video360Screen {...storyProps} {...props()} />;
+export const Static = (storyProps) => <Video360Screen {...storyProps} {...props()} />;
+export const Capture = (storyProps) => <Video360Screen {...storyProps} {...props()} />;
 
 export const Edit = (storyProps) => <Video360Screen {...storyProps} />;
 

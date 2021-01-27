@@ -1,10 +1,14 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
-import React, { useState, useCallback, useRef, useMemo } from 'react';
+import React, { useState, useCallback, useRef, useMemo, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import {
+    useGoogleMapsClient,
+    useScreenSize,
+    useScreenRenderContext,
+} from '@micromag/core/contexts';
 import { PlaceholderMap, Transitions, Button, ScreenElement } from '@micromag/core/components';
 import { useTrackScreenEvent, useResizeObserver } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
@@ -14,11 +18,9 @@ import Map from '@micromag/element-map';
 import Heading from '@micromag/element-heading';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
-import Image from '@micromag/element-image';
+import ImageElement from '@micromag/element-image';
 
 import styles from './styles.module.scss';
-
-const gmapsApiKey = process.env.GOOGLE_MAPS_API_KEY || null;
 
 const defaultCenter = {
     lat: 45.5,
@@ -79,8 +81,10 @@ const MapScreen = ({
     type,
     className,
 }) => {
+    const mapsApi = useGoogleMapsClient();
+    const { apiKey: gmapsApiKey = null } = mapsApi || {};
+
     const trackScreenEvent = useTrackScreenEvent(type);
-    
 
     const [selectedMarkerIndex, setSelectedMarkerIndex] = useState(null);
     const hasSelectedMarker = selectedMarkerIndex !== null;
@@ -88,7 +92,14 @@ const MapScreen = ({
 
     const { width, height } = useScreenSize();
 
-    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } = useScreenRenderContext();
+    const {
+        isView,
+        isPreview,
+        isPlaceholder,
+        isEdit,
+        isStatic,
+        isCapture,
+    } = useScreenRenderContext();
 
     const [ready, setReady] = useState(false);
     const transitionPlaying = current && ready;
@@ -177,12 +188,36 @@ const MapScreen = ({
     } = useResizeObserver({ disabled: !isView });
     const { width: markerOverContentInnerWidth = '100%' } = markerOverContentInnerRect || {};
 
+    const [markerImagesLoaded, setMarkerImagesLoaded] = useState(0);
+    const allMarkersImagesLoaded = markerImagesLoaded === markers.length;
+
+    const finalReady = ready && (!withMarkerImages || allMarkersImagesLoaded);
+
+    useEffect(() => {
+        if (withMarkerImages && markers !== null && markers.length) {
+            setMarkerImagesLoaded(0);
+            markers.forEach((marker) => {
+                const { image = null } = marker;
+                const { url = null } = image || {};
+                if (url !== null) {
+                    const img = new Image();
+                    img.src = url;
+                    img.onload = () => {
+                        setMarkerImagesLoaded((index) => setMarkerImagesLoaded(index + 1));
+                    };
+                }
+            });
+        }
+    }, [withMarkerImages, markers]);
+
     let element = null;
     if (isPlaceholder) {
         element = <PlaceholderMap className={styles.placeholder} withImages={withMarkerImages} />;
     } else if (isPreview) {
-        if (width > 0 && height > 0) {
-            let staticUrl = `https://maps.googleapis.com/maps/api/staticmap?size=${Math.round(width)}x${Math.round(height)}`;
+        if (width > 0 && height > 0 && gmapsApiKey !== null) {
+            let staticUrl = `https://maps.googleapis.com/maps/api/staticmap?size=${Math.round(
+                width,
+            )}x${Math.round(height)}`;
             if (defaultCenter !== null && (markers === null || markers.length === 0)) {
                 const { lat = null, lng = null } = defaultCenter || {};
                 staticUrl += `&center=${lat},${lng}`;
@@ -207,7 +242,7 @@ const MapScreen = ({
                     .join('');
             }
             element = (
-                <Image
+                <ImageElement
                     {...{
                         media: {
                             url: staticUrl,
@@ -286,7 +321,7 @@ const MapScreen = ({
                                         ref={markerOverContentInnerRef}
                                     >
                                         {hasMarkerImage ? (
-                                            <Image
+                                            <ImageElement
                                                 className={styles.markerImage}
                                                 media={markerImage}
                                                 width={markerOverContentInnerWidth}
@@ -362,9 +397,11 @@ const MapScreen = ({
                         </Button>
                     </ScreenElement>
                 </div>
-                <Button className={styles.closeButton} onClick={onCloseClick}>
-                    &times;
-                </Button>
+                {!isStatic && !isCapture ? (
+                    <Button className={styles.closeButton} onClick={onCloseClick}>
+                        &times;
+                    </Button>
+                ) : null}
             </Transitions>
         );
     }
@@ -380,7 +417,7 @@ const MapScreen = ({
                     [styles.hasSelectedMarker]: hasSelectedMarker,
                 },
             ])}
-            data-screen-ready={ready}
+            data-screen-ready={finalReady}
         >
             <Background
                 {...(!isPlaceholder ? background : null)}

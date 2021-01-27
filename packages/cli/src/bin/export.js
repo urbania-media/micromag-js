@@ -20,13 +20,15 @@ program
     .requiredOption('-f, --format <format>', 'Format of the export')
     .option('-o, --output <output>', 'Output path')
     .option('-s, --settings <settings>', 'Settings')
+    .option('-k, --keys <keys>', 'Keys')
     .action((jsonPath) => {
         story = jsonPath === '-' ? JSON.parse(stdin) : readJSON(jsonPath);
     });
 
-const exportStory = async (format, output, jsonSettings) => {
+const exportStory = async (format, output, jsonSettings, jsonKeys) => {
     // eslint-disable-next-line
     const settings = jsonSettings !== null ? JSON.parse(jsonSettings) : {};
+    const keys = jsonKeys !== null ? JSON.parse(jsonKeys) : {};
     const storyParser = new StoryParser({
         fieldsManager: FieldsManager,
         screensManager: ScreensManager,
@@ -35,20 +37,20 @@ const exportStory = async (format, output, jsonSettings) => {
 
     switch (format) {
         case 'html': {
-            const html = await getStoryHtml(storyParsed);
+            const html = await getStoryHtml(storyParsed, keys);
             const destination = getOutputPath(output, 'story.html');
             console.log('destination', destination);
             fs.writeFileSync(destination, html, 'utf-8');
             break;
         }
         case 'html-ssr': {
-            const html = getStoryHtmlSSR(storyParsed);
+            const html = getStoryHtmlSSR(storyParsed, keys);
             const destination = getOutputPath(output, 'story-ssr.html');
             fs.writeFileSync(destination, html, 'utf-8');
             break;
         }
         case 'images': {
-            captureStory(storyParsed, output);
+            captureStory(storyParsed, output, keys);
             break;
         }
         default: {
@@ -63,8 +65,8 @@ const exportStory = async (format, output, jsonSettings) => {
 
 const startProgram = (prog) => {
     prog.parse();
-    const { format, output = null, settings = null } = prog.opts();
-    exportStory(format, output, settings);
+    const { format, output = null, settings = null, keys = null } = prog.opts();
+    exportStory(format, output, settings, keys);
 };
 
 // Read stdin for the story
