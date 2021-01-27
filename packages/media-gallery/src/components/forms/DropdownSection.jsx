@@ -49,7 +49,7 @@ const DropdownSection = ({ value, items, onChange, className }) => {
         [setOpen],
     );
 
-    return (
+    return items !== null && items.length > 1 ? (
         <div
             className={classNames([
                 styles.container,
@@ -90,31 +90,29 @@ const DropdownSection = ({ value, items, onChange, className }) => {
                     },
                 ])}
             >
-                {items !== null
-                    ? items.map(({ label, value: itemValue }) => {
-                          const itemClassNames = classNames([
-                              'dropdown-item',
-                              {
-                                  active: itemValue === value,
-                              },
-                          ]);
+                {items.map(({ label, value: itemValue }) => {
+                    const itemClassNames = classNames([
+                        'dropdown-item',
+                        {
+                            active: itemValue === value,
+                        },
+                    ]);
 
-                          return (
-                              <button
-                                  className={itemClassNames}
-                                  type="button"
-                                  key={`drop-${itemValue}`}
-                                  onClick={onItemClick}
-                                  data-value={itemValue}
-                              >
-                                  {label}
-                              </button>
-                          );
-                      })
-                    : null}
+                    return (
+                        <button
+                            className={itemClassNames}
+                            type="button"
+                            key={`drop-${itemValue}`}
+                            onClick={onItemClick}
+                            data-value={itemValue}
+                        >
+                            {label}
+                        </button>
+                    );
+                })}
             </div>
         </div>
-    );
+    ) : null;
 };
 
 DropdownSection.propTypes = propTypes;
