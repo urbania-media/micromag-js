@@ -22,11 +22,6 @@ msgstr ""
 msgid "Title"
 msgstr "Titre"
 
-# Media has been use somewhere
-#: +KWsXh
-msgid "Already used"
-msgstr "Déjà utilisé"
-
 # Background field label
 #: +MPZRu
 msgid "Background"
@@ -42,15 +37,20 @@ msgstr "Réponse"
 msgid "Clear"
 msgstr "Effacer"
 
-# Source from all places
-#: +b+e40
-msgid "All sources"
-msgstr "Toutes les sources"
+# Media gallery source
+#: /62oe4
+msgid "My files"
+msgstr ""
 
 # Field label
 #: /MeuM1
 msgid "Background video"
 msgstr "Vidéo d'arrière-plan"
+
+# Tags in Media Gallery
+#: 4fHMVj
+msgid "Tags"
+msgstr "Mots-clés"
 
 # Remove all button label
 #: /T/UDH
@@ -86,11 +86,6 @@ msgstr "Audio"
 #: 17BMn2
 msgid "Ranking"
 msgstr "Classement"
-
-# Tags in Media Gallery
-#: 4fHMVj
-msgid "Tags"
-msgstr "Mots-clés"
 
 # Field label
 #: ZCe0r4
@@ -142,11 +137,6 @@ msgstr ""
 msgid "Quote"
 msgstr "Citation"
 
-# Source from another micromag
-#: 3uMlsn
-msgid "Some other micromag"
-msgstr ""
-
 # Text placeholder
 #: z4CiV1
 msgid "Text"
@@ -192,11 +182,6 @@ msgstr "Sondage"
 msgid "GalleryCaptions"
 msgstr ""
 
-# Label for recent search section
-#: 6Z1BwP
-msgid "Recent searches"
-msgstr ""
-
 # Field label
 #: p85qJD
 msgid "Caption"
@@ -210,11 +195,6 @@ msgstr "Auteur"
 # ImageTitleText screen title
 #: 8c34nT
 msgid "ImageTitleText"
-msgstr ""
-
-# Label for usage search section
-#: 8cVWNh
-msgid "Usage"
 msgstr ""
 
 # Button label in markers field
@@ -260,11 +240,6 @@ msgstr ""
 # Success form message
 #: BpZoQZ
 msgid "Success"
-msgstr ""
-
-# Source from this micromag
-#: ChnSK6
-msgid "This Micromag"
 msgstr ""
 
 # Markers field label
@@ -320,6 +295,11 @@ msgstr ""
 # Field label
 #: xT/onn
 msgid "Image"
+msgstr ""
+
+# Media label
+#: GGwrCy
+msgid "Already used"
 msgstr ""
 
 # Field label
@@ -395,11 +375,6 @@ msgstr ""
 # Type Label in Media Gallery
 #: OkNUmk
 msgid "Type"
-msgstr ""
-
-# Media has not been used somewhere
-#: P7UAe2
-msgid "Unused"
 msgstr ""
 
 # Label when there is no item in items field
@@ -611,6 +586,11 @@ msgstr ""
 msgid "Size"
 msgstr ""
 
+# Media label
+#: mOSkbf
+msgid "Usage"
+msgstr ""
+
 #: menus.pagination.next
 msgid "next"
 msgstr ""
@@ -632,6 +612,11 @@ msgstr ""
 # Field label
 #: pJgYyE
 msgid "AutoPlay"
+msgstr ""
+
+# Media label
+#: pfvDzR
+msgid "Added by"
 msgstr ""
 
 # Confirmation message before deleting a screen
@@ -659,6 +644,11 @@ msgstr "Ajouter une diapositive"
 msgid "Font size"
 msgstr "Taille de la police"
 
+# Media label
+#: tmfbUn
+msgid "Unused"
+msgstr ""
+
 # Field label
 #: twTaAZ
 msgid "Bullet shape"
@@ -674,6 +664,11 @@ msgstr ""
 msgid "Bullet color"
 msgstr ""
 
+# Media label
+#: vYunz+
+msgid "Recent searches"
+msgstr ""
+
 # GalleryFeed screen title
 #: vrCfAS
 msgid "GalleryFeed"
@@ -684,10 +679,10 @@ msgstr ""
 msgid "Select an audio file..."
 msgstr "Sélectionnez un fichier audio..."
 
-# Label for users search section
-#: xKdf/C
-msgid "Added by"
-msgstr "Ajouté par"
+# Media gallery source
+#: xAzv6g
+msgid "All sources"
+msgstr ""
 
 # Fields section label
 #: y7xsPe

@@ -22,11 +22,6 @@ msgstr ""
 msgid "Title"
 msgstr "Title"
 
-# Media has been use somewhere
-#: +KWsXh
-msgid "Already used"
-msgstr "Already used"
-
 # Background field label
 #: +MPZRu
 msgid "Background"
@@ -42,15 +37,20 @@ msgstr "Answer"
 msgid "Clear"
 msgstr "Clear"
 
-# Source from all places
-#: +b+e40
-msgid "All sources"
-msgstr "All sources"
+# Media gallery source
+#: /62oe4
+msgid "My files"
+msgstr "My files"
 
 # Field label
 #: /MeuM1
 msgid "Background video"
 msgstr "Background video"
+
+# Tags in Media Gallery
+#: 4fHMVj
+msgid "Tags"
+msgstr "Tags"
 
 # Remove all button label
 #: /T/UDH
@@ -86,11 +86,6 @@ msgstr "Audio"
 #: 17BMn2
 msgid "Ranking"
 msgstr "Ranking"
-
-# Tags in Media Gallery
-#: 4fHMVj
-msgid "Tags"
-msgstr "Tags"
 
 # Field label
 #: ZCe0r4
@@ -142,11 +137,6 @@ msgstr "Entries"
 msgid "Quote"
 msgstr "Quote"
 
-# Source from another micromag
-#: 3uMlsn
-msgid "Some other micromag"
-msgstr "Some other micromag"
-
 # Text placeholder
 #: z4CiV1
 msgid "Text"
@@ -192,11 +182,6 @@ msgstr "Survey"
 msgid "GalleryCaptions"
 msgstr "GalleryCaptions"
 
-# Label for recent search section
-#: 6Z1BwP
-msgid "Recent searches"
-msgstr "Recent searches"
-
 # Field label
 #: p85qJD
 msgid "Caption"
@@ -211,11 +196,6 @@ msgstr "Author"
 #: 8c34nT
 msgid "ImageTitleText"
 msgstr "ImageTitleText"
-
-# Label for usage search section
-#: 8cVWNh
-msgid "Usage"
-msgstr "Usage"
 
 # Button label in markers field
 #: qKQCxc
@@ -261,11 +241,6 @@ msgstr "Select a closed-captions file..."
 #: BpZoQZ
 msgid "Success"
 msgstr "Success"
-
-# Source from this micromag
-#: ChnSK6
-msgid "This Micromag"
-msgstr "This Micromag"
 
 # Markers field label
 #: D0+Cxr
@@ -321,6 +296,11 @@ msgstr "Your name"
 #: xT/onn
 msgid "Image"
 msgstr "Image"
+
+# Media label
+#: GGwrCy
+msgid "Already used"
+msgstr "Already used"
 
 # Field label
 #: GMCLhn
@@ -396,11 +376,6 @@ msgstr "No slide..."
 #: OkNUmk
 msgid "Type"
 msgstr "Type"
-
-# Media has not been used somewhere
-#: P7UAe2
-msgid "Unused"
-msgstr "Unused"
 
 # Label when there is no item in items field
 #: PKCv5M
@@ -611,6 +586,11 @@ msgstr "TitleSubtitleCredits"
 msgid "Size"
 msgstr "Size"
 
+# Media label
+#: mOSkbf
+msgid "Usage"
+msgstr "Usage"
+
 #: menus.pagination.next
 msgid "next"
 msgstr "next"
@@ -633,6 +613,11 @@ msgstr "imagesWithCaptions"
 #: pJgYyE
 msgid "AutoPlay"
 msgstr "AutoPlay"
+
+# Media label
+#: pfvDzR
+msgid "Added by"
+msgstr "Added by"
 
 # Confirmation message before deleting a screen
 #: q/tLk0
@@ -659,6 +644,11 @@ msgstr "Add a slide"
 msgid "Font size"
 msgstr "Font size"
 
+# Media label
+#: tmfbUn
+msgid "Unused"
+msgstr "Unused"
+
 # Field label
 #: twTaAZ
 msgid "Bullet shape"
@@ -674,6 +664,11 @@ msgstr "Position"
 msgid "Bullet color"
 msgstr "Bullet color"
 
+# Media label
+#: vYunz+
+msgid "Recent searches"
+msgstr "Recent searches"
+
 # GalleryFeed screen title
 #: vrCfAS
 msgid "GalleryFeed"
@@ -684,10 +679,10 @@ msgstr "GalleryFeed"
 msgid "Select an audio file..."
 msgstr "Select an audio file..."
 
-# Label for users search section
-#: xKdf/C
-msgid "Added by"
-msgstr "Added by"
+# Media gallery source
+#: xAzv6g
+msgid "All sources"
+msgstr "All sources"
 
 # Fields section label
 #: y7xsPe

@@ -7,10 +7,6 @@
     "defaultMessage": "Title",
     "description": "Field label"
   },
-  "+KWsXh": {
-    "defaultMessage": "Already used",
-    "description": "Media has been use somewhere"
-  },
   "+MPZRu": {
     "defaultMessage": "Background",
     "description": "Background field label"
@@ -23,13 +19,17 @@
     "defaultMessage": "Clear",
     "description": "Clear button label in Media Gallery"
   },
-  "+b+e40": {
-    "defaultMessage": "All sources",
-    "description": "Source from all places"
+  "/62oe4": {
+    "defaultMessage": "My files",
+    "description": "Media gallery source"
   },
   "/MeuM1": {
     "defaultMessage": "Background video",
     "description": "Field label"
+  },
+  "/OM5UY": {
+    "defaultMessage": "Tags",
+    "description": "Media label"
   },
   "/T/UDH": {
     "defaultMessage": "Remove all",
@@ -58,10 +58,6 @@
   "17BMn2": {
     "defaultMessage": "Ranking",
     "description": "Ranking screen title"
-  },
-  "1dPnDA": {
-    "defaultMessage": "Tags",
-    "description": "Label for tags search section"
   },
   "1ezz2m": {
     "defaultMessage": "Description",
@@ -107,10 +103,6 @@
     "defaultMessage": "Quote",
     "description": "Quote screen title"
   },
-  "3uMlsn": {
-    "defaultMessage": "Some other micromag",
-    "description": "Source from another micromag"
-  },
   "4E2gbX": {
     "defaultMessage": "Text",
     "description": "Text field label"
@@ -155,10 +147,6 @@
     "defaultMessage": "GalleryCaptions",
     "description": "GalleryCaptions screen title"
   },
-  "6Z1BwP": {
-    "defaultMessage": "Recent searches",
-    "description": "Label for recent search section"
-  },
   "6mX2ya": {
     "defaultMessage": "Images",
     "description": "Images screen group"
@@ -178,10 +166,6 @@
   "8c34nT": {
     "defaultMessage": "ImageTitleText",
     "description": "ImageTitleText screen title"
-  },
-  "8cVWNh": {
-    "defaultMessage": "Usage",
-    "description": "Label for usage search section"
   },
   "8oczXQ": {
     "defaultMessage": "Add a marker",
@@ -218,10 +202,6 @@
   "BpZoQZ": {
     "defaultMessage": "Success",
     "description": "Success form message"
-  },
-  "ChnSK6": {
-    "defaultMessage": "This Micromag",
-    "description": "Source from this micromag"
   },
   "CrzYgw": {
     "defaultMessage": "Quote",
@@ -274,6 +254,10 @@
   "GE8wrk": {
     "defaultMessage": "Image",
     "description": "Image field label"
+  },
+  "GGwrCy": {
+    "defaultMessage": "Already used",
+    "description": "Media label"
   },
   "GMCLhn": {
     "defaultMessage": "Case",
@@ -342,10 +326,6 @@
   "OkNUmk": {
     "defaultMessage": "Type",
     "description": "Type Label in Media Gallery"
-  },
-  "P7UAe2": {
-    "defaultMessage": "Unused",
-    "description": "Media has not been used somewhere"
   },
   "PKCv5M": {
     "defaultMessage": "No item...",
@@ -586,6 +566,10 @@
     "defaultMessage": "Size",
     "description": "Label in Media Gallery"
   },
+  "mOSkbf": {
+    "defaultMessage": "Usage",
+    "description": "Media label"
+  },
   "menus.pagination.next": {
     "defaultMessage": "next"
   },
@@ -628,6 +612,10 @@
     "defaultMessage": "AutoPlay",
     "description": "Field label"
   },
+  "pfvDzR": {
+    "defaultMessage": "Added by",
+    "description": "Media label"
+  },
   "q/tLk0": {
     "defaultMessage": "Are you sure you want to delete this screen?",
     "description": "Confirmation message before deleting a screen"
@@ -663,6 +651,10 @@
   "tYGev7": {
     "defaultMessage": "Font size",
     "description": "Field label"
+  },
+  "tmfbUn": {
+    "defaultMessage": "Unused",
+    "description": "Media label"
   },
   "tvl2Zc": {
     "defaultMessage": "Video",
@@ -700,6 +692,10 @@
     "defaultMessage": "Video",
     "description": "Field label"
   },
+  "vYunz+": {
+    "defaultMessage": "Recent searches",
+    "description": "Media label"
+  },
   "vrCfAS": {
     "defaultMessage": "GalleryFeed",
     "description": "GalleryFeed screen title"
@@ -712,9 +708,9 @@
     "defaultMessage": "Select an audio file...",
     "description": "Label when no value is provided to Audio field"
   },
-  "xKdf/C": {
-    "defaultMessage": "Added by",
-    "description": "Label for users search section"
+  "xAzv6g": {
+    "defaultMessage": "All sources",
+    "description": "Media gallery source"
   },
   "xT/onn": {
     "defaultMessage": "Image",

@@ -2,9 +2,6 @@
     "uKJRh2": {
         "defaultMessage": "Titre"
     },
-    "+KWsXh": {
-        "defaultMessage": "Déjà utilisé"
-    },
     "+MPZRu": {
         "defaultMessage": "Arrière-plan"
     },
@@ -14,11 +11,11 @@
     "+TT1y6": {
         "defaultMessage": "Effacer"
     },
-    "+b+e40": {
-        "defaultMessage": "Toutes les sources"
-    },
     "/MeuM1": {
         "defaultMessage": "Vidéo d'arrière-plan"
+    },
+    "4fHMVj": {
+        "defaultMessage": "Mots-clés"
     },
     "/T/UDH": {
         "defaultMessage": "Tout effacer"
@@ -34,9 +31,6 @@
     },
     "17BMn2": {
         "defaultMessage": "Classement"
-    },
-    "4fHMVj": {
-        "defaultMessage": "Mots-clés"
     },
     "ZCe0r4": {
         "defaultMessage": "Description"
@@ -136,9 +130,6 @@
     },
     "wt1+dM": {
         "defaultMessage": "Sélectionnez un fichier audio..."
-    },
-    "xKdf/C": {
-        "defaultMessage": "Ajouté par"
     },
     "y7xsPe": {
         "defaultMessage": "Paramètres avancés"
