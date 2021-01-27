@@ -61,6 +61,7 @@ const Search = ({ value, onChange, onFocus, onBlur, className }) => {
                         'form-control',
                         {
                             'bg-light': !!value,
+                            'text-dark': value,
                         },
                     ])}
                     type="text"

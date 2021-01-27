@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
@@ -76,12 +77,12 @@ const SearchFilters = ({ filters, sections, onChange, className }) => {
             ])}
         >
             {activeSections.map(({ value, label, items }) => {
-                return (
+                return items.length > 0 ? (
                     <div key={`filter-${value}`} className={classNames([styles.section, 'py-2'])}>
                         <p className={classNames([styles.title, 'm-0'])}>{label}</p>
                         <TagSection tags={items} parent={value} onChange={onSectionChange} />
                     </div>
-                );
+                ) : null;
             })}
         </div>
     );

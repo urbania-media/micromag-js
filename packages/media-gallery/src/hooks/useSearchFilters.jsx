@@ -1,64 +1,61 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-export const useSearchSections = ({ recent, tags }) => {
+export const useSearchSections = ({
+    recent = [],
+    tags = [],
+    team = [],
+    sources: upstreamSources = [],
+}) => {
     const sources = [
         {
             label: (
-                <FormattedMessage
-                    defaultMessage="All sources"
-                    description="Source from all places"
-                />
+                <FormattedMessage defaultMessage="All sources" description="Media gallery source" />
             ),
             value: 'all',
         },
-        {
-            label: (
-                <FormattedMessage
-                    defaultMessage="This Micromag"
-                    description="Source from this micromag"
-                />
-            ),
-            value: 'self',
-        },
-        {
-            label: (
-                <FormattedMessage
-                    defaultMessage="Some other micromag"
-                    description="Source from another micromag"
-                />
-            ),
-            value: 'some-other-micromag',
-        },
-    ];
+        // {
+        //     label: (
+        //         <FormattedMessage
+        //             defaultMessage="This Micromag"
+        //             description="Media gallery source"
+        //         />
+        //     ),
+        //     value: 'micromag',
+        // },
+        ...(team.length > 0
+            ? [
+                  {
+                      label: (
+                          <FormattedMessage
+                              defaultMessage="My files"
+                              description="Media gallery source"
+                          />
+                      ),
+                      value: 'user',
+                  },
+              ]
+            : []),
+        ...upstreamSources,
+    ].filter((it) => it !== null);
 
-    const team = [
-        {
-            id: 1,
-            label: 'Pierre',
-            value: 'pierre',
-            thumbnail_url: 'https://picsum.photos/id/2/50/50',
-        },
-        { id: 2, label: 'Paul', value: 'paul', color: 'blue' },
-    ];
+    // const team = [
+    //     {
+    //         id: 1,
+    //         label: 'Pierre',
+    //         value: 'pierre',
+    //         thumbnail_url: 'https://picsum.photos/id/2/50/50',
+    //     },
+    //     { id: 2, label: 'Paul', value: 'paul', color: 'blue' },
+    // ];
 
     const usage = [
         {
-            label: (
-                <FormattedMessage
-                    defaultMessage="Already used"
-                    description="Media has been use somewhere"
-                />
-            ),
+            label: <FormattedMessage defaultMessage="Already used" description="Media label" />,
             value: 'unused',
         },
         {
-            label: (
-                <FormattedMessage
-                    defaultMessage="Unused"
-                    description="Media has not been used somewhere"
-                />
-            ),
+            label: <FormattedMessage defaultMessage="Unused" description="Media label" />,
             value: 'used',
         },
     ];
@@ -66,42 +63,22 @@ export const useSearchSections = ({ recent, tags }) => {
     const sections = [
         {
             value: 'recent',
-            label: (
-                <FormattedMessage
-                    defaultMessage="Recent searches"
-                    description="Label for recent search section"
-                />
-            ),
+            label: <FormattedMessage defaultMessage="Recent searches" description="Media label" />,
             items: recent,
         },
         {
             value: 'tags',
-            label: (
-                <FormattedMessage
-                    defaultMessage="Tags"
-                    description="Label for tags search section"
-                />
-            ),
+            label: <FormattedMessage defaultMessage="Tags" description="Media label" />,
             items: tags,
         },
         {
             value: 'users',
-            label: (
-                <FormattedMessage
-                    defaultMessage="Added by"
-                    description="Label for users search section"
-                />
-            ),
+            label: <FormattedMessage defaultMessage="Added by" description="Media label" />,
             items: team,
         },
         {
             value: 'usage',
-            label: (
-                <FormattedMessage
-                    defaultMessage="Usage"
-                    description="Label for usage search section"
-                />
-            ),
+            label: <FormattedMessage defaultMessage="Usage" description="Media label" />,
             items: usage,
         },
     ];

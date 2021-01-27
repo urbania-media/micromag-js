@@ -1,11 +1,13 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useMemo, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+// import isArray from 'lodash/isArray';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
-import { useMediasRecentSearches, useMediaTags } from '@micromag/data'; // useOrganisationTeam
+import { useMediasRecentSearches, useMediaTags } from '@micromag/data';
+// useOrganisationTeam
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button } from '@micromag/core/components';
 
@@ -23,6 +25,12 @@ import styles from '../../styles/partials/navbar.module.scss';
 const propTypes = {
     filters: AppPropTypes.filtersValue,
     media: MicromagPropTypes.media,
+    team: PropTypes.arrayOf(
+        PropTypes.shape({
+            label: PropTypes.string,
+            value: PropTypes.string,
+        }),
+    ),
     withoutTitle: PropTypes.bool,
     withoutSource: PropTypes.bool,
     onClickAdd: PropTypes.func,
@@ -36,6 +44,7 @@ const propTypes = {
 const defaultProps = {
     filters: null,
     media: null,
+    team: [],
     withoutTitle: false,
     withoutSource: false,
     onClickAdd: null,
@@ -49,6 +58,7 @@ const defaultProps = {
 const Navbar = ({
     filters,
     media,
+    team,
     withoutTitle,
     withoutSource,
     className,
@@ -58,16 +68,24 @@ const Navbar = ({
     onFiltersChange,
     onClickBack,
 }) => {
+    const waiting = useRef(null);
     const [open, setOpen] = useState(false);
 
     // TODO: get data from api for real testing
 
-    const { recent } = useMediasRecentSearches();
+    const { getSearches, createSearch } = useMediasRecentSearches();
+    const recent = useMemo(() => getSearches(), [getSearches]);
+
     const { tags } = useMediaTags();
     // const { team } = useOrganisationTeam();
-    const { sources, sections } = useSearchFilters({ recent, tags });
+    const { sources, sections } = useSearchFilters({
+        recent: recent.map((val) => ({ value: val, label: val })),
+        tags,
+        team,
+    });
 
     const searchValue = filters !== null ? filters.search || null : null;
+
     const hasFilter =
         filters !== null
             ? Object.keys(filters).reduce((acc, val) => {
@@ -98,11 +116,27 @@ const Navbar = ({
         [filters, onFiltersChange, setOpen],
     );
 
+    const onFiltersReset = useCallback(() => {
+        onFiltersChange({
+            type: filters.type || null,
+            search: filters.search || null,
+            source: filters.source || null,
+        });
+        setOpen(false);
+    }, [filters, onFiltersChange]);
+
     const onSearchChange = useCallback(
         (value) => {
+            if (waiting.current !== null) {
+                clearTimeout(waiting.current);
+            }
+            waiting.current = setTimeout(() => {
+                createSearch(value);
+                waiting.current = null;
+            }, 5000);
             onFilterChange('search', value, !!value);
         },
-        [onFilterChange],
+        [onFilterChange, createSearch, waiting],
     );
 
     const onSourceChange = useCallback(
@@ -225,6 +259,7 @@ const Navbar = ({
                             filters={filters}
                             sections={sections}
                             onChange={onFilterChange}
+                            onReset={onFiltersReset}
                         />
                     </div>
                 ) : null}

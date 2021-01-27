@@ -19,6 +19,7 @@ const propTypes = {
         usage: PropTypes.arrayOf(PropTypes.oneOf(['used', 'unused'])),
     }),
     onChange: PropTypes.func,
+    onReset: PropTypes.func,
     sections: PropTypes.arrayOf(PropTypes.object),
     className: PropTypes.string,
 };
@@ -26,16 +27,17 @@ const propTypes = {
 const defaultProps = {
     filters: null,
     onChange: null,
+    onReset: null,
     sections: [],
     className: null,
 };
 
-const ActiveFilters = ({ filters, onChange, sections, className }) => {
+const ActiveFilters = ({ filters, onChange, onReset, sections, className }) => {
     const handleReset = useCallback(() => {
-        if (onChange !== null) {
-            onChange(null);
+        if (onReset !== null) {
+            onReset();
         }
-    }, [onChange]);
+    }, [onReset]);
 
     const removeFilter = useCallback(
         (key, activeValue) => {

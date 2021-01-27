@@ -47,9 +47,10 @@ const TagSection = ({ tags, parent, onChange, className }) => {
                           'btn-sm',
                           'mb-1',
                           'mr-1',
+                          'btn-dark',
                           {
-                              'btn-secondary': active === true,
-                              'btn-outline-secondary': active === false,
+                              'btn-primary': active === true,
+                              // 'btn-outline-light': active === false,
                           },
                       ]);
 
