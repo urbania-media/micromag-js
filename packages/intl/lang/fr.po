@@ -202,6 +202,11 @@ msgstr ""
 msgid "Add a marker"
 msgstr "Ajouter un marqueur"
 
+# Button label
+#: 8sWUOV
+msgid "Add an font file"
+msgstr ""
+
 # Map screen title
 #: dmuKH3
 msgid "Map"
@@ -347,6 +352,11 @@ msgstr ""
 msgid "Create your first screen"
 msgstr ""
 
+# Label when there is no item
+#: KCDOHI
+msgid "No font..."
+msgstr ""
+
 # Field label
 #: KHWeV7
 msgid "Answers"
@@ -429,6 +439,11 @@ msgstr ""
 # Add button label in Media Gallery
 #: Tt4jN1
 msgid "Add"
+msgstr ""
+
+# Label when no value
+#: Wb5zY4
+msgid "Select a font file..."
 msgstr ""
 
 # Field label

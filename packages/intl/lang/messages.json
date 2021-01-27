@@ -171,6 +171,10 @@
     "defaultMessage": "Add a marker",
     "description": "Button label"
   },
+  "8sWUOV": {
+    "defaultMessage": "Add an font file",
+    "description": "Button label"
+  },
   "8vroDx": {
     "defaultMessage": "Map",
     "description": "Map screen group"
@@ -295,6 +299,10 @@
     "defaultMessage": "Create your first screen",
     "description": "Button to create your first screen"
   },
+  "KCDOHI": {
+    "defaultMessage": "No font...",
+    "description": "Label when there is no item"
+  },
   "KHWeV7": {
     "defaultMessage": "Answers",
     "description": "Field label"
@@ -389,6 +397,10 @@
   "V+G2s+": {
     "defaultMessage": "Add an image",
     "description": "Button label in images field"
+  },
+  "Wb5zY4": {
+    "defaultMessage": "Select a font file...",
+    "description": "Label when no value"
   },
   "WlNxMj": {
     "defaultMessage": "Repeat",

@@ -202,6 +202,11 @@ msgstr "ImageTitleText"
 msgid "Add a marker"
 msgstr "Add a marker"
 
+# Button label
+#: 8sWUOV
+msgid "Add an font file"
+msgstr "Add an font file"
+
 # Map screen title
 #: dmuKH3
 msgid "Map"
@@ -347,6 +352,11 @@ msgstr "Media gallery"
 msgid "Create your first screen"
 msgstr "Create your first screen"
 
+# Label when there is no item
+#: KCDOHI
+msgid "No font..."
+msgstr "No font..."
+
 # Field label
 #: KHWeV7
 msgid "Answers"
@@ -430,6 +440,11 @@ msgstr "Longitude"
 #: Tt4jN1
 msgid "Add"
 msgstr "Add"
+
+# Label when no value
+#: Wb5zY4
+msgid "Select a font file..."
+msgstr "Select a font file..."
 
 # Field label
 #: WlNxMj
