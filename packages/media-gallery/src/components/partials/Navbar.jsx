@@ -25,12 +25,6 @@ import styles from '../../styles/partials/navbar.module.scss';
 const propTypes = {
     filters: AppPropTypes.filtersValue,
     media: MicromagPropTypes.media,
-    team: PropTypes.arrayOf(
-        PropTypes.shape({
-            label: PropTypes.string,
-            value: PropTypes.string,
-        }),
-    ),
     withoutTitle: PropTypes.bool,
     withoutSource: PropTypes.bool,
     onClickAdd: PropTypes.func,
@@ -44,7 +38,6 @@ const propTypes = {
 const defaultProps = {
     filters: null,
     media: null,
-    team: [],
     withoutTitle: false,
     withoutSource: false,
     onClickAdd: null,
@@ -58,7 +51,6 @@ const defaultProps = {
 const Navbar = ({
     filters,
     media,
-    team,
     withoutTitle,
     withoutSource,
     className,
@@ -76,11 +68,12 @@ const Navbar = ({
     const { getSearches, createSearch } = useMediasRecentSearches();
     const recent = useMemo(() => getSearches(), [getSearches]);
 
-    const { tags } = useMediaTags();
+    const { tags = [] } = useMediaTags();
     // const { team } = useOrganisationTeam();
+    const team = [];
     const { sources, sections } = useSearchFilters({
         recent: recent.map((val) => ({ value: val, label: val })),
-        tags,
+        tags: tags !== null ? tags.map((t) => ({ value: t.id, label: t.name })) : [],
         team,
     });
 

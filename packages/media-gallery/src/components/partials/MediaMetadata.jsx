@@ -5,8 +5,6 @@ import classNames from 'classnames';
 import prettyBytes from 'pretty-bytes';
 import uniqBy from 'lodash/uniqBy';
 import { FormattedMessage } from 'react-intl';
-import { faHeadphonesAlt } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useApi, useMediaTags, useMediaUpdate } from '@micromag/data'; // useOrganisationTeam
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
