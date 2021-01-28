@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
@@ -8,62 +7,43 @@ import Pin from './pin.png';
 import PinInactive from './pin-inactive.png';
 
 const propTypes = {
+    map: PropTypes.object.isRequired, // eslint-disable-line
     position: PropTypes.shape({
         lat: PropTypes.number,
         lng: PropTypes.number,
     }).isRequired,
     type: PropTypes.string.isRequired,
-    mapsApi: PropTypes.object.isRequired, // eslint-disable-line
-    map: PropTypes.object.isRequired, // eslint-disable-line
     events: PropTypes.object, // eslint-disable-line
     active: PropTypes.bool,
     title: PropTypes.string,
-    image: MicromagPropTypes.imageElement,
-    imageSize: PropTypes.shape({
+    image: MicromagPropTypes.imageMedia,
+    iconSize: PropTypes.shape({
         width: PropTypes.number,
         height: PropTypes.number,
     }),
 };
 
 const defaultProps = {
+    map: null,
     events: null,
     active: true,
     title: null,
     image: null,
-    imageSize: {
+    iconSize: {
         width: 50,
         height: 50,
     },
 };
 
-const Marker = ({ mapsApi, position, type, map, events, active, title, image, imageSize }) => {
-    const marker = useGoogleMapMarker({
-        mapsApi,
+const Marker = ({ map, position, type, events, active, title, image, iconSize }) => {
+    useGoogleMapMarker(map, {
         position,
         type,
-        map,
         events,
         title,
+        icon: image || (active ? Pin : PinInactive),
+        iconSize,
     });
-
-    useEffect(() => {
-        if (marker) {
-            const { media: imageMedia = null } = image || {};
-            const { url: imageUrl = null } = imageMedia || {};
-            if (imageUrl !== null) {
-                marker.setIcon({
-                    url: imageUrl,
-                    scaledSize: new mapsApi.Size(imageSize.width, imageSize.height),
-                });
-            } else if (active) {
-                marker.setIcon(Pin);
-            } else {
-                marker.setIcon(PinInactive);
-            }
-            marker.setPosition(position);
-        }
-    }, [active, position]);
-
     return null;
 };
 

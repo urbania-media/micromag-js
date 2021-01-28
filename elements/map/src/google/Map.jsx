@@ -1,14 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useResizeObserver } from '@micromag/core/hooks';
 
 import useGoogleMap from './useGoogleMap';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
-    mapsApi: PropTypes.object.isRequired, // eslint-disable-line
     center: PropTypes.shape({
         lat: PropTypes.number,
         lng: PropTypes.number,
@@ -51,7 +49,6 @@ const defaultProps = {
 };
 
 const Map = ({
-    mapsApi,
     center,
     zoom,
     maxZoom,
@@ -69,9 +66,11 @@ const Map = ({
     className,
     children,
 }) => {
-    const { maps, map, mapRef, loading } = useGoogleMap({
-        mapsApi,
+    const { map, ref: mapRef } = useGoogleMap({
         zoom,
+        maxZoom,
+        bounds,
+        fitBounds,
         center,
         events,
         withoutStyle,
@@ -83,47 +82,6 @@ const Map = ({
         fullscreenControl,
     });
 
-    useEffect(() => {
-        if (map && center !== null) {
-            const { lat = null, lng = null } = center || {};
-            const finalCenter = { lat: lat || 0, lng: lng || 0 };
-            map.panTo(finalCenter);
-        }
-    }, [center]);
-
-    useEffect(() => {
-        if (map && zoom !== null) {
-            map.setZoom(Math.min(maxZoom, zoom));
-        }
-    }, [zoom, maxZoom]);
-
-    const {
-        ref: elRef,
-        entry: { contentRect: elContentRect },
-    } = useResizeObserver();
-    const { width = null, height = null } = elContentRect || {};
-
-    useEffect(() => {
-        if (map && fitBounds && bounds !== null) {
-            map.fitBounds(bounds);
-            if (map.getZoom() > maxZoom) {
-                map.setZoom(maxZoom);
-            }
-            map.panToBounds(bounds);
-        }
-    }, [maxZoom, bounds, fitBounds, width, height]);
-
-    useEffect(() => {
-        if (map) {
-            map.setOptions({
-                draggable: scrollable,
-                scrollWheel: scrollable,
-                disableDoubleClickZoom: !scrollable,
-                gestureHandling: scrollable ? 'cooperative' : 'none',
-            });
-        }
-    }, [scrollable]);
-
     return (
         <div
             className={classNames([
@@ -133,11 +91,9 @@ const Map = ({
                     [styles.preventScroll]: !scrollable,
                 },
             ])}
-            ref={elRef}
         >
             <div ref={mapRef} className={styles.map} />
-            {!loading &&
-                React.Children.map(children, (child) => React.cloneElement(child, { map, maps }))}
+            {React.Children.map(children, (child) => React.cloneElement(child, { map }))}
         </div>
     );
 };

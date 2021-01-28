@@ -3,6 +3,8 @@ import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { loadGoogleMaps } from '@folklore/services';
 
+import { useGoogleKeys } from './GoogleKeysContext';
+
 const GoogleMapsClientContext = React.createContext(null);
 
 export const useGoogleMapsClient = () => useContext(GoogleMapsClientContext);
@@ -24,7 +26,6 @@ export const withGoogleMapsClient = (WrappedComponent) => {
 
 const propTypes = {
     children: PropTypes.node.isRequired,
-    apiKey: PropTypes.string.isRequired,
     locale: PropTypes.string,
     libraries: PropTypes.arrayOf(PropTypes.string),
 };
@@ -34,17 +35,20 @@ const defaultProps = {
     libraries: null,
 };
 
-export const GoogleMapsClientProvider = ({ children, apiKey, locale, libraries }) => {
+export const GoogleMapsClientProvider = ({ children, locale, libraries }) => {
+    const { apiKey } = useGoogleKeys();
     const exisitingClient = useGoogleMapsClient();
     const [client, setClient] = useState(exisitingClient);
 
+    console.log(client);
+
     useEffect(() => {
-        if (client === null) {
-            loadGoogleMaps({ apiKey, locale, libraries }).then((mapsApi) =>
-                setClient(mapsApi !== null ? { ...mapsApi, apiKey } : null),
-            );
+        if (exisitingClient === null) {
+            loadGoogleMaps({ apiKey, locale, libraries }).then((newClient) => {
+                setClient(newClient);
+            });
         }
-    }, [apiKey, client, setClient]);
+    }, [apiKey, locale, libraries, setClient, exisitingClient]);
 
     return (
         <GoogleMapsClientContext.Provider value={client}>

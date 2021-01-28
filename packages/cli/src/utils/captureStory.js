@@ -6,32 +6,26 @@ import puppeteer from 'puppeteer';
 import startServer from './startServer';
 import getOutputPath from './getOutputPath';
 
-
 const DEBUG = true;
-const READY_WAIT_TIMEOUT = 20000;// ms
-const DEFAULT_SIZE = {
+const READY_WAIT_TIMEOUT = 20000; // ms
+const DEFAULT_VIEWPORT = {
     width: 320,
     height: 640,
     deviceScaleFactor: 2,
     isMobile: true,
 };
 
-const captureStory = async (story, location, keys = null, size = null) => {
+const captureStory = async (story, location, settings = {}) => {
+    const { viewport: defaultViewport = DEFAULT_VIEWPORT, googleApiKey = null } = settings;
     const server = await startServer(
-        path.join(process.cwd(), './node_modules/@micromag/viewer-build/build/')
+        path.join(process.cwd(), './node_modules/@micromag/viewer-build/build/'),
     );
     const serverPort = server.address().port;
-    const { gmaps = null } = keys || {};
+    const { width, height } = defaultViewport;
 
-    const finalSize = {
-        ...DEFAULT_SIZE,
-        ...size,
-    };
-    const { width, height } = finalSize;
-    
     const browser = await puppeteer.launch({
         devtools: DEBUG,
-        defaultViewport: finalSize,
+        defaultViewport,
     });
 
     const pages = await browser.pages();
@@ -44,8 +38,8 @@ const captureStory = async (story, location, keys = null, size = null) => {
         const count = screens.length;
         for (let index = 0; index < count; index += 1) {
             const { id, type } = screens[index];
-            const singleScreenStory = {...story, components: screens.slice(index, index + 1)};
-            console.log(`Screen ${index+1}/${count} (${type})...`)
+            const singleScreenStory = { ...story, components: screens.slice(index, index + 1) };
+            console.log(`Screen ${index + 1}/${count} (${type})...`);
             await page.evaluate(
                 (storyToRender, storyProps) => renderStory(storyToRender, storyProps),
                 singleScreenStory,
@@ -56,16 +50,18 @@ const captureStory = async (story, location, keys = null, size = null) => {
                     withoutMenu: true,
                     width,
                     height,
-                    gmapsApiKey: gmaps,
+                    googleApiKey,
                 },
             );
 
             try {
-                await page.waitForSelector('[data-screen-ready="true"]', { timeout: READY_WAIT_TIMEOUT });
-            } catch(e) {
+                await page.waitForSelector('[data-screen-ready="true"]', {
+                    timeout: READY_WAIT_TIMEOUT,
+                });
+            } catch (e) {
                 console.log(`Timeout reached: ${id}`);
             }
-            
+
             await page.screenshot({
                 path: getOutputPath(location, `${index}_${id}.png`),
             });

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useGoogleMapsClient } from '@micromag/core/contexts';
@@ -75,7 +75,7 @@ const Map = ({
     rotateControl,
     fullscreenControl,
 }) => {
-    const { maps: mapsApi } = useGoogleMapsClient() || {};
+    const client = useGoogleMapsClient();
 
     const onClick = useCallback(
         (position) => {
@@ -86,36 +86,42 @@ const Map = ({
         [onClickMap],
     );
 
-    const [bounds, setBounds] = useState(null);
-
-    useEffect(() => {
-        if (mapsApi) {
-            if (markers !== null && markers.length > 0) {
-                const newBounds = new mapsApi.LatLngBounds();
-                markers.forEach(({ geoPosition = null }) => {
-                    const { lat = null, lng = null } = geoPosition || {};
-                    newBounds.extend(new mapsApi.LatLng(lat, lng));
-                });
-                setBounds((currentBounds) =>
-                    newBounds.equals(currentBounds) ? currentBounds : newBounds,
-                );
-            }
+    const bounds = useMemo(() => {
+        if (client === null || markers === null || markers.length === 0) {
+            return null;
         }
-    }, [markers, mapsApi, setBounds]);
+        const markersBounds = markers.reduce((newBounds, { geoPosition = null }) => {
+            const { lat = null, lng = null } = geoPosition || {};
+            if (lat !== null && lng !== null) {
+                newBounds.extend(new client.maps.LatLng(lat, lng));
+            }
+            return newBounds;
+        }, new client.maps.LatLngBounds());
+        return markersBounds;
+    }, [client, markers]);
 
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
-        if (mapsApi && loaded) {
+        if (client !== null && loaded) {
             if (onReady !== null) {
-                onReady(mapsApi);
+                onReady(client);
             }
         }
-    }, [mapsApi, loaded, onReady]);
+    }, [client, loaded, onReady]);
 
-    const onTilesLoaded = useCallback( () => {
-        setLoaded(true);
-    }, [setLoaded]);
+    const onTilesLoaded = useCallback(() => setLoaded(true), [setLoaded]);
+
+    const events = useMemo(
+        () => ({
+            onClick,
+            onCenterChanged,
+            onBoundsChanged,
+            onDragEnd,
+            onTilesLoaded,
+        }),
+        [onClick, onCenterChanged, onBoundsChanged, onDragEnd, onTilesLoaded],
+    );
 
     return (
         <div
@@ -126,39 +132,33 @@ const Map = ({
                 },
             ])}
         >
-            {mapsApi ? (
-                <GoogleMap
-                    mapsApi={mapsApi}
-                    center={center}
-                    zoom={zoom}
-                    withoutStyle={withoutStyle}
-                    bounds={bounds}
-                    scrollable={scrollable}
-                    events={{
-                        onClick,
-                        onCenterChanged,
-                        onBoundsChanged,
-                        onDragEnd,
-                        onTilesLoaded,
-                    }}
-                    fitBounds={fitBounds}
-                    zoomControl={zoomControl}
-                    mapTypeControl={mapTypeControl}
-                    scaleControl={scaleControl}
-                    streetViewControl={streetViewControl}
-                    rotateControl={rotateControl}
-                    fullscreenControl={fullscreenControl}
-                >
-                    {markers
-                        ? markers.map((m, index) =>
-                              m.geoPosition && m.geoPosition.lat && m.geoPosition.lng ? (
+            <GoogleMap
+                center={center}
+                zoom={zoom}
+                withoutStyle={withoutStyle}
+                bounds={bounds}
+                scrollable={scrollable}
+                events={events}
+                fitBounds={fitBounds}
+                zoomControl={zoomControl}
+                mapTypeControl={mapTypeControl}
+                scaleControl={scaleControl}
+                streetViewControl={streetViewControl}
+                rotateControl={rotateControl}
+                fullscreenControl={fullscreenControl}
+            >
+                {markers !== null
+                    ? markers.map(
+                          ({ id, active = true, geoPosition = null, image = null }, index) =>
+                              geoPosition !== null &&
+                              (geoPosition.lat || null) !== null &&
+                              (geoPosition.lng || null) !== null ? (
                                   <Marker
-                                      mapsApi={mapsApi}
-                                      key={m.id}
-                                      active={m.active}
-                                      title={`marker id: ${m.id}`}
-                                      image={{ media: m.image }}
-                                      position={{ lat: m.geoPosition.lat, lng: m.geoPosition.lng }}
+                                      key={id}
+                                      active={active}
+                                      title={`marker id: ${id}`}
+                                      image={image}
+                                      position={geoPosition}
                                       events={{
                                           onClick:
                                               onClickMarker !== null
@@ -169,10 +169,9 @@ const Map = ({
                               ) : (
                                   <div />
                               ),
-                          )
-                        : null}
-                </GoogleMap>
-            ) : null}
+                      )
+                    : null}
+            </GoogleMap>
         </div>
     );
 };

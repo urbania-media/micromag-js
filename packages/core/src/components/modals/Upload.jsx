@@ -25,7 +25,6 @@ const defaultProps = {
 const UploadModal = ({ opened, sources, onUploaded, onRequestClose }) => {
     const onUpppyComplete = useCallback(
         (response) => {
-            console.log(response);
             if (onUploaded !== null) {
                 onUploaded(response);
             }

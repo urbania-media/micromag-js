@@ -105,6 +105,7 @@
         "slugify": "^1.4.6",
         "snake-case": "^3.0.4",
         "tinycolor2": "^1.4.2",
+        "uuid": "^8.3.2",
         "wolfy87-eventemitter": "^5.2.9"
     },
     "publishConfig": {

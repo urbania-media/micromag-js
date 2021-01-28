@@ -51,6 +51,7 @@
         "@babel/runtime": "^7.12.5",
         "@micromag/core": "^0.2.81",
         "classnames": "^2.2.6",
+        "lodash": "^4.17.20",
         "prop-types": "^15.7.2",
         "react-intl": "^5.10.16",
         "uuid": "^8.3.2"

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
-    useGoogleMapsClient,
+    useGoogleKeys,
     useScreenSize,
     useScreenRenderContext,
 } from '@micromag/core/contexts';
@@ -81,8 +81,7 @@ const MapScreen = ({
     type,
     className,
 }) => {
-    const mapsApi = useGoogleMapsClient();
-    const { apiKey: gmapsApiKey = null } = mapsApi || {};
+    const { apiKey = null } = useGoogleKeys();
 
     const trackScreenEvent = useTrackScreenEvent(type);
 
@@ -214,7 +213,7 @@ const MapScreen = ({
     if (isPlaceholder) {
         element = <PlaceholderMap className={styles.placeholder} withImages={withMarkerImages} />;
     } else if (isPreview) {
-        if (width > 0 && height > 0 && gmapsApiKey !== null) {
+        if (width > 0 && height > 0 && apiKey !== null) {
             let staticUrl = `https://maps.googleapis.com/maps/api/staticmap?size=${Math.round(
                 width,
             )}x${Math.round(height)}`;
@@ -225,8 +224,8 @@ const MapScreen = ({
             if (defaultZoom !== null) {
                 staticUrl += `&zoom=${defaultZoom}`;
             }
-            if (gmapsApiKey !== null) {
-                staticUrl += `&key=${gmapsApiKey}`;
+            if (apiKey !== null) {
+                staticUrl += `&key=${apiKey}`;
             }
             if (markers !== null) {
                 staticUrl += markers

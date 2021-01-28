@@ -1,26 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
+import { useGoogleMapsClient } from '@micromag/core/contexts';
 
-export default function useGoogleMapMarker({ mapsApi, coords, map }) {
-    const [polyline, setPolyline] = useState(null);
+export default function useGoogleMapMarker(map, { coords }) {
+    const client = useGoogleMapsClient();
+    const polylineRef = useRef(null);
     useEffect(() => {
-        if (map) {
-            const line = new mapsApi.Polyline({
-                path: coords,
-                geodesic: true,
-                strokeColor: '#FF0000',
-                strokeOpacity: 1.0,
-                strokeWeight: 2,
-            });
-            line.setMap(map);
-            setPolyline(line);
+        if (map === null || client === null) {
+            return () => {};
         }
+        const polyline = new client.maps.Polyline({
+            map,
+            path: coords,
+            geodesic: true,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 2,
+        });
+        polylineRef.current = polyline;
 
         return () => {
-            if (polyline) {
-                polyline.setMap(null);
-            }
+            polyline.setMap(null);
         };
-    }, [map, coords]);
+    }, [client, map, coords]);
 
-    return polyline;
+    return polylineRef.current;
 }
