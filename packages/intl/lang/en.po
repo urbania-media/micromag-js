@@ -619,11 +619,6 @@ msgstr "Previous"
 msgid "Dimension"
 msgstr "Dimension"
 
-# imagesWithCaptions field label
-#: o0RmVC
-msgid "imagesWithCaptions"
-msgstr "imagesWithCaptions"
-
 # Field label
 #: pJgYyE
 msgid "AutoPlay"

@@ -53,6 +53,16 @@ const withSlideProps = {
             settings: true,
         },
         {
+            name: 'logo',
+            type: 'image',
+            label: 'Logo',
+        },
+        {
+            name: 'color',
+            type: 'color',
+            label: 'Color',
+        },
+        {
             name: 'fontStyle',
             type: 'font-style',
         },

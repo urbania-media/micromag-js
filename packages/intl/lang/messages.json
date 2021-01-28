@@ -231,6 +231,10 @@
     "defaultMessage": "Font family",
     "description": "Field label"
   },
+  "Eaf89D": {
+    "defaultMessage": "Images",
+    "description": "imagesWithCaptions field label"
+  },
   "EcZYpr": {
     "defaultMessage": "Subtitle",
     "description": "Subtitle field label"
@@ -599,10 +603,6 @@
   "nXVNeg": {
     "defaultMessage": "Name",
     "description": "Name field label"
-  },
-  "o0RmVC": {
-    "defaultMessage": "imagesWithCaptions",
-    "description": "imagesWithCaptions field label"
   },
   "oLtEu6": {
     "defaultMessage": "Video 360",
