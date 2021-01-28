@@ -10,6 +10,8 @@ const getArticleLayouts = () => {
     const layoutStyles = Layout();
     const componentLayoutStyles = ComponentLayout();
 
+    const defaultMargin = 20;
+
     return {
         layout: {
             ...(layoutStyles !== null ? layoutStyles : {}),
@@ -47,22 +49,37 @@ const getArticleLayouts = () => {
             },
             text: {
                 margin: {
-                    bottom: 20,
+                    bottom: defaultMargin,
                 },
             },
             photo: {
                 margin: {
-                    bottom: 20,
+                    bottom: defaultMargin,
                 },
             },
             image: {
                 margin: {
-                    bottom: 20,
+                    bottom: defaultMargin,
                 },
             },
             gallery: {
                 margin: {
-                    bottom: 20,
+                    bottom: defaultMargin,
+                },
+            },
+            mosaic: {
+                margin: {
+                    bottom: defaultMargin,
+                },
+            },
+            audio: {
+                margin: {
+                    bottom: defaultMargin,
+                },
+            },
+            video: {
+                margin: {
+                    bottom: defaultMargin,
                 },
             },
             quote: {
@@ -72,8 +89,8 @@ const getArticleLayouts = () => {
                     left: false,
                 },
                 margin: {
-                    bottom: 20,
                     right: 20,
+                    bottom: defaultMargin,
                 },
             },
         },

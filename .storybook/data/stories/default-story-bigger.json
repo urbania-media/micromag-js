@@ -234,11 +234,11 @@
             "id": "8aa3a290-5cc3-11eb-aaa4-b3854e3e93fd",
             "type": "image-title-text",
             "background": { "color": { "color": "#9b9b9b", "alpha": 1 }, "image": null },
-            "layout": "normal",
+            "layout": "title-top",
             "image": "media://9",
             "title": {
                 "color": null,
-                "body": "<p>Un titre en dessous de l'image\u2026 mais pas tjrs</p>",
+                "body": "<p>Un titre au dessus de l'image\u2026 et un text en bas</p>",
                 "textStyle": {
                     "color": { "color": "#d0021b", "alpha": 1 },
                     "fontFamily": "Helvetica",
@@ -295,13 +295,6 @@
             "type": "video",
             "background": { "color": { "color": "#9b9b9b", "alpha": 1 }, "image": null },
             "layout": "center",
-            "video": { "media": "media://6" }
-        },
-        {
-            "id": "70c40a30-5f8f-11eb-92c5-d96f31214c3b",
-            "type": "video-360",
-            "background": { "color": { "color": "#9b9b9b", "alpha": 1 }, "image": null },
-            "layout": "full",
             "video": { "media": "media://6" }
         }
     ],
@@ -923,7 +916,7 @@
             "id": "6",
             "type": "video",
             "name": "01-Ouverture2.mp4",
-            "url": "http://micromag.ca.homestead.flklr.ca/storage/video/2021-01-21/6-021429.mp4",
+            "url": "http://micromag.ca.homestead.flklr.ca/storage/video/2021-01-26/12-111343.mp4",
             "thumbnail_url": null,
             "files": {
                 "original": {
@@ -931,7 +924,7 @@
                     "type": "file",
                     "handle": "original",
                     "name": "01-Ouverture2.mp4",
-                    "url": "http://micromag.ca.homestead.flklr.ca/storage/video/2021-01-21/6-021429.mp4"
+                    "url": "http://micromag.ca.homestead.flklr.ca/storage/video/2021-01-26/12-111343.mp4"
                 }
             },
             "metadata": {
