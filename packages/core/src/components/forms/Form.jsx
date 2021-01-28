@@ -219,7 +219,7 @@ const Form = ({
             ) : null}
             {generalError ? <p className="text-danger my-1">{generalError}</p> : null}
             {children}
-            {!withoutActions ? (
+            {!withoutActions && fieldParams === null ? (
                 <div
                     className={classNames([
                         styles.actions,
@@ -273,21 +273,6 @@ const Form = ({
         </form>
     );
 };
-
-{
-    /* <FieldsComponent
-                        fields={fields}
-                        value={value}
-                        errors={errors}
-                        onChange={setValue}
-                        className={classNames([
-                            styles.fields,
-                            {
-                                [fieldsClassName]: fieldsClassName !== null,
-                            },
-                        ])}
-                    /> */
-}
 
 Form.propTypes = propTypes;
 Form.defaultProps = defaultProps;
