@@ -60,7 +60,7 @@ const Navbar = ({
     onFiltersChange,
     onClickBack,
 }) => {
-    const waiting = useRef(null);
+    const throttle = useRef(null);
     const [open, setOpen] = useState(false);
 
     // TODO: get data from api for real testing
@@ -120,16 +120,16 @@ const Navbar = ({
 
     const onSearchChange = useCallback(
         (value) => {
-            if (waiting.current !== null) {
-                clearTimeout(waiting.current);
+            if (throttle.current !== null) {
+                clearTimeout(throttle.current);
             }
-            waiting.current = setTimeout(() => {
+            throttle.current = setTimeout(() => {
                 createSearch(value);
-                waiting.current = null;
+                throttle.current = null;
             }, 5000);
             onFilterChange('search', value, !!value);
         },
-        [onFilterChange, createSearch, waiting],
+        [onFilterChange, createSearch, throttle],
     );
 
     const onSourceChange = useCallback(
