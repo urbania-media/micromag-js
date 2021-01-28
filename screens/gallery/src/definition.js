@@ -115,9 +115,9 @@ export default [
             },
             {
                 name: 'images',
-                type: 'images-with-captions',
+                type: 'images-with-caption',
                 label: defineMessage({
-                    defaultMessage: 'imagesWithCaptions',
+                    defaultMessage: 'Images',
                     description: 'imagesWithCaptions field label',
                 }),
             },

@@ -1,4 +1,5 @@
 export { default as Audio } from './Audio';
+export { default as Author } from './Author';
 export { default as Container } from './Container';
 export { default as Gallery } from './Gallery';
 export { default as Heading1 } from './Heading1';

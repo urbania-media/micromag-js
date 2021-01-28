@@ -66,6 +66,10 @@ const getArticleTextStyles = () => {
                 ...(textStyles !== null ? textStyles : {}),
                 fontSize: 26,
             },
+            'style-author': {
+                ...(textStyles !== null ? textStyles : {}),
+                fontStyle: 'italic',
+            },
         },
     };
 };

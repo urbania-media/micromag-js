@@ -12,7 +12,7 @@ const MediaElement = (story, media, role = 'audio', definition = null) => {
 
     return {
         story,
-        component: role === 'audio' ? component : null, // Figure out HLS for videos
+        component: role === 'audio' ? component : component, // Figure out HLS for videos
     };
 };
 

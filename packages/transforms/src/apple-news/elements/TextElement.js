@@ -2,7 +2,7 @@ import hash from 'object-hash';
 import TextStyle from '../style/TextStyle';
 import { validate } from '../../utils';
 
-const TextElement = (story, text, role = 'text', definition = null) => {
+const TextElement = (story, text, role = 'text', definition = null, props = {}) => {
     const { componentLayouts = {} } = story;
     const { body = null, textStyle = null } = text || {};
 
@@ -16,6 +16,7 @@ const TextElement = (story, text, role = 'text', definition = null) => {
         text: body,
         format: 'html',
         // Uncomment for styles // ...(hasStyle ? { style: styleName } : {}),
+        ...props,
     };
     const component = definition ? validate(content, definition) : null;
 
