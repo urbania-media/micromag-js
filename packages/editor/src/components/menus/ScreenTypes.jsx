@@ -47,7 +47,7 @@ const ScreenTypes = ({ screens, selectedTypes, className, onClickItem }) => {
                 screen: definition,
                 className: classNames({
                     'bg-light': selected,
-                    'text-light': selected,
+                    'text-dark': selected,
                 }),
             };
             return groupIndex !== -1
