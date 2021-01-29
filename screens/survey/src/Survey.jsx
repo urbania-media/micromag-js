@@ -172,7 +172,7 @@ const SurveyScreen = ({
                 <div className={styles.items}>
                     {(isPlaceholder ? [...new Array(3)] : answers).map((answer, answerIndex) => {
                         const hasAnswer = answer !== null;
-                        const { label = null, percent = null } = answer || {};
+                        const { label = null, percent = 0 } = answer || {};
                         const { textStyle = null } = label || {};
                         const { color: labelColor = null } = textStyle || {};
                         const hasAnswerLabel = isTextFilled(label);

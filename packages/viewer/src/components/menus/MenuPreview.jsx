@@ -75,11 +75,12 @@ const ViewerMenuPreview = ({
     // Branding
     const {
         primaryColor: brandPrimaryColor = null,
+        secondaryColor: brandSecondaryColor = null,
         backgroundColor: brandBackgroundColor = null,
         textStyle: brandTextStyle = null,
         logo: brandLogo = null,
     } = branding || {};
-    const { url: brandLogoUrl } = brandLogo || {};
+    const { url: brandLogoUrl = null } = brandLogo || {};
     const titleStyle = brandTextStyle !== null ? getStyleFromText(brandTextStyle) : null;
 
     return hasSize ? (
@@ -92,7 +93,6 @@ const ViewerMenuPreview = ({
             ])}
             style={{
                 width: screenWidth,
-                color: brandPrimaryColor,
                 backgroundColor: brandBackgroundColor,
             }}
         >
@@ -106,17 +106,20 @@ const ViewerMenuPreview = ({
                 <div className={styles.title} style={titleStyle}>
                     {title}
                 </div>
-                <ShareButton
-                    className={styles.button}
-                    onShare={onShare}
-                    url={shareUrl}
-                    title={title}
-                >
-                    <FontAwesomeIcon className={styles.icon} icon={faShare} />
-                </ShareButton>
-                <Button className={styles.button} onClick={onClose}>
-                    <FontAwesomeIcon className={styles.icon} icon={faTimes} />
-                </Button>
+                <div className={styles.buttons} style={{ color: brandSecondaryColor }}>
+                    <ShareButton
+                        className={styles.shareButton}
+                        buttonClassName={styles.button}
+                        onShare={onShare}
+                        url={shareUrl}
+                        title={title}
+                    >
+                        <FontAwesomeIcon className={styles.icon} icon={faShare} />
+                    </ShareButton>
+                    <Button className={styles.button} onClick={onClose}>
+                        <FontAwesomeIcon className={styles.icon} icon={faTimes} />
+                    </Button>
+                </div>
             </div>
             <div className={styles.content}>
                 <Scroll className={styles.scroll}>
@@ -164,7 +167,9 @@ const ViewerMenuPreview = ({
                                                 />
                                             </div>
                                             {current === index ? (
-                                                <div className={styles.activeScreenBorder} />
+                                                <div className={styles.activeScreenBorder} style={{ borderColor: brandPrimaryColor }}>
+                                                    <div className={styles.activeScreenBorderInner} style={{ borderColor: brandBackgroundColor }} />
+                                                </div>
                                             ) : null}
                                         </div>
                                     </div>
