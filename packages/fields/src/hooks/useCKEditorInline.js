@@ -16,8 +16,7 @@ const useCKEditor = () => {
                 canceled = true;
             };
         }
-        import('@ckeditor/ckeditor5-build-inline').then(({ default: InlineEditor, ...deps }) => {
-            console.log(InlineEditor, deps);
+        import('@ckeditor/ckeditor5-build-inline').then(({ default: InlineEditor }) => {
             packageCache = InlineEditor;
             if (!canceled) {
                 setLoadedPackage({

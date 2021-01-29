@@ -62,6 +62,7 @@
         "@micromag/element-map": "^0.2.90",
         "@micromag/media-gallery": "^0.2.90",
         "classnames": "^2.2.6",
+        "draft-js": "^0.11.7",
         "fuse.js": "^6.4.3",
         "lodash": "^4.17.20",
         "prop-types": "^15.7.2",
