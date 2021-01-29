@@ -7,9 +7,17 @@ class POFile {
     static parse(filePath) {
         const input = fs.readFileSync(filePath);
         const po = gettextParser.po.parse(input);
-        return Object.keys(po.translations[''])
-            .filter((key) => key !== '')
-            .map((key) => po.translations[''][key]);
+        return Object.keys(po.translations).reduce(
+            (allTranslations, ctx) =>
+                Object.keys(po.translations[ctx]).reduce((currentTranslations, msg) => {
+                    const translation = po.translations[ctx][msg] || null;
+                    return translation !== null && translation.msgid.length > 0 ? [
+                        ...currentTranslations,
+                        translation
+                    ] : currentTranslations;
+                }, allTranslations),
+            [],
+        );
     }
 
     constructor(filePath, opts = {}) {
@@ -39,9 +47,10 @@ class POFile {
         const newTranslations = Object.keys(messages).map((id) => {
             const { defaultMessage, description } = messages[id];
             const currentTranslation =
-                this.translations.find(({ comments: { reference } }) => reference === id) || null;
+                this.translations.find(({ comments: { reference }, msgctxt = null }) => (msgctxt || reference) === id) || null;
             const defaultValue = useDefaultMessage ? [defaultMessage] : [];
             return {
+                msgctxt: id,
                 msgid: defaultMessage,
                 msgstr:
                     currentTranslation !== null && !isEmpty(currentTranslation.msgstr.join(''))
@@ -64,7 +73,7 @@ class POFile {
             translations: {
                 '': this.translations.reduce((map, translation) => ({
                     ...map,
-                    [translation.comments.reference || translation.msgid]: translation,
+                    [translation.msgctxt]: translation,
                 })),
             },
         });
@@ -74,11 +83,11 @@ class POFile {
 
     toJSON() {
         return this.translations.reduce(
-            (map, { comments: { reference }, msgstr }) =>
+            (map, { comments: { reference }, msgstr, msgctxt = null }) =>
                 msgstr.length > 0 && !isEmpty(msgstr[0])
                     ? {
                           ...map,
-                          [reference]: {
+                          [msgctxt || reference]: {
                               defaultMessage: msgstr[0],
                           },
                       }
