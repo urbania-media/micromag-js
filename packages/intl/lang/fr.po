@@ -40,7 +40,7 @@ msgstr "Effacer"
 # Media gallery source
 #: /62oe4
 msgid "My files"
-msgstr ""
+msgstr "Mes fichiers"
 
 # Field label
 #: /MeuM1
@@ -70,7 +70,7 @@ msgstr "Crédits"
 # Button label
 #: PyxZY2
 msgid "Cancel"
-msgstr ""
+msgstr "Annuler"
 
 # Font family group title
 #: zIi5W2
@@ -110,12 +110,12 @@ msgstr "Hauteur de ligne"
 # Label when there is no item
 #: rdFCsN
 msgid "No marker..."
-msgstr ""
+msgstr "Aucun marqueur..."
 
 # Field label
 #: 3NghmM
 msgid "Good answer"
-msgstr ""
+msgstr "Bonne réponse"
 
 # Legend placeholder
 #: dqnkQk
@@ -125,12 +125,12 @@ msgstr "Légende"
 # Field label
 #: vERejo
 msgid "Video"
-msgstr ""
+msgstr "Vidéo"
 
 # Entries field label
 #: sESmah
 msgid "Entries"
-msgstr ""
+msgstr "Entrées"
 
 # Quote placeholder
 #: CrzYgw
@@ -140,7 +140,7 @@ msgstr "Citation"
 # Text placeholder
 #: z4CiV1
 msgid "Text"
-msgstr ""
+msgstr "Texte"
 
 # Field label
 #: 4H2n5r
@@ -205,12 +205,12 @@ msgstr "Ajouter un marqueur"
 # Button label
 #: 8sWUOV
 msgid "Add an font file"
-msgstr ""
+msgstr "Ajouter un fichier de polices"
 
 # Map screen title
 #: dmuKH3
 msgid "Map"
-msgstr ""
+msgstr "Carte"
 
 # ImageLegend screen title
 #: 96KRj9
@@ -220,47 +220,47 @@ msgstr ""
 # Ascending field label
 #: 9DhYaZ
 msgid "Ascending"
-msgstr ""
+msgstr "Ordre croissant"
 
 # Library source menu
 #: 9ZdD+Q
 msgid "Library for"
-msgstr ""
+msgstr "Bibliothèque pour"
 
 # Label when there is no item in answers field
 #: p6n6vY
 msgid "No answer..."
-msgstr ""
+msgstr "Pas de réponse..."
 
 # Label when no value is provided to Image field
 #: B1MeY+
 msgid "Select an image..."
-msgstr ""
+msgstr "Sélectionnez une image..."
 
 # Label when no value is provided to Closed-captions field
 #: B6cvYv
 msgid "Select a closed-captions file..."
-msgstr ""
+msgstr "Sélectionnez un fichier de sous-titres..."
 
 # Success form message
 #: BpZoQZ
 msgid "Success"
-msgstr ""
+msgstr "Succès"
 
 # Markers field label
 #: D0+Cxr
 msgid "Markers with image"
-msgstr ""
+msgstr "Marqueurs avec image"
 
 # Label when no value is provided to Field with form
 #: DVrK6z
 msgid "Click to edit..."
-msgstr ""
+msgstr "Cliquez pour modifier..."
 
 # Label when no value is provided to Video field
 #: DWEzCv
 msgid "Select a video..."
-msgstr ""
+msgstr "Sélectionnez une vidéo..."
 
 # TextTitle screen title
 #: E/qtB2
@@ -270,97 +270,97 @@ msgstr ""
 # Field label
 #: ET527E
 msgid "Font family"
-msgstr ""
+msgstr "Police"
 
 # Subtitle placeholder
 #: d60tSn
 msgid "Subtitle"
-msgstr ""
+msgstr "Sous-titre"
 
 # Field label
 #: F2SD/0
 msgid "Loop"
-msgstr ""
+msgstr "Boucle"
 
 # Video 360 placeholder
 #: oLtEu6
 msgid "Video 360"
-msgstr ""
+msgstr "Vidéo 360"
 
 # Result placeholder
 #: li7ADr
 msgid "Result"
-msgstr ""
+msgstr "Résultat"
 
 # Your name placeholder
 #: G/ITGY
 msgid "Your name"
-msgstr ""
+msgstr "Votre nom"
 
 # Field label
 #: xT/onn
 msgid "Image"
-msgstr ""
+msgstr "Image"
 
 # Media label
 #: GGwrCy
 msgid "Already used"
-msgstr ""
+msgstr "Déjà utilisé"
 
 # Field label
 #: GMCLhn
 msgid "Case"
-msgstr ""
+msgstr "Case"
 
 # Timeline screen title
 #: GzoKNb
 msgid "Timeline"
-msgstr ""
+msgstr "Ligne du temps"
 
 # Button to edit a screen
 #: HseFdk
 msgid "Edit"
-msgstr ""
+msgstr "Modifier"
 
 # Duplicate screen item
 #: IBjY5r
 msgid "Duplicate screen"
-msgstr ""
+msgstr "Dupliquer l'écran"
 
 # Timeline Illustrated screen title
 #: IMUycF
 msgid "Timeline Illustrated"
-msgstr ""
+msgstr "Ligne du temps illustrée"
 
 # Your message placeholder
 #: JAguka
 msgid "Your message"
-msgstr ""
+msgstr "Votre message"
 
 # Field label
 #: JDPMlG
 msgid "Background color"
-msgstr ""
+msgstr "Couleur de l'arrière-plan"
 
 # Top nav title for media gallery
 #: JV5hRr
 msgid "Media gallery"
-msgstr ""
+msgstr "Galerie de médias"
 
 # Button to create your first screen
 #: JoWKee
 msgid "Create your first screen"
-msgstr ""
+msgstr "Créez votre premier écran"
 
 # Label when there is no item
 #: KCDOHI
 msgid "No font..."
-msgstr ""
+msgstr "Aucune police..."
 
 # Field label
 #: KHWeV7
 msgid "Answers"
-msgstr ""
+msgstr "Réponses"
 
 # ImageText screen title
 #: Mz76RM
@@ -375,37 +375,37 @@ msgstr ""
 # Field label
 #: OJi+eg
 msgid "Label"
-msgstr ""
+msgstr "Libellé"
 
 # Label when there is no item in slides field
 #: OdcEna
 msgid "No slide..."
-msgstr ""
+msgstr "Aucune diapo..."
 
 # Type Label in Media Gallery
 #: OkNUmk
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 # Label when there is no item in items field
 #: PKCv5M
 msgid "No item..."
-msgstr ""
+msgstr "Aucun item..."
 
 # Markers field label
 #: PbHeHc
 msgid "Markers"
-msgstr ""
+msgstr "Marqueurs"
 
 # Title of the screen types selection dialog
 #: QBaiO0
 msgid "Add a screen"
-msgstr ""
+msgstr "Ajouter un écran"
 
 # Button label in images field
 #: V+G2s+
 msgid "Add an image"
-msgstr ""
+msgstr "Ajouter une image"
 
 #: QfpTKK
 msgid "Select a screen..."
@@ -414,42 +414,42 @@ msgstr "Sélectionnez un écran..."
 # Field label
 #: RHMS2f
 msgid "Line color"
-msgstr ""
+msgstr "Couleur de la ligne"
 
 # Message field label
 #: RcLsua
 msgid "Message"
-msgstr ""
+msgstr "Message"
 
 # Text and Images screen group
 #: S/mavZ
 msgid "Text and Images"
-msgstr ""
+msgstr "Texte et images"
 
 # Field label
 #: T0pi1u
 msgid "With seek bar"
-msgstr ""
+msgstr "Avec barre de défilement"
 
 # Longitude description
 #: THKV4v
 msgid "Longitude"
-msgstr ""
+msgstr "Longitude"
 
 # Add button label in Media Gallery
 #: Tt4jN1
 msgid "Add"
-msgstr ""
+msgstr "Ajouter"
 
 # Label when no value
 #: Wb5zY4
 msgid "Select a font file..."
-msgstr ""
+msgstr "Sélectionnez un fichier de police..."
 
 # Field label
 #: WlNxMj
 msgid "Repeat"
-msgstr ""
+msgstr "Répéter"
 
 # Fields section label
 #: Wr9olU
@@ -459,12 +459,12 @@ msgstr "Typographie"
 # Move the map to position the place description
 #: XhgKcw
 msgid "Move the map to position the place"
-msgstr ""
+msgstr "Déplacez la carte pour positionner"
 
 # Field label
 #: YWcp4v
 msgid "Bullet filled"
-msgstr ""
+msgstr "Point rempli"
 
 # Field label
 #: Z5jrDS
@@ -494,7 +494,7 @@ msgstr "Couleur"
 # Field label
 #: amEvH1
 msgid "Fit"
-msgstr ""
+msgstr "Ajustement"
 
 # Label in Media Gallery
 #: aovRFH
@@ -509,7 +509,7 @@ msgstr ""
 # Button field label
 #: enPTxj
 msgid "Button"
-msgstr ""
+msgstr "Bouton"
 
 # Heading in Media Gallery
 #: c9VwT/
@@ -519,7 +519,7 @@ msgstr "Détails techniques"
 # List screen group
 #: cGItoy
 msgid "List"
-msgstr ""
+msgstr "Liste"
 
 # Label when there is no item in images field
 #: t+L1J/
@@ -539,42 +539,42 @@ msgstr "Sélectionnez un média..."
 # Name of the section in Fields
 #: enFs4g
 msgid "Advanced"
-msgstr ""
+msgstr "Avancé"
 
 # Label in Media Gallery
 #: eoW0tZ
 msgid "Duration"
-msgstr ""
+msgstr "Durée"
 
 # Contribution screen title
 #: g6b9Lg
 msgid "Contribution"
-msgstr ""
+msgstr "Contribution"
 
 # Title of the delete screen dialog
 #: p6q/+/
 msgid "Delete screen"
-msgstr ""
+msgstr "Supprimer l’écran"
 
 # No value label
 #: i+3ZrF
 msgid "Select a font family..."
-msgstr ""
+msgstr "Sélectionnez une police..."
 
 # Label when there is no item
 #: iHV3W3
 msgid "No entry..."
-msgstr ""
+msgstr "Aucune d’entrée..."
 
 # Gallery screen title
 #: jaFXki
 msgid "Gallery"
-msgstr ""
+msgstr "Galerie"
 
 # Button to show screens
 #: wkysUu
 msgid "Screens"
-msgstr ""
+msgstr "Écrans"
 
 # Name field label
 #: nXVNeg
@@ -599,40 +599,40 @@ msgstr ""
 # Label in Media Gallery
 #: liyV7Y
 msgid "Size"
-msgstr ""
+msgstr "Taille"
 
 # Media label
 #: mOSkbf
 msgid "Usage"
-msgstr ""
+msgstr "Utilisation"
 
 #: menus.pagination.next
 msgid "next"
-msgstr ""
+msgstr "suivant"
 
 #: menus.pagination.previous
 msgid "Previous"
-msgstr ""
+msgstr "Précédent"
 
 # Label in Media Gallery
 #: mv37oK
 msgid "Dimension"
-msgstr ""
+msgstr "Dimension"
 
 # Field label
 #: pJgYyE
 msgid "AutoPlay"
-msgstr ""
+msgstr "Lecture automatique"
 
 # Media label
 #: pfvDzR
 msgid "Added by"
-msgstr ""
+msgstr "Ajouté par"
 
 # Confirmation message before deleting a screen
 #: q/tLk0
 msgid "Are you sure you want to delete this screen?"
-msgstr ""
+msgstr "Êtes-vous sûr que vous voulez supprimer cet écran?"
 
 # Save in Media Gallery
 #: qIw1nW
@@ -642,7 +642,7 @@ msgstr "Enregistrer"
 # Active filters title
 #: t2cFdl
 msgid "Active filters"
-msgstr ""
+msgstr "Filtres actifs"
 
 # Button label in slides field
 #: tAYwqp
@@ -657,27 +657,27 @@ msgstr "Taille de la police"
 # Media label
 #: tmfbUn
 msgid "Unused"
-msgstr ""
+msgstr "Inutilisé"
 
 # Field label
 #: twTaAZ
 msgid "Bullet shape"
-msgstr ""
+msgstr "Forme du point"
 
 # Field label
 #: u3ok54
 msgid "Position"
-msgstr ""
+msgstr "Position"
 
 # Field label
 #: uNpHnA
 msgid "Bullet color"
-msgstr ""
+msgstr "Couleur du point"
 
 # Media label
 #: vYunz+
 msgid "Recent searches"
-msgstr ""
+msgstr "Recherches récentes"
 
 # GalleryFeed screen title
 #: vrCfAS
@@ -692,7 +692,7 @@ msgstr "Sélectionnez un fichier audio..."
 # Media gallery source
 #: xAzv6g
 msgid "All sources"
-msgstr ""
+msgstr "Toutes les sources"
 
 # Fields section label
 #: y7xsPe
@@ -707,9 +707,9 @@ msgstr "Image d’arrière-plan"
 # Latitude description
 #: zDH24s
 msgid "Latitude"
-msgstr ""
+msgstr "Latitude"
 
 # Quiz screen title
 #: zW7IVm
 msgid "Quiz"
-msgstr ""
+msgstr "Quiz"

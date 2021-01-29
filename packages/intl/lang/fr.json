@@ -11,6 +11,9 @@
     "+TT1y6": {
         "defaultMessage": "Effacer"
     },
+    "/62oe4": {
+        "defaultMessage": "Mes fichiers"
+    },
     "/MeuM1": {
         "defaultMessage": "Vidéo d'arrière-plan"
     },
@@ -22,6 +25,9 @@
     },
     "upzOTm": {
         "defaultMessage": "Crédits"
+    },
+    "PyxZY2": {
+        "defaultMessage": "Annuler"
     },
     "zIi5W2": {
         "defaultMessage": "Tout"
@@ -41,11 +47,26 @@
     "31zuCS": {
         "defaultMessage": "Hauteur de ligne"
     },
+    "rdFCsN": {
+        "defaultMessage": "Aucun marqueur..."
+    },
+    "3NghmM": {
+        "defaultMessage": "Bonne réponse"
+    },
     "dqnkQk": {
         "defaultMessage": "Légende"
     },
+    "vERejo": {
+        "defaultMessage": "Vidéo"
+    },
+    "sESmah": {
+        "defaultMessage": "Entrées"
+    },
     "CrzYgw": {
         "defaultMessage": "Citation"
+    },
+    "z4CiV1": {
+        "defaultMessage": "Texte"
     },
     "4H2n5r": {
         "defaultMessage": "Sous-titres"
@@ -77,11 +98,152 @@
     "qKQCxc": {
         "defaultMessage": "Ajouter un marqueur"
     },
+    "8sWUOV": {
+        "defaultMessage": "Ajouter un fichier de polices"
+    },
+    "dmuKH3": {
+        "defaultMessage": "Carte"
+    },
+    "9DhYaZ": {
+        "defaultMessage": "Ordre croissant"
+    },
+    "9ZdD+Q": {
+        "defaultMessage": "Bibliothèque pour"
+    },
+    "p6n6vY": {
+        "defaultMessage": "Pas de réponse..."
+    },
+    "B1MeY+": {
+        "defaultMessage": "Sélectionnez une image..."
+    },
+    "B6cvYv": {
+        "defaultMessage": "Sélectionnez un fichier de sous-titres..."
+    },
+    "BpZoQZ": {
+        "defaultMessage": "Succès"
+    },
+    "D0+Cxr": {
+        "defaultMessage": "Marqueurs avec image"
+    },
+    "DVrK6z": {
+        "defaultMessage": "Cliquez pour modifier..."
+    },
+    "DWEzCv": {
+        "defaultMessage": "Sélectionnez une vidéo..."
+    },
+    "ET527E": {
+        "defaultMessage": "Police"
+    },
+    "d60tSn": {
+        "defaultMessage": "Sous-titre"
+    },
+    "F2SD/0": {
+        "defaultMessage": "Boucle"
+    },
+    "oLtEu6": {
+        "defaultMessage": "Vidéo 360"
+    },
+    "li7ADr": {
+        "defaultMessage": "Résultat"
+    },
+    "G/ITGY": {
+        "defaultMessage": "Votre nom"
+    },
+    "xT/onn": {
+        "defaultMessage": "Image"
+    },
+    "GGwrCy": {
+        "defaultMessage": "Déjà utilisé"
+    },
+    "GMCLhn": {
+        "defaultMessage": "Case"
+    },
+    "GzoKNb": {
+        "defaultMessage": "Ligne du temps"
+    },
+    "HseFdk": {
+        "defaultMessage": "Modifier"
+    },
+    "IBjY5r": {
+        "defaultMessage": "Dupliquer l'écran"
+    },
+    "IMUycF": {
+        "defaultMessage": "Ligne du temps illustrée"
+    },
+    "JAguka": {
+        "defaultMessage": "Votre message"
+    },
+    "JDPMlG": {
+        "defaultMessage": "Couleur de l'arrière-plan"
+    },
+    "JV5hRr": {
+        "defaultMessage": "Galerie de médias"
+    },
+    "JoWKee": {
+        "defaultMessage": "Créez votre premier écran"
+    },
+    "KCDOHI": {
+        "defaultMessage": "Aucune police..."
+    },
+    "KHWeV7": {
+        "defaultMessage": "Réponses"
+    },
+    "OJi+eg": {
+        "defaultMessage": "Libellé"
+    },
+    "OdcEna": {
+        "defaultMessage": "Aucune diapo..."
+    },
+    "OkNUmk": {
+        "defaultMessage": "Type"
+    },
+    "PKCv5M": {
+        "defaultMessage": "Aucun item..."
+    },
+    "PbHeHc": {
+        "defaultMessage": "Marqueurs"
+    },
+    "QBaiO0": {
+        "defaultMessage": "Ajouter un écran"
+    },
+    "V+G2s+": {
+        "defaultMessage": "Ajouter une image"
+    },
     "QfpTKK": {
         "defaultMessage": "Sélectionnez un écran..."
     },
+    "RHMS2f": {
+        "defaultMessage": "Couleur de la ligne"
+    },
+    "RcLsua": {
+        "defaultMessage": "Message"
+    },
+    "S/mavZ": {
+        "defaultMessage": "Texte et images"
+    },
+    "T0pi1u": {
+        "defaultMessage": "Avec barre de défilement"
+    },
+    "THKV4v": {
+        "defaultMessage": "Longitude"
+    },
+    "Tt4jN1": {
+        "defaultMessage": "Ajouter"
+    },
+    "Wb5zY4": {
+        "defaultMessage": "Sélectionnez un fichier de police..."
+    },
+    "WlNxMj": {
+        "defaultMessage": "Répéter"
+    },
     "Wr9olU": {
         "defaultMessage": "Typographie"
+    },
+    "XhgKcw": {
+        "defaultMessage": "Déplacez la carte pour positionner"
+    },
+    "YWcp4v": {
+        "defaultMessage": "Point rempli"
     },
     "Z5jrDS": {
         "defaultMessage": "Interlettrage"
@@ -95,11 +257,20 @@
     "aarOkd": {
         "defaultMessage": "Couleur"
     },
+    "amEvH1": {
+        "defaultMessage": "Ajustement"
+    },
     "aovRFH": {
         "defaultMessage": "Nom du fichier"
     },
+    "enPTxj": {
+        "defaultMessage": "Bouton"
+    },
     "c9VwT/": {
         "defaultMessage": "Détails techniques"
+    },
+    "cGItoy": {
+        "defaultMessage": "Liste"
     },
     "t+L1J/": {
         "defaultMessage": "Pas d’image..."
@@ -110,6 +281,30 @@
     "e6+aGf": {
         "defaultMessage": "Sélectionnez un média..."
     },
+    "enFs4g": {
+        "defaultMessage": "Avancé"
+    },
+    "eoW0tZ": {
+        "defaultMessage": "Durée"
+    },
+    "g6b9Lg": {
+        "defaultMessage": "Contribution"
+    },
+    "p6q/+/": {
+        "defaultMessage": "Supprimer l’écran"
+    },
+    "i+3ZrF": {
+        "defaultMessage": "Sélectionnez une police..."
+    },
+    "iHV3W3": {
+        "defaultMessage": "Aucune d’entrée..."
+    },
+    "jaFXki": {
+        "defaultMessage": "Galerie"
+    },
+    "wkysUu": {
+        "defaultMessage": "Écrans"
+    },
     "nXVNeg": {
         "defaultMessage": "Nom"
     },
@@ -119,8 +314,35 @@
     "n2teag": {
         "defaultMessage": "Ajouter une réponse"
     },
+    "liyV7Y": {
+        "defaultMessage": "Taille"
+    },
+    "mOSkbf": {
+        "defaultMessage": "Utilisation"
+    },
+    "menus.pagination.next": {
+        "defaultMessage": "suivant"
+    },
+    "menus.pagination.previous": {
+        "defaultMessage": "Précédent"
+    },
+    "mv37oK": {
+        "defaultMessage": "Dimension"
+    },
+    "pJgYyE": {
+        "defaultMessage": "Lecture automatique"
+    },
+    "pfvDzR": {
+        "defaultMessage": "Ajouté par"
+    },
+    "q/tLk0": {
+        "defaultMessage": "Êtes-vous sûr que vous voulez supprimer cet écran?"
+    },
     "qIw1nW": {
         "defaultMessage": "Enregistrer"
+    },
+    "t2cFdl": {
+        "defaultMessage": "Filtres actifs"
     },
     "tAYwqp": {
         "defaultMessage": "Ajouter une diapositive"
@@ -128,13 +350,37 @@
     "tYGev7": {
         "defaultMessage": "Taille de la police"
     },
+    "tmfbUn": {
+        "defaultMessage": "Inutilisé"
+    },
+    "twTaAZ": {
+        "defaultMessage": "Forme du point"
+    },
+    "u3ok54": {
+        "defaultMessage": "Position"
+    },
+    "uNpHnA": {
+        "defaultMessage": "Couleur du point"
+    },
+    "vYunz+": {
+        "defaultMessage": "Recherches récentes"
+    },
     "wt1+dM": {
         "defaultMessage": "Sélectionnez un fichier audio..."
+    },
+    "xAzv6g": {
+        "defaultMessage": "Toutes les sources"
     },
     "y7xsPe": {
         "defaultMessage": "Paramètres avancés"
     },
     "ySApyR": {
         "defaultMessage": "Image d’arrière-plan"
+    },
+    "zDH24s": {
+        "defaultMessage": "Latitude"
+    },
+    "zW7IVm": {
+        "defaultMessage": "Quiz"
     }
 }
