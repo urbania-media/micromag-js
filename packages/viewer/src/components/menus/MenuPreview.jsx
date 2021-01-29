@@ -107,7 +107,7 @@ const ViewerMenuPreview = ({
                     {title}
                 </div>
                 <ShareButton
-                    className={styles.button}
+                    className={classNames([styles.button, styles.shareButton])}
                     onShare={onShare}
                     url={shareUrl}
                     title={title}
