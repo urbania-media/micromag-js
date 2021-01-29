@@ -273,22 +273,22 @@ export const allScreens = [
         },
         transitions: transitions(),
     },
-    {
-        id: uuid(),
-        type: 'video-360',
-        layout: 'full',
-        video: {
-            media: video360Media(),
-            autoPlay: false,
-            loop: true,
-            closedCaptions: closedCaptionsMedia(),
-            withSeekBar: true,
-        },
-        background: {
-            color: '#FF00FF',
-        },
-        transitions: transitions(),
-    },
+    // {
+    //     id: uuid(),
+    //     type: 'video-360',
+    //     layout: 'full',
+    //     video: {
+    //         media: video360Media(),
+    //         autoPlay: false,
+    //         loop: true,
+    //         closedCaptions: closedCaptionsMedia(),
+    //         withSeekBar: true,
+    //     },
+    //     background: {
+    //         color: '#FF00FF',
+    //     },
+    //     transitions: transitions(),
+    // },
 ];
 
 export default allScreens;

@@ -100,8 +100,8 @@ export default [
             description: 'List screen group',
         }),
         title: defineMessage({
-            defaultMessage: 'Timeline Illustrated',
-            description: 'Timeline Illustrated screen title',
+            defaultMessage: 'Timeline with images',
+            description: 'TimelineIllustrated screen title',
         }),
         component: TimelineIllustratedScreen,
         layouts: ['title-image-description', 'title-description-image', 'image-title-description'],

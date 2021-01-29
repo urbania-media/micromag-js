@@ -76,7 +76,7 @@ export default [
             description: 'Images screen group',
         }),
         title: defineMessage({
-            defaultMessage: 'GalleryCaptions',
+            defaultMessage: 'Gallery with captions',
             description: 'GalleryCaptions screen title',
         }),
         component: GalleryCaptionsScreen,

@@ -95,7 +95,7 @@ export default [
             description: 'Map screen group',
         }),
         title: defineMessage({
-            defaultMessage: 'MapImages',
+            defaultMessage: 'Map with image markers',
             description: 'MapImages screen title',
         }),
         component: MapImagesScreen,

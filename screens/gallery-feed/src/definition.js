@@ -13,8 +13,8 @@ export default [
             description: 'Images screen group',
         }),
         title: defineMessage({
-            defaultMessage: 'GalleryFeed',
-            description: 'GalleryFeed screen title',
+            defaultMessage: 'Gallery Feed',
+            description: 'Gallery Feed screen title',
         }),
         component: GalleryFeedScreen,
         layouts: ['normal'],
@@ -54,7 +54,7 @@ export default [
             description: 'Images screen group',
         }),
         title: defineMessage({
-            defaultMessage: 'GalleryFeedCaptions',
+            defaultMessage: 'Gallery feed with captions',
             description: 'GalleryFeedCaptions screen title',
         }),
         component: GalleryFeedCaptionsScreen,

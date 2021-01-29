@@ -55,7 +55,7 @@ export default [
             description: 'Title screen group',
         }),
         title: defineMessage({
-            defaultMessage: 'TitleSubtitle',
+            defaultMessage: 'Title with subtitle',
             description: 'TitleSubtitle screen title',
         }),
         component: TitleSubtitleScreen,
@@ -104,7 +104,7 @@ export default [
             description: 'Title screen group',
         }),
         title: defineMessage({
-            defaultMessage: 'TitleSubtitleCredits',
+            defaultMessage: 'Title with subtitle and credits',
             description: 'TitleSubtitleCredits screen title',
         }),
         component: TitleSubtitleCreditsScreen,

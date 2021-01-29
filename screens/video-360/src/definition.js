@@ -11,7 +11,7 @@ export default {
         description: 'Audio and Video screen group',
     }),
     title: defineMessage({
-        defaultMessage: 'Video 360',
+        defaultMessage: '360 Video',
         description: 'Video 360 screen title',
     }),
     component: Video360Screen,

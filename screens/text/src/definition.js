@@ -58,7 +58,7 @@ export default [
             description: 'Text screen group',
         }),
         title: defineMessage({
-            defaultMessage: 'TextTitle',
+            defaultMessage: 'Text with title',
             description: 'TextTitle screen title',
         }),
         component: TextTitleScreen,

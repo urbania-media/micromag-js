@@ -57,7 +57,7 @@ export default [
             description: 'Text and Images screen group',
         }),
         title: defineMessage({
-            defaultMessage: 'ImageTitle',
+            defaultMessage: 'Image with title',
             description: 'ImageTitle screen title',
         }),
         component: ImageTitleScreen,
@@ -111,7 +111,7 @@ export default [
             description: 'Text and Images screen group',
         }),
         title: defineMessage({
-            defaultMessage: 'ImageText',
+            defaultMessage: 'Image with text',
             description: 'ImageText screen title',
         }),
         component: ImageTextScreen,
@@ -164,7 +164,7 @@ export default [
             description: 'Text and Images screen group',
         }),
         title: defineMessage({
-            defaultMessage: 'ImageTitleText',
+            defaultMessage: 'Image with title and text',
             description: 'ImageTitleText screen title',
         }),
         component: ImageTitleTextScreen,
@@ -231,7 +231,7 @@ export default [
             description: 'Images screen group',
         }),
         title: defineMessage({
-            defaultMessage: 'ImageLegend',
+            defaultMessage: 'Image with legend',
             description: 'ImageLegend screen title',
         }),
         component: ImageLegendScreen,
