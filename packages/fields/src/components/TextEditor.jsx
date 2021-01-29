@@ -48,7 +48,7 @@ const TextEditorField = ({ value, size, className, editorConfig, inline, onChang
     );
 
     const onEditorReady = useCallback(
-        (editor) => {
+        (editor) => { // eslint-disable-line  no-unused-vars
             if (inline) {
                 // editor.model.schema.extend('$root', {
                 //     isBlock: true,
