@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-link",
-    "version": "0.2.86",
+    "version": "0.2.90",
     "description": "",
     "keywords": [
         "javascript"
@@ -49,7 +49,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.12.5",
-        "@micromag/core": "^0.2.86",
+        "@micromag/core": "^0.2.90",
         "classnames": "^2.2.6",
         "prop-types": "^15.7.2",
         "react-intl": "^5.10.16",
