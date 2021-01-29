@@ -36,7 +36,7 @@ const DeleteScreenModal = ({ className, onConfirm, onCancel }) => (
             ])}
             onClickClose={onCancel}
         >
-            <div className={styles.description} >
+            <div className={styles.description}>
                 <Label>
                     <FormattedMessage
                         defaultMessage="Are you sure you want to delete this screen?"
@@ -45,12 +45,24 @@ const DeleteScreenModal = ({ className, onConfirm, onCancel }) => (
                 </Label>
             </div>
             <div className={styles.actions}>
-                <Button onClick={onConfirm} theme="danger" label={<FormattedMessage defaultMessage="Delete screen" description="Delete screen button label" />} />
-                <Button onClick={onCancel}>
+                <Button onClick={onCancel} className="btn-outline-secondary mr-2">
                     <Label>
-                        <FormattedMessage defaultMessage="Cancel" description="Cancel button label" />
+                        <FormattedMessage
+                            defaultMessage="Cancel"
+                            description="Cancel button label"
+                        />
                     </Label>
                 </Button>
+                <Button
+                    onClick={onConfirm}
+                    theme="danger"
+                    label={
+                        <FormattedMessage
+                            defaultMessage="Delete screen"
+                            description="Delete screen button label"
+                        />
+                    }
+                />
             </div>
         </Dialog>
     </Modal>

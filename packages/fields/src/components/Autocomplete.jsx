@@ -27,6 +27,7 @@ const propTypes = {
     }),
     maxResults: PropTypes.number,
     showEmpty: PropTypes.bool,
+    placeholder: PropTypes.string,
     className: PropTypes.string,
     onChange: PropTypes.func,
     children: PropTypes.node,
@@ -41,6 +42,7 @@ const defaultProps = {
     },
     maxResults: 10,
     showEmpty: false,
+    placeholder: null,
     className: null,
     onChange: null,
     children: null,
@@ -52,6 +54,7 @@ const AutocompleteField = ({
     searchOptions,
     maxResults,
     showEmpty,
+    placeholder,
     className,
     onChange,
     children,
@@ -107,7 +110,7 @@ const AutocompleteField = ({
             <div className={styles.list}>{children}</div>
         ) : (
             <div className={styles.list}>
-                <ul className="list-group">
+                <ul className="list-group bg-light">
                     {maxedList.map(({ item }) => (
                         <li
                             className={classNames(['list-group-item', styles.item])}
@@ -136,7 +139,12 @@ const AutocompleteField = ({
                 },
             ])}
         >
-            <TextField value={value} buttonClassName={styles.button} onChange={onInputChange} />
+            <TextField
+                value={value}
+                buttonClassName={styles.button}
+                placeholder={placeholder}
+                onChange={onInputChange}
+            />
             {open ? listItems : null}
         </div>
     );

@@ -17,7 +17,9 @@ const items = [
 
 const FieldContainer = () => {
     const [value, setValue] = useState(null);
-    return <Autocomplete value={value} onChange={setValue} items={items} />;
+    return (
+        <Autocomplete value={value} onChange={setValue} items={items} placeholder="email@email" />
+    );
 };
 
 export const normal = () => (

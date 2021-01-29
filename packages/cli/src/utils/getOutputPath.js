@@ -9,6 +9,7 @@ const getOutputPath = (output, filename) => {
         }
         return output;
     }
+
     return path.join(process.cwd(), `./${filename}`);
 };
 export default getOutputPath;

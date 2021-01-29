@@ -6,7 +6,12 @@ import { BrowserRouter } from 'react-router-dom';
 import { ScreensProvider } from '@micromag/screens';
 import { FieldsProvider } from '@micromag/fields';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { GoogleMapsClientProvider, RoutesProvider, TrackingProvider } from '@micromag/core/contexts';
+import {
+    GoogleMapsClientProvider,
+    GoogleKeysProvider,
+    RoutesProvider,
+    TrackingProvider,
+} from '@micromag/core/contexts';
 
 import * as ViewerPropTypes from '../lib/PropTypes';
 import Viewer from './Viewer';
@@ -22,7 +27,7 @@ const propTypes = {
     basePath: PropTypes.string,
     routes: ViewerPropTypes.routes,
     withoutRouter: PropTypes.bool,
-    gmapsApiKey: PropTypes.string,
+    googleApiKey: PropTypes.string,
     trackingVariables: MicromagPropTypes.trackingVariables,
     children: PropTypes.func,
 };
@@ -34,7 +39,7 @@ const defaultProps = {
     basePath: null,
     routes: defaultRoutes,
     withoutRouter: false,
-    gmapsApiKey: null,
+    googleApiKey: null,
     trackingVariables: null,
     children: null,
 };
@@ -45,7 +50,7 @@ const ViewerContainer = ({
     basePath,
     routes,
     withoutRouter,
-    gmapsApiKey,
+    googleApiKey,
     trackingVariables,
     ...otherProps
 }) => {
@@ -65,19 +70,21 @@ const ViewerContainer = ({
     }, [story, trackingVariables]);
 
     const content = (
-        <GoogleMapsClientProvider apiKey={gmapsApiKey}>
-            <FieldsProvider>
-                <ScreensProvider>
-                    <TrackingProvider variables={finalTrackingVariables}>
-                        {withoutRouter ? (
-                            <Viewer story={story} {...otherProps} />
-                        ) : (
-                            <ViewerRoutes story={story} {...otherProps} />
-                        )}
-                    </TrackingProvider>
-                </ScreensProvider>
-            </FieldsProvider>
-        </GoogleMapsClientProvider>
+        <GoogleKeysProvider apiKey={googleApiKey}>
+            <GoogleMapsClientProvider>
+                <FieldsProvider>
+                    <ScreensProvider>
+                        <TrackingProvider variables={finalTrackingVariables}>
+                            {withoutRouter ? (
+                                <Viewer story={story} {...otherProps} />
+                            ) : (
+                                <ViewerRoutes story={story} {...otherProps} />
+                            )}
+                        </TrackingProvider>
+                    </ScreensProvider>
+                </FieldsProvider>
+            </GoogleMapsClientProvider>
+        </GoogleKeysProvider>
     );
 
     return withoutRouter ? (

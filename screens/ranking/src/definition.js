@@ -1,6 +1,7 @@
 import { defineMessage } from 'react-intl';
 
 import RankingScreen from './Ranking';
+import * as transforms from './transforms/index';
 
 export default {
     id: 'ranking',
@@ -15,6 +16,7 @@ export default {
     }),
     component: RankingScreen,
     layouts: ['side', 'over'],
+    transforms,
     fields: [
         {
             name: 'layout',

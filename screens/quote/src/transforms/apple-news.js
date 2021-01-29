@@ -1,8 +1,8 @@
-import { Container, Text, Quote } from '@micromag/transforms/apple-news';
+import { Container, Author, Quote } from '@micromag/transforms/apple-news';
 
 const transform = (newStory, { quote, author }) => {
     const { story: quoteStory, component: quoteComponent } = Quote(newStory, quote);
-    const { story: authorStory, component: authorComponent } = Text(quoteStory, author);
+    const { story: authorStory, component: authorComponent } = Author(quoteStory, author);
 
     const { story: containerStory, component: containerComponent } = Container(authorStory, [
         ...(quoteComponent ? [quoteComponent] : []),

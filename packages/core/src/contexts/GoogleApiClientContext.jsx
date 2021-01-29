@@ -3,6 +3,8 @@ import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { loadGoogleApi } from '@folklore/services';
 
+import { useGoogleKeys } from './GoogleKeysContext';
+
 const GoogleApiClientContext = React.createContext(null);
 
 export const useGoogleApiClient = () => useContext(GoogleApiClientContext);
@@ -24,12 +26,12 @@ export const withGoogleApiClient = WrappedComponent => {
 
 const propTypes = {
     children: PropTypes.node.isRequired,
-    apiKey: PropTypes.string.isRequired,
 };
 
 const defaultProps = {};
 
-export const GoogleApiClientProvider = ({ children, apiKey }) => {
+export const GoogleApiClientProvider = ({ children }) => {
+    const { apiKey } = useGoogleKeys();
     const [client, setClient] = useState(null);
     useEffect(() => {
         loadGoogleApi()

@@ -43,7 +43,7 @@ const GeoPosition = ({ value, defaultCenter, defaultZoom, className, onChange })
     const [address, setAddress] = useState(null);
     const [mapReady, setMapReady] = useState(false);
     const [zoom, setZoom] = useState(defaultZoom);
-    const { maps: mapsApi } = useGoogleMapsClient() || {};
+    const client = useGoogleMapsClient();
     const intl = useIntl();
     const addressInputRef = useRef(null);
     const autoCompleteRef = useRef(null);
@@ -112,9 +112,9 @@ const GeoPosition = ({ value, defaultCenter, defaultZoom, className, onChange })
     }, [onValuePropChanged, defaultZoom, setZoom]);
 
     useEffect(() => {
-        if (typeof mapsApi !== 'undefined') {
-            if (typeof mapsApi.places !== 'undefined') {
-                autoCompleteRef.current = new mapsApi.places.Autocomplete(addressInputRef.current, {
+        if (client !== null) {
+            if (typeof client.places !== 'undefined') {
+                autoCompleteRef.current = new client.places.Autocomplete(addressInputRef.current, {
                     origin: defaultCenter,
                 });
                 autoCompleteRef.current.setFields(['geometry', 'name']);
@@ -123,15 +123,15 @@ const GeoPosition = ({ value, defaultCenter, defaultZoom, className, onChange })
                 console.log('Gmaps: Autocomplete requires "places" library'); // eslint-disable-line
             }
         }
-    }, [mapsApi]);
+    }, [client]);
 
     useEffect(
         () => () => {
-            if (mapsApi && autoCompleteRef.current !== null) {
-                mapsApi.event.clearListeners(autoCompleteRef.current, 'place_changed');
+            if (client !== null && autoCompleteRef.current !== null) {
+                client.maps.event.clearListeners(autoCompleteRef.current, 'place_changed');
             }
         },
-        [],
+        [client],
     );
 
     return (

@@ -65,7 +65,14 @@ const FieldWithForm = ({
             return children;
         }
         return field !== null ? (
-            <Field className="p-2" {...field} {...props} value={value} onChange={onChange} />
+            <Field
+                className="p-2"
+                {...field}
+                {...props}
+                value={value}
+                onChange={onChange}
+                buttonTheme="primary"
+            />
         ) : (
             <Fields className="p-2" {...props} value={value} onChange={onChange} />
         );

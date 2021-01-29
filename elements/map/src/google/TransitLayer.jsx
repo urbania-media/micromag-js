@@ -1,20 +1,44 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
+import { useGoogleMapsClient } from '@micromag/core/contexts';
 
-export default function TransitLayer({ enabled, mapsApi, map }) {
-    const [transitLayer, setTransitLayer] = useState();
-    useEffect(() => {
-        setTransitLayer(new mapsApi.TransitLayer());
-    }, []);
+const propTypes = {
+    map: PropTypes.object, // eslint-disable-line
+    enabled: PropTypes.bool,
+};
+
+const defaultProps = {
+    map: null,
+    enabled: false,
+};
+
+const TransitLayer = ({ map, enabled }) => {
+    const client = useGoogleMapsClient();
+    const transitLayerRef = useRef(null);
 
     useEffect(() => {
-        if (transitLayer) {
-            if (enabled) {
-                transitLayer.setMap(map);
-            } else {
-                transitLayer.setMap(null);
-            }
+        if (client === null || map === null) {
+            return () => {};
         }
-    }, [enabled]);
+        if (transitLayerRef.current === null) {
+            transitLayerRef.current = new client.maps.TransitLayer();
+        }
+
+        if (enabled) {
+            transitLayerRef.current.setMap(map);
+        } else {
+            transitLayerRef.current.setMap(null);
+        }
+
+        return () => {
+            transitLayerRef.current.setMap(null);
+        }
+    }, [client, map, enabled]);
 
     return null;
-}
+};
+
+TransitLayer.propTypes = propTypes;
+TransitLayer.defaultProps = defaultProps;
+
+export default TransitLayer;

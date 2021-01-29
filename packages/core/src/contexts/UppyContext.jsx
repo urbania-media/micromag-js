@@ -108,7 +108,7 @@ const defaultProps = {
     sources: ['webcam', 'facebook', 'instagram', 'dropbox', 'google-drive'],
     meta: null,
     maxNumberOfFiles: 5,
-    allowedFileTypes: ['image/*', 'video/*', 'audio/*'],
+    allowedFileTypes: null,
     autoProceed: false,
     transloadit: null,
     companion: null,

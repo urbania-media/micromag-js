@@ -1,8 +1,9 @@
 const getArticleComponents = (story) => {
     const { title = null, metadata = {}, components = [] } = story || {};
     const { description = 'Ma description' } = metadata || {};
-    const { component: heading1 } = title ? { role: 'heading1', body: title } : {};
-    const { component: heading2 } = description ? { role: 'heading2', body: description } : {};
+
+    const heading1 = title ? { role: 'heading1', text: title, format: 'html' } : null;
+    const heading2 = description ? { role: 'heading2', text: description, format: 'html' } : null;
 
     const titleScreen = components.reduce((comp, next, i) => {
         if (comp === null && i < 3) {
@@ -26,13 +27,16 @@ const getArticleComponents = (story) => {
     const headerComponents = [imageComponent, heading1, heading2].filter((it) => it !== null);
 
     return {
-        components: [
-            {
-                role: 'header',
-                components: headerComponents,
-                layout: 'header',
-            },
-        ],
+        components:
+            headerComponents.length > 0
+                ? [
+                      {
+                          role: 'header',
+                          components: headerComponents,
+                          layout: 'header',
+                      },
+                  ]
+                : [],
     };
 };
 

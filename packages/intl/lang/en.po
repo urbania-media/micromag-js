@@ -17,704 +17,1133 @@ msgstr ""
 msgid ""
 msgstr ""
 
-# Title screen group
-#: uKJRh2
+# Field label
+#: +AEVbJ
+msgctxt "+AEVbJ"
 msgid "Title"
 msgstr "Title"
 
 # Background field label
 #: +MPZRu
+msgctxt "+MPZRu"
 msgid "Background"
 msgstr "Background"
 
 # Answer placeholder
 #: +Ok+7S
+msgctxt "+Ok+7S"
 msgid "Answer"
 msgstr "Answer"
 
 # Clear button label in Media Gallery
 #: +TT1y6
+msgctxt "+TT1y6"
 msgid "Clear"
 msgstr "Clear"
 
 # Media gallery source
 #: /62oe4
+msgctxt "/62oe4"
 msgid "My files"
 msgstr "My files"
 
 # Field label
 #: /MeuM1
+msgctxt "/MeuM1"
 msgid "Background video"
 msgstr "Background video"
 
-# Tags in Media Gallery
-#: 4fHMVj
+# Media label
+#: /OM5UY
+msgctxt "/OM5UY"
 msgid "Tags"
 msgstr "Tags"
 
 # Remove all button label
 #: /T/UDH
+msgctxt "/T/UDH"
 msgid "Remove all"
 msgstr "Remove all"
 
 # MapImages screen title
 #: /bEns8
+msgctxt "/bEns8"
 msgid "MapImages"
 msgstr "MapImages"
 
-# Credits field label
-#: upzOTm
+# Credits placeholder
+#: /hupzO
+msgctxt "/hupzO"
 msgid "Credits"
 msgstr "Credits"
 
-# Button label
-#: PyxZY2
+# Cancel button label
+#: 0GT0SI
+msgctxt "0GT0SI"
 msgid "Cancel"
 msgstr "Cancel"
 
-# Font family group title
-#: zIi5W2
+# Dropdown default all items label
+#: 15GBmG
+msgctxt "15GBmG"
 msgid "All"
 msgstr "All"
 
-# Audio screen title
-#: bhEaUt
+# Audio field label
+#: 169xnt
+msgctxt "169xnt"
 msgid "Audio"
 msgstr "Audio"
 
 # Ranking screen title
 #: 17BMn2
+msgctxt "17BMn2"
 msgid "Ranking"
 msgstr "Ranking"
 
-# Field label
-#: ZCe0r4
+# Description field label
+#: 1ezz2m
+msgctxt "1ezz2m"
 msgid "Description"
 msgstr "Description"
 
 # ImageTitle screen title
 #: 1fBNmY
+msgctxt "1fBNmY"
 msgid "ImageTitle"
 msgstr "ImageTitle"
 
 # Item label in items field
 #: 2/F1Q7
+msgctxt "2/F1Q7"
 msgid "#{index}"
 msgstr "#{index}"
 
+# Title placeholder
+#: 2ZOPe+
+msgctxt "2ZOPe+"
+msgid "Title"
+msgstr "Title"
+
 # Field label
 #: 31zuCS
+msgctxt "31zuCS"
 msgid "Line height"
 msgstr "Line height"
 
-# Label when there is no item
-#: rdFCsN
+# Label when there is no item in markers field
+#: 3E57H7
+msgctxt "3E57H7"
 msgid "No marker..."
 msgstr "No marker..."
 
 # Field label
 #: 3NghmM
+msgctxt "3NghmM"
 msgid "Good answer"
 msgstr "Good answer"
 
-# Legend placeholder
-#: dqnkQk
+# Legend field label
+#: 3OS3Ms
+msgctxt "3OS3Ms"
 msgid "Legend"
 msgstr "Legend"
 
-# Field label
-#: vERejo
+# Video placeholder
+#: 3ext9Q
+msgctxt "3ext9Q"
 msgid "Video"
 msgstr "Video"
 
-# Entries field label
-#: sESmah
+# Field label
+#: 3ifj0j
+msgctxt "3ifj0j"
 msgid "Entries"
 msgstr "Entries"
 
-# Quote placeholder
-#: CrzYgw
+# Quote screen title
+#: 3q9GPv
+msgctxt "3q9GPv"
 msgid "Quote"
 msgstr "Quote"
 
-# Text placeholder
-#: z4CiV1
+# Text field label
+#: 4E2gbX
+msgctxt "4E2gbX"
 msgid "Text"
 msgstr "Text"
 
 # Field label
 #: 4H2n5r
+msgctxt "4H2n5r"
 msgid "Closed captions"
 msgstr "Closed captions"
 
 # Button to view a screen
 #: 4POR3B
+msgctxt "4POR3B"
 msgid "View screen"
 msgstr "View screen"
 
 # No value label
 #: 4YiKNK
+msgctxt "4YiKNK"
 msgid "Select a color..."
 msgstr "Select a color..."
 
+# Tags in Media Gallery
+#: 4fHMVj
+msgctxt "4fHMVj"
+msgid "Tags"
+msgstr "Tags"
+
 # Layout field label
 #: 4iBXj2
+msgctxt "4iBXj2"
 msgid "Layout"
 msgstr "Layout"
 
-# Submit field label
-#: uAKPQ9
+# Description placeholder
+#: 507VAi
+msgctxt "507VAi"
+msgid "Description"
+msgstr "Description"
+
+# Submit placeholder
+#: 5uH4x7
+msgctxt "5uH4x7"
 msgid "Submit"
 msgstr "Submit"
 
-# Field label
-#: T9NZPQ
+# Images field label
+#: 63Kvho
+msgctxt "63Kvho"
 msgid "Images"
 msgstr "Images"
 
 # Survey screen title
 #: 650XRF
+msgctxt "650XRF"
 msgid "Survey"
 msgstr "Survey"
 
 # GalleryCaptions screen title
 #: 6De+oT
+msgctxt "6De+oT"
 msgid "GalleryCaptions"
 msgstr "GalleryCaptions"
 
-# Field label
-#: p85qJD
+# Images screen group
+#: 6mX2ya
+msgctxt "6mX2ya"
+msgid "Images"
+msgstr "Images"
+
+# Caption placeholder
+#: 6tIigB
+msgctxt "6tIigB"
 msgid "Caption"
 msgstr "Caption"
 
-# Author placeholder
-#: xYqGzM
+# Author field label
+#: 73hxYw
+msgctxt "73hxYw"
 msgid "Author"
 msgstr "Author"
 
+# Quote field label
+#: 88/Ge8
+msgctxt "88/Ge8"
+msgid "Quote"
+msgstr "Quote"
+
 # ImageTitleText screen title
 #: 8c34nT
+msgctxt "8c34nT"
 msgid "ImageTitleText"
 msgstr "ImageTitleText"
 
-# Button label in markers field
-#: qKQCxc
+# Button label
+#: 8oczXQ
+msgctxt "8oczXQ"
 msgid "Add a marker"
 msgstr "Add a marker"
 
 # Button label
 #: 8sWUOV
+msgctxt "8sWUOV"
 msgid "Add an font file"
 msgstr "Add an font file"
 
-# Map screen title
-#: dmuKH3
+# Map screen group
+#: 8vroDx
+msgctxt "8vroDx"
 msgid "Map"
 msgstr "Map"
 
 # ImageLegend screen title
 #: 96KRj9
+msgctxt "96KRj9"
 msgid "ImageLegend"
 msgstr "ImageLegend"
 
 # Ascending field label
 #: 9DhYaZ
+msgctxt "9DhYaZ"
 msgid "Ascending"
 msgstr "Ascending"
 
 # Library source menu
 #: 9ZdD+Q
+msgctxt "9ZdD+Q"
 msgid "Library for"
 msgstr "Library for"
 
-# Label when there is no item in answers field
-#: p6n6vY
+# Label when there is no item
+#: A+a0kL
+msgctxt "A+a0kL"
 msgid "No answer..."
 msgstr "No answer..."
 
 # Label when no value is provided to Image field
 #: B1MeY+
+msgctxt "B1MeY+"
 msgid "Select an image..."
 msgstr "Select an image..."
 
 # Label when no value is provided to Closed-captions field
 #: B6cvYv
+msgctxt "B6cvYv"
 msgid "Select a closed-captions file..."
 msgstr "Select a closed-captions file..."
 
 # Success form message
 #: BpZoQZ
+msgctxt "BpZoQZ"
 msgid "Success"
 msgstr "Success"
 
+# Quote placeholder
+#: CrzYgw
+msgctxt "CrzYgw"
+msgid "Quote"
+msgstr "Quote"
+
 # Markers field label
 #: D0+Cxr
+msgctxt "D0+Cxr"
 msgid "Markers with image"
 msgstr "Markers with image"
 
 # Label when no value is provided to Field with form
 #: DVrK6z
+msgctxt "DVrK6z"
 msgid "Click to edit..."
 msgstr "Click to edit..."
 
 # Label when no value is provided to Video field
 #: DWEzCv
+msgctxt "DWEzCv"
 msgid "Select a video..."
 msgstr "Select a video..."
 
 # TextTitle screen title
 #: E/qtB2
+msgctxt "E/qtB2"
 msgid "TextTitle"
 msgstr "TextTitle"
 
 # Field label
 #: ET527E
+msgctxt "ET527E"
 msgid "Font family"
 msgstr "Font family"
 
-# Subtitle placeholder
-#: d60tSn
+# imagesWithCaptions field label
+#: Eaf89D
+msgctxt "Eaf89D"
+msgid "Images"
+msgstr "Images"
+
+# Subtitle field label
+#: EcZYpr
+msgctxt "EcZYpr"
 msgid "Subtitle"
 msgstr "Subtitle"
 
 # Field label
 #: F2SD/0
+msgctxt "F2SD/0"
 msgid "Loop"
 msgstr "Loop"
 
-# Video 360 placeholder
-#: oLtEu6
+# Video 360 screen title
+#: FJjjnF
+msgctxt "FJjjnF"
 msgid "Video 360"
 msgstr "Video 360"
 
-# Result placeholder
-#: li7ADr
+# Field label
+#: FJygXH
+msgctxt "FJygXH"
 msgid "Result"
 msgstr "Result"
 
 # Your name placeholder
 #: G/ITGY
+msgctxt "G/ITGY"
 msgid "Your name"
 msgstr "Your name"
 
-# Field label
-#: xT/onn
+# Cancel button label in Media Gallery
+#: G31Yd0
+msgctxt "G31Yd0"
+msgid "Cancel"
+msgstr "Cancel"
+
+# Image field label
+#: GE8wrk
+msgctxt "GE8wrk"
 msgid "Image"
 msgstr "Image"
 
 # Media label
 #: GGwrCy
+msgctxt "GGwrCy"
 msgid "Already used"
 msgstr "Already used"
 
 # Field label
 #: GMCLhn
+msgctxt "GMCLhn"
 msgid "Case"
 msgstr "Case"
 
 # Timeline screen title
 #: GzoKNb
+msgctxt "GzoKNb"
 msgid "Timeline"
 msgstr "Timeline"
 
 # Button to edit a screen
 #: HseFdk
+msgctxt "HseFdk"
 msgid "Edit"
 msgstr "Edit"
 
 # Duplicate screen item
 #: IBjY5r
+msgctxt "IBjY5r"
 msgid "Duplicate screen"
 msgstr "Duplicate screen"
 
 # Timeline Illustrated screen title
 #: IMUycF
+msgctxt "IMUycF"
 msgid "Timeline Illustrated"
 msgstr "Timeline Illustrated"
 
 # Your message placeholder
 #: JAguka
+msgctxt "JAguka"
 msgid "Your message"
 msgstr "Your message"
 
 # Field label
 #: JDPMlG
+msgctxt "JDPMlG"
 msgid "Background color"
 msgstr "Background color"
 
 # Top nav title for media gallery
 #: JV5hRr
+msgctxt "JV5hRr"
 msgid "Media gallery"
 msgstr "Media gallery"
 
 # Button to create your first screen
 #: JoWKee
+msgctxt "JoWKee"
 msgid "Create your first screen"
 msgstr "Create your first screen"
 
 # Label when there is no item
 #: KCDOHI
+msgctxt "KCDOHI"
 msgid "No font..."
 msgstr "No font..."
 
 # Field label
 #: KHWeV7
+msgctxt "KHWeV7"
 msgid "Answers"
 msgstr "Answers"
 
+# Audio placeholder
+#: MYZwSA
+msgctxt "MYZwSA"
+msgid "Audio"
+msgstr "Audio"
+
 # ImageText screen title
 #: Mz76RM
+msgctxt "Mz76RM"
 msgid "ImageText"
 msgstr "ImageText"
 
+# Title field label
+#: N25iDO
+msgctxt "N25iDO"
+msgid "Title"
+msgstr "Title"
+
 # Scrollable field label
 #: NGuaKm
+msgctxt "NGuaKm"
 msgid "Scrollable"
 msgstr "Scrollable"
 
 # Field label
 #: OJi+eg
+msgctxt "OJi+eg"
 msgid "Label"
 msgstr "Label"
 
 # Label when there is no item in slides field
 #: OdcEna
+msgctxt "OdcEna"
 msgid "No slide..."
 msgstr "No slide..."
 
 # Type Label in Media Gallery
 #: OkNUmk
+msgctxt "OkNUmk"
 msgid "Type"
 msgstr "Type"
 
 # Label when there is no item in items field
 #: PKCv5M
+msgctxt "PKCv5M"
 msgid "No item..."
 msgstr "No item..."
 
 # Markers field label
 #: PbHeHc
+msgctxt "PbHeHc"
 msgid "Markers"
 msgstr "Markers"
 
+# Button label
+#: PyxZY2
+msgctxt "PyxZY2"
+msgid "Cancel"
+msgstr "Cancel"
+
 # Title of the screen types selection dialog
 #: QBaiO0
+msgctxt "QBaiO0"
 msgid "Add a screen"
 msgstr "Add a screen"
 
-# Button label in images field
-#: V+G2s+
+# Button label
+#: QSmRdP
+msgctxt "QSmRdP"
 msgid "Add an image"
 msgstr "Add an image"
 
 #: QfpTKK
+msgctxt "QfpTKK"
 msgid "Select a screen..."
 msgstr "Select a screen..."
 
 # Field label
 #: RHMS2f
+msgctxt "RHMS2f"
 msgid "Line color"
 msgstr "Line color"
 
 # Message field label
 #: RcLsua
+msgctxt "RcLsua"
 msgid "Message"
 msgstr "Message"
 
 # Text and Images screen group
 #: S/mavZ
+msgctxt "S/mavZ"
 msgid "Text and Images"
 msgstr "Text and Images"
 
+# Text screen title
+#: S9YpbV
+msgctxt "S9YpbV"
+msgid "Text"
+msgstr "Text"
+
 # Field label
 #: T0pi1u
+msgctxt "T0pi1u"
 msgid "With seek bar"
 msgstr "With seek bar"
 
+# Field label
+#: T9NZPQ
+msgctxt "T9NZPQ"
+msgid "Images"
+msgstr "Images"
+
 # Longitude description
 #: THKV4v
+msgctxt "THKV4v"
 msgid "Longitude"
 msgstr "Longitude"
 
 # Add button label in Media Gallery
 #: Tt4jN1
+msgctxt "Tt4jN1"
 msgid "Add"
 msgstr "Add"
 
+# Video screen title
+#: UBXIYP
+msgctxt "UBXIYP"
+msgid "Video"
+msgstr "Video"
+
+# Button label in images field
+#: V+G2s+
+msgctxt "V+G2s+"
+msgid "Add an image"
+msgstr "Add an image"
+
 # Label when no value
 #: Wb5zY4
+msgctxt "Wb5zY4"
 msgid "Select a font file..."
 msgstr "Select a font file..."
 
 # Field label
 #: WlNxMj
+msgctxt "WlNxMj"
 msgid "Repeat"
 msgstr "Repeat"
 
 # Fields section label
 #: Wr9olU
+msgctxt "Wr9olU"
 msgid "Typography"
 msgstr "Typography"
 
 # Move the map to position the place description
 #: XhgKcw
+msgctxt "XhgKcw"
 msgid "Move the map to position the place"
 msgstr "Move the map to position the place"
 
 # Field label
 #: YWcp4v
+msgctxt "YWcp4v"
 msgid "Bullet filled"
 msgstr "Bullet filled"
 
 # Field label
 #: Z5jrDS
+msgctxt "Z5jrDS"
 msgid "Letter spacing"
 msgstr "Letter spacing"
 
+# Field label
+#: ZCe0r4
+msgctxt "ZCe0r4"
+msgid "Description"
+msgstr "Description"
+
+# Submit form button
+#: ZLDmja
+msgctxt "ZLDmja"
+msgid "Submit"
+msgstr "Submit"
+
 # Questions screen group
 #: ZqwBOx
+msgctxt "ZqwBOx"
 msgid "Questions"
 msgstr "Questions"
 
 # TitleSubtitle screen title
 #: ZtZjF0
+msgctxt "ZtZjF0"
 msgid "TitleSubtitle"
 msgstr "TitleSubtitle"
 
 # Button label in items field
 #: ZxgNge
+msgctxt "ZxgNge"
 msgid "Add an item"
 msgstr "Add an item"
 
 # Field label
 #: aarOkd
+msgctxt "aarOkd"
 msgid "Color"
 msgstr "Color"
 
 # Field label
 #: amEvH1
+msgctxt "amEvH1"
 msgid "Fit"
 msgstr "Fit"
 
 # Label in Media Gallery
 #: aovRFH
+msgctxt "aovRFH"
 msgid "Filename"
 msgstr "Filename"
 
 # GalleryFeedCaptions screen title
 #: bh16Yr
+msgctxt "bh16Yr"
 msgid "GalleryFeedCaptions"
 msgstr "GalleryFeedCaptions"
 
-# Button field label
-#: enPTxj
+# Audio screen title
+#: bhEaUt
+msgctxt "bhEaUt"
+msgid "Audio"
+msgstr "Audio"
+
+# Button placeholder
+#: bv3rRe
+msgctxt "bv3rRe"
 msgid "Button"
 msgstr "Button"
 
 # Heading in Media Gallery
 #: c9VwT/
+msgctxt "c9VwT/"
 msgid "Technical details"
 msgstr "Technical details"
 
 # List screen group
 #: cGItoy
+msgctxt "cGItoy"
 msgid "List"
 msgstr "List"
 
-# Label when there is no item in images field
-#: t+L1J/
+# Subtitle placeholder
+#: d60tSn
+msgctxt "d60tSn"
+msgid "Subtitle"
+msgstr "Subtitle"
+
+# Label when there is no item
+#: dFMzBu
+msgctxt "dFMzBu"
 msgid "No image..."
 msgstr "No image..."
 
-# Question field label
-#: hVE7TA
+# Title screen title
+#: dVcog7
+msgctxt "dVcog7"
+msgid "Title"
+msgstr "Title"
+
+# Map screen title
+#: dmuKH3
+msgctxt "dmuKH3"
+msgid "Map"
+msgstr "Map"
+
+# Legend placeholder
+#: dqnkQk
+msgctxt "dqnkQk"
+msgid "Legend"
+msgstr "Legend"
+
+# Question placeholder
+#: e1I+KU
+msgctxt "e1I+KU"
 msgid "Question"
 msgstr "Question"
 
 # Label when no value is provided to Media field
 #: e6+aGf
+msgctxt "e6+aGf"
 msgid "Select a media..."
 msgstr "Select a media..."
 
+# Image placeholder
+#: ebsPd4
+msgctxt "ebsPd4"
+msgid "Image"
+msgstr "Image"
+
 # Name of the section in Fields
 #: enFs4g
+msgctxt "enFs4g"
 msgid "Advanced"
 msgstr "Advanced"
 
+# Button field label
+#: enPTxj
+msgctxt "enPTxj"
+msgid "Button"
+msgstr "Button"
+
 # Label in Media Gallery
 #: eoW0tZ
+msgctxt "eoW0tZ"
 msgid "Duration"
 msgstr "Duration"
 
+# Text screen group
+#: fIawTr
+msgctxt "fIawTr"
+msgid "Text"
+msgstr "Text"
+
 # Contribution screen title
 #: g6b9Lg
+msgctxt "g6b9Lg"
 msgid "Contribution"
 msgstr "Contribution"
 
-# Title of the delete screen dialog
-#: p6q/+/
+# Delete screen button label
+#: gRxcTc
+msgctxt "gRxcTc"
+msgid "Delete screen"
+msgstr "Delete screen"
+
+# Question field label
+#: hVE7TA
+msgctxt "hVE7TA"
+msgid "Question"
+msgstr "Question"
+
+# Delete screen item
+#: hpiKce
+msgctxt "hpiKce"
 msgid "Delete screen"
 msgstr "Delete screen"
 
 # No value label
 #: i+3ZrF
+msgctxt "i+3ZrF"
 msgid "Select a font family..."
 msgstr "Select a font family..."
 
 # Label when there is no item
 #: iHV3W3
+msgctxt "iHV3W3"
 msgid "No entry..."
 msgstr "No entry..."
 
 # Gallery screen title
 #: jaFXki
+msgctxt "jaFXki"
 msgid "Gallery"
 msgstr "Gallery"
 
-# Button to show screens
-#: wkysUu
+# Title of the screens section
+#: jf+4Hq
+msgctxt "jf+4Hq"
 msgid "Screens"
 msgstr "Screens"
 
-# Name field label
-#: nXVNeg
+# Name in Media Gallery
+#: kBz8vF
+msgctxt "kBz8vF"
 msgid "Name"
 msgstr "Name"
 
 # Button label
 #: l/Y6or
+msgctxt "l/Y6or"
 msgid "Add an entry"
 msgstr "Add an entry"
 
-# Button label in answers field
-#: n2teag
+# Button label
+#: lGh/NP
+msgctxt "lGh/NP"
 msgid "Add an answer"
 msgstr "Add an answer"
 
 # TitleSubtitleCredits screen title
 #: lXV3vP
+msgctxt "lXV3vP"
 msgid "TitleSubtitleCredits"
 msgstr "TitleSubtitleCredits"
 
+# Result placeholder
+#: li7ADr
+msgctxt "li7ADr"
+msgid "Result"
+msgstr "Result"
+
 # Label in Media Gallery
 #: liyV7Y
+msgctxt "liyV7Y"
 msgid "Size"
 msgstr "Size"
 
 # Media label
 #: mOSkbf
+msgctxt "mOSkbf"
 msgid "Usage"
 msgstr "Usage"
 
 #: menus.pagination.next
+msgctxt "menus.pagination.next"
 msgid "next"
 msgstr "next"
 
 #: menus.pagination.previous
+msgctxt "menus.pagination.previous"
 msgid "Previous"
 msgstr "Previous"
 
 # Label in Media Gallery
 #: mv37oK
+msgctxt "mv37oK"
 msgid "Dimension"
 msgstr "Dimension"
 
-# imagesWithCaptions field label
-#: o0RmVC
-msgid "imagesWithCaptions"
-msgstr "imagesWithCaptions"
+# Button label in answers field
+#: n2teag
+msgctxt "n2teag"
+msgid "Add an answer"
+msgstr "Add an answer"
+
+# Name field label
+#: nXVNeg
+msgctxt "nXVNeg"
+msgid "Name"
+msgstr "Name"
+
+# Video 360 placeholder
+#: oLtEu6
+msgctxt "oLtEu6"
+msgid "Video 360"
+msgstr "Video 360"
+
+# Label when there is no item in answers field
+#: p6n6vY
+msgctxt "p6n6vY"
+msgid "No answer..."
+msgstr "No answer..."
+
+# Title of the delete screen dialog
+#: p6q/+/
+msgctxt "p6q/+/"
+msgid "Delete screen"
+msgstr "Delete screen"
+
+# Field label
+#: p85qJD
+msgctxt "p85qJD"
+msgid "Caption"
+msgstr "Caption"
 
 # Field label
 #: pJgYyE
+msgctxt "pJgYyE"
 msgid "AutoPlay"
 msgstr "AutoPlay"
 
 # Media label
 #: pfvDzR
+msgctxt "pfvDzR"
 msgid "Added by"
 msgstr "Added by"
 
 # Confirmation message before deleting a screen
 #: q/tLk0
+msgctxt "q/tLk0"
 msgid "Are you sure you want to delete this screen?"
 msgstr "Are you sure you want to delete this screen?"
 
 # Save in Media Gallery
 #: qIw1nW
+msgctxt "qIw1nW"
 msgid "Save"
 msgstr "Save"
 
+# Button label in markers field
+#: qKQCxc
+msgctxt "qKQCxc"
+msgid "Add a marker"
+msgstr "Add a marker"
+
+# Label when there is no item
+#: rdFCsN
+msgctxt "rdFCsN"
+msgid "No marker..."
+msgstr "No marker..."
+
+# Entries field label
+#: sESmah
+msgctxt "sESmah"
+msgid "Entries"
+msgstr "Entries"
+
+# Label when there is no item in images field
+#: t+L1J/
+msgctxt "t+L1J/"
+msgid "No image..."
+msgstr "No image..."
+
 # Active filters title
 #: t2cFdl
+msgctxt "t2cFdl"
 msgid "Active filters"
 msgstr "Active filters"
 
 # Button label in slides field
 #: tAYwqp
+msgctxt "tAYwqp"
 msgid "Add a slide"
 msgstr "Add a slide"
 
 # Field label
 #: tYGev7
+msgctxt "tYGev7"
 msgid "Font size"
 msgstr "Font size"
 
 # Media label
 #: tmfbUn
+msgctxt "tmfbUn"
 msgid "Unused"
 msgstr "Unused"
 
+# Video field label
+#: tvl2Zc
+msgctxt "tvl2Zc"
+msgid "Video"
+msgstr "Video"
+
 # Field label
 #: twTaAZ
+msgctxt "twTaAZ"
 msgid "Bullet shape"
 msgstr "Bullet shape"
 
 # Field label
 #: u3ok54
+msgctxt "u3ok54"
 msgid "Position"
 msgstr "Position"
 
+# Submit field label
+#: uAKPQ9
+msgctxt "uAKPQ9"
+msgid "Submit"
+msgstr "Submit"
+
+# Image screen title
+#: uJ9eBc
+msgctxt "uJ9eBc"
+msgid "Image"
+msgstr "Image"
+
+# Title screen group
+#: uKJRh2
+msgctxt "uKJRh2"
+msgid "Title"
+msgstr "Title"
+
 # Field label
 #: uNpHnA
+msgctxt "uNpHnA"
 msgid "Bullet color"
 msgstr "Bullet color"
 
+# Credits field label
+#: upzOTm
+msgctxt "upzOTm"
+msgid "Credits"
+msgstr "Credits"
+
+# Field label
+#: vERejo
+msgctxt "vERejo"
+msgid "Video"
+msgstr "Video"
+
 # Media label
 #: vYunz+
+msgctxt "vYunz+"
 msgid "Recent searches"
 msgstr "Recent searches"
 
 # GalleryFeed screen title
 #: vrCfAS
+msgctxt "vrCfAS"
 msgid "GalleryFeed"
 msgstr "GalleryFeed"
 
+# Button to show screens
+#: wkysUu
+msgctxt "wkysUu"
+msgid "Screens"
+msgstr "Screens"
+
 # Label when no value is provided to Audio field
 #: wt1+dM
+msgctxt "wt1+dM"
 msgid "Select an audio file..."
 msgstr "Select an audio file..."
 
 # Media gallery source
 #: xAzv6g
+msgctxt "xAzv6g"
 msgid "All sources"
 msgstr "All sources"
 
+# Field label
+#: xT/onn
+msgctxt "xT/onn"
+msgid "Image"
+msgstr "Image"
+
+# Author placeholder
+#: xYqGzM
+msgctxt "xYqGzM"
+msgid "Author"
+msgstr "Author"
+
 # Fields section label
 #: y7xsPe
+msgctxt "y7xsPe"
 msgid "Advanced settings"
 msgstr "Advanced settings"
 
 # Field label
 #: ySApyR
+msgctxt "ySApyR"
 msgid "Background image"
 msgstr "Background image"
 
+# Text placeholder
+#: z4CiV1
+msgctxt "z4CiV1"
+msgid "Text"
+msgstr "Text"
+
 # Latitude description
 #: zDH24s
+msgctxt "zDH24s"
 msgid "Latitude"
 msgstr "Latitude"
 
+# Font family group title
+#: zIi5W2
+msgctxt "zIi5W2"
+msgid "All"
+msgstr "All"
+
 # Quiz screen title
 #: zW7IVm
+msgctxt "zW7IVm"
 msgid "Quiz"
 msgstr "Quiz"

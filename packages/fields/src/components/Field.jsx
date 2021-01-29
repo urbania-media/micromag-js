@@ -122,8 +122,6 @@ const Field = ({
         />
     );
 
-    // console.log(type, fieldElement, value, props);
-
     return !withoutFieldRow ? (
         <FieldRow
             {...props}

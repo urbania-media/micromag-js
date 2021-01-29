@@ -2,6 +2,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import withIntlProvider from './decorators/withIntlProvider';
 import withScreenSize from './decorators/withScreenSize';
 import withScreenDefinition from './decorators/withScreenDefinition';
+import withGoogleKeys from './decorators/withGoogleKeys';
 
 import '../packages/core/src/styles/vendor.scss';
 import './fonts/fonts.scss';
@@ -69,4 +70,4 @@ export const parameters = {
     },
 };
 
-export const decorators = [withKnobs, withIntlProvider, withScreenSize, withScreenDefinition];
+export const decorators = [withKnobs, withIntlProvider, withScreenSize, withScreenDefinition, withGoogleKeys];

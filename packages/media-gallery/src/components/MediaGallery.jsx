@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useMedias, useMediaCreate } from '@micromag/data';
@@ -61,10 +61,26 @@ const MediaGallery = ({
     };
 
     // Filters
+    const throttle = useRef(null);
+    const [queryValue, setQueryValue] = useState(defaultFilters);
     const [filtersValue, setFiltersValue] = useState(defaultFilters);
 
+    const onFiltersChange = useCallback(
+        (value) => {
+            if (throttle.current !== null) {
+                clearTimeout(throttle.current);
+            }
+            throttle.current = setTimeout(() => {
+                setQueryValue(value);
+                throttle.current = null;
+            }, 500);
+            setFiltersValue(value);
+        },
+        [setFiltersValue, setQueryValue, throttle],
+    );
+
     // Items
-    const { allMedias: loadedMedias } = useMedias(filtersValue, 1, 100, {
+    const { allMedias: loadedMedias } = useMedias(queryValue, 1, 100, {
         ...(initialMedias !== null ? { items: initialMedias } : null),
     });
 
@@ -128,7 +144,7 @@ const MediaGallery = ({
             <Navbar
                 filters={filtersValue}
                 media={metadataMedia}
-                onFiltersChange={setFiltersValue}
+                onFiltersChange={onFiltersChange}
                 onClickAdd={onClickAdd}
                 onClickBack={onClickBack}
                 onClickCancel={onClickCancel}
