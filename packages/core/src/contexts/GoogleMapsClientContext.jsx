@@ -40,8 +40,6 @@ export const GoogleMapsClientProvider = ({ children, locale, libraries }) => {
     const exisitingClient = useGoogleMapsClient();
     const [client, setClient] = useState(exisitingClient);
 
-    console.log(client);
-
     useEffect(() => {
         if (exisitingClient === null) {
             loadGoogleMaps({ apiKey, locale, libraries }).then((newClient) => {

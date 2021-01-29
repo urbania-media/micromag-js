@@ -48,24 +48,24 @@ const TextEditorField = ({ value, size, className, editorConfig, inline, onChang
     );
 
     const onEditorReady = useCallback(
-        (editor) => {
+        (editor) => { // eslint-disable-line  no-unused-vars
             if (inline) {
-                editor.model.schema.extend('$root', {
-                    isBlock: true,
-                    isLimit: true,
-                });
-                editor.model.schema.extend('$block', {
-                    isLimit: true,
-                });
-                editor.model.schema.extend('paragraph', {
-                    isLimit: true,
-                });
-                editor.conversion.for('downcast').elementToElement({
-                    model: 'paragraph',
-                    view: 'span',
-                    // view: (element, { writer }) => writer.createText(),
-                    converterPriority: 'high',
-                });
+                // editor.model.schema.extend('$root', {
+                //     isBlock: true,
+                //     isLimit: true,
+                // });
+                // editor.model.schema.extend('$block', {
+                //     isLimit: true,
+                // });
+                // editor.model.schema.extend('paragraph', {
+                //     isLimit: true,
+                // });
+                // editor.conversion.for('downcast').elementToElement({
+                //     model: 'paragraph',
+                //     view: 'span',
+                //     // view: (element, { writer }) => writer.createText(),
+                //     converterPriority: 'high',
+                // });
             }
         },
         [inline],

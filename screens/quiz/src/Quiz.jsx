@@ -97,7 +97,8 @@ const QuizScreen = ({
     const hasResult = isTextFilled(result);
 
     const showInstantAnswer = isStatic || isCapture;
-    const goodAnswerIndex = answers !== null ? answers.findIndex(({ good }) => good) : null;
+    const goodAnswerIndex =
+        answers !== null ? answers.findIndex((answer) => answer !== null && answer.good) : null;
 
     const [userAnswerIndex, setUserAnswerIndex] = useState(
         showInstantAnswer ? goodAnswerIndex : null,
