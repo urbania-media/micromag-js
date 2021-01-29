@@ -1,5 +1,5 @@
 {
-    "id": "78",
+    "id": "94",
     "title": "Paul's story",
     "author": {
         "id": "1",
@@ -24,36 +24,32 @@
         "organisations": [
             {
                 "id": "43",
-                "name": "Fremen Krew X",
+                "name": "Fremen Krew X 2",
                 "slug": "fremen-krew",
-                "short_name": "FX",
+                "short_name": "F2",
                 "logo": {
-                    "id": "8",
+                    "id": "4",
                     "type": "image",
-                    "name": "600x300.png",
-                    "url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-21/8-021515.png",
-                    "thumbnail_url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-21/8-021515.png",
+                    "name": "avatar.png",
+                    "url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-19/4-104000.png",
+                    "thumbnail_url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-19/4-104000.png",
                     "metadata": {
-                        "filename": "600x300.png",
-                        "size": 6447,
+                        "filename": "avatar.png",
+                        "size": 65870,
                         "mime": "image/png",
-                        "width": 600,
-                        "height": 300
+                        "width": 200,
+                        "height": 200
                     }
                 },
                 "color": { "color": "#4a810e", "alpha": 0.1 },
                 "font": { "fontFamily": "Georgia", "color": { "color": "#b35050", "alpha": 1 } },
-                "ga_code": "GACODE",
-                "active": true,
-                "permissions": {
-                    "can_edit_story": true,
-                    "can_publish_story": true,
-                    "can_edit_team": true,
-                    "can_edit_organisation": true,
-                    "can_edit_theme": true,
-                    "can_edit_medias": true,
-                    "can_read_stats": true
-                }
+                "tracking": {
+                    "codes": [
+                        { "type": "ga", "id": "UA-X" },
+                        { "type": "ga", "id": "UA-Z" }
+                    ]
+                },
+                "active": true
             },
             {
                 "id": "52",
@@ -63,17 +59,8 @@
                 "logo": null,
                 "color": null,
                 "font": null,
-                "ga_code": null,
-                "active": false,
-                "permissions": {
-                    "can_edit_story": true,
-                    "can_publish_story": true,
-                    "can_edit_team": true,
-                    "can_edit_organisation": true,
-                    "can_edit_theme": true,
-                    "can_edit_medias": true,
-                    "can_read_stats": true
-                }
+                "tracking": [],
+                "active": false
             },
             {
                 "id": "53",
@@ -83,17 +70,8 @@
                 "logo": null,
                 "color": null,
                 "font": null,
-                "ga_code": null,
-                "active": false,
-                "permissions": {
-                    "can_edit_story": true,
-                    "can_publish_story": true,
-                    "can_edit_team": true,
-                    "can_edit_organisation": true,
-                    "can_edit_theme": true,
-                    "can_edit_medias": true,
-                    "can_read_stats": true
-                }
+                "tracking": [],
+                "active": false
             }
         ]
     },
@@ -102,10 +80,10 @@
             "id": "948aa870-5c56-11eb-bc29-e3b80032c69a",
             "type": "text-title",
             "background": { "color": { "color": "#9b9b9b", "alpha": 1 }, "image": null },
-            "layout": "top",
+            "layout": "middle",
             "title": {
                 "color": null,
-                "body": "<p>MON TITRE</p>",
+                "body": "<span>MON TITRE 4.0</span>",
                 "textStyle": {
                     "color": { "color": "#d0021b", "alpha": 1 },
                     "fontFamily": "Helvetica",
@@ -116,7 +94,7 @@
             },
             "text": {
                 "color": null,
-                "body": "<p>Mon texte</p>",
+                "body": "<span>Mon texte de titre 4.0</span>",
                 "textStyle": {
                     "color": { "color": "#4a90e2", "alpha": 1 },
                     "fontFamily": "Times New Roman",
@@ -235,11 +213,11 @@
             "id": "8aa3a290-5cc3-11eb-aaa4-b3854e3e93fd",
             "type": "image-title-text",
             "background": { "color": { "color": "#9b9b9b", "alpha": 1 }, "image": null },
-            "layout": "title-top",
+            "layout": "normal",
             "image": "media://9",
             "title": {
                 "color": null,
-                "body": "<p>Un titre au dessus de l'image\u2026 et un text en bas</p>",
+                "body": "<p>Un titre en dessous de l'image\u2026 mais pas tjrs</p>",
                 "textStyle": {
                     "color": { "color": "#d0021b", "alpha": 1 },
                     "fontFamily": "Helvetica",
@@ -289,14 +267,130 @@
             "type": "audio",
             "background": { "color": { "color": "#9b9b9b", "alpha": 1 }, "image": null },
             "layout": "normal",
-            "audio": { "media": "media://5" }
+            "audio": { "media": null }
         },
         {
-            "id": "6b7edb90-5f8f-11eb-92c5-d96f31214c3b",
-            "type": "video",
+            "id": "2f2112b0-61df-11eb-8fda-3b02d68d10a4",
+            "type": "gallery-feed-captions",
             "background": { "color": { "color": "#9b9b9b", "alpha": 1 }, "image": null },
-            "layout": "center",
-            "video": { "media": "media://6" }
+            "layout": "normal",
+            "images": [
+                { "media": "media://16", "caption": { "body": "<span>sdasfsadf</span>" } },
+                { "media": "media://13", "caption": { "body": "<span>Ma l\u00e9gende</span>" } }
+            ]
+        },
+        {
+            "id": "9bfbc870-61e0-11eb-86c1-975df1a524c6",
+            "type": "map",
+            "background": { "color": { "color": "#9b9b9b", "alpha": 1 }, "image": null },
+            "layout": "normal",
+            "scrollable": true,
+            "title": {
+                "body": "<span>Ma carte</span>",
+                "textStyle": {
+                    "color": { "color": "#d0021b", "alpha": 1 },
+                    "fontFamily": "Helvetica",
+                    "fontSize": 32,
+                    "align": "center",
+                    "fontStyle": { "bold": true, "italic": false, "underline": false }
+                }
+            },
+            "markers": [
+                {
+                    "title": { "body": "<span>Mama</span>" },
+                    "description": { "body": "<span>Hoho</span>" },
+                    "geoPosition": { "lat": 45.6, "lng": -73.9 }
+                }
+            ],
+            "description": {
+                "body": "<span>Ma description de carte</span>",
+                "textStyle": {
+                    "color": { "color": "#4a90e2", "alpha": 1 },
+                    "fontFamily": "Times New Roman",
+                    "fontSize": 18,
+                    "lineHeight": 1.5
+                }
+            },
+            "button": { "body": "<span>Mon bouton de carte</span>" }
+        },
+        {
+            "id": "b853f290-61e0-11eb-86c1-975df1a524c6",
+            "type": "gallery-captions",
+            "background": { "color": { "color": "#9b9b9b", "alpha": 1 }, "image": null },
+            "layout": "three-vertical",
+            "images": [
+                { "media": "media://11", "caption": { "body": "<span>L\u00e9gende 1</span>" } },
+                { "caption": { "body": "<span>L\u00e9gende 2</span>" }, "media": "media://8" },
+                { "caption": { "body": "<span>L\u00e9gende 3</span>" }, "media": "media://13" }
+            ]
+        },
+        {
+            "id": "fc0c5f90-61e0-11eb-86c1-975df1a524c6",
+            "type": "ranking",
+            "background": { "color": { "color": "#9b9b9b", "alpha": 1 }, "image": null },
+            "layout": "side",
+            "items": [
+                {
+                    "title": { "body": "<span>Item 1 de la liste</span>" },
+                    "description": { "body": "<span>description de l'item 1</span>" }
+                },
+                {
+                    "title": { "body": "<span>item 2 de la liste</span>" },
+                    "description": { "body": "<span>description de l'item 2</span>" }
+                }
+            ],
+            "ascending": true
+        },
+        {
+            "id": "1a3ca510-61e1-11eb-86c1-975df1a524c6",
+            "type": "timeline",
+            "background": { "color": { "color": "#417505", "alpha": 1 }, "image": null },
+            "layout": "normal",
+            "bulletShape": "circle",
+            "bulletFilled": true,
+            "bulletColor": "#FFFFFF",
+            "lineColor": "#FFFFFF",
+            "items": [
+                {
+                    "title": { "body": "<span>TIMELINE A</span>" },
+                    "description": { "body": "<span>description de la timeline A</span>" }
+                },
+                {
+                    "title": { "body": "<span>Timeline B</span>" },
+                    "description": { "body": "<span>description de la timeline B</span>" }
+                }
+            ]
+        },
+        {
+            "id": "36127fd0-61e1-11eb-86c1-975df1a524c6",
+            "type": "timeline-illustrated",
+            "background": { "color": { "color": "#9b9b9b", "alpha": 1 }, "image": null },
+            "layout": "title-description-image",
+            "bulletShape": "circle",
+            "bulletFilled": false,
+            "bulletColor": "#FFFFFF",
+            "lineColor": "#FFFFFF",
+            "items": [
+                {
+                    "title": { "body": "<span>Master timeline</span>" },
+                    "description": { "body": "<span>description</span>" },
+                    "image": "media://16"
+                },
+                {
+                    "title": { "body": "<span>Master timeline 2</span>" },
+                    "description": { "body": "<span>description 2</span>" },
+                    "image": "media://13"
+                }
+            ]
+        },
+        {
+            "id": "4f41f2b0-61e1-11eb-86c1-975df1a524c6",
+            "type": "title-subtitle-credits",
+            "background": { "color": { "color": "#9b9b9b", "alpha": 1 }, "image": null },
+            "layout": "bottom",
+            "title": { "body": "<span>Un titre final</span>" },
+            "subtitle": { "body": "<span>No way</span>" },
+            "credits": { "body": "<span>Hos\u00e9 cr\u00e9dits</span>" }
         }
     ],
     "medias": {
@@ -343,21 +437,21 @@
                     "organisations": [
                         {
                             "id": "43",
-                            "name": "Fremen Krew X",
+                            "name": "Fremen Krew X 2",
                             "slug": "fremen-krew",
-                            "short_name": "FX",
+                            "short_name": "F2",
                             "logo": {
-                                "id": "8",
+                                "id": "4",
                                 "type": "image",
-                                "name": "600x300.png",
-                                "url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-21/8-021515.png",
-                                "thumbnail_url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-21/8-021515.png",
+                                "name": "avatar.png",
+                                "url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-19/4-104000.png",
+                                "thumbnail_url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-19/4-104000.png",
                                 "metadata": {
-                                    "filename": "600x300.png",
-                                    "size": 6447,
+                                    "filename": "avatar.png",
+                                    "size": 65870,
                                     "mime": "image/png",
-                                    "width": 600,
-                                    "height": 300
+                                    "width": 200,
+                                    "height": 200
                                 }
                             },
                             "color": { "color": "#4a810e", "alpha": 0.1 },
@@ -365,17 +459,13 @@
                                 "fontFamily": "Georgia",
                                 "color": { "color": "#b35050", "alpha": 1 }
                             },
-                            "ga_code": "GACODE",
-                            "active": true,
-                            "permissions": {
-                                "can_edit_story": true,
-                                "can_publish_story": true,
-                                "can_edit_team": true,
-                                "can_edit_organisation": true,
-                                "can_edit_theme": true,
-                                "can_edit_medias": true,
-                                "can_read_stats": true
-                            }
+                            "tracking": {
+                                "codes": [
+                                    { "type": "ga", "id": "UA-X" },
+                                    { "type": "ga", "id": "UA-Z" }
+                                ]
+                            },
+                            "active": true
                         },
                         {
                             "id": "52",
@@ -385,17 +475,8 @@
                             "logo": null,
                             "color": null,
                             "font": null,
-                            "ga_code": null,
-                            "active": false,
-                            "permissions": {
-                                "can_edit_story": true,
-                                "can_publish_story": true,
-                                "can_edit_team": true,
-                                "can_edit_organisation": true,
-                                "can_edit_theme": true,
-                                "can_edit_medias": true,
-                                "can_read_stats": true
-                            }
+                            "tracking": [],
+                            "active": false
                         },
                         {
                             "id": "53",
@@ -405,17 +486,8 @@
                             "logo": null,
                             "color": null,
                             "font": null,
-                            "ga_code": null,
-                            "active": false,
-                            "permissions": {
-                                "can_edit_story": true,
-                                "can_publish_story": true,
-                                "can_edit_team": true,
-                                "can_edit_organisation": true,
-                                "can_edit_theme": true,
-                                "can_edit_medias": true,
-                                "can_read_stats": true
-                            }
+                            "tracking": [],
+                            "active": false
                         }
                     ]
                 },
@@ -466,21 +538,21 @@
                     "organisations": [
                         {
                             "id": "43",
-                            "name": "Fremen Krew X",
+                            "name": "Fremen Krew X 2",
                             "slug": "fremen-krew",
-                            "short_name": "FX",
+                            "short_name": "F2",
                             "logo": {
-                                "id": "8",
+                                "id": "4",
                                 "type": "image",
-                                "name": "600x300.png",
-                                "url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-21/8-021515.png",
-                                "thumbnail_url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-21/8-021515.png",
+                                "name": "avatar.png",
+                                "url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-19/4-104000.png",
+                                "thumbnail_url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-19/4-104000.png",
                                 "metadata": {
-                                    "filename": "600x300.png",
-                                    "size": 6447,
+                                    "filename": "avatar.png",
+                                    "size": 65870,
                                     "mime": "image/png",
-                                    "width": 600,
-                                    "height": 300
+                                    "width": 200,
+                                    "height": 200
                                 }
                             },
                             "color": { "color": "#4a810e", "alpha": 0.1 },
@@ -488,17 +560,13 @@
                                 "fontFamily": "Georgia",
                                 "color": { "color": "#b35050", "alpha": 1 }
                             },
-                            "ga_code": "GACODE",
-                            "active": true,
-                            "permissions": {
-                                "can_edit_story": true,
-                                "can_publish_story": true,
-                                "can_edit_team": true,
-                                "can_edit_organisation": true,
-                                "can_edit_theme": true,
-                                "can_edit_medias": true,
-                                "can_read_stats": true
-                            }
+                            "tracking": {
+                                "codes": [
+                                    { "type": "ga", "id": "UA-X" },
+                                    { "type": "ga", "id": "UA-Z" }
+                                ]
+                            },
+                            "active": true
                         },
                         {
                             "id": "52",
@@ -508,17 +576,8 @@
                             "logo": null,
                             "color": null,
                             "font": null,
-                            "ga_code": null,
-                            "active": false,
-                            "permissions": {
-                                "can_edit_story": true,
-                                "can_publish_story": true,
-                                "can_edit_team": true,
-                                "can_edit_organisation": true,
-                                "can_edit_theme": true,
-                                "can_edit_medias": true,
-                                "can_read_stats": true
-                            }
+                            "tracking": [],
+                            "active": false
                         },
                         {
                             "id": "53",
@@ -528,17 +587,8 @@
                             "logo": null,
                             "color": null,
                             "font": null,
-                            "ga_code": null,
-                            "active": false,
-                            "permissions": {
-                                "can_edit_story": true,
-                                "can_publish_story": true,
-                                "can_edit_team": true,
-                                "can_edit_organisation": true,
-                                "can_edit_theme": true,
-                                "can_edit_medias": true,
-                                "can_read_stats": true
-                            }
+                            "tracking": [],
+                            "active": false
                         }
                     ]
                 },
@@ -589,21 +639,21 @@
                     "organisations": [
                         {
                             "id": "43",
-                            "name": "Fremen Krew X",
+                            "name": "Fremen Krew X 2",
                             "slug": "fremen-krew",
-                            "short_name": "FX",
+                            "short_name": "F2",
                             "logo": {
-                                "id": "8",
+                                "id": "4",
                                 "type": "image",
-                                "name": "600x300.png",
-                                "url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-21/8-021515.png",
-                                "thumbnail_url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-21/8-021515.png",
+                                "name": "avatar.png",
+                                "url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-19/4-104000.png",
+                                "thumbnail_url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-19/4-104000.png",
                                 "metadata": {
-                                    "filename": "600x300.png",
-                                    "size": 6447,
+                                    "filename": "avatar.png",
+                                    "size": 65870,
                                     "mime": "image/png",
-                                    "width": 600,
-                                    "height": 300
+                                    "width": 200,
+                                    "height": 200
                                 }
                             },
                             "color": { "color": "#4a810e", "alpha": 0.1 },
@@ -611,17 +661,13 @@
                                 "fontFamily": "Georgia",
                                 "color": { "color": "#b35050", "alpha": 1 }
                             },
-                            "ga_code": "GACODE",
-                            "active": true,
-                            "permissions": {
-                                "can_edit_story": true,
-                                "can_publish_story": true,
-                                "can_edit_team": true,
-                                "can_edit_organisation": true,
-                                "can_edit_theme": true,
-                                "can_edit_medias": true,
-                                "can_read_stats": true
-                            }
+                            "tracking": {
+                                "codes": [
+                                    { "type": "ga", "id": "UA-X" },
+                                    { "type": "ga", "id": "UA-Z" }
+                                ]
+                            },
+                            "active": true
                         },
                         {
                             "id": "52",
@@ -631,17 +677,8 @@
                             "logo": null,
                             "color": null,
                             "font": null,
-                            "ga_code": null,
-                            "active": false,
-                            "permissions": {
-                                "can_edit_story": true,
-                                "can_publish_story": true,
-                                "can_edit_team": true,
-                                "can_edit_organisation": true,
-                                "can_edit_theme": true,
-                                "can_edit_medias": true,
-                                "can_read_stats": true
-                            }
+                            "tracking": [],
+                            "active": false
                         },
                         {
                             "id": "53",
@@ -651,17 +688,8 @@
                             "logo": null,
                             "color": null,
                             "font": null,
-                            "ga_code": null,
-                            "active": false,
-                            "permissions": {
-                                "can_edit_story": true,
-                                "can_publish_story": true,
-                                "can_edit_team": true,
-                                "can_edit_organisation": true,
-                                "can_edit_theme": true,
-                                "can_edit_medias": true,
-                                "can_read_stats": true
-                            }
+                            "tracking": [],
+                            "active": false
                         }
                     ]
                 },
@@ -712,21 +740,21 @@
                     "organisations": [
                         {
                             "id": "43",
-                            "name": "Fremen Krew X",
+                            "name": "Fremen Krew X 2",
                             "slug": "fremen-krew",
-                            "short_name": "FX",
+                            "short_name": "F2",
                             "logo": {
-                                "id": "8",
+                                "id": "4",
                                 "type": "image",
-                                "name": "600x300.png",
-                                "url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-21/8-021515.png",
-                                "thumbnail_url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-21/8-021515.png",
+                                "name": "avatar.png",
+                                "url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-19/4-104000.png",
+                                "thumbnail_url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-19/4-104000.png",
                                 "metadata": {
-                                    "filename": "600x300.png",
-                                    "size": 6447,
+                                    "filename": "avatar.png",
+                                    "size": 65870,
                                     "mime": "image/png",
-                                    "width": 600,
-                                    "height": 300
+                                    "width": 200,
+                                    "height": 200
                                 }
                             },
                             "color": { "color": "#4a810e", "alpha": 0.1 },
@@ -734,17 +762,13 @@
                                 "fontFamily": "Georgia",
                                 "color": { "color": "#b35050", "alpha": 1 }
                             },
-                            "ga_code": "GACODE",
-                            "active": true,
-                            "permissions": {
-                                "can_edit_story": true,
-                                "can_publish_story": true,
-                                "can_edit_team": true,
-                                "can_edit_organisation": true,
-                                "can_edit_theme": true,
-                                "can_edit_medias": true,
-                                "can_read_stats": true
-                            }
+                            "tracking": {
+                                "codes": [
+                                    { "type": "ga", "id": "UA-X" },
+                                    { "type": "ga", "id": "UA-Z" }
+                                ]
+                            },
+                            "active": true
                         },
                         {
                             "id": "52",
@@ -754,17 +778,8 @@
                             "logo": null,
                             "color": null,
                             "font": null,
-                            "ga_code": null,
-                            "active": false,
-                            "permissions": {
-                                "can_edit_story": true,
-                                "can_publish_story": true,
-                                "can_edit_team": true,
-                                "can_edit_organisation": true,
-                                "can_edit_theme": true,
-                                "can_edit_medias": true,
-                                "can_read_stats": true
-                            }
+                            "tracking": [],
+                            "active": false
                         },
                         {
                             "id": "53",
@@ -774,17 +789,8 @@
                             "logo": null,
                             "color": null,
                             "font": null,
-                            "ga_code": null,
-                            "active": false,
-                            "permissions": {
-                                "can_edit_story": true,
-                                "can_publish_story": true,
-                                "can_edit_team": true,
-                                "can_edit_organisation": true,
-                                "can_edit_theme": true,
-                                "can_edit_medias": true,
-                                "can_read_stats": true
-                            }
+                            "tracking": [],
+                            "active": false
                         }
                     ]
                 },
@@ -792,145 +798,24 @@
                 "height": 300
             }
         },
-        "media://5": {
-            "id": "5",
-            "type": "audio",
-            "name": "mood.mp3",
-            "url": "http://micromag.ca.homestead.flklr.ca/storage/audio/2021-01-21/5-021357.mp3",
-            "thumbnail_url": null,
-            "files": {
-                "original": {
-                    "id": "5",
-                    "type": "file",
-                    "handle": "original",
-                    "name": "mood.mp3",
-                    "url": "http://micromag.ca.homestead.flklr.ca/storage/audio/2021-01-21/5-021357.mp3"
-                }
-            },
-            "metadata": {
-                "filename": "mood.mp3",
-                "size": 4965354,
-                "mime": "audio/mpeg",
-                "tags": [],
-                "author": {
-                    "id": "1",
-                    "name": "Paul Atreides 2",
-                    "short_name": "P2",
-                    "avatar": {
-                        "id": "11",
-                        "type": "image",
-                        "name": "waveform.png",
-                        "url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-25/11-120424.png",
-                        "thumbnail_url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-25/11-120424.png",
-                        "metadata": {
-                            "filename": "waveform.png",
-                            "size": 10090,
-                            "mime": "image/png",
-                            "width": 800,
-                            "height": 800
-                        }
-                    },
-                    "color": { "color": "#f7eeee", "alpha": 1 },
-                    "email": "nrb@atelierfolklore.ca",
-                    "organisations": [
-                        {
-                            "id": "43",
-                            "name": "Fremen Krew X",
-                            "slug": "fremen-krew",
-                            "short_name": "FX",
-                            "logo": {
-                                "id": "8",
-                                "type": "image",
-                                "name": "600x300.png",
-                                "url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-21/8-021515.png",
-                                "thumbnail_url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-21/8-021515.png",
-                                "metadata": {
-                                    "filename": "600x300.png",
-                                    "size": 6447,
-                                    "mime": "image/png",
-                                    "width": 600,
-                                    "height": 300
-                                }
-                            },
-                            "color": { "color": "#4a810e", "alpha": 0.1 },
-                            "font": {
-                                "fontFamily": "Georgia",
-                                "color": { "color": "#b35050", "alpha": 1 }
-                            },
-                            "ga_code": "GACODE",
-                            "active": true,
-                            "permissions": {
-                                "can_edit_story": true,
-                                "can_publish_story": true,
-                                "can_edit_team": true,
-                                "can_edit_organisation": true,
-                                "can_edit_theme": true,
-                                "can_edit_medias": true,
-                                "can_read_stats": true
-                            }
-                        },
-                        {
-                            "id": "52",
-                            "name": "My super org",
-                            "slug": "my-super-org",
-                            "short_name": "MO",
-                            "logo": null,
-                            "color": null,
-                            "font": null,
-                            "ga_code": null,
-                            "active": false,
-                            "permissions": {
-                                "can_edit_story": true,
-                                "can_publish_story": true,
-                                "can_edit_team": true,
-                                "can_edit_organisation": true,
-                                "can_edit_theme": true,
-                                "can_edit_medias": true,
-                                "can_read_stats": true
-                            }
-                        },
-                        {
-                            "id": "53",
-                            "name": "Cool org",
-                            "slug": "cool-org-2",
-                            "short_name": "CO",
-                            "logo": null,
-                            "color": null,
-                            "font": null,
-                            "ga_code": null,
-                            "active": false,
-                            "permissions": {
-                                "can_edit_story": true,
-                                "can_publish_story": true,
-                                "can_edit_team": true,
-                                "can_edit_organisation": true,
-                                "can_edit_theme": true,
-                                "can_edit_medias": true,
-                                "can_read_stats": true
-                            }
-                        }
-                    ]
-                }
-            }
-        },
-        "media://6": {
-            "id": "6",
+        "media://12": {
+            "id": "12",
             "type": "video",
-            "name": "01-Ouverture2.mp4",
+            "name": "apple-test.mp4",
             "url": "http://micromag.ca.homestead.flklr.ca/storage/video/2021-01-26/12-111343.mp4",
             "thumbnail_url": null,
             "files": {
                 "original": {
-                    "id": "6",
+                    "id": "12",
                     "type": "file",
                     "handle": "original",
-                    "name": "01-Ouverture2.mp4",
+                    "name": "apple-test.mp4",
                     "url": "http://micromag.ca.homestead.flklr.ca/storage/video/2021-01-26/12-111343.mp4"
                 }
             },
             "metadata": {
-                "filename": "01-Ouverture2.mp4",
-                "size": 12900003,
+                "filename": "apple-test.mp4",
+                "size": 36776139,
                 "mime": "video/mp4",
                 "tags": [],
                 "author": {
@@ -956,21 +841,21 @@
                     "organisations": [
                         {
                             "id": "43",
-                            "name": "Fremen Krew X",
+                            "name": "Fremen Krew X 2",
                             "slug": "fremen-krew",
-                            "short_name": "FX",
+                            "short_name": "F2",
                             "logo": {
-                                "id": "8",
+                                "id": "4",
                                 "type": "image",
-                                "name": "600x300.png",
-                                "url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-21/8-021515.png",
-                                "thumbnail_url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-21/8-021515.png",
+                                "name": "avatar.png",
+                                "url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-19/4-104000.png",
+                                "thumbnail_url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-19/4-104000.png",
                                 "metadata": {
-                                    "filename": "600x300.png",
-                                    "size": 6447,
+                                    "filename": "avatar.png",
+                                    "size": 65870,
                                     "mime": "image/png",
-                                    "width": 600,
-                                    "height": 300
+                                    "width": 200,
+                                    "height": 200
                                 }
                             },
                             "color": { "color": "#4a810e", "alpha": 0.1 },
@@ -978,17 +863,13 @@
                                 "fontFamily": "Georgia",
                                 "color": { "color": "#b35050", "alpha": 1 }
                             },
-                            "ga_code": "GACODE",
-                            "active": true,
-                            "permissions": {
-                                "can_edit_story": true,
-                                "can_publish_story": true,
-                                "can_edit_team": true,
-                                "can_edit_organisation": true,
-                                "can_edit_theme": true,
-                                "can_edit_medias": true,
-                                "can_read_stats": true
-                            }
+                            "tracking": {
+                                "codes": [
+                                    { "type": "ga", "id": "UA-X" },
+                                    { "type": "ga", "id": "UA-Z" }
+                                ]
+                            },
+                            "active": true
                         },
                         {
                             "id": "52",
@@ -998,17 +879,8 @@
                             "logo": null,
                             "color": null,
                             "font": null,
-                            "ga_code": null,
-                            "active": false,
-                            "permissions": {
-                                "can_edit_story": true,
-                                "can_publish_story": true,
-                                "can_edit_team": true,
-                                "can_edit_organisation": true,
-                                "can_edit_theme": true,
-                                "can_edit_medias": true,
-                                "can_read_stats": true
-                            }
+                            "tracking": [],
+                            "active": false
                         },
                         {
                             "id": "53",
@@ -1018,25 +890,151 @@
                             "logo": null,
                             "color": null,
                             "font": null,
-                            "ga_code": null,
-                            "active": false,
-                            "permissions": {
-                                "can_edit_story": true,
-                                "can_publish_story": true,
-                                "can_edit_team": true,
-                                "can_edit_organisation": true,
-                                "can_edit_theme": true,
-                                "can_edit_medias": true,
-                                "can_read_stats": true
-                            }
+                            "tracking": [],
+                            "active": false
                         }
                     ]
                 },
-                "duration": 10,
-                "width": 1080,
-                "height": 1920
+                "duration": 12.2456,
+                "width": 1920,
+                "height": 1080
+            }
+        },
+        "media://16": {
+            "id": "16",
+            "type": "image",
+            "name": "avatar.jpg",
+            "url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-27/16-042005.jpg",
+            "thumbnail_url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-27/16-042005.jpg",
+            "files": {
+                "original": {
+                    "id": "16",
+                    "type": "file",
+                    "handle": "original",
+                    "name": "avatar.jpg",
+                    "url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-27/16-042005.jpg"
+                }
+            },
+            "metadata": {
+                "filename": "avatar.jpg",
+                "size": 39618,
+                "mime": "image/jpeg",
+                "tags": [{ "id": "1", "name": "Un cool tag" }],
+                "author": {
+                    "id": "48",
+                    "name": "Test account",
+                    "short_name": "TA",
+                    "avatar": null,
+                    "color": { "color": "#FFF", "alpha": 1 }
+                },
+                "width": 278,
+                "height": 280
+            }
+        },
+        "media://13": {
+            "id": "13",
+            "type": "image",
+            "name": "avatar.pnghehehe",
+            "url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-26/13-111457.png",
+            "thumbnail_url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-26/13-111457.png",
+            "files": {
+                "original": {
+                    "id": "13",
+                    "type": "file",
+                    "handle": "original",
+                    "name": "avatar.png",
+                    "url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-26/13-111457.png"
+                }
+            },
+            "metadata": {
+                "filename": "avatar.png",
+                "size": 65870,
+                "mime": "image/png",
+                "tags": [
+                    { "id": "1", "name": "Un cool tag" },
+                    { "id": "2", "name": "Tagg" }
+                ],
+                "author": {
+                    "id": "1",
+                    "name": "Paul Atreides 2",
+                    "short_name": "P2",
+                    "avatar": {
+                        "id": "11",
+                        "type": "image",
+                        "name": "waveform.png",
+                        "url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-25/11-120424.png",
+                        "thumbnail_url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-25/11-120424.png",
+                        "metadata": {
+                            "filename": "waveform.png",
+                            "size": 10090,
+                            "mime": "image/png",
+                            "width": 800,
+                            "height": 800
+                        }
+                    },
+                    "color": { "color": "#f7eeee", "alpha": 1 },
+                    "email": "nrb@atelierfolklore.ca",
+                    "organisations": [
+                        {
+                            "id": "43",
+                            "name": "Fremen Krew X 2",
+                            "slug": "fremen-krew",
+                            "short_name": "F2",
+                            "logo": {
+                                "id": "4",
+                                "type": "image",
+                                "name": "avatar.png",
+                                "url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-19/4-104000.png",
+                                "thumbnail_url": "http://micromag.ca.homestead.flklr.ca/storage/image/2021-01-19/4-104000.png",
+                                "metadata": {
+                                    "filename": "avatar.png",
+                                    "size": 65870,
+                                    "mime": "image/png",
+                                    "width": 200,
+                                    "height": 200
+                                }
+                            },
+                            "color": { "color": "#4a810e", "alpha": 0.1 },
+                            "font": {
+                                "fontFamily": "Georgia",
+                                "color": { "color": "#b35050", "alpha": 1 }
+                            },
+                            "tracking": {
+                                "codes": [
+                                    { "type": "ga", "id": "UA-X" },
+                                    { "type": "ga", "id": "UA-Z" }
+                                ]
+                            },
+                            "active": true
+                        },
+                        {
+                            "id": "52",
+                            "name": "My super org",
+                            "slug": "my-super-org",
+                            "short_name": "MO",
+                            "logo": null,
+                            "color": null,
+                            "font": null,
+                            "tracking": [],
+                            "active": false
+                        },
+                        {
+                            "id": "53",
+                            "name": "Cool org",
+                            "slug": "cool-org-2",
+                            "short_name": "CO",
+                            "logo": null,
+                            "color": null,
+                            "font": null,
+                            "tracking": [],
+                            "active": false
+                        }
+                    ]
+                },
+                "width": 200,
+                "height": 200
             }
         }
     },
-    "created_at": "2021-01-25T23:29:58-05:00"
+    "created_at": "2021-01-28T22:17:34-05:00"
 }

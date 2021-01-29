@@ -82,6 +82,11 @@ const getArticleLayouts = () => {
                     bottom: defaultMargin,
                 },
             },
+            map: {
+                margin: {
+                    bottom: defaultMargin,
+                },
+            },
             quote: {
                 columnStart: 1,
                 columnSpan: 5,

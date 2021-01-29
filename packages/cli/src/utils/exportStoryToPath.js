@@ -14,7 +14,7 @@ const storyParser = new StoryParser({
     screensManager: ScreensManager,
 });
 
-const exportStoryToPath = async (story, output, format, settings = {}) => {
+const exportStoryToPath = async (story, format, output, settings = {}) => {
     const storyParsed = storyParser.parse(story);
     switch (format) {
         case 'html': {
@@ -35,9 +35,13 @@ const exportStoryToPath = async (story, output, format, settings = {}) => {
             break;
         }
         default: {
+            const parsedDestination = getOutputPath(output, 'parsed.json');
+            fs.writeFileSync(parsedDestination, JSON.stringify(storyParsed), 'utf-8');
+
             const newStory = transformStory(storyParsed, format, settings);
             // const mediaDestination = getOutputPath(output);
             const fileDestination = getOutputPath(output, 'article.json');
+            console.log(output, fileDestination);
             fs.writeFileSync(fileDestination, JSON.stringify(newStory), 'utf-8');
             break;
         }

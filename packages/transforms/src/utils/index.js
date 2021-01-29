@@ -1,2 +1,2 @@
 export { default as validate } from './validate';
-export { default as test2 } from './test';
+export { default as stripTags } from './stripTags';
