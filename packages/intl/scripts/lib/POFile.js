@@ -64,7 +64,7 @@ class POFile {
             translations: {
                 '': this.translations.reduce((map, translation) => ({
                     ...map,
-                    [translation.msgid]: translation,
+                    [translation.comments.reference || translation.msgid]: translation,
                 })),
             },
         });
