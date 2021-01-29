@@ -24,6 +24,7 @@ import styles from '../styles/viewer.module.scss';
 
 const propTypes = {
     story: MicromagPropTypes.story.isRequired,
+    branding: MicromagPropTypes.branding,
     width: PropTypes.number,
     height: PropTypes.number,
     screen: PropTypes.string,
@@ -41,6 +42,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    branding: null,
     width: null,
     height: null,
     screen: null,
@@ -59,6 +61,7 @@ const defaultProps = {
 
 const Viewer = ({
     story,
+    branding,
     width,
     height,
     screen: screenId,
@@ -329,11 +332,14 @@ const Viewer = ({
     );
 
     const withoutScreensTransforms = isStatic || isCapture;
+    const hasSize = screenWidth > 0 && screenHeight > 0;
+
+    const menuVisible = screensCount === 0 || currentScreenInteractionEnabled;
 
     return (
         <ScreenSizeProvider size={screenSize}>
             <ViewerProvider
-                menuVisible={currentScreenInteractionEnabled}
+                menuVisible={menuVisible}
                 menuPosition="top"
                 menuSize={menuDotsContainerHeight}
                 menuOpened={menuOpened}
@@ -356,7 +362,7 @@ const Viewer = ({
                         {
                             [styles.fullscreen]: fullscreen,
                             [styles.landscape]: landscape,
-                            [styles.hideMenu]: !currentScreenInteractionEnabled,
+                            [styles.hideMenu]: !menuVisible,
                             [styles.menuOpened]: menuOpened,
                             [className]: className,
                         },
@@ -364,9 +370,13 @@ const Viewer = ({
                     ref={containerRef}
                     {...(!landscape && currentScreenInteractionEnabled ? bindDrag() : null)}
                 >
-                    {!withoutMenu ? (
+                    {!withoutMenu && (hasSize || withoutScreensTransforms) ? (
                         <>
-                            <div className={styles.menuDotsContainer} ref={menuDotsContainerRef}>
+                            <div
+                                className={styles.menuDotsContainer}
+                                ref={menuDotsContainerRef}
+                                style={{ width: screenWidth }}
+                            >
                                 <MenuDots
                                     direction="horizontal"
                                     landscape={landscape}
@@ -377,6 +387,7 @@ const Viewer = ({
                                 />
                             </div>
                             <MenuPreview
+                                branding={branding}
                                 title={title}
                                 shareUrl={shareUrl}
                                 className={styles.menuPreview}
@@ -390,55 +401,59 @@ const Viewer = ({
                             />
                         </>
                     ) : null}
-                    <div ref={contentRef} className={styles.content}>
-                        {screens.map((scr, i) => {
-                            const current = i === screenIndex;
-                            const active =
-                                i > screenIndex - neighborScreensActive &&
-                                i < screenIndex + neighborScreensActive;
+                    {hasSize || withoutScreensTransforms ? (
+                        <div ref={contentRef} className={styles.content}>
+                            {screens.map((scr, i) => {
+                                const current = i === screenIndex;
+                                const active =
+                                    i > screenIndex - neighborScreensActive &&
+                                    i < screenIndex + neighborScreensActive;
 
-                            const viewerScreen = (
-                                <ViewerScreen
-                                    screen={scr}
-                                    renderContext={renderContext}
-                                    index={i}
-                                    current={current}
-                                    active={active}
-                                    onPrevious={onScreenPrevious}
-                                    onNext={onScreenNext}
-                                    onEnableInteraction={onEnableInteraction}
-                                    onDisableInteraction={onDisableInteraction}
-                                />
-                            );
-                            const key = `screen-viewer-${scr.id || ''}-${i + 1}`;
-                            const screenTransform = landscape
-                                ? `translateX(calc(${
-                                      (screenWidth + landscapeScreenMargin) * (i - screenIndex)
-                                  }px - 50%)) scale(${current ? 1 : 0.9})`
-                                : `translateX(${current ? 0 : '100%'})`;
-                            return (
-                                <div
-                                    key={key}
-                                    style={{
-                                        width: landscape ? screenWidth : null,
-                                        height: landscape ? screenHeight : null,
-                                        transform: !withoutScreensTransforms ? screenTransform : null,
-                                    }}
-                                    className={classNames([
-                                        styles.screen,
-                                        { [styles.current]: current },
-                                    ])}
-                                    {...{
-                                        onClick: (e) => {
-                                            onTap(e, i);
-                                        },
-                                    }}
-                                >
-                                    {viewerScreen}
-                                </div>
-                            );
-                        })}
-                    </div>
+                                const viewerScreen = (
+                                    <ViewerScreen
+                                        screen={scr}
+                                        renderContext={renderContext}
+                                        index={i}
+                                        current={current}
+                                        active={active}
+                                        onPrevious={onScreenPrevious}
+                                        onNext={onScreenNext}
+                                        onEnableInteraction={onEnableInteraction}
+                                        onDisableInteraction={onDisableInteraction}
+                                    />
+                                );
+                                const key = `screen-viewer-${scr.id || ''}-${i + 1}`;
+                                const screenTransform = landscape
+                                    ? `translateX(calc(${
+                                          (screenWidth + landscapeScreenMargin) * (i - screenIndex)
+                                      }px - 50%)) scale(${current ? 1 : 0.9})`
+                                    : `translateX(${current ? 0 : '100%'})`;
+                                return (
+                                    <div
+                                        key={key}
+                                        style={{
+                                            width: landscape ? screenWidth : null,
+                                            height: landscape ? screenHeight : null,
+                                            transform: !withoutScreensTransforms
+                                                ? screenTransform
+                                                : null,
+                                        }}
+                                        className={classNames([
+                                            styles.screen,
+                                            { [styles.current]: current },
+                                        ])}
+                                        {...{
+                                            onClick: (e) => {
+                                                onTap(e, i);
+                                            },
+                                        }}
+                                    >
+                                        {viewerScreen}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    ) : null}
                 </div>
             </ViewerProvider>
         </ScreenSizeProvider>

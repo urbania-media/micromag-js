@@ -1,10 +1,12 @@
 /* eslint-disable react/no-array-index-key, jsx-a11y/control-has-associated-label */
+// stylelint-disable stylelint-family-no-missing-generic-family-keyword
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShare, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { getStyleFromText } from '@micromag/core/utils';
 import { ScreenPreview, Button } from '@micromag/core/components';
 import Scroll from '@micromag/element-scroll';
 
@@ -13,6 +15,7 @@ import ShareButton from '../partials/ShareButton';
 import styles from '../../styles/menus/menu-preview.module.scss';
 
 const propTypes = {
+    branding: MicromagPropTypes.branding,
     screenWidth: PropTypes.number,
     screenHeight: PropTypes.number,
     title: PropTypes.string,
@@ -27,6 +30,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    branding: null,
     screenWidth: null,
     screenHeight: null,
     title: null,
@@ -41,6 +45,7 @@ const defaultProps = {
 };
 
 const ViewerMenuPreview = ({
+    branding,
     screenWidth,
     screenHeight,
     title,
@@ -55,6 +60,8 @@ const ViewerMenuPreview = ({
 }) => {
     const screenSizeRatio = `${(screenHeight / screenWidth / thumbsPerLine) * 100}%`;
 
+    const hasSize = screenWidth > 0 && screenHeight > 0;
+
     const [thumbSize, setThumbSize] = useState(null);
     const firstScreenContainerRef = useRef(null);
 
@@ -65,7 +72,17 @@ const ViewerMenuPreview = ({
         }
     }, [screenWidth, screenHeight]);
 
-    return (
+    // Branding
+    const {
+        primaryColor: brandPrimaryColor = null,
+        backgroundColor: brandBackgroundColor = null,
+        textStyle: brandTextStyle = null,
+        logo: brandLogo = null,
+    } = branding || {};
+    const { url: brandLogoUrl } = brandLogo || {};
+    const titleStyle = brandTextStyle !== null ? getStyleFromText(brandTextStyle) : null;
+
+    return hasSize ? (
         <div
             className={classNames([
                 styles.container,
@@ -73,11 +90,28 @@ const ViewerMenuPreview = ({
                     [className]: className !== null,
                 },
             ])}
-            style={{ width: screenWidth, height: screenHeight }}
+            style={{
+                width: screenWidth,
+                color: brandPrimaryColor,
+                backgroundColor: brandBackgroundColor,
+            }}
         >
             <div className={styles.header}>
-                <div className={styles.title}>{title}</div>
-                <ShareButton className={styles.button} onShare={onShare} url={shareUrl} title={title}>
+                {brandLogoUrl !== null ? (
+                    <div
+                        className={styles.organisation}
+                        style={{ backgroundImage: `url(${brandLogoUrl})` }}
+                    />
+                ) : null}
+                <div className={styles.title} style={titleStyle}>
+                    {title}
+                </div>
+                <ShareButton
+                    className={styles.button}
+                    onShare={onShare}
+                    url={shareUrl}
+                    title={title}
+                >
                     <FontAwesomeIcon className={styles.icon} icon={faShare} />
                 </ShareButton>
                 <Button className={styles.button} onClick={onClose}>
@@ -148,7 +182,7 @@ const ViewerMenuPreview = ({
                 </Scroll>
             </div>
         </div>
-    );
+    ) : null;
 };
 
 ViewerMenuPreview.propTypes = propTypes;

@@ -530,6 +530,17 @@ export const transitions = PropTypes.shape({
 });
 
 /**
+ * Branding
+ */
+export const branding = PropTypes.shape({
+    logo: imageMedia,
+    primaryColor: PropTypes.string,
+    secondaryColor: PropTypes.string,
+    backgroundColor: PropTypes.string,
+    textStyle,
+});
+
+/**
  * Search
  */
 
