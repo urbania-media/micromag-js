@@ -1,6 +1,6 @@
 {
     "name": "@micromag/media-gallery",
-    "version": "0.2.91",
+    "version": "0.2.92",
     "description": "",
     "keywords": [
         "javascript"
@@ -55,7 +55,7 @@
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
         "@micromag/core": "^0.2.91",
-        "@micromag/data": "^0.2.91",
+        "@micromag/data": "^0.2.92",
         "bootstrap": "^4.4.1",
         "bootstrap.native": "^3.0.14",
         "change-case": "^4.1.2",

@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-quiz",
-    "version": "0.2.91",
+    "version": "0.2.92",
     "description": "",
     "keywords": [
         "javascript"
@@ -53,8 +53,8 @@
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.12",
         "@micromag/core": "^0.2.91",
-        "@micromag/data": "^0.2.91",
-        "@micromag/element-background": "^0.2.91",
+        "@micromag/data": "^0.2.92",
+        "@micromag/element-background": "^0.2.92",
         "@micromag/element-button": "^0.2.91",
         "@micromag/element-container": "^0.2.91",
         "@micromag/element-heading": "^0.2.91",
