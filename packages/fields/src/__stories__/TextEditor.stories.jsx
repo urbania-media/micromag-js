@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { IntlProvider } from 'react-intl';
 
 import TextEditor from '../components/TextEditor';
 
@@ -14,6 +15,8 @@ const FieldContainer = () => {
 
 export const normal = () => (
     <div className="container mt-4">
-        <FieldContainer />
+        <IntlProvider locale="fr" messages={{}}>
+            <FieldContainer />
+        </IntlProvider>
     </div>
 );

@@ -14,7 +14,7 @@ export const useQuiz = ({ screenId, opts = {} } = {}) => {
         })),
     );
 
-    const loader = useCallback(() => (api !== null ? api.quiz.get(screenId) : null), [
+    const loader = useCallback(() => (api !== null ? api.quiz.results(screenId) : null), [
         api,
         screenId,
     ]);

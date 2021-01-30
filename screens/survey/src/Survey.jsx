@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useQuiz, useQuizCreate } from '@micromag/data';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useTrackScreenEvent } from '@micromag/core/hooks';
@@ -19,6 +20,7 @@ import Button from '@micromag/element-button';
 import styles from './styles.module.scss';
 
 const propTypes = {
+    id: PropTypes.string,
     layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split']),
     question: MicromagPropTypes.textElement,
     answers: PropTypes.arrayOf(
@@ -40,6 +42,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    id: null,
     layout: 'middle',
     question: null,
     answers: null,
@@ -55,6 +58,7 @@ const defaultProps = {
 };
 
 const SurveyScreen = ({
+    id,
     layout,
     question,
     answers,
@@ -68,9 +72,14 @@ const SurveyScreen = ({
     type,
     className,
 }) => {
+    const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
+    const { create: submitQuiz } = useQuizCreate({
+        screenId,
+    });
+    const { quiz: quizAnswers } = useQuiz({ screenId }); // eslint-disable-line
 
     const {
         isView,
@@ -99,6 +108,7 @@ const SurveyScreen = ({
             if (userAnswerIndex === null) {
                 setUserAnswerIndex(answerIndex);
                 const answer = answers[answerIndex];
+                submitQuiz({ choice: answer.label.body || answerIndex, value: 1 });
                 trackScreenEvent(
                     'click_answer',
                     `Answer ${userAnswerIndex + 1}: ${answer.label.body}`,
@@ -109,7 +119,7 @@ const SurveyScreen = ({
                 );
             }
         },
-        [userAnswerIndex, setUserAnswerIndex, trackScreenEvent],
+        [userAnswerIndex, setUserAnswerIndex, trackScreenEvent, submitQuiz],
     );
 
     useEffect(() => {

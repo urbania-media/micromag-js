@@ -35,10 +35,6 @@
     "defaultMessage": "Remove all",
     "description": "Remove all button label"
   },
-  "/bEns8": {
-    "defaultMessage": "MapImages",
-    "description": "MapImages screen title"
-  },
   "/hupzO": {
     "defaultMessage": "Credits",
     "description": "Credits placeholder"
@@ -63,10 +59,6 @@
     "defaultMessage": "Description",
     "description": "Description field label"
   },
-  "1fBNmY": {
-    "defaultMessage": "ImageTitle",
-    "description": "ImageTitle screen title"
-  },
   "2/F1Q7": {
     "defaultMessage": "#{index}",
     "description": "Item label in items field"
@@ -78,6 +70,10 @@
   "31zuCS": {
     "defaultMessage": "Line height",
     "description": "Field label"
+  },
+  "33UbSd": {
+    "defaultMessage": "Timeline with images",
+    "description": "TimelineIllustrated screen title"
   },
   "3E57H7": {
     "defaultMessage": "No marker...",
@@ -119,6 +115,10 @@
     "defaultMessage": "Select a color...",
     "description": "No value label"
   },
+  "4bHvRS": {
+    "defaultMessage": "Gallery Feed",
+    "description": "Gallery Feed screen title"
+  },
   "4fHMVj": {
     "defaultMessage": "Tags",
     "description": "Tags in Media Gallery"
@@ -143,10 +143,6 @@
     "defaultMessage": "Survey",
     "description": "Survey screen title"
   },
-  "6De+oT": {
-    "defaultMessage": "GalleryCaptions",
-    "description": "GalleryCaptions screen title"
-  },
   "6mX2ya": {
     "defaultMessage": "Images",
     "description": "Images screen group"
@@ -163,10 +159,6 @@
     "defaultMessage": "Quote",
     "description": "Quote field label"
   },
-  "8c34nT": {
-    "defaultMessage": "ImageTitleText",
-    "description": "ImageTitleText screen title"
-  },
   "8oczXQ": {
     "defaultMessage": "Add a marker",
     "description": "Button label"
@@ -178,10 +170,6 @@
   "8vroDx": {
     "defaultMessage": "Map",
     "description": "Map screen group"
-  },
-  "96KRj9": {
-    "defaultMessage": "ImageLegend",
-    "description": "ImageLegend screen title"
   },
   "9DhYaZ": {
     "defaultMessage": "Ascending",
@@ -195,6 +183,10 @@
     "defaultMessage": "No answer...",
     "description": "Label when there is no item"
   },
+  "AA8TV9": {
+    "defaultMessage": "Image with title",
+    "description": "ImageTitle screen title"
+  },
   "B1MeY+": {
     "defaultMessage": "Select an image...",
     "description": "Label when no value is provided to Image field"
@@ -206,6 +198,10 @@
   "BpZoQZ": {
     "defaultMessage": "Success",
     "description": "Success form message"
+  },
+  "CJmQeh": {
+    "defaultMessage": "Image with text",
+    "description": "ImageText screen title"
   },
   "CrzYgw": {
     "defaultMessage": "Quote",
@@ -223,10 +219,6 @@
     "defaultMessage": "Select a video...",
     "description": "Label when no value is provided to Video field"
   },
-  "E/qtB2": {
-    "defaultMessage": "TextTitle",
-    "description": "TextTitle screen title"
-  },
   "ET527E": {
     "defaultMessage": "Font family",
     "description": "Field label"
@@ -242,10 +234,6 @@
   "F2SD/0": {
     "defaultMessage": "Loop",
     "description": "Field label"
-  },
-  "FJjjnF": {
-    "defaultMessage": "Video 360",
-    "description": "Video 360 screen title"
   },
   "FJygXH": {
     "defaultMessage": "Result",
@@ -271,9 +259,17 @@
     "defaultMessage": "Case",
     "description": "Field label"
   },
+  "GRVidW": {
+    "defaultMessage": "360 Video",
+    "description": "Video 360 screen title"
+  },
   "GzoKNb": {
     "defaultMessage": "Timeline",
     "description": "Timeline screen title"
+  },
+  "H1YcaV": {
+    "defaultMessage": "Image with legend",
+    "description": "ImageLegend screen title"
   },
   "HseFdk": {
     "defaultMessage": "Edit",
@@ -282,10 +278,6 @@
   "IBjY5r": {
     "defaultMessage": "Duplicate screen",
     "description": "Duplicate screen item"
-  },
-  "IMUycF": {
-    "defaultMessage": "Timeline Illustrated",
-    "description": "Timeline Illustrated screen title"
   },
   "JAguka": {
     "defaultMessage": "Your message",
@@ -311,13 +303,17 @@
     "defaultMessage": "Answers",
     "description": "Field label"
   },
+  "MLuvzG": {
+    "defaultMessage": "Map with image markers",
+    "description": "MapImages screen title"
+  },
   "MYZwSA": {
     "defaultMessage": "Audio",
     "description": "Audio placeholder"
   },
-  "Mz76RM": {
-    "defaultMessage": "ImageText",
-    "description": "ImageText screen title"
+  "MmJQ7o": {
+    "defaultMessage": "Gallery with captions",
+    "description": "GalleryCaptions screen title"
   },
   "N25iDO": {
     "defaultMessage": "Title",
@@ -338,6 +334,10 @@
   "OkNUmk": {
     "defaultMessage": "Type",
     "description": "Type Label in Media Gallery"
+  },
+  "P1dwGU": {
+    "defaultMessage": "Title with subtitle",
+    "description": "TitleSubtitle screen title"
   },
   "PKCv5M": {
     "defaultMessage": "No item...",
@@ -414,6 +414,10 @@
     "defaultMessage": "Typography",
     "description": "Fields section label"
   },
+  "XTJGzY": {
+    "defaultMessage": "Gallery feed with captions",
+    "description": "GalleryFeedCaptions screen title"
+  },
   "XhgKcw": {
     "defaultMessage": "Move the map to position the place",
     "description": "Move the map to position the place description"
@@ -438,10 +442,6 @@
     "defaultMessage": "Questions",
     "description": "Questions screen group"
   },
-  "ZtZjF0": {
-    "defaultMessage": "TitleSubtitle",
-    "description": "TitleSubtitle screen title"
-  },
   "ZxgNge": {
     "defaultMessage": "Add an item",
     "description": "Button label in items field"
@@ -457,10 +457,6 @@
   "aovRFH": {
     "defaultMessage": "Filename",
     "description": "Label in Media Gallery"
-  },
-  "bh16Yr": {
-    "defaultMessage": "GalleryFeedCaptions",
-    "description": "GalleryFeedCaptions screen title"
   },
   "bhEaUt": {
     "defaultMessage": "Audio",
@@ -505,6 +501,10 @@
   "e6+aGf": {
     "defaultMessage": "Select a media...",
     "description": "Label when no value is provided to Media field"
+  },
+  "eWIM/8": {
+    "defaultMessage": "Image with title and text",
+    "description": "ImageTitleText screen title"
   },
   "ebsPd4": {
     "defaultMessage": "Image",
@@ -570,10 +570,6 @@
     "defaultMessage": "Add an answer",
     "description": "Button label"
   },
-  "lXV3vP": {
-    "defaultMessage": "TitleSubtitleCredits",
-    "description": "TitleSubtitleCredits screen title"
-  },
   "li7ADr": {
     "defaultMessage": "Result",
     "description": "Result placeholder"
@@ -603,6 +599,10 @@
   "nXVNeg": {
     "defaultMessage": "Name",
     "description": "Name field label"
+  },
+  "oCBQKV": {
+    "defaultMessage": "Text with title",
+    "description": "TextTitle screen title"
   },
   "oLtEu6": {
     "defaultMessage": "Video 360",
@@ -708,9 +708,9 @@
     "defaultMessage": "Recent searches",
     "description": "Media label"
   },
-  "vrCfAS": {
-    "defaultMessage": "GalleryFeed",
-    "description": "GalleryFeed screen title"
+  "vZrFq6": {
+    "defaultMessage": "Title with subtitle and credits",
+    "description": "TitleSubtitleCredits screen title"
   },
   "wkysUu": {
     "defaultMessage": "Screens",

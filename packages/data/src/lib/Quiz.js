@@ -14,10 +14,10 @@ class QuizApi extends Base {
         });
     }
 
-    results(id) {
+    results(screenId) {
         return this.requestGet(
             this.route('results', {
-                quiz: id,
+                screen: screenId,
             }),
         );
     }
@@ -25,23 +25,6 @@ class QuizApi extends Base {
     create(data) {
         return this.requestPost(this.route('store'), data);
     }
-
-    // update(id, data) {
-    //     return this.requestPut(
-    //         this.route('update', {
-    //             quiz: id,
-    //         }),
-    //         data,
-    //     );
-    // }
-
-    // delete(id) {
-    //     return this.requestDelete(
-    //         this.route('delete', {
-    //             quiz: id,
-    //         }),
-    //     );
-    // }
 }
 
 export default QuizApi;
