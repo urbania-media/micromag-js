@@ -142,12 +142,92 @@ export const formField = PropTypes.shape({
 export const formFields = PropTypes.arrayOf(formField);
 
 /**
+ * Medias
+ */
+const mediaMetadataShape = {
+    filename: PropTypes.string,
+    size: PropTypes.number,
+};
+
+const mediaShape = {
+    id: PropTypes.string,
+    type: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    thumbnail_url: PropTypes.string,
+    name: PropTypes.string,
+    metadata: PropTypes.shape({
+        ...mediaMetadataShape,
+    }),
+};
+
+export const media = PropTypes.shape(mediaShape);
+export const medias = PropTypes.arrayOf(media);
+
+export const imageMedia = PropTypes.shape({
+    ...mediaShape,
+    type: PropTypes.oneOf(['image']),
+    metadata: PropTypes.shape({
+        ...mediaMetadataShape,
+        width: PropTypes.number,
+        height: PropTypes.number,
+    }),
+});
+export const imageMedias = PropTypes.arrayOf(imageMedia);
+
+export const fontMedia = PropTypes.shape({
+    ...mediaShape,
+    type: PropTypes.oneOf(['font']),
+    metadata: PropTypes.shape({
+        ...mediaMetadataShape,
+    }),
+});
+export const fontMedias = PropTypes.arrayOf(fontMedia);
+
+export const videoMedia = PropTypes.shape({
+    ...mediaShape,
+    type: PropTypes.oneOf(['video']),
+    metadata: PropTypes.shape({
+        ...mediaMetadataShape,
+        width: PropTypes.number,
+        height: PropTypes.number,
+        duration: PropTypes.number,
+    }),
+});
+export const videoMedias = PropTypes.arrayOf(videoMedia);
+
+export const audioMedia = PropTypes.shape({
+    ...mediaShape,
+    type: PropTypes.oneOf(['audio']),
+    metadata: PropTypes.shape({
+        ...mediaMetadataShape,
+        duration: PropTypes.number,
+    }),
+});
+export const audioMedias = PropTypes.arrayOf(audioMedia);
+
+export const closedCaptionsMedia = PropTypes.shape({
+    ...mediaShape,
+    type: PropTypes.oneOf(['closed-captions']),
+});
+
+/**
  * Style
  */
+export const font = PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({
+        type: PropTypes.oneOf(['system', 'google', 'custom']),
+        name: PropTypes.string,
+        media: fontMedia,
+    }),
+]);
+
+export const fonts = PropTypes.arrayOf(font);
+
 export const textAlign = PropTypes.oneOf(['left', 'right', 'center']);
 
 export const textStyle = PropTypes.shape({
-    fontFamily: PropTypes.string,
+    fontFamily: font,
     fontSize: PropTypes.number,
     fontStyle: PropTypes.shape({
         bold: PropTypes.bool,
@@ -196,77 +276,6 @@ export const objectFit = PropTypes.shape({
     fit: PropTypes.oneOf(['cover', 'contain', null]),
     horizontalPosition: PropTypes.oneOf(['left', 'center', 'right']),
     verticalPosition: PropTypes.oneOf(['top', 'center', 'bottom']),
-});
-
-/**
- * Medias
- */
-const mediaMetadataShape = {
-    filename: PropTypes.string,
-    size: PropTypes.number,
-};
-
-const mediaShape = {
-    id: PropTypes.string,
-    type: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-    thumbnail_url: PropTypes.string,
-    name: PropTypes.string,
-    metadata: PropTypes.shape({
-        ...mediaMetadataShape,
-    }),
-};
-
-export const media = PropTypes.shape(mediaShape);
-export const medias = PropTypes.arrayOf(media);
-
-export const imageMedia = PropTypes.shape({
-    ...mediaShape,
-    type: PropTypes.oneOf(['image']),
-    metadata: PropTypes.shape({
-        ...mediaMetadataShape,
-        width: PropTypes.number,
-        height: PropTypes.number,
-    }),
-});
-export const imageMedias = PropTypes.arrayOf(imageMedia);
-
-export const fontMedia = PropTypes.shape({
-    ...mediaShape,
-    type: PropTypes.oneOf(['font']),
-    metadata: PropTypes.shape({
-        ...mediaMetadataShape,
-        width: PropTypes.number,
-        height: PropTypes.number,
-    }),
-});
-export const fontMedias = PropTypes.arrayOf(fontMedia);
-
-export const videoMedia = PropTypes.shape({
-    ...mediaShape,
-    type: PropTypes.oneOf(['video']),
-    metadata: PropTypes.shape({
-        ...mediaMetadataShape,
-        width: PropTypes.number,
-        height: PropTypes.number,
-        duration: PropTypes.number,
-    }),
-});
-export const videoMedias = PropTypes.arrayOf(videoMedia);
-
-export const audioMedia = PropTypes.shape({
-    ...mediaShape,
-    type: PropTypes.oneOf(['audio']),
-    metadata: PropTypes.shape({
-        ...mediaMetadataShape,
-        duration: PropTypes.number,
-    }),
-});
-export const audioMedias = PropTypes.arrayOf(audioMedia);
-
-export const closedCaptionsMedia = PropTypes.shape({
-    ...mediaShape,
-    type: PropTypes.oneOf(['closed-captions']),
 });
 
 /**
@@ -464,7 +473,14 @@ export const screenSize = PropTypes.shape({
     height: PropTypes.number,
 });
 
-export const renderContext = PropTypes.oneOf(['view', 'placeholder', 'edit', 'preview', 'static', 'capture']);
+export const renderContext = PropTypes.oneOf([
+    'view',
+    'placeholder',
+    'edit',
+    'preview',
+    'static',
+    'capture',
+]);
 
 /**
  * Screens

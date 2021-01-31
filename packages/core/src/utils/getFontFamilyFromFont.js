@@ -4,12 +4,12 @@ const getFontFamily = (value) => {
     if (value == null) {
         return null;
     }
-    const { name, fallback = null, type = null } = isObject(value)
+    const { name, fallback = null } = isObject(value)
         ? value
         : {
               name: value,
           };
-    return [name, fallback, type]
+    return [name, fallback]
         .filter((it) => it !== null)
         .map((it) => `"${it}"`)
         .join(', ');

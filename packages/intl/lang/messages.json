@@ -398,9 +398,17 @@
     "defaultMessage": "Video",
     "description": "Video screen title"
   },
+  "UtcYEP": {
+    "defaultMessage": "Custom fonts",
+    "description": "Font family group title"
+  },
   "V+G2s+": {
     "defaultMessage": "Add an image",
     "description": "Button label in images field"
+  },
+  "VDu2FA": {
+    "defaultMessage": "Google Fonts",
+    "description": "Font family group title"
   },
   "Wb5zY4": {
     "defaultMessage": "Select a font file...",
@@ -449,6 +457,10 @@
   "aarOkd": {
     "defaultMessage": "Color",
     "description": "Field label"
+  },
+  "al5xjv": {
+    "defaultMessage": "Default fonts",
+    "description": "Font family group title"
   },
   "amEvH1": {
     "defaultMessage": "Fit",
@@ -747,10 +759,6 @@
   "zDH24s": {
     "defaultMessage": "Latitude",
     "description": "Latitude description"
-  },
-  "zIi5W2": {
-    "defaultMessage": "All",
-    "description": "Font family group title"
   },
   "zW7IVm": {
     "defaultMessage": "Quiz",
