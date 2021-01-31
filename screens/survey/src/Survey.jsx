@@ -107,17 +107,18 @@ const SurveyScreen = ({
 
     const quizAnswersComputed =
         answers !== null
-            ? (answers || []).reduce((answersTotal, ans) => {
+            ? (answers || []).reduce((answersTotal, ans, i) => {
                   const { label = {} } = ans || {};
                   const { body = null } = label || {};
 
                   const { count = 0 } = quizAnswers.find((qa) => qa.choice === body) || {};
+                  const countWithUser = i === userAnswerIndex ? count + 1 : count;
                   if (body !== null) {
                       return {
                           ...answersTotal,
                           [body]: {
-                              percent: total > 0 ? Math.floor((count / total) * 100) : 0,
-                              count,
+                              percent: total > 0 ? Math.floor((countWithUser / total) * 100) : 0,
+                              count: countWithUser,
                           },
                       };
                   }
