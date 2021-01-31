@@ -15,7 +15,7 @@ export default {
         description: 'Audio screen title',
     }),
     component: AudioScreen,
-    layouts: ['normal'],
+    layouts: ['middle', 'bottom', 'top'],
     transforms,
     fields: [
         {
