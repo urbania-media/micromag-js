@@ -27,6 +27,9 @@ export default {
         {
             name: 'question',
             type: 'heading-element',
+            theme: {
+                textStyle: 'heading2',
+            },
             label: defineMessage({
                 defaultMessage: 'Question',
                 description: 'Question field label',
@@ -35,6 +38,11 @@ export default {
         {
             name: 'answers',
             type: 'answers',
+            theme: {
+                label: {
+                    textStyle: 'button',
+                },
+            },
             label: defineMessage({
                 defaultMessage: 'Answers',
                 description: 'Field label',

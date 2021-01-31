@@ -72,7 +72,9 @@ const ItemsField = ({
     gotoFieldForm,
     closeFieldForm,
 }) => {
-    const finalIsFieldForm = isFieldForm || (itemComponent !== null ? itemComponent.withForm || false : false);
+    const finalIsFieldForm =
+        isFieldForm || (itemComponent !== null ? itemComponent.withForm || false : false);
+
     const onClickAdd = useCallback(() => {
         const newValue = [...(value || []), newDefaultValue];
         if (onChange !== null) {
@@ -82,12 +84,11 @@ const ItemsField = ({
             gotoFieldForm(`${name}.${newValue.length - 1}`);
         }
     }, [value, onChange, newDefaultValue, finalIsFieldForm, gotoFieldForm, name]);
+
     const onItemChange = useCallback(
         (index, newValue) => {
             if (onChange !== null) {
-                onChange(
-                    [...value.slice(0, index), newValue, ...value.slice(index + 2)]
-                );
+                onChange([...value.slice(0, index), newValue, ...value.slice(index + 2)]);
             }
         },
         [value, onChange],

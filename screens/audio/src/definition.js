@@ -29,6 +29,9 @@ export default {
         {
             name: 'audio',
             type: 'audio-element',
+            theme: {
+                color: 'primary',
+            },
             label: defineMessage({
                 defaultMessage: 'Audio',
                 description: 'Audio field label',

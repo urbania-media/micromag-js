@@ -28,8 +28,7 @@ export default {
             name: 'title',
             type: 'heading-element',
             theme: {
-                textStyle: 'heading1',
-                textColor: 'primary',
+                textStyle: 'heading2',
             },
             label: defineMessage({
                 defaultMessage: 'Title',
@@ -39,6 +38,9 @@ export default {
         {
             name: 'name',
             type: 'input-element',
+            theme: {
+                textStyle: 'text',
+            },
             label: defineMessage({
                 defaultMessage: 'Name',
                 description: 'Name field label',
@@ -47,6 +49,9 @@ export default {
         {
             name: 'message',
             type: 'input-element',
+            theme: {
+                textStyle: 'text',
+            },
             label: defineMessage({
                 defaultMessage: 'Message',
                 description: 'Message field label',
@@ -56,8 +61,7 @@ export default {
             name: 'submit',
             type: 'text-element',
             theme: {
-                textStyle: 'text',
-                textColor: 'primary',
+                textStyle: 'button',
             },
             label: defineMessage({
                 defaultMessage: 'Submit',

@@ -39,16 +39,55 @@ class ThemeParser {
             return {
                 ...themeComponent,
                 ...Object.keys(screen).reduce((newScreen, key) => {
-                    const {
-                        theme: {
-                            textStyle: fieldTextStyle = null,
-                            textColor: fieldTextColor = null,
-                            color: fieldColor = null,
-                        } = {},
-                    } = fields.find((it) => it.name === key) || {};
+                    // The theme values
+                    const { theme: fullTheme = {} } = fields.find((it) => it.name === key) || {};
                     const fieldValue = screen[key];
                     let newFieldValue = fieldValue;
+
+                    if (isArray(fieldValue)) {
+                        newFieldValue = newFieldValue.map((innerField) =>
+                            Object.keys(innerField).reduce((newInnerField, innerFieldName) => {
+                                const {
+                                    textStyle: innerFieldTextStyle = null,
+                                    color: innerFieldColor = null,
+                                } = fullTheme[innerFieldName] || {};
+
+                                const colorValue =
+                                    innerFieldColor !== null
+                                        ? {
+                                              color:
+                                                  innerFieldColor !== null && themeColors !== null
+                                                      ? themeColors[innerFieldColor] || null
+                                                      : null,
+                                          }
+                                        : null;
+                                const textStyleValue =
+                                    innerFieldTextStyle !== null
+                                        ? {
+                                              textStyle: {
+                                                  ...(innerFieldTextStyle !== null &&
+                                                  themeTextSyle !== null
+                                                      ? themeTextSyle[innerFieldTextStyle] || null
+                                                      : null),
+                                                  ...(innerField[innerFieldName].textStyle || null),
+                                              },
+                                          }
+                                        : null;
+
+                                return {
+                                    ...newInnerField,
+                                    [innerFieldName]: {
+                                        ...colorValue,
+                                        ...innerField[innerFieldName],
+                                        ...textStyleValue,
+                                    },
+                                };
+                            }, {}),
+                        );
+                    }
                     if (isObject(fieldValue) && !isArray(fieldValue)) {
+                        const { textStyle: fieldTextStyle = null, color: fieldColor = null } =
+                            fullTheme || {};
                         const colorValue =
                             fieldColor !== null
                                 ? {
@@ -59,13 +98,9 @@ class ThemeParser {
                                   }
                                 : null;
                         const textStyleValue =
-                            fieldTextStyle !== null || fieldTextColor !== null
+                            fieldTextStyle !== null
                                 ? {
                                       textStyle: {
-                                          color:
-                                              fieldTextColor !== null && themeColors !== null
-                                                  ? themeColors[fieldTextColor] || null
-                                                  : null,
                                           ...(fieldTextStyle !== null && themeTextSyle !== null
                                               ? themeTextSyle[fieldTextStyle] || null
                                               : null),
