@@ -80,6 +80,7 @@ const FieldWithForm = ({
     }
 
     const labelValue = label !== null ? label : get(value, labelPath, null);
+    // Strip html
     const labelElement =
         labelValue !== null && isString(labelValue)
             ? labelValue.replace(/(<([^>]+)>)/gi, '')
