@@ -79,7 +79,7 @@ const SurveyScreen = ({
     const { create: submitQuiz } = useQuizCreate({
         screenId,
     });
-    const { quiz: quizAnswers } = useQuiz({ screenId }); // eslint-disable-line
+    const { quiz: quizAnswers = [] } = useQuiz({ screenId }); // eslint-disable-line
 
     const {
         isView,
@@ -95,6 +95,35 @@ const SurveyScreen = ({
     const showInstantAnswer = isStatic || isCapture;
     const [userAnswerIndex, setUserAnswerIndex] = useState(showInstantAnswer ? -1 : null);
     const answered = userAnswerIndex !== null;
+
+    const total =
+        answers !== null
+            ? (quizAnswers || []).reduce(
+                  (points, { count = 0 }, i) =>
+                      points + parseInt(count, 10) + (i === userAnswerIndex ? 1 : 0),
+                  0,
+              )
+            : 0;
+
+    const quizAnswersComputed =
+        answers !== null
+            ? (answers || []).reduce((answersTotal, ans) => {
+                  const { label = {} } = ans || {};
+                  const { body = null } = label || {};
+
+                  const { count = 0 } = quizAnswers.find((qa) => qa.choice === body) || {};
+                  if (body !== null) {
+                      return {
+                          ...answersTotal,
+                          [body]: {
+                              percent: total > 0 ? Math.floor((count / total) * 100) : 0,
+                              count,
+                          },
+                      };
+                  }
+                  return answersTotal;
+              }, {})
+            : {};
 
     const isSplitted = layout === 'split';
     const verticalAlign = isSplitted ? null : layout;
@@ -182,7 +211,10 @@ const SurveyScreen = ({
                 <div className={styles.items}>
                     {(isPlaceholder ? [...new Array(3)] : answers).map((answer, answerIndex) => {
                         const hasAnswer = answer !== null;
-                        const { label = null, percent = 0 } = answer || {};
+                        const { label = null } = answer || {};
+                        const { body = null } = label || {};
+                        const { percent = 0 } =
+                            body !== null ? quizAnswersComputed[body] || {} : {};
                         const { textStyle = null } = label || {};
                         const { color: labelColor = null } = textStyle || {};
                         const hasAnswerLabel = isTextFilled(label);
