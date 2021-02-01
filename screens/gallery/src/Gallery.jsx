@@ -131,7 +131,7 @@ const GalleryScreen = ({
     }, [contentWidth, contentHeight, layout, setImagesSizes]);
 
     const items = [...Array(gridSpaces)].map((item, itemI) => {
-        const image = images[itemI] || null;
+        const image = images !== null ? images[itemI] : null;
         const imageSize = imagesSizes[itemI] || {};
 
         const finalImage = withCaptions ? image : { media: image };
