@@ -7,7 +7,7 @@
         .ck {
             &.ck-editor__editable {
                 border: $input-border-width solid $input-border-color;
-                background: $white;
+                background: $input-bg;
 
                 &:not(.ck-editor__nested-editable) {
                     &.ck-rounded-corners {
@@ -30,7 +30,7 @@
 
             &.ck-content {
                 @extend %text-styles;
-                color: $black;
+                color: $white;
                 font-size: $input-font-size;
                 line-height: $input-line-height;
             }
