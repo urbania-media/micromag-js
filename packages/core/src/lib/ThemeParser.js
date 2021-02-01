@@ -16,140 +16,133 @@ class ThemeParser {
         }
         const {
             components: themeComponents = [],
-            colors: themeColors = {},
             background: themeBackground = null,
+            colors: themeColors = {},
             textStyle: themeTextSyle = null,
         } = theme;
-        const newComponents = components.map((screen) => {
+
+        const newComponents = components.reduce((currentComponents, screen, index) => {
             const { type } = screen;
-            const { fields = [] } = this.screensManager.getDefinition(type) || {};
-            const { type: themeComponentType, ...themeComponentFields } =
-                themeComponents.find((it) => it.type === type) || {};
-            const themeComponent = {
-                ...themeComponentFields,
+            const definition = this.screensManager.getDefinition(type) || {};
+            const themeScreen = themeComponents.find((it) => it.type === type) || null;
+            const newScreen = this.parseScreen(
+                definition,
+                screen,
+                themeScreen,
+                themeBackground,
+                themeColors,
+                themeTextSyle,
+            );
+
+            // Only switch screen if it has changed
+            return newScreen !== screen || themeScreen !== null
+                ? [
+                      ...currentComponents.slice(0, index),
+                      {
+                          ...themeScreen,
+                          ...newScreen,
+                      },
+                      ...currentComponents.slice(index + 1),
+                  ]
+                : currentComponents;
+        }, components);
+
+        return newComponents !== components
+            ? {
+                  ...story,
+                  components: newComponents,
+              }
+            : story;
+    }
+
+    parseScreen(definition, value, themeValue, themeBackground, themeColors, themeTextSyle) {
+        const { fields = [] } = definition;
+
+        const newThemeValue = themeValue === null && themeBackground !== null ? {} : themeValue;
+
+        if (typeof newThemeValue.background !== 'undefined' && themeBackground !== null) {
+            newThemeValue.background = {
+                ...themeBackground,
+                ...newThemeValue.background,
             };
-            if (typeof themeComponent.background !== 'undefined' && themeBackground !== null) {
-                themeComponent.background = {
-                    ...themeBackground,
-                    ...themeComponent.background,
-                };
-            } else if (themeBackground !== null) {
-                themeComponent.background = themeBackground;
-            }
-            return {
-                ...themeComponent,
-                ...Object.keys(screen).reduce((newScreen, key) => {
-                    // The theme values
-                    const { theme: fullTheme = {} } = fields.find((it) => it.name === key) || {};
-                    const fieldValue = screen[key];
-                    let newFieldValue = fieldValue;
+        } else if (themeBackground !== null) {
+            newThemeValue.background = themeBackground;
+        }
 
-                    // if (isArray(fieldValue)) {
-                    //     newFieldValue = newFieldValue.map((innerField) =>
-                    //         innerField !== null
-                    //             ? Object.keys(innerField).reduce(
-                    //                   (newInnerField, innerFieldName) => {
-                    //                       const {
-                    //                           textStyle: innerFieldTextStyle = null,
-                    //                           color: innerFieldColor = null,
-                    //                       } = fullTheme[innerFieldName] || {};
+        return Object.keys(value).reduce((currentValue, key) => {
+            const fieldDefinition = fields.find((it) => it.name === key) || {};
+            const fieldValue = value[key];
+            const fieldThemeValue = newThemeValue !== null ? newThemeValue[key] || null : null;
+            const newFieldValue = this.parseField(
+                key,
+                fieldDefinition,
+                fieldValue,
+                fieldThemeValue,
+                themeBackground,
+                themeColors,
+                themeTextSyle,
+            );
 
-                    //                       const colorValue =
-                    //                           innerFieldColor !== null
-                    //                               ? {
-                    //                                     color:
-                    //                                         innerFieldColor !== null &&
-                    //                                         themeColors !== null
-                    //                                             ? themeColors[innerFieldColor] ||
-                    //                                               null
-                    //                                             : null,
-                    //                                 }
-                    //                               : null;
-                    //                       const textStyleValue =
-                    //                           innerFieldTextStyle !== null
-                    //                               ? {
-                    //                                     textStyle: {
-                    //                                         ...(innerFieldTextStyle !== null &&
-                    //                                         themeTextSyle !== null
-                    //                                             ? themeTextSyle[
-                    //                                                   innerFieldTextStyle
-                    //                                               ] || null
-                    //                                             : null),
-                    //                                         ...(innerField[innerFieldName]
-                    //                                             .textStyle || null),
-                    //                                     },
-                    //                                 }
-                    //                               : null;
+            // Only switch field if it has changed
+            return newFieldValue !== fieldValue
+                ? {
+                      ...currentValue,
+                      [key]: newFieldValue,
+                  }
+                : currentValue;
+        }, value);
+    }
 
-                    //                       if (colorValue === null && textStyleValue === null) {
-                    //                           return {
-                    //                               ...newInnerField,
-                    //                               [innerFieldName]: innerField[innerFieldName],
-                    //                           };
-                    //                       }
+    // eslint-disable-next-line class-methods-use-this
+    parseField(key, definition, value, themeValue, themeColors, themeTextStyles) {
+        const { theme: fieldTheme = {} } = definition;
 
-                    //                       return {
-                    //                           ...newInnerField,
-                    //                           [innerFieldName]: !isObject(
-                    //                               innerField[innerFieldName],
-                    //                           )
-                    //                               ? innerField[innerFieldName]
-                    //                               : {
-                    //                                     ...colorValue,
-                    //                                     ...innerField[innerFieldName],
-                    //                                     ...textStyleValue,
-                    //                                 },
-                    //                       };
-                    //                   },
-                    //                   {},
-                    //               )
-                    //             : innerField,
-                    //     );
-                    // }
+        if (isObject(value) && !isArray(value)) {
+            const { textStyle: fieldTextStyleName = null, color: fieldColorName = null } =
+                fieldTheme || {};
 
-                    if (isObject(fieldValue) && !isArray(fieldValue)) {
-                        const { textStyle: fieldTextStyle = null, color: fieldColor = null } =
-                            fullTheme || {};
-                        const colorValue =
-                            fieldColor !== null
-                                ? {
-                                      color:
-                                          fieldColor !== null && themeColors !== null
-                                              ? themeColors[fieldColor] || null
-                                              : null,
-                                  }
-                                : null;
-                        const textStyleValue =
-                            fieldTextStyle !== null
-                                ? {
-                                      textStyle: {
-                                          ...(fieldTextStyle !== null && themeTextSyle !== null
-                                              ? themeTextSyle[fieldTextStyle] || null
-                                              : null),
-                                          ...((themeComponent[key] || {}).textStyle || null),
-                                          ...(fieldValue.textStyle || null),
-                                      },
-                                  }
-                                : null;
-                        newFieldValue = {
-                            ...colorValue,
-                            ...themeComponent[key],
-                            ...fieldValue,
-                            ...textStyleValue,
-                        };
-                    }
-                    return {
-                        ...newScreen,
-                        [key]: newFieldValue,
-                    };
-                }, {}),
-            };
-        });
+            // Color
+            const fieldColor =
+                fieldColorName !== null && themeColors !== null
+                    ? themeColors[fieldColorName] || null
+                    : null;
+            const colorValue =
+                fieldColor !== null
+                    ? {
+                          color: fieldColor,
+                      }
+                    : null;
 
-        return {
-            ...story,
-            components: newComponents,
-        };
+            // Text style
+            const fieldTextStyle =
+                fieldTextStyleName !== null && themeTextStyles !== null
+                    ? themeTextStyles[fieldTextStyleName] || null
+                    : null;
+            const fieldThemeComponentTextStyle =
+                themeValue !== null ? themeValue.textStyle || null : null;
+            const textStyleValue =
+                fieldTextStyle !== null || fieldThemeComponentTextStyle !== null
+                    ? {
+                          textStyle: {
+                              ...fieldTextStyle,
+                              ...fieldThemeComponentTextStyle,
+                              ...(value.textStyle || null),
+                          },
+                      }
+                    : null;
+
+            // Only change value if something is overrided
+            return colorValue !== null || themeValue !== null || textStyleValue !== null
+                ? {
+                      ...colorValue,
+                      ...themeValue,
+                      ...value,
+                      ...textStyleValue,
+                  }
+                : value;
+        }
+
+        return value;
     }
 }
 

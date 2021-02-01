@@ -49,7 +49,8 @@ const EditorPreview = ({ value, isTheme, devices, device: initialDevice, classNa
     const routes = useRoutes();
     const { screen = null, screens = [] } = useScreenSize();
     const valueWithTheme = useThemeValue(value, isTheme);
-    const valueParsed = useParsedStory(valueWithTheme, { withMedias: false });
+    const valueParsed = valueWithTheme;
+    // const valueParsed = useParsedStory(valueWithTheme, { withMedias: false });
 
     // Get device
     const [deviceId, setDeviceId] = useState(initialDevice || devices[0].id);
@@ -105,7 +106,7 @@ const EditorPreview = ({ value, isTheme, devices, device: initialDevice, classNa
                             onClickItem={onClickDeviceItem}
                         />
                     </div>
-                : null }                
+                : null }
                 <div className={styles.bottom}>
                     <div className={styles.inner} ref={bottomRef}>
                         <div className={styles.preview} style={previewStyle}>
