@@ -14,6 +14,7 @@ const propTypes = {
     float: PropTypes.bool,
     dataList: PropTypes.arrayOf(PropTypes.number),
     isHorizontal: PropTypes.bool,
+    autoComplete: PropTypes.bool,
     className: PropTypes.string,
     onChange: PropTypes.func,
 };
@@ -29,6 +30,7 @@ const defaultProps = {
     float: false,
     dataList: null,
     isHorizontal: false,
+    autoComplete: false,
     className: null,
     onChange: null,
 };
@@ -44,6 +46,7 @@ const NumberField = ({
     float,
     dataList,
     isHorizontal,
+    autoComplete,
     className,
     onChange,
 }) => {
@@ -69,6 +72,7 @@ const NumberField = ({
                 size={size}
                 step={float ? floatStep : step}
                 list={dataListId}
+                autoComplete={autoComplete ? 'on' : 'off'}
                 onChange={(e) => {
                     const newValue = e.currentTarget.value;
                     let parsedValue = null;

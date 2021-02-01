@@ -6,10 +6,13 @@ import * as transforms from './transforms/index';
 export default {
     id: 'audio',
     type: 'screen',
-    group: defineMessage({
-        defaultMessage: 'Audio and Video',
-        description: 'Audio and Video screen group',
-    }),
+    group: {
+        label: defineMessage({
+            defaultMessage: 'Audio and Video',
+            description: 'Audio and Video screen group',
+        }),
+        order: 5,
+    },
     title: defineMessage({
         defaultMessage: 'Audio',
         description: 'Audio screen title',

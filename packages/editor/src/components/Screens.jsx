@@ -16,6 +16,8 @@ import createScreen from '../utils/createScreen';
 import Screens from './menus/Screens';
 import ScreenTypesModal from './modals/ScreenTypes';
 
+import styles from '../styles/screens.module.scss';
+
 const propTypes = {
     value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
     isTheme: PropTypes.bool,
@@ -129,8 +131,13 @@ const EditorScreens = ({
     // console.log(routes.home, routes.screen);
 
     return (
-        <div className={classNames(['d-flex', 'flex-column', className])}>
-            <Navbar compact noWrap withoutCollapse>
+        <div className={classNames(['d-flex', 'flex-column', styles.container, className])}>
+            <Navbar
+                compact
+                noWrap
+                withoutCollapse
+                className={classNames(['sticky-top', styles.navbar])}
+            >
                 <strong className="mb-0 mr-auto">
                     <FormattedMessage
                         defaultMessage="Screens"

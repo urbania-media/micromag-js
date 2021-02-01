@@ -8,10 +8,13 @@ export default [
     {
         id: 'timeline',
         type: 'screen',
-        group: defineMessage({
-            defaultMessage: 'List',
-            description: 'List screen group',
-        }),
+        group: {
+            label: defineMessage({
+                defaultMessage: 'List',
+                description: 'List screen group',
+            }),
+            order: 8,
+        },
         title: defineMessage({
             defaultMessage: 'Timeline',
             description: 'Timeline screen title',
@@ -103,10 +106,13 @@ export default [
     {
         id: 'timeline-illustrated',
         type: 'screen',
-        group: defineMessage({
-            defaultMessage: 'List',
-            description: 'List screen group',
-        }),
+        group: {
+            label: defineMessage({
+                defaultMessage: 'List',
+                description: 'List screen group',
+            }),
+            order: 8,
+        },
         title: defineMessage({
             defaultMessage: 'Timeline with images',
             description: 'TimelineIllustrated screen title',

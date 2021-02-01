@@ -174,7 +174,17 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
     return (
         <div className={classNames(['d-flex', 'flex-column', className])}>
             {screenId !== null ? (
-                <Navbar compact noWrap withoutCollapse className="border-bottom border-dark">
+                <Navbar
+                    compact
+                    noWrap
+                    withoutCollapse
+                    className={classNames([
+                        'sticky-top',
+                        'border-bottom',
+                        'border-dark',
+                        styles.navbar,
+                    ])}
+                >
                     <Breadcrumb
                         story={value}
                         url={url}

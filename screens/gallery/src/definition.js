@@ -8,10 +8,13 @@ export default [
     {
         id: 'gallery',
         type: 'screen',
-        group: defineMessage({
-            defaultMessage: 'Images',
-            description: 'Images screen group',
-        }),
+        group: {
+            label: defineMessage({
+                defaultMessage: 'Images',
+                description: 'Images screen group',
+            }),
+            order: 4,
+        },
         title: defineMessage({
             defaultMessage: 'Gallery',
             description: 'Gallery screen title',
@@ -71,10 +74,13 @@ export default [
     {
         id: 'gallery-captions',
         type: 'screen',
-        group: defineMessage({
-            defaultMessage: 'Images',
-            description: 'Images screen group',
-        }),
+        group: {
+            label: defineMessage({
+                defaultMessage: 'Images',
+                description: 'Images screen group',
+            }),
+            order: 4,
+        },
         title: defineMessage({
             defaultMessage: 'Gallery with captions',
             description: 'GalleryCaptions screen title',
