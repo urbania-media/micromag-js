@@ -5,6 +5,8 @@ import { TrackingContainer, TrackingContext } from '@folklore/tracking';
 
 import { Tracking, PropTypes as MicromagPropTypes } from '../lib';
 
+export { TrackingContext };
+
 export const useTracking = () => useContext(TrackingContext);
 
 const propTypes = {
@@ -36,5 +38,3 @@ export const TrackingProvider = ({ variables, children }) => {
 
 TrackingProvider.propTypes = propTypes;
 TrackingProvider.defaultProps = defaultProps;
-
-export default TrackingContext;

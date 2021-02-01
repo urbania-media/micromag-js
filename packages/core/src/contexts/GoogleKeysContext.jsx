@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-const GoogleKeysContext = React.createContext({
+export const GoogleKeysContext = React.createContext({
     apiKey: null,
 });
 
@@ -30,5 +30,3 @@ export const GoogleKeysProvider = ({ children, apiKey }) => {
 
 GoogleKeysProvider.propTypes = propTypes;
 GoogleKeysProvider.defaultProps = defaultProps;
-
-export default GoogleKeysContext;

@@ -9,7 +9,7 @@ import { PropTypes as MicromagPropTypes } from '../lib';
 
 import { useGoogleKeys } from './GoogleKeysContext';
 
-const FontsContext = React.createContext({
+export const FontsContext = React.createContext({
     systemFonts: null,
     googleFonts: null,
     customFonts: null,
@@ -119,5 +119,3 @@ export const FontsProvider = ({ systemFonts, customFonts, children }) => {
 
 FontsProvider.propTypes = propTypes;
 FontsProvider.defaultProps = defaultProps;
-
-export default FontsContext;

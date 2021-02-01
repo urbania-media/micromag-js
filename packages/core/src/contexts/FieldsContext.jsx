@@ -60,5 +60,3 @@ export const FieldsProvider = ({ fields, manager, children }) => {
 
 FieldsProvider.propTypes = propTypes;
 FieldsProvider.defaultProps = defaultProps;
-
-export default FieldsContext;

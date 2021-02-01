@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { getDisplayName } from '../utils';
 
-const PanelsContext = React.createContext({
+export const PanelsContext = React.createContext({
     container: null,
 });
 
@@ -78,5 +78,3 @@ export const PanelsProvider = ({ children, container: initialContainer }) => {
 
 PanelsProvider.propTypes = propTypes;
 PanelsProvider.defaultProps = defaultProps;
-
-export default PanelsContext;

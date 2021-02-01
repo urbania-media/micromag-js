@@ -9,7 +9,7 @@ const defaultValue = {
     menuOpened: false,
 };
 
-const ViewerContext = React.createContext(defaultValue);
+export const ViewerContext = React.createContext(defaultValue);
 
 export const useViewer = () => useContext(ViewerContext);
 
@@ -38,5 +38,3 @@ export const ViewerProvider = ({ children, menuVisible, menuSize, menuPosition, 
 
 ViewerProvider.propTypes = propTypes;
 ViewerProvider.defaultProps = defaultProps;
-
-export default ViewerContext;

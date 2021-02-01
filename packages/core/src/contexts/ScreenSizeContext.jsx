@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { PropTypes as MicromagPropTypes } from '../lib';
 
-const ScreenSizeContext = React.createContext({
+export const ScreenSizeContext = React.createContext({
     screen: null,
     screens: [],
     width: 0,
@@ -39,5 +39,3 @@ export const ScreenSizeProvider = ({ size, children }) => {
 
 ScreenSizeProvider.propTypes = propTypes;
 ScreenSizeProvider.defaultProps = defaultProps;
-
-export default ScreenSizeContext;

@@ -5,7 +5,7 @@ import { loadGoogleApi } from '@folklore/services';
 
 import { useGoogleKeys } from './GoogleKeysContext';
 
-const GoogleApiClientContext = React.createContext(null);
+export const GoogleApiClientContext = React.createContext(null);
 
 export const useGoogleApiClient = () => useContext(GoogleApiClientContext);
 
@@ -51,5 +51,3 @@ export const GoogleApiClientProvider = ({ children }) => {
 
 GoogleApiClientProvider.propTypes = propTypes;
 GoogleApiClientProvider.defaultProps = defaultProps;
-
-export default GoogleApiClientContext;

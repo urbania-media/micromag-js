@@ -51,5 +51,3 @@ export const ScreensProvider = ({ screens, manager, children }) => {
 
 ScreensProvider.propTypes = propTypes;
 ScreensProvider.defaultProps = defaultProps;
-
-export default ScreensContext;
