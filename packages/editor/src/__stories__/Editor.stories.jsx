@@ -42,24 +42,51 @@ const EditorContainer = ({ defaultValue, isTheme, viewerTheme }) => {
 };
 
 const viewerTheme = {
-    logo: null,
+    logo: {
+        id: '26',
+        type: 'image',
+        name: 'avatar.png',
+        url: 'https://cdn.dev.microm.ag/image/2021-02-01/34-104427.png',
+        thumbnail_url: 'https://cdn.dev.microm.ag/image/2021-02-01/34-104427.png',
+        metadata: {
+            filename: 'avatar.png',
+            size: 65870,
+            mime: 'image/png',
+            width: 200,
+            height: 200,
+        },
+    },
     primaryColor: {
-        color: '#bb2c2c',
+        color: '#2ebb2c',
         alpha: 1,
     },
     secondaryColor: {
-        color: '#9013fe',
+        color: '#f5a623',
         alpha: 1,
     },
     backgroundColor: {
-        color: '#6e5252',
+        color: '#4a90e2',
         alpha: 1,
     },
     textStyle: {
-        fontFamily: 'Courier',
-        fontSize: 20,
+        fontFamily: {
+            type: 'google',
+            name: 'Lato',
+            variants: [
+                '100',
+                '100italic',
+                '300',
+                '300italic',
+                'regular',
+                'italic',
+                '700',
+                '700italic',
+                '900',
+                '900italic',
+            ],
+        },
         color: {
-            color: '#912525',
+            color: '#9b9b9b',
             alpha: 1,
         },
     },
