@@ -51,11 +51,11 @@ export const useSearchSections = ({
 
     const usage = [
         {
-            label: <FormattedMessage defaultMessage="Already used" description="Media label" />,
+            label: <FormattedMessage defaultMessage="Unused" description="Media label" />,
             value: 'unused',
         },
         {
-            label: <FormattedMessage defaultMessage="Unused" description="Media label" />,
+            label: <FormattedMessage defaultMessage="Used" description="Media label" />,
             value: 'used',
         },
     ];

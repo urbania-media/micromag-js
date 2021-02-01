@@ -35,7 +35,7 @@ const propTypes = {
 
 const defaultProps = {
     layout: 'normal',
-    images: [],
+    images: null,
     withCaptions: false,
     spacing: 20,
     background: null,
@@ -71,8 +71,8 @@ const GalleryFeedScreen = ({
         isCapture,
     } = useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
-
-    const imagesCount = images.length;
+    const hasImages = images !== null;
+    const imagesCount = hasImages ? images.length : 0;
     const [imagesLoaded, setImagesLoaded] = useState(0);
     const ready = imagesLoaded >= imagesCount;
     const transitionPlaying = current && ready;
@@ -87,7 +87,7 @@ const GalleryFeedScreen = ({
 
     const items = [];
 
-    const editImages = isEdit && images.length === 0 ? [null] : images;
+    const editImages = isEdit && imagesCount === 0 ? [null] : images;
     const finalImages = isPlaceholder ? [...Array(5)] : editImages;
 
     const {
@@ -100,7 +100,7 @@ const GalleryFeedScreen = ({
         trackScreenEvent('scroll', 'Screen');
     }, [trackScreenEvent]);
 
-    finalImages.forEach((image, index) => {
+    (finalImages || []).forEach((image, index) => {
         const finalImage = withCaptions ? image : { media: image };
         const { caption = null } = finalImage || {};
         const hasImage = isImageFilled(finalImage);
@@ -126,7 +126,7 @@ const GalleryFeedScreen = ({
 
         if (withCaptions) {
             const marginTop = !isReversed || index > 0 ? spacing / 2 : 0;
-            const marginBottom = isReversed || index < finalImages.length - 1 ? spacing / 2 : 0;
+            const marginBottom = isReversed || index < (finalImages || []).length - 1 ? spacing / 2 : 0;
             captionElement = (
                 <ScreenElement
                     key={`caption-${index}`}
@@ -166,7 +166,7 @@ const GalleryFeedScreen = ({
             }
         }
 
-        if (!isPlaceholder && index < finalImages.length - 1) {
+        if (!isPlaceholder && index < (finalImages || []).length - 1) {
             items.push(<div key={`spacing-${index}`} style={{ height: spacing }} />);
         }
     });

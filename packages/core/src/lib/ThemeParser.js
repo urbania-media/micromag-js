@@ -44,68 +44,68 @@ class ThemeParser {
                     const fieldValue = screen[key];
                     let newFieldValue = fieldValue;
 
-                    if (isArray(fieldValue)) {
-                        newFieldValue = newFieldValue.map((innerField) =>
-                            innerField !== null
-                                ? Object.keys(innerField).reduce(
-                                      (newInnerField, innerFieldName) => {
-                                          const {
-                                              textStyle: innerFieldTextStyle = null,
-                                              color: innerFieldColor = null,
-                                          } = fullTheme[innerFieldName] || {};
+                    // if (isArray(fieldValue)) {
+                    //     newFieldValue = newFieldValue.map((innerField) =>
+                    //         innerField !== null
+                    //             ? Object.keys(innerField).reduce(
+                    //                   (newInnerField, innerFieldName) => {
+                    //                       const {
+                    //                           textStyle: innerFieldTextStyle = null,
+                    //                           color: innerFieldColor = null,
+                    //                       } = fullTheme[innerFieldName] || {};
 
-                                          const colorValue =
-                                              innerFieldColor !== null
-                                                  ? {
-                                                        color:
-                                                            innerFieldColor !== null &&
-                                                            themeColors !== null
-                                                                ? themeColors[innerFieldColor] ||
-                                                                  null
-                                                                : null,
-                                                    }
-                                                  : null;
-                                          const textStyleValue =
-                                              innerFieldTextStyle !== null
-                                                  ? {
-                                                        textStyle: {
-                                                            ...(innerFieldTextStyle !== null &&
-                                                            themeTextSyle !== null
-                                                                ? themeTextSyle[
-                                                                      innerFieldTextStyle
-                                                                  ] || null
-                                                                : null),
-                                                            ...(innerField[innerFieldName]
-                                                                .textStyle || null),
-                                                        },
-                                                    }
-                                                  : null;
+                    //                       const colorValue =
+                    //                           innerFieldColor !== null
+                    //                               ? {
+                    //                                     color:
+                    //                                         innerFieldColor !== null &&
+                    //                                         themeColors !== null
+                    //                                             ? themeColors[innerFieldColor] ||
+                    //                                               null
+                    //                                             : null,
+                    //                                 }
+                    //                               : null;
+                    //                       const textStyleValue =
+                    //                           innerFieldTextStyle !== null
+                    //                               ? {
+                    //                                     textStyle: {
+                    //                                         ...(innerFieldTextStyle !== null &&
+                    //                                         themeTextSyle !== null
+                    //                                             ? themeTextSyle[
+                    //                                                   innerFieldTextStyle
+                    //                                               ] || null
+                    //                                             : null),
+                    //                                         ...(innerField[innerFieldName]
+                    //                                             .textStyle || null),
+                    //                                     },
+                    //                                 }
+                    //                               : null;
 
-                                          if (colorValue === null && textStyleValue === null) {
-                                              return {
-                                                  ...newInnerField,
-                                                  [innerFieldName]: innerField[innerFieldName],
-                                              };
-                                          }
+                    //                       if (colorValue === null && textStyleValue === null) {
+                    //                           return {
+                    //                               ...newInnerField,
+                    //                               [innerFieldName]: innerField[innerFieldName],
+                    //                           };
+                    //                       }
 
-                                          return {
-                                              ...newInnerField,
-                                              [innerFieldName]: !isObject(
-                                                  innerField[innerFieldName],
-                                              )
-                                                  ? innerField[innerFieldName]
-                                                  : {
-                                                        ...colorValue,
-                                                        ...innerField[innerFieldName],
-                                                        ...textStyleValue,
-                                                    },
-                                          };
-                                      },
-                                      {},
-                                  )
-                                : innerField,
-                        );
-                    }
+                    //                       return {
+                    //                           ...newInnerField,
+                    //                           [innerFieldName]: !isObject(
+                    //                               innerField[innerFieldName],
+                    //                           )
+                    //                               ? innerField[innerFieldName]
+                    //                               : {
+                    //                                     ...colorValue,
+                    //                                     ...innerField[innerFieldName],
+                    //                                     ...textStyleValue,
+                    //                                 },
+                    //                       };
+                    //                   },
+                    //                   {},
+                    //               )
+                    //             : innerField,
+                    //     );
+                    // }
 
                     if (isObject(fieldValue) && !isArray(fieldValue)) {
                         const { textStyle: fieldTextStyle = null, color: fieldColor = null } =
