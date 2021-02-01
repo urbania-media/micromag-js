@@ -37,6 +37,7 @@ export { default as quizAnswer } from './quiz-answer';
 export { default as quizAnswers } from './quiz-answers';
 export { default as radios } from './radios';
 export { default as screenLayout } from './screen-layout';
+export { default as select } from './select';
 export { default as textElement } from './text-element';
 export { default as textStyle } from './text-style';
 export { default as text } from './text';
