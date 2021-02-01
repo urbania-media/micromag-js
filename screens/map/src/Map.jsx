@@ -192,7 +192,7 @@ const MapScreen = ({
         if (withMarkerImages && markers !== null && (markers || []).length) {
             setMarkerImagesLoaded(0);
             markers.forEach((marker) => {
-                const { image = null } = marker;
+                const { image = null } = marker || {};
                 const { url = null } = image || {};
                 if (url !== null) {
                     const img = new Image();
