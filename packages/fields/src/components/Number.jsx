@@ -61,7 +61,7 @@ const NumberField = ({
                 className={classNames([
                     'form-control',
                     {
-                        'w-auto': size !== null,
+                        // 'w-auto': size !== null,
                         'ml-auto': isHorizontal,
                         [className]: className !== null,
                     },
