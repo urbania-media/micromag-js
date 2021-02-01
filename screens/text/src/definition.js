@@ -8,10 +8,13 @@ export default [
     {
         id: 'text',
         type: 'screen',
-        group: defineMessage({
-            defaultMessage: 'Text',
-            description: 'Text screen group',
-        }),
+        group: {
+            label: defineMessage({
+                defaultMessage: 'Text',
+                description: 'Text screen group',
+            }),
+            order: 2,
+        },
         title: defineMessage({
             defaultMessage: 'Text',
             description: 'Text screen title',
@@ -52,10 +55,13 @@ export default [
     {
         id: 'text-title',
         type: 'screen',
-        group: defineMessage({
-            defaultMessage: 'Text',
-            description: 'Text screen group',
-        }),
+        group: {
+            label: defineMessage({
+                defaultMessage: 'Text',
+                description: 'Text screen group',
+            }),
+            order: 2,
+        },
         title: defineMessage({
             defaultMessage: 'Text with title',
             description: 'TextTitle screen title',

@@ -5,10 +5,13 @@ import SurveyScreen from './Survey';
 export default {
     id: 'survey',
     type: 'screen',
-    group: defineMessage({
-        defaultMessage: 'Questions',
-        description: 'Questions screen group',
-    }),
+    group: {
+        label: defineMessage({
+            defaultMessage: 'Questions',
+            description: 'Questions screen group',
+        }),
+        order: 7,
+    },
     title: defineMessage({
         defaultMessage: 'Survey',
         description: 'Survey screen title',

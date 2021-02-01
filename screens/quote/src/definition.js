@@ -6,10 +6,13 @@ import * as transforms from './transforms/index';
 export default {
     id: 'quote',
     type: 'screen',
-    group: defineMessage({
-        defaultMessage: 'Text',
-        description: 'Text screen group',
-    }),
+    group: {
+        label: defineMessage({
+            defaultMessage: 'Text',
+            description: 'Text screen group',
+        }),
+        order: 2,
+    },
     title: defineMessage({
         defaultMessage: 'Quote',
         description: 'Quote screen title',

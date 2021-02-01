@@ -34,11 +34,13 @@ const ScreenTypes = ({ screens, selectedTypes, className, onClickItem }) => {
     const groups = useMemo(() => {
         const groupItems = finalDefinitions.reduce((allGroups, definition) => {
             const { id, title, group = {} } = definition;
-            const { id: messageId } = group;
+            const { order = 0, label = {} } = group || {};
+            const { id: messageId = null } = label || {};
 
-            const { id: groupId, name: groupName } = isMessage(group)
+            const { id: groupId, name: groupName } = isMessage(label)
                 ? { id: messageId || id, name: group }
                 : { id: messageId || id, name: title };
+
             const groupIndex = allGroups.findIndex((it) => it.id === groupId);
             const selected = selectedTypes !== null && selectedTypes.indexOf(id) !== -1;
             const item = {
@@ -63,14 +65,14 @@ const ScreenTypes = ({ screens, selectedTypes, className, onClickItem }) => {
                       ...allGroups,
                       {
                           id: groupId,
-                          name: groupName,
+                          name: isMessage(label) ? intl.formatMessage(label) : groupName,
+                          order,
                           items: [item],
                       },
                   ];
         }, []);
-        return orderBy(groupItems, ({ name }) =>
-            isMessage(name) ? intl.formatMessage(name) : name,
-        );
+
+        return orderBy(groupItems, ['order', 'name'], ['asc', 'asc']);
     }, [finalDefinitions, selectedTypes]);
     return (
         <div

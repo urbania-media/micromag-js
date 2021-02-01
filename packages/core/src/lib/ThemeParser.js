@@ -46,43 +46,53 @@ class ThemeParser {
 
                     if (isArray(fieldValue)) {
                         newFieldValue = newFieldValue.map((innerField) =>
-                            Object.keys(innerField).reduce((newInnerField, innerFieldName) => {
-                                const {
-                                    textStyle: innerFieldTextStyle = null,
-                                    color: innerFieldColor = null,
-                                } = fullTheme[innerFieldName] || {};
+                            innerField !== null
+                                ? Object.keys(innerField).reduce(
+                                      (newInnerField, innerFieldName) => {
+                                          const {
+                                              textStyle: innerFieldTextStyle = null,
+                                              color: innerFieldColor = null,
+                                          } = fullTheme[innerFieldName] || {};
 
-                                const colorValue =
-                                    innerFieldColor !== null
-                                        ? {
-                                              color:
-                                                  innerFieldColor !== null && themeColors !== null
-                                                      ? themeColors[innerFieldColor] || null
-                                                      : null,
-                                          }
-                                        : null;
-                                const textStyleValue =
-                                    innerFieldTextStyle !== null
-                                        ? {
-                                              textStyle: {
-                                                  ...(innerFieldTextStyle !== null &&
-                                                  themeTextSyle !== null
-                                                      ? themeTextSyle[innerFieldTextStyle] || null
-                                                      : null),
-                                                  ...(innerField[innerFieldName].textStyle || null),
+                                          const colorValue =
+                                              innerFieldColor !== null
+                                                  ? {
+                                                        color:
+                                                            innerFieldColor !== null &&
+                                                            themeColors !== null
+                                                                ? themeColors[innerFieldColor] ||
+                                                                  null
+                                                                : null,
+                                                    }
+                                                  : null;
+                                          const textStyleValue =
+                                              innerFieldTextStyle !== null
+                                                  ? {
+                                                        textStyle: {
+                                                            ...(innerFieldTextStyle !== null &&
+                                                            themeTextSyle !== null
+                                                                ? themeTextSyle[
+                                                                      innerFieldTextStyle
+                                                                  ] || null
+                                                                : null),
+                                                            ...(innerField[innerFieldName]
+                                                                .textStyle || null),
+                                                        },
+                                                    }
+                                                  : null;
+
+                                          return {
+                                              ...newInnerField,
+                                              [innerFieldName]: {
+                                                  ...colorValue,
+                                                  ...innerField[innerFieldName],
+                                                  ...textStyleValue,
                                               },
-                                          }
-                                        : null;
-
-                                return {
-                                    ...newInnerField,
-                                    [innerFieldName]: {
-                                        ...colorValue,
-                                        ...innerField[innerFieldName],
-                                        ...textStyleValue,
-                                    },
-                                };
-                            }, {}),
+                                          };
+                                      },
+                                      {},
+                                  )
+                                : innerField,
                         );
                     }
                     if (isObject(fieldValue) && !isArray(fieldValue)) {

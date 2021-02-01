@@ -5,10 +5,13 @@ import ContributionScreen from './Contribution';
 export default {
     id: 'contribution',
     type: 'screen',
-    group: defineMessage({
-        defaultMessage: 'Questions',
-        description: 'Questions screen group',
-    }),
+    group: {
+        label: defineMessage({
+            defaultMessage: 'Questions',
+            description: 'Questions screen group',
+        }),
+        order: 7,
+    },
     title: defineMessage({
         defaultMessage: 'Contribution',
         description: 'Contribution screen title',

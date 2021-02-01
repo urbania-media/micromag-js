@@ -69,7 +69,7 @@ const ModalDialog = ({
                     </h5>
                     <button
                         type="button"
-                        className="close"
+                        className="close text-light"
                         aria-label="Close"
                         onClick={onClickClose}
                     >

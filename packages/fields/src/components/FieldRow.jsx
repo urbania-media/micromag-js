@@ -89,6 +89,7 @@ const FieldRow = ({
             'mb-0': isListItem,
             'py-2': isListItem,
             'px-2': isListItem,
+            'text-light': isListItem,
             [className]: className !== null,
         },
     ]);

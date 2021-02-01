@@ -11,10 +11,13 @@ export default [
     {
         id: 'image',
         type: 'screen',
-        group: defineMessage({
-            defaultMessage: 'Images',
-            description: 'Images screen group',
-        }),
+        group: {
+            label: defineMessage({
+                defaultMessage: 'Images',
+                description: 'Images screen group',
+            }),
+            order: 4,
+        },
         title: defineMessage({
             defaultMessage: 'Image',
             description: 'Image screen title',
@@ -52,10 +55,13 @@ export default [
     {
         id: 'image-title',
         type: 'screen',
-        group: defineMessage({
-            defaultMessage: 'Text and Images',
-            description: 'Text and Images screen group',
-        }),
+        group: {
+            label: defineMessage({
+                defaultMessage: 'Text and Images',
+                description: 'Text and Images screen group',
+            }),
+            order: 3,
+        },
         title: defineMessage({
             defaultMessage: 'Image with title',
             description: 'ImageTitle screen title',
@@ -105,10 +111,13 @@ export default [
     {
         id: 'image-text',
         type: 'screen',
-        group: defineMessage({
-            defaultMessage: 'Text and Images',
-            description: 'Text and Images screen group',
-        }),
+        group: {
+            label: defineMessage({
+                defaultMessage: 'Text and Images',
+                description: 'Text and Images screen group',
+            }),
+            order: 3,
+        },
         title: defineMessage({
             defaultMessage: 'Image with text',
             description: 'ImageText screen title',
@@ -157,10 +166,13 @@ export default [
     {
         id: 'image-title-text',
         type: 'screen',
-        group: defineMessage({
-            defaultMessage: 'Text and Images',
-            description: 'Text and Images screen group',
-        }),
+        group: {
+            label: defineMessage({
+                defaultMessage: 'Text and Images',
+                description: 'Text and Images screen group',
+            }),
+            order: 3,
+        },
         title: defineMessage({
             defaultMessage: 'Image with title and text',
             description: 'ImageTitleText screen title',
@@ -222,10 +234,13 @@ export default [
     {
         id: 'image-legend',
         type: 'screen',
-        group: defineMessage({
-            defaultMessage: 'Images',
-            description: 'Images screen group',
-        }),
+        group: {
+            label: defineMessage({
+                defaultMessage: 'Images',
+                description: 'Images screen group',
+            }),
+            order: 4,
+        },
         title: defineMessage({
             defaultMessage: 'Image with legend',
             description: 'ImageLegend screen title',

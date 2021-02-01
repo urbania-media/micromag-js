@@ -9,10 +9,13 @@ export default [
     {
         id: 'title',
         type: 'screen',
-        group: defineMessage({
-            defaultMessage: 'Title',
-            description: 'Title screen group',
-        }),
+        group: {
+            label: defineMessage({
+                defaultMessage: 'Title',
+                description: 'Title screen group',
+            }),
+            order: 1,
+        },
         title: defineMessage({
             defaultMessage: 'Title',
             description: 'Title screen title',
@@ -53,10 +56,13 @@ export default [
     {
         id: 'title-subtitle',
         type: 'screen',
-        group: defineMessage({
-            defaultMessage: 'Title',
-            description: 'Title screen group',
-        }),
+        group: {
+            label: defineMessage({
+                defaultMessage: 'Title',
+                description: 'Title screen group',
+            }),
+            order: 1,
+        },
         title: defineMessage({
             defaultMessage: 'Title with subtitle',
             description: 'TitleSubtitle screen title',
@@ -108,10 +114,13 @@ export default [
     {
         id: 'title-subtitle-credits',
         type: 'screen',
-        group: defineMessage({
-            defaultMessage: 'Title',
-            description: 'Title screen group',
-        }),
+        group: {
+            label: defineMessage({
+                defaultMessage: 'Title',
+                description: 'Title screen group',
+            }),
+            order: 1,
+        },
         title: defineMessage({
             defaultMessage: 'Title with subtitle and credits',
             description: 'TitleSubtitleCredits screen title',

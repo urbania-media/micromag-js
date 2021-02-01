@@ -6,10 +6,13 @@ import * as transforms from './transforms/index';
 export default {
     id: 'ranking',
     type: 'screen',
-    group: defineMessage({
-        defaultMessage: 'List',
-        description: 'List screen group',
-    }),
+    group: {
+        label: defineMessage({
+            defaultMessage: 'List',
+            description: 'List screen group',
+        }),
+        order: 8,
+    },
     title: defineMessage({
         defaultMessage: 'Ranking',
         description: 'Ranking screen title',

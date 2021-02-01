@@ -5,10 +5,13 @@ import QuizScreen from './Quiz';
 export default {
     id: 'quiz',
     type: 'screen',
-    group: defineMessage({
-        defaultMessage: 'Questions',
-        description: 'Questions screen group',
-    }),
+    group: {
+        label: defineMessage({
+            defaultMessage: 'Questions',
+            description: 'Questions screen group',
+        }),
+        order: 7,
+    },
     title: defineMessage({
         defaultMessage: 'Quiz',
         description: 'Quiz screen title',
