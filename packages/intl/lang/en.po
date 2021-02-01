@@ -311,6 +311,12 @@ msgctxt "AA8TV9"
 msgid "Image with title"
 msgstr "Image with title"
 
+# Media label
+#: AQ8Aig
+msgctxt "AQ8Aig"
+msgid "Used"
+msgstr "Used"
+
 # Label when no value is provided to Image field
 #: B1MeY+
 msgctxt "B1MeY+"
@@ -418,12 +424,6 @@ msgstr "Cancel"
 msgctxt "GE8wrk"
 msgid "Image"
 msgstr "Image"
-
-# Media label
-#: GGwrCy
-msgctxt "GGwrCy"
-msgid "Already used"
-msgstr "Already used"
 
 # Field label
 #: GMCLhn

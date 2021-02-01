@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { PropTypes as MicromagPropTypes } from '../lib';
 import { useScreensManager } from './ScreensContext';
 
-const ScreenContext = React.createContext({
+export const ScreenContext = React.createContext({
     data: null,
     definition: null,
     renderContext: null,
@@ -86,5 +86,3 @@ export const ScreenProvider = ({ data, definition, renderContext, children }) =>
 
 ScreenProvider.propTypes = propTypes;
 ScreenProvider.defaultProps = defaultProps;
-
-export default ScreenContext;

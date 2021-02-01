@@ -12,7 +12,7 @@ import useUppyTransport from '../hooks/useUppyTransport';
 import useUppySources from '../hooks/useUppySources';
 import getTransloaditMediasFromResponse from '../utils/getTransloaditMediasFromResponse';
 
-const UppyContext = React.createContext(null);
+export const UppyContext = React.createContext(null);
 
 export const useUppy = ({
     onComplete = null,
@@ -238,5 +238,3 @@ export const UppyProvider = ({
 
 UppyProvider.propTypes = propTypes;
 UppyProvider.defaultProps = defaultProps;
-
-export default UppyContext;

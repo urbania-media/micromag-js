@@ -5,7 +5,7 @@ import { loadGoogleMaps } from '@folklore/services';
 
 import { useGoogleKeys } from './GoogleKeysContext';
 
-const GoogleMapsClientContext = React.createContext(null);
+export const GoogleMapsClientContext = React.createContext(null);
 
 export const useGoogleMapsClient = () => useContext(GoogleMapsClientContext);
 
@@ -57,5 +57,3 @@ export const GoogleMapsClientProvider = ({ children, locale, libraries }) => {
 
 GoogleMapsClientProvider.propTypes = propTypes;
 GoogleMapsClientProvider.defaultProps = defaultProps;
-
-export default GoogleMapsClientContext;

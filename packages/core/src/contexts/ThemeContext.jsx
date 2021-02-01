@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 // import { PropTypes as MicromagPropTypes } from '../lib';
 
-const ThemeContext = React.createContext({
+export const ThemeContext = React.createContext({
     fonts: [],
 });
 
@@ -29,5 +29,3 @@ export const ThemeProvider = ({ children }) => {
 
 ThemeProvider.propTypes = propTypes;
 ThemeProvider.defaultProps = defaultProps;
-
-export default ThemeContext;

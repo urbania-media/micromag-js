@@ -199,6 +199,10 @@
     "defaultMessage": "Image with title",
     "description": "ImageTitle screen title"
   },
+  "AQ8Aig": {
+    "defaultMessage": "Used",
+    "description": "Media label"
+  },
   "B1MeY+": {
     "defaultMessage": "Select an image...",
     "description": "Label when no value is provided to Image field"
@@ -270,10 +274,6 @@
   "GE8wrk": {
     "defaultMessage": "Image",
     "description": "Image field label"
-  },
-  "GGwrCy": {
-    "defaultMessage": "Already used",
-    "description": "Media label"
   },
   "GMCLhn": {
     "defaultMessage": "Case",

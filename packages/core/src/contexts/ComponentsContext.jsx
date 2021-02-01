@@ -126,5 +126,3 @@ export const ComponentsProvider = ({ components, manager, namespace, children })
 
 ComponentsProvider.propTypes = propTypes;
 ComponentsProvider.defaultProps = defaultProps;
-
-export default ComponentsContext;

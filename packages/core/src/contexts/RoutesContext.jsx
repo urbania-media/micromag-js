@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { generatePath, useHistory } from 'react-router';
 import isString from 'lodash/isString';
 
-const RoutesContext = React.createContext(null);
+export const RoutesContext = React.createContext(null);
 
 export const useRoutes = () => {
     const { routes } = useContext(RoutesContext);
@@ -65,5 +65,3 @@ export const RoutesProvider = ({ routes, basePath, children }) => (
 
 RoutesProvider.propTypes = propTypes;
 RoutesProvider.defaultProps = defaultProps;
-
-export default RoutesContext;

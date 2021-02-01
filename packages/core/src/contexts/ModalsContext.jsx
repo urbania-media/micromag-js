@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { getDisplayName } from '../utils';
 
-const ModalsContext = React.createContext({
+export const ModalsContext = React.createContext({
     container: null,
 });
 
@@ -78,5 +78,3 @@ export const ModalsProvider = ({ children, container: initialContainer }) => {
 
 ModalsProvider.propTypes = propTypes;
 ModalsProvider.defaultProps = defaultProps;
-
-export default ModalsContext;

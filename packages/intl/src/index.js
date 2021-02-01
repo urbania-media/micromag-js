@@ -1,3 +1,3 @@
 export { default as IntlManager } from './IntlManager';
-export { default as IntlProvider } from './IntlProvider';
+export * from './IntlContext';
 export { default } from './manager';
