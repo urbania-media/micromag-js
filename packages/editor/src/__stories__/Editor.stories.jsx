@@ -25,13 +25,44 @@ export default {
 const hasWindow = typeof window !== 'undefined';
 const apiBaseUrl = hasWindow ? `${window.location.protocol}//${window.location.host}/api` : '/api';
 
-const EditorContainer = ({ defaultValue, isTheme }) => {
+const EditorContainer = ({ defaultValue, isTheme, viewerTheme }) => {
     const [value, setValue] = useState(defaultValue);
     return (
         <ApiProvider baseUrl={apiBaseUrl}>
-            <Editor value={value} isTheme={isTheme} fullscreen onChange={setValue} memoryRouter />
+            <Editor
+                value={value}
+                isTheme={isTheme}
+                fullscreen
+                onChange={setValue}
+                memoryRouter
+                viewerTheme={viewerTheme}
+            />
         </ApiProvider>
     );
+};
+
+const viewerTheme = {
+    logo: null,
+    primaryColor: {
+        color: '#bb2c2c',
+        alpha: 1,
+    },
+    secondaryColor: {
+        color: '#9013fe',
+        alpha: 1,
+    },
+    backgroundColor: {
+        color: '#6e5252',
+        alpha: 1,
+    },
+    textStyle: {
+        fontFamily: 'Courier',
+        fontSize: 20,
+        color: {
+            color: '#912525',
+            alpha: 1,
+        },
+    },
 };
 
 EditorContainer.propTypes = {
@@ -40,9 +71,11 @@ EditorContainer.propTypes = {
         components: MicromagPropTypes.components,
     }).isRequired,
     isTheme: PropTypes.bool,
+    viewerTheme: MicromagPropTypes.branding,
 };
 EditorContainer.defaultProps = {
     isTheme: false,
+    viewerTheme: null,
 };
 
 export const Empty = () => <EditorContainer />;
@@ -51,6 +84,18 @@ export const AllScreens = () => <EditorContainer defaultValue={allScreensStory} 
 export const FaceAFace = () => <EditorContainer defaultValue={faceAFaceStory} />;
 export const WithTheme = () => (
     <EditorContainer
+        defaultValue={{
+            theme: defaultTheme,
+            components: allScreensStory.components.map((c) => ({
+                ...c,
+            })),
+        }}
+    />
+);
+
+export const WithViewerTheme = () => (
+    <EditorContainer
+        viewerTheme={viewerTheme}
         defaultValue={{
             theme: defaultTheme,
             components: allScreensStory.components.map((c) => ({

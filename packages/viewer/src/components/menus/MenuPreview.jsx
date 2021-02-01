@@ -81,6 +81,7 @@ const ViewerMenuPreview = ({
         logo: brandLogo = null,
     } = theme || {};
     const { url: brandLogoUrl = null } = brandLogo || {};
+
     const titleStyle = brandTextStyle !== null ? getStyleFromText(brandTextStyle) : null;
 
     return hasSize ? (
@@ -167,8 +168,16 @@ const ViewerMenuPreview = ({
                                                 />
                                             </div>
                                             {current === index ? (
-                                                <div className={styles.activeScreenBorder} style={{ borderColor: brandPrimaryColor }}>
-                                                    <div className={styles.activeScreenBorderInner} style={{ borderColor: brandBackgroundColor }} />
+                                                <div
+                                                    className={styles.activeScreenBorder}
+                                                    style={{ borderColor: brandPrimaryColor }}
+                                                >
+                                                    <div
+                                                        className={styles.activeScreenBorderInner}
+                                                        style={{
+                                                            borderColor: brandBackgroundColor,
+                                                        }}
+                                                    />
                                                 </div>
                                             ) : null}
                                         </div>
