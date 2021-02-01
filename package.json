@@ -4,7 +4,7 @@
     "private": true,
     "description": "",
     "scripts": {
-        "storybook": "start-storybook --port 58800",
+        "storybook": "start-storybook --port 58800 --host localhost",
         "start": "npm run storybook",
         "server": "npm run storybook",
         "intl:tx-config": "./scripts/tx-config.js",
