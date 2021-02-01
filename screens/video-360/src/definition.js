@@ -22,14 +22,6 @@ export default {
     transforms,
     fields: [
         {
-            name: 'layout',
-            type: 'screen-layout',
-            label: defineMessage({
-                defaultMessage: 'Layout',
-                description: 'Layout field label',
-            }),
-        },
-        {
             name: 'video',
             type: 'video-element',
             theme: {

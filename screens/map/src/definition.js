@@ -24,14 +24,6 @@ export default [
         transforms,
         fields: [
             {
-                name: 'layout',
-                type: 'screen-layout',
-                label: defineMessage({
-                    defaultMessage: 'Layout',
-                    description: 'Layout field label',
-                }),
-            },
-            {
                 name: 'title',
                 type: 'heading-element',
                 theme: {
@@ -117,14 +109,6 @@ export default [
         layouts: ['normal'],
         transforms,
         fields: [
-            {
-                name: 'layout',
-                type: 'screen-layout',
-                label: defineMessage({
-                    defaultMessage: 'Layout',
-                    description: 'Layout field label',
-                }),
-            },
             {
                 name: 'title',
                 type: 'heading-element',

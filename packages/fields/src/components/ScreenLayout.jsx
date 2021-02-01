@@ -2,7 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-// import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenPlaceholder } from '@micromag/core/components';
 import { useScreenDefinition } from '@micromag/core/contexts';
 
@@ -11,14 +10,12 @@ import Radios from './Radios';
 import styles from '../styles/layout.module.scss';
 
 const propTypes = {
-    // layouts: PropTypes.arrayOf(PropTypes.string),
     value: PropTypes.string,
     className: PropTypes.string,
     onChange: PropTypes.func,
 };
 
 const defaultProps = {
-    // layouts: [],
     value: null,
     className: null,
     onChange: null,
@@ -27,7 +24,7 @@ const defaultProps = {
 const ScreenLayoutField = ({ value, className, onChange }) => {
     const { id, layouts = [] } = useScreenDefinition();
 
-    return (layouts || []).length ? (
+    return (
         <Radios
             options={layouts.map((layout) => ({
                 value: layout,
@@ -54,7 +51,7 @@ const ScreenLayoutField = ({ value, className, onChange }) => {
             buttonClassName={styles.button}
             onChange={onChange}
         />
-    ) : null;
+    );
 };
 
 ScreenLayoutField.propTypes = propTypes;
