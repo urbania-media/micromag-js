@@ -4,6 +4,8 @@ import AsyncCreatableSelect from 'react-select/async-creatable';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { selectTheme } from '../utils/selectTheme';
+
 import styles from '../styles/tokens.module.scss';
 
 const propTypes = {
@@ -76,6 +78,7 @@ const Tokens = ({
                 onChange={onTokenChange}
                 value={value}
                 placeholder="Ajouter des étiquettes..."
+                theme={selectTheme}
             />
         </div>
     );

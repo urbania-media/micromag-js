@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-condition */
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -12,6 +13,7 @@ const propTypes = {
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
+    onClickIcon: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -20,10 +22,11 @@ const defaultProps = {
     onChange: null,
     onFocus: null,
     onBlur: null,
+    onClickIcon: null,
     className: null,
 };
 
-const Search = ({ value, onChange, onFocus, onBlur, className }) => {
+const Search = ({ value, onChange, onFocus, onBlur, onClickIcon, className }) => {
     const intl = useIntl();
     const onSearchChange = useCallback(
         (e) => {
@@ -41,6 +44,12 @@ const Search = ({ value, onChange, onFocus, onBlur, className }) => {
         }
     }, [onChange]);
 
+    const onClickSearchIcon = useCallback(() => {
+        if (onClickIcon !== null) {
+            onClickIcon();
+        }
+    }, [onClickIcon]);
+
     return (
         <form
             method="post"
@@ -51,10 +60,14 @@ const Search = ({ value, onChange, onFocus, onBlur, className }) => {
             ])}
         >
             <div className="input-group">
-                <span className="input-group-prepend">
-                    <span className="input-group-text">
+                <span type="span" className="input-group-prepend">
+                    <button
+                        type="button"
+                        className="input-group-text reset-button"
+                        onClick={onClickSearchIcon}
+                    >
                         <FontAwesomeIcon icon={faSearch} />
-                    </span>
+                    </button>
                 </span>
                 <input
                     className={classNames([
@@ -74,11 +87,11 @@ const Search = ({ value, onChange, onFocus, onBlur, className }) => {
                     onFocus={onFocus}
                     onBlur={onBlur}
                 />
-                {value ? (
+                {false ? (
                     <button
                         type="button"
                         className="btn text-dark position-absolute"
-                        style={{ right: 0 }}
+                        style={{ right: -2 }}
                         onClick={onSearchClear}
                     >
                         <FontAwesomeIcon icon={faTimesCircle} />

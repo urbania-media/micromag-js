@@ -39,6 +39,7 @@ export { default as Position } from './Position';
 export { default as Question } from './Question';
 export { default as ScreenLayout } from './ScreenLayout';
 export { default as Select } from './Select';
+export { default as SelectAdvanced } from './SelectAdvanced';
 export { default as Slide } from './Slide';
 export { default as Slider } from './Slider';
 export { default as SliderPixel } from './SliderPixel';

@@ -128,8 +128,9 @@ const Navbar = ({
                 throttle.current = null;
             }, 5000);
             onFilterChange('search', value, !!value);
+            setOpen(false);
         },
-        [onFilterChange, createSearch, throttle],
+        [onFilterChange, createSearch, setOpen, throttle],
     );
 
     const onSourceChange = useCallback(
@@ -152,6 +153,10 @@ const Navbar = ({
         }
         setOpen(false);
     }, [onClickCancel]);
+
+    const onToggleMenu = useCallback(() => {
+        setOpen(!open);
+    }, [open, setOpen]);
 
     const title = !withoutTitle ? (
         <FormattedMessage
@@ -204,6 +209,7 @@ const Navbar = ({
                                 value={searchValue}
                                 onChange={onSearchChange}
                                 onFocus={onSearchFocus}
+                                onClickIcon={onToggleMenu}
                                 className={classNames(['form-inline', 'mr-2'])}
                             />
                             <form className={classNames(['form-inline', 'ml-auto'])}>
