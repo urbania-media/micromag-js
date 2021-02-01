@@ -81,11 +81,13 @@ const Viewer = ({
     className,
 }) => {
     const parsedStory = useParsedStory(story, { disabled: storyIsParsed }) || {};
-    const { components: screens = [], title = 'Story title', metadata = null } = parsedStory;
+    const { components: screens = [], title = null, metadata = null } = parsedStory;
 
     const shareUrl = `${basePath}/${screenId}`;
-    const { description = 'Description', shareImage = '/', favIcon = '/' } =
+    const { description = null, shareImage = null, favIcon = null } =
         metadata || {};
+    const { url: shareImageUrl = null } = shareImage || {};
+    const { favIcon: favIconUrl = null } = shareImage || {};
 
     const isView = renderContext === 'view';
     const isStatic = renderContext === 'static';
@@ -351,10 +353,10 @@ const Viewer = ({
                 <Helmet>
                     {withMetadata ? (
                         <>
-                            <title>{title}</title>
-                            <meta name="description" content={description} />
-                            <meta property="og:image" content={shareImage} />
-                            <link rel="icon" type="image/png" href={favIcon} />
+                            { title !== null ? <title>{title}</title> : null }
+                            { description !== null ? <meta name="description" content={description} /> : null }
+                            { shareImageUrl !== null ? <meta property="og:image" content={shareImage} /> : null }
+                            { favIconUrl !== null ? <link rel="icon" type="image/png" href={favIcon} /> : null }
                         </>
                     ) : null}
                     <style type="text/css">{`body { overscroll-behavior: contain; }`}</style>

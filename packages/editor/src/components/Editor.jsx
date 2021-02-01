@@ -24,6 +24,7 @@ import styles from '../styles/editor.module.scss';
 const propTypes = {
     value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
     deviceScreens: MicromagPropTypes.deviceScreens,
+    viewerTheme: MicromagPropTypes.branding,
     mobileView: PropTypes.oneOf(['screens', 'preview', 'form']),
     fullscreen: PropTypes.bool,
     isTheme: PropTypes.bool,
@@ -35,6 +36,7 @@ const propTypes = {
 const defaultProps = {
     value: null,
     deviceScreens: getDeviceScreens(),
+    viewerTheme: null,
     mobileView: 'preview',
     fullscreen: false,
     isTheme: false,
@@ -45,6 +47,7 @@ const defaultProps = {
 
 const Editor = ({
     value,
+    viewerTheme,
     isTheme,
     isCreateOpened,
     deviceScreens,
@@ -203,6 +206,7 @@ const Editor = ({
                                 <EditorPreview
                                     value={story}
                                     isTheme={isTheme}
+                                    viewerTheme={viewerTheme}
                                     className={styles.preview}
                                     onScreenChange={onPreviewScreenChange}
                                 />

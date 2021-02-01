@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { Route } from 'react-router';
 import { getSizeWithinBounds } from '@folklore/size';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useResizeObserver, useParsedStory } from '@micromag/core/hooks';
+import { useResizeObserver/* , useParsedStory */} from '@micromag/core/hooks';
 import { useScreenSize, useRoutes } from '@micromag/core/contexts';
 import { Viewer } from '@micromag/viewer';
 
@@ -18,6 +18,7 @@ const propTypes = {
     value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
     devices: MicromagPropTypes.devices,
     device: PropTypes.string,
+    viewerTheme: MicromagPropTypes.branding,
     isTheme: PropTypes.bool,
     className: PropTypes.string,
     onScreenChange: PropTypes.func,
@@ -39,13 +40,23 @@ const defaultProps = {
         },
     ],
     device: null,
+    viewerTheme: null,
     isTheme: false,
     className: null,
     onScreenChange: null,
     withoutDevicesSizes: false,
 };
 
-const EditorPreview = ({ value, isTheme, devices, device: initialDevice, className, onScreenChange, withoutDevicesSizes }) => {
+const EditorPreview = ({
+    value,
+    viewerTheme,
+    isTheme,
+    devices,
+    device: initialDevice,
+    className,
+    onScreenChange,
+    withoutDevicesSizes,
+}) => {
     const routes = useRoutes();
     const { screen = null, screens = [] } = useScreenSize();
     const valueWithTheme = useThemeValue(value, isTheme);
@@ -96,7 +107,7 @@ const EditorPreview = ({ value, isTheme, devices, device: initialDevice, classNa
             ])}
         >
             <div className={styles.inner}>
-                {!withoutDevicesSizes ?
+                {!withoutDevicesSizes ? (
                     <div className={styles.top}>
                         <DevicesMenu
                             items={devices.map((it) => ({
@@ -106,7 +117,7 @@ const EditorPreview = ({ value, isTheme, devices, device: initialDevice, classNa
                             onClickItem={onClickDeviceItem}
                         />
                     </div>
-                : null }
+                ) : null}
                 <div className={styles.bottom}>
                     <div className={styles.inner} ref={bottomRef}>
                         <div className={styles.preview} style={previewStyle}>
@@ -123,6 +134,7 @@ const EditorPreview = ({ value, isTheme, devices, device: initialDevice, classNa
                                             storyIsParsed
                                             screen={screenId}
                                             className={styles.story}
+                                            theme={viewerTheme}
                                             interactions={null}
                                             renderContext="edit"
                                             onScreenChange={onScreenChange}
