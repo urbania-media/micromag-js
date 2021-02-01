@@ -15,5 +15,9 @@ export default {
     }),
     itemsField: {
         type: 'entry',
+        breadcrumbLabel: defineMessage({
+            defaultMessage: 'Entry',
+            description: 'Entries item field label',
+        }),
     },
 };

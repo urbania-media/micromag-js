@@ -30,7 +30,7 @@ const useFormTransition = (url, screenIndex, styles) => {
         currentPartsCount -= isSettings ? 1 : 0;
         previousPartsCount -= wasSettings ? 1 : 0;
 
-        return currentPartsCount > previousPartsCount ? 'right' : 'left';
+        return currentPartsCount >= previousPartsCount ? 'right' : 'left';
     }, [url, screenIndex]);
 
     const name = useMemo(

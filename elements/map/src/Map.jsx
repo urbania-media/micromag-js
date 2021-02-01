@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useCallback, useEffect, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -149,14 +150,19 @@ const Map = ({
             >
                 {markers !== null
                     ? markers.map(
-                          ({ id, active = true, geoPosition = null, image = null }, index) =>
+                          (
+                              { active = true, geoPosition = null, image = null, title = null },
+                              index,
+                          ) =>
                               geoPosition !== null &&
                               (geoPosition.lat || null) !== null &&
                               (geoPosition.lng || null) !== null ? (
                                   <Marker
-                                      key={id}
+                                      key={`marker-${index}`}
                                       active={active}
-                                      title={`marker id: ${id}`}
+                                      title={
+                                          title !== null && typeof title.body ? title.body : null
+                                      }
                                       image={image}
                                       position={geoPosition}
                                       events={{

@@ -1,3 +1,5 @@
+import { defineMessage } from 'react-intl';
+
 import entries from './entries';
 
 export default {
@@ -5,5 +7,9 @@ export default {
     id: 'entries-with-image',
     itemsField: {
         type: 'entry-with-image',
+        breadcrumbLabel: defineMessage({
+            defaultMessage: 'Entry',
+            description: 'Entries item field label',
+        }),
     },
 };

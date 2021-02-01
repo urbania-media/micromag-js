@@ -15,5 +15,9 @@ export default {
     }),
     itemsField: {
         type: 'marker',
+        breadcrumbLabel: defineMessage({
+            defaultMessage: 'Marker',
+            description: 'Markers item field label',
+        }),
     }
 };

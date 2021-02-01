@@ -1,0 +1,5 @@
+.container {
+    &::-webkit-calendar-picker-indicator {
+        display: none;
+    }
+}

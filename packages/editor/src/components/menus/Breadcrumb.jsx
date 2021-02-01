@@ -48,10 +48,9 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
             const { fields = [] } = screensManager.getDefinition(type);
             const fieldPath = field.split('/');
 
-            let currentFields = { fields };
             const lastKeyIndex = fieldPath.length - 1;
             let parentItem = null;
-            fieldPath.forEach((key, keyIndex) => {
+            fieldPath.reduce((currentFields, key, keyIndex) => {
                 const { type: fieldType = null } = currentFields;
 
                 const fieldsDef =
@@ -59,56 +58,64 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
                 const { fields: subFields = null, settings = null, itemsField = null } = fieldsDef;
 
                 const currentSubfields = subFields !== null ? getFieldByName(subFields, key) : null;
-                const currentSettings = settings !== null ? getFieldByName(settings, key) : null;
-                const isRepeatable = itemsField !== null && !!key.match(/^[0-9]+$/);
+                const currentSettings = settings !== null ? getFieldByName(settings, key) : null;                
 
                 const isCurrentSubfields = currentSubfields !== null;
                 const isCurrentSettings = currentSettings !== null;
+                const isListItems = itemsField !== null && !!key.match(/^[0-9]+$/);
                 const isLastIndex = keyIndex === lastKeyIndex;
 
                 const pathPrefix = `/${screenId}/${fieldPath.slice(0, keyIndex + 1).join('/')}`;
                 const pathSuffix = isLastIndex && form !== null ? `/${form}` : '';
 
-                const addNewItem = isLastIndex || isRepeatable;
+                const addNewItem = isLastIndex || isListItems;
 
                 const itemPath = `${pathPrefix}${pathSuffix}`;
 
+                let nextFields = null;
+
                 if (isCurrentSubfields) {
-                    currentFields = currentSubfields;
+                    nextFields = currentSubfields;
                 } else if (isCurrentSettings) {
-                    currentFields = currentSettings;
+                    nextFields = currentSettings;
                     if (parentItem !== null) {
                         fieldItems.push({
                             ...parentItem,
                             url: `/${screenId}/${fieldPath.slice(0, keyIndex).join('/')}/settings`,
                         });
                     }
-                } else if (isRepeatable) {
-                    currentFields = itemsField;
-                } else {
-                    currentFields = null;
+                } else if (isListItems) {
+                    nextFields = itemsField;
                 }
 
-                const fieldLabel = currentFields
-                    ? currentFields.breadcrumbLabel || currentFields.label
+                const fieldLabel = nextFields
+                    ? nextFields.breadcrumbLabel || nextFields.label
                     : null;
+
                 const itemLabel = isMessage(fieldLabel)
                     ? intl.formatMessage(fieldLabel)
                     : fieldLabel;
 
+                const { label:parentItemLabel = null } = parentItem || {};
+
+                const finalItemLabel = isListItems
+                ? `${itemLabel} #${parseInt(key, 10) + 1}`
+                : itemLabel || parentItemLabel;
+
                 const item = {
                     url: itemPath,
-                    label: isRepeatable
-                        ? `${parentItem.label} #${parseInt(key, 10) + 1}`
-                        : itemLabel,
+                    label: finalItemLabel || '',
+                    active: false,
                 };
 
                 if (addNewItem) {
                     fieldItems.push(item);
-                } else {
-                    parentItem = item;
                 }
-            });
+
+                parentItem = item;
+
+                return nextFields;
+            }, { fields });
         }
 
         const finalItems = [

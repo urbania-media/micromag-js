@@ -15,5 +15,9 @@ export default {
     }),
     itemsField: {
         type: 'quiz-answer',
+        breadcrumbLabel: defineMessage({
+            defaultMessage: 'Answer',
+            description: 'Quiz answers item field label',
+        }),
     },
 };

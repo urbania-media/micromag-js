@@ -1,7 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading, jsx-a11y/control-has-associated-label */
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+
+import styles from '../styles/number.module.scss';
 
 const propTypes = {
     name: PropTypes.string,
@@ -54,11 +56,28 @@ const NumberField = ({
         () => (dataList !== null ? `${name}-${new Date().getTime()}` : null),
         [dataList, name],
     );
+    const hasDataList = dataList !== null;
+    const onInputChange = useCallback(
+        (e) => {
+            const newValue = e.currentTarget.value;
+
+            let parsedValue = null;
+            if (newValue.length > 0) {
+                parsedValue = float ? parseFloat(newValue) : parseInt(newValue, 10);
+            }
+            if (onChange !== null) {
+                onChange(parsedValue);
+            }
+        },
+        [onChange, hasDataList],
+    );
+
     return (
         <>
             <input
                 type="number"
                 className={classNames([
+                    styles.container,
                     'form-control',
                     {
                         // 'w-auto': size !== null,
@@ -73,18 +92,9 @@ const NumberField = ({
                 step={float ? floatStep : step}
                 list={dataListId}
                 autoComplete={autoComplete ? 'on' : 'off'}
-                onChange={(e) => {
-                    const newValue = e.currentTarget.value;
-                    let parsedValue = null;
-                    if (newValue.length > 0) {
-                        parsedValue = float ? parseFloat(newValue) : parseInt(newValue, 10);
-                    }
-                    if (onChange !== null) {
-                        onChange(parsedValue);
-                    }
-                }}
+                onChange={onInputChange}
             />
-            {dataList !== null ? (
+            {hasDataList ? (
                 <datalist id={dataListId}>
                     {dataList.map((dataListValue) => (
                         <option key={`data-list-${dataListValue}`} value={dataListValue} />

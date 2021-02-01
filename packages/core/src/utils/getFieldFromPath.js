@@ -13,7 +13,7 @@ const getFieldFromPath = (path, fields, fieldManager) =>
             const { fields: subFields = null, settings = null, itemsField = null } =
                 finalType !== null ? fieldManager.getDefinition(finalType) : foundField;
             if (itemsField !== null && key.match(/^[0-9]+$/)) {
-                return { ...itemsField, name: path };
+                return { ...itemsField, name: path.join('/'), listItems: true };
             }
 
             return getFieldByName(

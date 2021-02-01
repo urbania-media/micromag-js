@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useHistory } from 'react-router';
@@ -7,10 +7,22 @@ import { FormattedMessage } from 'react-intl';
 import TransitionGroup from 'react-addons-css-transition-group';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { slug } from '@micromag/core/utils';
-import { useRoutePush, ScreenProvider } from '@micromag/core/contexts';
+import {
+    useRoutePush,
+    ScreenProvider,
+    useScreensManager,
+    useFieldsManager,
+} from '@micromag/core/contexts';
 import { Empty, Navbar, DropdownMenu } from '@micromag/core/components';
 
-import { updateScreen, duplicateScreen, deleteScreen } from '../utils';
+import {
+    updateScreen,
+    duplicateScreen,
+    deleteScreen,
+    getFieldFromPath,
+    duplicateListItem,
+    deleteListItem,
+} from '../utils';
 import useRouteParams from '../hooks/useRouteParams';
 import useFormTransition from '../hooks/useFormTransition';
 import SettingsButton from './buttons/Settings';
@@ -50,6 +62,21 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
     const { components: screens = [] } = value || {};
     const screenIndex = screens.findIndex((it) => it.id === screenId);
     const screen = screenIndex !== -1 ? screens[screenIndex] : null;
+    const { type = null } = screen || {};
+
+    const screensManager = useScreensManager();
+    const fieldsManager = useFieldsManager();
+
+    const { fields = [] } = type !== null ? screensManager.getDefinition(type) : {};
+    const currentField = useMemo(
+        () =>
+            fieldParams !== null
+                ? getFieldFromPath(fieldParams.split('/'), fields, fieldsManager)
+                : null,
+        [fieldParams, fields],
+    );
+
+    const { listItems: currentFieldListItems = false } = currentField || {};
 
     // Get transition value
     const { name: transitionName, timeout: transitionTimeout } = useFormTransition(
@@ -60,58 +87,16 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
 
     const [screenSettingsOpened, setScreenSettingsOpened] = useState(false);
     const [deleteScreenModalOpened, setDeleteScreenModalOpened] = useState(false);
-
-    // Callbacks
-    const triggerOnChange = useCallback(
-        (newValue) => {
-            if (onChange !== null) {
-                onChange(newValue);
-            }
-        },
-        [onChange],
-    );
-
-    const onScreenFormChange = useCallback(
-        (newScreenValue) => {
-            triggerOnChange(updateScreen(value, newScreenValue));
-        },
-        [value, triggerOnChange],
-    );
-
-    const onClickDuplicate = useCallback(() => {
-        triggerOnChange(duplicateScreen(value, screenId));
-        setScreenSettingsOpened(false);
-    }, [value, screenId, triggerOnChange, setScreenSettingsOpened]);
-
-    const onDeleteScreenOpenModal = useCallback(() => {
-        setScreenSettingsOpened(false);
-        setDeleteScreenModalOpened(true);
-    }, [setScreenSettingsOpened, setDeleteScreenModalOpened]);
-
-    const onSettingsClick = useCallback(() => {
-        setScreenSettingsOpened((opened) => !opened);
-    }, [setScreenSettingsOpened]);
-
-    const onDropdownClickOutside = useCallback(() => {
-        setScreenSettingsOpened(false);
-    }, [setScreenSettingsOpened]);
-
-    const onDeleteScreenConfirm = useCallback(() => {
-        triggerOnChange(deleteScreen(value, screenId));
-        setDeleteScreenModalOpened(false);
-    }, [value, triggerOnChange, screenId, setScreenSettingsOpened]);
-
-    const onDeleteScreenCancel = useCallback(() => {
-        setDeleteScreenModalOpened(false);
-    }, [setDeleteScreenModalOpened]);
-
     const [fieldForms, setFieldForms] = useState({});
 
+    // Callbacks
     const gotoFieldForm = useCallback(
-        (field, formName = null) => {
-            routePush(formName !== null ? 'screen.field.form' : 'screen.field', {
+        (field = null, formName = null) => {
+            const hasField = field !== null;
+            const fieldRoute = formName !== null ? 'screen.field.form' : 'screen.field';
+            routePush(hasField ? fieldRoute : 'screen', {
                 screen: screenId,
-                field: field.split('.'),
+                field: field !== null ? field.split('.') : null,
                 form: formName !== null ? slug(formName) : null,
             });
             setFieldForms({
@@ -145,13 +130,91 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
         [history, screenId, fieldForms, setFieldForms],
     );
 
+    const triggerOnChange = useCallback(
+        (newValue) => {
+            if (onChange !== null) {
+                onChange(newValue);
+            }
+        },
+        [onChange],
+    );
+
+    const onScreenFormChange = useCallback(
+        (newScreenValue) => {
+            triggerOnChange(updateScreen(value, newScreenValue));
+        },
+        [value, triggerOnChange],
+    );
+
+    const onClickDuplicate = useCallback(() => {
+        if (currentFieldListItems) {
+            const path = fieldParams.split('/');
+            const listKey = path.length ? path[0] : null;
+            const field = typeof screen[listKey] !== 'undefined' ? screen[listKey] : null;
+            const fieldItemsCount = field !== null ? field.length : 0;
+            triggerOnChange(duplicateListItem(fieldParams, value, screenIndex));
+            // gotoFieldForm(listKey);
+            gotoFieldForm(`${listKey}.${fieldItemsCount}`);
+        } else {
+            triggerOnChange(duplicateScreen(value, screenId));
+        }
+        setScreenSettingsOpened(false);
+    }, [
+        value,
+        screenId,
+        screenIndex,
+        triggerOnChange,
+        setScreenSettingsOpened,
+        currentFieldListItems,
+        fieldParams,
+    ]);
+
+    const onClickDelete = useCallback(() => {
+        if (currentFieldListItems) {
+            triggerOnChange(deleteListItem(fieldParams, value, screenIndex));
+            gotoFieldForm();
+        } else {
+            setDeleteScreenModalOpened(true);
+        }
+        setScreenSettingsOpened(false);
+    }, [
+        setScreenSettingsOpened,
+        setDeleteScreenModalOpened,
+        currentFieldListItems,
+        value,
+        fieldParams,
+        screenIndex,
+    ]);
+
+    const onSettingsClick = useCallback(() => {
+        setScreenSettingsOpened((opened) => !opened);
+    }, [setScreenSettingsOpened]);
+
+    const onDropdownClickOutside = useCallback(() => {
+        setScreenSettingsOpened(false);
+    }, [setScreenSettingsOpened]);
+
+    const onDeleteScreenConfirm = useCallback(() => {
+        triggerOnChange(deleteScreen(value, screenId));
+        setDeleteScreenModalOpened(false);
+    }, [value, triggerOnChange, screenId, setScreenSettingsOpened]);
+
+    const onDeleteScreenCancel = useCallback(() => {
+        setDeleteScreenModalOpened(false);
+    }, [setDeleteScreenModalOpened]);
+
     const dropdownItems = [
         !isTheme
             ? {
                   id: 'duplicate',
                   type: 'button',
                   className: 'text-left text-info',
-                  label: (
+                  label: currentFieldListItems ? (
+                      <FormattedMessage
+                          defaultMessage="Duplicate item"
+                          description="Duplicate item"
+                      />
+                  ) : (
                       <FormattedMessage
                           defaultMessage="Duplicate screen"
                           description="Duplicate screen item"
@@ -164,10 +227,12 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
             id: 'delete',
             type: 'button',
             className: 'text-left text-danger',
-            label: (
+            label: currentFieldListItems ? (
+                <FormattedMessage defaultMessage="Delete item" description="Delete item" />
+            ) : (
                 <FormattedMessage defaultMessage="Delete screen" description="Delete screen item" />
             ),
-            onClick: onDeleteScreenOpenModal,
+            onClick: onClickDelete,
         },
     ].filter((it) => it !== null);
 
@@ -193,7 +258,7 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
                         form={formParams}
                         className="mr-auto"
                     />
-                    {fieldParams === null && formParams === null ? (
+                    {fieldParams === null || currentFieldListItems ? (
                         <>
                             <SettingsButton onClick={onSettingsClick} />
                             <DropdownMenu
