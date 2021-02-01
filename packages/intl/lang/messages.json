@@ -35,6 +35,10 @@
     "defaultMessage": "Remove all",
     "description": "Remove all button label"
   },
+  "/UoxuB": {
+    "defaultMessage": "Image",
+    "description": "Images item field label"
+  },
   "/hupzO": {
     "defaultMessage": "Credits",
     "description": "Credits placeholder"
@@ -119,6 +123,14 @@
     "defaultMessage": "Gallery Feed",
     "description": "Gallery Feed screen title"
   },
+  "4cCMV4": {
+    "defaultMessage": "Marker",
+    "description": "Markers with image item field label"
+  },
+  "4ciMqw": {
+    "defaultMessage": "Duplicate item",
+    "description": "Duplicate item"
+  },
   "4fHMVj": {
     "defaultMessage": "Tags",
     "description": "Tags in Media Gallery"
@@ -199,9 +211,17 @@
     "defaultMessage": "Success",
     "description": "Success form message"
   },
+  "Bv/pu7": {
+    "defaultMessage": "Answer",
+    "description": "Quiz answers item field label"
+  },
   "CJmQeh": {
     "defaultMessage": "Image with text",
     "description": "ImageText screen title"
+  },
+  "CQ7Wmr": {
+    "defaultMessage": "Delete item",
+    "description": "Delete item"
   },
   "CrzYgw": {
     "defaultMessage": "Quote",
@@ -374,6 +394,10 @@
     "defaultMessage": "Text and Images",
     "description": "Text and Images screen group"
   },
+  "S3gGiD": {
+    "defaultMessage": "Image",
+    "description": "Images with caption item field label"
+  },
   "S9YpbV": {
     "defaultMessage": "Text",
     "description": "Text screen title"
@@ -425,6 +449,10 @@
   "XTJGzY": {
     "defaultMessage": "Gallery feed with captions",
     "description": "GalleryFeedCaptions screen title"
+  },
+  "Xdsq3k": {
+    "defaultMessage": "Answer",
+    "description": "Answers item field label"
   },
   "XhgKcw": {
     "defaultMessage": "Move the map to position the place",
@@ -668,6 +696,10 @@
     "defaultMessage": "Active filters",
     "description": "Active filters title"
   },
+  "t7FVa4": {
+    "defaultMessage": "Marker",
+    "description": "Markers item field label"
+  },
   "tAYwqp": {
     "defaultMessage": "Add a slide",
     "description": "Button label in slides field"
@@ -727,6 +759,10 @@
   "wkysUu": {
     "defaultMessage": "Screens",
     "description": "Button to show screens"
+  },
+  "wsNfYo": {
+    "defaultMessage": "Entry",
+    "description": "Entries item field label"
   },
   "wt1+dM": {
     "defaultMessage": "Select an audio file...",

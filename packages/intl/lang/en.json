@@ -23,6 +23,9 @@
     "/T/UDH": {
         "defaultMessage": "Remove all"
     },
+    "/UoxuB": {
+        "defaultMessage": "Image"
+    },
     "/hupzO": {
         "defaultMessage": "Credits"
     },
@@ -86,6 +89,12 @@
     "4bHvRS": {
         "defaultMessage": "Gallery Feed"
     },
+    "4cCMV4": {
+        "defaultMessage": "Marker"
+    },
+    "4ciMqw": {
+        "defaultMessage": "Duplicate item"
+    },
     "4fHMVj": {
         "defaultMessage": "Tags"
     },
@@ -146,8 +155,14 @@
     "BpZoQZ": {
         "defaultMessage": "Success"
     },
+    "Bv/pu7": {
+        "defaultMessage": "Answer"
+    },
     "CJmQeh": {
         "defaultMessage": "Image with text"
+    },
+    "CQ7Wmr": {
+        "defaultMessage": "Delete item"
     },
     "CrzYgw": {
         "defaultMessage": "Quote"
@@ -278,6 +293,9 @@
     "S/mavZ": {
         "defaultMessage": "Text and Images"
     },
+    "S3gGiD": {
+        "defaultMessage": "Image"
+    },
     "S9YpbV": {
         "defaultMessage": "Text"
     },
@@ -316,6 +334,9 @@
     },
     "XTJGzY": {
         "defaultMessage": "Gallery feed with captions"
+    },
+    "Xdsq3k": {
+        "defaultMessage": "Answer"
     },
     "XhgKcw": {
         "defaultMessage": "Move the map to position the place"
@@ -500,6 +521,9 @@
     "t2cFdl": {
         "defaultMessage": "Active filters"
     },
+    "t7FVa4": {
+        "defaultMessage": "Marker"
+    },
     "tAYwqp": {
         "defaultMessage": "Add a slide"
     },
@@ -544,6 +568,9 @@
     },
     "wkysUu": {
         "defaultMessage": "Screens"
+    },
+    "wsNfYo": {
+        "defaultMessage": "Entry"
     },
     "wt1+dM": {
         "defaultMessage": "Select an audio file..."

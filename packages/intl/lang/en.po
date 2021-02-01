@@ -65,6 +65,12 @@ msgctxt "/T/UDH"
 msgid "Remove all"
 msgstr "Remove all"
 
+# Images item field label
+#: /UoxuB
+msgctxt "/UoxuB"
+msgid "Image"
+msgstr "Image"
+
 # Credits placeholder
 #: /hupzO
 msgctxt "/hupzO"
@@ -191,6 +197,18 @@ msgctxt "4bHvRS"
 msgid "Gallery Feed"
 msgstr "Gallery Feed"
 
+# Markers with image item field label
+#: 4cCMV4
+msgctxt "4cCMV4"
+msgid "Marker"
+msgstr "Marker"
+
+# Duplicate item
+#: 4ciMqw
+msgctxt "4ciMqw"
+msgid "Duplicate item"
+msgstr "Duplicate item"
+
 # Tags in Media Gallery
 #: 4fHMVj
 msgctxt "4fHMVj"
@@ -311,11 +329,23 @@ msgctxt "BpZoQZ"
 msgid "Success"
 msgstr "Success"
 
+# Quiz answers item field label
+#: Bv/pu7
+msgctxt "Bv/pu7"
+msgid "Answer"
+msgstr "Answer"
+
 # ImageText screen title
 #: CJmQeh
 msgctxt "CJmQeh"
 msgid "Image with text"
 msgstr "Image with text"
+
+# Delete item
+#: CQ7Wmr
+msgctxt "CQ7Wmr"
+msgid "Delete item"
+msgstr "Delete item"
 
 # Quote placeholder
 #: CrzYgw
@@ -574,6 +604,12 @@ msgctxt "S/mavZ"
 msgid "Text and Images"
 msgstr "Text and Images"
 
+# Images with caption item field label
+#: S3gGiD
+msgctxt "S3gGiD"
+msgid "Image"
+msgstr "Image"
+
 # Text screen title
 #: S9YpbV
 msgctxt "S9YpbV"
@@ -651,6 +687,12 @@ msgstr "Typography"
 msgctxt "XTJGzY"
 msgid "Gallery feed with captions"
 msgstr "Gallery feed with captions"
+
+# Answers item field label
+#: Xdsq3k
+msgctxt "Xdsq3k"
+msgid "Answer"
+msgstr "Answer"
 
 # Move the map to position the place description
 #: XhgKcw
@@ -1016,6 +1058,12 @@ msgctxt "t2cFdl"
 msgid "Active filters"
 msgstr "Active filters"
 
+# Markers item field label
+#: t7FVa4
+msgctxt "t7FVa4"
+msgid "Marker"
+msgstr "Marker"
+
 # Button label in slides field
 #: tAYwqp
 msgctxt "tAYwqp"
@@ -1105,6 +1153,12 @@ msgstr "Title with subtitle and credits"
 msgctxt "wkysUu"
 msgid "Screens"
 msgstr "Screens"
+
+# Entries item field label
+#: wsNfYo
+msgctxt "wsNfYo"
+msgid "Entry"
+msgstr "Entry"
 
 # Label when no value is provided to Audio field
 #: wt1+dM
