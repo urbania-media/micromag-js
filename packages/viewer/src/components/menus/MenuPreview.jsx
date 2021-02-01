@@ -82,11 +82,12 @@ const ViewerMenuPreview = ({
     } = theme || {};
 
     const borderPrimaryColorStyle = getStyleFromColor(brandPrimaryColor, 'borderColor');
-    const colorSecondaryColorStyle = getStyleFromColor(brandSecondaryColor, 'color');    
+    const colorSecondaryColorStyle = getStyleFromColor(brandSecondaryColor, 'color');
     const backgroundColorStyle = getStyleFromColor(brandBackgroundColor, 'backgroundColor');
     const borderBackgroundColorStyle = getStyleFromColor(brandBackgroundColor, 'borderColor');
 
     const { url: brandLogoUrl = null } = brandLogo || {};
+
     const titleStyle = brandTextStyle !== null ? getStyleFromText(brandTextStyle) : null;
 
     return hasSize ? (
@@ -97,9 +98,7 @@ const ViewerMenuPreview = ({
                     [className]: className !== null,
                 },
             ])}
-            style={{...backgroundColorStyle,
-                width: screenWidth,
-            }}
+            style={{ ...backgroundColorStyle, width: screenWidth }}
         >
             <div className={styles.header}>
                 {brandLogoUrl !== null ? (
@@ -172,8 +171,14 @@ const ViewerMenuPreview = ({
                                                 />
                                             </div>
                                             {current === index ? (
-                                                <div className={styles.activeScreenBorder} style={borderPrimaryColorStyle}>
-                                                    <div className={styles.activeScreenBorderInner} style={borderBackgroundColorStyle} />
+                                                <div
+                                                    className={styles.activeScreenBorder}
+                                                    style={borderPrimaryColorStyle}
+                                                >
+                                                    <div
+                                                        className={styles.activeScreenBorderInner}
+                                                        style={borderBackgroundColorStyle}
+                                                    />
                                                 </div>
                                             ) : null}
                                         </div>
