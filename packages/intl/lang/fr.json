@@ -1,4 +1,7 @@
 {
+    "+AEVbJ": {
+        "defaultMessage": "Titre"
+    },
     "+MPZRu": {
         "defaultMessage": "Arrière-plan"
     },
@@ -47,6 +50,9 @@
     "31zuCS": {
         "defaultMessage": "Hauteur de ligne"
     },
+    "33UbSd": {
+        "defaultMessage": "Ligne du temps avec images"
+    },
     "3E57H7": {
         "defaultMessage": "Aucun marqueur..."
     },
@@ -76,6 +82,9 @@
     },
     "4YiKNK": {
         "defaultMessage": "Sélectionnez une couleur..."
+    },
+    "4bHvRS": {
+        "defaultMessage": "Galerie (fil)"
     },
     "4fHMVj": {
         "defaultMessage": "Mots-clés"
@@ -125,6 +134,9 @@
     "A+a0kL": {
         "defaultMessage": "Aucune réponse..."
     },
+    "AA8TV9": {
+        "defaultMessage": "Image avec titre"
+    },
     "B1MeY+": {
         "defaultMessage": "Sélectionnez une image..."
     },
@@ -133,6 +145,9 @@
     },
     "BpZoQZ": {
         "defaultMessage": "Succès"
+    },
+    "CJmQeh": {
+        "defaultMessage": "Image avec texte"
     },
     "CrzYgw": {
         "defaultMessage": "Citation"
@@ -176,8 +191,14 @@
     "GMCLhn": {
         "defaultMessage": "Case"
     },
+    "GRVidW": {
+        "defaultMessage": "Vidéo 360"
+    },
     "GzoKNb": {
         "defaultMessage": "Ligne du temps"
+    },
+    "H1YcaV": {
+        "defaultMessage": "Image avec légende"
     },
     "HseFdk": {
         "defaultMessage": "Modifier"
@@ -203,8 +224,14 @@
     "KHWeV7": {
         "defaultMessage": "Réponses"
     },
+    "MLuvzG": {
+        "defaultMessage": "Carte avec images"
+    },
     "MYZwSA": {
         "defaultMessage": "Audio"
+    },
+    "MmJQ7o": {
+        "defaultMessage": "Galerie avec légendes"
     },
     "N25iDO": {
         "defaultMessage": "Titre"
@@ -217,6 +244,9 @@
     },
     "OkNUmk": {
         "defaultMessage": "Type"
+    },
+    "P1dwGU": {
+        "defaultMessage": "Titre avec sous-titre"
     },
     "PKCv5M": {
         "defaultMessage": "Aucun item..."
@@ -263,8 +293,14 @@
     "UBXIYP": {
         "defaultMessage": "Vidéo"
     },
+    "UtcYEP": {
+        "defaultMessage": "Polices personnalisées"
+    },
     "V+G2s+": {
         "defaultMessage": "Ajouter une image"
+    },
+    "VDu2FA": {
+        "defaultMessage": "Google Fonts"
     },
     "Wb5zY4": {
         "defaultMessage": "Sélectionnez un fichier de police..."
@@ -274,6 +310,9 @@
     },
     "Wr9olU": {
         "defaultMessage": "Typographie"
+    },
+    "XTJGzY": {
+        "defaultMessage": "Galerie (fil) avec légendes"
     },
     "XhgKcw": {
         "defaultMessage": "Déplacez la carte pour positionner"
@@ -298,6 +337,9 @@
     },
     "aarOkd": {
         "defaultMessage": "Couleur"
+    },
+    "al5xjv": {
+        "defaultMessage": "Polices par défaut"
     },
     "amEvH1": {
         "defaultMessage": "Ajustement"
@@ -337,6 +379,9 @@
     },
     "e6+aGf": {
         "defaultMessage": "Sélectionnez un média..."
+    },
+    "eWIM/8": {
+        "defaultMessage": "Image avec titre et texte"
     },
     "ebsPd4": {
         "defaultMessage": "Image"
@@ -409,6 +454,9 @@
     },
     "nXVNeg": {
         "defaultMessage": "Nom"
+    },
+    "oCBQKV": {
+        "defaultMessage": "Texte avec titre"
     },
     "oLtEu6": {
         "defaultMessage": "Vidéo 360"
@@ -487,6 +535,9 @@
     },
     "vYunz+": {
         "defaultMessage": "Recherches récentes"
+    },
+    "vZrFq6": {
+        "defaultMessage": "Titre avec sous-titre et crédits"
     },
     "wkysUu": {
         "defaultMessage": "Écrans"

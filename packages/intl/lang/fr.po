@@ -21,7 +21,7 @@ msgstr ""
 #: +AEVbJ
 msgctxt "+AEVbJ"
 msgid "Title"
-msgstr ""
+msgstr "Titre"
 
 # Background field label
 #: +MPZRu
@@ -123,7 +123,7 @@ msgstr "Hauteur de ligne"
 #: 33UbSd
 msgctxt "33UbSd"
 msgid "Timeline with images"
-msgstr ""
+msgstr "Ligne du temps avec images"
 
 # Label when there is no item in markers field
 #: 3E57H7
@@ -189,7 +189,7 @@ msgstr "Sélectionnez une couleur..."
 #: 4bHvRS
 msgctxt "4bHvRS"
 msgid "Gallery Feed"
-msgstr ""
+msgstr "Galerie (fil)"
 
 # Tags in Media Gallery
 #: 4fHMVj
@@ -291,7 +291,7 @@ msgstr "Aucune réponse..."
 #: AA8TV9
 msgctxt "AA8TV9"
 msgid "Image with title"
-msgstr ""
+msgstr "Image avec titre"
 
 # Label when no value is provided to Image field
 #: B1MeY+
@@ -315,7 +315,7 @@ msgstr "Succès"
 #: CJmQeh
 msgctxt "CJmQeh"
 msgid "Image with text"
-msgstr ""
+msgstr "Image avec texte"
 
 # Quote placeholder
 #: CrzYgw
@@ -405,7 +405,7 @@ msgstr "Case"
 #: GRVidW
 msgctxt "GRVidW"
 msgid "360 Video"
-msgstr ""
+msgstr "Vidéo 360"
 
 # Timeline screen title
 #: GzoKNb
@@ -417,7 +417,7 @@ msgstr "Ligne du temps"
 #: H1YcaV
 msgctxt "H1YcaV"
 msgid "Image with legend"
-msgstr ""
+msgstr "Image avec légende"
 
 # Button to edit a screen
 #: HseFdk
@@ -471,7 +471,7 @@ msgstr "Réponses"
 #: MLuvzG
 msgctxt "MLuvzG"
 msgid "Map with image markers"
-msgstr ""
+msgstr "Carte avec images"
 
 # Audio placeholder
 #: MYZwSA
@@ -483,7 +483,7 @@ msgstr "Audio"
 #: MmJQ7o
 msgctxt "MmJQ7o"
 msgid "Gallery with captions"
-msgstr ""
+msgstr "Galerie avec légendes"
 
 # Title field label
 #: N25iDO
@@ -519,7 +519,7 @@ msgstr "Type"
 #: P1dwGU
 msgctxt "P1dwGU"
 msgid "Title with subtitle"
-msgstr ""
+msgstr "Titre avec sous-titre"
 
 # Label when there is no item in items field
 #: PKCv5M
@@ -614,7 +614,7 @@ msgstr "Vidéo"
 #: UtcYEP
 msgctxt "UtcYEP"
 msgid "Custom fonts"
-msgstr ""
+msgstr "Polices personnalisées"
 
 # Button label in images field
 #: V+G2s+
@@ -626,7 +626,7 @@ msgstr "Ajouter une image"
 #: VDu2FA
 msgctxt "VDu2FA"
 msgid "Google Fonts"
-msgstr ""
+msgstr "Google Fonts"
 
 # Label when no value
 #: Wb5zY4
@@ -650,7 +650,7 @@ msgstr "Typographie"
 #: XTJGzY
 msgctxt "XTJGzY"
 msgid "Gallery feed with captions"
-msgstr ""
+msgstr "Galerie (fil) avec légendes"
 
 # Move the map to position the place description
 #: XhgKcw
@@ -704,7 +704,7 @@ msgstr "Couleur"
 #: al5xjv
 msgctxt "al5xjv"
 msgid "Default fonts"
-msgstr ""
+msgstr "Polices par défaut"
 
 # Field label
 #: amEvH1
@@ -788,7 +788,7 @@ msgstr "Sélectionnez un média..."
 #: eWIM/8
 msgctxt "eWIM/8"
 msgid "Image with title and text"
-msgstr ""
+msgstr "Image avec titre et texte"
 
 # Image placeholder
 #: ebsPd4
@@ -936,7 +936,7 @@ msgstr "Nom"
 #: oCBQKV
 msgctxt "oCBQKV"
 msgid "Text with title"
-msgstr ""
+msgstr "Texte avec titre"
 
 # Video 360 placeholder
 #: oLtEu6
@@ -1098,7 +1098,7 @@ msgstr "Recherches récentes"
 #: vZrFq6
 msgctxt "vZrFq6"
 msgid "Title with subtitle and credits"
-msgstr ""
+msgstr "Titre avec sous-titre et crédits"
 
 # Button to show screens
 #: wkysUu
