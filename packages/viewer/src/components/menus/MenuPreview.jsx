@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShare, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { getStyleFromText } from '@micromag/core/utils';
+import { getStyleFromColor, getStyleFromText } from '@micromag/core/utils';
 import { ScreenPreview, Button } from '@micromag/core/components';
 import Scroll from '@micromag/element-scroll';
 
@@ -80,6 +80,12 @@ const ViewerMenuPreview = ({
         textStyle: brandTextStyle = null,
         logo: brandLogo = null,
     } = theme || {};
+
+    const borderPrimaryColorStyle = getStyleFromColor(brandPrimaryColor, 'borderColor');
+    const colorSecondaryColorStyle = getStyleFromColor(brandSecondaryColor, 'color');    
+    const backgroundColorStyle = getStyleFromColor(brandBackgroundColor, 'backgroundColor');
+    const borderBackgroundColorStyle = getStyleFromColor(brandBackgroundColor, 'borderColor');
+
     const { url: brandLogoUrl = null } = brandLogo || {};
     const titleStyle = brandTextStyle !== null ? getStyleFromText(brandTextStyle) : null;
 
@@ -91,9 +97,8 @@ const ViewerMenuPreview = ({
                     [className]: className !== null,
                 },
             ])}
-            style={{
+            style={{...backgroundColorStyle,
                 width: screenWidth,
-                backgroundColor: brandBackgroundColor,
             }}
         >
             <div className={styles.header}>
@@ -106,7 +111,7 @@ const ViewerMenuPreview = ({
                 <div className={styles.title} style={titleStyle}>
                     {title}
                 </div>
-                <div className={styles.buttons} style={{ color: brandSecondaryColor }}>
+                <div className={styles.buttons} style={colorSecondaryColorStyle}>
                     <ShareButton
                         className={styles.shareButton}
                         buttonClassName={styles.button}
@@ -167,8 +172,8 @@ const ViewerMenuPreview = ({
                                                 />
                                             </div>
                                             {current === index ? (
-                                                <div className={styles.activeScreenBorder} style={{ borderColor: brandPrimaryColor }}>
-                                                    <div className={styles.activeScreenBorderInner} style={{ borderColor: brandBackgroundColor }} />
+                                                <div className={styles.activeScreenBorder} style={borderPrimaryColorStyle}>
+                                                    <div className={styles.activeScreenBorderInner} style={borderBackgroundColorStyle} />
                                                 </div>
                                             ) : null}
                                         </div>
