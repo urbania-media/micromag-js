@@ -11,7 +11,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import NumberField from './Number';
-import TextField from './Text';
 
 import styles from '../styles/geo-position.module.scss';
 
@@ -111,6 +110,10 @@ const GeoPosition = ({ value, defaultCenter, defaultZoom, className, onChange })
         }
     }, [onValuePropChanged, defaultZoom, setZoom]);
 
+    const onSearchButtonClick = useCallback( () => {
+        addressInputRef.current.focus();
+    }, []);
+
     useEffect(() => {
         if (client !== null) {
             if (typeof client.maps.places !== 'undefined') {
@@ -143,20 +146,25 @@ const GeoPosition = ({ value, defaultCenter, defaultZoom, className, onChange })
                 },
             ])}
         >
-            <div className={styles.autoComplete}>
-                <TextField
+            <div className={classNames([styles.autoComplete, 'input-group'])}>
+                <span type="span" className="input-group-prepend">
+                    <button type="button" className="input-group-text" onClick={onSearchButtonClick}>
+                        <FontAwesomeIcon icon={faSearch} />
+                    </button>
+                </span>
+                <input
+                    type="text"
                     ref={addressInputRef}
-                    className={styles.address}
+                    className={classNames([styles.address, 'form-control'])}
                     value={address}
                     placeholder={intl.formatMessage({
                         defaultMessage: 'Search a place on Google Maps',
                         description: 'Search a place on Google Maps placeholder',
                     })}
-                    onChange={setAddress}
+                    autoComplete="off"
+                    onChange={ e => { setAddress(e.target.value) } }
                 />
-                <div className={styles.searchIcon}>
-                    <FontAwesomeIcon icon={faSearch} />
-                </div>
+                
             </div>
             <div className={styles.map}>
                 <Map

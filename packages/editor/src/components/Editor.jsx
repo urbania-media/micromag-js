@@ -205,6 +205,7 @@ const Editor = ({
                                     isTheme={isTheme}
                                     className={styles.preview}
                                     onScreenChange={onPreviewScreenChange}
+                                    withoutDevicesSizes
                                 />
                             </div>
                             <div

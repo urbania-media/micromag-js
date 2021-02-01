@@ -71,7 +71,7 @@ const RankingScreen = ({
         isCapture,
     } = useScreenRenderContext();
 
-    const finalItems = isPlaceholder ? [...new Array(10)].map(() => ({})) : items;
+    const finalItems = isPlaceholder ? [...new Array(10)].map(() => ({})) : (items || [null]);
 
     const itemsCount = finalItems !== null ? finalItems.length : 0;
 
@@ -101,7 +101,7 @@ const RankingScreen = ({
         setMaxSideRankWidth(maxWidth);
     }, [isSideLayout, width, height]);
 
-    const elements = finalItems.map((item, itemI) => {
+    const elements = (finalItems || []).map((item, itemI) => {
         const { title = null, description = null } = item || {};
 
         const hasTitle = isTextFilled(title);

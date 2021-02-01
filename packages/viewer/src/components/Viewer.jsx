@@ -195,11 +195,11 @@ const Viewer = ({
                 return false;
             };
 
-            if (!isView || checkClickable(e.target)) {
+            const tappedCurrent = screenIndex === index;
+
+            if ((!isView && tappedCurrent) || checkClickable(e.target)) {
                 return;
             }
-
-            const tappedCurrent = screenIndex === index;
 
             const it = screens[screenIndex] || null;
             const interactionEnabled = screensInteractionEnabled[screenIndex];

@@ -85,7 +85,7 @@ const Timeline = ({
         isStatic,
         isCapture,
     } = useScreenRenderContext();
-    const finalItems = isPlaceholder ? [...new Array(5)].map(() => ({})) : items;
+    const finalItems = isPlaceholder ? [...new Array(5)].map(() => ({})) : (items || [null]);
 
     const onScrolledBottom = useCallback(() => {
         trackScreenEvent('scroll', 'Screen');
@@ -119,7 +119,7 @@ const Timeline = ({
         setImageWidth(firstContentRef.current.offsetWidth - firstLineRef.current.offsetWidth);
     }, [width, height]);
 
-    const timelineElements = finalItems.map((item, itemI) => {
+    const timelineElements = (finalItems || []).map((item, itemI) => {
         const { title = null, description = null, image = null } = item || {};
 
         const hasTitle = isTextFilled(title);
