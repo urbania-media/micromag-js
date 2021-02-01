@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { Route } from 'react-router';
 import { getSizeWithinBounds } from '@folklore/size';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useResizeObserver, useParsedStory } from '@micromag/core/hooks';
+import { useResizeObserver/* , useParsedStory */} from '@micromag/core/hooks';
 import { useScreenSize, useRoutes } from '@micromag/core/contexts';
 import { Viewer } from '@micromag/viewer';
 
@@ -60,7 +60,8 @@ const EditorPreview = ({
     const routes = useRoutes();
     const { screen = null, screens = [] } = useScreenSize();
     const valueWithTheme = useThemeValue(value, isTheme);
-    const valueParsed = useParsedStory(valueWithTheme, { withMedias: false });
+    const valueParsed = valueWithTheme;
+    // const valueParsed = useParsedStory(valueWithTheme, { withMedias: false });
 
     // Get device
     const [deviceId, setDeviceId] = useState(initialDevice || devices[0].id);
