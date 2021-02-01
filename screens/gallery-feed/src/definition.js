@@ -24,14 +24,6 @@ export default [
         transforms,
         fields: [
             {
-                name: 'layout',
-                type: 'screen-layout',
-                label: defineMessage({
-                    defaultMessage: 'Layout',
-                    description: 'Layout field label',
-                }),
-            },
-            {
                 name: 'images',
                 type: 'images',
                 label: defineMessage({
@@ -67,14 +59,6 @@ export default [
         layouts: ['normal', 'reverse'],
         transforms,
         fields: [
-            {
-                name: 'layout',
-                type: 'screen-layout',
-                label: defineMessage({
-                    defaultMessage: 'Layout',
-                    description: 'Layout field label',
-                }),
-            },
             {
                 name: 'images',
                 type: 'images-with-caption',
