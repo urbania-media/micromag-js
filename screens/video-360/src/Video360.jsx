@@ -66,7 +66,14 @@ const Video360Screen = ({
 
     const { width, height, landscape } = useScreenSize();
 
-    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } = useScreenRenderContext();
+    const {
+        isView,
+        isPreview,
+        isPlaceholder,
+        isEdit,
+        isStatic,
+        isCapture,
+    } = useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
 
     const videoContainerRef = useRef();
@@ -143,15 +150,21 @@ const Video360Screen = ({
     const hasVideo = video !== null;
     const withVideoSphere = hasVideo && (isView || isEdit) && !isCapture && !isStatic;
     const [ready, setReady] = useState(!hasVideo);
-    
+
     const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
 
-    const finalVideo = hasVideo ? { ...video, autoPlay: isPreview || isStatic || isCapture ? false : video.autoPlay } : null;
+    const finalVideo = hasVideo
+        ? { ...video, autoPlay: isPreview || isStatic || isCapture ? false : video.autoPlay }
+        : null;
     const { media: videoMedia = null, closedCaptions = null, withSeekBar = false } =
         finalVideo || {};
 
-    const { metadata: videoMetadata = null, url: videoUrl = null, thumbnail_url: thumbnailUrl = null } = videoMedia || {};
+    const {
+        metadata: videoMetadata = null,
+        url: videoUrl = null,
+        thumbnail_url: thumbnailUrl = null,
+    } = videoMedia || {};
     const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
     const hasThumbnail = thumbnailUrl !== null;
     const [posterReady, setPosterReady] = useState(!hasThumbnail);
@@ -177,7 +190,7 @@ const Video360Screen = ({
     const onVideoReady = useCallback(() => {
         setReady(true);
     }, [setReady]);
-    
+
     const onPosterLoaded = useCallback(() => {
         setPosterReady(true);
     }, [posterReady]);
@@ -215,7 +228,6 @@ const Video360Screen = ({
         camera.current.lookAt(0, 0, 0);
 
         renderer.current.render(scene.current, camera.current);
-
     }, []);
 
     // Init 3D layer
@@ -412,12 +424,14 @@ const Video360Screen = ({
             ])}
             data-screen-ready={((isStatic || isCapture) && posterReady) || ready}
         >
-            <Background
-                {...(!isPlaceholder ? background : null)}
-                width={width}
-                height={height}
-                playing={backgroundPlaying}
-            />
+            {!isPlaceholder ? (
+                <Background
+                    {...background}
+                    width={width}
+                    height={height}
+                    playing={backgroundPlaying}
+                />
+            ) : null}
             <Container width={width} height={height}>
                 {hasVideo ? (
                     <div

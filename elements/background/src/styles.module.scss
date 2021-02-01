@@ -4,7 +4,9 @@
 .container {
     @extend %fullscreen;
     z-index: 0;
-    overflow: hidden;    
+    overflow: hidden;
+
+    background-color: rgba(#000, 0.25);
 
     .videoContainer,
     .video {

@@ -62,7 +62,14 @@ const RankingScreen = ({
     const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
 
-    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } = useScreenRenderContext();
+    const {
+        isView,
+        isPreview,
+        isPlaceholder,
+        isEdit,
+        isStatic,
+        isCapture,
+    } = useScreenRenderContext();
 
     const finalItems = isPlaceholder ? [...new Array(10)].map(() => ({})) : items;
 
@@ -199,12 +206,14 @@ const RankingScreen = ({
             ])}
             data-screen-ready
         >
-            <Background
-                {...(!isPlaceholder ? background : null)}
-                width={width}
-                height={height}
-                playing={backgroundPlaying}
-            />
+            {!isPlaceholder ? (
+                <Background
+                    {...background}
+                    width={width}
+                    height={height}
+                    playing={backgroundPlaying}
+                />
+            ) : null}
             <Container width={width} height={height}>
                 <Scroll
                     className={styles.scroll}

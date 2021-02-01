@@ -4,11 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import {
-    useGoogleKeys,
-    useScreenSize,
-    useScreenRenderContext,
-} from '@micromag/core/contexts';
+import { useGoogleKeys, useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { PlaceholderMap, Transitions, Button, ScreenElement } from '@micromag/core/components';
 import { useTrackScreenEvent, useResizeObserver } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
@@ -418,12 +414,14 @@ const MapScreen = ({
             ])}
             data-screen-ready={finalReady}
         >
-            <Background
-                {...(!isPlaceholder ? background : null)}
-                width={width}
-                height={height}
-                playing={backgroundPlaying}
-            />
+            {!isPlaceholder ? (
+                <Background
+                    {...background}
+                    width={width}
+                    height={height}
+                    playing={backgroundPlaying}
+                />
+            ) : null}
             <Container width={width} height={height}>
                 {element}
             </Container>

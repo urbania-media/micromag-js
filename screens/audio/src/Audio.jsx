@@ -196,17 +196,18 @@ const AudioScreen = ({ layout, audio, background, current, transitions, classNam
                     [className]: className !== null,
                     [styles.placeholder]: isPlaceholder,
                     [styles.isPreview]: isPreview,
-                    [styles[layout]]: layout !== null,
                 },
             ])}
             data-screen-ready={ready}
         >
-            <Background
-                {...(!isPlaceholder ? background : null)}
-                width={width}
-                height={height}
-                playing={backgroundPlaying}
-            />
+            {!isPlaceholder ? (
+                <Background
+                    {...background}
+                    width={width}
+                    height={height}
+                    playing={backgroundPlaying}
+                />
+            ) : null}
             <Container width={width} height={height}>
                 <Layout fullscreen verticalAlign={layout}>
                     {element}

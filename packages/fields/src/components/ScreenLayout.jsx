@@ -27,7 +27,7 @@ const defaultProps = {
 const ScreenLayoutField = ({ value, className, onChange }) => {
     const { id, layouts = [] } = useScreenDefinition();
 
-    return (layouts || []).length > 1 ? (
+    return (
         <Radios
             options={layouts.map((layout) => ({
                 value: layout,
@@ -54,7 +54,7 @@ const ScreenLayoutField = ({ value, className, onChange }) => {
             buttonClassName={styles.button}
             onChange={onChange}
         />
-    ) : null;
+    );
 };
 
 ScreenLayoutField.propTypes = propTypes;

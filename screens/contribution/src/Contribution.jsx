@@ -372,12 +372,14 @@ const ContributionScreen = ({
             ])}
             data-screen-ready
         >
-            <Background
-                {...(!isPlaceholder ? background : null)}
-                width={width}
-                height={height}
-                playing={backgroundPlaying}
-            />
+            {!isPlaceholder ? (
+                <Background
+                    {...background}
+                    width={width}
+                    height={height}
+                    playing={backgroundPlaying}
+                />
+            ) : null}
             <Container width={width} height={height}>
                 <div
                     className={styles.content}

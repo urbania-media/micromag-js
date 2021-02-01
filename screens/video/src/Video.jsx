@@ -132,7 +132,11 @@ const VideoScreen = ({ layout, video, background, current, transitions, classNam
         : null;
     const { media: videoMedia = null, closedCaptions = null, withSeekBar = false } =
         finalVideo || {};
-    const { metadata: videoMetadata = null, url: videoUrl = null, thumbnail_url:thumbnailUrl = null } = videoMedia || {};
+    const {
+        metadata: videoMetadata = null,
+        url: videoUrl = null,
+        thumbnail_url: thumbnailUrl = null,
+    } = videoMedia || {};
     const hasThumbnail = thumbnailUrl !== null;
     const [posterReady, setPosterReady] = useState(!hasThumbnail);
 
@@ -161,7 +165,7 @@ const VideoScreen = ({ layout, video, background, current, transitions, classNam
     const onVideoReady = useCallback(() => {
         setReady(true);
     }, [setReady]);
-    
+
     const onPosterLoaded = useCallback(() => {
         setPosterReady(true);
     }, [isStatic, isCapture, setPosterReady]);
@@ -253,12 +257,14 @@ const VideoScreen = ({ layout, video, background, current, transitions, classNam
             ])}
             data-screen-ready={((isStatic || isCapture) && posterReady) || ready}
         >
-            <Background
-                {...(!isPlaceholder ? background : null)}
-                width={width}
-                height={height}
-                playing={backgroundPlaying}
-            />
+            {!isPlaceholder ? (
+                <Background
+                    {...background}
+                    width={width}
+                    height={height}
+                    playing={backgroundPlaying}
+                />
+            ) : null}
             <Container width={width} height={height}>
                 <div className={styles.content}>{items}</div>
             </Container>
