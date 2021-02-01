@@ -81,13 +81,24 @@ class ThemeParser {
                                                     }
                                                   : null;
 
+                                          if (colorValue === null && textStyleValue === null) {
+                                              return {
+                                                  ...newInnerField,
+                                                  [innerFieldName]: innerField[innerFieldName],
+                                              };
+                                          }
+
                                           return {
                                               ...newInnerField,
-                                              [innerFieldName]: {
-                                                  ...colorValue,
-                                                  ...innerField[innerFieldName],
-                                                  ...textStyleValue,
-                                              },
+                                              [innerFieldName]: !isObject(
+                                                  innerField[innerFieldName],
+                                              )
+                                                  ? innerField[innerFieldName]
+                                                  : {
+                                                        ...colorValue,
+                                                        ...innerField[innerFieldName],
+                                                        ...textStyleValue,
+                                                    },
                                           };
                                       },
                                       {},
@@ -95,6 +106,7 @@ class ThemeParser {
                                 : innerField,
                         );
                     }
+
                     if (isObject(fieldValue) && !isArray(fieldValue)) {
                         const { textStyle: fieldTextStyle = null, color: fieldColor = null } =
                             fullTheme || {};
