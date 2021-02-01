@@ -65,12 +65,6 @@ msgctxt "/T/UDH"
 msgid "Remove all"
 msgstr "Remove all"
 
-# MapImages screen title
-#: /bEns8
-msgctxt "/bEns8"
-msgid "MapImages"
-msgstr "MapImages"
-
 # Credits placeholder
 #: /hupzO
 msgctxt "/hupzO"
@@ -107,12 +101,6 @@ msgctxt "1ezz2m"
 msgid "Description"
 msgstr "Description"
 
-# ImageTitle screen title
-#: 1fBNmY
-msgctxt "1fBNmY"
-msgid "ImageTitle"
-msgstr "ImageTitle"
-
 # Item label in items field
 #: 2/F1Q7
 msgctxt "2/F1Q7"
@@ -130,6 +118,12 @@ msgstr "Title"
 msgctxt "31zuCS"
 msgid "Line height"
 msgstr "Line height"
+
+# TimelineIllustrated screen title
+#: 33UbSd
+msgctxt "33UbSd"
+msgid "Timeline with images"
+msgstr "Timeline with images"
 
 # Label when there is no item in markers field
 #: 3E57H7
@@ -191,6 +185,12 @@ msgctxt "4YiKNK"
 msgid "Select a color..."
 msgstr "Select a color..."
 
+# Gallery Feed screen title
+#: 4bHvRS
+msgctxt "4bHvRS"
+msgid "Gallery Feed"
+msgstr "Gallery Feed"
+
 # Tags in Media Gallery
 #: 4fHMVj
 msgctxt "4fHMVj"
@@ -227,12 +227,6 @@ msgctxt "650XRF"
 msgid "Survey"
 msgstr "Survey"
 
-# GalleryCaptions screen title
-#: 6De+oT
-msgctxt "6De+oT"
-msgid "GalleryCaptions"
-msgstr "GalleryCaptions"
-
 # Images screen group
 #: 6mX2ya
 msgctxt "6mX2ya"
@@ -257,12 +251,6 @@ msgctxt "88/Ge8"
 msgid "Quote"
 msgstr "Quote"
 
-# ImageTitleText screen title
-#: 8c34nT
-msgctxt "8c34nT"
-msgid "ImageTitleText"
-msgstr "ImageTitleText"
-
 # Button label
 #: 8oczXQ
 msgctxt "8oczXQ"
@@ -280,12 +268,6 @@ msgstr "Add an font file"
 msgctxt "8vroDx"
 msgid "Map"
 msgstr "Map"
-
-# ImageLegend screen title
-#: 96KRj9
-msgctxt "96KRj9"
-msgid "ImageLegend"
-msgstr "ImageLegend"
 
 # Ascending field label
 #: 9DhYaZ
@@ -305,6 +287,12 @@ msgctxt "A+a0kL"
 msgid "No answer..."
 msgstr "No answer..."
 
+# ImageTitle screen title
+#: AA8TV9
+msgctxt "AA8TV9"
+msgid "Image with title"
+msgstr "Image with title"
+
 # Label when no value is provided to Image field
 #: B1MeY+
 msgctxt "B1MeY+"
@@ -322,6 +310,12 @@ msgstr "Select a closed-captions file..."
 msgctxt "BpZoQZ"
 msgid "Success"
 msgstr "Success"
+
+# ImageText screen title
+#: CJmQeh
+msgctxt "CJmQeh"
+msgid "Image with text"
+msgstr "Image with text"
 
 # Quote placeholder
 #: CrzYgw
@@ -347,12 +341,6 @@ msgctxt "DWEzCv"
 msgid "Select a video..."
 msgstr "Select a video..."
 
-# TextTitle screen title
-#: E/qtB2
-msgctxt "E/qtB2"
-msgid "TextTitle"
-msgstr "TextTitle"
-
 # Field label
 #: ET527E
 msgctxt "ET527E"
@@ -376,12 +364,6 @@ msgstr "Subtitle"
 msgctxt "F2SD/0"
 msgid "Loop"
 msgstr "Loop"
-
-# Video 360 screen title
-#: FJjjnF
-msgctxt "FJjjnF"
-msgid "Video 360"
-msgstr "Video 360"
 
 # Field label
 #: FJygXH
@@ -419,11 +401,23 @@ msgctxt "GMCLhn"
 msgid "Case"
 msgstr "Case"
 
+# Video 360 screen title
+#: GRVidW
+msgctxt "GRVidW"
+msgid "360 Video"
+msgstr "360 Video"
+
 # Timeline screen title
 #: GzoKNb
 msgctxt "GzoKNb"
 msgid "Timeline"
 msgstr "Timeline"
+
+# ImageLegend screen title
+#: H1YcaV
+msgctxt "H1YcaV"
+msgid "Image with legend"
+msgstr "Image with legend"
 
 # Button to edit a screen
 #: HseFdk
@@ -436,12 +430,6 @@ msgstr "Edit"
 msgctxt "IBjY5r"
 msgid "Duplicate screen"
 msgstr "Duplicate screen"
-
-# Timeline Illustrated screen title
-#: IMUycF
-msgctxt "IMUycF"
-msgid "Timeline Illustrated"
-msgstr "Timeline Illustrated"
 
 # Your message placeholder
 #: JAguka
@@ -479,17 +467,23 @@ msgctxt "KHWeV7"
 msgid "Answers"
 msgstr "Answers"
 
+# MapImages screen title
+#: MLuvzG
+msgctxt "MLuvzG"
+msgid "Map with image markers"
+msgstr "Map with image markers"
+
 # Audio placeholder
 #: MYZwSA
 msgctxt "MYZwSA"
 msgid "Audio"
 msgstr "Audio"
 
-# ImageText screen title
-#: Mz76RM
-msgctxt "Mz76RM"
-msgid "ImageText"
-msgstr "ImageText"
+# GalleryCaptions screen title
+#: MmJQ7o
+msgctxt "MmJQ7o"
+msgid "Gallery with captions"
+msgstr "Gallery with captions"
 
 # Title field label
 #: N25iDO
@@ -520,6 +514,12 @@ msgstr "No slide..."
 msgctxt "OkNUmk"
 msgid "Type"
 msgstr "Type"
+
+# TitleSubtitle screen title
+#: P1dwGU
+msgctxt "P1dwGU"
+msgid "Title with subtitle"
+msgstr "Title with subtitle"
 
 # Label when there is no item in items field
 #: PKCv5M
@@ -634,6 +634,12 @@ msgctxt "Wr9olU"
 msgid "Typography"
 msgstr "Typography"
 
+# GalleryFeedCaptions screen title
+#: XTJGzY
+msgctxt "XTJGzY"
+msgid "Gallery feed with captions"
+msgstr "Gallery feed with captions"
+
 # Move the map to position the place description
 #: XhgKcw
 msgctxt "XhgKcw"
@@ -670,12 +676,6 @@ msgctxt "ZqwBOx"
 msgid "Questions"
 msgstr "Questions"
 
-# TitleSubtitle screen title
-#: ZtZjF0
-msgctxt "ZtZjF0"
-msgid "TitleSubtitle"
-msgstr "TitleSubtitle"
-
 # Button label in items field
 #: ZxgNge
 msgctxt "ZxgNge"
@@ -699,12 +699,6 @@ msgstr "Fit"
 msgctxt "aovRFH"
 msgid "Filename"
 msgstr "Filename"
-
-# GalleryFeedCaptions screen title
-#: bh16Yr
-msgctxt "bh16Yr"
-msgid "GalleryFeedCaptions"
-msgstr "GalleryFeedCaptions"
 
 # Audio screen title
 #: bhEaUt
@@ -771,6 +765,12 @@ msgstr "Question"
 msgctxt "e6+aGf"
 msgid "Select a media..."
 msgstr "Select a media..."
+
+# ImageTitleText screen title
+#: eWIM/8
+msgctxt "eWIM/8"
+msgid "Image with title and text"
+msgstr "Image with title and text"
 
 # Image placeholder
 #: ebsPd4
@@ -868,12 +868,6 @@ msgctxt "lGh/NP"
 msgid "Add an answer"
 msgstr "Add an answer"
 
-# TitleSubtitleCredits screen title
-#: lXV3vP
-msgctxt "lXV3vP"
-msgid "TitleSubtitleCredits"
-msgstr "TitleSubtitleCredits"
-
 # Result placeholder
 #: li7ADr
 msgctxt "li7ADr"
@@ -919,6 +913,12 @@ msgstr "Add an answer"
 msgctxt "nXVNeg"
 msgid "Name"
 msgstr "Name"
+
+# TextTitle screen title
+#: oCBQKV
+msgctxt "oCBQKV"
+msgid "Text with title"
+msgstr "Text with title"
 
 # Video 360 placeholder
 #: oLtEu6
@@ -1076,11 +1076,11 @@ msgctxt "vYunz+"
 msgid "Recent searches"
 msgstr "Recent searches"
 
-# GalleryFeed screen title
-#: vrCfAS
-msgctxt "vrCfAS"
-msgid "GalleryFeed"
-msgstr "GalleryFeed"
+# TitleSubtitleCredits screen title
+#: vZrFq6
+msgctxt "vZrFq6"
+msgid "Title with subtitle and credits"
+msgstr "Title with subtitle and credits"
 
 # Button to show screens
 #: wkysUu

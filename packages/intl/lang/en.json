@@ -23,9 +23,6 @@
     "/T/UDH": {
         "defaultMessage": "Remove all"
     },
-    "/bEns8": {
-        "defaultMessage": "MapImages"
-    },
     "/hupzO": {
         "defaultMessage": "Credits"
     },
@@ -44,9 +41,6 @@
     "1ezz2m": {
         "defaultMessage": "Description"
     },
-    "1fBNmY": {
-        "defaultMessage": "ImageTitle"
-    },
     "2/F1Q7": {
         "defaultMessage": "#{index}"
     },
@@ -55,6 +49,9 @@
     },
     "31zuCS": {
         "defaultMessage": "Line height"
+    },
+    "33UbSd": {
+        "defaultMessage": "Timeline with images"
     },
     "3E57H7": {
         "defaultMessage": "No marker..."
@@ -86,6 +83,9 @@
     "4YiKNK": {
         "defaultMessage": "Select a color..."
     },
+    "4bHvRS": {
+        "defaultMessage": "Gallery Feed"
+    },
     "4fHMVj": {
         "defaultMessage": "Tags"
     },
@@ -104,9 +104,6 @@
     "650XRF": {
         "defaultMessage": "Survey"
     },
-    "6De+oT": {
-        "defaultMessage": "GalleryCaptions"
-    },
     "6mX2ya": {
         "defaultMessage": "Images"
     },
@@ -119,9 +116,6 @@
     "88/Ge8": {
         "defaultMessage": "Quote"
     },
-    "8c34nT": {
-        "defaultMessage": "ImageTitleText"
-    },
     "8oczXQ": {
         "defaultMessage": "Add a marker"
     },
@@ -130,9 +124,6 @@
     },
     "8vroDx": {
         "defaultMessage": "Map"
-    },
-    "96KRj9": {
-        "defaultMessage": "ImageLegend"
     },
     "9DhYaZ": {
         "defaultMessage": "Ascending"
@@ -143,6 +134,9 @@
     "A+a0kL": {
         "defaultMessage": "No answer..."
     },
+    "AA8TV9": {
+        "defaultMessage": "Image with title"
+    },
     "B1MeY+": {
         "defaultMessage": "Select an image..."
     },
@@ -151,6 +145,9 @@
     },
     "BpZoQZ": {
         "defaultMessage": "Success"
+    },
+    "CJmQeh": {
+        "defaultMessage": "Image with text"
     },
     "CrzYgw": {
         "defaultMessage": "Quote"
@@ -164,9 +161,6 @@
     "DWEzCv": {
         "defaultMessage": "Select a video..."
     },
-    "E/qtB2": {
-        "defaultMessage": "TextTitle"
-    },
     "ET527E": {
         "defaultMessage": "Font family"
     },
@@ -178,9 +172,6 @@
     },
     "F2SD/0": {
         "defaultMessage": "Loop"
-    },
-    "FJjjnF": {
-        "defaultMessage": "Video 360"
     },
     "FJygXH": {
         "defaultMessage": "Result"
@@ -200,17 +191,20 @@
     "GMCLhn": {
         "defaultMessage": "Case"
     },
+    "GRVidW": {
+        "defaultMessage": "360 Video"
+    },
     "GzoKNb": {
         "defaultMessage": "Timeline"
+    },
+    "H1YcaV": {
+        "defaultMessage": "Image with legend"
     },
     "HseFdk": {
         "defaultMessage": "Edit"
     },
     "IBjY5r": {
         "defaultMessage": "Duplicate screen"
-    },
-    "IMUycF": {
-        "defaultMessage": "Timeline Illustrated"
     },
     "JAguka": {
         "defaultMessage": "Your message"
@@ -230,11 +224,14 @@
     "KHWeV7": {
         "defaultMessage": "Answers"
     },
+    "MLuvzG": {
+        "defaultMessage": "Map with image markers"
+    },
     "MYZwSA": {
         "defaultMessage": "Audio"
     },
-    "Mz76RM": {
-        "defaultMessage": "ImageText"
+    "MmJQ7o": {
+        "defaultMessage": "Gallery with captions"
     },
     "N25iDO": {
         "defaultMessage": "Title"
@@ -250,6 +247,9 @@
     },
     "OkNUmk": {
         "defaultMessage": "Type"
+    },
+    "P1dwGU": {
+        "defaultMessage": "Title with subtitle"
     },
     "PKCv5M": {
         "defaultMessage": "No item..."
@@ -308,6 +308,9 @@
     "Wr9olU": {
         "defaultMessage": "Typography"
     },
+    "XTJGzY": {
+        "defaultMessage": "Gallery feed with captions"
+    },
     "XhgKcw": {
         "defaultMessage": "Move the map to position the place"
     },
@@ -326,9 +329,6 @@
     "ZqwBOx": {
         "defaultMessage": "Questions"
     },
-    "ZtZjF0": {
-        "defaultMessage": "TitleSubtitle"
-    },
     "ZxgNge": {
         "defaultMessage": "Add an item"
     },
@@ -340,9 +340,6 @@
     },
     "aovRFH": {
         "defaultMessage": "Filename"
-    },
-    "bh16Yr": {
-        "defaultMessage": "GalleryFeedCaptions"
     },
     "bhEaUt": {
         "defaultMessage": "Audio"
@@ -376,6 +373,9 @@
     },
     "e6+aGf": {
         "defaultMessage": "Select a media..."
+    },
+    "eWIM/8": {
+        "defaultMessage": "Image with title and text"
     },
     "ebsPd4": {
         "defaultMessage": "Image"
@@ -425,9 +425,6 @@
     "lGh/NP": {
         "defaultMessage": "Add an answer"
     },
-    "lXV3vP": {
-        "defaultMessage": "TitleSubtitleCredits"
-    },
     "li7ADr": {
         "defaultMessage": "Result"
     },
@@ -451,6 +448,9 @@
     },
     "nXVNeg": {
         "defaultMessage": "Name"
+    },
+    "oCBQKV": {
+        "defaultMessage": "Text with title"
     },
     "oLtEu6": {
         "defaultMessage": "Video 360"
@@ -530,8 +530,8 @@
     "vYunz+": {
         "defaultMessage": "Recent searches"
     },
-    "vrCfAS": {
-        "defaultMessage": "GalleryFeed"
+    "vZrFq6": {
+        "defaultMessage": "Title with subtitle and credits"
     },
     "wkysUu": {
         "defaultMessage": "Screens"

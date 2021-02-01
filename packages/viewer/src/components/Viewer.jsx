@@ -24,7 +24,8 @@ import styles from '../styles/viewer.module.scss';
 
 const propTypes = {
     story: MicromagPropTypes.story.isRequired,
-    branding: MicromagPropTypes.branding,
+    basePath: PropTypes.string,
+    theme: MicromagPropTypes.branding,
     width: PropTypes.number,
     height: PropTypes.number,
     screen: PropTypes.string,
@@ -42,7 +43,8 @@ const propTypes = {
 };
 
 const defaultProps = {
-    branding: null,
+    theme: null,
+    basePath: null,
     width: null,
     height: null,
     screen: null,
@@ -61,7 +63,8 @@ const defaultProps = {
 
 const Viewer = ({
     story,
-    branding,
+    basePath,
+    theme,
     width,
     height,
     screen: screenId,
@@ -80,7 +83,8 @@ const Viewer = ({
     const parsedStory = useParsedStory(story, { disabled: storyIsParsed }) || {};
     const { components: screens = [], title = 'Story title', metadata = null } = parsedStory;
 
-    const { description = 'Description', shareUrl = '/', shareImage = '/', favIcon = '/' } =
+    const shareUrl = `${basePath}/${screenId}`;
+    const { description = 'Description', shareImage = '/', favIcon = '/' } =
         metadata || {};
 
     const isView = renderContext === 'view';
@@ -387,7 +391,7 @@ const Viewer = ({
                                 />
                             </div>
                             <MenuPreview
-                                branding={branding}
+                                theme={theme}
                                 title={title}
                                 shareUrl={shareUrl}
                                 className={styles.menuPreview}

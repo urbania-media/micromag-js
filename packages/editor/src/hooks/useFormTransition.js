@@ -6,16 +6,30 @@ const useFormTransition = (url, screenIndex, styles) => {
         url,
         screenIndex,
     });
+
     const direction = useMemo(() => {
         const { screenIndex: lastScreenIndex, url: lastUrl } = lastPageRef.current;
+
         lastPageRef.current.url = url;
         lastPageRef.current.screenIndex = screenIndex;
-        const currentPartsCount = url.split('/').length;
-        const previousPartsCount = lastUrl.split('/').length;
+
         if (screenIndex !== lastScreenIndex) {
             // return screenIndex > lastScreenIndex ? 'bottom' : 'top';
             return null;
         }
+
+        const urlSplit = url.split('/');
+        const lastUrlSplit = lastUrl.split('/');
+
+        let currentPartsCount = urlSplit.length;
+        let previousPartsCount = lastUrlSplit.length;
+        
+        const isSettings = urlSplit[currentPartsCount - 1] === 'settings';
+        const wasSettings = lastUrlSplit[previousPartsCount - 1] === 'settings';
+        
+        currentPartsCount -= isSettings ? 1 : 0;
+        previousPartsCount -= wasSettings ? 1 : 0;
+
         return currentPartsCount > previousPartsCount ? 'right' : 'left';
     }, [url, screenIndex]);
 

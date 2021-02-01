@@ -15,7 +15,7 @@ import ShareButton from '../partials/ShareButton';
 import styles from '../../styles/menus/menu-preview.module.scss';
 
 const propTypes = {
-    branding: MicromagPropTypes.branding,
+    theme: MicromagPropTypes.branding,
     screenWidth: PropTypes.number,
     screenHeight: PropTypes.number,
     title: PropTypes.string,
@@ -30,7 +30,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    branding: null,
+    theme: null,
     screenWidth: null,
     screenHeight: null,
     title: null,
@@ -45,7 +45,7 @@ const defaultProps = {
 };
 
 const ViewerMenuPreview = ({
-    branding,
+    theme,
     screenWidth,
     screenHeight,
     title,
@@ -79,7 +79,7 @@ const ViewerMenuPreview = ({
         backgroundColor: brandBackgroundColor = null,
         textStyle: brandTextStyle = null,
         logo: brandLogo = null,
-    } = branding || {};
+    } = theme || {};
     const { url: brandLogoUrl = null } = brandLogo || {};
     const titleStyle = brandTextStyle !== null ? getStyleFromText(brandTextStyle) : null;
 

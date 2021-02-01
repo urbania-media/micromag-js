@@ -5,10 +5,10 @@ class ContributionsApi extends Base {
         super({
             ...opts,
             routes: {
-                index: '/api/contributions/:screen',
-                store: '/api/contributions',
-                update: '/api/contributions/:contribution',
-                delete: '/api/contributions/:contribution',
+                index: '/contributions/:screen',
+                store: '/contributions',
+                update: '/contributions/:contribution',
+                delete: '/contributions/:contribution',
                 ...(opts.routes || null),
             },
         });

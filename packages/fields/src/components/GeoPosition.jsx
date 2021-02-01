@@ -113,8 +113,8 @@ const GeoPosition = ({ value, defaultCenter, defaultZoom, className, onChange })
 
     useEffect(() => {
         if (client !== null) {
-            if (typeof client.places !== 'undefined') {
-                autoCompleteRef.current = new client.places.Autocomplete(addressInputRef.current, {
+            if (typeof client.maps.places !== 'undefined') {
+                autoCompleteRef.current = new client.maps.places.Autocomplete(addressInputRef.current, {
                     origin: defaultCenter,
                 });
                 autoCompleteRef.current.setFields(['geometry', 'name']);
