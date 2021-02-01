@@ -153,7 +153,6 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
             const field = typeof screen[listKey] !== 'undefined' ? screen[listKey] : null;
             const fieldItemsCount = field !== null ? field.length : 0;
             triggerOnChange(duplicateListItem(fieldParams, value, screenIndex));
-            // gotoFieldForm(listKey);
             gotoFieldForm(`${listKey}.${fieldItemsCount}`);
         } else {
             triggerOnChange(duplicateScreen(value, screenId));
@@ -204,7 +203,7 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
     }, [setDeleteScreenModalOpened]);
 
     const dropdownItems = [
-        !isTheme
+        !isTheme && !currentFieldListItems
             ? {
                   id: 'duplicate',
                   type: 'button',
