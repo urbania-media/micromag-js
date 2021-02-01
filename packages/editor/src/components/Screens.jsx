@@ -20,6 +20,7 @@ const propTypes = {
     value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
     isTheme: PropTypes.bool,
     isVertical: PropTypes.bool,
+    isCreateOpened: PropTypes.bool,
     onClickScreen: PropTypes.func,
     onChange: PropTypes.func,
     className: PropTypes.string,
@@ -29,17 +30,26 @@ const defaultProps = {
     value: null,
     isTheme: false,
     isVertical: false,
+    isCreateOpened: false,
     onClickScreen: null,
     onChange: null,
     className: null,
 };
 
-const EditorScreens = ({ value: unparsedValue, isTheme, isVertical, onClickScreen, onChange, className }) => {
+const EditorScreens = ({
+    value: unparsedValue,
+    isTheme,
+    isVertical,
+    isCreateOpened,
+    onClickScreen,
+    onChange,
+    className,
+}) => {
     const valueWithTheme = useThemeValue(unparsedValue, isTheme);
     const value = useParsedStory(valueWithTheme, { withMedias: false });
     const { components: screens = [] } = value || {};
 
-    const [createModalOpened, setCreateModalOpened] = useState(false);
+    const [createModalOpened, setCreateModalOpened] = useState(isCreateOpened);
     const routes = useRoutes();
     const push = useRoutePush();
     const url = useUrlGenerator();
@@ -66,9 +76,12 @@ const EditorScreens = ({ value: unparsedValue, isTheme, isVertical, onClickScree
             const { components: currentScreens = [] } = value || {};
 
             const currentIds = currentScreens.map(({ id }) => id);
-            const sameOrder = listItems.reduce((same, {id}, index) => same && id === currentIds[index], true);
+            const sameOrder = listItems.reduce(
+                (same, { id }, index) => same && id === currentIds[index],
+                true,
+            );
 
-            if (!sameOrder){
+            if (!sameOrder) {
                 const newValue = {
                     ...value,
                     components: [...currentScreens].sort(({ id: idA }, { id: idB }) => {

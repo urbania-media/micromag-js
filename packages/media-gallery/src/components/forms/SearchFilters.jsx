@@ -67,23 +67,41 @@ const SearchFilters = ({ filters, sections, onChange, className }) => {
         <div
             className={classNames([
                 styles.container,
-                'bg-light',
                 'flex-nowrap',
-                'text-dark',
                 'mt-1',
                 {
                     [className]: className !== null,
                 },
             ])}
         >
-            {activeSections.map(({ value, label, items }) => {
-                return items.length > 0 ? (
-                    <div key={`filter-${value}`} className={classNames([styles.section, 'py-2'])}>
-                        <p className={classNames([styles.title, 'm-0'])}>{label}</p>
-                        <TagSection tags={items} parent={value} onChange={onSectionChange} />
-                    </div>
-                ) : null;
-            })}
+            {activeSections.length > 0 ? (
+                <div
+                    className={classNames([
+                        'bg-light',
+                        'flex-nowrap',
+                        'text-dark',
+                        'py-1',
+                        'px-3',
+                        'rounded',
+                    ])}
+                >
+                    {activeSections.map(({ value, label, items }) => {
+                        return items.length > 0 ? (
+                            <div
+                                key={`filter-${value}`}
+                                className={classNames([styles.section, 'py-2'])}
+                            >
+                                <p className={classNames([styles.title, 'm-0'])}>{label}</p>
+                                <TagSection
+                                    tags={items}
+                                    parent={value}
+                                    onChange={onSectionChange}
+                                />
+                            </div>
+                        ) : null;
+                    })}
+                </div>
+            ) : null}
         </div>
     );
 };

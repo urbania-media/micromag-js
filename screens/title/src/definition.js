@@ -32,6 +32,9 @@ export default [
             {
                 name: 'title',
                 type: 'heading-element',
+                theme: {
+                    textStyle: 'heading1',
+                },
                 label: defineMessage({
                     defaultMessage: 'Title',
                     description: 'Title field label',
@@ -73,6 +76,9 @@ export default [
             {
                 name: 'title',
                 type: 'heading-element',
+                theme: {
+                    textStyle: 'heading1',
+                },
                 label: defineMessage({
                     defaultMessage: 'Title',
                     description: 'Title field label',
@@ -81,6 +87,9 @@ export default [
             {
                 name: 'subtitle',
                 type: 'heading-element',
+                theme: {
+                    textStyle: 'heading2',
+                },
                 label: defineMessage({
                     defaultMessage: 'Subtitle',
                     description: 'Subtitle field label',
@@ -122,6 +131,9 @@ export default [
             {
                 name: 'title',
                 type: 'heading-element',
+                theme: {
+                    textStyle: 'heading1',
+                },
                 label: defineMessage({
                     defaultMessage: 'Title',
                     description: 'Title field label',
@@ -130,6 +142,9 @@ export default [
             {
                 name: 'subtitle',
                 type: 'heading-element',
+                theme: {
+                    textStyle: 'heading2',
+                },
                 label: defineMessage({
                     defaultMessage: 'Subtitle',
                     description: 'Subtitle field label',
@@ -138,6 +153,9 @@ export default [
             {
                 name: 'credits',
                 type: 'text-element',
+                theme: {
+                    textStyle: 'heading3',
+                },
                 label: defineMessage({
                     defaultMessage: 'Credits',
                     description: 'Credits field label',

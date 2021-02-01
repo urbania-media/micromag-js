@@ -1,5 +1,6 @@
 export * from './ComponentsContext';
 export * from './FieldsContext';
+export * from './FontsContext';
 export * from './GoogleApiClientContext';
 export * from './GoogleKeysContext';
 export * from './GoogleMapsClientContext';

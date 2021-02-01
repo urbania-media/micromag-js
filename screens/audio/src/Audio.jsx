@@ -17,7 +17,7 @@ import Layout from '@micromag/element-layout';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    layout: PropTypes.oneOf(['normal']),
+    layout: PropTypes.oneOf(['middle']),
     audio: MicromagPropTypes.audioElement,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
@@ -26,7 +26,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    layout: 'normal',
+    layout: 'middle',
     audio: null,
     background: null,
     current: true,
@@ -208,7 +208,7 @@ const AudioScreen = ({ layout, audio, background, current, transitions, classNam
                 playing={backgroundPlaying}
             />
             <Container width={width} height={height}>
-                <Layout fullscreen verticalAlign="middle">
+                <Layout fullscreen verticalAlign={layout}>
                     {element}
                 </Layout>
             </Container>

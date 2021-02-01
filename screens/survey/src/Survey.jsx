@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useQuiz, useQuizCreate } from '@micromag/data';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useTrackScreenEvent } from '@micromag/core/hooks';
@@ -19,6 +20,7 @@ import Button from '@micromag/element-button';
 import styles from './styles.module.scss';
 
 const propTypes = {
+    id: PropTypes.string,
     layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split']),
     question: MicromagPropTypes.textElement,
     answers: PropTypes.arrayOf(
@@ -40,6 +42,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    id: null,
     layout: 'middle',
     question: null,
     answers: null,
@@ -55,6 +58,7 @@ const defaultProps = {
 };
 
 const SurveyScreen = ({
+    id,
     layout,
     question,
     answers,
@@ -68,9 +72,14 @@ const SurveyScreen = ({
     type,
     className,
 }) => {
+    const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
+    const { create: submitQuiz } = useQuizCreate({
+        screenId,
+    });
+    const { quiz: quizAnswers = [] } = useQuiz({ screenId }); // eslint-disable-line
 
     const {
         isView,
@@ -87,6 +96,36 @@ const SurveyScreen = ({
     const [userAnswerIndex, setUserAnswerIndex] = useState(showInstantAnswer ? -1 : null);
     const answered = userAnswerIndex !== null;
 
+    const total =
+        answers !== null
+            ? (quizAnswers || []).reduce(
+                  (points, { count = 0 }, i) =>
+                      points + parseInt(count, 10) + (i === userAnswerIndex ? 1 : 0),
+                  0,
+              )
+            : 0;
+
+    const quizAnswersComputed =
+        answers !== null
+            ? (answers || []).reduce((answersTotal, ans, i) => {
+                  const { label = {} } = ans || {};
+                  const { body = null } = label || {};
+
+                  const { count = 0 } = quizAnswers.find((qa) => qa.choice === body) || {};
+                  const countWithUser = i === userAnswerIndex ? count + 1 : count;
+                  if (body !== null) {
+                      return {
+                          ...answersTotal,
+                          [body]: {
+                              percent: total > 0 ? Math.floor((countWithUser / total) * 100) : 0,
+                              count: countWithUser,
+                          },
+                      };
+                  }
+                  return answersTotal;
+              }, {})
+            : {};
+
     const isSplitted = layout === 'split';
     const verticalAlign = isSplitted ? null : layout;
 
@@ -99,6 +138,7 @@ const SurveyScreen = ({
             if (userAnswerIndex === null) {
                 setUserAnswerIndex(answerIndex);
                 const answer = answers[answerIndex];
+                submitQuiz({ choice: answer.label.body || answerIndex, value: 1 });
                 trackScreenEvent(
                     'click_answer',
                     `Answer ${userAnswerIndex + 1}: ${answer.label.body}`,
@@ -109,7 +149,7 @@ const SurveyScreen = ({
                 );
             }
         },
-        [userAnswerIndex, setUserAnswerIndex, trackScreenEvent],
+        [userAnswerIndex, setUserAnswerIndex, trackScreenEvent, submitQuiz],
     );
 
     useEffect(() => {
@@ -172,7 +212,10 @@ const SurveyScreen = ({
                 <div className={styles.items}>
                     {(isPlaceholder ? [...new Array(3)] : answers).map((answer, answerIndex) => {
                         const hasAnswer = answer !== null;
-                        const { label = null, percent = 0 } = answer || {};
+                        const { label = null } = answer || {};
+                        const { body = null } = label || {};
+                        const { percent = 0 } =
+                            body !== null ? quizAnswersComputed[body] || {} : {};
                         const { textStyle = null } = label || {};
                         const { color: labelColor = null } = textStyle || {};
                         const hasAnswerLabel = isTextFilled(label);

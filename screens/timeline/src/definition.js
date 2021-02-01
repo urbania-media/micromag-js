@@ -31,6 +31,14 @@ export default [
             {
                 name: 'items',
                 type: 'entries',
+                theme: {
+                    title: {
+                        textStyle: 'heading2',
+                    },
+                    description: {
+                        textStyle: 'text',
+                    },
+                },
                 label: defineMessage({
                     defaultMessage: 'Entries',
                     description: 'Field label',
@@ -117,6 +125,14 @@ export default [
             {
                 name: 'items',
                 type: 'entries-with-image',
+                theme: {
+                    title: {
+                        textStyle: 'heading2',
+                    },
+                    description: {
+                        textStyle: 'text',
+                    },
+                },
                 label: defineMessage({
                     defaultMessage: 'Entries',
                     description: 'Field label',

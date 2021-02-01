@@ -22,6 +22,6 @@ export default {
                 defaultMessage: 'Description',
                 description: 'Field label',
             }),
-        }
-    ]
+        },
+    ],
 };

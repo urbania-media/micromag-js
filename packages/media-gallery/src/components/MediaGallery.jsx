@@ -150,7 +150,7 @@ const MediaGallery = ({
                 onClickCancel={onClickCancel}
                 withoutTitle={withoutTitle}
                 withoutSource={withoutSource}
-                navbarClassName={navbarClassName}
+                className={navbarClassName}
             />
             <div className={styles.content}>
                 <div className={styles.gallery}>

@@ -30,23 +30,6 @@ class ContributionsApi extends Base {
     create(data) {
         return this.requestPost(this.route('store'), data);
     }
-
-    update(id, data) {
-        return this.requestPut(
-            this.route('update', {
-                contribution: id,
-            }),
-            data,
-        );
-    }
-
-    delete(id) {
-        return this.requestDelete(
-            this.route('delete', {
-                contribution: id,
-            }),
-        );
-    }
 }
 
 export default ContributionsApi;

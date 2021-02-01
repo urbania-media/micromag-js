@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { IntlProvider } from 'react-intl';
 
-import TextEditor from '../components/TextEditor';
+import ImagesField from '../components/Images';
+// import TextField from '../components/Text';
 
 export default {
-    component: TextEditor,
-    title: 'Fields/TextEditor',
+    component: ImagesField,
+    title: 'Fields/ImagesField',
 };
 
 const FieldContainer = () => {
-    const [value, setValue] = useState(null);
-    return <TextEditor value={value} onChange={setValue} />;
+    const [value, setValue] = useState([]);
+    return <ImagesField value={value} onChange={setValue} />;
 };
 
 export const normal = () => (

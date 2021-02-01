@@ -8,6 +8,7 @@ import {
     GoogleKeysProvider,
     RoutesProvider,
     UppyProvider,
+    FontsProvider,
     ComponentsContext,
     FORMS_NAMESPACE,
 } from '@micromag/core/contexts';
@@ -58,35 +59,40 @@ const EditorContainer = ({
                 <ScreensProvider>
                     <GoogleKeysProvider apiKey={googleApiKey}>
                         <GoogleMapsClientProvider libraries={googleMapsLibraries}>
-                            <FieldsProvider>
-                                <FormsProvider>
-                                    <ComponentsContext.Consumer>
-                                        {(manager) => {
-                                            const formComponents = manager.getComponents(
-                                                FORMS_NAMESPACE,
-                                            );
-                                            const formRegEx =
-                                                formComponents !== null
-                                                    ? Object.keys(formComponents)
-                                                          .map((name) => slug(name))
-                                                          .join('|')
-                                                    : null;
-                                            return (
-                                                <RoutesProvider
-                                                    routes={{
-                                                        ...routes,
-                                                        'screen.field.form': routes[
-                                                            'screen.field.form'
-                                                        ].replace(/:form$/, `:form(${formRegEx})`),
-                                                    }}
-                                                >
-                                                    <Editor {...props} />
-                                                </RoutesProvider>
-                                            );
-                                        }}
-                                    </ComponentsContext.Consumer>
-                                </FormsProvider>
-                            </FieldsProvider>
+                            <FontsProvider>
+                                <FieldsProvider>
+                                    <FormsProvider>
+                                        <ComponentsContext.Consumer>
+                                            {(manager) => {
+                                                const formComponents = manager.getComponents(
+                                                    FORMS_NAMESPACE,
+                                                );
+                                                const formRegEx =
+                                                    formComponents !== null
+                                                        ? Object.keys(formComponents)
+                                                              .map((name) => slug(name))
+                                                              .join('|')
+                                                        : null;
+                                                return (
+                                                    <RoutesProvider
+                                                        routes={{
+                                                            ...routes,
+                                                            'screen.field.form': routes[
+                                                                'screen.field.form'
+                                                            ].replace(
+                                                                /:form$/,
+                                                                `:form(${formRegEx})`,
+                                                            ),
+                                                        }}
+                                                    >
+                                                        <Editor {...props} />
+                                                    </RoutesProvider>
+                                                );
+                                            }}
+                                        </ComponentsContext.Consumer>
+                                    </FormsProvider>
+                                </FieldsProvider>
+                            </FontsProvider>
                         </GoogleMapsClientProvider>
                     </GoogleKeysProvider>
                 </ScreensProvider>

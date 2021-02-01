@@ -8,7 +8,7 @@ import withUppy from '../../../../.storybook/decorators/withUppy';
 
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import faceAFaceStory from '../../../../.storybook/data/stories/faceAFace';
-import defaultTheme from '../../../../.storybook/data/themes/default';
+import { defaultTheme } from '../../../../.storybook/data/themes/micromag-default';
 
 // import manager from '../../../intl/src/manager';
 
@@ -55,7 +55,6 @@ export const WithTheme = () => (
             theme: defaultTheme,
             components: allScreensStory.components.map((c) => ({
                 ...c,
-                background: null,
             })),
         }}
     />

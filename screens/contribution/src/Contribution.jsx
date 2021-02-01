@@ -114,7 +114,6 @@ const ContributionScreen = ({
 
     const { create: submitContribution } = useContributionCreate({
         screenId,
-        onSuccess: onContributionSubmitted,
     });
 
     const { contributions } = useContributions({ screenId });
@@ -172,13 +171,21 @@ const ContributionScreen = ({
                 setInteractiveContainerHeight(formRef.current.offsetHeight);
                 setSubmitState(1);
                 submitContribution({ name: userName, message: userMessage });
+                onContributionSubmitted();
                 trackScreenEvent('click_submit', `${userName}: ${userMessage}`, {
                     userName,
                     userMessage,
                 });
             }
         },
-        [submitState, setSubmitState, userName, userMessage, trackScreenEvent],
+        [
+            submitState,
+            setSubmitState,
+            userName,
+            userMessage,
+            trackScreenEvent,
+            onContributionSubmitted,
+        ],
     );
 
     useEffect(() => {
@@ -216,6 +223,13 @@ const ContributionScreen = ({
                 </Transitions>
             ) : null}
         </ScreenElement>,
+    ];
+
+    const allContributions = [
+        ...(userName !== null && userMessage !== null
+            ? [{ name: userName, message: userMessage }]
+            : []),
+        ...(contributions || []),
     ];
 
     // Form
@@ -322,7 +336,7 @@ const ContributionScreen = ({
             <div className={styles.contributionsContainer}>
                 <div className={styles.contributionsContent}>
                     <div className={styles.contributions} ref={contributionsRef}>
-                        {contributions.map((contribution, contributionI) => (
+                        {allContributions.map((contribution, contributionI) => (
                             <div
                                 key={`contribution${contributionI}`}
                                 className={styles.contribution}

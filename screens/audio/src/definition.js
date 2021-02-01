@@ -15,7 +15,7 @@ export default {
         description: 'Audio screen title',
     }),
     component: AudioScreen,
-    layouts: ['normal'],
+    layouts: ['middle', 'bottom', 'top'],
     transforms,
     fields: [
         {
@@ -29,6 +29,9 @@ export default {
         {
             name: 'audio',
             type: 'audio-element',
+            theme: {
+                color: 'primary',
+            },
             label: defineMessage({
                 defaultMessage: 'Audio',
                 description: 'Audio field label',

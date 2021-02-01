@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import get from 'lodash/get';
+import isString from 'lodash/isString';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Label } from '@micromag/core/components';
@@ -78,7 +79,12 @@ const FieldWithForm = ({
         );
     }
 
-    const labelElement = label !== null ? label : get(value, labelPath, null);
+    const labelValue = label !== null ? label : get(value, labelPath, null);
+    // Strip html
+    const labelElement =
+        labelValue !== null && isString(labelValue)
+            ? labelValue.replace(/(<([^>]+)>)/gi, '')
+            : labelValue;
 
     let thumbnailElement = null;
     const thumbnailSrc = get(value, thumbnailPath, null);

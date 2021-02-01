@@ -4,8 +4,8 @@ export default {
     type: 'theme',
     title: 'Default Theme',
     colors: {
-        primary: '#0F0',
-        secondary: '#00C',
+        primary: { color: '#0F0', alpha: 1 },
+        secondary: { color: '#00F', alpha: 1 },
     },
     background: {
         color: '#fc0',

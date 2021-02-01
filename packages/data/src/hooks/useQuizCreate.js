@@ -9,15 +9,13 @@ export const useQuizCreate = ({ screenId, onSuccess = null } = {}) => {
     const create = useCallback(
         (data) => {
             setCreating(true);
-            return api.quiz
-                .create({ version_id: 1, screen_id: screenId, ...data })
-                .then((response) => {
-                    setCreating(false);
-                    if (onSuccess !== null) {
-                        onSuccess(response);
-                    }
-                    return response;
-                });
+            return api.quiz.create({ screen_id: screenId, ...data }).then((response) => {
+                setCreating(false);
+                if (onSuccess !== null) {
+                    onSuccess(response);
+                }
+                return response;
+            });
         },
         [api, setCreating, onSuccess, screenId],
     );

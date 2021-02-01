@@ -29,6 +29,14 @@ export default {
         {
             name: 'items',
             type: 'entries',
+            theme: {
+                title: {
+                    textStyle: 'heading2',
+                },
+                description: {
+                    textStyle: 'text',
+                },
+            },
             label: defineMessage({
                 defaultMessage: 'Entries',
                 description: 'Entries field label',

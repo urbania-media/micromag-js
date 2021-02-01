@@ -30,6 +30,9 @@ export default {
             name: 'quote',
             type: 'heading-element',
             fieldType: 'multi',
+            theme: {
+                textStyle: 'heading2',
+            },
             label: defineMessage({
                 defaultMessage: 'Quote',
                 description: 'Quote field label',
@@ -40,7 +43,6 @@ export default {
             type: 'text-element',
             theme: {
                 textStyle: 'text',
-                textColor: 'primary',
             },
             label: defineMessage({
                 defaultMessage: 'Author',

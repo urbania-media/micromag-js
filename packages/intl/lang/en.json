@@ -296,8 +296,14 @@
     "UBXIYP": {
         "defaultMessage": "Video"
     },
+    "UtcYEP": {
+        "defaultMessage": "Custom fonts"
+    },
     "V+G2s+": {
         "defaultMessage": "Add an image"
+    },
+    "VDu2FA": {
+        "defaultMessage": "Google Fonts"
     },
     "Wb5zY4": {
         "defaultMessage": "Select a font file..."
@@ -334,6 +340,9 @@
     },
     "aarOkd": {
         "defaultMessage": "Color"
+    },
+    "al5xjv": {
+        "defaultMessage": "Default fonts"
     },
     "amEvH1": {
         "defaultMessage": "Fit"
@@ -559,9 +568,6 @@
     },
     "zDH24s": {
         "defaultMessage": "Latitude"
-    },
-    "zIi5W2": {
-        "defaultMessage": "All"
     },
     "zW7IVm": {
         "defaultMessage": "Quiz"

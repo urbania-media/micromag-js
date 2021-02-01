@@ -610,11 +610,23 @@ msgctxt "UBXIYP"
 msgid "Video"
 msgstr "Video"
 
+# Font family group title
+#: UtcYEP
+msgctxt "UtcYEP"
+msgid "Custom fonts"
+msgstr "Custom fonts"
+
 # Button label in images field
 #: V+G2s+
 msgctxt "V+G2s+"
 msgid "Add an image"
 msgstr "Add an image"
+
+# Font family group title
+#: VDu2FA
+msgctxt "VDu2FA"
+msgid "Google Fonts"
+msgstr "Google Fonts"
 
 # Label when no value
 #: Wb5zY4
@@ -687,6 +699,12 @@ msgstr "Add an item"
 msgctxt "aarOkd"
 msgid "Color"
 msgstr "Color"
+
+# Font family group title
+#: al5xjv
+msgctxt "al5xjv"
+msgid "Default fonts"
+msgstr "Default fonts"
 
 # Field label
 #: amEvH1
@@ -1135,12 +1153,6 @@ msgstr "Text"
 msgctxt "zDH24s"
 msgid "Latitude"
 msgstr "Latitude"
-
-# Font family group title
-#: zIi5W2
-msgctxt "zIi5W2"
-msgid "All"
-msgstr "All"
 
 # Quiz screen title
 #: zW7IVm

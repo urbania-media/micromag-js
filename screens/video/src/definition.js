@@ -29,6 +29,9 @@ export default {
         {
             name: 'video',
             type: 'video-element',
+            theme: {
+                color: 'primary',
+            },
             label: defineMessage({
                 defaultMessage: 'Video',
                 description: 'Video field label',

@@ -32,8 +32,7 @@ export default [
                 name: 'title',
                 type: 'heading-element',
                 theme: {
-                    textStyle: 'heading1',
-                    textColor: 'primary',
+                    textStyle: 'heading2',
                 },
                 label: defineMessage({
                     defaultMessage: 'Title',
@@ -45,7 +44,6 @@ export default [
                 type: 'text-element',
                 theme: {
                     textStyle: 'text',
-                    textColor: 'primary',
                 },
                 label: defineMessage({
                     defaultMessage: 'Description',
@@ -55,6 +53,9 @@ export default [
             {
                 name: 'button',
                 type: 'text-element',
+                theme: {
+                    textStyle: 'button',
+                },
                 label: defineMessage({
                     defaultMessage: 'Button',
                     description: 'Button field label',
@@ -72,6 +73,14 @@ export default [
             {
                 name: 'markers',
                 type: 'markers',
+                theme: {
+                    title: {
+                        textStyle: 'heading3',
+                    },
+                    description: {
+                        textStyle: 'text',
+                    },
+                },
                 label: defineMessage({
                     defaultMessage: 'Markers',
                     description: 'Markers field label',
@@ -114,8 +123,7 @@ export default [
                 name: 'title',
                 type: 'heading-element',
                 theme: {
-                    textStyle: 'heading1',
-                    textColor: 'primary',
+                    textStyle: 'heading2',
                 },
                 label: defineMessage({
                     defaultMessage: 'Title',
@@ -127,7 +135,6 @@ export default [
                 type: 'text-element',
                 theme: {
                     textStyle: 'text',
-                    textColor: 'primary',
                 },
                 label: defineMessage({
                     defaultMessage: 'Description',
@@ -137,6 +144,9 @@ export default [
             {
                 name: 'button',
                 type: 'text-element',
+                theme: {
+                    textStyle: 'button',
+                },
                 label: defineMessage({
                     defaultMessage: 'Button',
                     description: 'Button field label',
@@ -154,6 +164,12 @@ export default [
             {
                 name: 'markers',
                 type: 'markers-with-image',
+                title: {
+                    textStyle: 'heading3',
+                },
+                description: {
+                    textStyle: 'text',
+                },
                 label: defineMessage({
                     defaultMessage: 'Markers with image',
                     description: 'Markers field label',

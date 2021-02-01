@@ -27,6 +27,7 @@ const propTypes = {
     mobileView: PropTypes.oneOf(['screens', 'preview', 'form']),
     fullscreen: PropTypes.bool,
     isTheme: PropTypes.bool,
+    isCreateOpened: PropTypes.bool,
     onChange: PropTypes.func,
     className: PropTypes.string,
 };
@@ -37,6 +38,7 @@ const defaultProps = {
     mobileView: 'preview',
     fullscreen: false,
     isTheme: false,
+    isCreateOpened: false,
     onChange: null,
     className: null,
 };
@@ -44,6 +46,7 @@ const defaultProps = {
 const Editor = ({
     value,
     isTheme,
+    isCreateOpened,
     deviceScreens,
     mobileView: initialMobileView,
     onChange,
@@ -112,10 +115,7 @@ const Editor = ({
             const item = items[0];
             const cnt = item.parentNode.parentNode.parentNode;
             screens.scrollTop =
-                cnt.offsetTop +
-                item.offsetTop +
-                item.offsetHeight / 2 -
-                screens.clientHeight / 2;
+                cnt.offsetTop + item.offsetTop + item.offsetHeight / 2 - screens.clientHeight / 2;
         }
     }, [screenId]);
 
@@ -184,6 +184,7 @@ const Editor = ({
                                 <Screens
                                     value={story}
                                     isTheme={isTheme}
+                                    isCreateOpened={isCreateOpened}
                                     onChange={onStoryChange}
                                     onClickScreen={onClickScreen}
                                     isVertical={!isMobile}

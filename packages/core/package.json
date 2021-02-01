@@ -1,6 +1,6 @@
 {
     "name": "@micromag/core",
-    "version": "0.2.91",
+    "version": "0.2.96",
     "description": "",
     "keywords": [
         "javascript"
@@ -69,6 +69,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.12.5",
+        "@folklore/fetch": "^0.1.10",
         "@folklore/forms": "^0.0.10",
         "@folklore/services": "^0.1.24",
         "@folklore/tracking": "^0.0.9",
@@ -106,6 +107,7 @@
         "snake-case": "^3.0.4",
         "tinycolor2": "^1.4.2",
         "uuid": "^8.3.2",
+        "webfontloader": "^1.6.28",
         "wolfy87-eventemitter": "^5.2.9"
     },
     "publishConfig": {

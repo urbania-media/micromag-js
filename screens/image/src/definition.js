@@ -85,8 +85,7 @@ export default [
                 type: 'heading-element',
                 inline: true,
                 theme: {
-                    textStyle: 'heading1',
-                    textColor: 'primary',
+                    textStyle: 'heading2',
                 },
                 label: defineMessage({
                     defaultMessage: 'Title',
@@ -139,7 +138,6 @@ export default [
                 type: 'text-element',
                 theme: {
                     textStyle: 'text',
-                    textColor: 'primary',
                 },
                 label: defineMessage({
                     defaultMessage: 'Text',
@@ -193,8 +191,7 @@ export default [
                 type: 'text-element',
                 inline: true,
                 theme: {
-                    textStyle: 'heading1',
-                    textColor: 'primary',
+                    textStyle: 'heading2',
                 },
                 label: defineMessage({
                     defaultMessage: 'Title',
@@ -206,7 +203,6 @@ export default [
                 type: 'text-element',
                 theme: {
                     textStyle: 'text',
-                    textColor: 'primary',
                 },
                 label: defineMessage({
                     defaultMessage: 'Text',
@@ -259,7 +255,6 @@ export default [
                 type: 'text-element',
                 theme: {
                     textStyle: 'text',
-                    textColor: 'primary',
                 },
                 label: defineMessage({
                     defaultMessage: 'Legend',
