@@ -78,7 +78,10 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
                 } else if (isCurrentSettings) {
                     currentFields = currentSettings;
                     if (parentItem !== null) {
-                        fieldItems.push({...parentItem, url: `/${screenId}/${fieldPath.slice(0, keyIndex).join('/')}/settings`});
+                        fieldItems.push({
+                            ...parentItem,
+                            url: `/${screenId}/${fieldPath.slice(0, keyIndex).join('/')}/settings`,
+                        });
                     }
                 } else if (isRepeatable) {
                     currentFields = itemsField;
@@ -86,18 +89,18 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
                     currentFields = null;
                 }
 
-                const fieldLabel = currentFields ? (currentFields.breadcrumbLabel || currentFields.label) : null;
-                let itemLabel = isMessage(fieldLabel)
-                ? intl.formatMessage(fieldLabel)
-                : fieldLabel;
-
-                if (isRepeatable) {
-                    itemLabel = `${itemLabel} #${parseInt(key, 10) + 1}`;
-                }
+                const fieldLabel = currentFields
+                    ? currentFields.breadcrumbLabel || currentFields.label
+                    : null;
+                const itemLabel = isMessage(fieldLabel)
+                    ? intl.formatMessage(fieldLabel)
+                    : fieldLabel;
 
                 const item = {
                     url: itemPath,
-                    label: isRepeatable ? parentItem.label : itemLabel,
+                    label: isRepeatable
+                        ? `${parentItem.label} #${parseInt(key, 10) + 1}`
+                        : itemLabel,
                 };
 
                 if (addNewItem) {
