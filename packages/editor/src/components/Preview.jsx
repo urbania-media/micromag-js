@@ -21,6 +21,7 @@ const propTypes = {
     isTheme: PropTypes.bool,
     className: PropTypes.string,
     onScreenChange: PropTypes.func,
+    withoutDevicesSizes: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -41,9 +42,10 @@ const defaultProps = {
     isTheme: false,
     className: null,
     onScreenChange: null,
+    withoutDevicesSizes: false,
 };
 
-const EditorPreview = ({ value, isTheme, devices, device: initialDevice, className, onScreenChange }) => {
+const EditorPreview = ({ value, isTheme, devices, device: initialDevice, className, onScreenChange, withoutDevicesSizes }) => {
     const routes = useRoutes();
     const { screen = null, screens = [] } = useScreenSize();
     const valueWithTheme = useThemeValue(value, isTheme);
@@ -60,6 +62,10 @@ const EditorPreview = ({ value, isTheme, devices, device: initialDevice, classNa
         entry: { contentRect },
     } = useResizeObserver();
     const previewStyle = useMemo(() => {
+        if (withoutDevicesSizes) {
+            return {};
+        }
+
         const { width: deviceWidth, height: deviceHeight } = device;
         const { width: bottomWidth = 0, height: bottomHeight = 0 } = contentRect || {};
         const maxWidth = screen === 'mobile' ? bottomWidth : deviceWidth;
@@ -75,7 +81,7 @@ const EditorPreview = ({ value, isTheme, devices, device: initialDevice, classNa
             height: maxHeight,
             transform: `scale(${previewScale}, ${previewScale})`,
         };
-    }, [device, contentRect, screen]);
+    }, [device, contentRect, screen, withoutDevicesSizes]);
 
     return (
         <div
@@ -84,19 +90,22 @@ const EditorPreview = ({ value, isTheme, devices, device: initialDevice, classNa
                 screens.map((screenName) => styles[`screen-${screenName}`]),
                 {
                     [className]: className,
+                    [styles.withoutDevicesSizes]: withoutDevicesSizes,
                 },
             ])}
         >
             <div className={styles.inner}>
-                <div className={styles.top}>
-                    <DevicesMenu
-                        items={devices.map((it) => ({
-                            ...it,
-                            active: it.id === deviceId,
-                        }))}
-                        onClickItem={onClickDeviceItem}
-                    />
-                </div>
+                {!withoutDevicesSizes ?
+                    <div className={styles.top}>
+                        <DevicesMenu
+                            items={devices.map((it) => ({
+                                ...it,
+                                active: it.id === deviceId,
+                            }))}
+                            onClickItem={onClickDeviceItem}
+                        />
+                    </div>
+                : null }                
                 <div className={styles.bottom}>
                     <div className={styles.inner} ref={bottomRef}>
                         <div className={styles.preview} style={previewStyle}>
