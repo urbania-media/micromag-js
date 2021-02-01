@@ -107,7 +107,7 @@ const MapScreen = ({
 
     const finalMarkers = useMemo(
         () =>
-            markers.map((marker, markerI) => ({
+            (markers || []).map((marker, markerI) => ({
                 ...marker,
                 active: markerI === selectedMarkerIndex,
             })),
@@ -169,7 +169,7 @@ const MapScreen = ({
     );
 
     const onScrolledBottom = useCallback(() => {
-        const selectedMarker = markers[selectedMarkerIndex];
+        const selectedMarker = (markers || [])[selectedMarkerIndex];
         trackScreenEvent(
             'scroll',
             `Marker ${selectedMarkerIndex + 1}: ${selectedMarker.title.body}`,
@@ -184,12 +184,12 @@ const MapScreen = ({
     const { width: markerOverContentInnerWidth = '100%' } = markerOverContentInnerRect || {};
 
     const [markerImagesLoaded, setMarkerImagesLoaded] = useState(0);
-    const allMarkersImagesLoaded = markerImagesLoaded === markers.length;
+    const allMarkersImagesLoaded = markerImagesLoaded === (markers || []).length;
 
     const finalReady = ready && (!withMarkerImages || allMarkersImagesLoaded);
 
     useEffect(() => {
-        if (withMarkerImages && markers !== null && markers.length) {
+        if (withMarkerImages && markers !== null && (markers || []).length) {
             setMarkerImagesLoaded(0);
             markers.forEach((marker) => {
                 const { image = null } = marker;
