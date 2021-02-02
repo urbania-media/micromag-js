@@ -44,7 +44,7 @@ const SelectAdvancedField = ({ value, options, disabled, className, onChange, ..
         () =>
             finalOptions.find((opt) => {
                 if ((isString(value) || isNumber(value)) && opt.label !== null) {
-                    return opt.label === value;
+                    return opt.value === value;
                 }
                 return isEqual(value, opt.value);
             }),
