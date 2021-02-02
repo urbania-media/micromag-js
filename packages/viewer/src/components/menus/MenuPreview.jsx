@@ -61,16 +61,17 @@ const ViewerMenuPreview = ({
     const screenSizeRatio = `${(screenHeight / screenWidth / thumbsPerLine) * 100}%`;
 
     const hasSize = screenWidth > 0 && screenHeight > 0;
+    const hasItems = items !== null && items.length > 0;
 
     const [thumbSize, setThumbSize] = useState(null);
     const firstScreenContainerRef = useRef(null);
 
     useEffect(() => {
-        if (firstScreenContainerRef.current !== null) {
+        if (hasItems && hasSize && firstScreenContainerRef.current !== null) {
             const { offsetWidth, offsetHeight } = firstScreenContainerRef.current;
             setThumbSize({ width: offsetWidth, height: offsetHeight });
         }
-    }, [screenWidth, screenHeight]);
+    }, [screenWidth, screenHeight, hasItems, hasSize]);
 
     // Branding
     const {
