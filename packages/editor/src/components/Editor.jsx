@@ -73,7 +73,7 @@ const Editor = ({
     const onClickEdit = useCallback(() => setMobileView('form'), [setMobileView]);
     const onClickViewScreen = useCallback(() => setMobileView('preview'), [setMobileView]);
 
-    const story = useParsedStory(value);
+    const story = useParsedStory(value, { withTheme: !isTheme });
     const { toPath: parseMediasToPath } = useMediasParser();
     const onStoryChange = useCallback(
         (newStory) => {

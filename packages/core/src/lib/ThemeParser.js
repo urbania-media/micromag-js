@@ -69,7 +69,7 @@ class ThemeParser {
             newThemeValue.background = themeBackground;
         }
 
-        return Object.keys(value).reduce((currentValue, key) => {
+        const newScreenValue = Object.keys(value).reduce((currentValue, key) => {
             const fieldDefinition = fields.find((it) => it.name === key) || {};
             const fieldValue = value[key];
             const fieldThemeValue = newThemeValue !== null ? newThemeValue[key] || null : null;
@@ -78,7 +78,6 @@ class ThemeParser {
                 fieldDefinition,
                 fieldValue,
                 fieldThemeValue,
-                themeBackground,
                 themeColors,
                 themeTextSyle,
             );
@@ -91,6 +90,11 @@ class ThemeParser {
                   }
                 : currentValue;
         }, value);
+
+        return newThemeValue !== null ? {
+            ...newThemeValue,
+            ...newScreenValue,
+        } : newScreenValue;
     }
 
     // eslint-disable-next-line class-methods-use-this
