@@ -113,6 +113,13 @@ export const WithTheme = () => (
     <EditorContainer
         defaultValue={{
             theme: defaultTheme,
+        }}
+    />
+);
+export const WithThemeAllScreens = () => (
+    <EditorContainer
+        defaultValue={{
+            theme: defaultTheme,
             components: allScreensStory.components.map((c) => ({
                 ...c,
             })),

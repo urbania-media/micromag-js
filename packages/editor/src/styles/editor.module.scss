@@ -36,6 +36,10 @@
         }
     }
 
+    .center {
+        background-color: $gray-900;
+    }
+
     .preview {
         @extend %fullscreen;
     }

@@ -1,10 +1,11 @@
 import { v1 as uuid } from 'uuid';
 
 const text = {
-    color: { color: '#FFF', alpha: 1 },
-    align: 'left',
-    fontStyle: { bold: false, italic: false, underline: false },
+    color: { color: '#F00', alpha: 0.8 },
+    align: 'center',
+    fontStyle: { bold: true, italic: true, underline: true, transform: 'uppercase' },
     lineHeight: 1.3,
+    letterSpacing: 1,
 };
 
 export const defaultTheme = {
@@ -17,22 +18,22 @@ export const defaultTheme = {
     background: { color: { color: '#0F0', alpha: 1 }, image: null, video: null },
     textStyle: {
         heading1: {
-            fontFamily: 'Helvetica',
+            fontFamily: 'Arial',
             fontSize: 32,
             ...text,
         },
         heading2: {
-            fontFamily: 'Helvetica',
+            fontFamily: 'Arial',
             fontSize: 24,
             ...text,
         },
         heading3: {
-            fontFamily: 'Helvetica',
+            fontFamily: 'Arial',
             fontSize: 20,
             ...text,
         },
         button: {
-            fontFamily: 'Helvetica',
+            fontFamily: 'Arial',
             fontSize: 16,
             fontStyle: { bold: true, italic: false, underline: false },
             ...text,
