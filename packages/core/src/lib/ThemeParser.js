@@ -112,6 +112,7 @@ class ThemeParser {
                               color: innerFieldColor = null,
                           } = fieldTheme[innerFieldName] || {};
 
+                          // Color
                           const colorValue =
                               innerFieldColor !== null
                                   ? {
@@ -121,6 +122,8 @@ class ThemeParser {
                                                 : null,
                                     }
                                   : null;
+
+                          // Text style
                           const textStyleValue =
                               innerFieldTextStyle !== null
                                   ? {
@@ -134,22 +137,20 @@ class ThemeParser {
                                     }
                                   : null;
 
-                          if (colorValue === null && textStyleValue === null) {
-                              return {
-                                  ...newInnerField,
-                                  [innerFieldName]: innerField[innerFieldName],
-                              };
+                          if (
+                              (colorValue === null && textStyleValue === null) ||
+                              !isObject(innerField[innerFieldName])
+                          ) {
+                              return newInnerField;
                           }
 
                           return {
                               ...newInnerField,
-                              [innerFieldName]: !isObject(innerField[innerFieldName])
-                                  ? innerField[innerFieldName]
-                                  : {
-                                        ...colorValue,
-                                        ...innerField[innerFieldName],
-                                        ...textStyleValue,
-                                    },
+                              [innerFieldName]: {
+                                  ...colorValue,
+                                  ...innerField[innerFieldName],
+                                  ...textStyleValue,
+                              },
                           };
                       }, {})
                     : innerField,

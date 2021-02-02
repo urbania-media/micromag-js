@@ -33,7 +33,7 @@ export const defaultTheme = {
             ...text,
         },
         button: {
-            fontFamily: 'Arial',
+            fontFamily: 'Times New Roman',
             fontSize: 16,
             fontStyle: { bold: true, italic: false, underline: false },
             ...text,
