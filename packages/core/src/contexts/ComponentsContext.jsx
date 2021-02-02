@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
+import isString from 'lodash/isString';
 
 import { ComponentsManager } from '../lib';
 
@@ -31,6 +32,9 @@ export const useComponents = (namespace = null, defaultComponents = {}) => {
 };
 
 export const useComponent = (name, defaultComponent = null, namespace = null) => {
+    if (!isString(name)) {
+        return name || defaultComponent;
+    }
     const manager = useComponentsManager(namespace);
     return useMemo(() => manager.getComponent(name) || defaultComponent, [
         manager,

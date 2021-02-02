@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useFieldsManager } from '@micromag/core/contexts';
+import { useFieldsManager, useFieldComponent } from '@micromag/core/contexts';
 
 import styles from '../../styles/forms/settings.module.scss';
 
@@ -35,10 +35,14 @@ const SettingsForm = ({
 }) => {
     const { type = null } = field;
     const fieldsManager = useFieldsManager();
-    const { component: FieldComponent = null, settings } = type !== null ? fieldsManager.getDefinition(type): field;
-    const FieldsComponent = fieldsManager.getComponent('fields');
+    const { component: fieldComponent = null, settings } =
+        type !== null ? fieldsManager.getDefinition(type) : field;
+    const FieldComponent = useFieldComponent(fieldComponent);
+    const FieldsComponent = useFieldComponent('fields');
     const SettingsComponent =
-        FieldComponent !== null ? FieldComponent.settingsComponent || FieldsComponent : FieldsComponent;
+        FieldComponent !== null
+            ? FieldComponent.settingsComponent || FieldsComponent
+            : FieldsComponent;
 
     const onSettingsChange = useCallback(
         (newSettingsValue) => {
