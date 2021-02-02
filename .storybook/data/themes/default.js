@@ -28,6 +28,11 @@ export default {
             fontFamily: 'Helvetica',
             color: '#F0F',
         },
+        button: {
+            fontSize: 16,
+            fontFamily: 'Lato',
+            color: '#F0F',
+        },
     },
     components: [
         {
