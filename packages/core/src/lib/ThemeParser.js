@@ -60,7 +60,7 @@ class ThemeParser {
 
         const newThemeValue = themeValue === null && themeBackground !== null ? {} : themeValue;
 
-        if (typeof newThemeValue.background !== 'undefined' && themeBackground !== null) {
+        if (themeBackground !== null && typeof newThemeValue.background !== 'undefined') {
             newThemeValue.background = {
                 ...themeBackground,
                 ...newThemeValue.background,
