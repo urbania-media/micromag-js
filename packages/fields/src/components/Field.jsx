@@ -81,7 +81,7 @@ const Field = ({
         component: providedComponent,
     };
     const FieldComponent = useFieldComponent(fieldComponent);
-    console.log(fieldsManager, fieldComponent, FieldComponent);
+    // console.log(fieldsManager, fieldComponent, FieldComponent);
     const isFields = FieldComponent === FieldsComponent;
 
     const gotoForm = useCallback((form) => gotoFieldForm(name, form), [name, gotoFieldForm]);
