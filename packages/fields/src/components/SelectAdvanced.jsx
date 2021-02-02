@@ -28,7 +28,6 @@ const defaultProps = {
 
 const SelectAdvancedField = ({ value, options, disabled, className, onChange, ...props }) => {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
-
     const onChangeOption = useCallback(
         (newValue) => {
             if (onChange !== null) {
@@ -37,7 +36,6 @@ const SelectAdvancedField = ({ value, options, disabled, className, onChange, ..
         },
         [onChange],
     );
-
     const optionValue = useMemo(
         () => finalOptions.find((opt) => (opt.value !== null ? isEqual(value, opt.value) : false)),
         [value, options],
