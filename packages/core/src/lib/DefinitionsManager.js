@@ -1,20 +1,12 @@
 import EventEmitter from 'wolfy87-eventemitter';
 import isArray from 'lodash/isArray';
+import uniqBy from 'lodash/uniqBy';
 
 class DefinitionsManager extends EventEmitter {
     constructor(definitions = []) {
         super();
 
-        this.definitions =
-            definitions !== null
-                ? definitions.reduce(
-                      (definitionsMap, definition) => ({
-                          ...definitionsMap,
-                          [definition.id]: definition,
-                      }),
-                      {},
-                  )
-                : null;
+        this.definitions = definitions || [];
     }
 
     addDefinition(definition) {
@@ -23,14 +15,7 @@ class DefinitionsManager extends EventEmitter {
     }
 
     addDefinitions(definitions) {
-        this.definitions = definitions.reduce(
-            (definitionsMap, definition) => ({
-                ...definitionsMap,
-                [definition.id]: definition,
-            }),
-            this.definitions || {},
-        );
-
+        this.definitions = uniqBy([...definitions, ...this.definitions], (it) => it.id);
         this.emit('change');
 
         return this;
@@ -41,15 +26,18 @@ class DefinitionsManager extends EventEmitter {
     }
 
     getDefinition(id) {
-        return (this.definitions || {})[id] || null;
+        if (id === null) {
+            return null;
+        }
+        return this.definitions.find((it) => it.id === id) || null;
     }
 
     getDefinitions() {
-        return Object.keys(this.definitions || {}).map((id) => this.definitions[id]);
+        return this.definitions;
     }
 
     hasDefinition(id) {
-        return typeof (this.definitions || {})[id] !== 'undefined';
+        return this.getDefinition(id) !== null;
     }
 
     getComponent(id) {
@@ -58,11 +46,14 @@ class DefinitionsManager extends EventEmitter {
     }
 
     getComponents() {
-        return Object.keys(this.definitions || {}).reduce(
-            (allComponents, id) => ({
-                ...allComponents,
-                [id]: this.definitions[id].component,
-            }),
+        return this.definitions.reduce(
+            (allComponents, { id, component = null }) =>
+                component !== null
+                    ? {
+                          ...allComponents,
+                          [id]: component,
+                      }
+                    : allComponents,
             {},
         );
     }

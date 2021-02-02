@@ -1,8 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FieldsProvider as BaseFieldsProvider } from '@micromag/core/contexts';
+import {
+    FIELDS_NAMESPACE,
+    ComponentsProvider,
+    FieldsProvider as BaseFieldsProvider,
+} from '@micromag/core/contexts';
 
+import * as components from './components/index';
 import manager from './manager';
 
 const propTypes = {
@@ -12,7 +17,9 @@ const propTypes = {
 const defaultProps = {};
 
 const FieldsProvider = ({ children }) => (
-    <BaseFieldsProvider manager={manager}>{children}</BaseFieldsProvider>
+    <ComponentsProvider namespace={FIELDS_NAMESPACE} components={components}>
+        <BaseFieldsProvider manager={manager}>{children}</BaseFieldsProvider>
+    </ComponentsProvider>
 );
 
 FieldsProvider.propTypes = propTypes;

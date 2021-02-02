@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useFieldsManager } from '@micromag/core/contexts';
+import { useFieldsManager, useFieldComponent } from '@micromag/core/contexts';
 
 import FieldRow from './FieldRow';
 
@@ -69,7 +69,7 @@ const Field = ({
     const fieldsManager = useFieldsManager();
     const FieldsComponent = fieldsManager.getComponent('fields');
     const {
-        component: FieldComponent = FieldsComponent,
+        component: fieldComponent = FieldsComponent,
         fields = providedFields,
         settings = null,
         withoutLabel = false,
@@ -80,6 +80,8 @@ const Field = ({
     } = (type !== null ? fieldsManager.getDefinition(type) || null : null) || {
         component: providedComponent,
     };
+    const FieldComponent = useFieldComponent(fieldComponent);
+    console.log(fieldsManager, fieldComponent, FieldComponent);
     const isFields = FieldComponent === FieldsComponent;
 
     const gotoForm = useCallback((form) => gotoFieldForm(name, form), [name, gotoFieldForm]);

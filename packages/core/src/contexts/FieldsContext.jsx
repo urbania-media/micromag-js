@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, useMemo, useState, useEffect } from 'react';
+import React, { useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
+import uniqBy from 'lodash/uniqBy';
+import isString from 'lodash/isString';
 
 import { ComponentsProvider, FIELDS_NAMESPACE } from './ComponentsContext';
 import { FieldsManager, PropTypes as MicromagPropTypes } from '../lib';
@@ -27,27 +29,31 @@ const defaultProps = {
 
 export const FieldsProvider = ({ fields, manager, children }) => {
     const previousManager = useFieldsManager() || null;
+
     const finalManager = useMemo(() => {
-        if (previousManager !== null) {
-            return previousManager;
-        }
-        return manager !== null ? manager : new FieldsManager(fields);
-    }, [manager, fields, previousManager]);
-    const initialComponents = useMemo(() => finalManager.getComponents(), [finalManager]);
-    const [components, setComponents] = useState(initialComponents);
-    useEffect(() => {
-        const onChange = () => setComponents(finalManager.getComponents());
-        finalManager.on('change', onChange);
-        return () => {
-            finalManager.off('change', onChange);
-        };
-    }, [finalManager, setComponents]);
-    useEffect(() => {
-        if (previousManager !== null) {
-            previousManager.addDefinitions(manager !== null ? manager.getDefinitions() : fields);
-            setComponents(previousManager.getComponents());
-        }
+        const newFields = uniqBy(
+            [
+                ...(fields || []),
+                ...(manager !== null ? manager.getDefinitions() : []),
+                ...(previousManager !== null ? previousManager.getDefinitions() : []),
+            ],
+            ({ id }) => id,
+        ).reverse();
+        return new FieldsManager(newFields);
     }, [previousManager, manager, fields]);
+
+    const components = useMemo(() => {
+        const newComponents = finalManager.getComponents();
+        return Object.keys(newComponents).reduce((map, id) => {
+            const component = newComponents[id];
+            return isString(component)
+                ? map
+                : {
+                      ...map,
+                      [id]: component,
+                  };
+        }, {});
+    }, [finalManager]);
 
     return (
         <FieldsContext.Provider value={finalManager}>

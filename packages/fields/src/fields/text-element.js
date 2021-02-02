@@ -1,8 +1,6 @@
-import TextElement from '../components/TextElement';
-
 export default {
     id: 'text-element',
-    component: TextElement,
+    component: 'text-element',
     settings: [
         {
             name: 'textStyle',

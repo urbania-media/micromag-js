@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 import { MemoryRouter } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import { ScreensProvider } from '@micromag/screens';
-import { FieldsProvider } from '@micromag/fields';
+import fieldsManager from '@micromag/fields';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     GoogleMapsClientProvider,
     GoogleKeysProvider,
     RoutesProvider,
     TrackingProvider,
+    FieldsProvider,
 } from '@micromag/core/contexts';
 
 import * as ViewerPropTypes from '../lib/PropTypes';
@@ -72,7 +73,7 @@ const ViewerContainer = ({
     const content = (
         <GoogleKeysProvider apiKey={googleApiKey}>
             <GoogleMapsClientProvider>
-                <FieldsProvider>
+                <FieldsProvider manager={fieldsManager}>
                     <ScreensProvider>
                         <TrackingProvider variables={finalTrackingVariables}>
                             {withoutRouter ? (
