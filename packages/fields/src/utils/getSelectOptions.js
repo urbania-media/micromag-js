@@ -1,7 +1,7 @@
 import isObject from 'lodash/isObject';
 
-const getSelectOptions = options =>
-    options.map(it =>
+const getSelectOptions = (options) =>
+    options.map((it) =>
         isObject(it)
             ? it
             : {

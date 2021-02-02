@@ -3,6 +3,10 @@ import React, { useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Select from 'react-select';
+import isString from 'lodash/isString';
+import isNumber from 'lodash/isNumber';
+import isEqual from 'lodash/isEqual';
+
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import { selectTheme } from '../utils/selectTheme';
@@ -26,9 +30,25 @@ const defaultProps = {
 
 const SelectAdvancedField = ({ value, options, disabled, className, onChange, ...props }) => {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
+
     const onChangeOption = useCallback(
-        (newValue) => (onChange !== null ? onChange(newValue) : null),
+        (newValue) => {
+            if (onChange !== null) {
+                onChange(newValue !== null && newValue.value ? newValue.value : null);
+            }
+        },
         [onChange],
+    );
+
+    const optionValue = useMemo(
+        () =>
+            finalOptions.find((opt) => {
+                if ((isString(value) || isNumber(value)) && opt.label !== null) {
+                    return opt.label === value;
+                }
+                return isEqual(value, opt.value);
+            }),
+        [value, options],
     );
 
     return (
@@ -38,8 +58,9 @@ const SelectAdvancedField = ({ value, options, disabled, className, onChange, ..
                     [className]: className !== null,
                 },
             ])}
+            isClearable
             {...props}
-            value={value || ''}
+            value={optionValue || value || null}
             options={finalOptions}
             disabled={disabled}
             onChange={onChangeOption}

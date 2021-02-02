@@ -13,13 +13,15 @@ export default {
 const props = {
     name: 'heading1',
     options: [
-        { value: { coco: 1 }, label: 'Un label' },
+        { value: { coco: 1, lime: 2 }, label: 'Un label' },
+        { value: { coco: 3, lime: 2 }, label: 'Un label X' },
         { value: { coco: 1 }, label: 'Un autre label' },
     ],
 };
 
 const SelectFieldContainer = () => {
     const [value, setValue] = useState(null);
+    console.log('value', value);
     return <SelectAdvanced value={value} {...props} onChange={setValue} />;
 };
 
