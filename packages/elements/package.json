@@ -1,6 +1,6 @@
 {
     "name": "@micromag/elements",
-    "version": "0.2.106",
+    "version": "0.2.108",
     "description": "",
     "keywords": [
         "javascript"
@@ -74,7 +74,7 @@
         "@micromag/element-map": "^0.2.106",
         "@micromag/element-media-controls": "^0.2.106",
         "@micromag/element-quote": "^0.2.106",
-        "@micromag/element-scroll": "^0.2.106",
+        "@micromag/element-scroll": "^0.2.108",
         "@micromag/element-stack": "^0.2.106",
         "@micromag/element-text": "^0.2.106",
         "@micromag/element-text-input": "^0.2.106",
