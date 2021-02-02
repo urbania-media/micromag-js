@@ -16,12 +16,12 @@ const props = {
         { value: { coco: 1, lime: 2 }, label: 'Un label' },
         { value: { coco: 3, lime: 2 }, label: 'Un label X' },
         { value: { coco: 1 }, label: 'Un autre label' },
+        'lol',
     ],
 };
 
 const SelectFieldContainer = () => {
     const [value, setValue] = useState(null);
-    console.log('value', value);
     return <SelectAdvanced value={value} {...props} onChange={setValue} />;
 };
 

@@ -3,8 +3,6 @@ import React, { useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Select from 'react-select';
-import isString from 'lodash/isString';
-import isNumber from 'lodash/isNumber';
 import isEqual from 'lodash/isEqual';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -41,13 +39,7 @@ const SelectAdvancedField = ({ value, options, disabled, className, onChange, ..
     );
 
     const optionValue = useMemo(
-        () =>
-            finalOptions.find((opt) => {
-                if ((isString(value) || isNumber(value)) && opt.label !== null) {
-                    return opt.value === value;
-                }
-                return isEqual(value, opt.value);
-            }),
+        () => finalOptions.find((opt) => (opt.value !== null ? isEqual(value, opt.value) : false)),
         [value, options],
     );
 
