@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-gallery-feed",
-    "version": "0.2.109",
+    "version": "0.2.110",
     "description": "",
     "keywords": [
         "javascript"
@@ -49,15 +49,15 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.12.5",
-        "@micromag/core": "^0.2.109",
-        "@micromag/element-background": "^0.2.109",
-        "@micromag/element-container": "^0.2.109",
-        "@micromag/element-image": "^0.2.109",
-        "@micromag/element-layout": "^0.2.109",
-        "@micromag/element-scroll": "^0.2.109",
-        "@micromag/element-stack": "^0.2.109",
-        "@micromag/element-text": "^0.2.109",
-        "@micromag/transforms": "^0.2.109",
+        "@micromag/core": "^0.2.110",
+        "@micromag/element-background": "^0.2.110",
+        "@micromag/element-container": "^0.2.110",
+        "@micromag/element-image": "^0.2.110",
+        "@micromag/element-layout": "^0.2.110",
+        "@micromag/element-scroll": "^0.2.110",
+        "@micromag/element-stack": "^0.2.110",
+        "@micromag/element-text": "^0.2.110",
+        "@micromag/transforms": "^0.2.110",
         "classnames": "^2.2.6",
         "lodash": "^4.17.20",
         "prop-types": "^15.7.2",
