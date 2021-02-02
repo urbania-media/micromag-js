@@ -203,6 +203,7 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
     }, [setDeleteScreenModalOpened]);
 
     const dropdownItems = [
+        // @TODO duplicate listItem disabled because of uppy bug on Images field
         !isTheme && !currentFieldListItems
             ? {
                   id: 'duplicate',

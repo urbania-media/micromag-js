@@ -101,7 +101,7 @@ const Timeline = ({
         : 0;
 
     const [imagesLoaded, setImagesLoaded] = useState(0);
-    const ready = imagesLoaded === imagesCount;
+    const ready = imagesLoaded >= imagesCount;
     const transitionsPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
     const scrollingDisabled = transitionDisabled || !current;
@@ -304,6 +304,7 @@ const Timeline = ({
                     [className]: className !== null,
                     [styles.isPlaceholder]: isPlaceholder,
                     [styles[`${bulletShape}BulletShape`]]: bulletShape !== null,
+                    [styles.withoutLines]: itemsCount < 2
                 },
             ])}
             data-screen-ready={ready}

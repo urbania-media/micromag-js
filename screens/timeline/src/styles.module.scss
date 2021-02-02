@@ -110,4 +110,10 @@
             border-radius: 50%;
         }
     }
+
+    &.withoutLines {
+        .timeline {
+            visibility: hidden;
+        }
+    }
 }

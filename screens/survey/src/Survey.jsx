@@ -196,15 +196,24 @@ const SurveyScreen = ({
     const [ready, setReady] = useState(false);
     useEffect(() => {
         let maxWidth = 0;
-        buttonsRefs.current.forEach((button, buttonI) => {
-            const label = labelsRefs.current[buttonI];
-            const borderWidth = button.offsetWidth - button.clientWidth;
-            const totalWidth = borderWidth + label.offsetWidth + 2;
-            maxWidth = Math.max(maxWidth, totalWidth);
-            setButtonMaxWidth(maxWidth);
+
+        if (answers === null || isPlaceholder) {
+            return;
+        }
+
+        answers.forEach((answer, answerI) => {
+            const button = buttonsRefs.current[answerI];
+            const label = labelsRefs.current[answerI];
+
+            if (typeof button !== 'undefined' && button !== null) {
+                const borderWidth = button.offsetWidth - button.clientWidth;
+                const totalWidth = borderWidth + label.offsetWidth + 2;
+                maxWidth = Math.max(maxWidth, totalWidth);
+                setButtonMaxWidth(maxWidth);
+            }
         });
         setReady(true);
-    }, [answers, width, height, setButtonMaxWidth, finalTransitionDuration]);
+    }, [answers, width, height, setButtonMaxWidth, finalTransitionDuration, isPlaceholder]);
 
     items.push(
         <div key="answers" className={styles.answers}>

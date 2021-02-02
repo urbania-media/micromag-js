@@ -79,8 +79,8 @@ const Scroll = ({
     );
 
     useEffect(() => {
-        if (scrolleeHeight > 0 && scrollableHeight > 0) {
-            setWithArrow(Math.round(scrolleeHeight) > Math.round(scrollableHeight) && !disabled);
+        if (scrolleeHeight > 0 && scrollableHeight > 0 && !disabled) {
+            setWithArrow(Math.round(scrolleeHeight) > Math.round(scrollableHeight));
         }
     }, [scrollableHeight, scrolleeHeight, setWithArrow, disabled]);
 
@@ -106,9 +106,11 @@ const Scroll = ({
                     {children}
                 </div>
             </div>
-            <div className={styles.arrowContainer}>
-                <FontAwesomeIcon className={styles.arrow} icon={faArrowDown} />
-            </div>
+            {!disabled ? (
+                <div className={styles.arrowContainer}>
+                    <FontAwesomeIcon className={styles.arrow} icon={faArrowDown} />
+                </div>
+            ) : null}
         </div>
     );
 };

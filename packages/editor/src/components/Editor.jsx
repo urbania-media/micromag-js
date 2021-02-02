@@ -220,6 +220,7 @@ const Editor = ({
                                 ])}
                             >
                                 <EditorForm
+                                    key={screenId}
                                     value={story}
                                     isTheme={isTheme}
                                     onChange={onStoryChange}
