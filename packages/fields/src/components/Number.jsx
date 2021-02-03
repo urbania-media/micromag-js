@@ -1,5 +1,4 @@
-/* eslint-disable react/jsx-props-no-spreading, jsx-a11y/control-has-associated-label */
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -52,32 +51,55 @@ const NumberField = ({
     className,
     onChange,
 }) => {
-    const dataListId = useMemo(
-        () => (dataList !== null ? `${name}-${new Date().getTime()}` : null),
-        [dataList, name],
-    );
-    const hasDataList = dataList !== null;
+    const parseValue = useCallback((newValue) => {
+        let parsedValue = null;
+        if (typeof newValue === 'number' || newValue.length > 0) {
+            parsedValue = float ? parseFloat(newValue) : parseInt(newValue, 10);
+        }
+        return parsedValue;
+    });
+
     const onInputChange = useCallback(
         (e) => {
-            const newValue = e.currentTarget.value;
-
-            let parsedValue = null;
-            if (newValue.length > 0) {
-                parsedValue = float ? parseFloat(newValue) : parseInt(newValue, 10);
-            }
             if (onChange !== null) {
-                onChange(parsedValue);
+                onChange(parseValue(e.currentTarget.value));
             }
         },
-        [onChange, hasDataList],
+        [onChange],
+    );
+
+    // Datalist
+
+    const hasDataList = dataList !== null;
+    const [dataListActive, setDataListActive] = useState(false);
+
+    const onInputFocus = useCallback(() => {
+        if (hasDataList) {
+            setDataListActive(true);
+        }
+    }, [setDataListActive, hasDataList]);
+
+    const onInputBlur = useCallback(() => {
+        if (hasDataList && dataListActive) {
+            setDataListActive(false);
+        }
+    }, [setDataListActive, hasDataList, dataListActive]);
+
+    const onDataListClick = useCallback(
+        (dataListValue) => {
+            if (onChange !== null) {
+                onChange(parseValue(dataListValue));
+                setDataListActive(false);
+            }
+        },
+        [onChange, setDataListActive],
     );
 
     return (
-        <>
+        <div className={styles.container}>
             <input
                 type="number"
                 className={classNames([
-                    styles.container,
                     'form-control',
                     {
                         // 'w-auto': size !== null,
@@ -85,23 +107,38 @@ const NumberField = ({
                         [className]: className !== null,
                     },
                 ])}
+                name={name}
                 value={value || ''}
                 min={min}
                 max={max}
                 size={size}
                 step={float ? floatStep : step}
-                list={dataListId}
                 autoComplete={autoComplete ? 'on' : 'off'}
                 onChange={onInputChange}
+                onFocus={onInputFocus}
+                onBlur={onInputBlur}
             />
-            {hasDataList ? (
-                <datalist id={dataListId}>
+            {hasDataList && dataListActive ? (
+                <ul className={styles.dataListItems}>
                     {dataList.map((dataListValue) => (
-                        <option key={`data-list-${dataListValue}`} value={dataListValue} />
+                        <li key={`data-list-${dataListValue}`} className={styles.dataListItem}>
+                            <button
+                                className={styles.dataListItemButton}
+                                type="button"
+                                onTouchStart={() => {
+                                    onDataListClick(dataListValue);
+                                }}
+                                onMouseDown={() => {
+                                    onDataListClick(dataListValue);
+                                }}
+                            >
+                                {dataListValue}
+                            </button>
+                        </li>
                     ))}
-                </datalist>
+                </ul>
             ) : null}
-        </>
+        </div>
     );
 };
 
