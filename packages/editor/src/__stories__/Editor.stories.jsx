@@ -112,6 +112,7 @@ export const FaceAFace = () => <EditorContainer defaultValue={faceAFaceStory} />
 export const WithTheme = () => (
     <EditorContainer
         defaultValue={{
+            title: 'With theme',
             theme: defaultTheme,
         }}
     />
@@ -119,6 +120,7 @@ export const WithTheme = () => (
 export const WithThemeAllScreens = () => (
     <EditorContainer
         defaultValue={{
+            title: 'With theme (all screens)',
             theme: defaultTheme,
             components: allScreensStory.components.map((c) => ({
                 ...c,
@@ -131,6 +133,7 @@ export const WithViewerTheme = () => (
     <EditorContainer
         viewerTheme={viewerTheme}
         defaultValue={{
+            title: 'With viewer theme',
             theme: defaultTheme,
             components: allScreensStory.components.map((c) => ({
                 ...c,
