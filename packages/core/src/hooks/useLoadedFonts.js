@@ -51,9 +51,8 @@ const useLoadedFonts = (fonts) => {
         }, null);
 
         const hasConfig = config !== null;
-        setLoaded(!hasConfig);
 
-        if (config !== null) {
+        if (hasConfig) {
             WebFont.load({
                 ...config,
                 timeout: 3000,
@@ -62,6 +61,8 @@ const useLoadedFonts = (fonts) => {
                 fontactive: (name) => addFontActive(name),
                 fontinactive: (name) => removeFontLoading(name),
             });
+        } else {
+            setLoaded(true);
         }
     }, [fonts, setLoaded]);
     return { loaded };

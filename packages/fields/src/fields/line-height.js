@@ -14,6 +14,7 @@ export default {
         iconName: 'line-height',
         prefix: 'fas',
     },
+    dataList: [1, 1.1, 1.2, 1.3, 1.4, 1.5, 2],
     float: true,
     size: 4,
 };
