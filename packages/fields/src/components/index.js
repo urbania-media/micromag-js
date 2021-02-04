@@ -15,6 +15,7 @@ export { default as ContainerStyle } from './ContainerStyle';
 export { default as Element } from './Element';
 export { default as ElementList } from './ElementList';
 export { default as Fields } from './Fields';
+export { default as FieldWithForm } from './FieldWithForm';
 export { default as Font } from './Font';
 export { default as FontFamily } from './FontFamily';
 export { default as Fonts } from './Fonts';
