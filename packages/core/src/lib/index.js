@@ -9,4 +9,5 @@ export { default as MediasParser } from './MediasParser';
 export { default as ScreensManager } from './ScreensManager';
 export { default as StoryParser } from './StoryParser';
 export { default as ThemeParser } from './ThemeParser';
+export { default as FontsParser } from './FontsParser';
 export { default as Tracking } from './Tracking';

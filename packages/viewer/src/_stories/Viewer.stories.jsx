@@ -17,7 +17,10 @@ const faceAFaceProps = {
     fullscreen: true,
 };
 
-const twoScreensProps = {...faceAFaceProps, story: {...faceAFace.story, components: faceAFace.components.slice(0, 2) }}
+const twoScreensProps = {
+    ...faceAFaceProps,
+    story: { ...faceAFace.story, components: faceAFace.components.slice(0, 2) },
+};
 
 export default {
     component: Viewer,
@@ -48,3 +51,42 @@ export const AllScreens = () => <Viewer {...props} />;
 export const FaceAFace = () => <Viewer {...faceAFaceProps} />;
 export const Empty = () => <Viewer fullscreen />;
 export const TwoScreens = () => <Viewer {...twoScreensProps} />;
+export const CustomFonts = () => (
+    <Viewer
+        story={{
+            components: [
+                {
+                    id: '1',
+                    type: 'title',
+                    layout: 'middle',
+                    title: {
+                        body: 'Un titre',
+                        textStyle: {
+                            align: 'center',
+                            fontStyle: { bold: true },
+                            fontFamily: {
+                                type: 'custom',
+                                name: 'CustomFont1',
+                                media: 'media://1',
+                                families: [
+                                    'CustomFontBold'
+                                ]
+                            },
+                        },
+                    },
+                },
+            ],
+            medias: {
+                'media://1': {
+                    type: 'font',
+                    url: 'lien/vers/font.ttf',
+                    metadata: {
+                        // ...
+                    }
+                }
+            }
+        }}
+        screenId="1"
+        fullscreen
+    />
+);

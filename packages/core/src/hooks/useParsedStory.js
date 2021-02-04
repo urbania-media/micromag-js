@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { useScreensManager, useFieldsManager } from '../contexts';
 import { StoryParser } from '../lib';
 
-const useParsedStory = (story, { disabled = false, withTheme = true, withMedias = true } = {}) => {
+const useParsedStory = (story, { disabled = false, withTheme = true, withMedias = true, withFonts = true } = {}) => {
     const screensManager = useScreensManager();
     const fieldsManager = useFieldsManager();
     const parser = useMemo(() => new StoryParser({ screensManager, fieldsManager }), [
@@ -14,8 +14,8 @@ const useParsedStory = (story, { disabled = false, withTheme = true, withMedias 
         if (disabled) {
             return story;
         }
-        return parser.parse(story, { withMedias, withTheme });
-    }, [parser, disabled, withMedias, withTheme, story]);
+        return parser.parse(story, { withMedias, withTheme, withFonts });
+    }, [parser, disabled, withMedias, withTheme, withFonts, story]);
     return newStory;
 };
 

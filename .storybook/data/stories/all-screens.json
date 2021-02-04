@@ -25,7 +25,7 @@
             },
             "text": {
                 "fontSize": 16,
-                "fontFamily": "Helvetica",
+                "fontFamily": "Arial",
                 "color": "#F0F"
             }
         },
@@ -95,7 +95,7 @@
                 "textStyle": {
                     "color": "#F0F",
                     "fontSize": 16,
-                    "fontFamily": "Helvetica"
+                    "fontFamily": "Arial"
                 }
             },
             "transitions": {
@@ -323,7 +323,7 @@
                 "textStyle": {
                     "color": "#F0F",
                     "fontSize": 16,
-                    "fontFamily": "Helvetica"
+                    "fontFamily": "Arial"
                 }
             },
             "transitions": {
@@ -372,7 +372,7 @@
                 "textStyle": {
                     "color": "#F0F",
                     "fontSize": 16,
-                    "fontFamily": "Helvetica"
+                    "fontFamily": "Arial"
                 },
                 "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit"
             },
@@ -463,7 +463,7 @@
                 "textStyle": {
                     "color": "#F0F",
                     "fontSize": 16,
-                    "fontFamily": "Helvetica"
+                    "fontFamily": "Arial"
                 },
                 "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less I had the story bit by bit from various people and as generally happens in such cases"
             },
@@ -597,7 +597,7 @@
                 "textStyle": {
                     "color": "#F0F",
                     "fontSize": 16,
-                    "fontFamily": "Helvetica"
+                    "fontFamily": "Arial"
                 }
             },
             "transitions": {
@@ -621,7 +621,7 @@
                 "textStyle": {
                     "color": "#F0F",
                     "fontSize": 16,
-                    "fontFamily": "Helvetica"
+                    "fontFamily": "Arial"
                 }
             },
             "transitions": {
@@ -789,7 +789,7 @@
                 "textStyle": {
                     "color": "#F0F",
                     "fontSize": 16,
-                    "fontFamily": "Helvetica"
+                    "fontFamily": "Arial"
                 }
             },
             "background": {
@@ -819,7 +819,7 @@
                 "textStyle": {
                     "color": "#F0F",
                     "fontSize": 16,
-                    "fontFamily": "Helvetica"
+                    "fontFamily": "Arial"
                 }
             },
             "background": {

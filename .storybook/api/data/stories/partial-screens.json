@@ -9,7 +9,7 @@
             "heading1": { "fontSize": 36, "fontFamily": "Courier" },
             "heading2": { "fontSize": 24, "fontFamily": "Courier" },
             "heading3": { "fontSize": 18, "fontFamily": "Courier" },
-            "text": { "fontSize": 16, "fontFamily": "Helvetica", "color": "#F0F" }
+            "text": { "fontSize": 16, "fontFamily": "Arial", "color": "#F0F" }
         },
         "components": [
             {

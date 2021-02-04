@@ -86,7 +86,7 @@
                 "body": "<span>MON TITRE 4.0</span>",
                 "textStyle": {
                     "color": { "color": "#d0021b", "alpha": 1 },
-                    "fontFamily": "Helvetica",
+                    "fontFamily": "Arial",
                     "fontSize": 32,
                     "align": "center",
                     "fontStyle": { "bold": true, "italic": false, "underline": false }
@@ -157,7 +157,7 @@
                 "body": "<p>Un titre en dessous de l'image</p>",
                 "textStyle": {
                     "color": { "color": "#d0021b", "alpha": 1 },
-                    "fontFamily": "Helvetica",
+                    "fontFamily": "Arial",
                     "fontSize": 32,
                     "align": "center",
                     "fontStyle": { "bold": true, "italic": false, "underline": false }
@@ -192,7 +192,7 @@
                 "body": "<p>Un titre en dessous de l'image\u2026 mais pas tjrs</p>",
                 "textStyle": {
                     "color": { "color": "#d0021b", "alpha": 1 },
-                    "fontFamily": "Helvetica",
+                    "fontFamily": "Arial",
                     "fontSize": 32,
                     "align": "center",
                     "fontStyle": { "bold": true, "italic": false, "underline": false }
@@ -220,7 +220,7 @@
                 "body": "<p>Un titre en dessous de l'image\u2026 mais pas tjrs</p>",
                 "textStyle": {
                     "color": { "color": "#d0021b", "alpha": 1 },
-                    "fontFamily": "Helvetica",
+                    "fontFamily": "Arial",
                     "fontSize": 32,
                     "align": "center",
                     "fontStyle": { "bold": true, "italic": false, "underline": false }
@@ -289,7 +289,7 @@
                 "body": "<span>Ma carte</span>",
                 "textStyle": {
                     "color": { "color": "#d0021b", "alpha": 1 },
-                    "fontFamily": "Helvetica",
+                    "fontFamily": "Arial",
                     "fontSize": 32,
                     "align": "center",
                     "fontStyle": { "bold": true, "italic": false, "underline": false }

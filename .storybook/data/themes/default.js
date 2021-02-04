@@ -25,7 +25,7 @@ export default {
         },
         text: {
             fontSize: 16,
-            fontFamily: 'Helvetica',
+            fontFamily: 'Arial',
             color: '#F0F',
         },
         button: {

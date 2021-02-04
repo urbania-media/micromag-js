@@ -69,11 +69,16 @@ class MediasParser {
                 ...(type !== null ? this.fieldsManager.getDefinition(type) : null),
                 ...field,
             };
-            const { fields: subFields = [], itemsField = null } = fieldDefinition;
+
+            // also check settings fields
+            const { fields: subFields = [], itemsField = null, settings = [] } = fieldDefinition;
+
             return [
                 ...patterns,
                 ...(MediasParser.fieldIsMedia(fieldDefinition) ? [new RegExp(`^${path}$`)] : []),
+                ...(MediasParser.fieldIsFontFamily(fieldDefinition) ? [new RegExp(`^${path}\\.media$`)] : []),
                 ...this.getMediaFieldsPattern(subFields, path),
+                ...this.getMediaFieldsPattern(settings, path),
                 ...(itemsField !== null
                     ? this.getMediaFieldsPattern([itemsField], `${path}\\.[0-9]+`)
                     : []),
@@ -83,6 +88,10 @@ class MediasParser {
 
     static fieldIsMedia({ media = false }) {
         return media;
+    }
+
+    static fieldIsFontFamily({ id = null }) {
+        return id === 'font-family';
     }
 
     static replacePathsWithMedias(data, medias, patterns, keyPrefix = null) {

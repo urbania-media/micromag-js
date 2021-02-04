@@ -10,14 +10,14 @@
         "background": { "color": { "color": "#9b9b9b", "alpha": 1 }, "image": null },
         "textStyle": {
             "heading1": {
-                "fontFamily": "Helvetica",
+                "fontFamily": "Arial",
                 "color": { "color": "#d0021b", "alpha": 1 },
                 "fontSize": 32,
                 "align": "center",
                 "fontStyle": { "bold": true, "italic": false, "underline": false }
             },
             "heading2": {
-                "fontFamily": "Helvetica",
+                "fontFamily": "Arial",
                 "fontSize": 20,
                 "color": { "color": "#d0021b", "alpha": 1 }
             },
@@ -104,7 +104,7 @@
                 "body": "<p>MON TITRE</p>",
                 "textStyle": {
                     "color": { "color": "#d0021b", "alpha": 1 },
-                    "fontFamily": "Helvetica",
+                    "fontFamily": "Arial",
                     "fontSize": 32,
                     "align": "center",
                     "fontStyle": { "bold": true, "italic": false, "underline": false }
@@ -175,7 +175,7 @@
                 "body": "<p>Un titre en dessous de l'image</p>",
                 "textStyle": {
                     "color": { "color": "#d0021b", "alpha": 1 },
-                    "fontFamily": "Helvetica",
+                    "fontFamily": "Arial",
                     "fontSize": 32,
                     "align": "center",
                     "fontStyle": { "bold": true, "italic": false, "underline": false }
@@ -210,7 +210,7 @@
                 "body": "<p>Un titre en dessous de l'image\u2026 mais pas tjrs</p>",
                 "textStyle": {
                     "color": { "color": "#d0021b", "alpha": 1 },
-                    "fontFamily": "Helvetica",
+                    "fontFamily": "Arial",
                     "fontSize": 32,
                     "align": "center",
                     "fontStyle": { "bold": true, "italic": false, "underline": false }
