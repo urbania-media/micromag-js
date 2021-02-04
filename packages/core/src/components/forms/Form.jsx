@@ -38,6 +38,8 @@ const propTypes = {
     onMessage: PropTypes.func,
     onCancel: PropTypes.func,
     onCancelHref: PropTypes.string,
+    onOpenFieldForm: PropTypes.func,
+    onCloseFieldForm: PropTypes.func,
     className: PropTypes.string,
     fieldsClassName: PropTypes.string,
     actionsClassName: PropTypes.string,
@@ -64,6 +66,8 @@ const defaultProps = {
     onMessage: null,
     onCancel: null,
     onCancelHref: null,
+    onOpenFieldForm: null,
+    onCloseFieldForm: null,
     className: null,
     fieldsClassName: null,
     actionsClassName: null,
@@ -89,6 +93,8 @@ const Form = ({
     onMessage,
     onCancel,
     onCancelHref,
+    onOpenFieldForm,
+    onCloseFieldForm,
     className,
     fieldsClassName,
     actionsClassName,
@@ -152,6 +158,9 @@ const Form = ({
         (field, formName = null) => {
             const fieldKey = `${field}${formName !== null ? `:${formName}` : ''}`;
             setFieldPaths([...fieldPaths, fieldKey]);
+            if (onOpenFieldForm !== null) {
+                onOpenFieldForm();
+            }
         },
         [fieldPaths, setFieldPaths],
     );
@@ -160,6 +169,9 @@ const Form = ({
         const newFields = [...fieldPaths];
         newFields.pop();
         setFieldPaths([...newFields]);
+        if (onCloseFieldForm !== null) {
+            onCloseFieldForm();
+        }
     }, [fieldPaths, setFieldPaths]);
 
     // The last path
