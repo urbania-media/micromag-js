@@ -87,7 +87,7 @@ const Viewer = ({
 
     // Fonts
     const finalFonts = fonts || [];
-    const { loaded: fontsLoaded } = useLoadedFonts(finalFonts);
+    const { loaded: fontsLoaded } = useLoadedFonts(finalFonts);// eslint-disable-line
 
     const shareUrl = `${basePath}/${screenId}`;
     const { description = null, shareImage = null, favIcon = null } =
@@ -345,7 +345,7 @@ const Viewer = ({
 
     const withoutScreensTransforms = isStatic || isCapture;
     const hasSize = screenWidth > 0 && screenHeight > 0;
-    const ready = hasSize && fontsLoaded;
+    const ready = hasSize; // && fontsLoaded;
 
     const menuVisible = screensCount === 0 || currentScreenInteractionEnabled;
 
