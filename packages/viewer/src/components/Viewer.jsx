@@ -81,7 +81,6 @@ const Viewer = ({
     className,
 }) => {
     const parsedStory = useParsedStory(story, { disabled: storyIsParsed }) || {};
-    console.log(parsedStory)
     const { components: screens = [], title = null, metadata = null } = parsedStory;
 
     const shareUrl = `${basePath}/${screenId}`;
