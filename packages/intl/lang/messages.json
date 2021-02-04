@@ -422,6 +422,10 @@
     "defaultMessage": "Video",
     "description": "Video screen title"
   },
+  "UdrdRF": {
+    "defaultMessage": "Numbers style",
+    "description": "Numbers style field label"
+  },
   "UtcYEP": {
     "defaultMessage": "Custom fonts",
     "description": "Font family group title"

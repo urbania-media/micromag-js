@@ -646,6 +646,12 @@ msgctxt "UBXIYP"
 msgid "Video"
 msgstr "Video"
 
+# Numbers style field label
+#: UdrdRF
+msgctxt "UdrdRF"
+msgid "Numbers style"
+msgstr "Numbers style"
+
 # Font family group title
 #: UtcYEP
 msgctxt "UtcYEP"
