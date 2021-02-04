@@ -48,9 +48,11 @@ const useLoadedFonts = (fonts) => {
             }
             return newConfig;
         }, null);
+        console.log(config);
         if (config !== null) {
             WebFont.load({
                 ...config,
+                timeout: 3000,
                 active: () => setLoaded(true),
                 fontloading: (name) => addFontLoading(name),
                 fontactive: (name) => addFontActive(name),

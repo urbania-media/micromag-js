@@ -63,14 +63,11 @@ export const CustomFonts = () => (
                         body: 'Un titre',
                         textStyle: {
                             align: 'center',
-                            fontStyle: { bold: true },
+                            fontStyle: { bold: true },
                             fontFamily: {
                                 type: 'custom',
                                 name: 'CustomFont1',
                                 media: 'media://1',
-                                families: [
-                                    'CustomFontBold'
-                                ]
                             },
                         },
                     },
@@ -82,9 +79,17 @@ export const CustomFonts = () => (
                     url: 'lien/vers/font.ttf',
                     metadata: {
                         // ...
+                    },
+                    files: {
+                        woff: {
+                            url: 'lien/vers/font.woff',
+                        },
+                        otf: {
+                            url: 'lien/vers/font.otf',
+                        },
                     }
-                }
-            }
+                },
+            },
         }}
         screenId="1"
         fullscreen

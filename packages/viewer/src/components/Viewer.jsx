@@ -12,9 +12,11 @@ import {
     useParsedStory,
     useTrackScreenView,
     useTrackEvent,
+    useLoadedFonts,
 } from '@micromag/core/hooks';
 import { ScreenSizeProvider, ViewerProvider } from '@micromag/core/contexts';
 import { getDeviceScreens } from '@micromag/core/utils';
+import { FontFaces } from '@micromag/core/components';
 
 import ViewerScreen from './ViewerScreen';
 import MenuDots from './menus/MenuDots';
@@ -81,8 +83,11 @@ const Viewer = ({
     className,
 }) => {
     const parsedStory = useParsedStory(story, { disabled: storyIsParsed }) || {};
-    console.log(parsedStory)
-    const { components: screens = [], title = null, metadata = null } = parsedStory;
+    const { components: screens = [], title = null, metadata = null, fonts = null } = parsedStory;
+
+    // Fonts
+    const finalFonts = fonts || [];
+    const { loaded: fontsLoaded } = useLoadedFonts(finalFonts); // eslint-disable-line  no-unused-vars
 
     const shareUrl = `${basePath}/${screenId}`;
     const { description = null, shareImage = null, favIcon = null } =
@@ -362,6 +367,7 @@ const Viewer = ({
                     ) : null}
                     <style type="text/css">{`body { overscroll-behavior: contain; }`}</style>
                 </Helmet>
+                <FontFaces fonts={finalFonts} />
                 <div
                     className={classNames([
                         styles.container,
