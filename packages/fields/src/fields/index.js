@@ -25,6 +25,7 @@ export { default as image } from './image';
 export { default as imagesWithCaption } from './images-with-caption';
 export { default as images } from './images';
 export { default as inputElement } from './input-element';
+export { default as items } from './items';
 export { default as letterSpacing } from './letter-spacing';
 export { default as lineHeight } from './line-height';
 export { default as marker } from './marker';
