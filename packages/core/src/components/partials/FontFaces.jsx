@@ -48,7 +48,7 @@ const FontFaces = ({ fonts, formats }) => {
             return urls.length > 0
                 ? `
                 @font-face {
-                    family-name: "${name}";
+                    font-family: "${name}";
                     src: ${urls.join(',')};
                 }
             `
