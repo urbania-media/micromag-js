@@ -39,8 +39,9 @@ const FontFaces = ({ fonts, formats }) => {
         .filter((it) => isObject(it) && it.type === 'custom' && (it.media || null) !== null)
         .map(({ name, media: { files = {} } }) => {
             const urls = formats.reduce((currentUrls, format) => {
-                const file = files[format] || null;
                 const formatName = isObject(format) ? format.format : format;
+                const formatExtension = isObject(format) ? format.name : format;
+                const file = files[formatExtension] || null;                
                 return file !== null
                     ? [...currentUrls, `url("${file.url}?") format("${formatName}")`]
                     : currentUrls;

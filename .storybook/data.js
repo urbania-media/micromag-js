@@ -11,6 +11,20 @@ import videoFile from './data/test.mp4';
 import video360File from './data/test-360.mp4';
 import closedCaptionsFile from './data/test.srt';
 
+import webFontEOT from './data/webfont.eot';
+import webFontSVG from './data/webfont.svg';
+import webFontTTF from './data/webfont.ttf';
+import webFontWOFF from './data/webfont.woff';
+import webFontWOFF2 from './data/webfont.woff2';
+
+import webFont2EOT from './data/webfont2.eot';
+import webFont2SVG from './data/webfont2.svg';
+import webFont2TTF from './data/webfont2.ttf';
+import webFont2WOFF from './data/webfont2.woff';
+import webFont2WOFF2 from './data/webfont2.woff2';
+
+import webFont3OTF from './data/webfont3.otf';
+
 const chance = new Chance();
 
 const random = (array) => array[Math.floor(Math.random() * array.length)];
@@ -199,6 +213,48 @@ export const transitions = ({ transitionIn = 'fade', transitionOut = 'fade' } = 
     in: transitionIn,
     out: transitionOut,
 });
+
+export const webfontFiles = {
+    eot: {
+        url: webFontEOT
+    },
+    svg: {
+        url: webFontSVG
+    },
+    ttf: {
+        url: webFontTTF
+    },
+    woff: {
+        url: webFontWOFF
+    },
+    woff2: {
+        url: webFontWOFF2
+    }
+};
+
+export const webfont2Files = {
+    eot: {
+        url: webFont2EOT
+    },
+    svg: {
+        url: webFont2SVG
+    },
+    ttf: {
+        url: webFont2TTF
+    },
+    woff: {
+        url: webFont2WOFF
+    },
+    woff2: {
+        url: webFont2WOFF2
+    }
+};
+
+export const webfont3Files = {
+    otf: {
+        url: webFont3OTF
+    },
+};
 
 export const renderFormats = {
     View: 'view',

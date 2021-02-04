@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import { webfontFiles, webfont2Files, webfont3Files } from '../../../../.storybook/data';
 
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import faceAFace from '../../../../.storybook/data/stories/faceAFace';
@@ -57,37 +58,76 @@ export const CustomFonts = () => (
             components: [
                 {
                     id: '1',
-                    type: 'title',
+                    type: 'title-subtitle-credits',
                     layout: 'middle',
                     title: {
-                        body: 'Un titre',
+                        body: 'MonumentExtended Black',
                         textStyle: {
                             align: 'center',
-                            fontStyle: { bold: true },
+                            fontStyle: { bold: true, italic: true },
+                            fontSize: 26,
+                            lineHeight: 4,
                             fontFamily: {
                                 type: 'custom',
-                                name: 'CustomFont1',
+                                name: 'MonumentExtended Black',
                                 media: 'media://1',
                             },
                         },
                     },
+                    subtitle: {
+                        body: 'LibreFranklin Italic 600',
+                        textStyle: {
+                            align: 'center',
+                            fontStyle: { bold: true, italic: true },
+                            fontFamily: {
+                                type: 'custom',
+                                name: 'LibreFranklin Italic600',
+                                media: 'media://2',
+                            },
+                        },
+                    },
+                    credits: {
+                        body: 'Roboto',
+                        textStyle: {
+                            align: 'center',
+                            fontStyle: { bold: true, italic: true, underline: true },
+                            fontFamily: {
+                                type: 'google',
+                                name: 'Roboto',
+                            },
+                        },
+                    },
                 },
+                {
+                    id: '2,',
+                    type: 'title',
+                    layout: 'middle',
+                    title: {
+                        body: 'SourceCodePro-Regular',
+                        textStyle: {
+                            align: 'center',
+                            fontStyle: {},
+                            fontFamily: {
+                                type: 'custom',
+                                name: 'SourceCodePro-Regular',
+                                media: 'media://3'
+                            }
+                        }
+                    }
+                }
             ],
             medias: {
                 'media://1': {
                     type: 'font',
-                    url: 'lien/vers/font.ttf',
-                    metadata: {
-                        // ...
-                    },
-                    files: {
-                        woff: {
-                            url: 'lien/vers/font.woff',
-                        },
-                        otf: {
-                            url: 'lien/vers/font.otf',
-                        },
-                    }
+                    files: webfontFiles
+                },
+                'media://2': {
+                    type: 'font',
+                    files: webfont2Files
+                },
+                'media://3': {
+                    type: 'font',
+                    files: webfont3Files
                 },
             },
         }}

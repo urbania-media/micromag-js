@@ -23,6 +23,7 @@ const addFontActive = (name) => {
 
 const useLoadedFonts = (fonts) => {
     const [loaded, setLoaded] = useState(false);
+
     useEffect(() => {
         const config = fonts.reduce((newConfig, font) => {
             const { type, name } = isObject(font)
@@ -48,7 +49,10 @@ const useLoadedFonts = (fonts) => {
             }
             return newConfig;
         }, null);
-        console.log(config);
+
+        const hasConfig = config !== null;
+        setLoaded(!hasConfig);
+
         if (config !== null) {
             WebFont.load({
                 ...config,
@@ -59,7 +63,7 @@ const useLoadedFonts = (fonts) => {
                 fontinactive: (name) => removeFontLoading(name),
             });
         }
-    }, [fonts]);
+    }, [fonts, setLoaded]);
     return { loaded };
 };
 

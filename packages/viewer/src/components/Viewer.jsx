@@ -87,7 +87,7 @@ const Viewer = ({
 
     // Fonts
     const finalFonts = fonts || [];
-    const { loaded: fontsLoaded } = useLoadedFonts(finalFonts); // eslint-disable-line  no-unused-vars
+    const { loaded: fontsLoaded } = useLoadedFonts(finalFonts);
 
     const shareUrl = `${basePath}/${screenId}`;
     const { description = null, shareImage = null, favIcon = null } =
@@ -345,6 +345,7 @@ const Viewer = ({
 
     const withoutScreensTransforms = isStatic || isCapture;
     const hasSize = screenWidth > 0 && screenHeight > 0;
+    const ready = hasSize && fontsLoaded;
 
     const menuVisible = screensCount === 0 || currentScreenInteractionEnabled;
 
@@ -383,7 +384,7 @@ const Viewer = ({
                     ref={containerRef}
                     {...(!landscape && currentScreenInteractionEnabled ? bindDrag() : null)}
                 >
-                    {!withoutMenu && (hasSize || withoutScreensTransforms) ? (
+                    {!withoutMenu && (ready || withoutScreensTransforms) ? (
                         <>
                             <div
                                 className={styles.menuDotsContainer}
@@ -414,7 +415,7 @@ const Viewer = ({
                             />
                         </>
                     ) : null}
-                    {hasSize || withoutScreensTransforms ? (
+                    {ready || withoutScreensTransforms ? (
                         <div ref={contentRef} className={styles.content}>
                             {screens.map((scr, i) => {
                                 const current = i === screenIndex;
