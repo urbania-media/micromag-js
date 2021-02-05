@@ -18,6 +18,7 @@ const propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
     brandClassName: PropTypes.string,
+    breadCrumbsClassName: PropTypes.string,
 };
 
 const defaultProps = {
@@ -32,6 +33,7 @@ const defaultProps = {
     children: null,
     className: null,
     brandClassName: null,
+    breadCrumbsClassName: null,
 };
 
 const Navbar = ({
@@ -46,6 +48,7 @@ const Navbar = ({
     children,
     className,
     brandClassName,
+    breadCrumbsClassName,
 }) => {
     const [menuVisible, setMenuVisible] = useState(false);
     const onClickMenu = useCallback(() => setMenuVisible(!menuVisible), [
@@ -101,7 +104,7 @@ const Navbar = ({
                         'navbar-breadcrumbs',
                         {
                             'py-0': compact,
-                            [brandClassName]: brandClassName !== null,
+                            [breadCrumbsClassName]: breadCrumbsClassName !== null,
                         },
                     ])}
                 >

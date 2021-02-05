@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
-import createDebug from 'debug';
+// import createDebug from 'debug';
 
 import { useScreensManager, useFieldsManager } from '../contexts';
 import { StoryParser } from '../lib';
 
-const debug = createDebug('core:useParsedStory');
+// const debug = createDebug('core:useParsedStory');
 
 const useParsedStory = (story, { disabled = false, withTheme = true, withMedias = true, withFonts = true } = {}) => {
     const screensManager = useScreensManager();
@@ -14,7 +14,6 @@ const useParsedStory = (story, { disabled = false, withTheme = true, withMedias 
         fieldsManager,
     ]);
     const newStory = useMemo(() => {
-        debug('parse story: %O', story);
         if (disabled) {
             return story;
         }
