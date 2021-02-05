@@ -54,7 +54,7 @@
         "node-fetch": "^2.6.1",
         "parse-srt": "^1.0.0-alpha",
         "prop-types": "^15.7.2",
-        "react-intl": "^5.10.16",
+        "react-intl": "^5.12.1",
         "uuid": "^8.3.2"
     },
     "publishConfig": {

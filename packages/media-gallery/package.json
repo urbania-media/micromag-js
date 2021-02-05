@@ -63,7 +63,7 @@
         "lodash": "^4.17.20",
         "pretty-bytes": "^5.3.0",
         "prop-types": "^15.7.2",
-        "react-intl": "^5.10.16",
+        "react-intl": "^5.12.1",
         "react-router": "^5.2.0",
         "react-use-gesture": "^8.0.1"
     },

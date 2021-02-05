@@ -7,12 +7,14 @@ class FontsParser {
         this.screensManager = screensManager;
     }
 
-    // Convert medias object to path
+    // Extract fonts
     parse(story) {
         if (story === null) {
             return story;
         }
-        const { components = [] } = story || {};
+
+        // Extract fonts from screen
+        const { theme = null, components = [] } = story || {};
         const fonts = components.reduce((currentFonts, screen) => {
             const { type } = screen;
             const { fields = [] } = this.screensManager.getDefinition(type) || {};
@@ -20,10 +22,24 @@ class FontsParser {
             const newFonts = FontsParser.extractFontsWithPaths(screen, fieldsPattern);
             return newFonts.length > 0 ? [...currentFonts, ...newFonts] : currentFonts;
         }, []);
-        return {
+
+        // Extract fonts from theme
+        if (theme !== null) {
+            const { fonts: themeFonts = [], ...newTheme } = this.parse(theme);
+            return fonts.length > 0 || themeFonts.length > 0 ? {
+                ...story,
+                theme: newTheme,
+                fonts: [
+                    ...themeFonts,
+                    ...fonts,
+                ],
+            } : story;
+        }
+
+        return fonts.length > 0 ? {
             ...story,
             fonts,
-        };
+        } : story;
     }
 
     getFieldsPattern(fields, namePrefix = null) {

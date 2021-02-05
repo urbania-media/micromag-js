@@ -12,7 +12,7 @@ class MediasParser {
         if (story === null) {
             return story;
         }
-        const { components = [] } = story || {};
+        const { theme = null, components = [] } = story || {};
         const { components: newComponents, medias } = components.reduce(
             ({ components: previousComponents, medias: currentMedias }, screen) => {
                 const { type } = screen;
@@ -30,35 +30,62 @@ class MediasParser {
                     },
                 };
             },
-            { components: [], medias: {} },
+            { components: [], medias: null },
         );
-        // console.log(newComponents, medias);
-        return {
+
+        if (theme !== null) {
+            const { medias: themeMedias, ...newTheme } = this.toPath(theme);
+            return medias !== null || themeMedias !== null ? {
+                ...story,
+                theme: newTheme,
+                components: newComponents,
+                medias: {
+                    ...themeMedias,
+                    ...medias,
+                },
+            } : story;
+        }
+
+        return medias !== null ? {
             ...story,
             components: newComponents,
             medias,
-        };
+        } : story;
     }
 
     // Convert path to medias object
-    fromPath(story) {
+    fromPath(story, defaultMedias = null) {
         if (story === null) {
             return story;
         }
-        const { components = [], medias = null } = story || {};
-        if (medias === null) {
+
+        const { theme = null, components = [], medias = defaultMedias } = story || {};
+        if (medias === null && theme === null) {
             return story;
         }
-        const newComponents = components.map((screen) => {
+
+        // Replace path with medias objects
+        const newComponents = medias !== null ? components.map((screen) => {
             const { type } = screen;
             const { fields = [] } = this.screensManager.getDefinition(type) || {};
             const fieldsPattern = this.getMediaFieldsPattern(fields);
             return MediasParser.replacePathsWithMedias(screen, medias, fieldsPattern);
-        });
-        return {
+        }) : components;
+
+        // Replace path with medias object in theme
+        if (theme !== null) {
+            const newTheme = this.fromPath(theme, medias);
+            return newTheme !== theme || newComponents !== components ? {
+                ...story,
+                theme: newTheme,
+                components: newComponents,
+            } : story;
+        }
+
+        return newComponents !== components ? {
             ...story,
             components: newComponents,
-        };
+        } : story;
     }
 
     getMediaFieldsPattern(fields, namePrefix = null) {
