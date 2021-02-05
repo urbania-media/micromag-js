@@ -48,6 +48,7 @@ export const defaultTheme = {
         {
             id: uuid(),
             type: 'text',
+            layout: 'middle',
             text: {
                 body: 'Test body',
             },

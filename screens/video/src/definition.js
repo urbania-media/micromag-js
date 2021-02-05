@@ -24,6 +24,7 @@ export default {
         {
             name: 'layout',
             type: 'screen-layout',
+            defaultValue: 'center',
             label: defineMessage({
                 defaultMessage: 'Layout',
                 description: 'Layout field label',

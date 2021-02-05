@@ -60,6 +60,15 @@ export default [
         transforms,
         fields: [
             {
+                name: 'layout',
+                type: 'screen-layout',
+                defaultValue: 'normal',
+                label: defineMessage({
+                    defaultMessage: 'Layout',
+                    description: 'Layout field label',
+                }),
+            },
+            {
                 name: 'images',
                 type: 'images-with-caption',
                 label: defineMessage({

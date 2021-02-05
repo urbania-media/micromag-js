@@ -27,6 +27,7 @@ export default [
             {
                 name: 'layout',
                 type: 'screen-layout',
+                defaultValue: 'top',
                 label: defineMessage({
                     defaultMessage: 'Layout',
                     description: 'Layout field label',
@@ -74,6 +75,7 @@ export default [
             {
                 name: 'layout',
                 type: 'screen-layout',
+                defaultValue: 'top',
                 label: defineMessage({
                     defaultMessage: 'Layout',
                     description: 'Layout field label',
@@ -132,6 +134,7 @@ export default [
             {
                 name: 'layout',
                 type: 'screen-layout',
+                defaultValue: 'top',
                 label: defineMessage({
                     defaultMessage: 'Layout',
                     description: 'Layout field label',

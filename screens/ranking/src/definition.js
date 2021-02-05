@@ -24,6 +24,7 @@ export default {
         {
             name: 'layout',
             type: 'screen-layout',
+            defaultValue: 'side',
             label: defineMessage({
                 defaultMessage: 'Layout',
                 description: 'Layout field label',

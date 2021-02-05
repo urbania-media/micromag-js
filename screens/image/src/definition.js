@@ -29,6 +29,7 @@ export default [
             {
                 name: 'layout',
                 type: 'screen-layout',
+                defaultValue: 'normal',
                 label: defineMessage({
                     defaultMessage: 'Layout',
                     description: 'Layout field label',
@@ -73,6 +74,7 @@ export default [
             {
                 name: 'layout',
                 type: 'screen-layout',
+                defaultValue: 'normal',
                 label: defineMessage({
                     defaultMessage: 'Layout',
                     description: 'Layout field label',
@@ -129,6 +131,7 @@ export default [
             {
                 name: 'layout',
                 type: 'screen-layout',
+                defaultValue: 'normal',
                 label: defineMessage({
                     defaultMessage: 'Layout',
                     description: 'Layout field label',
@@ -184,6 +187,7 @@ export default [
             {
                 name: 'layout',
                 type: 'screen-layout',
+                defaultValue: 'normal',
                 label: defineMessage({
                     defaultMessage: 'Layout',
                     description: 'Layout field label',
@@ -252,6 +256,7 @@ export default [
             {
                 name: 'layout',
                 type: 'screen-layout',
+                defaultValue: 'normal',
                 label: defineMessage({
                     defaultMessage: 'Layout',
                     description: 'Layout field label',
