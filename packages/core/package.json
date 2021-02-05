@@ -93,6 +93,7 @@
         "classnames": "^2.2.6",
         "css-mediaquery": "^0.1.2",
         "dayjs": "^1.9.7",
+        "debug": "^4.3.1",
         "flat": "^5.0.2",
         "hoist-non-react-statics": "^3.3.2",
         "lodash": "^4.17.20",

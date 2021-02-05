@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useMedias, useMediaCreate } from '@micromag/data';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { UploadModal } from '@micromag/core/components';
+import { Spinner, UploadModal } from '@micromag/core/components';
 
 // import * as AppPropTypes from '../lib/PropTypes';
 
@@ -80,7 +80,7 @@ const MediaGallery = ({
     );
 
     // Items
-    const { allMedias: loadedMedias } = useMedias(queryValue, 1, 100, {
+    const { allMedias: loadedMedias, loading = false } = useMedias(queryValue, 1, 100, {
         ...(initialMedias !== null ? { items: initialMedias } : null),
     });
 
@@ -154,7 +154,7 @@ const MediaGallery = ({
             />
             <div className={styles.content}>
                 <div className={styles.gallery}>
-                    {medias !== null ? (
+                    { medias !== null ? (
                         <Gallery
                             items={medias}
                             selectedItem={selectedMedia}
@@ -163,7 +163,8 @@ const MediaGallery = ({
                             onClickItem={onClickItem}
                             onClickItemInfo={onClickItemInfo}
                         />
-                    ) : null}
+                    ) : null } 
+                    { loading ? <Spinner className={styles.loading} /> : null }
                 </div>
                 <div className={styles.mediaMetadata}>
                     <MediaMetadata media={metadataMedia} onClickClose={onMetadataClickClose} />

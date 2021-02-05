@@ -28,6 +28,10 @@
         transition: transform 0.2s ease-out;
     }
 
+    .loading {
+        margin: 0.5rem 1rem;
+    }
+
     &.metadataOpened {
         .gallery {
             @extend %inactive;
