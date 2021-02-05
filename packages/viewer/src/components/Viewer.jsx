@@ -86,7 +86,7 @@ const Viewer = ({
     const { components: screens = [], title = null, metadata = null, fonts = null } = parsedStory;
 
     // Fonts
-    const finalFonts = fonts || [];
+    const finalFonts = useMemo(() => fonts || [], [fonts]);
     const { loaded: fontsLoaded } = useLoadedFonts(finalFonts);// eslint-disable-line
 
     const shareUrl = `${basePath}/${screenId}`;

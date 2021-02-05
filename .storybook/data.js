@@ -215,37 +215,37 @@ export const transitions = ({ transitionIn = 'fade', transitionOut = 'fade' } = 
 });
 
 export const webfontFiles = {
-    eot: {
+    'webfonts.eot': {
         url: webFontEOT
     },
-    svg: {
+    'webfonts.svg': {
         url: webFontSVG
     },
-    ttf: {
+    'webfonts.ttf': {
         url: webFontTTF
     },
-    woff: {
+    'webfonts.woff': {
         url: webFontWOFF
     },
-    woff2: {
+    'webfonts.woff2': {
         url: webFontWOFF2
     }
 };
 
 export const webfont2Files = {
-    eot: {
+    'webfonts.eot': {
         url: webFont2EOT
     },
-    svg: {
+    'webfonts.svg': {
         url: webFont2SVG
     },
-    ttf: {
+    'webfonts.ttf': {
         url: webFont2TTF
     },
-    woff: {
+    'webfonts.woff': {
         url: webFont2WOFF
     },
-    woff2: {
+    'webfonts.woff2': {
         url: webFont2WOFF2
     }
 };
