@@ -116,14 +116,17 @@ const MediaGallery = ({
     );
 
     // Upload modal
+    const [uploading, setUploading] = useState(false);
     const [uploadModalOpened, setUploadModalOpened] = useState(false);
     const { create: createMedia } = useMediaCreate();
     const onClickAdd = useCallback(() => setUploadModalOpened(true), [setUploadModalOpened]);
     const onUploadCompleted = useCallback(
         (newMedias) => {
-            Promise.all(newMedias.map(createMedia)).then((newAddedMedias) =>
-                setAddedMedias([...addedMedias, ...newAddedMedias]),
-            );
+            setUploading(true);
+            Promise.all(newMedias.map(createMedia)).then((newAddedMedias) => {
+                setUploading(false);
+                return setAddedMedias([...addedMedias, ...newAddedMedias]);
+            });
         },
         [createMedia, addedMedias, setAddedMedias],
     );
@@ -154,7 +157,7 @@ const MediaGallery = ({
             />
             <div className={styles.content}>
                 <div className={styles.gallery}>
-                    { medias !== null ? (
+                    {medias !== null && !uploading ? (
                         <Gallery
                             items={medias}
                             selectedItem={selectedMedia}
@@ -163,8 +166,8 @@ const MediaGallery = ({
                             onClickItem={onClickItem}
                             onClickItemInfo={onClickItemInfo}
                         />
-                    ) : null } 
-                    { loading ? <Spinner className={styles.loading} /> : null }
+                    ) : null}
+                    {loading || uploading ? <Spinner className={styles.loading} /> : null}
                 </div>
                 <div className={styles.mediaMetadata}>
                     <MediaMetadata media={metadataMedia} onClickClose={onMetadataClickClose} />
