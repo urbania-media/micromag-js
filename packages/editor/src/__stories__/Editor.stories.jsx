@@ -9,7 +9,7 @@ import withUppy from '../../../../.storybook/decorators/withUppy';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import faceAFaceStory from '../../../../.storybook/data/stories/faceAFace';
 import { defaultTheme } from '../../../../.storybook/data/themes/micromag-default';
-
+import { theme as backgroundTheme } from '../../../../.storybook/data/themes/with-background';
 // import manager from '../../../intl/src/manager';
 
 // import createDefaultStory from '../utils/createDefaultStory';
@@ -114,6 +114,15 @@ export const WithTheme = () => (
         defaultValue={{
             title: 'With theme',
             theme: defaultTheme,
+        }}
+    />
+);
+export const IsBackgroundTheme = () => <EditorContainer isTheme defaultValue={backgroundTheme} />;
+export const WithBackgroundTheme = () => (
+    <EditorContainer
+        defaultValue={{
+            title: 'With background theme',
+            theme: backgroundTheme,
         }}
     />
 );

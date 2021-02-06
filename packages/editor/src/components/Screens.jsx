@@ -23,6 +23,7 @@ const propTypes = {
     isTheme: PropTypes.bool,
     isVertical: PropTypes.bool,
     isCreateOpened: PropTypes.bool,
+    isParsed: PropTypes.bool,
     onClickScreen: PropTypes.func,
     onChange: PropTypes.func,
     className: PropTypes.string,
@@ -33,6 +34,7 @@ const defaultProps = {
     isTheme: false,
     isVertical: false,
     isCreateOpened: false,
+    isParsed: false,
     onClickScreen: null,
     onChange: null,
     className: null,
@@ -43,12 +45,13 @@ const EditorScreens = ({
     isTheme,
     isVertical,
     isCreateOpened,
+    isParsed,
     onClickScreen,
     onChange,
     className,
 }) => {
     const valueWithTheme = useThemeValue(unparsedValue, isTheme);
-    const value = useParsedStory(valueWithTheme, { withMedias: false });
+    const value = isParsed ? unparsedValue : useParsedStory(valueWithTheme, { withMedias: false });
     const { components: screens = [] } = value || {};
 
     const [createModalOpened, setCreateModalOpened] = useState(isCreateOpened);
@@ -59,10 +62,15 @@ const EditorScreens = ({
     const createScreenFromDefinition = useCallback(
         (definition) => {
             const newScreen = createScreen(definition);
-            const { components: currentScreens = [] } = value || {};
+            const { type: newScreenType } = newScreen || {};
+            const { components: currentScreens = [], theme = {} } = value || {};
+            const { components: themeComponents } = theme || {};
+            const themeScreen = themeComponents.find((it) => it.type === newScreenType) || null;
+            const newScreenValue =
+                themeScreen !== null ? { ...themeScreen, ...newScreen } : newScreen;
             const newValue = {
                 ...value,
-                components: [...(currentScreens || []), newScreen],
+                components: [...(currentScreens || []), newScreenValue],
             };
             if (onChange !== null) {
                 onChange(newValue);
@@ -127,8 +135,6 @@ const EditorScreens = ({
     const onCreateModalRequestClose = useCallback(() => setCreateModalOpened(false), [
         setCreateModalOpened,
     ]);
-
-    // console.log(routes.home, routes.screen);
 
     return (
         <div className={classNames(['d-flex', 'flex-column', styles.container, className])}>

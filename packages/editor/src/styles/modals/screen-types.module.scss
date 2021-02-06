@@ -1,3 +1,7 @@
-.container {
+@import '~@micromag/core/scss/variables';
 
+.container {
+    .selected {
+        background-color: $primary;
+    }
 }

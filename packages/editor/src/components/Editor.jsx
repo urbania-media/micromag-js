@@ -56,6 +56,7 @@ const Editor = ({
     fullscreen,
     className,
 }) => {
+    // console.log('value', value);
     const push = useRoutePush();
     const refScreensContainer = useRef(null);
     const { screen: screenId } = useRouteParams({ screenOnly: true });
@@ -73,7 +74,10 @@ const Editor = ({
     const onClickEdit = useCallback(() => setMobileView('form'), [setMobileView]);
     const onClickViewScreen = useCallback(() => setMobileView('preview'), [setMobileView]);
 
-    const story = useParsedStory(value, { withTheme: !isTheme });
+    // Apply base theme values to it's own components
+    const { background = null, colors = null, textStyle = null } = value || {};
+    const baseValue = isTheme ? { ...value, theme: { background, colors, textStyle } } : value;
+    const story = useParsedStory(baseValue);
     const { toPath: parseMediasToPath } = useMediasParser();
     const onStoryChange = useCallback(
         (newStory) => {
@@ -121,6 +125,8 @@ const Editor = ({
                 cnt.offsetTop + item.offsetTop + item.offsetHeight / 2 - screens.clientHeight / 2;
         }
     }, [screenId]);
+
+    // console.log('story', story)
 
     return (
         <ModalsProvider>
@@ -188,6 +194,7 @@ const Editor = ({
                                     value={story}
                                     isTheme={isTheme}
                                     isCreateOpened={isCreateOpened}
+                                    isParsed
                                     onChange={onStoryChange}
                                     onClickScreen={onClickScreen}
                                     isVertical={!isMobile}

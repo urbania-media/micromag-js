@@ -103,64 +103,64 @@ class ThemeParser {
     parseField(key, definition, value, themeValue, themeColors, themeTextStyles) {
         const { theme: fieldTheme = {} } = definition;
 
-        // @TODO not working
-        // if (isArray(value)) {
-        //     const newFieldValue = value.map((innerField) =>
-        //         innerField !== null
-        //             ? Object.keys(innerField).reduce((newInnerField, innerFieldName) => {
-        //                   const {
-        //                       textStyle: innerFieldTextStyle = null,
-        //                       color: innerFieldColor = null,
-        //                   } = fieldTheme[innerFieldName] || {};
+        // @TODO very sloow
+        if (isArray(value)) {
+            const newFieldValue = value.map((innerField) =>
+                innerField !== null
+                    ? Object.keys(innerField).reduce((newInnerField, innerFieldName) => {
+                          const {
+                              textStyle: innerFieldTextStyle = null,
+                              color: innerFieldColor = null,
+                          } = fieldTheme[innerFieldName] || {};
 
-        //                   // Color
-        //                   const colorValue =
-        //                       innerFieldColor !== null
-        //                           ? {
-        //                                 color:
-        //                                     innerFieldColor !== null && themeColors !== null
-        //                                         ? themeColors[innerFieldColor] || null
-        //                                         : null,
-        //                             }
-        //                           : null;
+                          // Early return
+                          if (!isObject(innerField[innerFieldName])) {
+                              return newInnerField;
+                          }
 
-        //                   // Text style
-        //                   const textStyleValue =
-        //                       innerFieldTextStyle !== null
-        //                           ? {
-        //                                 textStyle: {
-        //                                     ...(innerFieldTextStyle !== null &&
-        //                                     themeTextStyles !== null
-        //                                         ? themeTextStyles[innerFieldTextStyle] || null
-        //                                         : null),
-        //                                     ...(innerField[innerFieldName].textStyle || null),
-        //                                 },
-        //                             }
-        //                           : null;
+                          // Color
+                          const colorValue =
+                              innerFieldColor !== null
+                                  ? {
+                                        color:
+                                            innerFieldColor !== null && themeColors !== null
+                                                ? themeColors[innerFieldColor] || null
+                                                : null,
+                                    }
+                                  : null;
 
-        //                   if (
-        //                       (colorValue === null && textStyleValue === null) ||
-        //                       !isObject(innerField[innerFieldName])
-        //                   ) {
-        //                       return newInnerField;
-        //                   }
+                          // Text style
+                          const textStyleValue =
+                              innerFieldTextStyle !== null
+                                  ? {
+                                        textStyle: {
+                                            ...(innerFieldTextStyle !== null &&
+                                            themeTextStyles !== null
+                                                ? themeTextStyles[innerFieldTextStyle] || null
+                                                : null),
+                                            ...(innerField[innerFieldName].textStyle || null),
+                                        },
+                                    }
+                                  : null;
 
-        //                   console.log(innerField,newInnerField, innerFieldName);
+                          if (colorValue === null && textStyleValue === null) {
+                              return newInnerField;
+                          }
 
+                          return {
+                              ...newInnerField,
+                              [innerFieldName]: {
+                                  ...colorValue,
+                                  ...innerField[innerFieldName],
+                                  ...textStyleValue,
+                              },
+                          };
+                      }, innerField)
+                    : innerField,
+            );
 
-        //                   return {
-        //                       ...newInnerField,
-        //                       [innerFieldName]: {
-        //                           ...colorValue,
-        //                           ...innerField[innerFieldName],
-        //                           ...textStyleValue,
-        //                       },
-        //                   };
-        //               }, {})
-        //             : innerField,
-        //     );
-        //     return newFieldValue;
-        // }
+            return newFieldValue;
+        }
 
         if (isObject(value) && !isArray(value)) {
             const { textStyle: fieldTextStyleName = null, color: fieldColorName = null } =
@@ -195,7 +195,6 @@ class ThemeParser {
                           },
                       }
                     : null;
-
             // Only change value if something is overrided
             return colorValue !== null || themeValue !== null || textStyleValue !== null
                 ? {

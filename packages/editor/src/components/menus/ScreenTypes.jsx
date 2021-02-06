@@ -43,13 +43,15 @@ const ScreenTypes = ({ screens, selectedTypes, className, onClickItem }) => {
 
             const groupIndex = allGroups.findIndex((it) => it.id === groupId);
             const selected = selectedTypes !== null && selectedTypes.indexOf(id) !== -1;
+
             const item = {
                 id,
                 type: id,
                 screen: definition,
                 className: classNames({
-                    'bg-light': selected,
-                    'text-dark': selected,
+                    'bg-secondary': !selected,
+                    'bg-primary': selected,
+                    [styles.selected]: selected,
                 }),
             };
             return groupIndex !== -1
@@ -97,7 +99,7 @@ const ScreenTypes = ({ screens, selectedTypes, className, onClickItem }) => {
                                     {
                                         'border-secondary': selectedTypes === null,
                                         'border-dark': selectedTypes !== null,
-                                        'bg-secondary': selectedTypes !== null,
+                                        'bg-secondary': selectedTypes === null,
                                         'text-secondary': selectedTypes !== null,
                                     },
                                 ])}
