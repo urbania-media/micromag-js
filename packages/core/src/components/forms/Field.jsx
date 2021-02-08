@@ -8,7 +8,7 @@ import { getComponentFromName, setFieldValue, getFieldFromPath } from '../../uti
 import { useFieldsManager, useFieldComponent } from '../../contexts';
 
 const propTypes = {
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string, // .isRequired,
     value: MicromagPropTypes.component,
     form: PropTypes.string,
     formComponents: MicromagPropTypes.components,
@@ -20,6 +20,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    name: null,
     form: null,
     formComponents: {},
     fields: [],

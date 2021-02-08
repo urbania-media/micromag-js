@@ -12,7 +12,7 @@ const propTypes = {
     items: PropTypes.arrayOf(
         PropTypes.shape({
             label: PropTypes.string,
-            value: PropTypes.oneOf([PropTypes.number, PropTypes.string]),
+            value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
         }),
     ),
     value: PropTypes.string,

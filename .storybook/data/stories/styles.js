@@ -5,8 +5,8 @@ const chance  = new Chance();
 export const header1 = {
     fontFamily: {
         name: 'Garage Gothic',
-        fallback: 'Arial',
-        type: 'sans-serif',
+        type: 'custom',
+        media: null,
     },
     fontSize: 50,
     fontStyle: {
@@ -19,8 +19,8 @@ export const header1 = {
 export const header2 = {
     fontFamily: {
         name: 'Garage Gothic',
-        fallback: 'Arial',
-        type: 'sans-serif',
+        type: 'custom',
+        media: null,
     },
     fontSize: 35,
     fontStyle: {
@@ -32,8 +32,8 @@ export const header2 = {
 export const header3 = {
     fontFamily: {
         name: 'Apercu',
-        fallback: 'Arial',
-        type: 'sans-serif',
+        type: 'custom',
+        media: null,
     },
     fontSize: 18,
     fontStyle: {
@@ -45,8 +45,8 @@ export const header3 = {
 export const bodyText = {
     fontFamily: {
         name: 'Sina Nova',
-        fallback: 'Gerogia',
-        type: 'serif',
+        type: 'custom',
+        media: null,
     },
     fontSize: 18,
     fontStyle: {

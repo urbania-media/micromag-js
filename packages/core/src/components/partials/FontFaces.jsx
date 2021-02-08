@@ -7,13 +7,15 @@ import { PropTypes as MicromagPropTypes } from '../../lib';
 
 const propTypes = {
     fonts: MicromagPropTypes.fonts,
-    formats: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.shape({
-            name: PropTypes.string,
-            format: PropTypes.string,
-        }),
-    ]),
+    formats: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.shape({
+                name: PropTypes.string,
+                format: PropTypes.string,
+            }),
+        ]),
+    ),
 };
 
 const defaultProps = {
@@ -37,7 +39,8 @@ const defaultProps = {
 const FontFaces = ({ fonts, formats }) => {
     const fontFaces = (fonts || [])
         .filter((it) => isObject(it) && it.type === 'custom' && (it.media || null) !== null)
-        .map(({ name, media: { files = {} } }) => {
+        .map(({ name = null, media = null }) => {
+            const { files = {} } = media || {};
             const urls = formats.reduce((currentUrls, format) => {
                 const finalFormat = isObject(format) ? format.format : format;
                 const formatExtension = isObject(format) ? format.name : format;
@@ -46,7 +49,7 @@ const FontFaces = ({ fonts, formats }) => {
                     ? [...currentUrls, `url("${file.url}?") format("${finalFormat}")`]
                     : currentUrls;
             }, []);
-            return urls.length > 0
+            return urls.length > 0 && name !== null
                 ? `
                 @font-face {
                     font-family: "${name}";

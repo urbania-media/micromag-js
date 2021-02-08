@@ -38,11 +38,11 @@ const faceAFaceStory = {
             layout: 'bottom',
             title: {
                 body: 'Face à face',
-                textStyle: { ...header1, fontSize: 60, align: 'center', color: colorPink, lineHeight: 0.2 },
+                textStyle: { ...header1, fontSize: 60, align: 'center', color: { color: colorPink }, lineHeight: 0.2 },
             },
             subtitle: {
                 body: 'avec votre face',
-                textStyle: { ...header1, fontSize: 50, align: 'center', color: colorDarkBlue },
+                textStyle: { ...header1, fontSize: 50, align: 'center', color: { color: colorDarkBlue } },
             },
             background: backgroundIntro,
             transitions: transitions(),
@@ -61,7 +61,7 @@ const faceAFaceStory = {
                         outline: true,
                     },
                     lineHeight: 1,
-                    color: colorPink,
+                    color: { color: colorPink },
                 },
             },
             author: {
@@ -106,7 +106,7 @@ const faceAFaceStory = {
             layout: 'middle',
             question: {
                 body: 'Qu’est-ce qui vous agace le plus dans votre face?',
-                textStyle: { ...header2, color: colorGreen },
+                textStyle: { ...header2, color: { color: colorGreen } },
             },
             answers: survey1answers,
             background: backgroundDarkBlueNoise,
@@ -118,11 +118,11 @@ const faceAFaceStory = {
             layout: 'split',
             title: {
                 body: 'Avez-vous<br/>du pif<br/>au milieu<br/>du visage?',
-                textStyle: { ...header1, color: colorDarkBlue },
+                textStyle: { ...header1, color: { color: colorDarkBlue } },
             },
             subtitle: {
                 body: 'Testez vos<br/>connaissances!',
-                textStyle: { ...header2, color: colorDarkBlue },
+                textStyle: { ...header2, color: { color: colorDarkBlue } },
             },
             background: backgroundNose,
             transitions: transitions(),
@@ -243,7 +243,7 @@ const faceAFaceStory = {
             subtitle: {
                 body:
                     'des secrets des<br/>super-recognizers',
-                textStyle: {...header2, align: 'center', fontSize: 30, color: colorYellow},
+                textStyle: {...header2, align: 'center', fontSize: 30, color: { color: colorYellow }},
             },
             credits: {
                 body:
@@ -258,7 +258,7 @@ const faceAFaceStory = {
             layout: 'side',
             type: 'ranking',
             items: rankingItems,
-            numbersStyle: {...header2, fontSize: 60, lineHeight: 0.9, color: colorYellow },
+            numbersStyle: {...header2, fontSize: 60, lineHeight: 0.9, color: { color: colorYellow } },
             background: backgroundBlueNoise,
             transitions: transitions(),
         },
@@ -268,7 +268,7 @@ const faceAFaceStory = {
             layout: 'bottom',
             title: {
                 body: 'Pourriez vous passer une semaine sans vous regarder dans le miroir?',
-                textStyle: {...header2, color: colorYellow, fontSize: 40 },
+                textStyle: {...header2, color: { color: colorYellow }, fontSize: 40 },
             },
             subtitle: {
                 body: 'On a tenté l’expérience et voici comment ça s’est déroulé',

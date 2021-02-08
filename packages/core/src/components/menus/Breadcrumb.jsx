@@ -12,7 +12,7 @@ import styles from '../../styles/menus/breadcrumb.module.scss';
 
 const propTypes = {
     items: MicromagPropTypes.menuItems,
-    theme: PropTypes.oneOf([null, 'light']),
+    theme: MicromagPropTypes.bootstrapThemes,
     separator: PropTypes.oneOf([null, 'arrow']),
     withoutBar: PropTypes.bool,
     noWrap: PropTypes.bool,

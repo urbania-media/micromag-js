@@ -17,7 +17,7 @@ import Video from '@micromag/element-video';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    layout: PropTypes.oneOf(['center', 'full']),
+    layout: PropTypes.oneOf(['middle', 'full']),
     video: MicromagPropTypes.videoElement,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
@@ -26,7 +26,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    layout: 'center',
+    layout: 'middle',
     video: null,
     background: null,
     current: true,
@@ -217,7 +217,7 @@ const VideoScreen = ({ layout, video, background, current, transitions, classNam
             ) : null}
         </ScreenElement>,
         !isPlaceholder ? (
-            <div className={styles.bottomContent}>
+            <div key="bottom-content" className={styles.bottomContent}>
                 <Transitions
                     playing={transitionPlaying}
                     transitions={transitions}

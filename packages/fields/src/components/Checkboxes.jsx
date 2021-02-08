@@ -10,7 +10,7 @@ import styles from '../styles/checkboxes.module.scss';
 
 const propTypes = {
     name: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.arrayOf(PropTypes.string),
     options: MicromagPropTypes.selectOptions,
     className: PropTypes.string,
     onChange: PropTypes.func,
@@ -59,7 +59,7 @@ const Checkboxes = ({ name, value, options, className, onChange }) => {
                             if (e.currentTarget.checked) {
                                 newValue.push(optionValue);
                             } else {
-                                newValue = value.filter(it => it !== optionValue);
+                                newValue = value !== null ? value.filter(it => it !== optionValue) : null;
                             }
                             if (newValue.length === 0) {
                                 newValue = null;

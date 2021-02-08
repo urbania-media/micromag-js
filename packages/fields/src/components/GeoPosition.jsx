@@ -39,7 +39,7 @@ const getFixedCoords = ({ lat, lng }, precision = 4) => ({
 });
 
 const GeoPosition = ({ value, defaultCenter, defaultZoom, className, onChange }) => {
-    const [address, setAddress] = useState(null);
+    const [address, setAddress] = useState('');
     const [mapReady, setMapReady] = useState(false);
     const [zoom, setZoom] = useState(defaultZoom);
     const client = useGoogleMapsClient();

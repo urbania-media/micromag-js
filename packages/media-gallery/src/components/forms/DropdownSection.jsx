@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import styles from '../../styles/forms/dropdown-section.module.scss';
 
@@ -9,8 +10,8 @@ const propTypes = {
     value: PropTypes.string,
     items: PropTypes.arrayOf(
         PropTypes.shape({
-            label: PropTypes.string,
-            value: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
+            label: MicromagPropTypes.label,
+            value: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
             active: PropTypes.bool,
         }),
     ),

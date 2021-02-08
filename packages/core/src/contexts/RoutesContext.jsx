@@ -51,11 +51,12 @@ export const useRouteBack = () => {
 
 const propTypes = {
     children: PropTypes.node.isRequired,
-    routes: PropTypes.objectOf(PropTypes.string).isRequired,
+    routes: PropTypes.objectOf(PropTypes.string), // .isRequired,
     basePath: PropTypes.string,
 };
 
 const defaultProps = {
+    routes: null,
     basePath: null,
 };
 

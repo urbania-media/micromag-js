@@ -96,15 +96,14 @@ const NumberField = ({
     );
 
     return (
-        <div className={styles.container}>
+        <div className={classNames([styles.container, { [className]: className !== null }])}>
             <input
                 type="number"
                 className={classNames([
                     'form-control',
                     {
                         // 'w-auto': size !== null,
-                        'ml-auto': isHorizontal,
-                        [className]: className !== null,
+                        'ml-auto': isHorizontal,                        
                     },
                 ])}
                 name={name}

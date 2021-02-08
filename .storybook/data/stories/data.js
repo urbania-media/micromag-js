@@ -22,8 +22,8 @@ export const colorGreen = '#66CCB8';
 export const colorYellow = '#FFFC00';
 export const colorSkin = '#d3a88e';
 
-const surveyLabelStyle = {...header3, color: colorGreen };
-const quizLabelStyle = {...header3, color: 'white' };
+const surveyLabelStyle = {...header3, color: { color: colorGreen }};
+const quizLabelStyle = {...header3, color: { color: 'white' }};
 
 export const transitions = ({ transitionIn = 'fade', transitionOut = 'fade' } = {}) => ({
     in: transitionIn,
@@ -31,6 +31,7 @@ export const transitions = ({ transitionIn = 'fade', transitionOut = 'fade' } = 
 });
 
 export const tommy = {
+    type: 'image',
     url: tommyBefore,
     thumbnail_url: tommyBefore,
     metadata: {
@@ -42,6 +43,7 @@ export const tommy = {
 export const mans = [
     {
         media: {
+            type: 'image',
             url: man1,
             thumbnail_url: man1,
             metadata: {
@@ -56,6 +58,7 @@ export const mans = [
     },
     {
         media: {
+            type: 'image',
             url: man2,
             thumbnail_url: man2,
             metadata: {
@@ -70,6 +73,7 @@ export const mans = [
     },
     {
         media: {
+            type: 'image',
             url: man3,
             thumbnail_url: man3,
             metadata: {
@@ -85,6 +89,7 @@ export const mans = [
     },
     {
         media: {
+            type: 'image',
             url: man4,
             thumbnail_url: man4,
             metadata: {
@@ -99,6 +104,7 @@ export const mans = [
     },
     {
         media: {
+            type: 'image',
             url: man5,
             thumbnail_url: man5,
             metadata: {
@@ -396,7 +402,7 @@ export const rankingItems = [
 export const timelineItems = [
     {
         title: {
-            textStyle: {...header2, color: colorYellow },
+            textStyle: {...header2, color: { color: colorYellow } },
             body: 'Jour 1',
         },
         description: {
@@ -407,7 +413,7 @@ export const timelineItems = [
     },
     {
         title: {
-            textStyle: {...header2, color: colorYellow },
+            textStyle: {...header2, color: { color: colorYellow } },
             body: 'Jour 2',
         },
         description: {
@@ -418,7 +424,7 @@ export const timelineItems = [
     },
     {
         title: {
-            textStyle: {...header2, color: colorYellow },
+            textStyle: {...header2, color: { color: colorYellow } },
             body: 'Jour 3',
         },
         description: {
@@ -429,7 +435,7 @@ export const timelineItems = [
     },
     {
         title: {
-            textStyle: {...header2, color: colorYellow },
+            textStyle: {...header2, color: { color: colorYellow } },
             body: 'Jour 4',
         },
         description: {
@@ -440,7 +446,7 @@ export const timelineItems = [
     },
     {
         title: {
-            textStyle: {...header2, color: colorYellow },
+            textStyle: {...header2, color: { color: colorYellow } },
             body: 'Jour 5',
         },
         description: {
@@ -451,7 +457,7 @@ export const timelineItems = [
     },
     {
         title: {
-            textStyle: {...header2, color: colorYellow },
+            textStyle: {...header2, color: { color: colorYellow } },
             body: 'Resultat',
         },
         description: {

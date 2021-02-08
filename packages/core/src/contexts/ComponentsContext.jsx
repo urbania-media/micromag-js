@@ -105,7 +105,7 @@ const propTypes = {
     children: PropTypes.node.isRequired,
     namespace: PropTypes.string,
     manager: PropTypes.instanceOf(ComponentsManager),
-    components: PropTypes.objectOf(PropTypes.object),
+    components: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.object, PropTypes.func])),
 };
 
 const defaultProps = {

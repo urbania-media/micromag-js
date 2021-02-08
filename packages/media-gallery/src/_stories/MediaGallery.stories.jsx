@@ -19,7 +19,7 @@ const apiBaseUrl = hasWindow ? `${window.location.protocol}//${window.location.h
 const props = {
     medias: [
         {
-            id: 1,
+            id: '1',
             type: 'video',
             thumbnail_url: 'https://picsum.photos/id/100/300/300',
             name:
@@ -30,35 +30,35 @@ const props = {
             },
         },
         {
-            id: 2,
+            id: '2',
             type: 'video',
             thumbnail_url: 'https://picsum.photos/id/200/300/300',
             name: 'moon.mov',
             src: video,
         },
         {
-            id: 3,
+            id: '3',
             type: 'video',
             thumbnail_url: 'https://picsum.photos/id/300/300/300',
             name: 'sea.mov',
             src: video,
         },
         {
-            id: 4,
+            id: '4',
             type: 'image',
             thumbnail_url: 'https://picsum.photos/id/400/300/300',
             name: 'moondog.jpg',
             src: 'https://picsum.photos/id/400/800/800',
         },
         {
-            id: 5,
+            id: '5',
             type: 'image',
             thumbnail_url: 'https://picsum.photos/id/500/300/300',
             name: 'urbaniaDog5.jpg',
             src: 'https://picsum.photos/id/500/800/800',
         },
         {
-            id: 6,
+            id: '6',
             type: 'audio',
             thumbnail_url: 'https://picsum.photos/id/600/300/300',
             name: 'Cool thang',

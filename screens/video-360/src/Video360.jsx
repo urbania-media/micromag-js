@@ -384,7 +384,7 @@ const Video360Screen = ({
             ) : null}
         </ScreenElement>,
         !isPlaceholder ? (
-            <div className={styles.bottomContent}>
+            <div key="bottom-content" className={styles.bottomContent}>
                 <Transitions
                     playing={transitionPlaying}
                     transitions={transitions}

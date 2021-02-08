@@ -16,6 +16,7 @@ const props = {
             type: 'email',
         },
     ],
+    action: '#',
 };
 
 const withRequiredProps = {
@@ -42,6 +43,7 @@ const withRequiredProps = {
             ],
         },
     ],
+    action: '#'
 };
 
 const withSlideProps = {
@@ -71,6 +73,7 @@ const withSlideProps = {
             type: 'background',
         },
     ],
+    action: '#',
 };
 
 export default {

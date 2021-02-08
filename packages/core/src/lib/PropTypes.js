@@ -19,9 +19,19 @@ export const intl = PropTypes.shape({
     formatMessage: PropTypes.func.isRequired,
 });
 
+export const defaultMessageContent = PropTypes.shape({
+    type: PropTypes.number,
+    value: PropTypes.string,
+});
+
+export const defaultMessage = PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(defaultMessageContent),
+]);
+
 export const message = PropTypes.shape({
     id: PropTypes.string,
-    defaultMessage: PropTypes.string.isRequired,
+    defaultMessage: defaultMessage.isRequired,
     description: PropTypes.string,
 });
 
@@ -90,7 +100,7 @@ export const button = PropTypes.shape({
 });
 export const buttons = PropTypes.arrayOf(button);
 
-export const buttonTheme = PropTypes.oneOf([
+const bootstrapThemeStrings = [
     'primary',
     'secondary',
     'success',
@@ -99,6 +109,12 @@ export const buttonTheme = PropTypes.oneOf([
     'info',
     'light',
     'dark',
+];
+
+export const bootstrapThemes = PropTypes.oneOf(bootstrapThemeStrings);
+
+export const buttonTheme = PropTypes.oneOf([
+    ...bootstrapThemeStrings,
     'outline-primary',
     'outline-secondary',
     'outline-success',
@@ -129,15 +145,18 @@ export const components = PropTypes.objectOf(component);
 export const errors = PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]);
 export const formErrors = PropTypes.objectOf(errors);
 
-export const selectOption = PropTypes.shape({
-    value: PropTypes.string,
-    label: PropTypes.node,
-});
+export const selectOption = PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({
+        value: PropTypes.any, // eslint-disable-line
+        label,
+    }),
+]);
 export const selectOptions = PropTypes.arrayOf(selectOption);
 
 export const formField = PropTypes.shape({
     name: PropTypes.string,
-    component: PropTypes.string,
+    component,
 });
 export const formFields = PropTypes.arrayOf(formField);
 
@@ -152,7 +171,7 @@ const mediaMetadataShape = {
 const mediaShape = {
     id: PropTypes.string,
     type: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
+    url: PropTypes.string, // .isRequired,
     thumbnail_url: PropTypes.string,
     name: PropTypes.string,
     metadata: PropTypes.shape({
@@ -267,13 +286,15 @@ export const margin = PropTypes.shape({
 
 export const gridLayout = PropTypes.arrayOf(
     PropTypes.shape({
-        rows: PropTypes.number,
-        columns: PropTypes.arrayOf(PropTypes.number),
+        rows: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+        columns: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
     }),
 );
 
+export const objectFitSize = PropTypes.oneOf(['cover', 'contain', null]);
+
 export const objectFit = PropTypes.shape({
-    fit: PropTypes.oneOf(['cover', 'contain', null]),
+    fit: objectFitSize,
     horizontalPosition: PropTypes.oneOf(['left', 'center', 'right']),
     verticalPosition: PropTypes.oneOf(['top', 'center', 'bottom']),
 });
@@ -281,15 +302,13 @@ export const objectFit = PropTypes.shape({
 /**
  * Elements
  */
-export const headingElement = PropTypes.shape({
-    body: PropTypes.string,
-    textStyle,
-});
 
 export const textElement = PropTypes.shape({
     body: PropTypes.string,
     textStyle,
 });
+
+export const headingElement = textElement;
 
 export const inputElement = PropTypes.shape({
     label: PropTypes.string,
@@ -363,8 +382,9 @@ export const geoPosition = PropTypes.shape({
 const markerShape = {
     id: PropTypes.number,
     geoPosition,
-    title: PropTypes.string,
-    description: PropTypes.string,
+    title: headingElement,
+    subtitle: headingElement,
+    description: textElement,
 };
 
 export const marker = PropTypes.shape({
@@ -378,13 +398,37 @@ export const markerWithImage = PropTypes.shape({
 });
 export const markersWithImage = PropTypes.arrayOf(markerWithImage);
 
+export const answerShape = {
+    id: PropTypes.string,
+    label: textElement,
+};
+
+export const answer = PropTypes.shape({
+    ...answerShape,
+});
+
+export const quizAnswer = PropTypes.shape({
+    ...answerShape,
+    good: PropTypes.bool,
+});
+
+export const answers = PropTypes.arrayOf(answer);
+export const quizAnswers = PropTypes.arrayOf(quizAnswer);
+
 /**
  * Definitions
  */
-export const field = PropTypes.shape({
-    name: PropTypes.string.isRequired,
+
+const fieldShape = {
+    name: PropTypes.string,
     type: PropTypes.string.isRequired,
     label: text,
+};
+
+export const field = PropTypes.shape({
+    ...fieldShape,
+    isSection: PropTypes.bool,
+    fields: PropTypes.arrayOf(PropTypes.shape(fieldShape)),
 });
 
 export const fields = PropTypes.arrayOf(field);
@@ -550,9 +594,9 @@ export const transitions = PropTypes.shape({
  */
 export const branding = PropTypes.shape({
     logo: imageMedia,
-    primaryColor: PropTypes.string,
-    secondaryColor: PropTypes.string,
-    backgroundColor: PropTypes.string,
+    primaryColor: color,
+    secondaryColor: color,
+    backgroundColor: color,
     textStyle,
 });
 

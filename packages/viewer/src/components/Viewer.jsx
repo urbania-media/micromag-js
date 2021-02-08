@@ -25,7 +25,7 @@ import MenuPreview from './menus/MenuPreview';
 import styles from '../styles/viewer.module.scss';
 
 const propTypes = {
-    story: MicromagPropTypes.story.isRequired,
+    story: MicromagPropTypes.story, // .isRequired,
     basePath: PropTypes.string,
     theme: MicromagPropTypes.branding,
     width: PropTypes.number,
@@ -45,6 +45,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    story: null,
     theme: null,
     basePath: null,
     width: null,

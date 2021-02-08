@@ -77,7 +77,7 @@ const Stack = ({
                 {React.Children.toArray(children).reduce(
                     (allChildren, child, index) =>
                         child.type !== Spacer && space !== null && index < lastIndex
-                            ? [...allChildren, child, <Spacer size={space} />]
+                            ? [...allChildren, child, <Spacer key={`spacer-${index}`} size={space} />]
                             : [...allChildren, child],
                     [],
                 )}

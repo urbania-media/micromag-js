@@ -10,6 +10,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useRoutes, useRoutePush, useUrlGenerator } from '@micromag/core/contexts';
 import { Empty, Button, Navbar } from '@micromag/core/components';
 import { useParsedStory } from '@micromag/core/hooks';
+import isString from 'lodash/isString';
 
 import useThemeValue from '../hooks/useThemeValue';
 import createScreen from '../utils/createScreen';
@@ -61,17 +62,18 @@ const EditorScreens = ({
 
     const createScreenFromDefinition = useCallback(
         (definition) => {
-            const newScreen = createScreen(definition);
-            const { type: newScreenType } = newScreen || {};
             const { components: currentScreens = [], theme = {} } = value || {};
-            const { components: themeComponents } = theme || {};
-            const themeScreen = themeComponents.find((it) => it.type === newScreenType) || null;
-            const newScreenValue =
-                themeScreen !== null ? { ...themeScreen, ...newScreen } : newScreen;
+            const { id: newScreenType } = isString(definition) ? { id: definition } : definition;
+            const { components: themeComponents = null } = theme || {};
+            const themeScreen = themeComponents !== null ? themeComponents.find((it) => it.type === newScreenType) || null : null;
+
+            const newScreen = createScreen(definition, themeScreen);
+                
             const newValue = {
                 ...value,
-                components: [...(currentScreens || []), newScreenValue],
+                components: [...(currentScreens || []), newScreen],
             };
+
             if (onChange !== null) {
                 onChange(newValue);
             }

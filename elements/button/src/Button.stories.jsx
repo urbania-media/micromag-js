@@ -10,7 +10,7 @@ export default {
 
 const style = {
     textStyle: {
-        color: 'yellow',
+        color: { color: 'yellow' },
         fontStyle: {
             italic: true,
         },
@@ -18,7 +18,7 @@ const style = {
     borderStyle: {
         width: 2,
         style: 'dashed',
-        color: 'yellow',
+        color: { color: 'yellow' },
     },
 };
 

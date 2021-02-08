@@ -6,19 +6,29 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Number from './Number';
 
+const fontAwesomeIconType = PropTypes.shape({
+    icon: PropTypes.arrayOf(
+        PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.array]),
+    ),
+    iconName: PropTypes.string,
+    prefix: PropTypes.string,
+});
+
 const propTypes = {
-    icon: PropTypes.node,
-    isHorizontal: PropTypes.number,
+    icon: PropTypes.oneOfType([PropTypes.node, fontAwesomeIconType]),
+    iconRotation: PropTypes.number,
+    isHorizontal: PropTypes.bool,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     icon: null,
+    iconRotation: 0,
     isHorizontal: false,
     className: null,
 };
 
-const NumberWithIcon = ({ icon, isHorizontal, className, ...props }) => (
+const NumberWithIcon = ({ icon, iconRotation, isHorizontal, className, ...props }) => (
     <div
         className={classNames([
             'd-flex',
@@ -29,8 +39,10 @@ const NumberWithIcon = ({ icon, isHorizontal, className, ...props }) => (
             },
         ])}
     >
-        <FontAwesomeIcon icon={icon} className="mr-2" />
-        <Number {...props} />
+        <span className="mr-2" style={ iconRotation !== 0 ? { transform: `rotate(${iconRotation}deg)` } : null }>
+            <FontAwesomeIcon icon={icon} />
+        </span>
+        <Number {...props} className="flex-grow-1" />
     </div>
 );
 

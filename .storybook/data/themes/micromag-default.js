@@ -53,6 +53,11 @@ export const defaultTheme = {
                 body: 'Test body',
             },
         },
+        {
+            id: uuid(),
+            type: 'timeline',
+            bulletShape: 'square',
+        },
     ],
 };
 

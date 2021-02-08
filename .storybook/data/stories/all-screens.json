@@ -8,7 +8,7 @@
             "secondary": "#00C"
         },
         "background": {
-            "color": "#fc0"
+            "color": { "alpha": 1, "color": "#fc0" }
         },
         "textStyle": {
             "heading1": {
@@ -26,7 +26,7 @@
             "text": {
                 "fontSize": 16,
                 "fontFamily": "Arial",
-                "color": "#F0F"
+                "color": { "alpha": 1, "color": "#F0F" }
             }
         },
         "components": [
@@ -42,11 +42,11 @@
     "components": [
         {
             "background": {
-                "color": "#00FF00"
+                "color": { "alpha": 1, "color": "#00FF00" }
             },
             "id": "1cb7ba40-5c1a-11eb-985f-ad6fce99d848",
             "type": "audio",
-            "layout": "normal",
+            "layout": "middle",
             "audio": {
                 "media": {
                     "type": "audio",
@@ -69,7 +69,7 @@
         },
         {
             "background": {
-                "color": "#00FFFF"
+                "color": { "alpha": 1, "color": "#00FFFF" }
             },
             "id": "1cb7ba41-5c1a-11eb-985f-ad6fce99d848",
             "type": "contribution",
@@ -105,7 +105,7 @@
         },
         {
             "background": {
-                "color": "#FFFF00"
+                "color": { "alpha": 1, "color": "#FFFF00" }
             },
             "id": "1cb7ba42-5c1a-11eb-985f-ad6fce99d848",
             "type": "gallery",
@@ -147,7 +147,7 @@
         },
         {
             "background": {
-                "color": "#00FF00"
+                "color": { "alpha": 1, "color": "#00FF00" }
             },
             "id": "1cb7ba43-5c1a-11eb-985f-ad6fce99d848",
             "type": "gallery-feed",
@@ -196,7 +196,7 @@
         },
         {
             "background": {
-                "color": "#00FFFF"
+                "color": { "alpha": 1, "color": "#00FFFF" }
             },
             "id": "1cb7ba44-5c1a-11eb-985f-ad6fce99d848",
             "type": "gallery-feed-captions",
@@ -275,7 +275,7 @@
         },
         {
             "background": {
-                "color": "#FF00FF"
+                "color": { "alpha": 1, "color": "#FF00FF" }
             },
             "id": "1cb80860-5c1a-11eb-985f-ad6fce99d848",
             "type": "image",
@@ -295,11 +295,11 @@
         },
         {
             "background": {
-                "color": "#0000FF"
+                "color": { "alpha": 1, "color": "#0000FF" }
             },
             "id": "1cb80861-5c1a-11eb-985f-ad6fce99d848",
             "type": "image-title-text",
-            "layout": "center",
+            "layout": "normal",
             "image": {
                 "url": "https://picsum.photos/800/800?random=1",
                 "thumbnail_url": "https://picsum.photos/100/100?random=1",
@@ -333,7 +333,7 @@
         },
         {
             "background": {
-                "color": "#FF00FF"
+                "color": { "alpha": 1, "color": "#FF00FF" }
             },
             "id": "1cb80862-5c1a-11eb-985f-ad6fce99d848",
             "type": "image-legend",
@@ -353,7 +353,7 @@
         },
         {
             "background": {
-                "color": "#FF0000"
+                "color": { "alpha": 1, "color": "#FF0000" }
             },
             "id": "1cb80863-5c1a-11eb-985f-ad6fce99d848",
             "type": "map",
@@ -362,7 +362,7 @@
                 "color": null,
                 "body": "A better longer title",
                 "textStyle": {
-                    "color": "#0F0",
+                    "color": { "alpha": 1, "color": "#0F0" },
                     "fontSize": 36,
                     "fontFamily": "Courier"
                 }
@@ -370,7 +370,7 @@
             "description": {
                 "color": null,
                 "textStyle": {
-                    "color": "#F0F",
+                    "color": { "alpha": 1, "color": "#F0F" },
                     "fontSize": 16,
                     "fontFamily": "Arial"
                 },
@@ -444,7 +444,7 @@
         },
         {
             "background": {
-                "color": "#0000FF"
+                "color": { "alpha": 1, "color": "#0000FF" }
             },
             "id": "1cb80864-5c1a-11eb-985f-ad6fce99d848",
             "type": "map-images",
@@ -453,7 +453,7 @@
                 "color": null,
                 "body": "A long longer title",
                 "textStyle": {
-                    "color": "#0F0",
+                    "color": { "alpha": 1, "color": "#0F0" },
                     "fontSize": 36,
                     "fontFamily": "Courier"
                 }
@@ -461,7 +461,7 @@
             "description": {
                 "color": null,
                 "textStyle": {
-                    "color": "#F0F",
+                    "color": { "alpha": 1, "color": "#F0F" },
                     "fontSize": 16,
                     "fontFamily": "Arial"
                 },
@@ -556,7 +556,7 @@
         },
         {
             "background": {
-                "color": "#00FF00"
+                "color": { "alpha": 1, "color": "#00FF00" }
             },
             "id": "1cb80865-5c1a-11eb-985f-ad6fce99d848",
             "type": "quiz",
@@ -566,26 +566,26 @@
             },
             "answers": [
                 {
-                    "id": 1,
+                    "id": "1",
                     "label": {
                         "body": "A subtitle for something about something"
                     }
                 },
                 {
-                    "id": 2,
+                    "id": "2",
                     "label": {
                         "body": "La bonne réponse"
                     },
                     "good": true
                 },
                 {
-                    "id": 3,
+                    "id": "3",
                     "label": {
                         "body": "A better somewhat longer longer subtitle"
                     }
                 },
                 {
-                    "id": 4,
+                    "id": "4",
                     "label": {
                         "body": "28463 3459834 31459134 3145134 2345134 1345 1345 34523 45"
                     }
@@ -595,7 +595,7 @@
                 "color": null,
                 "body": "Et oui, la bonne réponse était \"La bonne réponse\". Quand même surprenant hen?",
                 "textStyle": {
-                    "color": "#F0F",
+                    "color": { "alpha": 1, "color": "#F0F" },
                     "fontSize": 16,
                     "fontFamily": "Arial"
                 }
@@ -607,7 +607,7 @@
         },
         {
             "background": {
-                "color": "#00FFFF"
+                "color": { "alpha": 1, "color": "#00FFFF" }
             },
             "id": "1cb82f70-5c1a-11eb-985f-ad6fce99d848",
             "type": "quote",
@@ -631,7 +631,7 @@
         },
         {
             "background": {
-                "color": "#FF00FF"
+                "color": { "alpha": 1, "color": "#FF00FF" }
             },
             "id": "1cb82f71-5c1a-11eb-985f-ad6fce99d848",
             "type": "ranking",
@@ -738,7 +738,7 @@
         },
         {
             "background": {
-                "color": "#333"
+                "color": { "alpha": 1, "color": "#333" }
             },
             "id": "1cb82f72-5c1a-11eb-985f-ad6fce99d848",
             "type": "survey",
@@ -748,32 +748,28 @@
             },
             "answers": [
                 {
-                    "id": 1,
+                    "id": "1",
                     "label": {
                         "body": "Choix 1"
-                    },
-                    "percent": 34
+                    }
                 },
                 {
-                    "id": 2,
+                    "id": "2",
                     "label": {
                         "body": "Choix 2"
-                    },
-                    "percent": 12
+                    }
                 },
                 {
-                    "id": 3,
+                    "id": "3",
                     "label": {
                         "body": "Choix plus long"
-                    },
-                    "percent": 38
+                    }
                 },
                 {
-                    "id": 4,
+                    "id": "4",
                     "label": {
                         "body": "Choix 4"
-                    },
-                    "percent": 16
+                    }
                 }
             ],
             "transitions": {
@@ -787,13 +783,13 @@
                 "color": null,
                 "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less",
                 "textStyle": {
-                    "color": "#F0F",
+                    "color": { "alpha": 1, "color": "#F0F" },
                     "fontSize": 16,
                     "fontFamily": "Arial"
                 }
             },
             "background": {
-                "color": "#0000FF"
+                "color": { "alpha": 1, "color": "#0000FF" }
             },
             "type": "text",
             "layout": "top",
@@ -808,7 +804,7 @@
                 "color": null,
                 "body": "The sky above the port",
                 "textStyle": {
-                    "color": "#F0F",
+                    "color": { "alpha": 1, "color": "#F0F" },
                     "fontSize": 20,
                     "fontFamily": "AmericanTypewriter"
                 }
@@ -817,13 +813,13 @@
                 "color": null,
                 "body": "The sky above the port was the color of television tuned to a dead channel All this happened more or less",
                 "textStyle": {
-                    "color": "#F0F",
+                    "color": { "alpha": 1, "color": "#F0F" },
                     "fontSize": 16,
                     "fontFamily": "Arial"
                 }
             },
             "background": {
-                "color": "#0000FF"
+                "color": { "alpha": 1, "color": "#0000FF" }
             },
             "type": "text-title",
             "layout": "top",
@@ -850,7 +846,7 @@
                         "outline": true
                     },
                     "lineHeight": 1,
-                    "color": "#ff4dff"
+                    "color": { "alpha": 1, "color": "#ff4dff" }
                 }
             },
             "author": {
@@ -870,7 +866,7 @@
             },
             "background": {
                 "color": {
-                    "color": "#242235"
+                    "color": { "alpha": 1, "color": "#242235" }
                 },
                 "image": {
                     "type": "image",
@@ -891,7 +887,7 @@
         },
         {
             "background": {
-                "color": "#FF00FF"
+                "color": { "alpha": 1, "color": "#FF00FF" }
             },
             "id": "1cb82f74-5c1a-11eb-985f-ad6fce99d848",
             "type": "timeline",
@@ -989,8 +985,8 @@
                 }
             ],
             "bulletShape": "circle",
-            "bulletColor": "#FFF",
-            "lineColor": "#FFF",
+            "bulletColor": { "alpha": 1, "color": "#FFF" },
+            "lineColor": { "alpha": 1, "color": "#FFF" },
             "bulletFilled": false,
             "transitions": {
                 "in": "fade",
@@ -999,7 +995,7 @@
         },
         {
             "background": {
-                "color": "#0000FF"
+                "color": { "alpha": 1, "color": "#0000FF" }
             },
             "id": "1cb82f75-5c1a-11eb-985f-ad6fce99d848",
             "type": "timeline-illustrated",
@@ -1177,8 +1173,8 @@
                 }
             ],
             "bulletShape": "circle",
-            "bulletColor": "#FFF",
-            "lineColor": "#FFF",
+            "bulletColor": { "alpha": 1, "color": "#FFF" },
+            "lineColor": { "alpha": 1, "color": "#FFF" },
             "bulletFilled": false,
             "transitions": {
                 "in": "fade",
@@ -1187,7 +1183,7 @@
         },
         {
             "background": {
-                "color": "#FF0000"
+                "color": { "alpha": 1, "color": "#FF0000" }
             },
             "id": "1cb82f76-5c1a-11eb-985f-ad6fce99d848",
             "type": "title",
@@ -1202,11 +1198,11 @@
         },
         {
             "background": {
-                "color": "#FF00FF"
+                "color": { "alpha": 1, "color": "#FF00FF" }
             },
             "id": "1cb82f77-5c1a-11eb-985f-ad6fce99d848",
             "type": "video",
-            "layout": "normal",
+            "layout": "middle",
             "video": {
                 "media": {
                     "type": "video",
@@ -1231,14 +1227,14 @@
         },
         {
             "background": {
-                "color": "#FF00FF"
+                "color": { "alpha": 1, "color":  "#FF00FF" }
             },
             "id": "1cb82f78-5c1a-11eb-985f-ad6fce99d848",
             "type": "video-360",
             "layout": "full",
             "video": {
                 "media": {
-                    "type": "video-360",
+                    "type": "video",
                     "url": "static/media/test-360.6ed1598c.mp4",
                     "metadata": {
                         "width": 1920,

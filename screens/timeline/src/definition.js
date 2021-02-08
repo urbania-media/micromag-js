@@ -70,7 +70,7 @@ export default [
             {
                 name: 'bulletColor',
                 type: 'color',
-                defaultValue: '#FFFFFF',
+                defaultValue: { alpha: 1, color: '#FFFFFF' },
                 label: defineMessage({
                     defaultMessage: 'Bullet color',
                     description: 'Field label',
@@ -79,7 +79,7 @@ export default [
             {
                 name: 'lineColor',
                 type: 'color',
-                defaultValue: '#FFFFFF',
+                defaultValue: { alpha: 1, color: '#FFFFFF' },
                 label: defineMessage({
                     defaultMessage: 'Line color',
                     description: 'Field label',
@@ -168,7 +168,7 @@ export default [
             {
                 name: 'bulletColor',
                 type: 'color',
-                defaultValue: '#FFFFFF',
+                defaultValue: { alpha: 1, color: '#FFFFFF' },
                 label: defineMessage({
                     defaultMessage: 'Bullet color',
                     description: 'Field label',
@@ -177,7 +177,7 @@ export default [
             {
                 name: 'lineColor',
                 type: 'color',
-                defaultValue: '#FFFFFF',
+                defaultValue: { alpha: 1, color: '#FFFFFF' },
                 label: defineMessage({
                     defaultMessage: 'Line color',
                     description: 'Field label',

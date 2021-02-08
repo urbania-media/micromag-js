@@ -107,6 +107,7 @@ export const imageUrl = ({ width = 800, height = 800, rand = false } = {}) =>
     `https://picsum.photos/${width}/${height}?random=${rand ? Math.random() : 1}`;
 
 export const imageMedia = ({ width = 800, height = 800, rand = false } = {}) => ({
+    type: 'image',
     url: imageUrl({ width, height, rand }),
     thumbnail_url: imageUrl({ width: 100, height: 100, rand }),
     metadata: {
@@ -126,7 +127,7 @@ export const videoMedia = () => ({
 });
 
 export const video360Media = () => ({
-    type: 'video-360',
+    type: 'video',
     url: video360File,
     thumbnail_url: imageUrl({ width: 1920, height: 960, rand: true }),
     metadata: {
@@ -152,6 +153,7 @@ export const closedCaptionsMedia = () => ({
 
 export const images = ({ count = 3, width = 800, height = 800, rand = false } = {}) =>
     [...Array(count)].map(() => ({
+        type: 'image',
         url: imageUrl({ width, height, rand }),
         metadata: {
             width,
@@ -162,6 +164,7 @@ export const images = ({ count = 3, width = 800, height = 800, rand = false } = 
 export const imagesWithCaptions = ({ count = 3, width = 800, height = 800, rand = false } = {}) =>
     [...Array(count)].map(() => ({
         media: {
+            type: 'image',
             url: imageUrl({ width, height, rand }),
             metadata: {
                 width,

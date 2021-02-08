@@ -4,11 +4,11 @@ export default {
     type: 'theme',
     title: 'Default Theme',
     colors: {
-        primary: { color: '#0F0', alpha: 1 },
-        secondary: { color: '#00F', alpha: 1 },
+        primary: { alpha: 1, color: '#0F0' },
+        secondary: { alpha: 1, color: '#00F' },
     },
     background: {
-        color: '#fc0',
+        color: { alpha: 1, color: '#fc0' },
     },
     textStyle: {
         heading1: {
@@ -26,12 +26,12 @@ export default {
         text: {
             fontSize: 16,
             fontFamily: 'Arial',
-            color: '#F0F',
+            color: { alpha: 1, color: '#F0F' },
         },
         button: {
             fontSize: 16,
             fontFamily: 'Lato',
-            color: '#F0F',
+            color: { alpha: 1, color: '#F0F' },
         },
     },
     components: [

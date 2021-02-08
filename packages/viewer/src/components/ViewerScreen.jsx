@@ -8,7 +8,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import styles from '../styles/screen.module.scss';
 
 const propTypes = {
-    screen: MicromagPropTypes.screenType,
+    screen: MicromagPropTypes.screenComponent,
     renderContext: MicromagPropTypes.renderContext,
     current: PropTypes.bool,
     active: PropTypes.bool,

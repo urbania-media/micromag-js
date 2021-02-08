@@ -13,11 +13,11 @@ import Field from './Field';
 
 const propTypes = {
     name: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.arrayOf(PropTypes.object),// eslint-disable-line
     newDefaultValue: PropTypes.object, // eslint-disable-line
     noItemLabel: MicromagPropTypes.label,
     addItemLabel: MicromagPropTypes.label,
-    itemFieldLabel: MicromagPropTypes.label,
+    itemFieldLabel: PropTypes.oneOfType([PropTypes.func, MicromagPropTypes.label]),
     itemComponent: PropTypes.elementType,
     itemsField: MicromagPropTypes.formField,
     className: PropTypes.string,

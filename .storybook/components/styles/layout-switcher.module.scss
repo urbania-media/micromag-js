@@ -18,11 +18,18 @@
     height: 50px;
     padding: 5px;
     border-bottom: 1px solid $black;
-    background: $gray-200;
+    background: $gray-700;
+    color: $white;
 
     select {
         max-width: 200px;
         margin-left: 10px;
+        background-color: $white !important;
+        color: $black !important;
+    }
+
+    option {
+        color: $black;
     }
 }
 

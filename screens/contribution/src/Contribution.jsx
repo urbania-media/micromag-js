@@ -116,7 +116,7 @@ const ContributionScreen = ({
         screenId,
     });
 
-    const { contributions } = useContributions({ screenId });
+    const { contributions } = useContributions({ screenId, opts: { autoload: !isPlaceholder } });
 
     const onNameChange = useCallback(
         (e) => {
@@ -236,6 +236,7 @@ const ContributionScreen = ({
 
     items.push(
         <div
+            key='form'
             className={styles.interactiveContainer}
             style={{
                 height: submitState < 4 ? interactiveContainerHeight : null,
@@ -336,15 +337,15 @@ const ContributionScreen = ({
             <div className={styles.contributionsContainer}>
                 <div className={styles.contributionsContent}>
                     <div className={styles.contributions} ref={contributionsRef}>
-                        {allContributions.map((contribution, contributionI) => (
+                        {allContributions.map((contribution, contributionIndex) => (
                             <div
-                                key={`contribution${contributionI}`}
+                                key={`contribution-${contributionIndex}`}
                                 className={styles.contribution}
                             >
-                                <Text
+                                <Heading
                                     className={styles.contributionName}
                                     body={contribution.name}
-                                    textStyle={{ fontStyle: 'bold' }}
+                                    size={2}
                                 />
                                 <Text
                                     className={styles.contributionMessage}

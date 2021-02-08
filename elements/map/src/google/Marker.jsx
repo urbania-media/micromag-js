@@ -7,12 +7,13 @@ import Pin from './pin.png';
 import PinInactive from './pin-inactive.png';
 
 const propTypes = {
-    map: PropTypes.object.isRequired, // eslint-disable-line
+    // map: PropTypes.object.isRequired, // eslint-disable-line
+    map: PropTypes.object, // eslint-disable-line
     position: PropTypes.shape({
         lat: PropTypes.number,
         lng: PropTypes.number,
     }).isRequired,
-    type: PropTypes.string.isRequired,
+    type: PropTypes.string, // .isRequired,
     events: PropTypes.object, // eslint-disable-line
     active: PropTypes.bool,
     title: PropTypes.string,

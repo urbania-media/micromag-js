@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Select from 'react-select';
 import isEqual from 'lodash/isEqual';
-
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import { selectTheme } from '../utils/selectTheme';

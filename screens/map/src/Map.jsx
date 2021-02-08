@@ -191,18 +191,28 @@ const MapScreen = ({
     useEffect(() => {
         if (withMarkerImages && markers !== null && (markers || []).length) {
             setMarkerImagesLoaded(0);
-            markers.forEach((marker) => {
+            const imgs = markers.map((marker) => {
                 const { image = null } = marker || {};
                 const { url = null } = image || {};
-                if (url !== null) {
+                const withUrl = url !== null;
+                if (withUrl) {
                     const img = new Image();
                     img.src = url;
                     img.onload = () => {
                         setMarkerImagesLoaded((index) => setMarkerImagesLoaded(index + 1));
                     };
+                    return img;
                 }
+                return null;
             });
+
+            return () => {
+                imgs.filter((img) => img !== null).forEach((img) => {
+                    img.onload = () => {};// eslint-disable-line no-param-reassign
+                });
+            };
         }
+        return () => {};
     }, [withMarkerImages, markers]);
 
     let element = null;

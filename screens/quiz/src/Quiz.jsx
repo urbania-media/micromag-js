@@ -10,7 +10,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useTrackScreenEvent } from '@micromag/core/hooks';
-import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
+import { isTextFilled } from '@micromag/core/utils';
 import { useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -25,13 +25,7 @@ const propTypes = {
     id: PropTypes.string,
     layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split']),
     question: MicromagPropTypes.textElement,
-    answers: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number,
-            label: MicromagPropTypes.textElement,
-            good: PropTypes.bool,
-        }),
-    ),
+    answers: MicromagPropTypes.quizAnswers,
     result: PropTypes.shape({
         image: MicromagPropTypes.imageElement,
         text: MicromagPropTypes.textElement,
@@ -265,10 +259,8 @@ const QuizScreen = ({
             {answers !== null || isPlaceholder ? (
                 <div className={styles.items}>
                     {(isPlaceholder ? [...new Array(2)] : answers).map((answer, answerI) => {
-                        const { good: rightAnswer = false } = answer || {};
                         const userAnswer = answerI === userAnswerIndex;
-
-                        const { label = null } = answer || {};
+                        const { good: rightAnswer = false, label = null } = answer || {};
                         const { textStyle = null } = label || {};
                         const { color: labelColor = null } = textStyle || {};
 
@@ -325,10 +317,7 @@ const QuizScreen = ({
                                                         ? {
                                                               width: 2,
                                                               style: 'solid',
-                                                              ...getStyleFromColor(
-                                                                  labelColor,
-                                                                  'color',
-                                                              ),
+                                                              color: labelColor,
                                                           }
                                                         : null
                                                 }

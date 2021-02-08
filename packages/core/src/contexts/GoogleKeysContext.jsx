@@ -10,10 +10,12 @@ export const useGoogleKeys = () => useContext(GoogleKeysContext);
 
 const propTypes = {
     children: PropTypes.node.isRequired,
-    apiKey: PropTypes.string.isRequired,
+    apiKey: PropTypes.string,// .isRequired,
 };
 
-const defaultProps = {};
+const defaultProps = {
+    apiKey: null
+};
 
 export const GoogleKeysProvider = ({ children, apiKey }) => {
     const { apiKey: previousApiKey } = useGoogleKeys();

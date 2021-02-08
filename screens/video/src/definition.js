@@ -18,13 +18,13 @@ export default {
         description: 'Video screen title',
     }),
     component: VideoScreen,
-    layouts: ['center', 'full'],
+    layouts: ['middle', 'full'],
     transforms,
     fields: [
         {
             name: 'layout',
             type: 'screen-layout',
-            defaultValue: 'center',
+            defaultValue: 'middle',
             label: defineMessage({
                 defaultMessage: 'Layout',
                 description: 'Layout field label',

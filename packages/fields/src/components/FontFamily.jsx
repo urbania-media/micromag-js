@@ -4,11 +4,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isObject from 'lodash/isObject';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getFontFamilyFromFont } from '@micromag/core/utils';
 import { useFonts } from '@micromag/core/contexts';
 import { useLoadedFonts } from '@micromag/core/hooks';
-
-// import * as AppPropTypes from '../../lib/PropTypes';
 
 import FieldWithForm from './FieldWithForm';
 
@@ -23,7 +22,7 @@ const fontEquals = (fontA, fontB) =>
     (isObject(fontA) && isObject(fontB) && fontA.type === fontB.type && fontA.name === fontB.name);
 
 const propTypes = {
-    value: PropTypes.string,
+    value: MicromagPropTypes.font,
     isForm: PropTypes.bool,
     isHorizontal: PropTypes.bool,
     maxFontsVisible: PropTypes.number,

@@ -24,7 +24,7 @@ import defaultRoutes from '../data/routes.json';
 
 const propTypes = {
     routes: EditorPropTypes.routes,
-    memoryRouter: PropTypes.node,
+    memoryRouter: PropTypes.bool,
     basePath: PropTypes.string,
     uppy: PropTypes.shape({
         transport: PropTypes.string,

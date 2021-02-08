@@ -8,9 +8,9 @@ import { useFieldsManager, useFieldComponent } from '@micromag/core/contexts';
 import FieldRow from './FieldRow';
 
 const propTypes = {
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string, // .isRequired,
     type: PropTypes.string,
-    component: PropTypes.nodeType,
+    component: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
     label: MicromagPropTypes.label,
     help: MicromagPropTypes.label,
     errors: MicromagPropTypes.errors,
@@ -28,6 +28,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    name: null,
     type: null,
     component: null,
     label: null,

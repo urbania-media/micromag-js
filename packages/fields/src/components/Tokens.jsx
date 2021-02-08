@@ -9,9 +9,9 @@ import { selectTheme } from '../utils/selectTheme';
 import styles from '../styles/tokens.module.scss';
 
 const propTypes = {
-    value: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    value: PropTypes.array, // eslint-disable-line
     onChange: PropTypes.func,
-    options: PropTypes.arrayOf(PropTypes.object),
+    options: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object, PropTypes.string])),
     loadOptions: PropTypes.func,
     getOptionLabel: PropTypes.func,
     getOptionValue: PropTypes.func,

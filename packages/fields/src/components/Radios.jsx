@@ -57,7 +57,7 @@ const Radios = ({ name, value, options, className, buttonClassName, onChange }) 
                         type="radio"
                         name={name}
                         autoComplete="off"
-                        value={optionValue}
+                        value={optionValue || ''}
                         onChange={(e) => {
                             if (onChange !== null) {
                                 onChange(e.currentTarget.checked ? optionValue : null);

@@ -9,7 +9,7 @@ import { useQuiz, useQuizCreate } from '@micromag/data';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useTrackScreenEvent } from '@micromag/core/hooks';
-import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
+import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
@@ -23,13 +23,7 @@ const propTypes = {
     id: PropTypes.string,
     layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split']),
     question: MicromagPropTypes.textElement,
-    answers: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number,
-            label: MicromagPropTypes.textElement,
-            percent: PropTypes.number,
-        }),
-    ),
+    answers: MicromagPropTypes.answers,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     withPercentLabels: PropTypes.bool,
@@ -79,7 +73,6 @@ const SurveyScreen = ({
     const { create: submitQuiz } = useQuizCreate({
         screenId,
     });
-    const { quiz: quizAnswers = [] } = useQuiz({ screenId }); // eslint-disable-line
 
     const {
         isView,
@@ -89,6 +82,8 @@ const SurveyScreen = ({
         isStatic,
         isCapture,
     } = useScreenRenderContext();
+
+    const { quiz: quizAnswers = [] } = useQuiz({ screenId, opts: { autoload: !isPlaceholder } });
 
     const hasQuestion = isTextFilled(question);
 
@@ -279,10 +274,7 @@ const SurveyScreen = ({
                                                                 ? {
                                                                       width: 2,
                                                                       style: 'solid',
-                                                                      ...getStyleFromColor(
-                                                                          labelColor,
-                                                                          'color',
-                                                                      ),
+                                                                      color: labelColor,
                                                                   }
                                                                 : null
                                                         }

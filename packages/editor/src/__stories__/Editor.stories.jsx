@@ -95,12 +95,13 @@ const viewerTheme = {
 EditorContainer.propTypes = {
     defaultValue: PropTypes.shape({
         title: PropTypes.string,
-        components: MicromagPropTypes.components,
-    }).isRequired,
+        components: MicromagPropTypes.screenComponents,
+    }),
     isTheme: PropTypes.bool,
     viewerTheme: MicromagPropTypes.branding,
 };
 EditorContainer.defaultProps = {
+    defaultValue: null,
     isTheme: false,
     viewerTheme: null,
 };

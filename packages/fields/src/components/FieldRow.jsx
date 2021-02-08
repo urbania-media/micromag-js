@@ -94,7 +94,7 @@ const FieldRow = ({
         },
     ]);
 
-    const labelElement = (
+    const labelElement = label !== null ? (
         <label
             className={classNames({
                 'col-form-label': isHorizontal || withSettings,
@@ -109,7 +109,7 @@ const FieldRow = ({
         >
             <Label>{label}</Label>
         </label>
-    );
+    ) : null;
 
     const helpElement = help !== null ? <FieldHelp>{help}</FieldHelp> : null;
 

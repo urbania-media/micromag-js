@@ -15,9 +15,10 @@ import Field from './Field';
 import styles from '../styles/field-with-form.module.scss';
 
 const propTypes = {
-    value: MicromagPropTypes.media,
+    // value: MicromagPropTypes.media,
+    value: PropTypes.any, // eslint-disable-line
     isForm: PropTypes.bool,
-    label: PropTypes.node,
+    label: PropTypes.oneOfType([PropTypes.node, MicromagPropTypes.message]),
     thumbnail: PropTypes.node,
     labelPath: PropTypes.string,
     thumbnailPath: PropTypes.string,

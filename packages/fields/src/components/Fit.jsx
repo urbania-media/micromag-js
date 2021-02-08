@@ -9,7 +9,7 @@ import Radios from './Radios';
 import styles from '../styles/fit.module.scss';
 
 const propTypes = {
-    values: PropTypes.arrayOf(PropTypes.string),
+    values: PropTypes.arrayOf(MicromagPropTypes.objectFitSize),
     value: MicromagPropTypes.objectFitSize,
     className: PropTypes.string,
     onChange: PropTypes.func,

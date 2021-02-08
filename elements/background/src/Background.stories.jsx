@@ -23,5 +23,5 @@ export const image = () => (
 );
 
 export const video = () => (
-    <Background width={200} height={350} color={{ color: 'black' }} video={videoMedia()} />
+    <Background width={200} height={350} color={{ color: 'black' }} video={videoMedia()} playing />
 );

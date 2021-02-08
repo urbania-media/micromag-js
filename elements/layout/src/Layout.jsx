@@ -7,18 +7,20 @@ import { StackProvider } from '@micromag/element-stack';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
+    width: PropTypes.number,
+    height: PropTypes.number,
     horizontalAlign: PropTypes.oneOf(['left', 'center', 'right']),
     verticalAlign: PropTypes.oneOf(['top', 'middle', 'bottom']),
     distribution: PropTypes.oneOf(['between', 'around', null]),
     fullscreen: PropTypes.bool,
     className: PropTypes.string,
     children: PropTypes.node,
-    style: PropTypes.styles,
+    style: PropTypes.object,// eslint-disable-line
 };
 
 const defaultProps = {
+    width: null,
+    height: null,
     horizontalAlign: 'left',
     verticalAlign: 'top',
     distribution: null,

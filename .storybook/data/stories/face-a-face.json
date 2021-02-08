@@ -363,7 +363,7 @@
                         "transform": "uppercase"
                     },
                     "lineHeight": 1,
-                    "color": "#66CCB8"
+                    "color": { "alpha": 1, "color": "#66CCB8" }
                 }
             },
             "answers": [
@@ -382,7 +382,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "#66CCB8"
+                            "color": { "alpha": 1, "color": "#66CCB8" }
                         }
                     },
                     "percent": 10
@@ -402,7 +402,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "#66CCB8"
+                            "color": { "alpha": 1, "color": "#66CCB8" }
                         }
                     },
                     "percent": 20
@@ -422,7 +422,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "#66CCB8"
+                            "color": { "alpha": 1, "color": "#66CCB8" }
                         }
                     },
                     "percent": 12.5
@@ -442,7 +442,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "#66CCB8"
+                            "color": { "alpha": 1, "color": "#66CCB8" }
                         }
                     },
                     "percent": 5
@@ -462,7 +462,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "#66CCB8"
+                            "color": { "alpha": 1, "color": "#66CCB8" }
                         }
                     },
                     "percent": 15
@@ -482,7 +482,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "#66CCB8"
+                            "color": { "alpha": 1, "color": "#66CCB8" }
                         }
                     },
                     "percent": 37.5
@@ -601,7 +601,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "white"
+                            "color": { "alpha": 1, "color": "white" }
                         },
                         "body": "Deux minutes, pareil comme dans le film Face/Off"
                     }
@@ -620,7 +620,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "white"
+                            "color": { "alpha": 1, "color": "white" }
                         },
                         "body": "Deux heures et demi"
                     }
@@ -639,7 +639,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "white"
+                            "color": { "alpha": 1, "color": "white" }
                         },
                         "body": "18 heures"
                     },
@@ -659,7 +659,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "white"
+                            "color": { "alpha": 1, "color": "white" }
                         },
                         "body": "36 heures"
                     }
@@ -735,7 +735,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "white"
+                            "color": { "alpha": 1, "color": "white" }
                         },
                         "body": "1"
                     }
@@ -754,7 +754,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "white"
+                            "color": { "alpha": 1, "color": "white" }
                         },
                         "body": "2"
                     }
@@ -773,7 +773,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "white"
+                            "color": { "alpha": 1, "color": "white" }
                         },
                         "body": "3"
                     },
@@ -793,7 +793,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "white"
+                            "color": { "alpha": 1, "color": "white" }
                         },
                         "body": "4"
                     }
@@ -869,7 +869,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "white"
+                            "color": { "alpha": 1, "color": "white" }
                         },
                         "body": "Une à deux fois plus"
                     }
@@ -888,7 +888,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "white"
+                            "color": { "alpha": 1, "color": "white" }
                         },
                         "body": "5 fois plus"
                     }
@@ -907,7 +907,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "white"
+                            "color": { "alpha": 1, "color": "white" }
                         },
                         "body": "1000 fois plus"
                     }
@@ -926,7 +926,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "white"
+                            "color": { "alpha": 1, "color": "white" }
                         },
                         "body": "10 à 100 fois plus"
                     },
@@ -1003,7 +1003,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "white"
+                            "color": { "alpha": 1, "color": "white" }
                         },
                         "body": "Un sourire Colgate"
                     }
@@ -1022,7 +1022,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "white"
+                            "color": { "alpha": 1, "color": "white" }
                         },
                         "body": "Un sourire de Pan Am"
                     },
@@ -1042,7 +1042,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "white"
+                            "color": { "alpha": 1, "color": "white" }
                         },
                         "body": "Un sourire de faux cul"
                     }
@@ -1061,7 +1061,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "white"
+                            "color": { "alpha": 1, "color": "white" }
                         },
                         "body": "Un hide the pain Harold"
                     }
@@ -1137,7 +1137,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "white"
+                            "color": { "alpha": 1, "color": "white" }
                         },
                         "body": "307 000"
                     },
@@ -1157,7 +1157,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "white"
+                            "color": { "alpha": 1, "color": "white" }
                         },
                         "body": "1364"
                     }
@@ -1176,7 +1176,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "white"
+                            "color": { "alpha": 1, "color": "white" }
                         },
                         "body": "1.5 millions"
                     }
@@ -1195,7 +1195,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "white"
+                            "color": { "alpha": 1, "color": "white" }
                         },
                         "body": "229"
                     }
@@ -1271,7 +1271,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "white"
+                            "color": { "alpha": 1, "color": "white" }
                         },
                         "body": "2 millions"
                     }
@@ -1290,7 +1290,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "white"
+                            "color": { "alpha": 1, "color": "white" }
                         },
                         "body": "75 000"
                     }
@@ -1309,7 +1309,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "white"
+                            "color": { "alpha": 1, "color": "white" }
                         },
                         "body": "300 000"
                     }
@@ -1328,7 +1328,7 @@
                                 "bold": false
                             },
                             "lineHeight": 1.2,
-                            "color": "white"
+                            "color": { "alpha": 1, "color": "white" }
                         },
                         "body": "200 millions"
                     },
@@ -1406,7 +1406,7 @@
                     },
                     "lineHeight": 1,
                     "align": "center",
-                    "color": "#FFFC00"
+                    "color": { "alpha": 1, "color": "#FFFC00" }
                 }
             },
             "credits": {
@@ -1558,7 +1558,7 @@
                     "transform": "uppercase"
                 },
                 "lineHeight": 0.9,
-                "color": "#FFFC00"
+                "color": { "alpha": 1, "color": "#FFFC00" }
             },
             "background": {
                 "color": {
@@ -1598,7 +1598,7 @@
                         "transform": "uppercase"
                     },
                     "lineHeight": 1,
-                    "color": "#FFFC00"
+                    "color": { "alpha": 1, "color": "#FFFC00" }
                 }
             },
             "subtitle": {
@@ -1668,7 +1668,7 @@
                                 "transform": "uppercase"
                             },
                             "lineHeight": 1,
-                            "color": "#FFFC00"
+                            "color": { "alpha": 1, "color": "#FFFC00" }
                         },
                         "body": "Jour 1"
                     },
@@ -1701,7 +1701,7 @@
                                 "transform": "uppercase"
                             },
                             "lineHeight": 1,
-                            "color": "#FFFC00"
+                            "color": { "alpha": 1, "color": "#FFFC00" }
                         },
                         "body": "Jour 2"
                     },
@@ -1734,7 +1734,7 @@
                                 "transform": "uppercase"
                             },
                             "lineHeight": 1,
-                            "color": "#FFFC00"
+                            "color": { "alpha": 1, "color": "#FFFC00" }
                         },
                         "body": "Jour 3"
                     },
@@ -1767,7 +1767,7 @@
                                 "transform": "uppercase"
                             },
                             "lineHeight": 1,
-                            "color": "#FFFC00"
+                            "color": { "alpha": 1, "color": "#FFFC00" }
                         },
                         "body": "Jour 4"
                     },
@@ -1800,7 +1800,7 @@
                                 "transform": "uppercase"
                             },
                             "lineHeight": 1,
-                            "color": "#FFFC00"
+                            "color": { "alpha": 1, "color": "#FFFC00" }
                         },
                         "body": "Jour 5"
                     },
@@ -1833,7 +1833,7 @@
                                 "transform": "uppercase"
                             },
                             "lineHeight": 1,
-                            "color": "#FFFC00"
+                            "color": { "alpha": 1, "color": "#FFFC00" }
                         },
                         "body": "Resultat"
                     },
@@ -1855,7 +1855,7 @@
                 }
             ],
             "bulletColor": {
-                "color": "#FFFC00",
+                "color": { "alpha": 1, "color": "#FFFC00" },
                 "alpha": 1
             },
             "lineColor": {

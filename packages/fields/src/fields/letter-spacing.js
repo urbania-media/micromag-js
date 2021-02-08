@@ -14,6 +14,7 @@ export default {
         iconName: 'letter-spacing',
         prefix: 'fas',
     },
+    iconRotation: -90,
     dataList: [-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2],
     float: true,
     size: 4,

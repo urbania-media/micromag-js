@@ -6,7 +6,7 @@ import styles from './styles/layout-switcher.module.scss';
 const propTypes = {
     layouts: PropTypes.arrayOf(PropTypes.string).isRequired,
     defaultLayout: PropTypes.string,
-    children: PropTypes.node.isRequired,
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
 };
 
 const defaultProps = {

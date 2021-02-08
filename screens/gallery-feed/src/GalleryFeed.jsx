@@ -19,9 +19,9 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     layout: PropTypes.oneOf(['normal', 'reverse']),
-    images: PropTypes.oneOf([
+    images: PropTypes.oneOfType([
         MicromagPropTypes.imageElementsWithCaption,
-        MicromagPropTypes.imagesMedias,
+        MicromagPropTypes.imageMedias,
     ]),
     withCaptions: PropTypes.bool,
     spacing: PropTypes.number,
