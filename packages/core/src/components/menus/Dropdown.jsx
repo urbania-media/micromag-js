@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
@@ -102,7 +103,7 @@ const Dropdown = ({
                               : null;
                       return ItemComponent !== null ? (
                           <ItemComponent
-                              key={`item-${id || index}`}
+                              key={`item-${index}`}
                               className={classNames([
                                   'd-block',
                                   'w-100',
