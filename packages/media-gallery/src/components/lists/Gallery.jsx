@@ -48,7 +48,7 @@ const Gallery = ({
     const { width } = contentRect || {};
 
     const finalItems = useMemo( () => {
-        if (selectedFirst && selectedItem !== null) {
+        if (selectedFirst && selectedItem !== null && typeof selectedItem.id !== 'undefined') {
             return [selectedItem, ...items.filter(({ id }) => id !== selectedItem.id)];
         }
         return items;
