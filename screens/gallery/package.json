@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-gallery",
-    "version": "0.2.133",
+    "version": "0.2.134",
     "description": "",
     "keywords": [
         "javascript"
@@ -50,7 +50,7 @@
     "dependencies": {
         "@babel/runtime": "^7.12.5",
         "@micromag/core": "^0.2.132",
-        "@micromag/element-background": "^0.2.133",
+        "@micromag/element-background": "^0.2.134",
         "@micromag/element-container": "^0.2.132",
         "@micromag/element-grid": "^0.2.132",
         "@micromag/element-image": "^0.2.132",
