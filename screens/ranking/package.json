@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-ranking",
-    "version": "0.2.132",
+    "version": "0.2.133",
     "description": "",
     "keywords": [
         "javascript"
@@ -51,7 +51,7 @@
         "@babel/runtime": "^7.12.5",
         "@micromag/core": "^0.2.132",
         "@micromag/data": "^0.2.132",
-        "@micromag/element-background": "^0.2.132",
+        "@micromag/element-background": "^0.2.133",
         "@micromag/element-container": "^0.2.132",
         "@micromag/element-heading": "^0.2.132",
         "@micromag/element-layout": "^0.2.132",
