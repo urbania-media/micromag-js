@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import isObject from 'lodash/isObject';
-import WebFont from 'webfontloader';
 
 const fontsMap = {
     loading: [],
@@ -53,14 +52,14 @@ const useLoadedFonts = (fonts) => {
         const hasConfig = config !== null;
 
         if (hasConfig && typeof window !== 'undefined') {
-            WebFont.load({
+            import('webfontloader').then(({ default: WebFont }) => WebFont.load({
                 ...config,
                 timeout: 3000,
                 active: () => setLoaded(true),
                 fontloading: (name) => addFontLoading(name),
                 fontactive: (name) => addFontActive(name),
                 fontinactive: (name) => removeFontLoading(name),
-            });
+            }));
         } else {
             setLoaded(true);
         }

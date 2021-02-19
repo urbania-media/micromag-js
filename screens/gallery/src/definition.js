@@ -115,6 +115,7 @@ export default [
             {
                 name: 'layout',
                 type: 'screen-layout',
+                defaultValue: 'two-vertical-equal',
                 label: defineMessage({
                     defaultMessage: 'Layout',
                     description: 'Layout field label',
