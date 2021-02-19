@@ -9,7 +9,7 @@
     flex-direction: column;
     height: 100%;
     padding: 10px;
-    
+
     background-color: #000;
     color: #fff;
 
@@ -30,11 +30,23 @@
         align-items: center;
         margin-bottom: 20px;
 
+        .button,
+        .shareButton {
+            display: inline-block;
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.9rem;
+            font-weight: 600;
+            line-height: 1.4;
+            text-align: center;
+            vertical-align: middle;
+            user-select: none;
+        }
+
         .button {
             width: 20px;
             margin-left: 20px;
             padding: 0;
-            color: inherit;
 
             &:first-child {
                 margin-left: 0;
@@ -67,42 +79,42 @@
         background-position: center;
         background-size: contain;
     }
-    
+
     .title {
         margin-right: auto;
         color: #fff;
-        font-family: Helvetica, Arial, sans-serif;        
+        font-family: Helvetica, Arial, sans-serif;
     }
 
     .content {
         position: relative;
         flex-grow: 1;
-    }    
+    }
 
     .scroll {
         @extend %fullscreen;
     }
-    
+
     .nav {
         position: relative;
         flex-grow: 1;
         overflow: hidden;
     }
-    
+
     .items,
     .item {
         margin: 0;
         padding: 0;
         list-style: none;
     }
-    
+
     .items {
         display: flex;
         position: relative;
         flex-wrap: wrap;
         margin: -2px;
     }
-    
+
     .item {
         position: relative;
         height: 0;
