@@ -148,8 +148,8 @@ const Video = ({
             >
                 {hasFiles ? (
                     <>
-                        <source src={files.h264} type="video/mp4" />
-                        <source src={files.webm} type="video/webm" />
+                        <source src={files.h264.url} type="video/mp4" />
+                        <source src={files.webm.url} type="video/webm" />
                     </>
                 ) : null}
             </video>
