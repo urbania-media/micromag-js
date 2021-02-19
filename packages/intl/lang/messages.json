@@ -367,6 +367,10 @@
     "defaultMessage": "Markers",
     "description": "Markers field label"
   },
+  "PyDwDF": {
+    "defaultMessage": "Close",
+    "description": "Close button label"
+  },
   "PyxZY2": {
     "defaultMessage": "Cancel",
     "description": "Button label"

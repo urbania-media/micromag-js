@@ -563,6 +563,12 @@ msgctxt "PbHeHc"
 msgid "Markers"
 msgstr "Markers"
 
+# Close button label
+#: PyDwDF
+msgctxt "PyDwDF"
+msgid "Close"
+msgstr "Close"
+
 # Button label
 #: PyxZY2
 msgctxt "PyxZY2"
