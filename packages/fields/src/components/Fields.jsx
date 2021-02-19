@@ -119,9 +119,11 @@ const Fields = ({
                     isHorizontal = globalIsHorizontal,
                     isSection = false,
                 } = field;
-                const fieldValue = name !== null ? (value || {})[name] || null : value;
+                const singleFieldValue = name !== null && typeof (value || {})[name] !== 'undefined' ? (value || {})[name] : null;
+                const singleFieldErrors = name !== null && typeof (errors || {})[name] !== 'undefined' ? (errors || {})[name] : null;
+                const fieldValue = name !== null ? singleFieldValue : value;
+                const fieldErrors = name !== null ? singleFieldErrors : errors;
                 const fieldOnChange = (newFieldValue) => onFieldChange(name, newFieldValue);
-                const fieldErrors = name !== null ? (errors || {})[name] || null : errors;
                 return (
                     <Field
                         {...field}

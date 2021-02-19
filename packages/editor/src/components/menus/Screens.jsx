@@ -18,6 +18,7 @@ const propTypes = {
     items: MicromagPropTypes.menuItems,
     withPreview: PropTypes.bool,
     withPlaceholder: PropTypes.bool,
+    settings: PropTypes.node,
     previewMinWidth: PropTypes.number,
     sortable: PropTypes.bool,
     isVertical: PropTypes.bool,
@@ -25,6 +26,7 @@ const propTypes = {
     className: PropTypes.string,
     itemClassName: PropTypes.string,
     buttonClassName: PropTypes.string,
+    settingsClassName: PropTypes.string,
     onClickItem: PropTypes.func,
     onOrderChange: PropTypes.func,
 };
@@ -33,6 +35,7 @@ const defaultProps = {
     items: [],
     withPreview: false,
     withPlaceholder: false,
+    settings: null,
     previewMinWidth: 320,
     sortable: false,
     isVertical: false,
@@ -40,6 +43,7 @@ const defaultProps = {
     className: null,
     itemClassName: null,
     buttonClassName: null,
+    settingsClassName: null,
     onClickItem: null,
     onOrderChange: null,
 };
@@ -48,12 +52,14 @@ const ScreensMenu = ({
     items,
     withPreview,
     withPlaceholder,
+    settings,
     previewMinWidth,
     isVertical,
     noWrap,
     className,
     itemClassName,
     buttonClassName,
+    settingsClassName,
     sortable,
     onClickItem,
     onOrderChange,
@@ -134,6 +140,17 @@ const ScreensMenu = ({
                         </div>
                     ) : null}
                 </ScreenButton>
+                {settings !== null ? (
+                    <div
+                        className={classNames([
+                            { [settingsClassName]: settingsClassName !== null },
+                            styles.settings,
+                            'p-2',
+                        ])}
+                    >
+                        {settings}
+                    </div>
+                ) : null}
             </li>
         ),
     );

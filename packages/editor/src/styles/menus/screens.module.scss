@@ -22,6 +22,7 @@
 
     .item {
         display: block;
+        position: relative;
         z-index: 2;
         width: 33.3%;        
         padding: 5px;
@@ -48,6 +49,12 @@
 
     .preview {
         background: rgba(#000, 0.9);
+    }
+
+    .settings {
+        position: absolute;
+        top: 0;
+        right: 0;
     }
 
     &.noWrap {

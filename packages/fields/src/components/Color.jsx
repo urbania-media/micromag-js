@@ -20,6 +20,7 @@ const propTypes = {
     isHorizontal: PropTypes.bool,
     className: PropTypes.string,
     onChange: PropTypes.func,
+    closeForm: PropTypes.func,
 };
 
 const defaultProps = {
@@ -28,9 +29,10 @@ const defaultProps = {
     isHorizontal: false,
     className: null,
     onChange: null,
+    closeForm: null,
 };
 
-const ColorField = ({ value, onChange, ...props }) => {
+const ColorField = ({ value, onChange, closeForm, ...props }) => {
     const { color = null } = value || {};
     const hexColor = useMemo(() => (color !== null ? tinycolor(color).toHexString() : null), [
         color,
@@ -46,6 +48,7 @@ const ColorField = ({ value, onChange, ...props }) => {
                 />
             </span>
         ) : null;
+
     return (
         <FieldWithForm
             value={value}
@@ -57,8 +60,13 @@ const ColorField = ({ value, onChange, ...props }) => {
             }
             {...props}
         >
-            <div className="p-2 bg-light text-dark">
-                <ColorPicker value={value} onChange={onChange} />
+            <div className="p-2">
+                <ColorPicker className={styles.picker} value={value} onChange={onChange} />
+                <div className={styles.confirmContainer}>
+                    <button type="button" className="btn btn-light" onClick={closeForm}>
+                        <FormattedMessage defaultMessage="Close" description="Close button label" />
+                    </button>
+                </div>
             </div>
         </FieldWithForm>
     );

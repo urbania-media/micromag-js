@@ -138,6 +138,7 @@ const Field = ({
             withoutLabel={finalWithoutLabel}
             withSettings={finalWithSettings}
             withForm={finalWithForm}
+            withValue={value !== null}
             gotoSettings={gotoSettings}
             gotoForm={gotoForm}
             closeForm={closeForm}

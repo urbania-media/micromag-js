@@ -13,6 +13,7 @@ const propTypes = {
     errors: MicromagPropTypes.errors,
     required: PropTypes.bool,
     placeholder: PropTypes.string,
+    prefix: PropTypes.string,
     className: PropTypes.string,
     onChange: PropTypes.func,
 };
@@ -24,6 +25,7 @@ const defaultProps = {
     errors: null,
     required: false,
     placeholder: null,
+    prefix: null,
     className: null,
     onChange: null,
 };
@@ -35,27 +37,41 @@ const TextField = ({
     errors,
     required,
     placeholder,
+    prefix,
     className,
     onChange,
-}) => (
-    <input
-        ref={inputRef}
-        type={type}
-        className={classNames([
-            'form-control',
-            {
-                'is-invalid': errors !== null && errors.length > 0,
-                [className]: className !== null,
-            },
-        ])}
-        value={value || ''}
-        onChange={({ currentTarget: { value: newValue = '' } }) =>
-            onChange !== null ? onChange(!isEmpty(newValue) ? newValue : null) : null
-        }
-        placeholder={placeholder}
-        required={required}
-    />
-);
+}) => {
+    const input = (
+        <input
+            ref={inputRef}
+            type={type}
+            className={classNames([
+                'form-control',
+                {
+                    'is-invalid': errors !== null && errors.length > 0,
+                    [className]: className !== null,
+                },
+            ])}
+            value={value || ''}
+            onChange={({ currentTarget: { value: newValue = '' } }) =>
+                onChange !== null ? onChange(!isEmpty(newValue) ? newValue : null) : null
+            }
+            placeholder={placeholder}
+            required={required}
+        />
+    );
+
+    return prefix !== null ? (
+        <span className="input-group">
+            <div className="input-group-prepend">
+                <span className="input-group-text">{prefix}</span>
+            </div>
+            {input}
+        </span>
+    ) : (
+        input
+    );
+};
 
 TextField.propTypes = propTypes;
 TextField.defaultProps = defaultProps;

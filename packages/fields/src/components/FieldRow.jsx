@@ -23,6 +23,7 @@ const propTypes = {
     withoutLabel: PropTypes.bool,
     withSettings: PropTypes.bool,
     withForm: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+    withValue: PropTypes.bool,
     buttonTheme: MicromagPropTypes.buttonTheme,
     buttonOutline: PropTypes.bool,
     gotoSettings: PropTypes.func,
@@ -43,6 +44,7 @@ const defaultProps = {
     withoutLabel: false,
     withSettings: false,
     withForm: false,
+    withValue: false,
     buttonTheme: null,
     buttonOutline: false,
     gotoSettings: null,
@@ -63,6 +65,7 @@ const FieldRow = ({
     withoutLabel,
     withSettings,
     withForm,
+    withValue,
     buttonTheme,
     buttonOutline,
     gotoForm,
@@ -94,22 +97,23 @@ const FieldRow = ({
         },
     ]);
 
-    const labelElement = label !== null ? (
-        <label
-            className={classNames({
-                'col-form-label': isHorizontal || withSettings,
-                'col-auto': isHorizontal,
-                col: !isHorizontal && withSettings,
-                'py-0': isHorizontal,
-                'text-truncate': isHorizontal,
-                'font-weight-normal': !isSection,
-                'font-weight-bold': isSection,
-                [labelClassName]: labelClassName !== null,
-            })}
-        >
-            <Label>{label}</Label>
-        </label>
-    ) : null;
+    const labelElement =
+        label !== null ? (
+            <label
+                className={classNames({
+                    'col-form-label': isHorizontal || withSettings,
+                    'col-auto': isHorizontal,
+                    col: !isHorizontal && withSettings,
+                    'py-0': isHorizontal,
+                    'text-truncate': isHorizontal,
+                    'font-weight-normal': !isSection,
+                    'font-weight-bold': isSection,
+                    [labelClassName]: labelClassName !== null,
+                })}
+            >
+                <Label>{label}</Label>
+            </label>
+        ) : null;
 
     const helpElement = help !== null ? <FieldHelp>{help}</FieldHelp> : null;
 
@@ -162,7 +166,12 @@ const FieldRow = ({
                         <div className={classNames(['form-row', 'align-items-center'])}>
                             {labelElement}
                             <div className={classNames(['col-auto'])}>
-                                <Button withoutStyle onClick={gotoSettings}>
+                                <Button
+                                    className={styles.settingsButton}
+                                    withoutStyle
+                                    onClick={gotoSettings}
+                                    disabled={!withValue}
+                                >
                                     <FontAwesomeIcon icon={faSlidersH} />
                                 </Button>
                             </div>

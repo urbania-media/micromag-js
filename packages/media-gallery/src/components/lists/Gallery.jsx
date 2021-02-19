@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -14,6 +14,7 @@ const propTypes = {
     selectedItem: MicromagPropTypes.media,
     withInfoButton: PropTypes.bool,
     isSmall: PropTypes.bool,
+    selectedFirst: PropTypes.bool,
     className: PropTypes.string,
     onClickItem: PropTypes.func,
     onClickItemInfo: PropTypes.func,
@@ -24,6 +25,7 @@ const defaultProps = {
     selectedItem: null,
     withInfoButton: false,
     isSmall: false,
+    selectedFirst: false,
     className: null,
     onClickItem: null,
     onClickItemInfo: null,
@@ -34,6 +36,7 @@ const Gallery = ({
     selectedItem,
     withInfoButton,
     isSmall,
+    selectedFirst,
     className,
     onClickItem,
     onClickItemInfo,
@@ -43,6 +46,13 @@ const Gallery = ({
         entry: { contentRect },
     } = useResizeObserver();
     const { width } = contentRect || {};
+
+    const finalItems = useMemo( () => {
+        if (selectedFirst && selectedItem !== null) {
+            return [selectedItem, ...items.filter(({ id }) => id !== selectedItem.id)];
+        }
+        return items;
+    }, [selectedFirst, selectedItem, items]);
 
     return (
         <div
@@ -65,7 +75,7 @@ const Gallery = ({
                     },
                 ])}
             >
-                {items.map((item) => (
+                {finalItems.map((item) => (
                     <div className="col px-1 py-1" key={`gallery-item-${item.id}`}>
                         <GalleryItem
                             item={item}

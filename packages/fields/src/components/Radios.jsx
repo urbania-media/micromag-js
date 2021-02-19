@@ -12,6 +12,7 @@ const propTypes = {
     name: PropTypes.string,
     value: PropTypes.string,
     options: MicromagPropTypes.selectOptions,
+    withBackground: PropTypes.bool,
     className: PropTypes.string,
     buttonClassName: PropTypes.string,
     onChange: PropTypes.func,
@@ -21,12 +22,13 @@ const defaultProps = {
     name: null,
     value: null,
     options: [],
+    withBackground: false,
     className: null,
     buttonClassName: null,
     onChange: null,
 };
 
-const Radios = ({ name, value, options, className, buttonClassName, onChange }) => {
+const Radios = ({ name, value, options, withBackground, className, buttonClassName, onChange }) => {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
 
     return (
@@ -46,7 +48,7 @@ const Radios = ({ name, value, options, className, buttonClassName, onChange }) 
                     key={`radio-${optionValue}-${index + 1}`}
                     className={classNames([
                         'btn',
-                        'btn-secondary',
+                        withBackground ? 'btn-secondary' : 'btn-outline-secondary',
                         {
                             active: optionValue === value,
                             [buttonClassName]: buttonClassName !== null,

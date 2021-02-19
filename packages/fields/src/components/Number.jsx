@@ -1,6 +1,8 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 import styles from '../styles/number.module.scss';
 
@@ -14,7 +16,6 @@ const propTypes = {
     floatStep: PropTypes.number,
     float: PropTypes.bool,
     dataList: PropTypes.arrayOf(PropTypes.number),
-    isHorizontal: PropTypes.bool,
     autoComplete: PropTypes.bool,
     className: PropTypes.string,
     onChange: PropTypes.func,
@@ -30,7 +31,6 @@ const defaultProps = {
     floatStep: 0.1,
     float: false,
     dataList: null,
-    isHorizontal: false,
     autoComplete: false,
     className: null,
     onChange: null,
@@ -46,23 +46,16 @@ const NumberField = ({
     floatStep,
     float,
     dataList,
-    isHorizontal,
     autoComplete,
     className,
     onChange,
 }) => {
-    const parseValue = useCallback((newValue) => {
-        let parsedValue = null;
-        if (typeof newValue === 'number' || newValue.length > 0) {
-            parsedValue = float ? parseFloat(newValue) : parseInt(newValue, 10);
-        }
-        return parsedValue;
-    });
-
+    const parseValue = useCallback((newValue) => float ? parseFloat(newValue) : parseInt(newValue, 10));
     const onInputChange = useCallback(
         (e) => {
             if (onChange !== null) {
-                onChange(parseValue(e.currentTarget.value));
+                const val = e.currentTarget.value;
+                onChange(val.length ? parseValue(val) : null);
             }
         },
         [onChange],
@@ -100,14 +93,12 @@ const NumberField = ({
             <input
                 type="number"
                 className={classNames([
+                    styles.input,
                     'form-control',
-                    {
-                        // 'w-auto': size !== null,
-                        'ml-auto': isHorizontal,                        
-                    },
+                    'ml-auto',
                 ])}
                 name={name}
-                value={value || ''}
+                value={value !== null ? value : ''}
                 min={min}
                 max={max}
                 size={size}
@@ -117,6 +108,9 @@ const NumberField = ({
                 onFocus={onInputFocus}
                 onBlur={onInputBlur}
             />
+            <div className={styles.arrow}>
+                <FontAwesomeIcon className={styles.arrowIcon} icon={faChevronDown} />
+            </div>
             {hasDataList && dataListActive ? (
                 <ul className={styles.dataListItems}>
                     {dataList.map((dataListValue) => (

@@ -161,6 +161,7 @@ const MediaGallery = ({
                         <Gallery
                             items={medias}
                             selectedItem={selectedMedia}
+                            selectedFirst
                             withInfoButton={isPicker}
                             isSmall={isSmall}
                             onClickItem={onClickItem}

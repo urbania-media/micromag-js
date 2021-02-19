@@ -1,3 +1,5 @@
+/* stylelint-disable max-nesting-depth, selector-max-compound-selectors, no-descending-specificity */
+
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/mixins';
 @import 'placeholders';
@@ -12,4 +14,48 @@
         width: 1rem;
         height: 1rem;
     }
+}
+
+.picker {
+    label {
+        color: #fff !important;
+    }
+
+    > div {
+        overflow: hidden;
+
+        > div {
+            &:nth-child(2) {
+                > div {
+                    &:first-child > div {
+                        margin: 0 1px;
+                        box-shadow: 0 0 0 1px rgba($white, 0.25);
+                    }
+
+                    &:last-child {
+                        margin-right: 1px;
+                        box-shadow: 0 0 0 1px rgba($white, 0.25);                        
+                    }
+                }
+            }
+
+            &:nth-child(3) {
+
+                &,
+                input {
+                    text-align: center;
+                }
+            }
+
+            &:nth-child(4) {
+                border-top-color: rgba(#EEE, 0.2) !important;
+            }
+        }
+    }
+}
+
+.confirmContainer {    
+    padding-top: 10px;
+    border-top: 1px solid rgba(#EEE, 0.2);
+    text-align: center;
 }

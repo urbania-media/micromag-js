@@ -41,7 +41,7 @@ const ScreenLayoutField = ({ value, className, onChange }) => {
                     </div>
                 ),
             }))}
-            value={value || (layouts ? layouts[0] : null)}
+            value={value || (layouts ? layouts[0] : null)}            
             className={classNames([
                 styles.container,
                 {
@@ -50,6 +50,7 @@ const ScreenLayoutField = ({ value, className, onChange }) => {
             ])}
             buttonClassName={styles.button}
             onChange={onChange}
+            withBackground
         />
     );
 };

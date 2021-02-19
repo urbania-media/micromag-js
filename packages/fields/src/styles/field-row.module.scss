@@ -10,3 +10,10 @@
 .colValue {
     min-width: 0;
 }
+
+.settingsButton {
+    &[disabled] {
+        opacity: 0.25;
+        pointer-events: none;
+    }
+}

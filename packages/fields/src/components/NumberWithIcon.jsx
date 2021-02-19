@@ -42,7 +42,7 @@ const NumberWithIcon = ({ icon, iconRotation, isHorizontal, className, ...props 
         <span className="mr-2" style={ iconRotation !== 0 ? { transform: `rotate(${iconRotation}deg)` } : null }>
             <FontAwesomeIcon icon={icon} />
         </span>
-        <Number {...props} className="flex-grow-1" />
+        <Number {...props} />
     </div>
 );
 
