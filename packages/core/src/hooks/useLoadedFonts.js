@@ -52,7 +52,7 @@ const useLoadedFonts = (fonts) => {
 
         const hasConfig = config !== null;
 
-        if (hasConfig) {
+        if (hasConfig && typeof window !== 'undefined') {
             WebFont.load({
                 ...config,
                 timeout: 3000,
