@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screens",
-    "version": "0.2.137",
+    "version": "0.2.138",
     "description": "",
     "keywords": [
         "javascript"
@@ -56,15 +56,15 @@
         "@babel/runtime": "^7.12.5",
         "@micromag/core": "^0.2.137",
         "@micromag/screen-audio": "^0.2.137",
-        "@micromag/screen-contribution": "^0.2.137",
+        "@micromag/screen-contribution": "^0.2.138",
         "@micromag/screen-gallery": "^0.2.137",
         "@micromag/screen-gallery-feed": "^0.2.137",
         "@micromag/screen-image": "^0.2.137",
         "@micromag/screen-map": "^0.2.137",
-        "@micromag/screen-quiz": "^0.2.137",
+        "@micromag/screen-quiz": "^0.2.138",
         "@micromag/screen-quote": "^0.2.137",
-        "@micromag/screen-ranking": "^0.2.137",
-        "@micromag/screen-survey": "^0.2.137",
+        "@micromag/screen-ranking": "^0.2.138",
+        "@micromag/screen-survey": "^0.2.138",
         "@micromag/screen-text": "^0.2.137",
         "@micromag/screen-timeline": "^0.2.137",
         "@micromag/screen-title": "^0.2.137",

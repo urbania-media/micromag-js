@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-survey",
-    "version": "0.2.137",
+    "version": "0.2.138",
     "description": "",
     "keywords": [
         "javascript"
@@ -50,7 +50,7 @@
     "dependencies": {
         "@babel/runtime": "^7.12.5",
         "@micromag/core": "^0.2.137",
-        "@micromag/data": "^0.2.137",
+        "@micromag/data": "^0.2.138",
         "@micromag/element-background": "^0.2.137",
         "@micromag/element-button": "^0.2.137",
         "@micromag/element-container": "^0.2.137",
