@@ -13,7 +13,7 @@ const defaultProps = {
     sizes: [10, 12, 14, 16, 20, 24, 28, 36, 48],
 };
 
-const FontSize = ({ sizes, ...props }) => <Number {...props} dataList={sizes} size={3} />;
+const FontSize = ({ sizes, ...props }) => <Number {...props} dataList={sizes} />;
 
 FontSize.propTypes = propTypes;
 FontSize.defaultProps = defaultProps;

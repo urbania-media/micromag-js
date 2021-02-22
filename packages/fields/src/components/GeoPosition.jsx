@@ -48,6 +48,7 @@ const GeoPosition = ({ value, defaultCenter, defaultZoom, className, onChange })
     const autoCompleteRef = useRef(null);
 
     const [finalValue, setFinalValue] = useState(value);
+    const [dragValue, setDragValue] = useState(null);
 
     const onValuePropChanged = useCallback(
         (newValue) => {
@@ -60,7 +61,7 @@ const GeoPosition = ({ value, defaultCenter, defaultZoom, className, onChange })
                 onChange(mergedValue);
             }
         },
-        [value, onChange, setFinalValue],
+        [value, setFinalValue, onChange],
     );
 
     const onLatitudeChange = useCallback(
@@ -78,15 +79,21 @@ const GeoPosition = ({ value, defaultCenter, defaultZoom, className, onChange })
 
     const onMapCenterChanged = useCallback(
         (mapCenter) => setFinalValue(getFixedCoords(mapCenter.toJSON())),
-        [setFinalValue],
+        [onValuePropChanged, setFinalValue],
     );
 
     const onMapDragEnd = useCallback(
         (mapCenter) => {
-            onValuePropChanged(getFixedCoords(mapCenter.toJSON()));
+            setDragValue(getFixedCoords(mapCenter.toJSON()));
         },
-        [onValuePropChanged],
+        [setDragValue],
     );
+
+    useEffect(() => {
+        if (dragValue !== null) {
+            onValuePropChanged(dragValue);
+        }
+    }, [dragValue]);
 
     const onMapReady = useCallback(() => {
         setMapReady(true);
@@ -110,16 +117,19 @@ const GeoPosition = ({ value, defaultCenter, defaultZoom, className, onChange })
         }
     }, [onValuePropChanged, defaultZoom, setZoom]);
 
-    const onSearchButtonClick = useCallback( () => {
+    const onSearchButtonClick = useCallback(() => {
         addressInputRef.current.focus();
     }, []);
 
     useEffect(() => {
         if (client !== null) {
             if (typeof client.maps.places !== 'undefined') {
-                autoCompleteRef.current = new client.maps.places.Autocomplete(addressInputRef.current, {
-                    origin: defaultCenter,
-                });
+                autoCompleteRef.current = new client.maps.places.Autocomplete(
+                    addressInputRef.current,
+                    {
+                        origin: defaultCenter,
+                    },
+                );
                 autoCompleteRef.current.setFields(['geometry', 'name']);
                 autoCompleteRef.current.addListener('place_changed', onPlaceChanged);
             } else {
@@ -148,7 +158,11 @@ const GeoPosition = ({ value, defaultCenter, defaultZoom, className, onChange })
         >
             <div className={classNames([styles.autoComplete, 'input-group'])}>
                 <span type="span" className="input-group-prepend">
-                    <button type="button" className="input-group-text" onClick={onSearchButtonClick}>
+                    <button
+                        type="button"
+                        className="input-group-text"
+                        onClick={onSearchButtonClick}
+                    >
                         <FontAwesomeIcon icon={faSearch} />
                     </button>
                 </span>
@@ -162,9 +176,10 @@ const GeoPosition = ({ value, defaultCenter, defaultZoom, className, onChange })
                         description: 'Search a place on Google Maps placeholder',
                     })}
                     autoComplete="off"
-                    onChange={ e => { setAddress(e.target.value) } }
+                    onChange={(e) => {
+                        setAddress(e.target.value);
+                    }}
                 />
-                
             </div>
             <div className={styles.map}>
                 <Map
@@ -200,6 +215,7 @@ const GeoPosition = ({ value, defaultCenter, defaultZoom, className, onChange })
                         min={-90}
                         max={90}
                         onChange={onLatitudeChange}
+                        fullWidth
                     />
                 </label>
                 <label className={styles.coord}>
@@ -217,6 +233,7 @@ const GeoPosition = ({ value, defaultCenter, defaultZoom, className, onChange })
                         min={-180}
                         max={180}
                         onChange={onLongitudeChange}
+                        fullWidth
                     />
                 </label>
             </div>

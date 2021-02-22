@@ -290,6 +290,7 @@ const MapScreen = ({
                 disabled={transitionDisabled}
             >
                 <Map
+                    key="map"
                     center={defaultCenter}
                     zoom={defaultZoom}
                     scrollable={scrollable}
@@ -299,7 +300,7 @@ const MapScreen = ({
                     onReady={onMapReady}
                     onDragEnd={onMapDragEnd}
                 />
-                <div className={styles.markerOverlayContainer}>
+                <div key="marker-overlay" className={styles.markerOverlayContainer}>
                     <div className={styles.markerOverlayScrollable}>
                         <Scroll
                             key={`scroll-${selectedMarkerIndex}`}
@@ -357,7 +358,7 @@ const MapScreen = ({
                         </Scroll>
                     </div>
                 </div>
-                <div className={classNames([styles.splash])}>
+                <div key="splash" className={classNames([styles.splash])}>
                     <ScreenElement
                         emptyLabel={
                             <FormattedMessage
@@ -403,7 +404,7 @@ const MapScreen = ({
                     </ScreenElement>
                 </div>
                 {!isStatic && !isCapture ? (
-                    <Button className={styles.closeButton} onClick={onCloseClick}>
+                    <Button key="close-button" className={styles.closeButton} onClick={onCloseClick}>
                         &times;
                     </Button>
                 ) : null}

@@ -2,58 +2,64 @@
 
 .container {
     position: relative;
-}
 
-.input {
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-        appearance: none;
+    .input {
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            appearance: none;
+        }
+        -moz-appearance: textfield; // stylelint-disable-line
+
+        max-width: 80px;
+        margin-left: auto;
+        padding-right: 20px;
     }
-    -moz-appearance: textfield;// stylelint-disable-line
 
-    max-width: 80px;
-    margin-left: auto;
-    padding-right: 20px;
-}
+    .arrow {
+        display: flex;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 20px;
+        height: 100%;
+        pointer-events: none;
+    }
 
-.arrow {
-    display: flex;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 20px;
-    height: 100%;
-    pointer-events: none;
-}
+    .arrowIcon {
+        margin: auto;
+        font-size: 10px;
+    }
 
-.arrowIcon {
-    margin: auto;
-    font-size: 10px;
-}
+    .dataListItems {
+        position: absolute;
+        z-index: 2;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 0;
+        list-style-type: none;
+        border-radius: 4px;
+        background-color: $white;
+    }
 
-.dataListItems {
-    position: absolute;
-    z-index: 2;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    padding: 0;
-    list-style-type: none;
-    border-radius: 4px;        
-    background-color: $white;
-}
+    .dataListItem {
+        width: 100%;
+    }
 
-.dataListItem {
-    width: 100%;
-}
+    .dataListItemButton {
+        width: 100%;
+        border: 0;
+        background-color: rgba($black, 0);
+        text-align: left;
 
-.dataListItemButton {
-    width: 100%;
-    border: 0;
-    background-color: rgba($black, 0);
-    text-align: left;
+        &:hover {
+            background-color: rgba($black, 0.1);
+        }
+    }
 
-    &:hover {
-        background-color: rgba($black, 0.1);
+    &.fullWidth {
+        .input {
+            max-width: none;
+        }
     }
 }

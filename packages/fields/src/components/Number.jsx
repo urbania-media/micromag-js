@@ -9,7 +9,6 @@ import styles from '../styles/number.module.scss';
 const propTypes = {
     name: PropTypes.string,
     value: PropTypes.number,
-    size: PropTypes.number,
     min: PropTypes.number,
     max: PropTypes.number,
     step: PropTypes.number,
@@ -17,6 +16,7 @@ const propTypes = {
     float: PropTypes.bool,
     dataList: PropTypes.arrayOf(PropTypes.number),
     autoComplete: PropTypes.bool,
+    fullWidth: PropTypes.bool,
     className: PropTypes.string,
     onChange: PropTypes.func,
 };
@@ -24,7 +24,6 @@ const propTypes = {
 const defaultProps = {
     name: null,
     value: null,
-    size: null,
     min: null,
     max: null,
     step: 1,
@@ -32,6 +31,7 @@ const defaultProps = {
     float: false,
     dataList: null,
     autoComplete: false,
+    fullWidth: false,
     className: null,
     onChange: null,
 };
@@ -39,7 +39,6 @@ const defaultProps = {
 const NumberField = ({
     name,
     value,
-    size,
     min,
     max,
     step,
@@ -47,10 +46,13 @@ const NumberField = ({
     float,
     dataList,
     autoComplete,
+    fullWidth,
     className,
     onChange,
 }) => {
-    const parseValue = useCallback((newValue) => float ? parseFloat(newValue) : parseInt(newValue, 10));
+    const parseValue = useCallback((newValue) =>
+        float ? parseFloat(newValue) : parseInt(newValue, 10),
+    );
     const onInputChange = useCallback(
         (e) => {
             if (onChange !== null) {
@@ -89,28 +91,31 @@ const NumberField = ({
     );
 
     return (
-        <div className={classNames([styles.container, { [className]: className !== null }])}>
+        <div
+            className={classNames([
+                styles.container,
+                { [className]: className !== null },
+                { [styles.fullWidth]: fullWidth },
+            ])}
+        >
             <input
                 type="number"
-                className={classNames([
-                    styles.input,
-                    'form-control',
-                    'ml-auto',
-                ])}
+                className={classNames([styles.input, 'form-control', 'ml-auto'])}
                 name={name}
                 value={value !== null ? value : ''}
                 min={min}
                 max={max}
-                size={size}
                 step={float ? floatStep : step}
                 autoComplete={autoComplete ? 'on' : 'off'}
                 onChange={onInputChange}
                 onFocus={onInputFocus}
                 onBlur={onInputBlur}
             />
-            <div className={styles.arrow}>
-                <FontAwesomeIcon className={styles.arrowIcon} icon={faChevronDown} />
-            </div>
+            {hasDataList ? (
+                <div className={styles.arrow}>
+                    <FontAwesomeIcon className={styles.arrowIcon} icon={faChevronDown} />
+                </div>
+            ) : null}
             {hasDataList && dataListActive ? (
                 <ul className={styles.dataListItems}>
                     {dataList.map((dataListValue) => (
