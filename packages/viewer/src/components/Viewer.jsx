@@ -88,11 +88,10 @@ const Viewer = ({
 
     // Fonts
     const finalFonts = useMemo(() => fonts || [], [fonts]);
-    const { loaded: fontsLoaded } = useLoadedFonts(finalFonts);// eslint-disable-line
+    const { loaded: fontsLoaded } = useLoadedFonts(finalFonts); // eslint-disable-line
 
     const shareUrl = `${basePath}/${screenId}`;
-    const { description = null, shareImage = null, favIcon = null } =
-        metadata || {};
+    const { description = null, shareImage = null, favIcon = null } = metadata || {};
     const { url: shareImageUrl = null } = shareImage || {};
     const { favIcon: favIconUrl = null } = shareImage || {};
 
@@ -361,10 +360,24 @@ const Viewer = ({
                 <Helmet>
                     {withMetadata ? (
                         <>
-                            { title !== null ? <title>{title}</title> : null }
-                            { description !== null ? <meta name="description" content={description} /> : null }
-                            { shareImageUrl !== null ? <meta property="og:image" content={shareImage} /> : null }
-                            { favIconUrl !== null ? <link rel="icon" type="image/png" href={favIcon} /> : null }
+                            {title !== null ? (
+                                <>
+                                    <title>{`${title} | Micromag`}</title>
+                                    <meta property="og:title" content={`${title} | Micromag`} />
+                                </>
+                            ) : null}
+                            {description !== null ? (
+                                <>
+                                    <meta name="description" content={description} />
+                                    <meta name="og:description" content={description} />
+                                </>
+                            ) : null}
+                            {shareImageUrl !== null ? (
+                                <meta property="og:image" content={shareImage} />
+                            ) : null}
+                            {favIconUrl !== null ? (
+                                <link rel="icon" type="image/png" href={favIcon} />
+                            ) : null}
                         </>
                     ) : null}
                     <style type="text/css">{`body { overscroll-behavior: contain; }`}</style>

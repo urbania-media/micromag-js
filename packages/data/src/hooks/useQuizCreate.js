@@ -8,6 +8,9 @@ export const useQuizCreate = ({ screenId, onSuccess = null } = {}) => {
 
     const create = useCallback(
         (data) => {
+            if (api === null) {
+                return null;
+            }
             setCreating(true);
             return api.quiz.create({ screen_id: screenId, ...data }).then((response) => {
                 setCreating(false);
