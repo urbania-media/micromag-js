@@ -9,7 +9,7 @@ import PlaceholderText from '../partials/PlaceholderText';
 
 import styles from '../../styles/placeholders/survey-answer.module.scss';
 
-export const Answer = ({ width = '75%', height = '0.75em', className }) => (
+export const Answer = ({ width = '75%', height = '0.3em', className }) => (
     <div className={classNames([
         styles.container,
         {
@@ -17,7 +17,7 @@ export const Answer = ({ width = '75%', height = '0.75em', className }) => (
         }
     ])}>
         <PlaceholderBlock outline width={width} height={height} className={styles.block}>
-            <PlaceholderText line={1} height="0.3em" />
+            <PlaceholderText line={1} height="0.2em" />
         </PlaceholderBlock>
         <div className={styles.percent}>
             <FontAwesomeIcon className={styles.percentIcon} icon={faPercent} />

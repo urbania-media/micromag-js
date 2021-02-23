@@ -209,6 +209,7 @@ const ContributionScreen = ({
         <ScreenElement
             key="title"
             placeholder="title"
+            placeholderProps={{ height: '0.75em' }}
             emptyLabel={<FormattedMessage defaultMessage="Title" description="Title placeholder" />}
             emptyClassName={styles.emptyTitle}
             isEmpty={!hasTitle}
@@ -247,6 +248,7 @@ const ContributionScreen = ({
                 <div className={styles.formContent}>
                     <ScreenElement
                         placeholder="inputText"
+                        placeholderProps={{ height: '0.25em' }}
                         emptyLabel={
                             <FormattedMessage
                                 defaultMessage="Your name"
@@ -275,7 +277,7 @@ const ContributionScreen = ({
                     </ScreenElement>
                     <ScreenElement
                         placeholder="inputText"
-                        placeholderProps={{ height: '1.5em' }}
+                        placeholderProps={{ height: '0.75em' }}
                         emptyLabel={
                             <FormattedMessage
                                 defaultMessage="Your message"

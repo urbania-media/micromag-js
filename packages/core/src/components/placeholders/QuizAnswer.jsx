@@ -9,7 +9,7 @@ import PlaceholderText from '../partials/PlaceholderText';
 
 import styles from '../../styles/placeholders/quiz-answer.module.scss';
 
-export const Answer = ({ width = '75%', height = '0.75em', className, good = true }) => (
+export const Answer = ({ width = '75%', height = '0.3em', className, good = true }) => (
     <div
         className={classNames([
             styles.container,
@@ -23,7 +23,7 @@ export const Answer = ({ width = '75%', height = '0.75em', className, good = tru
             <FontAwesomeIcon className={styles.answerIcon} icon={good ? faCheck : faTimes} />
         </div>
         <PlaceholderBlock outline width={width} height={height} className={styles.block}>
-            <PlaceholderText line={1} height="0.3em" />
+            <PlaceholderText line={1} height="0.2em" />
         </PlaceholderBlock>
     </div>
 );

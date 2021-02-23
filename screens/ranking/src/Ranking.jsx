@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -75,7 +75,6 @@ const RankingScreen = ({
 
     const itemsCount = finalItems !== null ? finalItems.length : 0;
 
-    const isSideLayout = layout === 'side';
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
     const scrollingDisabled = transitionDisabled || !current;
@@ -84,22 +83,6 @@ const RankingScreen = ({
     const onScrolledBottom = useCallback(() => {
         trackScreenEvent('scroll', 'Screen');
     }, [trackScreenEvent]);
-
-    const ranksRefs = useRef([]);
-    const [maxSideRankWidth, setMaxSideRankWidth] = useState(null);
-    useEffect(() => {
-        if (!isSideLayout) {
-            return;
-        }
-
-        let maxWidth = 0;
-        ranksRefs.current.forEach((rankEl) => {
-            const { style: rankElStyle } = rankEl;
-            rankElStyle.width = 'auto';
-            maxWidth = Math.max(maxWidth, rankEl.offsetWidth);
-        });
-        setMaxSideRankWidth(maxWidth);
-    }, [isSideLayout, width, height]);
 
     const elements = (finalItems || []).map((item, itemI) => {
         const { title = null, description = null } = item || {};
@@ -164,10 +147,6 @@ const RankingScreen = ({
             <div className={styles.item} key={`item-${itemI}`}>
                 <div
                     className={styles.rank}
-                    ref={(el) => {
-                        ranksRefs.current[itemI] = el;
-                    }}
-                    style={isSideLayout ? { width: maxSideRankWidth } : null}
                 >
                     {isPlaceholder ? (
                         rankText
@@ -222,6 +201,7 @@ const RankingScreen = ({
                     onScrolledBottom={onScrolledBottom}
                 >
                     <Layout
+                        className={styles.layout}
                         style={
                             !isPlaceholder
                                 ? {
