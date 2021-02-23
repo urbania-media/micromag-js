@@ -141,6 +141,7 @@
     .activeScreenBorder {
         @extend %fullscreen;
         border: 5px solid #fff;
+        opacity: 0.5;
     }
 
     .activeScreenBorderInner {

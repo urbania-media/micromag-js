@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 const progressSteps = [0.1, 0.25, 0.5, 0.75, 0.9];
 
 const useMediaApi = ({
+    url = null,
     initialMuted = false,
     onTimeUpdate = null,
     onProgressStep = null,
@@ -23,6 +24,8 @@ const useMediaApi = ({
     const [ready, setReady] = useState(false);
     const [initialPlay, setInitialPlay] = useState(true);
     const progressStepsReached = useRef({});
+
+    const paused = !playing;
 
     // Exposed methods
 
@@ -212,7 +215,7 @@ const useMediaApi = ({
                 media.removeEventListener('canplaythrough', onCustomCanPlayThrough);
             }
         };
-    }, []);
+    }, [url]);
 
     return {
         ref,
@@ -228,7 +231,7 @@ const useMediaApi = ({
         currentTime,
         duration,
         playing,
-        paused: !playing,
+        paused,
         ready,
     };
 };

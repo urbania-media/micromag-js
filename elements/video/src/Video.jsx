@@ -75,8 +75,12 @@ const Video = ({
     onPosterLoaded,
 }) => {
     const { url = null, files = null } = media || {};
+    const hasFiles =
+        files !== null && typeof files.h264 !== 'undefined' && typeof files.webm !== 'undefined';
+    const mediaUrl = hasFiles ? files.h264.url : url;
+
     const { ref, ...api } = useMediaApi({
-        url,
+        url: mediaUrl,
         initialMuted,
         onPlay,
         onPause,
@@ -102,10 +106,7 @@ const Video = ({
     }, [ready, onReady]);
 
     const withSize = width !== null && height !== null;
-    const { thumbnail_url: thumbnailUrl = null } = media || {};
-
-    const hasFiles =
-        files !== null && typeof files.h264 !== 'undefined' && typeof files.webm !== 'undefined';
+    const { thumbnail_url: thumbnailUrl = null } = media || {};    
 
     useEffect(() => {
         if (thumbnailUrl !== null) {
@@ -140,7 +141,7 @@ const Video = ({
         >
             <video
                 ref={ref}
-                src={!hasFiles ? url : null}
+                src={!hasFiles ? mediaUrl : null}
                 autoPlay={autoPlay}
                 loop={loop}
                 muted={muted}
