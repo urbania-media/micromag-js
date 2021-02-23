@@ -53,12 +53,12 @@
     &.isPlaceholder {
         .rank {
             color: rgba($black, 0.5);
-            font-size: 18px;
+            font-size: 16px;
             text-align: left;            
         }
 
         .scroll {
-            padding: 10px;
+            padding: 5px;
         }
 
         .title,
@@ -69,9 +69,13 @@
             padding: 0;
         }
 
+        .item {
+            padding: 1px 0;
+        }
+
         &.sideLayout {
             .rank {
-                width: 10px;
+                width: 24px;
                 padding-top: 8px;
                 padding-right: 4px;
             }

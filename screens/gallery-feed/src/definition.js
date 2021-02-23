@@ -71,6 +71,11 @@ export default [
             {
                 name: 'images',
                 type: 'images-with-caption',
+                theme: {
+                    caption: {
+                        textStyle: 'text',
+                    },
+                },
                 label: defineMessage({
                     defaultMessage: 'Images',
                     description: 'Field label',

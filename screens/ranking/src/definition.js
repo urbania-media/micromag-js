@@ -57,7 +57,9 @@ export default {
         {
             name: 'numbersStyle',
             type: 'text-style',
-            theme: 'heading2',
+            theme: {
+                textStyle: 'heading1',
+            },
             label: defineMessage({
                 defaultMessage: 'Numbers style',
                 description: 'Numbers style field label',
