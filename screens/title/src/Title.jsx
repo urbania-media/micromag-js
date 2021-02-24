@@ -80,8 +80,6 @@ const TitleScreen = ({
     const hasSubtitle = isTextFilled(subtitle);
     const hasDescription = isTextFilled(description);
 
-    const isEmpty = !hasTitle && !hasSubtitle && (!withDescription || !hasDescription);
-
     const layoutParts = layout.split('-');
     const isSplitted = layoutParts[0] === 'split';
     const verticalAlign = isSplitted ? layoutParts[1] || null : layoutParts[0];
@@ -102,7 +100,7 @@ const TitleScreen = ({
             placeholder="title"
             emptyLabel={<FormattedMessage defaultMessage="Title" description="Title placeholder" />}
             emptyClassName={styles.emptyTitle}
-            isEmpty={isEmpty}
+            isEmpty={!hasTitle}
         >
             {hasTitle ? (
                 <Heading
@@ -125,7 +123,7 @@ const TitleScreen = ({
                     />
                 }
                 emptyClassName={styles.emptySubtitle}
-                isEmpty={isEmpty}
+                isEmpty={!hasSubtitle}
             >
                 {hasSubtitle ? (
                     <Heading
@@ -148,7 +146,7 @@ const TitleScreen = ({
                 placeholder="shortText"
                 emptyLabel={descriptionEmptyLabel}
                 emptyClassName={styles.emptyDescription}
-                isEmpty={isEmpty}
+                isEmpty={!hasDescription}
             >
                 {hasDescription ? <Text {...description} /> : null}
             </ScreenElement>

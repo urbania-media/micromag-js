@@ -6,6 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
+import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
@@ -64,10 +65,8 @@ const TextScreen = ({
         isCapture,
     } = useScreenRenderContext();
 
-    const hasTitle = title !== null;
-    const hasText = text !== null;
-
-    const isEmpty = isEdit && !hasTitle && !hasText;
+    const hasTitle = isTextFilled(title);
+    const hasText = isTextFilled(text);
 
     const isSplitted = layout === 'split';
     const verticalAlign = isSplitted ? null : layout;
@@ -88,7 +87,7 @@ const TextScreen = ({
                     <FormattedMessage defaultMessage="Title" description="Title placeholder" />
                 }
                 emptyClassName={styles.emptyTitle}
-                isEmpty={isEmpty}
+                isEmpty={!hasTitle}
             >
                 {hasTitle ? (
                     <Heading
@@ -109,7 +108,7 @@ const TextScreen = ({
             placeholder="text"
             emptyLabel={<FormattedMessage defaultMessage="Text" description="Text placeholder" />}
             emptyClassName={styles.emptyText}
-            isEmpty={isEmpty}
+            isEmpty={!hasText}
         >
             {hasText ? <Text className={styles.text} {...text} /> : null}
         </ScreenElement>,
