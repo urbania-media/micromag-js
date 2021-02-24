@@ -146,6 +146,7 @@ const Video = ({
                 loop={loop}
                 muted={muted}
                 poster={thumbnailUrl}
+                crossOrigin="anonymous"
             >
                 {hasFiles ? (
                     <>

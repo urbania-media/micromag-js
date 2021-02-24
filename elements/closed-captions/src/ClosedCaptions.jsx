@@ -1,4 +1,5 @@
 /* eslint-disable react/no-danger */
+import 'whatwg-fetch';
 import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -29,13 +30,16 @@ const ClosedCaptions = ({ currentTime, timeOffset, media, className }) => {
     const [lineIndex, setLineIndex] = useState(-1);
 
     const startOffset = timeOffset !== null ? timeOffset.split(/[\t ]*-->[\t ]*/) : null;
-    const startSeconds = startOffset !== null && startOffset.length ? getSecondsFromTime(startOffset[0]) : 0;
+    const startSeconds =
+        startOffset !== null && startOffset.length ? getSecondsFromTime(startOffset[0]) : 0;
 
     useEffect(() => {
         if (url === null) {
             return;
         }
-        fetch(url)
+        fetch(url, {
+            mode: 'cors',
+        })
             .then((response) => response.text())
             .then((srt) => parseSRT(srt))
             .then((parsed) => {
@@ -77,7 +81,12 @@ const ClosedCaptions = ({ currentTime, timeOffset, media, className }) => {
                 },
             ])}
         >
-            { active ? <div className={styles.captions} dangerouslySetInnerHTML={active? { __html: line.text } : null} /> : null }
+            {active ? (
+                <div
+                    className={styles.captions}
+                    dangerouslySetInnerHTML={active ? { __html: line.text } : null}
+                />
+            ) : null}
         </div>
     );
 };

@@ -121,7 +121,7 @@ const Audio = ({
                 },
             ])}
         >
-            <audio ref={ref} src={url} autoPlay={autoPlay} loop={loop} />
+            <audio ref={ref} src={url} autoPlay={autoPlay} loop={loop} crossOrigin="anonymous" />
             <AudioWave
                 className={styles.wave}
                 media={media}

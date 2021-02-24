@@ -1,5 +1,6 @@
 /* eslint-disable no-multi-assign */
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign, react/no-array-index-key */
+import 'whatwg-fetch';
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -57,7 +58,7 @@ const AudioWave = ({
 
     const canvasBackgroundRef = useRef(null);
     const canvasProgressRef = useRef(null);
-    
+
     const {
         ref: elRef,
         entry: { contentRect: elContentRect },
@@ -104,24 +105,26 @@ const AudioWave = ({
 
         if (url !== null && typeof window !== 'undefined') {
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            fetch(url)
-            .then( response => {
-                if (canceled){
-                    throw new Error('Audio loading canceled');
-                } 
-                return response.arrayBuffer();
+            fetch(url, {
+                mode: 'cors',
             })
-            .then( audioData => {
-                if (canceled){
-                    throw new Error('Audio loading canceled');
-                }
-                audioCtx.decodeAudioData(audioData, (buffer) => {
-                    setAudioBuffer(buffer);
+                .then((response) => {
+                    if (canceled) {
+                        throw new Error('Audio loading canceled');
+                    }
+                    return response.arrayBuffer();
+                })
+                .then((audioData) => {
+                    if (canceled) {
+                        throw new Error('Audio loading canceled');
+                    }
+                    audioCtx.decodeAudioData(audioData, (buffer) => {
+                        setAudioBuffer(buffer);
+                    });
+                })
+                .catch((e) => {
+                    throw e;
                 });
-            })
-            .catch( (e) => {
-                throw(e);
-            });
         }
 
         return () => {
@@ -129,8 +132,7 @@ const AudioWave = ({
                 audioCtx = null;
                 canceled = true;
             }
-        }
-
+        };
     }, [url, setAudioBuffer]);
 
     // draw canvas

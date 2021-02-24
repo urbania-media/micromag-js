@@ -1,5 +1,6 @@
 import isObject from 'lodash/isObject';
 import isArray from 'lodash/isArray';
+import uniq from 'lodash/uniq';
 
 class FontsParser {
     constructor({ fieldsManager, screensManager }) {
@@ -15,13 +16,13 @@ class FontsParser {
 
         // Extract fonts from screen
         const { theme = null, components = [] } = story || {};
-        const fonts = components.reduce((currentFonts, screen) => {
+        const fonts = uniq(components.reduce((currentFonts, screen) => {
             const { type } = screen;
             const { fields = [] } = this.screensManager.getDefinition(type) || {};
             const fieldsPattern = this.getFieldsPattern(fields);
             const newFonts = FontsParser.extractFontsWithPaths(screen, fieldsPattern);
             return newFonts.length > 0 ? [...currentFonts, ...newFonts] : currentFonts;
-        }, []);
+        }, []), 'name');
 
         // Extract fonts from theme
         if (theme !== null) {
@@ -29,10 +30,10 @@ class FontsParser {
             return fonts.length > 0 || themeFonts.length > 0 ? {
                 ...story,
                 theme: newTheme,
-                fonts: [
+                fonts: uniq([
                     ...themeFonts,
                     ...fonts,
-                ],
+                ], 'name'),
             } : story;
         }
 
