@@ -63,7 +63,8 @@
         "react-intl": "^5.12.1",
         "react-use-gesture": "^8.0.1",
         "three": "^0.123.0",
-        "uuid": "^8.3.2"
+        "uuid": "^8.3.2",
+        "whatwg-fetch": "^3.6.1"
     },
     "publishConfig": {
         "access": "public"

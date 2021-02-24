@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import 'whatwg-fetch';
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
