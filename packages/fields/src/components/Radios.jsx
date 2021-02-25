@@ -16,6 +16,7 @@ const propTypes = {
     className: PropTypes.string,
     buttonClassName: PropTypes.string,
     onChange: PropTypes.func,
+    uncheckable: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -26,9 +27,19 @@ const defaultProps = {
     className: null,
     buttonClassName: null,
     onChange: null,
+    uncheckable: false,
 };
 
-const Radios = ({ name, value, options, withBackground, className, buttonClassName, onChange }) => {
+const Radios = ({
+    name,
+    value,
+    options,
+    withBackground,
+    className,
+    buttonClassName,
+    uncheckable,
+    onChange,
+}) => {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
 
     return (
@@ -60,9 +71,13 @@ const Radios = ({ name, value, options, withBackground, className, buttonClassNa
                         name={name}
                         autoComplete="off"
                         value={optionValue || ''}
-                        onChange={(e) => {
+                        onClick={(e) => {
                             if (onChange !== null) {
-                                onChange(e.currentTarget.checked ? optionValue : null);
+                                if (uncheckable && optionValue === value) {
+                                    onChange(null);
+                                } else {
+                                    onChange(e.currentTarget.checked ? optionValue : null);
+                                }
                             }
                         }}
                         checked={optionValue === value}

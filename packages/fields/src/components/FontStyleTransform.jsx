@@ -18,7 +18,7 @@ const propTypes = {
 const defaultProps = {
     fontStyleName: 'fontStyle',
     transformOptions: [
-        { value: null, label: <strong>Aa</strong> },
+        { value: 'capitalize', label: <strong>Aa</strong> },
         { value: 'uppercase', label: <strong>AA</strong> },
         { value: 'lowercase', label: <strong>aa</strong> },
     ],
@@ -58,6 +58,7 @@ const FontStyleTransform = ({ value, fontStyleName, transformOptions, className,
                 value={transformValue}
                 options={transformOptions}
                 onChange={onTransformChange}
+                uncheckable
             />
         </div>
     );

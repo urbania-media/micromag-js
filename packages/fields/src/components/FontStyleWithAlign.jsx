@@ -120,6 +120,7 @@ const FontStyles = ({
                 options={alignOptions}
                 className="ml-auto"
                 onChange={onAlignChange}
+                uncheckable
             />
         </div>
     );
