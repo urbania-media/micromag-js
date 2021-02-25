@@ -29,6 +29,8 @@ const propTypes = {
     name: MicromagPropTypes.inputElement,
     message: MicromagPropTypes.inputElement,
     submit: MicromagPropTypes.textElement,
+    nameStyle: MicromagPropTypes.textStyle,
+    messageStyle: MicromagPropTypes.textStyle,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
@@ -46,6 +48,8 @@ const defaultProps = {
     name: null,
     message: null,
     submit: null,
+    nameStyle: null,
+    messageStyle: null,
     spacing: 20,
     background: null,
     current: true,
@@ -63,6 +67,8 @@ const ContributionScreen = ({
     name,
     message,
     submit,
+    nameStyle,
+    messageStyle,
     spacing,
     background,
     current,
@@ -326,6 +332,8 @@ const ContributionScreen = ({
                                 type="submit"
                                 className={styles.buttonSubmit}
                                 disabled={isPreview}
+                                backgroundColor={submit !== null ? submit.backgroundColor : null}
+                                borderStyle={submit !== null ? submit.borderStyle : null}
                             >
                                 <Text {...submit} inline />
                             </Button>
@@ -348,10 +356,12 @@ const ContributionScreen = ({
                                     className={styles.contributionName}
                                     body={contribution.name}
                                     size={2}
+                                    textStyle={nameStyle}
                                 />
                                 <Text
                                     className={styles.contributionMessage}
                                     body={contribution.message}
+                                    textStyle={messageStyle}
                                 />
                             </div>
                         ))}

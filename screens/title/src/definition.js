@@ -166,7 +166,7 @@ export default [
                 name: 'credits',
                 type: 'text-element',
                 theme: {
-                    textStyle: 'heading3',
+                    textStyle: 'text',
                 },
                 label: defineMessage({
                     defaultMessage: 'Credits',

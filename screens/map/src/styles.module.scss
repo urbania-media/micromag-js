@@ -66,15 +66,12 @@
         background-color: rgba($black, 0.75);
 
         .title,
-        .description,
-        .button {
+        .description {
             margin: 10px 0;
         }
 
         .button {
-            padding: 10px;
-            background-color: $white;
-            color: $black;
+            display: inline-block;
         }
 
         .emptyTitle,
@@ -95,6 +92,10 @@
         .emptyButton {
             height: 70px;
         }
+    }
+
+    .splashButton {
+        margin-top: 10px;
     }
 
     .closeButton {

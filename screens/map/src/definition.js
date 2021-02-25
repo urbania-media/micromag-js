@@ -27,7 +27,7 @@ export default [
                 name: 'title',
                 type: 'heading-element',
                 theme: {
-                    textStyle: 'heading2',
+                    textStyle: 'heading1',
                 },
                 label: defineMessage({
                     defaultMessage: 'Title',
@@ -47,7 +47,7 @@ export default [
             },
             {
                 name: 'button',
-                type: 'text-element',
+                type: 'button-element',
                 theme: {
                     textStyle: 'button',
                 },
@@ -113,7 +113,7 @@ export default [
                 name: 'title',
                 type: 'heading-element',
                 theme: {
-                    textStyle: 'heading2',
+                    textStyle: 'heading1',
                 },
                 label: defineMessage({
                     defaultMessage: 'Title',
@@ -133,7 +133,7 @@ export default [
             },
             {
                 name: 'button',
-                type: 'text-element',
+                type: 'button-element',
                 theme: {
                     textStyle: 'button',
                 },
@@ -154,11 +154,13 @@ export default [
             {
                 name: 'markers',
                 type: 'markers-with-image',
-                title: {
-                    textStyle: 'heading3',
-                },
-                description: {
-                    textStyle: 'text',
+                theme: {
+                    title: {
+                        textStyle: 'heading3',
+                    },
+                    description: {
+                        textStyle: 'text',
+                    },
                 },
                 label: defineMessage({
                     defaultMessage: 'Markers with image',

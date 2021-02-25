@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import isArray from 'lodash/isArray';
 import classNames from 'classnames';
@@ -87,6 +87,15 @@ const SliderField = ({
     className,
     onChange,
 }) => {
+
+
+    const customOnChange = useCallback( val => {
+        if (onChange !== null) {
+            onChange(val);
+            // onChange(parseInt(val, 10));
+        }
+    }, [onChange]);
+
     const finalMarks = useMemo(
         () =>
             (isArray(marks) ? generateSteps(marks, marksStyle) : marks) ||
@@ -106,7 +115,7 @@ const SliderField = ({
                 min={min}
                 max={max}
                 marks={finalMarks}
-                onChange={onChange}
+                onChange={customOnChange}
             />
         </div>
     );
@@ -127,7 +136,7 @@ const SliderField = ({
                         <Text
                             type="number"
                             value={value}
-                            onChange={onChange}
+                            onChange={customOnChange}
                             className={styles.input}
                         />
                     </div>

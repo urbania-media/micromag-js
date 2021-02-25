@@ -1,15 +1,55 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+// import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import Fields from './Fields';
+import Radios from './Radios';
 
-const propTypes = {};
+import styles from '../styles/border-style.module.scss';
 
-const defaultProps = {};
+const propTypes = {
+    types: PropTypes.arrayOf(PropTypes.string),
+    value: PropTypes.string,
+    className: PropTypes.string,
+    onChange: PropTypes.func,
+};
 
-const BorderStyleField = props => <Fields isList {...props} />;
+const defaultProps = {
+    types: ['solid', 'dotted', 'dashed', 'groove'],
+    value: null,
+    className: null,
+    onChange: null,
+};
 
-BorderStyleField.propTypes = propTypes;
-BorderStyleField.defaultProps = defaultProps;
+const BorderStyle = ({ types, value, className, onChange }) => (
+    <Radios
+        options={types.map((type) => ({
+            value: type,
+            label: (
+                <div className={styles.type}>
+                    <div
+                        style={{
+                            width: 40,
+                            height: 40,
+                            border: `2px ${type} #ccc`,
+                        }}
+                    />
+                </div>
+            ),
+        }))}
+        value={value || (types ? types[0] : null)}
+        className={classNames([
+            styles.container,
+            {
+                [className]: className !== null,
+            },
+        ])}
+        buttonClassName={styles.button}
+        onChange={onChange}
+    />
+);
 
-export default BorderStyleField;
+BorderStyle.propTypes = propTypes;
+BorderStyle.defaultProps = defaultProps;
+
+export default BorderStyle;

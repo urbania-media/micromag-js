@@ -63,13 +63,35 @@ export default {
         },
         {
             name: 'submit',
-            type: 'text-element',
+            type: 'button-element',
             theme: {
                 textStyle: 'button',
             },
             label: defineMessage({
                 defaultMessage: 'Submit',
                 description: 'Submit field label',
+            }),
+        },
+        {
+            name: 'nameStyle',
+            type: 'text-style',  
+            theme: {
+                textStyle: 'text',
+            },          
+            label: defineMessage({
+                defaultMessage: 'Contribution name style',
+                description: 'Contribution name style field label',
+            }),
+        },
+        {
+            name: 'messageStyle',
+            type: 'text-style',
+            theme: {
+                textStyle: 'text',
+            },
+            label: defineMessage({
+                defaultMessage: 'Contribution message style',
+                description: 'Contribution message style field label',
             }),
         },
         {

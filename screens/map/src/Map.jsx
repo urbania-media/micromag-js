@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useGoogleKeys, useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
-import { PlaceholderMap, Transitions, Button, ScreenElement } from '@micromag/core/components';
+import { PlaceholderMap, Transitions, ScreenElement, Button } from '@micromag/core/components';
 import { useTrackScreenEvent, useResizeObserver } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
@@ -15,6 +15,7 @@ import Heading from '@micromag/element-heading';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 import ImageElement from '@micromag/element-image';
+import ButtonElement from '@micromag/element-button';
 
 import styles from './styles.module.scss';
 
@@ -114,10 +115,14 @@ const MapScreen = ({
         [markers, selectedMarkerIndex],
     );
 
-    const onClickMap = useCallback(() => {
+    const closeMarker = useCallback( () => {
         const lastMarker = finalMarkers[selectedMarkerIndex];
         lastRenderedMarker.current = lastMarker;
         setSelectedMarkerIndex(null);
+    }, []);
+
+    const onClickMap = useCallback(() => {
+        const lastMarker = finalMarkers[selectedMarkerIndex];
         trackScreenEvent(
             'click_marker_close',
             `Marker ${selectedMarkerIndex + 1}: ${lastMarker.title.body}`,
@@ -126,7 +131,8 @@ const MapScreen = ({
                 markerIndex: selectedMarkerIndex,
             },
         );
-    }, [finalMarkers, selectedMarkerIndex, trackScreenEvent]);
+        closeMarker();
+    }, [finalMarkers, selectedMarkerIndex, trackScreenEvent, closeMarker]);
 
     const onClickMarker = useCallback(
         (e, index) => {
@@ -154,6 +160,7 @@ const MapScreen = ({
             onEnableInteraction();
         }
         trackScreenEvent('click_close', 'Close icon');
+        closeMarker();
     }, [setOpened, onEnableInteraction, trackScreenEvent]);
 
     const onMapDragEnd = useCallback(
@@ -394,13 +401,14 @@ const MapScreen = ({
                         emptyClassName={styles.emptyButton}
                         isEmpty={!hasButton}
                     >
-                        <Button
+                        <ButtonElement
                             className={styles.splashButton}
                             onClick={onButtonClick}
-                            withoutStyle
+                            backgroundColor={button !== null ? button.backgroundColor : null}
+                            borderStyle={button !== null ? button.borderStyle : null}
                         >
                             <Text className={styles.button} {...button} />
-                        </Button>
+                        </ButtonElement>
                     </ScreenElement>
                 </div>
                 {!isStatic && !isCapture ? (

@@ -11,6 +11,8 @@ const props = {
     name: { label: 'Votre nom', textStyle: null },
     message: { label: 'Votre message', textStyle: null },
     submit: { body: 'Envoyer', textStyle: null },
+    nameStyle: null,
+    messageStyle: null,
     background: backgroundColor(),
     transitions: transitions(),
 };

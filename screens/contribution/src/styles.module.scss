@@ -66,6 +66,8 @@
     }
 
     .buttonSubmit {
+        border: 0;
+        
         &:disabled {
             opacity: 1;
         }

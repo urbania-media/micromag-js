@@ -1,9 +1,8 @@
 import { defineMessage } from 'react-intl';
-import InputElement from '../components/InputElement';
 
 export default {
-    id: 'input-element',
-    component: InputElement,
+    id: 'button-element',
+    component: 'text-element',
     settings: [
         {
             name: 'textStyle',
@@ -18,7 +17,7 @@ export default {
             type: 'color'
         },
         {
-            name: 'border',
+            name: 'borderStyle',
             label: defineMessage({
                 defaultMessage: 'Border',
                 description: 'Border color label',

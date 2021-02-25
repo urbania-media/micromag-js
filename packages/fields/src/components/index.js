@@ -4,7 +4,6 @@ export { default as Answers } from './Answers';
 export { default as Audio } from './Audio';
 export { default as Autocomplete } from './Autocomplete';
 export { default as BorderStyle } from './BorderStyle';
-export { default as BorderType } from './BorderType';
 export { default as BorderWidth } from './BorderWidth';
 export { default as BorderRadius } from './BorderRadius';
 export { default as Checkboxes } from './Checkboxes';

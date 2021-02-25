@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import Radios from './Radios';
 
-import styles from '../styles/border-type.module.scss';
+import styles from '../styles/border-style.module.scss';
 
 const propTypes = {
     types: PropTypes.arrayOf(PropTypes.string),

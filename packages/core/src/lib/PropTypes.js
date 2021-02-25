@@ -245,6 +245,11 @@ export const fonts = PropTypes.arrayOf(font);
 
 export const textAlign = PropTypes.oneOf(['left', 'right', 'center']);
 
+export const color = PropTypes.shape({
+    color: PropTypes.string,
+    alpha: PropTypes.number,
+});
+
 export const textStyle = PropTypes.shape({
     fontFamily: font,
     fontSize: PropTypes.number,
@@ -254,12 +259,10 @@ export const textStyle = PropTypes.shape({
         underline: PropTypes.bool,
         upperCase: PropTypes.bool,
     }),
-    textAlign,
-});
-
-export const color = PropTypes.shape({
-    color: PropTypes.string,
-    alpha: PropTypes.number,
+    align: textAlign,
+    color,
+    letterSpacing: PropTypes.number,
+    lineHeight: PropTypes.number,
 });
 
 export const borderStyle = PropTypes.shape({

@@ -5,7 +5,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { getStyleFromText, getStyleFromMargin } from '@micromag/core/utils';
+import { getStyleFromText, getStyleFromMargin, getStyleFromColor, getStyleFromBorder } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
@@ -14,6 +14,8 @@ const propTypes = {
     labelOutside: PropTypes.bool,
     labelClassName: PropTypes.string,
     textStyle: MicromagPropTypes.textStyle,
+    backgroundColor: MicromagPropTypes.color,
+    border: MicromagPropTypes.borderStyle,
     labelOutsideStyle: MicromagPropTypes.textStyle,
     margin: MicromagPropTypes.margin,
     multiline: PropTypes.bool,
@@ -31,6 +33,8 @@ const defaultProps = {
     labelOutside: false,
     labelClassName: null,
     textStyle: null,
+    backgroundColor: null,
+    border: null,
     labelOutsideStyle: null,
     margin: null,
     multiline: false,
@@ -48,6 +52,8 @@ const TextInput = ({
     labelOutside,
     labelClassName,
     textStyle,
+    backgroundColor,
+    border,
     labelOutsideStyle,
     margin,
     multiline,
@@ -81,6 +87,28 @@ const TextInput = ({
         elementStyle = {
             ...elementStyle,
             ...getStyleFromText(textStyle),
+        };
+
+    }
+
+    if (textStyle !== null) {
+        elementStyle = {
+            ...elementStyle,
+            ...getStyleFromColor(backgroundColor),
+        };
+    }
+
+    if (backgroundColor !== null) {
+        elementStyle = {
+            ...elementStyle,
+            ...getStyleFromColor(backgroundColor),
+        };
+    }
+
+    if (border !== null) {
+        elementStyle = {
+            ...elementStyle,
+            ...getStyleFromBorder(border),
         };
     }
 
