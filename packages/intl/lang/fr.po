@@ -245,6 +245,12 @@ msgctxt "650XRF"
 msgid "Survey"
 msgstr "Sondage"
 
+# Contribution name style field label
+#: 6cuIgC
+msgctxt "6cuIgC"
+msgid "Contribution name style"
+msgstr ""
+
 # Images screen group
 #: 6mX2ya
 msgctxt "6mX2ya"
@@ -268,6 +274,18 @@ msgstr "Auteur"
 msgctxt "88/Ge8"
 msgid "Quote"
 msgstr "Citation"
+
+# Border radius label
+#: 8NopfK
+msgctxt "8NopfK"
+msgid "Border radius"
+msgstr ""
+
+# Border style label
+#: 8bIoWc
+msgctxt "8bIoWc"
+msgid "Border style"
+msgstr ""
 
 # Button label
 #: 8oczXQ
@@ -676,6 +694,12 @@ msgctxt "VDu2FA"
 msgid "Google Fonts"
 msgstr "Google Fonts"
 
+# Contribution message style field label
+#: WKj4JA
+msgctxt "WKj4JA"
+msgid "Contribution message style"
+msgstr ""
+
 # Label when no value
 #: Wb5zY4
 msgctxt "Wb5zY4"
@@ -699,6 +723,12 @@ msgstr "Typographie"
 msgctxt "XTJGzY"
 msgid "Gallery feed with captions"
 msgstr "Galerie (fil) avec légendes"
+
+# Border color label
+#: Xb4Dm6
+msgctxt "Xb4Dm6"
+msgid "Border"
+msgstr ""
 
 # Answers item field label
 #: Xdsq3k
@@ -1046,6 +1076,12 @@ msgctxt "qKQCxc"
 msgid "Add a marker"
 msgstr "Ajouter un marqueur"
 
+# Border color label
+#: rA01c2
+msgctxt "rA01c2"
+msgid "Border color"
+msgstr ""
+
 # Label when there is no item
 #: rdFCsN
 msgctxt "rdFCsN"
@@ -1159,6 +1195,18 @@ msgstr "Recherches récentes"
 msgctxt "vZrFq6"
 msgid "Title with subtitle and credits"
 msgstr "Titre avec sous-titre et crédits"
+
+# Border width label
+#: vlQvaq
+msgctxt "vlQvaq"
+msgid "Border width"
+msgstr ""
+
+# Background color label
+#: vzW/wd
+msgctxt "vzW/wd"
+msgid "Background color"
+msgstr ""
 
 # Button to show screens
 #: wkysUu

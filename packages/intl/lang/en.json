@@ -113,6 +113,9 @@
     "650XRF": {
         "defaultMessage": "Survey"
     },
+    "6cuIgC": {
+        "defaultMessage": "Contribution name style"
+    },
     "6mX2ya": {
         "defaultMessage": "Images"
     },
@@ -124,6 +127,12 @@
     },
     "88/Ge8": {
         "defaultMessage": "Quote"
+    },
+    "8NopfK": {
+        "defaultMessage": "Border radius"
+    },
+    "8bIoWc": {
+        "defaultMessage": "Border style"
     },
     "8oczXQ": {
         "defaultMessage": "Add a marker"
@@ -329,6 +338,9 @@
     "VDu2FA": {
         "defaultMessage": "Google Fonts"
     },
+    "WKj4JA": {
+        "defaultMessage": "Contribution message style"
+    },
     "Wb5zY4": {
         "defaultMessage": "Select a font file..."
     },
@@ -340,6 +352,9 @@
     },
     "XTJGzY": {
         "defaultMessage": "Gallery feed with captions"
+    },
+    "Xb4Dm6": {
+        "defaultMessage": "Border"
     },
     "Xdsq3k": {
         "defaultMessage": "Answer"
@@ -515,6 +530,9 @@
     "qKQCxc": {
         "defaultMessage": "Add a marker"
     },
+    "rA01c2": {
+        "defaultMessage": "Border color"
+    },
     "rdFCsN": {
         "defaultMessage": "No marker..."
     },
@@ -571,6 +589,12 @@
     },
     "vZrFq6": {
         "defaultMessage": "Title with subtitle and credits"
+    },
+    "vlQvaq": {
+        "defaultMessage": "Border width"
+    },
+    "vzW/wd": {
+        "defaultMessage": "Background color"
     },
     "wkysUu": {
         "defaultMessage": "Screens"
