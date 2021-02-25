@@ -10,7 +10,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { isTextFilled, isLabelFilled } from '@micromag/core/utils';
+import { isTextFilled, isLabelFilled, getStyleFromColor } from '@micromag/core/utils';
 import { useContributions, useContributionCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -351,6 +351,7 @@ const ContributionScreen = ({
                             <div
                                 key={`contribution-${contributionIndex}`}
                                 className={styles.contribution}
+                                style={ nameStyle !== null ? getStyleFromColor(nameStyle.color, 'borderColor') : null }
                             >
                                 <Heading
                                     className={styles.contributionName}

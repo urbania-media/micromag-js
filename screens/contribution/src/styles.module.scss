@@ -113,15 +113,18 @@
     }
 
     .contributions {
-        position: relative;
-        padding-top: 20px;
-        border-top: 1px solid $white;
+        position: relative;        
     }
 
     .contribution {
         margin-bottom: 20px;
         padding-bottom: 20px;
         border-bottom: 1px solid $white;
+
+        &:first-child {
+            padding-top: 20px;
+            border-top: 1px solid $white;
+        }
 
         &:last-child {
             margin-bottom: 0;
