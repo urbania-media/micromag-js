@@ -35,6 +35,12 @@ msgctxt "+Ok+7S"
 msgid "Answer"
 msgstr "Réponse"
 
+# Published message style field label
+#: +SlKOi
+msgctxt "+SlKOi"
+msgid "Published message style"
+msgstr ""
+
 # Clear button label in Media Gallery
 #: +TT1y6
 msgctxt "+TT1y6"
@@ -179,6 +185,12 @@ msgctxt "4H2n5r"
 msgid "Closed captions"
 msgstr "Sous-titres"
 
+# Size label
+#: 4HlSsf
+msgctxt "4HlSsf"
+msgid "Size"
+msgstr ""
+
 # Button to view a screen
 #: 4POR3B
 msgctxt "4POR3B"
@@ -245,12 +257,6 @@ msgctxt "650XRF"
 msgid "Survey"
 msgstr "Sondage"
 
-# Contribution name style field label
-#: 6cuIgC
-msgctxt "6cuIgC"
-msgid "Contribution name style"
-msgstr ""
-
 # Images screen group
 #: 6mX2ya
 msgctxt "6mX2ya"
@@ -275,18 +281,6 @@ msgctxt "88/Ge8"
 msgid "Quote"
 msgstr "Citation"
 
-# Border radius label
-#: 8NopfK
-msgctxt "8NopfK"
-msgid "Border radius"
-msgstr ""
-
-# Border style label
-#: 8bIoWc
-msgctxt "8bIoWc"
-msgid "Border style"
-msgstr ""
-
 # Button label
 #: 8oczXQ
 msgctxt "8oczXQ"
@@ -310,6 +304,12 @@ msgstr "Carte"
 msgctxt "9DhYaZ"
 msgid "Ascending"
 msgstr "Ordre croissant"
+
+# Style label
+#: 9F367T
+msgctxt "9F367T"
+msgid "Style"
+msgstr ""
 
 # Library source menu
 #: 9ZdD+Q
@@ -497,6 +497,12 @@ msgctxt "JV5hRr"
 msgid "Media gallery"
 msgstr "Galerie de médias"
 
+# Button style label
+#: JnCf7K
+msgctxt "JnCf7K"
+msgid "Button style"
+msgstr ""
+
 # Button to create your first screen
 #: JoWKee
 msgctxt "JoWKee"
@@ -514,6 +520,12 @@ msgstr "Aucune police..."
 msgctxt "KHWeV7"
 msgid "Answers"
 msgstr "Réponses"
+
+# Rounded corner label
+#: M7k2X9
+msgctxt "M7k2X9"
+msgid "Rounded corner"
+msgstr ""
 
 # MapImages screen title
 #: MLuvzG
@@ -640,6 +652,12 @@ msgctxt "S9YpbV"
 msgid "Text"
 msgstr "Texte"
 
+# Published name style field label
+#: SyMSDa
+msgctxt "SyMSDa"
+msgid "Published name style"
+msgstr ""
+
 # Field label
 #: T0pi1u
 msgctxt "T0pi1u"
@@ -694,12 +712,6 @@ msgctxt "VDu2FA"
 msgid "Google Fonts"
 msgstr "Google Fonts"
 
-# Contribution message style field label
-#: WKj4JA
-msgctxt "WKj4JA"
-msgid "Contribution message style"
-msgstr ""
-
 # Label when no value
 #: Wb5zY4
 msgctxt "Wb5zY4"
@@ -723,12 +735,6 @@ msgstr "Typographie"
 msgctxt "XTJGzY"
 msgid "Gallery feed with captions"
 msgstr "Galerie (fil) avec légendes"
-
-# Border color label
-#: Xb4Dm6
-msgctxt "Xb4Dm6"
-msgid "Border"
-msgstr ""
 
 # Answers item field label
 #: Xdsq3k
@@ -1178,6 +1184,12 @@ msgctxt "upzOTm"
 msgid "Credits"
 msgstr "Crédits"
 
+# Border label
+#: vA+9dU
+msgctxt "vA+9dU"
+msgid "Border"
+msgstr ""
+
 # Field label
 #: vERejo
 msgctxt "vERejo"
@@ -1195,12 +1207,6 @@ msgstr "Recherches récentes"
 msgctxt "vZrFq6"
 msgid "Title with subtitle and credits"
 msgstr "Titre avec sous-titre et crédits"
-
-# Border width label
-#: vlQvaq
-msgctxt "vlQvaq"
-msgid "Border width"
-msgstr ""
 
 # Background color label
 #: vzW/wd

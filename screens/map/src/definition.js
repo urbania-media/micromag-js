@@ -51,6 +51,18 @@ export default [
                 theme: {
                     textStyle: 'button',
                 },
+                defaultValue: {
+                    textStyle: {
+                        color: { color: '#FFF', alpha: 1 },
+                    },
+                    buttonStyle: {
+                        backgroundColor: { color: '#000', alpha: 1 },
+                        borderRadius: 0,
+                        borderWidth: 2,
+                        borderStyle: 'solid',
+                        borderColor: { color: '#FFF', alpha: 1 },
+                    },
+                },
                 label: defineMessage({
                     defaultMessage: 'Button',
                     description: 'Button field label',
@@ -136,6 +148,16 @@ export default [
                 type: 'button-element',
                 theme: {
                     textStyle: 'button',
+                },
+                textStyle: {
+                    color: { color: '#FFF', alpha: 1 },
+                },
+                buttonStyle: {
+                    backgroundColor: { color: '#000', alpha: 1 },
+                    borderRadius: 0,
+                    borderWidth: 2,
+                    borderStyle: 'solid',
+                    borderColor: { color: '#FFF', alpha: 1 },
                 },
                 label: defineMessage({
                     defaultMessage: 'Button',

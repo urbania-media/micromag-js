@@ -8,6 +8,9 @@
     "+Ok+7S": {
         "defaultMessage": "Answer"
     },
+    "+SlKOi": {
+        "defaultMessage": "Published message style"
+    },
     "+TT1y6": {
         "defaultMessage": "Clear"
     },
@@ -80,6 +83,9 @@
     "4H2n5r": {
         "defaultMessage": "Closed captions"
     },
+    "4HlSsf": {
+        "defaultMessage": "Size"
+    },
     "4POR3B": {
         "defaultMessage": "View screen"
     },
@@ -113,9 +119,6 @@
     "650XRF": {
         "defaultMessage": "Survey"
     },
-    "6cuIgC": {
-        "defaultMessage": "Contribution name style"
-    },
     "6mX2ya": {
         "defaultMessage": "Images"
     },
@@ -128,12 +131,6 @@
     "88/Ge8": {
         "defaultMessage": "Quote"
     },
-    "8NopfK": {
-        "defaultMessage": "Border radius"
-    },
-    "8bIoWc": {
-        "defaultMessage": "Border style"
-    },
     "8oczXQ": {
         "defaultMessage": "Add a marker"
     },
@@ -145,6 +142,9 @@
     },
     "9DhYaZ": {
         "defaultMessage": "Ascending"
+    },
+    "9F367T": {
+        "defaultMessage": "Style"
     },
     "9ZdD+Q": {
         "defaultMessage": "Library for"
@@ -239,6 +239,9 @@
     "JV5hRr": {
         "defaultMessage": "Media gallery"
     },
+    "JnCf7K": {
+        "defaultMessage": "Button style"
+    },
     "JoWKee": {
         "defaultMessage": "Create your first screen"
     },
@@ -247,6 +250,9 @@
     },
     "KHWeV7": {
         "defaultMessage": "Answers"
+    },
+    "M7k2X9": {
+        "defaultMessage": "Rounded corner"
     },
     "MLuvzG": {
         "defaultMessage": "Map with image markers"
@@ -311,6 +317,9 @@
     "S9YpbV": {
         "defaultMessage": "Text"
     },
+    "SyMSDa": {
+        "defaultMessage": "Published name style"
+    },
     "T0pi1u": {
         "defaultMessage": "With seek bar"
     },
@@ -338,9 +347,6 @@
     "VDu2FA": {
         "defaultMessage": "Google Fonts"
     },
-    "WKj4JA": {
-        "defaultMessage": "Contribution message style"
-    },
     "Wb5zY4": {
         "defaultMessage": "Select a font file..."
     },
@@ -352,9 +358,6 @@
     },
     "XTJGzY": {
         "defaultMessage": "Gallery feed with captions"
-    },
-    "Xb4Dm6": {
-        "defaultMessage": "Border"
     },
     "Xdsq3k": {
         "defaultMessage": "Answer"
@@ -581,6 +584,9 @@
     "upzOTm": {
         "defaultMessage": "Credits"
     },
+    "vA+9dU": {
+        "defaultMessage": "Border"
+    },
     "vERejo": {
         "defaultMessage": "Video"
     },
@@ -589,9 +595,6 @@
     },
     "vZrFq6": {
         "defaultMessage": "Title with subtitle and credits"
-    },
-    "vlQvaq": {
-        "defaultMessage": "Border width"
     },
     "vzW/wd": {
         "defaultMessage": "Background color"
