@@ -50,72 +50,83 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
 
             const lastKeyIndex = fieldPath.length - 1;
             let parentItem = null;
-            fieldPath.reduce((currentFields, key, keyIndex) => {
-                const { type: fieldType = null } = currentFields;
+            fieldPath.reduce(
+                (currentFields, key, keyIndex) => {
+                    const { type: fieldType = null } = currentFields;
 
-                const fieldsDef =
-                    fieldType !== null ? fieldsManager.getDefinition(fieldType) : currentFields;
-                const { fields: subFields = null, settings = null, itemsField = null } = fieldsDef;
+                    const fieldsDef =
+                        fieldType !== null ? fieldsManager.getDefinition(fieldType) : currentFields;
+                    const {
+                        fields: subFields = null,
+                        settings = null,
+                        itemsField = null,
+                    } = fieldsDef;
 
-                const currentSubfields = subFields !== null ? getFieldByName(subFields, key) : null;
-                const currentSettings = settings !== null ? getFieldByName(settings, key) : null;                
+                    const currentSubfields =
+                        subFields !== null ? getFieldByName(subFields, key) : null;
+                    const currentSettings =
+                        settings !== null ? getFieldByName(settings, key) : null;
 
-                const isCurrentSubfields = currentSubfields !== null;
-                const isCurrentSettings = currentSettings !== null;
-                const isListItems = itemsField !== null && !!key.match(/^[0-9]+$/);
-                const isLastIndex = keyIndex === lastKeyIndex;
+                    const isCurrentSubfields = currentSubfields !== null;
+                    const isCurrentSettings = currentSettings !== null;
+                    const isListItems = itemsField !== null && !!key.match(/^[0-9]+$/);
+                    const isLastIndex = keyIndex === lastKeyIndex;
 
-                const pathPrefix = `/${screenId}/${fieldPath.slice(0, keyIndex + 1).join('/')}`;
-                const pathSuffix = isLastIndex && form !== null ? `/${form}` : '';
+                    const pathPrefix = `/${screenId}/${fieldPath.slice(0, keyIndex + 1).join('/')}`;
+                    const pathSuffix = isLastIndex && form !== null ? `/${form}` : '';
 
-                const addNewItem = isLastIndex || isListItems;
+                    const addNewItem = isLastIndex || isListItems;
 
-                const itemPath = `${pathPrefix}${pathSuffix}`;
+                    const itemPath = `${pathPrefix}${pathSuffix}`;
 
-                let nextFields = null;
+                    let nextFields = null;
 
-                if (isCurrentSubfields) {
-                    nextFields = currentSubfields;
-                } else if (isCurrentSettings) {
-                    nextFields = currentSettings;
-                    if (parentItem !== null) {
-                        fieldItems.push({
-                            ...parentItem,
-                            url: `/${screenId}/${fieldPath.slice(0, keyIndex).join('/')}/settings`,
-                        });
+                    if (isCurrentSubfields) {
+                        nextFields = currentSubfields;
+                    } else if (isCurrentSettings) {
+                        nextFields = currentSettings;
+                        if (parentItem !== null) {
+                            fieldItems.push({
+                                ...parentItem,
+                                url: `/${screenId}/${fieldPath
+                                    .slice(0, keyIndex)
+                                    .join('/')}/settings`,
+                            });
+                        }
+                    } else if (isListItems) {
+                        nextFields = itemsField;
                     }
-                } else if (isListItems) {
-                    nextFields = itemsField;
-                }
 
-                const fieldLabel = nextFields
-                    ? nextFields.breadcrumbLabel || nextFields.label
-                    : null;
+                    const fieldLabel = nextFields
+                        ? nextFields.breadcrumbLabel || nextFields.label
+                        : null;
 
-                const itemLabel = isMessage(fieldLabel)
-                    ? intl.formatMessage(fieldLabel)
-                    : fieldLabel;
+                    const itemLabel = isMessage(fieldLabel)
+                        ? intl.formatMessage(fieldLabel)
+                        : fieldLabel;
 
-                const { label:parentItemLabel = null } = parentItem || {};
+                    const { label: parentItemLabel = null } = parentItem || {};
 
-                const finalItemLabel = isListItems
-                ? `${itemLabel} #${parseInt(key, 10) + 1}`
-                : itemLabel || parentItemLabel;
+                    const finalItemLabel = isListItems
+                        ? `${itemLabel} #${parseInt(key, 10) + 1}`
+                        : itemLabel || parentItemLabel;
 
-                const item = {
-                    url: itemPath,
-                    label: finalItemLabel || '',
-                    active: false,
-                };
+                    const item = {
+                        url: itemPath,
+                        label: finalItemLabel || '',
+                        active: false,
+                    };
 
-                if (addNewItem) {
-                    fieldItems.push(item);
-                }
+                    if (addNewItem) {
+                        fieldItems.push(item);
+                    }
 
-                parentItem = item;
+                    parentItem = item;
 
-                return nextFields;
-            }, { fields });
+                    return nextFields;
+                },
+                { fields },
+            );
         }
 
         const finalItems = [

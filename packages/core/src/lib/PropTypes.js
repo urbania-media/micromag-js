@@ -627,3 +627,20 @@ export const paymentItem = PropTypes.shape({
 });
 
 export const paymentItems = PropTypes.arrayOf(paymentItem);
+
+/**
+ * Page Metadada
+ */
+
+export const pageMetadata = PropTypes.shape({
+    canonical: PropTypes.string,
+    description: PropTypes.string,
+    keywords: PropTypes.string,
+    image: PropTypes.shape({
+        url: PropTypes.string,
+    }),
+    favicon: PropTypes.shape({ url: PropTypes.string }),
+    rssUrl: PropTypes.string,
+    atomUrl: PropTypes.string,
+    microformats: PropTypes.arrayOf(PropTypes.shape({})),
+});

@@ -16,7 +16,7 @@ import {
 } from '@micromag/core/hooks';
 import { ScreenSizeProvider, ViewerProvider } from '@micromag/core/contexts';
 import { getDeviceScreens } from '@micromag/core/utils';
-import { FontFaces } from '@micromag/core/components';
+import { FontFaces, Meta } from '@micromag/core/components';
 
 import ViewerScreen from './ViewerScreen';
 import MenuDots from './menus/MenuDots';
@@ -91,9 +91,6 @@ const Viewer = ({
     const { loaded: fontsLoaded } = useLoadedFonts(finalFonts); // eslint-disable-line
 
     const shareUrl = `${basePath}/${screenId}`;
-    const { description = null, shareImage = null, favIcon = null } = metadata || {};
-    const { url: shareImageUrl = null } = shareImage || {};
-    const { favIcon: favIconUrl = null } = shareImage || {};
 
     const isView = renderContext === 'view';
     const isStatic = renderContext === 'static';
@@ -357,31 +354,15 @@ const Viewer = ({
                 menuSize={menuDotsContainerHeight}
                 menuOpened={menuOpened}
             >
-                <Helmet>
-                    {withMetadata ? (
-                        <>
-                            {title !== null ? (
-                                <>
-                                    <title>{`${title} | Micromag`}</title>
-                                    <meta property="og:title" content={`${title} | Micromag`} />
-                                </>
-                            ) : null}
-                            {description !== null ? (
-                                <>
-                                    <meta name="description" content={description} />
-                                    <meta name="og:description" content={description} />
-                                </>
-                            ) : null}
-                            {shareImageUrl !== null ? (
-                                <meta property="og:image" content={shareImage} />
-                            ) : null}
-                            {favIconUrl !== null ? (
-                                <link rel="icon" type="image/png" href={favIcon} />
-                            ) : null}
-                        </>
-                    ) : null}
-                    <style type="text/css">{`body { overscroll-behavior: contain; }`}</style>
-                </Helmet>
+                {withMetadata ? (
+                    <Meta title={title} metadata={metadata}>
+                        <style type="text/css">{`body { overscroll-behavior: contain; }`}</style>
+                    </Meta>
+                ) : (
+                    <Helmet>
+                        <style type="text/css">{`body { overscroll-behavior: contain; }`}</style>
+                    </Helmet>
+                )}
                 <FontFaces fonts={finalFonts} />
                 <div
                     className={classNames([

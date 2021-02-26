@@ -15,6 +15,10 @@
     "defaultMessage": "Answer",
     "description": "Answer placeholder"
   },
+  "+SlKOi": {
+    "defaultMessage": "Published message style",
+    "description": "Published message style field label"
+  },
   "+TT1y6": {
     "defaultMessage": "Clear",
     "description": "Clear button label in Media Gallery"
@@ -111,6 +115,10 @@
     "defaultMessage": "Closed captions",
     "description": "Field label"
   },
+  "4HlSsf": {
+    "defaultMessage": "Size",
+    "description": "Size label"
+  },
   "4POR3B": {
     "defaultMessage": "View screen",
     "description": "Button to view a screen"
@@ -155,10 +163,6 @@
     "defaultMessage": "Survey",
     "description": "Survey screen title"
   },
-  "6cuIgC": {
-    "defaultMessage": "Contribution name style",
-    "description": "Contribution name style field label"
-  },
   "6mX2ya": {
     "defaultMessage": "Images",
     "description": "Images screen group"
@@ -175,14 +179,6 @@
     "defaultMessage": "Quote",
     "description": "Quote field label"
   },
-  "8NopfK": {
-    "defaultMessage": "Border radius",
-    "description": "Border radius label"
-  },
-  "8bIoWc": {
-    "defaultMessage": "Border style",
-    "description": "Border style label"
-  },
   "8oczXQ": {
     "defaultMessage": "Add a marker",
     "description": "Button label"
@@ -198,6 +194,10 @@
   "9DhYaZ": {
     "defaultMessage": "Ascending",
     "description": "Ascending field label"
+  },
+  "9F367T": {
+    "defaultMessage": "Style",
+    "description": "Style label"
   },
   "9ZdD+Q": {
     "defaultMessage": "Library for",
@@ -323,6 +323,10 @@
     "defaultMessage": "Media gallery",
     "description": "Top nav title for media gallery"
   },
+  "JnCf7K": {
+    "defaultMessage": "Button style",
+    "description": "Button style label"
+  },
   "JoWKee": {
     "defaultMessage": "Create your first screen",
     "description": "Button to create your first screen"
@@ -334,6 +338,10 @@
   "KHWeV7": {
     "defaultMessage": "Answers",
     "description": "Field label"
+  },
+  "M7k2X9": {
+    "defaultMessage": "Rounded corner",
+    "description": "Rounded corner label"
   },
   "MLuvzG": {
     "defaultMessage": "Map with image markers",
@@ -418,6 +426,10 @@
     "defaultMessage": "Text",
     "description": "Text screen title"
   },
+  "SyMSDa": {
+    "defaultMessage": "Published name style",
+    "description": "Published name style field label"
+  },
   "T0pi1u": {
     "defaultMessage": "With seek bar",
     "description": "Field label"
@@ -454,10 +466,6 @@
     "defaultMessage": "Google Fonts",
     "description": "Font family group title"
   },
-  "WKj4JA": {
-    "defaultMessage": "Contribution message style",
-    "description": "Contribution message style field label"
-  },
   "Wb5zY4": {
     "defaultMessage": "Select a font file...",
     "description": "Label when no value"
@@ -473,10 +481,6 @@
   "XTJGzY": {
     "defaultMessage": "Gallery feed with captions",
     "description": "GalleryFeedCaptions screen title"
-  },
-  "Xb4Dm6": {
-    "defaultMessage": "Border",
-    "description": "Border color label"
   },
   "Xdsq3k": {
     "defaultMessage": "Answer",
@@ -776,6 +780,10 @@
     "defaultMessage": "Credits",
     "description": "Credits field label"
   },
+  "vA+9dU": {
+    "defaultMessage": "Border",
+    "description": "Border label"
+  },
   "vERejo": {
     "defaultMessage": "Video",
     "description": "Field label"
@@ -787,10 +795,6 @@
   "vZrFq6": {
     "defaultMessage": "Title with subtitle and credits",
     "description": "TitleSubtitleCredits screen title"
-  },
-  "vlQvaq": {
-    "defaultMessage": "Border width",
-    "description": "Border width label"
   },
   "vzW/wd": {
     "defaultMessage": "Background color",

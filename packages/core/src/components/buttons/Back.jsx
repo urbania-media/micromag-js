@@ -23,7 +23,7 @@ const BackButton = ({ className, ...props }) => (
             },
         ])}
         size="sm"
-        icon={<FontAwesomeIcon icon={faAngleLeft} />}
+        icon={<FontAwesomeIcon icon={faAngleLeft} size="lg" />}
         {...props}
     />
 );

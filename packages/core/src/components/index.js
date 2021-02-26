@@ -33,6 +33,7 @@ export { default as FontFaces } from './partials/FontFaces';
 export { default as Label } from './partials/Label';
 export { default as Link } from './partials/Link';
 export { default as Media } from './partials/Media';
+export { default as Meta } from './partials/Meta';
 export { default as Slideshow } from './partials/Slideshow';
 export { default as Spinner } from './partials/Spinner';
 
