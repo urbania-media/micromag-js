@@ -311,12 +311,6 @@ msgctxt "9DhYaZ"
 msgid "Ascending"
 msgstr "Ascending"
 
-# Style label
-#: 9F367T
-msgctxt "9F367T"
-msgid "Style"
-msgstr "Style"
-
 # Library source menu
 #: 9ZdD+Q
 msgctxt "9ZdD+Q"
