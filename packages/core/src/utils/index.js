@@ -10,6 +10,7 @@ export { default as getFileName } from './getFileName';
 export { default as getFontFamilyFromFont } from './getFontFamilyFromFont';
 export { default as getGridLayoutName } from './getGridLayoutName';
 export { default as getSecondsFromTime } from './getSecondsFromTime';
+export { default as getStyleFromButton } from './getStyleFromButton';
 export { default as getStyleFromColor } from './getStyleFromColor';
 export { default as getStyleFromContainer } from './getStyleFromContainer';
 export { default as getStyleFromImage } from './getStyleFromImage';

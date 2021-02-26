@@ -404,8 +404,7 @@ const MapScreen = ({
                         <ButtonElement
                             className={styles.splashButton}
                             onClick={onButtonClick}
-                            backgroundColor={button !== null ? button.backgroundColor : null}
-                            borderStyle={button !== null ? button.borderStyle : null}
+                            buttonStyle={button !== null ? button.buttonStyle : null}
                         >
                             <Text className={styles.button} {...button} />
                         </ButtonElement>

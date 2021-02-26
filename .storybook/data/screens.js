@@ -260,7 +260,7 @@ export const allScreens = [
     {
         id: uuid(),
         type: 'video',
-        layout: 'middle',
+        layout: 'full',
         video: {
             media: videoMedia(),
             autoPlay: false,

@@ -74,24 +74,28 @@ export default {
         },
         {
             name: 'nameStyle',
-            type: 'text-style',  
+            type: 'item-text-style',  
             theme: {
-                textStyle: 'text',
+                style: {
+                    textStyle: 'heading2',
+                },
             },          
             label: defineMessage({
-                defaultMessage: 'Contribution name style',
-                description: 'Contribution name style field label',
+                defaultMessage: 'Published name style',
+                description: 'Published name style field label',
             }),
         },
         {
             name: 'messageStyle',
-            type: 'text-style',
+            type: 'item-text-style',
             theme: {
-                textStyle: 'text',
+                style: {
+                    textStyle: 'text',
+                },
             },
             label: defineMessage({
-                defaultMessage: 'Contribution message style',
-                description: 'Contribution message style field label',
+                defaultMessage: 'Published message style',
+                description: 'Published message style field label',
             }),
         },
         {

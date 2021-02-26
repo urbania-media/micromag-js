@@ -1,15 +1,20 @@
 import getStyleFromColor from './getStyleFromColor';
 
-const getStyleFromBorder = value => {
+const getStyleFromBorder = (value) => {
     if (value == null) {
         return null;
     }
-    const { width = null, style = null, color = null, radius = null } = value;
+    const { width = null, style = null, color = null } = value;
     const colorProcessed = getStyleFromColor(color, 'color');
 
+    const validBorder = width !== null && style !== null && color !== null && colorProcessed;
+
     return {
-        border: `${width}px ${style} ${colorProcessed ? colorProcessed.color : null}`,
-        borderRadius: radius || null,
+        border: validBorder
+            ? `${width !== null ? `${width}px` : ''} ${style !== null ? style : ''} ${
+                  colorProcessed ? colorProcessed.color : ''
+              }`
+            : null,
     };
 };
 

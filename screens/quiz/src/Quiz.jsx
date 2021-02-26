@@ -312,12 +312,12 @@ const QuizScreen = ({
                                                 className={styles.button}
                                                 onClick={() => onAnswerClick(answerI)}
                                                 disabled={isPreview}
-                                                borderStyle={
+                                                buttonStyle={
                                                     userAnswer || !answered
                                                         ? {
-                                                              width: 2,
-                                                              style: 'solid',
-                                                              color: labelColor,
+                                                              borderWidth: 2,
+                                                              borderStyle: 'solid',
+                                                              borderColor: labelColor,
                                                           }
                                                         : null
                                                 }
@@ -340,7 +340,6 @@ const QuizScreen = ({
                                                 ) : null}
                                                 <Text
                                                     {...label}
-                                                    inline
                                                     className={styles.optionLabel}
                                                 />
                                             </Button>

@@ -1,5 +1,3 @@
-import { defineMessage } from 'react-intl';
-
 export default {
     id: 'button-element',
     component: 'text-element',
@@ -9,20 +7,8 @@ export default {
             type: 'text-style',
         },
         {
-            name: 'backgroundColor',
-            label: defineMessage({
-                defaultMessage: 'Background color',
-                description: 'Background color label',
-            }),
-            type: 'color'
+            name: 'buttonStyle',
+            type: 'button-style',
         },
-        {
-            name: 'borderStyle',
-            label: defineMessage({
-                defaultMessage: 'Border',
-                description: 'Border color label',
-            }),
-            type: 'border'
-        }
     ]
 };

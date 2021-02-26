@@ -1,4 +1,3 @@
-import { defineMessage } from 'react-intl';
 import InputElement from '../components/InputElement';
 
 export default {
@@ -10,20 +9,8 @@ export default {
             type: 'text-style',
         },
         {
-            name: 'backgroundColor',
-            label: defineMessage({
-                defaultMessage: 'Background color',
-                description: 'Background color label',
-            }),
-            type: 'color'
+            name: 'buttonStyle',
+            type: 'button-style',
         },
-        {
-            name: 'border',
-            label: defineMessage({
-                defaultMessage: 'Border',
-                description: 'Border color label',
-            }),
-            type: 'border'
-        }
     ]
 };

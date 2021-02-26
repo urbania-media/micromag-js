@@ -4,14 +4,13 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button as CoreButton } from '@micromag/core/components';
-import { getStyleFromText, getStyleFromColor, getStyleFromBorder } from '@micromag/core/utils';
+import { getStyleFromText, getStyleFromButton } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
     textStyle: MicromagPropTypes.textStyle,
-    borderStyle: MicromagPropTypes.borderStyle,
-    backgroundColor: MicromagPropTypes.color,
+    buttonStyle: MicromagPropTypes.buttonStyle,
     type: PropTypes.oneOf(['button', 'submit']),
     disabled: PropTypes.bool,
     onClick: PropTypes.func,
@@ -27,8 +26,7 @@ const propTypes = {
 
 const defaultProps = {
     textStyle: null,
-    borderStyle: null,
-    backgroundColor: null,
+    buttonStyle: null,
     type: 'button',
     disabled: false,
     onClick: null,
@@ -39,8 +37,7 @@ const defaultProps = {
 
 const Button = ({
     textStyle,
-    borderStyle,
-    backgroundColor,
+    buttonStyle,
     type,
     disabled,
     onClick,
@@ -57,17 +54,11 @@ const Button = ({
         };
     }
 
-    if (borderStyle !== null) {
-        finalStyle = {
-            ...finalStyle,
-            ...getStyleFromBorder(borderStyle),
-        };
-    }
 
-    if (backgroundColor !== null) {
+    if (buttonStyle !== null) {
         finalStyle = {
             ...finalStyle,
-            ...getStyleFromColor(backgroundColor, 'backgroundColor'),
+            ...getStyleFromButton(buttonStyle),
         };
     }
 

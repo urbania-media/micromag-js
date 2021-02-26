@@ -332,8 +332,7 @@ const ContributionScreen = ({
                                 type="submit"
                                 className={styles.buttonSubmit}
                                 disabled={isPreview}
-                                backgroundColor={submit !== null ? submit.backgroundColor : null}
-                                borderStyle={submit !== null ? submit.borderStyle : null}
+                                buttonStyle={submit !== null ? submit.buttonStyle : null}
                             >
                                 <Text {...submit} inline />
                             </Button>

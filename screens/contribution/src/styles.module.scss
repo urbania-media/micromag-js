@@ -55,10 +55,6 @@
     .inputName,
     .inputMessage {
         margin-bottom: 10px;
-
-        &:disabled {
-            background-color: $white;
-        }
     }
 
     .inputMessage {

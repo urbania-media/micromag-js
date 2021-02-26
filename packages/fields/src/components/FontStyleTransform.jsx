@@ -54,12 +54,18 @@ const FontStyleTransform = ({ value, fontStyleName, transformOptions, className,
                 },
             ])}
         >
-            <Radios
-                value={transformValue}
-                options={transformOptions}
-                onChange={onTransformChange}
-                uncheckable
-            />
+            <div
+                className={classNames([
+                    'd-inline-flex', 'ml-auto'
+                ])}
+            >
+                <Radios
+                    value={transformValue}
+                    options={transformOptions}
+                    onChange={onTransformChange}
+                    uncheckable
+                />
+            </div>
         </div>
     );
 };

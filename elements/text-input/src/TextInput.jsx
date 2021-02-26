@@ -5,7 +5,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { getStyleFromText, getStyleFromMargin, getStyleFromColor, getStyleFromBorder } from '@micromag/core/utils';
+import { getStyleFromText, getStyleFromMargin, getStyleFromButton } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
@@ -14,8 +14,7 @@ const propTypes = {
     labelOutside: PropTypes.bool,
     labelClassName: PropTypes.string,
     textStyle: MicromagPropTypes.textStyle,
-    backgroundColor: MicromagPropTypes.color,
-    border: MicromagPropTypes.borderStyle,
+    buttonStyle: MicromagPropTypes.buttonStyle,
     labelOutsideStyle: MicromagPropTypes.textStyle,
     margin: MicromagPropTypes.margin,
     multiline: PropTypes.bool,
@@ -33,8 +32,7 @@ const defaultProps = {
     labelOutside: false,
     labelClassName: null,
     textStyle: null,
-    backgroundColor: null,
-    border: null,
+    buttonStyle: null,
     labelOutsideStyle: null,
     margin: null,
     multiline: false,
@@ -52,8 +50,7 @@ const TextInput = ({
     labelOutside,
     labelClassName,
     textStyle,
-    backgroundColor,
-    border,
+    buttonStyle,
     labelOutsideStyle,
     margin,
     multiline,
@@ -91,24 +88,10 @@ const TextInput = ({
 
     }
 
-    if (textStyle !== null) {
+    if (buttonStyle !== null) {
         elementStyle = {
             ...elementStyle,
-            ...getStyleFromColor(backgroundColor),
-        };
-    }
-
-    if (backgroundColor !== null) {
-        elementStyle = {
-            ...elementStyle,
-            ...getStyleFromColor(backgroundColor),
-        };
-    }
-
-    if (border !== null) {
-        elementStyle = {
-            ...elementStyle,
-            ...getStyleFromBorder(border),
+            ...getStyleFromButton(buttonStyle),
         };
     }
 
@@ -117,12 +100,14 @@ const TextInput = ({
             styles.container,
             {
                 [className]: className !== null,
+                [styles.element]: !labelOutside,
             },
         ]),
         style: containerStyle,
     };
 
     const elementProps = {
+        className: styles.element,
         ...(!labelOutside ? containerProps : null),
         style: elementStyle,
         placeholder: !labelOutside ? label : undefined,

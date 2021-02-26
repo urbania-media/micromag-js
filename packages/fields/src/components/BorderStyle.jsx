@@ -22,31 +22,42 @@ const defaultProps = {
 };
 
 const BorderStyle = ({ types, value, className, onChange }) => (
-    <Radios
-        options={types.map((type) => ({
-            value: type,
-            label: (
-                <div className={styles.type}>
-                    <div
-                        style={{
-                            width: 40,
-                            height: 40,
-                            border: `2px ${type} #ccc`,
-                        }}
-                    />
-                </div>
-            ),
-        }))}
-        value={value || (types ? types[0] : null)}
+    <div
         className={classNames([
-            styles.container,
+            'd-flex',
             {
                 [className]: className !== null,
             },
         ])}
-        buttonClassName={styles.button}
-        onChange={onChange}
-    />
+    >
+        <div className={classNames(['d-inline-flex', 'ml-auto'])}>
+            <Radios
+                options={types.map((type) => ({
+                    value: type,
+                    label: (
+                        <div className={styles.type}>
+                            <div
+                                style={{
+                                    width: 40,
+                                    height: 40,
+                                    border: `2px ${type} #ccc`,
+                                }}
+                            />
+                        </div>
+                    ),
+                }))}
+                value={value || null}
+                className={classNames([
+                    styles.container,
+                    {
+                        [className]: className !== null,
+                    },
+                ])}
+                buttonClassName={styles.button}
+                onChange={onChange}
+            />
+        </div>
+    </div>
 );
 
 BorderStyle.propTypes = propTypes;
