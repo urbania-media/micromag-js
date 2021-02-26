@@ -1,6 +1,6 @@
 {
     "name": "@micromag/intl",
-    "version": "0.2.148",
+    "version": "0.2.149",
     "description": "",
     "keywords": [
         "javascript"
@@ -47,9 +47,9 @@
         "prepare": "npm run intl && ../../scripts/prepare-package.sh"
     },
     "devDependencies": {
-        "@micromag/editor": "^0.2.148",
+        "@micromag/editor": "^0.2.149",
         "@micromag/elements": "^0.2.148",
-        "@micromag/screens": "^0.2.148",
+        "@micromag/screens": "^0.2.149",
         "react": "^16.8.0",
         "react-dom": "^16.8.0"
     },
