@@ -2,7 +2,7 @@ import tinycolor from 'tinycolor2';
 import isString from 'lodash/isString';
 
 const getStyleFromColor = (value, property = 'backgroundColor', overideAlpha = null) => {
-    if (value === null) {
+    if (value === null || typeof value === 'undefined') {
         return null;
     }
     const { color = null, alpha = null } = isString(value) ? { color: value } : value;
