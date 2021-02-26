@@ -347,8 +347,8 @@ const ContributionScreen = ({
                 <div className={styles.contributionsContent}>
                     <div className={styles.contributions} ref={contributionsRef}>
                         {allContributions.map((contribution, contributionIndex) => {
-                            const nameInnerStyle = nameStyle !== null ? nameStyle.style : null;
-                            const messageInnerStyle = messageStyle !== null ? messageStyle.style : null;
+                            const nameInnerStyle = nameStyle !== null ? (nameStyle.style || null) : null;
+                            const messageInnerStyle = messageStyle !== null ? (messageStyle.style || null) : null;
                             return (
                                 <div
                                     key={`contribution-${contributionIndex}`}
