@@ -47,6 +47,12 @@ msgctxt "+TT1y6"
 msgid "Clear"
 msgstr "Clear"
 
+# Color label
+#: +VD/9p
+msgctxt "+VD/9p"
+msgid "Color"
+msgstr "Color"
+
 # Media gallery source
 #: /62oe4
 msgctxt "/62oe4"
@@ -1081,12 +1087,6 @@ msgstr "Save"
 msgctxt "qKQCxc"
 msgid "Add a marker"
 msgstr "Add a marker"
-
-# Border color label
-#: rA01c2
-msgctxt "rA01c2"
-msgid "Border color"
-msgstr "Border color"
 
 # Label when there is no item
 #: rdFCsN

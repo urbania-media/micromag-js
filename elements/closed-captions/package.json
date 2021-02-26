@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-closed-captions",
-    "version": "0.2.148",
+    "version": "0.2.152",
     "description": "",
     "keywords": [
         "javascript"
@@ -49,7 +49,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.12.5",
-        "@micromag/core": "^0.2.148",
+        "@micromag/core": "^0.2.152",
         "classnames": "^2.2.6",
         "node-fetch": "^2.6.1",
         "parse-srt": "^1.0.0-alpha",

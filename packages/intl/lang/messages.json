@@ -23,6 +23,10 @@
     "defaultMessage": "Clear",
     "description": "Clear button label in Media Gallery"
   },
+  "+VD/9p": {
+    "defaultMessage": "Color",
+    "description": "Color label"
+  },
   "/62oe4": {
     "defaultMessage": "My files",
     "description": "Media gallery source"
@@ -711,10 +715,6 @@
   "qKQCxc": {
     "defaultMessage": "Add a marker",
     "description": "Button label in markers field"
-  },
-  "rA01c2": {
-    "defaultMessage": "Border color",
-    "description": "Border color label"
   },
   "rdFCsN": {
     "defaultMessage": "No marker...",

@@ -243,7 +243,7 @@ const ContributionScreen = ({
 
     items.push(
         <div
-            key='form'
+            key="form"
             className={styles.interactiveContainer}
             style={{
                 height: submitState < 4 ? interactiveContainerHeight : null,
@@ -346,25 +346,33 @@ const ContributionScreen = ({
             <div className={styles.contributionsContainer}>
                 <div className={styles.contributionsContent}>
                     <div className={styles.contributions} ref={contributionsRef}>
-                        {allContributions.map((contribution, contributionIndex) => (
-                            <div
-                                key={`contribution-${contributionIndex}`}
-                                className={styles.contribution}
-                                style={ nameStyle !== null ? getStyleFromColor(nameStyle.color, 'borderColor') : null }
-                            >
-                                <Heading
-                                    className={styles.contributionName}
-                                    body={contribution.name}
-                                    size={2}
-                                    textStyle={nameStyle}
-                                />
-                                <Text
-                                    className={styles.contributionMessage}
-                                    body={contribution.message}
-                                    textStyle={messageStyle}
-                                />
-                            </div>
-                        ))}
+                        {allContributions.map((contribution, contributionIndex) => {
+                            const nameInnerStyle = nameStyle !== null ? (nameStyle.style || null) : null;
+                            const messageInnerStyle = messageStyle !== null ? (messageStyle.style || null) : null;
+                            return (
+                                <div
+                                    key={`contribution-${contributionIndex}`}
+                                    className={styles.contribution}
+                                    style={
+                                        nameInnerStyle !== null
+                                            ? getStyleFromColor(nameInnerStyle.color, 'borderColor')
+                                            : null
+                                    }
+                                >
+                                    <Heading
+                                        className={styles.contributionName}
+                                        body={contribution.name}
+                                        size={2}
+                                        textStyle={nameInnerStyle}
+                                    />
+                                    <Text
+                                        className={styles.contributionMessage}
+                                        body={contribution.message}
+                                        textStyle={messageInnerStyle}
+                                    />
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </div>

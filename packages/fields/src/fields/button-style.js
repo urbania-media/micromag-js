@@ -2,6 +2,7 @@ import { defineMessage } from 'react-intl';
 
 export default {
     id: 'button-style',
+    className: 'mt-4',
     fields: [
         {
             type: 'fields',
@@ -50,21 +51,17 @@ export default {
                     }),
                 },
                 {
-                    name: 'borderStyle',
-                    type: 'border-style',
-                    isHorizontal: true,
-                    label: defineMessage({
-                        defaultMessage: 'Style',
-                        description: 'Style label',
-                    }),
-                },
-                {
                     name: 'borderColor',
                     type: 'color',
                     label: defineMessage({
-                        defaultMessage: 'Border color',
-                        description: 'Border color label',
+                        defaultMessage: 'Color',
+                        description: 'Color label',
                     }),
+                },
+                {
+                    name: 'borderStyle',
+                    type: 'border-style',
+                    isHorizontal: true,
                 },
             ],
         },
