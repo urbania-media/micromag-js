@@ -14,6 +14,9 @@
     "+TT1y6": {
         "defaultMessage": "Clear"
     },
+    "+VD/9p": {
+        "defaultMessage": "Color"
+    },
     "/62oe4": {
         "defaultMessage": "My files"
     },
@@ -142,9 +145,6 @@
     },
     "9DhYaZ": {
         "defaultMessage": "Ascending"
-    },
-    "9F367T": {
-        "defaultMessage": "Style"
     },
     "9ZdD+Q": {
         "defaultMessage": "Library for"
@@ -532,9 +532,6 @@
     },
     "qKQCxc": {
         "defaultMessage": "Add a marker"
-    },
-    "rA01c2": {
-        "defaultMessage": "Border color"
     },
     "rdFCsN": {
         "defaultMessage": "No marker..."

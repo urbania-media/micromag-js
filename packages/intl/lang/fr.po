@@ -47,6 +47,12 @@ msgctxt "+TT1y6"
 msgid "Clear"
 msgstr "Effacer"
 
+# Color label
+#: +VD/9p
+msgctxt "+VD/9p"
+msgid "Color"
+msgstr ""
+
 # Media gallery source
 #: /62oe4
 msgctxt "/62oe4"
@@ -304,12 +310,6 @@ msgstr "Carte"
 msgctxt "9DhYaZ"
 msgid "Ascending"
 msgstr "Ordre croissant"
-
-# Style label
-#: 9F367T
-msgctxt "9F367T"
-msgid "Style"
-msgstr ""
 
 # Library source menu
 #: 9ZdD+Q
@@ -1081,12 +1081,6 @@ msgstr "Enregistrer"
 msgctxt "qKQCxc"
 msgid "Add a marker"
 msgstr "Ajouter un marqueur"
-
-# Border color label
-#: rA01c2
-msgctxt "rA01c2"
-msgid "Border color"
-msgstr ""
 
 # Label when there is no item
 #: rdFCsN
