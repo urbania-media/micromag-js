@@ -6,6 +6,8 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import getSelectOptions from '../utils/getSelectOptions';
 
+import styles from '../styles/select.module.scss';
+
 const propTypes = {
     value: PropTypes.string,
     options: MicromagPropTypes.selectOptions,
@@ -27,6 +29,7 @@ const SelectField = ({ value, options, disabled, className, onChange }) => {
     return (
         <select
             className={classNames([
+                styles.container,
                 'custom-select',
                 {
                     [className]: className !== null,

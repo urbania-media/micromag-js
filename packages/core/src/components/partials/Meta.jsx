@@ -35,7 +35,7 @@ const Meta = ({ title, url, metadata, fullTitle, children }) => {
     const realTitle = title !== null ? `${title} | Micromag` : fullTitle;
 
     const { url: imageUrl = null, metadata: imageMetadata = {} } = image || {};
-    const { imageWidth = null, imageHeight = null } = imageMetadata || {};
+    const { width: imageWidth = null, height: imageHeight = null } = imageMetadata || {};
 
     const { url: faviconUrl = null } = favicon || {};
 

@@ -2,7 +2,7 @@
 @import '~@micromag/core/scss/variables';
 
 .container {
-    /* stylelint-disable selector-class-pattern, max-nesting-depth, selector-max-compound-selectors, selector-pseudo-class-no-unknown */
+    /* stylelint-disable selector-class-pattern, max-nesting-depth, selector-max-compound-selectors, selector-pseudo-class-no-unknown, no-descending-specificity */
     :global {
         .ck {
             &.ck-editor__editable {
@@ -15,7 +15,8 @@
                         border-radius: $input-border-radius;
                     }
                     &.ck-focused {
-                        border: $input-border-width solid $input-border-color;
+                        border: $input-border-width solid $input-btn-focus-color;
+                        box-shadow: 0 0 0 3px $input-btn-focus-color;
                     }
                 }
             }
@@ -83,8 +84,6 @@
                 }
 
                 &.ck-editor__editable_inline {
-                    // padding: 0 $input-btn-padding-x-lg;
-
                     > :first-child {
                         margin-top: $input-btn-padding-y-lg;
                     }
@@ -100,5 +99,5 @@
             }
         }
     }
-    /* stylelint-enable selector-class-pattern */
+    /* stylelint-enable selector-class-pattern, max-nesting-depth, selector-max-compound-selectors, selector-pseudo-class-no-unknown, no-descending-specificity */
 }

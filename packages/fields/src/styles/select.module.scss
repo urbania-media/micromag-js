@@ -1,0 +1,15 @@
+@import '~@micromag/core/scss/variables';
+
+/* stylelint-disable selector-class-pattern, max-nesting-depth, selector-max-compound-selectors, selector-pseudo-class-no-unknown */
+
+:global {
+    .custom-select {
+        color: $white;
+
+        option {
+            color: $black;
+        }
+    }
+}
+
+/* stylelint-enable selector-class-pattern, max-nesting-depth, selector-max-compound-selectors, selector-pseudo-class-no-unknown */

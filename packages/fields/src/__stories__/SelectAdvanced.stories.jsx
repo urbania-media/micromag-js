@@ -2,12 +2,13 @@
 import React, { useState } from 'react';
 import { IntlProvider } from 'react-intl';
 
+import Select from '../components/Select';
 import SelectAdvanced from '../components/SelectAdvanced';
 import Tokens from '../components/Tokens';
 
 export default {
     component: SelectAdvanced,
-    title: 'Fields/SelectAdvanced',
+    title: 'Fields/Select',
 };
 
 const props = {
@@ -22,6 +23,11 @@ const props = {
 
 const SelectFieldContainer = () => {
     const [value, setValue] = useState(null);
+    return <Select value={value} {...props} onChange={setValue} />;
+};
+
+const SelectAdvancedFieldContainer = () => {
+    const [value, setValue] = useState(null);
     return <SelectAdvanced value={value} {...props} onChange={setValue} />;
 };
 
@@ -34,6 +40,14 @@ export const normal = () => (
     <div className="container mt-4">
         <IntlProvider locale="fr" messages={{}}>
             <SelectFieldContainer />
+        </IntlProvider>
+    </div>
+);
+
+export const reactSelect = () => (
+    <div className="container mt-4">
+        <IntlProvider locale="fr" messages={{}}>
+            <SelectAdvancedFieldContainer />
         </IntlProvider>
     </div>
 );
