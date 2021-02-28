@@ -13,7 +13,7 @@ import Field from './Field';
 
 const propTypes = {
     name: PropTypes.string,
-    value: PropTypes.arrayOf(PropTypes.object),// eslint-disable-line
+    value: PropTypes.arrayOf(PropTypes.object), // eslint-disable-line
     newDefaultValue: PropTypes.object, // eslint-disable-line
     noItemLabel: MicromagPropTypes.label,
     addItemLabel: MicromagPropTypes.label,
@@ -88,7 +88,10 @@ const ItemsField = ({
     const onItemChange = useCallback(
         (index, newValue) => {
             if (onChange !== null) {
-                onChange([...value.slice(0, index), newValue, ...value.slice(index + 2)]);
+                const newValues = [...value];
+                newValues[index] = newValue;
+                onChange(newValues);
+                // onChange([...value.slice(0, index), newValue, ...value.slice(index + 2)]);
             }
         },
         [value, onChange],

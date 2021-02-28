@@ -7,11 +7,15 @@
         .ck {
             &.ck-editor__editable {
                 border: $input-border-width solid $input-border-color;
+                outline: none;
                 background: $input-bg;
 
                 &:not(.ck-editor__nested-editable) {
                     &.ck-rounded-corners {
                         border-radius: $input-border-radius;
+                    }
+                    &.ck-focused {
+                        border: $input-border-width solid $input-border-color;
                     }
                 }
             }
@@ -79,7 +83,7 @@
                 }
 
                 &.ck-editor__editable_inline {
-                    padding: 0 $input-btn-padding-x-lg;
+                    // padding: 0 $input-btn-padding-x-lg;
 
                     > :first-child {
                         margin-top: $input-btn-padding-y-lg;

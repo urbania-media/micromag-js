@@ -10,7 +10,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    sizes: [10, 12, 14, 16, 20, 24, 28, 36, 48],
+    sizes: [12, 14, 16, 18, 20, 24, 28, 32, 48],
 };
 
 const FontSize = ({ sizes, ...props }) => <Number {...props} dataList={sizes} />;

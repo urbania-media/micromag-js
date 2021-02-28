@@ -34,8 +34,10 @@ const Meta = ({ title, url, metadata, fullTitle, children }) => {
 
     const realTitle = title !== null ? `${title} | Micromag` : fullTitle;
 
-    const { imageUrl = null, imageWidth = null, imageHeight = null } = image || {};
-    const { faviconUrl = null } = favicon || {};
+    const { url: imageUrl = null, metadata: imageMetadata = {} } = image || {};
+    const { imageWidth = null, imageHeight = null } = imageMetadata || {};
+
+    const { url: faviconUrl = null } = favicon || {};
 
     return (
         <Helmet>
