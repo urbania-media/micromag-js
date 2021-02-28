@@ -9,6 +9,7 @@ const propTypes = {
     url: PropTypes.string,
     metadata: AppPropTypes.pageMetadata,
     fullTitle: PropTypes.string,
+    suffix: PropTypes.string,
     children: PropTypes.node,
 };
 
@@ -17,10 +18,11 @@ const defaultProps = {
     url: null,
     metadata: null,
     fullTitle: null,
+    suffix: 'Micromag',
     children: null,
 };
 
-const Meta = ({ title, url, metadata, fullTitle, children }) => {
+const Meta = ({ title, url, metadata, fullTitle, suffix, children }) => {
     const {
         canonical = null,
         description = null,
@@ -32,7 +34,7 @@ const Meta = ({ title, url, metadata, fullTitle, children }) => {
         microformats = [],
     } = metadata || {};
 
-    const realTitle = title !== null ? `${title} | Micromag` : fullTitle;
+    const realTitle = title !== null ? `${title} | ${suffix}` : fullTitle;
 
     const { url: imageUrl = null, metadata: imageMetadata = {} } = image || {};
     const { width: imageWidth = null, height: imageHeight = null } = imageMetadata || {};
