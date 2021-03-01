@@ -86,8 +86,11 @@ const Viewer = ({
     const parsedStory = useParsedStory(story, { disabled: storyIsParsed }) || {};
     const { components: screens = [], title = null, metadata = null, fonts = null } = parsedStory;
 
+    const { textStyle: themeTextStyle = null } = theme || {};
+    const { fontFamily: themeFont = null } = themeTextStyle || {};
+
     // Fonts
-    const finalFonts = useMemo(() => fonts || [], [fonts]);
+    const finalFonts = useMemo(() => [...(fonts || []), themeFont].filter(font => font !== null), [fonts]);
     const { loaded: fontsLoaded } = useLoadedFonts(finalFonts); // eslint-disable-line
 
     const shareUrl = `${basePath}/${screenId}`;

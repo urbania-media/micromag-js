@@ -85,7 +85,6 @@ const ViewerMenuPreview = ({
     const borderPrimaryColorStyle = getStyleFromColor(brandPrimaryColor, 'borderColor');
     const colorSecondaryColorStyle = getStyleFromColor(brandSecondaryColor, 'color');
     const backgroundColorStyle = getStyleFromColor(brandBackgroundColor, 'backgroundColor');
-    const borderBackgroundColorStyle = getStyleFromColor(brandBackgroundColor, 'borderColor');
 
     const { url: brandLogoUrl = null } = brandLogo || {};
 
@@ -175,12 +174,7 @@ const ViewerMenuPreview = ({
                                                 <div
                                                     className={styles.activeScreenBorder}
                                                     style={borderPrimaryColorStyle}
-                                                >
-                                                    <div
-                                                        className={styles.activeScreenBorderInner}
-                                                        style={borderBackgroundColorStyle}
-                                                    />
-                                                </div>
+                                                />
                                             ) : null}
                                         </div>
                                     </div>

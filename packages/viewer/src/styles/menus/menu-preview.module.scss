@@ -140,14 +140,7 @@
 
     .activeScreenBorder {
         @extend %fullscreen;
-        border: 5px solid #fff;
-        opacity: 0.5;
-    }
-
-    .activeScreenBorderInner {
-        position: relative;
-        height: 100%;
-        border: 2px solid #000;
+        border: 2px solid #fff;
     }
 
     .screenContent {

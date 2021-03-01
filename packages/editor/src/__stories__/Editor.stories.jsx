@@ -106,7 +106,7 @@ EditorContainer.defaultProps = {
     viewerTheme: null,
 };
 
-export const Empty = () => <EditorContainer />;
+export const Empty = () => <EditorContainer defaultValue={{ title: 'Empty' }} />;
 export const IsTheme = () => <EditorContainer defaultValue={defaultTheme} isTheme />;
 export const AllScreens = () => <EditorContainer defaultValue={allScreensStory} />;
 export const FaceAFace = () => <EditorContainer defaultValue={faceAFaceStory} />;
