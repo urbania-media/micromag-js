@@ -6,7 +6,7 @@ import puppeteer from 'puppeteer';
 import startServer from './startServer';
 import getOutputPath from './getOutputPath';
 
-const DEBUG = true;
+const DEBUG = false;
 const READY_WAIT_TIMEOUT = 20000; // ms
 const DEFAULT_VIEWPORT = {
     width: 320,
