@@ -265,21 +265,31 @@ export const textStyle = PropTypes.shape({
     lineHeight: PropTypes.number,
 });
 
+export const borderTypes = PropTypes.oneOf([
+    'dotted',
+    'dashed',
+    'solid',
+    'double',
+    'groove',
+    'ridge',
+    'inset',
+    'outset',
+    'hidden',
+]);
+
 export const borderStyle = PropTypes.shape({
     width: PropTypes.number,
-    style: PropTypes.oneOf([
-        'dotted',
-        'dashed',
-        'solid',
-        'double',
-        'groove',
-        'ridge',
-        'inset',
-        'outset',
-        'hidden',
-    ]),
+    style: borderTypes,
     radius: PropTypes.number,
     color,
+});
+
+export const buttonStyle = PropTypes.shape({
+    backgroundColor: color,
+    borderRadius: PropTypes.number,
+    borderWidth: PropTypes.number,
+    borderColor: color,
+    borderStyle: borderTypes
 });
 
 export const margin = PropTypes.shape({

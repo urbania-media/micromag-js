@@ -39,7 +39,7 @@ msgstr "Réponse"
 #: +SlKOi
 msgctxt "+SlKOi"
 msgid "Published message style"
-msgstr ""
+msgstr "Style message publié"
 
 # Clear button label in Media Gallery
 #: +TT1y6
@@ -51,7 +51,7 @@ msgstr "Effacer"
 #: +VD/9p
 msgctxt "+VD/9p"
 msgid "Color"
-msgstr ""
+msgstr "Couleur"
 
 # Media gallery source
 #: /62oe4
@@ -81,7 +81,7 @@ msgstr "Tout effacer"
 #: /UoxuB
 msgctxt "/UoxuB"
 msgid "Image"
-msgstr ""
+msgstr "Image"
 
 # Credits placeholder
 #: /hupzO
@@ -195,7 +195,7 @@ msgstr "Sous-titres"
 #: 4HlSsf
 msgctxt "4HlSsf"
 msgid "Size"
-msgstr ""
+msgstr "Taille"
 
 # Button to view a screen
 #: 4POR3B
@@ -219,13 +219,13 @@ msgstr "Galerie (fil)"
 #: 4cCMV4
 msgctxt "4cCMV4"
 msgid "Marker"
-msgstr ""
+msgstr "Marqueur"
 
 # Duplicate item
 #: 4ciMqw
 msgctxt "4ciMqw"
 msgid "Duplicate item"
-msgstr ""
+msgstr "Dupliquer l'élément"
 
 # Tags in Media Gallery
 #: 4fHMVj
@@ -281,11 +281,23 @@ msgctxt "73hxYw"
 msgid "Author"
 msgstr "Auteur"
 
+# Rounded corners label
+#: 7j/LQ6
+msgctxt "7j/LQ6"
+msgid "Rounded corners"
+msgstr "Coins arrondis"
+
 # Quote field label
 #: 88/Ge8
 msgctxt "88/Ge8"
 msgid "Quote"
 msgstr "Citation"
+
+# Draggable field label
+#: 8Dl/S1
+msgctxt "8Dl/S1"
+msgid "Draggable"
+msgstr ""
 
 # Button label
 #: 8oczXQ
@@ -333,7 +345,7 @@ msgstr "Image avec titre"
 #: AQ8Aig
 msgctxt "AQ8Aig"
 msgid "Used"
-msgstr ""
+msgstr "Utilisé"
 
 # Label when no value is provided to Image field
 #: B1MeY+
@@ -357,7 +369,7 @@ msgstr "Succès"
 #: Bv/pu7
 msgctxt "Bv/pu7"
 msgid "Answer"
-msgstr ""
+msgstr "Réponse"
 
 # ImageText screen title
 #: CJmQeh
@@ -369,7 +381,7 @@ msgstr "Image avec texte"
 #: CQ7Wmr
 msgctxt "CQ7Wmr"
 msgid "Delete item"
-msgstr ""
+msgstr "Supprimer l'élément"
 
 # Quote placeholder
 #: CrzYgw
@@ -501,7 +513,7 @@ msgstr "Galerie de médias"
 #: JnCf7K
 msgctxt "JnCf7K"
 msgid "Button style"
-msgstr ""
+msgstr "Style du bouton"
 
 # Button to create your first screen
 #: JoWKee
@@ -520,12 +532,6 @@ msgstr "Aucune police..."
 msgctxt "KHWeV7"
 msgid "Answers"
 msgstr "Réponses"
-
-# Rounded corner label
-#: M7k2X9
-msgctxt "M7k2X9"
-msgid "Rounded corner"
-msgstr ""
 
 # MapImages screen title
 #: MLuvzG
@@ -550,12 +556,6 @@ msgstr "Galerie avec légendes"
 msgctxt "N25iDO"
 msgid "Title"
 msgstr "Titre"
-
-# Scrollable field label
-#: NGuaKm
-msgctxt "NGuaKm"
-msgid "Scrollable"
-msgstr ""
 
 # Field label
 #: OJi+eg
@@ -597,7 +597,7 @@ msgstr "Marqueurs"
 #: PyDwDF
 msgctxt "PyDwDF"
 msgid "Close"
-msgstr ""
+msgstr "Fermer"
 
 # Button label
 #: PyxZY2
@@ -644,7 +644,7 @@ msgstr "Texte et images"
 #: S3gGiD
 msgctxt "S3gGiD"
 msgid "Image"
-msgstr ""
+msgstr "Image"
 
 # Text screen title
 #: S9YpbV
@@ -656,7 +656,7 @@ msgstr "Texte"
 #: SyMSDa
 msgctxt "SyMSDa"
 msgid "Published name style"
-msgstr ""
+msgstr "Style nom publié"
 
 # Field label
 #: T0pi1u
@@ -692,7 +692,7 @@ msgstr "Vidéo"
 #: UdrdRF
 msgctxt "UdrdRF"
 msgid "Numbers style"
-msgstr ""
+msgstr "Style des numéros"
 
 # Font family group title
 #: UtcYEP
@@ -740,7 +740,7 @@ msgstr "Galerie (fil) avec légendes"
 #: Xdsq3k
 msgctxt "Xdsq3k"
 msgid "Answer"
-msgstr ""
+msgstr "Réponse"
 
 # Move the map to position the place description
 #: XhgKcw
@@ -1110,7 +1110,7 @@ msgstr "Filtres actifs"
 #: t7FVa4
 msgctxt "t7FVa4"
 msgid "Marker"
-msgstr ""
+msgstr "Marqueur"
 
 # Button label in slides field
 #: tAYwqp
@@ -1182,7 +1182,7 @@ msgstr "Crédits"
 #: vA+9dU
 msgctxt "vA+9dU"
 msgid "Border"
-msgstr ""
+msgstr "Bordure"
 
 # Field label
 #: vERejo
@@ -1206,7 +1206,7 @@ msgstr "Titre avec sous-titre et crédits"
 #: vzW/wd
 msgctxt "vzW/wd"
 msgid "Background color"
-msgstr ""
+msgstr "Couleur de fond"
 
 # Button to show screens
 #: wkysUu
@@ -1218,7 +1218,7 @@ msgstr "Écrans"
 #: wsNfYo
 msgctxt "wsNfYo"
 msgid "Entry"
-msgstr ""
+msgstr "Entrée"
 
 # Label when no value is provided to Audio field
 #: wt1+dM

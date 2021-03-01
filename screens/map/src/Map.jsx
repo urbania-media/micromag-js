@@ -27,7 +27,7 @@ const defaultZoom = 10;
 
 const propTypes = {
     layout: PropTypes.oneOf(['normal']),
-    scrollable: PropTypes.bool,
+    draggable: PropTypes.bool,
     markers: PropTypes.oneOfType([MicromagPropTypes.markers, MicromagPropTypes.markersWithImage]),
     title: MicromagPropTypes.textElement,
     description: MicromagPropTypes.textElement,
@@ -45,7 +45,7 @@ const propTypes = {
 
 const defaultProps = {
     layout: 'normal',
-    scrollable: true,
+    draggable: true,
     markers: [],
     title: null,
     description: null,
@@ -63,7 +63,7 @@ const defaultProps = {
 
 const MapScreen = ({
     layout,
-    scrollable,
+    draggable,
     markers,
     title,
     description,
@@ -300,7 +300,7 @@ const MapScreen = ({
                     key="map"
                     center={defaultCenter}
                     zoom={defaultZoom}
-                    scrollable={scrollable}
+                    draggable={draggable}
                     markers={finalMarkers}
                     fitBounds
                     onClickMarker={onClickMarker}

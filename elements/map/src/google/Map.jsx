@@ -14,7 +14,7 @@ const propTypes = {
     zoom: PropTypes.number,
     maxZoom: PropTypes.number,
     bounds: PropTypes.object, // eslint-disable-line
-    scrollable: PropTypes.bool,
+    draggable: PropTypes.bool,
     withoutStyle: PropTypes.bool,
     // Global maps events
     events: PropTypes.object, // eslint-disable-line
@@ -36,7 +36,7 @@ const defaultProps = {
     bounds: null,
     events: null,
     fitBounds: false,
-    scrollable: true,
+    draggable: true,
     withoutStyle: false,
     zoomControl: false,
     mapTypeControl: false,
@@ -53,7 +53,7 @@ const Map = ({
     zoom,
     maxZoom,
     bounds,
-    scrollable,
+    draggable,
     withoutStyle,
     events,
     fitBounds,
@@ -70,6 +70,7 @@ const Map = ({
         zoom,
         maxZoom,
         bounds,
+        draggable,
         fitBounds,
         center,
         events,
@@ -88,7 +89,7 @@ const Map = ({
                 styles.container,
                 {
                     [className]: className !== null,
-                    [styles.preventScroll]: !scrollable,
+                    [styles.preventScroll]: !draggable,
                 },
             ])}
         >

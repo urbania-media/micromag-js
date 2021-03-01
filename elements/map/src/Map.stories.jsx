@@ -10,7 +10,7 @@ const props = {
         lng: -73.56,
     },
     zoom: 10,
-    scrollable: true,
+    draggable: true,
 };
 
 export default {

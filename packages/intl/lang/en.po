@@ -281,11 +281,23 @@ msgctxt "73hxYw"
 msgid "Author"
 msgstr "Author"
 
+# Rounded corners label
+#: 7j/LQ6
+msgctxt "7j/LQ6"
+msgid "Rounded corners"
+msgstr "Rounded corners"
+
 # Quote field label
 #: 88/Ge8
 msgctxt "88/Ge8"
 msgid "Quote"
 msgstr "Quote"
+
+# Draggable field label
+#: 8Dl/S1
+msgctxt "8Dl/S1"
+msgid "Draggable"
+msgstr "Draggable"
 
 # Button label
 #: 8oczXQ
@@ -521,12 +533,6 @@ msgctxt "KHWeV7"
 msgid "Answers"
 msgstr "Answers"
 
-# Rounded corner label
-#: M7k2X9
-msgctxt "M7k2X9"
-msgid "Rounded corner"
-msgstr "Rounded corner"
-
 # MapImages screen title
 #: MLuvzG
 msgctxt "MLuvzG"
@@ -550,12 +556,6 @@ msgstr "Gallery with captions"
 msgctxt "N25iDO"
 msgid "Title"
 msgstr "Title"
-
-# Scrollable field label
-#: NGuaKm
-msgctxt "NGuaKm"
-msgid "Scrollable"
-msgstr "Scrollable"
 
 # Field label
 #: OJi+eg

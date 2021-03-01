@@ -131,8 +131,14 @@
     "73hxYw": {
         "defaultMessage": "Author"
     },
+    "7j/LQ6": {
+        "defaultMessage": "Rounded corners"
+    },
     "88/Ge8": {
         "defaultMessage": "Quote"
+    },
+    "8Dl/S1": {
+        "defaultMessage": "Draggable"
     },
     "8oczXQ": {
         "defaultMessage": "Add a marker"
@@ -251,9 +257,6 @@
     "KHWeV7": {
         "defaultMessage": "Answers"
     },
-    "M7k2X9": {
-        "defaultMessage": "Rounded corner"
-    },
     "MLuvzG": {
         "defaultMessage": "Map with image markers"
     },
@@ -265,9 +268,6 @@
     },
     "N25iDO": {
         "defaultMessage": "Title"
-    },
-    "NGuaKm": {
-        "defaultMessage": "Scrollable"
     },
     "OJi+eg": {
         "defaultMessage": "Label"

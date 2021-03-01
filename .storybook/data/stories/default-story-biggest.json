@@ -284,7 +284,7 @@
             "type": "map",
             "background": { "color": { "color": "#9b9b9b", "alpha": 1 }, "image": null },
             "layout": "normal",
-            "scrollable": true,
+            "draggable": true,
             "title": {
                 "body": "<span>Ma carte</span>",
                 "textStyle": {

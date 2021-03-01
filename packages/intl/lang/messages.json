@@ -179,9 +179,17 @@
     "defaultMessage": "Author",
     "description": "Author field label"
   },
+  "7j/LQ6": {
+    "defaultMessage": "Rounded corners",
+    "description": "Rounded corners label"
+  },
   "88/Ge8": {
     "defaultMessage": "Quote",
     "description": "Quote field label"
+  },
+  "8Dl/S1": {
+    "defaultMessage": "Draggable",
+    "description": "Draggable field label"
   },
   "8oczXQ": {
     "defaultMessage": "Add a marker",
@@ -339,10 +347,6 @@
     "defaultMessage": "Answers",
     "description": "Field label"
   },
-  "M7k2X9": {
-    "defaultMessage": "Rounded corner",
-    "description": "Rounded corner label"
-  },
   "MLuvzG": {
     "defaultMessage": "Map with image markers",
     "description": "MapImages screen title"
@@ -358,10 +362,6 @@
   "N25iDO": {
     "defaultMessage": "Title",
     "description": "Title field label"
-  },
-  "NGuaKm": {
-    "defaultMessage": "Scrollable",
-    "description": "Scrollable field label"
   },
   "OJi+eg": {
     "defaultMessage": "Label",

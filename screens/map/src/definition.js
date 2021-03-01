@@ -57,12 +57,12 @@ export default [
                 }),
             },
             {
-                name: 'scrollable',
+                name: 'draggable',
                 type: 'toggle',
                 defaultValue: true,
                 label: defineMessage({
-                    defaultMessage: 'Scrollable',
-                    description: 'Scrollable field label',
+                    defaultMessage: 'Draggable',
+                    description: 'Draggable field label',
                 }),
             },
             {
@@ -143,12 +143,12 @@ export default [
                 }),
             },
             {
-                name: 'scrollable',
+                name: 'draggable',
                 type: 'toggle',
                 defaultValue: true,
                 label: defineMessage({
-                    defaultMessage: 'Scrollable',
-                    description: 'Scrollable field label',
+                    defaultMessage: 'Draggable',
+                    description: 'Draggable field label',
                 }),
             },
             {

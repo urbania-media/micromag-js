@@ -11,7 +11,7 @@ const props = {
     title: { body: title() },
     description: text(),
     button: { body: 'Débuter' },
-    scrollable: true,
+    draggable: true,
     markers: markers(),
     background: backgroundColor(),
     transitions: transitions(),

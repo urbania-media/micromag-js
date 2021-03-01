@@ -20,7 +20,7 @@ export default function useGoogleMap({
     fitBounds = false,
     bounds = null,
     events,
-    scrollable = false,
+    draggable = false,
     zoomControl,
     mapTypeControl,
     scaleControl,
@@ -77,15 +77,15 @@ export default function useGoogleMap({
 
     useEffect(() => {
         const { current: map } = mapRef;
-        if (map !== null) {
+        if (ready && map !== null) {
             map.setOptions({
-                draggable: scrollable,
-                scrollWheel: scrollable,
-                disableDoubleClickZoom: !scrollable,
-                gestureHandling: scrollable ? 'cooperative' : 'none',
+                draggable,
+                scrollWheel: draggable,
+                disableDoubleClickZoom: !draggable,
+                gestureHandling: draggable ? 'cooperative' : 'none',
             });
         }
-    }, [scrollable]);
+    }, [ready, draggable]);
 
     useEffect(() => {
         if (client === null || containerRef.current === null || mapRef.current !== null) {

@@ -26,8 +26,8 @@ export default {
                     isHorizontal: true,
                     dataList: [0, 2, 4, 6, 8, 10],
                     label: defineMessage({
-                        defaultMessage: 'Rounded corner',
-                        description: 'Rounded corner label',
+                        defaultMessage: 'Rounded corners',
+                        description: 'Rounded corners label',
                     }),
                 },
             ],

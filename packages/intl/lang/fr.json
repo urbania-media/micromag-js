@@ -8,8 +8,14 @@
     "+Ok+7S": {
         "defaultMessage": "Réponse"
     },
+    "+SlKOi": {
+        "defaultMessage": "Style message publié"
+    },
     "+TT1y6": {
         "defaultMessage": "Effacer"
+    },
+    "+VD/9p": {
+        "defaultMessage": "Couleur"
     },
     "/62oe4": {
         "defaultMessage": "Mes fichiers"
@@ -22,6 +28,9 @@
     },
     "/T/UDH": {
         "defaultMessage": "Tout effacer"
+    },
+    "/UoxuB": {
+        "defaultMessage": "Image"
     },
     "/hupzO": {
         "defaultMessage": "Crédits"
@@ -77,6 +86,9 @@
     "4H2n5r": {
         "defaultMessage": "Sous-titres"
     },
+    "4HlSsf": {
+        "defaultMessage": "Taille"
+    },
     "4POR3B": {
         "defaultMessage": "Afficher l’écran"
     },
@@ -85,6 +97,12 @@
     },
     "4bHvRS": {
         "defaultMessage": "Galerie (fil)"
+    },
+    "4cCMV4": {
+        "defaultMessage": "Marqueur"
+    },
+    "4ciMqw": {
+        "defaultMessage": "Dupliquer l'élément"
     },
     "4fHMVj": {
         "defaultMessage": "Mots-clés"
@@ -113,6 +131,9 @@
     "73hxYw": {
         "defaultMessage": "Auteur"
     },
+    "7j/LQ6": {
+        "defaultMessage": "Coins arrondis"
+    },
     "88/Ge8": {
         "defaultMessage": "Citation"
     },
@@ -137,6 +158,9 @@
     "AA8TV9": {
         "defaultMessage": "Image avec titre"
     },
+    "AQ8Aig": {
+        "defaultMessage": "Utilisé"
+    },
     "B1MeY+": {
         "defaultMessage": "Sélectionnez une image..."
     },
@@ -146,8 +170,14 @@
     "BpZoQZ": {
         "defaultMessage": "Succès"
     },
+    "Bv/pu7": {
+        "defaultMessage": "Réponse"
+    },
     "CJmQeh": {
         "defaultMessage": "Image avec texte"
+    },
+    "CQ7Wmr": {
+        "defaultMessage": "Supprimer l'élément"
     },
     "CrzYgw": {
         "defaultMessage": "Citation"
@@ -212,6 +242,9 @@
     "JV5hRr": {
         "defaultMessage": "Galerie de médias"
     },
+    "JnCf7K": {
+        "defaultMessage": "Style du bouton"
+    },
     "JoWKee": {
         "defaultMessage": "Créez votre premier écran"
     },
@@ -251,6 +284,9 @@
     "PbHeHc": {
         "defaultMessage": "Marqueurs"
     },
+    "PyDwDF": {
+        "defaultMessage": "Fermer"
+    },
     "PyxZY2": {
         "defaultMessage": "Annuler"
     },
@@ -272,8 +308,14 @@
     "S/mavZ": {
         "defaultMessage": "Texte et images"
     },
+    "S3gGiD": {
+        "defaultMessage": "Image"
+    },
     "S9YpbV": {
         "defaultMessage": "Texte"
+    },
+    "SyMSDa": {
+        "defaultMessage": "Style nom publié"
     },
     "T0pi1u": {
         "defaultMessage": "Avec barre de défilement"
@@ -289,6 +331,9 @@
     },
     "UBXIYP": {
         "defaultMessage": "Vidéo"
+    },
+    "UdrdRF": {
+        "defaultMessage": "Style des numéros"
     },
     "UtcYEP": {
         "defaultMessage": "Polices personnalisées"
@@ -310,6 +355,9 @@
     },
     "XTJGzY": {
         "defaultMessage": "Galerie (fil) avec légendes"
+    },
+    "Xdsq3k": {
+        "defaultMessage": "Réponse"
     },
     "XhgKcw": {
         "defaultMessage": "Déplacez la carte pour positionner"
@@ -494,6 +542,9 @@
     "t2cFdl": {
         "defaultMessage": "Filtres actifs"
     },
+    "t7FVa4": {
+        "defaultMessage": "Marqueur"
+    },
     "tAYwqp": {
         "defaultMessage": "Ajouter une diapositive"
     },
@@ -527,6 +578,9 @@
     "upzOTm": {
         "defaultMessage": "Crédits"
     },
+    "vA+9dU": {
+        "defaultMessage": "Bordure"
+    },
     "vERejo": {
         "defaultMessage": "Vidéo"
     },
@@ -536,8 +590,14 @@
     "vZrFq6": {
         "defaultMessage": "Titre avec sous-titre et crédits"
     },
+    "vzW/wd": {
+        "defaultMessage": "Couleur de fond"
+    },
     "wkysUu": {
         "defaultMessage": "Écrans"
+    },
+    "wsNfYo": {
+        "defaultMessage": "Entrée"
     },
     "wt1+dM": {
         "defaultMessage": "Sélectionnez un fichier audio..."

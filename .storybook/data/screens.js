@@ -119,7 +119,7 @@ export const allScreens = [
         title: { body: title() },
         description: text(),
         button: { body: 'Débuter' },
-        scrollable: true,
+        draggable: true,
         markers: markers(),
         background: {
             color: { alpha: 1, color: '#FF0000' },
@@ -133,7 +133,7 @@ export const allScreens = [
         title: { body: title() },
         description: text(),
         button: { body: 'Avec images' },
-        scrollable: true,
+        draggable: true,
         markers: markers({ withImage: true }),
         background: {
             color: { alpha: 1, color: '#0000FF' },

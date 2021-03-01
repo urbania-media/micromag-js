@@ -383,7 +383,7 @@
                     "color": null
                 }
             },
-            "scrollable": true,
+            "draggable": true,
             "markers": [
                 {
                     "id": 0,
@@ -474,7 +474,7 @@
                     "color": null
                 }
             },
-            "scrollable": true,
+            "draggable": true,
             "markers": [
                 {
                     "id": 0,

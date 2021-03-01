@@ -14,7 +14,7 @@ const propTypes = {
         lng: PropTypes.number,
     }),
     zoom: PropTypes.number,
-    scrollable: PropTypes.bool,
+    draggable: PropTypes.bool,
     markers: PropTypes.arrayOf(PropTypes.object),
     onClickMap: PropTypes.func,
     onClickMarker: PropTypes.func,
@@ -36,7 +36,7 @@ const propTypes = {
 const defaultProps = {
     center: null,
     zoom: null,
-    scrollable: true,
+    draggable: true,
     markers: [],
     onClickMap: null,
     onClickMarker: null,
@@ -58,7 +58,7 @@ const defaultProps = {
 const Map = ({
     center,
     zoom,
-    scrollable,
+    draggable,
     markers,
     onClickMap,
     onClickMarker,
@@ -138,7 +138,7 @@ const Map = ({
                 zoom={zoom}
                 withoutStyle={withoutStyle}
                 bounds={bounds}
-                scrollable={scrollable}
+                draggable={draggable}
                 events={events}
                 fitBounds={fitBounds}
                 zoomControl={zoomControl}
