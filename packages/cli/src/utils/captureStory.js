@@ -33,8 +33,6 @@ const captureStory = async (story, location, settings = {}) => {
     const page = hasPage ? pages[0] : await browser.newPage();
     await page.goto(`http://127.0.0.1:${serverPort}`);
 
-    /*
-
     const { components: screens = null } = story || {};
     if (screens !== null) {
         const count = screens.length;
@@ -69,8 +67,6 @@ const captureStory = async (story, location, settings = {}) => {
             });
         }
     }
-
-    */
 
     await browser.close();
     server.close();
