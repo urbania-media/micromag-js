@@ -20,6 +20,7 @@ const defaultProps = {
 
 const ScreenDefinition = ({ definition, defaultScreen }) => {
     const definitions = isArray(definition) ? definition : [definition];
+    console.log(definition, definitions);
     const [data, setData] = useState({
         type: definition.id,
         ...defaultScreen,
@@ -35,10 +36,15 @@ const ScreenDefinition = ({ definition, defaultScreen }) => {
                             <h1 className="mb-4">
                                 {group !== null ? (
                                     <small className="text-muted">
-                                        <FormattedMessage {...group} /> /{' '}
+                                        <FormattedMessage
+                                            id="definition"
+                                            defaultMessage="Definition"
+                                            {...group}
+                                        />{' '}
+                                        /{' '}
                                     </small>
                                 ) : null}
-                                <FormattedMessage {...title} />
+                                <FormattedMessage id="title" defaultMessage="Title" {...title} />
                             </h1>
                             <div className="row">
                                 <div className="col mb-4 mb-md-0">
@@ -49,7 +55,7 @@ const ScreenDefinition = ({ definition, defaultScreen }) => {
                                         onChange={setData}
                                     />
                                 </div>
-                                <div className="col">
+                                <div className="col mt-4">
                                     <h4>Preview</h4>
                                     <Screen
                                         definition={def}

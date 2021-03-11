@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Checkbox from './Checkbox';
 
@@ -7,8 +7,18 @@ export default {
     title: 'Elements/Checkbox (TODO)',
 };
 
-const option = 'Example checkbox';
+const option = { body: 'Empty checkbox' };
 
-export const checked = () => <Checkbox option={option} value={option} />;
+const ContainerWithValue = () => {
+    const [value, setValue] = useState(true);
+    return <Checkbox option={option} value={value} onChange={setValue} />;
+};
 
-export const unchecked = () => <Checkbox option={option} />;
+const ContainerWithoutValue = () => {
+    const [value, setValue] = useState(false);
+    return <Checkbox option={option} value={value} onChange={setValue} />;
+};
+
+export const checked = () => <ContainerWithValue option={option} value={option} />;
+
+export const unchecked = () => <ContainerWithoutValue option={option} />;

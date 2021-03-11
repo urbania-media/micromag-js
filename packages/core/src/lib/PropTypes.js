@@ -79,6 +79,12 @@ export const menuItem = PropTypes.shape({
 });
 export const menuItems = PropTypes.arrayOf(menuItem);
 
+export const breadcrumb = PropTypes.shape({
+    label,
+    url: PropTypes.string,
+});
+export const breadcrumbs = PropTypes.arrayOf(breadcrumb);
+
 export const device = PropTypes.shape({
     id: PropTypes.string.isRequired,
 });
@@ -289,7 +295,7 @@ export const buttonStyle = PropTypes.shape({
     borderRadius: PropTypes.number,
     borderWidth: PropTypes.number,
     borderColor: color,
-    borderStyle: borderTypes
+    borderStyle: borderTypes,
 });
 
 export const margin = PropTypes.shape({
@@ -645,7 +651,7 @@ export const paymentItems = PropTypes.arrayOf(paymentItem);
 export const pageMetadata = PropTypes.shape({
     canonical: PropTypes.string,
     description: PropTypes.string,
-    keywords: PropTypes.string,
+    keywords: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     image: PropTypes.shape({
         url: PropTypes.string,
     }),

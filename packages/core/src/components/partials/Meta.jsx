@@ -2,6 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
+import isString from 'lodash/isString';
+import isArray from 'lodash/isArray';
 import * as AppPropTypes from '../../lib/PropTypes';
 
 const propTypes = {
@@ -38,7 +40,6 @@ const Meta = ({ title, url, metadata, fullTitle, suffix, children }) => {
 
     const { url: imageUrl = null, metadata: imageMetadata = {} } = image || {};
     const { width: imageWidth = null, height: imageHeight = null } = imageMetadata || {};
-
     const { url: faviconUrl = null } = favicon || {};
 
     return (
@@ -46,7 +47,12 @@ const Meta = ({ title, url, metadata, fullTitle, suffix, children }) => {
             {/* General */}
             <title>{realTitle !== null && realTitle.length > 0 ? realTitle : 'Micromag'}</title>
             {description !== null ? <meta name="description" content={description} /> : null}
-            {keywords !== null ? <meta name="keywords" content={keywords} /> : null}
+            {keywords !== null && isString(keywords) ? (
+                <meta name="keywords" content={keywords} />
+            ) : null}
+            {keywords !== null && isArray(keywords) ? (
+                <meta name="keywords" content={keywords.join(',')} />
+            ) : null}
             {canonical !== null ? <link rel="canonical" href={canonical} /> : null}
 
             {/* Favicon */}

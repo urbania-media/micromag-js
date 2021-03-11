@@ -8,9 +8,9 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     option: MicromagPropTypes.textElement,
-    value: PropTypes.string,
+    value: PropTypes.bool,
     onChange: PropTypes.func,
-    checkboxStyle: MicromagPropTypes.checkboxStyle,
+    checkboxStyle: PropTypes.object, // eslint-disable-line
     className: PropTypes.string,
 };
 
@@ -23,9 +23,7 @@ const defaultProps = {
 };
 
 const Checkbox = ({ option, value, onChange, checkboxStyle, className }) => {
-
-    const { body } = option;
-
+    const { body = null } = option || {};
     return (
         <div
             className={classNames([
@@ -48,15 +46,15 @@ const Checkbox = ({ option, value, onChange, checkboxStyle, className }) => {
                     className={styles.input}
                     type="checkbox"
                     autoComplete="off"
-                    value={value}
-                    checked={body === value}
-                    onChange={e => {
-                        if (e.currentTarget.checked && onChange !== null) {
-                            onChange(body);
+                    value={value === true}
+                    checked={value === true}
+                    onChange={() => {
+                        if (onChange !== null) {
+                            onChange(!value);
                         }
                     }}
                 />
-                {option}
+                {body}
             </label>
         </div>
     );
