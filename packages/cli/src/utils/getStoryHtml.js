@@ -5,14 +5,15 @@ import puppeteer from 'puppeteer';
 import startServer from './startServer';
 
 const getStoryHtml = async (story, settings = {}) => {
-    const { googleApiKey = null } = settings;
+    const { googleApiKey = null, executablePath = null } = settings;
     const server = await startServer(
         path.join(process.cwd(), './node_modules/@micromag/viewer-build/build/'),
     );
     const serverPort = server.address().port;
 
     const browser = await puppeteer.launch({
-        devtools: true,
+        devtools: false,
+        ...(executablePath !== null ? { executablePath } : null),
         defaultViewport: {
             width: 360,
             height: 640,
