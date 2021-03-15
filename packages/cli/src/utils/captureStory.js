@@ -31,6 +31,7 @@ const captureStory = async (story, location, settings = {}) => {
         devtools: DEBUG,
         ...(executablePath !== null ? { executablePath } : null),
         defaultViewport,
+        args: ['--no-sandbox'],
     });
 
     try {
