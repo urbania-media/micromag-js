@@ -14,9 +14,9 @@ const getStoryHtml = async (story, settings = {}) => {
     const browser = await puppeteer.launch({
         devtools: true,
         defaultViewport: {
-            width: 320,
+            width: 360,
             height: 640,
-            deviceScaleFactor: 2,
+            deviceScaleFactor: 3,
             isMobile: true,
         },
     });
