@@ -9,14 +9,18 @@ import getOutputPath from './getOutputPath';
 const DEBUG = false;
 const READY_WAIT_TIMEOUT = 20000; // ms
 const DEFAULT_VIEWPORT = {
-    width: 320,
+    width: 360,
     height: 640,
-    deviceScaleFactor: 2,
+    deviceScaleFactor: 3,
     isMobile: true,
 };
 
 const captureStory = async (story, location, settings = {}) => {
-    const { viewport: defaultViewport = DEFAULT_VIEWPORT, googleApiKey = null } = settings;
+    const {
+        viewport: defaultViewport = DEFAULT_VIEWPORT,
+        googleApiKey = null,
+        executablePath = null,
+    } = settings;
     const server = await startServer(
         path.join(process.cwd(), './node_modules/@micromag/viewer-build/build/'),
     );
@@ -25,6 +29,7 @@ const captureStory = async (story, location, settings = {}) => {
 
     const browser = await puppeteer.launch({
         devtools: DEBUG,
+        ...(executablePath !== null ? { executablePath } : null),
         defaultViewport,
     });
 
