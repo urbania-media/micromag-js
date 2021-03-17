@@ -80,6 +80,7 @@ const Radios = ({
                                 }
                             }
                         }}
+                        onChange={() => {}}
                         checked={optionValue === value}
                     />{' '}
                     {label}

@@ -41,6 +41,7 @@ const propTypes = {
     landscapeScreenMargin: PropTypes.number,
     withMetadata: PropTypes.bool,
     withoutMenu: PropTypes.bool,
+    withoutFullscreen: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -61,6 +62,7 @@ const defaultProps = {
     landscapeScreenMargin: 50,
     withMetadata: false,
     withoutMenu: false,
+    withoutFullscreen: false,
     className: null,
 };
 
@@ -81,6 +83,8 @@ const Viewer = ({
     landscapeScreenMargin,
     withMetadata,
     withoutMenu,
+    // eslint-disable-next-line no-unused-vars
+    withoutFullscreen,
     className,
 }) => {
     const parsedStory = useParsedStory(story, { disabled: storyIsParsed }) || {};

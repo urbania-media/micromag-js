@@ -131,15 +131,10 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
 
         const finalItems = [
             {
-                label: intl.formatMessage(
-                    {
-                        defaultMessage: 'Screen {index}',
-                        description: 'Screen label in the breadcrumb',
-                    },
-                    {
-                        index: screenIndex + 1,
-                    },
-                ),
+                label: intl.formatMessage({
+                    defaultMessage: 'Parameters',
+                    description: 'Screen label in the breadcrumb',
+                }),
                 url: `/${screenId}`,
                 active: false,
             },

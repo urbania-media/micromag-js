@@ -27,6 +27,7 @@ export const ApiProvider = ({ api: initialApi, baseUrl, children }) => {
             previousApi ||
             new Api({
                 baseUrl,
+                // baseUrl: 'https://micromag.studio.homestead.flklr.ca/api',
             }),
         [previousApi, initialApi, baseUrl],
     );

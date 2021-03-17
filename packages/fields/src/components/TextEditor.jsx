@@ -26,6 +26,7 @@ const defaultProps = {
     onChange: null,
     inline: false,
     editorConfig: {
+        removePlugins: ['Autoformat'],
         toolbar: ['bold', 'italic', '|', 'link'],
         language: 'fr',
         link: {
@@ -48,7 +49,9 @@ const TextEditorField = ({ value, size, className, editorConfig, inline, onChang
     );
 
     const onEditorReady = useCallback(
-        (editor) => { // eslint-disable-line  no-unused-vars
+        // eslint-disable-next-line  no-unused-vars
+        (editor) => {
+            // eslint-disable-line  no-unused-vars
             if (inline) {
                 // editor.model.schema.extend('$root', {
                 //     isBlock: true,

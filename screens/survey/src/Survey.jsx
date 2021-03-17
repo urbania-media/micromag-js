@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -9,7 +9,7 @@ import { useQuiz, useQuizCreate } from '@micromag/data';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useTrackScreenEvent } from '@micromag/core/hooks';
-import { isTextFilled } from '@micromag/core/utils';
+import { isTextFilled, getLargestRemainderRound } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
@@ -91,35 +91,51 @@ const SurveyScreen = ({
     const [userAnswerIndex, setUserAnswerIndex] = useState(showInstantAnswer ? -1 : null);
     const answered = userAnswerIndex !== null;
 
-    const total =
-        answers !== null
-            ? (quizAnswers || []).reduce(
-                  (points, { count = 0 }, i) =>
-                      points + parseInt(count, 10) + (i === userAnswerIndex ? 1 : 0),
-                  0,
-              )
-            : 0;
+    const quizAnswersComputed = useMemo(() => {
+        const total =
+            answers !== null
+                ? (quizAnswers || []).reduce(
+                      (points, { count = 0 }) => points + parseInt(count, 10),
+                      userAnswerIndex !== null && userAnswerIndex > -1 ? 1 : 0,
+                  )
+                : 0;
+        const computed =
+            answers !== null
+                ? (answers || []).reduce((answersTotal, ans, i) => {
+                      const { label = {} } = ans || {};
+                      const { body = null } = label || {};
 
-    const quizAnswersComputed =
-        answers !== null
-            ? (answers || []).reduce((answersTotal, ans, i) => {
-                  const { label = {} } = ans || {};
-                  const { body = null } = label || {};
+                      const { count = 0 } = quizAnswers.find((qa) => qa.choice === body) || {};
+                      const countWithUser = i === userAnswerIndex ? count + 1 : count;
+                      if (body !== null) {
+                          return {
+                              ...answersTotal,
+                              [body]: {
+                                  percent: total > 0 ? (countWithUser / total) * 100 : 0,
+                                  count: countWithUser,
+                              },
+                          };
+                      }
+                      return answersTotal;
+                  }, {})
+                : {};
 
-                  const { count = 0 } = quizAnswers.find((qa) => qa.choice === body) || {};
-                  const countWithUser = i === userAnswerIndex ? count + 1 : count;
-                  if (body !== null) {
-                      return {
-                          ...answersTotal,
-                          [body]: {
-                              percent: total > 0 ? Math.floor((countWithUser / total) * 100) : 0,
-                              count: countWithUser,
-                          },
-                      };
-                  }
-                  return answersTotal;
-              }, {})
-            : {};
+        const quizAnswersPct =
+            total > 0 ? Object.keys(computed).map((key) => computed[key].percent || 0) : [];
+
+        const evenlySplit = getLargestRemainderRound(quizAnswersPct, 100);
+
+        return Object.keys(computed).reduce(
+            (acc, key, i) => ({
+                ...acc,
+                [key]: {
+                    ...computed[key],
+                    percent: evenlySplit[i],
+                },
+            }),
+            {},
+        );
+    }, [answers, quizAnswers, userAnswerIndex]);
 
     const isSplitted = layout === 'split';
     const verticalAlign = isSplitted ? null : layout;

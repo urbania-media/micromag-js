@@ -9,6 +9,7 @@ export { default as getFieldFromPath } from './getFieldFromPath';
 export { default as getFileName } from './getFileName';
 export { default as getFontFamilyFromFont } from './getFontFamilyFromFont';
 export { default as getGridLayoutName } from './getGridLayoutName';
+export { default as getLargestRemainderRound } from './getLargestRemainderRound';
 export { default as getSecondsFromTime } from './getSecondsFromTime';
 export { default as getStyleFromButton } from './getStyleFromButton';
 export { default as getStyleFromColor } from './getStyleFromColor';
