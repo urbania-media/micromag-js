@@ -9,6 +9,7 @@ import ShareModal from './ShareModal';
 import styles from '../../styles/partials/share-button.module.scss';
 
 const propTypes = {
+    title: PropTypes.string,
     url: PropTypes.string,
     className: PropTypes.string,
     buttonClassName: PropTypes.string,
@@ -17,6 +18,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    title: null,
     url: null,
     className: null,
     buttonClassName: null,
@@ -24,7 +26,7 @@ const defaultProps = {
     children: null,
 };
 
-const ShareButton = ({ url, className, buttonClassName, onShare, children }) => {
+const ShareButton = ({ title, url, className, buttonClassName, onShare, children }) => {
     const [storyShareModalOpened, setStoryShareModalOpened] = useState(false);
 
     const onShareIconClick = useCallback(() => {
@@ -61,6 +63,7 @@ const ShareButton = ({ url, className, buttonClassName, onShare, children }) => 
             <ShareModal
                 className={styles.shareModal}
                 opened={storyShareModalOpened}
+                title={title}
                 url={url}
                 onShare={onStoryShared}
                 onCancel={onStoryShareCanceled}

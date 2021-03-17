@@ -14,7 +14,6 @@ import { useDocumentEvent } from '@micromag/core/hooks';
 
 import styles from '../../styles/partials/share-modal.module.scss';
 
-
 const propTypes = {
     url: PropTypes.string,
     title: PropTypes.string,
@@ -58,15 +57,18 @@ const ShareModal = ({ url, title, opened, className, onShare, onCancel }) => {
 
     const shareIconProps = useMemo(() => ({ size: 32, round: true }), []);
 
-    const onDocumentClick = useCallback( (e) => {
-        const target = e.currentTarget;
-        if (!containerRef.current || containerRef.current.contains(target)) {
-            return;
-        }
-        if (onCancel !== null) {
-            onCancel();
-        }
-    }, [opened, onCancel]);
+    const onDocumentClick = useCallback(
+        (e) => {
+            const target = e.currentTarget;
+            if (!containerRef.current || containerRef.current.contains(target)) {
+                return;
+            }
+            if (onCancel !== null) {
+                onCancel();
+            }
+        },
+        [opened, onCancel],
+    );
 
     useDocumentEvent('click', onDocumentClick, opened);
 
@@ -88,6 +90,7 @@ const ShareModal = ({ url, title, opened, className, onShare, onCancel }) => {
                         quote={title}
                         beforeOnClick={() => {
                             onShareButtonClick('Facebook');
+                            return Promise.resolve();
                         }}
                     >
                         <FacebookIcon {...shareIconProps} />
@@ -97,6 +100,7 @@ const ShareModal = ({ url, title, opened, className, onShare, onCancel }) => {
                         title={title}
                         beforeOnClick={() => {
                             onShareButtonClick('Twitter');
+                            return Promise.resolve();
                         }}
                     >
                         <TwitterIcon {...shareIconProps} />
@@ -106,6 +110,7 @@ const ShareModal = ({ url, title, opened, className, onShare, onCancel }) => {
                         subject={title}
                         beforeOnClick={() => {
                             onShareButtonClick('Email');
+                            return Promise.resolve();
                         }}
                     >
                         <EmailIcon {...shareIconProps} />

@@ -90,10 +90,17 @@ const Viewer = ({
     const { fontFamily: themeFont = null } = themeTextStyle || {};
 
     // Fonts
-    const finalFonts = useMemo(() => [...(fonts || []), themeFont].filter(font => font !== null), [fonts]);
+    const finalFonts = useMemo(
+        () => [...(fonts || []), themeFont].filter((font) => font !== null),
+        [fonts],
+    );
     const { loaded: fontsLoaded } = useLoadedFonts(finalFonts); // eslint-disable-line
 
-    const shareUrl = `${basePath}/${screenId}`;
+    const shareUrl = useMemo(() => {
+        const origin = typeof window !== 'undefined' ? window.location.origin : '';
+        const path = basePath !== null ? `${origin}/${basePath}` : origin;
+        return path;
+    }, [basePath]);
 
     const isView = renderContext === 'view';
     const isStatic = renderContext === 'static';
