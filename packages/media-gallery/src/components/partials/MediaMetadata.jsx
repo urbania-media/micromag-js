@@ -27,9 +27,9 @@ const MediaMetadata = ({ media, className }) => {
     const {
         id: mediaId,
         type,
+        url = null,
         thumbnail_url: thumbnail = null,
-        name: mediaName,
-        src,
+        name: mediaName = null,
         metadata = {},
     } = media || {};
     const {
@@ -39,6 +39,7 @@ const MediaMetadata = ({ media, className }) => {
         height = null,
         duration = null,
         user = null,
+        description: mediaDescription = null,
         tags: mediaTags = [],
     } = metadata || {};
 
@@ -72,6 +73,7 @@ const MediaMetadata = ({ media, className }) => {
     );
 
     const [name, setName] = useState(mediaName);
+    const [description, setDescription] = useState(mediaDescription);
     const [tags, setTags] = useState(mediaTags.map(getOptionValue));
     const [changed, setChanged] = useState(false);
 
@@ -91,9 +93,17 @@ const MediaMetadata = ({ media, className }) => {
         [tags, setName, setChanged],
     );
 
+    const onDescriptionChange = useCallback(
+        (val) => {
+            setDescription(val);
+            setChanged(true);
+        },
+        [tags, setDescription, setChanged],
+    );
+
     const onSave = useCallback(
         () =>
-            update(mediaId, { name, tags }).then(() => {
+            update(mediaId, { name, tags, description }).then(() => {
                 setChanged(false);
             }),
         [mediaId, name, tags, metadata, update],
@@ -134,13 +144,13 @@ const MediaMetadata = ({ media, className }) => {
             >
                 {type === 'video' ? (
                     <>
-                        <video className={styles.player} controls src={src} />
+                        <video className={styles.player} controls src={url} />
                     </>
                 ) : null}
                 {type === 'audio' ? (
                     <>
                         <div className={styles.audio}>
-                            <audio className={styles.player} controls src={src} />
+                            <audio className={styles.player} controls src={url} />
                         </div>
                     </>
                 ) : null}
@@ -158,6 +168,15 @@ const MediaMetadata = ({ media, className }) => {
                             />
                         </h6>
                         <TextField value={name} onChange={onNameChange} />
+                    </div>
+                    <div className="form-group">
+                        <h6>
+                            <FormattedMessage
+                                defaultMessage="Description"
+                                description="Description in Media Gallery"
+                            />
+                        </h6>
+                        <TextField value={description} onChange={onDescriptionChange} />
                     </div>
                     <div className="form-group">
                         <h6>

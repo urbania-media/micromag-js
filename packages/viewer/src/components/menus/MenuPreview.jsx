@@ -4,13 +4,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShare, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faShare, faTimes, faExpand } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getStyleFromColor, getStyleFromText } from '@micromag/core/utils';
 import { ScreenPreview, Button } from '@micromag/core/components';
 import Scroll from '@micromag/element-scroll';
 
 import ShareButton from '../partials/ShareButton';
+import FullscreenButton from '../partials/FullscreenButton';
 
 import styles from '../../styles/menus/menu-preview.module.scss';
 
@@ -120,6 +121,9 @@ const ViewerMenuPreview = ({
                     >
                         <FontAwesomeIcon className={styles.icon} icon={faShare} />
                     </ShareButton>
+                    <FullscreenButton className={styles.fullButton} buttonClassName={styles.button}>
+                        <FontAwesomeIcon className={styles.icon} icon={faExpand} />
+                    </FullscreenButton>
                     <Button className={styles.button} onClick={onClose}>
                         <FontAwesomeIcon className={styles.icon} icon={faTimes} />
                     </Button>

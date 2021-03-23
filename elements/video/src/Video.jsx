@@ -20,6 +20,7 @@ const propTypes = {
     initialMuted: PropTypes.bool,
     autoPlay: PropTypes.bool,
     loop: PropTypes.bool,
+    playsInline: PropTypes.bool,
     className: PropTypes.string,
     onReady: PropTypes.func,
     onPlay: PropTypes.func,
@@ -41,6 +42,7 @@ const defaultProps = {
     initialMuted: false,
     autoPlay: false,
     loop: false,
+    playsInline: true,
     className: null,
     onReady: null,
     onPlay: null,
@@ -62,6 +64,7 @@ const Video = ({
     initialMuted,
     autoPlay,
     loop,
+    playsInline,
     className,
     onReady,
     onPlay,
@@ -106,7 +109,7 @@ const Video = ({
     }, [ready, onReady]);
 
     const withSize = width !== null && height !== null;
-    const { thumbnail_url: thumbnailUrl = null } = media || {};    
+    const { thumbnail_url: thumbnailUrl = null } = media || {};
 
     useEffect(() => {
         if (thumbnailUrl !== null) {
@@ -147,6 +150,7 @@ const Video = ({
                 muted={muted}
                 poster={thumbnailUrl}
                 crossOrigin="anonymous"
+                playsInline={playsInline}
             >
                 {hasFiles ? (
                     <>
