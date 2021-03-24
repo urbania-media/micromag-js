@@ -505,8 +505,8 @@ export const theme = PropTypes.shape({
 export const metadata = PropTypes.shape({
     description: PropTypes.string,
     shareUrl: PropTypes.string,
-    shareImage: PropTypes.string,
-    favIcon: PropTypes.string,
+    shareImage: imageMedia,
+    favIcon: imageMedia,
 });
 
 /**

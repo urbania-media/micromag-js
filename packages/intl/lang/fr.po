@@ -297,7 +297,7 @@ msgstr "Citation"
 #: 8Dl/S1
 msgctxt "8Dl/S1"
 msgid "Draggable"
-msgstr ""
+msgstr "Glissable"
 
 # Button label
 #: 8oczXQ
@@ -747,6 +747,12 @@ msgstr "Réponse"
 msgctxt "XhgKcw"
 msgid "Move the map to position the place"
 msgstr "Déplacez la carte pour positionner"
+
+# Description in Media Gallery
+#: YJZtWR
+msgctxt "YJZtWR"
+msgid "Description"
+msgstr "Description"
 
 # Field label
 #: YWcp4v

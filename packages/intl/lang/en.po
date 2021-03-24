@@ -748,6 +748,12 @@ msgctxt "XhgKcw"
 msgid "Move the map to position the place"
 msgstr "Move the map to position the place"
 
+# Description in Media Gallery
+#: YJZtWR
+msgctxt "YJZtWR"
+msgid "Description"
+msgstr "Description"
+
 # Field label
 #: YWcp4v
 msgctxt "YWcp4v"

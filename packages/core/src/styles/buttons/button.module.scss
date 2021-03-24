@@ -22,6 +22,7 @@
         flex-direction: row;
         align-items: center;
 
+        /* stylelint-disable */
         .label {
             margin-left: 0.5em;
         }
@@ -29,11 +30,18 @@
         .right {
             margin-left: 0.5em;
         }
+        /* stylelint-enable */
     }
 
     &.withIconColumns {
         display: inline-flex;
         flex-direction: row;
         align-items: center;
+    }
+
+    &.linkDisabled {
+        opacity: 0.4;
+        text-decoration: none;
+        pointer-events: none;
     }
 }

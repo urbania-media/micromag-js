@@ -204,11 +204,15 @@ const Button = ({
         },
     ]);
     if (href !== null) {
+        const linkClassNames = classNames([
+            buttonClassNames,
+            { disabled, [styles.linkDisabled]: disabled },
+        ]);
         return external || direct ? (
             <a
                 {...props}
-                href={href}
-                className={buttonClassNames}
+                href={disabled ? null : href}
+                className={linkClassNames}
                 onClick={onClick}
                 target={external ? target : null}
                 ref={refButton}
@@ -216,7 +220,7 @@ const Button = ({
                 {content}
             </a>
         ) : (
-            <Link to={href} className={buttonClassNames} onClick={onClick} ref={refButton}>
+            <Link to={href} className={linkClassNames} onClick={onClick} ref={refButton}>
                 {content}
             </Link>
         );

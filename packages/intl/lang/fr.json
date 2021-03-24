@@ -137,6 +137,9 @@
     "88/Ge8": {
         "defaultMessage": "Citation"
     },
+    "8Dl/S1": {
+        "defaultMessage": "Glissable"
+    },
     "8oczXQ": {
         "defaultMessage": "Ajouter un marqueur"
     },
@@ -361,6 +364,9 @@
     },
     "XhgKcw": {
         "defaultMessage": "Déplacez la carte pour positionner"
+    },
+    "YJZtWR": {
+        "defaultMessage": "Description"
     },
     "YWcp4v": {
         "defaultMessage": "Point rempli"

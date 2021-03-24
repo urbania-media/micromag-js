@@ -101,8 +101,9 @@ const Viewer = ({
     const { loaded: fontsLoaded } = useLoadedFonts(finalFonts); // eslint-disable-line
 
     const shareUrl = useMemo(() => {
-        const origin = typeof window !== 'undefined' ? window.location.origin : '';
-        const path = basePath !== null ? `${origin}/${basePath}` : origin;
+        const origin =
+            typeof window !== 'undefined' ? window.location.origin.replace(/\/+$/, '') : '';
+        const path = basePath !== null ? `${origin}${basePath}` : origin;
         return path;
     }, [basePath]);
 

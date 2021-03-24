@@ -77,9 +77,9 @@ const ViewerContainer = ({
                     <ScreensProvider>
                         <TrackingProvider variables={finalTrackingVariables}>
                             {withoutRouter ? (
-                                <Viewer story={story} {...otherProps} />
+                                <Viewer story={story} basePath={basePath} {...otherProps} />
                             ) : (
-                                <ViewerRoutes story={story} {...otherProps} />
+                                <ViewerRoutes story={story} basePath={basePath} {...otherProps} />
                             )}
                         </TrackingProvider>
                     </ScreensProvider>

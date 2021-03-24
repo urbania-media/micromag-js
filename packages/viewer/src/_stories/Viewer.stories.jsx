@@ -50,7 +50,7 @@ export default {
 
 export const AllScreens = () => <Viewer {...props} />;
 export const FaceAFace = () => <Viewer {...faceAFaceProps} />;
-export const Empty = () => <Viewer fullscreen />;
+export const Empty = () => <Viewer fullscreen basePath="/story-path" />;
 export const TwoScreens = () => <Viewer {...twoScreensProps} />;
 export const CustomFonts = () => (
     <Viewer
@@ -110,24 +110,24 @@ export const CustomFonts = () => (
                             fontFamily: {
                                 type: 'custom',
                                 name: 'SourceCodePro-Regular',
-                                media: 'media://3'
-                            }
-                        }
-                    }
-                }
+                                media: 'media://3',
+                            },
+                        },
+                    },
+                },
             ],
             medias: {
                 'media://1': {
                     type: 'font',
-                    files: webfontFiles
+                    files: webfontFiles,
                 },
                 'media://2': {
                     type: 'font',
-                    files: webfont2Files
+                    files: webfont2Files,
                 },
                 'media://3': {
                     type: 'font',
-                    files: webfont3Files
+                    files: webfont3Files,
                 },
             },
         }}

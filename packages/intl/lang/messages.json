@@ -490,6 +490,10 @@
     "defaultMessage": "Move the map to position the place",
     "description": "Move the map to position the place description"
   },
+  "YJZtWR": {
+    "defaultMessage": "Description",
+    "description": "Description in Media Gallery"
+  },
   "YWcp4v": {
     "defaultMessage": "Bullet filled",
     "description": "Field label"
