@@ -106,7 +106,7 @@ const MediaMetadata = ({ media, className }) => {
             update(mediaId, { name, tags, description }).then(() => {
                 setChanged(false);
             }),
-        [mediaId, name, tags, metadata, update],
+        [mediaId, name, tags, description, metadata, update],
     );
 
     useEffect(() => {
