@@ -9,6 +9,7 @@ import FieldsProvider from '../../../fields/src/FieldsProvider';
 import video from '../../../../.storybook/data/test.mp4';
 import sound from '../../../../.storybook/data/test.mp3';
 import withUppy from '../../../../.storybook/decorators/withUppy';
+import list from './list.json';
 // import { paragraph, image } from '../../../../.storybook/data';
 
 import MediaGallery from '../components/MediaGallery';
@@ -92,6 +93,16 @@ export const WithTestMedia = () => (
         <FieldsProvider>
             <MemoryRouter>
                 <MediaGallery {...props} />
+            </MemoryRouter>
+        </FieldsProvider>
+    </ApiProvider>
+);
+
+export const WithList = () => (
+    <ApiProvider baseUrl={apiBaseUrl}>
+        <FieldsProvider>
+            <MemoryRouter>
+                <MediaGallery medias={list} />
             </MemoryRouter>
         </FieldsProvider>
     </ApiProvider>

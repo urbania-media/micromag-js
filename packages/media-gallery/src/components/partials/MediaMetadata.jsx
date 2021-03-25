@@ -32,6 +32,7 @@ const MediaMetadata = ({ media, className }) => {
         name: mediaName = null,
         metadata = {},
     } = media || {};
+
     const {
         filename = null,
         size = null,
@@ -113,12 +114,14 @@ const MediaMetadata = ({ media, className }) => {
         if (media !== null) {
             setTags(mediaTags);
             setName(mediaName);
+            setDescription(mediaDescription);
         } else {
             setTags([]);
             setName(null);
+            setDescription(null);
         }
         setChanged(false);
-    }, [media, setTags, setName, setChanged]);
+    }, [media, setTags, setName, setDescription, setChanged]);
 
     const TextField = fieldsManager.getComponent('text');
     const TokensField = fieldsManager.getComponent('tokens');
@@ -284,6 +287,21 @@ const MediaMetadata = ({ media, className }) => {
                                 </div>
                                 <div className="col">
                                     <small>{prettyBytes(size)}</small>
+                                </div>
+                            </div>
+                        </li>
+                    ) : null}
+                    {description !== null ? (
+                        <li className="list-group-item py-2 px-2">
+                            <div className="row">
+                                <div className="col-4 text-muted">
+                                    <FormattedMessage
+                                        defaultMessage="Alt tag"
+                                        description="Label in Media Gallery"
+                                    />
+                                </div>
+                                <div className="col">
+                                    <small>{description}</small>
                                 </div>
                             </div>
                         </li>
