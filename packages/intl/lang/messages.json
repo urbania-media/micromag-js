@@ -626,6 +626,10 @@
     "defaultMessage": "No entry...",
     "description": "Label when there is no item"
   },
+  "iUGRsc": {
+    "defaultMessage": "Alt tag",
+    "description": "Label in Media Gallery"
+  },
   "jaFXki": {
     "defaultMessage": "Gallery",
     "description": "Gallery screen title"

@@ -952,6 +952,12 @@ msgctxt "iHV3W3"
 msgid "No entry..."
 msgstr "No entry..."
 
+# Label in Media Gallery
+#: iUGRsc
+msgctxt "iUGRsc"
+msgid "Alt tag"
+msgstr "Alt tag"
+
 # Gallery screen title
 #: jaFXki
 msgctxt "jaFXki"
