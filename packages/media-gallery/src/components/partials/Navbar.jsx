@@ -27,6 +27,7 @@ const propTypes = {
     media: MicromagPropTypes.media,
     withoutTitle: PropTypes.bool,
     withoutSource: PropTypes.bool,
+    withoutType: PropTypes.bool,
     onClickAdd: PropTypes.func,
     onClickCancel: PropTypes.func,
     onFocusSearch: PropTypes.func,
@@ -40,6 +41,7 @@ const defaultProps = {
     media: null,
     withoutTitle: false,
     withoutSource: false,
+    withoutType: true,
     onClickAdd: null,
     onClickCancel: null,
     onFocusSearch: null,
@@ -53,6 +55,7 @@ const Navbar = ({
     media,
     withoutTitle,
     withoutSource,
+    withoutType,
     className,
     onClickAdd,
     onClickCancel,
@@ -75,6 +78,7 @@ const Navbar = ({
         recent: recent.map((val) => ({ value: val, label: val })),
         tags: tags !== null ? tags.map((t) => ({ value: t.name, label: t.name })) : [],
         team,
+        withType: !withoutType,
     });
 
     const searchValue = filters !== null ? filters.search || null : null;

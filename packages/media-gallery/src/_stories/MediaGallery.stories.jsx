@@ -92,7 +92,7 @@ export const WithTestMedia = () => (
     <ApiProvider baseUrl={apiBaseUrl}>
         <FieldsProvider>
             <MemoryRouter>
-                <MediaGallery {...props} />
+                <MediaGallery {...props} type="image" />
             </MemoryRouter>
         </FieldsProvider>
     </ApiProvider>

@@ -6,6 +6,7 @@ export const useSearchSections = ({
     tags = [],
     team = [],
     sources: upstreamSources = [],
+    withType = false,
 }) => {
     const sources = [
         {
@@ -39,15 +40,20 @@ export const useSearchSections = ({
         ...upstreamSources,
     ].filter((it) => it !== null);
 
-    // const team = [
-    //     {
-    //         id: 1,
-    //         label: 'Pierre',
-    //         value: 'pierre',
-    //         thumbnail_url: 'https://picsum.photos/id/2/50/50',
-    //     },
-    //     { id: 2, label: 'Paul', value: 'paul', color: 'blue' },
-    // ];
+    const types = [
+        {
+            label: <FormattedMessage defaultMessage="Images" description="Media label" />,
+            value: 'image',
+        },
+        {
+            label: <FormattedMessage defaultMessage="Videos" description="Media label" />,
+            value: 'video',
+        },
+        {
+            label: <FormattedMessage defaultMessage="Audios" description="Media label" />,
+            value: 'audio',
+        },
+    ];
 
     const usage = [
         {
@@ -61,6 +67,13 @@ export const useSearchSections = ({
     ];
 
     const sections = [
+        withType
+            ? {
+                  value: 'types',
+                  label: <FormattedMessage defaultMessage="Types" description="Media label" />,
+                  items: types,
+              }
+            : null,
         {
             value: 'recent',
             label: <FormattedMessage defaultMessage="Recent searches" description="Media label" />,
@@ -81,11 +94,12 @@ export const useSearchSections = ({
             label: <FormattedMessage defaultMessage="Usage" description="Media label" />,
             items: usage,
         },
-    ];
+    ].filter((it) => it !== null);
 
     return {
         sources,
         sections,
+        types,
     };
 };
 
