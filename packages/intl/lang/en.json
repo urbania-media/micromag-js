@@ -32,6 +32,9 @@
     "/UoxuB": {
         "defaultMessage": "Image"
     },
+    "/ca7BX": {
+        "defaultMessage": "Types"
+    },
     "/hupzO": {
         "defaultMessage": "Credits"
     },
@@ -52,6 +55,9 @@
     },
     "2/F1Q7": {
         "defaultMessage": "#{index}"
+    },
+    "2J05S0": {
+        "defaultMessage": "Images"
     },
     "2ZOPe+": {
         "defaultMessage": "Title"
@@ -284,6 +290,9 @@
     "PKCv5M": {
         "defaultMessage": "No item..."
     },
+    "PNMMo/": {
+        "defaultMessage": "Audios"
+    },
     "PbHeHc": {
         "defaultMessage": "Markers"
     },
@@ -295,6 +304,9 @@
     },
     "QBaiO0": {
         "defaultMessage": "Add a screen"
+    },
+    "QBlqW9": {
+        "defaultMessage": "Videos"
     },
     "QSmRdP": {
         "defaultMessage": "Add an image"

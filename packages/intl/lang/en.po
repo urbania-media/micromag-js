@@ -83,6 +83,12 @@ msgctxt "/UoxuB"
 msgid "Image"
 msgstr "Image"
 
+# Media label
+#: /ca7BX
+msgctxt "/ca7BX"
+msgid "Types"
+msgstr "Types"
+
 # Credits placeholder
 #: /hupzO
 msgctxt "/hupzO"
@@ -124,6 +130,12 @@ msgstr "Description"
 msgctxt "2/F1Q7"
 msgid "#{index}"
 msgstr "#{index}"
+
+# Media label
+#: 2J05S0
+msgctxt "2J05S0"
+msgid "Images"
+msgstr "Images"
 
 # Title placeholder
 #: 2ZOPe+
@@ -587,6 +599,12 @@ msgctxt "PKCv5M"
 msgid "No item..."
 msgstr "No item..."
 
+# Media label
+#: PNMMo/
+msgctxt "PNMMo/"
+msgid "Audios"
+msgstr "Audios"
+
 # Markers field label
 #: PbHeHc
 msgctxt "PbHeHc"
@@ -610,6 +628,12 @@ msgstr "Cancel"
 msgctxt "QBaiO0"
 msgid "Add a screen"
 msgstr "Add a screen"
+
+# Media label
+#: QBlqW9
+msgctxt "QBlqW9"
+msgid "Videos"
+msgstr "Videos"
 
 # Button label
 #: QSmRdP

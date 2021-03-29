@@ -47,6 +47,10 @@
     "defaultMessage": "Image",
     "description": "Images item field label"
   },
+  "/ca7BX": {
+    "defaultMessage": "Types",
+    "description": "Media label"
+  },
   "/hupzO": {
     "defaultMessage": "Credits",
     "description": "Credits placeholder"
@@ -74,6 +78,10 @@
   "2/F1Q7": {
     "defaultMessage": "#{index}",
     "description": "Item label in items field"
+  },
+  "2J05S0": {
+    "defaultMessage": "Images",
+    "description": "Media label"
   },
   "2ZOPe+": {
     "defaultMessage": "Title",
@@ -383,6 +391,10 @@
     "defaultMessage": "No item...",
     "description": "Label when there is no item in items field"
   },
+  "PNMMo/": {
+    "defaultMessage": "Audios",
+    "description": "Media label"
+  },
   "PbHeHc": {
     "defaultMessage": "Markers",
     "description": "Markers field label"
@@ -398,6 +410,10 @@
   "QBaiO0": {
     "defaultMessage": "Add a screen",
     "description": "Title of the screen types selection dialog"
+  },
+  "QBlqW9": {
+    "defaultMessage": "Videos",
+    "description": "Media label"
   },
   "QSmRdP": {
     "defaultMessage": "Add an image",
