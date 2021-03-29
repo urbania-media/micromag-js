@@ -1,8 +1,10 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/no-array-index-key, jsx-a11y/control-has-associated-label */
 // stylelint-disable stylelint-family-no-missing-generic-family-keyword
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { useDrag } from 'react-use-gesture';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShare, faTimes, faExpand } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -91,6 +93,21 @@ const ViewerMenuPreview = ({
 
     const titleStyle = brandTextStyle !== null ? getStyleFromText(brandTextStyle) : null;
 
+    const [scrolledBottom, setScrolledBottom] = useState(false);
+    const dragBind = useDrag(({ direction: [,dy], last}) => {
+        if (last && scrolledBottom && dy < 0 && onClose !== null) {
+            onClose();
+        }
+    });
+
+    const onScrolledBottom = useCallback( () => {
+        setScrolledBottom(true);
+    }, [setScrolledBottom]);
+
+    const onScrolledNotBottom = useCallback( () => {
+        setScrolledBottom(false);
+    }, [setScrolledBottom]);
+
     return hasSize ? (
         <div
             className={classNames([
@@ -100,6 +117,7 @@ const ViewerMenuPreview = ({
                 },
             ])}
             style={{ ...backgroundColorStyle, width: screenWidth }}
+            {...dragBind()}
         >
             <div className={styles.header}>
                 {brandLogoUrl !== null ? (
@@ -130,7 +148,7 @@ const ViewerMenuPreview = ({
                 </div>
             </div>
             <div className={styles.content}>
-                <Scroll className={styles.scroll}>
+                <Scroll className={styles.scroll} onScrolledBottom={onScrolledBottom} onScrolledNotBottom={onScrolledNotBottom}>
                     <nav className={styles.nav}>
                         <ul className={styles.items}>
                             {items.map((item, index) => (

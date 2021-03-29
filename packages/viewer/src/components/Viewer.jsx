@@ -128,7 +128,7 @@ const Viewer = ({
     const { width: screenWidth = null, height: screenHeight = null, landscape = false } =
         screenSize || {};
 
-    // Get menu height
+    // Get dots menu height
 
     const {
         ref: menuDotsContainerRef,
@@ -136,6 +136,15 @@ const Viewer = ({
     } = useResizeObserver();
 
     const { height: menuDotsContainerHeight = 0 } = menuDotsContainerRect || {};
+
+    // Get preview menu height
+
+    const {
+        ref: menuPreviewContainerRef,
+        entry: { contentRect: menuPreviewContainerRect },
+    } = useResizeObserver();
+
+    const { height: menuPreviewContainerHeight = 0 } = menuPreviewContainerRect || {};
 
     // Screen index
 
@@ -276,7 +285,7 @@ const Viewer = ({
 
     const menuOpened = useRef(false);
     const [{ y: menuY }, setMenuSpring] = useSpring(() => ({ y: 0, config: {...config.stiff, clamp: true} }));
-    const menuPreviewStyle = { transform: menuY.interpolate((y) => `translateY(${y * 100}%)`) };
+    const menuPreviewStyle = { transform: menuY.interpolate((y) => `translateY(${y * menuPreviewContainerHeight}px)`) };
 
     const bindDrag = useDrag(
         ({
@@ -303,7 +312,7 @@ const Viewer = ({
                 }
             }
 
-            const yProgress = Math.max(0, Math.min(1, my / screenHeight + (isMenuOpened ? 1 : 0)));
+            const yProgress = Math.max(0, Math.min(1, my / menuPreviewContainerHeight + (isMenuOpened ? 1 : 0)));
 
             if (isMenuOpened || fromTop) {
                 if (last) {
@@ -446,6 +455,7 @@ const Viewer = ({
                             <animated.div
                                 className={styles.menuPreviewContainer}
                                 style={menuPreviewStyle}
+                                ref={menuPreviewContainerRef}
                             >
                                 <MenuPreview
                                     theme={theme}
