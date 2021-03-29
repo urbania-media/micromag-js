@@ -11,6 +11,8 @@ import Navbar from './partials/Navbar';
 import Gallery from './lists/Gallery';
 import MediaMetadata from './partials/MediaMetadata';
 
+// import list from '../_stories/list.json';
+
 import styles from '../styles/media-gallery.module.scss';
 
 const propTypes = {
@@ -20,6 +22,7 @@ const propTypes = {
     isSmall: PropTypes.bool,
     withoutTitle: PropTypes.bool,
     withoutSource: PropTypes.bool,
+    withoutType: PropTypes.bool,
     medias: MicromagPropTypes.medias,
     selectedMedia: MicromagPropTypes.media,
     className: PropTypes.string,
@@ -34,6 +37,7 @@ const defaultProps = {
     isSmall: false,
     withoutTitle: false,
     withoutSource: false,
+    withoutType: true,
     medias: null,
     selectedMedia: null,
     className: null,
@@ -48,6 +52,7 @@ const MediaGallery = ({
     isSmall,
     withoutTitle,
     withoutSource,
+    withoutType,
     medias: initialMedias,
     selectedMedia,
     className,
@@ -153,6 +158,7 @@ const MediaGallery = ({
                 onClickCancel={onClickCancel}
                 withoutTitle={withoutTitle}
                 withoutSource={withoutSource}
+                withoutType={withoutType}
                 className={navbarClassName}
             />
             <div className={styles.content}>

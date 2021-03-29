@@ -47,6 +47,10 @@
     "defaultMessage": "Image",
     "description": "Images item field label"
   },
+  "/ca7BX": {
+    "defaultMessage": "Types",
+    "description": "Media label"
+  },
   "/hupzO": {
     "defaultMessage": "Credits",
     "description": "Credits placeholder"
@@ -74,6 +78,10 @@
   "2/F1Q7": {
     "defaultMessage": "#{index}",
     "description": "Item label in items field"
+  },
+  "2J05S0": {
+    "defaultMessage": "Images",
+    "description": "Media label"
   },
   "2ZOPe+": {
     "defaultMessage": "Title",
@@ -367,6 +375,10 @@
     "defaultMessage": "Gallery with captions",
     "description": "GalleryCaptions screen title"
   },
+  "MuQzCb": {
+    "defaultMessage": "Learn more",
+    "description": "Swipe up default label"
+  },
   "N25iDO": {
     "defaultMessage": "Title",
     "description": "Title field label"
@@ -391,6 +403,10 @@
     "defaultMessage": "No item...",
     "description": "Label when there is no item in items field"
   },
+  "PNMMo/": {
+    "defaultMessage": "Audios",
+    "description": "Media label"
+  },
   "PbHeHc": {
     "defaultMessage": "Markers",
     "description": "Markers field label"
@@ -406,6 +422,10 @@
   "QBaiO0": {
     "defaultMessage": "Add a screen",
     "description": "Title of the screen types selection dialog"
+  },
+  "QBlqW9": {
+    "defaultMessage": "Videos",
+    "description": "Media label"
   },
   "QSmRdP": {
     "defaultMessage": "Add an image",
@@ -505,6 +525,10 @@
   "XhgKcw": {
     "defaultMessage": "Move the map to position the place",
     "description": "Move the map to position the place description"
+  },
+  "YJZtWR": {
+    "defaultMessage": "Description",
+    "description": "Description in Media Gallery"
   },
   "YWcp4v": {
     "defaultMessage": "Bullet filled",
@@ -638,6 +662,10 @@
     "defaultMessage": "No entry...",
     "description": "Label when there is no item"
   },
+  "iUGRsc": {
+    "defaultMessage": "Alt tag",
+    "description": "Label in Media Gallery"
+  },
   "jaFXki": {
     "defaultMessage": "Gallery",
     "description": "Gallery screen title"
@@ -727,10 +755,6 @@
   "qKQCxc": {
     "defaultMessage": "Add a marker",
     "description": "Button label in markers field"
-  },
-  "qmIoCJ": {
-    "defaultMessage": "Swipe up",
-    "description": "Swipe up default label"
   },
   "rdFCsN": {
     "defaultMessage": "No marker...",

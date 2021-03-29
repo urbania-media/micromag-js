@@ -83,6 +83,12 @@ msgctxt "/UoxuB"
 msgid "Image"
 msgstr "Image"
 
+# Media label
+#: /ca7BX
+msgctxt "/ca7BX"
+msgid "Types"
+msgstr ""
+
 # Credits placeholder
 #: /hupzO
 msgctxt "/hupzO"
@@ -124,6 +130,12 @@ msgstr "Description"
 msgctxt "2/F1Q7"
 msgid "#{index}"
 msgstr "#{index}"
+
+# Media label
+#: 2J05S0
+msgctxt "2J05S0"
+msgid "Images"
+msgstr ""
 
 # Title placeholder
 #: 2ZOPe+
@@ -309,7 +321,7 @@ msgstr "Citation"
 #: 8Dl/S1
 msgctxt "8Dl/S1"
 msgid "Draggable"
-msgstr ""
+msgstr "Glissable"
 
 # Button label
 #: 8oczXQ
@@ -563,6 +575,12 @@ msgctxt "MmJQ7o"
 msgid "Gallery with captions"
 msgstr "Galerie avec légendes"
 
+# Swipe up default label
+#: MuQzCb
+msgctxt "MuQzCb"
+msgid "Learn more"
+msgstr ""
+
 # Title field label
 #: N25iDO
 msgctxt "N25iDO"
@@ -599,6 +617,12 @@ msgctxt "PKCv5M"
 msgid "No item..."
 msgstr "Aucun item..."
 
+# Media label
+#: PNMMo/
+msgctxt "PNMMo/"
+msgid "Audios"
+msgstr ""
+
 # Markers field label
 #: PbHeHc
 msgctxt "PbHeHc"
@@ -622,6 +646,12 @@ msgstr "Annuler"
 msgctxt "QBaiO0"
 msgid "Add a screen"
 msgstr "Ajouter un écran"
+
+# Media label
+#: QBlqW9
+msgctxt "QBlqW9"
+msgid "Videos"
+msgstr ""
 
 # Button label
 #: QSmRdP
@@ -771,6 +801,12 @@ msgstr "Réponse"
 msgctxt "XhgKcw"
 msgid "Move the map to position the place"
 msgstr "Déplacez la carte pour positionner"
+
+# Description in Media Gallery
+#: YJZtWR
+msgctxt "YJZtWR"
+msgid "Description"
+msgstr "Description"
 
 # Field label
 #: YWcp4v
@@ -970,6 +1006,12 @@ msgctxt "iHV3W3"
 msgid "No entry..."
 msgstr "Aucune d’entrée..."
 
+# Label in Media Gallery
+#: iUGRsc
+msgctxt "iUGRsc"
+msgid "Alt tag"
+msgstr ""
+
 # Gallery screen title
 #: jaFXki
 msgctxt "jaFXki"
@@ -1105,12 +1147,6 @@ msgstr "Enregistrer"
 msgctxt "qKQCxc"
 msgid "Add a marker"
 msgstr "Ajouter un marqueur"
-
-# Swipe up default label
-#: qmIoCJ
-msgctxt "qmIoCJ"
-msgid "Swipe up"
-msgstr ""
 
 # Label when there is no item
 #: rdFCsN

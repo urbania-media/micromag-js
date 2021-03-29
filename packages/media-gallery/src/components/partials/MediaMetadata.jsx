@@ -27,11 +27,12 @@ const MediaMetadata = ({ media, className }) => {
     const {
         id: mediaId,
         type,
+        url = null,
         thumbnail_url: thumbnail = null,
-        name: mediaName,
-        src,
+        name: mediaName = null,
         metadata = {},
     } = media || {};
+
     const {
         filename = null,
         size = null,
@@ -39,6 +40,7 @@ const MediaMetadata = ({ media, className }) => {
         height = null,
         duration = null,
         user = null,
+        description: mediaDescription = null,
         tags: mediaTags = [],
     } = metadata || {};
 
@@ -72,6 +74,7 @@ const MediaMetadata = ({ media, className }) => {
     );
 
     const [name, setName] = useState(mediaName);
+    const [description, setDescription] = useState(mediaDescription);
     const [tags, setTags] = useState(mediaTags.map(getOptionValue));
     const [changed, setChanged] = useState(false);
 
@@ -91,24 +94,34 @@ const MediaMetadata = ({ media, className }) => {
         [tags, setName, setChanged],
     );
 
+    const onDescriptionChange = useCallback(
+        (val) => {
+            setDescription(val);
+            setChanged(true);
+        },
+        [tags, setDescription, setChanged],
+    );
+
     const onSave = useCallback(
         () =>
-            update(mediaId, { name, tags }).then(() => {
+            update(mediaId, { name, tags, description }).then(() => {
                 setChanged(false);
             }),
-        [mediaId, name, tags, metadata, update],
+        [mediaId, name, tags, description, metadata, update],
     );
 
     useEffect(() => {
         if (media !== null) {
             setTags(mediaTags);
             setName(mediaName);
+            setDescription(mediaDescription);
         } else {
             setTags([]);
             setName(null);
+            setDescription(null);
         }
         setChanged(false);
-    }, [media, setTags, setName, setChanged]);
+    }, [media, setTags, setName, setDescription, setChanged]);
 
     const TextField = fieldsManager.getComponent('text');
     const TokensField = fieldsManager.getComponent('tokens');
@@ -134,13 +147,13 @@ const MediaMetadata = ({ media, className }) => {
             >
                 {type === 'video' ? (
                     <>
-                        <video className={styles.player} controls src={src} />
+                        <video className={styles.player} controls src={url} />
                     </>
                 ) : null}
                 {type === 'audio' ? (
                     <>
                         <div className={styles.audio}>
-                            <audio className={styles.player} controls src={src} />
+                            <audio className={styles.player} controls src={url} />
                         </div>
                     </>
                 ) : null}
@@ -158,6 +171,15 @@ const MediaMetadata = ({ media, className }) => {
                             />
                         </h6>
                         <TextField value={name} onChange={onNameChange} />
+                    </div>
+                    <div className="form-group">
+                        <h6>
+                            <FormattedMessage
+                                defaultMessage="Description"
+                                description="Description in Media Gallery"
+                            />
+                        </h6>
+                        <TextField value={description} onChange={onDescriptionChange} />
                     </div>
                     <div className="form-group">
                         <h6>
@@ -265,6 +287,21 @@ const MediaMetadata = ({ media, className }) => {
                                 </div>
                                 <div className="col">
                                     <small>{prettyBytes(size)}</small>
+                                </div>
+                            </div>
+                        </li>
+                    ) : null}
+                    {description !== null ? (
+                        <li className="list-group-item py-2 px-2">
+                            <div className="row">
+                                <div className="col-4 text-muted">
+                                    <FormattedMessage
+                                        defaultMessage="Alt tag"
+                                        description="Label in Media Gallery"
+                                    />
+                                </div>
+                                <div className="col">
+                                    <small>{description}</small>
                                 </div>
                             </div>
                         </li>

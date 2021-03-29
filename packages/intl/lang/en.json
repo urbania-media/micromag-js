@@ -32,6 +32,9 @@
     "/UoxuB": {
         "defaultMessage": "Image"
     },
+    "/ca7BX": {
+        "defaultMessage": "Types"
+    },
     "/hupzO": {
         "defaultMessage": "Credits"
     },
@@ -52,6 +55,9 @@
     },
     "2/F1Q7": {
         "defaultMessage": "#{index}"
+    },
+    "2J05S0": {
+        "defaultMessage": "Images"
     },
     "2ZOPe+": {
         "defaultMessage": "Title"
@@ -272,6 +278,9 @@
     "MmJQ7o": {
         "defaultMessage": "Gallery with captions"
     },
+    "MuQzCb": {
+        "defaultMessage": "Learn more"
+    },
     "N25iDO": {
         "defaultMessage": "Title"
     },
@@ -290,6 +299,9 @@
     "PKCv5M": {
         "defaultMessage": "No item..."
     },
+    "PNMMo/": {
+        "defaultMessage": "Audios"
+    },
     "PbHeHc": {
         "defaultMessage": "Markers"
     },
@@ -301,6 +313,9 @@
     },
     "QBaiO0": {
         "defaultMessage": "Add a screen"
+    },
+    "QBlqW9": {
+        "defaultMessage": "Videos"
     },
     "QSmRdP": {
         "defaultMessage": "Add an image"
@@ -376,6 +391,9 @@
     },
     "XhgKcw": {
         "defaultMessage": "Move the map to position the place"
+    },
+    "YJZtWR": {
+        "defaultMessage": "Description"
     },
     "YWcp4v": {
         "defaultMessage": "Bullet filled"
@@ -476,6 +494,9 @@
     "iHV3W3": {
         "defaultMessage": "No entry..."
     },
+    "iUGRsc": {
+        "defaultMessage": "Alt tag"
+    },
     "jaFXki": {
         "defaultMessage": "Gallery"
     },
@@ -544,9 +565,6 @@
     },
     "qKQCxc": {
         "defaultMessage": "Add a marker"
-    },
-    "qmIoCJ": {
-        "defaultMessage": "Swipe up"
     },
     "rdFCsN": {
         "defaultMessage": "No marker..."

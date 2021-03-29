@@ -31,7 +31,8 @@
         margin-bottom: 20px;
 
         .button,
-        .shareButton {
+        .shareButton,
+        .fullButton {
             display: inline-block;
             border: 0;
             background-color: transparent;
@@ -47,7 +48,7 @@
 
         .button {
             width: 20px;
-            margin-left: 20px;
+            margin-left: 10px;
             padding: 0;
 
             &:first-child {
@@ -57,6 +58,10 @@
 
         .shareButton {
             z-index: 1;
+        }
+
+        .fullButton {
+            margin-left: 10px;
         }
 
         .icon {
