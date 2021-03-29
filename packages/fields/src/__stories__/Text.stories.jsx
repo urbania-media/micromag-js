@@ -19,3 +19,4 @@ const FieldContainer = (props) => {
 
 export const normal = () => <FieldContainer />;
 export const withPrefix = () => <FieldContainer prefix="https://" />;
+export const disabled = () => <FieldContainer disabled />;
