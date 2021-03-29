@@ -157,7 +157,11 @@ export const WithSomeScreens = () => (
         viewerTheme={viewerTheme}
         defaultValue={{
             title: 'With some screens',
-            components: [{ id: '1', type: 'contribution' }, { id: '2', type: 'map-images', draggable: true }],
+            components: [
+                { id: '1', type: 'audio' },
+                { id: '2', type: 'contribution' },
+                { id: '3', type: 'map-images', draggable: true },
+            ],
         }}
     />
 );

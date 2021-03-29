@@ -175,13 +175,15 @@ const MapScreen = ({
         [trackScreenEvent],
     );
 
-    const onScrolledBottom = useCallback(() => {
-        const selectedMarker = (markers || [])[selectedMarkerIndex];
-        trackScreenEvent(
-            'scroll',
-            `Marker ${selectedMarkerIndex + 1}: ${selectedMarker.title.body}`,
-            { marker: selectedMarker, markerIndex: selectedMarkerIndex },
-        );
+    const onScrolledBottom = useCallback(({ initial }) => {
+        if (initial) {
+            const selectedMarker = (markers || [])[selectedMarkerIndex];
+            trackScreenEvent(
+                'scroll',
+                `Marker ${selectedMarkerIndex + 1}: ${selectedMarker.title.body}`,
+                { marker: selectedMarker, markerIndex: selectedMarkerIndex },
+            );
+        }
     }, [trackScreenEvent, markers, selectedMarkerIndex]);
 
     const {

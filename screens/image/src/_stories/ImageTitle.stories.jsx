@@ -1,7 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
-import { imageMedia, title, backgroundColor, transitions } from '../../../../.storybook/data';
+import {
+    imageMedia,
+    title,
+    backgroundColor,
+    transitions,
+    swipeUpLink,
+} from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import ImageTitleScreen from '../ImageTitle';
 import definition from '../definition';
@@ -32,5 +38,9 @@ export const Capture = (storyProps) => <ImageTitleScreen {...storyProps} {...pro
 export const Edit = (storyProps) => <ImageTitleScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <ImageTitleScreen {...storyProps} {...props} />;
+
+export const WithLink = (storyProps) => (
+    <ImageTitleScreen {...storyProps} {...props} link={swipeUpLink()} />
+);
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

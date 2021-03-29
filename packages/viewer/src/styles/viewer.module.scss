@@ -10,6 +10,7 @@
     height: 100%;
     overflow: hidden;
     background-color: $black;
+    touch-action: none;
 
     .content {
         position: relative;
@@ -21,6 +22,7 @@
     }
 
     .menuDotsContainer {
+        visibility: hidden;
         position: absolute;
         z-index: 2;
         top: 0;
@@ -31,18 +33,22 @@
 
     .menuDots {
         position: relative;
-        height: 100%;
         padding: 8px 10px;
         transition: opacity 0.25s ease;
     }
 
+    .menuPreviewContainer {
+        @extend %fullscreen;
+
+        visibility: hidden;
+        z-index: 3;
+        top: -100%;
+    }
+
     .menuPreview {
         @extend %fullscreen;
-        z-index: 3;
-        top: 0;
         left: 50%;
-        transform: translate(-50%, -100%);
-        transition: transform 0.25s ease;        
+        transform: translateX(-50%);
     }
 
     .screen {
@@ -57,12 +63,6 @@
 
     .screenInner {
         @extend %fullscreen;
-    }
-
-    &.menuOpened {
-        .menuPreview {
-            transform: translate(-50%, 0%);
-        }
     }
 
     &.landscape {        
@@ -98,6 +98,13 @@
 
         .menuDots {
             opacity: 0;            
+        }
+    }
+
+    &.ready {
+        .menuDotsContainer,
+        .menuPreviewContainer {
+            visibility: visible;
         }
     }
 }

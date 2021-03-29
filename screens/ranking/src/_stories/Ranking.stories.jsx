@@ -1,7 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
-import { text, title, backgroundColor, transitions } from '../../../../.storybook/data';
+import {
+    text,
+    title,
+    backgroundColor,
+    transitions,
+    swipeUpLink,
+} from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import RankingScreen from '../Ranking';
 import definition from '../definition';
@@ -36,6 +42,11 @@ export const Capture = (storyProps) => <RankingScreen {...storyProps} {...props}
 export const Edit = (storyProps) => <RankingScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <RankingScreen {...storyProps} {...props} />;
+
+export const WithLink = (storyProps) => (
+    <RankingScreen {...storyProps} {...props} link={swipeUpLink()} />
+);
+
 export const Ascending = (storyProps) => <RankingScreen {...storyProps} {...props} ascending />;
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

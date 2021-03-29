@@ -1,3 +1,4 @@
+// stylelint-disable max-nesting-depth
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 @import '~@micromag/core/scss/mixins';
@@ -65,6 +66,13 @@
         overflow: hidden;
     }
 
+    .swipeUp {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        width: 100%;
+    }
+
     &.isPlaceholder {
         .scroll {
             padding: 10px;
@@ -77,6 +85,8 @@
         .bullet {
             width: 10px;
             height: 10px;
+            border-color: rgba($black, 0.5);
+            background-color: rgba($black, 0.5);
         }
 
         .content {
@@ -96,11 +106,6 @@
         }
 
         .line {
-            background-color: rgba($black, 0.5);
-        }
-
-        .bullet {
-            border-color: rgba($black, 0.5);
             background-color: rgba($black, 0.5);
         }
     }

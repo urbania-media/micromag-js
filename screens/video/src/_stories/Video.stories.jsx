@@ -6,6 +6,7 @@ import {
     backgroundColor,
     closedCaptionsMedia,
     transitions,
+    swipeUpLink,
 } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import VideoScreen from '../Video';
@@ -51,6 +52,14 @@ export const WithSeekbarAndClosedCaptions = (storyProps) => (
     <VideoScreen
         {...storyProps}
         {...{ ...props({ closedCaptions: closedCaptionsMedia(), withSeekBar: true }) }}
+    />
+);
+
+export const WithLink = (storyProps) => (
+    <VideoScreen
+        {...storyProps}
+        {...{ ...props({ closedCaptions: closedCaptionsMedia(), withSeekBar: true }) }}
+        link={swipeUpLink()}
     />
 );
 

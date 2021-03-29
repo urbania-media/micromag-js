@@ -14,8 +14,9 @@ import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Heading from '@micromag/element-heading';
-import Text from '@micromag/element-text';
 import Button from '@micromag/element-button';
+import Text from '@micromag/element-text';
+import SwipeUp from '@micromag/element-swipe-up';
 
 import styles from './styles.module.scss';
 
@@ -26,6 +27,7 @@ const propTypes = {
     answers: MicromagPropTypes.answers,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
+    link: MicromagPropTypes.swipeUpLink,
     withPercentLabels: PropTypes.bool,
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
@@ -42,6 +44,7 @@ const defaultProps = {
     answers: null,
     spacing: 20,
     background: null,
+    link: null,
     withPercentLabels: true,
     current: true,
     transitions: null,
@@ -58,6 +61,7 @@ const SurveyScreen = ({
     answers,
     spacing,
     background,
+    link,
     withPercentLabels,
     current,
     transitions,
@@ -82,6 +86,8 @@ const SurveyScreen = ({
         isStatic,
         isCapture,
     } = useScreenRenderContext();
+
+    const hasLink = link !== null && link.active === true;
 
     const { quiz: quizAnswers = [] } = useQuiz({ screenId, opts: { autoload: !isPlaceholder } });
 
@@ -138,6 +144,8 @@ const SurveyScreen = ({
     }, [answers, quizAnswers, userAnswerIndex]);
 
     const isSplitted = layout === 'split';
+    const isTopLayout = layout === 'top';
+    const isMiddleLayout = layout === 'middle';
     const verticalAlign = isSplitted ? null : layout;
 
     const transitionPlaying = current;
@@ -193,7 +201,7 @@ const SurveyScreen = ({
         </ScreenElement>,
     ];
 
-    if (isSplitted) {
+    if (isSplitted || (!isPlaceholder && hasLink && isMiddleLayout)) {
         items.push(<Spacer key="spacer" />);
     }
 
@@ -364,6 +372,15 @@ const SurveyScreen = ({
             ) : null}
         </div>,
     );
+
+    // Swipe-up link
+
+    if (!isPlaceholder && hasLink) {
+        if (isTopLayout || isMiddleLayout) {
+            items.push(<Spacer key="spacer-link-bottom" />);
+        }
+        items.push(<SwipeUp key="swipe-up-link" link={link} disabled={!answered} />);
+    }
 
     return (
         <div

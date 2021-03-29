@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useDrag } from 'react-use-gesture';
+import { animated, useSpring, config } from 'react-spring';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     useScreenSizeFromElement,
@@ -94,6 +95,7 @@ const Viewer = ({
     const { fontFamily: themeFont = null } = themeTextStyle || {};
 
     // Fonts
+
     const finalFonts = useMemo(
         () => [...(fonts || []), themeFont].filter((font) => font !== null),
         [fonts],
@@ -116,6 +118,7 @@ const Viewer = ({
     const contentRef = useRef(null);
 
     // Get screen size
+
     const { ref: containerRef, screenSize } = useScreenSizeFromElement({
         width,
         height,
@@ -124,7 +127,8 @@ const Viewer = ({
     const { width: screenWidth = null, height: screenHeight = null, landscape = false } =
         screenSize || {};
 
-    // Get menu size
+    // Get menu height
+
     const {
         ref: menuDotsContainerRef,
         entry: { contentRect: menuDotsContainerRect },
@@ -132,7 +136,8 @@ const Viewer = ({
 
     const { height: menuDotsContainerHeight = 0 } = menuDotsContainerRect || {};
 
-    // Index
+    // Screen index
+
     const screenIndex = useMemo(
         () =>
             Math.max(
@@ -154,7 +159,21 @@ const Viewer = ({
         [screenIndex, screens, onScreenChange],
     );
 
-    // Handle interaction
+    // Track screen view
+
+    const trackingEnabled = isView;
+    const validIndex = screens.length > 0 && screenIndex < screens.length;
+    const currentScreen = validIndex ? screens[screenIndex] : null;
+    const { type: screenType = null } = currentScreen || {};
+
+    useEffect(() => {
+        if (trackingEnabled && currentScreen !== null) {
+            trackScreenView(currentScreen, screenIndex);
+        }
+    }, [currentScreen, trackScreenView, trackingEnabled]);
+
+    // Handle interaction enable
+
     const onScreenPrevious = useCallback(() => {
         changeIndex(Math.max(0, screenIndex - 1));
     }, [changeIndex]);
@@ -167,6 +186,7 @@ const Viewer = ({
     const [screensInteractionEnabled, setScreensInteractionEnabled] = useState(
         screens.map(() => true),
     );
+
     useEffect(() => {
         setScreensInteractionEnabled([...Array(screensCount).keys()].map(() => true));
     }, [screensCount]);
@@ -188,10 +208,8 @@ const Viewer = ({
         }
     }, [screenIndex, screensInteractionEnabled, setScreensInteractionEnabled]);
 
-    // Handle screen change
-    useEffect(() => {}, [screenIndex, screenHeight]);
-
     // handle tap
+
     const onTap = useCallback(
         (e, index) => {
             const checkClickable = (el, maxDistance = 5, distance = 1) => {
@@ -253,35 +271,51 @@ const Viewer = ({
         ],
     );
 
-    const [menuOpened, setMenuOpened] = useState(false);
+    // swipe down menu open
 
-    const onDrag = useCallback(
-        ({ swipe: [, swipeY], initial: [, iy] }) => {
-            if (swipeY !== 0) {
-                const swipeToBottom = swipeY > 0;
-                const swipeFromTop = iy < screenHeight / 5;
-                if (!swipeToBottom || swipeFromTop) {
-                    setMenuOpened(swipeToBottom);
+    const menuOpened = useRef(false);
+    const [{ y: menuY }, setMenuSpring] = useSpring(() => ({ y: 0, config: {...config.stiff, clamp: true} }));
+    const menuPreviewStyle = { transform: menuY.interpolate((y) => `translateY(${y * 100}%)`) };
+
+    const bindDrag = useDrag(
+        ({
+            initial: [, iy],
+            movement: [, my],
+            first,
+            last,
+            direction: [, dy],
+            cancel,
+            canceled,
+            tap,
+        }) => {
+            if (canceled || tap) {
+                return;
+            }
+
+            const isMenuOpened = menuOpened.current;
+            const fromTop = iy <= menuDotsContainerHeight;
+
+            if (first) {
+                if (isMenuOpened) {
+                    cancel();
+                    return;
+                }
+            }
+
+            const yProgress = Math.max(0, Math.min(1, my / screenHeight + (isMenuOpened ? 1 : 0)));
+
+            if (isMenuOpened || fromTop) {
+                if (last) {
+                    const menuNowOpened = dy > 0 && yProgress > 0.1;
+                    menuOpened.current = menuNowOpened;
+                    setMenuSpring({ y: menuNowOpened ? 1 : 0 });
+                } else {
+                    setMenuSpring({ y: yProgress });
                 }
             }
         },
-        [setMenuOpened, screenHeight],
+        { axis: 'y', filterTaps: true },
     );
-
-    const bindDrag = useDrag(onDrag, { enabled: !landscape });
-
-    // Track screen view
-
-    const trackingEnabled = isView;
-    const validIndex = screens.length > 0 && screenIndex < screens.length;
-    const currentScreen = validIndex ? screens[screenIndex] : null;
-    const { type: screenType = null } = currentScreen || {};
-
-    useEffect(() => {
-        if (trackingEnabled && currentScreen !== null) {
-            trackScreenView(currentScreen, screenIndex);
-        }
-    }, [currentScreen, trackScreenView, trackingEnabled]);
 
     // Handle dot menu item click
 
@@ -293,7 +327,8 @@ const Viewer = ({
             if (goToScreen) {
                 changeIndex(index);
             } else {
-                setMenuOpened((opened) => !opened);
+                setMenuSpring({ y: menuOpened.current ? 0 : 1 });
+                menuOpened.current = !menuOpened.current;
             }
             if (trackingEnabled) {
                 const trackAction = goToScreen ? 'click_screen_change' : 'click_open';
@@ -305,7 +340,7 @@ const Viewer = ({
                 });
             }
         },
-        [changeIndex, setMenuOpened, landscape, trackingEnabled, trackEvent, screenId, screenType],
+        [changeIndex, landscape, trackingEnabled, trackEvent, screenId, screenType],
     );
 
     // handle preview menu item click
@@ -313,7 +348,8 @@ const Viewer = ({
     const onClickPreviewMenuItem = useCallback(
         (index) => {
             changeIndex(index);
-            setMenuOpened(false);
+            setMenuSpring({ y: 0 });
+            menuOpened.current = false;
 
             if (trackingEnabled) {
                 trackEvent('viewer_menu', 'click_screen_change', `Screen ${index + 1}`, {
@@ -323,13 +359,14 @@ const Viewer = ({
                 });
             }
         },
-        [setMenuOpened, changeIndex, trackingEnabled, trackEvent, screenId, screenType],
+        [changeIndex, trackingEnabled, trackEvent, screenId, screenType],
     );
 
     // Handle preview menu close click
 
     const onClickPreviewMenuClose = useCallback(() => {
-        setMenuOpened(false);
+        setMenuSpring({ y: 0 });
+        menuOpened.current = false;
         if (trackingEnabled) {
             trackEvent('viewer_menu', 'click_close', 'Close icon', {
                 screenId,
@@ -337,7 +374,7 @@ const Viewer = ({
                 screenType,
             });
         }
-    }, [setMenuOpened, trackingEnabled, trackEvent, screenId, screenIndex, screenType]);
+    }, [trackingEnabled, trackEvent, screenId, screenIndex, screenType]);
 
     // Handle preview menu share click
 
@@ -359,23 +396,19 @@ const Viewer = ({
     const ready = hasSize; // && fontsLoaded;
 
     const menuVisible = screensCount === 0 || currentScreenInteractionEnabled;
+    const overscrollStyle = (
+        <style type="text/css">{`body { overscroll-behavior: contain; }`}</style>
+    );
 
     return (
         <ScreenSizeProvider size={screenSize}>
-            <ViewerProvider
-                menuVisible={menuVisible}
-                menuPosition="top"
-                menuSize={menuDotsContainerHeight}
-                menuOpened={menuOpened}
-            >
+            <ViewerProvider menuVisible={menuVisible} menuSize={menuDotsContainerHeight}>
                 {withMetadata ? (
                     <Meta title={title} metadata={metadata}>
-                        <style type="text/css">{`body { overscroll-behavior: contain; }`}</style>
+                        {overscrollStyle}
                     </Meta>
                 ) : (
-                    <Helmet>
-                        <style type="text/css">{`body { overscroll-behavior: contain; }`}</style>
-                    </Helmet>
+                    <Helmet>{overscrollStyle}</Helmet>
                 )}
                 <FontFaces fonts={finalFonts} />
                 <div
@@ -386,14 +419,14 @@ const Viewer = ({
                             [styles.fullscreen]: fullscreen,
                             [styles.landscape]: landscape,
                             [styles.hideMenu]: !menuVisible,
-                            [styles.menuOpened]: menuOpened,
+                            [styles.ready]: ready || withoutScreensTransforms,
                             [className]: className,
                         },
                     ])}
                     ref={containerRef}
-                    {...(!landscape && currentScreenInteractionEnabled ? bindDrag() : null)}
+                    {...(currentScreenInteractionEnabled ? bindDrag() : null)}
                 >
-                    {!withoutMenu && (ready || withoutScreensTransforms) ? (
+                    {!withoutMenu ? (
                         <>
                             <div
                                 className={styles.menuDotsContainer}
@@ -409,19 +442,24 @@ const Viewer = ({
                                     className={styles.menuDots}
                                 />
                             </div>
-                            <MenuPreview
-                                theme={theme}
-                                title={title}
-                                shareUrl={shareUrl}
-                                className={styles.menuPreview}
-                                screenWidth={screenWidth}
-                                screenHeight={screenHeight}
-                                items={screens}
-                                current={screenIndex}
-                                onClickItem={onClickPreviewMenuItem}
-                                onClose={onClickPreviewMenuClose}
-                                onShare={onClickShare}
-                            />
+                            <animated.div
+                                className={styles.menuPreviewContainer}
+                                style={menuPreviewStyle}
+                            >
+                                <MenuPreview
+                                    theme={theme}
+                                    title={title}
+                                    shareUrl={shareUrl}
+                                    className={styles.menuPreview}
+                                    screenWidth={screenWidth}
+                                    screenHeight={screenHeight}
+                                    items={screens}
+                                    current={screenIndex}
+                                    onClickItem={onClickPreviewMenuItem}
+                                    onClose={onClickPreviewMenuClose}
+                                    onShare={onClickShare}
+                                />
+                            </animated.div>
                         </>
                     ) : null}
                     {ready || withoutScreensTransforms ? (

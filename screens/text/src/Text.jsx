@@ -12,6 +12,7 @@ import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Heading from '@micromag/element-heading';
 import Text from '@micromag/element-text';
+import SwipeUp from '@micromag/element-swipe-up';
 
 import styles from './styles.module.scss';
 
@@ -22,6 +23,7 @@ const propTypes = {
     withTitle: PropTypes.bool,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
+    link: MicromagPropTypes.swipeUpLink,
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
@@ -35,6 +37,7 @@ const defaultProps = {
     withTitle: false,
     spacing: 20,
     background: null,
+    link: null,
     current: true,
     transitions: null,
     transitionStagger: 100,
@@ -48,6 +51,7 @@ const TextScreen = ({
     withTitle,
     spacing,
     background,
+    link,
     current,
     transitions,
     transitionStagger,
@@ -69,6 +73,8 @@ const TextScreen = ({
     const hasText = isTextFilled(text);
 
     const isSplitted = layout === 'split';
+    const isTopLayout = layout === 'top';
+    const isMiddleLayout = layout === 'middle';
     const verticalAlign = isSplitted ? null : layout;
 
     const titleWithMargin = hasTitle && hasText && !isSplitted;
@@ -77,9 +83,12 @@ const TextScreen = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
     const backgroundPlaying = current && (isView || isEdit);
 
+    const hasLink = link !== null && link.active === true;
+
     // Create elements
     const items = [
-        withTitle && (
+        !isPlaceholder && hasLink && isMiddleLayout ? <Spacer key="spacer-link-top" /> : null,
+        withTitle ? (
             <ScreenElement
                 key="title"
                 placeholder="title"
@@ -99,9 +108,9 @@ const TextScreen = ({
                     />
                 ) : null}
             </ScreenElement>
-        ),
+        ) : null,
 
-        isSplitted && withTitle && <Spacer key="spacer" />,
+        isSplitted && withTitle ? <Spacer key="spacer" /> : null,
 
         <ScreenElement
             key="description"
@@ -112,7 +121,11 @@ const TextScreen = ({
         >
             {hasText ? <Text className={styles.text} {...text} /> : null}
         </ScreenElement>,
-    ];
+        !isPlaceholder && hasLink && (isTopLayout || isMiddleLayout) ? (
+            <Spacer key="spacer-link-bottom" />
+        ) : null,
+        !isPlaceholder && hasLink ? <SwipeUp key="swipe-up-link" link={link} /> : null,
+    ].filter(el => el !== null);
 
     return (
         <div

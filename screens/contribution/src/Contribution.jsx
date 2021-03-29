@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
-import { useTrackScreenEvent } from '@micromag/core/hooks';
+import { useTrackScreenEvent, useResizeObserver } from '@micromag/core/hooks';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { isTextFilled, isLabelFilled, getStyleFromColor } from '@micromag/core/utils';
 import { useContributions, useContributionCreate } from '@micromag/data';
@@ -17,6 +17,7 @@ import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Scroll from '@micromag/element-scroll';
+import SwipeUp from '@micromag/element-swipe-up';
 import Text from '@micromag/element-text';
 import TextInput from '@micromag/element-text-input';
 
@@ -33,6 +34,7 @@ const propTypes = {
     messageStyle: MicromagPropTypes.textStyle,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
+    link: MicromagPropTypes.swipeUpLink,
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
@@ -52,6 +54,7 @@ const defaultProps = {
     messageStyle: null,
     spacing: 20,
     background: null,
+    link: null,
     current: true,
     transitions: null,
     transitionStagger: 100,
@@ -71,6 +74,7 @@ const ContributionScreen = ({
     messageStyle,
     spacing,
     background,
+    link,
     current,
     transitions,
     transitionStagger,
@@ -166,9 +170,31 @@ const ContributionScreen = ({
         [trackScreenEvent, userName],
     );
 
-    const onScrolledBottom = useCallback(() => {
-        trackScreenEvent('scroll', 'Contributions list');
-    }, [trackScreenEvent]);
+    // Swipe-up link
+
+    const hasLink = link !== null && link.active === true;
+    const [scrolledBottom, setScrolledBottom] = useState(false);
+    const swipeUpLinkActive = scrolledBottom && submitState === 4;
+    const {
+        ref: swipeUpLinkRef,
+        entry: { contentRect: swipeUpLinkRect },
+    } = useResizeObserver();
+
+    const { height: swipeUpLinkHeight = 0 } = swipeUpLinkRect || {};
+
+    const onScrolledBottom = useCallback(
+        ({ initial }) => {
+            if (initial) {
+                trackScreenEvent('scroll', 'Contributions list');
+            }
+            setScrolledBottom(true);
+        },
+        [trackScreenEvent, setScrolledBottom],
+    );
+
+    const onScrolledNotBottom = useCallback(() => {
+        setScrolledBottom(false);
+    }, [setScrolledBottom]);
 
     const onSubmit = useCallback(
         (e) => {
@@ -347,8 +373,10 @@ const ContributionScreen = ({
                 <div className={styles.contributionsContent}>
                     <div className={styles.contributions} ref={contributionsRef}>
                         {allContributions.map((contribution, contributionIndex) => {
-                            const nameInnerStyle = nameStyle !== null ? (nameStyle.style || null) : null;
-                            const messageInnerStyle = messageStyle !== null ? (messageStyle.style || null) : null;
+                            const nameInnerStyle =
+                                nameStyle !== null ? nameStyle.style || null : null;
+                            const messageInnerStyle =
+                                messageStyle !== null ? messageStyle.style || null : null;
                             return (
                                 <div
                                     key={`contribution-${contributionIndex}`}
@@ -376,6 +404,7 @@ const ContributionScreen = ({
                     </div>
                 </div>
             </div>
+            {hasLink ? <div style={{ height: swipeUpLinkHeight }} /> : null}
         </div>,
     );
 
@@ -417,9 +446,18 @@ const ContributionScreen = ({
                         verticalAlign={layout}
                         disabled={scrollingDisabled}
                         onScrolledBottom={onScrolledBottom}
+                        onScrolledNotBottom={onScrolledNotBottom}
                     >
                         {items}
                     </Scroll>
+                    {!isPlaceholder && hasLink ? (
+                        <SwipeUp
+                            ref={swipeUpLinkRef}
+                            className={styles.swipeUp}
+                            disabled={!swipeUpLinkActive}
+                            link={link}
+                        />
+                    ) : null}
                 </div>
             </Container>
         </div>

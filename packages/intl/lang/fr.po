@@ -143,6 +143,12 @@ msgctxt "33UbSd"
 msgid "Timeline with images"
 msgstr "Ligne du temps avec images"
 
+# Tap only label
+#: 35yXwb
+msgctxt "35yXwb"
+msgid "Tap only"
+msgstr ""
+
 # Label when there is no item in markers field
 #: 3E57H7
 msgctxt "3E57H7"
@@ -244,6 +250,12 @@ msgstr "Disposition"
 msgctxt "507VAi"
 msgid "Description"
 msgstr "Description"
+
+# Swipe-up link field label
+#: 5FTn/R
+msgctxt "5FTn/R"
+msgid "Swipe-up link"
+msgstr ""
 
 # Submit placeholder
 #: 5uH4x7
@@ -670,6 +682,12 @@ msgctxt "T9NZPQ"
 msgid "Images"
 msgstr "Images"
 
+# Url label
+#: TDOyVG
+msgctxt "TDOyVG"
+msgid "Url"
+msgstr ""
+
 # Longitude description
 #: THKV4v
 msgctxt "THKV4v"
@@ -705,6 +723,12 @@ msgstr "Polices personnalisées"
 msgctxt "V+G2s+"
 msgid "Add an image"
 msgstr "Ajouter une image"
+
+# Active label
+#: V8PtWX
+msgctxt "V8PtWX"
+msgid "Active"
+msgstr ""
 
 # Font family group title
 #: VDu2FA
@@ -1082,6 +1106,12 @@ msgctxt "qKQCxc"
 msgid "Add a marker"
 msgstr "Ajouter un marqueur"
 
+# Swipe up default label
+#: qmIoCJ
+msgctxt "qmIoCJ"
+msgid "Swipe up"
+msgstr ""
+
 # Label when there is no item
 #: rdFCsN
 msgctxt "rdFCsN"
@@ -1093,6 +1123,12 @@ msgstr "Aucun marqueur..."
 msgctxt "sESmah"
 msgid "Entries"
 msgstr "Entrées"
+
+# Label label
+#: sLRFMy
+msgctxt "sLRFMy"
+msgid "Label"
+msgstr ""
 
 # Label when there is no item in images field
 #: t+L1J/

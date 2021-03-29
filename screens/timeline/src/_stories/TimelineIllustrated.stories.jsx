@@ -1,7 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
-import { text, title, imageMedia, backgroundColor, transitions } from '../../../../.storybook/data';
+import {
+    text,
+    title,
+    imageMedia,
+    backgroundColor,
+    transitions,
+    swipeUpLink,
+} from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import TimelineIllustratedScreen from '../TimelineIllustrated';
 import definition from '../definition';
@@ -47,6 +54,10 @@ export const Edit = (storyProps) => <TimelineIllustratedScreen {...storyProps} /
 
 export const Normal = (storyProps) => (
     <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} />
+);
+
+export const WithLink = (storyProps) => (
+    <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} link={swipeUpLink()} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

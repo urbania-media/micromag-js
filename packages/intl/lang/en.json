@@ -62,6 +62,9 @@
     "33UbSd": {
         "defaultMessage": "Timeline with images"
     },
+    "35yXwb": {
+        "defaultMessage": "Tap only"
+    },
     "3E57H7": {
         "defaultMessage": "No marker..."
     },
@@ -112,6 +115,9 @@
     },
     "507VAi": {
         "defaultMessage": "Description"
+    },
+    "5FTn/R": {
+        "defaultMessage": "Swipe-up link"
     },
     "5uH4x7": {
         "defaultMessage": "Submit"
@@ -326,6 +332,9 @@
     "T9NZPQ": {
         "defaultMessage": "Images"
     },
+    "TDOyVG": {
+        "defaultMessage": "Url"
+    },
     "THKV4v": {
         "defaultMessage": "Longitude"
     },
@@ -343,6 +352,9 @@
     },
     "V+G2s+": {
         "defaultMessage": "Add an image"
+    },
+    "V8PtWX": {
+        "defaultMessage": "Active"
     },
     "VDu2FA": {
         "defaultMessage": "Google Fonts"
@@ -533,11 +545,17 @@
     "qKQCxc": {
         "defaultMessage": "Add a marker"
     },
+    "qmIoCJ": {
+        "defaultMessage": "Swipe up"
+    },
     "rdFCsN": {
         "defaultMessage": "No marker..."
     },
     "sESmah": {
         "defaultMessage": "Entries"
+    },
+    "sLRFMy": {
+        "defaultMessage": "Label"
     },
     "t+L1J/": {
         "defaultMessage": "No image..."

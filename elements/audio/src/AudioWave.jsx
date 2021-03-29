@@ -249,20 +249,13 @@ const AudioWave = ({
             ref={elRef}
         >
             <canvas ref={canvasBackgroundRef} className={styles.canvasBackground} />
-            <animated.div
-                className={styles.progressContainer}
+            <animated.canvas
+                ref={canvasProgressRef}
+                className={styles.canvasProgress}
                 style={{
-                    transform: springProps.x.interpolate((x) => `scaleX(${x}`),
+                    clipPath: springProps.x.interpolate((x) => `polygon(0 0, ${x * 100}% 0, ${x * 100}% 100%, 0 100%)`),
                 }}
-            >
-                <animated.canvas
-                    ref={canvasProgressRef}
-                    className={styles.canvasProgress}
-                    style={{
-                        transform: springProps.x.interpolate((x) => `scaleX(${1 / x}`),
-                    }}
-                />
-            </animated.div>
+            />
             <button
                 type="button"
                 className={styles.button}

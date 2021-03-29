@@ -9,15 +9,16 @@ import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { useTrackScreenEvent } from '@micromag/core/hooks';
+import { useTrackScreenEvent, useResizeObserver } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import { useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Heading from '@micromag/element-heading';
-import Text from '@micromag/element-text';
 import Button from '@micromag/element-button';
+import Text from '@micromag/element-text';
+import SwipeUp from '@micromag/element-swipe-up';
 
 import styles from './styles.module.scss';
 
@@ -33,6 +34,7 @@ const propTypes = {
     spacing: PropTypes.number,
     showResultsDelay: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
+    link: MicromagPropTypes.swipeUpLink,
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
@@ -50,6 +52,7 @@ const defaultProps = {
     spacing: 20,
     showResultsDelay: 750,
     background: null,
+    link: null,
     current: true,
     transitions: null,
     transitionStagger: 100,
@@ -67,6 +70,7 @@ const QuizScreen = ({
     spacing,
     showResultsDelay,
     background,
+    link,
     current,
     transitions,
     transitionStagger,
@@ -111,6 +115,17 @@ const QuizScreen = ({
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
     const backgroundPlaying = current && (isView || isEdit);
+
+    // Swipe-up link
+
+    const hasLink = link !== null && link.active === true;
+
+    const {
+        ref: swipeUpLinkRef,
+        entry: { contentRect: swipeUpLinkRect },
+    } = useResizeObserver();
+
+    const { height: swipeUpLinkHeight = 0 } = swipeUpLinkRect || {};
 
     const { create: submitQuiz } = useQuizCreate({
         screenId,
@@ -182,7 +197,7 @@ const QuizScreen = ({
                 }
             }
         }
-    }, [answers, setAnswerTransitionProps, width, height, showInstantAnswer]);
+    }, [answers, setAnswerTransitionProps, width, height, swipeUpLinkHeight, showInstantAnswer]);
 
     // when the animation is done, we set a state to remove animations props
     // .results' position changes from absolute to relative
@@ -338,10 +353,7 @@ const QuizScreen = ({
                                                         />
                                                     </span>
                                                 ) : null}
-                                                <Text
-                                                    {...label}
-                                                    className={styles.optionLabel}
-                                                />
+                                                <Text {...label} className={styles.optionLabel} />
                                             </Button>
                                         </Transitions>
                                     ) : null}
@@ -365,14 +377,17 @@ const QuizScreen = ({
                     emptyClassName={styles.emptyResult}
                 >
                     {hasResult && answers !== null ? (
-                        <Transitions
-                            transitions={transitions}
-                            playing={transitionPlaying}
-                            delay={(1 + answers.length) * transitionStagger}
-                            disabled={transitionDisabled}
-                        >
-                            <Text {...result} className={styles.resultText} />
-                        </Transitions>
+                        <>
+                            <Transitions
+                                transitions={transitions}
+                                playing={transitionPlaying}
+                                delay={(1 + answers.length) * transitionStagger}
+                                disabled={transitionDisabled}
+                            >
+                                <Text {...result} className={styles.resultText} />
+                                {hasLink ? <div style={{ height: swipeUpLinkHeight }} /> : null}
+                            </Transitions>
+                        </>
                     ) : null}
                 </ScreenElement>
             </div>
@@ -417,6 +432,14 @@ const QuizScreen = ({
                 >
                     {items}
                 </Layout>
+                {!isPlaceholder && hasLink ? (
+                    <SwipeUp
+                        ref={swipeUpLinkRef}
+                        className={styles.swipeUp}
+                        link={link}
+                        disabled={!answerTransitionComplete}
+                    />
+                ) : null}
             </Container>
         </div>
     );

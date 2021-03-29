@@ -87,6 +87,10 @@
     "defaultMessage": "Timeline with images",
     "description": "TimelineIllustrated screen title"
   },
+  "35yXwb": {
+    "defaultMessage": "Tap only",
+    "description": "Tap only label"
+  },
   "3E57H7": {
     "defaultMessage": "No marker...",
     "description": "Label when there is no item in markers field"
@@ -154,6 +158,10 @@
   "507VAi": {
     "defaultMessage": "Description",
     "description": "Description placeholder"
+  },
+  "5FTn/R": {
+    "defaultMessage": "Swipe-up link",
+    "description": "Swipe-up link field label"
   },
   "5uH4x7": {
     "defaultMessage": "Submit",
@@ -438,6 +446,10 @@
     "defaultMessage": "Images",
     "description": "Field label"
   },
+  "TDOyVG": {
+    "defaultMessage": "Url",
+    "description": "Url label"
+  },
   "THKV4v": {
     "defaultMessage": "Longitude",
     "description": "Longitude description"
@@ -461,6 +473,10 @@
   "V+G2s+": {
     "defaultMessage": "Add an image",
     "description": "Button label in images field"
+  },
+  "V8PtWX": {
+    "defaultMessage": "Active",
+    "description": "Active label"
   },
   "VDu2FA": {
     "defaultMessage": "Google Fonts",
@@ -712,6 +728,10 @@
     "defaultMessage": "Add a marker",
     "description": "Button label in markers field"
   },
+  "qmIoCJ": {
+    "defaultMessage": "Swipe up",
+    "description": "Swipe up default label"
+  },
   "rdFCsN": {
     "defaultMessage": "No marker...",
     "description": "Label when there is no item"
@@ -719,6 +739,10 @@
   "sESmah": {
     "defaultMessage": "Entries",
     "description": "Entries field label"
+  },
+  "sLRFMy": {
+    "defaultMessage": "Label",
+    "description": "Label label"
   },
   "t+L1J/": {
     "defaultMessage": "No image...",

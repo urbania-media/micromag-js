@@ -15,6 +15,7 @@ import Layout from '@micromag/element-layout';
 import Image from '@micromag/element-image';
 import Heading from '@micromag/element-heading';
 import Text from '@micromag/element-text';
+import SwipeUp from '@micromag/element-swipe-up';
 
 import styles from './styles.module.scss';
 
@@ -30,6 +31,7 @@ const propTypes = {
     withLegend: PropTypes.bool,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
+    link: MicromagPropTypes.swipeUpLink,
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
@@ -47,6 +49,7 @@ const defaultProps = {
     withLegend: false,
     spacing: 20,
     background: null,
+    link: null,
     current: true,
     transitions: null,
     className: null,
@@ -64,6 +67,7 @@ const ImageScreen = ({
     withLegend,
     spacing,
     background,
+    link,
     current,
     transitions,
     className,
@@ -223,6 +227,11 @@ const ImageScreen = ({
         if (withTitle && (hasTitle || isPlaceholder)) {
             items.splice(0, 0, items.splice(1, 1)[0]);
         }
+    }
+
+    const hasLink = link !== null && link.active === true;
+    if (!isPlaceholder && hasLink) {
+        items.push(<SwipeUp key="swipe-up-link" link={link} />)
     }
 
     let paddingTop = (!landscape && !isPreview ? menuSize : 0) + finalSpacing / 2;

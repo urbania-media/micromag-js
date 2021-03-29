@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
-import { backgroundColor, transitions } from '../../../../.storybook/data';
+import { backgroundColor, transitions, swipeUpLink } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import SurveyScreen from '../Survey';
 import definition from '../definition';
@@ -36,5 +36,9 @@ export const Capture = (storyProps) => <SurveyScreen {...storyProps} {...props} 
 export const Edit = (storyProps) => <SurveyScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <SurveyScreen {...storyProps} {...props} />;
+
+export const WithLink = (storyProps) => (
+    <SurveyScreen {...storyProps} {...props} link={swipeUpLink()} />
+);
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

@@ -13,6 +13,7 @@ import Container from '@micromag/element-container';
 import ClosedCaptions from '@micromag/element-closed-captions';
 import MediaControls from '@micromag/element-media-controls';
 import Video from '@micromag/element-video';
+import SwipeUp from '@micromag/element-swipe-up';
 
 import styles from './styles.module.scss';
 
@@ -20,6 +21,7 @@ const propTypes = {
     layout: PropTypes.oneOf(['middle', 'full']),
     video: MicromagPropTypes.videoElement,
     background: MicromagPropTypes.backgroundElement,
+    link: MicromagPropTypes.swipeUpLink,
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
@@ -29,12 +31,13 @@ const defaultProps = {
     layout: 'middle',
     video: null,
     background: null,
+    link: null,
     current: true,
     transitions: null,
     className: null,
 };
 
-const VideoScreen = ({ layout, video, background, current, transitions, className }) => {
+const VideoScreen = ({ layout, video, background, link, current, transitions, className }) => {
     const trackScreenMedia = useTrackScreenMedia('video');
 
     const { width, height } = useScreenSize();
@@ -120,6 +123,8 @@ const VideoScreen = ({ layout, video, background, current, transitions, classNam
     // ------------------------------------
 
     const fullscreen = layout === 'full';
+
+    const hasLink = link !== null && link.active === true;
 
     const hasVideo = video !== null;
     const [ready, setReady] = useState(!hasVideo);
@@ -241,6 +246,7 @@ const VideoScreen = ({ layout, video, background, current, transitions, classNam
                         onToggleMute={toggleMute}
                         onSeek={seek}
                     />
+                    { hasLink ? <SwipeUp link={link} /> : null }
                 </Transitions>
             </div>
         ) : null,

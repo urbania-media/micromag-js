@@ -1,3 +1,6 @@
+// stylelint-disable max-nesting-depth
+// stylelint-disable no-descending-specificity
+
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 @import '~@micromag/core/scss/mixins';
@@ -83,6 +86,13 @@
 
     .emptyResult {
         height: 100px;
+    }
+
+    .swipeUp {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        width: 100%;
     }
 
     &.answered {

@@ -1,0 +1,38 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/mixins';
+
+.container {
+    position: relative;    
+    transition: opacity .3s ease;
+    opacity: 1;   
+    text-align: center;    
+    
+    .arrow {
+        animation: upAndDown 0.5s ease-in-out infinite alternate;
+    }
+
+    // .label {
+
+    // }
+
+    .button {
+        width: 100%;
+        padding-top: 20px;
+    }
+
+    &.disabled {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+@keyframes upAndDown {
+    from {
+        transform: translateY(25%);
+    }
+
+    to {
+        transform: translateY(0%);
+    }
+}

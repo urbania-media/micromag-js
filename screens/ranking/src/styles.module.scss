@@ -27,6 +27,13 @@
         padding: 8px 0;
     }
 
+    .swipeUp {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        width: 100%;
+    }
+
     &.sideLayout {
         .layout {
             display: table;

@@ -71,5 +71,13 @@ export default {
                 description: 'Background field label',
             }),
         },
+        {
+            name: 'link',
+            type: 'swipe-up-link',
+            label: defineMessage({
+                defaultMessage: 'Swipe-up link',
+                description: 'Swipe-up link field label',
+            }),
+        },
     ],
 };

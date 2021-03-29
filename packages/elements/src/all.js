@@ -15,6 +15,7 @@ export { default as MediaControls } from '@micromag/element-media-controls';
 export { default as Quote } from '@micromag/element-quote';
 export { default as Scroll } from '@micromag/element-scroll';
 export { default as Stack } from '@micromag/element-stack';
+export { default as SwipeUp } from '@micromag/element-swipe-up';
 export { default as Text } from '@micromag/element-text';
 export { default as TextInput } from '@micromag/element-text-input';
 export { default as Video } from '@micromag/element-video';

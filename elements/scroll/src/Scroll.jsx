@@ -1,9 +1,11 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react';
+/* eslint-disable react/jsx-props-no-spreading */
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useResizeObserver } from '@micromag/core/hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { useScroll } from 'react-use-gesture';
 
 import styles from './styles.module.scss';
 
@@ -15,6 +17,7 @@ const propTypes = {
     className: PropTypes.string,
     children: PropTypes.node,
     onScrolledBottom: PropTypes.func,
+    onScrolledNotBottom: PropTypes.func,
 };
 
 const defaultProps = {
@@ -23,8 +26,9 @@ const defaultProps = {
     disabled: false,
     verticalAlign: null,
     className: null,
-    children: null,
+    children: null,    
     onScrolledBottom: null,
+    onScrolledNotBottom: null,
 };
 
 const Scroll = ({
@@ -33,8 +37,9 @@ const Scroll = ({
     disabled,
     verticalAlign,
     className,
-    children,
+    children,    
     onScrolledBottom,
+    onScrolledNotBottom,
 }) => {
     const finalStyle = {
         width,
@@ -55,32 +60,51 @@ const Scroll = ({
     } = useResizeObserver();
     const { height: scrolleeHeight } = scrolleeRect || {};
 
-    const scrollBottomOnce = useRef(false);
-    const onScroll = useCallback(
-        (e) => {
-            const scrollableEl = e.currentTarget;
-            const newWithArrow = scrollableEl.scrollTop < 10;
+    const scrolledBottomOnce = useRef(false);
+    const scrolledNotBottomOnce = useRef(false);
+    const reachedBottom = useRef(false);
+    const bind = useScroll(({ xy: [, scrollY], }) => {
+            const newWithArrow = scrollY <= 1;
 
-            if (!scrollBottomOnce.current) {
-                const maxScrollAmount = scrolleeHeight - scrollableHeight;
-                if (scrollableEl.scrollTop + 10 >= maxScrollAmount) {
-                    scrollBottomOnce.current = true;
+            const maxScrollAmount = scrolleeHeight - scrollableHeight;
+
+            const nowReachedBottom = scrollY + 1 >= maxScrollAmount;
+
+            if (nowReachedBottom) {
+                if (!reachedBottom.current) {
                     if (onScrolledBottom !== null) {
-                        onScrolledBottom();
+                        onScrolledBottom({ initial: !scrolledBottomOnce.current });
                     }
+                    scrolledBottomOnce.current = true;
                 }
+                
+            } else if (reachedBottom.current) {
+                if (onScrolledNotBottom !== null) {
+                    onScrolledNotBottom({ initial: !scrolledNotBottomOnce.current })
+                }
+                scrolledNotBottomOnce.current = true;
             }
 
             if (newWithArrow !== withArrow) {
                 setWithArrow(newWithArrow);
             }
-        },
-        [withArrow, setWithArrow, scrollableHeight, scrolleeHeight],
-    );
+            reachedBottom.current = nowReachedBottom;
+    }, { enabled: !disabled });
+
+    // need to call scrolled callbacks on initial render also
 
     useEffect(() => {
         if (scrolleeHeight > 0 && scrollableHeight > 0 && !disabled) {
             setWithArrow(Math.round(scrolleeHeight) > Math.round(scrollableHeight));
+            const maxScrollAmount = scrolleeHeight - scrollableHeight;
+            const nowReachedBottom = scrollableRef.current.scrollTop + 1 >= maxScrollAmount;
+            if (nowReachedBottom) {
+                if (onScrolledBottom !== null) {
+                    onScrolledBottom({ initial: false });
+                }
+            } else if (onScrolledNotBottom !== null) {
+                onScrolledNotBottom({ initial: false });
+            }
         }
     }, [scrollableHeight, scrolleeHeight, setWithArrow, disabled]);
 
@@ -100,7 +124,7 @@ const Scroll = ({
             <div
                 className={styles.scrollable}
                 ref={scrollableRef}
-                onScroll={!disabled ? onScroll : null}
+                {...bind()}
             >
                 <div className={styles.scrollee} ref={scrolleeRef}>
                     {children}

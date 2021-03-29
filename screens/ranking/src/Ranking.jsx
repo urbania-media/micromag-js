@@ -1,12 +1,12 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
-import { useTrackScreenEvent } from '@micromag/core/hooks';
+import { useTrackScreenEvent, useResizeObserver } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -14,6 +14,7 @@ import Layout from '@micromag/element-layout';
 import Text from '@micromag/element-text';
 import Heading from '@micromag/element-heading';
 import Scroll from '@micromag/element-scroll';
+import SwipeUp from '@micromag/element-swipe-up';
 
 import styles from './styles.module.scss';
 
@@ -24,6 +25,7 @@ const propTypes = {
     ascending: PropTypes.bool,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
+    link: MicromagPropTypes.swipeUpLink,
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
@@ -38,6 +40,7 @@ const defaultProps = {
     ascending: false,
     spacing: 20,
     background: null,
+    link: null,
     current: true,
     transitions: null,
     transitionStagger: 75,
@@ -52,6 +55,7 @@ const RankingScreen = ({
     ascending,
     spacing,
     background,
+    link,
     current,
     transitions,
     transitionStagger,
@@ -78,11 +82,7 @@ const RankingScreen = ({
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
     const scrollingDisabled = transitionDisabled || !current;
-    const backgroundPlaying = current && (isView || isEdit);
-
-    const onScrolledBottom = useCallback(() => {
-        trackScreenEvent('scroll', 'Screen');
-    }, [trackScreenEvent]);
+    const backgroundPlaying = current && (isView || isEdit);    
 
     const elements = (finalItems || []).map((item, itemI) => {
         const { title = null, description = null } = item || {};
@@ -173,6 +173,36 @@ const RankingScreen = ({
         );
     });
 
+
+    // Swipe-up link
+
+    const hasLink = link !== null && link.active === true;
+    const [scrolledBottom, setScrolledBottom] = useState(false);
+    const {
+        ref: swipeUpLinkRef,
+        entry: { contentRect: swipeUpLinkRect },
+    } = useResizeObserver();
+
+    const { height: swipeUpLinkHeight = 0 } = swipeUpLinkRect || {};
+
+    if (hasLink) {
+        elements.push(<div key="swipe-up-link-spacer" style={{ height: swipeUpLinkHeight }} />);
+    }
+
+    const onScrolledBottom = useCallback(
+        ({ initial }) => {
+            if (initial) {
+                trackScreenEvent('scroll', 'Screen');
+            }
+            setScrolledBottom(true);
+        },
+        [trackScreenEvent],
+    );
+
+    const onScrolledNotBottom = useCallback(() => {
+        setScrolledBottom(false);
+    }, [setScrolledBottom]);
+
     return (
         <div
             className={classNames([
@@ -199,6 +229,7 @@ const RankingScreen = ({
                     verticalAlign="middle"
                     disabled={scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
+                    onScrolledNotBottom={onScrolledNotBottom}
                 >
                     <Layout
                         className={styles.layout}
@@ -215,6 +246,14 @@ const RankingScreen = ({
                         {elements}
                     </Layout>
                 </Scroll>
+                {!isPlaceholder && hasLink ? (
+                    <SwipeUp
+                        ref={swipeUpLinkRef}
+                        className={styles.swipeUp}
+                        disabled={!scrolledBottom}
+                        link={link}
+                    />
+                ) : null}
             </Container>
         </div>
     );

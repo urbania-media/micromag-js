@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 const defaultValue = {
     menuVisible: false,
     menuSize: 0,
-    menuPosition: 'top',
-    menuOpened: false,
 };
 
 export const ViewerContext = React.createContext(defaultValue);
@@ -17,21 +15,17 @@ const propTypes = {
     children: PropTypes.node.isRequired,
     menuVisible: PropTypes.bool,
     menuSize: PropTypes.number,
-    menuPosition: PropTypes.oneOf(['top', 'right']),
-    menuOpened: PropTypes.bool,
 };
 
 const defaultProps = {...defaultValue};
 
-export const ViewerProvider = ({ children, menuVisible, menuSize, menuPosition, menuOpened }) => {
+export const ViewerProvider = ({ children, menuVisible, menuSize }) => {
     const value = useMemo(
         () => ({
             menuVisible,
             menuSize,
-            menuPosition,
-            menuOpened,
         }),
-        [menuVisible, menuSize, menuPosition, menuOpened],
+        [menuVisible, menuSize],
     );
     return <ViewerContext.Provider value={value}>{children}</ViewerContext.Provider>;
 };

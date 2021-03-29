@@ -15,6 +15,7 @@ import {
     quote,
     author,
     transitions,
+    swipeUpLink,
 } from '../data';
 
 export const allScreens = [
@@ -32,6 +33,7 @@ export const allScreens = [
             color: { alpha: 1, color: '#00FF00' },
         },
         transitions: transitions(),
+        link: swipeUpLink(),
     },
     {
         id: uuid(),
@@ -45,6 +47,7 @@ export const allScreens = [
             color: { alpha: 1, color: '#00FFFF' },
         },
         transitions: transitions(),
+        link: swipeUpLink(),
     },
     {
         id: uuid(),
@@ -55,6 +58,7 @@ export const allScreens = [
             color: { alpha: 1, color: '#FFFF00' },
         },
         transitions: transitions(),
+        link: swipeUpLink(),
     },
     {
         id: uuid(),
@@ -65,6 +69,7 @@ export const allScreens = [
             color: { alpha: 1, color: '#00FF00' },
         },
         transitions: transitions(),
+        link: swipeUpLink(),
     },
     {
         id: uuid(),
@@ -75,6 +80,7 @@ export const allScreens = [
             color: { alpha: 1, color: '#00FFFF' },
         },
         transitions: transitions(),
+        link: swipeUpLink(),
     },
     {
         id: uuid(),
@@ -85,6 +91,7 @@ export const allScreens = [
             color: { alpha: 1, color: '#FF00FF' },
         },
         transitions: transitions(),
+        link: swipeUpLink(),
     },
     {
         id: uuid(),
@@ -101,6 +108,7 @@ export const allScreens = [
             color: { alpha: 1, color: '#0000FF' },
         },
         transitions: transitions(),
+        link: swipeUpLink(),
     },
     {
         id: uuid(),
@@ -111,6 +119,7 @@ export const allScreens = [
             color: { alpha: 1, color: '#FF00FF' },
         },
         transitions: transitions(),
+        link: swipeUpLink(),
     },
     {
         id: uuid(),
@@ -125,6 +134,7 @@ export const allScreens = [
             color: { alpha: 1, color: '#FF0000' },
         },
         transitions: transitions(),
+        link: swipeUpLink(),
     },
     {
         id: uuid(),
@@ -139,6 +149,7 @@ export const allScreens = [
             color: { alpha: 1, color: '#0000FF' },
         },
         transitions: transitions(),
+        link: swipeUpLink(),
     },
     {
         id: uuid(),
@@ -158,6 +169,7 @@ export const allScreens = [
             color: { alpha: 1, color: '#00FF00' },
         },
         transitions: transitions(),
+        link: swipeUpLink(),
     },
     {
         id: uuid(),
@@ -169,6 +181,7 @@ export const allScreens = [
             color: { alpha: 1, color: '#00FFFF' },
         },
         transitions: transitions(),
+        link: swipeUpLink(),
     },
     {
         id: uuid(),
@@ -183,6 +196,7 @@ export const allScreens = [
             color: { alpha: 1, color: '#FF00FF' },
         },
         transitions: transitions(),
+        link: swipeUpLink(),
     },
     {
         id: uuid(),
@@ -199,6 +213,7 @@ export const allScreens = [
             color: { alpha: 1, color: '#333' },
         },
         transitions: transitions(),
+        link: swipeUpLink(),
     },
     {
         id: uuid(),
@@ -209,6 +224,7 @@ export const allScreens = [
             color: { alpha: 1, color: '#0000FF' },
         },
         transitions: transitions(),
+        link: swipeUpLink(),
     },
     {
         id: uuid(),
@@ -226,6 +242,7 @@ export const allScreens = [
             color: { alpha: 1, color: '#FF00FF' },
         },
         transitions: transitions(),
+        link: swipeUpLink(),
     },
     {
         id: uuid(),
@@ -244,6 +261,7 @@ export const allScreens = [
             color: { alpha: 1, color: '#0000FF' },
         },
         transitions: transitions(),
+        link: swipeUpLink(),
     },
     {
         id: uuid(),
@@ -256,6 +274,7 @@ export const allScreens = [
             color: { alpha: 1, color: '#FF0000' },
         },
         transitions: transitions(),
+        link: swipeUpLink(),
     },
     {
         id: uuid(),
@@ -272,6 +291,7 @@ export const allScreens = [
             color: { alpha: 1, color: '#FF00FF' },
         },
         transitions: transitions(),
+        link: swipeUpLink(),
     },
     // {
     //     id: uuid(),
@@ -288,6 +308,7 @@ export const allScreens = [
     //         color: { alpha: 1, color: '#FF00FF'},
     //     },
     //     transitions: transitions(),
+    //     link: swipeUpLink(),
     // },
 ];
 

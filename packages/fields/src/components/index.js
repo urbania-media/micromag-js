@@ -48,6 +48,7 @@ export { default as SliderPoint } from './SliderPoint';
 export { default as Slides } from './Slides';
 export { default as Spacing } from './Spacing';
 export { default as StaticField } from './StaticField';
+export { default as SwipeUpLink } from './SwipeUpLink';
 export { default as Target } from './Target';
 export { default as Text } from './Text';
 export { default as TextEditor } from './TextEditor';

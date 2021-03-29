@@ -56,6 +56,7 @@
         "@micromag/element-container": "^0.2.164",
         "@micromag/element-image": "^0.2.164",
         "@micromag/element-media-controls": "^0.2.164",
+        "@micromag/element-swipe-up": "^0.2.164",
         "@micromag/element-video": "^0.2.164",
         "@micromag/transforms": "^0.2.164",
         "classnames": "^2.2.6",

@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { useTrackScreenMedia } from '@micromag/core/hooks';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import Audio from '@micromag/element-audio';
@@ -12,14 +12,17 @@ import ClosedCaptions from '@micromag/element-closed-captions';
 import MediaControls from '@micromag/element-media-controls';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
-import Layout from '@micromag/element-layout';
+import Layout, { Spacer } from '@micromag/element-layout';
+import SwipeUp from '@micromag/element-swipe-up';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
     layout: PropTypes.oneOf(['middle']),
-    audio: MicromagPropTypes.audioElement,
+    audio: MicromagPropTypes.audioElement,    
+    spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
+    link: MicromagPropTypes.swipeUpLink,
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
@@ -27,17 +30,28 @@ const propTypes = {
 
 const defaultProps = {
     layout: 'middle',
-    audio: null,
+    audio: null,    
+    spacing: 20,
     background: null,
+    link: null,
     current: true,
     transitions: null,
     className: null,
 };
 
-const AudioScreen = ({ layout, audio, background, current, transitions, className }) => {
+const AudioScreen = ({
+    layout, // eslint-disable-line
+    audio,    
+    spacing,
+    background,
+    link,
+    current,
+    transitions,
+    className,
+}) => {
     const trackScreenMedia = useTrackScreenMedia('audio');
 
-    const { width, height } = useScreenSize();
+    const { width, height, landscape } = useScreenSize();
     const {
         isPlaceholder,
         isPreview,
@@ -46,6 +60,10 @@ const AudioScreen = ({ layout, audio, background, current, transitions, classNam
         isStatic,
         isCapture,
     } = useScreenRenderContext();
+
+    const { menuSize } = useViewer();
+    const hasLink = link !== null && link.active === true;
+
     const [ready, setReady] = useState(isStatic || isPlaceholder);
 
     const backgroundPlaying = current && (isView || isEdit);
@@ -133,8 +151,10 @@ const AudioScreen = ({ layout, audio, background, current, transitions, classNam
 
     // ------------------------------------
 
-    const element = (
+    const elements = [
+        <Spacer key="spacer-top" />,
         <ScreenElement
+            key="audio"
             placeholder="audio"
             emptyLabel={<FormattedMessage defaultMessage="Audio" description="Audio placeholder" />}
             emptyClassName={styles.empty}
@@ -143,7 +163,6 @@ const AudioScreen = ({ layout, audio, background, current, transitions, classNam
             <Transitions
                 transitions={transitions}
                 playing={transitionPlaying}
-                fullscreen
                 disabled={transitionDisabled}
             >
                 <Audio
@@ -168,25 +187,29 @@ const AudioScreen = ({ layout, audio, background, current, transitions, classNam
                     onSeeked={onSeeked}
                     onVolumeChanged={onVolumeChanged}
                 />
-                <div className={styles.bottomContent}>
-                    {hasClosedCaptions && !isPreview && !isCapture && !isStatic ? (
-                        <ClosedCaptions
-                            className={styles.closedCaptions}
-                            media={closedCaptions}
-                            currentTime={currentTime}
-                        />
-                    ) : null}
-                    <MediaControls
-                        className={styles.mediaControls}
-                        playing={playing}
-                        muted={muted}
-                        onTogglePlay={togglePlay}
-                        onToggleMute={toggleMute}
-                    />
-                </div>
             </Transitions>
-        </ScreenElement>
-    );
+        </ScreenElement>,
+        <Spacer key="spacer-middle" />,
+        !isPlaceholder ? (
+            <div key="controls" className={styles.bottomContent}>
+                {hasClosedCaptions && !isPreview && !isCapture && !isStatic ? (
+                    <ClosedCaptions
+                        className={styles.closedCaptions}
+                        media={closedCaptions}
+                        currentTime={currentTime}
+                    />
+                ) : null}
+                <MediaControls
+                    className={styles.mediaControls}
+                    playing={playing}
+                    muted={muted}
+                    onTogglePlay={togglePlay}
+                    onToggleMute={toggleMute}
+                />
+            </div>
+        ) : null,
+        !isPlaceholder && hasLink ? <SwipeUp key="swipe-up-link" link={link} /> : null,
+    ].filter((el) => el !== null);
 
     return (
         <div
@@ -209,8 +232,18 @@ const AudioScreen = ({ layout, audio, background, current, transitions, classNam
                 />
             ) : null}
             <Container width={width} height={height}>
-                <Layout fullscreen verticalAlign={layout}>
-                    {element}
+                <Layout
+                    fullscreen
+                    style={
+                        !isPlaceholder
+                            ? {
+                                  padding: spacing,
+                                  paddingTop: (!landscape && !isPreview ? menuSize : 0) + spacing,
+                              }
+                            : null
+                    }
+                >
+                    {elements}
                 </Layout>
             </Container>
         </div>

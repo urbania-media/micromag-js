@@ -24,6 +24,7 @@ import Container from '@micromag/element-container';
 import ClosedCaptions from '@micromag/element-closed-captions';
 import MediaControls from '@micromag/element-media-controls';
 import Video from '@micromag/element-video';
+import SwipeUp from '@micromag/element-swipe-up';
 
 import styles from './styles.module.scss';
 
@@ -31,6 +32,7 @@ const propTypes = {
     layout: PropTypes.oneOf(['full']),
     video: MicromagPropTypes.videoElement,
     background: MicromagPropTypes.backgroundElement,
+    link: MicromagPropTypes.swipeUpLink,
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     onPrevious: PropTypes.func,
@@ -43,6 +45,7 @@ const defaultProps = {
     layout: 'full',
     video: null,
     background: null,
+    link: null,
     current: true,
     transitions: null,
     onPrevious: null,
@@ -55,6 +58,7 @@ const Video360Screen = ({
     layout, // eslint-disable-line
     video,
     background,
+    link,
     current,
     transitions,
     onPrevious,
@@ -351,6 +355,8 @@ const Video360Screen = ({
         [onPrevious, onNext],
     );
 
+    const hasLink = link !== null && link.active === true;
+
     // Building elements ------------------
 
     const items = [
@@ -409,6 +415,7 @@ const Video360Screen = ({
                         onToggleMute={toggleMute}
                         onSeek={seek}
                     />
+                    { hasLink ? <SwipeUp link={link} /> : null }
                 </Transitions>
             </div>
         ) : null,

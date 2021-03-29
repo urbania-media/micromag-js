@@ -1,7 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
-import { quote, author, backgroundColor, transitions } from '../../../../.storybook/data';
+import {
+    quote,
+    author,
+    backgroundColor,
+    transitions,
+    swipeUpLink,
+} from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import QuoteScreen from '../Quote';
 import definition from '../definition';
@@ -31,5 +37,9 @@ export const Capture = (storyProps) => <QuoteScreen {...storyProps} {...props} /
 export const Edit = (storyProps) => <QuoteScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <QuoteScreen {...storyProps} {...props} />;
+
+export const WithLink = (storyProps) => (
+    <QuoteScreen {...storyProps} {...props} link={swipeUpLink()} />
+);
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

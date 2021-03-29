@@ -6,20 +6,9 @@
     height: 100px;
 
     .canvasBackground,
-    .progressContainer,
     .canvasProgress,
     .button {
         @extend %fullscreen;
-    }
-
-    .progressContainer {
-        overflow: hidden;
-    }
-
-    .progressContainer,
-    .canvasProgress {
-        position: relative;
-        transform-origin: left center;
     }
 
     .button {

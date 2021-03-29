@@ -12,6 +12,7 @@ import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Heading from '@micromag/element-heading';
 import Text from '@micromag/element-text';
+import SwipeUp from '@micromag/element-swipe-up';
 
 import styles from './styles.module.scss';
 
@@ -25,6 +26,7 @@ const propTypes = {
     spacing: PropTypes.number,
     descriptionEmptyLabel: MicromagPropTypes.label,
     background: MicromagPropTypes.backgroundElement,
+    link: MicromagPropTypes.swipeUpLink,
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
@@ -43,6 +45,7 @@ const defaultProps = {
         <FormattedMessage defaultMessage="Description" description="Description placeholder" />
     ),
     background: null,
+    link: null,
     current: true,
     transitions: null,
     transitionStagger: 100,
@@ -59,6 +62,7 @@ const TitleScreen = ({
     spacing,
     descriptionEmptyLabel,
     background,
+    link,
     current,
     transitions,
     transitionStagger,
@@ -82,6 +86,8 @@ const TitleScreen = ({
 
     const layoutParts = layout.split('-');
     const isSplitted = layoutParts[0] === 'split';
+    const isTopLayout = layout === 'top';
+    const isMiddleLayout = layout === 'middle';
     const verticalAlign = isSplitted ? layoutParts[1] || null : layoutParts[0];
 
     const titleWithMargin =
@@ -93,8 +99,11 @@ const TitleScreen = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
     const backgroundPlaying = current && (isView || isEdit);
 
+    const hasLink = link !== null && link.active === true;
+
     // Create elements
     const items = [
+        !isPlaceholder && hasLink && isMiddleLayout ? <Spacer key="spacer-link-top" /> : null,
         <ScreenElement
             key="title"
             placeholder="title"
@@ -151,6 +160,10 @@ const TitleScreen = ({
                 {hasDescription ? <Text {...description} /> : null}
             </ScreenElement>
         ),
+        !isPlaceholder && hasLink && (isTopLayout || isMiddleLayout) ? (
+            <Spacer key="spacer-link-bottom" />
+        ) : null,
+        !isPlaceholder && hasLink ? <SwipeUp key="swipe-up-link" link={link} /> : null,
     ];
 
     return (

@@ -1,6 +1,5 @@
-@import '~@micromag/core/scss/placeholders';
 // stylelint-disable max-nesting-depth
-
+@import '~@micromag/core/scss/placeholders';
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/mixins';
 
@@ -20,6 +19,13 @@
 
     .emptyCaption {
         height: 50px;
+    }
+
+    .swipeUp {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        width: 100%;
     }
 
     &.isPlaceholder {

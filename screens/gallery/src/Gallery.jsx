@@ -14,6 +14,7 @@ import Container from '@micromag/element-container';
 import Grid from '@micromag/element-grid';
 import Image from '@micromag/element-image';
 import Text from '@micromag/element-text';
+import SwipeUp from '@micromag/element-swipe-up';
 
 import layoutProps from './layouts';
 
@@ -48,6 +49,7 @@ const propTypes = {
     spacing: PropTypes.number,
     captionMaxLines: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
+    link: MicromagPropTypes.swipeUpLink,
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
@@ -61,6 +63,7 @@ const defaultProps = {
     spacing: 20,
     captionMaxLines: 2,
     background: null,
+    link: null,
     current: true,
     transitions: null,
     transitionStagger: 50,
@@ -72,6 +75,7 @@ const GalleryScreen = ({
     images,
     withCaptions,
     background,
+    link,
     current,
     spacing,
     captionMaxLines,
@@ -129,6 +133,16 @@ const GalleryScreen = ({
             );
         }
     }, [contentWidth, contentHeight, layout, setImagesSizes]);
+
+    // Swipe-up link
+
+    const hasLink = link !== null && link.active === true;
+    const {
+        ref: swipeUpLinkRef,
+        entry: { contentRect: swipeUpLinkRect },
+    } = useResizeObserver();
+
+    const { height: swipeUpLinkHeight = 0 } = swipeUpLinkRect || {};
 
     const items = [...Array(gridSpaces)].map((item, itemI) => {
         const image = images !== null ? images[itemI] : null;
@@ -234,10 +248,12 @@ const GalleryScreen = ({
                     className={styles.content}
                     style={{
                         paddingTop: !landscape && !isPreview ? menuSize : null,
+                        paddingBottom: !isPreview && hasLink ? swipeUpLinkHeight + spacing : 0
                     }}
                     ref={contentRef}
                 >
                     <Grid className={styles.grid} spacing={finalSpacing} items={items} {...grid} />
+                    { !isPlaceholder && hasLink ? <SwipeUp ref={swipeUpLinkRef} className={styles.swipeUp} link={link} /> : null }
                 </div>
             </Container>
         </div>

@@ -14,6 +14,7 @@ import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
 import Image from '@micromag/element-image';
 import Text from '@micromag/element-text';
+import SwipeUp from '@micromag/element-swipe-up';
 
 import styles from './styles.module.scss';
 
@@ -26,6 +27,7 @@ const propTypes = {
     withCaptions: PropTypes.bool,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
+    link: MicromagPropTypes.swipeUpLink,
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
@@ -39,6 +41,7 @@ const defaultProps = {
     withCaptions: false,
     spacing: 20,
     background: null,
+    link: null,
     current: true,
     transitions: null,
     transitionStagger: 75,
@@ -52,6 +55,7 @@ const GalleryFeedScreen = ({
     withCaptions,
     spacing,
     background,
+    link,
     current,
     transitions,
     transitionStagger,
@@ -96,10 +100,6 @@ const GalleryFeedScreen = ({
     } = useResizeObserver();
     const { width: firstImageRefWidth } = contentRect || {};
 
-    const onScrolledBottom = useCallback(() => {
-        trackScreenEvent('scroll', 'Screen');
-    }, [trackScreenEvent]);
-
     (finalImages || []).forEach((image, index) => {
         const finalImage = withCaptions ? image : { media: image };
         const { caption = null } = finalImage || {};
@@ -126,7 +126,8 @@ const GalleryFeedScreen = ({
 
         if (withCaptions) {
             const marginTop = !isReversed || index > 0 ? spacing / 2 : 0;
-            const marginBottom = isReversed || index < (finalImages || []).length - 1 ? spacing / 2 : 0;
+            const marginBottom =
+                isReversed || index < (finalImages || []).length - 1 ? spacing / 2 : 0;
             captionElement = (
                 <ScreenElement
                     key={`caption-${index}`}
@@ -171,6 +172,35 @@ const GalleryFeedScreen = ({
         }
     });
 
+    // Swipe-up link
+
+    const hasLink = link !== null && link.active === true;
+    const [scrolledBottom, setScrolledBottom] = useState(false);
+    const {
+        ref: swipeUpLinkRef,
+        entry: { contentRect: swipeUpLinkRect },
+    } = useResizeObserver();
+
+    const { height: swipeUpLinkHeight = 0 } = swipeUpLinkRect || {};
+
+    if (!isPlaceholder && hasLink) {
+        items.push(<div style={{ height: swipeUpLinkHeight }} />);
+    }
+
+    const onScrolledBottom = useCallback(
+        ({ initial }) => {
+            if (initial) {
+                trackScreenEvent('scroll', 'Screen');
+            }
+            setScrolledBottom(true);
+        },
+        [trackScreenEvent],
+    );
+
+    const onScrolledNotBottom = useCallback(() => {
+        setScrolledBottom(false);
+    }, [setScrolledBottom]);
+
     return (
         <div
             className={classNames([
@@ -191,7 +221,11 @@ const GalleryFeedScreen = ({
                 />
             ) : null}
             <Container width={width} height={height}>
-                <Scroll disabled={scrollingDisabled} onScrolledBottom={onScrolledBottom}>
+                <Scroll
+                    disabled={scrollingDisabled}
+                    onScrolledBottom={onScrolledBottom}
+                    onScrolledNotBottom={onScrolledNotBottom}
+                >
                     <Layout
                         className={styles.layout}
                         style={
@@ -214,6 +248,14 @@ const GalleryFeedScreen = ({
                         </TransitionsStagger>
                     </Layout>
                 </Scroll>
+                {!isPlaceholder && hasLink ? (
+                    <SwipeUp
+                        ref={swipeUpLinkRef}
+                        className={styles.swipeUp}
+                        disabled={!scrolledBottom}
+                        link={link}
+                    />
+                ) : null}
             </Container>
         </div>
     );
