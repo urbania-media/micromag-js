@@ -57,7 +57,7 @@ msgstr "Couleur"
 #: +uInZz
 msgctxt "+uInZz"
 msgid "Circle"
-msgstr ""
+msgstr "Cercle"
 
 # Media gallery source
 #: /62oe4
@@ -93,7 +93,7 @@ msgstr "Image"
 #: /ca7BX
 msgctxt "/ca7BX"
 msgid "Types"
-msgstr ""
+msgstr "Types"
 
 # Credits placeholder
 #: /hupzO
@@ -141,7 +141,7 @@ msgstr "#{index}"
 #: 2J05S0
 msgctxt "2J05S0"
 msgid "Images"
-msgstr ""
+msgstr "Images"
 
 # Title placeholder
 #: 2ZOPe+
@@ -183,7 +183,7 @@ msgstr "Légende"
 #: 3ext9Q
 msgctxt "3ext9Q"
 msgid "Video"
-msgstr ""
+msgstr "Vidéo"
 
 # Field label
 #: 3ifj0j
@@ -411,7 +411,7 @@ msgstr "Supprimer l'élément"
 #: CrzYgw
 msgctxt "CrzYgw"
 msgid "Quote"
-msgstr ""
+msgstr "Citation"
 
 # Markers field label
 #: D0+Cxr
@@ -621,7 +621,7 @@ msgstr "Aucun item..."
 #: PNMMo/
 msgctxt "PNMMo/"
 msgid "Audios"
-msgstr ""
+msgstr "Audios"
 
 # Markers field label
 #: PbHeHc
@@ -651,7 +651,7 @@ msgstr "Ajouter un écran"
 #: QBlqW9
 msgctxt "QBlqW9"
 msgid "Videos"
-msgstr ""
+msgstr "Vidéos"
 
 # Button label
 #: QSmRdP
@@ -716,7 +716,7 @@ msgstr "Images"
 #: TDOyVG
 msgctxt "TDOyVG"
 msgid "Url"
-msgstr ""
+msgstr "Url"
 
 # Longitude description
 #: THKV4v
@@ -758,7 +758,7 @@ msgstr "Ajouter une image"
 #: V8PtWX
 msgctxt "V8PtWX"
 msgid "Active"
-msgstr ""
+msgstr "Actif"
 
 # Font family group title
 #: VDu2FA
@@ -806,7 +806,7 @@ msgstr "Déplacez la carte pour positionner"
 #: Y2aNFe
 msgctxt "Y2aNFe"
 msgid "Button"
-msgstr ""
+msgstr "Bouton"
 
 # Description in Media Gallery
 #: YJZtWR
@@ -902,7 +902,7 @@ msgstr "Liste"
 #: d60tSn
 msgctxt "d60tSn"
 msgid "Subtitle"
-msgstr ""
+msgstr "Sous-titre"
 
 # Label when there is no item
 #: dFMzBu
@@ -980,7 +980,7 @@ msgstr "Texte"
 #: fusnxf
 msgctxt "fusnxf"
 msgid "Square"
-msgstr ""
+msgstr "Carré"
 
 # Contribution screen title
 #: g6b9Lg
@@ -1152,7 +1152,7 @@ msgstr "Êtes-vous sûr que vous voulez supprimer cet écran?"
 #: qBKOEO
 msgctxt "qBKOEO"
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 # Save in Media Gallery
 #: qIw1nW
@@ -1182,7 +1182,7 @@ msgstr "Entrées"
 #: sLRFMy
 msgctxt "sLRFMy"
 msgid "Label"
-msgstr ""
+msgstr "Libellé"
 
 # Label when there is no item in images field
 #: t+L1J/
@@ -1332,7 +1332,7 @@ msgstr "Image"
 #: xYqGzM
 msgctxt "xYqGzM"
 msgid "Author"
-msgstr ""
+msgstr "Auteur"
 
 # Fields section label
 #: y7xsPe
@@ -1350,7 +1350,7 @@ msgstr "Image d’arrière-plan"
 #: z/VBX0
 msgctxt "z/VBX0"
 msgid "Learn more"
-msgstr ""
+msgstr "En savoir plus"
 
 # Text placeholder
 #: z4CiV1
