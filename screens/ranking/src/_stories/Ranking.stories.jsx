@@ -6,7 +6,7 @@ import {
     title,
     backgroundColor,
     transitions,
-    swipeUpLink,
+    callToAction,
 } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import RankingScreen from '../Ranking';
@@ -43,8 +43,8 @@ export const Edit = (storyProps) => <RankingScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <RankingScreen {...storyProps} {...props} />;
 
-export const WithLink = (storyProps) => (
-    <RankingScreen {...storyProps} {...props} link={swipeUpLink()} />
+export const WithCallToAction = (storyProps) => (
+    <RankingScreen {...storyProps} {...props} callToAction={callToAction()} />
 );
 
 export const Ascending = (storyProps) => <RankingScreen {...storyProps} {...props} ascending />;

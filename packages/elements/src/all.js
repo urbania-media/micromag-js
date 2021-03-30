@@ -2,6 +2,7 @@
 export { default as Audio } from '@micromag/element-audio';
 export { default as Background } from '@micromag/element-background';
 export { default as Button } from '@micromag/element-button';
+export { default as CallToAction } from '@micromag/element-call-to-action';
 export { default as Checkbox } from '@micromag/element-checkbox';
 export { default as ClosedCaptions } from '@micromag/element-closed-captions';
 export { default as Container } from '@micromag/element-container';
@@ -15,7 +16,6 @@ export { default as MediaControls } from '@micromag/element-media-controls';
 export { default as Quote } from '@micromag/element-quote';
 export { default as Scroll } from '@micromag/element-scroll';
 export { default as Stack } from '@micromag/element-stack';
-export { default as SwipeUp } from '@micromag/element-swipe-up';
 export { default as Text } from '@micromag/element-text';
 export { default as TextInput } from '@micromag/element-text-input';
 export { default as Video } from '@micromag/element-video';

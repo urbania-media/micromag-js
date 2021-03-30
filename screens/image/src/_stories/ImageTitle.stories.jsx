@@ -6,7 +6,7 @@ import {
     title,
     backgroundColor,
     transitions,
-    swipeUpLink,
+    callToAction,
 } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import ImageTitleScreen from '../ImageTitle';
@@ -39,8 +39,8 @@ export const Edit = (storyProps) => <ImageTitleScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <ImageTitleScreen {...storyProps} {...props} />;
 
-export const WithLink = (storyProps) => (
-    <ImageTitleScreen {...storyProps} {...props} link={swipeUpLink()} />
+export const WithCallToAction = (storyProps) => (
+    <ImageTitleScreen {...storyProps} {...props} callToAction={callToAction()} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

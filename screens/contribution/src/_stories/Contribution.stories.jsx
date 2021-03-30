@@ -2,7 +2,7 @@
 import React from 'react';
 
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { title, backgroundColor, transitions, swipeUpLink } from '../../../../.storybook/data';
+import { title, backgroundColor, transitions, callToAction } from '../../../../.storybook/data';
 import ContributionScreen from '../Contribution';
 import definition from '../definition';
 
@@ -36,8 +36,8 @@ export const Edit = (storyProps) => <ContributionScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <ContributionScreen {...storyProps} {...props} />;
 
-export const WithLink = (storyProps) => (
-    <ContributionScreen {...storyProps} {...props} link={swipeUpLink()} />
+export const WithCallToAction = (storyProps) => (
+    <ContributionScreen {...storyProps} {...props} callToAction={callToAction()} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

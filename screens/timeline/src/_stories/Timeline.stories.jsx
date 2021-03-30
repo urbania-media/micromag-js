@@ -6,7 +6,7 @@ import {
     title,
     backgroundColor,
     transitions,
-    swipeUpLink,
+    callToAction,
 } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import TimelineScreen from '../Timeline';
@@ -54,8 +54,8 @@ export const Normal = (storyProps) => (
     <TimelineScreen {...storyProps} {...props} {...normalProps} />
 );
 
-export const WithLink = (storyProps) => (
-    <TimelineScreen {...storyProps} {...props} {...normalProps} link={swipeUpLink()} />
+export const WithCallToAction = (storyProps) => (
+    <TimelineScreen {...storyProps} {...props} {...normalProps} callToAction={callToAction()} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

@@ -27,6 +27,10 @@
     "defaultMessage": "Color",
     "description": "Color label"
   },
+  "+uInZz": {
+    "defaultMessage": "Circle",
+    "description": "Circle label"
+  },
   "/62oe4": {
     "defaultMessage": "My files",
     "description": "Media gallery source"
@@ -94,10 +98,6 @@
   "33UbSd": {
     "defaultMessage": "Timeline with images",
     "description": "TimelineIllustrated screen title"
-  },
-  "35yXwb": {
-    "defaultMessage": "Tap only",
-    "description": "Tap only label"
   },
   "3E57H7": {
     "defaultMessage": "No marker...",
@@ -167,10 +167,6 @@
     "defaultMessage": "Description",
     "description": "Description placeholder"
   },
-  "5FTn/R": {
-    "defaultMessage": "Swipe-up link",
-    "description": "Swipe-up link field label"
-  },
   "5uH4x7": {
     "defaultMessage": "Submit",
     "description": "Submit placeholder"
@@ -206,6 +202,10 @@
   "8Dl/S1": {
     "defaultMessage": "Draggable",
     "description": "Draggable field label"
+  },
+  "8lxqFe": {
+    "defaultMessage": "Call to Action",
+    "description": "Call to Action field label"
   },
   "8oczXQ": {
     "defaultMessage": "Add a marker",
@@ -270,6 +270,10 @@
   "D0+Cxr": {
     "defaultMessage": "Markers with image",
     "description": "Markers field label"
+  },
+  "DGPxQq": {
+    "defaultMessage": "Swipe up",
+    "description": "Swipe up label"
   },
   "DVrK6z": {
     "defaultMessage": "Click to edit...",
@@ -374,10 +378,6 @@
   "MmJQ7o": {
     "defaultMessage": "Gallery with captions",
     "description": "GalleryCaptions screen title"
-  },
-  "MuQzCb": {
-    "defaultMessage": "Learn more",
-    "description": "Swipe up default label"
   },
   "N25iDO": {
     "defaultMessage": "Title",
@@ -526,6 +526,10 @@
     "defaultMessage": "Move the map to position the place",
     "description": "Move the map to position the place description"
   },
+  "Y2aNFe": {
+    "defaultMessage": "Button",
+    "description": "Button label"
+  },
   "YJZtWR": {
     "defaultMessage": "Description",
     "description": "Description in Media Gallery"
@@ -638,6 +642,10 @@
     "defaultMessage": "Text",
     "description": "Text screen group"
   },
+  "fusnxf": {
+    "defaultMessage": "Square",
+    "description": "Square label"
+  },
   "g6b9Lg": {
     "defaultMessage": "Contribution",
     "description": "Contribution screen title"
@@ -747,6 +755,10 @@
   "q/tLk0": {
     "defaultMessage": "Are you sure you want to delete this screen?",
     "description": "Confirmation message before deleting a screen"
+  },
+  "qBKOEO": {
+    "defaultMessage": "Type",
+    "description": "Type label"
   },
   "qIw1nW": {
     "defaultMessage": "Save",
@@ -875,6 +887,10 @@
   "ySApyR": {
     "defaultMessage": "Background image",
     "description": "Field label"
+  },
+  "z/VBX0": {
+    "defaultMessage": "Learn more",
+    "description": "Call to action default label"
   },
   "z4CiV1": {
     "defaultMessage": "Text",

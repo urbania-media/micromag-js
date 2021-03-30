@@ -15,7 +15,7 @@ import Layout from '@micromag/element-layout';
 import Image from '@micromag/element-image';
 import Heading from '@micromag/element-heading';
 import Text from '@micromag/element-text';
-import SwipeUp from '@micromag/element-swipe-up';
+import CallToAction from '@micromag/element-call-to-action';
 
 import styles from './styles.module.scss';
 
@@ -31,7 +31,7 @@ const propTypes = {
     withLegend: PropTypes.bool,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    link: MicromagPropTypes.swipeUpLink,
+    callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
@@ -49,7 +49,7 @@ const defaultProps = {
     withLegend: false,
     spacing: 20,
     background: null,
-    link: null,
+    callToAction: null,
     current: true,
     transitions: null,
     className: null,
@@ -67,7 +67,7 @@ const ImageScreen = ({
     withLegend,
     spacing,
     background,
-    link,
+    callToAction,
     current,
     transitions,
     className,
@@ -76,7 +76,14 @@ const ImageScreen = ({
 
     const { menuSize } = useViewer();
 
-    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } = useScreenRenderContext();
+    const {
+        isView,
+        isPreview,
+        isPlaceholder,
+        isEdit,
+        isStatic,
+        isCapture,
+    } = useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
 
     const hasImage = image !== null;
@@ -229,9 +236,15 @@ const ImageScreen = ({
         }
     }
 
-    const hasLink = link !== null && link.active === true;
-    if (!isPlaceholder && hasLink) {
-        items.push(<SwipeUp key="swipe-up-link" link={link} />)
+    const hasCallToAction = callToAction !== null && callToAction.active === true;
+    if (!isPlaceholder && hasCallToAction) {
+        items.push(
+            <CallToAction
+                key="call-to-action"
+                callToAction={callToAction}
+                animationDisabled={isPreview}
+            />,
+        );
     }
 
     let paddingTop = (!landscape && !isPreview ? menuSize : 0) + finalSpacing / 2;

@@ -7,7 +7,7 @@ import {
     imageMedia,
     backgroundColor,
     transitions,
-    swipeUpLink,
+    callToAction,
 } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import TimelineIllustratedScreen from '../TimelineIllustrated';
@@ -56,8 +56,8 @@ export const Normal = (storyProps) => (
     <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} />
 );
 
-export const WithLink = (storyProps) => (
-    <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} link={swipeUpLink()} />
+export const WithCallToAction = (storyProps) => (
+    <TimelineIllustratedScreen {...storyProps} {...props} {...normalProps} callToAction={callToAction()} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
-import { images, backgroundColor, transitions, swipeUpLink } from '../../../../.storybook/data';
+import { images, backgroundColor, transitions, callToAction } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import GalleryScreen from '../Gallery';
 import definition from '../definition';
@@ -31,8 +31,8 @@ export const Edit = (storyProps) => <GalleryScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <GalleryScreen {...storyProps} {...props} />;
 
-export const WithLink = (storyProps) => (
-    <GalleryScreen {...storyProps} {...props} link={swipeUpLink()} />
+export const WithCallToAction = (storyProps) => (
+    <GalleryScreen {...storyProps} {...props} callToAction={callToAction()} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

@@ -53,6 +53,12 @@ msgctxt "+VD/9p"
 msgid "Color"
 msgstr "Couleur"
 
+# Circle label
+#: +uInZz
+msgctxt "+uInZz"
+msgid "Circle"
+msgstr ""
+
 # Media gallery source
 #: /62oe4
 msgctxt "/62oe4"
@@ -155,12 +161,6 @@ msgctxt "33UbSd"
 msgid "Timeline with images"
 msgstr "Ligne du temps avec images"
 
-# Tap only label
-#: 35yXwb
-msgctxt "35yXwb"
-msgid "Tap only"
-msgstr ""
-
 # Label when there is no item in markers field
 #: 3E57H7
 msgctxt "3E57H7"
@@ -183,7 +183,7 @@ msgstr "Légende"
 #: 3ext9Q
 msgctxt "3ext9Q"
 msgid "Video"
-msgstr "Vidéo"
+msgstr ""
 
 # Field label
 #: 3ifj0j
@@ -263,12 +263,6 @@ msgctxt "507VAi"
 msgid "Description"
 msgstr "Description"
 
-# Swipe-up link field label
-#: 5FTn/R
-msgctxt "5FTn/R"
-msgid "Swipe-up link"
-msgstr ""
-
 # Submit placeholder
 #: 5uH4x7
 msgctxt "5uH4x7"
@@ -322,6 +316,12 @@ msgstr "Citation"
 msgctxt "8Dl/S1"
 msgid "Draggable"
 msgstr "Glissable"
+
+# Call to Action field label
+#: 8lxqFe
+msgctxt "8lxqFe"
+msgid "Call to Action"
+msgstr ""
 
 # Button label
 #: 8oczXQ
@@ -411,13 +411,19 @@ msgstr "Supprimer l'élément"
 #: CrzYgw
 msgctxt "CrzYgw"
 msgid "Quote"
-msgstr "Citation"
+msgstr ""
 
 # Markers field label
 #: D0+Cxr
 msgctxt "D0+Cxr"
 msgid "Markers with image"
 msgstr "Marqueurs avec image"
+
+# Swipe up label
+#: DGPxQq
+msgctxt "DGPxQq"
+msgid "Swipe up"
+msgstr ""
 
 # Label when no value is provided to Field with form
 #: DVrK6z
@@ -574,12 +580,6 @@ msgstr "Audio"
 msgctxt "MmJQ7o"
 msgid "Gallery with captions"
 msgstr "Galerie avec légendes"
-
-# Swipe up default label
-#: MuQzCb
-msgctxt "MuQzCb"
-msgid "Learn more"
-msgstr ""
 
 # Title field label
 #: N25iDO
@@ -802,6 +802,12 @@ msgctxt "XhgKcw"
 msgid "Move the map to position the place"
 msgstr "Déplacez la carte pour positionner"
 
+# Button label
+#: Y2aNFe
+msgctxt "Y2aNFe"
+msgid "Button"
+msgstr ""
+
 # Description in Media Gallery
 #: YJZtWR
 msgctxt "YJZtWR"
@@ -896,7 +902,7 @@ msgstr "Liste"
 #: d60tSn
 msgctxt "d60tSn"
 msgid "Subtitle"
-msgstr "Sous-titre"
+msgstr ""
 
 # Label when there is no item
 #: dFMzBu
@@ -969,6 +975,12 @@ msgstr "Durée"
 msgctxt "fIawTr"
 msgid "Text"
 msgstr "Texte"
+
+# Square label
+#: fusnxf
+msgctxt "fusnxf"
+msgid "Square"
+msgstr ""
 
 # Contribution screen title
 #: g6b9Lg
@@ -1135,6 +1147,12 @@ msgstr "Ajouté par"
 msgctxt "q/tLk0"
 msgid "Are you sure you want to delete this screen?"
 msgstr "Êtes-vous sûr que vous voulez supprimer cet écran?"
+
+# Type label
+#: qBKOEO
+msgctxt "qBKOEO"
+msgid "Type"
+msgstr ""
 
 # Save in Media Gallery
 #: qIw1nW
@@ -1314,7 +1332,7 @@ msgstr "Image"
 #: xYqGzM
 msgctxt "xYqGzM"
 msgid "Author"
-msgstr "Auteur"
+msgstr ""
 
 # Fields section label
 #: y7xsPe
@@ -1327,6 +1345,12 @@ msgstr "Paramètres avancés"
 msgctxt "ySApyR"
 msgid "Background image"
 msgstr "Image d’arrière-plan"
+
+# Call to action default label
+#: z/VBX0
+msgctxt "z/VBX0"
+msgid "Learn more"
+msgstr ""
 
 # Text placeholder
 #: z4CiV1

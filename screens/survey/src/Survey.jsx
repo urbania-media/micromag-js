@@ -16,7 +16,7 @@ import Layout, { Spacer } from '@micromag/element-layout';
 import Heading from '@micromag/element-heading';
 import Button from '@micromag/element-button';
 import Text from '@micromag/element-text';
-import SwipeUp from '@micromag/element-swipe-up';
+import CallToAction from '@micromag/element-call-to-action';
 
 import styles from './styles.module.scss';
 
@@ -27,7 +27,7 @@ const propTypes = {
     answers: MicromagPropTypes.answers,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    link: MicromagPropTypes.swipeUpLink,
+    callToAction: MicromagPropTypes.callToAction,
     withPercentLabels: PropTypes.bool,
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
@@ -44,7 +44,7 @@ const defaultProps = {
     answers: null,
     spacing: 20,
     background: null,
-    link: null,
+    callToAction: null,
     withPercentLabels: true,
     current: true,
     transitions: null,
@@ -61,7 +61,7 @@ const SurveyScreen = ({
     answers,
     spacing,
     background,
-    link,
+    callToAction,
     withPercentLabels,
     current,
     transitions,
@@ -87,7 +87,7 @@ const SurveyScreen = ({
         isCapture,
     } = useScreenRenderContext();
 
-    const hasLink = link !== null && link.active === true;
+    const hasCallToAction = callToAction !== null && callToAction.active === true;
 
     const { quiz: quizAnswers = [] } = useQuiz({ screenId, opts: { autoload: !isPlaceholder } });
 
@@ -201,7 +201,7 @@ const SurveyScreen = ({
         </ScreenElement>,
     ];
 
-    if (isSplitted || (!isPlaceholder && hasLink && isMiddleLayout)) {
+    if (isSplitted || (!isPlaceholder && hasCallToAction && isMiddleLayout)) {
         items.push(<Spacer key="spacer" />);
     }
 
@@ -373,13 +373,20 @@ const SurveyScreen = ({
         </div>,
     );
 
-    // Swipe-up link
+    // Call to Action
 
-    if (!isPlaceholder && hasLink) {
+    if (!isPlaceholder && hasCallToAction) {
         if (isTopLayout || isMiddleLayout) {
-            items.push(<Spacer key="spacer-link-bottom" />);
+            items.push(<Spacer key="spacer-cta-bottom" />);
         }
-        items.push(<SwipeUp key="swipe-up-link" link={link} disabled={!answered} />);
+        items.push(
+            <CallToAction
+                key="call-to-action"
+                callToAction={callToAction}
+                disabled={!answered}
+                animationDisabled={isPreview}
+            />,
+        );
     }
 
     return (

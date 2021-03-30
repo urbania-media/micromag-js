@@ -104,7 +104,7 @@
         "react-router": "^5.2.0",
         "react-router-dom": "^5.2.0",
         "react-spring": "^9.0.0-canary.808.17.55c5691",
-        "react-use-gesture": "^8.0.1",
+        "react-use-gesture": "^9.0.0",
         "slugify": "^1.4.6",
         "snake-case": "^3.0.4",
         "tinycolor2": "^1.4.2",

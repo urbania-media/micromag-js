@@ -6,7 +6,7 @@ import {
     author,
     backgroundColor,
     transitions,
-    swipeUpLink,
+    callToAction,
 } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import QuoteScreen from '../Quote';
@@ -38,8 +38,8 @@ export const Edit = (storyProps) => <QuoteScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <QuoteScreen {...storyProps} {...props} />;
 
-export const WithLink = (storyProps) => (
-    <QuoteScreen {...storyProps} {...props} link={swipeUpLink()} />
+export const WithCallToAction = (storyProps) => (
+    <QuoteScreen {...storyProps} {...props} callToAction={callToAction()} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

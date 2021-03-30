@@ -13,16 +13,16 @@ import MediaControls from '@micromag/element-media-controls';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
-import SwipeUp from '@micromag/element-swipe-up';
+import CallToAction from '@micromag/element-call-to-action';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
     layout: PropTypes.oneOf(['middle']),
-    audio: MicromagPropTypes.audioElement,    
+    audio: MicromagPropTypes.audioElement,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    link: MicromagPropTypes.swipeUpLink,
+    callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
@@ -30,10 +30,10 @@ const propTypes = {
 
 const defaultProps = {
     layout: 'middle',
-    audio: null,    
+    audio: null,
     spacing: 20,
     background: null,
-    link: null,
+    callToAction: null,
     current: true,
     transitions: null,
     className: null,
@@ -41,10 +41,10 @@ const defaultProps = {
 
 const AudioScreen = ({
     layout, // eslint-disable-line
-    audio,    
+    audio,
     spacing,
     background,
-    link,
+    callToAction,
     current,
     transitions,
     className,
@@ -62,7 +62,7 @@ const AudioScreen = ({
     } = useScreenRenderContext();
 
     const { menuSize } = useViewer();
-    const hasLink = link !== null && link.active === true;
+    const hasCallToAction = callToAction !== null && callToAction.active === true;
 
     const [ready, setReady] = useState(isStatic || isPlaceholder);
 
@@ -208,7 +208,13 @@ const AudioScreen = ({
                 />
             </div>
         ) : null,
-        !isPlaceholder && hasLink ? <SwipeUp key="swipe-up-link" link={link} /> : null,
+        !isPlaceholder && hasCallToAction ? (
+            <CallToAction
+                key="call-to-action"
+                callToAction={callToAction}
+                animationDisabled={isPreview}
+            />
+        ) : null,
     ].filter((el) => el !== null);
 
     return (

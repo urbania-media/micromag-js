@@ -17,7 +17,7 @@ import Button from '@micromag/element-button';
 import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Scroll from '@micromag/element-scroll';
-import SwipeUp from '@micromag/element-swipe-up';
+import CallToAction from '@micromag/element-call-to-action';
 import Text from '@micromag/element-text';
 import TextInput from '@micromag/element-text-input';
 
@@ -34,7 +34,7 @@ const propTypes = {
     messageStyle: MicromagPropTypes.textStyle,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    link: MicromagPropTypes.swipeUpLink,
+    callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
@@ -54,7 +54,7 @@ const defaultProps = {
     messageStyle: null,
     spacing: 20,
     background: null,
-    link: null,
+    callToAction: null,
     current: true,
     transitions: null,
     transitionStagger: 100,
@@ -74,7 +74,7 @@ const ContributionScreen = ({
     messageStyle,
     spacing,
     background,
-    link,
+    callToAction,
     current,
     transitions,
     transitionStagger,
@@ -170,17 +170,17 @@ const ContributionScreen = ({
         [trackScreenEvent, userName],
     );
 
-    // Swipe-up link
+    // Call to Action
 
-    const hasLink = link !== null && link.active === true;
+    const hasCallToAction = callToAction !== null && callToAction.active === true;
     const [scrolledBottom, setScrolledBottom] = useState(false);
     const swipeUpLinkActive = scrolledBottom && submitState === 4;
     const {
-        ref: swipeUpLinkRef,
-        entry: { contentRect: swipeUpLinkRect },
+        ref: callToActionRef,
+        entry: { contentRect: callToActionRect },
     } = useResizeObserver();
 
-    const { height: swipeUpLinkHeight = 0 } = swipeUpLinkRect || {};
+    const { height: callToActionHeight = 0 } = callToActionRect || {};
 
     const onScrolledBottom = useCallback(
         ({ initial }) => {
@@ -404,7 +404,7 @@ const ContributionScreen = ({
                     </div>
                 </div>
             </div>
-            {hasLink ? <div style={{ height: swipeUpLinkHeight }} /> : null}
+            {hasCallToAction ? <div style={{ height: callToActionHeight }} /> : null}
         </div>,
     );
 
@@ -450,12 +450,13 @@ const ContributionScreen = ({
                     >
                         {items}
                     </Scroll>
-                    {!isPlaceholder && hasLink ? (
-                        <SwipeUp
-                            ref={swipeUpLinkRef}
-                            className={styles.swipeUp}
+                    {!isPlaceholder && hasCallToAction ? (
+                        <CallToAction
+                            ref={callToActionRef}
+                            className={styles.callToAction}
                             disabled={!swipeUpLinkActive}
-                            link={link}
+                            animationDisabled={isPreview}
+                            callToAction={callToAction}
                         />
                     ) : null}
                 </div>

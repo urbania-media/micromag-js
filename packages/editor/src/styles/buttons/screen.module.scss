@@ -1,14 +1,21 @@
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 
-.container {
-    @extend %reset-button;
-    display: inline-block;
+.container {    
     position: relative;
     overflow: hidden;
 
+    .button {
+        @extend %reset-button;
+        @extend %fullscreen;
+
+        display: inline-block;
+    }
+
     .border {
         @extend %fullscreen;
+
+        display: block;
     }
 
     .screen {
@@ -28,14 +35,12 @@
         }
 
         .icon {
-            display: block;
             position: relative;
             flex-grow: 1;
             width: 100%;
         }
 
         .label {
-            display: block;
             padding: 5px 0;
             font-size: 0.75rem;
             font-weight: bold;

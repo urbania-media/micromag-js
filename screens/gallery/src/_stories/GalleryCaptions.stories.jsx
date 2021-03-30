@@ -5,7 +5,7 @@ import {
     imagesWithCaptions,
     backgroundColor,
     transitions,
-    swipeUpLink,
+    callToAction,
 } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import GalleryCaptionsScreen from '../GalleryCaptions';
@@ -36,8 +36,8 @@ export const Edit = (storyProps) => <GalleryCaptionsScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <GalleryCaptionsScreen {...storyProps} {...props} />;
 
-export const WithLink = (storyProps) => (
-    <GalleryCaptionsScreen {...storyProps} {...props} link={swipeUpLink()} />
+export const WithCallToAction = (storyProps) => (
+    <GalleryCaptionsScreen {...storyProps} {...props} callToAction={callToAction()} />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

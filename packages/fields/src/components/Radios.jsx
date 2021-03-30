@@ -3,6 +3,7 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { Label } from '@micromag/core/components';
 
 import getSelectOptions from '../utils/getSelectOptions';
 
@@ -37,8 +38,8 @@ const Radios = ({
     withBackground,
     className,
     buttonClassName,
-    uncheckable,
     onChange,
+    uncheckable,
 }) => {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
 
@@ -83,7 +84,7 @@ const Radios = ({
                         onChange={() => {}}
                         checked={optionValue === value}
                     />{' '}
-                    {label}
+                    <Label>{label}</Label>
                 </label>
             ))}
         </div>

@@ -6,7 +6,7 @@ import {
     backgroundColor,
     closedCaptionsMedia,
     transitions,
-    swipeUpLink,
+    callToAction,
 } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import AudioScreen from '../Audio';
@@ -43,11 +43,11 @@ export const WithClosedCaptions = (storyProps) => (
     <AudioScreen {...storyProps} {...{ ...props({ closedCaptions: closedCaptionsMedia() }) }} />
 );
 
-export const WithLink = (storyProps) => (
+export const WithCallToAction = (storyProps) => (
     <AudioScreen
         {...storyProps}
         {...{ ...props({ closedCaptions: closedCaptionsMedia() }) }}
-        link={swipeUpLink()}
+        callToAction={callToAction()}
     />
 );
 

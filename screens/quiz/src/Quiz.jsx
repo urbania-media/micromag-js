@@ -18,7 +18,7 @@ import Layout, { Spacer } from '@micromag/element-layout';
 import Heading from '@micromag/element-heading';
 import Button from '@micromag/element-button';
 import Text from '@micromag/element-text';
-import SwipeUp from '@micromag/element-swipe-up';
+import CallToAction from '@micromag/element-call-to-action';
 
 import styles from './styles.module.scss';
 
@@ -34,7 +34,7 @@ const propTypes = {
     spacing: PropTypes.number,
     showResultsDelay: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    link: MicromagPropTypes.swipeUpLink,
+    callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
@@ -52,7 +52,7 @@ const defaultProps = {
     spacing: 20,
     showResultsDelay: 750,
     background: null,
-    link: null,
+    callToAction: null,
     current: true,
     transitions: null,
     transitionStagger: 100,
@@ -70,7 +70,7 @@ const QuizScreen = ({
     spacing,
     showResultsDelay,
     background,
-    link,
+    callToAction,
     current,
     transitions,
     transitionStagger,
@@ -116,16 +116,16 @@ const QuizScreen = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
     const backgroundPlaying = current && (isView || isEdit);
 
-    // Swipe-up link
+    // Call to Action
 
-    const hasLink = link !== null && link.active === true;
+    const hasCallToAction = callToAction !== null && callToAction.active === true;
 
     const {
-        ref: swipeUpLinkRef,
-        entry: { contentRect: swipeUpLinkRect },
+        ref: callToActionRef,
+        entry: { contentRect: callToActionRect },
     } = useResizeObserver();
 
-    const { height: swipeUpLinkHeight = 0 } = swipeUpLinkRect || {};
+    const { height: callToActionHeight = 0 } = callToActionRect || {};
 
     const { create: submitQuiz } = useQuizCreate({
         screenId,
@@ -197,7 +197,7 @@ const QuizScreen = ({
                 }
             }
         }
-    }, [answers, setAnswerTransitionProps, width, height, swipeUpLinkHeight, showInstantAnswer]);
+    }, [answers, setAnswerTransitionProps, width, height, callToActionHeight, showInstantAnswer]);
 
     // when the animation is done, we set a state to remove animations props
     // .results' position changes from absolute to relative
@@ -385,7 +385,9 @@ const QuizScreen = ({
                                 disabled={transitionDisabled}
                             >
                                 <Text {...result} className={styles.resultText} />
-                                {hasLink ? <div style={{ height: swipeUpLinkHeight }} /> : null}
+                                {hasCallToAction ? (
+                                    <div style={{ height: callToActionHeight }} />
+                                ) : null}
                             </Transitions>
                         </>
                     ) : null}
@@ -432,12 +434,13 @@ const QuizScreen = ({
                 >
                     {items}
                 </Layout>
-                {!isPlaceholder && hasLink ? (
-                    <SwipeUp
-                        ref={swipeUpLinkRef}
-                        className={styles.swipeUp}
-                        link={link}
+                {!isPlaceholder && hasCallToAction ? (
+                    <CallToAction
+                        ref={callToActionRef}
+                        className={styles.callToAction}
+                        callToAction={callToAction}
                         disabled={!answerTransitionComplete}
+                        animationDisabled={isPreview}
                     />
                 ) : null}
             </Container>

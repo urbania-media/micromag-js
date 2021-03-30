@@ -12,7 +12,7 @@ import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Quote from '@micromag/element-quote';
 import Text from '@micromag/element-text';
-import SwipeUp from '@micromag/element-swipe-up';
+import CallToAction from '@micromag/element-call-to-action';
 
 import styles from './styles.module.scss';
 
@@ -22,7 +22,7 @@ const propTypes = {
     author: MicromagPropTypes.textElement,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    link: MicromagPropTypes.swipeUpLink,
+    callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
@@ -35,7 +35,7 @@ const defaultProps = {
     author: null,
     spacing: 20,
     background: null,
-    link: null,
+    callToAction: null,
     current: true,
     transitions: null,
     transitionStagger: 100,
@@ -48,7 +48,7 @@ const QuoteScreen = ({
     author,
     spacing,
     background,
-    link,
+    callToAction,
     current,
     transitions,
     transitionStagger,
@@ -79,10 +79,12 @@ const QuoteScreen = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
     const backgroundPlaying = current && (isView || isEdit);
 
-    const hasLink = link !== null && link.active === true;
+    const hasCallToAction = callToAction !== null && callToAction.active === true;
 
     const items = [
-        !isPlaceholder && hasLink && isMiddleLayout ? <Spacer key="spacer-link-top" /> : null,
+        !isPlaceholder && hasCallToAction && isMiddleLayout ? (
+            <Spacer key="spacer-cta-top" />
+        ) : null,
         <ScreenElement
             key="quote"
             placeholder="quote"
@@ -109,10 +111,16 @@ const QuoteScreen = ({
         >
             {hasAuthor ? <Text className={styles.author} {...author} /> : null}
         </ScreenElement>,
-        !isPlaceholder && hasLink && (isTopLayout || isMiddleLayout) ? (
-            <Spacer key="spacer-link-bottom" />
+        !isPlaceholder && hasCallToAction && (isTopLayout || isMiddleLayout) ? (
+            <Spacer key="spacer-cta-bottom" />
         ) : null,
-        !isPlaceholder && hasLink ? <SwipeUp key="swipe-up-link" link={link} /> : null,
+        !isPlaceholder && hasCallToAction ? (
+            <CallToAction
+                key="call-to-action"
+                callToAction={callToAction}
+                animationDisabled={isPreview}
+            />
+        ) : null,
     ].filter((el) => el !== null);
 
     return (

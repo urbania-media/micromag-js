@@ -15,7 +15,7 @@ import Text from '@micromag/element-text';
 import Image from '@micromag/element-image';
 import Heading from '@micromag/element-heading';
 import Scroll from '@micromag/element-scroll';
-import SwipeUp from '@micromag/element-swipe-up';
+import CallToAction from '@micromag/element-call-to-action';
 
 import styles from './styles.module.scss';
 
@@ -34,7 +34,7 @@ const propTypes = {
     illustrated: PropTypes.bool,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    link: MicromagPropTypes.swipeUpLink,
+    callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
@@ -52,7 +52,7 @@ const defaultProps = {
     illustrated: false,
     spacing: 20,
     background: null,
-    link: null,
+    callToAction: null,
     current: true,
     transitions: null,
     transitionStagger: 75,
@@ -70,7 +70,7 @@ const Timeline = ({
     illustrated,
     spacing,
     background,
-    link,
+    callToAction,
     current,
     transitions,
     transitionStagger,
@@ -89,7 +89,7 @@ const Timeline = ({
         isStatic,
         isCapture,
     } = useScreenRenderContext();
-    const finalItems = isPlaceholder ? [...new Array(5)].map(() => ({})) : (items || [null]);
+    const finalItems = isPlaceholder ? [...new Array(5)].map(() => ({})) : items || [null];
 
     const itemsCount = finalItems !== null ? finalItems.length : 0;
     const hasItems = finalItems !== null && itemsCount;
@@ -297,16 +297,16 @@ const Timeline = ({
         );
     });
 
-    // Swipe-up link
+    // Call to Action
 
-    const hasLink = link !== null && link.active === true;
+    const hasCallToAction = callToAction !== null && callToAction.active === true;
     const [scrolledBottom, setScrolledBottom] = useState(false);
     const {
-        ref: swipeUpLinkRef,
-        entry: { contentRect: swipeUpLinkRect },
+        ref: callToActionRef,
+        entry: { contentRect: callToActionRect },
     } = useResizeObserver();
 
-    const { height: swipeUpLinkHeight = 0 } = swipeUpLinkRect || {};
+    const { height: callToActionHeight = 0 } = callToActionRect || {};
 
     const onScrolledBottom = useCallback(
         ({ initial }) => {
@@ -330,7 +330,7 @@ const Timeline = ({
                     [className]: className !== null,
                     [styles.isPlaceholder]: isPlaceholder,
                     [styles[`${bulletShape}BulletShape`]]: bulletShape !== null,
-                    [styles.withoutLines]: itemsCount < 2
+                    [styles.withoutLines]: itemsCount < 2,
                 },
             ])}
             data-screen-ready={ready}
@@ -363,15 +363,18 @@ const Timeline = ({
                         }
                     >
                         {timelineElements}
-                        { !isPlaceholder && hasLink ? <div style={{ height: swipeUpLinkHeight }} /> : null }
+                        {!isPlaceholder && hasCallToAction ? (
+                            <div style={{ height: callToActionHeight }} />
+                        ) : null}
                     </Layout>
                 </Scroll>
-                {!isPlaceholder && hasLink ? (
-                    <SwipeUp
-                        ref={swipeUpLinkRef}
-                        className={styles.swipeUp}
+                {!isPlaceholder && hasCallToAction ? (
+                    <CallToAction
+                        ref={callToActionRef}
+                        className={styles.callToAction}
                         disabled={!scrolledBottom}
-                        link={link}
+                        animationDisabled={isPreview}
+                        callToAction={callToAction}
                     />
                 ) : null}
             </Container>

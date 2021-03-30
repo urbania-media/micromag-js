@@ -14,7 +14,7 @@ import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
 import Image from '@micromag/element-image';
 import Text from '@micromag/element-text';
-import SwipeUp from '@micromag/element-swipe-up';
+import CallToAction from '@micromag/element-call-to-action';
 
 import styles from './styles.module.scss';
 
@@ -27,7 +27,7 @@ const propTypes = {
     withCaptions: PropTypes.bool,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    link: MicromagPropTypes.swipeUpLink,
+    callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
@@ -41,7 +41,7 @@ const defaultProps = {
     withCaptions: false,
     spacing: 20,
     background: null,
-    link: null,
+    callToAction: null,
     current: true,
     transitions: null,
     transitionStagger: 75,
@@ -55,7 +55,7 @@ const GalleryFeedScreen = ({
     withCaptions,
     spacing,
     background,
-    link,
+    callToAction,
     current,
     transitions,
     transitionStagger,
@@ -172,19 +172,19 @@ const GalleryFeedScreen = ({
         }
     });
 
-    // Swipe-up link
+    // Call to Action
 
-    const hasLink = link !== null && link.active === true;
+    const hasCallToAction = callToAction !== null && callToAction.active === true;
     const [scrolledBottom, setScrolledBottom] = useState(false);
     const {
-        ref: swipeUpLinkRef,
-        entry: { contentRect: swipeUpLinkRect },
+        ref: callToActionRef,
+        entry: { contentRect: callToActionRect },
     } = useResizeObserver();
 
-    const { height: swipeUpLinkHeight = 0 } = swipeUpLinkRect || {};
+    const { height: callToActionHeight = 0 } = callToActionRect || {};
 
-    if (!isPlaceholder && hasLink) {
-        items.push(<div style={{ height: swipeUpLinkHeight }} />);
+    if (!isPlaceholder && hasCallToAction) {
+        items.push(<div key="cta-spacer" style={{ height: callToActionHeight }} />);
     }
 
     const onScrolledBottom = useCallback(
@@ -248,12 +248,13 @@ const GalleryFeedScreen = ({
                         </TransitionsStagger>
                     </Layout>
                 </Scroll>
-                {!isPlaceholder && hasLink ? (
-                    <SwipeUp
-                        ref={swipeUpLinkRef}
-                        className={styles.swipeUp}
+                {!isPlaceholder && hasCallToAction ? (
+                    <CallToAction
+                        ref={callToActionRef}
+                        className={styles.callToAction}
                         disabled={!scrolledBottom}
-                        link={link}
+                        animationDisabled={isPreview}
+                        callToAction={callToAction}
                     />
                 ) : null}
             </Container>

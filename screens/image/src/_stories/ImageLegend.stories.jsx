@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
-import { imageMedia, text, backgroundColor, transitions, swipeUpLink } from '../../../../.storybook/data';
+import { imageMedia, text, backgroundColor, transitions, callToAction } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import ImageLegendScreen from '../ImageLegend';
 import definition from '../definition';
@@ -33,11 +33,11 @@ export const Edit = (storyProps) => <ImageLegendScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <ImageLegendScreen {...storyProps} {...props} />;
 
-export const WithLink = (storyProps) => (
+export const WithCallToAction = (storyProps) => (
     <ImageLegendScreen
         {...storyProps}
         {...props}
-        link={swipeUpLink()}
+        callToAction={callToAction()}
     />
 );
 

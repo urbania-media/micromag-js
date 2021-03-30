@@ -14,7 +14,7 @@ import Layout from '@micromag/element-layout';
 import Text from '@micromag/element-text';
 import Heading from '@micromag/element-heading';
 import Scroll from '@micromag/element-scroll';
-import SwipeUp from '@micromag/element-swipe-up';
+import CallToAction from '@micromag/element-call-to-action';
 
 import styles from './styles.module.scss';
 
@@ -25,7 +25,7 @@ const propTypes = {
     ascending: PropTypes.bool,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    link: MicromagPropTypes.swipeUpLink,
+    callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
@@ -40,7 +40,7 @@ const defaultProps = {
     ascending: false,
     spacing: 20,
     background: null,
-    link: null,
+    callToAction: null,
     current: true,
     transitions: null,
     transitionStagger: 75,
@@ -55,7 +55,7 @@ const RankingScreen = ({
     ascending,
     spacing,
     background,
-    link,
+    callToAction,
     current,
     transitions,
     transitionStagger,
@@ -75,14 +75,14 @@ const RankingScreen = ({
         isCapture,
     } = useScreenRenderContext();
 
-    const finalItems = isPlaceholder ? [...new Array(10)].map(() => ({})) : (items || [null]);
+    const finalItems = isPlaceholder ? [...new Array(10)].map(() => ({})) : items || [null];
 
     const itemsCount = finalItems !== null ? finalItems.length : 0;
 
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
     const scrollingDisabled = transitionDisabled || !current;
-    const backgroundPlaying = current && (isView || isEdit);    
+    const backgroundPlaying = current && (isView || isEdit);
 
     const elements = (finalItems || []).map((item, itemI) => {
         const { title = null, description = null } = item || {};
@@ -145,9 +145,7 @@ const RankingScreen = ({
 
         return (
             <div className={styles.item} key={`item-${itemI}`}>
-                <div
-                    className={styles.rank}
-                >
+                <div className={styles.rank}>
                     {isPlaceholder ? (
                         rankText
                     ) : (
@@ -173,20 +171,19 @@ const RankingScreen = ({
         );
     });
 
+    // Call to Action
 
-    // Swipe-up link
-
-    const hasLink = link !== null && link.active === true;
+    const hasCallToAction = callToAction !== null && callToAction.active === true;
     const [scrolledBottom, setScrolledBottom] = useState(false);
     const {
-        ref: swipeUpLinkRef,
-        entry: { contentRect: swipeUpLinkRect },
+        ref: callToActionRef,
+        entry: { contentRect: callToActionRect },
     } = useResizeObserver();
 
-    const { height: swipeUpLinkHeight = 0 } = swipeUpLinkRect || {};
+    const { height: callToActionHeight = 0 } = callToActionRect || {};
 
-    if (hasLink) {
-        elements.push(<div key="swipe-up-link-spacer" style={{ height: swipeUpLinkHeight }} />);
+    if (hasCallToAction) {
+        elements.push(<div key="call-to-action-spacer" style={{ height: callToActionHeight }} />);
     }
 
     const onScrolledBottom = useCallback(
@@ -246,12 +243,13 @@ const RankingScreen = ({
                         {elements}
                     </Layout>
                 </Scroll>
-                {!isPlaceholder && hasLink ? (
-                    <SwipeUp
-                        ref={swipeUpLinkRef}
-                        className={styles.swipeUp}
+                {!isPlaceholder && hasCallToAction ? (
+                    <CallToAction
+                        ref={callToActionRef}
+                        className={styles.callToAction}
                         disabled={!scrolledBottom}
-                        link={link}
+                        animationDisabled={isPreview}
+                        callToAction={callToAction}
                     />
                 ) : null}
             </Container>

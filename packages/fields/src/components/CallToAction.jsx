@@ -6,10 +6,10 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import Fields from './Fields';
 
-import styles from '../styles/swipe-up-link.module.scss';
+import styles from '../styles/call-to-action.module.scss';
 
 const propTypes = {
-    value: MicromagPropTypes.swipeUpLink,
+    value: MicromagPropTypes.callToAction,
     className: PropTypes.string,
     onChange: PropTypes.func,
 };
@@ -20,7 +20,7 @@ const defaultProps = {
     onChange: null,
 };
 
-const SwipeUpLink = ({ value, className, onChange, ...props }) => {
+const CallToAction = ({ value, className, onChange, ...props }) => {
     const { active = false } = value || {};
 
     const onUpdateValue = useCallback(
@@ -50,7 +50,7 @@ const SwipeUpLink = ({ value, className, onChange, ...props }) => {
     );
 };
 
-SwipeUpLink.propTypes = propTypes;
-SwipeUpLink.defaultProps = defaultProps;
+CallToAction.propTypes = propTypes;
+CallToAction.defaultProps = defaultProps;
 
-export default SwipeUpLink;
+export default CallToAction;

@@ -17,6 +17,9 @@
     "+VD/9p": {
         "defaultMessage": "Color"
     },
+    "+uInZz": {
+        "defaultMessage": "Circle"
+    },
     "/62oe4": {
         "defaultMessage": "My files"
     },
@@ -67,9 +70,6 @@
     },
     "33UbSd": {
         "defaultMessage": "Timeline with images"
-    },
-    "35yXwb": {
-        "defaultMessage": "Tap only"
     },
     "3E57H7": {
         "defaultMessage": "No marker..."
@@ -122,9 +122,6 @@
     "507VAi": {
         "defaultMessage": "Description"
     },
-    "5FTn/R": {
-        "defaultMessage": "Swipe-up link"
-    },
     "5uH4x7": {
         "defaultMessage": "Submit"
     },
@@ -151,6 +148,9 @@
     },
     "8Dl/S1": {
         "defaultMessage": "Draggable"
+    },
+    "8lxqFe": {
+        "defaultMessage": "Call to Action"
     },
     "8oczXQ": {
         "defaultMessage": "Add a marker"
@@ -199,6 +199,9 @@
     },
     "D0+Cxr": {
         "defaultMessage": "Markers with image"
+    },
+    "DGPxQq": {
+        "defaultMessage": "Swipe up"
     },
     "DVrK6z": {
         "defaultMessage": "Click to edit..."
@@ -277,9 +280,6 @@
     },
     "MmJQ7o": {
         "defaultMessage": "Gallery with captions"
-    },
-    "MuQzCb": {
-        "defaultMessage": "Learn more"
     },
     "N25iDO": {
         "defaultMessage": "Title"
@@ -392,6 +392,9 @@
     "XhgKcw": {
         "defaultMessage": "Move the map to position the place"
     },
+    "Y2aNFe": {
+        "defaultMessage": "Button"
+    },
     "YJZtWR": {
         "defaultMessage": "Description"
     },
@@ -476,6 +479,9 @@
     "fIawTr": {
         "defaultMessage": "Text"
     },
+    "fusnxf": {
+        "defaultMessage": "Square"
+    },
     "g6b9Lg": {
         "defaultMessage": "Contribution"
     },
@@ -559,6 +565,9 @@
     },
     "q/tLk0": {
         "defaultMessage": "Are you sure you want to delete this screen?"
+    },
+    "qBKOEO": {
+        "defaultMessage": "Type"
     },
     "qIw1nW": {
         "defaultMessage": "Save"
@@ -655,6 +664,9 @@
     },
     "ySApyR": {
         "defaultMessage": "Background image"
+    },
+    "z/VBX0": {
+        "defaultMessage": "Learn more"
     },
     "z4CiV1": {
         "defaultMessage": "Text"

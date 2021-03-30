@@ -6,7 +6,7 @@ import {
     backgroundColor,
     closedCaptionsMedia,
     transitions,
-    swipeUpLink,
+    callToAction,
 } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import VideoScreen from '../Video';
@@ -55,11 +55,11 @@ export const WithSeekbarAndClosedCaptions = (storyProps) => (
     />
 );
 
-export const WithLink = (storyProps) => (
+export const WithCallToAction = (storyProps) => (
     <VideoScreen
         {...storyProps}
         {...{ ...props({ closedCaptions: closedCaptionsMedia(), withSeekBar: true }) }}
-        link={swipeUpLink()}
+        callToAction={callToAction()}
     />
 );
 

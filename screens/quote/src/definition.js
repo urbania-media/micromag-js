@@ -62,11 +62,11 @@ export default {
             }),
         },
         {
-            name: 'link',
-            type: 'swipe-up-link',
+            name: 'callToAction',
+            type: 'call-to-action',
             label: defineMessage({
-                defaultMessage: 'Swipe-up link',
-                description: 'Swipe-up link field label',
+                defaultMessage: 'Call to Action',
+                description: 'Call to Action field label',
             }),
         },
     ],

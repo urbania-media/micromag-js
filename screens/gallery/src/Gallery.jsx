@@ -14,7 +14,7 @@ import Container from '@micromag/element-container';
 import Grid from '@micromag/element-grid';
 import Image from '@micromag/element-image';
 import Text from '@micromag/element-text';
-import SwipeUp from '@micromag/element-swipe-up';
+import CallToAction from '@micromag/element-call-to-action';
 
 import layoutProps from './layouts';
 
@@ -49,7 +49,7 @@ const propTypes = {
     spacing: PropTypes.number,
     captionMaxLines: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
-    link: MicromagPropTypes.swipeUpLink,
+    callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
@@ -63,7 +63,7 @@ const defaultProps = {
     spacing: 20,
     captionMaxLines: 2,
     background: null,
-    link: null,
+    callToAction: null,
     current: true,
     transitions: null,
     transitionStagger: 50,
@@ -75,7 +75,7 @@ const GalleryScreen = ({
     images,
     withCaptions,
     background,
-    link,
+    callToAction,
     current,
     spacing,
     captionMaxLines,
@@ -86,7 +86,14 @@ const GalleryScreen = ({
     const { width, height, landscape } = useScreenSize();
     const { menuSize } = useViewer();
 
-    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } = useScreenRenderContext();
+    const {
+        isView,
+        isPreview,
+        isPlaceholder,
+        isEdit,
+        isStatic,
+        isCapture,
+    } = useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
 
     const finalSpacing = isPlaceholder ? 5 : spacing;
@@ -134,15 +141,15 @@ const GalleryScreen = ({
         }
     }, [contentWidth, contentHeight, layout, setImagesSizes]);
 
-    // Swipe-up link
+    // Call to Action
 
-    const hasLink = link !== null && link.active === true;
+    const hasCallToAction = callToAction !== null && callToAction.active === true;
     const {
-        ref: swipeUpLinkRef,
-        entry: { contentRect: swipeUpLinkRect },
+        ref: callToActionRef,
+        entry: { contentRect: callToActionRect },
     } = useResizeObserver();
 
-    const { height: swipeUpLinkHeight = 0 } = swipeUpLinkRect || {};
+    const { height: callToActionHeight = 0 } = callToActionRect || {};
 
     const items = [...Array(gridSpaces)].map((item, itemI) => {
         const image = images !== null ? images[itemI] : null;
@@ -248,12 +255,19 @@ const GalleryScreen = ({
                     className={styles.content}
                     style={{
                         paddingTop: !landscape && !isPreview ? menuSize : null,
-                        paddingBottom: !isPreview && hasLink ? swipeUpLinkHeight + spacing : 0
+                        paddingBottom: hasCallToAction ? callToActionHeight + spacing : 0,
                     }}
                     ref={contentRef}
                 >
                     <Grid className={styles.grid} spacing={finalSpacing} items={items} {...grid} />
-                    { !isPlaceholder && hasLink ? <SwipeUp ref={swipeUpLinkRef} className={styles.swipeUp} link={link} /> : null }
+                    {!isPlaceholder && hasCallToAction ? (
+                        <CallToAction
+                            ref={callToActionRef}
+                            className={styles.callToAction}
+                            callToAction={callToAction}
+                            animationDisabled={isPreview}
+                        />
+                    ) : null}
                 </div>
             </Container>
         </div>

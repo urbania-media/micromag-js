@@ -212,10 +212,9 @@ export const markers = ({
         image: withImage ? imageMedia({ width: 100, height: 100 }) : null,
     }));
 
-export const swipeUpLink = () => ({
+export const callToAction = () => ({
     active: true,
     url: 'https://google.com',
-    tapOnly: false,
 });
 
 export const transitions = ({ transitionIn = 'fade', transitionOut = 'fade' } = {}) => ({

@@ -434,11 +434,13 @@ export const quizAnswer = PropTypes.shape({
 export const answers = PropTypes.arrayOf(answer);
 export const quizAnswers = PropTypes.arrayOf(quizAnswer);
 
-export const swipeUpLink = PropTypes.shape({
+export const callToActionTypes = PropTypes.oneOf(['swipe-up', 'button']);
+
+export const callToAction = PropTypes.shape({
     active: PropTypes.bool,
+    type: callToActionTypes,
     url: PropTypes.string,
-    label: textElement,
-    tapOnly: PropTypes.bool,
+    label: textElement,    
 });
 
 /**

@@ -53,6 +53,12 @@ msgctxt "+VD/9p"
 msgid "Color"
 msgstr "Color"
 
+# Circle label
+#: +uInZz
+msgctxt "+uInZz"
+msgid "Circle"
+msgstr "Circle"
+
 # Media gallery source
 #: /62oe4
 msgctxt "/62oe4"
@@ -154,12 +160,6 @@ msgstr "Line height"
 msgctxt "33UbSd"
 msgid "Timeline with images"
 msgstr "Timeline with images"
-
-# Tap only label
-#: 35yXwb
-msgctxt "35yXwb"
-msgid "Tap only"
-msgstr "Tap only"
 
 # Label when there is no item in markers field
 #: 3E57H7
@@ -263,12 +263,6 @@ msgctxt "507VAi"
 msgid "Description"
 msgstr "Description"
 
-# Swipe-up link field label
-#: 5FTn/R
-msgctxt "5FTn/R"
-msgid "Swipe-up link"
-msgstr "Swipe-up link"
-
 # Submit placeholder
 #: 5uH4x7
 msgctxt "5uH4x7"
@@ -322,6 +316,12 @@ msgstr "Quote"
 msgctxt "8Dl/S1"
 msgid "Draggable"
 msgstr "Draggable"
+
+# Call to Action field label
+#: 8lxqFe
+msgctxt "8lxqFe"
+msgid "Call to Action"
+msgstr "Call to Action"
 
 # Button label
 #: 8oczXQ
@@ -418,6 +418,12 @@ msgstr "Quote"
 msgctxt "D0+Cxr"
 msgid "Markers with image"
 msgstr "Markers with image"
+
+# Swipe up label
+#: DGPxQq
+msgctxt "DGPxQq"
+msgid "Swipe up"
+msgstr "Swipe up"
 
 # Label when no value is provided to Field with form
 #: DVrK6z
@@ -574,12 +580,6 @@ msgstr "Audio"
 msgctxt "MmJQ7o"
 msgid "Gallery with captions"
 msgstr "Gallery with captions"
-
-# Swipe up default label
-#: MuQzCb
-msgctxt "MuQzCb"
-msgid "Learn more"
-msgstr "Learn more"
 
 # Title field label
 #: N25iDO
@@ -802,6 +802,12 @@ msgctxt "XhgKcw"
 msgid "Move the map to position the place"
 msgstr "Move the map to position the place"
 
+# Button label
+#: Y2aNFe
+msgctxt "Y2aNFe"
+msgid "Button"
+msgstr "Button"
+
 # Description in Media Gallery
 #: YJZtWR
 msgctxt "YJZtWR"
@@ -970,6 +976,12 @@ msgctxt "fIawTr"
 msgid "Text"
 msgstr "Text"
 
+# Square label
+#: fusnxf
+msgctxt "fusnxf"
+msgid "Square"
+msgstr "Square"
+
 # Contribution screen title
 #: g6b9Lg
 msgctxt "g6b9Lg"
@@ -1135,6 +1147,12 @@ msgstr "Added by"
 msgctxt "q/tLk0"
 msgid "Are you sure you want to delete this screen?"
 msgstr "Are you sure you want to delete this screen?"
+
+# Type label
+#: qBKOEO
+msgctxt "qBKOEO"
+msgid "Type"
+msgstr "Type"
 
 # Save in Media Gallery
 #: qIw1nW
@@ -1327,6 +1345,12 @@ msgstr "Advanced settings"
 msgctxt "ySApyR"
 msgid "Background image"
 msgstr "Background image"
+
+# Call to action default label
+#: z/VBX0
+msgctxt "z/VBX0"
+msgid "Learn more"
+msgstr "Learn more"
 
 # Text placeholder
 #: z4CiV1

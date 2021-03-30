@@ -1,5 +1,5 @@
 {
-    "name": "@micromag/element-swipe-up",
+    "name": "@micromag/element-call-to-action",
     "version": "0.2.173",
     "description": "",
     "keywords": [
@@ -58,7 +58,7 @@
         "lodash": "^4.17.20",
         "prop-types": "^15.7.2",
         "react-intl": "^5.12.1",
-        "react-use-gesture": "^8.0.1",
+        "react-use-gesture": "^9.0.0",
         "react-spring": "^8.0.27",
         "uuid": "^8.3.2"
     },
