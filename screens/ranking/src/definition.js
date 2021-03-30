@@ -76,6 +76,7 @@ export default {
         {
             name: 'callToAction',
             type: 'call-to-action',
+            defaultValue: { active: false, type: 'swipe-up' },
             label: defineMessage({
                 defaultMessage: 'Call to Action',
                 description: 'Call to Action field label',

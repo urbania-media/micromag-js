@@ -143,11 +143,17 @@
     "7j/LQ6": {
         "defaultMessage": "Coins arrondis"
     },
+    "7uyslu": {
+        "defaultMessage": "Description"
+    },
     "88/Ge8": {
         "defaultMessage": "Citation"
     },
     "8Dl/S1": {
         "defaultMessage": "Glissable"
+    },
+    "8lxqFe": {
+        "defaultMessage": "Action"
     },
     "8oczXQ": {
         "defaultMessage": "Ajouter un marqueur"
@@ -196,6 +202,9 @@
     },
     "D0+Cxr": {
         "defaultMessage": "Marqueurs avec image"
+    },
+    "DGPxQq": {
+        "defaultMessage": "Swipe up"
     },
     "DVrK6z": {
         "defaultMessage": "Cliquez pour modifier..."
@@ -574,6 +583,9 @@
     },
     "sLRFMy": {
         "defaultMessage": "Libellé"
+    },
+    "sUR1xV": {
+        "defaultMessage": "Auteur"
     },
     "t+L1J/": {
         "defaultMessage": "Pas d’image..."

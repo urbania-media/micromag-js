@@ -296,7 +296,7 @@ const MediaMetadata = ({ media, className }) => {
                             <div className="row">
                                 <div className="col-4 text-muted">
                                     <FormattedMessage
-                                        defaultMessage="Alt tag"
+                                        defaultMessage="Description"
                                         description="Label in Media Gallery"
                                     />
                                 </div>
@@ -311,7 +311,7 @@ const MediaMetadata = ({ media, className }) => {
                             <div className="row">
                                 <div className="col-4 text-muted">
                                     <FormattedMessage
-                                        defaultMessage="Size"
+                                        defaultMessage="Author"
                                         description="Label in Media Gallery"
                                     />
                                 </div>

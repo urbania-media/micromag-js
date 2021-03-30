@@ -195,6 +195,10 @@
     "defaultMessage": "Rounded corners",
     "description": "Rounded corners label"
   },
+  "7uyslu": {
+    "defaultMessage": "Description",
+    "description": "Label in Media Gallery"
+  },
   "88/Ge8": {
     "defaultMessage": "Quote",
     "description": "Quote field label"
@@ -670,10 +674,6 @@
     "defaultMessage": "No entry...",
     "description": "Label when there is no item"
   },
-  "iUGRsc": {
-    "defaultMessage": "Alt tag",
-    "description": "Label in Media Gallery"
-  },
   "jaFXki": {
     "defaultMessage": "Gallery",
     "description": "Gallery screen title"
@@ -779,6 +779,10 @@
   "sLRFMy": {
     "defaultMessage": "Label",
     "description": "Label label"
+  },
+  "sUR1xV": {
+    "defaultMessage": "Author",
+    "description": "Label in Media Gallery"
   },
   "t+L1J/": {
     "defaultMessage": "No image...",

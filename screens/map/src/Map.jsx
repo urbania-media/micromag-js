@@ -7,7 +7,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useGoogleKeys, useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { PlaceholderMap, Transitions, ScreenElement, Button } from '@micromag/core/components';
 import { useTrackScreenEvent, useResizeObserver } from '@micromag/core/hooks';
-import { isTextFilled } from '@micromag/core/utils';
+import { getStyleFromColor, isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Map from '@micromag/element-map';
@@ -88,6 +88,9 @@ const MapScreen = ({
 
     const { width, height } = useScreenSize();
 
+    const { color: backgroundColor } = background || {};
+    const markerOverlayContentStyle = getStyleFromColor(backgroundColor);
+
     const {
         isView,
         isPreview,
@@ -119,7 +122,7 @@ const MapScreen = ({
         const lastMarker = finalMarkers[selectedMarkerIndex];
         lastRenderedMarker.current = lastMarker;
         setSelectedMarkerIndex(null);
-    }, []);
+    }, [finalMarkers, selectedMarkerIndex, setSelectedMarkerIndex]);
 
     const onClickMap = useCallback(() => {
         const lastMarker = finalMarkers[selectedMarkerIndex];
@@ -312,7 +315,6 @@ const MapScreen = ({
                 <div key="marker-overlay" className={styles.markerOverlayContainer}>
                     <div className={styles.markerOverlayScrollable}>
                         <Scroll
-                            key={`scroll-${selectedMarkerIndex}`}
                             fullscreen
                             disabled={scrollingDisabled}
                             onScrolledBottom={onScrolledBottom}
@@ -328,7 +330,7 @@ const MapScreen = ({
                                 className={styles.markerOverlay}
                                 style={{ minHeight: height * (1 - openedMarkerSpacerHeight) }}
                             >
-                                <div className={styles.markerOverlayContent}>
+                                <div className={styles.markerOverlayContent} style={markerOverlayContentStyle}>
                                     <div className={styles.swipeIndicator} />
                                     <div
                                         className={styles.markerOverlayContentInner}
@@ -436,7 +438,7 @@ const MapScreen = ({
         >
             {!isPlaceholder ? (
                 <Background
-                    {...background}
+                    color={{ color: '#FFFFFF', alpha: 1 }}
                     width={width}
                     height={height}
                     playing={backgroundPlaying}

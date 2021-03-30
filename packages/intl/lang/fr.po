@@ -305,6 +305,12 @@ msgctxt "7j/LQ6"
 msgid "Rounded corners"
 msgstr "Coins arrondis"
 
+# Label in Media Gallery
+#: 7uyslu
+msgctxt "7uyslu"
+msgid "Description"
+msgstr "Description"
+
 # Quote field label
 #: 88/Ge8
 msgctxt "88/Ge8"
@@ -321,7 +327,7 @@ msgstr "Glissable"
 #: 8lxqFe
 msgctxt "8lxqFe"
 msgid "Call to Action"
-msgstr ""
+msgstr "Action"
 
 # Button label
 #: 8oczXQ
@@ -423,7 +429,7 @@ msgstr "Marqueurs avec image"
 #: DGPxQq
 msgctxt "DGPxQq"
 msgid "Swipe up"
-msgstr ""
+msgstr "Swipe up"
 
 # Label when no value is provided to Field with form
 #: DVrK6z
@@ -1018,12 +1024,6 @@ msgctxt "iHV3W3"
 msgid "No entry..."
 msgstr "Aucune d’entrée..."
 
-# Label in Media Gallery
-#: iUGRsc
-msgctxt "iUGRsc"
-msgid "Alt tag"
-msgstr ""
-
 # Gallery screen title
 #: jaFXki
 msgctxt "jaFXki"
@@ -1183,6 +1183,12 @@ msgstr "Entrées"
 msgctxt "sLRFMy"
 msgid "Label"
 msgstr "Libellé"
+
+# Label in Media Gallery
+#: sUR1xV
+msgctxt "sUR1xV"
+msgid "Author"
+msgstr "Auteur"
 
 # Label when there is no item in images field
 #: t+L1J/

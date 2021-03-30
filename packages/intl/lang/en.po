@@ -305,6 +305,12 @@ msgctxt "7j/LQ6"
 msgid "Rounded corners"
 msgstr "Rounded corners"
 
+# Label in Media Gallery
+#: 7uyslu
+msgctxt "7uyslu"
+msgid "Description"
+msgstr "Description"
+
 # Quote field label
 #: 88/Ge8
 msgctxt "88/Ge8"
@@ -1018,12 +1024,6 @@ msgctxt "iHV3W3"
 msgid "No entry..."
 msgstr "No entry..."
 
-# Label in Media Gallery
-#: iUGRsc
-msgctxt "iUGRsc"
-msgid "Alt tag"
-msgstr "Alt tag"
-
 # Gallery screen title
 #: jaFXki
 msgctxt "jaFXki"
@@ -1183,6 +1183,12 @@ msgstr "Entries"
 msgctxt "sLRFMy"
 msgid "Label"
 msgstr "Label"
+
+# Label in Media Gallery
+#: sUR1xV
+msgctxt "sUR1xV"
+msgid "Author"
+msgstr "Author"
 
 # Label when there is no item in images field
 #: t+L1J/

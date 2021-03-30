@@ -143,6 +143,9 @@
     "7j/LQ6": {
         "defaultMessage": "Rounded corners"
     },
+    "7uyslu": {
+        "defaultMessage": "Description"
+    },
     "88/Ge8": {
         "defaultMessage": "Quote"
     },
@@ -500,9 +503,6 @@
     "iHV3W3": {
         "defaultMessage": "No entry..."
     },
-    "iUGRsc": {
-        "defaultMessage": "Alt tag"
-    },
     "jaFXki": {
         "defaultMessage": "Gallery"
     },
@@ -583,6 +583,9 @@
     },
     "sLRFMy": {
         "defaultMessage": "Label"
+    },
+    "sUR1xV": {
+        "defaultMessage": "Author"
     },
     "t+L1J/": {
         "defaultMessage": "No image..."
