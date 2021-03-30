@@ -22,12 +22,12 @@ const propTypes = {
 
 const defaultProps = {
     media: null,
-    alt: 'image',
+    alt: null,
     width: null,
     height: null,
     objectFit: null,
     containerStyle: { backgroundColor: 'rgba(0, 0, 0, 0.1)' },
-    imageStyle: { },
+    imageStyle: {},
     className: null,
     imageClassName: null,
     onLoaded: null,
@@ -46,7 +46,8 @@ const Image = ({
     onLoaded,
 }) => {
     const { url = null, metadata = null } = media || {};
-    const { width: mediaWidth = 0, height: mediaHeight = 0 } = metadata || {};
+    const { width: mediaWidth = 0, height: mediaHeight = 0, description = 'image' } =
+        metadata || {};
     const mediaRatio = mediaWidth / mediaHeight;
 
     const withFit = objectFit !== null;
@@ -55,11 +56,8 @@ const Image = ({
     let finalImageStyle;
 
     if (withFit) {
-        const {
-            fit = null,
-            horizontalPosition = 'center',
-            verticalPosition = 'center',
-        } = objectFit || {};
+        const { fit = null, horizontalPosition = 'center', verticalPosition = 'center' } =
+            objectFit || {};
         const {
             width: resizedImageWidth,
             height: resizedImageHeight,
@@ -132,7 +130,7 @@ const Image = ({
     const img = url ? (
         <img
             src={url}
-            alt={alt}
+            alt={alt || description}
             className={classNames([
                 styles.img,
                 {

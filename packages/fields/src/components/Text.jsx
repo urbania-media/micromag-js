@@ -12,6 +12,7 @@ const propTypes = {
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     errors: MicromagPropTypes.errors,
     required: PropTypes.bool,
+    disabled: PropTypes.bool,
     placeholder: PropTypes.string,
     prefix: PropTypes.string,
     className: PropTypes.string,
@@ -24,6 +25,7 @@ const defaultProps = {
     value: null,
     errors: null,
     required: false,
+    disabled: false,
     placeholder: null,
     prefix: null,
     className: null,
@@ -36,6 +38,7 @@ const TextField = ({
     value,
     errors,
     required,
+    disabled,
     placeholder,
     prefix,
     className,
@@ -58,6 +61,7 @@ const TextField = ({
             }
             placeholder={placeholder}
             required={required}
+            disabled={disabled}
         />
     );
 

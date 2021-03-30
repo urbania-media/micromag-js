@@ -31,7 +31,7 @@ const defaultProps = {
         {
             id: 'mobile',
             width: 320,
-            height: 500,
+            height: 480,
         },
         {
             id: 'desktop',
