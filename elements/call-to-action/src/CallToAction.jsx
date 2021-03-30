@@ -48,6 +48,7 @@ const CallToAction = ({
     const { active = false, type = null, url = null, label = null } = callToAction || {};
 
     const swipeUpEnabled = type === null || type === 'swipe-up';
+    const validUrl = url !== null;
 
     const buttonRef = useRef(null);
 
@@ -80,6 +81,7 @@ const CallToAction = ({
                     [className]: className !== null,
                     [styles.disabled]: disabled,
                     [styles.animationDisabled]: animationDisabled,
+                    [styles.invalidUrl]: !validUrl,
                 },
             ])}
             ref={elRef}

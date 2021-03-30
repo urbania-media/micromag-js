@@ -35,14 +35,23 @@
             animation: none;
         }
     }
+
+    &.invalidUrl {
+        opacity: 0.5;
+        pointer-events: none;
+
+        .arrow {
+            animation: none;
+        }
+    }
 }
 
 @keyframes upAndDown {
     from {
-        transform: translateY(25%);
+        transform: translateY(0%);
     }
 
     to {
-        transform: translateY(0%);
+        transform: translateY(25%);
     }
 }
