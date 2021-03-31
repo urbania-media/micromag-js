@@ -124,7 +124,6 @@ const FieldWithForm = ({
                             'text-monospace',
                             'text-left',
                             'text-truncate',
-
                             {
                                 'text-left': !isHorizontal,
                                 'text-right': isHorizontal,

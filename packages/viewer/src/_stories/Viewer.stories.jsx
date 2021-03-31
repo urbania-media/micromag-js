@@ -2,6 +2,7 @@
 import React from 'react';
 import { webfontFiles, webfont2Files, webfont3Files } from '../../../../.storybook/data';
 
+import basic from '../../../../.storybook/data/stories/basic.json';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import faceAFace from '../../../../.storybook/data/stories/faceAFace';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
@@ -12,6 +13,7 @@ const props = {
     story: allScreensStory,
     fullscreen: true,
 };
+
 const faceAFaceProps = {
     screenId: faceAFace.components[0].id,
     story: faceAFace,
@@ -48,6 +50,7 @@ export default {
     },
 };
 
+export const Basic = () => <Viewer story={basic} />;
 export const AllScreens = () => <Viewer {...props} />;
 export const FaceAFace = () => <Viewer {...faceAFaceProps} />;
 export const Empty = () => <Viewer fullscreen basePath="/story-path" />;

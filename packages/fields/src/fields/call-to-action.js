@@ -6,7 +6,7 @@ export default {
     id: 'call-to-action',
     isList: true,
     component: CallToAction,
-    defaultValue: { active: false, type: 'swipe-up'},
+    defaultValue: { active: false, type: 'swipe-up' },
     fields: [
         {
             name: 'active',
@@ -15,11 +15,11 @@ export default {
             label: defineMessage({
                 defaultMessage: 'Call to Action',
                 description: 'CTA field active subfield label',
-            }),            
+            }),
         },
         {
             name: 'type',
-            type: 'radios',            
+            type: 'radios',
             options: [
                 {
                     value: 'swipe-up',
@@ -50,7 +50,7 @@ export default {
             label: defineMessage({
                 defaultMessage: 'Link',
                 description: 'CTA field url field label',
-            }),            
+            }),
         },
         {
             name: 'label',
@@ -59,7 +59,7 @@ export default {
             label: defineMessage({
                 defaultMessage: 'Label',
                 description: 'CTA field label field label',
-            }),            
-        },        
+            }),
+        },
     ],
 };
