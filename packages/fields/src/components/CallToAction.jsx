@@ -23,9 +23,18 @@ const defaultProps = {
 const CallToAction = ({ value, className, onChange, ...props }) => {
     const { active = false } = value || {};
 
+    // set default type
     const onUpdateValue = useCallback(
         (newValue) => {
-            const finalValue = { ...value, ...newValue };
+            const { active: wasActive = false } = value || {};
+            const { active: nowActive = false, type = null } = newValue || {};
+
+            const finalValue = { ...newValue };
+
+            if (!wasActive && nowActive && type === null) {
+                finalValue.type = 'swipe-up';
+            }
+
             if (onChange !== null) {
                 onChange(finalValue);
             }
