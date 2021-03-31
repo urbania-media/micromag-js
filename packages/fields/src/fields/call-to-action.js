@@ -6,6 +6,7 @@ export default {
     id: 'call-to-action',
     isList: true,
     component: CallToAction,
+    defaultValue: { active: false, type: 'swipe-up'},
     fields: [
         {
             name: 'active',
@@ -44,8 +45,7 @@ export default {
         },
         {
             name: 'url',
-            type: 'text',            
-            textOnly: true,
+            type: 'url',
             isHorizontal: true,
             label: defineMessage({
                 defaultMessage: 'Url',

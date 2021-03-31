@@ -52,5 +52,6 @@ export { default as textStyle } from './text-style';
 export { default as text } from './text';
 export { default as toggle } from './toggle';
 export { default as tokens } from './tokens';
+export { default as url } from './url';
 export { default as video } from './video';
 export { default as videoElement } from './video-element';

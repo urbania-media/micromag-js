@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useRef } from 'react';
+import React, { useRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { defineMessage, useIntl } from 'react-intl';
@@ -8,6 +8,7 @@ import { useGesture } from 'react-use-gesture';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { getStyleFromColor, isTextFilled, isValidUrl } from '@micromag/core/utils';
 import { Button } from '@micromag/core/components';
 import Text from '@micromag/element-text';
 
@@ -48,7 +49,7 @@ const CallToAction = ({
     const { active = false, type = null, url = null, label = null } = callToAction || {};
 
     const swipeUpEnabled = type === null || type === 'swipe-up';
-    const validUrl = url !== null;
+    const validUrl = useMemo(() => isValidUrl(url), [url]);
 
     const buttonRef = useRef(null);
 
@@ -58,8 +59,15 @@ const CallToAction = ({
             description: 'Call to action default label',
         }),
     );
-    const finalLabelProps = { ...{ body: defaultLabel }, ...label };
-    const { textStyle: { fontSize = null } = {} } = finalLabelProps || {};
+    const finalLabelProps = useMemo(
+        () => ({ ...label, body: isTextFilled(label) ? label.body : defaultLabel }),
+        [label],
+    );
+    const { textStyle: { fontSize = null, color = null } = {} } = finalLabelProps || {};
+    const arrowStyle = useMemo(() => ({ ...{ fontSize }, ...getStyleFromColor(color, 'color') }), [
+        fontSize,
+        color,
+    ]);
 
     const bind = useGesture({
         // fix firefox https://use-gesture.netlify.app/docs/faq/#why-cant-i-properly-drag-an-image-or-a-link
@@ -97,7 +105,7 @@ const CallToAction = ({
                 {swipeUpEnabled ? (
                     <FontAwesomeIcon
                         className={styles.arrow}
-                        style={{ fontSize }}
+                        style={arrowStyle}
                         icon={faChevronUp}
                     />
                 ) : null}

@@ -7,7 +7,7 @@
     position: relative;    
     transition: opacity .3s ease;
     opacity: 1;   
-    text-align: center;    
+    text-align: center;
     
     .arrow {
         animation: upAndDown 0.5s ease-in-out infinite alternate;
@@ -23,6 +23,10 @@
         touch-action: none;
         -webkit-user-drag: none;
         user-select: none;
+
+        &:hover {
+            text-decoration: none;
+        }
     }
 
     &.disabled {

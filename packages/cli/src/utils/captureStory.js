@@ -2,6 +2,8 @@
 /* globals renderStory: true */
 import path from 'path';
 import puppeteer from 'puppeteer';
+import fsExtra from 'fs-extra';
+import nodeFetch from 'node-fetch';
 
 import startServer from './startServer';
 import getOutputPath from './getOutputPath';
@@ -44,9 +46,27 @@ const captureStory = async (story, location, settings = {}) => {
     if (screens !== null) {
         const count = screens.length;
         for (let index = 0; index < count; index += 1) {
-            const { id, type } = screens[index];
+            const screenNumber = index + 1;
+            const screen = screens[index];
+            const { id, type } = screen;
             const singleScreenStory = { ...story, components: screens.slice(index, index + 1) };
-            console.log(`Screen ${index + 1}/${count} (${type})...`);
+            console.log(`Screen ${screenNumber}/${count} (${type})...`);
+
+            if (type === 'video' || type === 'video-360') {
+                const { video: { media: { url = null } = {} } = {} } = screen;
+                console.log(`Downloading video from ${url}...`);
+                const fileExtension = url.split(/[#?]/)[0].split('.').pop().trim();
+                const res = await nodeFetch(url);
+                const fileStream = fsExtra.createWriteStream(
+                    getOutputPath(location, `${screenNumber}.${fileExtension}`),
+                );
+                await new Promise((resolve, reject) => {
+                    res.body.pipe(fileStream);
+                    res.body.on('error', reject);
+                    fileStream.on('finish', resolve);
+                });
+            }
+
             await page.evaluate(
                 (storyToRender, storyProps) => renderStory(storyToRender, storyProps),
                 singleScreenStory,
@@ -70,7 +90,7 @@ const captureStory = async (story, location, settings = {}) => {
             }
 
             await page.screenshot({
-                path: getOutputPath(location, `${index}_${id}.png`),
+                path: getOutputPath(location, `${screenNumber}.png`),
             });
         }
     }
