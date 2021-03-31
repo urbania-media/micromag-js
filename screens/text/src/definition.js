@@ -54,6 +54,11 @@ export default [
             {
                 name: 'callToAction',
                 type: 'call-to-action',
+                theme: {
+                    label: {
+                        textStyle: 'heading2',
+                    },
+                },
             },
         ],
     },
@@ -118,6 +123,11 @@ export default [
             {
                 name: 'callToAction',
                 type: 'call-to-action',
+                theme: {
+                    label: {
+                        textStyle: 'heading2',
+                    },
+                },
             },
         ],
     },
