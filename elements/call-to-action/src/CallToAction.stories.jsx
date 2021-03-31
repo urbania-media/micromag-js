@@ -1,5 +1,4 @@
 import React from 'react';
-import { IntlProvider } from 'react-intl';
 
 import CallToAction from './CallToAction';
 
@@ -8,30 +7,29 @@ export default {
     title: 'Elements/CallToAction',
 };
 
+const callToActionProps = {
+    active: true,
+    url: 'https://google.com',
+    label: { body: 'Learn more' },
+};
+
 export const normal = () => (
-    <IntlProvider>
+    <>
         <div style={{ height: 300 }} />
-        <CallToAction callToAction={{ active: true, url: 'https://google.com' }} />
-    </IntlProvider>
+        <CallToAction callToAction={callToActionProps} />
+    </>
 );
 
 export const animationDisabled = () => (
-    <IntlProvider>
+    <>
         <div style={{ height: 300 }} />
-        <CallToAction callToAction={{ active: true, url: 'https://google.com'}} animationDisabled />
-    </IntlProvider>
+        <CallToAction callToAction={callToActionProps} animationDisabled />
+    </>
 );
 
 export const noSwipe = () => (
-    <IntlProvider>
+    <>
         <div style={{ height: 300 }} />
-        <CallToAction callToAction={{ active: true, url: 'https://google.com', type: 'button' }} />
-    </IntlProvider>
-);
-
-export const withLabel = () => (
-    <IntlProvider>
-        <div style={{ height: 300 }} />
-        <CallToAction callToAction={{ active: true, url: 'https://google.com', label: { body: 'Custom label'} }} />
-    </IntlProvider>
+        <CallToAction callToAction={{...callToActionProps, type: 'button' }} />
+    </>
 );

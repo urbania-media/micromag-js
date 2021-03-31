@@ -2,6 +2,7 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { useIntl, defineMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import Fields from './Fields';
@@ -22,17 +23,29 @@ const defaultProps = {
 
 const CallToAction = ({ value, className, onChange, ...props }) => {
     const { active = false } = value || {};
+    const intl = useIntl();
 
-    // set default type
+    // set default type and label
     const onUpdateValue = useCallback(
         (newValue) => {
             const { active: wasActive = false } = value || {};
-            const { active: nowActive = false, type = null } = newValue || {};
+            const { active: nowActive = false, type = null, label = null } = newValue || {};
 
             const finalValue = { ...newValue };
-
-            if (!wasActive && nowActive && type === null) {
-                finalValue.type = 'swipe-up';
+            if (!wasActive && nowActive) {
+                if (type === null) {
+                    finalValue.type = 'swipe-up';
+                }
+                if (label === null) {
+                    finalValue.label = {
+                        body: intl.formatMessage(
+                            defineMessage({
+                                defaultMessage: 'Learn more',
+                                description: 'Call to action default label',
+                            }),
+                        )
+                    }
+                }
             }
 
             if (onChange !== null) {
