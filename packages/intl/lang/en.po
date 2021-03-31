@@ -263,6 +263,12 @@ msgctxt "507VAi"
 msgid "Description"
 msgstr "Description"
 
+# CTA field active subfield label
+#: 52tY6n
+msgctxt "52tY6n"
+msgid "Call to Action"
+msgstr "Call to Action"
+
 # Submit placeholder
 #: 5uH4x7
 msgctxt "5uH4x7"
@@ -322,12 +328,6 @@ msgstr "Quote"
 msgctxt "8Dl/S1"
 msgid "Draggable"
 msgstr "Draggable"
-
-# Call to Action field label
-#: 8lxqFe
-msgctxt "8lxqFe"
-msgid "Call to Action"
-msgstr "Call to Action"
 
 # Button label
 #: 8oczXQ
@@ -419,17 +419,17 @@ msgctxt "CrzYgw"
 msgid "Quote"
 msgstr "Quote"
 
+# CTA field label field label
+#: D/N9gA
+msgctxt "D/N9gA"
+msgid "Label"
+msgstr "Label"
+
 # Markers field label
 #: D0+Cxr
 msgctxt "D0+Cxr"
 msgid "Markers with image"
 msgstr "Markers with image"
-
-# Swipe up label
-#: DGPxQq
-msgctxt "DGPxQq"
-msgid "Swipe up"
-msgstr "Swipe up"
 
 # Label when no value is provided to Field with form
 #: DVrK6z
@@ -718,17 +718,17 @@ msgctxt "T9NZPQ"
 msgid "Images"
 msgstr "Images"
 
-# Url label
-#: TDOyVG
-msgctxt "TDOyVG"
-msgid "Url"
-msgstr "Url"
-
 # Longitude description
 #: THKV4v
 msgctxt "THKV4v"
 msgid "Longitude"
 msgstr "Longitude"
+
+# CTA field url field label
+#: TXkHah
+msgctxt "TXkHah"
+msgid "Link"
+msgstr "Link"
 
 # Add button label in Media Gallery
 #: Tt4jN1
@@ -759,12 +759,6 @@ msgstr "Custom fonts"
 msgctxt "V+G2s+"
 msgid "Add an image"
 msgstr "Add an image"
-
-# Active label
-#: V8PtWX
-msgctxt "V8PtWX"
-msgid "Active"
-msgstr "Active"
 
 # Font family group title
 #: VDu2FA
@@ -808,12 +802,6 @@ msgctxt "XhgKcw"
 msgid "Move the map to position the place"
 msgstr "Move the map to position the place"
 
-# Button label
-#: Y2aNFe
-msgctxt "Y2aNFe"
-msgid "Button"
-msgstr "Button"
-
 # Description in Media Gallery
 #: YJZtWR
 msgctxt "YJZtWR"
@@ -849,6 +837,12 @@ msgstr "Submit"
 msgctxt "ZqwBOx"
 msgid "Questions"
 msgstr "Questions"
+
+# CTA field type subfield label
+#: ZvKOEb
+msgctxt "ZvKOEb"
+msgid "Type"
+msgstr "Type"
 
 # Button label in items field
 #: ZxgNge
@@ -988,6 +982,12 @@ msgctxt "fusnxf"
 msgid "Square"
 msgstr "Square"
 
+# CTA field type subfield button option label
+#: fxfV+l
+msgctxt "fxfV+l"
+msgid "Button"
+msgstr "Button"
+
 # Contribution screen title
 #: g6b9Lg
 msgctxt "g6b9Lg"
@@ -1035,6 +1035,12 @@ msgstr "Gallery"
 msgctxt "jf+4Hq"
 msgid "Screens"
 msgstr "Screens"
+
+# CTA field type subfield swipe-up option label
+#: jvvJbk
+msgctxt "jvvJbk"
+msgid "Swipe up"
+msgstr "Swipe up"
 
 # Name in Media Gallery
 #: kBz8vF
@@ -1148,12 +1154,6 @@ msgctxt "q/tLk0"
 msgid "Are you sure you want to delete this screen?"
 msgstr "Are you sure you want to delete this screen?"
 
-# Type label
-#: qBKOEO
-msgctxt "qBKOEO"
-msgid "Type"
-msgstr "Type"
-
 # Save in Media Gallery
 #: qIw1nW
 msgctxt "qIw1nW"
@@ -1177,12 +1177,6 @@ msgstr "No marker..."
 msgctxt "sESmah"
 msgid "Entries"
 msgstr "Entries"
-
-# Label label
-#: sLRFMy
-msgctxt "sLRFMy"
-msgid "Label"
-msgstr "Label"
 
 # Label in Media Gallery
 #: sUR1xV

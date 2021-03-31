@@ -55,10 +55,6 @@ export default [
             {
                 name: 'callToAction',
                 type: 'call-to-action',
-                label: defineMessage({
-                    defaultMessage: 'Call to Action',
-                    description: 'Call to Action field label',
-                }),
             },
         ],
     },
@@ -122,10 +118,6 @@ export default [
             {
                 name: 'callToAction',
                 type: 'call-to-action',
-                label: defineMessage({
-                    defaultMessage: 'Call to Action',
-                    description: 'Call to Action field label',
-                }),
             },
         ],
     },
@@ -200,10 +192,6 @@ export default [
             {
                 name: 'callToAction',
                 type: 'call-to-action',
-                label: defineMessage({
-                    defaultMessage: 'Call to Action',
-                    description: 'Call to Action field label',
-                }),
             },
         ],
     },

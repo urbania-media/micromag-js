@@ -13,8 +13,8 @@ export default {
             type: 'toggle',
             isHorizontal: true,
             label: defineMessage({
-                defaultMessage: 'Active',
-                description: 'Active label',
+                defaultMessage: 'Call to Action',
+                description: 'CTA field active subfield label',
             }),            
         },
         {
@@ -25,14 +25,14 @@ export default {
                     value: 'swipe-up',
                     label: defineMessage({
                         defaultMessage: 'Swipe up',
-                        description: 'Swipe up label',
+                        description: 'CTA field type subfield swipe-up option label',
                     }),
                 },
                 {
                     value: 'button',
                     label: defineMessage({
                         defaultMessage: 'Button',
-                        description: 'Button label',
+                        description: 'CTA field type subfield button option label',
                     }),
                 },
             ],
@@ -40,7 +40,7 @@ export default {
             isHorizontal: true,
             label: defineMessage({
                 defaultMessage: 'Type',
-                description: 'Type label',
+                description: 'CTA field type subfield label',
             }),
         },
         {
@@ -48,8 +48,8 @@ export default {
             type: 'url',
             isHorizontal: true,
             label: defineMessage({
-                defaultMessage: 'Url',
-                description: 'Url label',
+                defaultMessage: 'Link',
+                description: 'CTA field url field label',
             }),            
         },
         {
@@ -58,7 +58,7 @@ export default {
             textOnly: true,
             label: defineMessage({
                 defaultMessage: 'Label',
-                description: 'Label label',
+                description: 'CTA field label field label',
             }),            
         },        
     ],

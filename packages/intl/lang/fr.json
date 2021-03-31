@@ -122,6 +122,9 @@
     "507VAi": {
         "defaultMessage": "Description"
     },
+    "52tY6n": {
+        "defaultMessage": "Action"
+    },
     "5uH4x7": {
         "defaultMessage": "Envoyer"
     },
@@ -151,9 +154,6 @@
     },
     "8Dl/S1": {
         "defaultMessage": "Glissable"
-    },
-    "8lxqFe": {
-        "defaultMessage": "Action"
     },
     "8oczXQ": {
         "defaultMessage": "Ajouter un marqueur"
@@ -200,11 +200,11 @@
     "CrzYgw": {
         "defaultMessage": "Citation"
     },
+    "D/N9gA": {
+        "defaultMessage": "Libellé"
+    },
     "D0+Cxr": {
         "defaultMessage": "Marqueurs avec image"
-    },
-    "DGPxQq": {
-        "defaultMessage": "Swipe up"
     },
     "DVrK6z": {
         "defaultMessage": "Cliquez pour modifier..."
@@ -350,11 +350,11 @@
     "T9NZPQ": {
         "defaultMessage": "Images"
     },
-    "TDOyVG": {
-        "defaultMessage": "Url"
-    },
     "THKV4v": {
         "defaultMessage": "Longitude"
+    },
+    "TXkHah": {
+        "defaultMessage": "Lien"
     },
     "Tt4jN1": {
         "defaultMessage": "Ajouter"
@@ -370,9 +370,6 @@
     },
     "V+G2s+": {
         "defaultMessage": "Ajouter une image"
-    },
-    "V8PtWX": {
-        "defaultMessage": "Actif"
     },
     "VDu2FA": {
         "defaultMessage": "Google Fonts"
@@ -395,9 +392,6 @@
     "XhgKcw": {
         "defaultMessage": "Déplacez la carte pour positionner"
     },
-    "Y2aNFe": {
-        "defaultMessage": "Bouton"
-    },
     "YJZtWR": {
         "defaultMessage": "Description"
     },
@@ -415,6 +409,9 @@
     },
     "ZqwBOx": {
         "defaultMessage": "Questions"
+    },
+    "ZvKOEb": {
+        "defaultMessage": "Type"
     },
     "ZxgNge": {
         "defaultMessage": "Ajouter un élement"
@@ -485,6 +482,9 @@
     "fusnxf": {
         "defaultMessage": "Carré"
     },
+    "fxfV+l": {
+        "defaultMessage": "Bouton"
+    },
     "g6b9Lg": {
         "defaultMessage": "Contribution"
     },
@@ -508,6 +508,9 @@
     },
     "jf+4Hq": {
         "defaultMessage": "Écrans"
+    },
+    "jvvJbk": {
+        "defaultMessage": "Swipe up"
     },
     "kBz8vF": {
         "defaultMessage": "Nom"
@@ -566,9 +569,6 @@
     "q/tLk0": {
         "defaultMessage": "Êtes-vous sûr que vous voulez supprimer cet écran?"
     },
-    "qBKOEO": {
-        "defaultMessage": "Type"
-    },
     "qIw1nW": {
         "defaultMessage": "Enregistrer"
     },
@@ -580,9 +580,6 @@
     },
     "sESmah": {
         "defaultMessage": "Entrées"
-    },
-    "sLRFMy": {
-        "defaultMessage": "Libellé"
     },
     "sUR1xV": {
         "defaultMessage": "Auteur"
