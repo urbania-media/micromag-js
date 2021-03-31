@@ -2,13 +2,12 @@
 import React, { useRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { defineMessage, useIntl } from 'react-intl';
 import { useGesture } from 'react-use-gesture';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { getStyleFromColor, isTextFilled, isValidUrl } from '@micromag/core/utils';
+import { getStyleFromColor, isValidUrl } from '@micromag/core/utils';
 import { Button } from '@micromag/core/components';
 import Text from '@micromag/element-text';
 
@@ -45,7 +44,6 @@ const CallToAction = ({
     dragAmount,
     className,
 }) => {
-    const intl = useIntl();
     const { active = false, type = null, url = null, label = null } = callToAction || {};
 
     const swipeUpEnabled = type === null || type === 'swipe-up';
@@ -53,17 +51,7 @@ const CallToAction = ({
 
     const buttonRef = useRef(null);
 
-    const defaultLabel = intl.formatMessage(
-        defineMessage({
-            defaultMessage: 'Learn more',
-            description: 'Call to action default label',
-        }),
-    );
-    const finalLabelProps = useMemo(
-        () => ({ ...label, body: isTextFilled(label) ? label.body : defaultLabel }),
-        [label],
-    );
-    const { textStyle: { fontSize = null, color = null } = {} } = finalLabelProps || {};
+    const { textStyle: { fontSize = null, color = null } = {} } = label || {};
     const arrowStyle = useMemo(() => ({ ...{ fontSize }, ...getStyleFromColor(color, 'color') }), [
         fontSize,
         color,
@@ -110,7 +98,7 @@ const CallToAction = ({
                     />
                 ) : null}
                 <span className={styles.label}>
-                    <Text {...finalLabelProps} inline />
+                    <Text {...label} inline />
                 </span>
             </Button>
         </div>

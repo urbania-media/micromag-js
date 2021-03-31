@@ -6,7 +6,6 @@ export default {
     id: 'call-to-action',
     isList: true,
     component: CallToAction,
-    defaultValue: { active: false, type: 'swipe-up'},
     fields: [
         {
             name: 'active',

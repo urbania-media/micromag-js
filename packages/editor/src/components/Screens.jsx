@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useRoutes, useRoutePush, useUrlGenerator, useFieldsManager } from '@micromag/core/contexts';
+import { useRoutes, useRoutePush, useUrlGenerator } from '@micromag/core/contexts';
 import { Empty, Button, Navbar } from '@micromag/core/components';
 import { useParsedStory } from '@micromag/core/hooks';
 import isString from 'lodash/isString';
@@ -61,8 +61,6 @@ const EditorScreens = ({
     const push = useRoutePush();
     const url = useUrlGenerator();
 
-    const fieldsManager = useFieldsManager();
-
     const createScreenFromDefinition = useCallback(
         (definition) => {
             const { components: currentScreens = [], theme = {} } = value || {};
@@ -70,7 +68,7 @@ const EditorScreens = ({
             const { components: themeComponents = null } = theme || {};
             const themeScreen = themeComponents !== null ? themeComponents.find((it) => it.type === newScreenType) || null : null;
 
-            const newScreen = createScreen(definition, themeScreen, fieldsManager);
+            const newScreen = createScreen(definition, themeScreen);
                 
             const newValue = {
                 ...value,
@@ -82,7 +80,7 @@ const EditorScreens = ({
             }
             return newScreen;
         },
-        [value, onChange, setCreateModalOpened, fieldsManager],
+        [value, onChange, setCreateModalOpened],
     );
 
     const onOrderChange = useCallback(
