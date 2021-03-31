@@ -1,0 +1,182 @@
+{
+    "id": "10",
+    "type": "story",
+    "title": "Mon nouveau micromag du futur",
+    "author": {
+        "id": "1",
+        "name": "Nicolas",
+        "short_name": "N",
+        "avatar": null,
+        "color": {
+            "color": "#f6c19c",
+            "alpha": 1
+        }
+    },
+    "organisation": null,
+    "metadata": {
+        "description": null,
+        "language": "fr",
+        "favicon": null,
+        "shareImage": null
+    },
+    "components": [
+        {
+            "id": "5250fe80-9254-11eb-a544-b5cca3068892",
+            "type": "quote",
+            "background": {
+                "color": {
+                    "color": "#000",
+                    "alpha": 1
+                },
+                "image": null
+            },
+            "layout": "middle",
+            "callToAction": {
+                "active": false,
+                "type": "swipe-up"
+            },
+            "quote": {
+                "body": "<p>Coolos</p>",
+                "textStyle": {
+                    "color": {
+                        "color": "#FFF",
+                        "alpha": 1
+                    },
+                    "align": "left",
+                    "fontFamily": "Arial",
+                    "fontSize": 24,
+                    "fontStyle": {
+                        "bold": false,
+                        "italic": false,
+                        "underline": false
+                    },
+                    "lineHeight": 1,
+                    "letterSpacing": 0
+                }
+            },
+            "author": {
+                "body": "<p>un auteur inconnu</p>",
+                "textStyle": {
+                    "color": {
+                        "color": "#FFF",
+                        "alpha": 1
+                    },
+                    "align": "left",
+                    "fontFamily": "Georgia",
+                    "fontSize": 16,
+                    "fontStyle": {
+                        "bold": false,
+                        "italic": false,
+                        "underline": false
+                    },
+                    "lineHeight": 1,
+                    "letterSpacing": 0
+                }
+            }
+        }
+    ],
+    "medias": [],
+    "theme": {
+        "components": [],
+        "textStyle": {
+            "heading1": {
+                "color": {
+                    "color": "#FFF",
+                    "alpha": 1
+                },
+                "align": "left",
+                "fontFamily": "Arial",
+                "fontSize": 32,
+                "fontStyle": {
+                    "bold": false,
+                    "italic": false,
+                    "underline": false
+                },
+                "lineHeight": 1,
+                "letterSpacing": 0
+            },
+            "heading2": {
+                "color": {
+                    "color": "#FFF",
+                    "alpha": 1
+                },
+                "align": "left",
+                "fontFamily": "Arial",
+                "fontSize": 24,
+                "fontStyle": {
+                    "bold": false,
+                    "italic": false,
+                    "underline": false
+                },
+                "lineHeight": 1,
+                "letterSpacing": 0
+            },
+            "heading3": {
+                "color": {
+                    "color": "#FFF",
+                    "alpha": 1
+                },
+                "align": "left",
+                "fontFamily": "Arial",
+                "fontSize": 20,
+                "fontStyle": {
+                    "bold": false,
+                    "italic": false,
+                    "underline": false
+                },
+                "lineHeight": 1,
+                "letterSpacing": 0
+            },
+            "button": {
+                "color": {
+                    "color": "#FFF",
+                    "alpha": 1
+                },
+                "align": "left",
+                "fontFamily": "Arial",
+                "fontSize": 16,
+                "fontStyle": {
+                    "bold": true,
+                    "italic": false,
+                    "underline": false
+                },
+                "lineHeight": 1,
+                "letterSpacing": 0
+            },
+            "text": {
+                "color": {
+                    "color": "#FFF",
+                    "alpha": 1
+                },
+                "align": "left",
+                "fontFamily": "Georgia",
+                "fontSize": 16,
+                "fontStyle": {
+                    "bold": false,
+                    "italic": false,
+                    "underline": false
+                },
+                "lineHeight": 1,
+                "letterSpacing": 0
+            }
+        },
+        "colors": {
+            "primary": {
+                "color": "#FFF",
+                "alpha": 1
+            },
+            "secondary": {
+                "color": "#999",
+                "alpha": 1
+            }
+        },
+        "background": {
+            "color": {
+                "color": "#000",
+                "alpha": 1
+            },
+            "image": null
+        }
+    },
+    "created_at": "2021-03-31T15:07:15-04:00"
+}
