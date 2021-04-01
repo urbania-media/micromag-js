@@ -59,6 +59,7 @@
         "@micromag/element-scroll": "^0.2.179",
         "@micromag/elements": "^0.2.184",
         "@micromag/fields": "^0.2.184",
+        "@micromag/intl": "^0.2.184",
         "@micromag/screens": "^0.2.184",
         "classnames": "^2.2.6",
         "lodash": "^4.17.20",
