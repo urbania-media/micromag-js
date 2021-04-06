@@ -51,6 +51,18 @@ export default {
 };
 
 export const Basic = () => <Viewer story={basic} />;
+export const Integrated = () => (
+    <Viewer
+        {...faceAFaceProps}
+        closeable
+        onClose={() => console.log('close')}
+        onStart={() => console.log('start')}
+        onEnd={() => console.log('end')}
+        onViewModeChange={(viewMode) => {
+            console.log(viewMode);
+        }}
+    />
+);
 export const AllScreens = () => <Viewer {...props} />;
 export const FaceAFace = () => <Viewer {...faceAFaceProps} />;
 export const Empty = () => <Viewer fullscreen basePath="/story-path" />;

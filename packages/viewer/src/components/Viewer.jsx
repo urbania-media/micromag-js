@@ -43,6 +43,11 @@ const propTypes = {
     withMetadata: PropTypes.bool,
     withoutMenu: PropTypes.bool,
     withoutFullscreen: PropTypes.bool,
+    closeable: PropTypes.bool,
+    onClose: PropTypes.func,
+    onStart: PropTypes.func,
+    onEnd: PropTypes.func,
+    onViewModeChange: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -64,6 +69,11 @@ const defaultProps = {
     withMetadata: false,
     withoutMenu: false,
     withoutFullscreen: false,
+    closeable: false,
+    onClose: null,
+    onStart: null,
+    onEnd: null,
+    onViewModeChange: null,
     className: null,
 };
 
@@ -84,8 +94,12 @@ const Viewer = ({
     landscapeScreenMargin,
     withMetadata,
     withoutMenu,
-    // eslint-disable-next-line no-unused-vars
-    withoutFullscreen,
+    withoutFullscreen,// eslint-disable-line no-unused-vars
+    closeable,
+    onClose,
+    onStart,
+    onEnd,
+    onViewModeChange,
     className,
 }) => {
     const parsedStory = useParsedStory(story, { disabled: storyIsParsed }) || {};
@@ -127,6 +141,12 @@ const Viewer = ({
     });
     const { width: screenWidth = null, height: screenHeight = null, landscape = false } =
         screenSize || {};
+
+    useEffect( () => {
+        if (onViewModeChange !== null) {
+            onViewModeChange({ landscape });
+        }
+    }, [landscape, onViewModeChange]);
 
     // Get dots menu height
 
@@ -220,8 +240,22 @@ const Viewer = ({
 
     // handle tap
 
+    const hasInteracted = useRef(false);
+
+    const onInteraction = useCallback( () => {
+        if (!hasInteracted.current) {
+            if (onStart !== null) {
+                onStart();
+            }
+            hasInteracted.current = true;
+        }
+    }, [onStart]);
+
     const onTap = useCallback(
         (e, index) => {
+            
+            onInteraction();
+
             const checkClickable = (el, maxDistance = 5, distance = 1) => {
                 const { tagName = null, parentNode = null } = el || {};
 
@@ -267,6 +301,11 @@ const Viewer = ({
                 nextIndex = Math.max(0, screenIndex - 1);
             } else {
                 nextIndex = Math.min(screens.length - 1, screenIndex + 1);
+
+                const isLastScreen = screenIndex === screens.length - 1;
+                if (isLastScreen && onEnd !== null) {
+                    onEnd();
+                }
             }
             changeIndex(nextIndex);
         },
@@ -278,6 +317,7 @@ const Viewer = ({
             screenIndex,
             screensInteractionEnabled,
             isView,
+            onEnd,
         ],
     );
 
@@ -331,6 +371,9 @@ const Viewer = ({
 
     const onClickDotsMenuItem = useCallback(
         (index) => {
+
+            onInteraction();
+
             const clickedOnDot = index !== null;
             const goToScreen = landscape && clickedOnDot;
 
@@ -449,6 +492,8 @@ const Viewer = ({
                                     items={screens}
                                     current={screenIndex}
                                     onClickItem={onClickDotsMenuItem}
+                                    closeable={closeable}
+                                    onClose={onClose}
                                     className={styles.menuDots}
                                 />
                             </div>

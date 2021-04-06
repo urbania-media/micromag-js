@@ -59,11 +59,11 @@ export const useScreenSizeFromElement = ({ width = null, height = null, ...opts 
 
     let finalWidth =
         landscape && !withoutMaxSize
-            ? Math.round(Math.max(320, 0.45 * semiFinalHeight))
+            ? Math.round(0.45 * semiFinalHeight)
             : semiFinalWidth;
     let finalHeight =
         landscape && !withoutMaxSize
-            ? Math.round(Math.max(533, 0.75 * semiFinalHeight))
+            ? Math.round(0.75 * semiFinalHeight)
             : semiFinalHeight;
     if (finalWidth % 2 === 1) {
         finalWidth -= 1;

@@ -65,6 +65,13 @@
         @extend %reset-button;
     }
 
+    .closeButton {
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        font-size: 26px;
+    }
+
     &.vertical {
         flex-direction: column;
         background: transparent;

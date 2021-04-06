@@ -3,6 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { Button } from '@micromag/core/components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import MenuIcon from './MenuIcon';
 
@@ -16,6 +19,8 @@ const propTypes = {
     onClickItem: PropTypes.func,
     colorAccent: PropTypes.string,
     colorBackground: PropTypes.string,
+    closeable: PropTypes.bool,
+    onClose: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -27,6 +32,8 @@ const defaultProps = {
     onClickItem: null,
     colorAccent: 'rgba(255, 255, 255, 1)',
     colorBackground: 'rgba(200, 200, 200, 0.5)',
+    closeable: false,
+    onClose: null,
     className: null,
 };
 
@@ -38,6 +45,8 @@ const ViewerMenuDots = ({
     onClickItem,
     colorAccent,
     colorBackground,
+    closeable,
+    onClose,
     className,
 }) => (
     <nav
@@ -79,19 +88,28 @@ const ViewerMenuDots = ({
                     </button>
                 </li>
             ))}
-            <li className={styles.menu}>
-                <MenuIcon className={styles.menuIcon} color={colorAccent} />
-                <button
-                    type="button"
-                    aria-label="menu"
-                    className={styles.menuButton}
-                    onClick={() => {
-                        if (onClickItem !== null) {
-                            onClickItem(null);
-                        }
-                    }}
-                />
-            </li>
+
+            {closeable && !landscape ? (
+                <li className={styles.closeButton} style={{ color: colorAccent }}>
+                    <Button className={styles.closeButton} withoutStyle onClick={onClose}>
+                        <FontAwesomeIcon icon={faTimes} />
+                    </Button>
+                </li>
+            ) : (
+                <li className={styles.menu}>
+                    <MenuIcon className={styles.menuIcon} color={colorAccent} />
+                    <button
+                        type="button"
+                        aria-label="menu"
+                        className={styles.menuButton}
+                        onClick={() => {
+                            if (onClickItem !== null) {
+                                onClickItem(null);
+                            }
+                        }}
+                    />
+                </li>
+            )}
         </ul>
     </nav>
 );
