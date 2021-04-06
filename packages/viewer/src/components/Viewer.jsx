@@ -142,7 +142,7 @@ const Viewer = ({
     const { width: screenWidth = null, height: screenHeight = null, landscape = false, menuOverScreen = false } =
         screenSize || {};
 
-    // const screenTop = useMemo(() => containerRef.current !== null ? containerRef.current.getBoundingClientRect().top : 0, [containerRef, screenSize]);
+    /// const screenTop = useMemo(() => containerRef.current !== null ? containerRef.current.getBoundingClientRect().top : 0, [containerRef, screenSize]);
 
     useEffect( () => {
         if (onViewModeChange !== null) {
