@@ -240,32 +240,11 @@ const Viewer = ({
 
     // handle tap
 
-    const [hasInteracted, setHasInteracted] = useState(false);
-
     const onInteraction = useCallback( () => {
-        setHasInteracted(oldInteracted => {
-            if (!oldInteracted) {
-                if (onStart !== null) {
-                    onStart();
-                }
-            }
-            return true;
-        });
-    }, [onStart, setHasInteracted]);
-
-    const onPrivateClose = useCallback( () => {
-        if (onClose !== null) {
-            onClose();
+        if (!closeable && onStart !== null) {
+            onStart();
         }
-        setHasInteracted(false);
-    }, [onClose, setHasInteracted]);
-
-    const onPrivateEnd = useCallback( () => {
-        if (onEnd !== null) {
-            onEnd();
-        }
-        setHasInteracted(false);
-    }, [onEnd, setHasInteracted]);
+    }, [onStart, closeable]);
 
     const onTap = useCallback(
         (e, index) => {
@@ -319,8 +298,8 @@ const Viewer = ({
                 nextIndex = landscape ? index : Math.min(screens.length - 1, screenIndex + 1);
 
                 const isLastScreen = screenIndex === screens.length - 1;
-                if (isLastScreen) {
-                    onPrivateEnd();
+                if (isLastScreen && onEnd !== null) {
+                    onEnd();
                 }
             }
             changeIndex(nextIndex);
@@ -333,7 +312,8 @@ const Viewer = ({
             screenIndex,
             screensInteractionEnabled,
             isView,
-            onPrivateEnd,
+            onInteraction,
+            onEnd
         ],
     );
 
@@ -409,7 +389,7 @@ const Viewer = ({
                 });
             }
         },
-        [changeIndex, landscape, trackingEnabled, trackEvent, screenId, screenType],
+        [changeIndex, landscape, trackingEnabled, trackEvent, screenId, screenType, onInteraction],
     );
 
     // handle preview menu item click
@@ -504,13 +484,12 @@ const Viewer = ({
                             >
                                 <MenuDots
                                     direction="horizontal"
-                                    landscape={landscape}
                                     withShadow={menuOverScreen}
                                     items={screens}
                                     current={screenIndex}
                                     onClickItem={onClickDotsMenuItem}
-                                    closeable={closeable && hasInteracted}
-                                    onClose={onPrivateClose}
+                                    closeable={closeable}
+                                    onClose={onClose}
                                     className={styles.menuDots}
                                 />
                             </div>

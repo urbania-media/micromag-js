@@ -12,7 +12,6 @@ import styles from '../../styles/menus/menu-dots.module.scss';
 
 const propTypes = {
     direction: PropTypes.oneOf(['horizontal', 'vertical']),
-    landscape: PropTypes.bool,
     withShadow: PropTypes.bool,
     items: MicromagPropTypes.menuItems,
     current: PropTypes.number,
@@ -26,7 +25,6 @@ const propTypes = {
 
 const defaultProps = {
     direction: 'horizontal',
-    landscape: false,
     withShadow: false,
     items: [],
     current: 0,
@@ -40,7 +38,6 @@ const defaultProps = {
 
 const ViewerMenuDots = ({
     direction,
-    landscape,
     withShadow,
     items,
     current,
@@ -103,7 +100,7 @@ const ViewerMenuDots = ({
                     }}
                 />
             </li>
-            { closeable && !landscape ? (
+            { closeable ? (
                 <li className={styles.closeButton} style={{ color: colorAccent }}>
                     <button type="button" className={styles.closeButton} onClick={onClose}>
                         <FontAwesomeIcon icon={faTimes} />
