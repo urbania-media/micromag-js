@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-call-to-action",
-    "version": "0.2.187",
+    "version": "0.2.189",
     "description": "",
     "keywords": [
         "javascript"
@@ -52,8 +52,8 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.27",
         "@fortawesome/free-solid-svg-icons": "^5.12.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/core": "^0.2.187",
-        "@micromag/element-text": "^0.2.187",
+        "@micromag/core": "^0.2.189",
+        "@micromag/element-text": "^0.2.189",
         "classnames": "^2.2.6",
         "lodash": "^4.17.20",
         "prop-types": "^15.7.2",
