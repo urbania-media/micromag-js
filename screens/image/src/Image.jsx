@@ -72,7 +72,7 @@ const ImageScreen = ({
     transitions,
     className,
 }) => {
-    const { width, height, landscape } = useScreenSize();
+    const { width, height, menuOverScreen } = useScreenSize();
 
     const { menuSize } = useViewer();
 
@@ -241,13 +241,14 @@ const ImageScreen = ({
         items.push(
             <CallToAction
                 key="call-to-action"
+                className={styles.callToAction}
                 callToAction={callToAction}
                 animationDisabled={isPreview}
             />,
         );
     }
 
-    let paddingTop = (!landscape && !isPreview ? menuSize : 0) + finalSpacing / 2;
+    let paddingTop = (menuOverScreen && !isPreview ? menuSize : 0) + finalSpacing / 2;
 
     if (isCard || isFullscreen) {
         paddingTop = 0;

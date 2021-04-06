@@ -139,7 +139,7 @@ const Viewer = ({
         height,
         screens: deviceScreens,
     });
-    const { width: screenWidth = null, height: screenHeight = null, landscape = false } =
+    const { width: screenWidth = null, height: screenHeight = null, landscape = false, menuOverScreen = false } =
         screenSize || {};
 
     useEffect( () => {
@@ -314,9 +314,9 @@ const Viewer = ({
                 : screenIndex > index;
 
             if (hasTappedLeft) {
-                nextIndex = Math.max(0, screenIndex - 1);
+                nextIndex = landscape ? index : Math.max(0, screenIndex - 1);
             } else {
-                nextIndex = Math.min(screens.length - 1, screenIndex + 1);
+                nextIndex = landscape ? index : Math.min(screens.length - 1, screenIndex + 1);
 
                 const isLastScreen = screenIndex === screens.length - 1;
                 if (isLastScreen) {
@@ -505,6 +505,7 @@ const Viewer = ({
                                 <MenuDots
                                     direction="horizontal"
                                     landscape={landscape}
+                                    withShadow={menuOverScreen}
                                     items={screens}
                                     current={screenIndex}
                                     onClickItem={onClickDotsMenuItem}

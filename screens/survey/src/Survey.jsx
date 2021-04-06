@@ -72,7 +72,7 @@ const SurveyScreen = ({
 }) => {
     const screenId = id || 'screen-id';
     const trackScreenEvent = useTrackScreenEvent(type);
-    const { width, height, landscape } = useScreenSize();
+    const { width, height, menuOverScreen } = useScreenSize();
     const { menuSize } = useViewer();
     const { create: submitQuiz } = useQuizCreate({
         screenId,
@@ -418,7 +418,7 @@ const SurveyScreen = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop: (!landscape && !isPreview ? menuSize : 0) + spacing,
+                                  paddingTop: (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
                               }
                             : null
                     }

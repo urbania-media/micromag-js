@@ -78,7 +78,7 @@ const Timeline = ({
     className,
 }) => {
     const trackScreenEvent = useTrackScreenEvent(type);
-    const { width, height, landscape } = useScreenSize();
+    const { width, height, menuOverScreen } = useScreenSize();
     const { menuSize } = useViewer();
 
     const {
@@ -357,7 +357,7 @@ const Timeline = ({
                                 ? {
                                       padding: spacing,
                                       paddingTop:
-                                          (!landscape && !isPreview ? menuSize : 0) + spacing,
+                                          (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
                                   }
                                 : null
                         }

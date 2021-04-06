@@ -83,7 +83,7 @@ const GalleryScreen = ({
     transitionStagger,
     className,
 }) => {
-    const { width, height, landscape } = useScreenSize();
+    const { width, height, menuOverScreen } = useScreenSize();
     const { menuSize } = useViewer();
 
     const {
@@ -254,7 +254,7 @@ const GalleryScreen = ({
                 <div
                     className={styles.content}
                     style={{
-                        paddingTop: !landscape && !isPreview ? menuSize : null,
+                        paddingTop: menuOverScreen && !isPreview ? menuSize : null,
                         paddingBottom: hasCallToAction ? callToActionHeight + spacing : 0,
                     }}
                     ref={contentRef}

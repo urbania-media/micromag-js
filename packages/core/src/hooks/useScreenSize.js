@@ -7,6 +7,7 @@ const useScreenSize = ({
     width = null,
     height = null,
     landscape = false,
+    menuOverScreen = false,
     screens = [],
     mediaType = 'screen',
     media: providedMedia = null,
@@ -42,6 +43,7 @@ const useScreenSize = ({
         width,
         height,
         landscape,
+        menuOverScreen,
     };
 };
 
@@ -51,20 +53,27 @@ export const useScreenSizeFromElement = ({ width = null, height = null, ...opts 
         entry: { contentRect },
     } = useResizeObserver();
     const { width: calculatedWidth = 0, height: calculatedHeight = 0 } = contentRect || {};
-    const semiFinalWidth = width !== null ? width : calculatedWidth;
-    const semiFinalHeight = height !== null ? height : calculatedHeight;
+    const fullWidth = width !== null ? width : calculatedWidth;
+    const fullHeight = height !== null ? height : calculatedHeight;
 
-    const landscape = semiFinalHeight > 0 && semiFinalWidth > semiFinalHeight;
+    const landscape = fullHeight > 0 && fullWidth > fullHeight;
     const { withoutMaxSize = false } = opts;
+    const landscapeWithMaxSize = landscape && !withoutMaxSize;
 
-    let finalWidth =
-        landscape && !withoutMaxSize
-            ? Math.round(0.45 * semiFinalHeight)
-            : semiFinalWidth;
-    let finalHeight =
-        landscape && !withoutMaxSize
-            ? Math.round(0.75 * semiFinalHeight)
-            : semiFinalHeight;
+    let finalWidth = fullWidth;
+    let finalHeight = fullHeight;
+    let menuOverScreen = !landscape;
+
+    if (landscapeWithMaxSize) {
+        if (fullHeight < 600) {
+            menuOverScreen = true;
+        } else {
+            finalHeight = Math.round(0.75 * fullHeight);
+        }
+
+        finalWidth = finalHeight * 0.6;
+    }
+
     if (finalWidth % 2 === 1) {
         finalWidth -= 1;
     }
@@ -72,11 +81,12 @@ export const useScreenSizeFromElement = ({ width = null, height = null, ...opts 
     if (finalHeight % 2 === 1) {
         finalHeight -= 1;
     }
-            
+
     const screenSize = useScreenSize({
         width: finalWidth,
         height: finalHeight,
         landscape,
+        menuOverScreen,
         ...opts,
     });
 

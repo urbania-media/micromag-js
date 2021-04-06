@@ -215,6 +215,9 @@ export const markers = ({
 export const callToAction = () => ({
     active: true,
     url: 'https://google.com',
+    label: {
+        body: 'Learn more'
+    }
 });
 
 export const transitions = ({ transitionIn = 'fade', transitionOut = 'fade' } = {}) => ({

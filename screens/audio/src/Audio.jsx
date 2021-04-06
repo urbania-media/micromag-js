@@ -51,7 +51,7 @@ const AudioScreen = ({
 }) => {
     const trackScreenMedia = useTrackScreenMedia('audio');
 
-    const { width, height, landscape } = useScreenSize();
+    const { width, height, menuOverScreen } = useScreenSize();
     const {
         isPlaceholder,
         isPreview,
@@ -244,7 +244,7 @@ const AudioScreen = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop: (!landscape && !isPreview ? menuSize : 0) + spacing,
+                                  paddingTop: (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
                               }
                             : null
                     }

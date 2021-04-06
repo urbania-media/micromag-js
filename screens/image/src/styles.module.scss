@@ -48,6 +48,10 @@
         height: 100%;
     }
 
+    .callToAction {
+        margin-top: -10px;
+    }
+
     &.isPlaceholder {
         .layout {
             padding: 10px;
@@ -63,6 +67,13 @@
     &.isFullscreen {
         .layout {
             padding: 0;
+        }
+
+        .callToAction {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            margin-top: 0;
         }
     }
 }

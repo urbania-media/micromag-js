@@ -13,6 +13,7 @@ import styles from '../../styles/menus/menu-dots.module.scss';
 const propTypes = {
     direction: PropTypes.oneOf(['horizontal', 'vertical']),
     landscape: PropTypes.bool,
+    withShadow: PropTypes.bool,
     items: MicromagPropTypes.menuItems,
     current: PropTypes.number,
     onClickItem: PropTypes.func,
@@ -26,6 +27,7 @@ const propTypes = {
 const defaultProps = {
     direction: 'horizontal',
     landscape: false,
+    withShadow: false,
     items: [],
     current: 0,
     onClickItem: null,
@@ -39,6 +41,7 @@ const defaultProps = {
 const ViewerMenuDots = ({
     direction,
     landscape,
+    withShadow,
     items,
     current,
     onClickItem,
@@ -54,7 +57,7 @@ const ViewerMenuDots = ({
             {
                 [className]: className !== null,
                 [styles.vertical]: direction === 'vertical',
-                [styles.landscape]: landscape,
+                [styles.withShadow]: withShadow,
             },
         ])}
     >

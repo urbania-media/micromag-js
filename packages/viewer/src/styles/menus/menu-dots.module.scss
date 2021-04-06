@@ -4,8 +4,7 @@
 @import '~@micromag/core/scss/placeholders';
 
 .container {
-    position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
+    position: relative;    
 
     .items,
     .item {
@@ -108,7 +107,7 @@
         }
     }
 
-    &.landscape {
-        background: none;
+    &.withShadow {
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
     }
 }
