@@ -55,7 +55,7 @@ export const Basic = () => <Viewer story={basic} />;
 
 export const Integrated = () => {
     const [fullscreen, setFullscreen] = useState(false);
-    const [viewMode, setViewMode] = useState(false);
+    const [viewMode, setViewMode] = useState(null);
     const { landscape = false } = viewMode || {};
     const closeable = fullscreen && !landscape;
 
