@@ -3,7 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Button } from '@micromag/core/components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
@@ -88,28 +87,26 @@ const ViewerMenuDots = ({
                     </button>
                 </li>
             ))}
-
-            {closeable && !landscape ? (
+            <li className={styles.menu}>
+                <MenuIcon className={styles.menuIcon} color={colorAccent} />
+                <button
+                    type="button"
+                    aria-label="menu"
+                    className={styles.menuButton}
+                    onClick={() => {
+                        if (onClickItem !== null) {
+                            onClickItem(null);
+                        }
+                    }}
+                />
+            </li>
+            { closeable && !landscape ? (
                 <li className={styles.closeButton} style={{ color: colorAccent }}>
-                    <Button className={styles.closeButton} withoutStyle onClick={onClose}>
+                    <button type="button" className={styles.closeButton} onClick={onClose}>
                         <FontAwesomeIcon icon={faTimes} />
-                    </Button>
+                    </button>
                 </li>
-            ) : (
-                <li className={styles.menu}>
-                    <MenuIcon className={styles.menuIcon} color={colorAccent} />
-                    <button
-                        type="button"
-                        aria-label="menu"
-                        className={styles.menuButton}
-                        onClick={() => {
-                            if (onClickItem !== null) {
-                                onClickItem(null);
-                            }
-                        }}
-                    />
-                </li>
-            )}
+            ) : null }
         </ul>
     </nav>
 );

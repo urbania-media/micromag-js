@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { webfontFiles, webfont2Files, webfont3Files } from '../../../../.storybook/data';

@@ -240,16 +240,32 @@ const Viewer = ({
 
     // handle tap
 
-    const hasInteracted = useRef(false);
+    const [hasInteracted, setHasInteracted] = useState(false);
 
     const onInteraction = useCallback( () => {
-        if (!hasInteracted.current) {
-            if (onStart !== null) {
-                onStart();
+        setHasInteracted(oldInteracted => {
+            if (!oldInteracted) {
+                if (onStart !== null) {
+                    onStart();
+                }
             }
-            hasInteracted.current = true;
+            return true;
+        });
+    }, [onStart, setHasInteracted]);
+
+    const onPrivateClose = useCallback( () => {
+        if (onClose !== null) {
+            onClose();
         }
-    }, [onStart]);
+        setHasInteracted(false);
+    }, [onClose, setHasInteracted]);
+
+    const onPrivateEnd = useCallback( () => {
+        if (onEnd !== null) {
+            onEnd();
+        }
+        setHasInteracted(false);
+    }, [onEnd, setHasInteracted]);
 
     const onTap = useCallback(
         (e, index) => {
@@ -303,8 +319,8 @@ const Viewer = ({
                 nextIndex = Math.min(screens.length - 1, screenIndex + 1);
 
                 const isLastScreen = screenIndex === screens.length - 1;
-                if (isLastScreen && onEnd !== null) {
-                    onEnd();
+                if (isLastScreen) {
+                    onPrivateEnd();
                 }
             }
             changeIndex(nextIndex);
@@ -317,7 +333,7 @@ const Viewer = ({
             screenIndex,
             screensInteractionEnabled,
             isView,
-            onEnd,
+            onPrivateEnd,
         ],
     );
 
@@ -492,8 +508,8 @@ const Viewer = ({
                                     items={screens}
                                     current={screenIndex}
                                     onClickItem={onClickDotsMenuItem}
-                                    closeable={closeable}
-                                    onClose={onClose}
+                                    closeable={closeable && hasInteracted}
+                                    onClose={onPrivateClose}
                                     className={styles.menuDots}
                                 />
                             </div>

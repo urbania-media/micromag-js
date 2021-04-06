@@ -66,6 +66,8 @@
     }
 
     .closeButton {
+        @extend %reset-button;
+        
         display: flex;
         align-items: center;
         padding-left: 10px;
