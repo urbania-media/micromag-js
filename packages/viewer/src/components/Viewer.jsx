@@ -311,7 +311,7 @@ const Viewer = ({
             screenIndex,
             screensInteractionEnabled,
             isView,
-            onInteraction,
+            onStart,
             onEnd
         ],
     );
@@ -390,7 +390,7 @@ const Viewer = ({
                 });
             }
         },
-        [changeIndex, landscape, trackingEnabled, trackEvent, screenId, screenType, onInteraction],
+        [changeIndex, landscape, trackingEnabled, trackEvent, screenId, screenType, onStart],
     );
 
     // handle preview menu item click
