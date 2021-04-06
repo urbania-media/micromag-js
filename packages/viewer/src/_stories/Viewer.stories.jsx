@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { webfontFiles, webfont2Files, webfont3Files } from '../../../../.storybook/data';
 
 import basic from '../../../../.storybook/data/stories/basic.json';
@@ -52,18 +52,36 @@ export default {
 };
 
 export const Basic = () => <Viewer story={basic} />;
-export const Integrated = () => (
-    <Viewer
-        {...faceAFaceProps}
-        closeable
-        onClose={() => console.log('close')}
-        onStart={() => console.log('start')}
-        onEnd={() => console.log('end')}
-        onViewModeChange={(viewMode) => {
-            console.log(viewMode);
-        }}
-    />
-);
+
+export const Integrated = () => {
+    const [fullscreen, setFullscreen] = useState(false);
+    const [viewMode, setViewMode] = useState(null);
+    const { landscape = false } = viewMode || {};
+    const closeable = fullscreen && !landscape;
+
+    const onClose = useCallback(() => {
+        setFullscreen(false);
+    }, [setFullscreen]);
+
+    const onStart = useCallback(() => {
+        setFullscreen(true);
+    }, [setFullscreen]);
+
+    const onEnd = useCallback(() => {
+        setFullscreen(false);
+    }, [setFullscreen]);
+
+    return (
+        <Viewer
+            {...faceAFaceProps}
+            closeable={closeable}
+            onClose={onClose}
+            onStart={onStart}
+            onEnd={onEnd}
+            onViewModeChange={setViewMode}
+        />
+    );
+};
 
 export const WithScroll = () => (
     <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'scroll' }}>
@@ -83,6 +101,7 @@ export const WithScroll = () => (
         </div>
     </div>
 );
+
 export const AllScreens = () => <Viewer {...props} />;
 export const FaceAFace = () => <Viewer {...faceAFaceProps} />;
 export const Empty = () => <Viewer fullscreen basePath="/story-path" />;

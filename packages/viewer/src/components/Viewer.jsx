@@ -94,7 +94,7 @@ const Viewer = ({
     landscapeScreenMargin,
     withMetadata,
     withoutMenu,
-    withoutFullscreen,// eslint-disable-line no-unused-vars
+    withoutFullscreen, // eslint-disable-line no-unused-vars
     closeable,
     onClose,
     onStart,
@@ -139,10 +139,16 @@ const Viewer = ({
         height,
         screens: deviceScreens,
     });
-    const { width: screenWidth = null, height: screenHeight = null, landscape = false, menuOverScreen = false } =
-        screenSize || {};
+    const {
+        width: screenWidth = null,
+        height: screenHeight = null,
+        landscape = false,
+        menuOverScreen = false,
+    } = screenSize || {};
 
-    useEffect( () => {
+    // const screenTop = useMemo(() => containerRef.current !== null ? containerRef.current.getBoundingClientRect().top : 0, [containerRef, screenSize]);
+
+    useEffect(() => {
         if (onViewModeChange !== null) {
             onViewModeChange({ landscape });
         }
@@ -240,37 +246,12 @@ const Viewer = ({
 
     // handle tap
 
-    const [hasInteracted, setHasInteracted] = useState(false);
-
-    const onInteraction = useCallback( () => {
-        setHasInteracted(oldInteracted => {
-            if (!oldInteracted) {
-                if (onStart !== null) {
-                    onStart();
-                }
-            }
-            return true;
-        });
-    }, [onStart, setHasInteracted]);
-
-    const onPrivateClose = useCallback( () => {
-        if (onClose !== null) {
-            onClose();
-        }
-        setHasInteracted(false);
-    }, [onClose, setHasInteracted]);
-
-    const onPrivateEnd = useCallback( () => {
-        if (onEnd !== null) {
-            onEnd();
-        }
-        setHasInteracted(false);
-    }, [onEnd, setHasInteracted]);
-
     const onTap = useCallback(
         (e, index) => {
-            
-            onInteraction();
+            if (!closeable && onStart !== null) {
+                onStart();
+                return;
+            }
 
             const checkClickable = (el, maxDistance = 5, distance = 1) => {
                 const { tagName = null, parentNode = null } = el || {};
@@ -319,8 +300,8 @@ const Viewer = ({
                 nextIndex = landscape ? index : Math.min(screens.length - 1, screenIndex + 1);
 
                 const isLastScreen = screenIndex === screens.length - 1;
-                if (isLastScreen) {
-                    onPrivateEnd();
+                if (isLastScreen && onEnd !== null) {
+                    onEnd();
                 }
             }
             changeIndex(nextIndex);
@@ -333,15 +314,21 @@ const Viewer = ({
             screenIndex,
             screensInteractionEnabled,
             isView,
-            onPrivateEnd,
+            onInteraction,
+            onEnd,
         ],
     );
 
     // swipe down menu open
 
     const menuOpened = useRef(false);
-    const [{ y: menuY }, setMenuSpring] = useSpring(() => ({ y: 0, config: {...config.stiff, clamp: true} }));
-    const menuPreviewStyle = { transform: menuY.interpolate((y) => `translateY(${y * menuPreviewContainerHeight}px)`) };
+    const [{ y: menuY }, setMenuSpring] = useSpring(() => ({
+        y: 0,
+        config: { ...config.stiff, clamp: true },
+    }));
+    const menuPreviewStyle = {
+        transform: menuY.interpolate((y) => `translateY(${y * menuPreviewContainerHeight}px)`),
+    };
 
     const bindDrag = useDrag(
         ({
@@ -368,7 +355,10 @@ const Viewer = ({
                 }
             }
 
-            const yProgress = Math.max(0, Math.min(1, my / menuPreviewContainerHeight + (isMenuOpened ? 1 : 0)));
+            const yProgress = Math.max(
+                0,
+                Math.min(1, my / menuPreviewContainerHeight + (isMenuOpened ? 1 : 0)),
+            );
 
             if (isMenuOpened || fromTop) {
                 if (last) {
@@ -387,8 +377,9 @@ const Viewer = ({
 
     const onClickDotsMenuItem = useCallback(
         (index) => {
-
-            onInteraction();
+            if (!closeable && onStart !== null) {
+                onStart();
+            }
 
             const clickedOnDot = index !== null;
             const goToScreen = landscape && clickedOnDot;
@@ -409,7 +400,7 @@ const Viewer = ({
                 });
             }
         },
-        [changeIndex, landscape, trackingEnabled, trackEvent, screenId, screenType],
+        [changeIndex, landscape, trackingEnabled, trackEvent, screenId, screenType, onInteraction],
     );
 
     // handle preview menu item click
@@ -504,13 +495,12 @@ const Viewer = ({
                             >
                                 <MenuDots
                                     direction="horizontal"
-                                    landscape={landscape}
                                     withShadow={menuOverScreen}
                                     items={screens}
                                     current={screenIndex}
                                     onClickItem={onClickDotsMenuItem}
-                                    closeable={closeable && hasInteracted}
-                                    onClose={onPrivateClose}
+                                    closeable={closeable}
+                                    onClose={onClose}
                                     className={styles.menuDots}
                                 />
                             </div>
