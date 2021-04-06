@@ -142,6 +142,8 @@ const Viewer = ({
     const { width: screenWidth = null, height: screenHeight = null, landscape = false, menuOverScreen = false } =
         screenSize || {};
 
+    // const screenTop = useMemo(() => containerRef.current !== null ? containerRef.current.getBoundingClientRect().top : 0, [containerRef, screenSize]);
+
     useEffect( () => {
         if (onViewModeChange !== null) {
             onViewModeChange({ landscape });
@@ -240,16 +242,13 @@ const Viewer = ({
 
     // handle tap
 
-    const onInteraction = useCallback( () => {
-        if (!closeable && onStart !== null) {
-            onStart();
-        }
-    }, [onStart, closeable]);
-
     const onTap = useCallback(
         (e, index) => {
             
-            onInteraction();
+            if (!closeable && onStart !== null) {
+                onStart();
+                return;
+            }
 
             const checkClickable = (el, maxDistance = 5, distance = 1) => {
                 const { tagName = null, parentNode = null } = el || {};
@@ -368,7 +367,9 @@ const Viewer = ({
     const onClickDotsMenuItem = useCallback(
         (index) => {
 
-            onInteraction();
+            if (!closeable && onStart !== null) {
+                onStart();
+            }
 
             const clickedOnDot = index !== null;
             const goToScreen = landscape && clickedOnDot;
