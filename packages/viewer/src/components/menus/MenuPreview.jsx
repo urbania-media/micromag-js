@@ -17,7 +17,6 @@ import ShareButton from '../partials/ShareButton';
 
 import styles from '../../styles/menus/menu-preview.module.scss';
 
-
 const propTypes = {
     theme: MicromagPropTypes.branding,
     screenWidth: PropTypes.number,
