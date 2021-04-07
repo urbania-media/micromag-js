@@ -12,13 +12,11 @@ import Viewer from '../components/ViewerContainer';
 const props = {
     screenId: allScreensStory.components[0].id,
     story: allScreensStory,
-    fullscreen: true,
 };
 
 const faceAFaceProps = {
     screenId: faceAFace.components[0].id,
     story: faceAFace,
-    fullscreen: true,
 };
 
 const twoScreensProps = {
@@ -54,27 +52,27 @@ export default {
 export const Basic = () => <Viewer story={basic} />;
 
 export const Integrated = () => {
-    const [fullscreen, setFullscreen] = useState(false);
+    const [started, setStarted] = useState(false);
     const [viewMode, setViewMode] = useState(null);
     const { landscape = false } = viewMode || {};
-    const closeable = fullscreen && !landscape;
 
-    const onClose = useCallback(() => {
-        setFullscreen(false);
-    }, [setFullscreen]);
+    const onClose = useCallback( () => {
+        setStarted(false);
+    }, [setStarted]);
 
-    const onStart = useCallback(() => {
-        setFullscreen(true);
-    }, [setFullscreen]);
+    const onStart = useCallback( () => {
+        setStarted(true);
+    }, [setStarted]);
 
-    const onEnd = useCallback(() => {
-        setFullscreen(false);
-    }, [setFullscreen]);
+    const onEnd = useCallback( () => {
+        setStarted(false);
+    }, [setStarted]);
 
     return (
         <Viewer
             {...faceAFaceProps}
-            closeable={closeable}
+            closeable={!landscape}
+            started={started}
             onClose={onClose}
             onStart={onStart}
             onEnd={onEnd}
@@ -104,7 +102,7 @@ export const WithScroll = () => (
 
 export const AllScreens = () => <Viewer {...props} />;
 export const FaceAFace = () => <Viewer {...faceAFaceProps} />;
-export const Empty = () => <Viewer fullscreen basePath="/story-path" />;
+export const Empty = () => <Viewer basePath="/story-path" />;
 export const TwoScreens = () => <Viewer {...twoScreensProps} />;
 export const CustomFonts = () => (
     <Viewer
@@ -186,6 +184,5 @@ export const CustomFonts = () => (
             },
         }}
         screenId="1"
-        fullscreen
     />
 );
