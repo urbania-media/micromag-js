@@ -94,17 +94,20 @@ const ViewerMenuPreview = ({
     const titleStyle = brandTextStyle !== null ? getStyleFromText(brandTextStyle) : null;
 
     const [scrolledBottom, setScrolledBottom] = useState(false);
-    const dragBind = useDrag(({ direction: [,dy], last}) => {
-        if (last && scrolledBottom && dy < 0 && onClose !== null) {
-            onClose();
-        }
-    });
+    const dragBind = useDrag(
+        ({ direction: [, dy], last, tap }) => {
+            if (!tap && last && scrolledBottom && dy < 0 && onClose !== null) {
+                onClose();
+            }
+        },
+        { filterTaps: true, eventOptions: { capture: true } },
+    );
 
-    const onScrolledBottom = useCallback( () => {
+    const onScrolledBottom = useCallback(() => {
         setScrolledBottom(true);
     }, [setScrolledBottom]);
 
-    const onScrolledNotBottom = useCallback( () => {
+    const onScrolledNotBottom = useCallback(() => {
         setScrolledBottom(false);
     }, [setScrolledBottom]);
 
@@ -148,7 +151,11 @@ const ViewerMenuPreview = ({
                 </div>
             </div>
             <div className={styles.content}>
-                <Scroll className={styles.scroll} onScrolledBottom={onScrolledBottom} onScrolledNotBottom={onScrolledNotBottom}>
+                <Scroll
+                    className={styles.scroll}
+                    onScrolledBottom={onScrolledBottom}
+                    onScrolledNotBottom={onScrolledNotBottom}
+                >
                     <nav className={styles.nav}>
                         <ul className={styles.items}>
                             {items.map((item, index) => (
