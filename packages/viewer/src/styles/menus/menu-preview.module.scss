@@ -1,4 +1,5 @@
 // stylelint-disable max-nesting-depth
+// stylelint-disable no-descending-specificity
 
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
@@ -31,8 +32,7 @@
         margin-bottom: 20px;
 
         .button,
-        .shareButton,
-        .fullButton {
+        .shareButton{
             display: inline-block;
             border: 0;
             background-color: transparent;
@@ -58,10 +58,6 @@
 
         .shareButton {
             z-index: 1;
-        }
-
-        .fullButton {
-            margin-left: 10px;
         }
 
         .icon {

@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-audio",
-    "version": "0.2.189",
+    "version": "0.2.198",
     "description": "",
     "keywords": [
         "javascript"
@@ -52,9 +52,9 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.12",
-        "@micromag/core": "^0.2.189",
-        "@micromag/element-closed-captions": "^0.2.189",
-        "@micromag/element-media-controls": "^0.2.189",
+        "@micromag/core": "^0.2.198",
+        "@micromag/element-closed-captions": "^0.2.198",
+        "@micromag/element-media-controls": "^0.2.198",
         "classnames": "^2.2.6",
         "prop-types": "^15.7.2",
         "react-intl": "^5.12.1",
