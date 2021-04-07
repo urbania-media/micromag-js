@@ -3,6 +3,11 @@
 @import '../mixins';
 
 .container {
+
+    &:focus {
+        box-shadow: none;
+    }
+    
     .icon {
         display: block;
     }

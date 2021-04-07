@@ -6,16 +6,17 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useDrag } from 'react-use-gesture';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShare, faTimes, faExpand } from '@fortawesome/free-solid-svg-icons';
+import { faShare, faTimes, faExpand, faCompress } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getStyleFromColor, getStyleFromText } from '@micromag/core/utils';
+import { useFullscreen } from '@micromag/core/hooks';
 import { ScreenPreview, Button } from '@micromag/core/components';
 import Scroll from '@micromag/element-scroll';
 
 import ShareButton from '../partials/ShareButton';
-import FullscreenButton from '../partials/FullscreenButton';
 
 import styles from '../../styles/menus/menu-preview.module.scss';
+
 
 const propTypes = {
     theme: MicromagPropTypes.branding,
@@ -61,6 +62,12 @@ const ViewerMenuPreview = ({
     thumbsPerLine,
     className,
 }) => {
+    const {
+        toggle: toggleFullscreen,
+        active: fullscreenActive,
+        enabled: fullscreenEnabled,
+    } = useFullscreen();
+
     const screenSizeRatio = `${(screenHeight / screenWidth / thumbsPerLine) * 100}%`;
 
     const hasSize = screenWidth > 0 && screenHeight > 0;
@@ -142,9 +149,11 @@ const ViewerMenuPreview = ({
                     >
                         <FontAwesomeIcon className={styles.icon} icon={faShare} />
                     </ShareButton>
-                    <FullscreenButton className={styles.fullButton} buttonClassName={styles.button}>
-                        <FontAwesomeIcon className={styles.icon} icon={faExpand} />
-                    </FullscreenButton>
+                    {fullscreenEnabled ? (
+                        <Button className={styles.button} onClick={toggleFullscreen}>
+                            <FontAwesomeIcon className={styles.icon} icon={fullscreenActive ? faCompress: faExpand} />
+                        </Button>
+                    ) : null}
                     <Button className={styles.button} onClick={onClose}>
                         <FontAwesomeIcon className={styles.icon} icon={faTimes} />
                     </Button>
