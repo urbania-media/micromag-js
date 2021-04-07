@@ -7,11 +7,15 @@ const useFullscreen = (element) => {
     const [active, setActive] = useState(false);
 
     const fullscreen = useCallback( () => {
-        screenfull.request(element);
+        if (screenfull.isEnabled) {
+            screenfull.request(element);
+        }
     }, [element]);
 
     const unFullscreen = useCallback( () => {
-        screenfull.exit();
+        if (screenfull.isEnabled) {
+            screenfull.exit();
+        }
     }, []);
 
     const toggle = useCallback( () => {
@@ -26,9 +30,13 @@ const useFullscreen = (element) => {
         const onChange = () => {
             setActive(screenfull.isFullscreen);
         }
-        screenfull.on('change', onChange);
+        if (screenfull.isEnabled) {
+            screenfull.on('change', onChange);
+        }
         return () => {
-            screenfull.off('change', onChange);
+            if (screenfull.isEnabled) {
+                screenfull.off('change', onChange);
+            }
         };
     }, []);
 
