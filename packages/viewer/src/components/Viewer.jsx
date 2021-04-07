@@ -314,13 +314,8 @@ const Viewer = ({
             screenIndex,
             screensInteractionEnabled,
             isView,
-<<<<<<< HEAD
-            onInteraction,
-            onEnd,
-=======
             onStart,
-            onEnd
->>>>>>> 9eb68e76578cdc95c06f02310bb1d91a17edeca7
+            onEnd,
         ],
     );
 
