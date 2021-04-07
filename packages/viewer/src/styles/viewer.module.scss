@@ -65,14 +65,14 @@
         @extend %fullscreen;
     }
 
-    &.landscape {        
+    &.landscape {
         .screen {
             top: 0;
             right: auto;
             bottom: 0;
             left: 50%;
             margin: auto;
-            transition: transform .3s ease, opacity .3s ease;
+            transition: transform 0.3s ease, opacity 0.3s ease;
             opacity: 0.1;
             cursor: pointer;
 
@@ -93,7 +93,7 @@
         }
 
         .menuDots {
-            opacity: 0;            
+            opacity: 0;
         }
     }
 

@@ -78,8 +78,27 @@ export const Integrated = () => {
             onEnd={onEnd}
             onViewModeChange={setViewMode}
         />
-    )
+    );
 };
+
+export const WithScroll = () => (
+    <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'scroll' }}>
+        <div style={{ position: 'relative', width: '100%', height: 2000 }}>
+            <div style={{ position: 'relative', width: '100%', height: 560 }}>
+                <Viewer
+                    {...faceAFaceProps}
+                    closeable
+                    onClose={() => console.log('close')}
+                    onStart={() => console.log('start')}
+                    onEnd={() => console.log('end')}
+                    onViewModeChange={(viewMode) => {
+                        console.log(viewMode);
+                    }}
+                />
+            </div>
+        </div>
+    </div>
+);
 
 export const AllScreens = () => <Viewer {...props} />;
 export const FaceAFace = () => <Viewer {...faceAFaceProps} />;
