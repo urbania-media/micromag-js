@@ -146,7 +146,7 @@ const Viewer = ({
         menuOverScreen = false,
     } = screenSize || {};
 
-    // const screenTop = useMemo(() => containerRef.current !== null ? containerRef.current.getBoundingClientRect().top : 0, [containerRef, screenSize]);
+    /// const screenTop = useMemo(() => containerRef.current !== null ? containerRef.current.getBoundingClientRect().top : 0, [containerRef, screenSize]);
 
     useEffect(() => {
         if (onViewModeChange !== null) {
@@ -314,8 +314,13 @@ const Viewer = ({
             screenIndex,
             screensInteractionEnabled,
             isView,
+<<<<<<< HEAD
             onInteraction,
             onEnd,
+=======
+            onStart,
+            onEnd
+>>>>>>> 9eb68e76578cdc95c06f02310bb1d91a17edeca7
         ],
     );
 
@@ -400,7 +405,7 @@ const Viewer = ({
                 });
             }
         },
-        [changeIndex, landscape, trackingEnabled, trackEvent, screenId, screenType, onInteraction],
+        [changeIndex, landscape, trackingEnabled, trackEvent, screenId, screenType, onStart],
     );
 
     // handle preview menu item click
