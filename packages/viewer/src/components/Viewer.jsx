@@ -33,7 +33,6 @@ const propTypes = {
     height: PropTypes.number,
     screen: PropTypes.string,
     deviceScreens: MicromagPropTypes.deviceScreens,
-    fullscreen: PropTypes.bool,
     renderContext: MicromagPropTypes.renderContext,
     onScreenChange: PropTypes.func,
     tapNextScreenWidthPercent: PropTypes.number,
@@ -44,6 +43,7 @@ const propTypes = {
     withoutMenu: PropTypes.bool,
     withoutFullscreen: PropTypes.bool,
     closeable: PropTypes.bool,
+    started: PropTypes.bool,
     onClose: PropTypes.func,
     onStart: PropTypes.func,
     onEnd: PropTypes.func,
@@ -59,7 +59,6 @@ const defaultProps = {
     height: null,
     screen: null,
     deviceScreens: getDeviceScreens(),
-    fullscreen: false,
     renderContext: 'view',
     onScreenChange: null,
     tapNextScreenWidthPercent: 0.5,
@@ -70,6 +69,7 @@ const defaultProps = {
     withoutMenu: false,
     withoutFullscreen: false,
     closeable: false,
+    started: false,
     onClose: null,
     onStart: null,
     onEnd: null,
@@ -85,7 +85,6 @@ const Viewer = ({
     height,
     screen: screenId,
     deviceScreens,
-    fullscreen,
     renderContext,
     onScreenChange,
     tapNextScreenWidthPercent,
@@ -94,8 +93,9 @@ const Viewer = ({
     landscapeScreenMargin,
     withMetadata,
     withoutMenu,
-    withoutFullscreen,// eslint-disable-line no-unused-vars
+    withoutFullscreen, // eslint-disable-line no-unused-vars
     closeable,
+    started,
     onClose,
     onStart,
     onEnd,
@@ -139,12 +139,14 @@ const Viewer = ({
         height,
         screens: deviceScreens,
     });
-    const { width: screenWidth = null, height: screenHeight = null, landscape = false, menuOverScreen = false } =
-        screenSize || {};
+    const {
+        width: screenWidth = null,
+        height: screenHeight = null,
+        landscape = false,
+        menuOverScreen = false,
+    } = screenSize || {};
 
-    /// const screenTop = useMemo(() => containerRef.current !== null ? containerRef.current.getBoundingClientRect().top : 0, [containerRef, screenSize]);
-
-    useEffect( () => {
+    useEffect(() => {
         if (onViewModeChange !== null) {
             onViewModeChange({ landscape });
         }
@@ -240,12 +242,11 @@ const Viewer = ({
         }
     }, [screenIndex, screensInteractionEnabled, setScreensInteractionEnabled]);
 
-    // handle tap
+    // handle screenClick
 
-    const onTap = useCallback(
+    const onScreenClick = useCallback(
         (e, index) => {
-            
-            if (!closeable && onStart !== null) {
+            if (closeable && !started && onStart !== null) {
                 onStart();
                 return;
             }
@@ -312,33 +313,30 @@ const Viewer = ({
             screensInteractionEnabled,
             isView,
             onStart,
-            onEnd
+            onEnd,
+            closeable,
+            started,
         ],
     );
 
-    // swipe down menu open
+    // swipe menu open
 
     const menuOpened = useRef(false);
-    const [{ y: menuY }, setMenuSpring] = useSpring(() => ({ y: 0, config: {...config.stiff, clamp: true} }));
-    const menuPreviewStyle = { transform: menuY.interpolate((y) => `translateY(${y * menuPreviewContainerHeight}px)`) };
+    const [{ y: menuY }, setMenuSpring] = useSpring(() => ({
+        y: 0,
+        config: { ...config.stiff, clamp: true },
+    }));
+    const menuPreviewStyle = {
+        transform: menuY.interpolate((y) => `translateY(${y * menuPreviewContainerHeight}px)`),
+    };
 
-    const bindDrag = useDrag(
-        ({
-            initial: [, iy],
-            movement: [, my],
-            first,
-            last,
-            direction: [, dy],
-            cancel,
-            canceled,
-            tap,
-        }) => {
+    const menuDragBind = useDrag(
+        ({ movement: [, my], first, last, direction: [, dy], cancel, canceled, tap }) => {
             if (canceled || tap) {
                 return;
             }
 
             const isMenuOpened = menuOpened.current;
-            const fromTop = iy <= menuDotsContainerHeight;
 
             if (first) {
                 if (isMenuOpened) {
@@ -347,16 +345,17 @@ const Viewer = ({
                 }
             }
 
-            const yProgress = Math.max(0, Math.min(1, my / menuPreviewContainerHeight + (isMenuOpened ? 1 : 0)));
+            const yProgress = Math.max(
+                0,
+                Math.min(1, my / menuPreviewContainerHeight + (isMenuOpened ? 1 : 0)),
+            );
 
-            if (isMenuOpened || fromTop) {
-                if (last) {
-                    const menuNowOpened = dy > 0 && yProgress > 0.1;
-                    menuOpened.current = menuNowOpened;
-                    setMenuSpring({ y: menuNowOpened ? 1 : 0 });
-                } else {
-                    setMenuSpring({ y: yProgress });
-                }
+            if (last) {
+                const menuNowOpened = dy > 0 && yProgress > 0.1;
+                menuOpened.current = menuNowOpened;
+                setMenuSpring({ y: menuNowOpened ? 1 : 0 });
+            } else {
+                setMenuSpring({ y: yProgress });
             }
         },
         { axis: 'y', filterTaps: true },
@@ -366,8 +365,7 @@ const Viewer = ({
 
     const onClickDotsMenuItem = useCallback(
         (index) => {
-
-            if (!closeable && onStart !== null) {
+            if (closeable && !started && onStart !== null) {
                 onStart();
             }
 
@@ -390,7 +388,17 @@ const Viewer = ({
                 });
             }
         },
-        [changeIndex, landscape, trackingEnabled, trackEvent, screenId, screenType, onStart],
+        [
+            changeIndex,
+            landscape,
+            trackingEnabled,
+            trackEvent,
+            screenId,
+            screenType,
+            onStart,
+            closeable,
+            started,
+        ],
     );
 
     // handle preview menu item click
@@ -466,7 +474,6 @@ const Viewer = ({
                         styles.container,
                         screenSize.screens.map((screenName) => `story-screen-${screenName}`),
                         {
-                            [styles.fullscreen]: fullscreen,
                             [styles.landscape]: landscape,
                             [styles.hideMenu]: !menuVisible,
                             [styles.ready]: ready || withoutScreensTransforms,
@@ -474,7 +481,6 @@ const Viewer = ({
                         },
                     ])}
                     ref={containerRef}
-                    {...(currentScreenInteractionEnabled ? bindDrag() : null)}
                 >
                     {!withoutMenu ? (
                         <>
@@ -482,6 +488,7 @@ const Viewer = ({
                                 className={styles.menuDotsContainer}
                                 ref={menuDotsContainerRef}
                                 style={{ width: screenWidth }}
+                                {...menuDragBind()}
                             >
                                 <MenuDots
                                     direction="horizontal"
@@ -489,7 +496,7 @@ const Viewer = ({
                                     items={screens}
                                     current={screenIndex}
                                     onClickItem={onClickDotsMenuItem}
-                                    closeable={closeable}
+                                    closeable={closeable && started}
                                     onClose={onClose}
                                     className={styles.menuDots}
                                 />
@@ -558,7 +565,7 @@ const Viewer = ({
                                         ])}
                                         {...{
                                             onClick: (e) => {
-                                                onTap(e, i);
+                                                onScreenClick(e, i);
                                             },
                                         }}
                                     >

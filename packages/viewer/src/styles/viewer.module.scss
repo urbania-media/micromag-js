@@ -11,7 +11,6 @@
     height: 100%;
     overflow: hidden;
     background-color: $black;
-    touch-action: none;
 
     .content {
         position: relative;
@@ -86,10 +85,6 @@
                 cursor: auto;
             }
         }
-    }
-
-    &.fullscreen {
-        @extend %fullscreen;
     }
 
     &.hideMenu:not(.landscape) {
