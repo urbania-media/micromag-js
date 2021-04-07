@@ -18,6 +18,7 @@ const propTypes = {
     children: PropTypes.node,
     onScrolledBottom: PropTypes.func,
     onScrolledNotBottom: PropTypes.func,
+    contain: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -26,9 +27,10 @@ const defaultProps = {
     disabled: false,
     verticalAlign: null,
     className: null,
-    children: null,    
+    children: null,
     onScrolledBottom: null,
     onScrolledNotBottom: null,
+    contain: false,
 };
 
 const Scroll = ({
@@ -37,9 +39,10 @@ const Scroll = ({
     disabled,
     verticalAlign,
     className,
-    children,    
+    children,
     onScrolledBottom,
     onScrolledNotBottom,
+    contain,
 }) => {
     const finalStyle = {
         width,
@@ -63,7 +66,8 @@ const Scroll = ({
     const scrolledBottomOnce = useRef(false);
     const scrolledNotBottomOnce = useRef(false);
     const reachedBottom = useRef(false);
-    const bind = useScroll(({ xy: [, scrollY], }) => {
+    const bind = useScroll(
+        ({ xy: [, scrollY] }) => {
             const newWithArrow = scrollY <= 1;
 
             const maxScrollAmount = scrolleeHeight - scrollableHeight;
@@ -77,10 +81,9 @@ const Scroll = ({
                     }
                     scrolledBottomOnce.current = true;
                 }
-                
             } else if (reachedBottom.current) {
                 if (onScrolledNotBottom !== null) {
-                    onScrolledNotBottom({ initial: !scrolledNotBottomOnce.current })
+                    onScrolledNotBottom({ initial: !scrolledNotBottomOnce.current });
                 }
                 scrolledNotBottomOnce.current = true;
             }
@@ -89,7 +92,9 @@ const Scroll = ({
                 setWithArrow(newWithArrow);
             }
             reachedBottom.current = nowReachedBottom;
-    }, { enabled: !disabled });
+        },
+        { enabled: !disabled },
+    );
 
     // need to call scrolled callbacks on initial render also
 
@@ -114,6 +119,7 @@ const Scroll = ({
                 styles.container,
                 {
                     [styles.withScroll]: !disabled,
+                    [styles.containOverscroll]: contain,
                     [className]: className !== null,
                     [styles[verticalAlign]]: verticalAlign !== null,
                     [styles.withArrow]: withArrow,
@@ -121,11 +127,7 @@ const Scroll = ({
             ])}
             style={finalStyle}
         >
-            <div
-                className={styles.scrollable}
-                ref={scrollableRef}
-                {...bind()}
-            >
+            <div className={styles.scrollable} ref={scrollableRef} {...bind()}>
                 <div className={styles.scrollee} ref={scrolleeRef}>
                     {children}
                 </div>

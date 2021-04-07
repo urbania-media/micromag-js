@@ -47,6 +47,12 @@
             overflow-y: auto;
             overscroll-behavior: contain;
         }
+
+        &.containOverscroll {
+            .scrollable {
+                overscroll-behavior: contain;
+            }
+        }
     }
 
     &.top {
