@@ -15,6 +15,7 @@ const useMediaApi = ({
     onSeeked = null,
     onLoadStart = null,
     onCanPlayThough = null,
+    onCanPlay = null,
 } = {}) => {
     const ref = useRef(null);
     const [muted, setMuted] = useState(initialMuted);
@@ -187,6 +188,14 @@ const useMediaApi = ({
         }
     }, [setReady, onCanPlayThough]);
 
+    const onCustomCanPlay = useCallback(() => {
+        setReady(true);
+
+        if (onCanPlay !== null) {
+            onCanPlay();
+        }
+    }, [setReady, onCanPlay]);
+
     useEffect(() => {
         const { current: media } = ref;
 
@@ -200,6 +209,7 @@ const useMediaApi = ({
             media.addEventListener('seeked', onCustomSeeked);
             media.addEventListener('loadstart', onCustomLoadStart);
             media.addEventListener('canplaythrough', onCustomCanPlayThrough);
+            media.addEventListener('canplay', onCustomCanPlay);
         }
 
         return () => {            
@@ -213,6 +223,7 @@ const useMediaApi = ({
                 media.removeEventListener('seeked', onCustomSeeked);
                 media.removeEventListener('loadstart', onCustomLoadStart);
                 media.removeEventListener('canplaythrough', onCustomCanPlayThrough);
+                media.removeEventListener('canplay', onCustomCanPlay);
             }
         };
     }, [url]);
