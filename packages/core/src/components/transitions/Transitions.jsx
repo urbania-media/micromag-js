@@ -30,8 +30,12 @@ const Transitions = ({ fullscreen, playing, delay, transitions, disabled, childr
     const finalPlaying = playing || landscape;
 
     const finalTransitions = { in: null, out: null };
+
+    const defaultTransitions = { in: 'fade', out: 'fade' };
+    const transitionsObject = transitions !== null ? transitions : defaultTransitions;
+    
     Object.keys(transitions || []).forEach((transitionKey) => {
-        const currentTransition = transitions[transitionKey];
+        const currentTransition = transitionsObject[transitionKey];
         finalTransitions[transitionKey] =
             typeof currentTransition === 'string' ? { name: currentTransition } : currentTransition;
     });
