@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-contribution",
-    "version": "0.2.206",
+    "version": "0.2.208",
     "description": "",
     "keywords": [
         "javascript"
@@ -54,7 +54,7 @@
         "@fortawesome/react-fontawesome": "^0.1.12",
         "@micromag/core": "^0.2.206",
         "@micromag/data": "^0.2.206",
-        "@micromag/element-background": "^0.2.206",
+        "@micromag/element-background": "^0.2.208",
         "@micromag/element-button": "^0.2.206",
         "@micromag/element-call-to-action": "^0.2.206",
         "@micromag/element-container": "^0.2.206",
