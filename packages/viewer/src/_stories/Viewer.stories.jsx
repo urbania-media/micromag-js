@@ -52,29 +52,28 @@ export default {
 export const Basic = () => <Viewer story={basic} />;
 
 export const Integrated = () => {
-    const [started, setStarted] = useState(false);
+    const [fullscreen, setFullscreen] = useState(false);
     const [viewMode, setViewMode] = useState(null);
     const { landscape = false } = viewMode || {};
 
     const onClose = useCallback( () => {
-        setStarted(false);
-    }, [setStarted]);
+        setFullscreen(false);
+    }, [setFullscreen]);
 
-    const onStart = useCallback( () => {
-        setStarted(true);
-    }, [setStarted]);
+    const onInteraction = useCallback( () => {
+        setFullscreen(true);
+    }, [setFullscreen]);
 
     const onEnd = useCallback( () => {
-        setStarted(false);
-    }, [setStarted]);
+        setFullscreen(false);
+    }, [setFullscreen]);
 
     return (
         <Viewer
             {...faceAFaceProps}
-            closeable={!landscape}
-            started={started}
+            closeable={fullscreen && !landscape}
             onClose={onClose}
-            onStart={onStart}
+            onInteraction={onInteraction}
             onEnd={onEnd}
             onViewModeChange={setViewMode}
         />

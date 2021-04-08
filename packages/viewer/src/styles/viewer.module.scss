@@ -22,6 +22,7 @@
     }
 
     .menuDotsContainer {
+        touch-action: none;
         visibility: hidden;
         position: absolute;
         z-index: 2;

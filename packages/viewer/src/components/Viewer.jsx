@@ -43,9 +43,8 @@ const propTypes = {
     withoutMenu: PropTypes.bool,
     withoutFullscreen: PropTypes.bool,
     closeable: PropTypes.bool,
-    started: PropTypes.bool,
     onClose: PropTypes.func,
-    onStart: PropTypes.func,
+    onInteraction: PropTypes.func,
     onEnd: PropTypes.func,
     onViewModeChange: PropTypes.func,
     className: PropTypes.string,
@@ -69,9 +68,8 @@ const defaultProps = {
     withoutMenu: false,
     withoutFullscreen: false,
     closeable: false,
-    started: false,
     onClose: null,
-    onStart: null,
+    onInteraction: null,
     onEnd: null,
     onViewModeChange: null,
     className: null,
@@ -95,9 +93,8 @@ const Viewer = ({
     withoutMenu,
     withoutFullscreen, // eslint-disable-line no-unused-vars
     closeable,
-    started,
     onClose,
-    onStart,
+    onInteraction,
     onEnd,
     onViewModeChange,
     className,
@@ -244,12 +241,15 @@ const Viewer = ({
 
     // handle screenClick
 
+    const onInteractionPrivate = useCallback( () => {
+        if (onInteraction !== null) {
+            onInteraction();
+        }
+    }, [onInteraction]);
+
     const onScreenClick = useCallback(
         (e, index) => {
-            if (closeable && !started && onStart !== null) {
-                onStart();
-                return;
-            }
+            onInteractionPrivate();
 
             const checkClickable = (el, maxDistance = 5, distance = 1) => {
                 const { tagName = null, parentNode = null } = el || {};
@@ -312,10 +312,8 @@ const Viewer = ({
             screenIndex,
             screensInteractionEnabled,
             isView,
-            onStart,
+            onInteractionPrivate,
             onEnd,
-            closeable,
-            started,
         ],
     );
 
@@ -365,9 +363,7 @@ const Viewer = ({
 
     const onClickDotsMenuItem = useCallback(
         (index) => {
-            if (closeable && !started && onStart !== null) {
-                onStart();
-            }
+            onInteractionPrivate();
 
             const clickedOnDot = index !== null;
             const goToScreen = landscape && clickedOnDot;
@@ -395,9 +391,7 @@ const Viewer = ({
             trackEvent,
             screenId,
             screenType,
-            onStart,
-            closeable,
-            started,
+            onInteractionPrivate,
         ],
     );
 
@@ -496,7 +490,7 @@ const Viewer = ({
                                     items={screens}
                                     current={screenIndex}
                                     onClickItem={onClickDotsMenuItem}
-                                    closeable={closeable && started}
+                                    closeable={closeable}
                                     onClose={onClose}
                                     className={styles.menuDots}
                                 />
