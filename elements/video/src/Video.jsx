@@ -82,9 +82,11 @@ const Video = ({
         files !== null && typeof files.h264 !== 'undefined' && typeof files.webm !== 'undefined';
     const mediaUrl = hasFiles ? files.h264.url : url;
 
+    const finalInitialMuted = initialMuted || autoPlay;
+
     const { ref, ...api } = useMediaApi({
         url: mediaUrl,
-        initialMuted,
+        initialMuted: finalInitialMuted,
         onPlay,
         onPause,
         onEnded,
@@ -100,7 +102,7 @@ const Video = ({
         apiRef.current.mediaRef = ref;
     }
 
-    const { playing, muted, ready } = api;
+    const { playing, muted, ready, play, pause } = api;
 
     useEffect(() => {
         if (ready && onReady !== null) {
@@ -122,6 +124,14 @@ const Video = ({
             };
         }
     }, [thumbnailUrl]);
+
+    useEffect( () => {
+        if(autoPlay) {
+            play();
+        } else {
+            pause();
+        }
+    }, [autoPlay]);
 
     return (
         <div
