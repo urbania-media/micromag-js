@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShare, faTimes, faExpand, faCompress } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getStyleFromColor, getStyleFromText } from '@micromag/core/utils';
-import { useFullscreen } from '@micromag/core/hooks';
 import { ScreenPreview, Button } from '@micromag/core/components';
 import Scroll from '@micromag/element-scroll';
 
@@ -29,6 +28,9 @@ const propTypes = {
     onClose: PropTypes.func,
     onShare: PropTypes.func,
     thumbsPerLine: PropTypes.number,
+    toggleFullscreen: PropTypes.func,
+    fullscreenActive: PropTypes.bool,
+    fullscreenEnabled: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -44,6 +46,9 @@ const defaultProps = {
     onClose: null,
     onShare: null,
     thumbsPerLine: 4,
+    toggleFullscreen: null,
+    fullscreenActive: false,
+    fullscreenEnabled: false,
     className: null,
 };
 
@@ -59,14 +64,11 @@ const ViewerMenuPreview = ({
     onClose,
     onShare,
     thumbsPerLine,
+    toggleFullscreen,
+    fullscreenActive,
+    fullscreenEnabled,
     className,
 }) => {
-    const {
-        toggle: toggleFullscreen,
-        active: fullscreenActive,
-        enabled: fullscreenEnabled,
-    } = useFullscreen();
-
     const screenSizeRatio = `${(screenHeight / screenWidth / thumbsPerLine) * 100}%`;
 
     const hasSize = screenWidth > 0 && screenHeight > 0;
@@ -150,7 +152,10 @@ const ViewerMenuPreview = ({
                     </ShareButton>
                     {fullscreenEnabled ? (
                         <Button className={styles.button} onClick={toggleFullscreen}>
-                            <FontAwesomeIcon className={styles.icon} icon={fullscreenActive ? faCompress: faExpand} />
+                            <FontAwesomeIcon
+                                className={styles.icon}
+                                icon={fullscreenActive ? faCompress : faExpand}
+                            />
                         </Button>
                     ) : null}
                     <Button className={styles.button} onClick={onClose}>

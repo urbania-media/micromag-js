@@ -2,23 +2,26 @@ import { useCallback, useEffect, useState } from 'react';
 import screenfull from 'screenfull';
 
 const useFullscreen = (element) => {
-    
     const enabled = screenfull.isEnabled;
     const [active, setActive] = useState(false);
 
-    const fullscreen = useCallback( () => {
+    const fullscreen = useCallback(() => {
         if (screenfull.isEnabled) {
-            screenfull.request(element);
+            if (typeof element !== 'undefined' && element !== null) {
+                screenfull.request(element);
+            } else {
+                screenfull.request();
+            }
         }
     }, [element]);
 
-    const unFullscreen = useCallback( () => {
+    const unFullscreen = useCallback(() => {
         if (screenfull.isEnabled) {
             screenfull.exit();
         }
     }, []);
 
-    const toggle = useCallback( () => {
+    const toggle = useCallback(() => {
         if (!active) {
             fullscreen();
         } else {
@@ -26,10 +29,10 @@ const useFullscreen = (element) => {
         }
     }, [active, fullscreen, unFullscreen]);
 
-    useEffect( () => {
+    useEffect(() => {
         const onChange = () => {
             setActive(screenfull.isFullscreen);
-        }
+        };
         if (screenfull.isEnabled) {
             screenfull.on('change', onChange);
         }
@@ -45,7 +48,7 @@ const useFullscreen = (element) => {
         fullscreen,
         unFullscreen,
         active,
-        enabled
+        enabled,
     };
 };
 

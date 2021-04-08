@@ -14,6 +14,7 @@ import {
     useTrackScreenView,
     useTrackEvent,
     useLoadedFonts,
+    useFullscreen,
 } from '@micromag/core/hooks';
 import { ScreenSizeProvider, ViewerProvider } from '@micromag/core/contexts';
 import { getDeviceScreens } from '@micromag/core/utils';
@@ -241,7 +242,7 @@ const Viewer = ({
 
     // handle screenClick
 
-    const onInteractionPrivate = useCallback( () => {
+    const onInteractionPrivate = useCallback(() => {
         if (onInteraction !== null) {
             onInteraction();
         }
@@ -452,6 +453,13 @@ const Viewer = ({
         <style type="text/css">{`body { overscroll-behavior: contain; }`}</style>
     );
 
+    // Fullscreen
+    const {
+        toggle: toggleFullscreen,
+        active: fullscreenActive,
+        enabled: fullscreenEnabled,
+    } = useFullscreen(containerRef.current || null);
+
     return (
         <ScreenSizeProvider size={screenSize}>
             <ViewerProvider menuVisible={menuVisible} menuSize={menuDotsContainerHeight}>
@@ -512,6 +520,9 @@ const Viewer = ({
                                     onClickItem={onClickPreviewMenuItem}
                                     onClose={onClickPreviewMenuClose}
                                     onShare={onClickShare}
+                                    toggleFullscreen={toggleFullscreen}
+                                    fullscreenActive={fullscreenActive}
+                                    fullscreenEnabled={fullscreenEnabled}
                                 />
                             </animated.div>
                         </>
