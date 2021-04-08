@@ -166,7 +166,6 @@ const useMediaApi = ({
         const { current: media } = ref;
 
         setMuted(media.muted);
-
         if (onVolumeChanged !== null) {
             onVolumeChanged(media.muted, media.volume);
         }
