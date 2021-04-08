@@ -40,9 +40,9 @@ const TransitionsStagger = ({
         }
 
         const { type = null } = child;
-        const { name = null } = type || {};
+        const { withoutTransitionsWrapper = false } = type || {};
 
-        if (disabled || name === 'Spacer') {
+        if (disabled || withoutTransitionsWrapper) {
             return child;
         }
 

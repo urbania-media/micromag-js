@@ -45,5 +45,6 @@ const Spacer = ({ size, minSize, maxSize, className }) => {
 
 Spacer.propTypes = propTypes;
 Spacer.defaultProps = defaultProps;
+Spacer.withoutTransitionsWrapper = true;
 
 export default Spacer;
