@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-heading",
-    "version": "0.2.201",
+    "version": "0.2.203",
     "description": "",
     "keywords": [
         "javascript"
@@ -49,7 +49,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.12.5",
-        "@micromag/core": "^0.2.201",
+        "@micromag/core": "^0.2.203",
         "classnames": "^2.2.6",
         "prop-types": "^15.7.2",
         "react-intl": "^5.12.1",
