@@ -34,7 +34,7 @@ const Transitions = ({ fullscreen, playing, delay, transitions, disabled, childr
     const defaultTransitions = { in: 'fade', out: 'fade' };
     const transitionsObject = transitions !== null ? transitions : defaultTransitions;
     
-    Object.keys(transitions || []).forEach((transitionKey) => {
+    Object.keys(transitionsObject).forEach((transitionKey) => {
         const currentTransition = transitionsObject[transitionKey];
         finalTransitions[transitionKey] =
             typeof currentTransition === 'string' ? { name: currentTransition } : currentTransition;

@@ -61,10 +61,6 @@
                     "type": "closed-captions",
                     "url": "cc6ab65ee24a9712ac4b69a96bb96683.srt"
                 }
-            },
-            "transitions": {
-                "in": "fade",
-                "out": "fade"
             }
         },
         {
@@ -97,10 +93,6 @@
                     "fontSize": 16,
                     "fontFamily": "Arial"
                 }
-            },
-            "transitions": {
-                "in": "fade",
-                "out": "fade"
             }
         },
         {
@@ -139,11 +131,7 @@
                         "height": 800
                     }
                 }
-            ],
-            "transitions": {
-                "in": "fade",
-                "out": "fade"
-            }
+            ]
         },
         {
             "background": {
@@ -188,11 +176,7 @@
                         "height": 800
                     }
                 }
-            ],
-            "transitions": {
-                "in": "fade",
-                "out": "fade"
-            }
+            ]
         },
         {
             "background": {
@@ -267,11 +251,7 @@
                         "body": "The sky above the port was the color of television tuned to a dead channel All this happened"
                     }
                 }
-            ],
-            "transitions": {
-                "in": "fade",
-                "out": "fade"
-            }
+            ]
         },
         {
             "background": {
@@ -287,10 +267,6 @@
                     "width": 800,
                     "height": 800
                 }
-            },
-            "transitions": {
-                "in": "fade",
-                "out": "fade"
             }
         },
         {
@@ -325,10 +301,6 @@
                     "fontSize": 16,
                     "fontFamily": "Arial"
                 }
-            },
-            "transitions": {
-                "in": "fade",
-                "out": "fade"
             }
         },
         {
@@ -345,10 +317,6 @@
                     "width": 800,
                     "height": 800
                 }
-            },
-            "transitions": {
-                "in": "fade",
-                "out": "fade"
             }
         },
         {
@@ -436,11 +404,7 @@
                     },
                     "image": null
                 }
-            ],
-            "transitions": {
-                "in": "fade",
-                "out": "fade"
-            }
+            ]
         },
         {
             "background": {
@@ -548,11 +512,7 @@
                         }
                     }
                 }
-            ],
-            "transitions": {
-                "in": "fade",
-                "out": "fade"
-            }
+            ]
         },
         {
             "background": {
@@ -599,10 +559,6 @@
                     "fontSize": 16,
                     "fontFamily": "Arial"
                 }
-            },
-            "transitions": {
-                "in": "fade",
-                "out": "fade"
             }
         },
         {
@@ -623,10 +579,6 @@
                     "fontSize": 16,
                     "fontFamily": "Arial"
                 }
-            },
-            "transitions": {
-                "in": "fade",
-                "out": "fade"
             }
         },
         {
@@ -730,10 +682,6 @@
             ],
             "numbersStyle": {
                 "fontSize": 50
-            },
-            "transitions": {
-                "in": "fade",
-                "out": "fade"
             }
         },
         {
@@ -771,11 +719,7 @@
                         "body": "Choix 4"
                     }
                 }
-            ],
-            "transitions": {
-                "in": "fade",
-                "out": "fade"
-            }
+            ]
         },
         {
             "id": "1cb82f73-5c1a-11eb-985f-ad6fce99d848",
@@ -792,11 +736,7 @@
                 "color": { "alpha": 1, "color": "#0000FF" }
             },
             "type": "text",
-            "layout": "top",
-            "transitions": {
-                "in": "fade",
-                "out": "fade"
-            }
+            "layout": "top"
         },
         {
             "id": "1cb82f73-5c1a-11eb-985f-ad6fce99d848",
@@ -822,11 +762,7 @@
                 "color": { "alpha": 1, "color": "#0000FF" }
             },
             "type": "text-title",
-            "layout": "top",
-            "transitions": {
-                "in": "fade",
-                "out": "fade"
-            }
+            "layout": "top"
         },
         {
             "id": "1cb8a4bf-5c1a-11eb-985f-ad6fce99d848",
@@ -879,10 +815,6 @@
                     }
                 },
                 "repeat": true
-            },
-            "transitions": {
-                "in": "fade",
-                "out": "fade"
             }
         },
         {
@@ -987,11 +919,7 @@
             "bulletShape": "circle",
             "bulletColor": { "alpha": 1, "color": "#FFF" },
             "lineColor": { "alpha": 1, "color": "#FFF" },
-            "bulletFilled": false,
-            "transitions": {
-                "in": "fade",
-                "out": "fade"
-            }
+            "bulletFilled": false
         },
         {
             "background": {
@@ -1175,11 +1103,7 @@
             "bulletShape": "circle",
             "bulletColor": { "alpha": 1, "color": "#FFF" },
             "lineColor": { "alpha": 1, "color": "#FFF" },
-            "bulletFilled": false,
-            "transitions": {
-                "in": "fade",
-                "out": "fade"
-            }
+            "bulletFilled": false
         },
         {
             "background": {
@@ -1190,10 +1114,6 @@
             "layout": "top",
             "title": {
                 "body": "A longer title"
-            },
-            "transitions": {
-                "in": "fade",
-                "out": "fade"
             }
         },
         {
@@ -1219,10 +1139,6 @@
                     "url": "cc6ab65ee24a9712ac4b69a96bb96683.srt"
                 },
                 "withSeekBar": true
-            },
-            "transitions": {
-                "in": "fade",
-                "out": "fade"
             }
         },
         {
@@ -1248,10 +1164,6 @@
                     "url": "cc6ab65ee24a9712ac4b69a96bb96683.srt"
                 },
                 "withSeekBar": true
-            },
-            "transitions": {
-                "in": "fade",
-                "out": "fade"
             }
         }
     ]

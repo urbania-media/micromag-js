@@ -14,7 +14,6 @@ import {
     markers,
     quote,
     author,
-    transitions,
     callToAction,
 } from '../data';
 
@@ -32,7 +31,6 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#00FF00' },
         },
-        transitions: transitions(),
         callToAction: callToAction(),
     },
     {
@@ -46,7 +44,6 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#00FFFF' },
         },
-        transitions: transitions(),
         callToAction: callToAction(),
     },
     {
@@ -57,7 +54,6 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#FFFF00' },
         },
-        transitions: transitions(),
         callToAction: callToAction(),
     },
     {
@@ -68,7 +64,6 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#00FF00' },
         },
-        transitions: transitions(),
         callToAction: callToAction(),
     },
     {
@@ -79,7 +74,6 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#00FFFF' },
         },
-        transitions: transitions(),
         callToAction: callToAction(),
     },
     {
@@ -90,7 +84,6 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#FF00FF' },
         },
-        transitions: transitions(),
         callToAction: callToAction(),
     },
     {
@@ -107,7 +100,6 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#0000FF' },
         },
-        transitions: transitions(),
         callToAction: callToAction(),
     },
     {
@@ -118,7 +110,6 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#FF00FF' },
         },
-        transitions: transitions(),
         callToAction: callToAction(),
     },
     {
@@ -133,7 +124,6 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#FF0000' },
         },
-        transitions: transitions(),
         callToAction: callToAction(),
     },
     {
@@ -148,7 +138,6 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#0000FF' },
         },
-        transitions: transitions(),
         callToAction: callToAction(),
     },
     {
@@ -168,7 +157,6 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#00FF00' },
         },
-        transitions: transitions(),
         callToAction: callToAction(),
     },
     {
@@ -180,7 +168,6 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#00FFFF' },
         },
-        transitions: transitions(),
         callToAction: callToAction(),
     },
     {
@@ -195,7 +182,6 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#FF00FF' },
         },
-        transitions: transitions(),
         callToAction: callToAction(),
     },
     {
@@ -212,7 +198,6 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#333' },
         },
-        transitions: transitions(),
         callToAction: callToAction(),
     },
     {
@@ -223,7 +208,6 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#0000FF' },
         },
-        transitions: transitions(),
         callToAction: callToAction(),
     },
     {
@@ -241,7 +225,6 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#FF00FF' },
         },
-        transitions: transitions(),
         callToAction: callToAction(),
     },
     {
@@ -260,7 +243,6 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#0000FF' },
         },
-        transitions: transitions(),
         callToAction: callToAction(),
     },
     {
@@ -273,7 +255,6 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#FF0000' },
         },
-        transitions: transitions(),
         callToAction: callToAction(),
     },
     {
@@ -290,7 +271,6 @@ export const allScreens = [
         background: {
             color: { alpha: 1, color: '#FF00FF' },
         },
-        transitions: transitions(),
         callToAction: callToAction(),
     },
     // {
@@ -307,7 +287,7 @@ export const allScreens = [
     //     background: {
     //         color: { alpha: 1, color: '#FF00FF'},
     //     },
-    //     transitions: transitions(),
+    //  
     //     callToAction: callToAction(),
     // },
 ];
