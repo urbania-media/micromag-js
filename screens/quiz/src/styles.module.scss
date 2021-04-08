@@ -45,10 +45,12 @@
     }
 
     .resultIcon {
-        display: block;
+        display: flex;        
         position: absolute;
         top: 50%;
         left: 5px;
+        align-items: center;
+        justify-content: center;
         width: 32px;
         height: 32px;
         margin-top: -16px;
