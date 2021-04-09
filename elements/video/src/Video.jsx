@@ -163,7 +163,6 @@ const Video = ({
                 muted={muted}
                 poster={thumbnailUrl}
                 preload={preload}
-                crossOrigin="anonymous"
                 playsInline={playsInline}
             >
                 {hasFiles ? (

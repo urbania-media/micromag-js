@@ -1,3 +1,4 @@
+// stylelint-disable max-nesting-depth
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 
@@ -17,8 +18,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 40px;
-        height: 40px;
+        width: 80px;
+        height: 80px;
     }
 
     .playPauseButton {
@@ -37,9 +38,9 @@
         position: absolute;
         top: 50%;
         right: 0;
-        width: 30px;
-        height: 30px;
-        margin-top: -15px;
+        width: 40px;
+        height: 40px;
+        margin-top: -20px;
 
         .icon {
             display: block;
