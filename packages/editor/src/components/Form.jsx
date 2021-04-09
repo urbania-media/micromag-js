@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useHistory } from 'react-router';
 import { FormattedMessage } from 'react-intl';
-import TransitionGroup from 'react-addons-css-transition-group';
+import { CSSTransitionGroup } from 'react-transition-group';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { slug } from '@micromag/core/utils';
 import {
@@ -273,7 +273,7 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
             ) : null}
             <div className={classNames(['flex-grow-1', 'd-flex', 'w-100', styles.content])}>
                 {screen !== null ? (
-                    <TransitionGroup
+                    <CSSTransitionGroup
                         transitionName={transitionName}
                         transitionEnterTimeout={transitionTimeout}
                         transitionLeaveTimeout={transitionTimeout}
@@ -312,7 +312,7 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
                                 </ScreenProvider>
                             </div>
                         )}
-                    </TransitionGroup>
+                    </CSSTransitionGroup>
                 ) : (
                     <Empty className="w-100 m-2">
                         <FormattedMessage
