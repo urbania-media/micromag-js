@@ -4,7 +4,6 @@ import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-// import TransitionGroup from 'react-addons-css-transition-group';
 
 import { PropTypes as MicromagPropTypes } from '../../lib';
 import { useForm } from '../../hooks';
