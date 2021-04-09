@@ -215,6 +215,7 @@ const VideoScreen = ({
                             {...finalVideo}
                             ref={apiRef}
                             className={styles.video}
+                            preload="auto"
                             onReady={onVideoReady}
                             onPlay={onPlay}
                             onPause={onPause}

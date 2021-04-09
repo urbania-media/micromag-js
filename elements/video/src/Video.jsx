@@ -21,6 +21,7 @@ const propTypes = {
     autoPlay: PropTypes.bool,
     loop: PropTypes.bool,
     playsInline: PropTypes.bool,
+    preload: PropTypes.string,
     className: PropTypes.string,
     onReady: PropTypes.func,
     onPlay: PropTypes.func,
@@ -43,6 +44,7 @@ const defaultProps = {
     autoPlay: false,
     loop: false,
     playsInline: true,
+    preload: undefined,
     className: null,
     onReady: null,
     onPlay: null,
@@ -65,6 +67,7 @@ const Video = ({
     autoPlay,
     loop,
     playsInline,
+    preload,
     className,
     onReady,
     onPlay,
@@ -159,6 +162,7 @@ const Video = ({
                 loop={loop}
                 muted={muted}
                 poster={thumbnailUrl}
+                preload={preload}
                 crossOrigin="anonymous"
                 playsInline={playsInline}
             >
