@@ -24,18 +24,24 @@ export const createConfig = ({
 } = {}) => {
     const isNode = format === 'node';
     const isCjs = format === 'cjs' || format === 'node';
+    const outputCjs = {
+        file: output || `lib/${file}`,
+        format: 'cjs',
+        banner,
+    };
+    const outputEs = {
+        file: output || `es/${file}`,
+        banner,
+    };
+    let outputConfig;
+    if (format === 'both') {
+        outputConfig = [outputCjs, outputEs];
+    } else {
+        outputConfig = isCjs ? outputCjs : outputEs;
+    }
     return {
         input: input || `src/${file}`,
-        output: isCjs
-            ? {
-                  file: output || `lib/${file}`,
-                  format: 'cjs',
-                  banner,
-              }
-            : {
-                  file: output || `es/${file}`,
-                  banner,
-              },
+        output: outputConfig,
         plugins: [
             ...prependPlugins,
             json(),
@@ -79,7 +85,7 @@ export const createConfig = ({
                         {
                             version: require('@babel/helpers/package.json').version,
                             helpers: true,
-                            useESModules: !isCjs,
+                            // useESModules: !isCjs,
                         },
                     ],
                     require.resolve('@babel/plugin-proposal-export-namespace-from'),
@@ -121,4 +127,4 @@ export const createConfig = ({
     };
 };
 
-export default [createConfig(), createConfig({ format: 'cjs' })];
+export default [createConfig({ format: 'both' })/* , createConfig({ format: 'cjs' }) */];

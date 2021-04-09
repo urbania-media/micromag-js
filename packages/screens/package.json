@@ -53,7 +53,7 @@
         "react-dom": "^16.8.0"
     },
     "dependencies": {
-        "@babel/runtime": "^7.12.5",
+        "@babel/runtime": "^7.13.10",
         "@micromag/core": "^0.2.210",
         "@micromag/screen-audio": "^0.2.210",
         "@micromag/screen-contribution": "^0.2.210",

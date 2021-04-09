@@ -52,13 +52,14 @@ export default Object.keys(files).reduce(
         ...configs,
         createConfig({
             file,
+            format: 'both',
             ...files[file],
         }),
-        createConfig({
-            file,
-            format: 'cjs',
-            ...files[file],
-        }),
+        // createConfig({
+        //     file,
+        //     format: 'cjs',
+        //     ...files[file],
+        // }),
     ],
     [],
 );

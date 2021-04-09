@@ -46,7 +46,7 @@
         "react": "^16.8.0"
     },
     "dependencies": {
-        "@babel/runtime": "^7.12.5",
+        "@babel/runtime": "^7.13.10",
         "@folklore/size": "^0.1.14",
         "@micromag/core": "^0.2.210",
         "@micromag/element-video": "^0.2.210",
