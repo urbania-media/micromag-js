@@ -54,7 +54,7 @@
         "@babel/runtime": "^7.13.10",
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
-        "@fortawesome/react-fontawesome": "^0.1.12",
+        "@fortawesome/react-fontawesome": "^0.1.13",
         "@micromag/core": "^0.2.211",
         "@micromag/element-scroll": "^0.2.211",
         "@micromag/elements": "^0.2.211",
