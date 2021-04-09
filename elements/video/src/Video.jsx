@@ -22,6 +22,7 @@ const propTypes = {
     loop: PropTypes.bool,
     playsInline: PropTypes.bool,
     preload: PropTypes.string,
+    withoutCors: PropTypes.bool,
     className: PropTypes.string,
     onReady: PropTypes.func,
     onPlay: PropTypes.func,
@@ -45,6 +46,7 @@ const defaultProps = {
     loop: false,
     playsInline: true,
     preload: undefined,
+    withoutCors: false,
     className: null,
     onReady: null,
     onPlay: null,
@@ -68,6 +70,7 @@ const Video = ({
     loop,
     playsInline,
     preload,
+    withoutCors,
     className,
     onReady,
     onPlay,
@@ -128,8 +131,8 @@ const Video = ({
         }
     }, [thumbnailUrl]);
 
-    useEffect( () => {
-        if(autoPlay) {
+    useEffect(() => {
+        if (autoPlay) {
             play();
         } else {
             pause();
@@ -164,6 +167,7 @@ const Video = ({
                 poster={thumbnailUrl}
                 preload={preload}
                 playsInline={playsInline}
+                crossOrigin={withoutCors ? 'anonymous' : null}
             >
                 {hasFiles ? (
                     <>
