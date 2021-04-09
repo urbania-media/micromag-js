@@ -172,8 +172,6 @@ const useMediaApi = ({
     }, [setMuted, onVolumeChanged]);
 
     const onCustomLoadStart = useCallback(() => {
-        setReady(false);
-
         if (onLoadStart !== null) {
             onLoadStart();
         }
@@ -209,6 +207,12 @@ const useMediaApi = ({
             media.addEventListener('loadstart', onCustomLoadStart);
             media.addEventListener('canplaythrough', onCustomCanPlayThrough);
             media.addEventListener('canplay', onCustomCanPlay);
+        }
+
+        if (media.readyState > 3) {
+            setReady(true);
+        } else {
+            setReady(false);
         }
 
         return () => {            
