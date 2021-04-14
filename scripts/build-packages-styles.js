@@ -19,11 +19,13 @@ program
 
 program.parse(process.argv);
 
+const options = program.opts();
+
 const nodeModulesPath = path.join(process.cwd(), './node_modules/');
 const packageJsonPath = path.join(process.cwd(), 'package.json');
 const { dependencies } = fsExtra.readJsonSync(packageJsonPath);
 
-const patternRegExp = new RegExp(`^${program.pattern.replace('*', '.*')}$`, 'i');
+const patternRegExp = new RegExp(`^${options.pattern.replace('*', '.*')}$`, 'i');
 const packages = Object.keys(dependencies).filter(
     (it) =>
         patternRegExp.test(it) &&

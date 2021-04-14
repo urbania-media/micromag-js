@@ -9,6 +9,7 @@ import { useUppy } from '../../contexts';
 import '../../styles/modals/upload.scss';
 
 const propTypes = {
+    type: PropTypes.string,
     opened: PropTypes.bool,
     sources: PropTypes.arrayOf(PropTypes.string),
     onUploaded: PropTypes.func,
@@ -16,13 +17,14 @@ const propTypes = {
 };
 
 const defaultProps = {
+    type: null,
     opened: false,
     sources: ['webcam', 'facebook', 'instagram', 'dropbox', 'google-drive'],
     onUploaded: null,
     onRequestClose: null,
 };
 
-const UploadModal = ({ opened, sources, onUploaded, onRequestClose }) => {
+const UploadModal = ({ type, opened, sources, onUploaded, onRequestClose }) => {
     const onUpppyComplete = useCallback(
         (response) => {
             if (onUploaded !== null) {
@@ -35,6 +37,7 @@ const UploadModal = ({ opened, sources, onUploaded, onRequestClose }) => {
     const uppy = useUppy({
         onComplete: onUpppyComplete,
         sources,
+        allowedFileTypes: ['image', 'video', 'audio'].indexOf(type) !== -1 ? [`${type}/*`] : null,
     });
 
     useEffect(() => {

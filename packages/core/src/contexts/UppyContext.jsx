@@ -18,8 +18,24 @@ export const useUppy = ({
     onComplete = null,
     onFail = null,
     getFileName = ({ extension = null }) => `${uuid()}${extension !== null ? `.${extension}` : ''}`,
+    meta = null,
+    maxNumberOfFiles = 30,
+    allowedFileTypes = null,
+    autoProceed = false,
 } = {}) => {
-    const { uppy = null, transport } = useContext(UppyContext) || null;
+    const { buildUppy, transport } = useContext(UppyContext) || null;
+
+    const uppy = useMemo(
+        () =>
+            buildUppy !== null
+                ? buildUppy({
+                      meta,
+                      restrictions: { maxNumberOfFiles, allowedFileTypes },
+                      autoProceed,
+                  })
+                : null,
+        [buildUppy, meta, maxNumberOfFiles, allowedFileTypes, autoProceed],
+    );
 
     useEffect(() => {
         if (uppy === null) {
@@ -65,6 +81,15 @@ export const useUppy = ({
         };
     }, [uppy]);
 
+    useEffect(
+        () => () => {
+            if (uppy !== null) {
+                uppy.close();
+            }
+        },
+        [uppy],
+    );
+
     return uppy;
 };
 
@@ -75,10 +100,6 @@ const propTypes = {
     sources: PropTypes.arrayOf(
         PropTypes.oneOf(['webcam', 'facebook', 'instagram', 'dropbox', 'google-drive']),
     ),
-    meta: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-    maxNumberOfFiles: PropTypes.number,
-    allowedFileTypes: PropTypes.arrayOf(PropTypes.string),
-    autoProceed: PropTypes.bool,
     transloadit: PropTypes.shape({
         key: PropTypes.string.isRequired,
         templateId: PropTypes.string,
@@ -106,10 +127,6 @@ const defaultProps = {
     transport: 'xhr',
     locale: null,
     sources: ['webcam', 'facebook', 'instagram', 'dropbox', 'google-drive'],
-    meta: null,
-    maxNumberOfFiles: 30,
-    allowedFileTypes: null,
-    autoProceed: false,
     transloadit: null,
     companion: null,
     tus: null,
@@ -121,28 +138,19 @@ export const UppyProvider = ({
     transport,
     locale,
     sources,
-    meta,
-    maxNumberOfFiles,
-    allowedFileTypes,
-    autoProceed,
     transloadit,
     companion,
     tus,
     xhr,
 }) => {
-    const previousUppyContext = useContext(UppyContext) || null;
-    const uppyAlreadyExists = previousUppyContext !== null;
-
+    const { locale: intlLocale } = useIntl();
     const Uppy = useUppyCore();
     const uppyTransport = useUppyTransport(transport);
     const uppySources = useUppySources(sources);
-
-    const { locale: intlLocale } = useIntl();
     const uppyLocale = useUppyLocale(locale || intlLocale);
 
-    const uppy = useMemo(() => {
+    const buildUppy = useMemo(() => {
         if (
-            uppyAlreadyExists ||
             Uppy === null ||
             uppyLocale === null ||
             uppyTransport === null ||
@@ -150,90 +158,79 @@ export const UppyProvider = ({
         ) {
             return null;
         }
-
-        let newUppy = new Uppy({
-            meta,
-            restrictions: { maxNumberOfFiles, allowedFileTypes },
-            autoProceed,
-            locale: uppyLocale,
-        });
-
-        if (transport === 'transloadit') {
-            const { key, templateId, waitForEncoding = true, ...opts } = transloadit;
-            newUppy.use(uppyTransport, {
-                params: {
-                    auth: { key },
-                    template_id: templateId,
-                    ...opts,
-                },
-                waitForEncoding,
+        return (opts = {}) => {
+            const { sources: customSources = sources, ...uppyOpts } = opts || {};
+            const newUppy = new Uppy({
+                locale: uppyLocale,
+                ...uppyOpts,
             });
-        } else if (transport === 'tus') {
-            newUppy.use(uppyTransport, {
-                endpoint: '/tus',
-                resume: true,
-                retryDelays: [0, 1000, 3000, 5000],
-                ...tus,
-            });
-        } else if (transport === 'xhr') {
-            newUppy.use(uppyTransport, {
-                endpoint: isString(xhr) ? xhr : '/upload',
-                ...(isObject(xhr) ? xhr : null),
-            });
-        }
-
-        if (transport === 'transloadit' || companion !== null) {
-            newUppy = sources.reduce((currentUppy, sourceId) => {
-                const source = uppySources[sourceId] || null;
-                if (source === null) {
-                    return currentUppy;
-                }
-                const { url: companionUrl, allowedHosts: companionAllowedHosts } = companion || {
-                    url: uppyTransport.COMPANION || null,
-                    allowedHosts: uppyTransport.COMPANION_PATTERN || null,
-                };
-                return newUppy.use(source, {
-                    id: sourceId,
-                    companionUrl,
-                    companionAllowedHosts,
+            if (transport === 'transloadit') {
+                const { key, templateId, waitForEncoding = true, ...transloaditOpts } = transloadit;
+                newUppy.use(uppyTransport, {
+                    params: {
+                        auth: { key },
+                        template_id: templateId,
+                        ...transloaditOpts,
+                    },
+                    waitForEncoding,
                 });
-            }, newUppy);
-        }
+            } else if (transport === 'tus') {
+                newUppy.use(uppyTransport, {
+                    endpoint: '/tus',
+                    resume: true,
+                    retryDelays: [0, 1000, 3000, 5000],
+                    ...tus,
+                });
+            } else if (transport === 'xhr') {
+                newUppy.use(uppyTransport, {
+                    endpoint: isString(xhr) ? xhr : '/upload',
+                    ...(isObject(xhr) ? xhr : null),
+                });
+            }
 
-        return newUppy;
+            if (transport === 'transloadit' || companion !== null) {
+                return customSources.reduce((currentUppy, sourceId) => {
+                    const source = uppySources[sourceId] || null;
+                    if (source === null) {
+                        return currentUppy;
+                    }
+                    const {
+                        url: companionUrl,
+                        allowedHosts: companionAllowedHosts,
+                    } = companion || {
+                        url: uppyTransport.COMPANION || null,
+                        allowedHosts: uppyTransport.COMPANION_PATTERN || null,
+                    };
+                    return newUppy.use(source, {
+                        id: sourceId,
+                        companionUrl,
+                        companionAllowedHosts,
+                    });
+                }, newUppy);
+            }
+
+            return newUppy;
+        };
     }, [
-        uppyAlreadyExists,
         Uppy,
         uppyLocale,
         uppyTransport,
         uppySources,
-        meta,
-        maxNumberOfFiles,
-        allowedFileTypes,
-        autoProceed,
         transport,
         transloadit,
+        xhr,
         tus,
         companion,
         sources,
     ]);
 
-    useEffect(
-        () => () => {
-            if (uppy !== null) {
-                uppy.close();
-            }
-        },
-        [uppy],
+    return (
+        <UppyContext.Provider
+            value={{ Uppy, uppyTransport, uppySources, uppyLocale, buildUppy, transport }}
+        >
+            {children}
+        </UppyContext.Provider>
     );
-
-    const finalUppyContext = useMemo(() => previousUppyContext || { uppy, transport }, [
-        previousUppyContext,
-        uppy,
-        transport,
-    ]);
-
-    return <UppyContext.Provider value={finalUppyContext}>{children}</UppyContext.Provider>;
 };
 
 UppyProvider.propTypes = propTypes;
