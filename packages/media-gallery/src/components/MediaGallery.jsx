@@ -181,6 +181,7 @@ const MediaGallery = ({
                 </div>
             </div>
             <UploadModal
+                type={type}
                 opened={uploadModalOpened}
                 onUploaded={onUploadCompleted}
                 onRequestClose={onUploadRequestClose}
