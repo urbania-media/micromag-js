@@ -79,7 +79,7 @@ const AudioWave = ({
             return;
         }
         const progress = currentTime / duration;
-        setSpringProps({
+        setSpringProps.start({
             reset: true,
             immediate: !playing,
             from: {
@@ -253,7 +253,7 @@ const AudioWave = ({
                 ref={canvasProgressRef}
                 className={styles.canvasProgress}
                 style={{
-                    clipPath: springProps.x.interpolate((x) => `polygon(0 0, ${x * 100}% 0, ${x * 100}% 100%, 0 100%)`),
+                    clipPath: springProps.x.to((x) => `polygon(0 0, ${x * 100}% 0, ${x * 100}% 100%, 0 100%)`),
                 }}
             />
             <button

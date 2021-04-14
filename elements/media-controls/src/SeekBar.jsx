@@ -48,7 +48,7 @@ const SeekBar = ({
             return;
         }
         const progress = currentTime / duration;
-        setSpringProps({
+        setSpringProps.start({
             reset: true,
             immediate: !playing,
             from: {
@@ -89,7 +89,7 @@ const SeekBar = ({
             <animated.div
                 className={styles.progress}
                 style={{
-                    transform: springProps.x.interpolate((x) => `scaleX(${x}`),
+                    transform: springProps.x.to((x) => `scaleX(${x}`),
                     backgroundColor: progressColor,
                 }}
             />

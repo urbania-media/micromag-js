@@ -326,7 +326,7 @@ const Viewer = ({
         config: { ...config.stiff, clamp: true },
     }));
     const menuPreviewStyle = {
-        transform: menuY.interpolate((y) => `translateY(${y * menuPreviewContainerHeight}px)`),
+        transform: menuY.to((y) => `translateY(${y * menuPreviewContainerHeight}px)`),
     };
 
     const menuDragBind = useDrag(
@@ -352,9 +352,9 @@ const Viewer = ({
             if (last) {
                 const menuNowOpened = dy > 0 && yProgress > 0.1;
                 menuOpened.current = menuNowOpened;
-                setMenuSpring({ y: menuNowOpened ? 1 : 0 });
+                setMenuSpring.start({ y: menuNowOpened ? 1 : 0 });
             } else {
-                setMenuSpring({ y: yProgress });
+                setMenuSpring.start({ y: yProgress });
             }
         },
         { axis: 'y', filterTaps: true },
@@ -372,7 +372,7 @@ const Viewer = ({
             if (goToScreen) {
                 changeIndex(index);
             } else {
-                setMenuSpring({ y: menuOpened.current ? 0 : 1 });
+                setMenuSpring.start({ y: menuOpened.current ? 0 : 1 });
                 menuOpened.current = !menuOpened.current;
             }
             if (trackingEnabled) {
@@ -401,7 +401,7 @@ const Viewer = ({
     const onClickPreviewMenuItem = useCallback(
         (index) => {
             changeIndex(index);
-            setMenuSpring({ y: 0 });
+            setMenuSpring.start({ y: 0 });
             menuOpened.current = false;
 
             if (trackingEnabled) {
@@ -418,7 +418,7 @@ const Viewer = ({
     // Handle preview menu close click
 
     const onClickPreviewMenuClose = useCallback(() => {
-        setMenuSpring({ y: 0 });
+        setMenuSpring.start({ y: 0 });
         menuOpened.current = false;
         if (trackingEnabled) {
             trackEvent('viewer_menu', 'click_close', 'Close icon', {
