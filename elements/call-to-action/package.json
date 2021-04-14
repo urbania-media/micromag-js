@@ -54,11 +54,12 @@
         "@fortawesome/react-fontawesome": "^0.1.13",
         "@micromag/core": "^0.2.217",
         "@micromag/element-text": "^0.2.217",
+        "@react-spring/core": "^9.1.1",
+        "@react-spring/web": "^9.1.1",
         "classnames": "^2.2.6",
         "lodash": "^4.17.20",
         "prop-types": "^15.7.2",
         "react-intl": "^5.12.1",
-        "react-spring": "^9.1.1",
         "react-use-gesture": "^9.0.0",
         "uuid": "^8.3.2"
     },

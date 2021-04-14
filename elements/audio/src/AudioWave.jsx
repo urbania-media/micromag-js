@@ -4,7 +4,8 @@ import 'whatwg-fetch';
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useSpring, animated } from 'react-spring';
+import { useSpring } from '@react-spring/core';
+import { animated } from '@react-spring/web';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useResizeObserver } from '@micromag/core/hooks';
 

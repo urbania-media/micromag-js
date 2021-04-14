@@ -5,7 +5,8 @@ import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useDrag } from 'react-use-gesture';
-import { animated, useSpring, config } from 'react-spring';
+import { useSpring, config } from '@react-spring/core';
+import { animated } from '@react-spring/web';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     useScreenSizeFromElement,

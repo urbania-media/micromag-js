@@ -1,5 +1,5 @@
 import { useRef, useEffect, useCallback } from 'react';
-import { useSprings } from 'react-spring';
+import { useSprings } from '@react-spring/core';
 import clamp from 'lodash/clamp';
 import { useDrag } from 'react-use-gesture';
 

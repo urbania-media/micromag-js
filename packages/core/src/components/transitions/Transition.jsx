@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { animated, useSpring } from 'react-spring';
+import { useSpring } from '@react-spring/core';
+import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 
 import styles from '../../styles/transitions/transition.module.scss';
