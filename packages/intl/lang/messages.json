@@ -119,6 +119,10 @@
     "defaultMessage": "Entries",
     "description": "Field label"
   },
+  "3na7F8": {
+    "defaultMessage": "Now",
+    "description": "Now date time message"
+  },
   "3q9GPv": {
     "defaultMessage": "Quote",
     "description": "Quote screen title"
@@ -238,6 +242,10 @@
   "AA8TV9": {
     "defaultMessage": "Image with title",
     "description": "ImageTitle screen title"
+  },
+  "AHvHaY": {
+    "defaultMessage": "Parameters",
+    "description": "Screen label in the breadcrumb"
   },
   "AQ8Aig": {
     "defaultMessage": "Used",
@@ -362,6 +370,10 @@
   "JoWKee": {
     "defaultMessage": "Create your first screen",
     "description": "Button to create your first screen"
+  },
+  "KB7N5E": {
+    "defaultMessage": "Search a place on Google Maps",
+    "description": "Search a place on Google Maps placeholder"
   },
   "KCDOHI": {
     "defaultMessage": "No font...",
@@ -658,6 +670,10 @@
     "defaultMessage": "Delete screen",
     "description": "Delete screen button label"
   },
+  "gprXiG": {
+    "defaultMessage": "Search...",
+    "description": "Input placeholder"
+  },
   "hVE7TA": {
     "defaultMessage": "Question",
     "description": "Question field label"
@@ -836,6 +852,10 @@
     "defaultMessage": "Credits",
     "description": "Credits field label"
   },
+  "v4Qtl9": {
+    "defaultMessage": "Today",
+    "description": "Today date message"
+  },
   "vA+9dU": {
     "defaultMessage": "Border",
     "description": "Border label"
@@ -903,5 +923,9 @@
   "zW7IVm": {
     "defaultMessage": "Quiz",
     "description": "Quiz screen title"
+  },
+  "zh2m/S": {
+    "defaultMessage": "Search fonts...",
+    "description": "Field placeholder"
   }
 }

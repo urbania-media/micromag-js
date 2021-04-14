@@ -25,4 +25,5 @@ extractAndWrite(files, {
     idInterpolationPattern,
     // extractSourceLocation: true,
     outFile: path.join(process.cwd(), destPath),
+    extractFromFormatMessageCall: true,
 });

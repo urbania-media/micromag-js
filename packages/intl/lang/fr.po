@@ -191,6 +191,12 @@ msgctxt "3ifj0j"
 msgid "Entries"
 msgstr "Entrées"
 
+# Now date time message
+#: 3na7F8
+msgctxt "3na7F8"
+msgid "Now"
+msgstr "Maintenant"
+
 # Quote screen title
 #: 3q9GPv
 msgctxt "3q9GPv"
@@ -370,6 +376,12 @@ msgstr "Aucune réponse..."
 msgctxt "AA8TV9"
 msgid "Image with title"
 msgstr "Image avec titre"
+
+# Screen label in the breadcrumb
+#: AHvHaY
+msgctxt "AHvHaY"
+msgid "Parameters"
+msgstr "Paramètres"
 
 # Media label
 #: AQ8Aig
@@ -556,6 +568,12 @@ msgstr "Style du bouton"
 msgctxt "JoWKee"
 msgid "Create your first screen"
 msgstr "Créez votre premier écran"
+
+# Search a place on Google Maps placeholder
+#: KB7N5E
+msgctxt "KB7N5E"
+msgid "Search a place on Google Maps"
+msgstr "Rechercher un lieu sur Google Maps"
 
 # Label when there is no item
 #: KCDOHI
@@ -1000,6 +1018,12 @@ msgctxt "gRxcTc"
 msgid "Delete screen"
 msgstr "Supprimer l’écran"
 
+# Input placeholder
+#: gprXiG
+msgctxt "gprXiG"
+msgid "Search..."
+msgstr "Recherche..."
+
 # Question field label
 #: hVE7TA
 msgctxt "hVE7TA"
@@ -1268,6 +1292,12 @@ msgctxt "upzOTm"
 msgid "Credits"
 msgstr "Crédits"
 
+# Today date message
+#: v4Qtl9
+msgctxt "v4Qtl9"
+msgid "Today"
+msgstr "Aujourd'hui"
+
 # Border label
 #: vA+9dU
 msgctxt "vA+9dU"
@@ -1369,3 +1399,9 @@ msgstr "Latitude"
 msgctxt "zW7IVm"
 msgid "Quiz"
 msgstr "Quiz"
+
+# Field placeholder
+#: zh2m/S
+msgctxt "zh2m/S"
+msgid "Search fonts..."
+msgstr "Rechercher une police..."
