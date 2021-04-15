@@ -113,7 +113,7 @@ const QuizScreen = ({
     const verticalAlign = isSplitted ? null : layout;
 
     const transitionPlaying = current;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
+    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const backgroundPlaying = current && (isView || isEdit);
 
     // Call to Action

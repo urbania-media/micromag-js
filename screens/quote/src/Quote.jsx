@@ -76,7 +76,7 @@ const QuoteScreen = ({
 
     const quoteWithMargin = hasQuote && hasAuthor && !isSplitted;
     const transitionPlaying = current;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
+    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const backgroundPlaying = current && (isView || isEdit);
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;

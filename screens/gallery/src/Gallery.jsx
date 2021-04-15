@@ -110,7 +110,7 @@ const GalleryScreen = ({
     const imagesCount = images !== null ? Math.min(gridSpaces, images.length) : 0;
     const ready = imagesLoaded >= imagesCount;
     const transitionPlaying = current && ready;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
+    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     const onImageLoaded = useCallback(() => {
         setImagesLoaded(imagesLoaded + 1);

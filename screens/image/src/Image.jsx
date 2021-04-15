@@ -93,7 +93,7 @@ const ImageScreen = ({
 
     const [ready, setReady] = useState(!hasImage);
     const transitionPlaying = current && ready;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
+    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     const onImageLoaded = useCallback(() => {
         setReady(true);

@@ -103,7 +103,7 @@ const Timeline = ({
     const [imagesLoaded, setImagesLoaded] = useState(0);
     const ready = imagesLoaded >= imagesCount;
     const transitionsPlaying = current && ready;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
+    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = transitionDisabled || !current;
     const backgroundPlaying = current && (isView || isEdit);
 
