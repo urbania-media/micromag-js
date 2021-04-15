@@ -124,9 +124,9 @@ const propTypes = {
 };
 
 const defaultProps = {
-    transport: 'xhr',
+    transport: null,
     locale: null,
-    sources: ['webcam', 'facebook', 'instagram', 'dropbox', 'google-drive'],
+    sources: null,
     transloadit: null,
     companion: null,
     tus: null,
@@ -135,15 +135,35 @@ const defaultProps = {
 
 export const UppyProvider = ({
     children,
-    transport,
-    locale,
-    sources,
-    transloadit,
-    companion,
-    tus,
-    xhr,
+    transport: providedTransport,
+    locale: providedLocale,
+    sources: providedSources,
+    transloadit: providedTransloadit,
+    companion: providedCompanion,
+    tus: providedTus,
+    xhr: providedXhr,
 }) => {
     const { locale: intlLocale } = useIntl();
+
+    const {
+        transport: contextTransport = null,
+        locale: contextLocale = null,
+        sources: contextSources = null,
+        transloadit: contextTransloadit = null,
+        companion: contextCompanion = null,
+        tus: contextTus = null,
+        xhr: contextXhr = null,
+    } = useContext(UppyContext) || {};
+
+    const transport = providedTransport || contextTransport || 'xhr';
+    const locale = providedLocale || contextLocale || intlLocale;
+    const sources = providedSources ||
+        contextSources || ['webcam', 'facebook', 'instagram', 'dropbox', 'google-drive'];
+    const transloadit = providedTransloadit || contextTransloadit;
+    const companion = providedCompanion || contextCompanion;
+    const tus = providedTus || contextTus;
+    const xhr = providedXhr || contextXhr;
+
     const Uppy = useUppyCore();
     const uppyTransport = useUppyTransport(transport);
     const uppySources = useUppySources(sources);
@@ -216,17 +236,32 @@ export const UppyProvider = ({
         uppyLocale,
         uppyTransport,
         uppySources,
+
         transport,
-        transloadit,
-        xhr,
-        tus,
-        companion,
         sources,
+        transloadit,
+        companion,
+        tus,
+        xhr,
     ]);
 
     return (
         <UppyContext.Provider
-            value={{ Uppy, uppyTransport, uppySources, uppyLocale, buildUppy, transport }}
+            value={{
+                transport,
+                locale,
+                sources,
+                transloadit,
+                companion,
+                tus,
+                xhr,
+
+                Uppy,
+                uppyTransport,
+                uppySources,
+                uppyLocale,
+                buildUppy,
+            }}
         >
             {children}
         </UppyContext.Provider>
