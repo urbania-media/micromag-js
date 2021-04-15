@@ -245,12 +245,6 @@ msgctxt "4cCMV4"
 msgid "Marker"
 msgstr "Marker"
 
-# Duplicate item
-#: 4ciMqw
-msgctxt "4ciMqw"
-msgid "Duplicate item"
-msgstr "Duplicate item"
-
 # Tags in Media Gallery
 #: 4fHMVj
 msgctxt "4fHMVj"
