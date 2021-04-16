@@ -58,3 +58,4 @@ export { default as Toggle } from './Toggle';
 export { default as Tokens } from './Tokens';
 export { default as Url } from './Url';
 export { default as Video } from './Video';
+export { default as Visual } from './Visual';

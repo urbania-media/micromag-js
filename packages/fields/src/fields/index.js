@@ -55,3 +55,4 @@ export { default as tokens } from './tokens';
 export { default as url } from './url';
 export { default as video } from './video';
 export { default as videoElement } from './video-element';
+export { default as visual } from './visual';
