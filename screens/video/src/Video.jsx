@@ -137,7 +137,7 @@ const VideoScreen = ({
     const hasVideo = video !== null;
     const [ready, setReady] = useState(!hasVideo);
     const transitionPlaying = current && ready;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
+    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     // get resized video style props
     const finalVideo = hasVideo

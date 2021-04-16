@@ -1,7 +1,8 @@
 import React, { useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useSpring, animated } from 'react-spring';
+import { useSpring } from '@react-spring/core';
+import { animated } from '@react-spring/web';
 
 import styles from './styles/seek-bar.module.scss';
 
@@ -48,7 +49,7 @@ const SeekBar = ({
             return;
         }
         const progress = currentTime / duration;
-        setSpringProps({
+        setSpringProps.start({
             reset: true,
             immediate: !playing,
             from: {
@@ -89,7 +90,7 @@ const SeekBar = ({
             <animated.div
                 className={styles.progress}
                 style={{
-                    transform: springProps.x.interpolate((x) => `scaleX(${x}`),
+                    transform: springProps.x.to((x) => `scaleX(${x}`),
                     backgroundColor: progressColor,
                 }}
             />

@@ -191,6 +191,12 @@ msgctxt "3ifj0j"
 msgid "Entries"
 msgstr "Entries"
 
+# Now date time message
+#: 3na7F8
+msgctxt "3na7F8"
+msgid "Now"
+msgstr "Now"
+
 # Quote screen title
 #: 3q9GPv
 msgctxt "3q9GPv"
@@ -238,12 +244,6 @@ msgstr "Gallery Feed"
 msgctxt "4cCMV4"
 msgid "Marker"
 msgstr "Marker"
-
-# Duplicate item
-#: 4ciMqw
-msgctxt "4ciMqw"
-msgid "Duplicate item"
-msgstr "Duplicate item"
 
 # Tags in Media Gallery
 #: 4fHMVj
@@ -370,6 +370,12 @@ msgstr "No answer..."
 msgctxt "AA8TV9"
 msgid "Image with title"
 msgstr "Image with title"
+
+# Screen label in the breadcrumb
+#: AHvHaY
+msgctxt "AHvHaY"
+msgid "Parameters"
+msgstr "Parameters"
 
 # Media label
 #: AQ8Aig
@@ -556,6 +562,12 @@ msgstr "Button style"
 msgctxt "JoWKee"
 msgid "Create your first screen"
 msgstr "Create your first screen"
+
+# Search a place on Google Maps placeholder
+#: KB7N5E
+msgctxt "KB7N5E"
+msgid "Search a place on Google Maps"
+msgstr "Search a place on Google Maps"
 
 # Label when there is no item
 #: KCDOHI
@@ -1000,6 +1012,12 @@ msgctxt "gRxcTc"
 msgid "Delete screen"
 msgstr "Delete screen"
 
+# Input placeholder
+#: gprXiG
+msgctxt "gprXiG"
+msgid "Search..."
+msgstr "Search..."
+
 # Question field label
 #: hVE7TA
 msgctxt "hVE7TA"
@@ -1268,6 +1286,12 @@ msgctxt "upzOTm"
 msgid "Credits"
 msgstr "Credits"
 
+# Today date message
+#: v4Qtl9
+msgctxt "v4Qtl9"
+msgid "Today"
+msgstr "Today"
+
 # Border label
 #: vA+9dU
 msgctxt "vA+9dU"
@@ -1369,3 +1393,9 @@ msgstr "Latitude"
 msgctxt "zW7IVm"
 msgid "Quiz"
 msgstr "Quiz"
+
+# Field placeholder
+#: zh2m/S
+msgctxt "zh2m/S"
+msgid "Search fonts..."
+msgstr "Search fonts..."

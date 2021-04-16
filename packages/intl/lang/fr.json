@@ -86,6 +86,9 @@
     "3ifj0j": {
         "defaultMessage": "Entrées"
     },
+    "3na7F8": {
+        "defaultMessage": "Maintenant"
+    },
     "3q9GPv": {
         "defaultMessage": "Citation"
     },
@@ -109,9 +112,6 @@
     },
     "4cCMV4": {
         "defaultMessage": "Marqueur"
-    },
-    "4ciMqw": {
-        "defaultMessage": "Dupliquer l'élément"
     },
     "4fHMVj": {
         "defaultMessage": "Mots-clés"
@@ -175,6 +175,9 @@
     },
     "AA8TV9": {
         "defaultMessage": "Image avec titre"
+    },
+    "AHvHaY": {
+        "defaultMessage": "Paramètres"
     },
     "AQ8Aig": {
         "defaultMessage": "Utilisé"
@@ -268,6 +271,9 @@
     },
     "JoWKee": {
         "defaultMessage": "Créez votre premier écran"
+    },
+    "KB7N5E": {
+        "defaultMessage": "Rechercher un lieu sur Google Maps"
     },
     "KCDOHI": {
         "defaultMessage": "Aucune police..."
@@ -491,6 +497,9 @@
     "gRxcTc": {
         "defaultMessage": "Supprimer l’écran"
     },
+    "gprXiG": {
+        "defaultMessage": "Recherche..."
+    },
     "hVE7TA": {
         "defaultMessage": "Question"
     },
@@ -626,6 +635,9 @@
     "upzOTm": {
         "defaultMessage": "Crédits"
     },
+    "v4Qtl9": {
+        "defaultMessage": "Aujourd'hui"
+    },
     "vA+9dU": {
         "defaultMessage": "Bordure"
     },
@@ -676,5 +688,8 @@
     },
     "zW7IVm": {
         "defaultMessage": "Quiz"
+    },
+    "zh2m/S": {
+        "defaultMessage": "Rechercher une police..."
     }
 }

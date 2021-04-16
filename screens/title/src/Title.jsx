@@ -96,7 +96,7 @@ const TitleScreen = ({
         hasSubtitle && hasDescription && (!isSplitted || verticalAlign === 'bottom');
 
     const transitionPlaying = current;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
+    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const backgroundPlaying = current && (isView || isEdit);
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;

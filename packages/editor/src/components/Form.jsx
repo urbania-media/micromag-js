@@ -26,6 +26,9 @@ import {
 import useRouteParams from '../hooks/useRouteParams';
 import useFormTransition from '../hooks/useFormTransition';
 import SettingsButton from './buttons/Settings';
+import DeleteButton from './buttons/Delete';
+// eslint-disable-next-line no-unused-vars
+import DuplicateButton from './buttons/Duplicate';
 import Breadcrumb from './menus/Breadcrumb';
 import ScreenForm from './forms/Screen';
 import FieldWithContexts from './forms/FieldWithContexts';
@@ -147,43 +150,14 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
     );
 
     const onClickDuplicate = useCallback(() => {
-        if (currentFieldListItems) {
-            const path = fieldParams.split('/');
-            const listKey = path.length ? path[0] : null;
-            const field = typeof screen[listKey] !== 'undefined' ? screen[listKey] : null;
-            const fieldItemsCount = field !== null ? field.length : 0;
-            triggerOnChange(duplicateListItem(fieldParams, value, screenIndex));
-            gotoFieldForm(`${listKey}.${fieldItemsCount}`);
-        } else {
-            triggerOnChange(duplicateScreen(value, screenId));
-        }
+        triggerOnChange(duplicateScreen(value, screenId));
         setScreenSettingsOpened(false);
-    }, [
-        value,
-        screenId,
-        screenIndex,
-        triggerOnChange,
-        setScreenSettingsOpened,
-        currentFieldListItems,
-        fieldParams,
-    ]);
+    }, [value, screenId, triggerOnChange, setScreenSettingsOpened]);
 
     const onClickDelete = useCallback(() => {
-        if (currentFieldListItems) {
-            triggerOnChange(deleteListItem(fieldParams, value, screenIndex));
-            gotoFieldForm();
-        } else {
-            setDeleteScreenModalOpened(true);
-        }
+        setDeleteScreenModalOpened(true);
         setScreenSettingsOpened(false);
-    }, [
-        setScreenSettingsOpened,
-        setDeleteScreenModalOpened,
-        currentFieldListItems,
-        value,
-        fieldParams,
-        screenIndex,
-    ]);
+    }, [setScreenSettingsOpened, setDeleteScreenModalOpened]);
 
     const onSettingsClick = useCallback(() => {
         setScreenSettingsOpened((opened) => !opened);
@@ -202,19 +176,29 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
         setDeleteScreenModalOpened(false);
     }, [setDeleteScreenModalOpened]);
 
+    /* List item */
+    const onDeleteItemClick = useCallback(() => {
+        triggerOnChange(deleteListItem(fieldParams, value, screenIndex));
+        gotoFieldForm();
+    }, [fieldParams, value, screenIndex]);
+
+    // eslint-disable-next-line no-unused-vars
+    const onDuplicateItemClick = useCallback(() => {
+        const path = fieldParams.split('/');
+        const listKey = path.length ? path[0] : null;
+        const field = typeof screen[listKey] !== 'undefined' ? screen[listKey] : null;
+        const fieldItemsCount = field !== null ? field.length : 0;
+        triggerOnChange(duplicateListItem(fieldParams, value, screenIndex));
+        gotoFieldForm(`${listKey}.${fieldItemsCount}`);
+    }, [fieldParams, screen, value, screenIndex]);
+
     const dropdownItems = [
-        // @TODO duplicate listItem disabled because of uppy bug on Images field
-        !isTheme && !currentFieldListItems
+        !isTheme
             ? {
                   id: 'duplicate',
                   type: 'button',
                   className: 'text-left text-info',
-                  label: currentFieldListItems ? (
-                      <FormattedMessage
-                          defaultMessage="Duplicate item"
-                          description="Duplicate item"
-                      />
-                  ) : (
+                  label: (
                       <FormattedMessage
                           defaultMessage="Duplicate screen"
                           description="Duplicate screen item"
@@ -227,9 +211,7 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
             id: 'delete',
             type: 'button',
             className: 'text-left text-danger',
-            label: currentFieldListItems ? (
-                <FormattedMessage defaultMessage="Delete item" description="Delete item" />
-            ) : (
+            label: (
                 <FormattedMessage defaultMessage="Delete screen" description="Delete screen item" />
             ),
             onClick: onClickDelete,
@@ -258,7 +240,7 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
                         form={formParams}
                         className="mr-auto"
                     />
-                    {fieldParams === null || currentFieldListItems ? (
+                    {fieldParams === null ? (
                         <>
                             <SettingsButton onClick={onSettingsClick} />
                             <DropdownMenu
@@ -294,6 +276,30 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
                                         closeFieldForm={closeFieldForm}
                                         onChange={onScreenFormChange}
                                     />
+                                    {currentFieldListItems ? (
+                                        <div className="m-2">
+                                            <hr />
+                                            <div className="text-right">
+                                                { /* NOT WORKING WITH USER-UPLOADED CONTENT
+                                                <DuplicateButton
+                                                    className="mr-2"
+                                                    onClick={onDuplicateItemClick}
+                                                >
+                                                    <FormattedMessage
+                                                        defaultMessage="Duplicate item"
+                                                        description="Duplicate item"
+                                                    />
+                                                </DuplicateButton>
+                                                */ }
+                                                <DeleteButton onClick={onDeleteItemClick}>
+                                                    <FormattedMessage
+                                                        defaultMessage="Delete item"
+                                                        description="Delete item"
+                                                    />
+                                                </DeleteButton>
+                                            </div>
+                                        </div>
+                                    ) : null}
                                 </ScreenProvider>
                             </div>
                         ) : (

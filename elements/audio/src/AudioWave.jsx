@@ -4,7 +4,8 @@ import 'whatwg-fetch';
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useSpring, animated } from 'react-spring';
+import { useSpring } from '@react-spring/core';
+import { animated } from '@react-spring/web';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useResizeObserver } from '@micromag/core/hooks';
 
@@ -79,7 +80,7 @@ const AudioWave = ({
             return;
         }
         const progress = currentTime / duration;
-        setSpringProps({
+        setSpringProps.start({
             reset: true,
             immediate: !playing,
             from: {
@@ -253,7 +254,7 @@ const AudioWave = ({
                 ref={canvasProgressRef}
                 className={styles.canvasProgress}
                 style={{
-                    clipPath: springProps.x.interpolate((x) => `polygon(0 0, ${x * 100}% 0, ${x * 100}% 100%, 0 100%)`),
+                    clipPath: springProps.x.to((x) => `polygon(0 0, ${x * 100}% 0, ${x * 100}% 100%, 0 100%)`),
                 }}
             />
             <button

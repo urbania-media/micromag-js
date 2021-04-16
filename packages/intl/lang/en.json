@@ -86,6 +86,9 @@
     "3ifj0j": {
         "defaultMessage": "Entries"
     },
+    "3na7F8": {
+        "defaultMessage": "Now"
+    },
     "3q9GPv": {
         "defaultMessage": "Quote"
     },
@@ -109,9 +112,6 @@
     },
     "4cCMV4": {
         "defaultMessage": "Marker"
-    },
-    "4ciMqw": {
-        "defaultMessage": "Duplicate item"
     },
     "4fHMVj": {
         "defaultMessage": "Tags"
@@ -175,6 +175,9 @@
     },
     "AA8TV9": {
         "defaultMessage": "Image with title"
+    },
+    "AHvHaY": {
+        "defaultMessage": "Parameters"
     },
     "AQ8Aig": {
         "defaultMessage": "Used"
@@ -268,6 +271,9 @@
     },
     "JoWKee": {
         "defaultMessage": "Create your first screen"
+    },
+    "KB7N5E": {
+        "defaultMessage": "Search a place on Google Maps"
     },
     "KCDOHI": {
         "defaultMessage": "No font..."
@@ -491,6 +497,9 @@
     "gRxcTc": {
         "defaultMessage": "Delete screen"
     },
+    "gprXiG": {
+        "defaultMessage": "Search..."
+    },
     "hVE7TA": {
         "defaultMessage": "Question"
     },
@@ -626,6 +635,9 @@
     "upzOTm": {
         "defaultMessage": "Credits"
     },
+    "v4Qtl9": {
+        "defaultMessage": "Today"
+    },
     "vA+9dU": {
         "defaultMessage": "Border"
     },
@@ -676,5 +688,8 @@
     },
     "zW7IVm": {
         "defaultMessage": "Quiz"
+    },
+    "zh2m/S": {
+        "defaultMessage": "Search fonts..."
     }
 }

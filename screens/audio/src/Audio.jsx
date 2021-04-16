@@ -68,7 +68,7 @@ const AudioScreen = ({
 
     const backgroundPlaying = current && (isView || isEdit);
     const transitionPlaying = current && ready;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
+    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     const hasAudio = audio !== null;
     const finalAudio = hasAudio

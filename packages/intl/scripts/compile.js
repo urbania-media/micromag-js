@@ -17,12 +17,14 @@ program
 
 program.parse(process.argv);
 
+const options = program.opts();
+
 globSync(srcPath, {
     nodir: true,
     cwd: process.cwd(),
 }).forEach((file) => {
     compileAndWrite([path.join(process.cwd(), file)], {
-        ast: program.ast,
+        ast: options.ast,
         throws: true,
         // format: 'crowdin',
         idInterpolationPattern,

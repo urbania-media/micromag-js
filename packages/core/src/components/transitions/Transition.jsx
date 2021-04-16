@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { animated, useSpring } from 'react-spring';
+import { useSpring } from '@react-spring/core';
+import { animated } from '@react-spring/web';
 import classNames from 'classnames';
 
 import styles from '../../styles/transitions/transition.module.scss';
@@ -71,10 +72,12 @@ const Transition = ({
         const withDelay = delay > 0 && playing && direction !== 'out';
         let timeout = null;
         if (withDelay) {
-            setSpringProps({ to: from, immediate: true });
-            timeout = setTimeout(setSpringProps, delay, props);
+            setSpringProps.start({ to: from, immediate: true });
+            timeout = setTimeout(() => {
+                setSpringProps.start(props);
+            }, delay);
         } else {
-            setSpringProps(props);
+            setSpringProps.start(props);
         }
         return () => {
             if (timeout !== null) {

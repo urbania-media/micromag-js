@@ -157,7 +157,7 @@ const Video360Screen = ({
     const [ready, setReady] = useState(!hasVideo);
 
     const transitionPlaying = current && ready;
-    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview;
+    const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     const finalVideo = hasVideo
         ? { ...video, autoPlay: isPreview || isStatic || isCapture ? false : video.autoPlay }
