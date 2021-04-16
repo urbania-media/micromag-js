@@ -29,12 +29,6 @@ msgctxt "+MPZRu"
 msgid "Background"
 msgstr "Arrière-plan"
 
-# Button label
-#: +OHqBp
-msgctxt "+OHqBp"
-msgid "Add a visual"
-msgstr ""
-
 # Answer placeholder
 #: +Ok+7S
 msgctxt "+Ok+7S"
@@ -143,12 +137,6 @@ msgctxt "2/F1Q7"
 msgid "#{index}"
 msgstr "#{index}"
 
-# Label when no value is provided to Visual field
-#: 2FD1E8
-msgctxt "2FD1E8"
-msgid "Select a visual content..."
-msgstr ""
-
 # Media label
 #: 2J05S0
 msgctxt "2J05S0"
@@ -215,6 +203,12 @@ msgctxt "3q9GPv"
 msgid "Quote"
 msgstr "Citation"
 
+# Label when there is no item in images with caption field
+#: 3wiL2y
+msgctxt "3wiL2y"
+msgid "No image..."
+msgstr "Aucune image..."
+
 # Text field label
 #: 4E2gbX
 msgctxt "4E2gbX"
@@ -244,12 +238,6 @@ msgstr "Afficher l’écran"
 msgctxt "4YiKNK"
 msgid "Select a color..."
 msgstr "Sélectionnez une couleur..."
-
-# Visuals with caption item field label
-#: 4aZNR9
-msgctxt "4aZNR9"
-msgid "Visual"
-msgstr ""
 
 # Gallery Feed screen title
 #: 4bHvRS
@@ -286,6 +274,12 @@ msgstr "Description"
 msgctxt "52tY6n"
 msgid "Call to Action"
 msgstr "Action"
+
+# visualsWithCaptions field label
+#: 59f2bg
+msgctxt "59f2bg"
+msgid "Images"
+msgstr "Images"
 
 # Submit placeholder
 #: 5uH4x7
@@ -370,6 +364,12 @@ msgstr "Ordre croissant"
 msgctxt "9ZdD+Q"
 msgid "Library for"
 msgstr "Bibliothèque pour"
+
+# Button label in images with caption field
+#: 9n9+yP
+msgctxt "9n9+yP"
+msgid "Add an image"
+msgstr "Ajouter une image"
 
 # Label when there is no item
 #: A+a0kL
@@ -497,12 +497,6 @@ msgctxt "G31Yd0"
 msgid "Cancel"
 msgstr "Annuler"
 
-# Image field label
-#: GE8wrk
-msgctxt "GE8wrk"
-msgid "Image"
-msgstr "Image"
-
 # Field label
 #: GMCLhn
 msgctxt "GMCLhn"
@@ -527,23 +521,11 @@ msgctxt "H1YcaV"
 msgid "Image with legend"
 msgstr "Image avec légende"
 
-# Visual field label
-#: HTZSQo
-msgctxt "HTZSQo"
-msgid "Visual"
-msgstr ""
-
 # Button to edit a screen
 #: HseFdk
 msgctxt "HseFdk"
 msgid "Edit"
 msgstr "Modifier"
-
-# Field label
-#: HwqzVR
-msgctxt "HwqzVR"
-msgid "Visual"
-msgstr ""
 
 # Duplicate screen item
 #: IBjY5r
@@ -599,18 +581,6 @@ msgctxt "KHWeV7"
 msgid "Answers"
 msgstr "Réponses"
 
-# Visuals item field label
-#: KHfOtF
-msgctxt "KHfOtF"
-msgid "Visual"
-msgstr ""
-
-# Label when there is no item in visuals field
-#: LiDu8m
-msgctxt "LiDu8m"
-msgid "No visual..."
-msgstr ""
-
 # MapImages screen title
 #: MLuvzG
 msgctxt "MLuvzG"
@@ -634,12 +604,6 @@ msgstr "Galerie avec légendes"
 msgctxt "N25iDO"
 msgid "Title"
 msgstr "Titre"
-
-# Field label
-#: NcPWw+
-msgctxt "NcPWw+"
-msgid "Visuals"
-msgstr ""
 
 # Field label
 #: OJi+eg
@@ -748,12 +712,6 @@ msgctxt "S9YpbV"
 msgid "Text"
 msgstr "Texte"
 
-# Button label in visuals field
-#: SX1c6G
-msgctxt "SX1c6G"
-msgid "Add a visual"
-msgstr ""
-
 # Published name style field label
 #: SyMSDa
 msgctxt "SyMSDa"
@@ -765,6 +723,12 @@ msgstr "Style nom publié"
 msgctxt "T0pi1u"
 msgid "With seek bar"
 msgstr "Avec barre de défilement"
+
+# Field label
+#: T9NZPQ
+msgctxt "T9NZPQ"
+msgid "Images"
+msgstr "Images"
 
 # Longitude description
 #: THKV4v
@@ -879,12 +843,6 @@ msgstr "Description"
 msgctxt "ZLDmja"
 msgid "Submit"
 msgstr "Envoyer"
-
-# Label when there is no item
-#: ZfdlI2
-msgctxt "ZfdlI2"
-msgid "No visual..."
-msgstr ""
 
 # Questions screen group
 #: ZqwBOx
@@ -1012,12 +970,6 @@ msgctxt "enFs4g"
 msgid "Advanced"
 msgstr "Avancé"
 
-# Button label in visuals with caption field
-#: enN+7O
-msgctxt "enN+7O"
-msgid "Add a visual"
-msgstr ""
-
 # Button field label
 #: enPTxj
 msgctxt "enPTxj"
@@ -1102,6 +1054,12 @@ msgctxt "jf+4Hq"
 msgid "Screens"
 msgstr "Écrans"
 
+# Label when no value is provided to Visual field
+#: jnww6n
+msgctxt "jnww6n"
+msgid "Select an image..."
+msgstr "Sélectionnez une image..."
+
 # CTA field type subfield swipe-up option label
 #: jvvJbk
 msgctxt "jvvJbk"
@@ -1113,12 +1071,6 @@ msgstr "Swipe up"
 msgctxt "kBz8vF"
 msgid "Name"
 msgstr "Nom"
-
-# Label when there is no item in visuals with caption field
-#: kCAnkR
-msgctxt "kCAnkR"
-msgid "No visual..."
-msgstr ""
 
 # Button label
 #: l/Y6or
@@ -1150,12 +1102,6 @@ msgctxt "mOSkbf"
 msgid "Usage"
 msgstr "Utilisation"
 
-# Visuals field label
-#: maiSth
-msgctxt "maiSth"
-msgid "Visuals"
-msgstr ""
-
 #: menus.pagination.next
 msgctxt "menus.pagination.next"
 msgid "next"
@@ -1165,6 +1111,12 @@ msgstr "suivant"
 msgctxt "menus.pagination.previous"
 msgid "Previous"
 msgstr "Précédent"
+
+# Visuals field label
+#: muYwrB
+msgctxt "muYwrB"
+msgid "Images"
+msgstr "Images"
 
 # Label in Media Gallery
 #: mv37oK
@@ -1400,12 +1352,6 @@ msgctxt "wt1+dM"
 msgid "Select an audio file..."
 msgstr "Sélectionnez un fichier audio..."
 
-# visualsWithCaptions field label
-#: x0Rqsq
-msgctxt "x0Rqsq"
-msgid "Visuals"
-msgstr ""
-
 # Media gallery source
 #: xAzv6g
 msgctxt "xAzv6g"
@@ -1423,6 +1369,12 @@ msgstr "Image"
 msgctxt "xYqGzM"
 msgid "Author"
 msgstr "Auteur"
+
+# Visual field label
+#: xsipID
+msgctxt "xsipID"
+msgid "Image"
+msgstr "Image"
 
 # Fields section label
 #: y7xsPe

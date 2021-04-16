@@ -5,9 +5,6 @@
     "+MPZRu": {
         "defaultMessage": "Background"
     },
-    "+OHqBp": {
-        "defaultMessage": "Add a visual"
-    },
     "+Ok+7S": {
         "defaultMessage": "Answer"
     },
@@ -62,9 +59,6 @@
     "2/F1Q7": {
         "defaultMessage": "#{index}"
     },
-    "2FD1E8": {
-        "defaultMessage": "Select a visual content..."
-    },
     "2J05S0": {
         "defaultMessage": "Images"
     },
@@ -98,6 +92,9 @@
     "3q9GPv": {
         "defaultMessage": "Quote"
     },
+    "3wiL2y": {
+        "defaultMessage": "No image..."
+    },
     "4E2gbX": {
         "defaultMessage": "Text"
     },
@@ -112,9 +109,6 @@
     },
     "4YiKNK": {
         "defaultMessage": "Select a color..."
-    },
-    "4aZNR9": {
-        "defaultMessage": "Visual"
     },
     "4bHvRS": {
         "defaultMessage": "Gallery Feed"
@@ -133,6 +127,9 @@
     },
     "52tY6n": {
         "defaultMessage": "Call to Action"
+    },
+    "59f2bg": {
+        "defaultMessage": "Images"
     },
     "5uH4x7": {
         "defaultMessage": "Submit"
@@ -175,6 +172,9 @@
     },
     "9ZdD+Q": {
         "defaultMessage": "Library for"
+    },
+    "9n9+yP": {
+        "defaultMessage": "Add an image"
     },
     "A+a0kL": {
         "defaultMessage": "No answer..."
@@ -239,9 +239,6 @@
     "G31Yd0": {
         "defaultMessage": "Cancel"
     },
-    "GE8wrk": {
-        "defaultMessage": "Image"
-    },
     "GMCLhn": {
         "defaultMessage": "Case"
     },
@@ -254,14 +251,8 @@
     "H1YcaV": {
         "defaultMessage": "Image with legend"
     },
-    "HTZSQo": {
-        "defaultMessage": "Visual"
-    },
     "HseFdk": {
         "defaultMessage": "Edit"
-    },
-    "HwqzVR": {
-        "defaultMessage": "Visual"
     },
     "IBjY5r": {
         "defaultMessage": "Duplicate screen"
@@ -290,12 +281,6 @@
     "KHWeV7": {
         "defaultMessage": "Answers"
     },
-    "KHfOtF": {
-        "defaultMessage": "Visual"
-    },
-    "LiDu8m": {
-        "defaultMessage": "No visual..."
-    },
     "MLuvzG": {
         "defaultMessage": "Map with image markers"
     },
@@ -307,9 +292,6 @@
     },
     "N25iDO": {
         "defaultMessage": "Title"
-    },
-    "NcPWw+": {
-        "defaultMessage": "Visuals"
     },
     "OJi+eg": {
         "defaultMessage": "Label"
@@ -365,14 +347,14 @@
     "S9YpbV": {
         "defaultMessage": "Text"
     },
-    "SX1c6G": {
-        "defaultMessage": "Add a visual"
-    },
     "SyMSDa": {
         "defaultMessage": "Published name style"
     },
     "T0pi1u": {
         "defaultMessage": "With seek bar"
+    },
+    "T9NZPQ": {
+        "defaultMessage": "Images"
     },
     "THKV4v": {
         "defaultMessage": "Longitude"
@@ -430,9 +412,6 @@
     },
     "ZLDmja": {
         "defaultMessage": "Submit"
-    },
-    "ZfdlI2": {
-        "defaultMessage": "No visual..."
     },
     "ZqwBOx": {
         "defaultMessage": "Questions"
@@ -497,9 +476,6 @@
     "enFs4g": {
         "defaultMessage": "Advanced"
     },
-    "enN+7O": {
-        "defaultMessage": "Add a visual"
-    },
     "enPTxj": {
         "defaultMessage": "Button"
     },
@@ -542,14 +518,14 @@
     "jf+4Hq": {
         "defaultMessage": "Screens"
     },
+    "jnww6n": {
+        "defaultMessage": "Select an image..."
+    },
     "jvvJbk": {
         "defaultMessage": "Swipe up"
     },
     "kBz8vF": {
         "defaultMessage": "Name"
-    },
-    "kCAnkR": {
-        "defaultMessage": "No visual..."
     },
     "l/Y6or": {
         "defaultMessage": "Add an entry"
@@ -566,14 +542,14 @@
     "mOSkbf": {
         "defaultMessage": "Usage"
     },
-    "maiSth": {
-        "defaultMessage": "Visuals"
-    },
     "menus.pagination.next": {
         "defaultMessage": "next"
     },
     "menus.pagination.previous": {
         "defaultMessage": "Previous"
+    },
+    "muYwrB": {
+        "defaultMessage": "Images"
     },
     "mv37oK": {
         "defaultMessage": "Dimension"
@@ -692,9 +668,6 @@
     "wt1+dM": {
         "defaultMessage": "Select an audio file..."
     },
-    "x0Rqsq": {
-        "defaultMessage": "Visuals"
-    },
     "xAzv6g": {
         "defaultMessage": "All sources"
     },
@@ -703,6 +676,9 @@
     },
     "xYqGzM": {
         "defaultMessage": "Author"
+    },
+    "xsipID": {
+        "defaultMessage": "Image"
     },
     "y7xsPe": {
         "defaultMessage": "Advanced settings"

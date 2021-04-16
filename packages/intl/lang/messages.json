@@ -11,10 +11,6 @@
     "defaultMessage": "Background",
     "description": "Background field label"
   },
-  "+OHqBp": {
-    "defaultMessage": "Add a visual",
-    "description": "Button label"
-  },
   "+Ok+7S": {
     "defaultMessage": "Answer",
     "description": "Answer placeholder"
@@ -87,10 +83,6 @@
     "defaultMessage": "#{index}",
     "description": "Item label in items field"
   },
-  "2FD1E8": {
-    "defaultMessage": "Select a visual content...",
-    "description": "Label when no value is provided to Visual field"
-  },
   "2J05S0": {
     "defaultMessage": "Images",
     "description": "Media label"
@@ -135,6 +127,10 @@
     "defaultMessage": "Quote",
     "description": "Quote screen title"
   },
+  "3wiL2y": {
+    "defaultMessage": "No image...",
+    "description": "Label when there is no item in images with caption field"
+  },
   "4E2gbX": {
     "defaultMessage": "Text",
     "description": "Text field label"
@@ -154,10 +150,6 @@
   "4YiKNK": {
     "defaultMessage": "Select a color...",
     "description": "No value label"
-  },
-  "4aZNR9": {
-    "defaultMessage": "Visual",
-    "description": "Visuals with caption item field label"
   },
   "4bHvRS": {
     "defaultMessage": "Gallery Feed",
@@ -182,6 +174,10 @@
   "52tY6n": {
     "defaultMessage": "Call to Action",
     "description": "CTA field active subfield label"
+  },
+  "59f2bg": {
+    "defaultMessage": "Images",
+    "description": "visualsWithCaptions field label"
   },
   "5uH4x7": {
     "defaultMessage": "Submit",
@@ -238,6 +234,10 @@
   "9ZdD+Q": {
     "defaultMessage": "Library for",
     "description": "Library source menu"
+  },
+  "9n9+yP": {
+    "defaultMessage": "Add an image",
+    "description": "Button label in images with caption field"
   },
   "A+a0kL": {
     "defaultMessage": "No answer...",
@@ -323,10 +323,6 @@
     "defaultMessage": "Cancel",
     "description": "Cancel button label in Media Gallery"
   },
-  "GE8wrk": {
-    "defaultMessage": "Image",
-    "description": "Image field label"
-  },
   "GMCLhn": {
     "defaultMessage": "Case",
     "description": "Field label"
@@ -343,17 +339,9 @@
     "defaultMessage": "Image with legend",
     "description": "ImageLegend screen title"
   },
-  "HTZSQo": {
-    "defaultMessage": "Visual",
-    "description": "Visual field label"
-  },
   "HseFdk": {
     "defaultMessage": "Edit",
     "description": "Button to edit a screen"
-  },
-  "HwqzVR": {
-    "defaultMessage": "Visual",
-    "description": "Field label"
   },
   "IBjY5r": {
     "defaultMessage": "Duplicate screen",
@@ -391,14 +379,6 @@
     "defaultMessage": "Answers",
     "description": "Field label"
   },
-  "KHfOtF": {
-    "defaultMessage": "Visual",
-    "description": "Visuals item field label"
-  },
-  "LiDu8m": {
-    "defaultMessage": "No visual...",
-    "description": "Label when there is no item in visuals field"
-  },
   "MLuvzG": {
     "defaultMessage": "Map with image markers",
     "description": "MapImages screen title"
@@ -414,10 +394,6 @@
   "N25iDO": {
     "defaultMessage": "Title",
     "description": "Title field label"
-  },
-  "NcPWw+": {
-    "defaultMessage": "Visuals",
-    "description": "Field label"
   },
   "OJi+eg": {
     "defaultMessage": "Label",
@@ -490,16 +466,16 @@
     "defaultMessage": "Text",
     "description": "Text screen title"
   },
-  "SX1c6G": {
-    "defaultMessage": "Add a visual",
-    "description": "Button label in visuals field"
-  },
   "SyMSDa": {
     "defaultMessage": "Published name style",
     "description": "Published name style field label"
   },
   "T0pi1u": {
     "defaultMessage": "With seek bar",
+    "description": "Field label"
+  },
+  "T9NZPQ": {
+    "defaultMessage": "Images",
     "description": "Field label"
   },
   "THKV4v": {
@@ -577,10 +553,6 @@
   "ZLDmja": {
     "defaultMessage": "Submit",
     "description": "Submit form button"
-  },
-  "ZfdlI2": {
-    "defaultMessage": "No visual...",
-    "description": "Label when there is no item"
   },
   "ZqwBOx": {
     "defaultMessage": "Questions",
@@ -666,10 +638,6 @@
     "defaultMessage": "Advanced",
     "description": "Name of the section in Fields"
   },
-  "enN+7O": {
-    "defaultMessage": "Add a visual",
-    "description": "Button label in visuals with caption field"
-  },
   "enPTxj": {
     "defaultMessage": "Button",
     "description": "Button field label"
@@ -726,6 +694,10 @@
     "defaultMessage": "Screens",
     "description": "Title of the screens section"
   },
+  "jnww6n": {
+    "defaultMessage": "Select an image...",
+    "description": "Label when no value is provided to Visual field"
+  },
   "jvvJbk": {
     "defaultMessage": "Swipe up",
     "description": "CTA field type subfield swipe-up option label"
@@ -733,10 +705,6 @@
   "kBz8vF": {
     "defaultMessage": "Name",
     "description": "Name in Media Gallery"
-  },
-  "kCAnkR": {
-    "defaultMessage": "No visual...",
-    "description": "Label when there is no item in visuals with caption field"
   },
   "l/Y6or": {
     "defaultMessage": "Add an entry",
@@ -758,15 +726,15 @@
     "defaultMessage": "Usage",
     "description": "Media label"
   },
-  "maiSth": {
-    "defaultMessage": "Visuals",
-    "description": "Visuals field label"
-  },
   "menus.pagination.next": {
     "defaultMessage": "next"
   },
   "menus.pagination.previous": {
     "defaultMessage": "Previous"
+  },
+  "muYwrB": {
+    "defaultMessage": "Images",
+    "description": "Visuals field label"
   },
   "mv37oK": {
     "defaultMessage": "Dimension",
@@ -924,10 +892,6 @@
     "defaultMessage": "Select an audio file...",
     "description": "Label when no value is provided to Audio field"
   },
-  "x0Rqsq": {
-    "defaultMessage": "Visuals",
-    "description": "visualsWithCaptions field label"
-  },
   "xAzv6g": {
     "defaultMessage": "All sources",
     "description": "Media gallery source"
@@ -939,6 +903,10 @@
   "xYqGzM": {
     "defaultMessage": "Author",
     "description": "Author placeholder"
+  },
+  "xsipID": {
+    "defaultMessage": "Image",
+    "description": "Visual field label"
   },
   "y7xsPe": {
     "defaultMessage": "Advanced settings",

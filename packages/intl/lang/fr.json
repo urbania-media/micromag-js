@@ -92,6 +92,9 @@
     "3q9GPv": {
         "defaultMessage": "Citation"
     },
+    "3wiL2y": {
+        "defaultMessage": "Aucune image..."
+    },
     "4E2gbX": {
         "defaultMessage": "Texte"
     },
@@ -124,6 +127,9 @@
     },
     "52tY6n": {
         "defaultMessage": "Action"
+    },
+    "59f2bg": {
+        "defaultMessage": "Images"
     },
     "5uH4x7": {
         "defaultMessage": "Envoyer"
@@ -166,6 +172,9 @@
     },
     "9ZdD+Q": {
         "defaultMessage": "Bibliothèque pour"
+    },
+    "9n9+yP": {
+        "defaultMessage": "Ajouter une image"
     },
     "A+a0kL": {
         "defaultMessage": "Aucune réponse..."
@@ -229,9 +238,6 @@
     },
     "G31Yd0": {
         "defaultMessage": "Annuler"
-    },
-    "GE8wrk": {
-        "defaultMessage": "Image"
     },
     "GMCLhn": {
         "defaultMessage": "Case"
@@ -346,6 +352,9 @@
     },
     "T0pi1u": {
         "defaultMessage": "Avec barre de défilement"
+    },
+    "T9NZPQ": {
+        "defaultMessage": "Images"
     },
     "THKV4v": {
         "defaultMessage": "Longitude"
@@ -509,6 +518,9 @@
     "jf+4Hq": {
         "defaultMessage": "Écrans"
     },
+    "jnww6n": {
+        "defaultMessage": "Sélectionnez une image..."
+    },
     "jvvJbk": {
         "defaultMessage": "Swipe up"
     },
@@ -535,6 +547,9 @@
     },
     "menus.pagination.previous": {
         "defaultMessage": "Précédent"
+    },
+    "muYwrB": {
+        "defaultMessage": "Images"
     },
     "mv37oK": {
         "defaultMessage": "Dimension"
@@ -661,6 +676,9 @@
     },
     "xYqGzM": {
         "defaultMessage": "Auteur"
+    },
+    "xsipID": {
+        "defaultMessage": "Image"
     },
     "y7xsPe": {
         "defaultMessage": "Paramètres avancés"
