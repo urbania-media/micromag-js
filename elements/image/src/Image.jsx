@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -50,36 +50,61 @@ const Image = ({
         metadata || {};
     const mediaRatio = mediaWidth / mediaHeight;
 
+    const [realSize, setRealSize] = useState(null); 
+    const { realWidth = 0, realHeight = 0 } = realSize || {};
+
+    const onImageLoaded = useCallback( (e) => {
+        const { target: { naturalWidth = 0, naturalHeight = 0 }} = e;
+        setRealSize({ width: naturalWidth, height: naturalHeight });
+        if (onLoaded !== null) {
+            onLoaded(e);
+        }
+    }, [onLoaded]);
+
+    
+    const finalMediaWidth = realWidth || mediaWidth || 0;
+    const finalMediaHeight = realHeight || mediaHeight || 0;
+
     const withFit = objectFit !== null;
+    const mediaHasSize = finalMediaWidth > 0 && finalMediaHeight > 0;
 
     let finalContainerStyle;
     let finalImageStyle;
 
     if (withFit) {
+        let imageTop = 0;
+        let imageLeft = 0;
+        let imageWidth = width;
+        let imageHeight = height;
+        let imageObjectFit = null;
+        let imageObjectPosition = null;
+
         const { fit = null, horizontalPosition = 'center', verticalPosition = 'center' } =
-            objectFit || {};
-        const {
-            width: resizedImageWidth,
-            height: resizedImageHeight,
-        } = getSizeWithinBounds(mediaWidth, mediaHeight, width, height, { cover: fit === 'cover' });
+                objectFit || {};
 
-        let imageTop;
-        let imageLeft;
+        if (mediaHasSize) {            
+            const {
+                width: resizedImageWidth,
+                height: resizedImageHeight,
+            } = getSizeWithinBounds(finalMediaWidth, finalMediaHeight, width, height, { cover: fit === 'cover' });
 
-        if (horizontalPosition === 'center') {
-            imageLeft = -(resizedImageWidth - width) / 2;
-        } else if (horizontalPosition === 'right') {
-            imageLeft = -(resizedImageWidth - width);
+            imageWidth = resizedImageWidth;
+            imageHeight = resizedImageHeight;
+
+            if (horizontalPosition === 'center') {
+                imageLeft = -(resizedImageWidth - width) / 2;
+            } else if (horizontalPosition === 'right') {
+                imageLeft = -(resizedImageWidth - width);
+            }
+
+            if (verticalPosition === 'center') {
+                imageTop = -(resizedImageHeight - height) / 2;
+            } else if (verticalPosition === 'bottom') {
+                imageTop = -(resizedImageHeight - height);
+            }
         } else {
-            imageLeft = 0;
-        }
-
-        if (verticalPosition === 'center') {
-            imageTop = -(resizedImageHeight - height) / 2;
-        } else if (verticalPosition === 'bottom') {
-            imageTop = -(resizedImageHeight - height);
-        } else {
-            imageTop = 0;
+            imageObjectFit = fit;
+            imageObjectPosition = `${horizontalPosition} ${verticalPosition}`;
         }
 
         finalContainerStyle = {
@@ -89,10 +114,12 @@ const Image = ({
 
         finalImageStyle = {
             position: 'absolute',
-            width: resizedImageWidth,
-            height: resizedImageHeight,
+            width: imageWidth,
+            height: imageHeight,
             top: imageTop,
             left: imageLeft,
+            objectFit: imageObjectFit,
+            objectPosition: imageObjectPosition,
         };
     } else {
         const validWidth = width !== null && typeof width === 'number';
@@ -105,8 +132,8 @@ const Image = ({
         let finalHeight = height !== null ? height : ratioHeight;
 
         if (finalWidth === null && finalHeight === null) {
-            finalWidth = mediaWidth !== null ? mediaWidth : null;
-            finalHeight = mediaHeight !== null ? mediaHeight : null;
+            finalWidth = finalMediaWidth > 0 ? mediaWidth : null;
+            finalHeight = finalMediaHeight > 0 ? mediaHeight : null;
         }
 
         finalImageStyle = {
@@ -138,7 +165,7 @@ const Image = ({
                 },
             ])}
             style={finalImageStyle}
-            onLoad={onLoaded}
+            onLoad={onImageLoaded}
         />
     ) : null;
 
