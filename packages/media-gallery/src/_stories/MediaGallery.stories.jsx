@@ -88,6 +88,16 @@ export const Normal = () => (
     </ApiProvider>
 );
 
+export const WithTypesRequest = () => (
+    <ApiProvider baseUrl={apiBaseUrl}>
+        <FieldsProvider>
+            <MemoryRouter>
+                <MediaGallery type={['image', 'video']} />
+            </MemoryRouter>
+        </FieldsProvider>
+    </ApiProvider>
+);
+
 export const WithTestMedia = () => (
     <ApiProvider baseUrl={apiBaseUrl}>
         <FieldsProvider>

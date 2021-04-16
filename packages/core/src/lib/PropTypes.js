@@ -188,6 +188,8 @@ const mediaShape = {
 export const media = PropTypes.shape(mediaShape);
 export const medias = PropTypes.arrayOf(media);
 
+export const mediaTypes = PropTypes.oneOf(['image', 'video', 'audio', 'closed-captions', 'font']);
+
 export const imageMedia = PropTypes.shape({
     ...mediaShape,
     type: PropTypes.oneOf(['image']),
@@ -440,7 +442,7 @@ export const callToAction = PropTypes.shape({
     active: PropTypes.bool,
     type: callToActionTypes,
     url: PropTypes.string,
-    label: textElement,    
+    label: textElement,
 });
 
 /**

@@ -9,7 +9,7 @@ import MediaGallery from '@micromag/media-gallery';
 import FieldWithForm from './FieldWithForm';
 
 const propTypes = {
-    type: PropTypes.oneOf(['image', 'video', 'audio', 'closed-captions', 'font']),
+    type: PropTypes.oneOfType([MicromagPropTypes.mediaTypes, PropTypes.arrayOf(MicromagPropTypes.mediaTypes)]),
     value: MicromagPropTypes.media,
     noValueLabel: MicromagPropTypes.label,
     withoutThumbnail: PropTypes.bool,

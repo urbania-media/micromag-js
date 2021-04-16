@@ -558,5 +558,90 @@
             "width": 200,
             "height": 200
         }
+    },
+    {
+        "id": "407",
+        "type": "video",
+        "name": "LA_BELLE_VIE_CUT_2_9X16.mp4",
+        "url": "https://cdn.microm.ag/video/2021-04-06/879-035656.mp4",
+        "thumbnail_url": "https://img.microm.ag/image/2021-04-06/filters/thumbnail/880-035701.jpg",
+        "files": {
+            "original": {
+                "id": "879",
+                "type": "file",
+                "handle": "original",
+                "name": "LA_BELLE_VIE_CUT_2_9X16.mp4",
+                "url": "https://cdn.microm.ag/video/2021-04-06/879-035656.mp4"
+            },
+            "thumbnails.0": {
+                "id": "880",
+                "type": "file",
+                "handle": "thumbnails.0",
+                "name": "mediatheque_pipeline_job2guUl4-thumbnails-0.jpg",
+                "url": "https://cdn.microm.ag/image/2021-04-06/880-035701.jpg"
+            },
+            "thumbnails.1": {
+                "id": "881",
+                "type": "file",
+                "handle": "thumbnails.1",
+                "name": "mediatheque_pipeline_job2guUl4-thumbnails-1.jpg",
+                "url": "https://cdn.microm.ag/image/2021-04-06/881-035702.jpg"
+            },
+            "thumbnails.2": {
+                "id": "882",
+                "type": "file",
+                "handle": "thumbnails.2",
+                "name": "mediatheque_pipeline_job2guUl4-thumbnails-2.jpg",
+                "url": "https://cdn.microm.ag/image/2021-04-06/882-035705.jpg"
+            },
+            "thumbnails.3": {
+                "id": "883",
+                "type": "file",
+                "handle": "thumbnails.3",
+                "name": "mediatheque_pipeline_job2guUl4-thumbnails-3.jpg",
+                "url": "https://cdn.microm.ag/image/2021-04-06/883-035707.jpg"
+            },
+            "thumbnails.4": {
+                "id": "884",
+                "type": "file",
+                "handle": "thumbnails.4",
+                "name": "mediatheque_pipeline_job2guUl4-thumbnails-4.jpg",
+                "url": "https://cdn.microm.ag/image/2021-04-06/884-035708.jpg"
+            },
+            "webm": {
+                "id": "916",
+                "type": "file",
+                "handle": "webm",
+                "name": "mediatheque_pipeline_jobFusalE-webm.webm",
+                "url": "https://cdn.microm.ag/video/2021-04-08/916-055205.webm"
+            },
+            "h264": {
+                "id": "917",
+                "type": "file",
+                "handle": "h264",
+                "name": "mediatheque_pipeline_jobKugB2C-h264.mp4",
+                "url": "https://cdn.microm.ag/video/2021-04-08/917-055337.mp4"
+            }
+        },
+        "metadata": {
+            "filename": "LA_BELLE_VIE_CUT_2_9X16.mp4",
+            "size": 14895464,
+            "mime": "video/mp4",
+            "tags": [],
+            "author": {
+                "id": "23",
+                "name": "Estelle Roy",
+                "short_name": "ER",
+                "avatar": null,
+                "color": {
+                    "color": "#9e09a5",
+                    "alpha": 1
+                }
+            },
+            "description": null,
+            "duration": 7.6326,
+            "width": 1080,
+            "height": 1920
+        }
     }
 ]

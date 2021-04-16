@@ -5,8 +5,6 @@ import { useMedias, useMediaCreate } from '@micromag/data';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Spinner, UploadModal } from '@micromag/core/components';
 
-// import * as AppPropTypes from '../lib/PropTypes';
-
 import Navbar from './partials/Navbar';
 import Gallery from './lists/Gallery';
 import MediaMetadata from './partials/MediaMetadata';
@@ -16,7 +14,7 @@ import MediaMetadata from './partials/MediaMetadata';
 import styles from '../styles/media-gallery.module.scss';
 
 const propTypes = {
-    type: PropTypes.string,
+    type: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     source: PropTypes.string,
     isPicker: PropTypes.bool,
     isSmall: PropTypes.bool,
@@ -151,7 +149,7 @@ const MediaGallery = ({
         >
             <Navbar
                 filters={filtersValue}
-                media={metadataMedia}
+                media={metadataMedia !== null ? metadataMedia : null}
                 onFiltersChange={onFiltersChange}
                 onClickAdd={onClickAdd}
                 onClickBack={onClickBack}
