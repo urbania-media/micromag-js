@@ -391,6 +391,10 @@
     "defaultMessage": "Answers",
     "description": "Field label"
   },
+  "KHfOtF": {
+    "defaultMessage": "Visual",
+    "description": "Visuals item field label"
+  },
   "LiDu8m": {
     "defaultMessage": "No visual...",
     "description": "Label when there is no item in visuals field"

@@ -599,6 +599,12 @@ msgctxt "KHWeV7"
 msgid "Answers"
 msgstr "Réponses"
 
+# Visuals item field label
+#: KHfOtF
+msgctxt "KHfOtF"
+msgid "Visual"
+msgstr ""
+
 # Label when there is no item in visuals field
 #: LiDu8m
 msgctxt "LiDu8m"
