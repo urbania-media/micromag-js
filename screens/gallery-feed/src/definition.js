@@ -27,7 +27,7 @@ export default [
                 name: 'images',
                 type: 'visuals',
                 label: defineMessage({
-                    defaultMessage: 'Visuals',
+                    defaultMessage: 'Images',
                     description: 'Visuals field label',
                 }),
             },
@@ -86,7 +86,7 @@ export default [
                     },
                 },
                 label: defineMessage({
-                    defaultMessage: 'Visuals',
+                    defaultMessage: 'Images',
                     description: 'Field label',
                 }),
             },

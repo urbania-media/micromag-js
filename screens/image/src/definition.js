@@ -39,7 +39,7 @@ export default [
                 name: 'image',
                 type: 'visual',
                 label: defineMessage({
-                    defaultMessage: 'Visual',
+                    defaultMessage: 'Image',
                     description: 'Visual field label',
                 }),
             },
@@ -93,7 +93,7 @@ export default [
                 name: 'image',
                 type: 'visual',
                 label: defineMessage({
-                    defaultMessage: 'Visual',
+                    defaultMessage: 'Image',
                     description: 'Visual field label',
                 }),
             },
@@ -159,7 +159,7 @@ export default [
                 name: 'image',
                 type: 'visual',
                 label: defineMessage({
-                    defaultMessage: 'Visual',
+                    defaultMessage: 'Image',
                     description: 'Visual field label',
                 }),
             },
@@ -222,11 +222,11 @@ export default [
             },
             {
                 name: 'image',
-                type: 'image',
+                type: 'visual',
                 isHorizontal: false,
                 label: defineMessage({
                     defaultMessage: 'Image',
-                    description: 'Image field label',
+                    description: 'Visual field label',
                 }),
             },
             {
@@ -302,7 +302,7 @@ export default [
                 name: 'image',
                 type: 'visual',
                 label: defineMessage({
-                    defaultMessage: 'Visual',
+                    defaultMessage: 'Image',
                     description: 'Visual field label',
                 }),
             },

@@ -20,14 +20,14 @@ const VisualsField = (props) => (
     <ItemsField
         noItemLabel={
             <FormattedMessage
-                defaultMessage="No visual..."
-                description="Label when there is no item in visuals field"
+                defaultMessage="No image..."
+                description="Label when there is no item in images field"
             />
         }
         addItemLabel={
             <FormattedMessage
-                defaultMessage="Add a visual"
-                description="Button label in visuals field"
+                defaultMessage="Add an image"
+                description="Button label in images field"
             />
         }
         itemComponent={VisualField}

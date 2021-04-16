@@ -11,7 +11,7 @@ export default {
             name: 'image',
             type: 'visual',
             label: defineMessage({
-                defaultMessage: 'Visual',
+                defaultMessage: 'Image',
                 description: 'Field label',
             }),
         },

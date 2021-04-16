@@ -19,14 +19,14 @@ const VisualsWithCaptionField = (props) => (
     <ItemsField
         noItemLabel={
             <FormattedMessage
-                defaultMessage="No visual..."
-                description="Label when there is no item in visuals with caption field"
+                defaultMessage="No image..."
+                description="Label when there is no item in images with caption field"
             />
         }
         addItemLabel={
             <FormattedMessage
-                defaultMessage="Add a visual"
-                description="Button label in visuals with caption field"
+                defaultMessage="Add an image"
+                description="Button label in images with caption field"
             />
         }
         {...props}

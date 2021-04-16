@@ -18,7 +18,7 @@ const VisualField = (props) => (
     <MediaField
         noValueLabel={
             <FormattedMessage
-                defaultMessage="Select a visual content..."
+                defaultMessage="Select an image..."
                 description="Label when no value is provided to Visual field"
             />
         }

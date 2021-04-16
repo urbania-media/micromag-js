@@ -12,7 +12,7 @@ export default {
             name: 'media',
             type: 'visual',
             label: defineMessage({
-                defaultMessage: 'Visual',
+                defaultMessage: 'Image',
                 description: 'Field label',
             }),
         },

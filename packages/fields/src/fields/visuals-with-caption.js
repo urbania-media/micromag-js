@@ -6,18 +6,18 @@ export default {
     id: 'visuals-with-caption',
     component: Items,
     noItemLabel: defineMessage({
-        defaultMessage: 'No visual...',
+        defaultMessage: 'No image...',
         description: 'Label when there is no item',
     }),
     addItemLabel: defineMessage({
-        defaultMessage: 'Add a visual',
+        defaultMessage: 'Add an image',
         description: 'Button label',
     }),
     itemsField: {
         type: 'visual-with-caption',
         breadcrumbLabel: defineMessage({
-            defaultMessage: 'Visual',
-            description: 'Visuals with caption item field label',
+            defaultMessage: 'Image',
+            description: 'Images with caption item field label',
         }),
     },
 };

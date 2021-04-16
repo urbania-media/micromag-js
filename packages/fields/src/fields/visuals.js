@@ -8,8 +8,8 @@ export default {
     itemsField:{
         type: 'visual',
         breadcrumbLabel: defineMessage({
-            defaultMessage: 'Visual',
-            description: 'Visuals item field label',
+            defaultMessage: 'Image',
+            description: 'Images item field label',
         }),
     }
 };
