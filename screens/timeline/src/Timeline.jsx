@@ -12,7 +12,7 @@ import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout from '@micromag/element-layout';
 import Text from '@micromag/element-text';
-import Image from '@micromag/element-image';
+import Visual from '@micromag/element-visual';
 import Heading from '@micromag/element-heading';
 import Scroll from '@micromag/element-scroll';
 import CallToAction from '@micromag/element-call-to-action';
@@ -104,7 +104,7 @@ const Timeline = ({
     const ready = imagesLoaded >= imagesCount;
     const transitionsPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
-    const scrollingDisabled = transitionDisabled || !current;
+    const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
     const backgroundPlaying = current && (isView || isEdit);
 
     const onImageLoaded = useCallback(() => {
@@ -206,7 +206,7 @@ const Timeline = ({
                                             isEmpty={!hasImage}
                                         >
                                             {hasElement ? (
-                                                <Image
+                                                <Visual
                                                     className={styles.image}
                                                     media={image}
                                                     width={imageWidth}

@@ -29,6 +29,12 @@ msgctxt "+MPZRu"
 msgid "Background"
 msgstr "Background"
 
+# Button label
+#: +OHqBp
+msgctxt "+OHqBp"
+msgid "Add a visual"
+msgstr "Add a visual"
+
 # Answer placeholder
 #: +Ok+7S
 msgctxt "+Ok+7S"
@@ -137,6 +143,12 @@ msgctxt "2/F1Q7"
 msgid "#{index}"
 msgstr "#{index}"
 
+# Label when no value is provided to Visual field
+#: 2FD1E8
+msgctxt "2FD1E8"
+msgid "Select a visual content..."
+msgstr "Select a visual content..."
+
 # Media label
 #: 2J05S0
 msgctxt "2J05S0"
@@ -233,6 +245,12 @@ msgctxt "4YiKNK"
 msgid "Select a color..."
 msgstr "Select a color..."
 
+# Visuals with caption item field label
+#: 4aZNR9
+msgctxt "4aZNR9"
+msgid "Visual"
+msgstr "Visual"
+
 # Gallery Feed screen title
 #: 4bHvRS
 msgctxt "4bHvRS"
@@ -274,12 +292,6 @@ msgstr "Call to Action"
 msgctxt "5uH4x7"
 msgid "Submit"
 msgstr "Submit"
-
-# Images field label
-#: 63Kvho
-msgctxt "63Kvho"
-msgid "Images"
-msgstr "Images"
 
 # Survey screen title
 #: 650XRF
@@ -455,12 +467,6 @@ msgctxt "ET527E"
 msgid "Font family"
 msgstr "Font family"
 
-# imagesWithCaptions field label
-#: Eaf89D
-msgctxt "Eaf89D"
-msgid "Images"
-msgstr "Images"
-
 # Subtitle field label
 #: EcZYpr
 msgctxt "EcZYpr"
@@ -521,11 +527,23 @@ msgctxt "H1YcaV"
 msgid "Image with legend"
 msgstr "Image with legend"
 
+# Visual field label
+#: HTZSQo
+msgctxt "HTZSQo"
+msgid "Visual"
+msgstr "Visual"
+
 # Button to edit a screen
 #: HseFdk
 msgctxt "HseFdk"
 msgid "Edit"
 msgstr "Edit"
+
+# Field label
+#: HwqzVR
+msgctxt "HwqzVR"
+msgid "Visual"
+msgstr "Visual"
 
 # Duplicate screen item
 #: IBjY5r
@@ -581,6 +599,12 @@ msgctxt "KHWeV7"
 msgid "Answers"
 msgstr "Answers"
 
+# Label when there is no item in visuals field
+#: LiDu8m
+msgctxt "LiDu8m"
+msgid "No visual..."
+msgstr "No visual..."
+
 # MapImages screen title
 #: MLuvzG
 msgctxt "MLuvzG"
@@ -604,6 +628,12 @@ msgstr "Gallery with captions"
 msgctxt "N25iDO"
 msgid "Title"
 msgstr "Title"
+
+# Field label
+#: NcPWw+
+msgctxt "NcPWw+"
+msgid "Visuals"
+msgstr "Visuals"
 
 # Field label
 #: OJi+eg
@@ -712,6 +742,12 @@ msgctxt "S9YpbV"
 msgid "Text"
 msgstr "Text"
 
+# Button label in visuals field
+#: SX1c6G
+msgctxt "SX1c6G"
+msgid "Add a visual"
+msgstr "Add a visual"
+
 # Published name style field label
 #: SyMSDa
 msgctxt "SyMSDa"
@@ -723,12 +759,6 @@ msgstr "Published name style"
 msgctxt "T0pi1u"
 msgid "With seek bar"
 msgstr "With seek bar"
-
-# Field label
-#: T9NZPQ
-msgctxt "T9NZPQ"
-msgid "Images"
-msgstr "Images"
 
 # Longitude description
 #: THKV4v
@@ -843,6 +873,12 @@ msgstr "Description"
 msgctxt "ZLDmja"
 msgid "Submit"
 msgstr "Submit"
+
+# Label when there is no item
+#: ZfdlI2
+msgctxt "ZfdlI2"
+msgid "No visual..."
+msgstr "No visual..."
 
 # Questions screen group
 #: ZqwBOx
@@ -970,6 +1006,12 @@ msgctxt "enFs4g"
 msgid "Advanced"
 msgstr "Advanced"
 
+# Button label in visuals with caption field
+#: enN+7O
+msgctxt "enN+7O"
+msgid "Add a visual"
+msgstr "Add a visual"
+
 # Button field label
 #: enPTxj
 msgctxt "enPTxj"
@@ -1066,6 +1108,12 @@ msgctxt "kBz8vF"
 msgid "Name"
 msgstr "Name"
 
+# Label when there is no item in visuals with caption field
+#: kCAnkR
+msgctxt "kCAnkR"
+msgid "No visual..."
+msgstr "No visual..."
+
 # Button label
 #: l/Y6or
 msgctxt "l/Y6or"
@@ -1095,6 +1143,12 @@ msgstr "Size"
 msgctxt "mOSkbf"
 msgid "Usage"
 msgstr "Usage"
+
+# Visuals field label
+#: maiSth
+msgctxt "maiSth"
+msgid "Visuals"
+msgstr "Visuals"
 
 #: menus.pagination.next
 msgctxt "menus.pagination.next"
@@ -1339,6 +1393,12 @@ msgstr "Entry"
 msgctxt "wt1+dM"
 msgid "Select an audio file..."
 msgstr "Select an audio file..."
+
+# visualsWithCaptions field label
+#: x0Rqsq
+msgctxt "x0Rqsq"
+msgid "Visuals"
+msgstr "Visuals"
 
 # Media gallery source
 #: xAzv6g

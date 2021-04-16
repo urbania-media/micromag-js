@@ -81,7 +81,7 @@ const RankingScreen = ({
 
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
-    const scrollingDisabled = transitionDisabled || !current;
+    const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
     const backgroundPlaying = current && (isView || isEdit);
 
     const elements = (finalItems || []).map((item, itemI) => {

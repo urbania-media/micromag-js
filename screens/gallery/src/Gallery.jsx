@@ -12,7 +12,7 @@ import { useResizeObserver } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Grid from '@micromag/element-grid';
-import Image from '@micromag/element-image';
+import Visual from '@micromag/element-visual';
 import Text from '@micromag/element-text';
 import CallToAction from '@micromag/element-call-to-action';
 
@@ -189,7 +189,7 @@ const GalleryScreen = ({
                             emptyClassName={styles.emptyImage}
                             isEmpty={!hasImage}
                         >
-                            <Image
+                            <Visual
                                 className={styles.image}
                                 {...finalImage}
                                 {...imageSize}

@@ -12,7 +12,7 @@ import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout from '@micromag/element-layout';
-import Image from '@micromag/element-image';
+import Visual from '@micromag/element-visual';
 import Heading from '@micromag/element-heading';
 import Text from '@micromag/element-text';
 import CallToAction from '@micromag/element-call-to-action';
@@ -143,7 +143,7 @@ const ImageScreen = ({
                         disabled={transitionDisabled}
                         fullscreen
                     >
-                        <Image
+                        <Visual
                             className={styles.image}
                             media={image}
                             objectFit={imageFit}

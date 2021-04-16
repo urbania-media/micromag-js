@@ -59,3 +59,5 @@ export { default as Tokens } from './Tokens';
 export { default as Url } from './Url';
 export { default as Video } from './Video';
 export { default as Visual } from './Visual';
+export { default as Visuals } from './Visuals';
+export { default as VisualsWithCaption } from './VisualsWithCaption';

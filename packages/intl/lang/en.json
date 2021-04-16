@@ -5,6 +5,9 @@
     "+MPZRu": {
         "defaultMessage": "Background"
     },
+    "+OHqBp": {
+        "defaultMessage": "Add a visual"
+    },
     "+Ok+7S": {
         "defaultMessage": "Answer"
     },
@@ -59,6 +62,9 @@
     "2/F1Q7": {
         "defaultMessage": "#{index}"
     },
+    "2FD1E8": {
+        "defaultMessage": "Select a visual content..."
+    },
     "2J05S0": {
         "defaultMessage": "Images"
     },
@@ -107,6 +113,9 @@
     "4YiKNK": {
         "defaultMessage": "Select a color..."
     },
+    "4aZNR9": {
+        "defaultMessage": "Visual"
+    },
     "4bHvRS": {
         "defaultMessage": "Gallery Feed"
     },
@@ -127,9 +136,6 @@
     },
     "5uH4x7": {
         "defaultMessage": "Submit"
-    },
-    "63Kvho": {
-        "defaultMessage": "Images"
     },
     "650XRF": {
         "defaultMessage": "Survey"
@@ -218,9 +224,6 @@
     "ET527E": {
         "defaultMessage": "Font family"
     },
-    "Eaf89D": {
-        "defaultMessage": "Images"
-    },
     "EcZYpr": {
         "defaultMessage": "Subtitle"
     },
@@ -251,8 +254,14 @@
     "H1YcaV": {
         "defaultMessage": "Image with legend"
     },
+    "HTZSQo": {
+        "defaultMessage": "Visual"
+    },
     "HseFdk": {
         "defaultMessage": "Edit"
+    },
+    "HwqzVR": {
+        "defaultMessage": "Visual"
     },
     "IBjY5r": {
         "defaultMessage": "Duplicate screen"
@@ -281,6 +290,9 @@
     "KHWeV7": {
         "defaultMessage": "Answers"
     },
+    "LiDu8m": {
+        "defaultMessage": "No visual..."
+    },
     "MLuvzG": {
         "defaultMessage": "Map with image markers"
     },
@@ -292,6 +304,9 @@
     },
     "N25iDO": {
         "defaultMessage": "Title"
+    },
+    "NcPWw+": {
+        "defaultMessage": "Visuals"
     },
     "OJi+eg": {
         "defaultMessage": "Label"
@@ -347,14 +362,14 @@
     "S9YpbV": {
         "defaultMessage": "Text"
     },
+    "SX1c6G": {
+        "defaultMessage": "Add a visual"
+    },
     "SyMSDa": {
         "defaultMessage": "Published name style"
     },
     "T0pi1u": {
         "defaultMessage": "With seek bar"
-    },
-    "T9NZPQ": {
-        "defaultMessage": "Images"
     },
     "THKV4v": {
         "defaultMessage": "Longitude"
@@ -412,6 +427,9 @@
     },
     "ZLDmja": {
         "defaultMessage": "Submit"
+    },
+    "ZfdlI2": {
+        "defaultMessage": "No visual..."
     },
     "ZqwBOx": {
         "defaultMessage": "Questions"
@@ -476,6 +494,9 @@
     "enFs4g": {
         "defaultMessage": "Advanced"
     },
+    "enN+7O": {
+        "defaultMessage": "Add a visual"
+    },
     "enPTxj": {
         "defaultMessage": "Button"
     },
@@ -524,6 +545,9 @@
     "kBz8vF": {
         "defaultMessage": "Name"
     },
+    "kCAnkR": {
+        "defaultMessage": "No visual..."
+    },
     "l/Y6or": {
         "defaultMessage": "Add an entry"
     },
@@ -538,6 +562,9 @@
     },
     "mOSkbf": {
         "defaultMessage": "Usage"
+    },
+    "maiSth": {
+        "defaultMessage": "Visuals"
     },
     "menus.pagination.next": {
         "defaultMessage": "next"
@@ -661,6 +688,9 @@
     },
     "wt1+dM": {
         "defaultMessage": "Select an audio file..."
+    },
+    "x0Rqsq": {
+        "defaultMessage": "Visuals"
     },
     "xAzv6g": {
         "defaultMessage": "All sources"

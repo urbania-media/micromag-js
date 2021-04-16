@@ -12,7 +12,7 @@ import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
-import Image from '@micromag/element-image';
+import Visual from '@micromag/element-visual';
 import Text from '@micromag/element-text';
 import CallToAction from '@micromag/element-call-to-action';
 
@@ -81,7 +81,7 @@ const GalleryFeedScreen = ({
     const ready = imagesLoaded >= imagesCount;
     const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
-    const scrollingDisabled = transitionDisabled || !current;
+    const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
 
     const onImageLoaded = useCallback(() => {
         setImagesLoaded(imagesLoaded + 1);
@@ -117,7 +117,7 @@ const GalleryFeedScreen = ({
                 isEmpty={!hasImage}
             >
                 <div className={styles.imageContainer} ref={index === 0 ? firstImageRef : null}>
-                    <Image {...finalImage} width={firstImageRefWidth} onLoaded={onImageLoaded} />
+                    <Visual {...finalImage} width={firstImageRefWidth} onLoaded={onImageLoaded} />
                 </div>
             </ScreenElement>
         );

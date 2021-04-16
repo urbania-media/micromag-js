@@ -56,10 +56,10 @@ export default [
             },
             {
                 name: 'images',
-                type: 'images',
+                type: 'visuals',
                 label: defineMessage({
-                    defaultMessage: 'Images',
-                    description: 'Images field label',
+                    defaultMessage: 'Visuals',
+                    description: 'Visuals field label',
                 }),
             },
             {
@@ -132,15 +132,15 @@ export default [
             },
             {
                 name: 'images',
-                type: 'images-with-caption',
+                type: 'visuals-with-caption',
                 theme: {
                     caption: {
                         textStyle: 'text',
                     },
                 },
                 label: defineMessage({
-                    defaultMessage: 'Images',
-                    description: 'imagesWithCaptions field label',
+                    defaultMessage: 'Visuals',
+                    description: 'visualsWithCaptions field label',
                 }),
             },
             {

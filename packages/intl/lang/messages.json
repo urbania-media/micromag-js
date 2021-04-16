@@ -11,6 +11,10 @@
     "defaultMessage": "Background",
     "description": "Background field label"
   },
+  "+OHqBp": {
+    "defaultMessage": "Add a visual",
+    "description": "Button label"
+  },
   "+Ok+7S": {
     "defaultMessage": "Answer",
     "description": "Answer placeholder"
@@ -83,6 +87,10 @@
     "defaultMessage": "#{index}",
     "description": "Item label in items field"
   },
+  "2FD1E8": {
+    "defaultMessage": "Select a visual content...",
+    "description": "Label when no value is provided to Visual field"
+  },
   "2J05S0": {
     "defaultMessage": "Images",
     "description": "Media label"
@@ -147,6 +155,10 @@
     "defaultMessage": "Select a color...",
     "description": "No value label"
   },
+  "4aZNR9": {
+    "defaultMessage": "Visual",
+    "description": "Visuals with caption item field label"
+  },
   "4bHvRS": {
     "defaultMessage": "Gallery Feed",
     "description": "Gallery Feed screen title"
@@ -174,10 +186,6 @@
   "5uH4x7": {
     "defaultMessage": "Submit",
     "description": "Submit placeholder"
-  },
-  "63Kvho": {
-    "defaultMessage": "Images",
-    "description": "Images field label"
   },
   "650XRF": {
     "defaultMessage": "Survey",
@@ -295,10 +303,6 @@
     "defaultMessage": "Font family",
     "description": "Field label"
   },
-  "Eaf89D": {
-    "defaultMessage": "Images",
-    "description": "imagesWithCaptions field label"
-  },
   "EcZYpr": {
     "defaultMessage": "Subtitle",
     "description": "Subtitle field label"
@@ -339,9 +343,17 @@
     "defaultMessage": "Image with legend",
     "description": "ImageLegend screen title"
   },
+  "HTZSQo": {
+    "defaultMessage": "Visual",
+    "description": "Visual field label"
+  },
   "HseFdk": {
     "defaultMessage": "Edit",
     "description": "Button to edit a screen"
+  },
+  "HwqzVR": {
+    "defaultMessage": "Visual",
+    "description": "Field label"
   },
   "IBjY5r": {
     "defaultMessage": "Duplicate screen",
@@ -379,6 +391,10 @@
     "defaultMessage": "Answers",
     "description": "Field label"
   },
+  "LiDu8m": {
+    "defaultMessage": "No visual...",
+    "description": "Label when there is no item in visuals field"
+  },
   "MLuvzG": {
     "defaultMessage": "Map with image markers",
     "description": "MapImages screen title"
@@ -394,6 +410,10 @@
   "N25iDO": {
     "defaultMessage": "Title",
     "description": "Title field label"
+  },
+  "NcPWw+": {
+    "defaultMessage": "Visuals",
+    "description": "Field label"
   },
   "OJi+eg": {
     "defaultMessage": "Label",
@@ -466,16 +486,16 @@
     "defaultMessage": "Text",
     "description": "Text screen title"
   },
+  "SX1c6G": {
+    "defaultMessage": "Add a visual",
+    "description": "Button label in visuals field"
+  },
   "SyMSDa": {
     "defaultMessage": "Published name style",
     "description": "Published name style field label"
   },
   "T0pi1u": {
     "defaultMessage": "With seek bar",
-    "description": "Field label"
-  },
-  "T9NZPQ": {
-    "defaultMessage": "Images",
     "description": "Field label"
   },
   "THKV4v": {
@@ -553,6 +573,10 @@
   "ZLDmja": {
     "defaultMessage": "Submit",
     "description": "Submit form button"
+  },
+  "ZfdlI2": {
+    "defaultMessage": "No visual...",
+    "description": "Label when there is no item"
   },
   "ZqwBOx": {
     "defaultMessage": "Questions",
@@ -638,6 +662,10 @@
     "defaultMessage": "Advanced",
     "description": "Name of the section in Fields"
   },
+  "enN+7O": {
+    "defaultMessage": "Add a visual",
+    "description": "Button label in visuals with caption field"
+  },
   "enPTxj": {
     "defaultMessage": "Button",
     "description": "Button field label"
@@ -702,6 +730,10 @@
     "defaultMessage": "Name",
     "description": "Name in Media Gallery"
   },
+  "kCAnkR": {
+    "defaultMessage": "No visual...",
+    "description": "Label when there is no item in visuals with caption field"
+  },
   "l/Y6or": {
     "defaultMessage": "Add an entry",
     "description": "Button label"
@@ -721,6 +753,10 @@
   "mOSkbf": {
     "defaultMessage": "Usage",
     "description": "Media label"
+  },
+  "maiSth": {
+    "defaultMessage": "Visuals",
+    "description": "Visuals field label"
   },
   "menus.pagination.next": {
     "defaultMessage": "next"
@@ -883,6 +919,10 @@
   "wt1+dM": {
     "defaultMessage": "Select an audio file...",
     "description": "Label when no value is provided to Audio field"
+  },
+  "x0Rqsq": {
+    "defaultMessage": "Visuals",
+    "description": "visualsWithCaptions field label"
   },
   "xAzv6g": {
     "defaultMessage": "All sources",

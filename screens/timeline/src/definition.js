@@ -138,7 +138,7 @@ export default [
             },
             {
                 name: 'items',
-                type: 'entries-with-image',
+                type: 'entries-with-visual',
                 theme: {
                     title: {
                         textStyle: 'heading2',

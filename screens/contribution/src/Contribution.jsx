@@ -100,7 +100,7 @@ const ContributionScreen = ({
     const backgroundPlaying = current && (isView || isEdit);
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
-    const scrollingDisabled = transitionDisabled || !current;
+    const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
 
     const hasTitle = isTextFilled(title);
     const hasNameLabel = isLabelFilled(name);
