@@ -20,7 +20,14 @@ import CallToAction from '@micromag/element-call-to-action';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    layout: PropTypes.oneOf(['normal', 'fullscreen', 'reverse', 'card', 'title-top']),
+    layout: PropTypes.oneOf([
+        'normal',
+        'fullscreen',
+        'reverse',
+        'card',
+        'card-reverse',
+        'title-top',
+    ]),
     image: MicromagPropTypes.imageMedia,
     imageFit: MicromagPropTypes.objectFit,
     title: MicromagPropTypes.headingElement,
@@ -99,9 +106,10 @@ const ImageScreen = ({
         setReady(true);
     }, [setReady]);
 
-    const isReversed = layout === 'reverse';
+    const isReversed = layout === 'reverse' || layout === 'card-reverse';
     const isTitleTop = layout === 'title-top';
-    const isCard = layout === 'card';
+    const isCard = layout === 'card' || layout === 'card-reverse';
+    const isCardReverse = layout === 'card-reverse';
     const isFullscreen = layout === 'fullscreen';
 
     const finalSpacing = !isFullscreen && !isPlaceholder ? spacing : 0;
@@ -112,6 +120,11 @@ const ImageScreen = ({
     } = useResizeObserver();
     const { width: imageWidth, height: imageHeight } = contentRect || {};
 
+    const cardImageMargin = isCard
+        ? `0 ${-finalSpacing / 2}px ${finalSpacing / 2}px`
+        : `0 ${-finalSpacing / 2}px 0px`;
+    const imageMargin = isCard || isCardReverse ? cardImageMargin : finalSpacing / 2;
+
     const items = [
         <div
             key="image"
@@ -120,9 +133,7 @@ const ImageScreen = ({
             style={
                 !isPlaceholder
                     ? {
-                          margin: isCard
-                              ? `0 ${-finalSpacing / 2}px ${finalSpacing / 2}px`
-                              : finalSpacing / 2,
+                          margin: imageMargin,
                       }
                     : null
             }
@@ -254,6 +265,10 @@ const ImageScreen = ({
         paddingTop = 0;
     }
 
+    if (isCardReverse) {
+        paddingTop = menuOverScreen ? menuSize : 0;
+    }
+
     return (
         <div
             className={classNames([
@@ -263,6 +278,7 @@ const ImageScreen = ({
                     [styles.isReversed]: isReversed,
                     [styles.isPlaceholder]: isPlaceholder,
                     [styles.isCard]: isCard,
+                    [styles.isCardReverse]: isCardReverse,
                     [styles.isFullscreen]: isFullscreen,
                 },
             ])}
