@@ -1,10 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { getSizeWithinBounds } from '@folklore/size';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import Image from '@micromag/element-image';
 import Video from '@micromag/element-video';
+
+import styles from './styles.module.scss';
 
 const propTypes = {
     media: MicromagPropTypes.media,
@@ -16,6 +19,7 @@ const propTypes = {
     videoLoop: PropTypes.bool,
     videoInitialMuted: PropTypes.bool,
     onLoaded: PropTypes.func,
+    className: PropTypes.string,
 };
 
 const defaultProps = {
@@ -28,6 +32,7 @@ const defaultProps = {
     videoLoop: true,
     videoInitialMuted: true,
     onLoaded: null,
+    className: null,
 };
 
 const Visual = ({
@@ -40,6 +45,7 @@ const Visual = ({
     videoLoop,
     videoInitialMuted,
     onLoaded,
+    className,
     ...props
 }) => {
     const { type = null } = media || {};
@@ -78,10 +84,11 @@ const Visual = ({
                     width={width}
                     height={height}
                     onLoaded={onLoaded}
+                    className={classNames([styles.container, {[className] : className !== null }])}
                 />
             ) : null}
             {type === 'video' ? (
-                <div style={{ width, height, position: 'relative', overflow: 'hidden' }}>
+                <div className={classNames([styles.container, {[className] : className !== null }])} style={{ width, height }}>
                     <div style={videoContainerStyle}>
                         <Video
                             {...elProps}

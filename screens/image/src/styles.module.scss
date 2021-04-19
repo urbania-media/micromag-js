@@ -68,6 +68,12 @@
         .placeholderImage {
             margin: 10px -10px 0;
         }
+        .callToAction {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+        }
     }
 
     &.isFullscreen {
