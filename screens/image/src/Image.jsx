@@ -266,7 +266,7 @@ const ImageScreen = ({
     }
 
     if (isCardReverse) {
-        paddingTop = menuOverScreen ? menuSize : 0;
+        paddingTop = 0;
     }
 
     return (
