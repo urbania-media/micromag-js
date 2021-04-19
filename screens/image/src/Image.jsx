@@ -120,9 +120,10 @@ const ImageScreen = ({
     } = useResizeObserver();
     const { width: imageWidth, height: imageHeight } = contentRect || {};
 
-    const cardImageMargin = isCard
-        ? `0 ${-finalSpacing / 2}px ${finalSpacing / 2}px`
-        : `0 ${-finalSpacing / 2}px 0px`;
+    const cardImageMargin = isCardReverse
+        ? `${finalSpacing / 2}px ${-finalSpacing / 2}px 0`
+        : `0 ${-finalSpacing / 2}px ${finalSpacing / 2}px`;
+
     const imageMargin = isCard || isCardReverse ? cardImageMargin : finalSpacing / 2;
 
     const items = [
