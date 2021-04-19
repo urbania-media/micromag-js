@@ -260,6 +260,7 @@ const ImageScreen = ({
         );
     }
 
+    let paddingBottom = 0;
     let paddingTop = (menuOverScreen && !isPreview ? menuSize : 0) + finalSpacing / 2;
 
     if (isCard || isFullscreen) {
@@ -267,7 +268,8 @@ const ImageScreen = ({
     }
 
     if (isCardReverse) {
-        paddingTop = 0;
+        paddingTop = menuOverScreen ? menuSize : finalSpacing / 2;
+        paddingBottom = 0;
     }
 
     return (
@@ -302,6 +304,7 @@ const ImageScreen = ({
                             ? {
                                   padding: finalSpacing / 2,
                                   paddingTop,
+                                  paddingBottom,
                               }
                             : null
                     }

@@ -15,6 +15,7 @@ const propTypes = {
     videoAutoplay: PropTypes.bool,
     videoLoop: PropTypes.bool,
     videoInitialMuted: PropTypes.bool,
+    onLoaded: PropTypes.func,
 };
 
 const defaultProps = {
@@ -26,6 +27,7 @@ const defaultProps = {
     videoAutoplay: true,
     videoLoop: true,
     videoInitialMuted: true,
+    onLoaded: null,
 };
 
 const Visual = ({
@@ -37,6 +39,7 @@ const Visual = ({
     videoAutoplay,
     videoLoop,
     videoInitialMuted,
+    onLoaded,
     ...props
 }) => {
     const { type = null } = media || {};
@@ -69,19 +72,26 @@ const Visual = ({
     return type !== null ? (
         <>
             {type === 'image' ? (
-                <Image {...elProps} objectFit={objectFit} width={width} height={height} />
+                <Image
+                    {...elProps}
+                    objectFit={objectFit}
+                    width={width}
+                    height={height}
+                    onLoaded={onLoaded}
+                />
             ) : null}
             {type === 'video' ? (
                 <div style={{ width, height, position: 'relative', overflow: 'hidden' }}>
                     <div style={videoContainerStyle}>
                         <Video
                             {...elProps}
-                            width={objectFit === null ? width : null }
-                            height={objectFit === null ? height : null }
+                            width={objectFit === null ? width : null}
+                            height={objectFit === null ? height : null}
                             preload={videoPreload}
                             autoPlay={videoAutoplay}
                             loop={videoLoop}
                             initialMuted={videoInitialMuted}
+                            onReady={onLoaded}
                         />
                     </div>
                 </div>

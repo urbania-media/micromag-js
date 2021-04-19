@@ -1,7 +1,12 @@
 /* eslint-disable no-console */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useCallback, useState } from 'react';
-import { webfontFiles, webfont2Files, webfont3Files } from '../../../../.storybook/data';
+import {
+    webfontFiles,
+    webfont2Files,
+    webfont3Files,
+    imageMedia,
+} from '../../../../.storybook/data';
 
 import basic from '../../../../.storybook/data/stories/basic.json';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
@@ -56,15 +61,15 @@ export const Integrated = () => {
     const [viewMode, setViewMode] = useState(null);
     const { landscape = false } = viewMode || {};
 
-    const onClose = useCallback( () => {
+    const onClose = useCallback(() => {
         setFullscreen(false);
     }, [setFullscreen]);
 
-    const onInteraction = useCallback( () => {
+    const onInteraction = useCallback(() => {
         setFullscreen(true);
     }, [setFullscreen]);
 
-    const onEnd = useCallback( () => {
+    const onEnd = useCallback(() => {
         setFullscreen(false);
     }, [setFullscreen]);
 
@@ -151,18 +156,27 @@ export const CustomFonts = () => (
                 },
                 {
                     id: '2,',
-                    type: 'title',
-                    layout: 'middle',
-                    title: {
-                        body: 'SourceCodePro-Regular',
+                    type: 'image-text',
+                    layout: 'card-reverse',
+                    image: imageMedia(600, 800),
+                    text: {
+                        body: 'MonumentExtended Black',
                         textStyle: {
                             align: 'center',
-                            fontStyle: {},
-                            fontFamily: {
-                                type: 'custom',
-                                name: 'SourceCodePro-Regular',
-                                media: 'media://3',
-                            },
+                            fontStyle: { bold: true, italic: true },
+                            fontSize: 30,
+                            lineHeight: 1,
+                            // fontFamily: {
+                            //     type: 'custom',
+                            //     name: 'MonumentExtended Black',
+                            //     media: 'media://1',
+                            // },
+                        },
+                    },
+                    background: {
+                        color: {
+                            alpha: 1,
+                            color: '#F00',
                         },
                     },
                 },
