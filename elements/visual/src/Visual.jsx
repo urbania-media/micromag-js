@@ -84,12 +84,15 @@ const Visual = ({
                     width={width}
                     height={height}
                     onLoaded={onLoaded}
-                    className={classNames([styles.container, {[className] : className !== null }])}
+                    className={classNames([styles.container, { [className]: className !== null }])}
                 />
             ) : null}
             {type === 'video' ? (
-                <div className={classNames([styles.container, {[className] : className !== null }])} style={{ width, height }}>
-                    <div style={videoContainerStyle}>
+                <div
+                    className={classNames([styles.container, { [className]: className !== null }])}
+                    style={{ width, height }}
+                >
+                    <div style={videoContainerStyle} className={styles.videoContainer}>
                         <Video
                             {...elProps}
                             width={objectFit === null ? width : null}
