@@ -24,6 +24,7 @@ const propTypes = {
     callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
+    spacing: PropTypes.number,
     className: PropTypes.string,
 };
 
@@ -34,6 +35,7 @@ const defaultProps = {
     callToAction: null,
     current: true,
     transitions: null,
+    spacing: 20,
     className: null,
 };
 
@@ -44,6 +46,7 @@ const VideoScreen = ({
     callToAction,
     current,
     transitions,
+    spacing,
     className,
 }) => {
     const trackScreenMedia = useTrackScreenMedia('video');
@@ -256,7 +259,9 @@ const VideoScreen = ({
                         onSeek={seek}
                     />
                     {hasCallToAction ? (
-                        <CallToAction callToAction={callToAction} animationDisabled={isPreview} />
+                        <div style={{ marginTop: -spacing }}>
+                            <CallToAction callToAction={callToAction} animationDisabled={isPreview} />
+                        </div>
                     ) : null}
                 </Transitions>
             </div>

@@ -209,11 +209,13 @@ const AudioScreen = ({
             </div>
         ) : null,
         !isPlaceholder && hasCallToAction ? (
-            <CallToAction
-                key="call-to-action"
-                callToAction={callToAction}
-                animationDisabled={isPreview}
-            />
+            <div style={{ margin: -spacing, marginTop: 0 }}>
+                <CallToAction
+                    key="call-to-action"
+                    callToAction={callToAction}
+                    animationDisabled={isPreview}
+                />
+            </div>
         ) : null,
     ].filter((el) => el !== null);
 
@@ -244,7 +246,8 @@ const AudioScreen = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop: (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
+                                  paddingTop:
+                                      (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
                               }
                             : null
                     }

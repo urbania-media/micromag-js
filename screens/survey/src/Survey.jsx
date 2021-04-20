@@ -380,12 +380,14 @@ const SurveyScreen = ({
             items.push(<Spacer key="spacer-cta-bottom" />);
         }
         items.push(
-            <CallToAction
-                key="call-to-action"
-                callToAction={callToAction}
-                disabled={!answered}
-                animationDisabled={isPreview}
-            />,
+            <div style={{ margin: -spacing, marginTop: 0 }}>
+                <CallToAction
+                    key="call-to-action"
+                    callToAction={callToAction}
+                    disabled={!answered}
+                    animationDisabled={isPreview}
+                />
+            </div>,
         );
     }
 
@@ -418,7 +420,8 @@ const SurveyScreen = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop: (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
+                                  paddingTop:
+                                      (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
                               }
                             : null
                     }

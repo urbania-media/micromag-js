@@ -166,11 +166,13 @@ const TitleScreen = ({
             <Spacer key="spacer-cta-bottom" />
         ) : null,
         !isPlaceholder && hasCallToAction ? (
-            <CallToAction
-                key="call-to-action"
-                callToAction={callToAction}
-                animationDisabled={isPreview}
-            />
+            <div style={{ margin: -spacing, marginTop: 0 }}>
+                <CallToAction
+                    key="call-to-action"
+                    callToAction={callToAction}
+                    animationDisabled={isPreview}
+                />
+            </div>
         ) : null,
     ];
 

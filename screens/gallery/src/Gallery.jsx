@@ -255,18 +255,20 @@ const GalleryScreen = ({
                     className={styles.content}
                     style={{
                         paddingTop: menuOverScreen && !isPreview ? menuSize : null,
-                        paddingBottom: hasCallToAction ? callToActionHeight + spacing : 0,
+                        paddingBottom: hasCallToAction ? callToActionHeight - finalSpacing : 0,
                     }}
                     ref={contentRef}
                 >
                     <Grid className={styles.grid} spacing={finalSpacing} items={items} {...grid} />
                     {!isPlaceholder && hasCallToAction ? (
-                        <CallToAction
-                            ref={callToActionRef}
-                            className={styles.callToAction}
-                            callToAction={callToAction}
-                            animationDisabled={isPreview}
-                        />
+                        <div style={{ marginTop: -finalSpacing }}>
+                            <CallToAction
+                                ref={callToActionRef}
+                                className={styles.callToAction}
+                                callToAction={callToAction}
+                                animationDisabled={isPreview}
+                            />
+                        </div>
                     ) : null}
                 </div>
             </Container>

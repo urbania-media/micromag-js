@@ -251,12 +251,14 @@ const ImageScreen = ({
     const hasCallToAction = callToAction !== null && callToAction.active === true;
     if (!isPlaceholder && hasCallToAction) {
         items.push(
-            <CallToAction
-                key="call-to-action"
-                className={styles.callToAction}
-                callToAction={callToAction}
-                animationDisabled={isPreview}
-            />,
+            <div style={{ margin: -finalSpacing / 2, marginTop: 0 }}>
+                <CallToAction
+                    key="call-to-action"
+                    className={styles.callToAction}
+                    callToAction={callToAction}
+                    animationDisabled={isPreview}
+                />
+            </div>,
         );
     }
 

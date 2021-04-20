@@ -38,6 +38,7 @@ const propTypes = {
     onPrevious: PropTypes.func,
     onNext: PropTypes.func,
     type: PropTypes.string,
+    spacing: PropTypes.number,
     className: PropTypes.string,
 };
 
@@ -51,6 +52,7 @@ const defaultProps = {
     onPrevious: null,
     onNext: null,
     type: null,
+    spacing: 20,
     className: null,
 };
 
@@ -64,6 +66,7 @@ const Video360Screen = ({
     onPrevious,
     onNext,
     type,
+    spacing,
     className,
 }) => {
     const trackScreenEvent = useTrackScreenEvent(type);
@@ -416,7 +419,12 @@ const Video360Screen = ({
                         onSeek={seek}
                     />
                     {hasCallToAction ? (
-                        <CallToAction callToAction={callToAction} animationDisabled={isPreview} />
+                        <div style={{ marginTop: -spacing }}>
+                            <CallToAction
+                                callToAction={callToAction}
+                                animationDisabled={isPreview}
+                            />
+                        </div>
                     ) : null}
                 </Transitions>
             </div>
