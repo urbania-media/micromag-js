@@ -9,7 +9,7 @@ import { useGesture } from 'react-use-gesture';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { getStyleFromColor, isValidUrl } from '@micromag/core/utils';
+import { getStyleFromColor, isValidUrl, isIos } from '@micromag/core/utils';
 import { Button } from '@micromag/core/components';
 import Text from '@micromag/element-text';
 
@@ -37,14 +37,6 @@ const defaultProps = {
     dragAmount: 50,
     className: null,
 };
-/*
-const isIOS = () =>
-    ['iPad Simulator', 'iPhone Simulator', 'iPod Simulator', 'iPad', 'iPhone', 'iPod'].includes(
-        navigator.platform,
-    ) ||
-    // iPad on iOS 13 detection
-    (navigator.userAgent.includes('Mac') && 'ontouchend' in document);
-*/
 
 const CallToAction = ({
     elRef,
@@ -75,12 +67,12 @@ const CallToAction = ({
         },
         onDragEnd: ({ movement: [, my] }) => {
             if (my < -dragAmount) {
-                // const ios = isIOS();
-                // if (ios) {
-                 //   linkRef.current.click();
-                // } else {
+                const ios = isIos();
+                if (ios) {
+                    linkRef.current.click();
+                } else {
                     buttonRef.current.click();
-                // }
+                }
             }
         }
     }, { drag: { useTouch: true } });
@@ -117,7 +109,7 @@ const CallToAction = ({
                     <Text {...label} inline />
                 </span>                
             </Button>
-            <a href={url} style={{ display: 'none' }} ref={linkRef} />
+            <a className={styles.currentTargetLink} href={url} ref={linkRef} />
         </div>
     ) : null;
 };

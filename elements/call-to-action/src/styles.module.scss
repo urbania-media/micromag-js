@@ -29,6 +29,10 @@
         }
     }
 
+    .currentTargetLink {
+        display: none;
+    }
+
     &.animationDisabled {
         .arrow {
             animation: none;
