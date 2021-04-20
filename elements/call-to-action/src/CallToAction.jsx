@@ -37,13 +37,14 @@ const defaultProps = {
     dragAmount: 50,
     className: null,
 };
-
+/*
 const isIOS = () =>
     ['iPad Simulator', 'iPhone Simulator', 'iPod Simulator', 'iPad', 'iPhone', 'iPod'].includes(
         navigator.platform,
     ) ||
     // iPad on iOS 13 detection
     (navigator.userAgent.includes('Mac') && 'ontouchend' in document);
+*/
 
 const CallToAction = ({
     elRef,
@@ -74,13 +75,12 @@ const CallToAction = ({
         },
         onDragEnd: ({ movement: [, my] }) => {
             if (my < -dragAmount) {
-                const ios = isIOS();
-                if (ios) {
-                    linkRef.current.click();
-                } else {
+                // const ios = isIOS();
+                // if (ios) {
+                 //   linkRef.current.click();
+                // } else {
                     buttonRef.current.click();
-                }
-                console.log(ios, linkRef.current, buttonRef.current);
+                // }
             }
         }
     }, { drag: { useTouch: true } });
@@ -115,9 +115,9 @@ const CallToAction = ({
                 ) : null}
                 <span className={styles.label}>
                     <Text {...label} inline />
-                </span>
-                <a href={url} style={{ display: 'none' }} ref={linkRef} />
+                </span>                
             </Button>
+            <a href={url} style={{ display: 'none' }} ref={linkRef} />
         </div>
     ) : null;
 };
