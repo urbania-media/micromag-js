@@ -60,9 +60,11 @@ const CallToAction = ({
     const bind = useGesture({
         // fix firefox https://use-gesture.netlify.app/docs/faq/#why-cant-i-properly-drag-an-image-or-a-link
         onDrag: ({ event }) => {
+            console.log('drag');
             event.preventDefault();
         },
         onDragEnd: ({ movement: [, my] }) => {
+            console.log('drag end', my, dragAmount)
             if (my < -dragAmount) {
                 buttonRef.current.click();
             }
