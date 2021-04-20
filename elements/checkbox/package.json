@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-checkbox",
-    "version": "0.2.232",
+    "version": "0.2.239",
     "description": "",
     "keywords": [
         "javascript"
@@ -49,7 +49,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.2.232",
+        "@micromag/core": "^0.2.239",
         "change-case": "^4.1.2",
         "classnames": "^2.2.6",
         "lodash": "^4.17.20",
