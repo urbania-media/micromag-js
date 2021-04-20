@@ -159,6 +159,7 @@ const Video = ({
             }
         >
             <video
+                key={mediaUrl}
                 ref={ref}
                 src={!hasFiles ? mediaUrl : null}
                 autoPlay={autoPlay}
