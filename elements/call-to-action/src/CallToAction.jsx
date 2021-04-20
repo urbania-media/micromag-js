@@ -2,7 +2,7 @@
 import React, { useRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useGesture } from 'react-use-gesture';
+import { useGesture, useDrag } from 'react-use-gesture';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
@@ -57,6 +57,7 @@ const CallToAction = ({
         color,
     ]);
 
+    /*
     const bind = useGesture({
         // fix firefox https://use-gesture.netlify.app/docs/faq/#why-cant-i-properly-drag-an-image-or-a-link
         onDrag: ({ event }) => {
@@ -72,6 +73,14 @@ const CallToAction = ({
             }
         }
     }, { drag: { useTouch: true } });
+    */
+
+    const bind = useDrag(({ end, movement: [, my] }) => {
+        if (end && my < -dragAmount) {
+            buttonRef.current.click();
+            console.log(url, 'opened');
+        }
+    }, { useTouch: true });
 
     return active ? (
         <div
