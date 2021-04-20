@@ -66,7 +66,9 @@ const CallToAction = ({
         onDragEnd: ({ movement: [, my] }) => {
             console.log('drag end', my, dragAmount)
             if (my < -dragAmount) {
-                buttonRef.current.click();
+                // buttonRef.current.click();
+                window.open(url, '_blank');
+                console.log(url, 'opened');
             }
         },
     });
