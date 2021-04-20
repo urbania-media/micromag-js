@@ -37,13 +37,13 @@ const UploadModal = ({ type, opened, sources, onUploaded, onRequestClose }) => {
     );
 
     const fileTypes = useMemo(() => {
-        if(isArray(type)) {
-            return type.map(t => (
-                ['image', 'video', 'audio'].indexOf(t) !== -1 ? `${t}/*` : null
-            )).filter(t => t !== null);
+        if (isArray(type)) {
+            return type
+                .map((t) => (['image', 'video', 'audio'].indexOf(t) !== -1 ? `${t}/*` : null))
+                .filter((t) => t !== null);
         }
         return ['image', 'video', 'audio'].indexOf(type) !== -1 ? [`${type}/*`] : null;
-    });
+    }, [type]);
 
     const uppy = useUppy({
         onComplete: onUpppyComplete,
