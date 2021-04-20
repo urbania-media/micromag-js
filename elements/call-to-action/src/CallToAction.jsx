@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
@@ -57,6 +59,7 @@ const CallToAction = ({
     const validUrl = useMemo(() => isValidUrl(url), [url]);
 
     const buttonRef = useRef(null);
+    const linkRef = useRef(null);
 
     const { textStyle: { fontSize = null, color = null } = {} } = label || {};
     const arrowStyle = useMemo(() => ({ ...{ fontSize }, ...getStyleFromColor(color, 'color') }), [
@@ -71,11 +74,13 @@ const CallToAction = ({
         },
         onDragEnd: ({ movement: [, my] }) => {
             if (my < -dragAmount) {
-                if (isIOS()) {
-                    window.location = url;
+                const ios = isIOS();
+                if (ios) {
+                    linkRef.current.click();
                 } else {
                     buttonRef.current.click();
                 }
+                console.log(ios, linkRef.current, buttonRef.current);
             }
         }
     }, { drag: { useTouch: true } });
@@ -111,6 +116,7 @@ const CallToAction = ({
                 <span className={styles.label}>
                     <Text {...label} inline />
                 </span>
+                <a href={url} style={{ display: 'none' }} ref={linkRef} />
             </Button>
         </div>
     ) : null;
