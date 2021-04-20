@@ -66,12 +66,12 @@ const CallToAction = ({
         onDragEnd: ({ movement: [, my] }) => {
             console.log('drag end', my, dragAmount)
             if (my < -dragAmount) {
-                // buttonRef.current.click();
-                window.open(url, '_blank');
+                buttonRef.current.click();
+                // window.open(url, '_blank');
                 console.log(url, 'opened');
             }
-        },
-    });
+        }
+    }, { drag: { useTouch: true } });
 
     return active ? (
         <div
