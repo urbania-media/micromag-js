@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-video-360",
-    "version": "0.2.236",
+    "version": "0.2.237",
     "description": "",
     "keywords": [
         "javascript"
@@ -52,7 +52,7 @@
         "@folklore/size": "^0.1.14",
         "@micromag/core": "^0.2.232",
         "@micromag/element-background": "^0.2.232",
-        "@micromag/element-call-to-action": "^0.2.236",
+        "@micromag/element-call-to-action": "^0.2.237",
         "@micromag/element-closed-captions": "^0.2.232",
         "@micromag/element-container": "^0.2.232",
         "@micromag/element-media-controls": "^0.2.232",
