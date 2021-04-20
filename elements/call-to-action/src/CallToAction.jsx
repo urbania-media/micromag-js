@@ -52,7 +52,7 @@ const CallToAction = ({
     const validUrl = useMemo(() => isValidUrl(url), [url]);
 
     const buttonRef = useRef(null);
-    const linkRef = useRef(null);
+    const selfTargetLinkRef = useRef(null);
 
     const { textStyle: { fontSize = null, color = null } = {} } = label || {};
     const arrowStyle = useMemo(() => ({ ...{ fontSize }, ...getStyleFromColor(color, 'color') }), [
@@ -61,21 +61,20 @@ const CallToAction = ({
     ]);
 
     const bind = useGesture({
-        // fix firefox https://use-gesture.netlify.app/docs/faq/#why-cant-i-properly-drag-an-image-or-a-link
         onDrag: ({ event }) => {
+            // fix firefox https://use-gesture.netlify.app/docs/faq/#why-cant-i-properly-drag-an-image-or-a-link
             event.preventDefault();
         },
         onDragEnd: ({ movement: [, my] }) => {
             if (my < -dragAmount) {
-                const ios = isIos();
-                if (ios) {
-                    linkRef.current.click();
+                if (isIos()) {
+                    selfTargetLinkRef.current.click();
                 } else {
                     buttonRef.current.click();
                 }
             }
         }
-    }, { drag: { useTouch: true } });
+    });
 
     return active ? (
         <div
@@ -90,6 +89,7 @@ const CallToAction = ({
             ])}
             ref={elRef}
         >
+            <a className={styles.selfTargetLink} href={url} ref={selfTargetLinkRef} />
             <Button
                 href={url}
                 external
@@ -109,7 +109,6 @@ const CallToAction = ({
                     <Text {...label} inline />
                 </span>                
             </Button>
-            <a className={styles.currentTargetLink} href={url} ref={linkRef} />
         </div>
     ) : null;
 };
