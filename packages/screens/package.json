@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screens",
-    "version": "0.2.247",
+    "version": "0.2.248",
     "description": "",
     "keywords": [
         "javascript"
@@ -54,22 +54,22 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.2.247",
-        "@micromag/screen-audio": "^0.2.247",
-        "@micromag/screen-contribution": "^0.2.247",
-        "@micromag/screen-gallery": "^0.2.247",
-        "@micromag/screen-gallery-feed": "^0.2.247",
-        "@micromag/screen-image": "^0.2.247",
-        "@micromag/screen-map": "^0.2.247",
-        "@micromag/screen-quiz": "^0.2.247",
-        "@micromag/screen-quote": "^0.2.247",
-        "@micromag/screen-ranking": "^0.2.247",
-        "@micromag/screen-survey": "^0.2.247",
-        "@micromag/screen-text": "^0.2.247",
-        "@micromag/screen-timeline": "^0.2.247",
-        "@micromag/screen-title": "^0.2.247",
-        "@micromag/screen-video": "^0.2.247",
-        "@micromag/screen-video-360": "^0.2.247",
+        "@micromag/core": "^0.2.248",
+        "@micromag/screen-audio": "^0.2.248",
+        "@micromag/screen-contribution": "^0.2.248",
+        "@micromag/screen-gallery": "^0.2.248",
+        "@micromag/screen-gallery-feed": "^0.2.248",
+        "@micromag/screen-image": "^0.2.248",
+        "@micromag/screen-map": "^0.2.248",
+        "@micromag/screen-quiz": "^0.2.248",
+        "@micromag/screen-quote": "^0.2.248",
+        "@micromag/screen-ranking": "^0.2.248",
+        "@micromag/screen-survey": "^0.2.248",
+        "@micromag/screen-text": "^0.2.248",
+        "@micromag/screen-timeline": "^0.2.248",
+        "@micromag/screen-title": "^0.2.248",
+        "@micromag/screen-video": "^0.2.248",
+        "@micromag/screen-video-360": "^0.2.248",
         "classnames": "^2.2.6",
         "lodash": "^4.17.20",
         "prop-types": "^15.7.2"
@@ -77,5 +77,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "d3a2abb8a6eb0420cb866192abcc68b6ad74c1ad"
+    "gitHead": "be1b74278020f1b8b4ea2ade87ffb6d1b8d4fa95"
 }

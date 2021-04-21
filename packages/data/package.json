@@ -1,6 +1,6 @@
 {
     "name": "@micromag/data",
-    "version": "0.2.247",
+    "version": "0.2.248",
     "description": "",
     "keywords": [
         "javascript"
@@ -50,7 +50,7 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@folklore/fetch": "^0.1.10",
-        "@micromag/core": "^0.2.247",
+        "@micromag/core": "^0.2.248",
         "prop-types": "^15.7.2",
         "query-string": "^6.13.7",
         "react-router": "^5.2.0"
@@ -58,5 +58,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "d3a2abb8a6eb0420cb866192abcc68b6ad74c1ad"
+    "gitHead": "be1b74278020f1b8b4ea2ade87ffb6d1b8d4fa95"
 }
