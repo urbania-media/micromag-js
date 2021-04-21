@@ -32,8 +32,11 @@
             },
             "layout": "middle",
             "callToAction": {
-                "active": false,
-                "type": "swipe-up"
+                "active": true,
+                "url": "https://google.com",
+                "label": {
+                    "body": "Learn more"
+                }
             },
             "quote": {
                 "body": "<p>Coolos</p>",
