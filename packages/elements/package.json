@@ -80,6 +80,7 @@
         "@micromag/element-text": "^0.2.246",
         "@micromag/element-text-input": "^0.2.246",
         "@micromag/element-video": "^0.2.246",
+        "@micromag/element-visual": "^0.2.246",
         "classnames": "^2.2.6",
         "lodash": "^4.17.20",
         "prop-types": "^15.7.2"
