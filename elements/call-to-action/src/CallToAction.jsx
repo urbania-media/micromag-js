@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useGesture } from 'react-use-gesture';
@@ -51,14 +51,17 @@ const CallToAction = ({
     const swipeUpEnabled = type === null || type === 'swipe-up';
     const validUrl = useMemo(() => isValidUrl(url), [url]);
 
-    const buttonRef = useRef(null);
-    const selfTargetLinkRef = useRef(null);
+    const buttonRef = useRef(null);    
 
     const { textStyle: { fontSize = null, color = null } = {} } = label || {};
     const arrowStyle = useMemo(() => ({ ...{ fontSize }, ...getStyleFromColor(color, 'color') }), [
         fontSize,
         color,
     ]);
+
+    // MobileSafari blocks popup no matter what
+    const selfTargetLinkRef = useRef(null);
+    const [leaving, setLeaving] = useState(false);
 
     const bind = useGesture({
         onDrag: ({ event }) => {
@@ -69,6 +72,7 @@ const CallToAction = ({
             if (my < -dragAmount) {
                 if (isIos()) {
                     selfTargetLinkRef.current.click();
+                    setLeaving(true);
                 } else {
                     buttonRef.current.click();
                 }
@@ -89,6 +93,7 @@ const CallToAction = ({
             ])}
             ref={elRef}
         >
+            { leaving ? <div className={styles.leavingFrame} /> : null }
             <a className={styles.selfTargetLink} href={url} ref={selfTargetLinkRef} />
             <Button
                 href={url}
