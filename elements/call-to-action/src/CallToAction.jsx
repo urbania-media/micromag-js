@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useRef, useMemo, useState } from 'react';
+import React, { useRef, useMemo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useGesture } from 'react-use-gesture';
@@ -79,6 +79,13 @@ const CallToAction = ({
             }
         }
     });
+    useEffect(() => {
+        const onPageHide = () => {setLeaving(false)};
+        window.addEventListener('pagehide', onPageHide);
+        return () => {
+            window.removeEventListener('pagehide', onPageHide);
+        }
+    }, [setLeaving])
 
     return active ? (
         <div
