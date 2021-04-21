@@ -90,7 +90,7 @@ export const allScreens = [
         id: uuid(),
         type: 'image-title-text',
         layout: 'normal',
-        image: imageMedia(),
+        image: videoMedia(),
         title: {
             body: title(),
         },
