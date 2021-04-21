@@ -4,11 +4,11 @@
 @import '~@micromag/core/scss/mixins';
 
 .container {
-    position: relative;    
-    transition: opacity .3s ease;
-    opacity: 1;   
+    position: relative;
+    transition: opacity 0.3s ease;
+    opacity: 1;
     text-align: center;
-    
+
     .arrow {
         animation: upAndDown 0.5s ease-in-out infinite alternate;
     }
