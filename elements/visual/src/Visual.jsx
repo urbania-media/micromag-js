@@ -67,7 +67,6 @@ const Visual = ({
         const resizedVideoTop = -(resizedVideoHeight - height) / 2;
 
         videoContainerStyle = {
-            position: 'absolute',
             width: resizedVideoWidth,
             height: resizedVideoHeight,
             left: resizedVideoLeft,

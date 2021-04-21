@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useGesture } from 'react-use-gesture';
@@ -7,7 +9,7 @@ import { useGesture } from 'react-use-gesture';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { getStyleFromColor, isValidUrl } from '@micromag/core/utils';
+import { getStyleFromColor, isValidUrl, isIos } from '@micromag/core/utils';
 import { Button } from '@micromag/core/components';
 import Text from '@micromag/element-text';
 
@@ -49,7 +51,7 @@ const CallToAction = ({
     const swipeUpEnabled = type === null || type === 'swipe-up';
     const validUrl = useMemo(() => isValidUrl(url), [url]);
 
-    const buttonRef = useRef(null);
+    const buttonRef = useRef(null);    
 
     const { textStyle: { fontSize = null, color = null } = {} } = label || {};
     const arrowStyle = useMemo(() => ({ ...{ fontSize }, ...getStyleFromColor(color, 'color') }), [
@@ -57,19 +59,33 @@ const CallToAction = ({
         color,
     ]);
 
+    // MobileSafari blocks popup no matter what
+    const selfTargetLinkRef = useRef(null);
+    const [leaving, setLeaving] = useState(false);
+
     const bind = useGesture({
-        // fix firefox https://use-gesture.netlify.app/docs/faq/#why-cant-i-properly-drag-an-image-or-a-link
         onDrag: ({ event }) => {
-            console.log('drag');
+            // fix firefox https://use-gesture.netlify.app/docs/faq/#why-cant-i-properly-drag-an-image-or-a-link
             event.preventDefault();
         },
         onDragEnd: ({ movement: [, my] }) => {
-            console.log('drag end', my, dragAmount)
             if (my < -dragAmount) {
-                buttonRef.current.click();
+                if (isIos()) {
+                    selfTargetLinkRef.current.click();
+                    setLeaving(true);
+                } else {
+                    buttonRef.current.click();
+                }
             }
-        },
+        }
     });
+    useEffect(() => {
+        const onPageHide = () => {setLeaving(false)};
+        window.addEventListener('pagehide', onPageHide);
+        return () => {
+            window.removeEventListener('pagehide', onPageHide);
+        }
+    }, [setLeaving])
 
     return active ? (
         <div
@@ -84,6 +100,8 @@ const CallToAction = ({
             ])}
             ref={elRef}
         >
+            { leaving ? <div className={styles.leavingFrame} /> : null }
+            <a className={styles.selfTargetLink} href={url} ref={selfTargetLinkRef} />
             <Button
                 href={url}
                 external
@@ -101,7 +119,7 @@ const CallToAction = ({
                 ) : null}
                 <span className={styles.label}>
                     <Text {...label} inline />
-                </span>
+                </span>                
             </Button>
         </div>
     ) : null;

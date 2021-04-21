@@ -117,7 +117,12 @@ const GalleryFeedScreen = ({
                 isEmpty={!hasImage}
             >
                 <div className={styles.imageContainer} ref={index === 0 ? firstImageRef : null}>
-                    <Visual {...finalImage} width={firstImageRefWidth} onLoaded={onImageLoaded} />
+                    <Visual
+                        {...finalImage}
+                        width={firstImageRefWidth}
+                        onLoaded={onImageLoaded}
+                        videoAutoplay={backgroundPlaying}
+                    />
                 </div>
             </ScreenElement>
         );

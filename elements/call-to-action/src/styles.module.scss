@@ -3,6 +3,17 @@
 @import '~@micromag/core/scss/placeholders';
 @import '~@micromag/core/scss/mixins';
 
+@keyframes appear {
+    from  {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {        
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 .container {
     position: relative;
     transition: opacity 0.3s ease;
@@ -27,6 +38,22 @@
         &:hover {
             text-decoration: none;
         }
+    }
+
+    .selfTargetLink {
+        display: none;
+    }
+
+    .leavingFrame {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        transform: scale(0);        
+        animation: appear 0.5s ease both;
+        opacity: 0;
+        background-color: #FFF;
     }
 
     &.animationDisabled {

@@ -3,6 +3,7 @@ import React from 'react';
 
 import {
     imageMedia,
+    videoMedia,
     title,
     backgroundColor,
     transitions,
@@ -38,6 +39,9 @@ export const Capture = (storyProps) => <ImageTitleScreen {...storyProps} {...pro
 export const Edit = (storyProps) => <ImageTitleScreen {...storyProps} />;
 
 export const Normal = (storyProps) => <ImageTitleScreen {...storyProps} {...props} />;
+export const WithVideo = (storyProps) => (
+    <ImageTitleScreen {...storyProps} {...props} image={videoMedia()} />
+);
 
 export const WithCallToAction = (storyProps) => (
     <ImageTitleScreen {...storyProps} {...props} callToAction={callToAction()} />

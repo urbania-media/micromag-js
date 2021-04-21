@@ -19,3 +19,4 @@ export { default as Stack } from '@micromag/element-stack';
 export { default as Text } from '@micromag/element-text';
 export { default as TextInput } from '@micromag/element-text-input';
 export { default as Video } from '@micromag/element-video';
+export { default as Visual } from '@micromag/element-visual';

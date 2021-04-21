@@ -20,6 +20,7 @@ export { default as getStyleFromMargin } from './getStyleFromMargin';
 export { default as getStyleFromBorder } from './getStyleFromBorder';
 export { default as getLayoutParts } from './getLayoutParts';
 export { default as isMessage } from './isMessage';
+export { default as isIos } from './isIos';
 export { default as isImageFilled } from './isImageFilled';
 export { default as isLabelFilled } from './isLabelFilled';
 export { default as isTextFilled } from './isTextFilled';

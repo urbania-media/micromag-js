@@ -194,6 +194,7 @@ const GalleryScreen = ({
                                 {...finalImage}
                                 {...imageSize}
                                 objectFit={{ fit: 'cover' }}
+                                videoAutoplay={backgroundPlaying}
                                 onLoaded={onImageLoaded}
                             />
                         </ScreenElement>
