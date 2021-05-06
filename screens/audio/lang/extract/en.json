@@ -1,0 +1,30 @@
+{
+  "+9akmg": {
+    "developer_comment": "Audio and Video screen group",
+    "string": "Audio and Video"
+  },
+  "+MPZRu": {
+    "developer_comment": "Background field label",
+    "string": "Background"
+  },
+  "169xnt": {
+    "developer_comment": "Audio field label",
+    "string": "Audio"
+  },
+  "4E2gbX": {
+    "developer_comment": "Text field label",
+    "string": "Text"
+  },
+  "4iBXj2": {
+    "developer_comment": "Layout field label",
+    "string": "Layout"
+  },
+  "GE8wrk": {
+    "developer_comment": "Image field label",
+    "string": "Image"
+  },
+  "bhEaUt": {
+    "developer_comment": "Audio screen title",
+    "string": "Audio"
+  }
+}

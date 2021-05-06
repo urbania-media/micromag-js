@@ -1,0 +1,38 @@
+{
+  "+MPZRu": {
+    "developer_comment": "Background field label",
+    "string": "Background"
+  },
+  "/bEns8": {
+    "developer_comment": "MapImages screen title",
+    "string": "MapImages"
+  },
+  "4iBXj2": {
+    "developer_comment": "Layout field label",
+    "string": "Layout"
+  },
+  "8vroDx": {
+    "developer_comment": "Map screen group",
+    "string": "Map"
+  },
+  "PbHeHc": {
+    "developer_comment": "Markers field label",
+    "string": "Markers"
+  },
+  "dmuKH3": {
+    "developer_comment": "Map screen title",
+    "string": "Map"
+  },
+  "nqQqsI": {
+    "developer_comment": "Map field label",
+    "string": "Map"
+  },
+  "qZItNz": {
+    "developer_comment": "MapImages placeholder",
+    "string": "MapImages"
+  },
+  "x8sfWV": {
+    "developer_comment": "MapScreen placeholder",
+    "string": "MapScreen"
+  }
+}

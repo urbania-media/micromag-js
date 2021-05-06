@@ -1,0 +1,38 @@
+{
+  "+MPZRu": {
+    "developer_comment": "Background field label",
+    "string": "Background"
+  },
+  "2ZOPe+": {
+    "developer_comment": "Title placeholder",
+    "string": "Title"
+  },
+  "4iBXj2": {
+    "developer_comment": "Layout field label",
+    "string": "Layout"
+  },
+  "507VAi": {
+    "developer_comment": "Description placeholder",
+    "string": "Description"
+  },
+  "GzoKNb": {
+    "developer_comment": "Timeline screen title",
+    "string": "Timeline"
+  },
+  "IMUycF": {
+    "developer_comment": "Timeline Illustrated screen title",
+    "string": "Timeline Illustrated"
+  },
+  "Tdnwlv": {
+    "developer_comment": "Items field label",
+    "string": "Items"
+  },
+  "cGItoy": {
+    "developer_comment": "List screen group",
+    "string": "List"
+  },
+  "ebsPd4": {
+    "developer_comment": "Image placeholder",
+    "string": "Image"
+  }
+}

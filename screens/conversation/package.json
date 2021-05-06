@@ -1,5 +1,5 @@
 {
-    "name": "@micromag/screens",
+    "name": "@micromag/screen-conversation",
     "version": "0.2.252",
     "description": "",
     "keywords": [
@@ -34,15 +34,10 @@
     "files": [
         "lib",
         "es",
-        "assets",
-        "scss",
-        "all.js",
-        "schemas.js"
+        "assets"
     ],
     "scripts": {
-        "scss": "../../scripts/build-packages-styles.js --pattern='@micromag/screen-*' ./src/styles.scss.ejs ./scss/styles.scss",
-        "css": "../../scripts/build-sass.js ./scss/styles.scss ./assets/css/styles.css",
-        "prepare": "../../scripts/prepare-package.sh && npm run scss && npm run css"
+        "prepare": "../../scripts/prepare-package.sh"
     },
     "devDependencies": {
         "react": "^16.8.0",
@@ -55,25 +50,18 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@micromag/core": "^0.2.250",
-        "@micromag/screen-audio": "^0.2.252",
-        "@micromag/screen-contribution": "^0.2.252",
-        "@micromag/screen-conversation": "^0.2.252",
-        "@micromag/screen-gallery": "^0.2.252",
-        "@micromag/screen-gallery-feed": "^0.2.252",
-        "@micromag/screen-image": "^0.2.252",
-        "@micromag/screen-map": "^0.2.252",
-        "@micromag/screen-quiz": "^0.2.252",
-        "@micromag/screen-quote": "^0.2.252",
-        "@micromag/screen-ranking": "^0.2.252",
-        "@micromag/screen-survey": "^0.2.252",
-        "@micromag/screen-text": "^0.2.252",
-        "@micromag/screen-timeline": "^0.2.252",
-        "@micromag/screen-title": "^0.2.252",
-        "@micromag/screen-video": "^0.2.252",
-        "@micromag/screen-video-360": "^0.2.252",
+        "@micromag/element-background": "^0.2.250",
+        "@micromag/element-call-to-action": "^0.2.252",
+        "@micromag/element-container": "^0.2.250",
+        "@micromag/element-layout": "^0.2.250",
+        "@micromag/element-scroll": "^0.2.250",
+        "@micromag/element-text": "^0.2.250",
+        "@micromag/transforms": "^0.2.250",
         "classnames": "^2.2.6",
         "lodash": "^4.17.20",
-        "prop-types": "^15.7.2"
+        "prop-types": "^15.7.2",
+        "react-intl": "^5.12.1",
+        "uuid": "^8.3.2"
     },
     "publishConfig": {
         "access": "public"

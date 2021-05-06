@@ -1,0 +1,70 @@
+{
+  "+MPZRu": {
+    "developer_comment": "Background field label",
+    "string": "Background"
+  },
+  "1fBNmY": {
+    "developer_comment": "ImageTitle screen title",
+    "string": "ImageTitle"
+  },
+  "2ZOPe+": {
+    "developer_comment": "Title placeholder",
+    "string": "Title"
+  },
+  "3OS3Ms": {
+    "developer_comment": "Legend field label",
+    "string": "Legend"
+  },
+  "4E2gbX": {
+    "developer_comment": "Text field label",
+    "string": "Text"
+  },
+  "4iBXj2": {
+    "developer_comment": "Layout field label",
+    "string": "Layout"
+  },
+  "6mX2ya": {
+    "developer_comment": "Images screen group",
+    "string": "Images"
+  },
+  "8c34nT": {
+    "developer_comment": "ImageTitleText screen title",
+    "string": "ImageTitleText"
+  },
+  "96KRj9": {
+    "developer_comment": "ImageLegend screen title",
+    "string": "ImageLegend"
+  },
+  "GE8wrk": {
+    "developer_comment": "Image field label",
+    "string": "Image"
+  },
+  "Mz76RM": {
+    "developer_comment": "ImageText screen title",
+    "string": "ImageText"
+  },
+  "N25iDO": {
+    "developer_comment": "Title field label",
+    "string": "Title"
+  },
+  "S/mavZ": {
+    "developer_comment": "Text and Images screen group",
+    "string": "Text and Images"
+  },
+  "dqnkQk": {
+    "developer_comment": "Legend placeholder",
+    "string": "Legend"
+  },
+  "ebsPd4": {
+    "developer_comment": "Image placeholder",
+    "string": "Image"
+  },
+  "uJ9eBc": {
+    "developer_comment": "Image screen title",
+    "string": "Image"
+  },
+  "z4CiV1": {
+    "developer_comment": "Text placeholder",
+    "string": "Text"
+  }
+}

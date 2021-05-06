@@ -1,0 +1,46 @@
+{
+  "+MPZRu": {
+    "developer_comment": "Background field label",
+    "string": "Background"
+  },
+  "4iBXj2": {
+    "developer_comment": "Layout field label",
+    "string": "Layout"
+  },
+  "KzEL+O": {
+    "developer_comment": "Option placeholder",
+    "string": "Option"
+  },
+  "UGHvSn": {
+    "developer_comment": "Options field label",
+    "string": "Options"
+  },
+  "WhVrDc": {
+    "developer_comment": "Answer Index field label",
+    "string": "Answer Index"
+  },
+  "ZqwBOx": {
+    "developer_comment": "Questions screen group",
+    "string": "Questions"
+  },
+  "e1I+KU": {
+    "developer_comment": "Question placeholder",
+    "string": "Question"
+  },
+  "hVE7TA": {
+    "developer_comment": "Question field label",
+    "string": "Question"
+  },
+  "li7ADr": {
+    "developer_comment": "Result placeholder",
+    "string": "Result"
+  },
+  "oSZswp": {
+    "developer_comment": "Result field label",
+    "string": "Result"
+  },
+  "zW7IVm": {
+    "developer_comment": "Quiz screen title",
+    "string": "Quiz"
+  }
+}

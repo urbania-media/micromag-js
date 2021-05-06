@@ -1,0 +1,106 @@
+{
+  "+KWsXh": {
+    "developer_comment": "Media has been use somewhere",
+    "string": "Already used"
+  },
+  "+TT1y6": {
+    "developer_comment": "Clear button label in Media Gallery",
+    "string": "Clear"
+  },
+  "+b+e40": {
+    "developer_comment": "Source from all places",
+    "string": "All sources"
+  },
+  "/T/UDH": {
+    "developer_comment": "Remove all button label",
+    "string": "Remove all"
+  },
+  "15GBmG": {
+    "developer_comment": "Dropdown default all items label",
+    "string": "All"
+  },
+  "1dPnDA": {
+    "developer_comment": "Label for tags search section",
+    "string": "Tags"
+  },
+  "3uMlsn": {
+    "developer_comment": "Source from another micromag",
+    "string": "Some other micromag"
+  },
+  "4fHMVj": {
+    "developer_comment": "Tags in Media Gallery",
+    "string": "Tags"
+  },
+  "6Z1BwP": {
+    "developer_comment": "Label for recent search section",
+    "string": "Recent searches"
+  },
+  "8cVWNh": {
+    "developer_comment": "Label for usage search section",
+    "string": "Usage"
+  },
+  "9ZdD+Q": {
+    "developer_comment": "Library source menu",
+    "string": "Library for"
+  },
+  "ChnSK6": {
+    "developer_comment": "Source from this micromag",
+    "string": "This Micromag"
+  },
+  "G31Yd0": {
+    "developer_comment": "Cancel button label in Media Gallery",
+    "string": "Cancel"
+  },
+  "JV5hRr": {
+    "developer_comment": "Top nav title for media gallery",
+    "string": "Media gallery"
+  },
+  "OkNUmk": {
+    "developer_comment": "Type Label in Media Gallery",
+    "string": "Type"
+  },
+  "P7UAe2": {
+    "developer_comment": "Media has not been used somewhere",
+    "string": "Unused"
+  },
+  "Tt4jN1": {
+    "developer_comment": "Add button label in Media Gallery",
+    "string": "Add"
+  },
+  "aovRFH": {
+    "developer_comment": "Label in Media Gallery",
+    "string": "Filename"
+  },
+  "c9VwT/": {
+    "developer_comment": "Heading in Media Gallery",
+    "string": "Technical details"
+  },
+  "eoW0tZ": {
+    "developer_comment": "Label in Media Gallery",
+    "string": "Duration"
+  },
+  "kBz8vF": {
+    "developer_comment": "Name in Media Gallery",
+    "string": "Name"
+  },
+  "liyV7Y": {
+    "developer_comment": "Label in Media Gallery",
+    "string": "Size"
+  },
+  "mv37oK": {
+    "developer_comment": "Label in Media Gallery",
+    "string": "Dimension"
+  },
+  "qIw1nW": {
+    "developer_comment": "Save in Media Gallery",
+    "string": "Save"
+  },
+  "t2cFdl": {
+    "developer_comment": "Active filters title",
+    "string": "Active filters"
+  },
+  "xKdf/C": {
+    "developer_comment": "Label for users search section",
+    "string": "Added by"
+  }
+}

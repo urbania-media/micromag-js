@@ -65,6 +65,12 @@ msgctxt "/62oe4"
 msgid "My files"
 msgstr "Mes fichiers"
 
+# Theme field label
+#: /7AJQd
+msgctxt "/7AJQd"
+msgid "Theme"
+msgstr ""
+
 # Field label
 #: /MeuM1
 msgctxt "/MeuM1"
@@ -293,6 +299,12 @@ msgctxt "650XRF"
 msgid "Survey"
 msgstr "Sondage"
 
+# Timing field label
+#: 6DV50M
+msgctxt "6DV50M"
+msgid "Timing"
+msgstr ""
+
 # Images screen group
 #: 6mX2ya
 msgctxt "6mX2ya"
@@ -346,6 +358,12 @@ msgstr "Ajouter un marqueur"
 msgctxt "8sWUOV"
 msgid "Add an font file"
 msgstr "Ajouter un fichier de polices"
+
+# Conversation field label
+#: 8tANs8
+msgctxt "8tANs8"
+msgid "Conversation"
+msgstr ""
 
 # Map screen group
 #: 8vroDx
@@ -1195,6 +1213,12 @@ msgstr "Enregistrer"
 msgctxt "qKQCxc"
 msgid "Add a marker"
 msgstr "Ajouter un marqueur"
+
+# Conversation screen title
+#: rBPIgw
+msgctxt "rBPIgw"
+msgid "Conversation"
+msgstr ""
 
 # Label when there is no item
 #: rdFCsN

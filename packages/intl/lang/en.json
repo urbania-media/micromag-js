@@ -23,6 +23,9 @@
     "/62oe4": {
         "defaultMessage": "My files"
     },
+    "/7AJQd": {
+        "defaultMessage": "Theme"
+    },
     "/MeuM1": {
         "defaultMessage": "Background video"
     },
@@ -137,6 +140,9 @@
     "650XRF": {
         "defaultMessage": "Survey"
     },
+    "6DV50M": {
+        "defaultMessage": "Timing"
+    },
     "6mX2ya": {
         "defaultMessage": "Images"
     },
@@ -163,6 +169,9 @@
     },
     "8sWUOV": {
         "defaultMessage": "Add an font file"
+    },
+    "8tANs8": {
+        "defaultMessage": "Conversation"
     },
     "8vroDx": {
         "defaultMessage": "Map"
@@ -589,6 +598,9 @@
     },
     "qKQCxc": {
         "defaultMessage": "Add a marker"
+    },
+    "rBPIgw": {
+        "defaultMessage": "Conversation"
     },
     "rdFCsN": {
         "defaultMessage": "No marker..."

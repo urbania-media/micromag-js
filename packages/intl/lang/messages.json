@@ -35,6 +35,10 @@
     "defaultMessage": "My files",
     "description": "Media gallery source"
   },
+  "/7AJQd": {
+    "defaultMessage": "Theme",
+    "description": "Theme field label"
+  },
   "/MeuM1": {
     "defaultMessage": "Background video",
     "description": "Field label"
@@ -187,6 +191,10 @@
     "defaultMessage": "Survey",
     "description": "Survey screen title"
   },
+  "6DV50M": {
+    "defaultMessage": "Timing",
+    "description": "Timing field label"
+  },
   "6mX2ya": {
     "defaultMessage": "Images",
     "description": "Images screen group"
@@ -222,6 +230,10 @@
   "8sWUOV": {
     "defaultMessage": "Add an font file",
     "description": "Button label"
+  },
+  "8tANs8": {
+    "defaultMessage": "Conversation",
+    "description": "Conversation field label"
   },
   "8vroDx": {
     "defaultMessage": "Map",
@@ -787,6 +799,10 @@
   "qKQCxc": {
     "defaultMessage": "Add a marker",
     "description": "Button label in markers field"
+  },
+  "rBPIgw": {
+    "defaultMessage": "Conversation",
+    "description": "Conversation screen title"
   },
   "rdFCsN": {
     "defaultMessage": "No marker...",
