@@ -34,32 +34,32 @@ const speakers = [
 const conversationMessages = [
     {
         message: 'Bonjour ça va?',
-        speakerId: 'jojolapinou',
+        speaker: 'jojolapinou',
         image: myImages[2],
     },
     {
         message: 'Mais oui super bien :), et toi haha? Loooool',
-        speakerId: 'paulo',
+        speaker: 'paulo',
     },
     {
         message: "Mouais bof... J'ai pas eu ma poutine",
-        speakerId: 'jojolapinou',
+        speaker: 'jojolapinou',
     },
     {
         message: 'Ah ouinnnn ?',
-        speakerId: 'paulo',
+        speaker: 'paulo',
     },
     {
         message: "T'es pas sérieuux??!!!",
-        speakerId: 'paulo',
+        speaker: 'paulo',
     },
     {
         message: '#VDM #MaVieSansPoutine',
-        speakerId: 'paulo',
+        speaker: 'paulo',
     },
     {
         message: 'Ouais man... Cet ostie en avait pu câliss...',
-        speakerId: 'jojolapinou',
+        speaker: 'jojolapinou',
         image: myImages[3],
     },
 ];

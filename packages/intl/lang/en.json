@@ -17,6 +17,9 @@
     "+VD/9p": {
         "defaultMessage": "Color"
     },
+    "+nhSvj": {
+        "defaultMessage": "No speaker..."
+    },
     "+uInZz": {
         "defaultMessage": "Circle"
     },
@@ -110,6 +113,9 @@
     "4POR3B": {
         "defaultMessage": "View screen"
     },
+    "4R/bdr": {
+        "defaultMessage": "Message"
+    },
     "4YiKNK": {
         "defaultMessage": "Select a color..."
     },
@@ -143,6 +149,9 @@
     "6DV50M": {
         "defaultMessage": "Timing"
     },
+    "6ak5YN": {
+        "defaultMessage": "Side"
+    },
     "6mX2ya": {
         "defaultMessage": "Images"
     },
@@ -151,6 +160,9 @@
     },
     "73hxYw": {
         "defaultMessage": "Author"
+    },
+    "7cGi3J": {
+        "defaultMessage": "Message"
     },
     "7j/LQ6": {
         "defaultMessage": "Rounded corners"
@@ -178,6 +190,9 @@
     },
     "9DhYaZ": {
         "defaultMessage": "Ascending"
+    },
+    "9Nk11Y": {
+        "defaultMessage": "Speaker"
     },
     "9ZdD+Q": {
         "defaultMessage": "Library for"
@@ -260,6 +275,9 @@
     "H1YcaV": {
         "defaultMessage": "Image with legend"
     },
+    "HTd98/": {
+        "defaultMessage": "No message..."
+    },
     "HseFdk": {
         "defaultMessage": "Edit"
     },
@@ -301,6 +319,9 @@
     },
     "N25iDO": {
         "defaultMessage": "Title"
+    },
+    "O2JVA+": {
+        "defaultMessage": "Left"
     },
     "OJi+eg": {
         "defaultMessage": "Label"
@@ -347,6 +368,9 @@
     "RcLsua": {
         "defaultMessage": "Message"
     },
+    "S/hfVr": {
+        "defaultMessage": "Text style"
+    },
     "S/mavZ": {
         "defaultMessage": "Text and Images"
     },
@@ -376,6 +400,9 @@
     },
     "UBXIYP": {
         "defaultMessage": "Video"
+    },
+    "UUv8FR": {
+        "defaultMessage": "Name"
     },
     "UdrdRF": {
         "defaultMessage": "Numbers style"
@@ -443,6 +470,9 @@
     "aovRFH": {
         "defaultMessage": "Filename"
     },
+    "b/jbYK": {
+        "defaultMessage": "Messages"
+    },
     "bhEaUt": {
         "defaultMessage": "Audio"
     },
@@ -509,11 +539,17 @@
     "gprXiG": {
         "defaultMessage": "Search..."
     },
+    "h7J/cs": {
+        "defaultMessage": "Speakers"
+    },
     "hVE7TA": {
         "defaultMessage": "Question"
     },
     "hpiKce": {
         "defaultMessage": "Delete screen"
+    },
+    "hqOIl4": {
+        "defaultMessage": "Avatar"
     },
     "i+3ZrF": {
         "defaultMessage": "Select a font family..."
@@ -557,6 +593,9 @@
     "menus.pagination.previous": {
         "defaultMessage": "Previous"
     },
+    "muPX/j": {
+        "defaultMessage": "Speaker"
+    },
     "muYwrB": {
         "defaultMessage": "Images"
     },
@@ -575,6 +614,9 @@
     "oLtEu6": {
         "defaultMessage": "Video 360"
     },
+    "opcGwP": {
+        "defaultMessage": "Add a speaker"
+    },
     "p6n6vY": {
         "defaultMessage": "No answer..."
     },
@@ -589,6 +631,9 @@
     },
     "pfvDzR": {
         "defaultMessage": "Added by"
+    },
+    "ptJkUl": {
+        "defaultMessage": "Right"
     },
     "q/tLk0": {
         "defaultMessage": "Are you sure you want to delete this screen?"
@@ -682,6 +727,9 @@
     },
     "xAzv6g": {
         "defaultMessage": "All sources"
+    },
+    "xCj1gI": {
+        "defaultMessage": "Add a message"
     },
     "xT/onn": {
         "defaultMessage": "Image"

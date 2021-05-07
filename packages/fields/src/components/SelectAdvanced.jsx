@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import React, { useMemo, useCallback } from 'react';
+import { useIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Select from 'react-select';
@@ -27,6 +28,8 @@ const defaultProps = {
 
 const SelectAdvancedField = ({ value, options, disabled, className, onChange, ...props }) => {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
+    const intl = useIntl();
+    const translatedOptions = useMemo( () => finalOptions.map(({label, ...option}) => ({...option, label: typeof label ==='object' ? intl.formatMessage(label) : label })));
     const onChangeOption = useCallback(
         (newValue) => {
             if (onChange !== null) {
@@ -36,7 +39,7 @@ const SelectAdvancedField = ({ value, options, disabled, className, onChange, ..
         [onChange],
     );
     const optionValue = useMemo(
-        () => finalOptions.find((opt) => (opt.value !== null ? isEqual(value, opt.value) : false)),
+        () => translatedOptions.find((opt) => (opt.value !== null ? isEqual(value, opt.value) : false)),
         [value, options],
     );
 
@@ -50,7 +53,7 @@ const SelectAdvancedField = ({ value, options, disabled, className, onChange, ..
             isClearable
             {...props}
             value={optionValue || value || null}
-            options={finalOptions}
+            options={translatedOptions}
             disabled={disabled}
             onChange={onChangeOption}
             theme={selectTheme}

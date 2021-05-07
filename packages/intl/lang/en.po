@@ -53,6 +53,12 @@ msgctxt "+VD/9p"
 msgid "Color"
 msgstr "Color"
 
+# Label when there is no item
+#: +nhSvj
+msgctxt "+nhSvj"
+msgid "No speaker..."
+msgstr "No speaker..."
+
 # Circle label
 #: +uInZz
 msgctxt "+uInZz"
@@ -239,6 +245,12 @@ msgctxt "4POR3B"
 msgid "View screen"
 msgstr "View screen"
 
+# Field label
+#: 4R/bdr
+msgctxt "4R/bdr"
+msgid "Message"
+msgstr "Message"
+
 # No value label
 #: 4YiKNK
 msgctxt "4YiKNK"
@@ -305,6 +317,12 @@ msgctxt "6DV50M"
 msgid "Timing"
 msgstr "Timing"
 
+# Field label
+#: 6ak5YN
+msgctxt "6ak5YN"
+msgid "Side"
+msgstr "Side"
+
 # Images screen group
 #: 6mX2ya
 msgctxt "6mX2ya"
@@ -322,6 +340,12 @@ msgstr "Caption"
 msgctxt "73hxYw"
 msgid "Author"
 msgstr "Author"
+
+# Messages field label
+#: 7cGi3J
+msgctxt "7cGi3J"
+msgid "Message"
+msgstr "Message"
 
 # Rounded corners label
 #: 7j/LQ6
@@ -376,6 +400,12 @@ msgstr "Map"
 msgctxt "9DhYaZ"
 msgid "Ascending"
 msgstr "Ascending"
+
+# Speakers field label
+#: 9Nk11Y
+msgctxt "9Nk11Y"
+msgid "Speaker"
+msgstr "Speaker"
 
 # Library source menu
 #: 9ZdD+Q
@@ -539,6 +569,12 @@ msgctxt "H1YcaV"
 msgid "Image with legend"
 msgstr "Image with legend"
 
+# Label when there is no item
+#: HTd98/
+msgctxt "HTd98/"
+msgid "No message..."
+msgstr "No message..."
+
 # Button to edit a screen
 #: HseFdk
 msgctxt "HseFdk"
@@ -622,6 +658,12 @@ msgstr "Gallery with captions"
 msgctxt "N25iDO"
 msgid "Title"
 msgstr "Title"
+
+# Field left label
+#: O2JVA+
+msgctxt "O2JVA+"
+msgid "Left"
+msgstr "Left"
 
 # Field label
 #: OJi+eg
@@ -712,6 +754,12 @@ msgctxt "RcLsua"
 msgid "Message"
 msgstr "Message"
 
+# Text style field label
+#: S/hfVr
+msgctxt "S/hfVr"
+msgid "Text style"
+msgstr "Text style"
+
 # Text and Images screen group
 #: S/mavZ
 msgctxt "S/mavZ"
@@ -771,6 +819,12 @@ msgstr "Add"
 msgctxt "UBXIYP"
 msgid "Video"
 msgstr "Video"
+
+# Field label
+#: UUv8FR
+msgctxt "UUv8FR"
+msgid "Name"
+msgstr "Name"
 
 # Numbers style field label
 #: UdrdRF
@@ -904,6 +958,12 @@ msgctxt "aovRFH"
 msgid "Filename"
 msgstr "Filename"
 
+# Messages field label
+#: b/jbYK
+msgctxt "b/jbYK"
+msgid "Messages"
+msgstr "Messages"
+
 # Audio screen title
 #: bhEaUt
 msgctxt "bhEaUt"
@@ -1036,6 +1096,12 @@ msgctxt "gprXiG"
 msgid "Search..."
 msgstr "Search..."
 
+# Speakers field label
+#: h7J/cs
+msgctxt "h7J/cs"
+msgid "Speakers"
+msgstr "Speakers"
+
 # Question field label
 #: hVE7TA
 msgctxt "hVE7TA"
@@ -1047,6 +1113,12 @@ msgstr "Question"
 msgctxt "hpiKce"
 msgid "Delete screen"
 msgstr "Delete screen"
+
+# Field label
+#: hqOIl4
+msgctxt "hqOIl4"
+msgid "Avatar"
+msgstr "Avatar"
 
 # No value label
 #: i+3ZrF
@@ -1130,6 +1202,12 @@ msgctxt "menus.pagination.previous"
 msgid "Previous"
 msgstr "Previous"
 
+# Field label
+#: muPX/j
+msgctxt "muPX/j"
+msgid "Speaker"
+msgstr "Speaker"
+
 # Visuals field label
 #: muYwrB
 msgctxt "muYwrB"
@@ -1166,6 +1244,12 @@ msgctxt "oLtEu6"
 msgid "Video 360"
 msgstr "Video 360"
 
+# Button label
+#: opcGwP
+msgctxt "opcGwP"
+msgid "Add a speaker"
+msgstr "Add a speaker"
+
 # Label when there is no item in answers field
 #: p6n6vY
 msgctxt "p6n6vY"
@@ -1195,6 +1279,12 @@ msgstr "AutoPlay"
 msgctxt "pfvDzR"
 msgid "Added by"
 msgstr "Added by"
+
+# Field right label
+#: ptJkUl
+msgctxt "ptJkUl"
+msgid "Right"
+msgstr "Right"
 
 # Confirmation message before deleting a screen
 #: q/tLk0
@@ -1381,6 +1471,12 @@ msgstr "Select an audio file..."
 msgctxt "xAzv6g"
 msgid "All sources"
 msgstr "All sources"
+
+# Button label
+#: xCj1gI
+msgctxt "xCj1gI"
+msgid "Add a message"
+msgstr "Add a message"
 
 # Field label
 #: xT/onn

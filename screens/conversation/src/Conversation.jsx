@@ -62,11 +62,11 @@ const ConversationScreen = ({
 
     const backgroundPlaying = current && (isView || isEdit);
 
-    const animationPlaying = current;
+    // const animationPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
 
-    const { speakers, messages } = conversation;
+    const { speakers = null, messages = null } = conversation || {};
 
     // CTA
     const hasCallToAction = callToAction !== null && callToAction.active === true;
@@ -136,26 +136,29 @@ const ConversationScreen = ({
                         }
                     >
                         <div>
-                            {speakers.map((sp) => (
+                            {(speakers || []).map((sp) => (
                                 <div>{sp.name}</div>
                             ))}
                         </div>
                         <div>
-                            {messages.map((m) => {
-                                const currentSpeaker = speakers.find((s) => s.id === m.speakerId);
+                            {(messages || []).map((m) => {
+                                const { speaker, message } = m || {};
+                                const currentSpeaker = (speakers || []).find((s) => s.id === speaker) || null;
+                                const { avatar: { url: avatarUrl} = {}, name:speakerName } = currentSpeaker || {};
+
                                 return (
-                                    <div key={m.message} className={styles.message}>
+                                    <div key={message} className={styles.message}>
                                         <div className={styles.speakerDetails}>
                                             <div className={styles.avatarContainer}>
                                                 <img
                                                     className={styles.avatar}
-                                                    src={currentSpeaker.avatar.url}
-                                                    alt={currentSpeaker.name}
+                                                    src={avatarUrl}
+                                                    alt={speakerName}
                                                 />
                                             </div>
-                                            {currentSpeaker.name}{' '}
+                                            {speakerName}{' '}
                                         </div>
-                                        <div className={styles.messageContent}>{m.message}</div>
+                                        <div className={styles.messageContent}>{message}</div>
                                     </div>
                                 );
                             })}

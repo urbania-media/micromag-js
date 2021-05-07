@@ -455,6 +455,7 @@ export const speaker = PropTypes.shape({
 export const speakers = PropTypes.arrayOf(speaker);
 
 export const conversationMessage = PropTypes.shape({
+    speaker: PropTypes.string,
     message: PropTypes.string,
     image: imageMedia,
 });
