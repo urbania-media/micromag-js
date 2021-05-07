@@ -34,8 +34,12 @@ const ScreenTypes = ({ screens, selectedTypes, className, onClickItem }) => {
     const groups = useMemo(() => {
         const groupItems = finalDefinitions.reduce((allGroups, definition) => {
             const { id, title, group = {} } = definition;
-            const { order = 0, label = {} } = group || {};
+            const { order = 0, label = {}, hidden = false } = group || {};
             const { id: messageId = null } = label || {};
+
+            if (hidden) {
+                return allGroups;
+            }
 
             const { id: groupId, name: groupName } = isMessage(label)
                 ? { id: messageId || id, name: group }

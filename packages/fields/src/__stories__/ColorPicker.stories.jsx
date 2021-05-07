@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+import { EditorProvider } from '@micromag/core/src/contexts';
+// import fieldsManager from '@micromag/fields';
+
 import ColorPicker from '../components/ColorPicker';
 
 export default {
@@ -9,7 +12,11 @@ export default {
 
 const FieldContainer = () => {
     const [value, setValue] = useState(null);
-    return <ColorPicker value={value} onChange={setValue} />;
+    return (
+        <EditorProvider story={null}>
+            <ColorPicker value={value} onChange={setValue} />
+        </EditorProvider>
+    );
 };
 
 export const normal = () => (

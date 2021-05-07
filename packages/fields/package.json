@@ -1,6 +1,6 @@
 {
     "name": "@micromag/fields",
-    "version": "0.2.250",
+    "version": "0.2.253",
     "description": "",
     "keywords": [
         "javascript"
@@ -51,17 +51,16 @@
         "react-dom": "^16.8.0"
     },
     "dependencies": {
-        "uuid": "^8.3.2",
         "@babel/runtime": "^7.13.10",
         "@ckeditor/ckeditor5-build-inline": "^24.0.0",
         "@ckeditor/ckeditor5-react": "^3.0.0",
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/core": "^0.2.250",
-        "@micromag/element-grid": "^0.2.250",
-        "@micromag/element-map": "^0.2.250",
-        "@micromag/media-gallery": "^0.2.250",
+        "@micromag/core": "^0.2.253",
+        "@micromag/element-grid": "^0.2.253",
+        "@micromag/element-map": "^0.2.253",
+        "@micromag/media-gallery": "^0.2.253",
         "classnames": "^2.2.6",
         "draft-js": "^0.11.7",
         "fuse.js": "^6.4.3",
@@ -72,7 +71,8 @@
         "react-color": "^2.19.3",
         "react-intl": "^5.12.1",
         "react-select": "^3.1.1",
-        "tinycolor2": "^1.4.2"
+        "tinycolor2": "^1.4.2",
+        "uuid": "^8.3.2"
     },
     "publishConfig": {
         "access": "public"

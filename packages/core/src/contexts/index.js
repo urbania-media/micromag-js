@@ -1,4 +1,5 @@
 export * from './ComponentsContext';
+export * from './EditorContext';
 export * from './FieldsContext';
 export * from './FontsContext';
 export * from './GoogleApiClientContext';
@@ -10,6 +11,7 @@ export * from './RoutesContext';
 export * from './ScreenContext';
 export * from './ScreensContext';
 export * from './ScreenSizeContext';
+export * from './StoryContext';
 export * from './TrackingContext';
 export * from './UppyContext';
 export * from './ViewerContext';

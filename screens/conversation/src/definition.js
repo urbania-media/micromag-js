@@ -11,6 +11,7 @@ export default {
             description: 'Text screen group',
         }),
         order: 3,
+        hidden: true,
     },
     title: defineMessage({
         defaultMessage: 'Conversation',

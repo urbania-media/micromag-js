@@ -533,6 +533,17 @@ export const theme = PropTypes.shape({
 });
 
 /**
+ * Branding
+ */
+export const branding = PropTypes.shape({
+    logo: imageMedia,
+    primaryColor: color,
+    secondaryColor: color,
+    backgroundColor: color,
+    textStyle,
+});
+
+/**
  * Metadata
  */
 export const metadata = PropTypes.shape({
@@ -639,17 +650,6 @@ export const transition = PropTypes.oneOfType([
 export const transitions = PropTypes.shape({
     in: transition,
     out: transition,
-});
-
-/**
- * Branding
- */
-export const branding = PropTypes.shape({
-    logo: imageMedia,
-    primaryColor: color,
-    secondaryColor: color,
-    backgroundColor: color,
-    textStyle,
 });
 
 /**

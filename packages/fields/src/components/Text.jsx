@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -15,6 +16,7 @@ const propTypes = {
     disabled: PropTypes.bool,
     placeholder: PropTypes.string,
     prefix: PropTypes.string,
+    autofocus: PropTypes.bool,
     className: PropTypes.string,
     onChange: PropTypes.func,
 };
@@ -28,6 +30,7 @@ const defaultProps = {
     disabled: false,
     placeholder: null,
     prefix: null,
+    autofocus: false,
     className: null,
     onChange: null,
 };
@@ -41,6 +44,7 @@ const TextField = ({
     disabled,
     placeholder,
     prefix,
+    autofocus,
     className,
     onChange,
 }) => {
@@ -62,6 +66,7 @@ const TextField = ({
             placeholder={placeholder}
             required={required}
             disabled={disabled}
+            autoFocus={autofocus}
         />
     );
 
