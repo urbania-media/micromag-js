@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
@@ -9,8 +9,8 @@ import Container from '@micromag/element-container';
 import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
 import CallToAction from '@micromag/element-call-to-action';
-
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import ConversationMessage from './ConversationMessage';
 
 import styles from './styles.module.scss';
 
@@ -97,6 +97,23 @@ const ConversationScreen = ({
         setScrolledBottom(false);
     }, [setScrolledBottom]);
 
+    const [conversationState, setConversationState] = useState([]);
+
+    const conversationStateChange = useCallback(() => {
+        const newConversationState = [...conversationState];
+        newConversationState.push(true);
+        setConversationState(newConversationState);
+    }, [conversationState, setConversationState]);
+
+    const chatBottomRef = useRef();
+
+    useEffect(() => {
+        chatBottomRef.current.scrollIntoView({ block: 'end', behavior: 'smooth' });
+    }, [conversationState]);
+
+    const timings = (messages || []).map((m) => (m.timing ? m.timing : m.message.length * 50));
+    const hesitationTimings = (messages || []).map((m) => (m.hesitation ? m.hesitation : 1000));
+
     return (
         <div
             className={classNames([
@@ -135,34 +152,51 @@ const ConversationScreen = ({
                                 : null
                         }
                     >
-                        <div>
-                            {(speakers || []).map((sp) => (
-                                <div>{sp.name}</div>
+                        <div className={styles.conversation}>
+                            {(speakers || []).map((sp, idx) => (
+                                <div key={sp.id} className={styles.conversationHeader}>
+                                    &nbsp;
+                                    {sp.name}&nbsp;
+                                    {idx < speakers.length - 1 ? 'et' : 'discutent.'}&nbsp;
+                                </div>
                             ))}
-                        </div>
-                        <div>
-                            {(messages || []).map((m) => {
-                                const { speaker, message } = m || {};
-                                const currentSpeaker = (speakers || []).find((s) => s.id === speaker) || null;
-                                const { avatar: { url: avatarUrl} = {}, name:speakerName } = currentSpeaker || {};
+                            {(messages || []).map((m, messageI) => {
+                                const previousMessage =
+                                    messageI !== 0 ? messages[messageI - 1] : null;
+
+                                const nextMessage =
+                                    messageI + 1 < messages.length - 1
+                                        ? messages[messageI + 1]
+                                        : null;
+
+                                const { speaker } = m;
+
+                                const currentSpeaker =
+                                    (speakers || []).find((s) => s.id === speaker) || null;
+
+                                const pauseTiming =
+                                    timings.slice(0, messageI).reduce((acc, t) => acc + t, 0) +
+                                    hesitationTimings
+                                        .slice(0, messageI)
+                                        .reduce((acc, t) => acc + t, 0);
+
+                                const typingTiming = timings[messageI];
 
                                 return (
-                                    <div key={message} className={styles.message}>
-                                        <div className={styles.speakerDetails}>
-                                            <div className={styles.avatarContainer}>
-                                                <img
-                                                    className={styles.avatar}
-                                                    src={avatarUrl}
-                                                    alt={speakerName}
-                                                />
-                                            </div>
-                                            {speakerName}{' '}
-                                        </div>
-                                        <div className={styles.messageContent}>{message}</div>
-                                    </div>
+                                    <ConversationMessage
+                                        key={m.message}
+                                        message={m}
+                                        previousMessage={previousMessage}
+                                        nextMessage={nextMessage}
+                                        currentSpeaker={currentSpeaker}
+                                        conversationTiming={pauseTiming}
+                                        typingTiming={typingTiming}
+                                        onChange={conversationStateChange}
+                                    />
                                 );
                             })}
                         </div>
+                        <div ref={chatBottomRef} />
                     </Layout>
                 </Scroll>
                 {!isPlaceholder && hasCallToAction ? (
