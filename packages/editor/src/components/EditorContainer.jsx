@@ -4,17 +4,20 @@ import PropTypes from 'prop-types';
 import { MemoryRouter } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import {
+    StoryProvider,
     GoogleMapsClientProvider,
     GoogleKeysProvider,
     RoutesProvider,
     UppyProvider,
     FontsProvider,
     ComponentsContext,
+    EditorProvider,
     FORMS_NAMESPACE,
 } from '@micromag/core/contexts';
 import { slug } from '@micromag/core/utils';
 import { ScreensProvider } from '@micromag/screens';
 import { FieldsProvider } from '@micromag/fields';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 import * as EditorPropTypes from '../lib/PropTypes';
 import FormsProvider from './forms/FormsProvider';
@@ -23,6 +26,7 @@ import Editor from './Editor';
 import defaultRoutes from '../data/routes.json';
 
 const propTypes = {
+    value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
     routes: EditorPropTypes.routes,
     memoryRouter: PropTypes.bool,
     basePath: PropTypes.string,
@@ -34,6 +38,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    value: null,
     routes: defaultRoutes,
     memoryRouter: false,
     basePath: null,
@@ -43,6 +48,7 @@ const defaultProps = {
 };
 
 const EditorContainer = ({
+    value,
     memoryRouter,
     routes,
     basePath,
@@ -56,46 +62,50 @@ const EditorContainer = ({
     return (
         <Router basename={!memoryRouter ? basePath : null}>
             <UppyProvider {...uppy}>
-                <ScreensProvider>
-                    <GoogleKeysProvider apiKey={googleApiKey}>
-                        <GoogleMapsClientProvider libraries={googleMapsLibraries}>
-                            <FontsProvider>
-                                <FieldsProvider>
-                                    <FormsProvider>
-                                        <ComponentsContext.Consumer>
-                                            {(manager) => {
-                                                const formComponents = manager.getComponents(
-                                                    FORMS_NAMESPACE,
-                                                );
-                                                const formRegEx =
-                                                    formComponents !== null
-                                                        ? Object.keys(formComponents)
-                                                              .map((name) => slug(name))
-                                                              .join('|')
-                                                        : null;
-                                                return (
-                                                    <RoutesProvider
-                                                        routes={{
-                                                            ...routes,
-                                                            'screen.field.form': routes[
-                                                                'screen.field.form'
-                                                            ].replace(
-                                                                /:form$/,
-                                                                `:form(${formRegEx})`,
-                                                            ),
-                                                        }}
-                                                    >
-                                                        <Editor {...props} />
-                                                    </RoutesProvider>
-                                                );
-                                            }}
-                                        </ComponentsContext.Consumer>
-                                    </FormsProvider>
-                                </FieldsProvider>
-                            </FontsProvider>
-                        </GoogleMapsClientProvider>
-                    </GoogleKeysProvider>
-                </ScreensProvider>
+                <StoryProvider story={value}>
+                    <ScreensProvider>
+                        <GoogleKeysProvider apiKey={googleApiKey}>
+                            <GoogleMapsClientProvider libraries={googleMapsLibraries}>
+                                <FontsProvider>
+                                    <FieldsProvider>
+                                        <FormsProvider>
+                                            <EditorProvider>
+                                                <ComponentsContext.Consumer>
+                                                    {(manager) => {
+                                                        const formComponents = manager.getComponents(
+                                                            FORMS_NAMESPACE,
+                                                        );
+                                                        const formRegEx =
+                                                            formComponents !== null
+                                                                ? Object.keys(formComponents)
+                                                                      .map((name) => slug(name))
+                                                                      .join('|')
+                                                                : null;
+                                                        return (
+                                                            <RoutesProvider
+                                                                routes={{
+                                                                    ...routes,
+                                                                    'screen.field.form': routes[
+                                                                        'screen.field.form'
+                                                                    ].replace(
+                                                                        /:form$/,
+                                                                        `:form(${formRegEx})`,
+                                                                    ),
+                                                                }}
+                                                            >
+                                                                <Editor value={value} {...props} />
+                                                            </RoutesProvider>
+                                                        );
+                                                    }}
+                                                </ComponentsContext.Consumer>
+                                            </EditorProvider>
+                                        </FormsProvider>
+                                    </FieldsProvider>
+                                </FontsProvider>
+                            </GoogleMapsClientProvider>
+                        </GoogleKeysProvider>
+                    </ScreensProvider>
+                </StoryProvider>
             </UppyProvider>
         </Router>
     );

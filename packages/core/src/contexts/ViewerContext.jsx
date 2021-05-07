@@ -17,7 +17,7 @@ const propTypes = {
     menuSize: PropTypes.number,
 };
 
-const defaultProps = {...defaultValue};
+const defaultProps = { ...defaultValue };
 
 export const ViewerProvider = ({ children, menuVisible, menuSize }) => {
     const value = useMemo(

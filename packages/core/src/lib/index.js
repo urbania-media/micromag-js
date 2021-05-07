@@ -1,6 +1,7 @@
 import * as PropTypes from './PropTypes';
 
 export { PropTypes };
+export { default as ColorsParser } from './ColorsParser';
 export { default as ComponentsManager } from './ComponentsManager';
 export { default as DefinitionsManager } from './DefinitionsManager';
 export { default as EventsManager } from './EventsManager';
