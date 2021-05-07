@@ -18,6 +18,7 @@ const propTypes = {
     className: PropTypes.string,
     imageClassName: PropTypes.string,
     onLoaded: PropTypes.func,
+    loadingMode: PropTypes.string,
 };
 
 const defaultProps = {
@@ -31,6 +32,7 @@ const defaultProps = {
     className: null,
     imageClassName: null,
     onLoaded: null,
+    loadingMode: 'lazy',
 };
 
 const Image = ({
@@ -44,24 +46,29 @@ const Image = ({
     className,
     imageClassName,
     onLoaded,
+    loadingMode,
 }) => {
     const { url = null, metadata = null } = media || {};
     const { width: mediaWidth = 0, height: mediaHeight = 0, description = 'image' } =
         metadata || {};
     const mediaRatio = mediaWidth / mediaHeight;
 
-    const [realSize, setRealSize] = useState(null); 
+    const [realSize, setRealSize] = useState(null);
     const { realWidth = 0, realHeight = 0 } = realSize || {};
 
-    const onImageLoaded = useCallback( (e) => {
-        const { target: { naturalWidth = 0, naturalHeight = 0 }} = e;
-        setRealSize({ width: naturalWidth, height: naturalHeight });
-        if (onLoaded !== null) {
-            onLoaded(e);
-        }
-    }, [onLoaded]);
+    const onImageLoaded = useCallback(
+        (e) => {
+            const {
+                target: { naturalWidth = 0, naturalHeight = 0 },
+            } = e;
+            setRealSize({ width: naturalWidth, height: naturalHeight });
+            if (onLoaded !== null) {
+                onLoaded(e);
+            }
+        },
+        [onLoaded],
+    );
 
-    
     const finalMediaWidth = realWidth || mediaWidth || 0;
     const finalMediaHeight = realHeight || mediaHeight || 0;
 
@@ -80,13 +87,18 @@ const Image = ({
         let imageObjectPosition = null;
 
         const { fit = null, horizontalPosition = 'center', verticalPosition = 'center' } =
-                objectFit || {};
+            objectFit || {};
 
-        if (mediaHasSize) {            
-            const {
-                width: resizedImageWidth,
-                height: resizedImageHeight,
-            } = getSizeWithinBounds(finalMediaWidth, finalMediaHeight, width, height, { cover: fit === 'cover' });
+        if (mediaHasSize) {
+            const { width: resizedImageWidth, height: resizedImageHeight } = getSizeWithinBounds(
+                finalMediaWidth,
+                finalMediaHeight,
+                width,
+                height,
+                {
+                    cover: fit === 'cover',
+                },
+            );
 
             imageWidth = resizedImageWidth;
             imageHeight = resizedImageHeight;
@@ -166,6 +178,7 @@ const Image = ({
             ])}
             style={finalImageStyle}
             onLoad={onImageLoaded}
+            loading={loadingMode}
         />
     ) : null;
 
