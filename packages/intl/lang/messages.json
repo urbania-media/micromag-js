@@ -27,6 +27,10 @@
     "defaultMessage": "Color",
     "description": "Color label"
   },
+  "+nhSvj": {
+    "defaultMessage": "No speaker...",
+    "description": "Label when there is no item"
+  },
   "+uInZz": {
     "defaultMessage": "Circle",
     "description": "Circle label"
@@ -34,6 +38,10 @@
   "/62oe4": {
     "defaultMessage": "My files",
     "description": "Media gallery source"
+  },
+  "/7AJQd": {
+    "defaultMessage": "Theme",
+    "description": "Theme field label"
   },
   "/MeuM1": {
     "defaultMessage": "Background video",
@@ -147,6 +155,10 @@
     "defaultMessage": "View screen",
     "description": "Button to view a screen"
   },
+  "4R/bdr": {
+    "defaultMessage": "Message",
+    "description": "Field label"
+  },
   "4YiKNK": {
     "defaultMessage": "Select a color...",
     "description": "No value label"
@@ -187,6 +199,14 @@
     "defaultMessage": "Survey",
     "description": "Survey screen title"
   },
+  "6DV50M": {
+    "defaultMessage": "Timing",
+    "description": "Timing field label"
+  },
+  "6ak5YN": {
+    "defaultMessage": "Side",
+    "description": "Field label"
+  },
   "6mX2ya": {
     "defaultMessage": "Images",
     "description": "Images screen group"
@@ -198,6 +218,10 @@
   "73hxYw": {
     "defaultMessage": "Author",
     "description": "Author field label"
+  },
+  "7cGi3J": {
+    "defaultMessage": "Message",
+    "description": "Messages field label"
   },
   "7j/LQ6": {
     "defaultMessage": "Rounded corners",
@@ -223,6 +247,10 @@
     "defaultMessage": "Add an font file",
     "description": "Button label"
   },
+  "8tANs8": {
+    "defaultMessage": "Conversation",
+    "description": "Conversation field label"
+  },
   "8vroDx": {
     "defaultMessage": "Map",
     "description": "Map screen group"
@@ -230,6 +258,10 @@
   "9DhYaZ": {
     "defaultMessage": "Ascending",
     "description": "Ascending field label"
+  },
+  "9Nk11Y": {
+    "defaultMessage": "Speaker",
+    "description": "Speakers field label"
   },
   "9ZdD+Q": {
     "defaultMessage": "Library for",
@@ -339,6 +371,10 @@
     "defaultMessage": "Image with legend",
     "description": "ImageLegend screen title"
   },
+  "HTd98/": {
+    "defaultMessage": "No message...",
+    "description": "Label when there is no item"
+  },
   "HseFdk": {
     "defaultMessage": "Edit",
     "description": "Button to edit a screen"
@@ -394,6 +430,10 @@
   "N25iDO": {
     "defaultMessage": "Title",
     "description": "Title field label"
+  },
+  "O2JVA+": {
+    "defaultMessage": "Left",
+    "description": "Field left label"
   },
   "OJi+eg": {
     "defaultMessage": "Label",
@@ -454,6 +494,10 @@
     "defaultMessage": "Message",
     "description": "Message field label"
   },
+  "S/hfVr": {
+    "defaultMessage": "Text style",
+    "description": "Text style field label"
+  },
   "S/mavZ": {
     "defaultMessage": "Text and Images",
     "description": "Text and Images screen group"
@@ -493,6 +537,10 @@
   "UBXIYP": {
     "defaultMessage": "Video",
     "description": "Video screen title"
+  },
+  "UUv8FR": {
+    "defaultMessage": "Name",
+    "description": "Field label"
   },
   "UdrdRF": {
     "defaultMessage": "Numbers style",
@@ -582,6 +630,10 @@
     "defaultMessage": "Filename",
     "description": "Label in Media Gallery"
   },
+  "b/jbYK": {
+    "defaultMessage": "Messages",
+    "description": "Messages field label"
+  },
   "bhEaUt": {
     "defaultMessage": "Audio",
     "description": "Audio screen title"
@@ -670,6 +722,10 @@
     "defaultMessage": "Search...",
     "description": "Input placeholder"
   },
+  "h7J/cs": {
+    "defaultMessage": "Speakers",
+    "description": "Speakers field label"
+  },
   "hVE7TA": {
     "defaultMessage": "Question",
     "description": "Question field label"
@@ -677,6 +733,10 @@
   "hpiKce": {
     "defaultMessage": "Delete screen",
     "description": "Delete screen item"
+  },
+  "hqOIl4": {
+    "defaultMessage": "Avatar",
+    "description": "Field label"
   },
   "i+3ZrF": {
     "defaultMessage": "Select a font family...",
@@ -732,6 +792,10 @@
   "menus.pagination.previous": {
     "defaultMessage": "Previous"
   },
+  "muPX/j": {
+    "defaultMessage": "Speaker",
+    "description": "Field label"
+  },
   "muYwrB": {
     "defaultMessage": "Images",
     "description": "Visuals field label"
@@ -756,6 +820,10 @@
     "defaultMessage": "Video 360",
     "description": "Video 360 placeholder"
   },
+  "opcGwP": {
+    "defaultMessage": "Add a speaker",
+    "description": "Button label"
+  },
   "p6n6vY": {
     "defaultMessage": "No answer...",
     "description": "Label when there is no item in answers field"
@@ -776,6 +844,10 @@
     "defaultMessage": "Added by",
     "description": "Media label"
   },
+  "ptJkUl": {
+    "defaultMessage": "Right",
+    "description": "Field right label"
+  },
   "q/tLk0": {
     "defaultMessage": "Are you sure you want to delete this screen?",
     "description": "Confirmation message before deleting a screen"
@@ -787,6 +859,10 @@
   "qKQCxc": {
     "defaultMessage": "Add a marker",
     "description": "Button label in markers field"
+  },
+  "rBPIgw": {
+    "defaultMessage": "Conversation",
+    "description": "Conversation screen title"
   },
   "rdFCsN": {
     "defaultMessage": "No marker...",
@@ -895,6 +971,10 @@
   "xAzv6g": {
     "defaultMessage": "All sources",
     "description": "Media gallery source"
+  },
+  "xCj1gI": {
+    "defaultMessage": "Add a message",
+    "description": "Button label"
   },
   "xT/onn": {
     "defaultMessage": "Image",

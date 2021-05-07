@@ -445,6 +445,28 @@ export const callToAction = PropTypes.shape({
     label: textElement,
 });
 
+export const speaker = PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    avatar: imageMedia,
+    side: PropTypes.oneOf(['left', 'right']),
+    color,
+});
+export const speakers = PropTypes.arrayOf(speaker);
+
+export const conversationMessage = PropTypes.shape({
+    speaker: PropTypes.string,
+    message: PropTypes.string,
+    image: imageMedia,
+});
+export const conversationMessages = PropTypes.arrayOf(conversationMessage);
+
+export const conversation = PropTypes.shape({
+    speakers,
+    textStyle,
+    messages: conversationMessages,
+});
+
 /**
  * Definitions
  */

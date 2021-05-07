@@ -1,0 +1,34 @@
+{
+  "+MPZRu": {
+    "developer_comment": "Background field label",
+    "string": "Background"
+  },
+  "3q9GPv": {
+    "developer_comment": "Quote screen title",
+    "string": "Quote"
+  },
+  "4iBXj2": {
+    "developer_comment": "Layout field label",
+    "string": "Layout"
+  },
+  "73hxYw": {
+    "developer_comment": "Author field label",
+    "string": "Author"
+  },
+  "88/Ge8": {
+    "developer_comment": "Quote field label",
+    "string": "Quote"
+  },
+  "CrzYgw": {
+    "developer_comment": "Quote placeholder",
+    "string": "Quote"
+  },
+  "fIawTr": {
+    "developer_comment": "Text screen group",
+    "string": "Text"
+  },
+  "xYqGzM": {
+    "developer_comment": "Author placeholder",
+    "string": "Author"
+  }
+}

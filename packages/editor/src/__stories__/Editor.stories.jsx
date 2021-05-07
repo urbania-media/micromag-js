@@ -165,3 +165,14 @@ export const WithSomeScreens = () => (
         }}
     />
 );
+
+export const WithConversation = () => (
+    <EditorContainer
+        defaultValue={{
+            title: 'With conversation',
+            components: [
+                { id: '1', type: 'conversation' },
+            ],
+        }}
+    />
+);

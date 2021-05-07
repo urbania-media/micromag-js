@@ -1,0 +1,122 @@
+{
+  "2/F1Q7": {
+    "developer_comment": "Item label in items field",
+    "string": "#{index}"
+  },
+  "31zuCS": {
+    "developer_comment": "Field label",
+    "string": "Line height"
+  },
+  "3E57H7": {
+    "developer_comment": "Label when there is no item in markers field",
+    "string": "No marker..."
+  },
+  "4YiKNK": {
+    "developer_comment": "No value label",
+    "string": "Select a color..."
+  },
+  "B1MeY+": {
+    "developer_comment": "Label when no value is provided to Image field",
+    "string": "Select an image..."
+  },
+  "DWEzCv": {
+    "developer_comment": "Label when no value is provided to Video field",
+    "string": "Select a video..."
+  },
+  "ET527E": {
+    "developer_comment": "Field label",
+    "string": "Font family"
+  },
+  "GMCLhn": {
+    "developer_comment": "Field label",
+    "string": "Case"
+  },
+  "OdcEna": {
+    "developer_comment": "Label when there is no item in slides field",
+    "string": "No slide..."
+  },
+  "PKCv5M": {
+    "developer_comment": "Label when there is no item in items field",
+    "string": "No item..."
+  },
+  "V+G2s+": {
+    "developer_comment": "Button label in images field",
+    "string": "Add an image"
+  },
+  "Wayj7I": {
+    "developer_comment": "Create label in font size",
+    "string": "Add {value}"
+  },
+  "Wr9olU": {
+    "developer_comment": "Fields section label",
+    "string": "Typography"
+  },
+  "Z5jrDS": {
+    "developer_comment": "Field label",
+    "string": "Letter spacing"
+  },
+  "ZxgNge": {
+    "developer_comment": "Button label in items field",
+    "string": "Add an item"
+  },
+  "aarOkd": {
+    "developer_comment": "Field label",
+    "string": "Color"
+  },
+  "e6+aGf": {
+    "developer_comment": "Label when no value is provided to Media field",
+    "string": "Select a media..."
+  },
+  "enFs4g": {
+    "developer_comment": "Name of the section in Fields",
+    "string": "Advanced"
+  },
+  "i+3ZrF": {
+    "developer_comment": "No value label",
+    "string": "Select a font family..."
+  },
+  "n2teag": {
+    "developer_comment": "Button label in answers field",
+    "string": "Add an answer"
+  },
+  "oOKmbJ": {
+    "developer_comment": "Placeholder of font size",
+    "string": "Size"
+  },
+  "p6n6vY": {
+    "developer_comment": "Label when there is no item in answers field",
+    "string": "No answer..."
+  },
+  "qKQCxc": {
+    "developer_comment": "Button label in markers field",
+    "string": "Add a marker"
+  },
+  "t+L1J/": {
+    "developer_comment": "Label when there is no item in images field",
+    "string": "No image..."
+  },
+  "tAYwqp": {
+    "developer_comment": "Button label in slides field",
+    "string": "Add a slide"
+  },
+  "tYGev7": {
+    "developer_comment": "Field label",
+    "string": "Font size"
+  },
+  "vERejo": {
+    "developer_comment": "Field label",
+    "string": "Video"
+  },
+  "wt1+dM": {
+    "developer_comment": "Label when no value is provided to Audio field",
+    "string": "Select an audio file..."
+  },
+  "xT/onn": {
+    "developer_comment": "Field label",
+    "string": "Image"
+  },
+  "y7xsPe": {
+    "developer_comment": "Fields section label",
+    "string": "Advanced settings"
+  }
+}

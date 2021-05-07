@@ -5,6 +5,15 @@ class MediasParser {
     constructor({ fieldsManager, screensManager }) {
         this.fieldsManager = fieldsManager;
         this.screensManager = screensManager;
+        this.fieldsPatternCache = {};
+    }
+
+    getFieldsPatternByScreen(type) {
+        if (typeof this.fieldsPatternCache[type] === 'undefined') {
+            const { fields = [] } = this.screensManager.getDefinition(type) || {};
+            this.fieldsPatternCache[type] = this.getMediaFieldsPattern(fields);
+        }
+        return this.fieldsPatternCache[type];
     }
 
     // Convert medias object to path
@@ -16,8 +25,7 @@ class MediasParser {
         const { components: newComponents, medias } = components.reduce(
             ({ components: previousComponents, medias: currentMedias }, screen) => {
                 const { type } = screen;
-                const { fields = [] } = this.screensManager.getDefinition(type) || {};
-                const fieldsPattern = this.getMediaFieldsPattern(fields);
+                const fieldsPattern = this.getFieldsPatternByScreen(type);
                 const { data: newScreen, medias: newMedias } = MediasParser.replaceMediasWithPaths(
                     screen,
                     fieldsPattern,
@@ -35,22 +43,26 @@ class MediasParser {
 
         if (theme !== null) {
             const { medias: themeMedias, ...newTheme } = this.toPath(theme);
-            return medias !== null || themeMedias !== null ? {
-                ...story,
-                theme: newTheme,
-                components: newComponents,
-                medias: {
-                    ...themeMedias,
-                    ...medias,
-                },
-            } : story;
+            return medias !== null || themeMedias !== null
+                ? {
+                      ...story,
+                      theme: newTheme,
+                      components: newComponents,
+                      medias: {
+                          ...themeMedias,
+                          ...medias,
+                      },
+                  }
+                : story;
         }
 
-        return medias !== null ? {
-            ...story,
-            components: newComponents,
-            medias,
-        } : story;
+        return medias !== null
+            ? {
+                  ...story,
+                  components: newComponents,
+                  medias,
+              }
+            : story;
     }
 
     // Convert path to medias object
@@ -65,27 +77,33 @@ class MediasParser {
         }
 
         // Replace path with medias objects
-        const newComponents = medias !== null ? components.map((screen) => {
-            const { type } = screen;
-            const { fields = [] } = this.screensManager.getDefinition(type) || {};
-            const fieldsPattern = this.getMediaFieldsPattern(fields);
-            return MediasParser.replacePathsWithMedias(screen, medias, fieldsPattern);
-        }) : components;
+        const newComponents =
+            medias !== null
+                ? components.map((screen) => {
+                      const { type } = screen;
+                      const fieldsPattern = this.getFieldsPatternByScreen(type);
+                      return MediasParser.replacePathsWithMedias(screen, medias, fieldsPattern);
+                  })
+                : components;
 
         // Replace path with medias object in theme
         if (theme !== null) {
             const newTheme = this.fromPath(theme, medias);
-            return newTheme !== theme || newComponents !== components ? {
-                ...story,
-                theme: newTheme,
-                components: newComponents,
-            } : story;
+            return newTheme !== theme || newComponents !== components
+                ? {
+                      ...story,
+                      theme: newTheme,
+                      components: newComponents,
+                  }
+                : story;
         }
 
-        return newComponents !== components ? {
-            ...story,
-            components: newComponents,
-        } : story;
+        return newComponents !== components
+            ? {
+                  ...story,
+                  components: newComponents,
+              }
+            : story;
     }
 
     getMediaFieldsPattern(fields, namePrefix = null) {
@@ -103,7 +121,9 @@ class MediasParser {
             return [
                 ...patterns,
                 ...(MediasParser.fieldIsMedia(fieldDefinition) ? [new RegExp(`^${path}$`)] : []),
-                ...(MediasParser.fieldIsFontFamily(fieldDefinition) ? [new RegExp(`^${path}\\.media$`)] : []),
+                ...(MediasParser.fieldIsFontFamily(fieldDefinition)
+                    ? [new RegExp(`^${path}\\.media$`)]
+                    : []),
                 ...this.getMediaFieldsPattern(subFields, path),
                 ...this.getMediaFieldsPattern(settings, path),
                 ...(itemsField !== null
@@ -150,7 +170,7 @@ class MediasParser {
             },
             dataIsArray ? [] : {},
         );
-    };
+    }
 
     static getMediaPath({ id = null }) {
         return id !== null ? `media://${id}` : null;
@@ -175,7 +195,12 @@ class MediasParser {
                     newValue = mediaPath !== null ? mediaPath : value;
                     media = mediaPath !== null ? value : null;
                 } else if (isObject(value) || isArray(value)) {
-                    const subReturn = MediasParser.replaceMediasWithPaths(value, patterns, medias, path);
+                    const subReturn = MediasParser.replaceMediasWithPaths(
+                        value,
+                        patterns,
+                        medias,
+                        path,
+                    );
                     newValue = subReturn.data;
                     subMedias = subReturn.medias;
                 } else {
@@ -206,7 +231,7 @@ class MediasParser {
                 medias,
             },
         );
-    };
+    }
 }
 
 export default MediasParser;

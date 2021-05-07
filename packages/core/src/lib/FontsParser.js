@@ -6,6 +6,15 @@ class FontsParser {
     constructor({ fieldsManager, screensManager }) {
         this.fieldsManager = fieldsManager;
         this.screensManager = screensManager;
+        this.fieldsPatternCache = {};
+    }
+
+    getFieldsPatternByScreen(type) {
+        if (typeof this.fieldsPatternCache[type] === 'undefined') {
+            const { fields = [] } = this.screensManager.getDefinition(type) || {};
+            this.fieldsPatternCache[type] = this.getFieldsPattern(fields);
+        }
+        return this.fieldsPatternCache[type];
     }
 
     // Extract fonts
@@ -18,8 +27,7 @@ class FontsParser {
         const { theme = null, components = [] } = story || {};
         const fonts = uniq(components.reduce((currentFonts, screen) => {
             const { type } = screen;
-            const { fields = [] } = this.screensManager.getDefinition(type) || {};
-            const fieldsPattern = this.getFieldsPattern(fields);
+            const fieldsPattern = this.getFieldsPatternByScreen(type);
             const newFonts = FontsParser.extractFontsWithPaths(screen, fieldsPattern);
             return newFonts.length > 0 ? [...currentFonts, ...newFonts] : currentFonts;
         }, []), 'name');
