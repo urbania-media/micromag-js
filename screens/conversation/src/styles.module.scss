@@ -27,16 +27,19 @@
 
     .message {
         max-width: 80%;
-        margin: 16px 0;
+        margin: 8px 0;
         padding: 10px;
         animation: 0.2s ease forwards appear;
+
+        &.nextTheSame {
+            margin: 1px 0;
+        }
 
         &.normalLeft {
             border-radius: 1px 15px 15px;
         }
 
         &.inBetweenLeft {
-            margin: 1px 0;
             border-radius: 1px 15px 15px 1px;
         }
 
@@ -45,7 +48,6 @@
         }
 
         &.inBetweenRight {
-            margin: 1px 0;
             border-radius: 15px 1px 1px 15px;
         }
 

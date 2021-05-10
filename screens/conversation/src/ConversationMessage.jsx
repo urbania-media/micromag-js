@@ -12,6 +12,7 @@ const propTypes = {
     message: MicromagPropTypes.message,
     previousMessage: MicromagPropTypes.message,
     nextMessage: MicromagPropTypes.message,
+    nextMessageState: PropTypes.bool,
     currentSpeaker: MicromagPropTypes.speaker,
     state: PropTypes.oneOf(['pause', 'typing', 'send']),
     conversationTiming: PropTypes.number,
@@ -24,6 +25,7 @@ const defaultProps = {
     message: null,
     previousMessage: null,
     nextMessage: null,
+    nextMessageState: null,
     currentSpeaker: null,
     state: 'pause',
     conversationTiming: null,
@@ -36,6 +38,7 @@ const ConversationMessage = ({
     message,
     previousMessage,
     nextMessage,
+    nextMessageState,
     currentSpeaker,
     state,
     conversationTiming,
@@ -81,8 +84,12 @@ const ConversationMessage = ({
     }, []);
 
     useEffect(() => {
-        onChange();
+        if (messageState === 'send') {
+            onChange();
+        }
     }, [messageState]);
+
+    const betweenStyle = IsNextSpeakerTheSame && nextMessageState;
 
     return messageState !== 'pause' ? (
         <div
@@ -110,9 +117,10 @@ const ConversationMessage = ({
                         styles.message,
                         {
                             [styles.normalRight]: right,
-                            [styles.inBetweenRight]: IsNextSpeakerTheSame === true && right,
+                            [styles.nextTheSame]: IsNextSpeakerTheSame === true,
+                            [styles.inBetweenRight]: betweenStyle && right,
                             [styles.normalLeft]: !right,
-                            [styles.inBetweenLeft]: IsNextSpeakerTheSame === true && !right,
+                            [styles.inBetweenLeft]: betweenStyle && !right,
                             [styles.last]: IsNextSpeakerTheSame === false,
                         },
                     ])}
@@ -133,7 +141,7 @@ const ConversationMessage = ({
                             <div className={styles.avatarContainer}>
                                 <img className={styles.avatar} src={avatarUrl} alt={speakerName} />
                             </div>
-                            {speakerName}&nbsp;&nbsp;
+                            &nbsp;&nbsp;{speakerName}&nbsp;&nbsp;
                         </div>
                     ) : null}
                     <div />

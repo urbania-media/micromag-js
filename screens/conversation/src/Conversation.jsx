@@ -111,8 +111,15 @@ const ConversationScreen = ({
         chatBottomRef.current.scrollIntoView({ block: 'end', behavior: 'smooth' });
     }, [conversationState]);
 
-    const timings = (messages || []).map((m) => (m.timing ? m.timing : m.message.length * 50));
-    const hesitationTimings = (messages || []).map((m) => (m.hesitation ? m.hesitation : 1000));
+    const defaultTimingFactor = 50;
+    const defaultHesitationDelay = 1000;
+
+    const timings = (messages || []).map((m) =>
+        m.timing ? m.timing : m.message.length * defaultTimingFactor,
+    );
+    const hesitationTimings = (messages || []).map((m) =>
+        m.hesitation ? m.hesitation : defaultHesitationDelay,
+    );
 
     return (
         <div
@@ -188,6 +195,7 @@ const ConversationScreen = ({
                                         message={m}
                                         previousMessage={previousMessage}
                                         nextMessage={nextMessage}
+                                        nextMessageState={conversationState[messageI + 1]}
                                         currentSpeaker={currentSpeaker}
                                         conversationTiming={pauseTiming}
                                         typingTiming={typingTiming}
