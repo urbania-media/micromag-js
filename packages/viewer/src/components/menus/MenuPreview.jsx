@@ -87,16 +87,22 @@ const ViewerMenuPreview = ({
     // Viewer theme
     const { colors = null, background = null, textStyles = null, logo: brandLogo = null } =
         viewerTheme || {};
-    const { brand: brandTextStyle = null } = textStyles || {};
-    const { primaryColor: brandPrimaryColor = null, secondaryColor: brandSecondaryColor = null } =
+    const { title: brandTextStyle = null } = textStyles || {};
+    const { primary: brandPrimaryColor = null, secondary: brandSecondaryColor = null } =
         colors || {};
-    const { color: brandBackgroundColor = null } = background || {};
+    const { color: brandBackgroundColor = null, image = null } = background || {};
+    const { url: brandImageUrl } = image || {};
 
     const borderPrimaryColorStyle = getStyleFromColor(brandPrimaryColor, 'borderColor');
     const colorSecondaryColorStyle = getStyleFromColor(brandSecondaryColor, 'color');
     const backgroundColorStyle = getStyleFromColor(brandBackgroundColor, 'backgroundColor');
-
     const { url: brandLogoUrl = null } = brandLogo || {};
+    const brandImageStyle =
+        brandImageUrl !== null
+            ? {
+                  backgroundImage: `url(${brandImageUrl})`,
+              }
+            : null;
 
     const titleStyle = brandTextStyle !== null ? getStyleFromText(brandTextStyle) : null;
 
@@ -126,7 +132,7 @@ const ViewerMenuPreview = ({
                     [className]: className !== null,
                 },
             ])}
-            style={{ ...backgroundColorStyle, width: screenWidth }}
+            style={{ ...backgroundColorStyle, ...brandImageStyle, width: screenWidth }}
             {...dragBind()}
         >
             <div className={styles.header}>
