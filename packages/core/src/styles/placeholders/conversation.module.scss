@@ -1,0 +1,40 @@
+@import '../variables';
+@import '../placeholders';
+@import '../mixins';
+
+.container {
+    text-align: center;
+
+    .icon {
+        width: 25px;
+        height: auto;
+        margin: auto;
+        margin-top: 6px;
+        color: #828282;
+    }
+
+    .message {
+        content: ' ';
+        width: 80%;
+        height: 25px;
+        margin: 3px 1px 0;
+        background-color: rgb(130, 130, 130);
+    }
+
+    .placeholderMessage0 {
+        width: 65%;
+    }
+
+    .placeholderMessage1 {
+        margin-left: auto;
+    }
+
+    .placeholderMessage2 {
+        width: 65%;
+    }
+
+    .placeholderMessage3 {
+        width: 50%;
+        margin-left: auto;
+    }
+}

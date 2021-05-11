@@ -20,6 +20,7 @@ const propTypes = {
     conversationTiming: PropTypes.number,
     typingTiming: PropTypes.number,
     onChange: PropTypes.func,
+    isView: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -33,6 +34,7 @@ const defaultProps = {
     conversationTiming: null,
     typingTiming: null,
     onChange: null,
+    isView: PropTypes.bool,
     className: null,
 };
 
@@ -46,6 +48,7 @@ const ConversationMessage = ({
     conversationTiming,
     typingTiming,
     onChange,
+    isView,
     className,
 }) => {
     const { message: messageBody, image = null } = message || {};
@@ -99,6 +102,7 @@ const ConversationMessage = ({
                 styles.messageContainer,
                 {
                     [className]: className !== null,
+                    [styles.isView]: isView === true,
                     [styles.right]: right,
                 },
             ])}
@@ -130,7 +134,7 @@ const ConversationMessage = ({
                         background: color,
                         transform: `${
                             right ? 'translate(300px, 50px)' : 'translate(-300px, 50px)'
-                        }  scale(0.5)`,
+                        }  scale(0.1)`,
                     }}
                 >
                     {!IsPrevSpeakerTheSame ? (

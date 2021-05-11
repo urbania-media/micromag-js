@@ -2,6 +2,7 @@ export { default as AdFrame } from './AdFrame';
 export { default as AdImage } from './AdImage';
 export { default as Audio } from './Audio';
 export { default as Button } from './Button';
+export { default as Conversation } from './Conversation';
 export { default as Image } from './Image';
 export { default as InputText } from './InputText';
 export { default as Line } from './Line';

@@ -93,6 +93,59 @@ const conversation = {
     messages: conversationMessages,
 };
 
+const speakers2 = [
+    {
+        id: 'marco',
+        name: 'Marco',
+        avatar: myImages[0],
+        color: '#5567ff',
+        side: 'right',
+    },
+    {
+        id: 'silvesterstalone',
+        name: 'Silvesterstalone',
+        avatar: myImages[1],
+        color: '#5e6500',
+        side: 'left',
+    },
+    {
+        id: 'leo',
+        name: 'Leo',
+        avatar: myImages[2],
+        color: '#cb4534',
+        side: 'left',
+    },
+];
+
+const conversationMessages2 = [
+    {
+        message: 'Bonjour ça va?',
+        speaker: 'marco',
+        image: myImages[2],
+    },
+    {
+        message: 'Bonjour ça va et toi?',
+        speaker: 'silvesterstalone',
+    },
+    {
+        message: 'Bonjour ça va et vous autre?',
+        speaker: 'leo',
+    },
+];
+
+const conversation2 = {
+    speakers: speakers2,
+    messages: conversationMessages2,
+};
+
 export const Normal = (storyProps) => (
+    <ConversationScreen {...storyProps} conversation={conversation} />
+);
+
+export const Preview = (storyProps) => (
+    <ConversationScreen {...storyProps} conversation={conversation2} />
+);
+
+export const Placeholder = (storyProps) => (
     <ConversationScreen {...storyProps} conversation={conversation} />
 );
