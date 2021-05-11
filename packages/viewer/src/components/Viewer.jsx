@@ -30,7 +30,7 @@ import styles from '../styles/viewer.module.scss';
 const propTypes = {
     story: MicromagPropTypes.story, // .isRequired,
     basePath: PropTypes.string,
-    theme: MicromagPropTypes.branding,
+    theme: MicromagPropTypes.viewerTheme,
     width: PropTypes.number,
     height: PropTypes.number,
     screen: PropTypes.string,
@@ -80,7 +80,7 @@ const defaultProps = {
 const Viewer = ({
     story,
     basePath,
-    theme,
+    theme: viewerTheme,
     width,
     height,
     screen: screenId,
@@ -104,11 +104,12 @@ const Viewer = ({
     const parsedStory = useParsedStory(story, { disabled: storyIsParsed }) || {};
     const { components: screens = [], title = null, metadata = null, fonts = null } = parsedStory;
 
-    const { textStyle: themeTextStyle = null } = theme || {};
+    // Viewer Theme
+    const { textStyles } = viewerTheme || {};
+    const { title: themeTextStyle = null } = textStyles || {};
     const { fontFamily: themeFont = null } = themeTextStyle || {};
 
     // Fonts
-
     const finalFonts = useMemo(
         () => [...(fonts || []), themeFont].filter((font) => font !== null),
         [fonts],
@@ -510,7 +511,7 @@ const Viewer = ({
                                 ref={menuPreviewContainerRef}
                             >
                                 <MenuPreview
-                                    theme={theme}
+                                    viewerTheme={viewerTheme}
                                     title={title}
                                     shareUrl={shareUrl}
                                     className={styles.menuPreview}

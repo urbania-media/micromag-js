@@ -527,21 +527,28 @@ export const screen = screenComponent; // @NOTE should be removed
  */
 export const theme = PropTypes.shape({
     id: PropTypes.string,
-    textStyle: PropTypes.objectOf(textStyle),
+    textStyles: PropTypes.objectOf(textStyle), // renamed to textstyles
     background: backgroundElement,
+    colors: PropTypes.objectOf(color),
     components: screenComponents,
+});
+
+export const viewerTheme = PropTypes.shape({
+    logo: imageMedia,
+    ...theme,
 });
 
 /**
  * Branding
  */
-export const branding = PropTypes.shape({
-    logo: imageMedia,
-    primaryColor: color,
-    secondaryColor: color,
-    backgroundColor: color,
-    textStyle,
-});
+
+// export const branding = PropTypes.shape({
+//     logo: imageMedia,
+//     primaryColor: color,
+//     secondaryColor: color,
+//     backgroundColor: color,
+//     textStyle,
+// });
 
 /**
  * Metadata

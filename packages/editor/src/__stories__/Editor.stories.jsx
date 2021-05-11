@@ -56,38 +56,44 @@ const viewerTheme = {
             height: 200,
         },
     },
-    primaryColor: {
-        color: '#2ebb2c',
-        alpha: 1,
-    },
-    secondaryColor: {
-        color: '#f5a623',
-        alpha: 1,
-    },
-    backgroundColor: {
-        color: '#4a90e2',
-        alpha: 1,
-    },
-    textStyle: {
-        fontFamily: {
-            type: 'google',
-            name: 'Lato',
-            variants: [
-                '100',
-                '100italic',
-                '300',
-                '300italic',
-                'regular',
-                'italic',
-                '700',
-                '700italic',
-                '900',
-                '900italic',
-            ],
-        },
-        color: {
-            color: '#9b9b9b',
+    colors: {
+        primary: {
+            color: '#2ebb2c',
             alpha: 1,
+        },
+        secondary: {
+            color: '#f5a623',
+            alpha: 1,
+        },
+    },
+    background: {
+        color: {
+            color: '#4a90e2',
+            alpha: 1,
+        },
+    },
+    textStyles: {
+        title: {
+            fontFamily: {
+                type: 'google',
+                name: 'Lato',
+                variants: [
+                    '100',
+                    '100italic',
+                    '300',
+                    '300italic',
+                    'regular',
+                    'italic',
+                    '700',
+                    '700italic',
+                    '900',
+                    '900italic',
+                ],
+            },
+            color: {
+                color: '#9b9b9b',
+                alpha: 1,
+            },
         },
     },
 };
@@ -98,7 +104,7 @@ EditorContainer.propTypes = {
         components: MicromagPropTypes.screenComponents,
     }),
     isTheme: PropTypes.bool,
-    viewerTheme: MicromagPropTypes.branding,
+    viewerTheme: MicromagPropTypes.viewerTheme,
 };
 EditorContainer.defaultProps = {
     defaultValue: null,
@@ -170,9 +176,7 @@ export const WithConversation = () => (
     <EditorContainer
         defaultValue={{
             title: 'With conversation',
-            components: [
-                { id: '1', type: 'conversation' },
-            ],
+            components: [{ id: '1', type: 'conversation' }],
         }}
     />
 );

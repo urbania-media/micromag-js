@@ -4,6 +4,16 @@ import isArray from 'lodash/isArray';
 class ThemeParser {
     constructor({ screensManager }) {
         this.screensManager = screensManager;
+        this.definitionCache = {};
+    }
+
+    getDefinitionByScreen(type, themeComponents) {
+        if (typeof this.definitionCache[type] === 'undefined') {
+            const definition = this.screensManager.getDefinition(type) || {};
+            const themeScreen = themeComponents.find((it) => it.type === type) || null;
+            this.definitionCache[type] = { definition, themeScreen };
+        }
+        return this.definitionCache[type];
     }
 
     parse(story) {
@@ -18,20 +28,19 @@ class ThemeParser {
             components: themeComponents = [],
             background: themeBackground = null,
             colors: themeColors = {},
-            textStyle: themeTextSyle = null,
+            textStyles: themeTextStyles = null,
         } = theme;
 
         const newComponents = components.reduce((currentComponents, screen, index) => {
             const { type } = screen;
-            const definition = this.screensManager.getDefinition(type) || {};
-            const themeScreen = themeComponents.find((it) => it.type === type) || null;
+            const { definition, themeScreen } = this.getDefinitionByScreen(type, themeComponents);
             const newScreen = this.parseScreen(
                 definition,
                 screen,
                 themeScreen,
                 themeBackground,
                 themeColors,
-                themeTextSyle,
+                themeTextStyles,
             );
 
             // Only switch screen if it has changed

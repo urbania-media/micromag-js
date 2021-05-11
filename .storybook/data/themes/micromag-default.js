@@ -16,7 +16,7 @@ export const defaultTheme = {
         secondary: { color: '#999', alpha: 1 },
     },
     background: { color: { color: '#0F0', alpha: 1 }, image: null, video: null },
-    textStyle: {
+    textStyles: {
         heading1: {
             fontFamily: 'Arial',
             fontSize: 32,
