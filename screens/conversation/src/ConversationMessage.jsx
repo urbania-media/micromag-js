@@ -2,7 +2,9 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Label } from '@micromag/core/components';
+// import { Label } from '@micromag/core/components';
+import Text from '@micromag/element-text';
+// import Image from '@micromag/element-image';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
@@ -84,8 +86,8 @@ const ConversationMessage = ({
     }, []);
 
     useEffect(() => {
-        if (messageState === 'send') {
-            onChange();
+        if (messageState !== 'pause' && onChange !== null) {
+            onChange(messageState);
         }
     }, [messageState]);
 
@@ -151,9 +153,7 @@ const ConversationMessage = ({
                                 <img src={image.url} alt={{ messageBody }} />
                             </div>
                         ) : null}
-                        <Label className={styles.messageBody} isHtml>
-                            {messageBody}
-                        </Label>
+                        <Text className={styles.messageBody} body={messageBody} />
                     </div>
                 </div>
             )}

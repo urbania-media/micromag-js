@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback, useState, useRef, useEffect } from 'react';
+import React, { useCallback, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
@@ -31,7 +31,7 @@ const defaultProps = {
     spacing: 20,
     background: null,
     callToAction: null,
-    current: null,
+    current: true,
     type: null,
     conversation: null,
     className: null,
@@ -61,12 +61,37 @@ const ConversationScreen = ({
     } = useScreenRenderContext();
 
     const backgroundPlaying = current && (isView || isEdit);
+    const { speakers = null, messages = null } = conversation || {};
 
-    // const animationPlaying = current;
+    const [conversationState, setConversationState] = useState([]);
+    const chatBottomRef = useRef(null);
+
+    const conversationStateChange = useCallback(
+        (state) => {
+            const newConversationState = [...conversationState];
+            if (state === 'send') {
+                newConversationState.push(true);
+                setConversationState(newConversationState);
+            }
+            chatBottomRef.current.scrollIntoView({ block: 'end', behavior: 'smooth' });
+        },
+        [conversationState, setConversationState],
+    );
+
+    const defaultTimingFactor = 50;
+    const defaultHesitationDelay = 1000;
+
+    const timings = (messages || []).map(({ timing = null, message = null } = {}) =>
+        timing !== null ? timing : message.length * defaultTimingFactor,
+    );
+    const hesitationTimings = (messages || []).map(({ hesitation = null } = {}) =>
+        hesitation !== null ? hesitation : defaultHesitationDelay,
+    );
+
+    // scroll
+    // const animatingFinished = conversationState.length === messages.length;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
-
-    const { speakers = null, messages = null } = conversation || {};
 
     // CTA
     const hasCallToAction = callToAction !== null && callToAction.active === true;
@@ -96,30 +121,6 @@ const ConversationScreen = ({
     const onScrolledNotBottom = useCallback(() => {
         setScrolledBottom(false);
     }, [setScrolledBottom]);
-
-    const [conversationState, setConversationState] = useState([]);
-
-    const conversationStateChange = useCallback(() => {
-        const newConversationState = [...conversationState];
-        newConversationState.push(true);
-        setConversationState(newConversationState);
-    }, [conversationState, setConversationState]);
-
-    const chatBottomRef = useRef();
-
-    useEffect(() => {
-        chatBottomRef.current.scrollIntoView({ block: 'end', behavior: 'smooth' });
-    }, [conversationState]);
-
-    const defaultTimingFactor = 50;
-    const defaultHesitationDelay = 1000;
-
-    const timings = (messages || []).map((m) =>
-        m.timing ? m.timing : m.message.length * defaultTimingFactor,
-    );
-    const hesitationTimings = (messages || []).map((m) =>
-        m.hesitation ? m.hesitation : defaultHesitationDelay,
-    );
 
     return (
         <div
@@ -160,49 +161,71 @@ const ConversationScreen = ({
                         }
                     >
                         <div className={styles.conversation}>
-                            {(speakers || []).map((sp, idx) => (
-                                <div key={sp.id} className={styles.conversationHeader}>
-                                    &nbsp;
-                                    {sp.name}&nbsp;
-                                    {idx < speakers.length - 1 ? 'et' : 'discutent.'}&nbsp;
+                            {!isPlaceholder ? (
+                                <div className={styles.conversationHeader}>
+                                    {(speakers || []).map((sp, idx) => (
+                                        <span key={sp.id}>
+                                            {sp.name}&nbsp;
+                                            {idx < speakers.length - 1 ? 'et' : 'discutent.'}&nbsp;
+                                        </span>
+                                    ))}
                                 </div>
-                            ))}
-                            {(messages || []).map((m, messageI) => {
-                                const previousMessage =
-                                    messageI !== 0 ? messages[messageI - 1] : null;
+                            ) : null}
+                            {!isPlaceholder
+                                ? (messages || []).map((m, messageI) => {
+                                      const previousMessage =
+                                          messageI !== 0 ? messages[messageI - 1] : null;
 
-                                const nextMessage =
-                                    messageI + 1 < messages.length - 1
-                                        ? messages[messageI + 1]
-                                        : null;
+                                      const nextMessage =
+                                          messageI + 1 < messages.length - 1
+                                              ? messages[messageI + 1]
+                                              : null;
 
-                                const { speaker } = m;
+                                      const { speaker } = m;
 
-                                const currentSpeaker =
-                                    (speakers || []).find((s) => s.id === speaker) || null;
+                                      const currentSpeaker =
+                                          (speakers || []).find((s) => s.id === speaker) || null;
 
-                                const pauseTiming =
-                                    timings.slice(0, messageI).reduce((acc, t) => acc + t, 0) +
-                                    hesitationTimings
-                                        .slice(0, messageI)
-                                        .reduce((acc, t) => acc + t, 0);
+                                      const pauseTiming =
+                                          timings
+                                              .slice(0, messageI)
+                                              .reduce((acc, t) => acc + t, 0) +
+                                          hesitationTimings
+                                              .slice(0, messageI)
+                                              .reduce((acc, t) => acc + t, 0);
 
-                                const typingTiming = timings[messageI];
+                                      const typingTiming = timings[messageI];
 
-                                return (
-                                    <ConversationMessage
-                                        key={m.message}
-                                        message={m}
-                                        previousMessage={previousMessage}
-                                        nextMessage={nextMessage}
-                                        nextMessageState={conversationState[messageI + 1]}
-                                        currentSpeaker={currentSpeaker}
-                                        conversationTiming={pauseTiming}
-                                        typingTiming={typingTiming}
-                                        onChange={conversationStateChange}
-                                    />
-                                );
-                            })}
+                                      return (
+                                          <ConversationMessage
+                                              key={m.message}
+                                              message={m}
+                                              previousMessage={previousMessage}
+                                              nextMessage={nextMessage}
+                                              nextMessageState={conversationState[messageI + 1]}
+                                              currentSpeaker={currentSpeaker}
+                                              conversationTiming={pauseTiming}
+                                              typingTiming={typingTiming}
+                                              onChange={conversationStateChange}
+                                          />
+                                      );
+                                  })
+                                : (messages || []).map((m) => {
+                                      const { speaker } = m;
+
+                                      const currentSpeaker =
+                                          (speakers || []).find((s) => s.id === speaker) || null;
+
+                                      return (
+                                          <ConversationMessage
+                                              className={styles.placeholderMessage}
+                                              key={m.message}
+                                              message={m}
+                                              currentSpeaker={currentSpeaker}
+                                              state="send"
+                                          />
+                                      );
+                                  })}
                         </div>
                         <div ref={chatBottomRef} />
                     </Layout>

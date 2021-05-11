@@ -16,8 +16,14 @@
 
     .conversationHeader {
         width: 100%;
+        padding-bottom: 16px;
         font-style: italic;
     }
+
+    // .placeholderMessage {
+    //     background-color: rgb(130, 130, 130) !important;
+    //     color: darkgray !important;
+    // }
 }
 
 .messageContainer {
@@ -29,6 +35,7 @@
         max-width: 80%;
         margin: 8px 0;
         padding: 10px;
+        transition: border-radius 0.3s ease;
         animation: 0.2s ease forwards appear;
 
         &.nextTheSame {
@@ -65,7 +72,6 @@
 
         &.right {
             flex-direction: row-reverse;
-            // justify-content: flex-end;
         }
     }
 
@@ -109,7 +115,6 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        // width: 30px;
         margin: 5px 0 10px;
         padding: 7px 10px;
         border-radius: 10px;
@@ -120,7 +125,6 @@
             height: 5px;
             margin-right: 4px;
             animation: bounce 0.35s linear infinite alternate;
-            // animation-timing-function: cubic-bezier(0, 1, 1, 0);
             border-radius: 50%;
             background: #000;
 
@@ -142,7 +146,6 @@
         }
         100% {
             transform: translateY(2px);
-            // transform: translateY(0);
             opacity: 1;
         }
     }
