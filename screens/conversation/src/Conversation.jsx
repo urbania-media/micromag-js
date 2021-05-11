@@ -51,6 +51,7 @@ const ConversationScreen = ({
     conversation,
     transitions,
     className,
+    ...props
 }) => {
     const { width, height, menuOverScreen } = useScreenSize();
     const { menuSize } = useViewer();
@@ -236,6 +237,7 @@ const ConversationScreen = ({
                                                 typingTiming={typingTiming}
                                                 onChange={conversationStateChange}
                                                 isView={isView}
+                                                {...props}
                                             />
                                         );
                                     })}

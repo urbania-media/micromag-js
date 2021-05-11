@@ -25,10 +25,8 @@ const defaultProps = {
 };
 
 const Conversation = ({ value, fields, name, className, onChange, ...props }) => {
-
     const { speakers = null } = value || {};
 
-    
     const speakerOptions = (speakers || []).map(
         ({ id, name: speakerName = null }, speakerIndex) => ({
             value: id,
@@ -36,7 +34,8 @@ const Conversation = ({ value, fields, name, className, onChange, ...props }) =>
         }),
     );
 
-    console.log(speakerOptions);
+    // eslint-disable-next-line no-console
+    console.log({ speakerOptions }, { fields });
 
     return (
         <div
@@ -47,21 +46,21 @@ const Conversation = ({ value, fields, name, className, onChange, ...props }) =>
                 },
             ])}
         >
-            { (fields || []).map(({ name:fieldName, type: fieldType, ...field}) => 
+            {(fields || []).map(({ name: fieldName, type: fieldType, ...field }) => (
                 <Field
                     key={fieldName}
                     name={`${name}.${fieldName}`}
                     type={fieldType}
                     value={typeof value !== 'undefined' && value !== null ? value[fieldName] : null}
-                    onChange={newValue => {
+                    onChange={(newValue) => {
                         if (onChange !== null) {
-                            onChange({...value, [fieldName]: newValue})
+                            onChange({ ...value, [fieldName]: newValue });
                         }
                     }}
                     {...props}
                     {...field}
                 />
-            ) }
+            ))}
         </div>
     );
 };

@@ -21,6 +21,7 @@ const propTypes = {
     typingTiming: PropTypes.number,
     onChange: PropTypes.func,
     isView: PropTypes.bool,
+    textStyle: MicromagPropTypes.textStyle,
     className: PropTypes.string,
 };
 
@@ -35,6 +36,7 @@ const defaultProps = {
     typingTiming: null,
     onChange: null,
     isView: PropTypes.bool,
+    textStyle: null,
     className: null,
 };
 
@@ -49,6 +51,7 @@ const ConversationMessage = ({
     typingTiming,
     onChange,
     isView,
+    textStyle,
     className,
 }) => {
     const { message: messageBody, image = null } = message || {};
@@ -157,7 +160,11 @@ const ConversationMessage = ({
                                 <img src={image.url} alt={{ messageBody }} />
                             </div>
                         ) : null}
-                        <Text className={styles.messageBody} body={messageBody} />
+                        <Text
+                            className={styles.messageBody}
+                            body={messageBody}
+                            textStyle={textStyle}
+                        />
                     </div>
                 </div>
             )}
