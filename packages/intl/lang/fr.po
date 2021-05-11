@@ -659,6 +659,12 @@ msgctxt "N25iDO"
 msgid "Title"
 msgstr "Titre"
 
+# Conversation placeholder
+#: NmCfTO
+msgctxt "NmCfTO"
+msgid "Conversation"
+msgstr ""
+
 # Field left label
 #: O2JVA+
 msgctxt "O2JVA+"

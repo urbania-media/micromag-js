@@ -431,6 +431,10 @@
     "defaultMessage": "Title",
     "description": "Title field label"
   },
+  "NmCfTO": {
+    "defaultMessage": "Conversation",
+    "description": "Conversation placeholder"
+  },
   "O2JVA+": {
     "defaultMessage": "Left",
     "description": "Field left label"

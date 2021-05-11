@@ -2,7 +2,7 @@ import { ScreensManager } from '@micromag/core';
 
 import audio from '@micromag/screen-audio';
 import contribution from '@micromag/screen-contribution';
-// import conversation from '@micromag/screen-conversation';
+import conversation from '@micromag/screen-conversation';
 import gallery from '@micromag/screen-gallery';
 import galleryFeed from '@micromag/screen-gallery-feed';
 import image from '@micromag/screen-image';
@@ -20,7 +20,7 @@ import video360 from '@micromag/screen-video-360';
 const manager = new ScreensManager();
 manager.addDefinition(audio);
 manager.addDefinition(contribution);
-// manager.addDefinition(conversation);
+manager.addDefinition(conversation);
 manager.addDefinition(gallery);
 manager.addDefinition(galleryFeed);
 manager.addDefinition(image);
