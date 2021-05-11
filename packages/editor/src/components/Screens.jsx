@@ -2,7 +2,7 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Route } from 'react-router';
+import { Route, useParams } from 'react-router';
 import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -18,7 +18,6 @@ import Screens from './menus/Screens';
 import ScreenTypesModal from './modals/ScreenTypes';
 
 import styles from '../styles/screens.module.scss';
-
 
 const propTypes = {
     value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
@@ -60,16 +59,26 @@ const EditorScreens = ({
     const routes = useRoutes();
     const push = useRoutePush();
     const url = useUrlGenerator();
+    const { screen: currentScreenId = null } = useParams();
 
     const createScreenFromDefinition = useCallback(
         (definition) => {
             const { components: currentScreens = [], theme = {} } = value || {};
             const { id: newScreenType } = isString(definition) ? { id: definition } : definition;
             const { components: themeComponents = null } = theme || {};
-            const themeScreen = themeComponents !== null ? themeComponents.find((it) => it.type === newScreenType) || null : null;
+            const themeScreen =
+                themeComponents !== null
+                    ? themeComponents.find((it) => it.type === newScreenType) || null
+                    : null;
 
             const newScreen = createScreen(definition, themeScreen);
-                
+
+            const currentScreenIndex = !isTheme
+                ? screens.findIndex(({ id }) => id === currentScreenId) || null
+                : null;
+
+            console.log(currentScreenIndex); // eslint-disable-line
+
             const newValue = {
                 ...value,
                 components: [...(currentScreens || []), newScreen],
@@ -80,7 +89,7 @@ const EditorScreens = ({
             }
             return newScreen;
         },
-        [value, onChange, setCreateModalOpened],
+        [value, onChange, isTheme, screens, currentScreenId, setCreateModalOpened],
     );
 
     const onOrderChange = useCallback(
@@ -122,6 +131,7 @@ const EditorScreens = ({
             let currentScreen = isTheme
                 ? screens.find(({ type }) => type === definition.id) || null
                 : null;
+
             if (!isTheme || currentScreen === null) {
                 currentScreen = createScreenFromDefinition(definition);
             }

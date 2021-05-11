@@ -18,7 +18,7 @@ const propTypes = {
     value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
     devices: MicromagPropTypes.devices,
     device: PropTypes.string,
-    viewerTheme: MicromagPropTypes.branding,
+    viewerTheme: MicromagPropTypes.viewerTheme,
     isTheme: PropTypes.bool,
     className: PropTypes.string,
     onScreenChange: PropTypes.func,

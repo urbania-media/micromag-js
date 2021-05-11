@@ -24,7 +24,7 @@ import styles from '../styles/editor.module.scss';
 const propTypes = {
     value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
     deviceScreens: MicromagPropTypes.deviceScreens,
-    viewerTheme: MicromagPropTypes.branding,
+    viewerTheme: MicromagPropTypes.viewerTheme,
     mobileView: PropTypes.oneOf(['screens', 'preview', 'form']),
     fullscreen: PropTypes.bool,
     isTheme: PropTypes.bool,

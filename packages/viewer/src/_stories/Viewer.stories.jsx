@@ -12,6 +12,8 @@ import basic from '../../../../.storybook/data/stories/basic.json';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import faceAFace from '../../../../.storybook/data/stories/faceAFace';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
+import viewerTheme from '../../../../.storybook/data/viewerTheme';
+
 import Viewer from '../components/ViewerContainer';
 
 const props = {
@@ -199,3 +201,5 @@ export const CustomFonts = () => (
         screenId="1"
     />
 );
+
+export const WithTheme = () => <Viewer theme={viewerTheme} story={{ title: 'Hello' }} />;

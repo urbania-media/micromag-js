@@ -17,7 +17,7 @@ import ShareButton from '../partials/ShareButton';
 import styles from '../../styles/menus/menu-preview.module.scss';
 
 const propTypes = {
-    theme: MicromagPropTypes.branding,
+    viewerTheme: MicromagPropTypes.viewerTheme,
     screenWidth: PropTypes.number,
     screenHeight: PropTypes.number,
     title: PropTypes.string,
@@ -35,7 +35,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    theme: null,
+    viewerTheme: null,
     screenWidth: null,
     screenHeight: null,
     title: null,
@@ -53,7 +53,7 @@ const defaultProps = {
 };
 
 const ViewerMenuPreview = ({
-    theme,
+    viewerTheme,
     screenWidth,
     screenHeight,
     title,
@@ -84,20 +84,25 @@ const ViewerMenuPreview = ({
         }
     }, [screenWidth, screenHeight, hasItems, hasSize]);
 
-    // Branding
-    const {
-        primaryColor: brandPrimaryColor = null,
-        secondaryColor: brandSecondaryColor = null,
-        backgroundColor: brandBackgroundColor = null,
-        textStyle: brandTextStyle = null,
-        logo: brandLogo = null,
-    } = theme || {};
+    // Viewer theme
+    const { colors = null, background = null, textStyles = null, logo: brandLogo = null } =
+        viewerTheme || {};
+    const { title: brandTextStyle = null } = textStyles || {};
+    const { primary: brandPrimaryColor = null, secondary: brandSecondaryColor = null } =
+        colors || {};
+    const { color: brandBackgroundColor = null, image = null } = background || {};
+    const { url: brandImageUrl } = image || {};
 
     const borderPrimaryColorStyle = getStyleFromColor(brandPrimaryColor, 'borderColor');
     const colorSecondaryColorStyle = getStyleFromColor(brandSecondaryColor, 'color');
     const backgroundColorStyle = getStyleFromColor(brandBackgroundColor, 'backgroundColor');
-
     const { url: brandLogoUrl = null } = brandLogo || {};
+    const brandImageStyle =
+        brandImageUrl !== null
+            ? {
+                  backgroundImage: `url(${brandImageUrl})`,
+              }
+            : null;
 
     const titleStyle = brandTextStyle !== null ? getStyleFromText(brandTextStyle) : null;
 
@@ -127,7 +132,7 @@ const ViewerMenuPreview = ({
                     [className]: className !== null,
                 },
             ])}
-            style={{ ...backgroundColorStyle, width: screenWidth }}
+            style={{ ...backgroundColorStyle, ...brandImageStyle, width: screenWidth }}
             {...dragBind()}
         >
             <div className={styles.header}>
