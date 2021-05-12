@@ -10,10 +10,6 @@
     align-items: center;
     justify-content: flex-start;
 
-    .conversation {
-        padding-bottom: 20px;
-    }
-
     .conversationHeader {
         width: 100%;
         padding-bottom: 16px;
@@ -22,9 +18,6 @@
 
     .empty {
         @extend %empty;
-        // width: 100%;
-        // height: 100px;
-        // margin: 0 auto;
     }
 
     .title {
@@ -91,6 +84,7 @@
         margin-right: 10px;
 
         &.right {
+            margin-right: 0;
             margin-left: 10px;
         }
     }
@@ -116,10 +110,10 @@
 
     &.isView {
         .message {
-            animation: 0.25s ease forwards appear;
+            animation: 0.25s ease-out forwards appear;
 
             &.normalLeft {
-                transform: translate(-300px, 50px);
+                transform: translate(-300px, 0) scale(0.5);
             }
 
             &.inBetweenLeft {
@@ -127,7 +121,7 @@
             }
 
             &.normalRight {
-                transform: translate(300px, 50px);
+                transform: translate(300px, 0) scale(0.5);
             }
         }
     }

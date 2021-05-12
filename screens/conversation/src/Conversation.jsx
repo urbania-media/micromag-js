@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback, useMemo, useState, useRef } from 'react';
+import React, { useCallback, useEffect, useMemo, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -77,6 +77,7 @@ const ConversationScreen = ({
     } = useScreenRenderContext();
 
     const backgroundPlaying = current && (isView || isEdit);
+    const playAnimation = current && isView && !isStatic && timingMode === 'sequence';
     const { speakers = null, messages = [] } = conversation || {};
 
     const [conversationState, setConversationState] = useState([]);
@@ -84,6 +85,7 @@ const ConversationScreen = ({
 
     const hasTitle = isTextFilled(title);
 
+    const animationFinished = messages.length === conversationState.length;
     const conversationStateChange = useCallback(
         (state) => {
             const newConversationState = [...conversationState];
@@ -91,8 +93,8 @@ const ConversationScreen = ({
                 newConversationState.push(true);
                 setConversationState(newConversationState);
             }
-            if (isView) {
-                chatBottomRef.current.scrollIntoView({ block: 'end', behavior: 'smooth' });
+            if (playAnimation) {
+                chatBottomRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' });
             }
         },
         [conversationState, setConversationState],
@@ -111,11 +113,9 @@ const ConversationScreen = ({
         hesitation !== null ? hesitation : defaultHesitationDelay,
     );
 
-    // const speakersUniqueId = useMemo(() => (speakers || []).map(() => uuid()), [speakers]);
     const messagesUniqueId = useMemo(() => (messages || []).map(() => uuid()), [speakers]);
 
     // scroll
-    // const animatingFinished = conversationState.length === messages.length;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
 
@@ -130,9 +130,7 @@ const ConversationScreen = ({
 
     const { height: callToActionHeight = 0 } = callToActionRect || {};
 
-    if (!isPlaceholder && hasCallToAction) {
-        messages.push(<div key="cta-spacer" style={{ height: callToActionHeight }} />);
-    }
+    const viewCTA = (animationFinished && !isPlaceholder && hasCallToAction) || !playAnimation;
 
     const onScrolledBottom = useCallback(
         ({ initial }) => {
@@ -147,6 +145,12 @@ const ConversationScreen = ({
     const onScrolledNotBottom = useCallback(() => {
         setScrolledBottom(false);
     }, [setScrolledBottom]);
+
+    useEffect(() => {
+        if (animationFinished && !isPlaceholder && hasCallToAction) {
+            callToActionRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' });
+        }
+    }, [animationFinished]);
 
     return (
         <div
@@ -194,14 +198,20 @@ const ConversationScreen = ({
                                     description="Conversation placeholder"
                                 />
                             }
-                            isEmpty={messages.length === 0}
+                            isEmpty={messages.length === 0 && title === null}
                         >
                             <Transitions
                                 transitions={transitions}
                                 playing={current}
                                 disabled={transitionDisabled}
                             >
-                                {hasTitle ? <Heading {...title} className={styles.title} /> : null}
+                                {hasTitle ? (
+                                    <Heading
+                                        {...title}
+                                        className={styles.title}
+                                        isEmpty={title === null}
+                                    />
+                                ) : null}
                                 <div className={styles.conversation}>
                                     {filteredMessages.map((m, messageI) => {
                                         const previousMessage =
@@ -233,31 +243,36 @@ const ConversationScreen = ({
                                                 message={m}
                                                 previousMessage={previousMessage}
                                                 nextMessage={nextMessage}
-                                                nextMessageState={conversationState[messageI + 1]}
+                                                nextMessageState={
+                                                    conversationState[messageI + 1] ||
+                                                    !playAnimation
+                                                }
                                                 currentSpeaker={currentSpeaker}
                                                 conversationTiming={pauseTiming}
                                                 typingTiming={typingTiming}
                                                 onChange={conversationStateChange}
-                                                isView={isView && timingMode === 'sequence'}
+                                                isView={playAnimation}
                                                 {...props}
                                             />
                                         );
                                     })}
                                 </div>
+                                {viewCTA ? (
+                                    <div style={{ minHeight: callToActionHeight }}>
+                                        <CallToAction
+                                            ref={callToActionRef}
+                                            className={styles.callToAction}
+                                            disabled={!scrolledBottom}
+                                            animationDisabled={isPreview}
+                                            callToAction={callToAction}
+                                        />
+                                    </div>
+                                ) : null}
                                 <div ref={chatBottomRef} />
                             </Transitions>
                         </ScreenElement>
                     </Layout>
                 </Scroll>
-                {!isPlaceholder && hasCallToAction ? (
-                    <CallToAction
-                        ref={callToActionRef}
-                        className={styles.callToAction}
-                        disabled={!scrolledBottom}
-                        animationDisabled={isPreview}
-                        callToAction={callToAction}
-                    />
-                ) : null}
             </Container>
         </div>
     );
