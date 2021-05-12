@@ -32,5 +32,5 @@ export default {
                 description: 'Field label',
             }),
         },
-    ]
+    ],
 };

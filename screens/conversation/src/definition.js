@@ -11,7 +11,6 @@ export default {
             description: 'Text screen group',
         }),
         order: 3,
-        // hidden: true,
     },
     title: defineMessage({
         defaultMessage: 'Conversation',
@@ -20,20 +19,20 @@ export default {
     component: ConversationScreen,
     layouts: ['normal'],
     fields: [
-        {
-            name: 'theme',
-            type: 'select',
-            options: [
-                {
-                    value: 'ios',
-                    label: 'iOS',
-                },
-            ],
-            label: defineMessage({
-                defaultMessage: 'Theme',
-                description: 'Theme field label',
-            }),
-        },
+        // {
+        //     name: 'theme',
+        //     type: 'select',
+        //     options: [
+        //         {
+        //             value: 'ios',
+        //             label: 'iOS',
+        //         },
+        //     ],
+        //     label: defineMessage({
+        //         defaultMessage: 'Theme',
+        //         description: 'Theme field label',
+        //     }),
+        // },
         {
             name: 'timing',
             type: 'select',
@@ -50,6 +49,17 @@ export default {
             label: defineMessage({
                 defaultMessage: 'Timing',
                 description: 'Timing field label',
+            }),
+        },
+        {
+            name: 'title',
+            type: 'heading-element',
+            theme: {
+                textStyle: 'heading1',
+            },
+            label: defineMessage({
+                defaultMessage: 'Title',
+                description: 'Title field label',
             }),
         },
         {

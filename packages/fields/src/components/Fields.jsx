@@ -28,6 +28,7 @@ const propTypes = {
     fieldClassName: PropTypes.string,
     labelClassName: PropTypes.string,
     components: MicromagPropTypes.components,
+    fieldProps: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };
 
 const defaultProps = {
@@ -47,6 +48,7 @@ const defaultProps = {
     fieldClassName: null,
     labelClassName: null,
     components: null,
+    fieldProps: null,
 };
 
 const Fields = ({
@@ -66,6 +68,7 @@ const Fields = ({
     fieldClassName,
     labelClassName,
     components,
+    fieldProps
 }) => {
     const nullableOnChange = useCallback(
         nullEmptyObject ? createNullableOnChange(onChange) : onChange,
@@ -119,14 +122,21 @@ const Fields = ({
                     isHorizontal = globalIsHorizontal,
                     isSection = false,
                 } = field;
-                const singleFieldValue = name !== null && typeof (value || {})[name] !== 'undefined' ? (value || {})[name] : null;
-                const singleFieldErrors = name !== null && typeof (errors || {})[name] !== 'undefined' ? (errors || {})[name] : null;
+                const singleFieldValue =
+                    name !== null && typeof (value || {})[name] !== 'undefined'
+                        ? (value || {})[name]
+                        : null;
+                const singleFieldErrors =
+                    name !== null && typeof (errors || {})[name] !== 'undefined'
+                        ? (errors || {})[name]
+                        : null;
                 const fieldValue = name !== null ? singleFieldValue : value;
                 const fieldErrors = name !== null ? singleFieldErrors : errors;
                 const fieldOnChange = (newFieldValue) => onFieldChange(name, newFieldValue);
                 return (
                     <Field
                         {...field}
+                        {...fieldProps}
                         key={`field-${name}-${i + 1}`}
                         name={
                             namespace !== null
