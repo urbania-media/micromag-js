@@ -3,7 +3,7 @@ import React from 'react';
 
 import ConversationScreen from '../Conversation';
 import definition from '../definition';
-import { images } from '../../../../.storybook/data';
+import { images, title } from '../../../../.storybook/data';
 
 export default {
     title: 'Screens/Conversation',
@@ -139,7 +139,7 @@ const conversation2 = {
 };
 
 export const Normal = (storyProps) => (
-    <ConversationScreen {...storyProps} conversation={conversation} />
+    <ConversationScreen {...storyProps} conversation={conversation} title={{ body: title(1) }} />
 );
 
 export const Preview = (storyProps) => (
