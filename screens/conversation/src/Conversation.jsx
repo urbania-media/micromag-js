@@ -77,6 +77,7 @@ const ConversationScreen = ({
     } = useScreenRenderContext();
 
     const backgroundPlaying = current && (isView || isEdit);
+    const playAnimation = current && isView && !isStatic && timingMode === 'sequence';
     const { speakers = null, messages = [] } = conversation || {};
 
     const [conversationState, setConversationState] = useState([]);
@@ -91,7 +92,7 @@ const ConversationScreen = ({
                 newConversationState.push(true);
                 setConversationState(newConversationState);
             }
-            if (isView) {
+            if (playAnimation) {
                 chatBottomRef.current.scrollIntoView({ block: 'end', behavior: 'smooth' });
             }
         },
@@ -111,11 +112,9 @@ const ConversationScreen = ({
         hesitation !== null ? hesitation : defaultHesitationDelay,
     );
 
-    // const speakersUniqueId = useMemo(() => (speakers || []).map(() => uuid()), [speakers]);
     const messagesUniqueId = useMemo(() => (messages || []).map(() => uuid()), [speakers]);
 
     // scroll
-    // const animatingFinished = conversationState.length === messages.length;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
 
@@ -130,9 +129,10 @@ const ConversationScreen = ({
 
     const { height: callToActionHeight = 0 } = callToActionRect || {};
 
-    if (!isPlaceholder && hasCallToAction) {
-        messages.push(<div key="cta-spacer" style={{ height: callToActionHeight }} />);
-    }
+    const ctaSpacer =
+        !isPlaceholder && hasCallToAction ? (
+            <div key="cta-spacer" style={{ height: callToActionHeight }} />
+        ) : null;
 
     const onScrolledBottom = useCallback(
         ({ initial }) => {
@@ -239,18 +239,22 @@ const ConversationScreen = ({
                                                 message={m}
                                                 previousMessage={previousMessage}
                                                 nextMessage={nextMessage}
-                                                nextMessageState={conversationState[messageI + 1]}
+                                                nextMessageState={
+                                                    conversationState[messageI + 1] ||
+                                                    !playAnimation
+                                                }
                                                 currentSpeaker={currentSpeaker}
                                                 conversationTiming={pauseTiming}
                                                 typingTiming={typingTiming}
                                                 onChange={conversationStateChange}
-                                                isView={isView && timingMode === 'sequence'}
+                                                isView={playAnimation}
                                                 {...props}
                                             />
                                         );
                                     })}
                                 </div>
                                 <div ref={chatBottomRef} />
+                                {ctaSpacer}
                             </Transitions>
                         </ScreenElement>
                     </Layout>

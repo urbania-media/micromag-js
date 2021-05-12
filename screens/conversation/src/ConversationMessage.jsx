@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 // import { Label } from '@micromag/core/components';
@@ -66,14 +66,12 @@ const ConversationMessage = ({
 
     const right = side === 'right';
 
-    const IsPrevSpeakerTheSame =
+    const isPrevSpeakerTheSame =
         previousMessage !== null && previousMessage.speaker === currentSpeakerId;
-    const IsNextSpeakerTheSame = nextMessage !== null && nextMessage.speaker === currentSpeakerId;
+    const isNextSpeakerTheSame = nextMessage !== null && nextMessage.speaker === currentSpeakerId;
 
     // Timing
     const [messageState, setMessageState] = useState(isView ? state : 'send');
-    const pauseRef = useRef(null);
-    const typingRef = useRef(null);
 
     const setMessageStateCallback = useCallback((newState) => setMessageState(newState), [
         messageState,
@@ -84,17 +82,19 @@ const ConversationMessage = ({
     const typingDuration = conversationTiming + typingTiming;
 
     useEffect(() => {
+        let pauseTimeout;
+        let typingTimeout;
+
         if (isView) {
-            pauseRef.current = setTimeout(
-                () => setMessageStateCallback('typing'),
-                pauseBeforeTyping,
-            );
-            typingRef.current = setTimeout(() => setMessageStateCallback('send'), typingDuration);
+            pauseTimeout = setTimeout(() => setMessageStateCallback('typing'), pauseBeforeTyping);
+            typingTimeout = setTimeout(() => setMessageStateCallback('send'), typingDuration);
         }
 
         return () => {
-            clearTimeout(pauseRef.current);
-            clearTimeout(typingRef.current);
+            if (isView) {
+                clearTimeout(pauseTimeout);
+                clearTimeout(typingTimeout);
+            }
         };
     }, []);
 
@@ -104,7 +104,7 @@ const ConversationMessage = ({
         }
     }, [messageState]);
 
-    const betweenStyle = IsNextSpeakerTheSame && nextMessageState;
+    const betweenStyle = isNextSpeakerTheSame && nextMessageState;
 
     return messageState !== 'pause' ? (
         <div
@@ -120,29 +120,28 @@ const ConversationMessage = ({
             {messageState === 'typing' ? (
                 <div className={styles.loadingContainer}>
                     <div className={styles.loading}>
-                        <div />
-                        <div />
-                        <div />
+                        <div className={styles.dot} />
+                        <div className={styles.dot} />
+                        <div className={styles.dot} />
                     </div>
                     <div className={styles.loadingSpeakerName}>{speakerName}</div>
                 </div>
             ) : (
                 <div
-                    key={messageBody}
                     className={classNames([
                         styles.message,
                         {
                             [styles.normalRight]: right,
-                            [styles.nextTheSame]: IsNextSpeakerTheSame === true,
+                            [styles.nextTheSame]: isNextSpeakerTheSame === true,
                             [styles.inBetweenRight]: betweenStyle && right,
                             [styles.normalLeft]: !right,
                             [styles.inBetweenLeft]: betweenStyle && !right,
-                            [styles.last]: IsNextSpeakerTheSame === false,
+                            [styles.last]: isNextSpeakerTheSame === false,
                         },
                     ])}
                     style={{ ...getStyleFromColor(color) }}
                 >
-                    {!IsPrevSpeakerTheSame ? (
+                    {!isPrevSpeakerTheSame ? (
                         <div
                             className={classNames([
                                 styles.speakerDetails,
