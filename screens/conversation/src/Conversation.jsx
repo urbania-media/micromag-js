@@ -1,8 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback, useState, useRef } from 'react';
+import React, { useCallback, useMemo, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+import { v1 as uuid } from 'uuid';
+
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { useResizeObserver, useTrackScreenEvent } from '@micromag/core/hooks';
 import { ScreenElement, Transitions } from '@micromag/core/components';
@@ -189,18 +191,23 @@ const ConversationScreen = ({
                                 <div className={styles.conversation}>
                                     {!isPlaceholder ? (
                                         <div className={styles.conversationHeader}>
-                                            {(speakers || []).map((sp, idx) => (
-                                                <span key={sp.id}>
-                                                    {sp.name}&nbsp;
-                                                    {idx < speakers.length - 1
-                                                        ? 'et'
-                                                        : 'discutent.'}
-                                                    &nbsp;
-                                                </span>
-                                            ))}
+                                            {(speakers || []).map((sp, idx) => {
+                                                const uniqueId = useMemo(() => uuid(), []);
+                                                return (
+                                                    <span key={`${sp.id}-${uniqueId}`}>
+                                                        {sp.name}&nbsp;
+                                                        {idx < speakers.length - 1
+                                                            ? 'et'
+                                                            : 'discutent.'}
+                                                        &nbsp;
+                                                    </span>
+                                                );
+                                            })}
                                         </div>
                                     ) : null}
                                     {filteredMessages.map((m, messageI) => {
+                                        const uniqueId = useMemo(() => uuid(), []);
+
                                         const previousMessage =
                                             messageI !== 0 ? messages[messageI - 1] : null;
 
@@ -227,7 +234,7 @@ const ConversationScreen = ({
 
                                         return (
                                             <ConversationMessage
-                                                key={m.message}
+                                                key={`${m.message}-${uniqueId}`}
                                                 message={m}
                                                 previousMessage={previousMessage}
                                                 nextMessage={nextMessage}
