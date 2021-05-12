@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback, useMemo, useState, useRef } from 'react';
+import React, { useCallback, useEffect, useMemo, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -85,6 +85,7 @@ const ConversationScreen = ({
 
     const hasTitle = isTextFilled(title);
 
+    const animationFinished = messages.length === conversationState.length;
     const conversationStateChange = useCallback(
         (state) => {
             const newConversationState = [...conversationState];
@@ -99,8 +100,8 @@ const ConversationScreen = ({
         [conversationState, setConversationState],
     );
 
-    const defaultTimingFactor = 50;
-    const defaultHesitationDelay = 1000;
+    const defaultTimingFactor = 10;
+    const defaultHesitationDelay = 111;
 
     const filteredMessages = (messages || []).filter((m) => m !== null);
 
@@ -129,10 +130,7 @@ const ConversationScreen = ({
 
     const { height: callToActionHeight = 0 } = callToActionRect || {};
 
-    const ctaSpacer =
-        !isPlaceholder && hasCallToAction ? (
-            <div key="cta-spacer" style={{ height: callToActionHeight }} />
-        ) : null;
+    const viewCTA = (animationFinished && !isPlaceholder && hasCallToAction) || !playAnimation;
 
     const onScrolledBottom = useCallback(
         ({ initial }) => {
@@ -147,6 +145,12 @@ const ConversationScreen = ({
     const onScrolledNotBottom = useCallback(() => {
         setScrolledBottom(false);
     }, [setScrolledBottom]);
+
+    useEffect(() => {
+        if (animationFinished && !isPlaceholder && hasCallToAction) {
+            callToActionRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' });
+        }
+    }, [animationFinished]);
 
     return (
         <div
@@ -253,21 +257,22 @@ const ConversationScreen = ({
                                         );
                                     })}
                                 </div>
+                                {viewCTA ? (
+                                    <div style={{ minHeight: callToActionHeight }}>
+                                        <CallToAction
+                                            ref={callToActionRef}
+                                            className={styles.callToAction}
+                                            disabled={!scrolledBottom}
+                                            animationDisabled={isPreview}
+                                            callToAction={callToAction}
+                                        />
+                                    </div>
+                                ) : null}
                                 <div ref={chatBottomRef} />
-                                {ctaSpacer}
                             </Transitions>
                         </ScreenElement>
                     </Layout>
                 </Scroll>
-                {!isPlaceholder && hasCallToAction ? (
-                    <CallToAction
-                        ref={callToActionRef}
-                        className={styles.callToAction}
-                        disabled={!scrolledBottom}
-                        animationDisabled={isPreview}
-                        callToAction={callToAction}
-                    />
-                ) : null}
             </Container>
         </div>
     );
