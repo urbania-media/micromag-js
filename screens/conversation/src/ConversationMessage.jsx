@@ -79,12 +79,18 @@ const ConversationMessage = ({
         setMessageState,
     ]);
 
-    const pauseBeforeTyping = isView ? conversationTiming : 0;
-    const typingDuration = isView ? conversationTiming + typingTiming : 0;
+    const pauseBeforeTyping = conversationTiming;
+    const typingDuration = conversationTiming + typingTiming;
 
     useEffect(() => {
-        pauseRef.current = setTimeout(() => setMessageStateCallback('typing'), pauseBeforeTyping);
-        typingRef.current = setTimeout(() => setMessageStateCallback('send'), typingDuration);
+        if (isView) {
+            pauseRef.current = setTimeout(
+                () => setMessageStateCallback('typing'),
+                pauseBeforeTyping,
+            );
+            typingRef.current = setTimeout(() => setMessageStateCallback('send'), typingDuration);
+        }
+
         return () => {
             clearTimeout(pauseRef.current);
             clearTimeout(typingRef.current);
