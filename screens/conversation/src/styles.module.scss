@@ -41,7 +41,7 @@
         max-width: 80%;
         margin: 8px 0;
         padding: 10px;
-        transition: border-radius 0.3s ease;
+        transition: border-radius 0.2s ease;
         background-color: #fff;
         word-break: break-all;
 
@@ -114,9 +114,9 @@
         }
     }
 
-    &.isView {
+    &.withAnimation {
         .message {
-            animation: 0.25s ease-out forwards appear;
+            animation: 0.18s ease forwards appear;
 
             &.normalLeft {
                 transform: translate(-300px, 0) scale(0.5);

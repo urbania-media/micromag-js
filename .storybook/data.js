@@ -24,6 +24,7 @@ import webFont2WOFF from './data/webfont2.woff';
 import webFont2WOFF2 from './data/webfont2.woff2';
 
 import webFont3OTF from './data/webfont3.otf';
+// import { color, image } from '../packages/fields/src/fields';
 
 const chance = new Chance();
 
@@ -216,8 +217,8 @@ export const callToAction = () => ({
     active: true,
     url: 'https://google.com',
     label: {
-        body: 'Learn more'
-    }
+        body: 'Learn more',
+    },
 });
 
 export const transitions = ({ transitionIn = 'fade', transitionOut = 'fade' } = {}) => ({
@@ -227,43 +228,43 @@ export const transitions = ({ transitionIn = 'fade', transitionOut = 'fade' } = 
 
 export const webfontFiles = {
     'webfonts.eot': {
-        url: webFontEOT
+        url: webFontEOT,
     },
     'webfonts.svg': {
-        url: webFontSVG
+        url: webFontSVG,
     },
     'webfonts.ttf': {
-        url: webFontTTF
+        url: webFontTTF,
     },
     'webfonts.woff': {
-        url: webFontWOFF
+        url: webFontWOFF,
     },
     'webfonts.woff2': {
-        url: webFontWOFF2
-    }
+        url: webFontWOFF2,
+    },
 };
 
 export const webfont2Files = {
     'webfonts.eot': {
-        url: webFont2EOT
+        url: webFont2EOT,
     },
     'webfonts.svg': {
-        url: webFont2SVG
+        url: webFont2SVG,
     },
     'webfonts.ttf': {
-        url: webFont2TTF
+        url: webFont2TTF,
     },
     'webfonts.woff': {
-        url: webFont2WOFF
+        url: webFont2WOFF,
     },
     'webfonts.woff2': {
-        url: webFont2WOFF2
-    }
+        url: webFont2WOFF2,
+    },
 };
 
 export const webfont3Files = {
     otf: {
-        url: webFont3OTF
+        url: webFont3OTF,
     },
 };
 
@@ -272,6 +273,32 @@ export const renderFormats = {
     Preview: 'preview',
     Placeholder: 'placeholder',
     Edit: 'edit',
+};
+
+export const color = () => ({
+    alpha: 1,
+    color: `#${`${Math.random().toString(16)}000000`.substring(2, 8)}`,
+});
+
+export const conversation = (messagesNumber = 10, speakersNumber = 2, timing = 'sequence') => {
+    const speakers = ([...Array(speakersNumber)] || []).map((s, idx) => ({
+        id: `${idx}`,
+        name: name(),
+        avatar: imageMedia(),
+        color: color(),
+        side: Math.random() > 0.3 ? 'left' : 'right',
+    }));
+
+    const messages = [...Array(messagesNumber)].map(() => ({
+        message: shortText({ likelyhood: 100, min: 2, max: 12 }),
+        speaker: random(speakers).id,
+        image: Math.random() < 0.2 ? imageMedia() : null,
+    }));
+    return {
+        speakers,
+        timing,
+        messages,
+    };
 };
 
 export default {

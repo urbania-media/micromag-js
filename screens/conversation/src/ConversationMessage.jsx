@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 // import { Label } from '@micromag/core/components';
@@ -17,11 +17,12 @@ const propTypes = {
     nextMessage: MicromagPropTypes.message,
     nextMessageState: PropTypes.bool,
     currentSpeaker: MicromagPropTypes.speaker,
-    state: PropTypes.oneOf(['pause', 'typing', 'send']),
+    // state: PropTypes.oneOf(['pause', 'typing', 'send']),
     conversationTiming: PropTypes.number,
     typingTiming: PropTypes.number,
     onChange: PropTypes.func,
-    isView: PropTypes.bool,
+    withAnimation: PropTypes.bool,
+    isPlaying: PropTypes.bool,
     speakerStyle: MicromagPropTypes.textStyle,
     messageStyle: MicromagPropTypes.textStyle,
     className: PropTypes.string,
@@ -33,11 +34,11 @@ const defaultProps = {
     nextMessage: null,
     nextMessageState: null,
     currentSpeaker: null,
-    state: 'pause',
     conversationTiming: null,
     typingTiming: null,
     onChange: null,
-    isView: PropTypes.bool,
+    withAnimation: false,
+    isPlaying: false,
     messageStyle: null,
     speakerStyle: null,
     className: null,
@@ -49,11 +50,11 @@ const ConversationMessage = ({
     nextMessage,
     nextMessageState,
     currentSpeaker,
-    state,
     conversationTiming,
     typingTiming,
     onChange,
-    isView,
+    withAnimation,
+    isPlaying,
     messageStyle,
     speakerStyle,
     className,
@@ -74,32 +75,34 @@ const ConversationMessage = ({
     const isNextSpeakerTheSame = nextMessage !== null && nextMessage.speaker === currentSpeakerId;
 
     // Timing
-    const [messageState, setMessageState] = useState(isView ? state : 'send');
-
-    const setMessageStateCallback = useCallback((newState) => setMessageState(newState), [
-        messageState,
-        setMessageState,
-    ]);
+    const [messageState, setMessageState] = useState(withAnimation ? 'pause' : 'send');
 
     const pauseBeforeTyping = conversationTiming;
-    const typingDuration = conversationTiming + typingTiming;
+    const typingDuration = typingTiming;
 
     useEffect(() => {
-        let pauseTimeout;
-        let typingTimeout;
-
-        if (isView) {
-            pauseTimeout = setTimeout(() => setMessageStateCallback('typing'), pauseBeforeTyping);
-            typingTimeout = setTimeout(() => setMessageStateCallback('send'), typingDuration);
+        if (!withAnimation || !isPlaying) {
+            return () => {};
         }
-
+        let timeout = null;
+        if (messageState === 'pause') {
+            timeout = setTimeout(() => setMessageState('typing'), pauseBeforeTyping);
+        } else if (messageState === 'typing') {
+            timeout = setTimeout(() => setMessageState('send'), typingDuration);
+        }
         return () => {
-            if (isView) {
-                clearTimeout(pauseTimeout);
-                clearTimeout(typingTimeout);
+            if (timeout !== null) {
+                clearTimeout(timeout);
             }
         };
-    }, []);
+    }, [
+        withAnimation,
+        isPlaying,
+        messageState,
+        setMessageState,
+        pauseBeforeTyping,
+        typingDuration,
+    ]);
 
     useEffect(() => {
         if (messageState !== 'pause' && onChange !== null) {
@@ -115,7 +118,7 @@ const ConversationMessage = ({
                 styles.messageContainer,
                 {
                     [className]: className !== null,
-                    [styles.isView]: isView === true,
+                    [styles.withAnimation]: withAnimation === true,
                     [styles.right]: right,
                 },
             ])}

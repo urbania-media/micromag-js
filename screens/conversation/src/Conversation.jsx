@@ -76,7 +76,7 @@ const ConversationScreen = ({
     } = useScreenRenderContext();
 
     const backgroundPlaying = current && (isView || isEdit);
-    const playAnimation = current && isView && !isStatic && timingMode === 'sequence';
+    const withAnimation = isView && !isStatic && timingMode === 'sequence';
     const { speakers = null, messages = [], messageStyle, speakerStyle } = conversation || {};
 
     const [conversationState, setConversationState] = useState([]);
@@ -92,27 +92,24 @@ const ConversationScreen = ({
                 newConversationState.push(true);
                 setConversationState(newConversationState);
             }
-            if (playAnimation) {
+            if (withAnimation) {
                 chatBottomRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' });
             }
         },
         [conversationState, setConversationState],
     );
 
+    // sequence timings
     const defaultTimingFactor = 50;
     const defaultHesitationDelay = 1000;
-
     const filteredMessages = (messages || []).filter((m) => m !== null);
-
     const timings = filteredMessages.map(({ timing = null, message = null } = {}) =>
         timing !== null ? timing : defaultTimingFactor * (message !== null ? message.length : 10),
     );
-
     const hesitationTimings = filteredMessages.map(({ hesitation = null } = {}) =>
         hesitation !== null ? hesitation : defaultHesitationDelay,
     );
-
-    const messagesUniqueId = useMemo(() => (messages || []).map(() => uuid()), [speakers]);
+    const messagesUniqueId = useMemo(() => (messages || []).map(() => uuid()), [messages]);
 
     // scroll
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
@@ -121,16 +118,12 @@ const ConversationScreen = ({
     // CTA
     const hasCallToAction = callToAction !== null && callToAction.active === true;
     const [scrolledBottom, setScrolledBottom] = useState(false);
-
     const {
         ref: callToActionRef,
         entry: { contentRect: callToActionRect },
     } = useResizeObserver();
-
     const { height: callToActionHeight = 0 } = callToActionRect || {};
-
-    const viewCTA = (animationFinished && !isPlaceholder && hasCallToAction) || !playAnimation;
-
+    const viewCTA = (animationFinished && !isPlaceholder && hasCallToAction) || !withAnimation;
     const onScrolledBottom = useCallback(
         ({ initial }) => {
             if (initial) {
@@ -140,7 +133,6 @@ const ConversationScreen = ({
         },
         [trackScreenEvent],
     );
-
     const onScrolledNotBottom = useCallback(() => {
         setScrolledBottom(false);
     }, [setScrolledBottom]);
@@ -226,13 +218,11 @@ const ConversationScreen = ({
                                         const currentSpeaker =
                                             (speakers || []).find((s) => s.id === speaker) || null;
 
-                                        const pauseTiming =
-                                            timings
-                                                .slice(0, messageI)
-                                                .reduce((acc, t) => acc + t, 0) +
-                                            hesitationTimings
-                                                .slice(0, messageI)
-                                                .reduce((acc, t) => acc + t, 0);
+                                        const shouldPlay =
+                                            messageI === 0 ||
+                                            conversationState[messageI - 1] === true;
+
+                                        const pauseTiming = hesitationTimings[messageI];
 
                                         const typingTiming = timings[messageI];
 
@@ -244,13 +234,14 @@ const ConversationScreen = ({
                                                 nextMessage={nextMessage}
                                                 nextMessageState={
                                                     conversationState[messageI + 1] ||
-                                                    !playAnimation
+                                                    !withAnimation
                                                 }
                                                 currentSpeaker={currentSpeaker}
                                                 conversationTiming={pauseTiming}
                                                 typingTiming={typingTiming}
                                                 onChange={conversationStateChange}
-                                                isView={playAnimation}
+                                                withAnimation={withAnimation}
+                                                isPlaying={current && shouldPlay}
                                                 messageStyle={messageStyle}
                                                 speakerStyle={speakerStyle}
                                             />

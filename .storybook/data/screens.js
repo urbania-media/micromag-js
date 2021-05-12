@@ -15,6 +15,8 @@ import {
     quote,
     author,
     callToAction,
+    conversation,
+    // color,
 } from '../data';
 
 export const allScreens = [
@@ -137,6 +139,18 @@ export const allScreens = [
         markers: markers({ withImage: true }),
         background: {
             color: { alpha: 1, color: '#0000FF' },
+        },
+        callToAction: callToAction(),
+    },
+
+    {
+        id: uuid(),
+        type: 'conversation',
+        layout: 'normal',
+        title: { body: 'Une conversation particulièrement intéressante' },
+        conversation: conversation(13, 4),
+        background: {
+            color: { alpha: 1, color: '#00000F' },
         },
         callToAction: callToAction(),
     },
@@ -287,7 +301,7 @@ export const allScreens = [
     //     background: {
     //         color: { alpha: 1, color: '#FF00FF'},
     //     },
-    //  
+    //
     //     callToAction: callToAction(),
     // },
 ];
