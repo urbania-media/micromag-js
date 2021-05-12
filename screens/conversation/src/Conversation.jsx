@@ -152,6 +152,8 @@ const ConversationScreen = ({
         }
     }, [animationFinished]);
 
+    console.log(props);
+
     return (
         <div
             className={classNames([

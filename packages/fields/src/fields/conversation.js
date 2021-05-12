@@ -8,27 +8,38 @@ export default {
     fields: [
         {
             name: 'speakers',
-            type: 'speakers',            
+            type: 'speakers',
             label: defineMessage({
                 defaultMessage: 'Speakers',
-                description: 'Speakers field label',
-            }),    
+                description: 'Field label',
+            }),
         },
         {
             name: 'messages',
-            type: 'messages',     
+            type: 'messages',
             label: defineMessage({
                 defaultMessage: 'Messages',
-                description: 'Messages field label',
-            }),          
+                description: 'Field label',
+            }),
+        },
+    ],
+    settings: [
+        {
+            name: 'messageStyle',
+            type: 'text-style',
+            label: defineMessage({
+                defaultMessage: 'Message style',
+                description: 'Field label',
+            }),
         },
         {
-            name: 'textStyle',
-            type: 'text-style',      
+            name: 'speakerStyle',
+            type: 'text-style',
+            className: 'mt-4',
             label: defineMessage({
-                defaultMessage: 'Text style',
-                description: 'Text style field label',
-            }),  
+                defaultMessage: 'Speaker style',
+                description: 'Field label',
+            }),
         },
-    ]
+    ],
 };

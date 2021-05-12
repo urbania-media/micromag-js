@@ -68,7 +68,7 @@ const Fields = ({
     fieldClassName,
     labelClassName,
     components,
-    fieldProps
+    fieldProps,
 }) => {
     const nullableOnChange = useCallback(
         nullEmptyObject ? createNullableOnChange(onChange) : onChange,

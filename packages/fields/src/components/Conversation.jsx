@@ -5,9 +5,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { FieldContextProvider } from '@micromag/core/contexts';
 
 import styles from '../styles/conversation.module.scss';
-import Field from './Field';
+import Fields from './Fields';
 
 const propTypes = {
     value: MicromagPropTypes.conversation,
@@ -34,6 +35,8 @@ const Conversation = ({ value, fields, name, className, onChange, ...props }) =>
         }),
     );
 
+    console.log(fields);
+
     return (
         <div
             className={classNames([
@@ -43,24 +46,9 @@ const Conversation = ({ value, fields, name, className, onChange, ...props }) =>
                 },
             ])}
         >
-            {(fields || []).map(({ name: fieldName, type: fieldType, ...field }) => (
-                <Field
-                    key={fieldName}
-                    name={`${name}.${fieldName}`}
-                    type={fieldType}
-                    value={typeof value !== 'undefined' && value !== null ? value[fieldName] : null}
-                    onChange={(newValue) => {
-                        if (onChange !== null) {
-                            onChange({ ...value, [fieldName]: newValue });
-                        }
-                    }}
-                    {...props}
-                    {...field}
-                    {...(fieldName === 'messages'
-                        ? { fieldProps: { options: speakerOptions } }
-                        : null)}
-                />
-            ))}
+            <FieldContextProvider context={{ options: speakerOptions }}>
+                <Fields name={name} value={value} fields={fields} onChange={onChange} {...props} />
+            </FieldContextProvider>
         </div>
     );
 };
