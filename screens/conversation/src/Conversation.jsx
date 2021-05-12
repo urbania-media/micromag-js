@@ -94,7 +94,7 @@ const ConversationScreen = ({
                 setConversationState(newConversationState);
             }
             if (playAnimation) {
-                chatBottomRef.current.scrollIntoView({ block: 'end', behavior: 'smooth' });
+                chatBottomRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' });
             }
         },
         [conversationState, setConversationState],
