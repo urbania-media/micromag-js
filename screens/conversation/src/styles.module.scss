@@ -39,8 +39,6 @@
         margin: 8px 0;
         padding: 10px;
         transition: border-radius 0.3s ease;
-        animation: ease forwards appear;
-        animation-duration: 0;
         background-color: #fff;
 
         &.nextTheSame {
@@ -108,7 +106,19 @@
 
     &.isView {
         .message {
-            animation-duration: 0.25s;
+            animation: 0.25s ease forwards appear;
+
+            &.normalLeft {
+                transform: translate(-300px, 50px);
+            }
+
+            &.inBetweenLeft {
+                border-radius: 1px 15px 15px 1px;
+            }
+
+            &.normalRight {
+                transform: translate(300px, 50px);
+            }
         }
     }
 
