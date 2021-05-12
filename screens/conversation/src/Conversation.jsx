@@ -194,14 +194,20 @@ const ConversationScreen = ({
                                     description="Conversation placeholder"
                                 />
                             }
-                            isEmpty={messages.length === 0}
+                            isEmpty={messages.length === 0 && title === null}
                         >
                             <Transitions
                                 transitions={transitions}
                                 playing={current}
                                 disabled={transitionDisabled}
                             >
-                                {hasTitle ? <Heading {...title} className={styles.title} /> : null}
+                                {hasTitle ? (
+                                    <Heading
+                                        {...title}
+                                        className={styles.title}
+                                        isEmpty={title === null}
+                                    />
+                                ) : null}
                                 <div className={styles.conversation}>
                                     {filteredMessages.map((m, messageI) => {
                                         const previousMessage =
