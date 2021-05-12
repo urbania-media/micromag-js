@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
+import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import ConversationScreen from '../Conversation';
 import definition from '../definition';
-import { images, title } from '../../../../.storybook/data';
+import { images, title, callToAction } from '../../../../.storybook/data';
 
 export default {
     title: 'Screens/Conversation',
@@ -149,3 +150,17 @@ export const Preview = (storyProps) => (
 export const Placeholder = (storyProps) => (
     <ConversationScreen {...storyProps} conversation={conversation} />
 );
+
+export const Static = (storyProps) => (
+    <ConversationScreen {...storyProps} conversation={conversation} />
+);
+
+export const Edit = (storyProps) => (
+    <ConversationScreen {...storyProps} conversation={conversation} />
+);
+
+export const WithCallToAction = (storyProps) => (
+    <ConversationScreen {...storyProps} conversation={conversation} callToAction={callToAction()} />
+);
+
+export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
