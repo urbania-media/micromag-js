@@ -110,10 +110,10 @@
 
     &.isView {
         .message {
-            animation: 0.25s ease forwards appear;
+            animation: 0.25s ease-out forwards appear;
 
             &.normalLeft {
-                transform: translate(-300px, 50px);
+                transform: translate(-300px, 0) scale(0.5);
             }
 
             &.inBetweenLeft {
@@ -121,7 +121,7 @@
             }
 
             &.normalRight {
-                transform: translate(300px, 50px);
+                transform: translate(300px, 0) scale(0.5);
             }
         }
     }
