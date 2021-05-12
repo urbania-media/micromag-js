@@ -21,14 +21,14 @@ const speakers = [
         id: 'paulo',
         name: 'Paulo',
         avatar: myImages[0],
-        color: '#f23',
+        color: { color: '#f23', alpha: 1 },
         side: 'right',
     },
     {
         id: 'jojolapinou',
         name: 'Jojolapinou',
         avatar: myImages[1],
-        color: '#e00997',
+        color: { color: '#e00997', alpha: 1 },
         side: 'left',
     },
 ];
@@ -89,7 +89,7 @@ const conversationMessages = [
 
 const conversation = {
     speakers,
-    // textStyle,
+    timing: 'sequenced',
     messages: conversationMessages,
 };
 
@@ -98,21 +98,21 @@ const speakers2 = [
         id: 'marco',
         name: 'Marco',
         avatar: myImages[0],
-        color: '#5567ff',
+        color: { color: '#5567ff', alpha: 1 },
         side: 'right',
     },
     {
         id: 'silvesterstalone',
         name: 'Silvesterstalone',
         avatar: myImages[1],
-        color: '#5e6500',
+        color: { color: '#5e6500', alpha: 1 },
         side: 'left',
     },
     {
         id: 'leo',
         name: 'Leo',
         avatar: myImages[2],
-        color: '#cb4534',
+        color: { color: '#cb4534', alpha: 1 },
         side: 'left',
     },
 ];

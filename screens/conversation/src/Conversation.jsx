@@ -21,6 +21,7 @@ import styles from './styles.module.scss';
 const propTypes = {
     // id: PropTypes.string,
     // layout: PropTypes.oneOf(['normal']),
+    timing: PropTypes.oneOf(['instant', 'sequence']),
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
@@ -33,6 +34,7 @@ const propTypes = {
 
 const defaultProps = {
     // layout: 'normal',
+    timing: 'sequence',
     spacing: 20,
     background: null,
     callToAction: null,
@@ -45,6 +47,7 @@ const defaultProps = {
 
 const ConversationScreen = ({
     // layout,
+    timing: timingMode,
     spacing,
     background,
     callToAction,
@@ -101,7 +104,7 @@ const ConversationScreen = ({
         hesitation !== null ? hesitation : defaultHesitationDelay,
     );
 
-    const speakersUniqueId = useMemo(() => (speakers || []).map(() => uuid()), [speakers]);
+    // const speakersUniqueId = useMemo(() => (speakers || []).map(() => uuid()), [speakers]);
     const messagesUniqueId = useMemo(() => (messages || []).map(() => uuid()), [speakers]);
 
     // scroll
@@ -192,19 +195,6 @@ const ConversationScreen = ({
                                 disabled={transitionDisabled}
                             >
                                 <div className={styles.conversation}>
-                                    {!isPlaceholder ? (
-                                        <div className={styles.conversationHeader}>
-                                            {(speakers || []).map((sp, idx) => (
-                                                <span key={`${sp.id}-${speakersUniqueId[idx]}`}>
-                                                    {sp.name}&nbsp;
-                                                    {idx < speakers.length - 1
-                                                        ? 'et'
-                                                        : 'discutent.'}
-                                                    &nbsp;
-                                                </span>
-                                            ))}
-                                        </div>
-                                    ) : null}
                                     {filteredMessages.map((m, messageI) => {
                                         const previousMessage =
                                             messageI !== 0 ? messages[messageI - 1] : null;
@@ -240,7 +230,7 @@ const ConversationScreen = ({
                                                 conversationTiming={pauseTiming}
                                                 typingTiming={typingTiming}
                                                 onChange={conversationStateChange}
-                                                isView={isView}
+                                                isView={isView && timingMode === 'sequence'}
                                                 {...props}
                                             />
                                         );

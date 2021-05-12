@@ -5,6 +5,7 @@ import classNames from 'classnames';
 // import { Label } from '@micromag/core/components';
 import Text from '@micromag/element-text';
 // import Image from '@micromag/element-image';
+import { getStyleFromColor } from '@micromag/core/utils';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
@@ -139,9 +140,7 @@ const ConversationMessage = ({
                             [styles.last]: IsNextSpeakerTheSame === false,
                         },
                     ])}
-                    style={{
-                        background: color,
-                    }}
+                    style={{ ...getStyleFromColor(color) }}
                 >
                     {!IsPrevSpeakerTheSame ? (
                         <div
