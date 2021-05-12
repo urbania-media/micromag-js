@@ -6,7 +6,7 @@ import Items from '../components/Items';
 export default {
     id: 'speakers',
     component: Items,
-    newDefaultValue: { id: uuid(), side: 'left' },
+    getDefaultValue: () => ({ id: uuid(), side: 'left' }),
     noItemLabel: defineMessage({
         defaultMessage: 'No speaker...',
         description: 'Label when there is no item',

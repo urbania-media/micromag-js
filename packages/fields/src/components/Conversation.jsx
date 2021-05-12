@@ -56,7 +56,9 @@ const Conversation = ({ value, fields, name, className, onChange, ...props }) =>
                     }}
                     {...props}
                     {...field}
-                    {...(fieldName === 'messages' ? { options: speakerOptions } : null)}
+                    {...(fieldName === 'messages'
+                        ? { fieldProps: { options: speakerOptions } }
+                        : null)}
                 />
             ))}
         </div>

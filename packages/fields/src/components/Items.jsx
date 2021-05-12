@@ -14,7 +14,7 @@ import Field from './Field';
 const propTypes = {
     name: PropTypes.string,
     value: PropTypes.arrayOf(PropTypes.object), // eslint-disable-line
-    newDefaultValue: PropTypes.object, // eslint-disable-line
+    getDefaultValue: PropTypes.func,
     noItemLabel: MicromagPropTypes.label,
     addItemLabel: MicromagPropTypes.label,
     itemFieldLabel: PropTypes.oneOfType([PropTypes.func, MicromagPropTypes.label]),
@@ -30,7 +30,7 @@ const propTypes = {
 const defaultProps = {
     name: null,
     value: null,
-    newDefaultValue: {},
+    getDefaultValue: null,
     noItemLabel: (
         <FormattedMessage
             defaultMessage="No item..."
@@ -60,7 +60,7 @@ const defaultProps = {
 const ItemsField = ({
     name,
     value,
-    newDefaultValue,
+    getDefaultValue,
     noItemLabel,
     addItemLabel,
     itemFieldLabel,
@@ -77,6 +77,7 @@ const ItemsField = ({
         isFieldForm || (itemComponent !== null ? itemComponent.withForm || false : false);
 
     const onClickAdd = useCallback(() => {
+        const newDefaultValue = getDefaultValue !== null ? getDefaultValue() : null;
         const newValue = [...(value || []), newDefaultValue];
         if (onChange !== null) {
             onChange(newValue);
@@ -84,7 +85,7 @@ const ItemsField = ({
         if (finalIsFieldForm) {
             gotoFieldForm(`${name}.${newValue.length - 1}`);
         }
-    }, [value, onChange, newDefaultValue, finalIsFieldForm, gotoFieldForm, name]);
+    }, [value, onChange, getDefaultValue, finalIsFieldForm, gotoFieldForm, name]);
 
     const onItemChange = useCallback(
         (index, newValue) => {

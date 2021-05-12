@@ -28,6 +28,7 @@ const propTypes = {
     fieldClassName: PropTypes.string,
     labelClassName: PropTypes.string,
     components: MicromagPropTypes.components,
+    fieldProps: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };
 
 const defaultProps = {
@@ -47,6 +48,7 @@ const defaultProps = {
     fieldClassName: null,
     labelClassName: null,
     components: null,
+    fieldProps: null,
 };
 
 const Fields = ({
@@ -66,7 +68,7 @@ const Fields = ({
     fieldClassName,
     labelClassName,
     components,
-    ...props
+    fieldProps
 }) => {
     const nullableOnChange = useCallback(
         nullEmptyObject ? createNullableOnChange(onChange) : onChange,
@@ -134,7 +136,7 @@ const Fields = ({
                 return (
                     <Field
                         {...field}
-                        {...props}
+                        {...fieldProps}
                         key={`field-${name}-${i + 1}`}
                         name={
                             namespace !== null
