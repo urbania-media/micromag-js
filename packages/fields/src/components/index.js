@@ -33,6 +33,7 @@ export { default as Map } from './Map';
 export { default as Margin } from './Margin';
 export { default as Markers } from './Markers';
 export { default as Marker } from './Marker';
+export { default as Message } from './Message';
 export { default as Number } from './Number';
 export { default as Fit } from './Fit';
 export { default as Radios } from './Radios';

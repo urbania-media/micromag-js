@@ -68,7 +68,7 @@ const Fields = ({
     fieldClassName,
     labelClassName,
     components,
-    fieldProps
+    fieldProps,
 }) => {
     const nullableOnChange = useCallback(
         nullEmptyObject ? createNullableOnChange(onChange) : onChange,
@@ -133,6 +133,7 @@ const Fields = ({
                 const fieldValue = name !== null ? singleFieldValue : value;
                 const fieldErrors = name !== null ? singleFieldErrors : errors;
                 const fieldOnChange = (newFieldValue) => onFieldChange(name, newFieldValue);
+                console.log(name, field);
                 return (
                     <Field
                         {...field}

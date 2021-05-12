@@ -91,10 +91,11 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
     const [screenSettingsOpened, setScreenSettingsOpened] = useState(false);
     const [deleteScreenModalOpened, setDeleteScreenModalOpened] = useState(false);
     const [fieldForms, setFieldForms] = useState({});
+    const [fieldContext, setFieldContext] = useState(null);
 
     // Callbacks
     const gotoFieldForm = useCallback(
-        (field = null, formName = null) => {
+        (field = null, formName = null, context = null) => {
             const hasField = field !== null;
             const fieldRoute = formName !== null ? 'screen.field.form' : 'screen.field';
             routePush(hasField ? fieldRoute : 'screen', {
@@ -106,8 +107,9 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
                 ...fieldForms,
                 [`${field}${formName !== null ? `:${formName}` : ''}`]: url,
             });
+            setFieldContext(context);
         },
-        [routePush, screenId, url, fieldForms, setFieldForms],
+        [routePush, screenId, url, fieldForms, setFieldForms, fieldContext, setFieldContext],
     );
 
     const closeFieldForm = useCallback(
@@ -274,13 +276,14 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
                                         className={styles.form}
                                         gotoFieldForm={gotoFieldForm}
                                         closeFieldForm={closeFieldForm}
+                                        fieldContext={fieldContext}
                                         onChange={onScreenFormChange}
                                     />
                                     {currentFieldListItems ? (
                                         <div className="m-2">
                                             <hr />
                                             <div className="text-right">
-                                                { /* NOT WORKING WITH USER-UPLOADED CONTENT
+                                                {/* NOT WORKING WITH USER-UPLOADED CONTENT
                                                 <DuplicateButton
                                                     className="mr-2"
                                                     onClick={onDuplicateItemClick}
@@ -290,7 +293,7 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
                                                         description="Duplicate item"
                                                     />
                                                 </DuplicateButton>
-                                                */ }
+                                                */}
                                                 <DeleteButton onClick={onDeleteItemClick}>
                                                     <FormattedMessage
                                                         defaultMessage="Delete item"

@@ -1,10 +1,8 @@
 import { defineMessage } from 'react-intl';
 
-import Fields from '../components/Fields';
-
 export default {
     id: 'message',
-    component: Fields,
+    component: 'message',
     labelPath: 'message',
     thumbnailPath: 'avatar.thumbnail_url',
     fields: [

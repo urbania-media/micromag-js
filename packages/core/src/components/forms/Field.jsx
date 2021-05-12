@@ -5,7 +5,7 @@ import get from 'lodash/get';
 
 import { PropTypes as MicromagPropTypes } from '../../lib';
 import { getComponentFromName, setFieldValue, getFieldFromPath } from '../../utils';
-import { useFieldsManager, useFieldComponent } from '../../contexts';
+import { useFieldsManager, useFieldComponent, FieldContextProvider } from '../../contexts';
 
 const propTypes = {
     name: PropTypes.string, // .isRequired,
@@ -17,6 +17,7 @@ const propTypes = {
     onChange: PropTypes.func,
     gotoFieldForm: PropTypes.func.isRequired,
     closeFieldForm: PropTypes.func.isRequired,
+    fieldContext: PropTypes.any, // eslint-disable-line react/forbid-prop-types
 };
 
 const defaultProps = {
@@ -27,6 +28,7 @@ const defaultProps = {
     value: null,
     className: null,
     onChange: null,
+    fieldContext: null,
 };
 
 const FieldForm = ({
@@ -39,6 +41,7 @@ const FieldForm = ({
     onChange,
     gotoFieldForm,
     closeFieldForm,
+    fieldContext,
 }) => {
     const fieldsManager = useFieldsManager();
 
@@ -83,12 +86,24 @@ const FieldForm = ({
 
     if (form !== null) {
         const FormComponent = getComponentFromName(form, formComponents);
-        return FormComponent !== null ? <FormComponent field={field} {...formProps} className={className} /> : null;
+        return FormComponent !== null ? (
+            <FieldContextProvider context={fieldContext}>
+                <FormComponent field={field} {...formProps} className={className} />
+            </FieldContextProvider>
+        ) : null;
     }
 
     // Use field component with isForm props
     return FieldComponent !== null ? (
-        <FieldComponent className={className} {...definitionProps} {...fieldProps} isForm {...formProps} />
+        <FieldContextProvider context={fieldContext}>
+            <FieldComponent
+                className={className}
+                {...definitionProps}
+                {...fieldProps}
+                isForm
+                {...formProps}
+            />
+        </FieldContextProvider>
     ) : null;
 };
 

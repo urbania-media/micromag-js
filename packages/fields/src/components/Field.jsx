@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useFieldsManager, useFieldComponent } from '@micromag/core/contexts';
+import { useFieldsManager, useFieldComponent, useFieldContext } from '@micromag/core/contexts';
 
 import FieldRow from './FieldRow';
 
@@ -84,8 +84,13 @@ const Field = ({
     const FieldComponent = useFieldComponent(fieldComponent);
     // console.log(fieldsManager, fieldComponent, FieldComponent);
     const isFields = FieldComponent === FieldsComponent;
+    const context = useFieldContext();
 
-    const gotoForm = useCallback((form) => gotoFieldForm(name, form), [name, gotoFieldForm]);
+    const gotoForm = useCallback((form) => gotoFieldForm(name, form, context), [
+        name,
+        context,
+        gotoFieldForm,
+    ]);
     const closeForm = useCallback((form) => closeFieldForm(name, form), [name, closeFieldForm]);
     const gotoSettings = useCallback(() => gotoForm('settings'), [gotoForm]);
 
@@ -104,6 +109,8 @@ const Field = ({
         (typeof FieldComponent.withSettings !== 'undefined' && FieldComponent.withSettings) ||
         typeof FieldComponent.settingsComponent !== 'undefined' ||
         false;
+
+    console.log(name, finalWithSettings, settings);
 
     const fieldElement = (
         <FieldComponent
