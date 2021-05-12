@@ -19,20 +19,20 @@ export default {
     component: ConversationScreen,
     layouts: ['normal'],
     fields: [
-        {
-            name: 'theme',
-            type: 'select',
-            options: [
-                {
-                    value: 'ios',
-                    label: 'iOS',
-                },
-            ],
-            label: defineMessage({
-                defaultMessage: 'Theme',
-                description: 'Theme field label',
-            }),
-        },
+        // {
+        //     name: 'theme',
+        //     type: 'select',
+        //     options: [
+        //         {
+        //             value: 'ios',
+        //             label: 'iOS',
+        //         },
+        //     ],
+        //     label: defineMessage({
+        //         defaultMessage: 'Theme',
+        //         description: 'Theme field label',
+        //     }),
+        // },
         {
             name: 'timing',
             type: 'select',
