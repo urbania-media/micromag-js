@@ -70,7 +70,7 @@ const ConversationMessage = ({
     const IsNextSpeakerTheSame = nextMessage !== null && nextMessage.speaker === currentSpeakerId;
 
     // Timing
-    const [messageState, setMessageState] = useState(state);
+    const [messageState, setMessageState] = useState(isView ? state : 'send');
     const pauseRef = useRef(null);
     const typingRef = useRef(null);
 
@@ -79,8 +79,8 @@ const ConversationMessage = ({
         setMessageState,
     ]);
 
-    const pauseBeforeTyping = conversationTiming;
-    const typingDuration = conversationTiming + typingTiming;
+    const pauseBeforeTyping = isView ? conversationTiming : 0;
+    const typingDuration = isView ? conversationTiming + typingTiming : 0;
 
     useEffect(() => {
         pauseRef.current = setTimeout(() => setMessageStateCallback('typing'), pauseBeforeTyping);
