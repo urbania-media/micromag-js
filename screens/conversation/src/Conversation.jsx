@@ -61,7 +61,6 @@ const ConversationScreen = ({
     conversation,
     transitions,
     className,
-    ...props
 }) => {
     const { width, height, menuOverScreen } = useScreenSize();
     const { menuSize } = useViewer();
@@ -78,7 +77,7 @@ const ConversationScreen = ({
 
     const backgroundPlaying = current && (isView || isEdit);
     const playAnimation = current && isView && !isStatic && timingMode === 'sequence';
-    const { speakers = null, messages = [] } = conversation || {};
+    const { speakers = null, messages = [], messageStyle, speakerStyle } = conversation || {};
 
     const [conversationState, setConversationState] = useState([]);
     const chatBottomRef = useRef(null);
@@ -151,8 +150,6 @@ const ConversationScreen = ({
             callToActionRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' });
         }
     }, [animationFinished]);
-
-    console.log(props);
 
     return (
         <div
@@ -254,7 +251,8 @@ const ConversationScreen = ({
                                                 typingTiming={typingTiming}
                                                 onChange={conversationStateChange}
                                                 isView={playAnimation}
-                                                {...props}
+                                                messageStyle={messageStyle}
+                                                speakerStyle={speakerStyle}
                                             />
                                         );
                                     })}

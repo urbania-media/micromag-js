@@ -22,7 +22,8 @@ const propTypes = {
     typingTiming: PropTypes.number,
     onChange: PropTypes.func,
     isView: PropTypes.bool,
-    textStyle: MicromagPropTypes.textStyle,
+    speakerStyle: MicromagPropTypes.textStyle,
+    messageStyle: MicromagPropTypes.textStyle,
     className: PropTypes.string,
 };
 
@@ -37,7 +38,8 @@ const defaultProps = {
     typingTiming: null,
     onChange: null,
     isView: PropTypes.bool,
-    textStyle: null,
+    messageStyle: null,
+    speakerStyle: null,
     className: null,
 };
 
@@ -52,7 +54,8 @@ const ConversationMessage = ({
     typingTiming,
     onChange,
     isView,
-    textStyle,
+    messageStyle,
+    speakerStyle,
     className,
 }) => {
     const { message: messageBody, image = null } = message || {};
@@ -162,7 +165,7 @@ const ConversationMessage = ({
                                     />
                                 </div>
                             ) : null}
-                            {speakerName}
+                            <Text body={speakerName} textStyle={speakerStyle} />
                         </div>
                     ) : null}
                     <div />
@@ -175,7 +178,7 @@ const ConversationMessage = ({
                         <Text
                             className={styles.messageBody}
                             body={messageBody}
-                            textStyle={textStyle}
+                            textStyle={messageStyle}
                         />
                     </div>
                 </div>
