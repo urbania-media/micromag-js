@@ -100,8 +100,8 @@ const ConversationScreen = ({
         [conversationState, setConversationState],
     );
 
-    const defaultTimingFactor = 10;
-    const defaultHesitationDelay = 111;
+    const defaultTimingFactor = 50;
+    const defaultHesitationDelay = 1000;
 
     const filteredMessages = (messages || []).filter((m) => m !== null);
 
