@@ -52,6 +52,17 @@ export default {
             }),
         },
         {
+            name: 'title',
+            type: 'heading-element',
+            theme: {
+                textStyle: 'heading1',
+            },
+            label: defineMessage({
+                defaultMessage: 'Title',
+                description: 'Title field label',
+            }),
+        },
+        {
             name: 'conversation',
             type: 'conversation',
             label: defineMessage({
