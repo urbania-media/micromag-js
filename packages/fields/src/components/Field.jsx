@@ -110,8 +110,6 @@ const Field = ({
         typeof FieldComponent.settingsComponent !== 'undefined' ||
         false;
 
-    console.log(name, finalWithSettings, settings);
-
     const fieldElement = (
         <FieldComponent
             isHorizontal={finalIsHorizontal && !isFields}

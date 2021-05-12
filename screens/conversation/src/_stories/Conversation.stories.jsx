@@ -160,7 +160,12 @@ export const Edit = (storyProps) => (
 );
 
 export const WithCallToAction = (storyProps) => (
-    <ConversationScreen {...storyProps} conversation={conversation} callToAction={callToAction()} />
+    <ConversationScreen
+        {...storyProps}
+        conversation={conversation}
+        timing="instant"
+        callToAction={callToAction()}
+    />
 );
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
