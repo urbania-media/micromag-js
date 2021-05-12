@@ -25,7 +25,7 @@ export default {
     ],
     settings: [
         {
-            name: 'text',
+            name: 'messageStyle',
             type: 'text-style',
             label: defineMessage({
                 defaultMessage: 'Message style',
@@ -33,7 +33,7 @@ export default {
             }),
         },
         {
-            name: 'speaker',
+            name: 'speakerStyle',
             type: 'text-style',
             className: 'mt-4',
             label: defineMessage({
