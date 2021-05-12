@@ -29,7 +29,12 @@ const defaultProps = {
 const SelectAdvancedField = ({ value, options, disabled, className, onChange, ...props }) => {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
     const intl = useIntl();
-    const translatedOptions = useMemo( () => finalOptions.map(({label, ...option}) => ({...option, label: typeof label ==='object' ? intl.formatMessage(label) : label })));
+    const translatedOptions = useMemo(() =>
+        finalOptions.map(({ label, ...option }) => ({
+            ...option,
+            label: typeof label === 'object' ? intl.formatMessage(label) : label,
+        })),
+    );
     const onChangeOption = useCallback(
         (newValue) => {
             if (onChange !== null) {
@@ -39,7 +44,10 @@ const SelectAdvancedField = ({ value, options, disabled, className, onChange, ..
         [onChange],
     );
     const optionValue = useMemo(
-        () => translatedOptions.find((opt) => (opt.value !== null ? isEqual(value, opt.value) : false)),
+        () =>
+            translatedOptions.find((opt) =>
+                opt.value !== null ? isEqual(value, opt.value) : false,
+            ),
         [value, options],
     );
 

@@ -71,6 +71,7 @@ const ItemsField = ({
     isFieldForm,
     gotoFieldForm,
     closeFieldForm,
+    ...props
 }) => {
     const finalIsFieldForm =
         isFieldForm || (itemComponent !== null ? itemComponent.withForm || false : false);
@@ -120,6 +121,7 @@ const ItemsField = ({
                         <Field
                             component={itemComponent}
                             {...itemsField}
+                            {...props}
                             isListItem
                             key={`item-${index}`}
                             label={

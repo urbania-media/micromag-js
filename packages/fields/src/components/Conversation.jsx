@@ -34,9 +34,6 @@ const Conversation = ({ value, fields, name, className, onChange, ...props }) =>
         }),
     );
 
-    // eslint-disable-next-line no-console
-    console.log({ speakerOptions }, { fields });
-
     return (
         <div
             className={classNames([
@@ -59,6 +56,7 @@ const Conversation = ({ value, fields, name, className, onChange, ...props }) =>
                     }}
                     {...props}
                     {...field}
+                    {...(fieldName === 'messages' ? { options: speakerOptions } : null)}
                 />
             ))}
         </div>
