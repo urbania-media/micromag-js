@@ -135,9 +135,6 @@ const ConversationMessage = ({
                     ])}
                     style={{
                         background: color,
-                        transform: `${
-                            right ? 'translate(300px, 50px)' : 'translate(-300px, 50px)'
-                        }  scale(0.1)`,
                     }}
                 >
                     {!IsPrevSpeakerTheSame ? (
