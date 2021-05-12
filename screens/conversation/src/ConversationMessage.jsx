@@ -57,7 +57,7 @@ const ConversationMessage = ({
 }) => {
     const { message: messageBody, image = null } = message || {};
     const {
-        avatar: { url: avatarUrl } = {},
+        avatar: { url: avatarUrl = null } = {},
         name: speakerName,
         side = 'left',
         id: currentSpeakerId,
@@ -149,10 +149,21 @@ const ConversationMessage = ({
                                 { [styles.right]: side === 'right' },
                             ])}
                         >
-                            <div className={styles.avatarContainer}>
-                                <img className={styles.avatar} src={avatarUrl} alt={speakerName} />
-                            </div>
-                            &nbsp;&nbsp;{speakerName}&nbsp;&nbsp;
+                            {avatarUrl !== null ? (
+                                <div
+                                    className={classNames([
+                                        styles.avatarContainer,
+                                        { [styles.right]: side === 'right' },
+                                    ])}
+                                >
+                                    <img
+                                        className={styles.avatar}
+                                        src={avatarUrl}
+                                        alt={speakerName}
+                                    />
+                                </div>
+                            ) : null}
+                            {speakerName}
                         </div>
                     ) : null}
                     <div />

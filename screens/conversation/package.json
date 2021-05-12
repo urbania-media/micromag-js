@@ -57,6 +57,7 @@
         "@micromag/element-layout": "^0.2.254",
         "@micromag/element-scroll": "^0.2.254",
         "@micromag/element-text": "^0.2.254",
+        "@micromag/element-heading": "^0.2.254",
         "@micromag/transforms": "^0.2.254",
         "classnames": "^2.2.6",
         "lodash": "^4.17.20",

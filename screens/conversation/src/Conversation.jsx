@@ -14,6 +14,8 @@ import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
 import CallToAction from '@micromag/element-call-to-action';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { isTextFilled } from '@micromag/core/utils';
+import Heading from '@micromag/element-heading';
 import ConversationMessage from './ConversationMessage';
 
 import styles from './styles.module.scss';
@@ -21,6 +23,7 @@ import styles from './styles.module.scss';
 const propTypes = {
     // id: PropTypes.string,
     // layout: PropTypes.oneOf(['normal']),
+    title: MicromagPropTypes.headingElement,
     timing: PropTypes.oneOf(['instant', 'sequence']),
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
@@ -34,6 +37,7 @@ const propTypes = {
 
 const defaultProps = {
     // layout: 'normal',
+    title: null,
     timing: 'sequence',
     spacing: 20,
     background: null,
@@ -47,6 +51,7 @@ const defaultProps = {
 
 const ConversationScreen = ({
     // layout,
+    title,
     timing: timingMode,
     spacing,
     background,
@@ -76,6 +81,8 @@ const ConversationScreen = ({
 
     const [conversationState, setConversationState] = useState([]);
     const chatBottomRef = useRef(null);
+
+    const hasTitle = isTextFilled(title);
 
     const conversationStateChange = useCallback(
         (state) => {
@@ -194,6 +201,7 @@ const ConversationScreen = ({
                                 playing={current}
                                 disabled={transitionDisabled}
                             >
+                                {hasTitle ? <Heading {...title} className={styles.title} /> : null}
                                 <div className={styles.conversation}>
                                     {filteredMessages.map((m, messageI) => {
                                         const previousMessage =

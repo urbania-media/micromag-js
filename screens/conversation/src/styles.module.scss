@@ -26,6 +26,10 @@
         // height: 100px;
         // margin: 0 auto;
     }
+
+    .title {
+        padding-bottom: 16px;
+    }
 }
 
 .messageContainer {
@@ -40,6 +44,7 @@
         padding: 10px;
         transition: border-radius 0.3s ease;
         background-color: #fff;
+        word-break: break-all;
 
         &.nextTheSame {
             margin: 1px 0;
@@ -83,6 +88,11 @@
     .avatarContainer {
         width: 30px;
         height: 30px;
+        margin-right: 10px;
+
+        &.right {
+            margin-left: 10px;
+        }
     }
 
     .avatar {

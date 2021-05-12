@@ -71,12 +71,6 @@ msgctxt "/62oe4"
 msgid "My files"
 msgstr "Mes fichiers"
 
-# Theme field label
-#: /7AJQd
-msgctxt "/7AJQd"
-msgid "Theme"
-msgstr ""
-
 # Field label
 #: /MeuM1
 msgctxt "/MeuM1"
