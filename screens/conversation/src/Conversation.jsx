@@ -219,16 +219,15 @@ const ConversationScreen = ({
                                         const currentSpeaker =
                                             (speakers || []).find((s) => s.id === speaker) || null;
 
-                                        const pauseTiming = isView
-                                            ? timings
-                                                  .slice(0, messageI)
-                                                  .reduce((acc, t) => acc + t, 0) +
-                                              hesitationTimings
-                                                  .slice(0, messageI)
-                                                  .reduce((acc, t) => acc + t, 0)
-                                            : 0;
+                                        const pauseTiming =
+                                            timings
+                                                .slice(0, messageI)
+                                                .reduce((acc, t) => acc + t, 0) +
+                                            hesitationTimings
+                                                .slice(0, messageI)
+                                                .reduce((acc, t) => acc + t, 0);
 
-                                        const typingTiming = isView ? timings[messageI] : 0;
+                                        const typingTiming = timings[messageI];
 
                                         return (
                                             <ConversationMessage
