@@ -17,6 +17,9 @@
     "+VD/9p": {
         "defaultMessage": "Couleur"
     },
+    "+nhSvj": {
+        "defaultMessage": "Pas d'interlocuteur"
+    },
     "+uInZz": {
         "defaultMessage": "Cercle"
     },
@@ -107,6 +110,9 @@
     "4POR3B": {
         "defaultMessage": "Afficher l’écran"
     },
+    "4R/bdr": {
+        "defaultMessage": "Message"
+    },
     "4YiKNK": {
         "defaultMessage": "Sélectionnez une couleur..."
     },
@@ -137,6 +143,12 @@
     "650XRF": {
         "defaultMessage": "Sondage"
     },
+    "6DV50M": {
+        "defaultMessage": "Mode"
+    },
+    "6ak5YN": {
+        "defaultMessage": "Côté"
+    },
     "6mX2ya": {
         "defaultMessage": "Images"
     },
@@ -145,6 +157,9 @@
     },
     "73hxYw": {
         "defaultMessage": "Auteur"
+    },
+    "7cGi3J": {
+        "defaultMessage": "Message"
     },
     "7j/LQ6": {
         "defaultMessage": "Coins arrondis"
@@ -164,11 +179,20 @@
     "8sWUOV": {
         "defaultMessage": "Ajouter un fichier de polices"
     },
+    "8tANs8": {
+        "defaultMessage": "Conversation"
+    },
     "8vroDx": {
         "defaultMessage": "Carte"
     },
     "9DhYaZ": {
         "defaultMessage": "Ordre croissant"
+    },
+    "9Nk11Y": {
+        "defaultMessage": "Interlocuteur"
+    },
+    "9PfjeE": {
+        "defaultMessage": "Style du nom"
     },
     "9ZdD+Q": {
         "defaultMessage": "Bibliothèque pour"
@@ -251,6 +275,9 @@
     "H1YcaV": {
         "defaultMessage": "Image avec légende"
     },
+    "HTd98/": {
+        "defaultMessage": "Pas de message..."
+    },
     "HseFdk": {
         "defaultMessage": "Modifier"
     },
@@ -259,6 +286,9 @@
     },
     "JAguka": {
         "defaultMessage": "Votre message"
+    },
+    "JC9Qlf": {
+        "defaultMessage": "Interlocuteurs"
     },
     "JDPMlG": {
         "defaultMessage": "Couleur de l'arrière-plan"
@@ -292,6 +322,12 @@
     },
     "N25iDO": {
         "defaultMessage": "Titre"
+    },
+    "NmCfTO": {
+        "defaultMessage": "Conversation"
+    },
+    "O2JVA+": {
+        "defaultMessage": "Gauche"
     },
     "OJi+eg": {
         "defaultMessage": "Libellé"
@@ -367,6 +403,9 @@
     },
     "UBXIYP": {
         "defaultMessage": "Vidéo"
+    },
+    "UUv8FR": {
+        "defaultMessage": "Nom"
     },
     "UdrdRF": {
         "defaultMessage": "Style des numéros"
@@ -482,6 +521,9 @@
     "eoW0tZ": {
         "defaultMessage": "Durée"
     },
+    "f68O+0": {
+        "defaultMessage": "Messages"
+    },
     "fIawTr": {
         "defaultMessage": "Texte"
     },
@@ -506,6 +548,9 @@
     "hpiKce": {
         "defaultMessage": "Supprimer l’écran"
     },
+    "hqOIl4": {
+        "defaultMessage": "Photo de profil"
+    },
     "i+3ZrF": {
         "defaultMessage": "Sélectionnez une police..."
     },
@@ -523,6 +568,9 @@
     },
     "jvvJbk": {
         "defaultMessage": "Swipe up"
+    },
+    "k81FRn": {
+        "defaultMessage": "Style du texte"
     },
     "kBz8vF": {
         "defaultMessage": "Nom"
@@ -548,6 +596,9 @@
     "menus.pagination.previous": {
         "defaultMessage": "Précédent"
     },
+    "muPX/j": {
+        "defaultMessage": "Interlocuteur"
+    },
     "muYwrB": {
         "defaultMessage": "Images"
     },
@@ -566,6 +617,9 @@
     "oLtEu6": {
         "defaultMessage": "Vidéo 360"
     },
+    "opcGwP": {
+        "defaultMessage": "Ajouter un interlocuteur"
+    },
     "p6n6vY": {
         "defaultMessage": "Pas de réponse..."
     },
@@ -581,6 +635,9 @@
     "pfvDzR": {
         "defaultMessage": "Ajouté par"
     },
+    "ptJkUl": {
+        "defaultMessage": "Droite"
+    },
     "q/tLk0": {
         "defaultMessage": "Êtes-vous sûr que vous voulez supprimer cet écran?"
     },
@@ -589,6 +646,9 @@
     },
     "qKQCxc": {
         "defaultMessage": "Ajouter un marqueur"
+    },
+    "rBPIgw": {
+        "defaultMessage": "Conversation"
     },
     "rdFCsN": {
         "defaultMessage": "Aucun marqueur..."
@@ -670,6 +730,9 @@
     },
     "xAzv6g": {
         "defaultMessage": "Toutes les sources"
+    },
+    "xCj1gI": {
+        "defaultMessage": "Ajouter un message"
     },
     "xT/onn": {
         "defaultMessage": "Image"

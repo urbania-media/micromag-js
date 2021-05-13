@@ -57,7 +57,7 @@ msgstr "Couleur"
 #: +nhSvj
 msgctxt "+nhSvj"
 msgid "No speaker..."
-msgstr ""
+msgstr "Pas d'interlocuteur"
 
 # Circle label
 #: +uInZz
@@ -243,7 +243,7 @@ msgstr "Afficher l’écran"
 #: 4R/bdr
 msgctxt "4R/bdr"
 msgid "Message"
-msgstr ""
+msgstr "Message"
 
 # No value label
 #: 4YiKNK
@@ -309,13 +309,13 @@ msgstr "Sondage"
 #: 6DV50M
 msgctxt "6DV50M"
 msgid "Timing"
-msgstr ""
+msgstr "Mode"
 
 # Field label
 #: 6ak5YN
 msgctxt "6ak5YN"
 msgid "Side"
-msgstr ""
+msgstr "Côté"
 
 # Images screen group
 #: 6mX2ya
@@ -339,7 +339,7 @@ msgstr "Auteur"
 #: 7cGi3J
 msgctxt "7cGi3J"
 msgid "Message"
-msgstr ""
+msgstr "Message"
 
 # Rounded corners label
 #: 7j/LQ6
@@ -381,7 +381,7 @@ msgstr "Ajouter un fichier de polices"
 #: 8tANs8
 msgctxt "8tANs8"
 msgid "Conversation"
-msgstr ""
+msgstr "Conversation"
 
 # Map screen group
 #: 8vroDx
@@ -399,7 +399,13 @@ msgstr "Ordre croissant"
 #: 9Nk11Y
 msgctxt "9Nk11Y"
 msgid "Speaker"
-msgstr ""
+msgstr "Interlocuteur"
+
+# Field label
+#: 9PfjeE
+msgctxt "9PfjeE"
+msgid "Speaker style"
+msgstr "Style du nom"
 
 # Library source menu
 #: 9ZdD+Q
@@ -567,7 +573,7 @@ msgstr "Image avec légende"
 #: HTd98/
 msgctxt "HTd98/"
 msgid "No message..."
-msgstr ""
+msgstr "Pas de message..."
 
 # Button to edit a screen
 #: HseFdk
@@ -586,6 +592,12 @@ msgstr "Dupliquer l'écran"
 msgctxt "JAguka"
 msgid "Your message"
 msgstr "Votre message"
+
+# Field label
+#: JC9Qlf
+msgctxt "JC9Qlf"
+msgid "Speakers"
+msgstr "Interlocuteurs"
 
 # Field label
 #: JDPMlG
@@ -657,13 +669,13 @@ msgstr "Titre"
 #: NmCfTO
 msgctxt "NmCfTO"
 msgid "Conversation"
-msgstr ""
+msgstr "Conversation"
 
 # Field left label
 #: O2JVA+
 msgctxt "O2JVA+"
 msgid "Left"
-msgstr ""
+msgstr "Gauche"
 
 # Field label
 #: OJi+eg
@@ -754,12 +766,6 @@ msgctxt "RcLsua"
 msgid "Message"
 msgstr "Message"
 
-# Text style field label
-#: S/hfVr
-msgctxt "S/hfVr"
-msgid "Text style"
-msgstr ""
-
 # Text and Images screen group
 #: S/mavZ
 msgctxt "S/mavZ"
@@ -824,7 +830,7 @@ msgstr "Vidéo"
 #: UUv8FR
 msgctxt "UUv8FR"
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 # Numbers style field label
 #: UdrdRF
@@ -958,12 +964,6 @@ msgctxt "aovRFH"
 msgid "Filename"
 msgstr "Nom du fichier"
 
-# Messages field label
-#: b/jbYK
-msgctxt "b/jbYK"
-msgid "Messages"
-msgstr ""
-
 # Audio screen title
 #: bhEaUt
 msgctxt "bhEaUt"
@@ -1060,6 +1060,12 @@ msgctxt "eoW0tZ"
 msgid "Duration"
 msgstr "Durée"
 
+# Field label
+#: f68O+0
+msgctxt "f68O+0"
+msgid "Messages"
+msgstr "Messages"
+
 # Text screen group
 #: fIawTr
 msgctxt "fIawTr"
@@ -1096,12 +1102,6 @@ msgctxt "gprXiG"
 msgid "Search..."
 msgstr "Recherche..."
 
-# Speakers field label
-#: h7J/cs
-msgctxt "h7J/cs"
-msgid "Speakers"
-msgstr ""
-
 # Question field label
 #: hVE7TA
 msgctxt "hVE7TA"
@@ -1118,7 +1118,7 @@ msgstr "Supprimer l’écran"
 #: hqOIl4
 msgctxt "hqOIl4"
 msgid "Avatar"
-msgstr ""
+msgstr "Photo de profil"
 
 # No value label
 #: i+3ZrF
@@ -1155,6 +1155,12 @@ msgstr "Sélectionnez une image..."
 msgctxt "jvvJbk"
 msgid "Swipe up"
 msgstr "Swipe up"
+
+# Field label
+#: k81FRn
+msgctxt "k81FRn"
+msgid "Message style"
+msgstr "Style du texte"
 
 # Name in Media Gallery
 #: kBz8vF
@@ -1206,7 +1212,7 @@ msgstr "Précédent"
 #: muPX/j
 msgctxt "muPX/j"
 msgid "Speaker"
-msgstr ""
+msgstr "Interlocuteur"
 
 # Visuals field label
 #: muYwrB
@@ -1248,7 +1254,7 @@ msgstr "Vidéo 360"
 #: opcGwP
 msgctxt "opcGwP"
 msgid "Add a speaker"
-msgstr ""
+msgstr "Ajouter un interlocuteur"
 
 # Label when there is no item in answers field
 #: p6n6vY
@@ -1284,7 +1290,7 @@ msgstr "Ajouté par"
 #: ptJkUl
 msgctxt "ptJkUl"
 msgid "Right"
-msgstr ""
+msgstr "Droite"
 
 # Confirmation message before deleting a screen
 #: q/tLk0
@@ -1308,7 +1314,7 @@ msgstr "Ajouter un marqueur"
 #: rBPIgw
 msgctxt "rBPIgw"
 msgid "Conversation"
-msgstr ""
+msgstr "Conversation"
 
 # Label when there is no item
 #: rdFCsN
@@ -1476,7 +1482,7 @@ msgstr "Toutes les sources"
 #: xCj1gI
 msgctxt "xCj1gI"
 msgid "Add a message"
-msgstr ""
+msgstr "Ajouter un message"
 
 # Field label
 #: xT/onn

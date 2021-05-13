@@ -191,6 +191,9 @@
     "9Nk11Y": {
         "defaultMessage": "Speaker"
     },
+    "9PfjeE": {
+        "defaultMessage": "Speaker style"
+    },
     "9ZdD+Q": {
         "defaultMessage": "Library for"
     },
@@ -284,6 +287,9 @@
     "JAguka": {
         "defaultMessage": "Your message"
     },
+    "JC9Qlf": {
+        "defaultMessage": "Speakers"
+    },
     "JDPMlG": {
         "defaultMessage": "Background color"
     },
@@ -367,9 +373,6 @@
     },
     "RcLsua": {
         "defaultMessage": "Message"
-    },
-    "S/hfVr": {
-        "defaultMessage": "Text style"
     },
     "S/mavZ": {
         "defaultMessage": "Text and Images"
@@ -470,9 +473,6 @@
     "aovRFH": {
         "defaultMessage": "Filename"
     },
-    "b/jbYK": {
-        "defaultMessage": "Messages"
-    },
     "bhEaUt": {
         "defaultMessage": "Audio"
     },
@@ -521,6 +521,9 @@
     "eoW0tZ": {
         "defaultMessage": "Duration"
     },
+    "f68O+0": {
+        "defaultMessage": "Messages"
+    },
     "fIawTr": {
         "defaultMessage": "Text"
     },
@@ -538,9 +541,6 @@
     },
     "gprXiG": {
         "defaultMessage": "Search..."
-    },
-    "h7J/cs": {
-        "defaultMessage": "Speakers"
     },
     "hVE7TA": {
         "defaultMessage": "Question"
@@ -568,6 +568,9 @@
     },
     "jvvJbk": {
         "defaultMessage": "Swipe up"
+    },
+    "k81FRn": {
+        "defaultMessage": "Message style"
     },
     "kBz8vF": {
         "defaultMessage": "Name"

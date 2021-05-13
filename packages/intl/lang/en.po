@@ -401,6 +401,12 @@ msgctxt "9Nk11Y"
 msgid "Speaker"
 msgstr "Speaker"
 
+# Field label
+#: 9PfjeE
+msgctxt "9PfjeE"
+msgid "Speaker style"
+msgstr "Speaker style"
+
 # Library source menu
 #: 9ZdD+Q
 msgctxt "9ZdD+Q"
@@ -588,6 +594,12 @@ msgid "Your message"
 msgstr "Your message"
 
 # Field label
+#: JC9Qlf
+msgctxt "JC9Qlf"
+msgid "Speakers"
+msgstr "Speakers"
+
+# Field label
 #: JDPMlG
 msgctxt "JDPMlG"
 msgid "Background color"
@@ -753,12 +765,6 @@ msgstr "Line color"
 msgctxt "RcLsua"
 msgid "Message"
 msgstr "Message"
-
-# Text style field label
-#: S/hfVr
-msgctxt "S/hfVr"
-msgid "Text style"
-msgstr "Text style"
 
 # Text and Images screen group
 #: S/mavZ
@@ -958,12 +964,6 @@ msgctxt "aovRFH"
 msgid "Filename"
 msgstr "Filename"
 
-# Messages field label
-#: b/jbYK
-msgctxt "b/jbYK"
-msgid "Messages"
-msgstr "Messages"
-
 # Audio screen title
 #: bhEaUt
 msgctxt "bhEaUt"
@@ -1060,6 +1060,12 @@ msgctxt "eoW0tZ"
 msgid "Duration"
 msgstr "Duration"
 
+# Field label
+#: f68O+0
+msgctxt "f68O+0"
+msgid "Messages"
+msgstr "Messages"
+
 # Text screen group
 #: fIawTr
 msgctxt "fIawTr"
@@ -1095,12 +1101,6 @@ msgstr "Delete screen"
 msgctxt "gprXiG"
 msgid "Search..."
 msgstr "Search..."
-
-# Speakers field label
-#: h7J/cs
-msgctxt "h7J/cs"
-msgid "Speakers"
-msgstr "Speakers"
 
 # Question field label
 #: hVE7TA
@@ -1155,6 +1155,12 @@ msgstr "Select an image..."
 msgctxt "jvvJbk"
 msgid "Swipe up"
 msgstr "Swipe up"
+
+# Field label
+#: k81FRn
+msgctxt "k81FRn"
+msgid "Message style"
+msgstr "Message style"
 
 # Name in Media Gallery
 #: kBz8vF

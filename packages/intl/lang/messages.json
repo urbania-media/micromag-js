@@ -259,6 +259,10 @@
     "defaultMessage": "Speaker",
     "description": "Speakers field label"
   },
+  "9PfjeE": {
+    "defaultMessage": "Speaker style",
+    "description": "Field label"
+  },
   "9ZdD+Q": {
     "defaultMessage": "Library for",
     "description": "Library source menu"
@@ -383,6 +387,10 @@
     "defaultMessage": "Your message",
     "description": "Your message placeholder"
   },
+  "JC9Qlf": {
+    "defaultMessage": "Speakers",
+    "description": "Field label"
+  },
   "JDPMlG": {
     "defaultMessage": "Background color",
     "description": "Field label"
@@ -493,10 +501,6 @@
   "RcLsua": {
     "defaultMessage": "Message",
     "description": "Message field label"
-  },
-  "S/hfVr": {
-    "defaultMessage": "Text style",
-    "description": "Text style field label"
   },
   "S/mavZ": {
     "defaultMessage": "Text and Images",
@@ -630,10 +634,6 @@
     "defaultMessage": "Filename",
     "description": "Label in Media Gallery"
   },
-  "b/jbYK": {
-    "defaultMessage": "Messages",
-    "description": "Messages field label"
-  },
   "bhEaUt": {
     "defaultMessage": "Audio",
     "description": "Audio screen title"
@@ -698,6 +698,10 @@
     "defaultMessage": "Duration",
     "description": "Label in Media Gallery"
   },
+  "f68O+0": {
+    "defaultMessage": "Messages",
+    "description": "Field label"
+  },
   "fIawTr": {
     "defaultMessage": "Text",
     "description": "Text screen group"
@@ -721,10 +725,6 @@
   "gprXiG": {
     "defaultMessage": "Search...",
     "description": "Input placeholder"
-  },
-  "h7J/cs": {
-    "defaultMessage": "Speakers",
-    "description": "Speakers field label"
   },
   "hVE7TA": {
     "defaultMessage": "Question",
@@ -761,6 +761,10 @@
   "jvvJbk": {
     "defaultMessage": "Swipe up",
     "description": "CTA field type subfield swipe-up option label"
+  },
+  "k81FRn": {
+    "defaultMessage": "Message style",
+    "description": "Field label"
   },
   "kBz8vF": {
     "defaultMessage": "Name",
