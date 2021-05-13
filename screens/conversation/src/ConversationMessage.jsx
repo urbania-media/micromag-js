@@ -138,7 +138,8 @@ const ConversationMessage = ({
                         styles.message,
                         {
                             [styles.normalRight]: right,
-                            [styles.nextTheSame]: isNextSpeakerTheSame === true,
+                            [styles.nextTheSame]:
+                                isNextSpeakerTheSame === true && isPrevSpeakerTheSame,
                             [styles.inBetweenRight]: betweenStyle && right,
                             [styles.normalLeft]: !right,
                             [styles.inBetweenLeft]: betweenStyle && !right,

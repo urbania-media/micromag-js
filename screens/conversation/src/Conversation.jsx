@@ -209,7 +209,7 @@ const ConversationScreen = ({
                                             messageI !== 0 ? messages[messageI - 1] : null;
 
                                         const nextMessage =
-                                            messageI + 1 < messages.length - 1
+                                            messageI + 1 < messages.length
                                                 ? messages[messageI + 1]
                                                 : null;
 

@@ -17,7 +17,7 @@ export default {
 
 // const myImages = images({ count: 4 });
 
-const conversation = makeConversation(13, 5);
+const conversation = makeConversation(13, 2);
 const conversation2 = makeConversation(13, 5, 'instant');
 
 export const Normal = (storyProps) => (
