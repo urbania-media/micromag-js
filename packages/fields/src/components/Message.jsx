@@ -27,8 +27,8 @@ const defaultProps = {
     fields: null,
     noValueLabel: (
         <FormattedMessage
-            defaultMessage="Select a media..."
-            description="Label when no value is provided to Media field"
+            defaultMessage="Click to edit..."
+            description="Label when no value is provided to Field with form"
         />
     ),
     withoutThumbnail: false,

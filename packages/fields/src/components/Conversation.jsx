@@ -35,8 +35,6 @@ const Conversation = ({ value, fields, name, className, onChange, ...props }) =>
         }),
     );
 
-    console.log(fields);
-
     return (
         <div
             className={classNames([
