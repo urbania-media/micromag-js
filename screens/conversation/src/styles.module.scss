@@ -43,7 +43,7 @@
         padding: 10px;
         transition: border-radius 0.2s ease;
         background-color: #fff;
-        word-break: break-all;
+        overflow-wrap: break-word;
 
         &.normalLeft {
             border-radius: 1px 15px 15px;
