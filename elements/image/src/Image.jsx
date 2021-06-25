@@ -27,7 +27,7 @@ const defaultProps = {
     width: null,
     height: null,
     objectFit: null,
-    containerStyle: {},
+    containerStyle: {},//
     imageStyle: {},
     className: null,
     imageClassName: null,
