@@ -28,7 +28,7 @@
 }
 
 @mixin match-screen($size: 'mobile') {
-    .screen-#{$size}) {
+    .screen-#{$size} {
         @content;
     }
 }
