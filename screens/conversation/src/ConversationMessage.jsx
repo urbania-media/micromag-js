@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 // import { Label } from '@micromag/core/components';
 import Text from '@micromag/element-text';
-// import Image from '@micromag/element-image';
+import Visual from '@micromag/element-visual';
 import { getStyleFromColor } from '@micromag/core/utils';
 
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -176,7 +176,7 @@ const ConversationMessage = ({
                     <div className={styles.messageBody}>
                         {image !== null ? (
                             <div className={styles.imageContainer}>
-                                <img src={image.url} alt={{ messageBody }} />
+                                <Visual media={image} width="100%" />
                             </div>
                         ) : null}
                         <Text

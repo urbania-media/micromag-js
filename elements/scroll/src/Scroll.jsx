@@ -19,6 +19,7 @@ const propTypes = {
     onScrolledBottom: PropTypes.func,
     onScrolledNotBottom: PropTypes.func,
     contain: PropTypes.bool,
+    scrollContainerRef: PropTypes.any,// eslint-disable-line
 };
 
 const defaultProps = {
@@ -31,6 +32,7 @@ const defaultProps = {
     onScrolledBottom: null,
     onScrolledNotBottom: null,
     contain: false,
+    scrollContainerRef: null,
 };
 
 const Scroll = ({
@@ -43,6 +45,7 @@ const Scroll = ({
     onScrolledBottom,
     onScrolledNotBottom,
     contain,
+    scrollContainerRef,
 }) => {
     const finalStyle = {
         width,
@@ -56,6 +59,10 @@ const Scroll = ({
         entry: { contentRect: scrollableRect },
     } = useResizeObserver();
     const { height: scrollableHeight } = scrollableRect || {};
+
+    if (scrollContainerRef !== null) {
+        scrollContainerRef.current = scrollableRef.current;// eslint-disable-line
+    }
 
     const {
         ref: scrolleeRef,
@@ -144,4 +151,4 @@ const Scroll = ({
 Scroll.propTypes = propTypes;
 Scroll.defaultProps = defaultProps;
 
-export default Scroll;
+export default React.forwardRef((props, ref) => <Scroll scrollContainerRef={ref} {...props} />);

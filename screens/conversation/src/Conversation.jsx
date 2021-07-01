@@ -84,6 +84,19 @@ const ConversationScreen = ({
 
     const hasTitle = isTextFilled(title);
 
+    const {
+        ref: contentRef,
+        entry: { contentRect: scrollContentRect },
+    } = useResizeObserver();
+    const { height: scrollHeight } = scrollContentRect || {};
+
+    const scrollRef = useRef(null);
+    useEffect(() => {
+        if (withAnimation && scrollRef.current !== null) {
+            scrollRef.current.scrollTo({ top: scrollHeight, behavior: 'smooth' });
+        }
+    }, [scrollHeight, withAnimation]);
+
     const animationFinished = messages.length === conversationState.length;
     const conversationStateChange = useCallback(
         (state) => {
@@ -91,9 +104,6 @@ const ConversationScreen = ({
             if (state === 'send') {
                 newConversationState.push(true);
                 setConversationState(newConversationState);
-            }
-            if (withAnimation) {
-                chatBottomRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' });
             }
         },
         [conversationState, setConversationState],
@@ -137,12 +147,6 @@ const ConversationScreen = ({
         setScrolledBottom(false);
     }, [setScrolledBottom]);
 
-    useEffect(() => {
-        if (animationFinished && !isPlaceholder && hasCallToAction) {
-            callToActionRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' });
-        }
-    }, [animationFinished]);
-
     return (
         <div
             className={classNames([
@@ -165,104 +169,109 @@ const ConversationScreen = ({
 
             <Container width={width} height={height}>
                 <Scroll
+                    ref={scrollRef}
                     disabled={scrollingDisabled}
                     onScrolledBottom={onScrolledBottom}
                     onScrolledNotBottom={onScrolledNotBottom}
                 >
-                    <Layout
-                        className={styles.layout}
-                        style={
-                            !isPlaceholder
-                                ? {
-                                      padding: spacing,
-                                      paddingTop:
-                                          (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
-                                  }
-                                : null
-                        }
-                    >
-                        <ScreenElement
-                            placeholder="conversation"
-                            emptyLabel={
-                                <FormattedMessage
-                                    defaultMessage="Conversation"
-                                    description="Conversation placeholder"
-                                />
+                    <div ref={contentRef}>
+                        <Layout
+                            className={styles.layout}
+                            style={
+                                !isPlaceholder
+                                    ? {
+                                          padding: spacing,
+                                          paddingTop:
+                                              (menuOverScreen && !isPreview ? menuSize : 0) +
+                                              spacing,
+                                      }
+                                    : null
                             }
-                            isEmpty={messages.length === 0 && title === null}
                         >
-                            <Transitions
-                                transitions={transitions}
-                                playing={current}
-                                disabled={transitionDisabled}
-                            >
-                                {hasTitle ? (
-                                    <Heading
-                                        {...title}
-                                        className={styles.title}
-                                        isEmpty={title === null}
+                            <ScreenElement
+                                placeholder="conversation"
+                                emptyLabel={
+                                    <FormattedMessage
+                                        defaultMessage="Conversation"
+                                        description="Conversation placeholder"
                                     />
-                                ) : null}
-                                <div className={styles.conversation}>
-                                    {filteredMessages.map((m, messageI) => {
-                                        const previousMessage =
-                                            messageI !== 0 ? messages[messageI - 1] : null;
-
-                                        const nextMessage =
-                                            messageI + 1 < messages.length
-                                                ? messages[messageI + 1]
-                                                : null;
-
-                                        const { speaker } = m;
-
-                                        const currentSpeaker =
-                                            (speakers || []).find((s) => s.id === speaker) || null;
-
-                                        const shouldPlay =
-                                            messageI === 0 ||
-                                            conversationState[messageI - 1] === true;
-
-                                        const pauseTiming = hesitationTimings[messageI];
-
-                                        const typingTiming = timings[messageI];
-
-                                        return (
-                                            <ConversationMessage
-                                                key={`${m.message}-${messagesUniqueId[messageI]}`}
-                                                message={m}
-                                                previousMessage={previousMessage}
-                                                nextMessage={nextMessage}
-                                                nextMessageState={
-                                                    conversationState[messageI + 1] ||
-                                                    !withAnimation
-                                                }
-                                                currentSpeaker={currentSpeaker}
-                                                conversationTiming={pauseTiming}
-                                                typingTiming={typingTiming}
-                                                onChange={conversationStateChange}
-                                                withAnimation={withAnimation}
-                                                isPlaying={current && shouldPlay}
-                                                messageStyle={messageStyle}
-                                                speakerStyle={speakerStyle}
-                                            />
-                                        );
-                                    })}
-                                </div>
-                                {viewCTA ? (
-                                    <div style={{ minHeight: callToActionHeight }}>
-                                        <CallToAction
-                                            ref={callToActionRef}
-                                            className={styles.callToAction}
-                                            disabled={!scrolledBottom}
-                                            animationDisabled={isPreview}
-                                            callToAction={callToAction}
+                                }
+                                isEmpty={messages.length === 0 && title === null}
+                            >
+                                <Transitions
+                                    transitions={transitions}
+                                    playing={current}
+                                    disabled={transitionDisabled}
+                                >
+                                    {hasTitle ? (
+                                        <Heading
+                                            {...title}
+                                            className={styles.title}
+                                            isEmpty={title === null}
                                         />
+                                    ) : null}
+                                    <div className={styles.conversation}>
+                                        {filteredMessages.map((m, messageI) => {
+                                            const previousMessage =
+                                                messageI !== 0 ? messages[messageI - 1] : null;
+
+                                            const nextMessage =
+                                                messageI + 1 < messages.length
+                                                    ? messages[messageI + 1]
+                                                    : null;
+
+                                            const { speaker } = m;
+
+                                            const currentSpeaker =
+                                                (speakers || []).find((s) => s.id === speaker) ||
+                                                null;
+
+                                            const shouldPlay =
+                                                messageI === 0 ||
+                                                conversationState[messageI - 1] === true;
+
+                                            const pauseTiming = hesitationTimings[messageI];
+
+                                            const typingTiming = timings[messageI];
+
+                                            return (
+                                                <ConversationMessage
+                                                    key={`${m.message}-${messagesUniqueId[messageI]}`}
+                                                    message={m}
+                                                    previousMessage={previousMessage}
+                                                    nextMessage={nextMessage}
+                                                    nextMessageState={
+                                                        conversationState[messageI + 1] ||
+                                                        !withAnimation
+                                                    }
+                                                    currentSpeaker={currentSpeaker}
+                                                    conversationTiming={pauseTiming}
+                                                    typingTiming={typingTiming}
+                                                    onChange={conversationStateChange}
+                                                    withAnimation={withAnimation}
+                                                    isPlaying={current && shouldPlay}
+                                                    messageStyle={messageStyle}
+                                                    speakerStyle={speakerStyle}
+                                                />
+                                            );
+                                        })}
                                     </div>
-                                ) : null}
-                                <div ref={chatBottomRef} />
-                            </Transitions>
-                        </ScreenElement>
-                    </Layout>
+                                    {viewCTA ? (
+                                        <div style={{ minHeight: callToActionHeight }}>
+                                            <CallToAction
+                                                ref={callToActionRef}
+                                                className={styles.callToAction}
+                                                disabled={!scrolledBottom}
+                                                animationDisabled={isPreview}
+                                                callToAction={callToAction}
+                                            />
+                                        </div>
+                                    ) : null}
+                                    <div ref={chatBottomRef} />
+                                </Transitions>
+                            </ScreenElement>
+                        </Layout>
+                    </div>
                 </Scroll>
             </Container>
         </div>
