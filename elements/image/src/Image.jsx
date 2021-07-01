@@ -27,7 +27,7 @@ const defaultProps = {
     width: null,
     height: null,
     objectFit: null,
-    containerStyle: { backgroundColor: 'rgba(0, 0, 0, 0.1)' },
+    containerStyle: {},//
     imageStyle: {},
     className: null,
     imageClassName: null,
