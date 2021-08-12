@@ -97,10 +97,9 @@ const AudioWave = ({
 
     // AudioWave buffer
 
-    const [audioBuffer, setAudioBuffer] = useState(null);
+    const [audioLevels, setAudioLevels] = useState([]);
 
     useEffect(() => {
-        setAudioBuffer(null);
         let audioCtx = null;
         let canceled = false;
 
@@ -120,7 +119,11 @@ const AudioWave = ({
                         throw new Error('Audio loading canceled');
                     }
                     audioCtx.decodeAudioData(audioData, (buffer) => {
-                        setAudioBuffer(buffer);
+                        const channelsCount = buffer.numberOfChannels;
+                        if (channelsCount > 0) {
+                            setAudioLevels(buffer.getChannelData(0));
+                        }     
+                        buffer = null;                   
                     });
                 })
                 .catch((e) => {
@@ -134,12 +137,12 @@ const AudioWave = ({
                 canceled = true;
             }
         };
-    }, [url, setAudioBuffer]);
+    }, [url, setAudioLevels]);
 
     // draw canvas
 
     useEffect(() => {
-        if (audioBuffer === null || elRef.current === null) {
+        if (audioLevels.length === 0 || elRef.current === null) {
             return;
         }
 
@@ -148,22 +151,16 @@ const AudioWave = ({
         const samplesCount = Math.floor(width / sampleOuterWidth);
 
         const amplitudes = [];
-        const channelsCount = audioBuffer.numberOfChannels;
-
-        if (channelsCount === 0) {
-            return;
-        }
 
         // get samples
 
-        const firstChannelData = audioBuffer.getChannelData(0);
-        const sampleSize = Math.floor(firstChannelData.length / samplesCount);
+        const sampleSize = Math.floor(audioLevels.length / samplesCount);
 
         for (let sampleI = 0; sampleI < samplesCount; sampleI += 1) {
             const sampleStart = sampleSize * sampleI;
             let sum = 0;
             for (let sampleSizeI = 0; sampleSizeI < sampleSize; sampleSizeI += 1) {
-                sum += Math.abs(firstChannelData[sampleStart + sampleSizeI]);
+                sum += Math.abs(audioLevels[sampleStart + sampleSizeI]);
             }
             amplitudes.push(sum / sampleSize);
         }
@@ -216,7 +213,7 @@ const AudioWave = ({
             onReady();
         }
     }, [
-        audioBuffer,
+        audioLevels,
         sampleWidth,
         sampleMargin,
         minSampleHeight,
