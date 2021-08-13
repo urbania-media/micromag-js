@@ -108,7 +108,7 @@ const Audio = ({
         let canceled = false;
 
         if (waveFake) {
-            const fakeLength = 500;
+            const fakeLength = 1000;
             setAudioLevels([...new Array(fakeLength)].map(() => Math.random()));
         } else if (url !== null && typeof window !== 'undefined') {            
             fetch(url, {
