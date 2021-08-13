@@ -174,7 +174,7 @@ const Audio = ({
                 },
             ])}
         >
-            <audio ref={ref} src={blobUrl} autoPlay={autoPlay} loop={loop} crossOrigin="anonymous" />
+            <audio ref={ref} src={waveFake ? url : blobUrl} autoPlay={autoPlay} loop={loop} crossOrigin="anonymous" preload="none" />
             <AudioWave
                 className={styles.wave}
                 media={media}

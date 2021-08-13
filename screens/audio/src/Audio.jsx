@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
-import React, { useState, useRef, useCallback, useEffect } from 'react';
+import React, { useState, useRef, useCallback, useEffect, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -16,6 +16,7 @@ import Layout, { Spacer } from '@micromag/element-layout';
 import CallToAction from '@micromag/element-call-to-action';
 
 import styles from './styles.module.scss';
+import { isIos } from '../../../elements/audio/node_modules/@micromag/core/utils';
 
 const propTypes = {
     layout: PropTypes.oneOf(['middle']),
@@ -88,6 +89,8 @@ const AudioScreen = ({
     const [duration, setDuration] = useState(null);
     const [playing, setPlaying] = useState(false);
     const [muted, setMuted] = useState(false);
+
+    const isIOS = useMemo(() => isIos(), []);
 
     const onTimeUpdate = useCallback(
         (time) => {
@@ -168,7 +171,7 @@ const AudioScreen = ({
                 <Audio
                     {...finalAudio}
                     ref={apiRef}
-                    waveFake={isPreview}
+                    waveFake={isIOS || isPreview}
                     waveProps={
                         isPreview
                             ? {
