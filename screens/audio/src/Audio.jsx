@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { isIos } from '@micromag/core/utils';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { useTrackScreenMedia } from '@micromag/core/hooks';
 import { ScreenElement, Transitions } from '@micromag/core/components';
@@ -15,7 +16,6 @@ import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
 import CallToAction from '@micromag/element-call-to-action';
 
-import { isIos } from '@micromag/core/utils';
 import styles from './styles.module.scss';
 
 const propTypes = {
