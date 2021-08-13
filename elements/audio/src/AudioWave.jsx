@@ -1,18 +1,17 @@
 /* eslint-disable no-multi-assign */
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign, react/no-array-index-key */
 import 'whatwg-fetch';
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useSpring } from '@react-spring/core';
 import { animated } from '@react-spring/web';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
+// import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useResizeObserver } from '@micromag/core/hooks';
 
 import styles from './styles/audio-wave.module.scss';
 
 const propTypes = {
-    media: MicromagPropTypes.audioMedia,
     currentTime: PropTypes.number,
     duration: PropTypes.number,
     playing: PropTypes.bool,
@@ -21,14 +20,13 @@ const propTypes = {
     minSampleHeight: PropTypes.number,
     backgroundColor: PropTypes.string,
     progressColor: PropTypes.string,
-    className: PropTypes.string,
-    reduceBufferFactor: PropTypes.number,
+    audioLevels: PropTypes.arrayOf(PropTypes.number),
+    className: PropTypes.string,    
     onSeek: PropTypes.func,
     onReady: PropTypes.func,
 };
 
 const defaultProps = {
-    media: null,
     currentTime: null,
     duration: null,
     playing: false,
@@ -37,14 +35,13 @@ const defaultProps = {
     minSampleHeight: 2,
     backgroundColor: 'white',
     progressColor: 'lightblue',
+    audioLevels: null,
     className: null,
-    reduceBufferFactor: 1000,
     onSeek: null,
     onReady: null,
 };
 
 const AudioWave = ({
-    media,
     currentTime,
     duration,
     playing,
@@ -53,13 +50,11 @@ const AudioWave = ({
     minSampleHeight,
     backgroundColor,
     progressColor,
+    audioLevels,
     className,
-    reduceBufferFactor,
     onSeek,
     onReady,
 }) => {
-    const { url = null } = media || {};
-
     const canvasBackgroundRef = useRef(null);
     const canvasProgressRef = useRef(null);
 
@@ -98,65 +93,10 @@ const AudioWave = ({
         });
     }, [playing, duration, currentTime, setSpringProps]);
 
-    // AudioWave buffer
-
-    const [audioLevels, setAudioLevels] = useState([]);
-
-    useEffect(() => {
-        let audioCtx = null;
-        let canceled = false;
-
-        if (url !== null && typeof window !== 'undefined') {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            fetch(url, {
-                mode: 'cors',
-            })
-                .then((response) => {
-                    if (canceled) {
-                        throw new Error('Audio loading canceled');
-                    }
-                    return response.arrayBuffer();
-                })
-                .then((audioData) => {
-                    if (canceled) {
-                        throw new Error('Audio loading canceled');
-                    }
-                    audioCtx.decodeAudioData(audioData, (buffer) => {
-                        const channelsCount = buffer.numberOfChannels;
-                        if (channelsCount > 0) {
-                            setAudioLevels(buffer
-                                .getChannelData(0)
-                                .reduce(
-                                    (newArray, level, levelIndex) => {
-                                        if (levelIndex % reduceBufferFactor === 0) {
-                                            newArray[newArray.length] = level;
-                                        }
-                                        return newArray;
-                                    },
-                                    [],
-                                ));
-                        }
-                        buffer = null;
-                        audioCtx = null;
-                    });
-                })
-                .catch((e) => {
-                    throw e;
-                });
-        }
-
-        return () => {
-            if (url === null) {
-                audioCtx = null;
-                canceled = true;
-            }
-        };
-    }, [url, setAudioLevels, reduceBufferFactor]);
-
     // draw canvas
 
     useEffect(() => {
-        if (audioLevels.length === 0 || elRef.current === null) {
+        if (audioLevels === null || audioLevels.length === 0 || elRef.current === null) {
             return;
         }
 

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign */
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -25,6 +25,7 @@ const propTypes = {
         sampleMargin: PropTypes.number,
         minSampleHeight: PropTypes.number,
     }),
+    reduceBufferFactor: PropTypes.number,
     className: PropTypes.string,
     onReady: PropTypes.func,
     onPlay: PropTypes.func,
@@ -44,6 +45,7 @@ const defaultProps = {
     autoPlay: false,
     loop: false,
     waveProps: null,
+    reduceBufferFactor: 100,
     className: null,
     onReady: null,
     onPlay: null,
@@ -63,6 +65,7 @@ const Audio = ({
     autoPlay,
     loop,
     waveProps,
+    reduceBufferFactor,
     className,
     onReady,
     onPlay,
@@ -95,16 +98,60 @@ const Audio = ({
 
     const { currentTime, duration, playing, seek, ready: audioReady } = api;
 
-    const [waveReady, setWaveReady] = useState(false);
-    const ready = audioReady && waveReady;
-
-    const onWaveReady = useCallback(() => {
-        setWaveReady(true);
-    }, [setWaveReady]);
+    const [audioLevels, setAudioLevels] = useState(null);
+    const [blobUrl, setBlobUrl] = useState(null);
 
     useEffect(() => {
-        setWaveReady(false);
-    }, [setWaveReady, url]);
+        let canceled = false;
+
+        if (url !== null && typeof window !== 'undefined') {
+            
+            fetch(url, {
+                mode: 'cors',
+            })
+                .then((response) => {
+                    if (canceled) {
+                        throw new Error('Audio loading canceled');
+                    }
+                    return response.arrayBuffer();
+                })
+                .then((arrayBuffer) => {
+                    if (canceled) {
+                        throw new Error('Audio loading canceled');
+                    }
+                    setBlobUrl(URL.createObjectURL(new Blob([arrayBuffer])));
+                    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    return audioCtx.decodeAudioData(arrayBuffer);
+                })
+                .then(buffer => {
+                    const channelsCount = buffer.numberOfChannels;
+                        if (channelsCount > 0) {
+                            const leftChannelData = buffer.getChannelData(0);
+                            setAudioLevels(
+                                leftChannelData.reduce(
+                                    (newArray, level, levelIndex) => {
+                                        if (levelIndex % reduceBufferFactor === 0) {
+                                            newArray[newArray.length] = level;
+                                        }
+                                        return newArray;
+                                    },
+                                    [],
+                                ));
+                        }
+                })
+                .catch((e) => {
+                    throw e;
+                });
+        }
+
+        return () => {
+            if (url === null) {
+                canceled = true;
+            }
+        };
+    }, [url, setAudioLevels, setBlobUrl, reduceBufferFactor]);
+
+    const ready = audioReady && blobUrl !== null
 
     useEffect(() => {
         if (ready && onReady !== null) {
@@ -121,7 +168,7 @@ const Audio = ({
                 },
             ])}
         >
-            <audio ref={ref} src={url} autoPlay={autoPlay} loop={loop} crossOrigin="anonymous" />
+            <audio ref={ref} src={blobUrl} autoPlay={autoPlay} loop={loop} crossOrigin="anonymous" />
             <AudioWave
                 className={styles.wave}
                 media={media}
@@ -130,7 +177,7 @@ const Audio = ({
                 duration={duration}
                 playing={playing}
                 onSeek={seek}
-                onReady={onWaveReady}
+                audioLevels={audioLevels}
             />
         </div>
     );
