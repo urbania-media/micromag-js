@@ -90,7 +90,7 @@ const AudioScreen = ({
     const [playing, setPlaying] = useState(false);
     const [muted, setMuted] = useState(false);
 
-    const isIOS = useMemo(() => isIos(), []);
+    const isIOS = useMemo(() => isIos(), [isIos]);
 
     const onTimeUpdate = useCallback(
         (time) => {
