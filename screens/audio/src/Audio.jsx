@@ -15,8 +15,8 @@ import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
 import CallToAction from '@micromag/element-call-to-action';
 
+import { isIos } from '@micromag/core/utils';
 import styles from './styles.module.scss';
-import { isIos } from '../../../elements/audio/node_modules/@micromag/core/utils';
 
 const propTypes = {
     layout: PropTypes.oneOf(['middle']),
