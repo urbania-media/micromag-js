@@ -25,7 +25,6 @@ const propTypes = {
         sampleWidth: PropTypes.number,
         sampleMargin: PropTypes.number,
         minSampleHeight: PropTypes.number,
-        fake: PropTypes.bool,
     }),
     reduceBufferFactor: PropTypes.number,
     className: PropTypes.string,
