@@ -20,10 +20,12 @@ const propTypes = {
     initialMuted: PropTypes.bool,
     autoPlay: PropTypes.bool,
     loop: PropTypes.bool,
+    waveFake: PropTypes.bool,
     waveProps: PropTypes.shape({
         sampleWidth: PropTypes.number,
         sampleMargin: PropTypes.number,
         minSampleHeight: PropTypes.number,
+        fake: PropTypes.bool,
     }),
     reduceBufferFactor: PropTypes.number,
     className: PropTypes.string,
@@ -44,6 +46,7 @@ const defaultProps = {
     initialMuted: false,
     autoPlay: false,
     loop: false,
+    waveFake: false,
     waveProps: null,
     reduceBufferFactor: 100,
     className: null,
@@ -64,6 +67,7 @@ const Audio = ({
     initialMuted,
     autoPlay,
     loop,
+    waveFake,
     waveProps,
     reduceBufferFactor,
     className,
@@ -104,8 +108,10 @@ const Audio = ({
     useEffect(() => {
         let canceled = false;
 
-        if (url !== null && typeof window !== 'undefined') {
-            
+        if (waveFake) {
+            const fakeLength = 100;
+            setAudioLevels([...new Array(fakeLength)].map(() => Math.random()));
+        } else if (url !== null && typeof window !== 'undefined') {            
             fetch(url, {
                 mode: 'cors',
             })
@@ -149,7 +155,7 @@ const Audio = ({
                 canceled = true;
             }
         };
-    }, [url, setAudioLevels, setBlobUrl, reduceBufferFactor]);
+    }, [url, setAudioLevels, setBlobUrl, reduceBufferFactor, waveFake]);
 
     const ready = audioReady && blobUrl !== null
 

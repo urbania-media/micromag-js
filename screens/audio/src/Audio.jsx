@@ -168,12 +168,13 @@ const AudioScreen = ({
                 <Audio
                     {...finalAudio}
                     ref={apiRef}
+                    waveFake={isPreview}
                     waveProps={
                         isPreview
                             ? {
                                   sampleWidth: 10,
                                   sampleMargin: 5,
-                                  minSampleHeight: 5,
+                                  minSampleHeight: 5,                                  
                               }
                             : null
                     }
