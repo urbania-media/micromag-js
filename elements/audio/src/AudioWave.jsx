@@ -22,6 +22,7 @@ const propTypes = {
     backgroundColor: PropTypes.string,
     progressColor: PropTypes.string,
     className: PropTypes.string,
+    reduceBufferFactor: PropTypes.number,
     onSeek: PropTypes.func,
     onReady: PropTypes.func,
 };
@@ -37,6 +38,7 @@ const defaultProps = {
     backgroundColor: 'white',
     progressColor: 'lightblue',
     className: null,
+    reduceBufferFactor: 1000,
     onSeek: null,
     onReady: null,
 };
@@ -52,6 +54,7 @@ const AudioWave = ({
     backgroundColor,
     progressColor,
     className,
+    reduceBufferFactor,
     onSeek,
     onReady,
 }) => {
@@ -121,9 +124,20 @@ const AudioWave = ({
                     audioCtx.decodeAudioData(audioData, (buffer) => {
                         const channelsCount = buffer.numberOfChannels;
                         if (channelsCount > 0) {
-                            setAudioLevels(buffer.getChannelData(0));
-                        }     
-                        buffer = null;                   
+                            setAudioLevels(buffer
+                                .getChannelData(0)
+                                .reduce(
+                                    (newArray, level, levelIndex) => {
+                                        if (levelIndex % reduceBufferFactor === 0) {
+                                            newArray[newArray.length] = level;
+                                        }
+                                        return newArray;
+                                    },
+                                    [],
+                                ));
+                        }
+                        buffer = null;
+                        audioCtx = null;
                     });
                 })
                 .catch((e) => {
@@ -137,7 +151,7 @@ const AudioWave = ({
                 canceled = true;
             }
         };
-    }, [url, setAudioLevels]);
+    }, [url, setAudioLevels, reduceBufferFactor]);
 
     // draw canvas
 
@@ -251,7 +265,9 @@ const AudioWave = ({
                 ref={canvasProgressRef}
                 className={styles.canvasProgress}
                 style={{
-                    clipPath: springProps.x.to((x) => `polygon(0 0, ${x * 100}% 0, ${x * 100}% 100%, 0 100%)`),
+                    clipPath: springProps.x.to(
+                        (x) => `polygon(0 0, ${x * 100}% 0, ${x * 100}% 100%, 0 100%)`,
+                    ),
                 }}
             />
             <button
