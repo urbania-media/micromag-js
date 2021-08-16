@@ -107,7 +107,7 @@ export const text = (length = 'normal', style = 'normal') => {
 export const imageUrl = ({ width = 800, height = 800, rand = false } = {}) =>
     `https://picsum.photos/${width}/${height}?random=${rand ? Math.random() : 1}`;
 
-export const imageMedia = ({ width = 800, height = 800, rand = false } = {}) => ({
+export const imageMedia = ({ width = 800, height = 800, rand = false, sizes = {large: 0.9, medium: 0.75, small: 0.3} } = {}) => ({
     type: 'image',
     url: imageUrl({ width, height, rand }),
     thumbnail_url: imageUrl({ width: 100, height: 100, rand }),
@@ -115,6 +115,18 @@ export const imageMedia = ({ width = 800, height = 800, rand = false } = {}) => 
         width,
         height,
     },
+    sizes: Object.keys(sizes).reduce((currentSizes, key) => ({
+        ...currentSizes,
+        [key]: {
+            url: imageUrl({
+                width: Math.round(width * sizes[key]),
+                height: Math.round(height * sizes[key]),
+                rand
+            }),
+            width: Math.round(width * sizes[key]),
+            height: Math.round(height * sizes[key]),
+        }
+    }), {})
 });
 
 export const videoMedia = () => ({
@@ -153,25 +165,11 @@ export const closedCaptionsMedia = () => ({
 // -----------------
 
 export const images = ({ count = 3, width = 800, height = 800, rand = false } = {}) =>
-    [...Array(count)].map(() => ({
-        type: 'image',
-        url: imageUrl({ width, height, rand }),
-        metadata: {
-            width,
-            height,
-        },
-    }));
+    [...Array(count)].map(() => imageMedia({ width, height, rand }));
 
 export const imagesWithCaptions = ({ count = 3, width = 800, height = 800, rand = false } = {}) =>
     [...Array(count)].map(() => ({
-        media: {
-            type: 'image',
-            url: imageUrl({ width, height, rand }),
-            metadata: {
-                width,
-                height,
-            },
-        },
+        media: imageMedia({ width, height, rand }),
         caption: text(),
     }));
 

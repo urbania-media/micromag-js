@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getSizeWithinBounds } from '@folklore/size';
 
+import getOptimalImageUrl from './getOptimalImageUrl';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -166,9 +167,12 @@ const Image = ({
         ...imageStyle,
     };
 
+    const { width: finalWidth = null, height: finalHeight = null } = finalImageStyle;
+    const finalUrl = getOptimalImageUrl(media, finalWidth, finalHeight);
+
     const img = url ? (
         <img
-            src={url}
+            src={finalUrl}
             alt={alt || description}
             className={classNames([
                 styles.img,
