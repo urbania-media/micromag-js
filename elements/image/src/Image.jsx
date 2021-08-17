@@ -3,9 +3,9 @@ import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { getOptimalImageUrl } from '@micromag/core/utils';
 import { getSizeWithinBounds } from '@folklore/size';
 
-import getOptimalImageUrl from './getOptimalImageUrl';
 import styles from './styles.module.scss';
 
 const propTypes = {

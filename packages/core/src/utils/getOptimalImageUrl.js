@@ -3,7 +3,7 @@ const getOptimalImageUrl = (
     media = null,
     containerWidth = null,
     containerHeight = null,
-    maxDiff = 8000
+    maxDiff = 800
 ) => {
     const { sizes = null, url: defaultUrl = null, metadata: { width: imgWidth, height: imgHeight } = {} } = media || {};
 
@@ -22,7 +22,7 @@ const getOptimalImageUrl = (
 
     const { url: finalUrl } = Object.keys(finalSizes).reduce(
         (acc, key) => {
-            const { diff: currentDiff, isLarger: currentIsLarger } = acc;
+            const { diff: currentDiff, isLarger: currentIsLarger, size: currentSize } = acc;
             const { url, width = null, height = null } = finalSizes[key];
             const diffWidth =
                 width !== null && containerWidth !== null ? width - containerWidth : null;
@@ -38,16 +38,21 @@ const getOptimalImageUrl = (
             if (diff === null) {
                 diff = Infinity
             }
+            const size = (width || 0) + (height || 0);
+            const sizeIsLarger = size > currentSize;
 
             if (
                 // Difference is lower and image is larger
                 (diff < currentDiff && isLarger) ||
                 // Difference is lower and current is not larger or diff is greater than max
-                (diff < currentDiff && (!currentIsLarger || currentDiff > maxDiff)) ||
+                (diff < currentDiff && ((!currentIsLarger && sizeIsLarger) || currentDiff > maxDiff)) ||
                 // Image is larger and diff is smaller than max
-                (diff <= maxDiff && !currentIsLarger && isLarger)
+                (diff <= maxDiff && !currentIsLarger && isLarger) ||
+                // Image is larger than previous
+                (diff <= maxDiff && !currentIsLarger && !isLarger && sizeIsLarger)
             ) {
                 return {
+                    key,
                     url,
                     diff,
                     isLarger,
@@ -55,29 +60,8 @@ const getOptimalImageUrl = (
             }
             return acc;
         },
-        { url: defaultUrl, diff: Infinity, isLarger: false },
+        { key: null, url: defaultUrl, diff: Infinity, isLarger: false, size: 0 },
     );
-
-    // if (sizes !== null && width !== null && height !== null) {
-    //     const sizesArray = Object.values(sizes).filter((s) => {
-    //         const { width: w, height: h } = s;
-    //         const widthIsLarger = width !== 0 && width < w;
-    //         const heightIsLarger = height !== 0 && height < h;
-    //         return widthIsLarger && heightIsLarger;
-    //     });
-    //     const previousDiff = { dw: 0, dh: 0 };
-    //     sizesArray.forEach((s, idx) => {
-    //         const { width: w, height: h, url } = s;
-    //         const diffWidth = w - width;
-    //         const diffHeight = h - height;
-    //
-    //         if ((diffWidth < previousDiff.dw && diffHeight < previousDiff.dh) || idx === 0) {
-    //             previousDiff.dw = diffWidth;
-    //             previousDiff.dh = diffHeight;
-    //             finalUrl = url;
-    //         }
-    //     });
-    // }
 
     return finalUrl;
 };

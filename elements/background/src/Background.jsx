@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { getStyleFromColor } from '@micromag/core/utils';
+import { getStyleFromColor, getOptimalImageUrl } from '@micromag/core/utils';
 import Video from '@micromag/element-video';
 import { getSizeWithinBounds } from '@folklore/size';
 
@@ -66,8 +66,8 @@ const Background = ({
 
     // image
     if (image !== null) {
-        const { url: imageUrl = null } = image || {};
-        finalStyle.backgroundImage = `url("${imageUrl}")`;
+        const finalUrl = getOptimalImageUrl(image, width, height);
+        finalStyle.backgroundImage = `url("${finalUrl}")`;
         finalStyle.backgroundRepeat = repeat ? 'repeat' : 'no-repeat';
         finalStyle.backgroundPosition = [horizontalAlign, verticalAlign].join(' ');
 
@@ -98,7 +98,7 @@ const Background = ({
             videoContainerStyle.top = resizedVideoTop;
         } else {
             videoContainerStyle.objectFit = 'cover';
-        }    
+        }
     }
 
     return (
