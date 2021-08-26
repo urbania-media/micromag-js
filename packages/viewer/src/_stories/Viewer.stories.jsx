@@ -6,6 +6,7 @@ import {
     webfont2Files,
     webfont3Files,
     imageMedia,
+    videoMedia,
 } from '../../../../.storybook/data';
 
 import basic from '../../../../.storybook/data/stories/basic.json';
@@ -110,6 +111,34 @@ export const AllScreens = () => <Viewer {...props} />;
 export const FaceAFace = () => <Viewer {...faceAFaceProps} />;
 export const Empty = () => <Viewer basePath="/story-path" />;
 export const TwoScreens = () => <Viewer {...twoScreensProps} />;
+export const MultipleVideos = () => <Viewer screenId="1" story={{
+    components: [
+        {
+            id: '1',
+            type: 'video',
+            video: {
+                autoPlay: true,
+                media: videoMedia()
+            },
+        },
+        {
+            id: '2',
+            type: 'video',
+            video: {
+                autoPlay: true,
+                media: videoMedia()
+            },
+        },
+        {
+            id: '3',
+            type: 'video',
+            video: {
+                autoPlay: true,
+                media: videoMedia()
+            },
+        },
+    ],
+}} />
 export const CustomFonts = () => (
     <Viewer
         story={{

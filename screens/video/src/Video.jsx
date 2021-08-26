@@ -144,7 +144,7 @@ const VideoScreen = ({
 
     // get resized video style props
     const finalVideo = hasVideo
-        ? { ...video, autoPlay: isPreview || isStatic || isCapture ? false : video.autoPlay }
+        ? { ...video, autoPlay: isPreview || isStatic || isCapture ? false : video.autoPlay && current }
         : null;
     const { media: videoMedia = null, closedCaptions = null, withSeekBar = false } =
         finalVideo || {};
