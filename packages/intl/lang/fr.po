@@ -365,6 +365,12 @@ msgctxt "8Dl/S1"
 msgid "Draggable"
 msgstr "Glissable"
 
+# Field label
+#: 8EI08h
+msgctxt "8EI08h"
+msgid "With play/pause button"
+msgstr "Avec bouton Play/Pause"
+
 # Button label
 #: 8oczXQ
 msgctxt "8oczXQ"

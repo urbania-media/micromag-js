@@ -235,6 +235,10 @@
     "defaultMessage": "Draggable",
     "description": "Draggable field label"
   },
+  "8EI08h": {
+    "defaultMessage": "With play/pause button",
+    "description": "Field label"
+  },
   "8oczXQ": {
     "defaultMessage": "Add a marker",
     "description": "Button label"
