@@ -99,7 +99,7 @@ const Audio = ({
         apiRef.current.mediaRef = ref;
     }
 
-    const { currentTime, duration, playing, seek, ready: audioReady } = api;
+    const { currentTime, duration, playing, seek, ready: audioReady, play, pause } = api;
 
     const [audioLevels, setAudioLevels] = useState(null);
     const [blobUrl, setBlobUrl] = useState(null);
@@ -156,13 +156,21 @@ const Audio = ({
         };
     }, [url, setAudioLevels, setBlobUrl, reduceBufferFactor, waveFake]);
 
-    const ready = audioReady && blobUrl !== null
+    const ready = waveFake || (audioReady && blobUrl !== null);
 
     useEffect(() => {
         if (ready && onReady !== null) {
             onReady();
         }
     }, [ready, onReady]);
+
+    useEffect(() => {
+        if (autoPlay) {
+            play();
+        } else {
+            pause();
+        }
+    }, [autoPlay]);
 
     return (
         <div
@@ -182,6 +190,7 @@ const Audio = ({
                 duration={duration}
                 playing={playing}
                 onSeek={seek}
+                onResume={play}
                 audioLevels={audioLevels}
             />
         </div>

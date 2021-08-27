@@ -18,7 +18,7 @@ import { getSizeWithinBounds } from '@folklore/size';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderVideo360, Transitions, ScreenElement } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
-import { useAnimationFrame, useTrackScreenEvent, useTrackScreenMedia } from '@micromag/core/hooks';
+import { useAnimationFrame, useTrackScreenEvent, useTrackScreenMedia, useLongPress } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import ClosedCaptions from '@micromag/element-closed-captions';
@@ -155,6 +155,8 @@ const Video360Screen = ({
 
     // ------------------------------------
 
+    const longPressBind = useLongPress({ onLongPress: togglePlay });
+
     const hasVideo = video !== null;
     const withVideoSphere = hasVideo && (isView || isEdit) && !isCapture && !isStatic;
     const [ready, setReady] = useState(!hasVideo);
@@ -163,9 +165,9 @@ const Video360Screen = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     const finalVideo = hasVideo
-        ? { ...video, autoPlay: isPreview || isStatic || isCapture ? false : video.autoPlay }
+        ? { ...video, autoPlay: isPreview || isStatic || isCapture ? false : video.autoPlay && current }
         : null;
-    const { media: videoMedia = null, closedCaptions = null, withSeekBar = false } =
+    const { media: videoMedia = null, closedCaptions = null, withSeekBar = false, withPlayPause = false } =
         finalVideo || {};
 
     const {
@@ -410,6 +412,7 @@ const Video360Screen = ({
                     <MediaControls
                         className={styles.mediaControls}
                         withSeekBar={withSeekBar}
+                        withPlayPause={withPlayPause}
                         playing={playing}
                         muted={muted}
                         currentTime={currentTime}
@@ -417,7 +420,7 @@ const Video360Screen = ({
                         onTogglePlay={togglePlay}
                         onToggleMute={toggleMute}
                         onSeek={seek}
-                    />
+                    />                    
                     {hasCallToAction ? (
                         <div style={{ marginTop: -spacing }}>
                             <CallToAction
@@ -441,6 +444,7 @@ const Video360Screen = ({
                 },
             ])}
             data-screen-ready={((isStatic || isCapture) && posterReady) || ready}
+            {...longPressBind}
         >
             {!isPlaceholder ? (
                 <Background

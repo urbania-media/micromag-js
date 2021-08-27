@@ -6,6 +6,7 @@ export { default as useFormTransition } from './useFormTransition';
 export { default as useFullscreen } from './useFullscreen';
 export { default as useIsVisible } from './useIsVisible';
 export { default as useLoadedFonts } from './useLoadedFonts';
+export { default as useLongPress } from './useLongPress';
 export { default as useMediaApi } from './useMediaApi';
 export { default as useMediasParser } from './useMediasParser';
 export * from './useObserver';

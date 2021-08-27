@@ -348,6 +348,7 @@ export const videoElement = PropTypes.shape({
     loop: PropTypes.bool,
     closedCaptions: closedCaptionsMedia,
     withSeekBar: PropTypes.bool,
+    withPlayPause: PropTypes.bool,
 });
 
 export const audioElement = PropTypes.shape({
@@ -355,6 +356,7 @@ export const audioElement = PropTypes.shape({
     autoPlay: PropTypes.bool,
     loop: PropTypes.bool,
     closedCaptions: closedCaptionsMedia,
+    withPlayPause: PropTypes.bool,
 });
 
 export const closedCaptionsElement = PropTypes.shape({

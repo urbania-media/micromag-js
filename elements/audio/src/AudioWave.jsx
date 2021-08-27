@@ -1,7 +1,8 @@
 /* eslint-disable no-multi-assign */
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign, react/no-array-index-key */
 import 'whatwg-fetch';
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect } from 'react';
+import { useDrag } from 'react-use-gesture';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useSpring } from '@react-spring/core';
@@ -23,6 +24,7 @@ const propTypes = {
     audioLevels: PropTypes.arrayOf(PropTypes.number),
     className: PropTypes.string,    
     onSeek: PropTypes.func,
+    onResume: PropTypes.func,
     onReady: PropTypes.func,
 };
 
@@ -38,6 +40,7 @@ const defaultProps = {
     audioLevels: null,
     className: null,
     onSeek: null,
+    onResume: null,
     onReady: null,
 };
 
@@ -53,6 +56,7 @@ const AudioWave = ({
     audioLevels,
     className,
     onSeek,
+    onResume,
     onReady,
 }) => {
     const canvasBackgroundRef = useRef(null);
@@ -62,7 +66,7 @@ const AudioWave = ({
         ref: elRef,
         entry: { contentRect: elContentRect },
     } = useResizeObserver();
-    const { width: elWidth = null } = elContentRect || {};
+    const { width: elWidth = null, height: elHeight } = elContentRect || {};
 
     // Linear animation for progress bar
 
@@ -100,9 +104,8 @@ const AudioWave = ({
             return;
         }
 
-        const { offsetWidth: width = null, offsetHeight: height = null } = elRef.current;
         const sampleOuterWidth = sampleWidth + sampleMargin * 2;
-        const samplesCount = Math.floor(width / sampleOuterWidth);
+        const samplesCount = Math.floor(elWidth / sampleOuterWidth);
 
         const amplitudes = [];
 
@@ -127,8 +130,8 @@ const AudioWave = ({
 
         const scale = typeof window !== 'undefined' ? window.devicePixelRatio : 1;
 
-        canvasBg.width = canvasProgress.width = Math.floor(width * scale);
-        canvasBg.height = canvasProgress.height = Math.floor(height * scale);
+        canvasBg.width = canvasProgress.width = Math.floor(elWidth * scale);
+        canvasBg.height = canvasProgress.height = Math.floor(elHeight * scale);
 
         const ctxBG = canvasBg.getContext('2d');
         const ctxProgress = canvasProgress.getContext('2d');
@@ -136,18 +139,18 @@ const AudioWave = ({
         ctxBG.scale(scale, scale);
         ctxProgress.scale(scale, scale);
 
-        ctxBG.clearRect(0, 0, width, height);
-        ctxProgress.clearRect(0, 0, width, height);
+        ctxBG.clearRect(0, 0, elWidth, elHeight);
+        ctxProgress.clearRect(0, 0, elWidth, elHeight);
 
         ctxBG.fillStyle = backgroundColor;
         ctxProgress.fillStyle = progressColor;
 
-        const offsetLeft = (width - samplesCount * sampleOuterWidth) / 2;
+        const offsetLeft = (elWidth - samplesCount * sampleOuterWidth) / 2;
 
         normalizedAmplitudes.forEach((amplitude, amplitudeI) => {
-            const sampleHeight = Math.max(minSampleHeight, amplitude * height);
+            const sampleHeight = Math.max(minSampleHeight, amplitude * elHeight);
             const sampleX = sampleOuterWidth * amplitudeI + offsetLeft + sampleMargin;
-            const sampleY = height / 2 - sampleHeight / 2;
+            const sampleY = elHeight / 2 - sampleHeight / 2;
 
             ctxBG.fillRect(
                 Math.round(sampleX),
@@ -172,6 +175,7 @@ const AudioWave = ({
         sampleMargin,
         minSampleHeight,
         elWidth,
+        elHeight,
         backgroundColor,
         progressColor,
         onReady,
@@ -179,16 +183,16 @@ const AudioWave = ({
 
     // User events
 
-    const onSeekClick = useCallback(
-        (e) => {
-            if (onSeek !== null && duration !== null) {
-                const currentTargetRect = e.currentTarget.getBoundingClientRect();
-                const seekProgress = (e.pageX - currentTargetRect.left) / currentTargetRect.width;
-                onSeek(seekProgress * duration);
-            }
-        },
-        [duration],
-    );
+    const dragBind = useDrag(({ xy: [x] }) => {
+        const progress = Math.max(0, Math.min(1, x / elWidth));
+        if (onSeek !== null && duration !== null) {
+            onSeek(progress * duration);
+        }
+
+        if (!playing) {
+            onResume();
+        }
+    }, { axis: 'x' });
 
     return (
         <div
@@ -199,6 +203,7 @@ const AudioWave = ({
                 },
             ])}
             ref={elRef}
+            {...dragBind()}
         >
             <canvas ref={canvasBackgroundRef} className={styles.canvasBackground} />
             <animated.canvas
@@ -209,12 +214,6 @@ const AudioWave = ({
                         (x) => `polygon(0 0, ${x * 100}% 0, ${x * 100}% 100%, 0 100%)`,
                     ),
                 }}
-            />
-            <button
-                type="button"
-                className={styles.button}
-                onClick={onSeekClick}
-                aria-label="Seek"
             />
         </div>
     );

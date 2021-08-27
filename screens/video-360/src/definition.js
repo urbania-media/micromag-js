@@ -27,6 +27,9 @@ export default {
             theme: {
                 color: 'primary',
             },
+            defaultValue: {
+                autoPlay: true,
+            },
             label: defineMessage({
                 defaultMessage: 'Video',
                 description: 'Video field label',

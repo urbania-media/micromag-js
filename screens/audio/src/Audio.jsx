@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { isIos } from '@micromag/core/utils';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
-import { useTrackScreenMedia } from '@micromag/core/hooks';
+import { useTrackScreenMedia, useLongPress } from '@micromag/core/hooks';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import Audio from '@micromag/element-audio';
 import ClosedCaptions from '@micromag/element-closed-captions';
@@ -73,9 +73,9 @@ const AudioScreen = ({
 
     const hasAudio = audio !== null;
     const finalAudio = hasAudio
-        ? { ...audio, autoPlay: isPreview || isStatic || isCapture ? false : audio.autoPlay }
+        ? { ...audio, autoPlay: isPreview || isStatic || isCapture ? false : audio.autoPlay && current && ready }
         : null;
-    const { closedCaptions = null } = finalAudio || {};
+    const { closedCaptions = null, withPlayPause = false } = finalAudio || {};
     const hasClosedCaptions = closedCaptions !== null;
 
     const onAudioReady = useCallback(() => {
@@ -152,7 +152,9 @@ const AudioScreen = ({
         }
     }, [playing, current]);
 
-    // ------------------------------------
+    // ------------------------------------    
+
+    const longPressBind = useLongPress({ onLongPress: togglePlay });
 
     const elements = [
         <Spacer key="spacer-top" />,
@@ -205,11 +207,12 @@ const AudioScreen = ({
                 ) : null}
                 <MediaControls
                     className={styles.mediaControls}
+                    withPlayPause={withPlayPause}
                     playing={playing}
                     muted={muted}
                     onTogglePlay={togglePlay}
                     onToggleMute={toggleMute}
-                />
+                />          
             </div>
         ) : null,
         !isPlaceholder && hasCallToAction ? (
@@ -234,6 +237,7 @@ const AudioScreen = ({
                 },
             ])}
             data-screen-ready={ready}
+            {...longPressBind}
         >
             {!isPlaceholder ? (
                 <Background

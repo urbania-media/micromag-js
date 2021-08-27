@@ -7,7 +7,7 @@ import { getSizeWithinBounds } from '@folklore/size';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderVideo, Transitions, ScreenElement, Empty } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
-import { useTrackScreenMedia } from '@micromag/core/hooks';
+import { useTrackScreenMedia, useLongPress } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import ClosedCaptions from '@micromag/element-closed-captions';
@@ -133,6 +133,8 @@ const VideoScreen = ({
 
     // ------------------------------------
 
+    const longPressBind = useLongPress({ onLongPress: togglePlay });
+
     const fullscreen = layout === 'full';
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
@@ -146,7 +148,7 @@ const VideoScreen = ({
     const finalVideo = hasVideo
         ? { ...video, autoPlay: isPreview || isStatic || isCapture ? false : video.autoPlay && current }
         : null;
-    const { media: videoMedia = null, closedCaptions = null, withSeekBar = false } =
+    const { media: videoMedia = null, closedCaptions = null, withSeekBar = false, withPlayPause = false } =
         finalVideo || {};
     const {
         metadata: videoMetadata = null,
@@ -250,6 +252,7 @@ const VideoScreen = ({
                     <MediaControls
                         className={styles.mediaControls}
                         withSeekBar={withSeekBar}
+                        withPlayPause={withPlayPause}
                         playing={playing}
                         muted={muted}
                         currentTime={currentTime}
@@ -257,7 +260,7 @@ const VideoScreen = ({
                         onTogglePlay={togglePlay}
                         onToggleMute={toggleMute}
                         onSeek={seek}
-                    />
+                    />                 
                     {hasCallToAction ? (
                         <div style={{ marginTop: -spacing }}>
                             <CallToAction callToAction={callToAction} animationDisabled={isPreview} />
@@ -278,6 +281,7 @@ const VideoScreen = ({
                 },
             ])}
             data-screen-ready={((isStatic || isCapture) && posterReady) || ready}
+            {...longPressBind}
         >
             {!isPlaceholder ? (
                 <Background

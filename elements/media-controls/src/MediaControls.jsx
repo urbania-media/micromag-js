@@ -17,6 +17,7 @@ const propTypes = {
     onToggleMute: PropTypes.func,
     onSeek: PropTypes.func,
     withSeekBar: PropTypes.bool,
+    withPlayPause: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -29,6 +30,7 @@ const defaultProps = {
     onToggleMute: null,
     onSeek: null,
     withSeekBar: false,
+    withPlayPause: false,
     className: null,
 };
 
@@ -41,6 +43,7 @@ const MediaControls = ({
     onToggleMute,
     onSeek,
     withSeekBar,
+    withPlayPause,
     className,
 }) => (
     <div
@@ -48,7 +51,9 @@ const MediaControls = ({
             styles.container,
             {
                 [className]: className !== null,
+                [styles.playing]: playing,
                 [styles.muted]: muted,
+                [styles.withPlayPause]: withPlayPause,
             },
         ])}
     >

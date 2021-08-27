@@ -18,23 +18,26 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
     }
 
     .playPauseButton {
+        visibility: hidden;
         margin: 0 auto;
-        border: 1px solid $white;
+        border: 2px solid $white;
         border-radius: 50%;
-        
+
         .icon {
             display: block;
             width: 40%;
             height: 40%;
+            transform: translateX(5%);
         }
     }
 
     .muteButton {
+        visibility: hidden;
         position: absolute;
         top: 50%;
         right: 0;
@@ -62,11 +65,27 @@
         }
     }
 
+    &.playing {
+        .playPauseButton {
+            .icon {
+                transform: none;
+            }
+        }
+    }
+
     &.muted {
         .muteButton {
+            visibility: visible;
+
             &::after {
                 display: block;
             }
+        }
+    }
+
+    &.withPlayPause {
+        .playPauseButton {
+            visibility: visible;
         }
     }
 }

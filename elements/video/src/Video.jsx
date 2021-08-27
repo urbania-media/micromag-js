@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useUserInteracted } from '@micromag/core/contexts';
 import { useMediaApi } from '@micromag/core/hooks';
 
 import styles from './styles.module.scss';
@@ -17,7 +18,7 @@ const propTypes = {
             current: PropTypes.any,
         }),
     ]),
-    initialMuted: PropTypes.bool,
+    initialMuted: PropTypes.oneOf(['auto', true, false]),
     autoPlay: PropTypes.bool,
     loop: PropTypes.bool,
     playsInline: PropTypes.bool,
@@ -41,7 +42,7 @@ const defaultProps = {
     width: null,
     height: null,
     apiRef: null,
-    initialMuted: false,
+    initialMuted: 'auto',
     autoPlay: false,
     loop: false,
     playsInline: true,
@@ -88,7 +89,9 @@ const Video = ({
         files !== null && typeof files.h264 !== 'undefined' && typeof files.webm !== 'undefined';
     const mediaUrl = hasFiles ? files.h264.url : url;
 
-    const finalInitialMuted = initialMuted || autoPlay;
+    const userInteracted = useUserInteracted();
+
+    const finalInitialMuted = initialMuted === true || (initialMuted === 'auto' && autoPlay && !userInteracted);
 
     const { ref, ...api } = useMediaApi({
         url: mediaUrl,
@@ -108,7 +111,7 @@ const Video = ({
         apiRef.current.mediaRef = ref;
     }
 
-    const { playing, muted, ready, play, pause } = api;
+    const { playing, muted, ready, play, pause, unMute } = api;
 
     useEffect(() => {
         if (ready && onReady !== null) {
@@ -134,6 +137,9 @@ const Video = ({
     useEffect(() => {
         if (autoPlay) {
             play();
+            if (initialMuted === 'auto' && muted && userInteracted) {
+                unMute();
+            }                  
         } else {
             pause();
         }

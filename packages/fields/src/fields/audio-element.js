@@ -26,6 +26,14 @@ export default {
             }),
         },
         {
+            name: 'withPlayPause',
+            type: 'toggle',
+            label: defineMessage({
+                defaultMessage: 'With play/pause button',
+                description: 'Field label',
+            }),
+        },
+        {
             name: 'closedCaptions',
             type: 'closed-captions',
             label: defineMessage({

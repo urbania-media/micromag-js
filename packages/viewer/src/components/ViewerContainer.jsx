@@ -13,6 +13,7 @@ import {
     RoutesProvider,
     TrackingProvider,
     FieldsProvider,
+    UserInteractionProvider,
 } from '@micromag/core/contexts';
 
 import * as ViewerPropTypes from '../lib/PropTypes';
@@ -86,17 +87,19 @@ const ViewerContainer = ({
                 <GoogleMapsClientProvider>
                     <FieldsProvider manager={fieldsManager}>
                         <ScreensProvider>
-                            <TrackingProvider variables={finalTrackingVariables}>
-                                {withoutRouter ? (
-                                    <Viewer story={story} basePath={basePath} {...otherProps} />
-                                ) : (
-                                    <ViewerRoutes
-                                        story={story}
-                                        basePath={basePath}
-                                        {...otherProps}
-                                    />
-                                )}
-                            </TrackingProvider>
+                            <UserInteractionProvider>
+                                <TrackingProvider variables={finalTrackingVariables}>
+                                    {withoutRouter ? (
+                                        <Viewer story={story} basePath={basePath} {...otherProps} />
+                                    ) : (
+                                        <ViewerRoutes
+                                            story={story}
+                                            basePath={basePath}
+                                            {...otherProps}
+                                        />
+                                    )}
+                                </TrackingProvider>
+                            </UserInteractionProvider>
                         </ScreensProvider>
                     </FieldsProvider>
                 </GoogleMapsClientProvider>

@@ -7,6 +7,8 @@ import {
     webfont3Files,
     imageMedia,
     videoMedia,
+    video360Media,
+    audioMedia,
 } from '../../../../.storybook/data';
 
 import basic from '../../../../.storybook/data/stories/basic.json';
@@ -111,6 +113,34 @@ export const AllScreens = () => <Viewer {...props} />;
 export const FaceAFace = () => <Viewer {...faceAFaceProps} />;
 export const Empty = () => <Viewer basePath="/story-path" />;
 export const TwoScreens = () => <Viewer {...twoScreensProps} />;
+export const MultipleAudios = () => <Viewer screenId="1" story={{
+    components: [
+        {
+            id: '1',
+            type: 'audio',
+            audio: {
+                autoPlay: true,
+                media: audioMedia()
+            },
+        },
+        {
+            id: '2',
+            type: 'audio',
+            audio: {
+                autoPlay: true,
+                media: audioMedia()
+            },
+        },
+        {
+            id: '3',
+            type: 'audio',
+            audio: {
+                autoPlay: true,
+                media: audioMedia()
+            },
+        },
+    ],
+}} />
 export const MultipleVideos = () => <Viewer screenId="1" story={{
     components: [
         {
@@ -135,6 +165,34 @@ export const MultipleVideos = () => <Viewer screenId="1" story={{
             video: {
                 autoPlay: true,
                 media: videoMedia()
+            },
+        },
+    ],
+}} />
+export const MultipleVideos360 = () => <Viewer screenId="1" story={{
+    components: [
+        {
+            id: '1',
+            type: 'video-360',
+            video: {
+                autoPlay: true,
+                media: video360Media()
+            },
+        },
+        {
+            id: '2',
+            type: 'video-360',
+            video: {
+                autoPlay: true,
+                media: video360Media()
+            },
+        },
+        {
+            id: '3',
+            type: 'video-360',
+            video: {
+                autoPlay: true,
+                media: video360Media()
             },
         },
     ],
