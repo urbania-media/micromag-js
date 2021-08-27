@@ -1,6 +1,6 @@
 {
     "name": "@micromag/elements",
-    "version": "0.2.279",
+    "version": "0.2.280",
     "description": "",
     "keywords": [
         "javascript"
@@ -59,28 +59,28 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.2.279",
-        "@micromag/element-audio": "^0.2.279",
-        "@micromag/element-background": "^0.2.279",
-        "@micromag/element-button": "^0.2.279",
-        "@micromag/element-call-to-action": "^0.2.279",
-        "@micromag/element-checkbox": "^0.2.279",
-        "@micromag/element-closed-captions": "^0.2.279",
-        "@micromag/element-container": "^0.2.279",
-        "@micromag/element-grid": "^0.2.279",
-        "@micromag/element-heading": "^0.2.279",
-        "@micromag/element-image": "^0.2.279",
-        "@micromag/element-layout": "^0.2.279",
-        "@micromag/element-link": "^0.2.279",
-        "@micromag/element-map": "^0.2.279",
-        "@micromag/element-media-controls": "^0.2.279",
-        "@micromag/element-quote": "^0.2.279",
-        "@micromag/element-scroll": "^0.2.279",
-        "@micromag/element-stack": "^0.2.279",
-        "@micromag/element-text": "^0.2.279",
-        "@micromag/element-text-input": "^0.2.279",
-        "@micromag/element-video": "^0.2.279",
-        "@micromag/element-visual": "^0.2.279",
+        "@micromag/core": "^0.2.280",
+        "@micromag/element-audio": "^0.2.280",
+        "@micromag/element-background": "^0.2.280",
+        "@micromag/element-button": "^0.2.280",
+        "@micromag/element-call-to-action": "^0.2.280",
+        "@micromag/element-checkbox": "^0.2.280",
+        "@micromag/element-closed-captions": "^0.2.280",
+        "@micromag/element-container": "^0.2.280",
+        "@micromag/element-grid": "^0.2.280",
+        "@micromag/element-heading": "^0.2.280",
+        "@micromag/element-image": "^0.2.280",
+        "@micromag/element-layout": "^0.2.280",
+        "@micromag/element-link": "^0.2.280",
+        "@micromag/element-map": "^0.2.280",
+        "@micromag/element-media-controls": "^0.2.280",
+        "@micromag/element-quote": "^0.2.280",
+        "@micromag/element-scroll": "^0.2.280",
+        "@micromag/element-stack": "^0.2.280",
+        "@micromag/element-text": "^0.2.280",
+        "@micromag/element-text-input": "^0.2.280",
+        "@micromag/element-video": "^0.2.280",
+        "@micromag/element-visual": "^0.2.280",
         "classnames": "^2.2.6",
         "lodash": "^4.17.20",
         "prop-types": "^15.7.2"
@@ -88,5 +88,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "be1b74278020f1b8b4ea2ade87ffb6d1b8d4fa95"
+    "gitHead": "423fa2abe4a70c8c0c26eb98f7bbb941149b678f"
 }
