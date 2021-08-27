@@ -72,8 +72,13 @@ const AudioScreen = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     const hasAudio = audio !== null;
+    const { autoPlay = true } = audio || {};
+
     const finalAudio = hasAudio
-        ? { ...audio, autoPlay: isPreview || isStatic || isCapture ? false : audio.autoPlay && current && ready }
+        ? {
+              ...audio,
+              autoPlay: !isPreview && !isStatic && !isCapture && autoPlay && current,
+          }
         : null;
     const { closedCaptions = null, withPlayPause = false } = finalAudio || {};
     const hasClosedCaptions = closedCaptions !== null;
@@ -152,7 +157,7 @@ const AudioScreen = ({
         }
     }, [playing, current]);
 
-    // ------------------------------------    
+    // ------------------------------------
 
     const longPressBind = useLongPress({ onLongPress: togglePlay });
 
@@ -179,7 +184,7 @@ const AudioScreen = ({
                             ? {
                                   sampleWidth: 10,
                                   sampleMargin: 5,
-                                  minSampleHeight: 5,                                  
+                                  minSampleHeight: 5,
                               }
                             : null
                     }
@@ -212,7 +217,7 @@ const AudioScreen = ({
                     muted={muted}
                     onTogglePlay={togglePlay}
                     onToggleMute={toggleMute}
-                />          
+                />
             </div>
         ) : null,
         !isPlaceholder && hasCallToAction ? (

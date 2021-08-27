@@ -18,7 +18,12 @@ import { getSizeWithinBounds } from '@folklore/size';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderVideo360, Transitions, ScreenElement } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
-import { useAnimationFrame, useTrackScreenEvent, useTrackScreenMedia, useLongPress } from '@micromag/core/hooks';
+import {
+    useAnimationFrame,
+    useTrackScreenEvent,
+    useTrackScreenMedia,
+    useLongPress,
+} from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import ClosedCaptions from '@micromag/element-closed-captions';
@@ -164,11 +169,19 @@ const Video360Screen = ({
     const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
+    const { autoPlay = true } = video || {};
     const finalVideo = hasVideo
-        ? { ...video, autoPlay: isPreview || isStatic || isCapture ? false : video.autoPlay && current }
+        ? {
+              ...video,
+              autoPlay: !isPreview && !isStatic && !isCapture && autoPlay && current,
+          }
         : null;
-    const { media: videoMedia = null, closedCaptions = null, withSeekBar = false, withPlayPause = false } =
-        finalVideo || {};
+    const {
+        media: videoMedia = null,
+        closedCaptions = null,
+        withSeekBar = false,
+        withPlayPause = false,
+    } = finalVideo || {};
 
     const {
         metadata: videoMetadata = null,
@@ -420,7 +433,7 @@ const Video360Screen = ({
                         onTogglePlay={togglePlay}
                         onToggleMute={toggleMute}
                         onSeek={seek}
-                    />                    
+                    />
                     {hasCallToAction ? (
                         <div style={{ marginTop: -spacing }}>
                             <CallToAction

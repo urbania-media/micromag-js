@@ -119,7 +119,6 @@ export const MultipleAudios = () => <Viewer screenId="1" story={{
             id: '1',
             type: 'audio',
             audio: {
-                autoPlay: true,
                 media: audioMedia()
             },
         },
@@ -127,7 +126,6 @@ export const MultipleAudios = () => <Viewer screenId="1" story={{
             id: '2',
             type: 'audio',
             audio: {
-                autoPlay: true,
                 media: audioMedia()
             },
         },
@@ -135,7 +133,6 @@ export const MultipleAudios = () => <Viewer screenId="1" story={{
             id: '3',
             type: 'audio',
             audio: {
-                autoPlay: true,
                 media: audioMedia()
             },
         },
@@ -147,7 +144,6 @@ export const MultipleVideos = () => <Viewer screenId="1" story={{
             id: '1',
             type: 'video',
             video: {
-                autoPlay: true,
                 media: videoMedia()
             },
         },
@@ -155,7 +151,6 @@ export const MultipleVideos = () => <Viewer screenId="1" story={{
             id: '2',
             type: 'video',
             video: {
-                autoPlay: true,
                 media: videoMedia()
             },
         },
@@ -163,7 +158,6 @@ export const MultipleVideos = () => <Viewer screenId="1" story={{
             id: '3',
             type: 'video',
             video: {
-                autoPlay: true,
                 media: videoMedia()
             },
         },
@@ -175,7 +169,6 @@ export const MultipleVideos360 = () => <Viewer screenId="1" story={{
             id: '1',
             type: 'video-360',
             video: {
-                autoPlay: true,
                 media: video360Media()
             },
         },
@@ -183,7 +176,6 @@ export const MultipleVideos360 = () => <Viewer screenId="1" story={{
             id: '2',
             type: 'video-360',
             video: {
-                autoPlay: true,
                 media: video360Media()
             },
         },
@@ -191,7 +183,6 @@ export const MultipleVideos360 = () => <Viewer screenId="1" story={{
             id: '3',
             type: 'video-360',
             video: {
-                autoPlay: true,
                 media: video360Media()
             },
         },

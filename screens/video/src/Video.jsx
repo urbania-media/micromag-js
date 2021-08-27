@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import React, { useState, useCallback, useRef, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -145,11 +145,25 @@ const VideoScreen = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     // get resized video style props
-    const finalVideo = hasVideo
-        ? { ...video, autoPlay: isPreview || isStatic || isCapture ? false : video.autoPlay && current }
-        : null;
-    const { media: videoMedia = null, closedCaptions = null, withSeekBar = false, withPlayPause = false } =
-        finalVideo || {};
+    const { autoPlay = true } = video || {};
+
+    const finalVideo = useMemo(
+        () =>
+            hasVideo
+                ? {
+                      ...video,
+                      autoPlay: !isPreview && !isStatic && !isCapture && autoPlay && current,
+                  }
+                : null,
+        [hasVideo, video, isPreview, isStatic, isCapture, autoPlay, current],
+    );
+    
+    const {
+        media: videoMedia = null,
+        closedCaptions = null,
+        withSeekBar = false,
+        withPlayPause = false,
+    } = finalVideo || {};
     const {
         metadata: videoMetadata = null,
         url: videoUrl = null,
@@ -260,10 +274,13 @@ const VideoScreen = ({
                         onTogglePlay={togglePlay}
                         onToggleMute={toggleMute}
                         onSeek={seek}
-                    />                 
+                    />
                     {hasCallToAction ? (
                         <div style={{ marginTop: -spacing }}>
-                            <CallToAction callToAction={callToAction} animationDisabled={isPreview} />
+                            <CallToAction
+                                callToAction={callToAction}
+                                animationDisabled={isPreview}
+                            />
                         </div>
                     ) : null}
                 </Transitions>
