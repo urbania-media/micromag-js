@@ -115,9 +115,8 @@ const QuoteScreen = ({
             <Spacer key="spacer-cta-bottom" />
         ) : null,
         !isPlaceholder && hasCallToAction ? (
-            <div style={{ margin: -spacing, marginTop: 0 }}>
+            <div style={{ margin: -spacing, marginTop: 0 }} key="call-to-action">
                 <CallToAction
-                    key="call-to-action"
                     callToAction={callToAction}
                     animationDisabled={isPreview}
                 />

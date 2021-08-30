@@ -380,9 +380,8 @@ const SurveyScreen = ({
             items.push(<Spacer key="spacer-cta-bottom" />);
         }
         items.push(
-            <div style={{ margin: -spacing, marginTop: 0 }}>
-                <CallToAction
-                    key="call-to-action"
+            <div style={{ margin: -spacing, marginTop: 0 }} key="call-to-action">
+                <CallToAction                    
                     callToAction={callToAction}
                     disabled={!answered}
                     animationDisabled={isPreview}

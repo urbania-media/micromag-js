@@ -236,9 +236,8 @@ const AudioScreen = ({
             </div>
         ) : null,
         !isPlaceholder && hasCallToAction ? (
-            <div style={{ margin: -spacing, marginTop: 0 }}>
-                <CallToAction
-                    key="call-to-action"
+            <div style={{ margin: -spacing, marginTop: 0 }} key="call-to-action">
+                <CallToAction                    
                     callToAction={callToAction}
                     animationDisabled={isPreview}
                 />

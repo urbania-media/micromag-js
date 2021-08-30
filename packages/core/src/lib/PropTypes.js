@@ -192,7 +192,7 @@ export const mediaTypes = PropTypes.oneOf(['image', 'video', 'audio', 'closed-ca
 
 export const imageMedia = PropTypes.shape({
     ...mediaShape,
-    type: PropTypes.oneOf(['image']),
+    type: PropTypes.oneOf(['image', 'video']),
     metadata: PropTypes.shape({
         ...mediaMetadataShape,
         width: PropTypes.number,

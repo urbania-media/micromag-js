@@ -11,10 +11,10 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     media: MicromagPropTypes.media,
-    width: PropTypes.number,
-    height: PropTypes.number,
+    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     objectFit: MicromagPropTypes.objectFit,
-    videoPreload: PropTypes.bool,
+    videoPreload: PropTypes.string,
     videoAutoplay: PropTypes.bool,
     videoLoop: PropTypes.bool,
     videoInitialMuted: PropTypes.bool,
