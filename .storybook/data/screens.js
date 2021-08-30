@@ -26,7 +26,7 @@ export const allScreens = [
         layout: 'middle',
         audio: {
             media: audioMedia(),
-            autoPlay: false,
+            autoPlay: true,
             loop: true,
             closedCaptions: closedCaptionsMedia(),
         },

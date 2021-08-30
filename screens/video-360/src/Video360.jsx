@@ -22,7 +22,6 @@ import {
     useAnimationFrame,
     useTrackScreenEvent,
     useTrackScreenMedia,
-    useLongPress,
 } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -91,7 +90,7 @@ const Video360Screen = ({
 
     const videoContainerRef = useRef();
     const apiRef = useRef();
-    const { togglePlay, toggleMute, seek, pause } = apiRef.current || {};
+    const { togglePlay, toggleMute, seek, play, pause } = apiRef.current || {};
 
     const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);
@@ -152,6 +151,13 @@ const Video360Screen = ({
         [trackScreenMedia, video],
     );
 
+    const onToggleMute = useCallback(() => {
+        if (muted && !playing) {
+            play();
+        }
+        toggleMute();
+    }, [muted, toggleMute]);
+
     useEffect(() => {
         if (!current && playing) {
             pause();
@@ -160,37 +166,38 @@ const Video360Screen = ({
 
     // ------------------------------------
 
-    const longPressBind = useLongPress({ onLongPress: togglePlay });
-
     const hasVideo = video !== null;
-    const withVideoSphere = hasVideo && (isView || isEdit) && !isCapture && !isStatic;
+    
     const [ready, setReady] = useState(!hasVideo);
 
     const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
-    const { autoPlay = true } = video || {};
+    const {
+        media: videoMedia = null,
+        closedCaptions = null,
+        withSeekBar = false,
+        withPlayPause = false,
+        autoPlay = true,
+    } = video || {};
     const finalVideo = hasVideo
         ? {
               ...video,
               autoPlay: !isPreview && !isStatic && !isCapture && autoPlay && current,
           }
         : null;
-    const {
-        media: videoMedia = null,
-        closedCaptions = null,
-        withSeekBar = false,
-        withPlayPause = false,
-    } = finalVideo || {};
 
     const {
         metadata: videoMetadata = null,
         url: videoUrl = null,
         thumbnail_url: thumbnailUrl = null,
     } = videoMedia || {};
+    const hasVideoUrl = videoUrl !== null;
     const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
     const hasThumbnail = thumbnailUrl !== null;
     const [posterReady, setPosterReady] = useState(!hasThumbnail);
+
+    const withVideoSphere = hasVideoUrl && (isView || isEdit) && !isCapture && !isStatic;
 
     const { width: resizedVideoWidth, height: resizedVideoHeight } = getSizeWithinBounds(
         videoWidth,
@@ -203,8 +210,8 @@ const Video360Screen = ({
     const resizedVideoTop = -(resizedVideoHeight - height) / 2;
 
     useEffect(() => {
-        setReady(!hasVideo);
-    }, [videoUrl, hasVideo, setReady]);
+        setReady(!hasVideoUrl);
+    }, [videoUrl, hasVideoUrl, setReady]);
 
     useEffect(() => {
         setPosterReady(!hasThumbnail);
@@ -256,7 +263,7 @@ const Video360Screen = ({
     // Init 3D layer
 
     useEffect(() => {
-        if (withVideoSphere) {
+        if (hasVideoUrl && withVideoSphere) {
             const { offsetWidth: canvasWidth, offsetHeight: canvasHeight } = canvasRef.current;
             camera.current = new PerspectiveCamera(75, canvasWidth / canvasHeight, 1, 1100);
             scene.current = new Scene();
@@ -289,7 +296,7 @@ const Video360Screen = ({
                 renderer.current = null;
             }
         };
-    }, [withVideoSphere, render3D]);
+    }, [hasVideoUrl, withVideoSphere, render3D]);
 
     useAnimationFrame(render3D, { disabled: !withVideoSphere });
 
@@ -304,14 +311,24 @@ const Video360Screen = ({
     }, [width, height]);
 
     // Pointer interaction
-
-    const onPointerDown = useCallback((e) => {
-        pointerDown.current = true;
-        pointerDownX.current = e.clientX;
-        pointerDownY.current = e.clientY;
-        pointerLon.current = lon.current;
-        pointerLat.current = lat.current;
-    }, []);
+    const togglePlayTimeout = useRef(null);
+    const onPointerDown = useCallback(
+        (e) => {
+            pointerDown.current = true;
+            pointerDownX.current = e.clientX;
+            pointerDownY.current = e.clientY;
+            pointerLon.current = lon.current;
+            pointerLat.current = lat.current;
+            if (togglePlayTimeout.current !== null) {
+                clearTimeout(togglePlayTimeout.current);
+            }
+            togglePlayTimeout.current = setTimeout(() => {
+                togglePlay();
+                togglePlayTimeout.current = null;
+            }, 300);
+        },
+        [togglePlay],
+    );
 
     const pixelsMoved = useRef(0);
     const lastPointerClient = useRef(null);
@@ -322,8 +339,8 @@ const Video360Screen = ({
                 const { clientX = null, clientY = null } = e || {};
                 const downDeltaX = pointerDownX.current - clientX;
                 const downDeltaY = pointerDownY.current - clientY;
-                lon.current = downDeltaX * (landscape ? 0.1 : 0.2) + pointerLon.current;
-                lat.current = downDeltaY * (landscape ? 0.1 : 0.2) + pointerLat.current;
+                lon.current = downDeltaX * 0.2 + pointerLon.current;
+                lat.current = downDeltaY * 0.2 + pointerLat.current;
 
                 const { x: lastX = clientX, y: lastY = clientY } = lastPointerClient.current || {};
                 const deltaX = Math.abs(lastX - clientX) || 0;
@@ -336,9 +353,16 @@ const Video360Screen = ({
                 }
 
                 lastPointerClient.current = { x: clientX, y: clientY };
+
+                if (Math.abs(downDeltaX) > 3 || Math.abs(downDeltaY) > 3) {
+                    if (togglePlayTimeout.current !== null) {
+                        clearTimeout(togglePlayTimeout.current);
+                        togglePlayTimeout.current = null;
+                    }
+                }
             }
         },
-        [landscape, width, height, trackScreenEvent, video],
+        [width, height, trackScreenEvent, video],
     );
 
     const onPointerUp = useCallback(
@@ -350,8 +374,13 @@ const Video360Screen = ({
 
                 const pixelsMovedTolerance = 3;
                 const tapNextScreenWidthPercent = 0.5;
+                const canTapToNavigate = !landscape && togglePlayTimeout.current !== null;
+                const validNavigateTap =
+                    canTapToNavigate &&
+                    distX < pixelsMovedTolerance &&
+                    distY < pixelsMovedTolerance;
 
-                if (distX < pixelsMovedTolerance && distY < pixelsMovedTolerance) {
+                if (validNavigateTap) {
                     const {
                         left: containerX = 0,
                         width: containerWidth,
@@ -367,10 +396,15 @@ const Video360Screen = ({
                         onNext();
                     }
                 }
+
+                if (togglePlayTimeout.current !== null) {
+                    clearTimeout(togglePlayTimeout.current);
+                    togglePlayTimeout.current = null;
+                }
             }
             pointerDown.current = false;
         },
-        [onPrevious, onNext],
+        [onPrevious, onNext, landscape],
     );
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
@@ -387,26 +421,24 @@ const Video360Screen = ({
             emptyLabel={
                 <FormattedMessage defaultMessage="Video 360" description="Video 360 placeholder" />
             }
-            isEmpty={!hasVideo}
+            isEmpty={!withVideoSphere}
         >
-            {hasVideo ? (
-                <Transitions
-                    playing={transitionPlaying}
-                    transitions={transitions}
-                    disabled={transitionDisabled}
-                    fullscreen
-                >
-                    <canvas ref={canvasRef} className={styles.canvas} />
-                    <button
-                        className={styles.canvasButton}
-                        type="button"
-                        aria-label="canvas-interaction"
-                        onPointerDown={onPointerDown}
-                        onPointerMove={onPointerMove}
-                        onPointerUp={onPointerUp}
-                    />
-                </Transitions>
-            ) : null}
+            <Transitions
+                playing={transitionPlaying}
+                transitions={transitions}
+                disabled={transitionDisabled}
+                fullscreen
+            >
+                <canvas ref={canvasRef} className={styles.canvas} />
+                <button
+                    className={styles.canvasButton}
+                    type="button"
+                    aria-label="canvas-interaction"
+                    onPointerDown={onPointerDown}
+                    onPointerMove={onPointerMove}
+                    onPointerUp={onPointerUp}
+                />
+            </Transitions>
         </ScreenElement>,
         !isPlaceholder ? (
             <div key="bottom-content" className={styles.bottomContent}>
@@ -422,18 +454,21 @@ const Video360Screen = ({
                             currentTime={currentTime}
                         />
                     ) : null}
-                    <MediaControls
-                        className={styles.mediaControls}
-                        withSeekBar={withSeekBar}
-                        withPlayPause={withPlayPause}
-                        playing={playing}
-                        muted={muted}
-                        currentTime={currentTime}
-                        duration={duration}
-                        onTogglePlay={togglePlay}
-                        onToggleMute={toggleMute}
-                        onSeek={seek}
-                    />
+                    {withVideoSphere ? (
+                        <MediaControls
+                            className={styles.mediaControls}
+                            withSeekBar={withSeekBar}
+                            withPlayPause={withPlayPause}
+                            playing={playing}
+                            muted={muted}
+                            currentTime={currentTime}
+                            duration={duration}
+                            onTogglePlay={togglePlay}
+                            onToggleMute={onToggleMute}
+                            onSeek={seek}
+                        />
+                    ) : null}
+
                     {hasCallToAction ? (
                         <div style={{ marginTop: -spacing }}>
                             <CallToAction
@@ -457,7 +492,7 @@ const Video360Screen = ({
                 },
             ])}
             data-screen-ready={((isStatic || isCapture) && posterReady) || ready}
-            {...longPressBind}
+            // {...longPressBind}
         >
             {!isPlaceholder ? (
                 <Background
@@ -468,7 +503,7 @@ const Video360Screen = ({
                 />
             ) : null}
             <Container width={width} height={height}>
-                {hasVideo ? (
+                {withVideoSphere ? (
                     <div
                         ref={videoContainerRef}
                         className={styles.videoContainer}

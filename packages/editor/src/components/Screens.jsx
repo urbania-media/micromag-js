@@ -73,11 +73,11 @@ const EditorScreens = ({
 
             const newScreen = createScreen(definition, themeScreen);
 
-            const currentScreenIndex = !isTheme
-                ? screens.findIndex(({ id }) => id === currentScreenId) || null
-                : null;
+            // const currentScreenIndex = !isTheme
+            //     ? screens.findIndex(({ id }) => id === currentScreenId) || null
+            //     : null;
 
-            console.log(currentScreenIndex); // eslint-disable-line
+            // console.log(currentScreenIndex); // eslint-disable-line
 
             const newValue = {
                 ...value,

@@ -63,7 +63,7 @@ const VideoScreen = ({
     const backgroundPlaying = current && (isView || isEdit);
 
     const apiRef = useRef();
-    const { togglePlay, toggleMute, seek, pause } = apiRef.current || {};
+    const { togglePlay, toggleMute, seek, play, pause } = apiRef.current || {};
     // Get api state updates from callback
 
     const [currentTime, setCurrentTime] = useState(null);
@@ -125,6 +125,13 @@ const VideoScreen = ({
         [trackScreenMedia, video],
     );
 
+    const onToggleMute = useCallback(() => {
+        if (muted && !playing) {
+            play();
+        }
+        toggleMute();
+    }, [muted, toggleMute]);
+
     useEffect(() => {
         if (!current && playing) {
             pause();
@@ -145,7 +152,13 @@ const VideoScreen = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     // get resized video style props
-    const { autoPlay = true } = video || {};
+    const {
+        autoPlay = true,
+        media: videoMedia = null,
+        closedCaptions = null,
+        withSeekBar = false,
+        withPlayPause = false,
+    } = video || {};
 
     const finalVideo = useMemo(
         () =>
@@ -159,16 +172,12 @@ const VideoScreen = ({
     );
     
     const {
-        media: videoMedia = null,
-        closedCaptions = null,
-        withSeekBar = false,
-        withPlayPause = false,
-    } = finalVideo || {};
-    const {
         metadata: videoMetadata = null,
         url: videoUrl = null,
         thumbnail_url: thumbnailUrl = null,
     } = videoMedia || {};
+    const hasVideoUrl = videoUrl !== null;
+
     const hasThumbnail = thumbnailUrl !== null;
     const [posterReady, setPosterReady] = useState(!hasThumbnail);
 
@@ -187,8 +196,8 @@ const VideoScreen = ({
     const placeholderProps = fullscreen ? { width: '100%', height: '100%' } : { width: '100%' };
 
     useEffect(() => {
-        setReady(!hasVideo);
-    }, [videoUrl, hasVideo, setReady]);
+        setReady(!hasVideoUrl);
+    }, [videoUrl, hasVideoUrl, setReady]);
 
     useEffect(() => {
         setPosterReady(!hasThumbnail);
@@ -213,9 +222,9 @@ const VideoScreen = ({
                     </Empty>
                 </div>
             }
-            isEmpty={!hasVideo}
+            isEmpty={!hasVideoUrl}
         >
-            {hasVideo ? (
+            {hasVideoUrl ? (
                 <div
                     className={styles.videoContainer}
                     style={{
@@ -263,18 +272,20 @@ const VideoScreen = ({
                             currentTime={currentTime}
                         />
                     ) : null}
-                    <MediaControls
-                        className={styles.mediaControls}
-                        withSeekBar={withSeekBar}
-                        withPlayPause={withPlayPause}
-                        playing={playing}
-                        muted={muted}
-                        currentTime={currentTime}
-                        duration={duration}
-                        onTogglePlay={togglePlay}
-                        onToggleMute={toggleMute}
-                        onSeek={seek}
-                    />
+                    {hasVideoUrl ? (
+                        <MediaControls
+                            className={styles.mediaControls}
+                            withSeekBar={withSeekBar}
+                            withPlayPause={withPlayPause}
+                            playing={playing}
+                            muted={muted}
+                            currentTime={currentTime}
+                            duration={duration}
+                            onTogglePlay={togglePlay}
+                            onToggleMute={onToggleMute}
+                            onSeek={seek}
+                        />
+                    ) : null}
                     {hasCallToAction ? (
                         <div style={{ marginTop: -spacing }}>
                             <CallToAction

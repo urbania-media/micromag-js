@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useUserInteracted } from '@micromag/core/contexts';
 import { useMediaApi } from '@micromag/core/hooks';
 
 import AudioWave from './AudioWave';
@@ -17,7 +18,7 @@ const propTypes = {
             current: PropTypes.any,
         }),
     ]),
-    initialMuted: PropTypes.bool,
+    initialMuted: PropTypes.oneOf(['auto', true, false]),
     autoPlay: PropTypes.bool,
     loop: PropTypes.bool,
     waveFake: PropTypes.bool,
@@ -42,7 +43,7 @@ const propTypes = {
 const defaultProps = {
     media: null,
     apiRef: null,
-    initialMuted: false,
+    initialMuted: 'auto',
     autoPlay: false,
     loop: false,
     waveFake: false,
@@ -81,9 +82,13 @@ const Audio = ({
     onVolumeChanged,
 }) => {
     const { url = null } = media || {};
+    const userInteracted = useUserInteracted();
+    const finalInitialMuted =
+        initialMuted === true || (initialMuted === 'auto' && autoPlay && !userInteracted);
+
     const { ref, ...api } = useMediaApi({
         url,
-        initialMuted,
+        initialMuted: finalInitialMuted,
         onPlay,
         onPause,
         onEnded,
@@ -99,7 +104,17 @@ const Audio = ({
         apiRef.current.mediaRef = ref;
     }
 
-    const { currentTime, duration, playing, seek, ready: audioReady, play, pause } = api;
+    const {
+        currentTime,
+        duration,
+        playing,
+        seek,
+        ready: audioReady,
+        play,
+        pause,
+        muted,
+        unMute,
+    } = api;
 
     const [audioLevels, setAudioLevels] = useState(null);
     const [blobUrl, setBlobUrl] = useState(null);
@@ -107,10 +122,10 @@ const Audio = ({
     useEffect(() => {
         let canceled = false;
 
-        if (waveFake) {
+        if (url !== null && waveFake) {
             const fakeLength = 1000;
             setAudioLevels([...new Array(fakeLength)].map(() => Math.random()));
-        } else if (url !== null && typeof window !== 'undefined') {            
+        } else if (url !== null && typeof window !== 'undefined') {
             fetch(url, {
                 mode: 'cors',
             })
@@ -128,21 +143,19 @@ const Audio = ({
                     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
                     return audioCtx.decodeAudioData(arrayBuffer);
                 })
-                .then(buffer => {
+                .then((buffer) => {
                     const channelsCount = buffer.numberOfChannels;
-                        if (channelsCount > 0) {
-                            const leftChannelData = buffer.getChannelData(0);
-                            setAudioLevels(
-                                leftChannelData.reduce(
-                                    (newArray, level, levelIndex) => {
-                                        if (levelIndex % reduceBufferFactor === 0) {
-                                            newArray[newArray.length] = level;
-                                        }
-                                        return newArray;
-                                    },
-                                    [],
-                                ));
-                        }
+                    if (channelsCount > 0) {
+                        const leftChannelData = buffer.getChannelData(0);
+                        setAudioLevels(
+                            leftChannelData.reduce((newArray, level, levelIndex) => {
+                                if (levelIndex % reduceBufferFactor === 0) {
+                                    newArray[newArray.length] = level;
+                                }
+                                return newArray;
+                            }, []),
+                        );
+                    }
                 })
                 .catch((e) => {
                     throw e;
@@ -167,6 +180,9 @@ const Audio = ({
     useEffect(() => {
         if (autoPlay) {
             play();
+            if (initialMuted === 'auto' && muted && userInteracted){
+                unMute();
+            }
         } else {
             pause();
         }
@@ -181,7 +197,16 @@ const Audio = ({
                 },
             ])}
         >
-            <audio ref={ref} src={waveFake ? url : blobUrl} autoPlay={autoPlay} loop={loop} crossOrigin="anonymous" preload="none" />
+            <audio
+                key={url}
+                ref={ref}
+                src={waveFake ? url : blobUrl}
+                autoPlay={autoPlay}
+                muted={muted}
+                loop={loop}
+                crossOrigin="anonymous"
+                preload="none"
+            />
             <AudioWave
                 className={styles.wave}
                 media={media}

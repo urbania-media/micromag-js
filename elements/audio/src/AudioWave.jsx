@@ -1,8 +1,8 @@
 /* eslint-disable no-multi-assign */
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign, react/no-array-index-key */
 import 'whatwg-fetch';
-import React, { useRef, useEffect } from 'react';
-import { useDrag } from 'react-use-gesture';
+import React, { useRef, useEffect, useCallback } from 'react';
+import { useGesture } from 'react-use-gesture';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useSpring } from '@react-spring/core';
@@ -22,7 +22,7 @@ const propTypes = {
     backgroundColor: PropTypes.string,
     progressColor: PropTypes.string,
     audioLevels: PropTypes.arrayOf(PropTypes.number),
-    className: PropTypes.string,    
+    className: PropTypes.string,
     onSeek: PropTypes.func,
     onResume: PropTypes.func,
     onReady: PropTypes.func,
@@ -182,17 +182,28 @@ const AudioWave = ({
     ]);
 
     // User events
+    const seekFromX = useCallback(
+        (x) => {
+            const elX = elRef.current.getBoundingClientRect().left;
+            const progress = Math.max(0, Math.min(1, (x - elX) / elWidth));
+            if (onSeek !== null && duration !== null) {
+                onSeek(progress * duration);
+            }
 
-    const dragBind = useDrag(({ xy: [x] }) => {
-        const progress = Math.max(0, Math.min(1, x / elWidth));
-        if (onSeek !== null && duration !== null) {
-            onSeek(progress * duration);
-        }
-
-        if (!playing) {
-            onResume();
-        }
-    }, { axis: 'x' });
+            if (!playing) {
+                onResume();
+            }
+        },
+        [duration, playing, onSeek, onResume],
+    );
+    const bind = useGesture({
+        onDrag: ({ xy: [x], elapsedTime, active }) => {
+            if (!active && elapsedTime > 300) {
+                return;
+            }
+            seekFromX(x);
+        },
+    }, { drag: { axis: 'x', filterTaps: true }});
 
     return (
         <div
@@ -203,7 +214,7 @@ const AudioWave = ({
                 },
             ])}
             ref={elRef}
-            {...dragBind()}
+            {...bind()}
         >
             <canvas ref={canvasBackgroundRef} className={styles.canvasBackground} />
             <animated.canvas

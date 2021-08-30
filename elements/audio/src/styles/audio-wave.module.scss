@@ -4,6 +4,7 @@
 .container {
     position: relative;
     height: 100px;
+    touch-action: pan-y;
 
     .canvasBackground,
     .canvasProgress,

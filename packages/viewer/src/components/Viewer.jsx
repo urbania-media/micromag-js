@@ -446,6 +446,17 @@ const Viewer = ({
         [trackingEnabled, trackEvent, screenId, screenIndex, screenType],
     );
 
+    const onContextMenu = useCallback(
+        (e) => {
+            if (!landscape) {
+                e.preventDefault();
+                return false;
+            }
+            return true;
+        },
+        [landscape],
+    );
+
     const withoutScreensTransforms = isStatic || isCapture;
     const hasSize = screenWidth > 0 && screenHeight > 0;
     const ready = hasSize; // && fontsLoaded;
@@ -485,6 +496,7 @@ const Viewer = ({
                         },
                     ])}
                     ref={containerRef}
+                    onContextMenu={onContextMenu}
                 >
                     {!withoutMenu ? (
                         <>

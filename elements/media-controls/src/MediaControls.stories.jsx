@@ -9,3 +9,5 @@ export default {
 
 export const normal = () => <MediaControls />;
 export const withSeekBar = () => <MediaControls withSeekBar />;
+export const withPlayPause = () => <MediaControls withPlayPause />;
+export const withAll = () => <MediaControls withPlayPause withSeekBar muted />;

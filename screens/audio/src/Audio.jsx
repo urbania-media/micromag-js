@@ -72,7 +72,14 @@ const AudioScreen = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     const hasAudio = audio !== null;
-    const { autoPlay = true } = audio || {};
+    const {
+        media: audioMedia = null,
+        autoPlay = true,
+        closedCaptions = null,
+        withPlayPause = false,
+    } = audio || {};
+    const { url: audioUrl = null } = audioMedia || {};
+    const hasAudioUrl = audioUrl !== null;
 
     const finalAudio = hasAudio
         ? {
@@ -80,7 +87,6 @@ const AudioScreen = ({
               autoPlay: !isPreview && !isStatic && !isCapture && autoPlay && current,
           }
         : null;
-    const { closedCaptions = null, withPlayPause = false } = finalAudio || {};
     const hasClosedCaptions = closedCaptions !== null;
 
     const onAudioReady = useCallback(() => {
@@ -88,7 +94,7 @@ const AudioScreen = ({
     }, [setReady]);
 
     const apiRef = useRef();
-    const { togglePlay, toggleMute, pause } = apiRef.current || {};
+    const { togglePlay, toggleMute, play, pause } = apiRef.current || {};
 
     const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);
@@ -123,7 +129,7 @@ const AudioScreen = ({
             setPlaying(true);
             trackScreenMedia(audio, initial ? 'play' : 'resume');
         },
-        [setPlaying, trackScreenMedia, audio],
+        [trackScreenMedia, audio],
     );
 
     const onPause = useCallback(
@@ -131,7 +137,7 @@ const AudioScreen = ({
             setPlaying(false);
             trackScreenMedia(audio, midway ? 'pause' : 'ended');
         },
-        [setPlaying, trackScreenMedia, audio],
+        [trackScreenMedia, audio],
     );
 
     const onVolumeChanged = useCallback(
@@ -139,7 +145,7 @@ const AudioScreen = ({
             setMuted(isMuted);
             trackScreenMedia(audio, isMuted ? 'mute' : 'unmute');
         },
-        [setPlaying, trackScreenMedia, audio],
+        [trackScreenMedia, audio],
     );
 
     const onSeeked = useCallback(
@@ -150,6 +156,13 @@ const AudioScreen = ({
         },
         [trackScreenMedia, audio],
     );
+
+    const onToggleMute = useCallback(() => {
+        if (muted && !playing) {
+            play();
+        }
+        toggleMute();
+    }, [muted, toggleMute]);
 
     useEffect(() => {
         if (!current && playing) {
@@ -168,7 +181,7 @@ const AudioScreen = ({
             placeholder="audio"
             emptyLabel={<FormattedMessage defaultMessage="Audio" description="Audio placeholder" />}
             emptyClassName={styles.empty}
-            isEmpty={!hasAudio}
+            isEmpty={!hasAudioUrl}
         >
             <Transitions
                 transitions={transitions}
@@ -210,14 +223,16 @@ const AudioScreen = ({
                         currentTime={currentTime}
                     />
                 ) : null}
-                <MediaControls
-                    className={styles.mediaControls}
-                    withPlayPause={withPlayPause}
-                    playing={playing}
-                    muted={muted}
-                    onTogglePlay={togglePlay}
-                    onToggleMute={toggleMute}
-                />
+                {hasAudioUrl ? (
+                    <MediaControls
+                        className={styles.mediaControls}
+                        withPlayPause={withPlayPause}
+                        playing={playing}
+                        muted={muted}
+                        onTogglePlay={togglePlay}
+                        onToggleMute={onToggleMute}
+                    />
+                ) : null}
             </div>
         ) : null,
         !isPlaceholder && hasCallToAction ? (

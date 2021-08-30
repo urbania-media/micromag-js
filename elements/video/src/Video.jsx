@@ -90,7 +90,6 @@ const Video = ({
     const mediaUrl = hasFiles ? files.h264.url : url;
 
     const userInteracted = useUserInteracted();
-
     const finalInitialMuted = initialMuted === true || (initialMuted === 'auto' && autoPlay && !userInteracted);
 
     const { ref, ...api } = useMediaApi({
