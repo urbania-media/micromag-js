@@ -179,6 +179,14 @@ const MediaMetadata = ({ media, className }) => {
                                 description="Description in Media Gallery"
                             />
                         </h6>
+                        <p>
+                            <small>
+                                <FormattedMessage
+                                    defaultMessage="Alternative text (accessibility)"
+                                    description="Media Gallery"
+                                />
+                            </small>
+                        </p>
                         <TextField value={description} onChange={onDescriptionChange} />
                     </div>
                     <div className="form-group">
