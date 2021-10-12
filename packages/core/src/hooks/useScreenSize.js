@@ -68,10 +68,10 @@ export const useScreenSizeFromElement = ({ width = null, height = null, ...opts 
         if (fullHeight < 600) {
             menuOverScreen = true;
         } else {
-            finalHeight = Math.round(0.75 * fullHeight);
+            finalHeight = Math.round(fullHeight * 3 / 4);
         }
 
-        finalWidth = finalHeight * 0.6;
+        finalWidth = finalHeight * 4 / 6;
     }
 
     if (finalWidth % 2 === 1) {
