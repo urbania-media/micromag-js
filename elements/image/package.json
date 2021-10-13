@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-image",
-    "version": "0.2.287",
+    "version": "0.2.291",
     "description": "",
     "keywords": [
         "javascript"
@@ -50,7 +50,7 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@folklore/size": "^0.1.14",
-        "@micromag/core": "^0.2.287",
+        "@micromag/core": "^0.2.291",
         "classnames": "^2.2.6",
         "prop-types": "^15.7.2",
         "react-intl": "^5.12.1",
