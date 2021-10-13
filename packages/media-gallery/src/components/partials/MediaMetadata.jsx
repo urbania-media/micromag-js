@@ -173,13 +173,13 @@ const MediaMetadata = ({ media, className }) => {
                         <TextField value={name} onChange={onNameChange} />
                     </div>
                     <div className="form-group">
-                        <h6>
+                        <h6 className="mb-0">
                             <FormattedMessage
                                 defaultMessage="Description"
                                 description="Description in Media Gallery"
                             />
                         </h6>
-                        <p>
+                        <p className="mb-1">
                             <small>
                                 <FormattedMessage
                                     defaultMessage="Alternative text (accessibility)"
