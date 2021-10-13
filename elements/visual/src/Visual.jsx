@@ -27,7 +27,7 @@ const defaultProps = {
     width: null,
     height: null,
     objectFit: null,
-    videoPreload: 'auto',
+    videoPreload: 'metadata',
     videoAutoplay: true,
     videoLoop: true,
     videoInitialMuted: true,

@@ -150,6 +150,7 @@ export const MultipleVideos = () => <Viewer screenId="1" story={{
         {
             id: '2',
             type: 'video',
+            layout: 'full',
             video: {
                 media: videoMedia()
             },

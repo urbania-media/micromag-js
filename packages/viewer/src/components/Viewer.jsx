@@ -528,7 +528,6 @@ const Viewer = ({
                                     shareUrl={shareUrl}
                                     className={styles.menuPreview}
                                     screenWidth={screenWidth}
-                                    screenHeight={screenHeight}
                                     items={screens}
                                     current={screenIndex}
                                     onClickItem={onClickPreviewMenuItem}
