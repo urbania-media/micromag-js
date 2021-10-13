@@ -24,7 +24,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
-    active: PropTypes.bool,
+    // active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     spacing: PropTypes.number,
     className: PropTypes.string,
@@ -36,7 +36,7 @@ const defaultProps = {
     background: null,
     callToAction: null,
     current: true,
-    active: true,
+    // active: true,
     transitions: null,
     spacing: 20,
     className: null,
@@ -48,7 +48,7 @@ const VideoScreen = ({
     background,
     callToAction,
     current,
-    active,
+    // active,
     transitions,
     spacing,
     className,
@@ -182,8 +182,8 @@ const VideoScreen = ({
     } = videoMedia || {};
     const hasVideoUrl = videoUrl !== null;
 
-    const hasThumbnail = thumbnailUrl !== null;
-    const [posterReady, setPosterReady] = useState(!hasThumbnail);
+    // const hasThumbnail = thumbnailUrl !== null;
+    // const [posterReady, setPosterReady] = useState(!hasThumbnail);
 
     const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
 
@@ -203,17 +203,17 @@ const VideoScreen = ({
         setReady(!hasVideoUrl);
     }, [videoUrl, hasVideoUrl, setReady]);
 
-    useEffect(() => {
-        setPosterReady(!hasThumbnail);
-    }, [thumbnailUrl, hasThumbnail, setPosterReady]);
+    // useEffect(() => {
+    //     setPosterReady(!hasThumbnail);
+    // }, [thumbnailUrl, hasThumbnail, setPosterReady]);
 
     const onVideoReady = useCallback(() => {
         setReady(true);
     }, [setReady]);
 
-    const onPosterLoaded = useCallback(() => {
-        setPosterReady(true);
-    }, [isStatic, isCapture, setPosterReady]);
+    // const onPosterLoaded = useCallback(() => {
+    //     setPosterReady(true);
+    // }, [isStatic, isCapture, setPosterReady]);
 
     const items = [
         <ScreenElement
@@ -258,7 +258,7 @@ const VideoScreen = ({
                                 {...finalVideo}
                                 ref={apiRef}
                                 className={styles.video}
-                                preload={active ? 'auto' : 'metadata'}
+                                preload="auto"
                                 onReady={onVideoReady}
                                 onPlay={onPlay}
                                 onPause={onPause}
@@ -267,7 +267,7 @@ const VideoScreen = ({
                                 onDurationChanged={onDurationChanged}
                                 onSeeked={onSeeked}
                                 onVolumeChanged={onVolumeChanged}
-                                onPosterLoaded={onPosterLoaded}
+                                // onPosterLoaded={onPosterLoaded}
                             />
                         )}
                     </Transitions>
@@ -324,7 +324,7 @@ const VideoScreen = ({
                     [styles.fullscreen]: fullscreen,
                 },
             ])}
-            data-screen-ready={((isStatic || isCapture) && posterReady) || ready}
+            data-screen-ready={((isStatic || isCapture) /* && posterReady */) || ready}
             {...longPressBind}
         >
             {!isPlaceholder ? (

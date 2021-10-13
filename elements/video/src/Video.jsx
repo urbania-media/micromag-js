@@ -34,7 +34,7 @@ const propTypes = {
     onProgressStep: PropTypes.func,
     onDurationChanged: PropTypes.func,
     onVolumeChanged: PropTypes.func,
-    onPosterLoaded: PropTypes.func,
+    // onPosterLoaded: PropTypes.func,
 };
 
 const defaultProps = {
@@ -58,7 +58,7 @@ const defaultProps = {
     onProgressStep: null,
     onDurationChanged: null,
     onVolumeChanged: null,
-    onPosterLoaded: null,
+    // onPosterLoaded: null,
 };
 
 const Video = ({
@@ -82,7 +82,7 @@ const Video = ({
     onProgressStep,
     onDurationChanged,
     onVolumeChanged,
-    onPosterLoaded,
+    // onPosterLoaded,
 }) => {
     const { url = null, files = null } = media || {};
     const hasFiles =
@@ -119,19 +119,19 @@ const Video = ({
     }, [dataReady, onReady]);
 
     const withSize = width !== null && height !== null;
-    const { thumbnail_url: thumbnailUrl = null } = media || {};
+    // const { thumbnail_url: thumbnailUrl = null } = media || {};
 
-    useEffect(() => {
-        if (thumbnailUrl !== null) {
-            const img = new Image();
-            img.src = thumbnailUrl;
-            img.onload = () => {
-                if (onPosterLoaded) {
-                    onPosterLoaded();
-                }
-            };
-        }
-    }, [thumbnailUrl]);
+    // useEffect(() => {
+    //     if (thumbnailUrl !== null) {
+    //         const img = new Image();
+    //         img.src = thumbnailUrl;
+    //         img.onload = () => {
+    //             if (onPosterLoaded) {
+    //                 onPosterLoaded();
+    //             }
+    //         };
+    //     }
+    // }, [thumbnailUrl]);
 
     useEffect(() => {
         if (autoPlay) {
@@ -170,7 +170,7 @@ const Video = ({
                 autoPlay={autoPlay}
                 loop={loop}
                 muted={muted}
-                poster={thumbnailUrl}
+                // poster={thumbnailUrl}
                 preload={preload}
                 playsInline={playsInline}
                 crossOrigin={withoutCors ? 'anonymous' : null}
