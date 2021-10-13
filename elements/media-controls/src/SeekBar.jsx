@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { useIntl } from 'react-intl';
 import { useSpring } from '@react-spring/core';
 import { animated } from '@react-spring/web';
 
@@ -35,6 +36,8 @@ const SeekBar = ({
     className,
     onSeek,
 }) => {
+    const intl = useIntl();
+
     // exact same spring than SeekBar
 
     const [springProps, setSpringProps] = useSpring(() => ({
@@ -98,7 +101,10 @@ const SeekBar = ({
                 type="button"
                 className={styles.button}
                 onClick={onSeekClick}
-                aria-label="Seek"
+                aria-label={intl.formatMessage({
+                    defaultMessage: 'Seek',
+                    description: 'Button ARIA label',
+                })}
             />
         </div>
     );
