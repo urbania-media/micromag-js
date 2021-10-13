@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-quiz",
-    "version": "0.2.291",
+    "version": "0.2.292",
     "description": "",
     "keywords": [
         "javascript"
@@ -54,7 +54,7 @@
         "@fortawesome/react-fontawesome": "^0.1.13",
         "@micromag/core": "^0.2.291",
         "@micromag/data": "^0.2.291",
-        "@micromag/element-background": "^0.2.291",
+        "@micromag/element-background": "^0.2.292",
         "@micromag/element-button": "^0.2.291",
         "@micromag/element-call-to-action": "^0.2.291",
         "@micromag/element-container": "^0.2.291",
