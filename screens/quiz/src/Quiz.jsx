@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState, useCallback, useEffect, useRef } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -102,7 +102,7 @@ const QuizScreen = ({
         showInstantAnswer ? goodAnswerIndex : null,
     );
     const [showResults, setShowResults] = useState(showInstantAnswer);
-    const [answerTransitionProps, setAnswerTransitionProps] = useState(null);
+    // const [answerTransitionProps, setAnswerTransitionProps] = useState(null);
     const [answerTransitionComplete, setAnswerTransitionComplete] = useState(showInstantAnswer);
 
     const answered = userAnswerIndex !== null;
@@ -172,32 +172,31 @@ const QuizScreen = ({
     // we get .answer's current and future height to animate its height
     // we also get the right answer's Y to animate its position
 
-    const answerRef = useRef(null);
-    const rightAnswerRef = useRef(null);
-    const resultRef = useRef(null);
+    const {
+        ref: answerRef,
+        entry: { contentRect: answerContentRect },
+    } = useResizeObserver();
+    const { height: answerHeight } = answerContentRect || {};
 
-    useEffect(() => {
-        if (!showInstantAnswer) {
-            const answerEl = answerRef.current;
-            const rightAnswerEl = rightAnswerRef.current;
-            const resultEl = resultRef.current;
+    const {
+        ref: rightAnswerRef,
+        entry: { contentRect: rightAnswerContentRect },
+    } = useResizeObserver();
+    const { height: rightAnswerHeight } = rightAnswerContentRect || {};
 
-            if (answerEl !== null && rightAnswerEl !== null && resultEl !== null) {
-                const answerHeight = answerEl.offsetHeight;
-                const rightAnswerY = rightAnswerEl.offsetTop;
-                const rightAnswerHeight = rightAnswerEl.offsetHeight;
-                const resultHeight = resultEl.offsetHeight;
+    const {
+        ref: resultRef,
+        entry: { contentRect: resultContentRect },
+    } = useResizeObserver();
+    const { height: resultHeight } = resultContentRect || {};
 
-                if (answerHeight > 0 && rightAnswerHeight > 0 && resultHeight > 0) {
-                    setAnswerTransitionProps({
-                        rightAnswerTranslateY: -rightAnswerY,
-                        answerInitialHeight: answerHeight,
-                        answerAnsweredHeight: rightAnswerHeight + resultHeight,
-                    });
-                }
-            }
+    const [rightAnswerTop, setRightAnswerTop] = useState(0);
+    
+    useEffect( () => {
+        if (rightAnswerRef.current !== null) {
+            setRightAnswerTop(rightAnswerRef.current.offsetTop);
         }
-    }, [answers, setAnswerTransitionProps, width, height, callToActionHeight, showInstantAnswer]);
+    }, [rightAnswerHeight]);
 
     // when the animation is done, we set a state to remove animations props
     // .results' position changes from absolute to relative
@@ -261,12 +260,12 @@ const QuizScreen = ({
             className={styles.answers}
             ref={answerRef}
             style={
-                answerTransitionProps !== null && !answerTransitionComplete && (isView || isEdit)
+                !answerTransitionComplete && (isView || isEdit)
                     ? {
                           transitionDuration: `${resultsTransitionDuration}ms`,
                           height: !showResults
-                              ? answerTransitionProps.answerInitialHeight
-                              : answerTransitionProps.answerAnsweredHeight,
+                              ? answerHeight
+                              : rightAnswerHeight + resultHeight,
                       }
                     : null
             }
@@ -293,105 +292,108 @@ const QuizScreen = ({
                                     },
                                 ])}
                                 style={
-                                    answerTransitionProps &&
                                     showResults &&
                                     rightAnswer &&
                                     !answerTransitionComplete
                                         ? {
-                                              transform: `translateY(${answerTransitionProps.rightAnswerTranslateY}px)`,
+                                              transform: `translateY(${-rightAnswerTop}px)`,
                                               transitionDuration: `${resultsTransitionDuration}ms`,
                                           }
                                         : null
                                 }
                             >
-                                <ScreenElement
-                                    placeholder="quizAnswer"
-                                    placeholderProps={{ good: answerI === 0 }}
-                                    emptyLabel={
-                                        <FormattedMessage
-                                            defaultMessage="Answer"
-                                            description="Answer placeholder"
-                                        />
-                                    }
-                                    emptyClassName={styles.emptyAnswer}
-                                    isEmpty={!hasAnswer}
-                                >
-                                    {hasAnswer ? (
-                                        <Transitions
-                                            transitions={transitions}
-                                            playing={transitionPlaying}
-                                            delay={(answerI + 1) * transitionStagger}
-                                            disabled={transitionDisabled}
-                                        >
-                                            <Button
-                                                className={styles.button}
-                                                onClick={() => onAnswerClick(answerI)}
-                                                disabled={isPreview}
-                                                buttonStyle={
-                                                    userAnswer || !answered
-                                                        ? {
-                                                              borderWidth: 2,
-                                                              borderStyle: 'solid',
-                                                              borderColor: labelColor,
-                                                          }
-                                                        : null
-                                                }
+                                <div className={styles.itemContent}>
+                                    <ScreenElement
+                                        placeholder="quizAnswer"
+                                        placeholderProps={{ good: answerI === 0 }}
+                                        emptyLabel={
+                                            <FormattedMessage
+                                                defaultMessage="Answer"
+                                                description="Answer placeholder"
+                                            />
+                                        }
+                                        emptyClassName={styles.emptyAnswer}
+                                        isEmpty={!hasAnswer}
+                                    >
+                                        {hasAnswer ? (
+                                            <Transitions
+                                                transitions={transitions}
+                                                playing={transitionPlaying}
+                                                delay={(answerI + 1) * transitionStagger}
+                                                disabled={transitionDisabled}
                                             >
-                                                {rightAnswer ? (
-                                                    <span className={styles.resultIcon}>
-                                                        <FontAwesomeIcon
-                                                            className={styles.faIcon}
-                                                            icon={faCheck}
-                                                        />
-                                                    </span>
-                                                ) : null}
-                                                {answered && !hasUserAnsweredRight && userAnswer ? (
-                                                    <span className={styles.resultIcon}>
-                                                        <FontAwesomeIcon
-                                                            className={styles.faIcon}
-                                                            icon={faTimes}
-                                                        />
-                                                    </span>
-                                                ) : null}
-                                                <Text {...label} className={styles.optionLabel} />
-                                            </Button>
-                                        </Transitions>
-                                    ) : null}
-                                </ScreenElement>
+                                                <Button
+                                                    className={styles.button}
+                                                    onClick={() => onAnswerClick(answerI)}
+                                                    disabled={isPreview}
+                                                    buttonStyle={
+                                                        userAnswer || !answered
+                                                            ? {
+                                                                borderWidth: 2,
+                                                                borderStyle: 'solid',
+                                                                borderColor: labelColor,
+                                                            }
+                                                            : null
+                                                    }
+                                                >
+                                                    {rightAnswer ? (
+                                                        <span className={styles.resultIcon}>
+                                                            <FontAwesomeIcon
+                                                                className={styles.faIcon}
+                                                                icon={faCheck}
+                                                            />
+                                                        </span>
+                                                    ) : null}
+                                                    {answered && !hasUserAnsweredRight && userAnswer ? (
+                                                        <span className={styles.resultIcon}>
+                                                            <FontAwesomeIcon
+                                                                className={styles.faIcon}
+                                                                icon={faTimes}
+                                                            />
+                                                        </span>
+                                                    ) : null}
+                                                    <Text {...label} className={styles.optionLabel} />
+                                                </Button>
+                                            </Transitions>
+                                        ) : null}
+                                    </ScreenElement>
+                                </div>
                             </div>
                         );
                     })}
                 </div>
             ) : null}
             <div className={styles.result} ref={resultRef}>
-                <ScreenElement
-                    emptyLabel={
-                        answered ? (
-                            <FormattedMessage
-                                defaultMessage="Result"
-                                description="Result placeholder"
-                            />
-                        ) : null
-                    }
-                    isEmpty={answered && !hasResult}
-                    emptyClassName={styles.emptyResult}
-                >
-                    {hasResult && answers !== null ? (
-                        <>
-                            <Transitions
-                                transitions={transitions}
-                                playing={transitionPlaying}
-                                delay={(1 + answers.length) * transitionStagger}
-                                disabled={transitionDisabled}
-                            >
-                                <Text {...result} className={styles.resultText} />
-                                {hasCallToAction ? (
-                                    <div style={{ height: callToActionHeight }} />
-                                ) : null}
-                            </Transitions>
-                        </>
-                    ) : null}
-                </ScreenElement>
+                <div className={styles.resultContent}>
+                    <ScreenElement
+                        emptyLabel={
+                            answered ? (
+                                <FormattedMessage
+                                    defaultMessage="Result"
+                                    description="Result placeholder"
+                                />
+                            ) : null
+                        }
+                        isEmpty={answered && !hasResult}
+                        emptyClassName={styles.emptyResult}
+                    >
+                        {hasResult && answers !== null ? (
+                            <>
+                                <Transitions
+                                    transitions={transitions}
+                                    playing={transitionPlaying}
+                                    delay={(1 + answers.length) * transitionStagger}
+                                    disabled={transitionDisabled}
+                                >
+                                    <Text {...result} className={styles.resultText} />
+                                    {hasCallToAction ? (
+                                        <div style={{ height: callToActionHeight }} />
+                                    ) : null}
+                                </Transitions>
+                            </>
+                        ) : null}
+                    </ScreenElement>
+                </div>
             </div>
         </div>,
     );

@@ -157,7 +157,7 @@ export const allScreens = [
     {
         id: uuid(),
         type: 'quiz',
-        layout: 'middle',
+        layout: 'split',
         question: { body: 'Une vraie question qui se termine par un point d’interrogation?' },
         answers: [
             { id: '1', label: { body: subtitle() } },

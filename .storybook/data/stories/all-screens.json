@@ -520,7 +520,7 @@
             },
             "id": "1cb80865-5c1a-11eb-985f-ad6fce99d848",
             "type": "quiz",
-            "layout": "top",
+            "layout": "split",
             "question": {
                 "body": "Une vraie question qui se termine par un point d’interrogation?"
             },
