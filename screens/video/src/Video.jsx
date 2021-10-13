@@ -24,6 +24,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
+    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     spacing: PropTypes.number,
     className: PropTypes.string,
@@ -35,6 +36,7 @@ const defaultProps = {
     background: null,
     callToAction: null,
     current: true,
+    active: true,
     transitions: null,
     spacing: 20,
     className: null,
@@ -46,6 +48,7 @@ const VideoScreen = ({
     background,
     callToAction,
     current,
+    active,
     transitions,
     spacing,
     className,
@@ -255,7 +258,7 @@ const VideoScreen = ({
                                 {...finalVideo}
                                 ref={apiRef}
                                 className={styles.video}
-                                preload="metadata"
+                                preload={active ? 'auto' : 'metadata'}
                                 onReady={onVideoReady}
                                 onPlay={onPlay}
                                 onPause={onPause}
