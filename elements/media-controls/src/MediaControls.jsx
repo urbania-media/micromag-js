@@ -75,9 +75,13 @@ const MediaControls = ({
                     type="button"
                     className={styles.playPauseButton}
                     onClick={onTogglePlay}
+                    title={intl.formatMessage({
+                        defaultMessage: 'Play',
+                        description: 'Button label',
+                    })}
                     aria-label={intl.formatMessage({
                         defaultMessage: 'Play',
-                        description: 'Button ARIA label',
+                        description: 'Button label',
                     })}
                 >
                     <FontAwesomeIcon className={styles.icon} icon={playing ? faPause : faPlay} />
@@ -86,9 +90,13 @@ const MediaControls = ({
                     type="button"
                     className={styles.muteButton}
                     onClick={onToggleMute}
+                    title={intl.formatMessage({
+                        defaultMessage: 'Mute',
+                        description: 'Button label',
+                    })}
                     aria-label={intl.formatMessage({
                         defaultMessage: 'Mute',
-                        description: 'Button ARIA label',
+                        description: 'Button label',
                     })}
                 >
                     <FontAwesomeIcon className={styles.icon} icon={faVolumeUp} />

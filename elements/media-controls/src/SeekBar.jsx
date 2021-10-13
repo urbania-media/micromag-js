@@ -101,9 +101,13 @@ const SeekBar = ({
                 type="button"
                 className={styles.button}
                 onClick={onSeekClick}
+                title={intl.formatMessage({
+                    defaultMessage: 'Seek',
+                    description: 'Button label',
+                })}
                 aria-label={intl.formatMessage({
                     defaultMessage: 'Seek',
-                    description: 'Button ARIA label',
+                    description: 'Button label',
                 })}
             />
         </div>

@@ -84,7 +84,7 @@ const ViewerMenuDots = ({
                             aria-label={intl.formatMessage(
                                 {
                                     defaultMessage: 'Screen {index}',
-                                    description: 'Button ARIA label',
+                                    description: 'Button label',
                                 },
                                 { index },
                             )}
@@ -103,7 +103,14 @@ const ViewerMenuDots = ({
                     <MenuIcon className={styles.menuIcon} color={colorAccent} />
                     <button
                         type="button"
-                        aria-label="menu"
+                        title={intl.formatMessage({
+                            defaultMessage: 'Menu',
+                            description: 'Button label',
+                        })}
+                        aria-label={intl.formatMessage({
+                            defaultMessage: 'Menu',
+                            description: 'Button label',
+                        })}
                         className={styles.menuButton}
                         onClick={() => {
                             if (onClickItem !== null) {
@@ -118,9 +125,13 @@ const ViewerMenuDots = ({
                             type="button"
                             className={styles.closeButton}
                             onClick={onClose}
+                            title={intl.formatMessage({
+                                defaultMessage: 'Close',
+                                description: 'Button label',
+                            })}
                             aria-label={intl.formatMessage({
                                 defaultMessage: 'Close',
-                                description: 'Button ARIA label',
+                                description: 'Button label',
                             })}
                         >
                             <FontAwesomeIcon icon={faTimes} />
