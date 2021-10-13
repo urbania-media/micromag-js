@@ -19,7 +19,6 @@ import styles from '../../styles/menus/menu-preview.module.scss';
 const propTypes = {
     viewerTheme: MicromagPropTypes.viewerTheme,
     screenWidth: PropTypes.number,
-    screenHeight: PropTypes.number,
     title: PropTypes.string,
     shareUrl: PropTypes.string,
     items: MicromagPropTypes.menuItems,
@@ -37,7 +36,6 @@ const propTypes = {
 const defaultProps = {
     viewerTheme: null,
     screenWidth: null,
-    screenHeight: null,
     title: null,
     shareUrl: null,
     items: [],
@@ -55,7 +53,6 @@ const defaultProps = {
 const ViewerMenuPreview = ({
     viewerTheme,
     screenWidth,
-    screenHeight,
     title,
     shareUrl,
     items,
@@ -69,9 +66,10 @@ const ViewerMenuPreview = ({
     fullscreenEnabled,
     className,
 }) => {
-    const screenSizeRatio = `${(screenHeight / screenWidth / thumbsPerLine) * 100}%`;
+    const screenSizeRatio = `${(6 / 4 / thumbsPerLine) * 100}%`;
+    const screenRatioHeight = screenWidth * 6 / 4;
 
-    const hasSize = screenWidth > 0 && screenHeight > 0;
+    const hasSize = screenWidth > 0;
     const hasItems = items !== null && items.length > 0;
 
     const [thumbSize, setThumbSize] = useState(null);
@@ -82,7 +80,7 @@ const ViewerMenuPreview = ({
             const { offsetWidth, offsetHeight } = firstScreenContainerRef.current;
             setThumbSize({ width: offsetWidth, height: offsetHeight });
         }
-    }, [screenWidth, screenHeight, hasItems, hasSize]);
+    }, [screenWidth, hasItems, hasSize]);
 
     // Viewer theme
     const { colors = null, background = null, textStyles = null, logo: brandLogo = null } =
@@ -201,19 +199,17 @@ const ViewerMenuPreview = ({
                                                     thumbSize !== null
                                                         ? {
                                                               width: screenWidth,
-                                                              height: screenHeight,
+                                                              height: screenRatioHeight,
                                                               transform: `scale(${
                                                                   thumbSize.width / screenWidth
-                                                              }, ${
-                                                                  thumbSize.height / screenHeight
-                                                              })`,
+                                                              }`,
                                                           }
                                                         : null
                                                 }
                                             >
                                                 <ScreenPreview
                                                     width={screenWidth}
-                                                    height={screenHeight}
+                                                    height={screenRatioHeight}
                                                     screen={item}
                                                 />
                                             </div>

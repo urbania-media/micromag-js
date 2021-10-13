@@ -18,15 +18,12 @@ import { getSizeWithinBounds } from '@folklore/size';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderVideo360, Transitions, ScreenElement } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
-import {
-    useAnimationFrame,
-    useTrackScreenEvent,
-    useTrackScreenMedia,
-} from '@micromag/core/hooks';
+import { useAnimationFrame, useTrackScreenEvent, useTrackScreenMedia } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import ClosedCaptions from '@micromag/element-closed-captions';
 import MediaControls from '@micromag/element-media-controls';
+import Image from '@micromag/element-image';
 import Video from '@micromag/element-video';
 import CallToAction from '@micromag/element-call-to-action';
 
@@ -167,7 +164,7 @@ const Video360Screen = ({
     // ------------------------------------
 
     const hasVideo = video !== null;
-    
+
     const [ready, setReady] = useState(!hasVideo);
 
     const transitionPlaying = current && ready;
@@ -429,15 +426,39 @@ const Video360Screen = ({
                 disabled={transitionDisabled}
                 fullscreen
             >
-                <canvas ref={canvasRef} className={styles.canvas} />
-                <button
-                    className={styles.canvasButton}
-                    type="button"
-                    aria-label="canvas-interaction"
-                    onPointerDown={onPointerDown}
-                    onPointerMove={onPointerMove}
-                    onPointerUp={onPointerUp}
-                />
+                {withVideoSphere ? (
+                    <>
+                        <canvas ref={canvasRef} className={styles.canvas} />
+                        <button
+                            className={styles.canvasButton}
+                            type="button"
+                            aria-label="canvas-interaction"
+                            onPointerDown={onPointerDown}
+                            onPointerMove={onPointerMove}
+                            onPointerUp={onPointerUp}
+                        />
+                    </>
+                ) : (
+                    <div
+                        className={styles.videoContainer}
+                        style={{
+                            width: resizedVideoWidth,
+                            height: resizedVideoHeight,
+                            left: resizedVideoLeft,
+                            top: resizedVideoTop,
+                        }}
+                    >
+                        <Image
+                            className={styles.video}
+                            media={{
+                                url: thumbnailUrl,
+                                metadata: { width: videoWidth, height: videoHeight },
+                            }}
+                            width="100%"
+                            height="100%"
+                        />
+                    </div>
+                )}
             </Transitions>
         </ScreenElement>,
         !isPlaceholder ? (
@@ -468,7 +489,6 @@ const Video360Screen = ({
                             onSeek={seek}
                         />
                     ) : null}
-
                     {hasCallToAction ? (
                         <div style={{ marginTop: -spacing }}>
                             <CallToAction
@@ -492,7 +512,6 @@ const Video360Screen = ({
                 },
             ])}
             data-screen-ready={((isStatic || isCapture) && posterReady) || ready}
-            // {...longPressBind}
         >
             {!isPlaceholder ? (
                 <Background
@@ -519,7 +538,7 @@ const Video360Screen = ({
                             ref={apiRef}
                             className={styles.video}
                             withoutCors
-                            preload="auto"
+                            preload="metadata"
                             onReady={onVideoReady}
                             onPlay={onPlay}
                             onPause={onPause}

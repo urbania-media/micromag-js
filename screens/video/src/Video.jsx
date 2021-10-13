@@ -12,6 +12,7 @@ import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import ClosedCaptions from '@micromag/element-closed-captions';
 import MediaControls from '@micromag/element-media-controls';
+import Image from '@micromag/element-image';
 import Video from '@micromag/element-video';
 import CallToAction from '@micromag/element-call-to-action';
 
@@ -170,7 +171,7 @@ const VideoScreen = ({
                 : null,
         [hasVideo, video, isPreview, isStatic, isCapture, autoPlay, current],
     );
-    
+
     const {
         metadata: videoMetadata = null,
         url: videoUrl = null,
@@ -239,21 +240,33 @@ const VideoScreen = ({
                         transitions={transitions}
                         disabled={transitionDisabled}
                     >
-                        <Video
-                            {...finalVideo}
-                            ref={apiRef}
-                            className={styles.video}
-                            preload="auto"
-                            onReady={onVideoReady}
-                            onPlay={onPlay}
-                            onPause={onPause}
-                            onTimeUpdate={onTimeUpdate}
-                            onProgressStep={onProgressStep}
-                            onDurationChanged={onDurationChanged}
-                            onSeeked={onSeeked}
-                            onVolumeChanged={onVolumeChanged}
-                            onPosterLoaded={onPosterLoaded}
-                        />
+                        {isPreview || isCapture ? (
+                            <Image
+                                className={styles.video}
+                                media={{
+                                    url: thumbnailUrl,
+                                    metadata: { width: videoWidth, height: videoHeight },
+                                }}
+                                width="100%"
+                                height="100%"
+                            />
+                        ) : (
+                            <Video
+                                {...finalVideo}
+                                ref={apiRef}
+                                className={styles.video}
+                                preload="metadata"
+                                onReady={onVideoReady}
+                                onPlay={onPlay}
+                                onPause={onPause}
+                                onTimeUpdate={onTimeUpdate}
+                                onProgressStep={onProgressStep}
+                                onDurationChanged={onDurationChanged}
+                                onSeeked={onSeeked}
+                                onVolumeChanged={onVolumeChanged}
+                                onPosterLoaded={onPosterLoaded}
+                            />
+                        )}
                     </Transitions>
                 </div>
             ) : null}
