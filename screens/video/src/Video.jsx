@@ -245,7 +245,7 @@ const VideoScreen = ({
                     >
                         {isPreview || isCapture ? (
                             <Image
-                                className={styles.video}
+                                className={styles.image}
                                 media={{
                                     url: thumbnailUrl,
                                     metadata: { width: videoWidth, height: videoHeight },

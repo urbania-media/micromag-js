@@ -260,7 +260,7 @@ const QuizScreen = ({
             className={styles.answers}
             ref={answerRef}
             style={
-                !answerTransitionComplete && (isView || isEdit)
+                answered && !answerTransitionComplete && (isView || isEdit)
                     ? {
                           transitionDuration: `${resultsTransitionDuration}ms`,
                           height: !showResults

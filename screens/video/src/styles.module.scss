@@ -47,6 +47,7 @@
     }    
 
     &.fullscreen {
+        .image,
         .video,
         .placeholder {
             @extend %fullscreen;
