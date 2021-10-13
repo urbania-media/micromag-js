@@ -16,6 +16,7 @@ const useMediaApi = ({
     onLoadStart = null,
     onCanPlayThough = null,
     onCanPlay = null,
+    onLoadedData = null,
     onLoadedMetadata = null,
 } = {}) => {
     const ref = useRef(null);
@@ -24,6 +25,7 @@ const useMediaApi = ({
     const [duration, setDuration] = useState(null);
     const [playing, setPlaying] = useState(false);
     const [ready, setReady] = useState(false);
+    const [dataReady, setDataReady] = useState(false);
     const [initialPlay, setInitialPlay] = useState(true);
     const progressStepsReached = useRef({});
 
@@ -202,6 +204,14 @@ const useMediaApi = ({
         }
     }, [setReady, onLoadedMetadata]);
 
+    const onCustomLoadedData = useCallback(() => {
+        setDataReady(true);
+
+        if (onLoadedData !== null) {
+            onLoadedData();
+        }
+    }, [setDataReady, onLoadedData]);
+
     useEffect(() => {
         const { current: media } = ref;
 
@@ -217,6 +227,13 @@ const useMediaApi = ({
             media.addEventListener('canplaythrough', onCustomCanPlayThrough);
             media.addEventListener('canplay', onCustomCanPlay);
             media.addEventListener('loadedmetadata', onCustomLoadedMetadata);
+            media.addEventListener('loadeddata', onCustomLoadedData);
+        }
+
+        if (media.readyState > 1) {
+            setDataReady(true);
+        } else {
+            setDataReady(false);
         }
 
         if (media.readyState > 3) {
@@ -258,6 +275,7 @@ const useMediaApi = ({
         playing,
         paused,
         ready,
+        dataReady,
     };
 };
 

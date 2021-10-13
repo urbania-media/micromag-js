@@ -110,13 +110,13 @@ const Video = ({
         apiRef.current.mediaRef = ref;
     }
 
-    const { playing, muted, ready, play, pause, unMute } = api;
+    const { playing, muted, dataReady, play, pause, unMute } = api;
 
     useEffect(() => {
-        if (ready && onReady !== null) {
+        if (dataReady && onReady !== null) {
             onReady();
         }
-    }, [ready, onReady]);
+    }, [dataReady, onReady]);
 
     const withSize = width !== null && height !== null;
     const { thumbnail_url: thumbnailUrl = null } = media || {};
