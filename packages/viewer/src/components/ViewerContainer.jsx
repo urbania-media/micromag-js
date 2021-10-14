@@ -81,10 +81,13 @@ const ViewerContainer = ({
         };
     }, [story, trackingVariables]);
 
+    const { metadata } = story || {};
+    const { language:finalLocale = locale } = metadata || {};
+
     const content = (
-        <IntlProvider locale={locale} locales={locales} extraMessages={translations}>
+        <IntlProvider locale={finalLocale} locales={locales} extraMessages={translations}>
             <GoogleKeysProvider apiKey={googleApiKey}>
-                <GoogleMapsClientProvider locale={locale}>
+                <GoogleMapsClientProvider locale={finalLocale}>
                     <FieldsProvider manager={fieldsManager}>
                         <ScreensProvider>
                             <UserInteractionProvider>

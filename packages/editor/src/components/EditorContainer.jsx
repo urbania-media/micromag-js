@@ -62,13 +62,16 @@ const EditorContainer = ({
     const Router = memoryRouter ? MemoryRouter : BrowserRouter;
     const { locale } = useIntl();
 
+    const { metadata } = value || {};
+    const { language:finalLocale = locale } = metadata || {};
+
     return (
         <Router basename={!memoryRouter ? basePath : null}>
             <UppyProvider {...uppy}>
                 <StoryProvider story={value}>
                     <ScreensProvider>
                         <GoogleKeysProvider apiKey={googleApiKey}>
-                            <GoogleMapsClientProvider locale={locale} libraries={googleMapsLibraries}>
+                            <GoogleMapsClientProvider locale={finalLocale} libraries={googleMapsLibraries}>
                                 <FontsProvider>
                                     <FieldsProvider>
                                         <FormsProvider>
