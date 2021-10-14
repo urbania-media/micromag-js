@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-visual",
-    "version": "0.2.294",
+    "version": "0.2.295",
     "description": "",
     "keywords": [
         "javascript"
@@ -52,7 +52,7 @@
         "@folklore/size": "^0.1.14",
         "@micromag/core": "^0.2.291",
         "@micromag/element-image": "^0.2.291",
-        "@micromag/element-video": "^0.2.294",
+        "@micromag/element-video": "^0.2.295",
         "classnames": "^2.2.6",
         "prop-types": "^15.7.2",
         "uuid": "^8.3.2"
