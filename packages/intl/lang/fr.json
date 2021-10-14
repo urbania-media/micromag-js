@@ -164,6 +164,9 @@
     "7j/LQ6": {
         "defaultMessage": "Coins arrondis"
     },
+    "7tw6U2": {
+        "defaultMessage": "Partager"
+    },
     "7uyslu": {
         "defaultMessage": "Description"
     },
@@ -215,6 +218,9 @@
     "AQ8Aig": {
         "defaultMessage": "Utilisé"
     },
+    "AuxqcG": {
+        "defaultMessage": "Plein écran"
+    },
     "B1MeY+": {
         "defaultMessage": "Sélectionnez une image..."
     },
@@ -254,6 +260,9 @@
     "EcZYpr": {
         "defaultMessage": "Sous-titre"
     },
+    "F/gl4b": {
+        "defaultMessage": "Menu"
+    },
     "F2SD/0": {
         "defaultMessage": "Boucle"
     },
@@ -262,6 +271,9 @@
     },
     "G/ITGY": {
         "defaultMessage": "Votre nom"
+    },
+    "G1Gyjn": {
+        "defaultMessage": "Chercher"
     },
     "G31Yd0": {
         "defaultMessage": "Annuler"
@@ -313,6 +325,9 @@
     },
     "KHWeV7": {
         "defaultMessage": "Réponses"
+    },
+    "LkVfwW": {
+        "defaultMessage": "Écran {index}"
     },
     "MLuvzG": {
         "defaultMessage": "Carte avec images"
@@ -467,6 +482,9 @@
     "aarOkd": {
         "defaultMessage": "Couleur"
     },
+    "ahSpiH": {
+        "defaultMessage": "Lecture"
+    },
     "al5xjv": {
         "defaultMessage": "Polices par défaut"
     },
@@ -496,6 +514,9 @@
     },
     "dVcog7": {
         "defaultMessage": "Titre"
+    },
+    "dj/p/q": {
+        "defaultMessage": "Fermer"
     },
     "dmuKH3": {
         "defaultMessage": "Carte"
@@ -721,6 +742,9 @@
     },
     "vzW/wd": {
         "defaultMessage": "Couleur de fond"
+    },
+    "vzg8Es": {
+        "defaultMessage": "Sans son"
     },
     "wkysUu": {
         "defaultMessage": "Écrans"

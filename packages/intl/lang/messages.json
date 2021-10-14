@@ -223,6 +223,10 @@
     "defaultMessage": "Rounded corners",
     "description": "Rounded corners label"
   },
+  "7tw6U2": {
+    "defaultMessage": "Share",
+    "description": "Button label"
+  },
   "7uyslu": {
     "defaultMessage": "Description",
     "description": "Label in Media Gallery"
@@ -291,6 +295,10 @@
     "defaultMessage": "Used",
     "description": "Media label"
   },
+  "AuxqcG": {
+    "defaultMessage": "Fullscreen",
+    "description": "Button label"
+  },
   "B1MeY+": {
     "defaultMessage": "Select an image...",
     "description": "Label when no value is provided to Image field"
@@ -343,6 +351,10 @@
     "defaultMessage": "Subtitle",
     "description": "Subtitle field label"
   },
+  "F/gl4b": {
+    "defaultMessage": "Menu",
+    "description": "Button label"
+  },
   "F2SD/0": {
     "defaultMessage": "Loop",
     "description": "Field label"
@@ -354,6 +366,10 @@
   "G/ITGY": {
     "defaultMessage": "Your name",
     "description": "Your name placeholder"
+  },
+  "G1Gyjn": {
+    "defaultMessage": "Seek",
+    "description": "Button label"
   },
   "G31Yd0": {
     "defaultMessage": "Cancel",
@@ -422,6 +438,10 @@
   "KHWeV7": {
     "defaultMessage": "Answers",
     "description": "Field label"
+  },
+  "LkVfwW": {
+    "defaultMessage": "Screen {index}",
+    "description": "Button label"
   },
   "MLuvzG": {
     "defaultMessage": "Map with image markers",
@@ -626,6 +646,10 @@
     "defaultMessage": "Color",
     "description": "Field label"
   },
+  "ahSpiH": {
+    "defaultMessage": "Play",
+    "description": "Button label"
+  },
   "al5xjv": {
     "defaultMessage": "Default fonts",
     "description": "Font family group title"
@@ -665,6 +689,10 @@
   "dVcog7": {
     "defaultMessage": "Title",
     "description": "Title screen title"
+  },
+  "dj/p/q": {
+    "defaultMessage": "Close",
+    "description": "Button label"
   },
   "dmuKH3": {
     "defaultMessage": "Map",
@@ -963,6 +991,10 @@
   "vzW/wd": {
     "defaultMessage": "Background color",
     "description": "Background color label"
+  },
+  "vzg8Es": {
+    "defaultMessage": "Mute",
+    "description": "Button label"
   },
   "wkysUu": {
     "defaultMessage": "Screens",
