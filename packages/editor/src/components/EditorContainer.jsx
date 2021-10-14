@@ -3,6 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { MemoryRouter } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
+import { useIntl } from 'react-intl';
+
 import {
     StoryProvider,
     GoogleMapsClientProvider,
@@ -58,6 +60,7 @@ const EditorContainer = ({
     ...props
 }) => {
     const Router = memoryRouter ? MemoryRouter : BrowserRouter;
+    const { locale } = useIntl();
 
     return (
         <Router basename={!memoryRouter ? basePath : null}>
@@ -65,7 +68,7 @@ const EditorContainer = ({
                 <StoryProvider story={value}>
                     <ScreensProvider>
                         <GoogleKeysProvider apiKey={googleApiKey}>
-                            <GoogleMapsClientProvider libraries={googleMapsLibraries}>
+                            <GoogleMapsClientProvider locale={locale} libraries={googleMapsLibraries}>
                                 <FontsProvider>
                                     <FieldsProvider>
                                         <FormsProvider>

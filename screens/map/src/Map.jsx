@@ -4,7 +4,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useGoogleKeys, useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
+import { useGoogleKeys, useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { PlaceholderMap, Transitions, ScreenElement, Button } from '@micromag/core/components';
 import { useTrackScreenEvent, useResizeObserver } from '@micromag/core/hooks';
 import { getStyleFromColor, isTextFilled } from '@micromag/core/utils';
