@@ -515,6 +515,12 @@ msgctxt "DWEzCv"
 msgid "Select a video..."
 msgstr "Select a video..."
 
+# Media Gallery
+#: EDFyUp
+msgctxt "EDFyUp"
+msgid "Alternative text (accessibility)"
+msgstr "Alternative text (accessibility)"
+
 # Field label
 #: ET527E
 msgctxt "ET527E"
