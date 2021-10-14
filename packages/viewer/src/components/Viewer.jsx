@@ -418,10 +418,15 @@ const Viewer = ({
     );
 
     // Handle preview menu close click
+    const closePreviewMenu = useCallback(() => {
+        if (menuOpened.current) {
+            setMenuSpring.start({ y: 0 });
+            menuOpened.current = false;
+        }
+    }, [setMenuSpring]);
 
     const onClickPreviewMenuClose = useCallback(() => {
-        setMenuSpring.start({ y: 0 });
-        menuOpened.current = false;
+        closePreviewMenu();
         if (trackingEnabled) {
             trackEvent('viewer_menu', 'click_close', 'Close icon', {
                 screenId,
@@ -429,7 +434,7 @@ const Viewer = ({
                 screenType,
             });
         }
-    }, [trackingEnabled, trackEvent, screenId, screenIndex, screenType]);
+    }, [closePreviewMenu, trackingEnabled, trackEvent, screenId, screenIndex, screenType]);
 
     // Handle preview menu share click
 
@@ -472,6 +477,42 @@ const Viewer = ({
         active: fullscreenActive,
         enabled: fullscreenEnabled,
     } = useFullscreen(containerRef.current || null);
+
+    // Keyboard Events
+    useEffect(() => {
+        const onKey = (e) => {
+            if (
+                ['input', 'textarea'].reduce(
+                    (foundMatch, match) => foundMatch || e.target.matches(match),
+                    false,
+                )
+            ) {
+                return;
+            }
+
+            const { keyCode } = e;
+
+            switch (keyCode) {
+                case 27:
+                    closePreviewMenu();
+                break;
+                case 37: // left
+                    onScreenPrevious();
+                    break;
+                case 39: // right
+                case 32: // spacebar
+                    onScreenNext();
+                    break;
+                default:
+                    break;
+            }
+        };
+
+        window.addEventListener('keydown', onKey);
+        return () => {
+            window.removeEventListener('keydown', onKey);
+        };
+    }, [closePreviewMenu, onScreenPrevious, onScreenNext]);
 
     return (
         <ScreenSizeProvider size={screenSize}>
