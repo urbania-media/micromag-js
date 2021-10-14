@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { useIntl } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 
@@ -45,37 +46,65 @@ const MediaControls = ({
     withSeekBar,
     withPlayPause,
     className,
-}) => (
-    <div
-        className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-                [styles.playing]: playing,
-                [styles.muted]: muted,
-                [styles.withPlayPause]: withPlayPause,
-            },
-        ])}
-    >
-        {withSeekBar ? (
-            <SeekBar
-                className={styles.seekBar}
-                currentTime={currentTime}
-                duration={duration}
-                playing={playing}
-                onSeek={onSeek}
-            />
-        ) : null}
-        <div className={styles.toggles}>
-            <button type="button" className={styles.playPauseButton} onClick={onTogglePlay}>
-                <FontAwesomeIcon className={styles.icon} icon={playing ? faPause : faPlay} />
-            </button>
-            <button type="button" className={styles.muteButton} onClick={onToggleMute}>
-                <FontAwesomeIcon className={styles.icon} icon={faVolumeUp} />
-            </button>
+}) => {
+    const intl = useIntl();
+
+    return (
+        <div
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                    [styles.playing]: playing,
+                    [styles.muted]: muted,
+                    [styles.withPlayPause]: withPlayPause,
+                },
+            ])}
+        >
+            {withSeekBar ? (
+                <SeekBar
+                    className={styles.seekBar}
+                    currentTime={currentTime}
+                    duration={duration}
+                    playing={playing}
+                    onSeek={onSeek}
+                />
+            ) : null}
+            <div className={styles.toggles}>
+                <button
+                    type="button"
+                    className={styles.playPauseButton}
+                    onClick={onTogglePlay}
+                    title={intl.formatMessage({
+                        defaultMessage: 'Play',
+                        description: 'Button label',
+                    })}
+                    aria-label={intl.formatMessage({
+                        defaultMessage: 'Play',
+                        description: 'Button label',
+                    })}
+                >
+                    <FontAwesomeIcon className={styles.icon} icon={playing ? faPause : faPlay} />
+                </button>
+                <button
+                    type="button"
+                    className={styles.muteButton}
+                    onClick={onToggleMute}
+                    title={intl.formatMessage({
+                        defaultMessage: 'Mute',
+                        description: 'Button label',
+                    })}
+                    aria-label={intl.formatMessage({
+                        defaultMessage: 'Mute',
+                        description: 'Button label',
+                    })}
+                >
+                    <FontAwesomeIcon className={styles.icon} icon={faVolumeUp} />
+                </button>
+            </div>
         </div>
-    </div>
-);
+    );
+};
 
 MediaControls.propTypes = propTypes;
 MediaControls.defaultProps = defaultProps;

@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { useIntl } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -47,70 +48,100 @@ const ViewerMenuDots = ({
     closeable,
     onClose,
     className,
-}) => (
-    <nav
-        className={classNames([
-            styles.container,
-            {
-                [className]: className !== null,
-                [styles.vertical]: direction === 'vertical',
-                [styles.withShadow]: withShadow,
-            },
-        ])}
-    >
-        <ul className={styles.items}>
-            {items.map((item, index) => (
-                <li
-                    className={classNames([
-                        styles.item,
-                        {
-                            [styles.active]: current === index,
-                        },
-                    ])}
-                    key={`item-${index}`}
-                >
+}) => {
+    const intl = useIntl();
+
+    return (
+        <nav
+            className={classNames([
+                styles.container,
+                {
+                    [className]: className !== null,
+                    [styles.vertical]: direction === 'vertical',
+                    [styles.withShadow]: withShadow,
+                },
+            ])}
+        >
+            <ul className={styles.items}>
+                {items.map((item, index) => (
+                    <li
+                        className={classNames([
+                            styles.item,
+                            {
+                                [styles.active]: current === index,
+                            },
+                        ])}
+                        key={`item-${index}`}
+                    >
+                        <button
+                            type="button"
+                            className={styles.button}
+                            onClick={() => {
+                                if (onClickItem !== null) {
+                                    onClickItem(index);
+                                }
+                            }}
+                            aria-label={intl.formatMessage(
+                                {
+                                    defaultMessage: 'Screen {index}',
+                                    description: 'Button label',
+                                },
+                                { index },
+                            )}
+                        >
+                            <span
+                                className={styles.dot}
+                                style={{
+                                    backgroundColor:
+                                        index <= current ? colorAccent : colorBackground,
+                                }}
+                            />
+                        </button>
+                    </li>
+                ))}
+                <li className={styles.menu}>
+                    <MenuIcon className={styles.menuIcon} color={colorAccent} />
                     <button
                         type="button"
-                        className={styles.button}
+                        title={intl.formatMessage({
+                            defaultMessage: 'Menu',
+                            description: 'Button label',
+                        })}
+                        aria-label={intl.formatMessage({
+                            defaultMessage: 'Menu',
+                            description: 'Button label',
+                        })}
+                        className={styles.menuButton}
                         onClick={() => {
                             if (onClickItem !== null) {
-                                onClickItem(index);
+                                onClickItem(null);
                             }
                         }}
-                    >
-                        <span
-                            className={styles.dot}
-                            style={{
-                                backgroundColor: index <= current ? colorAccent : colorBackground,
-                            }}
-                        />
-                    </button>
+                    />
                 </li>
-            ))}
-            <li className={styles.menu}>
-                <MenuIcon className={styles.menuIcon} color={colorAccent} />
-                <button
-                    type="button"
-                    aria-label="menu"
-                    className={styles.menuButton}
-                    onClick={() => {
-                        if (onClickItem !== null) {
-                            onClickItem(null);
-                        }
-                    }}
-                />
-            </li>
-            { closeable ? (
-                <li className={styles.closeButton} style={{ color: colorAccent }}>
-                    <button type="button" className={styles.closeButton} onClick={onClose}>
-                        <FontAwesomeIcon icon={faTimes} />
-                    </button>
-                </li>
-            ) : null }
-        </ul>
-    </nav>
-);
-
+                {closeable ? (
+                    <li className={styles.closeButton} style={{ color: colorAccent }}>
+                        <button
+                            type="button"
+                            className={styles.closeButton}
+                            onClick={onClose}
+                            title={intl.formatMessage({
+                                defaultMessage: 'Close',
+                                description: 'Button label',
+                            })}
+                            aria-label={intl.formatMessage({
+                                defaultMessage: 'Close',
+                                description: 'Button label',
+                            })}
+                        >
+                            <FontAwesomeIcon icon={faTimes} />
+                        </button>
+                    </li>
+                ) : null}
+            </ul>
+        </nav>
+    );
+};
 ViewerMenuDots.propTypes = propTypes;
 ViewerMenuDots.defaultProps = defaultProps;
 
