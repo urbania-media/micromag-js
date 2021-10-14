@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-map",
-    "version": "0.2.292",
+    "version": "0.2.294",
     "description": "",
     "keywords": [
         "javascript"
@@ -50,7 +50,7 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@micromag/core": "^0.2.291",
-        "@micromag/element-background": "^0.2.292",
+        "@micromag/element-background": "^0.2.294",
         "@micromag/element-button": "^0.2.291",
         "@micromag/element-call-to-action": "^0.2.291",
         "@micromag/element-container": "^0.2.291",
