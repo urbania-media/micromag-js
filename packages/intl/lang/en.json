@@ -164,6 +164,9 @@
     "7j/LQ6": {
         "defaultMessage": "Rounded corners"
     },
+    "7tw6U2": {
+        "defaultMessage": "Share"
+    },
     "7uyslu": {
         "defaultMessage": "Description"
     },
@@ -215,6 +218,9 @@
     "AQ8Aig": {
         "defaultMessage": "Used"
     },
+    "AuxqcG": {
+        "defaultMessage": "Fullscreen"
+    },
     "B1MeY+": {
         "defaultMessage": "Select an image..."
     },
@@ -248,11 +254,17 @@
     "DWEzCv": {
         "defaultMessage": "Select a video..."
     },
+    "EDFyUp": {
+        "defaultMessage": "Alternative text (accessibility)"
+    },
     "ET527E": {
         "defaultMessage": "Font family"
     },
     "EcZYpr": {
         "defaultMessage": "Subtitle"
+    },
+    "F/gl4b": {
+        "defaultMessage": "Menu"
     },
     "F2SD/0": {
         "defaultMessage": "Loop"
@@ -262,6 +274,9 @@
     },
     "G/ITGY": {
         "defaultMessage": "Your name"
+    },
+    "G1Gyjn": {
+        "defaultMessage": "Seek"
     },
     "G31Yd0": {
         "defaultMessage": "Cancel"
@@ -313,6 +328,9 @@
     },
     "KHWeV7": {
         "defaultMessage": "Answers"
+    },
+    "LkVfwW": {
+        "defaultMessage": "Screen {index}"
     },
     "MLuvzG": {
         "defaultMessage": "Map with image markers"
@@ -467,6 +485,9 @@
     "aarOkd": {
         "defaultMessage": "Color"
     },
+    "ahSpiH": {
+        "defaultMessage": "Play"
+    },
     "al5xjv": {
         "defaultMessage": "Default fonts"
     },
@@ -496,6 +517,9 @@
     },
     "dVcog7": {
         "defaultMessage": "Title"
+    },
+    "dj/p/q": {
+        "defaultMessage": "Close"
     },
     "dmuKH3": {
         "defaultMessage": "Map"
@@ -721,6 +745,9 @@
     },
     "vzW/wd": {
         "defaultMessage": "Background color"
+    },
+    "vzg8Es": {
+        "defaultMessage": "Mute"
     },
     "wkysUu": {
         "defaultMessage": "Screens"

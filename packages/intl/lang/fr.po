@@ -1,21 +1,16 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-14 14:06-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2021-10-14 14:07-0400\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 3.2.0\n"
-
-msgid ""
-msgstr ""
-
-msgid ""
-msgstr ""
+"X-Generator: Poedit 2.4.3\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
 
 # Field label
 #: +AEVbJ
@@ -347,6 +342,12 @@ msgctxt "7j/LQ6"
 msgid "Rounded corners"
 msgstr "Coins arrondis"
 
+# Button label
+#: 7tw6U2
+msgctxt "7tw6U2"
+msgid "Share"
+msgstr "Partager"
+
 # Label in Media Gallery
 #: 7uyslu
 msgctxt "7uyslu"
@@ -449,6 +450,12 @@ msgctxt "AQ8Aig"
 msgid "Used"
 msgstr "Utilisé"
 
+# Button label
+#: AuxqcG
+msgctxt "AuxqcG"
+msgid "Fullscreen"
+msgstr "Plein écran"
+
 # Label when no value is provided to Image field
 #: B1MeY+
 msgctxt "B1MeY+"
@@ -515,6 +522,12 @@ msgctxt "DWEzCv"
 msgid "Select a video..."
 msgstr "Sélectionnez une vidéo..."
 
+# Media Gallery
+#: EDFyUp
+msgctxt "EDFyUp"
+msgid "Alternative text (accessibility)"
+msgstr "Texte alternatif (accessibilité)"
+
 # Field label
 #: ET527E
 msgctxt "ET527E"
@@ -526,6 +539,12 @@ msgstr "Police"
 msgctxt "EcZYpr"
 msgid "Subtitle"
 msgstr "Sous-titre"
+
+# Button label
+#: F/gl4b
+msgctxt "F/gl4b"
+msgid "Menu"
+msgstr "Menu"
 
 # Field label
 #: F2SD/0
@@ -544,6 +563,12 @@ msgstr "Résultat"
 msgctxt "G/ITGY"
 msgid "Your name"
 msgstr "Votre nom"
+
+# Button label
+#: G1Gyjn
+msgctxt "G1Gyjn"
+msgid "Seek"
+msgstr "Chercher"
 
 # Cancel button label in Media Gallery
 #: G31Yd0
@@ -646,6 +671,12 @@ msgstr "Aucune police..."
 msgctxt "KHWeV7"
 msgid "Answers"
 msgstr "Réponses"
+
+# Button label
+#: LkVfwW
+msgctxt "LkVfwW"
+msgid "Screen {index}"
+msgstr "Écran {index}"
 
 # MapImages screen title
 #: MLuvzG
@@ -952,6 +983,12 @@ msgctxt "aarOkd"
 msgid "Color"
 msgstr "Couleur"
 
+# Button label
+#: ahSpiH
+msgctxt "ahSpiH"
+msgid "Play"
+msgstr "Lecture"
+
 # Font family group title
 #: al5xjv
 msgctxt "al5xjv"
@@ -1011,6 +1048,12 @@ msgstr "Aucune image..."
 msgctxt "dVcog7"
 msgid "Title"
 msgstr "Titre"
+
+# Button label
+#: dj/p/q
+msgctxt "dj/p/q"
+msgid "Close"
+msgstr "Fermer"
 
 # Map screen title
 #: dmuKH3
@@ -1459,6 +1502,12 @@ msgstr "Titre avec sous-titre et crédits"
 msgctxt "vzW/wd"
 msgid "Background color"
 msgstr "Couleur de fond"
+
+# Button label
+#: vzg8Es
+msgctxt "vzg8Es"
+msgid "Mute"
+msgstr "Sans son"
 
 # Button to show screens
 #: wkysUu

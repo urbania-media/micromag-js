@@ -5,6 +5,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useDrag } from 'react-use-gesture';
+import { useIntl } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShare, faTimes, faExpand, faCompress } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -66,8 +67,9 @@ const ViewerMenuPreview = ({
     fullscreenEnabled,
     className,
 }) => {
+    const intl = useIntl();
     const screenSizeRatio = `${(6 / 4 / thumbsPerLine) * 100}%`;
-    const screenRatioHeight = screenWidth * 6 / 4;
+    const screenRatioHeight = (screenWidth * 6) / 4;
 
     const hasSize = screenWidth > 0;
     const hasItems = items !== null && items.length > 0;
@@ -154,14 +156,36 @@ const ViewerMenuPreview = ({
                         <FontAwesomeIcon className={styles.icon} icon={faShare} />
                     </ShareButton>
                     {fullscreenEnabled ? (
-                        <Button className={styles.button} onClick={toggleFullscreen}>
+                        <Button
+                            className={styles.button}
+                            onClick={toggleFullscreen}
+                            title={intl.formatMessage({
+                                defaultMessage: 'Fullscreen',
+                                description: 'Button label',
+                            })}
+                            aria-label={intl.formatMessage({
+                                defaultMessage: 'Fullscreen',
+                                description: 'Button label',
+                            })}
+                        >
                             <FontAwesomeIcon
                                 className={styles.icon}
                                 icon={fullscreenActive ? faCompress : faExpand}
                             />
                         </Button>
                     ) : null}
-                    <Button className={styles.button} onClick={onClose}>
+                    <Button
+                        className={styles.button}
+                        onClick={onClose}
+                        title={intl.formatMessage({
+                            defaultMessage: 'Close',
+                            description: 'Button label',
+                        })}
+                        aria-label={intl.formatMessage({
+                            defaultMessage: 'Close',
+                            description: 'Button label',
+                        })}
+                    >
                         <FontAwesomeIcon className={styles.icon} icon={faTimes} />
                     </Button>
                 </div>

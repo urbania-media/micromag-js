@@ -347,6 +347,12 @@ msgctxt "7j/LQ6"
 msgid "Rounded corners"
 msgstr "Rounded corners"
 
+# Button label
+#: 7tw6U2
+msgctxt "7tw6U2"
+msgid "Share"
+msgstr "Share"
+
 # Label in Media Gallery
 #: 7uyslu
 msgctxt "7uyslu"
@@ -449,6 +455,12 @@ msgctxt "AQ8Aig"
 msgid "Used"
 msgstr "Used"
 
+# Button label
+#: AuxqcG
+msgctxt "AuxqcG"
+msgid "Fullscreen"
+msgstr "Fullscreen"
+
 # Label when no value is provided to Image field
 #: B1MeY+
 msgctxt "B1MeY+"
@@ -515,6 +527,12 @@ msgctxt "DWEzCv"
 msgid "Select a video..."
 msgstr "Select a video..."
 
+# Media Gallery
+#: EDFyUp
+msgctxt "EDFyUp"
+msgid "Alternative text (accessibility)"
+msgstr "Alternative text (accessibility)"
+
 # Field label
 #: ET527E
 msgctxt "ET527E"
@@ -526,6 +544,12 @@ msgstr "Font family"
 msgctxt "EcZYpr"
 msgid "Subtitle"
 msgstr "Subtitle"
+
+# Button label
+#: F/gl4b
+msgctxt "F/gl4b"
+msgid "Menu"
+msgstr "Menu"
 
 # Field label
 #: F2SD/0
@@ -544,6 +568,12 @@ msgstr "Result"
 msgctxt "G/ITGY"
 msgid "Your name"
 msgstr "Your name"
+
+# Button label
+#: G1Gyjn
+msgctxt "G1Gyjn"
+msgid "Seek"
+msgstr "Seek"
 
 # Cancel button label in Media Gallery
 #: G31Yd0
@@ -646,6 +676,12 @@ msgstr "No font..."
 msgctxt "KHWeV7"
 msgid "Answers"
 msgstr "Answers"
+
+# Button label
+#: LkVfwW
+msgctxt "LkVfwW"
+msgid "Screen {index}"
+msgstr "Screen {index}"
 
 # MapImages screen title
 #: MLuvzG
@@ -952,6 +988,12 @@ msgctxt "aarOkd"
 msgid "Color"
 msgstr "Color"
 
+# Button label
+#: ahSpiH
+msgctxt "ahSpiH"
+msgid "Play"
+msgstr "Play"
+
 # Font family group title
 #: al5xjv
 msgctxt "al5xjv"
@@ -1011,6 +1053,12 @@ msgstr "No image..."
 msgctxt "dVcog7"
 msgid "Title"
 msgstr "Title"
+
+# Button label
+#: dj/p/q
+msgctxt "dj/p/q"
+msgid "Close"
+msgstr "Close"
 
 # Map screen title
 #: dmuKH3
@@ -1459,6 +1507,12 @@ msgstr "Title with subtitle and credits"
 msgctxt "vzW/wd"
 msgid "Background color"
 msgstr "Background color"
+
+# Button label
+#: vzg8Es
+msgctxt "vzg8Es"
+msgid "Mute"
+msgstr "Mute"
 
 # Button to show screens
 #: wkysUu
