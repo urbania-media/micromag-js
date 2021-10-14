@@ -343,6 +343,10 @@
     "defaultMessage": "Select a video...",
     "description": "Label when no value is provided to Video field"
   },
+  "EDFyUp": {
+    "defaultMessage": "Alternative text (accessibility)",
+    "description": "Media Gallery"
+  },
   "ET527E": {
     "defaultMessage": "Font family",
     "description": "Field label"
