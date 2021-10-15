@@ -48,6 +48,7 @@ const captureStory = async (story, location, settings = {}) => {
         'Accept-Language': language
     });
     await page.goto(`http://127.0.0.1:${serverPort}`);
+    //
 
     if (screens !== null) {
         const count = screens.length;

@@ -42,6 +42,7 @@ const Meta = ({ title, url, metadata, fullTitle, suffix, children }) => {
     const { url: imageUrl = null, metadata: imageMetadata = {} } = image || {};
     const { width: imageWidth = null, height: imageHeight = null } = imageMetadata || {};
     const { url: faviconUrl = null } = favicon || {};
+    //
 
     return (
         <Helmet>
