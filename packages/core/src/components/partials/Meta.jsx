@@ -34,6 +34,7 @@ const Meta = ({ title, url, metadata, fullTitle, suffix, children }) => {
         rssUrl = null,
         atomUrl = null,
         microformats = [],
+        language = null,
     } = metadata || {};
 
     const realTitle = title !== null ? `${title} | ${suffix}` : fullTitle;
@@ -47,6 +48,7 @@ const Meta = ({ title, url, metadata, fullTitle, suffix, children }) => {
             {/* General */}
             <title>{realTitle !== null && realTitle.length > 0 ? realTitle : 'Micromag'}</title>
             {description !== null ? <meta name="description" content={description} /> : null}
+            {language !== null ? <meta name="language" content={language} /> : null}
             {keywords !== null && isString(keywords) ? (
                 <meta name="keywords" content={keywords} />
             ) : null}

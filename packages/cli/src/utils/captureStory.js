@@ -29,20 +29,26 @@ const captureStory = async (story, location, settings = {}) => {
     const serverPort = server.address().port;
     const { width, height } = defaultViewport;
 
+    const { components: screens = null, metadata } = story || {};
+    const { language = 'fr' } = metadata || {};
+
     const browser = await puppeteer.launch({
         devtools: DEBUG,
         ...(executablePath !== null ? { executablePath } : null),
         defaultViewport,
-        args: ['--no-sandbox'],
+        args: ['--no-sandbox', `--lang=${language}-CA,${language}`],
     });
 
     // try {
     const pages = await browser.pages();
     const hasPage = pages.length > 0;
     const page = hasPage ? pages[0] : await browser.newPage();
+    
+    await page.setExtraHTTPHeaders({
+        'Accept-Language': language
+    });
     await page.goto(`http://127.0.0.1:${serverPort}`);
 
-    const { components: screens = null } = story || {};
     if (screens !== null) {
         const count = screens.length;
         for (let index = 0; index < count; index += 1) {

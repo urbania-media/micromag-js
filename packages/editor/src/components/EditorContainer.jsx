@@ -62,8 +62,8 @@ const EditorContainer = ({
     const Router = memoryRouter ? MemoryRouter : BrowserRouter;
     const { locale } = useIntl();
 
-    const { metadata } = value || {};
-    const { language:finalLocale = locale } = metadata || {};
+    // const { metadata } = value || {};
+    // const { language:finalLocale = locale } = metadata || {};
 
     return (
         <Router basename={!memoryRouter ? basePath : null}>
@@ -71,7 +71,7 @@ const EditorContainer = ({
                 <StoryProvider story={value}>
                     <ScreensProvider>
                         <GoogleKeysProvider apiKey={googleApiKey}>
-                            <GoogleMapsClientProvider locale={finalLocale} libraries={googleMapsLibraries}>
+                            <GoogleMapsClientProvider locale={locale} libraries={googleMapsLibraries}>
                                 <FontsProvider>
                                     <FieldsProvider>
                                         <FormsProvider>
