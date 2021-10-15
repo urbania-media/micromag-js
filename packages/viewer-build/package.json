@@ -1,6 +1,6 @@
 {
     "name": "@micromag/viewer-build",
-    "version": "0.2.299",
+    "version": "0.2.300",
     "description": "",
     "keywords": [
         "javascript"
@@ -41,11 +41,11 @@
     },
     "gitHead": "423fa2abe4a70c8c0c26eb98f7bbb941149b678f",
     "devDependencies": {
-        "@micromag/core": "^0.2.299",
-        "@micromag/elements": "^0.2.299",
-        "@micromag/screens": "^0.2.299",
-        "@micromag/transforms": "^0.2.299",
-        "@micromag/viewer": "^0.2.299",
+        "@micromag/core": "^0.2.300",
+        "@micromag/elements": "^0.2.300",
+        "@micromag/screens": "^0.2.300",
+        "@micromag/transforms": "^0.2.300",
+        "@micromag/viewer": "^0.2.300",
         "react": "^16.8.0",
         "react-dom": "^16.8.0",
         "react-scripts": "^4.0.1"
