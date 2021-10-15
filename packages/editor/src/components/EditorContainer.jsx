@@ -64,7 +64,6 @@ const EditorContainer = ({
 
     // const { metadata } = value || {};
     // const { language:finalLocale = locale } = metadata || {};
-    //
 
     return (
         <Router basename={!memoryRouter ? basePath : null}>
