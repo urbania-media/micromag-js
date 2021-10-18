@@ -251,6 +251,13 @@ const ViewerMenuPreview = ({
                                         onClick={() => {
                                             onClickItem(index);
                                         }}
+                                        aria-label={intl.formatMessage(
+                                            {
+                                                defaultMessage: 'Screen {index}',
+                                                description: 'Button label',
+                                            },
+                                            { index },
+                                        )}
                                     />
                                 </li>
                             ))}
