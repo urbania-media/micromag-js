@@ -196,6 +196,7 @@ const ConversationScreen = ({
                                         description="Conversation placeholder"
                                     />
                                 }
+                                emptyClassName={styles.empty}
                                 isEmpty={messages.length === 0 && title === null}
                             >
                                 <Transitions

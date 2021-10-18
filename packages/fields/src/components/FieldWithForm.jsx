@@ -150,7 +150,7 @@ const FieldWithForm = ({
                     <Label>
                         {noValueLabel || (
                             <FormattedMessage
-                                defaultMessage="Click to edit..."
+                                defaultMessage="Edit content..."
                                 description="Label when no value is provided to Field with form"
                             />
                         )}

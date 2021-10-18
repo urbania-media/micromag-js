@@ -319,10 +319,6 @@
     "defaultMessage": "Image with text",
     "description": "ImageText screen title"
   },
-  "CQ7Wmr": {
-    "defaultMessage": "Delete item",
-    "description": "Delete item"
-  },
   "CrzYgw": {
     "defaultMessage": "Quote",
     "description": "Quote placeholder"
@@ -334,10 +330,6 @@
   "D0+Cxr": {
     "defaultMessage": "Markers with image",
     "description": "Markers field label"
-  },
-  "DVrK6z": {
-    "defaultMessage": "Click to edit...",
-    "description": "Label when no value is provided to Field with form"
   },
   "DWEzCv": {
     "defaultMessage": "Select a video...",
@@ -354,6 +346,10 @@
   "EcZYpr": {
     "defaultMessage": "Subtitle",
     "description": "Subtitle field label"
+  },
+  "EoVdMy": {
+    "defaultMessage": "Edit content...",
+    "description": "Label when no value is provided to Field with form"
   },
   "F/gl4b": {
     "defaultMessage": "Menu",
@@ -577,6 +573,10 @@
   "UdrdRF": {
     "defaultMessage": "Numbers style",
     "description": "Numbers style field label"
+  },
+  "UlZIP8": {
+    "defaultMessage": "OK",
+    "description": "Items finish edit button label"
   },
   "UtcYEP": {
     "defaultMessage": "Custom fonts",
@@ -1031,6 +1031,10 @@
   "xsipID": {
     "defaultMessage": "Image",
     "description": "Visual field label"
+  },
+  "xuEZXD": {
+    "defaultMessage": "Edit",
+    "description": "Items edit button label"
   },
   "y7xsPe": {
     "defaultMessage": "Advanced settings",

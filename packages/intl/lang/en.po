@@ -491,12 +491,6 @@ msgctxt "CJmQeh"
 msgid "Image with text"
 msgstr "Image with text"
 
-# Delete item
-#: CQ7Wmr
-msgctxt "CQ7Wmr"
-msgid "Delete item"
-msgstr "Delete item"
-
 # Quote placeholder
 #: CrzYgw
 msgctxt "CrzYgw"
@@ -514,12 +508,6 @@ msgstr "Label"
 msgctxt "D0+Cxr"
 msgid "Markers with image"
 msgstr "Markers with image"
-
-# Label when no value is provided to Field with form
-#: DVrK6z
-msgctxt "DVrK6z"
-msgid "Click to edit..."
-msgstr "Click to edit..."
 
 # Label when no value is provided to Video field
 #: DWEzCv
@@ -544,6 +532,12 @@ msgstr "Font family"
 msgctxt "EcZYpr"
 msgid "Subtitle"
 msgstr "Subtitle"
+
+# Label when no value is provided to Field with form
+#: EoVdMy
+msgctxt "EoVdMy"
+msgid "Edit content..."
+msgstr "Edit content..."
 
 # Button label
 #: F/gl4b
@@ -879,6 +873,12 @@ msgstr "Name"
 msgctxt "UdrdRF"
 msgid "Numbers style"
 msgstr "Numbers style"
+
+# Items finish edit button label
+#: UlZIP8
+msgctxt "UlZIP8"
+msgid "OK"
+msgstr "OK"
 
 # Font family group title
 #: UtcYEP
@@ -1561,6 +1561,12 @@ msgstr "Author"
 msgctxt "xsipID"
 msgid "Image"
 msgstr "Image"
+
+# Items edit button label
+#: xuEZXD
+msgctxt "xuEZXD"
+msgid "Edit"
+msgstr "Edit"
 
 # Fields section label
 #: y7xsPe

@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useCallback, useState, useMemo } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useHistory } from 'react-router';
@@ -10,25 +10,17 @@ import { slug } from '@micromag/core/utils';
 import {
     useRoutePush,
     ScreenProvider,
-    useScreensManager,
-    useFieldsManager,
 } from '@micromag/core/contexts';
 import { Empty, Navbar, DropdownMenu } from '@micromag/core/components';
 
 import {
     updateScreen,
     duplicateScreen,
-    deleteScreen,
-    getFieldFromPath,
-    duplicateListItem,
-    deleteListItem,
+    deleteScreen,    
 } from '../utils';
 import useRouteParams from '../hooks/useRouteParams';
 import useFormTransition from '../hooks/useFormTransition';
 import SettingsButton from './buttons/Settings';
-import DeleteButton from './buttons/Delete';
-// eslint-disable-next-line no-unused-vars
-import DuplicateButton from './buttons/Duplicate';
 import Breadcrumb from './menus/Breadcrumb';
 import ScreenForm from './forms/Screen';
 import FieldWithContexts from './forms/FieldWithContexts';
@@ -65,21 +57,7 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
     const { components: screens = [] } = value || {};
     const screenIndex = screens.findIndex((it) => it.id === screenId);
     const screen = screenIndex !== -1 ? screens[screenIndex] : null;
-    const { type = null } = screen || {};
 
-    const screensManager = useScreensManager();
-    const fieldsManager = useFieldsManager();
-
-    const { fields = [] } = type !== null ? screensManager.getDefinition(type) : {};
-    const currentField = useMemo(
-        () =>
-            fieldParams !== null
-                ? getFieldFromPath(fieldParams.split('/'), fields, fieldsManager)
-                : null,
-        [fieldParams, fields],
-    );
-
-    const { listItems: currentFieldListItems = false } = currentField || {};
 
     // Get transition value
     const { name: transitionName, timeout: transitionTimeout } = useFormTransition(
@@ -178,22 +156,6 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
         setDeleteScreenModalOpened(false);
     }, [setDeleteScreenModalOpened]);
 
-    /* List item */
-    const onDeleteItemClick = useCallback(() => {
-        triggerOnChange(deleteListItem(fieldParams, value, screenIndex));
-        gotoFieldForm();
-    }, [fieldParams, value, screenIndex]);
-
-    // eslint-disable-next-line no-unused-vars
-    const onDuplicateItemClick = useCallback(() => {
-        const path = fieldParams.split('/');
-        const listKey = path.length ? path[0] : null;
-        const field = typeof screen[listKey] !== 'undefined' ? screen[listKey] : null;
-        const fieldItemsCount = field !== null ? field.length : 0;
-        triggerOnChange(duplicateListItem(fieldParams, value, screenIndex));
-        gotoFieldForm(`${listKey}.${fieldItemsCount}`);
-    }, [fieldParams, screen, value, screenIndex]);
-
     const dropdownItems = [
         !isTheme
             ? {
@@ -279,30 +241,6 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
                                         fieldContext={fieldContext}
                                         onChange={onScreenFormChange}
                                     />
-                                    {currentFieldListItems ? (
-                                        <div className="m-2">
-                                            <hr />
-                                            <div className="text-right">
-                                                {/* NOT WORKING WITH USER-UPLOADED CONTENT
-                                                <DuplicateButton
-                                                    className="mr-2"
-                                                    onClick={onDuplicateItemClick}
-                                                >
-                                                    <FormattedMessage
-                                                        defaultMessage="Duplicate item"
-                                                        description="Duplicate item"
-                                                    />
-                                                </DuplicateButton>
-                                                */}
-                                                <DeleteButton onClick={onDeleteItemClick}>
-                                                    <FormattedMessage
-                                                        defaultMessage="Delete item"
-                                                        description="Delete item"
-                                                    />
-                                                </DeleteButton>
-                                            </div>
-                                        </div>
-                                    ) : null}
                                 </ScreenProvider>
                             </div>
                         ) : (

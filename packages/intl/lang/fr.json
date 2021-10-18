@@ -18,7 +18,7 @@
         "defaultMessage": "Couleur"
     },
     "+nhSvj": {
-        "defaultMessage": "Pas d'interlocuteur"
+        "defaultMessage": "Pas d'interlocuteur..."
     },
     "+uInZz": {
         "defaultMessage": "Cercle"
@@ -236,9 +236,6 @@
     "CJmQeh": {
         "defaultMessage": "Image avec texte"
     },
-    "CQ7Wmr": {
-        "defaultMessage": "Supprimer l'élément"
-    },
     "CrzYgw": {
         "defaultMessage": "Citation"
     },
@@ -247,9 +244,6 @@
     },
     "D0+Cxr": {
         "defaultMessage": "Marqueurs avec image"
-    },
-    "DVrK6z": {
-        "defaultMessage": "Cliquez pour modifier..."
     },
     "DWEzCv": {
         "defaultMessage": "Sélectionnez une vidéo..."
@@ -262,6 +256,9 @@
     },
     "EcZYpr": {
         "defaultMessage": "Sous-titre"
+    },
+    "EoVdMy": {
+        "defaultMessage": "Modifier le contenu..."
     },
     "F/gl4b": {
         "defaultMessage": "Menu"
@@ -430,6 +427,9 @@
     },
     "UdrdRF": {
         "defaultMessage": "Style des numéros"
+    },
+    "UlZIP8": {
+        "defaultMessage": "OK"
     },
     "UtcYEP": {
         "defaultMessage": "Polices personnalisées"
@@ -772,6 +772,9 @@
     },
     "xsipID": {
         "defaultMessage": "Image"
+    },
+    "xuEZXD": {
+        "defaultMessage": "Modifier"
     },
     "y7xsPe": {
         "defaultMessage": "Paramètres avancés"

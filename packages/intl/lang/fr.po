@@ -57,7 +57,7 @@ msgstr "Couleur"
 #: +nhSvj
 msgctxt "+nhSvj"
 msgid "No speaker..."
-msgstr "Pas d'interlocuteur"
+msgstr "Pas d'interlocuteur..."
 
 # Circle label
 #: +uInZz
@@ -491,12 +491,6 @@ msgctxt "CJmQeh"
 msgid "Image with text"
 msgstr "Image avec texte"
 
-# Delete item
-#: CQ7Wmr
-msgctxt "CQ7Wmr"
-msgid "Delete item"
-msgstr "Supprimer l'élément"
-
 # Quote placeholder
 #: CrzYgw
 msgctxt "CrzYgw"
@@ -514,12 +508,6 @@ msgstr "Libellé"
 msgctxt "D0+Cxr"
 msgid "Markers with image"
 msgstr "Marqueurs avec image"
-
-# Label when no value is provided to Field with form
-#: DVrK6z
-msgctxt "DVrK6z"
-msgid "Click to edit..."
-msgstr "Cliquez pour modifier..."
 
 # Label when no value is provided to Video field
 #: DWEzCv
@@ -544,6 +532,12 @@ msgstr "Police"
 msgctxt "EcZYpr"
 msgid "Subtitle"
 msgstr "Sous-titre"
+
+# Label when no value is provided to Field with form
+#: EoVdMy
+msgctxt "EoVdMy"
+msgid "Edit content..."
+msgstr "Modifier le contenu..."
 
 # Button label
 #: F/gl4b
@@ -879,6 +873,12 @@ msgstr "Nom"
 msgctxt "UdrdRF"
 msgid "Numbers style"
 msgstr "Style des numéros"
+
+# Items finish edit button label
+#: UlZIP8
+msgctxt "UlZIP8"
+msgid "OK"
+msgstr "OK"
 
 # Font family group title
 #: UtcYEP
@@ -1561,6 +1561,12 @@ msgstr "Auteur"
 msgctxt "xsipID"
 msgid "Image"
 msgstr "Image"
+
+# Items edit button label
+#: xuEZXD
+msgctxt "xuEZXD"
+msgid "Edit"
+msgstr "Modifier"
 
 # Fields section label
 #: y7xsPe

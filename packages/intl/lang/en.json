@@ -236,9 +236,6 @@
     "CJmQeh": {
         "defaultMessage": "Image with text"
     },
-    "CQ7Wmr": {
-        "defaultMessage": "Delete item"
-    },
     "CrzYgw": {
         "defaultMessage": "Quote"
     },
@@ -247,9 +244,6 @@
     },
     "D0+Cxr": {
         "defaultMessage": "Markers with image"
-    },
-    "DVrK6z": {
-        "defaultMessage": "Click to edit..."
     },
     "DWEzCv": {
         "defaultMessage": "Select a video..."
@@ -262,6 +256,9 @@
     },
     "EcZYpr": {
         "defaultMessage": "Subtitle"
+    },
+    "EoVdMy": {
+        "defaultMessage": "Edit content..."
     },
     "F/gl4b": {
         "defaultMessage": "Menu"
@@ -430,6 +427,9 @@
     },
     "UdrdRF": {
         "defaultMessage": "Numbers style"
+    },
+    "UlZIP8": {
+        "defaultMessage": "OK"
     },
     "UtcYEP": {
         "defaultMessage": "Custom fonts"
@@ -772,6 +772,9 @@
     },
     "xsipID": {
         "defaultMessage": "Image"
+    },
+    "xuEZXD": {
+        "defaultMessage": "Edit"
     },
     "y7xsPe": {
         "defaultMessage": "Advanced settings"
