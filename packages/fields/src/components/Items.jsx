@@ -178,7 +178,7 @@ const ItemsField = ({
                                         className={classNames([
                                             'btn',
                                             'pl-2',
-                                            'pr-0',
+                                            'pr-1',
                                             'border',
                                             'border-dark',
                                             'border-right-0',
