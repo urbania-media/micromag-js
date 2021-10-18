@@ -195,7 +195,7 @@ const ItemsField = ({
                                 <Field
                                     className={classNames([
                                         'flex-grow-1',
-                                        { 'border-top-0': index > 0, 'border-left-0': editing },
+                                        { 'border-top-0': index > 0, 'border-left-0': editing && !finalWithoutSort },
                                     ])}
                                     component={itemComponent}
                                     {...itemsField}
