@@ -92,6 +92,7 @@ const ShareModal = ({ url, title, opened, className, onShare, onCancel }) => {
                             onShareButtonClick('Facebook');
                             return Promise.resolve();
                         }}
+                        tabIndex={opened ? null : '-1'}
                     >
                         <FacebookIcon {...shareIconProps} />
                     </FacebookShareButton>
@@ -102,6 +103,7 @@ const ShareModal = ({ url, title, opened, className, onShare, onCancel }) => {
                             onShareButtonClick('Twitter');
                             return Promise.resolve();
                         }}
+                        tabIndex={opened ? null : '-1'}
                     >
                         <TwitterIcon {...shareIconProps} />
                     </TwitterShareButton>
@@ -112,6 +114,7 @@ const ShareModal = ({ url, title, opened, className, onShare, onCancel }) => {
                             onShareButtonClick('Email');
                             return Promise.resolve();
                         }}
+                        tabIndex={opened ? null : '-1'}
                     >
                         <EmailIcon {...shareIconProps} />
                     </EmailShareButton>

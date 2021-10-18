@@ -19,6 +19,7 @@ const propTypes = {
     target: PropTypes.string,
     label: MicromagPropTypes.label,
     children: MicromagPropTypes.label,
+    focusable: PropTypes.bool,
     active: PropTypes.bool,
     icon: PropTypes.node,
     iconPosition: PropTypes.oneOf(['left', 'right', 'inline']),
@@ -54,6 +55,7 @@ const defaultProps = {
     target: '_blank',
     label: null,
     children: null,
+    focusable: true,
     active: false,
     icon: null,
     iconPosition: 'inline',
@@ -84,6 +86,7 @@ const Button = ({
     target,
     label,
     children,
+    focusable,
     active,
     icon,
     iconPosition,
@@ -216,11 +219,18 @@ const Button = ({
                 onClick={onClick}
                 target={external ? target : null}
                 ref={refButton}
+                tabIndex={focusable ? '' : '-1'}
             >
                 {content}
             </a>
         ) : (
-            <Link to={href} className={linkClassNames} onClick={onClick} ref={refButton}>
+            <Link
+                to={href}
+                className={linkClassNames}
+                onClick={onClick}
+                ref={refButton}
+                tabIndex={focusable ? '' : '-1'}
+            >
                 {content}
             </Link>
         );
@@ -234,6 +244,7 @@ const Button = ({
             onClick={onClick}
             disabled={disabled || (disableOnLoading && loading)}
             ref={refButton}
+            tabIndex={focusable ? null : '-1'}
         >
             {content}
         </button>

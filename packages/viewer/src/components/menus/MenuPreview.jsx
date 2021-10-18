@@ -24,6 +24,7 @@ const propTypes = {
     shareUrl: PropTypes.string,
     items: MicromagPropTypes.menuItems,
     current: PropTypes.number,
+    focusable: PropTypes.bool,
     onClickItem: PropTypes.func,
     onClose: PropTypes.func,
     onShare: PropTypes.func,
@@ -41,6 +42,7 @@ const defaultProps = {
     shareUrl: null,
     items: [],
     current: 0,
+    focusable: true,
     onClickItem: null,
     onClose: null,
     onShare: null,
@@ -58,6 +60,7 @@ const ViewerMenuPreview = ({
     shareUrl,
     items,
     current,
+    focusable,
     onClickItem,
     onClose,
     onShare,
@@ -152,6 +155,7 @@ const ViewerMenuPreview = ({
                         onShare={onShare}
                         url={shareUrl}
                         title={title}
+                        focusable={focusable}
                     >
                         <FontAwesomeIcon className={styles.icon} icon={faShare} />
                     </ShareButton>
@@ -167,6 +171,7 @@ const ViewerMenuPreview = ({
                                 defaultMessage: 'Fullscreen',
                                 description: 'Button label',
                             })}
+                            focusable={focusable}
                         >
                             <FontAwesomeIcon
                                 className={styles.icon}
@@ -185,6 +190,7 @@ const ViewerMenuPreview = ({
                             defaultMessage: 'Close',
                             description: 'Button label',
                         })}
+                        focusable={focusable}
                     >
                         <FontAwesomeIcon className={styles.icon} icon={faTimes} />
                     </Button>
@@ -256,8 +262,9 @@ const ViewerMenuPreview = ({
                                                 defaultMessage: 'Screen {index}',
                                                 description: 'Button label',
                                             },
-                                            { index },
+                                            { index: index + 1 },
                                         )}
+                                        tabIndex={focusable ? null : '-1'}
                                     />
                                 </li>
                             ))}

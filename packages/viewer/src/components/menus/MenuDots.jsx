@@ -86,7 +86,7 @@ const ViewerMenuDots = ({
                                     defaultMessage: 'Screen {index}',
                                     description: 'Button label',
                                 },
-                                { index },
+                                { index: index + 1 },
                             )}
                         >
                             <span

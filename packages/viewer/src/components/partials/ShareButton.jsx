@@ -16,6 +16,7 @@ const propTypes = {
     buttonClassName: PropTypes.string,
     onShare: PropTypes.func,
     children: PropTypes.node,
+    focusable: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -25,9 +26,10 @@ const defaultProps = {
     buttonClassName: null,
     onShare: null,
     children: null,
+    focusable: false,
 };
 
-const ShareButton = ({ title, url, className, buttonClassName, onShare, children }) => {
+const ShareButton = ({ title, url, className, buttonClassName, onShare, children, focusable }) => {
     const intl = useIntl();
     const [storyShareModalOpened, setStoryShareModalOpened] = useState(false);
 
@@ -67,6 +69,7 @@ const ShareButton = ({ title, url, className, buttonClassName, onShare, children
                     defaultMessage: 'Share',
                     description: 'Button label',
                 })}
+                focusable={focusable}
             >
                 {children}
             </Button>
