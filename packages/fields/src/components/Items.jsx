@@ -81,6 +81,7 @@ const ItemsField = ({
     // const finalIsFieldForm =
     //     isFieldForm || (itemComponent !== null ? itemComponent.withForm || false : false);
 
+    const [editing, setEditing] = useState(false);
     const idMap = useRef((value || []).map(() => uuid()));
 
     const onClickAdd = useCallback(() => {
@@ -97,7 +98,7 @@ const ItemsField = ({
         }
     }, [value, onChange, getDefaultValue, gotoFieldForm, name, /* gotoFieldForm */]);
 
-    const [editing, setEditing] = useState(false);
+    
     const onClickEdit = useCallback(() => {
         setEditing((old) => !old);
     }, [setEditing]);
@@ -109,9 +110,13 @@ const ItemsField = ({
                 newValues.splice(index, 1);
                 idMap.current = idMap.current.filter((_, idIndex) => idIndex !== index);
                 onChange(newValues);
+
+                if (newValues.length === 0) {
+                    setEditing(false);
+                }
             }
         },
-        [value, onChange],
+        [value, onChange, setEditing],
     );
 
     const onItemChange = useCallback(
