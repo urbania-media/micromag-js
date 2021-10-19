@@ -15,6 +15,7 @@ const propTypes = {
     progressColor: PropTypes.string,
     className: PropTypes.string,
     onSeek: PropTypes.func,
+    focusable: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -25,6 +26,7 @@ const defaultProps = {
     progressColor: 'lightblue',
     className: null,
     onSeek: null,
+    focusable: true,
 };
 
 const SeekBar = ({
@@ -35,6 +37,7 @@ const SeekBar = ({
     progressColor,
     className,
     onSeek,
+    focusable,
 }) => {
     const intl = useIntl();
 
@@ -109,6 +112,7 @@ const SeekBar = ({
                     defaultMessage: 'Seek',
                     description: 'Button label',
                 })}
+                tabIndex={focusable ? '0' : '-1'}
             />
         </div>
     );

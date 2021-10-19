@@ -31,6 +31,7 @@ const propTypes = {
     streetViewControl: PropTypes.bool,
     rotateControl: PropTypes.bool,
     fullscreenControl: PropTypes.bool,
+    focusable: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -53,6 +54,7 @@ const defaultProps = {
     streetViewControl: false,
     rotateControl: false,
     fullscreenControl: false,
+    focusable: true,
 };
 
 const Map = ({
@@ -75,6 +77,7 @@ const Map = ({
     streetViewControl,
     rotateControl,
     fullscreenControl,
+    focusable,
 }) => {
     const client = useGoogleMapsClient();
 
@@ -147,6 +150,7 @@ const Map = ({
                 streetViewControl={streetViewControl}
                 rotateControl={rotateControl}
                 fullscreenControl={fullscreenControl}
+                focusable={focusable}
             >
                 {markers !== null
                     ? markers.map(

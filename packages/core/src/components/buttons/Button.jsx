@@ -244,7 +244,7 @@ const Button = ({
             onClick={onClick}
             disabled={disabled || (disableOnLoading && loading)}
             ref={refButton}
-            tabIndex={focusable ? null : '-1'}
+            tabIndex={focusable ? '0' : '-1'}
         >
             {content}
         </button>
