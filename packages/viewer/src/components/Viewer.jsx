@@ -4,6 +4,7 @@ import React, { useCallback, useRef, useEffect, useMemo, useState } from 'react'
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { FormattedMessage } from 'react-intl';
 import { useDrag } from 'react-use-gesture';
 import { useSpring, config } from '@react-spring/core';
 import { animated } from '@react-spring/web';
@@ -635,6 +636,16 @@ const Viewer = ({
                                         }}
                                     >
                                         {viewerScreen}
+                                        {current && screenIndex > 0 ? (
+                                            <button type="button" className="sr-only" onClick={onScreenPrevious}>
+                                                <FormattedMessage defaultMessage="Go to previous screen" description="Button label" />
+                                            </button>
+                                        ): null}
+                                        {current && screenIndex < screens.length ? (
+                                            <button type="button" className="sr-only" onClick={onScreenNext}>
+                                                <FormattedMessage defaultMessage="Go to next screen" description="Button label" />
+                                            </button>
+                                        ): null}
                                     </div>
                                 );
                             })}
