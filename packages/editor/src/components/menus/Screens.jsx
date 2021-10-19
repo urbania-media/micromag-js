@@ -9,6 +9,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useResizeObserver } from '@micromag/core/hooks';
 import { ScreenPreview, ScreenPlaceholder } from '@micromag/core/components';
 import { isMessage } from '@micromag/core/utils';
+import isFunction from 'lodash/isFunction';
 
 import ScreenButton from '../buttons/Screen';
 
@@ -148,7 +149,7 @@ const ScreensMenu = ({
                             'p-2',
                         ])}
                     >
-                        {settings}
+                        {isFunction(settings) ? settings(index) : settings }
                     </div>
                 ) : null}
             </li>

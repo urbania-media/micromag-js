@@ -6,6 +6,7 @@ import randomWords from './data/words';
 import titles from './data/titles';
 import subtitles from './data/subtitles';
 
+import gifFile from './data/test.gif';
 import audioFile from './data/test.mp3';
 import videoFile from './data/test.mp4';
 import video360File from './data/test-360.mp4';
@@ -104,12 +105,12 @@ export const text = (length = 'normal', style = 'normal') => {
     };
 };
 
-export const imageUrl = ({ width = 800, height = 800, rand = false } = {}) =>
-    `https://picsum.photos/${width}/${height}?random=${rand ? Math.random() : 1}`;
+export const imageUrl = ({ width = 800, height = 800, rand = false, gif = false } = {}) =>
+    gif ? gifFile : `https://picsum.photos/${width}/${height}?random=${rand ? Math.random() : 1}`;
 
-export const imageMedia = ({ width = 800, height = 800, rand = false, sizes = {large: 0.9, medium: 0.75, small: 0.3} } = {}) => ({
+export const imageMedia = ({ width = 800, height = 800, rand = false, gif = false, sizes = {large: 0.9, medium: 0.75, small: 0.3} } = {}) => ({
     type: 'image',
-    url: imageUrl({ width, height, rand }),
+    url: imageUrl({ width, height, rand, gif }),
     thumbnail_url: imageUrl({ width: 100, height: 100, rand }),
     metadata: {
         width,
@@ -121,7 +122,8 @@ export const imageMedia = ({ width = 800, height = 800, rand = false, sizes = {l
             url: imageUrl({
                 width: Math.round(width * sizes[key]),
                 height: Math.round(height * sizes[key]),
-                rand
+                rand,
+                gif
             }),
             width: Math.round(width * sizes[key]),
             height: Math.round(height * sizes[key]),
@@ -164,12 +166,12 @@ export const closedCaptionsMedia = () => ({
 
 // -----------------
 
-export const images = ({ count = 3, width = 800, height = 800, rand = false } = {}) =>
-    [...Array(count)].map(() => imageMedia({ width, height, rand }));
+export const images = ({ count = 3, width = 800, height = 800, rand = false, gif = false } = {}) =>
+    [...Array(count)].map(() => imageMedia({ width, height, rand, gif }));
 
-export const imagesWithCaptions = ({ count = 3, width = 800, height = 800, rand = false } = {}) =>
+export const imagesWithCaptions = ({ count = 3, width = 800, height = 800, rand = false, gif = false } = {}) =>
     [...Array(count)].map(() => ({
-        media: imageMedia({ width, height, rand }),
+        media: imageMedia({ width, height, rand, gif }),
         caption: text(),
     }));
 
@@ -177,9 +179,9 @@ export const backgroundColor = () => ({
     color: { color: chance.color({ format: 'rgb' }), alpha: 1 },
 });
 
-export const backgroundImage = ({ random: randomImage = false } = {}) => ({
+export const backgroundImage = ({ rand = false, gif = false } = {}) => ({
     color: { color: chance.color({ format: 'rgb' }), alpha: 1 },
-    image: imageMedia({ width: 1000, height: 1000, random: randomImage }),
+    image: imageMedia({ width: 1000, height: 1000, rand, gif }),
 });
 
 export const backgroundVideo = () => ({
