@@ -191,7 +191,7 @@ const QuizScreen = ({
     const { height: resultHeight } = resultContentRect || {};
 
     const [rightAnswerTop, setRightAnswerTop] = useState(0);
-    
+
     useEffect( () => {
         if (rightAnswerRef.current !== null) {
             setRightAnswerTop(rightAnswerRef.current.offsetTop);
@@ -326,6 +326,7 @@ const QuizScreen = ({
                                                     className={styles.button}
                                                     onClick={() => onAnswerClick(answerI)}
                                                     disabled={isPreview}
+                                                    focusable={current && isView}
                                                     buttonStyle={
                                                         userAnswer || !answered
                                                             ? {
@@ -443,6 +444,7 @@ const QuizScreen = ({
                         callToAction={callToAction}
                         disabled={!answerTransitionComplete}
                         animationDisabled={isPreview}
+                        focusable={current && isView}
                     />
                 ) : null}
             </Container>

@@ -128,9 +128,10 @@ const TextScreen = ({
         ) : null,
         !isPlaceholder && hasCallToAction ? (
             <div style={{ margin: -spacing, marginTop: 0 }} key="call-to-action">
-                <CallToAction                    
+                <CallToAction
                     callToAction={callToAction}
                     animationDisabled={isPreview}
+                    focusable={current && isView}
                 />
             </div>
         ) : null,

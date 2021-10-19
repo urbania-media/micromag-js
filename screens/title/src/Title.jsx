@@ -170,6 +170,7 @@ const TitleScreen = ({
                 <CallToAction
                     callToAction={callToAction}
                     animationDisabled={isPreview}
+                    focusable={current && isView}
                 />
             </div>
         ) : null,
@@ -213,6 +214,7 @@ const TitleScreen = ({
                         stagger={transitionStagger}
                         disabled={transitionDisabled}
                         playing={transitionPlaying}
+                        focusable={current && isView}
                     >
                         {items}
                     </TransitionsStagger>

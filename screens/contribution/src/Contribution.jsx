@@ -302,6 +302,7 @@ const ContributionScreen = ({
                                 value={userName}
                                 onChange={(e) => onNameChange(e)}
                                 onBlur={(e) => onNameBlur(e)}
+                                focusable={current && isView}
                                 disabled={isPreview}
                                 required
                             />
@@ -332,6 +333,7 @@ const ContributionScreen = ({
                                 onChange={(e) => onMessageChange(e)}
                                 onBlur={(e) => onMessageBlur(e)}
                                 disabled={isPreview}
+                                focusable={current && isView}
                                 multiline
                                 required
                             />
@@ -359,6 +361,7 @@ const ContributionScreen = ({
                                 className={styles.buttonSubmit}
                                 disabled={isPreview}
                                 buttonStyle={submit !== null ? submit.buttonStyle : null}
+                                focusable={current && isView}
                             >
                                 <Text {...submit} inline />
                             </Button>
@@ -369,7 +372,10 @@ const ContributionScreen = ({
                     <FontAwesomeIcon className={styles.loadingIcon} icon={faSpinner} />
                 </div>
             </form>
-            <div className={styles.contributionsContainer}>
+            <div
+                className={styles.contributionsContainer}
+                aria-hidden={submitState === 4 ? null : 'true'}
+            >
                 <div className={styles.contributionsContent}>
                     <div className={styles.contributions} ref={contributionsRef}>
                         {allContributions.map((contribution, contributionIndex) => {
@@ -437,7 +443,8 @@ const ContributionScreen = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop: (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
+                                  paddingTop:
+                                      (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
                               }
                             : null
                     }
@@ -457,6 +464,7 @@ const ContributionScreen = ({
                             disabled={!swipeUpLinkActive}
                             animationDisabled={isPreview}
                             callToAction={callToAction}
+                            focusable={current && isView}
                         />
                     ) : null}
                 </div>

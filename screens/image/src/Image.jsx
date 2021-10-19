@@ -253,10 +253,11 @@ const ImageScreen = ({
     if (!isPlaceholder && hasCallToAction) {
         items.push(
             <div style={{ margin: -finalSpacing / 2, marginTop: 0 }} key="call-to-action">
-                <CallToAction                    
+                <CallToAction
                     className={styles.callToAction}
                     callToAction={callToAction}
                     animationDisabled={isPreview}
+                    focusable={current && isView}
                 />
             </div>,
         );

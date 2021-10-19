@@ -267,6 +267,7 @@ const VideoScreen = ({
                                 onDurationChanged={onDurationChanged}
                                 onSeeked={onSeeked}
                                 onVolumeChanged={onVolumeChanged}
+                                focusable={current && isView}
                                 // onPosterLoaded={onPosterLoaded}
                             />
                         )}
@@ -300,6 +301,7 @@ const VideoScreen = ({
                             onTogglePlay={togglePlay}
                             onToggleMute={onToggleMute}
                             onSeek={seek}
+                            focusable={current && isView}
                         />
                     ) : null}
                     {hasCallToAction ? (
@@ -307,6 +309,7 @@ const VideoScreen = ({
                             <CallToAction
                                 callToAction={callToAction}
                                 animationDisabled={isPreview}
+                                focusable={current && isView}
                             />
                         </div>
                     ) : null}

@@ -265,6 +265,7 @@ const ConversationScreen = ({
                                                 disabled={!scrolledBottom}
                                                 animationDisabled={isPreview}
                                                 callToAction={callToAction}
+                                                focusable={current && isView}
                                             />
                                         </div>
                                     ) : null}

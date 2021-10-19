@@ -376,6 +376,7 @@ const Timeline = ({
                         disabled={!scrolledBottom}
                         animationDisabled={isPreview}
                         callToAction={callToAction}
+                        focusable={current && isView}
                     />
                 ) : null}
             </Container>

@@ -231,15 +231,17 @@ const AudioScreen = ({
                         muted={muted}
                         onTogglePlay={togglePlay}
                         onToggleMute={onToggleMute}
+                        focusable={current && isView}
                     />
                 ) : null}
             </div>
         ) : null,
         !isPlaceholder && hasCallToAction ? (
             <div style={{ margin: -spacing, marginTop: 0 }} key="call-to-action">
-                <CallToAction                    
+                <CallToAction
                     callToAction={callToAction}
                     animationDisabled={isPreview}
+                    focusable={current && isView}
                 />
             </div>
         ) : null,
