@@ -82,6 +82,7 @@ const ShareModal = ({ url, title, opened, className, onShare, onCancel }) => {
                 },
             ])}
             ref={containerRef}
+            aria-hidden={opened ? null : '-1'}
         >
             <div className={styles.content}>
                 <div className={styles.buttons}>

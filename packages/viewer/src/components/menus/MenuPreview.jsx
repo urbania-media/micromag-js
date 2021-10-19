@@ -80,6 +80,17 @@ const ViewerMenuPreview = ({
     const [thumbSize, setThumbSize] = useState(null);
     const firstScreenContainerRef = useRef(null);
 
+    const [focusState, setFocusState] = useState(focusable);
+    // const closeButtonRef = useRef(null);
+
+    useEffect(() => {
+        // console.log({ focusable, closeButtonRef, focusState, setFocusState }); /* eslint-disable-line */
+        if (firstScreenContainerRef.current !== null && focusable !== focusState && focusable === true) {
+            firstScreenContainerRef.current.focus();
+            setFocusState(focusable);
+        }
+    }, [focusable, firstScreenContainerRef, focusState, setFocusState]);
+
     useEffect(() => {
         if (hasItems && hasSize && firstScreenContainerRef.current !== null) {
             const { offsetWidth, offsetHeight } = firstScreenContainerRef.current;
@@ -136,6 +147,8 @@ const ViewerMenuPreview = ({
                 },
             ])}
             style={{ ...backgroundColorStyle, ...brandImageStyle, width: screenWidth }}
+            aria-hidden={focusable ? null : 'true'}
+            aria-labelledby="menu-preview-heading"
             {...dragBind()}
         >
             <div className={styles.header}>
@@ -145,7 +158,7 @@ const ViewerMenuPreview = ({
                         style={{ backgroundImage: `url(${brandLogoUrl})` }}
                     />
                 ) : null}
-                <div className={styles.title} style={titleStyle}>
+                <div className={styles.title} style={titleStyle} id="menu-preview-heading">
                     {title}
                 </div>
                 <div className={styles.buttons} style={colorSecondaryColorStyle}>
@@ -236,11 +249,13 @@ const ViewerMenuPreview = ({
                                                           }
                                                         : null
                                                 }
+                                                aria-hidden="true"
                                             >
                                                 <ScreenPreview
                                                     width={screenWidth}
                                                     height={screenRatioHeight}
                                                     screen={item}
+                                                    focusable={false}
                                                 />
                                             </div>
                                             {current === index ? (
@@ -264,7 +279,7 @@ const ViewerMenuPreview = ({
                                             },
                                             { index: index + 1 },
                                         )}
-                                        tabIndex={focusable ? null : '-1'}
+                                        tabIndex={focusable ? '0' : '-1'}
                                     />
                                 </li>
                             ))}

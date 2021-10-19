@@ -61,8 +61,14 @@ const ViewerMenuDots = ({
                     [styles.withShadow]: withShadow,
                 },
             ])}
+            aria-label={intl.formatMessage({
+                defaultMessage: 'Screen shortcuts list',
+                description: 'Nav label',
+            })}
         >
-            <ul className={styles.items}>
+            <ul
+                className={styles.items}
+            >
                 {items.map((item, index) => (
                     <li
                         className={classNames([

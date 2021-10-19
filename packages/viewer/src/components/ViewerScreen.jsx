@@ -48,6 +48,7 @@ const ViewerScreen = ({
                     [styles.current]: current,
                 },
             ])}
+            aria-hidden={current ? null : 'true'}
         >
             <Screen
                 screen={screen}
