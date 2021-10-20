@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import isFunction from 'lodash/isFunction';
-import { faEdit, faPlus, faTimes, faBars, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faPlus, faBars, faCheck, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, Empty, Label } from '@micromag/core/components';
 import { ReactSortable } from 'react-sortablejs';
@@ -227,7 +227,7 @@ const ItemsField = ({
                                             onClickDelete(index);
                                         }}
                                     >
-                                        <FontAwesomeIcon icon={faTimes} />
+                                        <FontAwesomeIcon icon={faTrash} />
                                     </button>
                                 ) : null}
                             </div>

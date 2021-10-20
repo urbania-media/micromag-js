@@ -45,6 +45,7 @@ export const allScreens = [
         submit: { body: 'Envoyer' },
         background: {
             color: { alpha: 1, color: '#00FFFF' },
+            image: imageMedia({ gif: true }),
         },
         callToAction: callToAction(),
     },
@@ -82,7 +83,17 @@ export const allScreens = [
         id: uuid(),
         type: 'image',
         layout: 'normal',
-        image: imageMedia(),
+        image: imageMedia({ gif: true }),
+        background: {
+            color: { alpha: 1, color: '#FF00FF' },
+        },
+        callToAction: callToAction(),
+    },
+    {
+        id: uuid(),
+        type: 'image',
+        layout: 'normal',
+        image: videoMedia(),
         background: {
             color: { alpha: 1, color: '#FF00FF' },
         },
