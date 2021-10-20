@@ -53,6 +53,8 @@ const Background = ({
     playing,
     children,
 }) => {
+    const hasVideo = video !== null;
+    const { metadata: videoMetadata = null, thumbnail_url:videoThumbnail = null } = video || {};
     const hasSize = width > 0 && height > 0;
     const sizeStyle = hasSize ? {
         width, height
@@ -64,8 +66,10 @@ const Background = ({
         ...getStyleFromColor(color),
     };
 
+    const finalImage = hasVideo && !playing && videoThumbnail !== null ? { url: videoThumbnail } : image;
+
     // image
-    if (image !== null) {
+    if (finalImage !== null) {
         const finalUrl = getOptimalImageUrl(image, width, height);
         finalStyle.backgroundImage = `url("${finalUrl}")`;
         finalStyle.backgroundRepeat = repeat ? 'repeat' : 'no-repeat';
@@ -77,11 +81,11 @@ const Background = ({
     }
 
     // video
-    const hasVideo = video !== null;
+    
     const videoContainerStyle = {};
-    if (hasVideo) {
+    if (hasVideo && playing) {
         if (hasSize) {
-            const { metadata: videoMetadata = null } = video || {};
+            
             const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
             const { width: resizedVideoWidth = 0, height: resizedVideoHeight = 0} = getSizeWithinBounds(
                 videoWidth,
