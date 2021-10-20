@@ -119,7 +119,7 @@ const MapScreen = ({
         [markers, selectedMarkerIndex],
     );
 
-    const closeMarker = useCallback( () => {
+    const closeMarker = useCallback(() => {
         const lastMarker = finalMarkers[selectedMarkerIndex];
         lastRenderedMarker.current = lastMarker;
         setSelectedMarkerIndex(null);
@@ -179,16 +179,19 @@ const MapScreen = ({
         [trackScreenEvent],
     );
 
-    const onScrolledBottom = useCallback(({ initial }) => {
-        if (initial) {
-            const selectedMarker = (markers || [])[selectedMarkerIndex];
-            trackScreenEvent(
-                'scroll',
-                `Marker ${selectedMarkerIndex + 1}: ${selectedMarker.title.body}`,
-                { marker: selectedMarker, markerIndex: selectedMarkerIndex },
-            );
-        }
-    }, [trackScreenEvent, markers, selectedMarkerIndex]);
+    const onScrolledBottom = useCallback(
+        ({ initial }) => {
+            if (initial) {
+                const selectedMarker = (markers || [])[selectedMarkerIndex];
+                trackScreenEvent(
+                    'scroll',
+                    `Marker ${selectedMarkerIndex + 1}: ${selectedMarker.title.body}`,
+                    { marker: selectedMarker, markerIndex: selectedMarkerIndex },
+                );
+            }
+        },
+        [trackScreenEvent, markers, selectedMarkerIndex],
+    );
 
     const {
         ref: markerOverContentInnerRef,
@@ -221,7 +224,7 @@ const MapScreen = ({
 
             return () => {
                 imgs.filter((img) => img !== null).forEach((img) => {
-                    img.onload = () => {};// eslint-disable-line no-param-reassign
+                    img.onload = () => {}; // eslint-disable-line no-param-reassign
                 });
             };
         }
@@ -329,12 +332,16 @@ const MapScreen = ({
                                 withoutStyle
                                 style={{ height: height * openedMarkerSpacerHeight }}
                                 disabled={isPreview}
+                                focusable={current && isView}
                             />
                             <div
                                 className={styles.markerOverlay}
                                 style={{ minHeight: height * (1 - openedMarkerSpacerHeight) }}
                             >
-                                <div className={styles.markerOverlayContent} style={markerOverlayContentStyle}>
+                                <div
+                                    className={styles.markerOverlayContent}
+                                    style={markerOverlayContentStyle}
+                                >
                                     <div className={styles.swipeIndicator} />
                                     <div
                                         className={styles.markerOverlayContentInner}
@@ -413,13 +420,19 @@ const MapScreen = ({
                             className={styles.splashButton}
                             onClick={onButtonClick}
                             buttonStyle={button !== null ? button.buttonStyle : null}
+                            focusable={current && isView}
                         >
                             <Text className={styles.button} {...button} />
                         </ButtonElement>
                     </ScreenElement>
                 </div>
                 {!isStatic && !isCapture ? (
-                    <Button key="close-button" className={styles.closeButton} onClick={onCloseClick}>
+                    <Button
+                        key="close-button"
+                        className={styles.closeButton}
+                        onClick={onCloseClick}
+                        focusable={current && isView}
+                    >
                         &times;
                     </Button>
                 ) : null}

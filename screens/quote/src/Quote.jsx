@@ -119,6 +119,7 @@ const QuoteScreen = ({
                 <CallToAction
                     callToAction={callToAction}
                     animationDisabled={isPreview}
+                    focusable={current && isView}
                 />
             </div>
         ) : null,

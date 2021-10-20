@@ -24,6 +24,7 @@ const propTypes = {
     onBlur: PropTypes.func,
     required: PropTypes.bool,
     disabled: PropTypes.bool,
+    focusable: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -42,6 +43,7 @@ const defaultProps = {
     onBlur: null,
     required: false,
     disabled: false,
+    focusable: true,
     className: null,
 };
 
@@ -60,6 +62,7 @@ const TextInput = ({
     onBlur,
     required,
     disabled,
+    focusable,
     className,
 }) => {
     let containerStyle = {};
@@ -120,9 +123,16 @@ const TextInput = ({
     };
 
     const element = multiline ? (
-        <textarea {...elementProps} />
+        <textarea
+            {...elementProps}
+            tabIndex={focusable ? '0' : '-1'}
+        />
     ) : (
-        <input {...elementProps} type="text" />
+        <input
+            {...elementProps}
+            type="text"
+            tabIndex={focusable ? '0' : '-1'}
+        />
     );
 
     return !labelOutside ? (

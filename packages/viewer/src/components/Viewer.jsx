@@ -4,6 +4,7 @@ import React, { useCallback, useRef, useEffect, useMemo, useState } from 'react'
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { FormattedMessage } from 'react-intl';
 import { useDrag } from 'react-use-gesture';
 import { useSpring, config } from '@react-spring/core';
 import { animated } from '@react-spring/web';
@@ -323,6 +324,7 @@ const Viewer = ({
     // swipe menu open
 
     const menuOpened = useRef(false);
+    const [previewMenuOpen, setPreviewMenuOpen] = useState(false);
     const [{ y: menuY }, setMenuSpring] = useSpring(() => ({
         y: 0,
         config: { ...config.stiff, clamp: true },
@@ -355,6 +357,7 @@ const Viewer = ({
                 const menuNowOpened = dy > 0 && yProgress > 0.1;
                 menuOpened.current = menuNowOpened;
                 setMenuSpring.start({ y: menuNowOpened ? 1 : 0 });
+                setPreviewMenuOpen(menuNowOpened);
             } else {
                 setMenuSpring.start({ y: yProgress });
             }
@@ -376,6 +379,7 @@ const Viewer = ({
             } else {
                 setMenuSpring.start({ y: menuOpened.current ? 0 : 1 });
                 menuOpened.current = !menuOpened.current;
+                setPreviewMenuOpen(menuOpened.current);
             }
             if (trackingEnabled) {
                 const trackAction = goToScreen ? 'click_screen_change' : 'click_open';
@@ -405,6 +409,7 @@ const Viewer = ({
             changeIndex(index);
             setMenuSpring.start({ y: 0 });
             menuOpened.current = false;
+            setPreviewMenuOpen(false);
 
             if (trackingEnabled) {
                 trackEvent('viewer_menu', 'click_screen_change', `Screen ${index + 1}`, {
@@ -422,8 +427,9 @@ const Viewer = ({
         if (menuOpened.current) {
             setMenuSpring.start({ y: 0 });
             menuOpened.current = false;
+            setPreviewMenuOpen(false);
         }
-    }, [setMenuSpring]);
+    }, [setMenuSpring, setPreviewMenuOpen]);
 
     const onClickPreviewMenuClose = useCallback(() => {
         closePreviewMenu();
@@ -495,7 +501,7 @@ const Viewer = ({
             switch (keyCode) {
                 case 27:
                     closePreviewMenu();
-                break;
+                    break;
                 case 37: // left
                     onScreenPrevious();
                     break;
@@ -569,6 +575,7 @@ const Viewer = ({
                                     shareUrl={shareUrl}
                                     className={styles.menuPreview}
                                     screenWidth={screenWidth}
+                                    focusable={previewMenuOpen}
                                     items={screens}
                                     current={screenIndex}
                                     onClickItem={onClickPreviewMenuItem}
@@ -629,6 +636,16 @@ const Viewer = ({
                                         }}
                                     >
                                         {viewerScreen}
+                                        {current && screenIndex > 0 ? (
+                                            <button type="button" className="sr-only" onClick={onScreenPrevious}>
+                                                <FormattedMessage defaultMessage="Go to previous screen" description="Button label" />
+                                            </button>
+                                        ): null}
+                                        {current && screenIndex < screens.length ? (
+                                            <button type="button" className="sr-only" onClick={onScreenNext}>
+                                                <FormattedMessage defaultMessage="Go to next screen" description="Button label" />
+                                            </button>
+                                        ): null}
                                     </div>
                                 );
                             })}

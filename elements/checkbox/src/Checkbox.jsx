@@ -10,6 +10,7 @@ const propTypes = {
     option: MicromagPropTypes.textElement,
     value: PropTypes.bool,
     onChange: PropTypes.func,
+    focusable: PropTypes.bool,
     checkboxStyle: PropTypes.object, // eslint-disable-line
     className: PropTypes.string,
 };
@@ -18,11 +19,12 @@ const defaultProps = {
     option: null,
     value: null,
     onChange: null,
+    focusable: true,
     checkboxStyle: null,
     className: null,
 };
 
-const Checkbox = ({ option, value, onChange, checkboxStyle, className }) => {
+const Checkbox = ({ option, value, onChange, focusable, checkboxStyle, className }) => {
     const { body = null } = option || {};
     return (
         <div
@@ -48,6 +50,7 @@ const Checkbox = ({ option, value, onChange, checkboxStyle, className }) => {
                     autoComplete="off"
                     value={value === true}
                     checked={value === true}
+                    tabIndex={focusable ? '0' : '-1'}
                     onChange={() => {
                         if (onChange !== null) {
                             onChange(!value);

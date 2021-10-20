@@ -32,6 +32,7 @@ const MenuIcon = ({ size, spacing, color, className }) => {
             ])}
             xmlns="http://www.w3.org/2000/svg"
             viewBox={`0 0 ${size} ${size}`}
+            aria-hidden="true"
         >
             {[...new Array(9)].map((square, squareI) => {
                 const x = (squareI % 3) * (squareSize + spacing);

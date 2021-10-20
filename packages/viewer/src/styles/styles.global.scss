@@ -1,2 +1,12 @@
 @import '~@micromag/screens/scss/styles';
 @import '~@micromag/elements/scss/styles';
+
+.sr-only:not(:focus):not(:active) { /* stylelint-disable-line */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+}

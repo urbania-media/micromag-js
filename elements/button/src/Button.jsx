@@ -13,6 +13,7 @@ const propTypes = {
     buttonStyle: MicromagPropTypes.buttonStyle,
     type: PropTypes.oneOf(['button', 'submit']),
     disabled: PropTypes.bool,
+    focusable: PropTypes.bool,
     onClick: PropTypes.func,
     children: PropTypes.node,
     className: PropTypes.string,
@@ -29,6 +30,7 @@ const defaultProps = {
     buttonStyle: null,
     type: 'button',
     disabled: false,
+    focusable: true,
     onClick: null,
     children: null,
     className: null,
@@ -40,6 +42,7 @@ const Button = ({
     buttonStyle,
     type,
     disabled,
+    focusable,
     onClick,
     children,
     className,
@@ -53,7 +56,6 @@ const Button = ({
             ...getStyleFromText(textStyle),
         };
     }
-
 
     if (buttonStyle !== null) {
         finalStyle = {
@@ -75,6 +77,7 @@ const Button = ({
             onClick={onClick}
             refButton={refButton}
             type={type}
+            focusable={focusable}
         >
             {children}
         </CoreButton>

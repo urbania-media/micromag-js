@@ -82,6 +82,7 @@ const ShareModal = ({ url, title, opened, className, onShare, onCancel }) => {
                 },
             ])}
             ref={containerRef}
+            aria-hidden={opened ? null : '-1'}
         >
             <div className={styles.content}>
                 <div className={styles.buttons}>
@@ -92,6 +93,7 @@ const ShareModal = ({ url, title, opened, className, onShare, onCancel }) => {
                             onShareButtonClick('Facebook');
                             return Promise.resolve();
                         }}
+                        tabIndex={opened ? null : '-1'}
                     >
                         <FacebookIcon {...shareIconProps} />
                     </FacebookShareButton>
@@ -102,6 +104,7 @@ const ShareModal = ({ url, title, opened, className, onShare, onCancel }) => {
                             onShareButtonClick('Twitter');
                             return Promise.resolve();
                         }}
+                        tabIndex={opened ? null : '-1'}
                     >
                         <TwitterIcon {...shareIconProps} />
                     </TwitterShareButton>
@@ -112,6 +115,7 @@ const ShareModal = ({ url, title, opened, className, onShare, onCancel }) => {
                             onShareButtonClick('Email');
                             return Promise.resolve();
                         }}
+                        tabIndex={opened ? null : '-1'}
                     >
                         <EmailIcon {...shareIconProps} />
                     </EmailShareButton>

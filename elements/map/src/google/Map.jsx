@@ -27,6 +27,7 @@ const propTypes = {
     fullscreenControl: PropTypes.bool,
     className: PropTypes.string,
     children: PropTypes.node,
+    focusable: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -46,6 +47,7 @@ const defaultProps = {
     fullscreenControl: false,
     className: null,
     children: null,
+    focusable: true,
 };
 
 const Map = ({
@@ -65,6 +67,7 @@ const Map = ({
     fullscreenControl,
     className,
     children,
+    focusable,
 }) => {
     const { map, ref: mapRef } = useGoogleMap({
         zoom,
@@ -93,7 +96,7 @@ const Map = ({
                 },
             ])}
         >
-            <div ref={mapRef} className={styles.map} />
+            <div ref={mapRef} className={styles.map} tabIndex={focusable ? '0' : '-1'} />{/* eslint-disable-line jsx-a11y/no-noninteractive-tabindex */}
             {React.Children.map(children, (child) => React.cloneElement(child, { map }))}
         </div>
     );

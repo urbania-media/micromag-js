@@ -731,6 +731,9 @@
     "v4Qtl9": {
         "defaultMessage": "Aujourd'hui"
     },
+    "v9bqYj": {
+        "defaultMessage": "Aller à l'écran suivant"
+    },
     "vA+9dU": {
         "defaultMessage": "Bordure"
     },
@@ -743,11 +746,17 @@
     "vZrFq6": {
         "defaultMessage": "Titre avec sous-titre et crédits"
     },
+    "vmrJ8U": {
+        "defaultMessage": "(écran en cours)"
+    },
     "vzW/wd": {
         "defaultMessage": "Couleur de fond"
     },
     "vzg8Es": {
         "defaultMessage": "Sans son"
+    },
+    "wCsW9o": {
+        "defaultMessage": "Liste des raccourcis d'écrans"
     },
     "wkysUu": {
         "defaultMessage": "Écrans"
@@ -793,6 +802,9 @@
     },
     "zW7IVm": {
         "defaultMessage": "Quiz"
+    },
+    "zYH/31": {
+        "defaultMessage": "Aller à l'écran précédent"
     },
     "zh2m/S": {
         "defaultMessage": "Rechercher une police..."

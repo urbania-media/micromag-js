@@ -34,6 +34,7 @@ const propTypes = {
     onProgressStep: PropTypes.func,
     onDurationChanged: PropTypes.func,
     onVolumeChanged: PropTypes.func,
+    focusable: PropTypes.bool,
     // onPosterLoaded: PropTypes.func,
 };
 
@@ -58,6 +59,7 @@ const defaultProps = {
     onProgressStep: null,
     onDurationChanged: null,
     onVolumeChanged: null,
+    focusable: true,
     // onPosterLoaded: null,
 };
 
@@ -82,6 +84,7 @@ const Video = ({
     onProgressStep,
     onDurationChanged,
     onVolumeChanged,
+    focusable,
     // onPosterLoaded,
 }) => {
     const { url = null, files = null } = media || {};
@@ -138,7 +141,7 @@ const Video = ({
             play();
             if (initialMuted === 'auto' && muted && userInteracted) {
                 unMute();
-            }                  
+            }
         } else {
             pause();
         }
@@ -174,6 +177,7 @@ const Video = ({
                 preload={preload}
                 playsInline={playsInline}
                 crossOrigin={withoutCors ? 'anonymous' : null}
+                tabIndex={focusable ? '0' : '-1'}
             >
                 {hasFiles ? (
                     <>

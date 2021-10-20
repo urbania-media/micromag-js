@@ -293,6 +293,7 @@ const SurveyScreen = ({
                                                             buttonsRefs.current[answerIndex] = el;
                                                         }}
                                                         disabled={isPreview}
+                                                        focusable={current && isView}
                                                         buttonStyle={
                                                             userAnswer || !answered
                                                                 ? {
@@ -381,10 +382,11 @@ const SurveyScreen = ({
         }
         items.push(
             <div style={{ margin: -spacing, marginTop: 0 }} key="call-to-action">
-                <CallToAction                    
+                <CallToAction
                     callToAction={callToAction}
                     disabled={!answered}
                     animationDisabled={isPreview}
+                    focusable={current && isView}
                 />
             </div>,
         );
