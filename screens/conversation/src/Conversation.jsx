@@ -114,7 +114,7 @@ const ConversationScreen = ({
         if (messageI === 0) {
             return 0;
         }
-        const finalTime = defaultTimingFactor * ((message || []).length || 10);
+        const finalTime = defaultTimingFactor * ((message || '').length || 10);
         return finalTime < 2000 ? finalTime : 2000;
     });
 
