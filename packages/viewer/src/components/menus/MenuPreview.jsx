@@ -24,6 +24,7 @@ const propTypes = {
     shareUrl: PropTypes.string,
     items: MicromagPropTypes.menuItems,
     current: PropTypes.number,
+    focusable: PropTypes.bool,
     onClickItem: PropTypes.func,
     onClose: PropTypes.func,
     onShare: PropTypes.func,
@@ -41,6 +42,7 @@ const defaultProps = {
     shareUrl: null,
     items: [],
     current: 0,
+    focusable: true,
     onClickItem: null,
     onClose: null,
     onShare: null,
@@ -58,6 +60,7 @@ const ViewerMenuPreview = ({
     shareUrl,
     items,
     current,
+    focusable,
     onClickItem,
     onClose,
     onShare,
@@ -133,6 +136,7 @@ const ViewerMenuPreview = ({
                 },
             ])}
             style={{ ...backgroundColorStyle, ...brandImageStyle, width: screenWidth }}
+            aria-hidden={focusable ? null : 'true'}
             {...dragBind()}
         >
             <div className={styles.header}>
@@ -152,6 +156,7 @@ const ViewerMenuPreview = ({
                         onShare={onShare}
                         url={shareUrl}
                         title={title}
+                        focusable={focusable}
                     >
                         <FontAwesomeIcon className={styles.icon} icon={faShare} />
                     </ShareButton>
@@ -167,6 +172,7 @@ const ViewerMenuPreview = ({
                                 defaultMessage: 'Fullscreen',
                                 description: 'Button label',
                             })}
+                            focusable={focusable}
                         >
                             <FontAwesomeIcon
                                 className={styles.icon}
@@ -185,6 +191,7 @@ const ViewerMenuPreview = ({
                             defaultMessage: 'Close',
                             description: 'Button label',
                         })}
+                        focusable={focusable}
                     >
                         <FontAwesomeIcon className={styles.icon} icon={faTimes} />
                     </Button>
@@ -198,69 +205,84 @@ const ViewerMenuPreview = ({
                 >
                     <nav className={styles.nav}>
                         <ul className={styles.items}>
-                            {items.map((item, index) => (
-                                <li
-                                    className={classNames([
-                                        styles.item,
-                                        {
-                                            [styles.active]: current === index,
-                                        },
-                                    ])}
-                                    key={`item-${index}`}
-                                    style={{
-                                        paddingBottom: screenSizeRatio,
-                                        width: `${100 / thumbsPerLine}%`,
-                                    }}
-                                >
-                                    <div className={styles.itemContent}>
-                                        <div
-                                            className={styles.screenContainer}
-                                            ref={index === 0 ? firstScreenContainerRef : null}
-                                        >
-                                            <div
-                                                className={styles.screenContent}
-                                                style={
-                                                    thumbSize !== null
-                                                        ? {
-                                                              width: screenWidth,
-                                                              height: screenRatioHeight,
-                                                              transform: `scale(${
-                                                                  thumbSize.width / screenWidth
-                                                              }`,
-                                                          }
-                                                        : null
-                                                }
-                                            >
-                                                <ScreenPreview
-                                                    width={screenWidth}
-                                                    height={screenRatioHeight}
-                                                    screen={item}
-                                                />
-                                            </div>
-                                            {current === index ? (
-                                                <div
-                                                    className={styles.activeScreenBorder}
-                                                    style={borderPrimaryColorStyle}
-                                                />
-                                            ) : null}
-                                        </div>
-                                    </div>
-                                    <button
-                                        type="button"
-                                        className={styles.screenButton}
-                                        onClick={() => {
-                                            onClickItem(index);
-                                        }}
-                                        aria-label={intl.formatMessage(
+                            {items.map((item, index) => {
+                                const screenIndexLabel = intl.formatMessage(
+                                    {
+                                        defaultMessage: 'Screen {index}',
+                                        description: 'Button label',
+                                    },
+                                    { index: index + 1 },
+                                );
+                                const isCurrentScreenLabel =
+                                    current === index
+                                        ? ` ${intl.formatMessage({
+                                              defaultMessage: '(current screen)',
+                                              description: 'Button label',
+                                          })}`
+                                        : '';
+                                const screenAriaLabel = screenIndexLabel + isCurrentScreenLabel;
+
+                                return (
+                                    <li
+                                        className={classNames([
+                                            styles.item,
                                             {
-                                                defaultMessage: 'Screen {index}',
-                                                description: 'Button label',
+                                                [styles.active]: current === index,
                                             },
-                                            { index },
-                                        )}
-                                    />
-                                </li>
-                            ))}
+                                        ])}
+                                        key={`item-${index}`}
+                                        style={{
+                                            paddingBottom: screenSizeRatio,
+                                            width: `${100 / thumbsPerLine}%`,
+                                        }}
+                                    >
+                                        <div className={styles.itemContent}>
+                                            <div
+                                                className={styles.screenContainer}
+                                                ref={index === 0 ? firstScreenContainerRef : null}
+                                            >
+                                                <div
+                                                    className={styles.screenContent}
+                                                    style={
+                                                        thumbSize !== null
+                                                            ? {
+                                                                  width: screenWidth,
+                                                                  height: screenRatioHeight,
+                                                                  transform: `scale(${
+                                                                      thumbSize.width / screenWidth
+                                                                  }`,
+                                                              }
+                                                            : null
+                                                    }
+                                                    aria-hidden="true"
+                                                >
+                                                    <ScreenPreview
+                                                        width={screenWidth}
+                                                        height={screenRatioHeight}
+                                                        screen={item}
+                                                        focusable={false}
+                                                    />
+                                                </div>
+                                                {current === index ? (
+                                                    <div
+                                                        className={styles.activeScreenBorder}
+                                                        style={borderPrimaryColorStyle}
+                                                    />
+                                                ) : null}
+                                            </div>
+                                        </div>
+                                        <button
+                                            type="button"
+                                            className={styles.screenButton}
+                                            onClick={() => {
+                                                onClickItem(index);
+                                            }}
+                                            aria-label={screenAriaLabel}
+                                            tabIndex={focusable ? '0' : '-1'}
+                                        />
+                                    </li>
+                                );
+                            })}
                         </ul>
                     </nav>
                 </Scroll>

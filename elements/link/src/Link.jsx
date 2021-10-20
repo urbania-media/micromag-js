@@ -16,6 +16,7 @@ const propTypes = {
     margin: MicromagPropTypes.margin,
     className: PropTypes.string,
     children: PropTypes.node,
+    focusable: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -26,9 +27,19 @@ const defaultProps = {
     margin: null,
     className: null,
     children: null,
+    focusable: true,
 };
 
-const Link = ({ url, target: linkTarget, rel: linkRel, external, margin, className, children }) => {
+const Link = ({
+    url,
+    target: linkTarget,
+    rel: linkRel,
+    external,
+    margin,
+    className,
+    children,
+    focusable,
+}) => {
     let finalStyle = null;
 
     if (margin !== null) {
@@ -59,6 +70,7 @@ const Link = ({ url, target: linkTarget, rel: linkRel, external, margin, classNa
             href={url}
             target={target}
             rel={rel}
+            tabIndex={focusable ? '0' : '-1'}
         >
             {children}
         </a>

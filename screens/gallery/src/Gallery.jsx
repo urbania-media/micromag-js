@@ -268,6 +268,7 @@ const GalleryScreen = ({
                                 className={styles.callToAction}
                                 callToAction={callToAction}
                                 animationDisabled={isPreview}
+                                focusable={current && isView}
                             />
                         </div>
                     ) : null}

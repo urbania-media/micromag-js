@@ -20,6 +20,7 @@ const propTypes = {
     withSeekBar: PropTypes.bool,
     withPlayPause: PropTypes.bool,
     className: PropTypes.string,
+    focusable: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -33,6 +34,7 @@ const defaultProps = {
     withSeekBar: false,
     withPlayPause: false,
     className: null,
+    focusable: true,
 };
 
 const MediaControls = ({
@@ -46,6 +48,7 @@ const MediaControls = ({
     withSeekBar,
     withPlayPause,
     className,
+    focusable,
 }) => {
     const intl = useIntl();
 
@@ -68,6 +71,7 @@ const MediaControls = ({
                     duration={duration}
                     playing={playing}
                     onSeek={onSeek}
+                    focusable={focusable}
                 />
             ) : null}
             <div className={styles.toggles}>
@@ -83,6 +87,7 @@ const MediaControls = ({
                         defaultMessage: 'Play',
                         description: 'Button label',
                     })}
+                    tabIndex={focusable ? '0' : '-1'}
                 >
                     <FontAwesomeIcon className={styles.icon} icon={playing ? faPause : faPlay} />
                 </button>
@@ -98,6 +103,7 @@ const MediaControls = ({
                         defaultMessage: 'Mute',
                         description: 'Button label',
                     })}
+                    tabIndex={focusable ? '0' : '-1'}
                 >
                     <FontAwesomeIcon className={styles.icon} icon={faVolumeUp} />
                 </button>

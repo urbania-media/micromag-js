@@ -27,6 +27,7 @@ const propTypes = {
     callToAction: MicromagPropTypes.callToAction,
     dragAmount: PropTypes.number,
     className: PropTypes.string,
+    focusable: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -36,6 +37,7 @@ const defaultProps = {
     callToAction: null,
     dragAmount: 50,
     className: null,
+    focusable: true,
 };
 
 const CallToAction = ({
@@ -45,13 +47,14 @@ const CallToAction = ({
     callToAction,
     dragAmount,
     className,
+    focusable,
 }) => {
     const { active = false, type = null, url = null, label = null } = callToAction || {};
 
     const swipeUpEnabled = type === null || type === 'swipe-up';
     const validUrl = useMemo(() => isValidUrl(url), [url]);
 
-    const buttonRef = useRef(null);    
+    const buttonRef = useRef(null);
 
     const { textStyle: { fontSize = null, color = null } = {} } = label || {};
     const arrowStyle = useMemo(() => ({ ...{ fontSize }, ...getStyleFromColor(color, 'color') }), [
@@ -101,13 +104,16 @@ const CallToAction = ({
             ref={elRef}
         >
             { leaving ? <div className={styles.leavingFrame} /> : null }
-            <a className={styles.selfTargetLink} href={url} ref={selfTargetLinkRef} />
+            <a className={styles.selfTargetLink} href={url} ref={selfTargetLinkRef}
+                tabIndex={focusable ? '0' : '-1'}
+            />
             <Button
                 href={url}
                 external
                 className={styles.button}
                 withoutStyle
                 refButton={buttonRef}
+                focusable={focusable}
                 {...(swipeUpEnabled && !disabled ? bind() : null)}
             >
                 {swipeUpEnabled ? (
@@ -119,7 +125,7 @@ const CallToAction = ({
                 ) : null}
                 <span className={styles.label}>
                     <Text {...label} inline />
-                </span>                
+                </span>
             </Button>
         </div>
     ) : null;

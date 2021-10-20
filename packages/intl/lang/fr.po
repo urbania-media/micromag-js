@@ -1478,6 +1478,12 @@ msgctxt "v4Qtl9"
 msgid "Today"
 msgstr "Aujourd'hui"
 
+# Button label
+#: v9bqYj
+msgctxt "v9bqYj"
+msgid "Go to next screen"
+msgstr "Aller à l'écran suivant"
+
 # Border label
 #: vA+9dU
 msgctxt "vA+9dU"
@@ -1502,6 +1508,12 @@ msgctxt "vZrFq6"
 msgid "Title with subtitle and credits"
 msgstr "Titre avec sous-titre et crédits"
 
+# Button label
+#: vmrJ8U
+msgctxt "vmrJ8U"
+msgid "(current screen)"
+msgstr "(écran en cours)"
+
 # Background color label
 #: vzW/wd
 msgctxt "vzW/wd"
@@ -1513,6 +1525,12 @@ msgstr "Couleur de fond"
 msgctxt "vzg8Es"
 msgid "Mute"
 msgstr "Sans son"
+
+# Nav label
+#: wCsW9o
+msgctxt "wCsW9o"
+msgid "Screen shortcuts list"
+msgstr "Liste des raccourcis d'écrans"
 
 # Button to show screens
 #: wkysUu
@@ -1603,6 +1621,12 @@ msgstr "Latitude"
 msgctxt "zW7IVm"
 msgid "Quiz"
 msgstr "Quiz"
+
+# Button label
+#: zYH/31
+msgctxt "zYH/31"
+msgid "Go to previous screen"
+msgstr "Aller à l'écran précédent"
 
 # Field placeholder
 #: zh2m/S

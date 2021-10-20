@@ -731,6 +731,9 @@
     "v4Qtl9": {
         "defaultMessage": "Today"
     },
+    "v9bqYj": {
+        "defaultMessage": "Go to next screen"
+    },
     "vA+9dU": {
         "defaultMessage": "Border"
     },
@@ -743,11 +746,17 @@
     "vZrFq6": {
         "defaultMessage": "Title with subtitle and credits"
     },
+    "vmrJ8U": {
+        "defaultMessage": "(current screen)"
+    },
     "vzW/wd": {
         "defaultMessage": "Background color"
     },
     "vzg8Es": {
         "defaultMessage": "Mute"
+    },
+    "wCsW9o": {
+        "defaultMessage": "Screen shortcuts list"
     },
     "wkysUu": {
         "defaultMessage": "Screens"
@@ -793,6 +802,9 @@
     },
     "zW7IVm": {
         "defaultMessage": "Quiz"
+    },
+    "zYH/31": {
+        "defaultMessage": "Go to previous screen"
     },
     "zh2m/S": {
         "defaultMessage": "Search fonts..."

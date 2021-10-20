@@ -439,6 +439,7 @@ const Video360Screen = ({
                             onPointerDown={onPointerDown}
                             onPointerMove={onPointerMove}
                             onPointerUp={onPointerUp}
+                            tabIndex={current && isView ? null : '-1'}
                         />
                     </>
                 ) : (
@@ -490,6 +491,7 @@ const Video360Screen = ({
                             onTogglePlay={togglePlay}
                             onToggleMute={onToggleMute}
                             onSeek={seek}
+                            focusable={current && isView}
                         />
                     ) : null}
                     {hasCallToAction ? (
@@ -497,6 +499,7 @@ const Video360Screen = ({
                             <CallToAction
                                 callToAction={callToAction}
                                 animationDisabled={isPreview}
+                                focusable={current && isView}
                             />
                         </div>
                     ) : null}
@@ -550,6 +553,7 @@ const Video360Screen = ({
                             onSeeked={onSeeked}
                             onVolumeChanged={onVolumeChanged}
                             onPosterLoaded={onPosterLoaded}
+                            focusable={current && isView}
                         />
                     </div>
                 ) : null}
