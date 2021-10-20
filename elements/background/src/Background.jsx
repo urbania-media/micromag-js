@@ -70,7 +70,7 @@ const Background = ({
 
     // image
     if (finalImage !== null) {
-        const finalUrl = getOptimalImageUrl(image, width, height);
+        const finalUrl = getOptimalImageUrl(finalImage, width, height);
         finalStyle.backgroundImage = `url("${finalUrl}")`;
         finalStyle.backgroundRepeat = repeat ? 'repeat' : 'no-repeat';
         finalStyle.backgroundPosition = [horizontalAlign, verticalAlign].join(' ');
@@ -84,8 +84,7 @@ const Background = ({
     
     const videoContainerStyle = {};
     if (hasVideo && playing) {
-        if (hasSize) {
-            
+        if (hasSize) {            
             const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
             const { width: resizedVideoWidth = 0, height: resizedVideoHeight = 0} = getSizeWithinBounds(
                 videoWidth,
@@ -115,7 +114,7 @@ const Background = ({
             ])}
             style={finalStyle}
         >
-            {hasVideo ? (
+            {hasVideo && playing ? (
                 <div
                     className={styles.videoContainer}
                     style={videoContainerStyle}
