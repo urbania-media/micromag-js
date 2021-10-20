@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -29,7 +29,7 @@ const propTypes = {
         'title-top',
     ]),
     image: MicromagPropTypes.imageMedia,
-    imageFit: MicromagPropTypes.objectFit,
+    defaultImageFit: PropTypes.string,
     title: MicromagPropTypes.headingElement,
     text: MicromagPropTypes.textElement,
     legend: MicromagPropTypes.textElement,
@@ -47,7 +47,7 @@ const propTypes = {
 const defaultProps = {
     layout: 'normal',
     image: null,
-    imageFit: { fit: 'cover' },
+    defaultImageFit: 'cover',
     title: null,
     text: null,
     legend: null,
@@ -65,7 +65,7 @@ const defaultProps = {
 const ImageScreen = ({
     layout,
     image,
-    imageFit,
+    defaultImageFit,
     title,
     text,
     legend,
@@ -79,6 +79,9 @@ const ImageScreen = ({
     transitions,
     className,
 }) => {
+    const { fit } = image || {};
+    const imageFit = useMemo( () => ({ fit: fit || defaultImageFit }), [fit, defaultImageFit]);
+    
     const { width, height, menuOverScreen } = useScreenSize();
 
     const { menuSize } = useViewer();

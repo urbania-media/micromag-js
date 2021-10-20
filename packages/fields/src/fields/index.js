@@ -64,5 +64,6 @@ export { default as video } from './video';
 export { default as videoElement } from './video-element';
 export { default as visual } from './visual';
 export { default as visualWithCaption } from './visual-with-caption';
+export { default as visualWithFit } from './visual-with-fit';
 export { default as visualsWithCaption } from './visuals-with-caption';
 export { default as visuals } from './visuals';

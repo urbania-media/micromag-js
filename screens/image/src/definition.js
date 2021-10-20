@@ -37,7 +37,7 @@ export default [
             },
             {
                 name: 'image',
-                type: 'visual',
+                type: 'visual-with-fit',
                 label: defineMessage({
                     defaultMessage: 'Image',
                     description: 'Visual field label',
@@ -91,7 +91,7 @@ export default [
             },
             {
                 name: 'image',
-                type: 'visual',
+                type: 'visual-with-fit',
                 label: defineMessage({
                     defaultMessage: 'Image',
                     description: 'Visual field label',
@@ -157,7 +157,7 @@ export default [
             },
             {
                 name: 'image',
-                type: 'visual',
+                type: 'visual-with-fit',
                 label: defineMessage({
                     defaultMessage: 'Image',
                     description: 'Visual field label',
@@ -222,7 +222,7 @@ export default [
             },
             {
                 name: 'image',
-                type: 'visual',
+                type: 'visual-with-fit',
                 isHorizontal: false,
                 label: defineMessage({
                     defaultMessage: 'Image',
@@ -300,7 +300,7 @@ export default [
             },
             {
                 name: 'image',
-                type: 'visual',
+                type: 'visual-with-fit',
                 label: defineMessage({
                     defaultMessage: 'Image',
                     description: 'Visual field label',
