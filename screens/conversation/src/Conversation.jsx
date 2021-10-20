@@ -66,14 +66,8 @@ const ConversationScreen = ({
     const { menuSize } = useViewer();
     const trackScreenEvent = useTrackScreenEvent(type);
 
-    const {
-        isView,
-        isPreview,
-        isPlaceholder,
-        isEdit,
-        isStatic,
-        isCapture,
-    } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
+        useScreenRenderContext();
 
     const backgroundPlaying = current && (isView || isEdit);
     const withAnimation = isView && !isStatic && timingMode === 'sequence';
@@ -110,12 +104,20 @@ const ConversationScreen = ({
     );
 
     // sequence timings
-    const defaultTimingFactor = 50;
+    const defaultTimingFactor = 40;
     const defaultHesitationDelay = 1000;
     const filteredMessages = (messages || []).filter((m) => m !== null);
-    const timings = filteredMessages.map(({ timing = null, message = null } = {}) =>
-        timing !== null ? timing : defaultTimingFactor * (message !== null ? message.length : 10),
-    );
+    const timings = filteredMessages.map(({ timing = null, message = null } = {}, messageI) => {
+        if (timing !== null) {
+            return timing;
+        }
+        if (messageI === 0) {
+            return 0;
+        }
+        const finalTime = defaultTimingFactor * (message.length || 10);
+        return finalTime < 2000 ? finalTime : 2000;
+    });
+
     const hesitationTimings = filteredMessages.map(({ hesitation = null } = {}) =>
         hesitation !== null ? hesitation : defaultHesitationDelay,
     );
