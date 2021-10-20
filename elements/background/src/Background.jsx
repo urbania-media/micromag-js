@@ -77,7 +77,7 @@ const Background = ({
 
         if (fit !== null) {
             finalStyle.backgroundSize = fit;
-        } else {
+        } else if (!repeat) {
             finalStyle.backgroundSize = 'cover';
         }
     }
