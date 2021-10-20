@@ -7,20 +7,14 @@ export default {
     media: true,
     settings: [
         {
-            type: 'fields',
-            isList: true,
-            fields: [
-                {
-                    name: 'fit',
-                    type: 'fit',
-                    values: ['cover', 'contain'],
-                    defaultValue: 'cover',
-                    label: defineMessage({
-                        defaultMessage: 'Fit',
-                        description: 'Field label',
-                    }),
-                },
-            ],
+            name: 'fit',
+            type: 'fit',
+            values: ['cover', 'contain'],
+            defaultValue: 'cover',
+            label: defineMessage({
+                defaultMessage: 'Fit',
+                description: 'Field label',
+            }),
         },
     ],
 };
