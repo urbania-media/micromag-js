@@ -541,7 +541,6 @@ const Video360Screen = ({
                             ref={apiRef}
                             className={styles.video}
                             withoutCors
-                            preload="auto"
                             onReady={onVideoReady}
                             onPlay={onPlay}
                             onPause={onPause}

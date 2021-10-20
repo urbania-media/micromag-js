@@ -14,7 +14,6 @@ const propTypes = {
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     objectFit: MicromagPropTypes.objectFit,
-    videoPreload: PropTypes.string,
     videoAutoplay: PropTypes.bool,
     videoLoop: PropTypes.bool,
     videoInitialMuted: PropTypes.bool,
@@ -27,7 +26,6 @@ const defaultProps = {
     width: null,
     height: null,
     objectFit: null,
-    videoPreload: 'metadata',
     videoAutoplay: true,
     videoLoop: true,
     videoInitialMuted: true,
@@ -40,7 +38,6 @@ const Visual = ({
     width,
     height,
     objectFit,
-    videoPreload,
     videoAutoplay,
     videoLoop,
     videoInitialMuted,
@@ -96,7 +93,6 @@ const Visual = ({
                             {...elProps}
                             width={objectFit === null ? width : null}
                             height={objectFit === null ? height : null}
-                            preload={videoPreload}
                             autoPlay={videoAutoplay}
                             loop={videoLoop}
                             initialMuted={videoInitialMuted}

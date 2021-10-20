@@ -46,7 +46,7 @@ const defaultProps = {
     autoPlay: false,
     loop: false,
     playsInline: true,
-    preload: undefined,
+    preload: 'auto',
     withoutCors: false,
     className: null,
     onReady: null,
