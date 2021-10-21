@@ -12,6 +12,7 @@ export { default as getGridLayoutName } from './getGridLayoutName';
 export { default as getLargestRemainderRound } from './getLargestRemainderRound';
 export { default as getOptimalImageUrl } from './getOptimalImageUrl';
 export { default as getSecondsFromTime } from './getSecondsFromTime';
+export { default as getScreenExtraField } from './getScreenExtraField';
 export { default as getStyleFromButton } from './getStyleFromButton';
 export { default as getStyleFromColor } from './getStyleFromColor';
 export { default as getStyleFromContainer } from './getStyleFromContainer';

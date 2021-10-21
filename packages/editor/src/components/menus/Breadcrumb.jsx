@@ -6,7 +6,7 @@ import { useHistory } from 'react-router';
 import { useIntl } from 'react-intl';
 import { Breadcrumb as BaseBreadcrumb, BackButton } from '@micromag/core/components';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { isMessage } from '@micromag/core/utils';
+import { isMessage, getScreenExtraField } from '@micromag/core/utils';
 import { useScreensManager, useFieldsManager } from '@micromag/core/contexts';
 
 import getFieldByName from '../../utils/getFieldByName';
@@ -45,7 +45,8 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
         const { type } = screens[screenIndex];
         const fieldItems = [];
         if (field !== null) {
-            const { fields = [] } = screensManager.getDefinition(type);
+            const { fields:screenFields = [] } = screensManager.getDefinition(type);
+            const fields = [...screenFields, getScreenExtraField(intl)];            
             const fieldPath = field.split('/');
 
             const lastKeyIndex = fieldPath.length - 1;

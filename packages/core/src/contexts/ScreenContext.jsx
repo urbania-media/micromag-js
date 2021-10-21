@@ -1,8 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
 
 import { PropTypes as MicromagPropTypes } from '../lib';
+import { getScreenExtraField } from '../utils';
 import { useScreensManager } from './ScreensContext';
 
 export const ScreenContext = React.createContext({
@@ -14,8 +16,12 @@ export const ScreenContext = React.createContext({
 export const useScreen = () => useContext(ScreenContext);
 
 export const useScreenDefinition = () => {
+    const intl = useIntl();
     const { definition } = useScreen() || {};
-    return definition;
+    const { fields } = definition || {};
+    const finalFields = useMemo( () => [...fields, getScreenExtraField(intl)],[fields]);
+
+    return {...definition, fields: finalFields};
 };
 
 export const useScreenData = () => {

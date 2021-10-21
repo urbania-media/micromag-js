@@ -520,11 +520,22 @@ const Viewer = ({
         };
     }, [closePreviewMenu, onScreenPrevious, onScreenNext]);
 
+    const { parameters: screenParameters } = currentScreen || {};
+    const { metadata: screenMetadata } = screenParameters || {};
+    const { title: screenTitle = null, description: screenDescription = null } =
+        screenMetadata || {};
+    const finalTitle = screenTitle !== null ? screenTitle : title;
+    const finalMetadata = useMemo(
+        () =>
+            screenDescription !== null ? { ...metadata, description: screenDescription } : metadata,
+        [metadata],
+    );
+
     return (
         <ScreenSizeProvider size={screenSize}>
             <ViewerProvider menuVisible={menuVisible} menuSize={menuDotsContainerHeight}>
                 {withMetadata ? (
-                    <Meta title={title} metadata={metadata}>
+                    <Meta title={finalTitle} metadata={finalMetadata}>
                         {overscrollStyle}
                     </Meta>
                 ) : (
@@ -637,15 +648,29 @@ const Viewer = ({
                                     >
                                         {viewerScreen}
                                         {current && screenIndex > 0 ? (
-                                            <button type="button" className="sr-only" onClick={onScreenPrevious}>
-                                                <FormattedMessage defaultMessage="Go to previous screen" description="Button label" />
+                                            <button
+                                                type="button"
+                                                className="sr-only"
+                                                onClick={onScreenPrevious}
+                                            >
+                                                <FormattedMessage
+                                                    defaultMessage="Go to previous screen"
+                                                    description="Button label"
+                                                />
                                             </button>
-                                        ): null}
+                                        ) : null}
                                         {current && screenIndex < screens.length ? (
-                                            <button type="button" className="sr-only" onClick={onScreenNext}>
-                                                <FormattedMessage defaultMessage="Go to next screen" description="Button label" />
+                                            <button
+                                                type="button"
+                                                className="sr-only"
+                                                onClick={onScreenNext}
+                                            >
+                                                <FormattedMessage
+                                                    defaultMessage="Go to next screen"
+                                                    description="Button label"
+                                                />
                                             </button>
-                                        ): null}
+                                        ) : null}
                                     </div>
                                 );
                             })}
