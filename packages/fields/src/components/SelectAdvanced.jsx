@@ -13,6 +13,7 @@ import getSelectOptions from '../utils/getSelectOptions';
 const propTypes = {
     value: PropTypes.string,
     options: MicromagPropTypes.selectOptions,
+    withoutReset: PropTypes.bool,
     disabled: PropTypes.bool,
     className: PropTypes.string,
     onChange: PropTypes.func,
@@ -21,12 +22,13 @@ const propTypes = {
 const defaultProps = {
     value: null,
     options: [],
+    withoutReset: false,
     disabled: false,
     className: null,
     onChange: null,
 };
 
-const SelectAdvancedField = ({ value, options, disabled, className, onChange, ...props }) => {
+const SelectAdvancedField = ({ value, options, withoutReset, disabled, className, onChange, ...props }) => {
     const finalOptions = useMemo(() => getSelectOptions(options), [options]);
     const intl = useIntl();
     const translatedOptions = useMemo(() =>
@@ -58,7 +60,7 @@ const SelectAdvancedField = ({ value, options, disabled, className, onChange, ..
                     [className]: className !== null,
                 },
             ])}
-            isClearable
+            isClearable={!withoutReset}
             {...props}
             value={optionValue || value || null}
             options={translatedOptions}
