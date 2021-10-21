@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screens",
-    "version": "0.2.318",
+    "version": "0.2.319",
     "description": "",
     "keywords": [
         "javascript"
@@ -60,7 +60,7 @@
         "@micromag/screen-conversation": "^0.2.318",
         "@micromag/screen-gallery": "^0.2.315",
         "@micromag/screen-gallery-feed": "^0.2.315",
-        "@micromag/screen-image": "^0.2.315",
+        "@micromag/screen-image": "^0.2.319",
         "@micromag/screen-map": "^0.2.315",
         "@micromag/screen-quiz": "^0.2.315",
         "@micromag/screen-quote": "^0.2.315",
