@@ -44,6 +44,9 @@
     "/hupzO": {
         "defaultMessage": "Credits"
     },
+    "09cd3w": {
+        "defaultMessage": "Title"
+    },
     "0GT0SI": {
         "defaultMessage": "Cancel"
     },
@@ -61,6 +64,9 @@
     },
     "2/F1Q7": {
         "defaultMessage": "#{index}"
+    },
+    "2Iseff": {
+        "defaultMessage": "Description"
     },
     "2J05S0": {
         "defaultMessage": "Images"
@@ -172,6 +178,9 @@
     },
     "88/Ge8": {
         "defaultMessage": "Quote"
+    },
+    "8A8cuq": {
+        "defaultMessage": "Parameters"
     },
     "8Dl/S1": {
         "defaultMessage": "Draggable"
@@ -641,6 +650,9 @@
     "nXVNeg": {
         "defaultMessage": "Name"
     },
+    "nc8LF0": {
+        "defaultMessage": "Metadata"
+    },
     "oCBQKV": {
         "defaultMessage": "Text with title"
     },
@@ -802,6 +814,9 @@
     },
     "zDH24s": {
         "defaultMessage": "Latitude"
+    },
+    "zU0DaR": {
+        "defaultMessage": "Edit metadata..."
     },
     "zW7IVm": {
         "defaultMessage": "Quiz"

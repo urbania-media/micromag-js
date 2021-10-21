@@ -63,6 +63,10 @@
     "defaultMessage": "Credits",
     "description": "Credits placeholder"
   },
+  "09cd3w": {
+    "defaultMessage": "Title",
+    "description": "field label"
+  },
   "0GT0SI": {
     "defaultMessage": "Cancel",
     "description": "Cancel button label"
@@ -86,6 +90,10 @@
   "2/F1Q7": {
     "defaultMessage": "#{index}",
     "description": "Item label in items field"
+  },
+  "2Iseff": {
+    "defaultMessage": "Description",
+    "description": "field label"
   },
   "2J05S0": {
     "defaultMessage": "Images",
@@ -234,6 +242,10 @@
   "88/Ge8": {
     "defaultMessage": "Quote",
     "description": "Quote field label"
+  },
+  "8A8cuq": {
+    "defaultMessage": "Parameters",
+    "description": "field label"
   },
   "8Dl/S1": {
     "defaultMessage": "Draggable",
@@ -856,6 +868,10 @@
     "defaultMessage": "Name",
     "description": "Name field label"
   },
+  "nc8LF0": {
+    "defaultMessage": "Metadata",
+    "description": "field label"
+  },
   "oCBQKV": {
     "defaultMessage": "Text with title",
     "description": "TextTitle screen title"
@@ -1071,6 +1087,10 @@
   "zDH24s": {
     "defaultMessage": "Latitude",
     "description": "Latitude description"
+  },
+  "zU0DaR": {
+    "defaultMessage": "Edit metadata...",
+    "description": "metadata field placeholder"
   },
   "zW7IVm": {
     "defaultMessage": "Quiz",

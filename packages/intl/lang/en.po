@@ -107,6 +107,12 @@ msgctxt "/hupzO"
 msgid "Credits"
 msgstr "Credits"
 
+# field label
+#: 09cd3w
+msgctxt "09cd3w"
+msgid "Title"
+msgstr "Title"
+
 # Cancel button label
 #: 0GT0SI
 msgctxt "0GT0SI"
@@ -142,6 +148,12 @@ msgstr "Description"
 msgctxt "2/F1Q7"
 msgid "#{index}"
 msgstr "#{index}"
+
+# field label
+#: 2Iseff
+msgctxt "2Iseff"
+msgid "Description"
+msgstr "Description"
 
 # Media label
 #: 2J05S0
@@ -364,6 +376,12 @@ msgstr "Description"
 msgctxt "88/Ge8"
 msgid "Quote"
 msgstr "Quote"
+
+# field label
+#: 8A8cuq
+msgctxt "8A8cuq"
+msgid "Parameters"
+msgstr "Parameters"
 
 # Draggable field label
 #: 8Dl/S1
@@ -1298,6 +1316,12 @@ msgctxt "nXVNeg"
 msgid "Name"
 msgstr "Name"
 
+# field label
+#: nc8LF0
+msgctxt "nc8LF0"
+msgid "Metadata"
+msgstr "Metadata"
+
 # TextTitle screen title
 #: oCBQKV
 msgctxt "oCBQKV"
@@ -1621,6 +1645,12 @@ msgstr "Text"
 msgctxt "zDH24s"
 msgid "Latitude"
 msgstr "Latitude"
+
+# metadata field placeholder
+#: zU0DaR
+msgctxt "zU0DaR"
+msgid "Edit metadata..."
+msgstr "Edit metadata..."
 
 # Quiz screen title
 #: zW7IVm
