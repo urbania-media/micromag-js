@@ -1650,7 +1650,7 @@ msgstr "Latitude"
 #: zU0DaR
 msgctxt "zU0DaR"
 msgid "Edit metadata..."
-msgstr "Modifier les métadonnées..."
+msgstr "Modifier..."
 
 # Quiz screen title
 #: zW7IVm
