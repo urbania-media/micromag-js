@@ -45,13 +45,14 @@ const Visual = ({
     className,
     ...props
 }) => {
-    const { type = null } = media || {};
+    const { type = null, thumbnail_url:thumbnailUrl = null } = media || {};
 
     const elProps = { ...props, media };
+    const imageElProps = type === 'video' && !videoAutoplay ? {...elProps, media: { url: thumbnailUrl }} : elProps;
 
     let videoContainerStyle = null;
 
-    if (type === 'video' && objectFit !== null) {
+    if (type === 'video' && objectFit !== null && videoAutoplay) {
         const { fit = 'cover' } = objectFit || {};
         const { metadata: videoMetadata = null } = media || {};
         const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
@@ -73,9 +74,9 @@ const Visual = ({
 
     return type !== null ? (
         <>
-            {type === 'image' ? (
+            {type === 'image' || !videoAutoplay ? (
                 <Image
-                    {...elProps}
+                    {...imageElProps}
                     objectFit={objectFit}
                     width={width}
                     height={height}
@@ -83,7 +84,7 @@ const Visual = ({
                     className={classNames([styles.container, { [className]: className !== null }])}
                 />
             ) : null}
-            {type === 'video' ? (
+            {type === 'video' && videoAutoplay ? (
                 <div
                     className={classNames([styles.container, { [className]: className !== null }])}
                     style={{ width, height }}
@@ -93,7 +94,7 @@ const Visual = ({
                             {...elProps}
                             width={objectFit === null ? width : null}
                             height={objectFit === null ? height : null}
-                            autoPlay={videoAutoplay}
+                            autoPlay
                             loop={videoLoop}
                             initialMuted={videoInitialMuted}
                             onReady={onLoaded}
