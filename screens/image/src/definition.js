@@ -37,10 +37,20 @@ export default [
             },
             {
                 name: 'image',
-                type: 'visual-with-fit',
+                type: 'visual',
                 label: defineMessage({
                     defaultMessage: 'Image',
                     description: 'Visual field label',
+                }),
+            },
+            {
+                name: 'imageFit',
+                type: 'fit',
+                defaultValue: 'cover',
+                values: ['cover', 'contain'],
+                label: defineMessage({
+                    defaultMessage: 'Image fit',
+                    description: 'Image fit field label',
                 }),
             },
             {
@@ -91,10 +101,20 @@ export default [
             },
             {
                 name: 'image',
-                type: 'visual-with-fit',
+                type: 'visual',
                 label: defineMessage({
                     defaultMessage: 'Image',
                     description: 'Visual field label',
+                }),
+            },
+            {
+                name: 'imageFit',
+                type: 'fit',
+                defaultValue: 'cover',
+                values: ['cover', 'contain'],
+                label: defineMessage({
+                    defaultMessage: 'Image fit',
+                    description: 'Image fit field label',
                 }),
             },
             {
@@ -157,10 +177,20 @@ export default [
             },
             {
                 name: 'image',
-                type: 'visual-with-fit',
+                type: 'visual',
                 label: defineMessage({
                     defaultMessage: 'Image',
                     description: 'Visual field label',
+                }),
+            },
+            {
+                name: 'imageFit',
+                type: 'fit',
+                defaultValue: 'cover',
+                values: ['cover', 'contain'],
+                label: defineMessage({
+                    defaultMessage: 'Image fit',
+                    description: 'Image fit field label',
                 }),
             },
             {
@@ -222,11 +252,21 @@ export default [
             },
             {
                 name: 'image',
-                type: 'visual-with-fit',
+                type: 'visual',
                 isHorizontal: false,
                 label: defineMessage({
                     defaultMessage: 'Image',
                     description: 'Visual field label',
+                }),
+            },
+            {
+                name: 'imageFit',
+                type: 'fit',
+                defaultValue: 'cover',
+                values: ['cover', 'contain'],
+                label: defineMessage({
+                    defaultMessage: 'Image fit',
+                    description: 'Image fit field label',
                 }),
             },
             {
@@ -300,10 +340,20 @@ export default [
             },
             {
                 name: 'image',
-                type: 'visual-with-fit',
+                type: 'visual',
                 label: defineMessage({
                     defaultMessage: 'Image',
                     description: 'Visual field label',
+                }),
+            },
+            {
+                name: 'imageFit',
+                type: 'fit',
+                defaultValue: 'cover',
+                values: ['cover', 'contain'],
+                label: defineMessage({
+                    defaultMessage: 'Image fit',
+                    description: 'Image fit field label',
                 }),
             },
             {

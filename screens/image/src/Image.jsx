@@ -29,6 +29,7 @@ const propTypes = {
         'title-top',
     ]),
     image: MicromagPropTypes.imageMedia,
+    imageFit: PropTypes.oneOf(['contain', 'cover']),
     defaultImageFit: PropTypes.string,
     title: MicromagPropTypes.headingElement,
     text: MicromagPropTypes.textElement,
@@ -47,6 +48,7 @@ const propTypes = {
 const defaultProps = {
     layout: 'normal',
     image: null,
+    imageFit: null,
     defaultImageFit: 'cover',
     title: null,
     text: null,
@@ -65,6 +67,7 @@ const defaultProps = {
 const ImageScreen = ({
     layout,
     image,
+    imageFit,
     defaultImageFit,
     title,
     text,
@@ -79,8 +82,7 @@ const ImageScreen = ({
     transitions,
     className,
 }) => {
-    const { fit } = image || {};
-    const imageFit = useMemo( () => ({ fit: fit || defaultImageFit }), [fit, defaultImageFit]);
+    const finalImageFit = useMemo( () => ({ fit: imageFit || defaultImageFit }), [imageFit, defaultImageFit]);
     
     const { width, height, menuOverScreen } = useScreenSize();
 
@@ -161,7 +163,7 @@ const ImageScreen = ({
                         <Visual
                             className={styles.image}
                             media={image}
-                            objectFit={imageFit}
+                            objectFit={finalImageFit}
                             width={imageWidth}
                             height={imageHeight}
                             videoAutoplay={backgroundPlaying}

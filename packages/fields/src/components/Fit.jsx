@@ -11,7 +11,6 @@ import styles from '../styles/fit.module.scss';
 const propTypes = {
     values: PropTypes.arrayOf(MicromagPropTypes.objectFitSize),
     value: MicromagPropTypes.objectFitSize,
-    defaultValue: PropTypes.string,
     className: PropTypes.string,
     onChange: PropTypes.func,
 };
@@ -19,12 +18,11 @@ const propTypes = {
 const defaultProps = {
     values: ['cover', 'contain', null], // TODO, maybe add 'fill', 'scale-down', ?
     value: null,
-    defaultValue: null,
     className: null,
     onChange: null,
 };
 
-const ObjectFitSize = ({ values, value, defaultValue, className, onChange }) => (
+const ObjectFitSize = ({ values, value, className, onChange }) => (
     <Radios
         options={values.map(val => ({
             value: val,
@@ -38,7 +36,7 @@ const ObjectFitSize = ({ values, value, defaultValue, className, onChange }) => 
                 </div>
             ),
         }))}
-        value={value || defaultValue}
+        value={value}
         className={classNames([
             styles.container,
             {

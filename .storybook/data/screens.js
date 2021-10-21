@@ -84,6 +84,7 @@ export const allScreens = [
         type: 'image',
         layout: 'normal',
         image: imageMedia({ gif: true }),
+        imageFit: 'contain',
         background: {
             color: { alpha: 1, color: '#FF00FF' },
         },
