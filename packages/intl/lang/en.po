@@ -1060,6 +1060,12 @@ msgctxt "dj/p/q"
 msgid "Close"
 msgstr "Close"
 
+# Image fit field label
+#: dkBBRa
+msgctxt "dkBBRa"
+msgid "Image fit"
+msgstr "Image fit"
+
 # Map screen title
 #: dmuKH3
 msgctxt "dmuKH3"
