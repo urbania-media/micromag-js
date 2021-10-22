@@ -68,9 +68,9 @@ const Background = ({
 
     const { metadata: imageMetadata, thumbnail_url: imageThumbnailUrl, url:imageUrl } = image || {};
     const { mime:imageMIME } = imageMetadata || {};
-    const isImageGIF = imageMIME === 'image/gif';
-    const tmpImage = hasVideo && !playing && videoThumbnail !== null ? { url: videoThumbnail } : image;
-    const finalImage = isImageGIF ? { url: playing ? imageUrl : imageThumbnailUrl } : tmpImage;
+    const isImageGIF = imageMIME === 'image/gif';    
+    const tmpImage = isImageGIF ? { url: playing ? imageUrl : imageThumbnailUrl } : image;
+    const finalImage = hasVideo && !playing && videoThumbnail !== null ? { url: videoThumbnail } : tmpImage;
 
     // image
     if (finalImage !== null && (!hasVideo || !playing)) {
