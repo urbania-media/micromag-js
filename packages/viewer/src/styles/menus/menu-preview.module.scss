@@ -36,6 +36,8 @@
 
         .button,
         .shareButton {
+            @extend %focus-outline;
+
             display: inline-block;
             border: 0;
             background-color: transparent;
