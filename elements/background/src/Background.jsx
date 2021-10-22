@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -69,8 +69,11 @@ const Background = ({
     const { metadata: imageMetadata, thumbnail_url: imageThumbnailUrl, url:imageUrl } = image || {};
     const { mime:imageMIME } = imageMetadata || {};
     const isImageGIF = imageMIME === 'image/gif';    
-    const tmpImage = isImageGIF ? { url: playing ? imageUrl : imageThumbnailUrl } : image;
-    const finalImage = hasVideo && !playing && videoThumbnail !== null ? { url: videoThumbnail } : tmpImage;
+
+    const finalImage = useMemo( () => {
+        const tmpImage = isImageGIF ? { url: playing ? imageUrl : imageThumbnailUrl } : image;
+        return hasVideo && !playing && videoThumbnail !== null ? { url: videoThumbnail } : tmpImage
+    }, [isImageGIF, playing, imageUrl, imageThumbnailUrl, image, hasVideo, videoThumbnail]);
 
     // image
     if (finalImage !== null && (!hasVideo || !playing)) {

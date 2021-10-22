@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useMemo } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { getSizeWithinBounds } from '@folklore/size';
@@ -47,12 +47,14 @@ const Visual = ({
 }) => {
     const { type = null, thumbnail_url:thumbnailUrl = null, metadata, url } = media || {};
     const { mime } = metadata || {};
-
-    const elProps = { ...props, media };
     const isVideo = type === 'video';
     const isGIF = type === 'image' && mime === 'image/gif';
-    const imageElProps = !videoAutoplay && (isVideo || isGIF) ? {...elProps, media: { url: thumbnailUrl }} : elProps;
-    const finalImageElProps = isGIF && videoAutoplay ? {...elProps, media: { url }} : imageElProps;
+    const elProps = useMemo( () => ({ ...props, media }), [props, media]);
+    
+    const imageElProps = useMemo( () => {
+        const tmpProps = !videoAutoplay && (isVideo || isGIF) ? {...elProps, media: { url: thumbnailUrl }} : elProps;
+        return isGIF && videoAutoplay ? {...elProps, media: { url }} : tmpProps
+    }, [isVideo, isGIF, elProps, thumbnailUrl, url, videoAutoplay]);
 
     let videoContainerStyle = null;
 
@@ -80,7 +82,7 @@ const Visual = ({
         <>
             {type === 'image' || !videoAutoplay ? (
                 <Image
-                    {...finalImageElProps}
+                    {...imageElProps}
                     objectFit={objectFit}
                     width={width}
                     height={height}
