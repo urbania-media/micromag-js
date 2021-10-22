@@ -4,7 +4,7 @@ import React, { useCallback, useRef, useEffect, useMemo, useState } from 'react'
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { useDrag } from 'react-use-gesture';
 import { useSpring, config } from '@react-spring/core';
 import { animated } from '@react-spring/web';
@@ -102,6 +102,7 @@ const Viewer = ({
     onViewModeChange,
     className,
 }) => {
+    const intl = useIntl();
     const parsedStory = useParsedStory(story, { disabled: storyIsParsed }) || {};
     const { components: screens = [], title = null, metadata = null, fonts = null } = parsedStory;
 
@@ -208,13 +209,16 @@ const Viewer = ({
     }, [currentScreen, trackScreenView, trackingEnabled]);
 
     // Handle interaction enable
+    const currentScreenRef = useRef(null);
 
     const onScreenPrevious = useCallback(() => {
         changeIndex(Math.max(0, screenIndex - 1));
+        currentScreenRef.current.focus();
     }, [changeIndex]);
 
     const onScreenNext = useCallback(() => {
         changeIndex(Math.min(screens.length - 1, screenIndex + 1));
+        currentScreenRef.current.focus();
     }, [changeIndex]);
 
     const screensCount = screens.length;
@@ -629,31 +633,13 @@ const Viewer = ({
                                       }px - 50%)) scale(${current ? 1 : 0.9})`
                                     : `translateX(${current ? 0 : '100%'})`;
                                 return (
-                                    <div
-                                        key={key}
-                                        style={{
-                                            width: landscape ? screenWidth : null,
-                                            height: landscape ? screenHeight : null,
-                                            transform: !withoutScreensTransforms
-                                                ? screenTransform
-                                                : null,
-                                        }}
-                                        className={classNames([
-                                            styles.screen,
-                                            { [styles.current]: current },
-                                        ])}
-                                        {...{
-                                            onClick: (e) => {
-                                                onScreenClick(e, i);
-                                            },
-                                        }}
-                                    >
-                                        {viewerScreen}
+                                    <>
                                         {current && screenIndex > 0 ? (
                                             <button
                                                 type="button"
                                                 className="sr-only"
                                                 onClick={onScreenPrevious}
+                                                tabIndex="-1"
                                             >
                                                 <FormattedMessage
                                                     defaultMessage="Go to previous screen"
@@ -661,11 +647,50 @@ const Viewer = ({
                                                 />
                                             </button>
                                         ) : null}
+
+                                        <div
+                                            ref={current ? currentScreenRef : null}
+                                            key={key}
+                                            style={{
+                                                width: landscape ? screenWidth : null,
+                                                height: landscape ? screenHeight : null,
+                                                transform: !withoutScreensTransforms
+                                                    ? screenTransform
+                                                    : null,
+                                            }}
+                                            className={classNames([
+                                                styles.screen,
+                                                { [styles.current]: current },
+                                            ])}
+                                            tabIndex={active ? '0' : '-1'} /* eslint-disable-line */
+                                            aria-hidden={current ? null : 'true'}
+                                            aria-label={intl.formatMessage(
+                                                {
+                                                    defaultMessage: 'Screen {index}',
+                                                    description: 'Button label',
+                                                },
+                                                { index: i + 1 },
+                                            )}
+                                            {...{
+                                                onKeyUp: (e) => {
+                                                    if (e.key === 'Enter') {
+                                                        onScreenClick(e, i);
+                                                    }
+                                                },
+                                                onClick: (e) => {
+                                                    onScreenClick(e, i);
+                                                },
+                                            }}
+                                        >
+                                            {viewerScreen}
+                                        </div>
+
                                         {current && screenIndex < screens.length ? (
                                             <button
                                                 type="button"
                                                 className="sr-only"
                                                 onClick={onScreenNext}
+                                                tabIndex="-1"
                                             >
                                                 <FormattedMessage
                                                     defaultMessage="Go to next screen"
@@ -673,7 +698,7 @@ const Viewer = ({
                                                 />
                                             </button>
                                         ) : null}
-                                    </div>
+                                    </>
                                 );
                             })}
                         </div>
