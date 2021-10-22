@@ -32,6 +32,8 @@ export const allScreens = [
         },
         background: {
             color: { alpha: 1, color: '#00FF00' },
+            image: imageMedia(),
+            video: videoMedia(),
         },
         callToAction: callToAction(),
     },

@@ -73,7 +73,7 @@ const Background = ({
     const finalImage = isImageGIF ? { url: playing ? imageUrl : imageThumbnailUrl } : tmpImage;
 
     // image
-    if (finalImage !== null) {
+    if (finalImage !== null && (!hasVideo || !playing)) {
         const finalUrl = getOptimalImageUrl(finalImage, width, height);
         finalStyle.backgroundImage = `url("${finalUrl}")`;
         finalStyle.backgroundRepeat = repeat ? 'repeat' : 'no-repeat';
