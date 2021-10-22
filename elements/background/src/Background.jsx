@@ -66,12 +66,11 @@ const Background = ({
         ...getStyleFromColor(color),
     };
 
-    const { metadata: imageMetadata, thumbnail_url: imageThumbnailUrl } = image || {};
+    const { metadata: imageMetadata, thumbnail_url: imageThumbnailUrl, url:imageUrl } = image || {};
     const { mime:imageMIME } = imageMetadata || {};
     const isImageGIF = imageMIME === 'image/gif';
-
-    const videoImage = hasVideo && !playing && videoThumbnail !== null ? { url: videoThumbnail } : image;
-    const finalImage = isImageGIF && !playing ? { url: imageThumbnailUrl } : videoImage;
+    const tmpImage = hasVideo && !playing && videoThumbnail !== null ? { url: videoThumbnail } : image;
+    const finalImage = isImageGIF ? { url: playing ? imageUrl : imageThumbnailUrl } : tmpImage;
 
     // image
     if (finalImage !== null) {
