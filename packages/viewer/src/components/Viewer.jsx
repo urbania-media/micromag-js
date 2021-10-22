@@ -369,6 +369,20 @@ const Viewer = ({
         { axis: 'y', filterTaps: true },
     );
 
+    const setPreviewMenu = (opened) => {
+        setMenuSpring.start({ y: opened ? 1 : 0 });
+        menuOpened.current = opened;
+        setPreviewMenuOpen(opened);
+    };
+
+    const openPreviewMenu = useCallback(() => {
+        setPreviewMenu(true);
+    }, [setMenuSpring, setPreviewMenuOpen]);
+
+    const closePreviewMenu = useCallback(() => {
+        setPreviewMenu(false);
+    }, [setMenuSpring, setPreviewMenuOpen]);
+
     // Handle dot menu item click
 
     const onClickDotsMenuItem = useCallback(
@@ -381,9 +395,7 @@ const Viewer = ({
             if (goToScreen) {
                 changeIndex(index);
             } else {
-                setMenuSpring.start({ y: menuOpened.current ? 0 : 1 });
-                menuOpened.current = !menuOpened.current;
-                setPreviewMenuOpen(menuOpened.current);
+                openPreviewMenu();
             }
             if (trackingEnabled) {
                 const trackAction = goToScreen ? 'click_screen_change' : 'click_open';
@@ -400,7 +412,6 @@ const Viewer = ({
             landscape,
             trackingEnabled,
             trackEvent,
-            screenId,
             screenType,
             onInteractionPrivate,
         ],
@@ -411,9 +422,7 @@ const Viewer = ({
     const onClickPreviewMenuItem = useCallback(
         (index) => {
             changeIndex(index);
-            setMenuSpring.start({ y: 0 });
-            menuOpened.current = false;
-            setPreviewMenuOpen(false);
+            closePreviewMenu();
 
             if (trackingEnabled) {
                 trackEvent('viewer_menu', 'click_screen_change', `Screen ${index + 1}`, {
@@ -427,13 +436,6 @@ const Viewer = ({
     );
 
     // Handle preview menu close click
-    const closePreviewMenu = useCallback(() => {
-        if (menuOpened.current) {
-            setMenuSpring.start({ y: 0 });
-            menuOpened.current = false;
-            setPreviewMenuOpen(false);
-        }
-    }, [setMenuSpring, setPreviewMenuOpen]);
 
     const onClickPreviewMenuClose = useCallback(() => {
         closePreviewMenu();
@@ -500,17 +502,23 @@ const Viewer = ({
                 return;
             }
 
-            const { keyCode } = e;
+            const { code } = e;
 
-            switch (keyCode) {
-                case 27:
+            switch (code) {
+                case 'KeyF':
+                    toggleFullscreen();
+                    break;
+                case 'KeyM':
+                    setPreviewMenu(!menuOpened.current);
+                    break;
+                case 'Escape':
                     closePreviewMenu();
                     break;
-                case 37: // left
+                case 'ArrowLeft': // left
                     onScreenPrevious();
                     break;
-                case 39: // right
-                case 32: // spacebar
+                case 'ArrowRight': // right
+                case 'Space': // spacebar
                     onScreenNext();
                     break;
                 default:

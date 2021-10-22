@@ -63,10 +63,6 @@
     font-family: inherit;
     cursor: pointer;
     appearance: none;
-
-    &:focus {
-        outline: none;
-    }
 }
 
 %reset-input {
@@ -283,5 +279,11 @@
 
     &.leaveActiveBottom {
         transform: translate(0, -100%);
+    }
+}
+
+%focus-outline {
+    &:focus-visible {
+        outline: 3px solid $purple;
     }
 }
