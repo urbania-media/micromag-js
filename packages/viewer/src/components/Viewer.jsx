@@ -514,11 +514,13 @@ const Viewer = ({
             }
         };
 
-        window.addEventListener('keydown', onKey);
+        if (renderContext === 'view') {
+            window.addEventListener('keydown', onKey);
+        }
         return () => {
             window.removeEventListener('keydown', onKey);
         };
-    }, [closePreviewMenu, onScreenPrevious, onScreenNext]);
+    }, [renderContext, closePreviewMenu, onScreenPrevious, onScreenNext]);
 
     const { parameters: screenParameters } = currentScreen || {};
     const { metadata: screenMetadata } = screenParameters || {};
