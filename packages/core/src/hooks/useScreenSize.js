@@ -71,7 +71,7 @@ export const useScreenSizeFromElement = ({ width = null, height = null, ...opts 
             finalHeight = Math.round(fullHeight * 3 / 4);
         }
 
-        finalWidth = Math.round(finalHeight * 4 / 6);
+        finalWidth = Math.round(finalHeight * 2 / 3);
     }
 
     if (finalWidth % 2 === 1) {

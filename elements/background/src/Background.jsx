@@ -66,7 +66,12 @@ const Background = ({
         ...getStyleFromColor(color),
     };
 
-    const finalImage = hasVideo && !playing && videoThumbnail !== null ? { url: videoThumbnail } : image;
+    const { metadata: imageMetadata, thumbnail_url: imageThumbnailUrl } = image || {};
+    const { mime:imageMIME } = imageMetadata || {};
+    const isImageGIF = imageMIME === 'image/gif';
+
+    const videoImage = hasVideo && !playing && videoThumbnail !== null ? { url: videoThumbnail } : image;
+    const finalImage = isImageGIF && !playing ? { url: imageThumbnailUrl } : videoImage;
 
     // image
     if (finalImage !== null) {

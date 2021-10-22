@@ -71,8 +71,8 @@ const ViewerMenuPreview = ({
     className,
 }) => {
     const intl = useIntl();
-    const screenSizeRatio = `${(6 / 4 / thumbsPerLine) * 100}%`;
-    const screenRatioHeight = (screenWidth * 6) / 4;
+    const screenSizeRatio = `${(3 / 2 / thumbsPerLine) * 100}%`;
+    const screenRatioHeight = (screenWidth * 3) / 2;
 
     const hasSize = screenWidth > 0;
     const hasItems = items !== null && items.length > 0;

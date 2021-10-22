@@ -115,6 +115,7 @@ export const imageMedia = ({ width = 800, height = 800, rand = false, gif = fals
     metadata: {
         width,
         height,
+        mime: gif ? 'image/gif' : 'image/jpg',
     },
     sizes: Object.keys(sizes).reduce((currentSizes, key) => ({
         ...currentSizes,

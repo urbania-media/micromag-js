@@ -45,14 +45,18 @@ const Visual = ({
     className,
     ...props
 }) => {
-    const { type = null, thumbnail_url:thumbnailUrl = null } = media || {};
+    const { type = null, thumbnail_url:thumbnailUrl = null, metadata, url } = media || {};
+    const { mime } = metadata || {};
 
     const elProps = { ...props, media };
-    const imageElProps = type === 'video' && !videoAutoplay ? {...elProps, media: { url: thumbnailUrl }} : elProps;
+    const isVideo = type === 'video';
+    const isGIF = type === 'image' && mime === 'image/gif';
+    const imageElProps = !videoAutoplay && (isVideo || isGIF) ? {...elProps, media: { url: thumbnailUrl }} : elProps;
+    const finalImageElProps = isGIF && videoAutoplay ? {...elProps, media: { url }} : imageElProps;
 
     let videoContainerStyle = null;
 
-    if (type === 'video' && objectFit !== null && videoAutoplay) {
+    if (isVideo && objectFit !== null && videoAutoplay) {
         const { fit = 'cover' } = objectFit || {};
         const { metadata: videoMetadata = null } = media || {};
         const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
@@ -76,7 +80,7 @@ const Visual = ({
         <>
             {type === 'image' || !videoAutoplay ? (
                 <Image
-                    {...imageElProps}
+                    {...finalImageElProps}
                     objectFit={objectFit}
                     width={width}
                     height={height}
@@ -84,7 +88,7 @@ const Visual = ({
                     className={classNames([styles.container, { [className]: className !== null }])}
                 />
             ) : null}
-            {type === 'video' && videoAutoplay ? (
+            {isVideo && videoAutoplay ? (
                 <div
                     className={classNames([styles.container, { [className]: className !== null }])}
                     style={{ width, height }}
