@@ -4,7 +4,7 @@ import React, { useCallback, useRef, useEffect, useMemo, useState } from 'react'
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FormattedMessage, useIntl } from 'react-intl';
+// import { FormattedMessage, useIntl } from 'react-intl';
 import { useDrag } from 'react-use-gesture';
 import { useSpring, config } from '@react-spring/core';
 import { animated } from '@react-spring/web';
@@ -102,7 +102,7 @@ const Viewer = ({
     onViewModeChange,
     className,
 }) => {
-    const intl = useIntl();
+    // const intl = useIntl();
     const parsedStory = useParsedStory(story, { disabled: storyIsParsed }) || {};
     const { components: screens = [], title = null, metadata = null, fonts = null } = parsedStory;
 
@@ -649,10 +649,11 @@ const Viewer = ({
                                                 onClick={onScreenPrevious}
                                                 tabIndex="-1"
                                             >
-                                                <FormattedMessage
+                                                {/* <FormattedMessage
                                                     defaultMessage="Go to previous screen"
                                                     description="Button label"
-                                                />
+                                                /> */}
+                                                Go to previous screen
                                             </button>
                                         ) : null}
 
@@ -672,13 +673,13 @@ const Viewer = ({
                                             ])}
                                             tabIndex={active ? '0' : '-1'} /* eslint-disable-line */
                                             aria-hidden={current ? null : 'true'}
-                                            aria-label={intl.formatMessage(
-                                                {
-                                                    defaultMessage: 'Screen {index}',
-                                                    description: 'Button label',
-                                                },
-                                                { index: i + 1 },
-                                            )}
+                                            // aria-label={intl.formatMessage(
+                                            //     {
+                                            //         defaultMessage: 'Screen {index}',
+                                            //         description: 'Button label',
+                                            //     },
+                                            //     { index: i + 1 },
+                                            // )}
                                             {...{
                                                 onKeyUp: (e) => {
                                                     if (e.key === 'Enter') {
@@ -700,10 +701,11 @@ const Viewer = ({
                                                 onClick={onScreenNext}
                                                 tabIndex="-1"
                                             >
-                                                <FormattedMessage
+                                                {/* <FormattedMessage
                                                     defaultMessage="Go to next screen"
                                                     description="Button label"
-                                                />
+                                                /> */}
+                                                Go to next screen
                                             </button>
                                         ) : null}
                                     </>
