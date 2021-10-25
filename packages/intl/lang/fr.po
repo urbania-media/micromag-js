@@ -359,12 +359,6 @@ msgctxt "7j/LQ6"
 msgid "Rounded corners"
 msgstr "Coins arrondis"
 
-# Button label
-#: 7tw6U2
-msgctxt "7tw6U2"
-msgid "Share"
-msgstr "Partager"
-
 # Label in Media Gallery
 #: 7uyslu
 msgctxt "7uyslu"
@@ -473,12 +467,6 @@ msgctxt "AQ8Aig"
 msgid "Used"
 msgstr "Utilisé"
 
-# Button label
-#: AuxqcG
-msgctxt "AuxqcG"
-msgid "Fullscreen"
-msgstr "Plein écran"
-
 # Label when no value is provided to Image field
 #: B1MeY+
 msgctxt "B1MeY+"
@@ -556,12 +544,6 @@ msgstr "Sous-titre"
 msgctxt "EoVdMy"
 msgid "Edit content..."
 msgstr "Modifier le contenu..."
-
-# Button label
-#: F/gl4b
-msgctxt "F/gl4b"
-msgid "Menu"
-msgstr "Menu"
 
 # Field label
 #: F2SD/0
@@ -1072,12 +1054,6 @@ msgctxt "dVcog7"
 msgid "Title"
 msgstr "Titre"
 
-# Button label
-#: dj/p/q
-msgctxt "dj/p/q"
-msgid "Close"
-msgstr "Fermer"
-
 # Image fit field label
 #: dkBBRa
 msgctxt "dkBBRa"
@@ -1538,12 +1514,6 @@ msgctxt "vZrFq6"
 msgid "Title with subtitle and credits"
 msgstr "Titre avec sous-titre et crédits"
 
-# Button label
-#: vmrJ8U
-msgctxt "vmrJ8U"
-msgid "(current screen)"
-msgstr "(écran en cours)"
-
 # Background color label
 #: vzW/wd
 msgctxt "vzW/wd"
@@ -1555,12 +1525,6 @@ msgstr "Couleur de fond"
 msgctxt "vzg8Es"
 msgid "Mute"
 msgstr "Sans son"
-
-# Nav label
-#: wCsW9o
-msgctxt "wCsW9o"
-msgid "Screen shortcuts list"
-msgstr "Liste des raccourcis d'écrans"
 
 # Button to show screens
 #: wkysUu

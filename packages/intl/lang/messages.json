@@ -231,10 +231,6 @@
     "defaultMessage": "Rounded corners",
     "description": "Rounded corners label"
   },
-  "7tw6U2": {
-    "defaultMessage": "Share",
-    "description": "Button label"
-  },
   "7uyslu": {
     "defaultMessage": "Description",
     "description": "Label in Media Gallery"
@@ -307,10 +303,6 @@
     "defaultMessage": "Used",
     "description": "Media label"
   },
-  "AuxqcG": {
-    "defaultMessage": "Fullscreen",
-    "description": "Button label"
-  },
   "B1MeY+": {
     "defaultMessage": "Select an image...",
     "description": "Label when no value is provided to Image field"
@@ -362,10 +354,6 @@
   "EoVdMy": {
     "defaultMessage": "Edit content...",
     "description": "Label when no value is provided to Field with form"
-  },
-  "F/gl4b": {
-    "defaultMessage": "Menu",
-    "description": "Button label"
   },
   "F2SD/0": {
     "defaultMessage": "Loop",
@@ -706,10 +694,6 @@
     "defaultMessage": "Title",
     "description": "Title screen title"
   },
-  "dj/p/q": {
-    "defaultMessage": "Close",
-    "description": "Button label"
-  },
   "dkBBRa": {
     "defaultMessage": "Image fit",
     "description": "Image fit field label"
@@ -1016,10 +1000,6 @@
     "defaultMessage": "Title with subtitle and credits",
     "description": "TitleSubtitleCredits screen title"
   },
-  "vmrJ8U": {
-    "defaultMessage": "(current screen)",
-    "description": "Button label"
-  },
   "vzW/wd": {
     "defaultMessage": "Background color",
     "description": "Background color label"
@@ -1027,10 +1007,6 @@
   "vzg8Es": {
     "defaultMessage": "Mute",
     "description": "Button label"
-  },
-  "wCsW9o": {
-    "defaultMessage": "Screen shortcuts list",
-    "description": "Nav label"
   },
   "wkysUu": {
     "defaultMessage": "Screens",
