@@ -64,8 +64,10 @@
     }
 
     .buttonSubmit {
+        @extend %focus-outline;
+
         border: 0;
-        
+
         &:disabled {
             opacity: 1;
         }
@@ -111,7 +113,7 @@
     }
 
     .contributions {
-        position: relative;        
+        position: relative;
     }
 
     .contribution {

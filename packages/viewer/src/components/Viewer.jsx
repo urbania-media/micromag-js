@@ -4,7 +4,7 @@ import React, { useCallback, useRef, useEffect, useMemo, useState } from 'react'
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { useDrag } from 'react-use-gesture';
 import { useSpring, config } from '@react-spring/core';
 import { animated } from '@react-spring/web';
@@ -102,6 +102,7 @@ const Viewer = ({
     onViewModeChange,
     className,
 }) => {
+    const intl = useIntl();
     const parsedStory = useParsedStory(story, { disabled: storyIsParsed }) || {};
     const { components: screens = [], title = null, metadata = null, fonts = null } = parsedStory;
 
@@ -208,13 +209,16 @@ const Viewer = ({
     }, [currentScreen, trackScreenView, trackingEnabled]);
 
     // Handle interaction enable
+    const currentScreenRef = useRef(null);
 
     const onScreenPrevious = useCallback(() => {
         changeIndex(Math.max(0, screenIndex - 1));
+        currentScreenRef.current.focus();
     }, [changeIndex]);
 
     const onScreenNext = useCallback(() => {
         changeIndex(Math.min(screens.length - 1, screenIndex + 1));
+        currentScreenRef.current.focus();
     }, [changeIndex]);
 
     const screensCount = screens.length;
@@ -365,6 +369,20 @@ const Viewer = ({
         { axis: 'y', filterTaps: true },
     );
 
+    const setPreviewMenu = (opened) => {
+        setMenuSpring.start({ y: opened ? 1 : 0 });
+        menuOpened.current = opened;
+        setPreviewMenuOpen(opened);
+    };
+
+    const openPreviewMenu = useCallback(() => {
+        setPreviewMenu(true);
+    }, [setMenuSpring, setPreviewMenuOpen]);
+
+    const closePreviewMenu = useCallback(() => {
+        setPreviewMenu(false);
+    }, [setMenuSpring, setPreviewMenuOpen]);
+
     // Handle dot menu item click
 
     const onClickDotsMenuItem = useCallback(
@@ -377,9 +395,7 @@ const Viewer = ({
             if (goToScreen) {
                 changeIndex(index);
             } else {
-                setMenuSpring.start({ y: menuOpened.current ? 0 : 1 });
-                menuOpened.current = !menuOpened.current;
-                setPreviewMenuOpen(menuOpened.current);
+                openPreviewMenu();
             }
             if (trackingEnabled) {
                 const trackAction = goToScreen ? 'click_screen_change' : 'click_open';
@@ -396,7 +412,6 @@ const Viewer = ({
             landscape,
             trackingEnabled,
             trackEvent,
-            screenId,
             screenType,
             onInteractionPrivate,
         ],
@@ -407,9 +422,7 @@ const Viewer = ({
     const onClickPreviewMenuItem = useCallback(
         (index) => {
             changeIndex(index);
-            setMenuSpring.start({ y: 0 });
-            menuOpened.current = false;
-            setPreviewMenuOpen(false);
+            closePreviewMenu();
 
             if (trackingEnabled) {
                 trackEvent('viewer_menu', 'click_screen_change', `Screen ${index + 1}`, {
@@ -423,13 +436,6 @@ const Viewer = ({
     );
 
     // Handle preview menu close click
-    const closePreviewMenu = useCallback(() => {
-        if (menuOpened.current) {
-            setMenuSpring.start({ y: 0 });
-            menuOpened.current = false;
-            setPreviewMenuOpen(false);
-        }
-    }, [setMenuSpring, setPreviewMenuOpen]);
 
     const onClickPreviewMenuClose = useCallback(() => {
         closePreviewMenu();
@@ -496,17 +502,23 @@ const Viewer = ({
                 return;
             }
 
-            const { keyCode } = e;
+            const { code } = e;
 
-            switch (keyCode) {
-                case 27:
+            switch (code) {
+                case 'KeyF':
+                    toggleFullscreen();
+                    break;
+                case 'KeyM':
+                    setPreviewMenu(!menuOpened.current);
+                    break;
+                case 'Escape':
                     closePreviewMenu();
                     break;
-                case 37: // left
+                case 'ArrowLeft': // left
                     onScreenPrevious();
                     break;
-                case 39: // right
-                case 32: // spacebar
+                case 'ArrowRight': // right
+                case 'Space': // spacebar
                     onScreenNext();
                     break;
                 default:
@@ -629,31 +641,13 @@ const Viewer = ({
                                       }px - 50%)) scale(${current ? 1 : 0.9})`
                                     : `translateX(${current ? 0 : '100%'})`;
                                 return (
-                                    <div
-                                        key={key}
-                                        style={{
-                                            width: landscape ? screenWidth : null,
-                                            height: landscape ? screenHeight : null,
-                                            transform: !withoutScreensTransforms
-                                                ? screenTransform
-                                                : null,
-                                        }}
-                                        className={classNames([
-                                            styles.screen,
-                                            { [styles.current]: current },
-                                        ])}
-                                        {...{
-                                            onClick: (e) => {
-                                                onScreenClick(e, i);
-                                            },
-                                        }}
-                                    >
-                                        {viewerScreen}
+                                    <>
                                         {current && screenIndex > 0 ? (
                                             <button
                                                 type="button"
                                                 className="sr-only"
                                                 onClick={onScreenPrevious}
+                                                tabIndex="-1"
                                             >
                                                 <FormattedMessage
                                                     defaultMessage="Go to previous screen"
@@ -661,11 +655,50 @@ const Viewer = ({
                                                 />
                                             </button>
                                         ) : null}
+
+                                        <div
+                                            ref={current ? currentScreenRef : null}
+                                            key={key}
+                                            style={{
+                                                width: landscape ? screenWidth : null,
+                                                height: landscape ? screenHeight : null,
+                                                transform: !withoutScreensTransforms
+                                                    ? screenTransform
+                                                    : null,
+                                            }}
+                                            className={classNames([
+                                                styles.screen,
+                                                { [styles.current]: current },
+                                            ])}
+                                            tabIndex={active ? '0' : '-1'} /* eslint-disable-line */
+                                            aria-hidden={current ? null : 'true'}
+                                            aria-label={intl.formatMessage(
+                                                {
+                                                    defaultMessage: 'Screen {index}',
+                                                    description: 'Button label',
+                                                },
+                                                { index: i + 1 },
+                                            )}
+                                            {...{
+                                                onKeyUp: (e) => {
+                                                    if (e.key === 'Enter') {
+                                                        onScreenClick(e, i);
+                                                    }
+                                                },
+                                                onClick: (e) => {
+                                                    onScreenClick(e, i);
+                                                },
+                                            }}
+                                        >
+                                            {viewerScreen}
+                                        </div>
+
                                         {current && screenIndex < screens.length ? (
                                             <button
                                                 type="button"
                                                 className="sr-only"
                                                 onClick={onScreenNext}
+                                                tabIndex="-1"
                                             >
                                                 <FormattedMessage
                                                     defaultMessage="Go to next screen"
@@ -673,7 +706,7 @@ const Viewer = ({
                                                 />
                                             </button>
                                         ) : null}
-                                    </div>
+                                    </>
                                 );
                             })}
                         </div>
