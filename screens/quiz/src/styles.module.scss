@@ -17,7 +17,7 @@
         position: relative;
     }
 
-    .item {        
+    .item {
         transition-property: opacity;
         transition-duration: 0.15s;
         transition-timing-function: ease;
@@ -36,6 +36,8 @@
     }
 
     .button {
+        @extend %focus-outline;
+
         position: relative;
         width: 100%;
         padding: 10px 40px;
@@ -48,7 +50,7 @@
     }
 
     .resultIcon {
-        display: flex;        
+        display: flex;
         position: absolute;
         top: 50%;
         left: 5px;
@@ -66,7 +68,7 @@
     }
 
     .result {
-        position: absolute;        
+        position: absolute;
         transition: opacity 0.5s ease;
         opacity: 0;
         pointer-events: none;

@@ -277,6 +277,11 @@ const ViewerMenuPreview = ({
                                                 onClickItem(index);
                                             }}
                                             // aria-label={screenAriaLabel}
+                                            onKeyUp={(e) => {
+                                                if (e.key === 'Enter') {
+                                                    onClickItem(index);
+                                                }
+                                            }}
                                             tabIndex={focusable ? '0' : '-1'}
                                         />
                                     </li>
