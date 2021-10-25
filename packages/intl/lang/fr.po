@@ -671,12 +671,6 @@ msgctxt "KHWeV7"
 msgid "Answers"
 msgstr "Réponses"
 
-# Button label
-#: LkVfwW
-msgctxt "LkVfwW"
-msgid "Screen {index}"
-msgstr "Écran {index}"
-
 # MapImages screen title
 #: MLuvzG
 msgctxt "MLuvzG"
@@ -1484,12 +1478,6 @@ msgctxt "v4Qtl9"
 msgid "Today"
 msgstr "Aujourd'hui"
 
-# Button label
-#: v9bqYj
-msgctxt "v9bqYj"
-msgid "Go to next screen"
-msgstr "Aller à l'écran suivant"
-
 # Border label
 #: vA+9dU
 msgctxt "vA+9dU"
@@ -1621,12 +1609,6 @@ msgstr "Modifier..."
 msgctxt "zW7IVm"
 msgid "Quiz"
 msgstr "Quiz"
-
-# Button label
-#: zYH/31
-msgctxt "zYH/31"
-msgid "Go to previous screen"
-msgstr "Aller à l'écran précédent"
 
 # Field placeholder
 #: zh2m/S

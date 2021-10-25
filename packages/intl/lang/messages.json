@@ -439,10 +439,6 @@
     "defaultMessage": "Answers",
     "description": "Field label"
   },
-  "LkVfwW": {
-    "defaultMessage": "Screen {index}",
-    "description": "Button label"
-  },
   "MLuvzG": {
     "defaultMessage": "Map with image markers",
     "description": "MapImages screen title"
@@ -980,10 +976,6 @@
     "defaultMessage": "Today",
     "description": "Today date message"
   },
-  "v9bqYj": {
-    "defaultMessage": "Go to next screen",
-    "description": "Button label"
-  },
   "vA+9dU": {
     "defaultMessage": "Border",
     "description": "Border label"
@@ -1071,10 +1063,6 @@
   "zW7IVm": {
     "defaultMessage": "Quiz",
     "description": "Quiz screen title"
-  },
-  "zYH/31": {
-    "defaultMessage": "Go to previous screen",
-    "description": "Button label"
   },
   "zh2m/S": {
     "defaultMessage": "Search fonts...",

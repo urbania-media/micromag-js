@@ -326,9 +326,6 @@
     "KHWeV7": {
         "defaultMessage": "Answers"
     },
-    "LkVfwW": {
-        "defaultMessage": "Screen {index}"
-    },
     "MLuvzG": {
         "defaultMessage": "Map with image markers"
     },
@@ -734,9 +731,6 @@
     "v4Qtl9": {
         "defaultMessage": "Today"
     },
-    "v9bqYj": {
-        "defaultMessage": "Go to next screen"
-    },
     "vA+9dU": {
         "defaultMessage": "Border"
     },
@@ -802,9 +796,6 @@
     },
     "zW7IVm": {
         "defaultMessage": "Quiz"
-    },
-    "zYH/31": {
-        "defaultMessage": "Go to previous screen"
     },
     "zh2m/S": {
         "defaultMessage": "Search fonts..."
