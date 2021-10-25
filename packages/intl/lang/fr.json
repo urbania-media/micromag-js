@@ -170,6 +170,9 @@
     "7j/LQ6": {
         "defaultMessage": "Coins arrondis"
     },
+    "7tw6U2": {
+        "defaultMessage": "Partager"
+    },
     "7uyslu": {
         "defaultMessage": "Description"
     },
@@ -224,6 +227,9 @@
     "AQ8Aig": {
         "defaultMessage": "Utilisé"
     },
+    "AuxqcG": {
+        "defaultMessage": "Plein écran"
+    },
     "B1MeY+": {
         "defaultMessage": "Sélectionnez une image..."
     },
@@ -262,6 +268,9 @@
     },
     "EoVdMy": {
         "defaultMessage": "Modifier le contenu..."
+    },
+    "F/gl4b": {
+        "defaultMessage": "Menu"
     },
     "F2SD/0": {
         "defaultMessage": "Boucle"
@@ -325,6 +334,9 @@
     },
     "KHWeV7": {
         "defaultMessage": "Réponses"
+    },
+    "LkVfwW": {
+        "defaultMessage": "Écran {index}"
     },
     "MLuvzG": {
         "defaultMessage": "Carte avec images"
@@ -514,6 +526,9 @@
     },
     "dVcog7": {
         "defaultMessage": "Titre"
+    },
+    "dj/p/q": {
+        "defaultMessage": "Fermer"
     },
     "dkBBRa": {
         "defaultMessage": "Ajustement de l’image"
@@ -731,6 +746,9 @@
     "v4Qtl9": {
         "defaultMessage": "Aujourd'hui"
     },
+    "v9bqYj": {
+        "defaultMessage": "Aller à l'écran suivant"
+    },
     "vA+9dU": {
         "defaultMessage": "Bordure"
     },
@@ -743,11 +761,17 @@
     "vZrFq6": {
         "defaultMessage": "Titre avec sous-titre et crédits"
     },
+    "vmrJ8U": {
+        "defaultMessage": "(écran en cours)"
+    },
     "vzW/wd": {
         "defaultMessage": "Couleur de fond"
     },
     "vzg8Es": {
         "defaultMessage": "Sans son"
+    },
+    "wCsW9o": {
+        "defaultMessage": "Liste des raccourcis d'écrans"
     },
     "wkysUu": {
         "defaultMessage": "Écrans"
@@ -796,6 +820,9 @@
     },
     "zW7IVm": {
         "defaultMessage": "Quiz"
+    },
+    "zYH/31": {
+        "defaultMessage": "Aller à l'écran précédent"
     },
     "zh2m/S": {
         "defaultMessage": "Rechercher une police..."

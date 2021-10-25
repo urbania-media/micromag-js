@@ -359,6 +359,12 @@ msgctxt "7j/LQ6"
 msgid "Rounded corners"
 msgstr "Coins arrondis"
 
+# Button label
+#: 7tw6U2
+msgctxt "7tw6U2"
+msgid "Share"
+msgstr "Partager"
+
 # Label in Media Gallery
 #: 7uyslu
 msgctxt "7uyslu"
@@ -467,6 +473,12 @@ msgctxt "AQ8Aig"
 msgid "Used"
 msgstr "Utilisé"
 
+# Button label
+#: AuxqcG
+msgctxt "AuxqcG"
+msgid "Fullscreen"
+msgstr "Plein écran"
+
 # Label when no value is provided to Image field
 #: B1MeY+
 msgctxt "B1MeY+"
@@ -544,6 +556,12 @@ msgstr "Sous-titre"
 msgctxt "EoVdMy"
 msgid "Edit content..."
 msgstr "Modifier le contenu..."
+
+# Button label
+#: F/gl4b
+msgctxt "F/gl4b"
+msgid "Menu"
+msgstr "Menu"
 
 # Field label
 #: F2SD/0
@@ -670,6 +688,12 @@ msgstr "Aucune police..."
 msgctxt "KHWeV7"
 msgid "Answers"
 msgstr "Réponses"
+
+# Button label
+#: LkVfwW
+msgctxt "LkVfwW"
+msgid "Screen {index}"
+msgstr "Écran {index}"
 
 # MapImages screen title
 #: MLuvzG
@@ -1047,6 +1071,12 @@ msgstr "Aucune image..."
 msgctxt "dVcog7"
 msgid "Title"
 msgstr "Titre"
+
+# Button label
+#: dj/p/q
+msgctxt "dj/p/q"
+msgid "Close"
+msgstr "Fermer"
 
 # Image fit field label
 #: dkBBRa
@@ -1478,6 +1508,12 @@ msgctxt "v4Qtl9"
 msgid "Today"
 msgstr "Aujourd'hui"
 
+# Button label
+#: v9bqYj
+msgctxt "v9bqYj"
+msgid "Go to next screen"
+msgstr "Aller à l'écran suivant"
+
 # Border label
 #: vA+9dU
 msgctxt "vA+9dU"
@@ -1502,6 +1538,12 @@ msgctxt "vZrFq6"
 msgid "Title with subtitle and credits"
 msgstr "Titre avec sous-titre et crédits"
 
+# Button label
+#: vmrJ8U
+msgctxt "vmrJ8U"
+msgid "(current screen)"
+msgstr "(écran en cours)"
+
 # Background color label
 #: vzW/wd
 msgctxt "vzW/wd"
@@ -1513,6 +1555,12 @@ msgstr "Couleur de fond"
 msgctxt "vzg8Es"
 msgid "Mute"
 msgstr "Sans son"
+
+# Nav label
+#: wCsW9o
+msgctxt "wCsW9o"
+msgid "Screen shortcuts list"
+msgstr "Liste des raccourcis d'écrans"
 
 # Button to show screens
 #: wkysUu
@@ -1609,6 +1657,12 @@ msgstr "Modifier..."
 msgctxt "zW7IVm"
 msgid "Quiz"
 msgstr "Quiz"
+
+# Button label
+#: zYH/31
+msgctxt "zYH/31"
+msgid "Go to previous screen"
+msgstr "Aller à l'écran précédent"
 
 # Field placeholder
 #: zh2m/S

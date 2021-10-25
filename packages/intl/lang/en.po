@@ -359,6 +359,12 @@ msgctxt "7j/LQ6"
 msgid "Rounded corners"
 msgstr "Rounded corners"
 
+# Button label
+#: 7tw6U2
+msgctxt "7tw6U2"
+msgid "Share"
+msgstr "Share"
+
 # Label in Media Gallery
 #: 7uyslu
 msgctxt "7uyslu"
@@ -467,6 +473,12 @@ msgctxt "AQ8Aig"
 msgid "Used"
 msgstr "Used"
 
+# Button label
+#: AuxqcG
+msgctxt "AuxqcG"
+msgid "Fullscreen"
+msgstr "Fullscreen"
+
 # Label when no value is provided to Image field
 #: B1MeY+
 msgctxt "B1MeY+"
@@ -544,6 +556,12 @@ msgstr "Subtitle"
 msgctxt "EoVdMy"
 msgid "Edit content..."
 msgstr "Edit content..."
+
+# Button label
+#: F/gl4b
+msgctxt "F/gl4b"
+msgid "Menu"
+msgstr "Menu"
 
 # Field label
 #: F2SD/0
@@ -670,6 +688,12 @@ msgstr "No font..."
 msgctxt "KHWeV7"
 msgid "Answers"
 msgstr "Answers"
+
+# Button label
+#: LkVfwW
+msgctxt "LkVfwW"
+msgid "Screen {index}"
+msgstr "Screen {index}"
 
 # MapImages screen title
 #: MLuvzG
@@ -1047,6 +1071,12 @@ msgstr "No image..."
 msgctxt "dVcog7"
 msgid "Title"
 msgstr "Title"
+
+# Button label
+#: dj/p/q
+msgctxt "dj/p/q"
+msgid "Close"
+msgstr "Close"
 
 # Image fit field label
 #: dkBBRa
@@ -1478,6 +1508,12 @@ msgctxt "v4Qtl9"
 msgid "Today"
 msgstr "Today"
 
+# Button label
+#: v9bqYj
+msgctxt "v9bqYj"
+msgid "Go to next screen"
+msgstr "Go to next screen"
+
 # Border label
 #: vA+9dU
 msgctxt "vA+9dU"
@@ -1502,6 +1538,12 @@ msgctxt "vZrFq6"
 msgid "Title with subtitle and credits"
 msgstr "Title with subtitle and credits"
 
+# Button label
+#: vmrJ8U
+msgctxt "vmrJ8U"
+msgid "(current screen)"
+msgstr "(current screen)"
+
 # Background color label
 #: vzW/wd
 msgctxt "vzW/wd"
@@ -1513,6 +1555,12 @@ msgstr "Background color"
 msgctxt "vzg8Es"
 msgid "Mute"
 msgstr "Mute"
+
+# Nav label
+#: wCsW9o
+msgctxt "wCsW9o"
+msgid "Screen shortcuts list"
+msgstr "Screen shortcuts list"
 
 # Button to show screens
 #: wkysUu
@@ -1609,6 +1657,12 @@ msgstr "Edit metadata..."
 msgctxt "zW7IVm"
 msgid "Quiz"
 msgstr "Quiz"
+
+# Button label
+#: zYH/31
+msgctxt "zYH/31"
+msgid "Go to previous screen"
+msgstr "Go to previous screen"
 
 # Field placeholder
 #: zh2m/S

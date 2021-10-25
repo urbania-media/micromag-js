@@ -170,6 +170,9 @@
     "7j/LQ6": {
         "defaultMessage": "Rounded corners"
     },
+    "7tw6U2": {
+        "defaultMessage": "Share"
+    },
     "7uyslu": {
         "defaultMessage": "Description"
     },
@@ -224,6 +227,9 @@
     "AQ8Aig": {
         "defaultMessage": "Used"
     },
+    "AuxqcG": {
+        "defaultMessage": "Fullscreen"
+    },
     "B1MeY+": {
         "defaultMessage": "Select an image..."
     },
@@ -262,6 +268,9 @@
     },
     "EoVdMy": {
         "defaultMessage": "Edit content..."
+    },
+    "F/gl4b": {
+        "defaultMessage": "Menu"
     },
     "F2SD/0": {
         "defaultMessage": "Loop"
@@ -325,6 +334,9 @@
     },
     "KHWeV7": {
         "defaultMessage": "Answers"
+    },
+    "LkVfwW": {
+        "defaultMessage": "Screen {index}"
     },
     "MLuvzG": {
         "defaultMessage": "Map with image markers"
@@ -514,6 +526,9 @@
     },
     "dVcog7": {
         "defaultMessage": "Title"
+    },
+    "dj/p/q": {
+        "defaultMessage": "Close"
     },
     "dkBBRa": {
         "defaultMessage": "Image fit"
@@ -731,6 +746,9 @@
     "v4Qtl9": {
         "defaultMessage": "Today"
     },
+    "v9bqYj": {
+        "defaultMessage": "Go to next screen"
+    },
     "vA+9dU": {
         "defaultMessage": "Border"
     },
@@ -743,11 +761,17 @@
     "vZrFq6": {
         "defaultMessage": "Title with subtitle and credits"
     },
+    "vmrJ8U": {
+        "defaultMessage": "(current screen)"
+    },
     "vzW/wd": {
         "defaultMessage": "Background color"
     },
     "vzg8Es": {
         "defaultMessage": "Mute"
+    },
+    "wCsW9o": {
+        "defaultMessage": "Screen shortcuts list"
     },
     "wkysUu": {
         "defaultMessage": "Screens"
@@ -796,6 +820,9 @@
     },
     "zW7IVm": {
         "defaultMessage": "Quiz"
+    },
+    "zYH/31": {
+        "defaultMessage": "Go to previous screen"
     },
     "zh2m/S": {
         "defaultMessage": "Search fonts..."
