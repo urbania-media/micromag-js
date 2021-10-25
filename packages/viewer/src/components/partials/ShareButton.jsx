@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react';
+import { useIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -29,6 +30,7 @@ const defaultProps = {
 };
 
 const ShareButton = ({ title, url, className, buttonClassName, onShare, children, focusable }) => {
+    const intl = useIntl();
     const [storyShareModalOpened, setStoryShareModalOpened] = useState(false);
 
     const onShareIconClick = useCallback(() => {
@@ -59,14 +61,14 @@ const ShareButton = ({ title, url, className, buttonClassName, onShare, children
             <Button
                 className={classNames([{ [buttonClassName]: buttonClassName !== null }])}
                 onClick={onShareIconClick}
-                // title={intl.formatMessage({
-                //     defaultMessage: 'Share',
-                //     description: 'Button label',
-                // })}
-                // aria-label={intl.formatMessage({
-                //     defaultMessage: 'Share',
-                //     description: 'Button label',
-                // })}
+                title={intl.formatMessage({
+                    defaultMessage: 'Share',
+                    description: 'Button label',
+                })}
+                aria-label={intl.formatMessage({
+                    defaultMessage: 'Share',
+                    description: 'Button label',
+                })}
                 focusable={focusable}
             >
                 {children}
