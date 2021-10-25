@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/no-array-index-key, jsx-a11y/control-has-associated-label */
 // stylelint-disable stylelint-family-no-missing-generic-family-keyword
@@ -5,7 +6,6 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useDrag } from 'react-use-gesture';
-import { useIntl } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShare, faTimes, faExpand, faCompress } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
@@ -70,7 +70,6 @@ const ViewerMenuPreview = ({
     fullscreenEnabled,
     className,
 }) => {
-    const intl = useIntl();
     const screenSizeRatio = `${(3 / 2 / thumbsPerLine) * 100}%`;
     const screenRatioHeight = (screenWidth * 3) / 2;
 
@@ -164,14 +163,14 @@ const ViewerMenuPreview = ({
                         <Button
                             className={styles.button}
                             onClick={toggleFullscreen}
-                            title={intl.formatMessage({
-                                defaultMessage: 'Fullscreen',
-                                description: 'Button label',
-                            })}
-                            aria-label={intl.formatMessage({
-                                defaultMessage: 'Fullscreen',
-                                description: 'Button label',
-                            })}
+                            // title={intl.formatMessage({
+                            //     defaultMessage: 'Fullscreen',
+                            //     description: 'Button label',
+                            // })}
+                            // aria-label={intl.formatMessage({
+                            //     defaultMessage: 'Fullscreen',
+                            //     description: 'Button label',
+                            // })}
                             focusable={focusable}
                         >
                             <FontAwesomeIcon
@@ -183,14 +182,14 @@ const ViewerMenuPreview = ({
                     <Button
                         className={styles.button}
                         onClick={onClose}
-                        title={intl.formatMessage({
-                            defaultMessage: 'Close',
-                            description: 'Button label',
-                        })}
-                        aria-label={intl.formatMessage({
-                            defaultMessage: 'Close',
-                            description: 'Button label',
-                        })}
+                        // title={intl.formatMessage({
+                        //     defaultMessage: 'Close',
+                        //     description: 'Button label',
+                        // })}
+                        // aria-label={intl.formatMessage({
+                        //     defaultMessage: 'Close',
+                        //     description: 'Button label',
+                        // })}
                         focusable={focusable}
                     >
                         <FontAwesomeIcon className={styles.icon} icon={faTimes} />
@@ -206,21 +205,21 @@ const ViewerMenuPreview = ({
                     <nav className={styles.nav}>
                         <ul className={styles.items}>
                             {items.map((item, index) => {
-                                const screenIndexLabel = intl.formatMessage(
-                                    {
-                                        defaultMessage: 'Screen {index}',
-                                        description: 'Button label',
-                                    },
-                                    { index: index + 1 },
-                                );
-                                const isCurrentScreenLabel =
-                                    current === index
-                                        ? ` ${intl.formatMessage({
-                                              defaultMessage: '(current screen)',
-                                              description: 'Button label',
-                                          })}`
-                                        : '';
-                                const screenAriaLabel = screenIndexLabel + isCurrentScreenLabel;
+                                // const screenIndexLabel = intl.formatMessage(
+                                //     {
+                                //         defaultMessage: 'Screen {index}',
+                                //         description: 'Button label',
+                                //     },
+                                //     { index: index + 1 },
+                                // );
+                                // const isCurrentScreenLabel =
+                                //     current === index
+                                //         ? ` ${intl.formatMessage({
+                                //               defaultMessage: '(current screen)',
+                                //               description: 'Button label',
+                                //           })}`
+                                //         : '';
+                                // const screenAriaLabel = screenIndexLabel + isCurrentScreenLabel;
 
                                 return (
                                     <li
@@ -277,7 +276,7 @@ const ViewerMenuPreview = ({
                                             onClick={() => {
                                                 onClickItem(index);
                                             }}
-                                            aria-label={screenAriaLabel}
+                                            // aria-label={screenAriaLabel}
                                             tabIndex={focusable ? '0' : '-1'}
                                         />
                                     </li>
