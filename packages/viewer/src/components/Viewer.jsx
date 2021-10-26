@@ -148,8 +148,12 @@ const Viewer = ({
         menuOverScreen = false,
     } = screenSize || {};
 
+    const screenSizeRef = useRef();
+    screenSizeRef.current = screenSize;
+
     useEffect(() => {
-        if (onViewModeChange !== null) {
+        const { width: screenSizeRefWidth, height: screenSizeRefHeight } = screenSizeRef.current;
+        if (screenSizeRefWidth > 0 && screenSizeRefHeight > 0 && onViewModeChange !== null) {
             onViewModeChange({ landscape });
         }
     }, [landscape, onViewModeChange]);
