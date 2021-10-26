@@ -148,7 +148,7 @@ const Viewer = ({
         menuOverScreen = false,
     } = screenSize || {};
 
-    const screenSizeRef = useRef(screenSize);
+    const screenSizeRef = useRef(); 
     screenSizeRef.current = screenSize;
 
     useEffect(() => {
