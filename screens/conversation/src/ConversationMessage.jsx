@@ -176,7 +176,7 @@ const ConversationMessage = ({
                     <div className={styles.messageBody}>
                         {image !== null ? (
                             <div className={styles.imageContainer}>
-                                <Visual media={image} width="100%" />
+                                <Visual media={image} width="100%" playing={isPlaying} />
                             </div>
                         ) : null}
                         <Text

@@ -14,7 +14,7 @@ const propTypes = {
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     objectFit: MicromagPropTypes.objectFit,
-    videoAutoplay: PropTypes.bool,
+    playing: PropTypes.bool,
     videoLoop: PropTypes.bool,
     videoInitialMuted: PropTypes.bool,
     onLoaded: PropTypes.func,
@@ -26,7 +26,7 @@ const defaultProps = {
     width: null,
     height: null,
     objectFit: null,
-    videoAutoplay: true,
+    playing: true,
     videoLoop: true,
     videoInitialMuted: true,
     onLoaded: null,
@@ -38,7 +38,7 @@ const Visual = ({
     width,
     height,
     objectFit,
-    videoAutoplay,
+    playing,
     videoLoop,
     videoInitialMuted,
     onLoaded,
@@ -52,13 +52,13 @@ const Visual = ({
     const elProps = useMemo( () => ({ ...props, media }), [props, media]);
     
     const imageElProps = useMemo( () => {
-        const tmpProps = !videoAutoplay && (isVideo || isGIF) ? {...elProps, media: { url: thumbnailUrl }} : elProps;
-        return isGIF && videoAutoplay ? {...elProps, media: { url }} : tmpProps
-    }, [isVideo, isGIF, elProps, thumbnailUrl, url, videoAutoplay]);
+        const tmpProps = !playing && (isVideo || isGIF) ? {...elProps, media: { url: thumbnailUrl }} : elProps;
+        return isGIF && playing ? {...elProps, media: { url }} : tmpProps
+    }, [isVideo, isGIF, elProps, thumbnailUrl, url, playing]);
 
     let videoContainerStyle = null;
 
-    if (isVideo && objectFit !== null && videoAutoplay) {
+    if (isVideo && objectFit !== null && playing) {
         const { fit = 'cover' } = objectFit || {};
         const { metadata: videoMetadata = null } = media || {};
         const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
@@ -80,7 +80,7 @@ const Visual = ({
 
     return type !== null ? (
         <>
-            {type === 'image' || !videoAutoplay ? (
+            {type === 'image' || !playing ? (
                 <Image
                     {...imageElProps}
                     objectFit={objectFit}
@@ -90,7 +90,7 @@ const Visual = ({
                     className={classNames([styles.container, { [className]: className !== null }])}
                 />
             ) : null}
-            {isVideo && videoAutoplay ? (
+            {isVideo && playing ? (
                 <div
                     className={classNames([styles.container, { [className]: className !== null }])}
                     style={{ width, height }}

@@ -210,7 +210,7 @@ const Timeline = ({
                                                     className={styles.image}
                                                     media={image}
                                                     width={imageWidth}
-                                                    videoAutoplay={backgroundPlaying}
+                                                    playing={backgroundPlaying}
                                                     onLoaded={onImageLoaded}
                                                 />
                                             ) : null}

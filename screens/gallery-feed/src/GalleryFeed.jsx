@@ -121,7 +121,7 @@ const GalleryFeedScreen = ({
                         {...finalImage}
                         width={firstImageRefWidth}
                         onLoaded={onImageLoaded}
-                        videoAutoplay={backgroundPlaying}
+                        playing={backgroundPlaying}
                     />
                 </div>
             </ScreenElement>

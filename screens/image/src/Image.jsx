@@ -166,7 +166,7 @@ const ImageScreen = ({
                             objectFit={finalImageFit}
                             width={imageWidth}
                             height={imageHeight}
-                            videoAutoplay={backgroundPlaying}
+                            playing={backgroundPlaying}
                             onLoaded={onImageLoaded}
                         />
                     </Transitions>
