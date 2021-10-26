@@ -95,7 +95,7 @@ const ViewerMenuPreview = ({
     const { primary: brandPrimaryColor = null, secondary: brandSecondaryColor = null } =
         colors || {};
     const { color: brandBackgroundColor = null, image = null } = background || {};
-    const { url: brandImageUrl } = image || {};
+    const { url: brandImageUrl = null } = image || {};
 
     const borderPrimaryColorStyle = getStyleFromColor(brandPrimaryColor, 'borderColor');
     const colorSecondaryColorStyle = getStyleFromColor(brandSecondaryColor, 'color');
