@@ -1,5 +1,5 @@
 {
-    "version": "0.2.346",
+    "version": "0.2.347",
     "packages": [
         "elements/*",
         "packages/*",
