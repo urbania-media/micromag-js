@@ -1556,12 +1556,6 @@ msgctxt "vzg8Es"
 msgid "Mute"
 msgstr "Mute"
 
-# Nav label
-#: wCsW9o
-msgctxt "wCsW9o"
-msgid "Screen shortcuts list"
-msgstr "Screen shortcuts list"
-
 # Button to show screens
 #: wkysUu
 msgctxt "wkysUu"

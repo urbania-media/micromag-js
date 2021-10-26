@@ -1556,12 +1556,6 @@ msgctxt "vzg8Es"
 msgid "Mute"
 msgstr "Sans son"
 
-# Nav label
-#: wCsW9o
-msgctxt "wCsW9o"
-msgid "Screen shortcuts list"
-msgstr "Liste des raccourcis d'écrans"
-
 # Button to show screens
 #: wkysUu
 msgctxt "wkysUu"
