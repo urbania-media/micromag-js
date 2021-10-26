@@ -502,23 +502,24 @@ const Viewer = ({
                 return;
             }
 
-            const { code } = e;
+            const { key } = e;
+            const lowercaseKey = key.toLowerCase();
 
-            switch (code) {
-                case 'KeyF':
+            switch (lowercaseKey) {
+                case 'f':
                     toggleFullscreen();
                     break;
-                case 'KeyM':
+                case 'm':
                     setPreviewMenu(!menuOpened.current);
                     break;
-                case 'Escape':
+                case 'escape':
                     closePreviewMenu();
                     break;
-                case 'ArrowLeft': // left
+                case 'arrowleft':
                     onScreenPrevious();
                     break;
-                case 'ArrowRight': // right
-                case 'Space': // spacebar
+                case 'arrowright':
+                case ' ': // spacebar
                     onScreenNext();
                     break;
                 default:
