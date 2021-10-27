@@ -129,6 +129,9 @@ const Viewer = ({
     const isStatic = renderContext === 'static';
     const isCapture = renderContext === 'capture';
 
+    const withoutScreensTransforms = isStatic || isCapture;
+    
+
     const trackScreenView = useTrackScreenView();
     const trackEvent = useTrackEvent();
 
@@ -148,15 +151,14 @@ const Viewer = ({
         menuOverScreen = false,
     } = screenSize || {};
 
-    const screenSizeRef = useRef(); 
-    screenSizeRef.current = screenSize;
+    const hasSize = screenWidth > 0 && screenHeight > 0;
+    const ready = hasSize; // && fontsLoaded;    
 
     useEffect(() => {
-        const { width: screenSizeRefWidth, height: screenSizeRefHeight } = screenSizeRef.current;
-        if (screenSizeRefWidth > 0 && screenSizeRefHeight > 0 && onViewModeChange !== null) {
+        if (ready) {
             onViewModeChange({ landscape });
         }
-    }, [landscape, onViewModeChange]);
+    }, [ready, landscape, onViewModeChange]);
 
     // Get dots menu height
 
@@ -229,11 +231,13 @@ const Viewer = ({
     const [screensInteractionEnabled, setScreensInteractionEnabled] = useState(
         screens.map(() => true),
     );
+    const currentScreenInteractionEnabled = screensInteractionEnabled[screenIndex];
+    const menuVisible = screensCount === 0 || currentScreenInteractionEnabled;
 
     useEffect(() => {
         setScreensInteractionEnabled([...Array(screensCount).keys()].map(() => true));
     }, [screensCount]);
-    const currentScreenInteractionEnabled = screensInteractionEnabled[screenIndex];
+    
 
     const onEnableInteraction = useCallback(() => {
         if (!screensInteractionEnabled[screenIndex]) {
@@ -477,12 +481,7 @@ const Viewer = ({
         },
         [landscape],
     );
-
-    const withoutScreensTransforms = isStatic || isCapture;
-    const hasSize = screenWidth > 0 && screenHeight > 0;
-    const ready = hasSize; // && fontsLoaded;
-
-    const menuVisible = screensCount === 0 || currentScreenInteractionEnabled;
+    
     const overscrollStyle = (
         <style type="text/css">{`body { overscroll-behavior: contain; }`}</style>
     );
