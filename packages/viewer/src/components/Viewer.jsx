@@ -155,7 +155,7 @@ const Viewer = ({
     const ready = hasSize; // && fontsLoaded;    
 
     useEffect(() => {
-        if (ready) {
+        if (ready && onViewModeChange !== null) {
             onViewModeChange({ landscape });
         }
     }, [ready, landscape, onViewModeChange]);
