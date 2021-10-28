@@ -506,6 +506,9 @@
     "aovRFH": {
         "defaultMessage": "Nom du fichier"
     },
+    "bLYuuN": {
+        "defaultMessage": "Vous êtes sur l’écran {current} de {total}."
+    },
     "bhEaUt": {
         "defaultMessage": "Audio"
     },

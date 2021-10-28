@@ -1030,6 +1030,12 @@ msgctxt "aovRFH"
 msgid "Filename"
 msgstr "Filename"
 
+# Nav ARIA label
+#: bLYuuN
+msgctxt "bLYuuN"
+msgid "You are on screen {current} of {total}."
+msgstr "You are on screen {current} of {total}."
+
 # Audio screen title
 #: bhEaUt
 msgctxt "bhEaUt"

@@ -678,6 +678,10 @@
     "defaultMessage": "Filename",
     "description": "Label in Media Gallery"
   },
+  "bLYuuN": {
+    "defaultMessage": "You are on screen {current} of {total}.",
+    "description": "Nav ARIA label"
+  },
   "bhEaUt": {
     "defaultMessage": "Audio",
     "description": "Audio screen title"
