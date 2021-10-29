@@ -4,7 +4,7 @@
 @import '~@micromag/core/scss/placeholders';
 
 .container {
-    position: relative;    
+    position: relative;
 
     .items,
     .item {
@@ -62,11 +62,13 @@
     .menuButton {
         @extend %fullscreen;
         @extend %reset-button;
+        @extend %focus-outline;
     }
 
     .closeButton {
         @extend %reset-button;
-        
+        @extend %focus-outline;
+
         display: flex;
         align-items: center;
         padding-left: 10px;

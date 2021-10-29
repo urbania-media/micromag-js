@@ -11,13 +11,3 @@
     white-space: nowrap;
     clip-path: inset(50%);
 }
-
-a,
-button,
-input,
-select,
-textarea {
-    &:focus-visible {
-        outline: 3px solid $purple;
-    }
-}
