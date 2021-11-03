@@ -338,7 +338,7 @@ const Timeline = ({
         >
             {!isPlaceholder ? (
                 <Background
-                    {...background}
+                    background={background}
                     width={width}
                     height={height}
                     playing={backgroundPlaying}

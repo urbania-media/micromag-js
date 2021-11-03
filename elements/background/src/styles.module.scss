@@ -6,10 +6,27 @@
     z-index: 0;
     overflow: hidden;
 
-    background-color: rgba(#000, 0.25);
+    // background-color: rgba(#000, 0.25);
+}
 
-    .videoContainer,
-    .video {
-        @extend %fullscreen;
+.videoContainer,
+.video {
+    @extend %fullscreen;
+}
+
+.layers,
+.layer {
+    @extend %fullscreen;
+    z-index: 0;
+}
+
+.background {
+    .right & {
+        right: 0;
+        left: auto;
+    }
+    .bottom & {
+        top: auto;
+        bottom: 0;
     }
 }

@@ -17,8 +17,7 @@ const propTypes = {
     verticalAlign: PropTypes.string,
     repeat: PropTypes.bool,
     color: MicromagPropTypes.color,
-    image: MicromagPropTypes.imageMedia,
-    video: MicromagPropTypes.videoMedia,
+    media: PropTypes.oneOfType([MicromagPropTypes.imageMedia, MicromagPropTypes.videoMedia]),
     className: PropTypes.string,
     playing: PropTypes.bool,
     children: PropTypes.node,
@@ -32,8 +31,7 @@ const defaultProps = {
     verticalAlign: 'center',
     repeat: false,
     color: null,
-    image: null,
-    video: null,
+    media: null,
     className: null,
     playing: false,
     children: null,
@@ -47,67 +45,62 @@ const Background = ({
     verticalAlign,
     repeat,
     color,
-    image,
-    video,
+    media,
     className,
     playing,
     children,
 }) => {
-    const hasVideo = video !== null;
-    const { metadata: videoMetadata = null, thumbnail_url:videoThumbnail = null } = video || {};
-    const hasSize = width > 0 && height > 0;
-    const sizeStyle = hasSize ? {
-        width, height
-    } : null;
+    const {
+        type: mediaType = null,
+        metadata: mediaMetadata = null,
+        thumbnail_url: mediaThumbnailUrl,
+    } = media || {};
+    const { width: mediaWidth = 0, height: mediaHeight = 0 } = mediaMetadata || {};
+    const isVideo = mediaType === 'video';
+    const isImage = mediaType === 'image';
 
     // color
-    const finalStyle = {
-        ...sizeStyle,
+    const containerStyle = {
+        width,
+        height,
         ...getStyleFromColor(color),
     };
 
-    const { metadata: imageMetadata, thumbnail_url: imageThumbnailUrl, url:imageUrl } = image || {};
-    const { mime:imageMIME } = imageMetadata || {};
-    const isImageGIF = imageMIME === 'image/gif';    
-
-    const finalImage = useMemo( () => {
-        const tmpImage = isImageGIF ? { url: playing ? imageUrl : imageThumbnailUrl } : image;
-        return hasVideo && !playing && videoThumbnail !== null ? { url: videoThumbnail } : tmpImage
-    }, [isImageGIF, playing, imageUrl, imageThumbnailUrl, image, hasVideo, videoThumbnail]);
-
     // image
-    if (finalImage !== null && (!hasVideo || !playing)) {
-        const finalUrl = getOptimalImageUrl(finalImage, width, height);
-        finalStyle.backgroundImage = `url("${finalUrl}")`;
-        finalStyle.backgroundRepeat = repeat ? 'repeat' : 'no-repeat';
-        finalStyle.backgroundPosition = [horizontalAlign, verticalAlign].join(' ');
+    if (media !== null && (isImage || (isVideo && !playing))) {
+        const finalUrl = getOptimalImageUrl(
+            isVideo ? { url: mediaThumbnailUrl } : media,
+            width,
+            height,
+        );
+        containerStyle.backgroundImage = finalUrl !== null ? `url("${finalUrl}")` : null;
+        containerStyle.backgroundRepeat = repeat ? 'repeat' : 'no-repeat';
+        containerStyle.backgroundPosition = [horizontalAlign, verticalAlign].join(' ');
 
         if (fit !== null) {
-            finalStyle.backgroundSize = fit;
+            containerStyle.backgroundSize = fit;
         } else if (!repeat) {
-            finalStyle.backgroundSize = 'cover';
+            containerStyle.backgroundSize = 'cover';
         }
     }
 
     // video
-    
     const videoContainerStyle = {};
-    if (hasVideo && playing) {
-        if (hasSize) {            
-            const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
-            const { width: resizedVideoWidth = 0, height: resizedVideoHeight = 0} = getSizeWithinBounds(
-                videoWidth,
-                videoHeight,
+    if (isVideo && playing) {
+        if (width > 0 && height > 0) {
+            const { width: videoWidth = 0, height: videoHeight = 0 } = getSizeWithinBounds(
+                mediaWidth,
+                mediaHeight,
                 width,
                 height,
-                { cover: fit === 'cover' || fit === null },
+                {
+                    cover: fit === 'cover' || fit === null,
+                },
             );
-            const resizedVideoLeft = -(resizedVideoWidth - width) / 2;
-            const resizedVideoTop = -(resizedVideoHeight - height) / 2;
-            videoContainerStyle.width = resizedVideoWidth;
-            videoContainerStyle.height = resizedVideoHeight;
-            videoContainerStyle.left = resizedVideoLeft;
-            videoContainerStyle.top = resizedVideoTop;
+            videoContainerStyle.width = videoWidth;
+            videoContainerStyle.height = videoHeight;
+            videoContainerStyle.left = -(videoWidth - width) / 2;
+            videoContainerStyle.top = -(videoHeight - height) / 2;
         } else {
             videoContainerStyle.objectFit = 'cover';
         }
@@ -121,16 +114,13 @@ const Background = ({
                     [className]: className !== null,
                 },
             ])}
-            style={finalStyle}
+            style={containerStyle}
         >
-            {hasVideo && playing ? (
-                <div
-                    className={styles.videoContainer}
-                    style={videoContainerStyle}
-                >
+            {isVideo && playing ? (
+                <div className={styles.videoContainer} style={videoContainerStyle}>
                     <Video
                         className={styles.video}
-                        media={video}
+                        media={media}
                         autoPlay={playing}
                         initialMuted
                         loop

@@ -4,13 +4,13 @@
 .container {
     position: relative;
 
-    video {
+    .video {
         display: block;
         width: 100%;
     }
 
     &.withSize {
-        video {
+        .video {
             @extend %fullscreen;
         }
     }

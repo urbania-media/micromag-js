@@ -83,7 +83,7 @@ const ImageScreen = ({
     className,
 }) => {
     const finalImageFit = useMemo( () => ({ fit: imageFit || defaultImageFit }), [imageFit, defaultImageFit]);
-    
+
     const { width, height, menuOverScreen } = useScreenSize();
 
     const { menuSize } = useViewer();
@@ -297,7 +297,7 @@ const ImageScreen = ({
         >
             {!isPlaceholder ? (
                 <Background
-                    {...background}
+                    background={background}
                     width={width}
                     height={height}
                     playing={backgroundPlaying}

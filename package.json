@@ -50,7 +50,7 @@
         "@uppy/core": "^1.16.0",
         "@uppy/react": "^1.11.2",
         "babel-eslint": "^10.1.0",
-        "babel-loader": "^8.1.0",
+        "babel-loader": "8.1.0",
         "babel-plugin-css-modules-transform": "^1.6.2",
         "babel-plugin-dynamic-import-node": "^2.3.3",
         "babel-plugin-module-resolver": "^4.1.0",

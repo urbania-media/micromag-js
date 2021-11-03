@@ -179,7 +179,7 @@ const MediaGallery = ({
                 </div>
             </div>
             <UploadModal
-                type={type}
+                type={type === 'video' ? ['video', 'image/gif'] : type}
                 opened={uploadModalOpened}
                 onUploaded={onUploadCompleted}
                 onRequestClose={onUploadRequestClose}
