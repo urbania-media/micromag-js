@@ -4,16 +4,16 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-import {
-    Scene,
-    PerspectiveCamera,
-    SphereBufferGeometry,
-    VideoTexture,
-    MeshBasicMaterial,
-    Mesh,
-    WebGLRenderer,
-    MathUtils,
-} from 'three';
+// import {
+//     Scene,
+//     PerspectiveCamera,
+//     SphereBufferGeometry,
+//     VideoTexture,
+//     MeshBasicMaterial,
+//     Mesh,
+//     WebGLRenderer,
+//     MathUtils,
+// } from 'three';
 import { getSizeWithinBounds } from '@folklore/size';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderVideo360, Transitions, ScreenElement } from '@micromag/core/components';
@@ -26,6 +26,8 @@ import MediaControls from '@micromag/element-media-controls';
 import Image from '@micromag/element-image';
 import Video from '@micromag/element-video';
 import CallToAction from '@micromag/element-call-to-action';
+
+import useThree from './useThree';
 
 import styles from './styles.module.scss';
 
@@ -73,19 +75,14 @@ const Video360Screen = ({
     spacing,
     className,
 }) => {
+    const THREE = useThree();
     const trackScreenEvent = useTrackScreenEvent(type);
     const trackScreenMedia = useTrackScreenMedia('video_360');
 
     const { width, height, landscape } = useScreenSize();
 
-    const {
-        isView,
-        isPreview,
-        isPlaceholder,
-        isEdit,
-        isStatic,
-        isCapture,
-    } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
+        useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
 
     const videoContainerRef = useRef();
@@ -245,6 +242,7 @@ const Video360Screen = ({
     // render 3D frame
 
     const render3D = useCallback(() => {
+        const { MathUtils } = THREE;
         lat.current = Math.max(-85, Math.min(85, lat.current));
         phi.current = MathUtils.degToRad(90 - lat.current);
         theta.current = MathUtils.degToRad(lon.current);
@@ -263,7 +261,16 @@ const Video360Screen = ({
     // Init 3D layer
 
     useEffect(() => {
-        if (hasVideoUrl && withVideoSphere) {
+        if (THREE !== null && hasVideoUrl && withVideoSphere) {
+            const {
+                Scene,
+                PerspectiveCamera,
+                SphereBufferGeometry,
+                VideoTexture,
+                MeshBasicMaterial,
+                Mesh,
+                WebGLRenderer,
+            } = THREE;
             const { offsetWidth: canvasWidth, offsetHeight: canvasHeight } = canvasRef.current;
             camera.current = new PerspectiveCamera(75, canvasWidth / canvasHeight, 1, 1100);
             scene.current = new Scene();
@@ -381,10 +388,8 @@ const Video360Screen = ({
                     distY < pixelsMovedTolerance;
 
                 if (validNavigateTap) {
-                    const {
-                        left: containerX = 0,
-                        width: containerWidth,
-                    } = videoContainer.getBoundingClientRect();
+                    const { left: containerX = 0, width: containerWidth } =
+                        videoContainer.getBoundingClientRect();
                     const hasTappedLeft =
                         e.clientX - containerX < containerWidth * (1 - tapNextScreenWidthPercent);
 
