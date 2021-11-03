@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
@@ -57,30 +58,36 @@ const BackgroundLayers = ({ width, height, background, playing, children, classN
             style={containerStyle}
         >
             <div className={styles.layers}>
-                {layers.map(({ horizontalAlign = undefined, verticalAlign = undefined, ...layer }, index) => (
-                    <div
-                        className={classNames([
-                            styles.layer,
-                            {
-                                [styles.bottom]: verticalAlign === 'bottom',
-                                [styles.right]: horizontalAlign === 'right',
-                            },
-                        ])}
-                        style={{
-                            zIndex: maxZIndex - index,
-                        }}
-                    >
-                        <Background
-                            width={width}
-                            height={height}
-                            className={styles.background}
-                            playing={playing}
-                            horizontalAlign={horizontalAlign}
-                            verticalAlign={verticalAlign}
-                            {...layer}
-                        />
-                    </div>
-                ))}
+                {layers.map(
+                    (
+                        { horizontalAlign = undefined, verticalAlign = undefined, ...layer },
+                        index,
+                    ) => (
+                        <div
+                            key={`background-${index}`}
+                            className={classNames([
+                                styles.layer,
+                                {
+                                    [styles.bottom]: verticalAlign === 'bottom',
+                                    [styles.right]: horizontalAlign === 'right',
+                                },
+                            ])}
+                            style={{
+                                zIndex: maxZIndex - index,
+                            }}
+                        >
+                            <Background
+                                width={width}
+                                height={height}
+                                className={styles.background}
+                                playing={playing}
+                                horizontalAlign={horizontalAlign}
+                                verticalAlign={verticalAlign}
+                                {...layer}
+                            />
+                        </div>
+                    ),
+                )}
             </div>
             <div className={styles.content}>{children}</div>
         </div>
