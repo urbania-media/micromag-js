@@ -1,5 +1,6 @@
 import isObject from 'lodash/isObject';
 import isArray from 'lodash/isArray';
+import isString from 'lodash/isString';
 
 class MediasParser {
     constructor({ fieldsManager, screensManager }) {
@@ -77,13 +78,20 @@ class MediasParser {
         }
 
         // Replace path with medias objects
+        // const newComponents =
+        //     medias !== null
+        //         ? components.map((screen) => {
+        //               const { type } = screen;
+        //               const fieldsPattern = this.getFieldsPatternByScreen(type);
+        //               return MediasParser.replacePathsWithMedias(screen, medias, fieldsPattern);
+        //           })
+        //         : components;
+
+        // Faster parsing with data only
+        const componentsPattern = MediasParser.getMediaPatternsFromData(components);
         const newComponents =
-            medias !== null
-                ? components.map((screen) => {
-                      const { type } = screen;
-                      const fieldsPattern = this.getFieldsPatternByScreen(type);
-                      return MediasParser.replacePathsWithMedias(screen, medias, fieldsPattern);
-                  })
+            medias !== null && componentsPattern.length > 0
+                ? MediasParser.replacePathsWithMedias(components, medias, componentsPattern)
                 : components;
 
         // Replace path with medias object in theme
@@ -143,8 +151,7 @@ class MediasParser {
 
     static replacePathsWithMedias(data, medias, patterns, keyPrefix = null) {
         const dataIsArray = isArray(data);
-        const keys = dataIsArray ? [...data.keys()] : Object.keys(data);
-        return keys.reduce(
+        return MediasParser.keys(data).reduce(
             (newData, key) => {
                 const path = [keyPrefix, key].filter((it) => it !== null).join('.');
                 const patternMatch = patterns.reduce(
@@ -178,8 +185,7 @@ class MediasParser {
 
     static replaceMediasWithPaths(data, patterns, medias = null, keyPrefix = null) {
         const dataIsArray = isArray(data);
-        const keys = dataIsArray ? [...data.keys()] : Object.keys(data);
-        return keys.reduce(
+        return MediasParser.keys(data).reduce(
             ({ data: currentData, medias: currentMedias }, key) => {
                 const path = [keyPrefix, key].filter((it) => it !== null).join('.');
                 const patternMatch = patterns.reduce(
@@ -231,6 +237,43 @@ class MediasParser {
                 medias,
             },
         );
+    }
+
+    static getMediaPatternsFromData(obj) {
+        const dotObj = MediasParser.dot(obj);
+        return Object.keys(dotObj)
+            .filter(
+                (key) => isString(dotObj[key]) && dotObj[key].match(/^media:\/\/([^/]+)$/) !== null,
+            )
+            .map((it) => new RegExp(`^${it}$`));
+    }
+
+    static dot(obj) {
+        return MediasParser.keys(obj).reduce((acc, key) => {
+            if (typeof obj[key] !== 'object' || !obj[key]) {
+                return {
+                    ...acc,
+                    [key]: obj[key],
+                };
+            }
+
+            const flattenedChild = MediasParser.dot(obj[key]);
+
+            return {
+                ...acc,
+                ...MediasParser.keys(flattenedChild).reduce(
+                    (childAcc, childKey) => ({
+                        ...childAcc,
+                        [`${key}.${childKey}`]: flattenedChild[childKey],
+                    }),
+                    {},
+                ),
+            };
+        }, {});
+    }
+
+    static keys(obj) {
+        return isArray(obj) ? [...obj.keys()] : Object.keys(obj);
     }
 }
 
