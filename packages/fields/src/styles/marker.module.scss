@@ -1,3 +1,4 @@
+@use 'sass:math';
 @import '~@micromag/core/scss/variables';
 @import './placeholders';
 
@@ -10,5 +11,5 @@
 }
 
 .panel {
-    padding: $spacer / 2;
+    padding: math.div($spacer, 2);
 }

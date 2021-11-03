@@ -1,3 +1,4 @@
+@use 'sass:math';
 @import '~@micromag/core/scss/variables';
 
 .container {
@@ -46,8 +47,8 @@
         }
 
         .fieldRow {
-            padding-top: $spacer / 2;
-            padding-bottom: $spacer / 2;
+            padding-top: math.div($spacer, 2);
+            padding-bottom: math.div($spacer, 2);
         }
     }
 }

@@ -1,3 +1,4 @@
+@use 'sass:math';
 @import '~@micromag/core/scss/variables';
 
 .container {
@@ -13,12 +14,12 @@
 
     .input {
         width: 5em;
-        margin-left: $spacer / 4;
+        margin-left: math.div($spacer, 4);
         font-size: 0.75rem;
     }
 
     .unit {
-        margin-left: $spacer / 4;
+        margin-left: math.div($spacer, 4);
         font-size: 0.75rem;
     }
 

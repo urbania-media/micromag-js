@@ -1,3 +1,4 @@
+@use 'sass:math';
 @import '~@micromag/core/scss/variables';
 
 .container {
@@ -16,7 +17,7 @@
 
         > * {
             display: block;
-            margin-right: $spacer / 2;
+            margin-right: math.div($spacer, 2);
             line-height: 1;
 
             &:last-child {
