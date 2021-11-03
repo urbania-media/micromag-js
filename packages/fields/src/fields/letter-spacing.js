@@ -1,8 +1,6 @@
-import NumberWithIcon from '../components/NumberWithIcon';
-
 export default {
     id: 'letter-spacing',
-    component: NumberWithIcon,
+    component: 'number-with-icon',
     icon: {
         icon: [
             48,

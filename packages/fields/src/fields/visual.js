@@ -1,7 +1,5 @@
-import Visual from '../components/Visual';
-
 export default {
     id: 'visual',
-    component: Visual,
+    component: 'visual',
     media: true,
 };

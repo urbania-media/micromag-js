@@ -1,8 +1,6 @@
-import InputElement from '../components/InputElement';
-
 export default {
     id: 'input-element',
-    component: InputElement,
+    component: 'input-element',
     settings: [
         {
             name: 'textStyle',

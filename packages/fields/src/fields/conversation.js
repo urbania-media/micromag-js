@@ -1,10 +1,8 @@
 import { defineMessage } from 'react-intl';
 
-import Conversation from '../components/Conversation';
-
 export default {
     id: 'conversation',
-    component: Conversation,
+    component: 'conversation',
     fields: [
         {
             name: 'speakers',

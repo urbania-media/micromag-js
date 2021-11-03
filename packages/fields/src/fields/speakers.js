@@ -1,11 +1,9 @@
 import { defineMessage } from 'react-intl';
 import { v1 as uuid } from 'uuid';
 
-import Items from '../components/Items';
-
 export default {
     id: 'speakers',
-    component: Items,
+    component: 'items',
     getDefaultValue: () => ({ id: uuid(), side: 'left' }),
     noItemLabel: defineMessage({
         defaultMessage: 'No speaker...',

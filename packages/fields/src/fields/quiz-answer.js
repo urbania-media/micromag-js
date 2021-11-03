@@ -1,10 +1,8 @@
 import { defineMessage } from 'react-intl';
 
-import FieldWithForm from '../components/FieldWithForm';
-
 export default {
     id: 'quiz-answer',
-    component: FieldWithForm,
+    component: 'field-with-form',
     labelPath: 'label.body',
     fields: [
         {

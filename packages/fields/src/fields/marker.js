@@ -1,10 +1,8 @@
 import { defineMessage } from 'react-intl';
 
-import FieldWithForm from '../components/FieldWithForm';
-
 export default {
     id: 'marker',
-    component: FieldWithForm,
+    component: 'field-with-form',
     labelPath: 'title.body',
     fields: [
         {

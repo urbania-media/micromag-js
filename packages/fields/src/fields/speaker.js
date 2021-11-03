@@ -1,10 +1,8 @@
 import { defineMessage } from 'react-intl';
 
-import FieldWithForm from '../components/FieldWithForm';
-
 export default {
     id: 'speaker',
-    component: FieldWithForm,
+    component: 'field-with-form',
     labelPath: 'name',
     thumbnailPath: 'avatar.thumbnail_url',
     fields: [
@@ -28,14 +26,14 @@ export default {
             name: 'side',
             type: 'radios',
             options: [
-                {   
+                {
                     value: 'left',
                     label: defineMessage({
                         defaultMessage: 'Left',
                         description: 'Field left label',
                     })
                 },
-                {   
+                {
                     value: 'right',
                     label: defineMessage({
                         defaultMessage: 'Right',

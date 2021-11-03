@@ -1,10 +1,8 @@
 import { defineMessage } from 'react-intl';
 
-import FieldWithForm from '../components/FieldWithForm';
-
 export default {
     id: 'answer',
-    component: FieldWithForm,
+    component: 'field-with-form',
     labelPath: 'label.body',
     fields: [
         {
@@ -15,6 +13,6 @@ export default {
                 defaultMessage: 'Label',
                 description: 'Field label',
             }),
-        }
-    ]
+        },
+    ],
 };

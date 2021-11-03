@@ -1,9 +1,8 @@
 import { defineMessage } from 'react-intl';
-import FieldWithForm from '../components/FieldWithForm';
 
 export default {
     id: 'metadata',
-    component: FieldWithForm,
+    component: 'field-with-form',
     noValueLabel: defineMessage({
         defaultMessage: 'Edit metadata...',
         description: 'metadata field placeholder',

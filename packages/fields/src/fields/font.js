@@ -1,7 +1,5 @@
-import Font from '../components/Font';
-
 export default {
     id: 'font',
-    component: Font,
+    component: 'font',
     media: true,
 };

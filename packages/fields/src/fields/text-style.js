@@ -1,8 +1,5 @@
 import { defineMessage } from 'react-intl';
 
-import FontStyleWithAlign from '../components/FontStyleWithAlign';
-import FontStyleTransform from '../components/FontStyleTransform';
-
 export default {
     id: 'text-style',
     fields: [
@@ -39,7 +36,7 @@ export default {
                     }),
                 },
                 {
-                    component: FontStyleWithAlign,
+                    component: 'font-style-with-align',
                     fontStyleName: 'fontStyle',
                     alignName: 'align',
                 },
@@ -70,7 +67,7 @@ export default {
                     }),
                 },
                 {
-                    component: FontStyleTransform,
+                    component: 'font-style-transform',
                     fontStyleName: 'fontStyle',
                     label: defineMessage({
                         defaultMessage: 'Case',

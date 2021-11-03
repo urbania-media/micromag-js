@@ -1,10 +1,8 @@
 import { defineMessage } from 'react-intl';
 
-import Visuals from '../components/Visuals';
-
 export default {
     id: 'visuals',
-    component: Visuals,
+    component: 'visuals',
     itemsField:{
         type: 'visual',
         breadcrumbLabel: defineMessage({
