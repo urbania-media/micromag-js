@@ -31,12 +31,20 @@
     "license": "ISC",
     "main": "lib/index.js",
     "module": "es/index.js",
+    "exports": {
+        ".": "./lib/index.js",
+        "./manager": "./lib/manager.js"
+    },
+    "browser": {
+        ".": "./es/index.js",
+        "./manager": "./es/manager.js"
+    },
     "files": [
         "lib",
         "es",
         "assets",
         "scss",
-        "schemas.js"
+        "manager.js"
     ],
     "scripts": {
         "prepare": "../../scripts/prepare-package.sh --scss",
