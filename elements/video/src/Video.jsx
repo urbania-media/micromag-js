@@ -114,7 +114,7 @@ const Video = ({
 
     // @NOTE: Media is an animated image and doesn't have source files in video formats
     const { type: originalType = null, mime: originalMime = mediaMime } =
-        filesArray.find(({ id, handle }) => id === 'original' || handle === 'original') || {};
+        filesArray.find(({ handle }) => handle === 'original') || {};
     const originalFileIsImage =
         originalType === 'image' || (originalMime !== null && originalMime.indexOf('image/') === 0);
     const isImageWithoutSourceFile = originalFileIsImage && sourceFiles === null;

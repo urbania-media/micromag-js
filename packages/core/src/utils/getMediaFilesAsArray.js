@@ -7,7 +7,7 @@ const getMediaFilesAsArray = (files) =>
               (newFiles, key) => [
                   ...newFiles,
                   {
-                      id: key,
+                      handle: key,
                       ...files[key],
                   },
               ],
