@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import isFunction from 'lodash/isFunction';
-import { faEdit, faPlus, faBars, faCheck, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faList, faPlus, faBars, faCheck, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, Empty, Label } from '@micromag/core/components';
 import { ReactSortable } from 'react-sortablejs';
@@ -96,9 +96,8 @@ const ItemsField = ({
         if (gotoFieldForm !== null) {
             gotoFieldForm(`${name}.${newValue.length - 1}`);
         }
-    }, [value, onChange, getDefaultValue, gotoFieldForm, name, /* gotoFieldForm */]);
+    }, [value, onChange, getDefaultValue, gotoFieldForm, name /* gotoFieldForm */]);
 
-    
     const onClickEdit = useCallback(() => {
         setEditing((old) => !old);
     }, [setEditing]);
@@ -170,7 +169,12 @@ const ItemsField = ({
         <div className={className}>
             {hasItems ? (
                 <div>
-                    <ReactSortable list={sortableItems} setList={onOrderChange} disabled={finalWithoutSort} key={finalWithoutSort}>
+                    <ReactSortable
+                        list={sortableItems}
+                        setList={onOrderChange}
+                        disabled={finalWithoutSort}
+                        key={finalWithoutSort}
+                    >
                         {items.map((itemValue, index) => (
                             <div className="p-0 d-flex">
                                 {!finalWithoutSort ? (
@@ -185,8 +189,8 @@ const ItemsField = ({
                                             'rounded-0',
                                             'text-dark',
                                             {
-                                                'border-top-0': index > 0
-                                            }
+                                                'border-top-0': index > 0,
+                                            },
                                         ])}
                                     >
                                         <FontAwesomeIcon icon={faBars} />
@@ -195,7 +199,10 @@ const ItemsField = ({
                                 <Field
                                     className={classNames([
                                         'flex-grow-1',
-                                        { 'border-top-0': index > 0, 'border-left-0': editing && !finalWithoutSort },
+                                        {
+                                            'border-top-0': index > 0,
+                                            'border-left-0': editing && !finalWithoutSort,
+                                        },
                                     ])}
                                     component={itemComponent}
                                     {...itemsField}
@@ -239,7 +246,7 @@ const ItemsField = ({
                     <Label>{noItemLabel}</Label>
                 </Empty>
             )}
-            <div className="mt-2">
+            <div className="d-flex mt-1">
                 <Button
                     theme="primary"
                     size="sm"
@@ -250,25 +257,23 @@ const ItemsField = ({
                 </Button>
                 {hasItems ? (
                     <Button
-                        className="ml-2"
+                        className="ml-auto"
                         theme="secondary"
                         size="sm"
-                        icon={<FontAwesomeIcon icon={editing ? faCheck : faEdit} />}
+                        icon={<FontAwesomeIcon icon={editing ? faCheck : faList} />}
                         onClick={onClickEdit}
                     >
-                        <Label>
-                            {!editing ? (
-                                <FormattedMessage
-                                    defaultMessage="Edit"
-                                    description="Items edit button label"
-                                />
-                            ) : (
-                                <FormattedMessage
-                                    defaultMessage="OK"
-                                    description="Items finish edit button label"
-                                />
-                            )}
-                        </Label>
+                        {!editing ? (
+                            <FormattedMessage
+                                defaultMessage="Edit"
+                                description="Items edit button label"
+                            />
+                        ) : (
+                            <FormattedMessage
+                                defaultMessage="OK"
+                                description="Items finish edit button label"
+                            />
+                        )}
                     </Button>
                 ) : null}
             </div>

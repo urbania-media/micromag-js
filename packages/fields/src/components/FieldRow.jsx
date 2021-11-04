@@ -146,6 +146,7 @@ const FieldRow = ({
                         {
                             [styles.resetButton]: !isListItem,
                             'd-block': !isListItem,
+                            'w-100': isListItem,
                             'p-2': !isListItem,
                         },
                     ])}
