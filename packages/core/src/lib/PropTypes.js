@@ -177,6 +177,7 @@ const mediaMetadataShape = {
 
 export const mediaFile = PropTypes.shape({
     id: PropTypes.string,
+    handle: PropTypes.string,
     type: PropTypes.string,
     mime: PropTypes.string,
     url: PropTypes.string,
