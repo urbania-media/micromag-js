@@ -169,7 +169,14 @@ export const gifVideoMedia = ({ withoutFiles = null } = {}) => ({
                   },
               },
           }
-        : null),
+        : {
+            files: {
+                original: {
+                    url: gifFile,
+                    mime: 'image/gif',
+                },
+            },
+        }),
 });
 
 export const video360Media = () => ({

@@ -117,7 +117,7 @@ const Video = ({
         filesArray.find(({ handle }) => handle === 'original') || {};
     const originalFileIsImage =
         originalType === 'image' || (originalMime !== null && originalMime.indexOf('image/') === 0);
-    const isImageWithoutSourceFile = originalFileIsImage && sourceFiles === null;
+    const isImageWithoutSourceFile = originalFileIsImage && (sourceFiles === null || sourceFiles.length === 0);
 
     const userInteracted = useUserInteracted();
     const finalInitialMuted =
