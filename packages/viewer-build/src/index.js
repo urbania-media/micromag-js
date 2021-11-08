@@ -4,6 +4,8 @@ import Viewer from '@micromag/viewer';
 import '@micromag/viewer/scss/styles.scss';
 import './index.css';
 
+__webpack_public_path__ = typeof window.MICROMAG_PUBLIC_PATH !== 'undefined' ? window.MICROMAG_PUBLIC_PATH : '/';
+
 function renderStory(story, props = {}) {
     render(
         React.createElement(Viewer, {
