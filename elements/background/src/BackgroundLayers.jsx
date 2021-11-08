@@ -13,7 +13,7 @@ import styles from './styles.module.scss';
 const propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
-    background: PropTypes.oneOf([
+    background: PropTypes.oneOfType([
         MicromagPropTypes.backgroundElement,
         PropTypes.arrayOf(MicromagPropTypes.backgroundElement),
     ]),

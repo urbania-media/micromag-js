@@ -40,6 +40,22 @@ export default {
                     fontStyleName: 'fontStyle',
                     alignName: 'align',
                 },
+                {
+                    name: 'highlightColor',
+                    type: 'color',
+                    label: defineMessage({
+                        defaultMessage: 'Highlight color',
+                        description: 'Field label',
+                    }),
+                },
+                {
+                    name: 'linkColor',
+                    type: 'color',
+                    label: defineMessage({
+                        defaultMessage: 'Link color',
+                        description: 'Field label',
+                    }),
+                },
             ],
         },
         {

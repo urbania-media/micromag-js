@@ -60,11 +60,11 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@ckeditor/ckeditor5-build-inline": "^24.0.0",
         "@ckeditor/ckeditor5-react": "^3.0.0",
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
+        "@micromag/ckeditor": "^0.2.354",
         "@micromag/core": "^0.2.354",
         "@micromag/element-grid": "^0.2.354",
         "@micromag/element-map": "^0.2.354",

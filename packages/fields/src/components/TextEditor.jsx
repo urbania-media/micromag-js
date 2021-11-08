@@ -1,12 +1,12 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
-import useCKEditor from '../hooks/useCKEditor';
-import useCKEditorInline from '../hooks/useCKEditorInline';
+import useCKEditorPackage from '../hooks/useCKEditorPackage';
 
 import styles from '../styles/text-editor.module.scss';
 
@@ -16,6 +16,7 @@ const propTypes = {
     className: PropTypes.string,
     onChange: PropTypes.func,
     inline: PropTypes.bool,
+    textStyle: PropTypes.shape({}),
     editorConfig: PropTypes.shape({}),
 };
 
@@ -25,54 +26,47 @@ const defaultProps = {
     className: null,
     onChange: null,
     inline: false,
+    textStyle: null,
     editorConfig: {
-        removePlugins: ['Autoformat'],
-        toolbar: ['bold', 'italic', '|', 'link'],
-        language: 'fr',
+        toolbar: ['bold', 'italic', 'highlight', '|', 'link'],
+        // language: 'fr',
         link: {
             addTargetToExternalLinks: true,
         },
     },
 };
 
-const TextEditorField = ({ value, size, className, editorConfig, inline, onChange }) => {
+const TextEditorField = ({ value, size, className, textStyle, editorConfig, inline, onChange }) => {
     const { locale } = useIntl();
-    const CKEditor = useCKEditor();
-    const InlineEditor = useCKEditorInline();
+    const { highlightColor = null } = textStyle || {};
+    const Editor = useCKEditorPackage({
+        inline,
+    });
+
+    // const CKEditor = useCKEditor();
+    // const InlineEditor = useCKEditorInline();
 
     const finalEditorConfig = useMemo(
         () => ({
             ...editorConfig,
+            highlight: {
+                options: [
+                    {
+                        model: 'marker',
+                        title: 'Marker',
+                        type: 'marker',
+                        color: highlightColor,
+                    },
+                ],
+            },
             language: locale,
         }),
-        [editorConfig, locale],
+        [editorConfig, locale, highlightColor],
     );
 
-    const onEditorReady = useCallback(
-        // eslint-disable-next-line  no-unused-vars
-        (editor) => {
-            // eslint-disable-line  no-unused-vars
-            if (inline) {
-                // editor.model.schema.extend('$root', {
-                //     isBlock: true,
-                //     isLimit: true,
-                // });
-                // editor.model.schema.extend('$block', {
-                //     isLimit: true,
-                // });
-                // editor.model.schema.extend('paragraph', {
-                //     isLimit: true,
-                // });
-                // editor.conversion.for('downcast').elementToElement({
-                //     model: 'paragraph',
-                //     view: 'span',
-                //     // view: (element, { writer }) => writer.createText(),
-                //     converterPriority: 'high',
-                // });
-            }
-        },
-        [inline],
-    );
+    const onEditorReady = useCallback(() => {
+        // eslint-disable
+    }, [onChange]);
 
     const onEditorChange = useCallback(
         (event, editor) => {
@@ -81,7 +75,7 @@ const TextEditorField = ({ value, size, className, editorConfig, inline, onChang
                 onChange(data);
             }
         },
-        [onChange, inline],
+        [onChange],
     );
 
     return (
@@ -93,16 +87,29 @@ const TextEditorField = ({ value, size, className, editorConfig, inline, onChang
                     [className]: className !== null,
                 },
             ])}
+            id="editor-test"
         >
-            {CKEditor !== null && InlineEditor !== null ? (
+            {Editor !== null ? (
                 <CKEditor
-                    editor={InlineEditor}
+                    editor={Editor}
                     config={finalEditorConfig}
-                    data={value || ''}
+                    data={`<h1>${value || ''}</h1>`}
                     onReady={onEditorReady}
                     onChange={onEditorChange}
                 />
             ) : null}
+            <style type="text/css">{`
+                ${
+                    highlightColor !== null
+                        ? `
+                #editor-test .ck-content mark {
+                    background-color: ${highlightColor.color};
+                }
+                `
+                        : null
+                }
+
+            `}</style>
         </div>
     );
 };

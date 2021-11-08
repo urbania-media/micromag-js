@@ -1,5 +1,5 @@
 {
-    "name": "@micromag/intl",
+    "name": "@micromag/ckeditor",
     "version": "0.2.354",
     "description": "",
     "keywords": [
@@ -29,22 +29,12 @@
         }
     ],
     "license": "ISC",
-    "main": "lib/index.js",
-    "module": "es/index.js",
-    "exports": {
-        ".": "./lib/index.js",
-        "./locale/*": "./locale/*.cjs.js"
-    },
+    "main": "dist/main.js",
     "files": [
-        "locale",
-        "lib",
-        "es",
-        "scripts",
-        "assets"
+        "dist"
     ],
     "scripts": {
-        "intl": "./scripts/build-intl.sh",
-        "prepare": "rm -rf ./locale && npm run intl && ../../scripts/prepare-package.sh"
+        "prepare": "rm -rf dist && ../../node_modules/.bin/webpack --mode production --config webpack.config.js"
     },
     "devDependencies": {
         "react": "^16.8.0 || ^17.0.0",
@@ -56,21 +46,15 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@formatjs/cli": "^4.4.0",
-        "@micromag/core": "^0.2.354",
-        "commander": "^8.3.0",
-        "fs-extra": "^10.0.0",
-        "gettext-parser": "^4.0.4",
-        "glob": "^7.1.6",
-        "lodash": "^4.17.20",
-        "prop-types": "^15.7.2",
-        "react-intl": "^5.12.1"
+        "@ckeditor/ckeditor5-basic-styles": "^31.0.0",
+        "@ckeditor/ckeditor5-build-inline": "^24.0.0",
+        "@ckeditor/ckeditor5-editor-inline": "^31.0.0",
+        "@ckeditor/ckeditor5-essentials": "^31.0.0",
+        "@ckeditor/ckeditor5-highlight": "^31.0.0",
+        "@ckeditor/ckeditor5-link": "^31.0.0",
+        "@ckeditor/ckeditor5-paragraph": "^31.0.0",
+        "@ckeditor/ckeditor5-react": "^3.0.0"
     },
-    "lang": "locale",
-    "supportedLocales": [
-        "en",
-        "fr"
-    ],
     "publishConfig": {
         "access": "public"
     },

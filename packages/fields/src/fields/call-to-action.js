@@ -43,7 +43,7 @@ export default {
         {
             name: 'url',
             type: 'url',
-            isHorizontal: true,
+            // isHorizontal: true,
             label: defineMessage({
                 defaultMessage: 'Link',
                 description: 'CTA field url field label',

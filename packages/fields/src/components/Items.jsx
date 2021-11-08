@@ -250,6 +250,7 @@ const ItemsField = ({
                 <Button
                     theme="primary"
                     size="sm"
+                    disabled={editing}
                     icon={<FontAwesomeIcon icon={faPlus} />}
                     onClick={onClickAdd}
                 >
@@ -257,8 +258,14 @@ const ItemsField = ({
                 </Button>
                 {hasItems ? (
                     <Button
-                        className="ml-auto"
-                        theme="secondary"
+                        className={classNames([
+                            'ml-auto',
+                            {
+                                'pr-0': !editing,
+                                'text-reset': !editing,
+                            },
+                        ])}
+                        theme={editing ? 'primary' : 'link'}
                         size="sm"
                         icon={<FontAwesomeIcon icon={editing ? faCheck : faList} />}
                         onClick={onClickEdit}

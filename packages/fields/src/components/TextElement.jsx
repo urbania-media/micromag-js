@@ -15,7 +15,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    inline: true,
+    inline: false,
     textOnly: false,
     value: null,
     onChange: null,
@@ -23,6 +23,7 @@ const defaultProps = {
 
 const TextElement = ({ value, onChange, inline, textOnly, ...props }) => {
     const bodyValue = value !== null ? value.body || null : null;
+    const textStyleValue = value !== null ? value.textStyle || null : null;
     const onBodyChange = useCallback(
         (newBody) => {
             const newValue = {
@@ -42,7 +43,15 @@ const TextElement = ({ value, onChange, inline, textOnly, ...props }) => {
             <TextareaField {...props} value={bodyValue} onChange={onBodyChange} />
         );
     }
-    return <EditorField {...props} inline={inline} value={bodyValue} onChange={onBodyChange} />;
+    return (
+        <EditorField
+            {...props}
+            inline={inline}
+            textStyle={textStyleValue}
+            value={bodyValue}
+            onChange={onBodyChange}
+        />
+    );
 };
 
 TextElement.propTypes = propTypes;

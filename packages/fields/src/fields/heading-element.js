@@ -4,4 +4,5 @@ export default {
     ...textElement,
     id: 'heading-element',
     size: 'lg',
+    inline: true,
 };

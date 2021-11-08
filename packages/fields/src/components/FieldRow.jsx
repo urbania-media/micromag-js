@@ -104,7 +104,7 @@ const FieldRow = ({
                     'col-form-label': isHorizontal || withSettings,
                     'col-auto': isHorizontal,
                     col: !isHorizontal && withSettings,
-                    'py-0': isHorizontal,
+                    'py-0': isHorizontal && isClickable,
                     'text-truncate': isHorizontal,
                     'font-weight-normal': !isSection,
                     'font-weight-bold': isSection,
@@ -121,20 +121,28 @@ const FieldRow = ({
         errors !== null && errors.length > 0 ? <FieldErrors errors={errors} /> : null;
 
     const arrowElement = isClickable ? (
-        <span className="col-auto">
+        <span className="col-auto align-self-middle">
             <FontAwesomeIcon icon={faAngleRight} />
         </span>
     ) : null;
 
     if (isHorizontal) {
         const rowInner = (
-            <span className={classNames(['form-row', 'align-items-center', 'flex-nowrap'])}>
-                {labelElement}
-                <span className={classNames(['col', styles.colValue])}>{children}</span>
-                {arrowElement}
-                {helpElement}
-                {errorsElement}
-            </span>
+            <>
+                <span className={classNames(['form-row', 'flex-nowrap'])}>
+                    {labelElement}
+                    <span className={classNames(['col', styles.colValue])}>
+                        {children}
+                        {helpElement !== null || errorsElement !== null ? (
+                            <span className={classNames(['d-block', 'mt-1'])}>
+                                {helpElement}
+                                {errorsElement}
+                            </span>
+                        ) : null}
+                    </span>
+                    {arrowElement}
+                </span>
+            </>
         );
 
         return isClickable ? (
