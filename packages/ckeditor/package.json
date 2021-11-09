@@ -29,7 +29,7 @@
         }
     ],
     "license": "ISC",
-    "main": "dist/main.js",
+    "main": "dist/index.js",
     "files": [
         "dist"
     ],
