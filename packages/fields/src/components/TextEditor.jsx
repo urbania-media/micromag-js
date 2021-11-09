@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { v4 as uuidv4 } from 'uuid';
-import useCKEditorPackage from '../hooks/useCKEditorPackage';
+import useCKEditor from '../hooks/useCKEditor';
 import styles from '../styles/text-editor.module.scss';
 
 const propTypes = {
@@ -41,7 +41,7 @@ const defaultProps = {
 const TextEditorField = ({ value, size, className, textStyle, editorConfig, inline, onChange }) => {
     const { locale } = useIntl();
     const { highlight: highlightStyle = null, link: linkStyle = null } = textStyle || {};
-    const Editor = useCKEditorPackage({
+    const Editor = useCKEditor({
         inline,
     });
     const getColors = useGetColors();
