@@ -40,19 +40,58 @@ export default {
                     fontStyleName: 'fontStyle',
                     alignName: 'align',
                 },
+            ],
+        },
+        {
+            type: 'fields',
+            name: 'highlight',
+            label: defineMessage({
+                defaultMessage: 'Highlight',
+                description: 'Fields section label',
+            }),
+            isList: true,
+            fields: [
                 {
-                    name: 'highlightColor',
+                    name: 'color',
                     type: 'color',
                     label: defineMessage({
-                        defaultMessage: 'Highlight color',
+                        defaultMessage: 'Color',
                         description: 'Field label',
                     }),
                 },
                 {
-                    name: 'linkColor',
+                    name: 'textColor',
                     type: 'color',
                     label: defineMessage({
-                        defaultMessage: 'Link color',
+                        defaultMessage: 'Text color',
+                        description: 'Field label',
+                    }),
+                },
+            ],
+        },
+        {
+            type: 'fields',
+            name: 'link',
+            label: defineMessage({
+                defaultMessage: 'Links',
+                description: 'Fields section label',
+            }),
+            isList: true,
+            fields: [
+                {
+                    name: 'color',
+                    type: 'color',
+                    label: defineMessage({
+                        defaultMessage: 'Color',
+                        description: 'Field label',
+                    }),
+                },
+                {
+                    name: 'fontStyle',
+                    component: 'font-style',
+                    isHorizontal: true,
+                    label: defineMessage({
+                        defaultMessage: 'Style',
                         description: 'Field label',
                     }),
                 },
@@ -84,7 +123,8 @@ export default {
                 },
                 {
                     component: 'font-style-transform',
-                    fontStyleName: 'fontStyle',
+                    name: 'fontStyle',
+                    transformName: 'transform',
                     label: defineMessage({
                         defaultMessage: 'Case',
                         description: 'Field label',

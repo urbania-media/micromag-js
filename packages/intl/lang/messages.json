@@ -207,6 +207,10 @@
     "defaultMessage": "Timing",
     "description": "Timing field label"
   },
+  "6MxaVf": {
+    "defaultMessage": "Style",
+    "description": "Field label"
+  },
   "6ak5YN": {
     "defaultMessage": "Side",
     "description": "Field label"
@@ -343,6 +347,10 @@
     "defaultMessage": "Markers with image",
     "description": "Markers field label"
   },
+  "DU1qdc": {
+    "defaultMessage": "Text color",
+    "description": "Field label"
+  },
   "DWEzCv": {
     "defaultMessage": "Select a video...",
     "description": "Label when no value is provided to Video field"
@@ -407,6 +415,10 @@
     "defaultMessage": "No message...",
     "description": "Label when there is no item"
   },
+  "HWpflq": {
+    "defaultMessage": "Highlight",
+    "description": "Fields section label"
+  },
   "HseFdk": {
     "defaultMessage": "Edit",
     "description": "Button to edit a screen"
@@ -414,6 +426,10 @@
   "IBjY5r": {
     "defaultMessage": "Duplicate screen",
     "description": "Duplicate screen item"
+  },
+  "ICXTfR": {
+    "defaultMessage": "Links",
+    "description": "Fields section label"
   },
   "JAguka": {
     "defaultMessage": "Your message",

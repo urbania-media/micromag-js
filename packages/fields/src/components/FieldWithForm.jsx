@@ -107,6 +107,7 @@ const FieldWithForm = ({
                 'form-row',
                 'align-items-center',
                 'flex-nowrap',
+                'w-100',
                 {
                     [className]: className !== null,
                 },

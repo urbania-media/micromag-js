@@ -1,10 +1,9 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import React, { useCallback } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useFieldsManager, useFieldComponent, useFieldContext } from '@micromag/core/contexts';
-
+import { useFieldComponent, useFieldContext, useFieldsManager } from '@micromag/core/contexts';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback } from 'react';
 import FieldRow from './FieldRow';
 
 const propTypes = {
@@ -25,6 +24,7 @@ const propTypes = {
     closeFieldForm: PropTypes.func,
     className: PropTypes.string,
     labelClassName: PropTypes.string,
+    fieldClassName: PropTypes.string,
 };
 
 const defaultProps = {
@@ -45,6 +45,7 @@ const defaultProps = {
     closeFieldForm: null,
     className: null,
     labelClassName: null,
+    fieldClassName: null,
 };
 
 const Field = ({
@@ -65,6 +66,7 @@ const Field = ({
     closeFieldForm,
     className,
     labelClassName,
+    fieldClassName,
     ...props
 }) => {
     const fieldsManager = useFieldsManager();
@@ -86,11 +88,10 @@ const Field = ({
     const isFields = FieldComponent === FieldsComponent;
     const context = useFieldContext();
 
-    const gotoForm = useCallback((form) => gotoFieldForm(name, form, context), [
-        name,
-        context,
-        gotoFieldForm,
-    ]);
+    const gotoForm = useCallback(
+        (form) => gotoFieldForm(name, form, context),
+        [name, context, gotoFieldForm],
+    );
     const closeForm = useCallback((form) => closeFieldForm(name, form), [name, closeFieldForm]);
     const gotoSettings = useCallback(() => gotoForm('settings'), [gotoForm]);
 
@@ -118,6 +119,7 @@ const Field = ({
                 'col-sm-3': isHorizontal && isFields,
                 [labelClassName]: labelClassName !== null,
             })}
+            className={fieldClassName}
             {...props}
             {...fieldProps}
             errors={errors}

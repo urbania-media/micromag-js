@@ -152,6 +152,9 @@
     "6DV50M": {
         "defaultMessage": "Timing"
     },
+    "6MxaVf": {
+        "defaultMessage": "Style"
+    },
     "6ak5YN": {
         "defaultMessage": "Side"
     },
@@ -254,6 +257,9 @@
     "D0+Cxr": {
         "defaultMessage": "Markers with image"
     },
+    "DU1qdc": {
+        "defaultMessage": "Text color"
+    },
     "DWEzCv": {
         "defaultMessage": "Select a video..."
     },
@@ -302,11 +308,17 @@
     "HTd98/": {
         "defaultMessage": "No message..."
     },
+    "HWpflq": {
+        "defaultMessage": "Highlight"
+    },
     "HseFdk": {
         "defaultMessage": "Edit"
     },
     "IBjY5r": {
         "defaultMessage": "Duplicate screen"
+    },
+    "ICXTfR": {
+        "defaultMessage": "Links"
     },
     "JAguka": {
         "defaultMessage": "Your message"

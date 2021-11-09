@@ -1,12 +1,16 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useMemo } from 'react';
-import PropTypes from 'prop-types';
-import { v1 as uuid } from 'uuid';
-import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { LinkStyle } from '@micromag/core/components';
-import { getStyleFromText, getStyleFromMargin } from '@micromag/core/utils';
-
+import { HighlightStyle, LinkStyle } from '@micromag/core/components';
+import {
+    getStyleFromHighlight,
+    getStyleFromLink,
+    getStyleFromMargin,
+    getStyleFromText,
+} from '@micromag/core/utils';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useMemo } from 'react';
+import { v1 as uuid } from 'uuid';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -29,8 +33,11 @@ const defaultProps = {
 
 const Heading = ({ size, body, textStyle, linksStyle, margin, className }) => {
     const HeadingComponent = `h${size}`;
+    const { link: linkStyle = null, highlight: highlightStyle = null } = textStyle || {};
     let finalStyle = null;
-    let finalLinkStyle = null;
+    let finalLinkStyle = linkStyle !== null ? getStyleFromLink(linkStyle) : null;
+    const finalHighlightStyle =
+        highlightStyle !== null ? getStyleFromHighlight(highlightStyle) : null;
     if (textStyle !== null) {
         finalStyle = {
             ...finalStyle,
@@ -49,15 +56,18 @@ const Heading = ({ size, body, textStyle, linksStyle, margin, className }) => {
             ...getStyleFromText(linksStyle),
         };
     }
-    const id = useMemo(() => (finalLinkStyle !== null ? `text-component-${uuid()}` : null), [
-        finalLinkStyle !== null,
-    ]);
+    const needsId = finalLinkStyle !== null || highlightStyle !== null;
+    const id = useMemo(() => (needsId ? `text-component-${uuid()}` : null), [needsId]);
     return (
         <>
             {finalLinkStyle !== null ? (
                 <LinkStyle selector={`#${id}`} style={finalLinkStyle} />
             ) : null}
+            {finalHighlightStyle !== null ? (
+                <HighlightStyle selector={`#${id}`} style={finalHighlightStyle} />
+            ) : null}
             <HeadingComponent
+                id={id}
                 className={classNames([
                     styles.container,
                     {

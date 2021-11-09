@@ -64,4 +64,5 @@ export { default as Screens } from './screens/Screens';
 export { default as Transitions } from './transitions/Transitions';
 export { default as TransitionsStagger } from './transitions/TransitionsStagger';
 
+export { default as HighlightStyle } from './utils/HighlightStyle';
 export { default as LinkStyle } from './utils/LinkStyle';

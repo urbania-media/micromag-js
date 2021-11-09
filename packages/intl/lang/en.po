@@ -324,6 +324,12 @@ msgid "Timing"
 msgstr "Timing"
 
 # Field label
+#: 6MxaVf
+msgctxt "6MxaVf"
+msgid "Style"
+msgstr "Style"
+
+# Field label
 #: 6ak5YN
 msgctxt "6ak5YN"
 msgid "Side"
@@ -527,6 +533,12 @@ msgctxt "D0+Cxr"
 msgid "Markers with image"
 msgstr "Markers with image"
 
+# Field label
+#: DU1qdc
+msgctxt "DU1qdc"
+msgid "Text color"
+msgstr "Text color"
+
 # Label when no value is provided to Video field
 #: DWEzCv
 msgctxt "DWEzCv"
@@ -623,6 +635,12 @@ msgctxt "HTd98/"
 msgid "No message..."
 msgstr "No message..."
 
+# Fields section label
+#: HWpflq
+msgctxt "HWpflq"
+msgid "Highlight"
+msgstr "Highlight"
+
 # Button to edit a screen
 #: HseFdk
 msgctxt "HseFdk"
@@ -634,6 +652,12 @@ msgstr "Edit"
 msgctxt "IBjY5r"
 msgid "Duplicate screen"
 msgstr "Duplicate screen"
+
+# Fields section label
+#: ICXTfR
+msgctxt "ICXTfR"
+msgid "Links"
+msgstr "Links"
 
 # Your message placeholder
 #: JAguka

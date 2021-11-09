@@ -1,13 +1,15 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import React, { useCallback, useEffect, useMemo } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { useIntl } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-
+import { HighlightStyle, LinkStyle } from '@micromag/core/components';
+import { useGetColors } from '@micromag/core/contexts';
+import { getColorAsString, getStyleFromHighlight, getStyleFromLink } from '@micromag/core/utils';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback, useMemo } from 'react';
+import { useIntl } from 'react-intl';
+import { v4 as uuidv4 } from 'uuid';
 import useCKEditorPackage from '../hooks/useCKEditorPackage';
-
 import styles from '../styles/text-editor.module.scss';
 
 const propTypes = {
@@ -38,35 +40,68 @@ const defaultProps = {
 
 const TextEditorField = ({ value, size, className, textStyle, editorConfig, inline, onChange }) => {
     const { locale } = useIntl();
-    const { highlightColor = null } = textStyle || {};
+    const { highlight: highlightStyle = null, link: linkStyle = null } = textStyle || {};
     const Editor = useCKEditorPackage({
         inline,
     });
+    const getColors = useGetColors();
+    const colors = useMemo(() => getColors() || [], [getColors]);
 
-    // const CKEditor = useCKEditor();
-    // const InlineEditor = useCKEditorInline();
+    const id = useMemo(() => `editor-${uuidv4()}`, []);
+
+    const markers = useMemo(() =>
+        colors.map((color, index) => ({
+            model: `marker_${index}`,
+            color: getColorAsString(color),
+        })),
+    );
+
+    const markerPlugin = useCallback((editor) => {
+        editor.conversion.attributeToElement({
+            model: {
+                key: 'highlight',
+                values: markers.map(({ model }) => model),
+            },
+            view: markers.reduce(
+                (map, { model, color }) => ({
+                    ...map,
+                    [model]: {
+                        name: 'mark',
+                        styles: {
+                            'background-color': color,
+                            'box-shadow': `0.05em 0px 0px ${color}, -0.05em 0px 0px ${color}`,
+                        },
+                    },
+                }),
+                {},
+            ),
+        });
+    }, []);
 
     const finalEditorConfig = useMemo(
         () => ({
             ...editorConfig,
+            extraPlugins: [markerPlugin],
             highlight: {
                 options: [
                     {
                         model: 'marker',
                         title: 'Marker',
                         type: 'marker',
-                        color: highlightColor,
                     },
+                    ...markers.map(({ model, color }) => ({
+                        model,
+                        type: 'marker',
+                        color,
+                    })),
                 ],
             },
             language: locale,
         }),
-        [editorConfig, locale, highlightColor],
+        [editorConfig, markerPlugin, locale],
     );
 
-    const onEditorReady = useCallback(() => {
-        // eslint-disable
-    }, [onChange]);
+    const onEditorReady = useCallback(() => {}, []);
 
     const onEditorChange = useCallback(
         (event, editor) => {
@@ -87,29 +122,26 @@ const TextEditorField = ({ value, size, className, textStyle, editorConfig, inli
                     [className]: className !== null,
                 },
             ])}
-            id="editor-test"
+            id={id}
         >
             {Editor !== null ? (
                 <CKEditor
                     editor={Editor}
                     config={finalEditorConfig}
-                    data={`<h1>${value || ''}</h1>`}
+                    data={value || ''}
                     onReady={onEditorReady}
                     onChange={onEditorChange}
                 />
             ) : null}
-            <style type="text/css">{`
-                ${
-                    highlightColor !== null
-                        ? `
-                #editor-test .ck-content mark {
-                    background-color: ${highlightColor.color};
-                }
-                `
-                        : null
-                }
-
-            `}</style>
+            {linkStyle !== null ? (
+                <LinkStyle selector={`#${id} .ck-content`} style={getStyleFromLink(linkStyle)} />
+            ) : null}
+            {highlightStyle !== null ? (
+                <HighlightStyle
+                    selector={`#${id} .ck-content`}
+                    style={getStyleFromHighlight(highlightStyle)}
+                />
+            ) : null}
         </div>
     );
 };

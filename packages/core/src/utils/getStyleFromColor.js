@@ -1,19 +1,10 @@
-import tinycolor from 'tinycolor2';
-import isString from 'lodash/isString';
+import getColorAsString from './getColorAsString';
 
-const getStyleFromColor = (value, property = 'backgroundColor', overideAlpha = null) => {
-    if (value === null || typeof value === 'undefined') {
-        return null;
-    }
-    const { color = null, alpha = null } = isString(value) ? { color: value } : value;
-    return {
-        [property]:
-            alpha !== null || overideAlpha !== null
-                ? tinycolor(color)
-                      .setAlpha(overideAlpha !== null ? overideAlpha : alpha)
-                      .toRgbString()
-                : color,
-    };
-};
+const getStyleFromColor = (value = null, property = 'backgroundColor', overideAlpha = null) =>
+    value !== null
+        ? {
+              [property]: getColorAsString(value, overideAlpha),
+          }
+        : null;
 
 export default getStyleFromColor;

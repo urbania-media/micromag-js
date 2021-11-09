@@ -99,6 +99,7 @@
         "flat": "^5.0.2",
         "hoist-non-react-statics": "^3.3.2",
         "lodash": "^4.17.20",
+        "param-case": "^3.0.4",
         "prop-types": "^15.7.2",
         "react-helmet": "^6.1.0",
         "react-intl": "^5.12.1",
