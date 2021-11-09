@@ -31,7 +31,8 @@
     "license": "ISC",
     "main": "dist/index.js",
     "files": [
-        "dist"
+        "dist",
+        "inline.js"
     ],
     "scripts": {
         "prepare": "rm -rf dist && ../../node_modules/.bin/webpack --mode production --config webpack.config.js"
