@@ -7,7 +7,7 @@ const getStyleFromBorder = (value) => {
     const { width = null, style: borderStyle = null, color = null } = value;
 
     return {
-        ...(width !== null ? { borderWidth: `${width}px` } : null),
+        ...(width !== null ? { borderWidth: width } : null),
         ...(borderStyle !== null ? { borderStyle } : null),
         ...getStyleFromColor(color, 'borderColor'),
     };

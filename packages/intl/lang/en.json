@@ -44,9 +44,6 @@
     "/hupzO": {
         "defaultMessage": "Credits"
     },
-    "09cd3w": {
-        "defaultMessage": "Title"
-    },
     "0GT0SI": {
         "defaultMessage": "Cancel"
     },
@@ -64,9 +61,6 @@
     },
     "2/F1Q7": {
         "defaultMessage": "#{index}"
-    },
-    "2Iseff": {
-        "defaultMessage": "Description"
     },
     "2J05S0": {
         "defaultMessage": "Images"
@@ -149,11 +143,17 @@
     "650XRF": {
         "defaultMessage": "Survey"
     },
+    "65rc70": {
+        "defaultMessage": "Edit style..."
+    },
     "6DV50M": {
         "defaultMessage": "Timing"
     },
     "6MxaVf": {
         "defaultMessage": "Style"
+    },
+    "6Q4tcn": {
+        "defaultMessage": "Result style"
     },
     "6ak5YN": {
         "defaultMessage": "Side"
@@ -314,6 +314,9 @@
     "HseFdk": {
         "defaultMessage": "Edit"
     },
+    "I2bIHm": {
+        "defaultMessage": "Good answer color"
+    },
     "IBjY5r": {
         "defaultMessage": "Duplicate screen"
     },
@@ -337,6 +340,9 @@
     },
     "JoWKee": {
         "defaultMessage": "Create your first screen"
+    },
+    "K1BxIr": {
+        "defaultMessage": "Edit metadata..."
     },
     "KB7N5E": {
         "defaultMessage": "Search a place on Google Maps"
@@ -406,6 +412,9 @@
     },
     "QfpTKK": {
         "defaultMessage": "Select a screen..."
+    },
+    "R9DB4a": {
+        "defaultMessage": "Styles"
     },
     "RHMS2f": {
         "defaultMessage": "Line color"
@@ -494,6 +503,9 @@
     "ZLDmja": {
         "defaultMessage": "Submit"
     },
+    "ZMS1Wv": {
+        "defaultMessage": "Text"
+    },
     "ZqwBOx": {
         "defaultMessage": "Questions"
     },
@@ -556,6 +568,9 @@
     },
     "e1I+KU": {
         "defaultMessage": "Question"
+    },
+    "e4UTx9": {
+        "defaultMessage": "Results"
     },
     "e6+aGf": {
         "defaultMessage": "Select a media..."
@@ -632,6 +647,9 @@
     "l/Y6or": {
         "defaultMessage": "Add an entry"
     },
+    "l5uLMd": {
+        "defaultMessage": "Buttons"
+    },
     "lGh/NP": {
         "defaultMessage": "Add an answer"
     },
@@ -704,11 +722,17 @@
     "qKQCxc": {
         "defaultMessage": "Add a marker"
     },
+    "qjL/eA": {
+        "defaultMessage": "Bar"
+    },
     "rBPIgw": {
         "defaultMessage": "Conversation"
     },
     "rdFCsN": {
         "defaultMessage": "No marker..."
+    },
+    "ru3tjH": {
+        "defaultMessage": "Bad answer color"
     },
     "sESmah": {
         "defaultMessage": "Entries"
@@ -826,9 +850,6 @@
     },
     "zDH24s": {
         "defaultMessage": "Latitude"
-    },
-    "zU0DaR": {
-        "defaultMessage": "Edit metadata..."
     },
     "zW7IVm": {
         "defaultMessage": "Quiz"

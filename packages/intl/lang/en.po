@@ -107,12 +107,6 @@ msgctxt "/hupzO"
 msgid "Credits"
 msgstr "Credits"
 
-# field label
-#: 09cd3w
-msgctxt "09cd3w"
-msgid "Title"
-msgstr "Title"
-
 # Cancel button label
 #: 0GT0SI
 msgctxt "0GT0SI"
@@ -148,12 +142,6 @@ msgstr "Description"
 msgctxt "2/F1Q7"
 msgid "#{index}"
 msgstr "#{index}"
-
-# field label
-#: 2Iseff
-msgctxt "2Iseff"
-msgid "Description"
-msgstr "Description"
 
 # Media label
 #: 2J05S0
@@ -317,6 +305,12 @@ msgctxt "650XRF"
 msgid "Survey"
 msgstr "Survey"
 
+# No value field label
+#: 65rc70
+msgctxt "65rc70"
+msgid "Edit style..."
+msgstr "Edit style..."
+
 # Timing field label
 #: 6DV50M
 msgctxt "6DV50M"
@@ -328,6 +322,12 @@ msgstr "Timing"
 msgctxt "6MxaVf"
 msgid "Style"
 msgstr "Style"
+
+# Field section label
+#: 6Q4tcn
+msgctxt "6Q4tcn"
+msgid "Result style"
+msgstr "Result style"
 
 # Field label
 #: 6ak5YN
@@ -647,6 +647,12 @@ msgctxt "HseFdk"
 msgid "Edit"
 msgstr "Edit"
 
+# Field label
+#: I2bIHm
+msgctxt "I2bIHm"
+msgid "Good answer color"
+msgstr "Good answer color"
+
 # Duplicate screen item
 #: IBjY5r
 msgctxt "IBjY5r"
@@ -694,6 +700,12 @@ msgstr "Button style"
 msgctxt "JoWKee"
 msgid "Create your first screen"
 msgstr "Create your first screen"
+
+# No value field label
+#: K1BxIr
+msgctxt "K1BxIr"
+msgid "Edit metadata..."
+msgstr "Edit metadata..."
 
 # Search a place on Google Maps placeholder
 #: KB7N5E
@@ -831,6 +843,12 @@ msgstr "Add an image"
 msgctxt "QfpTKK"
 msgid "Select a screen..."
 msgstr "Select a screen..."
+
+# Field section label
+#: R9DB4a
+msgctxt "R9DB4a"
+msgid "Styles"
+msgstr "Styles"
 
 # Field label
 #: RHMS2f
@@ -1006,6 +1024,12 @@ msgctxt "ZLDmja"
 msgid "Submit"
 msgstr "Submit"
 
+# Field label
+#: ZMS1Wv
+msgctxt "ZMS1Wv"
+msgid "Text"
+msgstr "Text"
+
 # Questions screen group
 #: ZqwBOx
 msgctxt "ZqwBOx"
@@ -1131,6 +1155,12 @@ msgstr "Legend"
 msgctxt "e1I+KU"
 msgid "Question"
 msgstr "Question"
+
+# Field label
+#: e4UTx9
+msgctxt "e4UTx9"
+msgid "Results"
+msgstr "Results"
 
 # Label when no value is provided to Media field
 #: e6+aGf
@@ -1282,6 +1312,12 @@ msgctxt "l/Y6or"
 msgid "Add an entry"
 msgstr "Add an entry"
 
+# Field label
+#: l5uLMd
+msgctxt "l5uLMd"
+msgid "Buttons"
+msgstr "Buttons"
+
 # Button label
 #: lGh/NP
 msgctxt "lGh/NP"
@@ -1424,6 +1460,12 @@ msgctxt "qKQCxc"
 msgid "Add a marker"
 msgstr "Add a marker"
 
+# Field label
+#: qjL/eA
+msgctxt "qjL/eA"
+msgid "Bar"
+msgstr "Bar"
+
 # Conversation screen title
 #: rBPIgw
 msgctxt "rBPIgw"
@@ -1435,6 +1477,12 @@ msgstr "Conversation"
 msgctxt "rdFCsN"
 msgid "No marker..."
 msgstr "No marker..."
+
+# Field label
+#: ru3tjH
+msgctxt "ru3tjH"
+msgid "Bad answer color"
+msgstr "Bad answer color"
 
 # Entries field label
 #: sESmah
@@ -1669,12 +1717,6 @@ msgstr "Text"
 msgctxt "zDH24s"
 msgid "Latitude"
 msgstr "Latitude"
-
-# metadata field placeholder
-#: zU0DaR
-msgctxt "zU0DaR"
-msgid "Edit metadata..."
-msgstr "Edit metadata..."
 
 # Quiz screen title
 #: zW7IVm

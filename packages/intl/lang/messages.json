@@ -63,10 +63,6 @@
     "defaultMessage": "Credits",
     "description": "Credits placeholder"
   },
-  "09cd3w": {
-    "defaultMessage": "Title",
-    "description": "field label"
-  },
   "0GT0SI": {
     "defaultMessage": "Cancel",
     "description": "Cancel button label"
@@ -90,10 +86,6 @@
   "2/F1Q7": {
     "defaultMessage": "#{index}",
     "description": "Item label in items field"
-  },
-  "2Iseff": {
-    "defaultMessage": "Description",
-    "description": "field label"
   },
   "2J05S0": {
     "defaultMessage": "Images",
@@ -203,6 +195,10 @@
     "defaultMessage": "Survey",
     "description": "Survey screen title"
   },
+  "65rc70": {
+    "defaultMessage": "Edit style...",
+    "description": "No value field label"
+  },
   "6DV50M": {
     "defaultMessage": "Timing",
     "description": "Timing field label"
@@ -210,6 +206,10 @@
   "6MxaVf": {
     "defaultMessage": "Style",
     "description": "Field label"
+  },
+  "6Q4tcn": {
+    "defaultMessage": "Result style",
+    "description": "Field section label"
   },
   "6ak5YN": {
     "defaultMessage": "Side",
@@ -423,6 +423,10 @@
     "defaultMessage": "Edit",
     "description": "Button to edit a screen"
   },
+  "I2bIHm": {
+    "defaultMessage": "Good answer color",
+    "description": "Field label"
+  },
   "IBjY5r": {
     "defaultMessage": "Duplicate screen",
     "description": "Duplicate screen item"
@@ -454,6 +458,10 @@
   "JoWKee": {
     "defaultMessage": "Create your first screen",
     "description": "Button to create your first screen"
+  },
+  "K1BxIr": {
+    "defaultMessage": "Edit metadata...",
+    "description": "No value field label"
   },
   "KB7N5E": {
     "defaultMessage": "Search a place on Google Maps",
@@ -545,6 +553,10 @@
   },
   "QfpTKK": {
     "defaultMessage": "Select a screen..."
+  },
+  "R9DB4a": {
+    "defaultMessage": "Styles",
+    "description": "Field section label"
   },
   "RHMS2f": {
     "defaultMessage": "Line color",
@@ -662,6 +674,10 @@
     "defaultMessage": "Submit",
     "description": "Submit form button"
   },
+  "ZMS1Wv": {
+    "defaultMessage": "Text",
+    "description": "Field label"
+  },
   "ZqwBOx": {
     "defaultMessage": "Questions",
     "description": "Questions screen group"
@@ -745,6 +761,10 @@
   "e1I+KU": {
     "defaultMessage": "Question",
     "description": "Question placeholder"
+  },
+  "e4UTx9": {
+    "defaultMessage": "Results",
+    "description": "Field label"
   },
   "e6+aGf": {
     "defaultMessage": "Select a media...",
@@ -846,6 +866,10 @@
     "defaultMessage": "Add an entry",
     "description": "Button label"
   },
+  "l5uLMd": {
+    "defaultMessage": "Buttons",
+    "description": "Field label"
+  },
   "lGh/NP": {
     "defaultMessage": "Add an answer",
     "description": "Button label"
@@ -940,6 +964,10 @@
     "defaultMessage": "Add a marker",
     "description": "Button label in markers field"
   },
+  "qjL/eA": {
+    "defaultMessage": "Bar",
+    "description": "Field label"
+  },
   "rBPIgw": {
     "defaultMessage": "Conversation",
     "description": "Conversation screen title"
@@ -947,6 +975,10 @@
   "rdFCsN": {
     "defaultMessage": "No marker...",
     "description": "Label when there is no item"
+  },
+  "ru3tjH": {
+    "defaultMessage": "Bad answer color",
+    "description": "Field label"
   },
   "sESmah": {
     "defaultMessage": "Entries",
@@ -1103,10 +1135,6 @@
   "zDH24s": {
     "defaultMessage": "Latitude",
     "description": "Latitude description"
-  },
-  "zU0DaR": {
-    "defaultMessage": "Edit metadata...",
-    "description": "metadata field placeholder"
   },
   "zW7IVm": {
     "defaultMessage": "Quiz",
