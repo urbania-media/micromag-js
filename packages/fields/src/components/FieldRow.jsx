@@ -95,6 +95,13 @@ const FieldRow = ({
         },
     ]);
 
+    const helpElement = help !== null ? <FieldHelp>{help}</FieldHelp> : null;
+
+    const errorsElement =
+        errors !== null && errors.length > 0 ? <FieldErrors errors={errors} /> : null;
+
+    const hasIndicationsUnder = helpElement !== null || errorsElement !== null;
+
     const labelElement =
         label !== null ? (
             <label
@@ -102,7 +109,9 @@ const FieldRow = ({
                     'col-form-label': isHorizontal || withSettings,
                     'col-auto': isHorizontal,
                     col: !isHorizontal && withSettings,
-                    'py-0': isHorizontal && isClickable,
+                    'py-0': isHorizontal,
+                    'pt-2': isHorizontal && hasIndicationsUnder,
+                    'align-self-center': isHorizontal && !hasIndicationsUnder,
                     'text-truncate': isHorizontal,
                     'font-weight-normal': !isSection,
                     'font-weight-bold': isSection,
@@ -112,11 +121,6 @@ const FieldRow = ({
                 <Label>{label}</Label>
             </label>
         ) : null;
-
-    const helpElement = help !== null ? <FieldHelp>{help}</FieldHelp> : null;
-
-    const errorsElement =
-        errors !== null && errors.length > 0 ? <FieldErrors errors={errors} /> : null;
 
     const arrowElement = isClickable ? (
         <span className="col-auto align-self-middle">
