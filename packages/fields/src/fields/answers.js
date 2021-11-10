@@ -17,5 +17,5 @@ export default {
             defaultMessage: 'Answer',
             description: 'Answers item field label',
         }),
-    },
+    }
 };

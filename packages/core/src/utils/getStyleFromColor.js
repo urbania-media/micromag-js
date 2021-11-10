@@ -1,10 +1,12 @@
 import getColorAsString from './getColorAsString';
 
-const getStyleFromColor = (value = null, property = 'backgroundColor', overideAlpha = null) =>
-    value !== null
+const getStyleFromColor = (value = null, property = 'backgroundColor', overideAlpha = null) => {
+    const color = getColorAsString(value, overideAlpha);
+    return color !== null
         ? {
-              [property]: getColorAsString(value, overideAlpha),
+              [property]: color,
           }
         : null;
+};
 
 export default getStyleFromColor;

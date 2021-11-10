@@ -8,10 +8,23 @@ export default {
         {
             name: 'label',
             type: 'text-element',
-            textOnly: true,
             label: defineMessage({
                 defaultMessage: 'Label',
                 description: 'Field label',
+            }),
+        },
+        {
+            name: 'buttonStyle',
+            type: 'button-style',
+            className: 'mt-4'
+        },
+        {
+            name: 'resultStyle',
+            type: 'graph-bar-style',
+            isList: true,
+            label: defineMessage({
+                defaultMessage: 'Result style',
+                description: 'Field section label',
             }),
         },
     ],

@@ -2,7 +2,6 @@ import { defineMessage } from 'react-intl';
 
 export default {
     id: 'button-style',
-    className: 'mt-4',
     fields: [
         {
             type: 'fields',

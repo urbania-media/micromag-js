@@ -8,9 +8,9 @@ const getStyleFromLink = (value) => {
     const { italic = false, bold = false, underline = false } = fontStyle || {};
     return {
         ...(color !== null ? getStyleFromColor(color, 'color') : null),
-        fontStyle: italic ? 'italic' : null,
-        fontWeight: bold ? 'bold' : null,
-        textDecoration: underline ? 'underline' : null,
+        ...(italic ? { fontStyle: 'italic' } : null),
+        ...(bold ? { fontWeight: 'bold' } : null),
+        ...(underline ? { textDecoration: 'underline' } : null),
     };
 };
 

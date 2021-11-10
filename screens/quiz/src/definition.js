@@ -1,5 +1,4 @@
 import { defineMessage } from 'react-intl';
-
 import QuizScreen from './Quiz';
 
 export default {
@@ -63,6 +62,49 @@ export default {
                 description: 'Field label',
             }),
         },
+
+        {
+            type: 'fields',
+            isList: true,
+            label: defineMessage({
+                defaultMessage: 'Styles',
+                description: 'Field section label',
+            }),
+            fields: [
+                {
+                    name: 'buttonsStyle',
+                    type: 'field-with-form',
+                    label: defineMessage({
+                        defaultMessage: 'Buttons',
+                        description: 'Field label',
+                    }),
+                    noValueLabel: defineMessage({
+                        defaultMessage: 'Edit style...',
+                        description: 'No value field label',
+                    }),
+                    field: {
+                        type: 'button-style',
+                    },
+                },
+                {
+                    name: 'goodAnswerColor',
+                    type: 'color',
+                    label: defineMessage({
+                        defaultMessage: 'Good answer color',
+                        description: 'Field label',
+                    }),
+                },
+                {
+                    name: 'badAnswerColor',
+                    type: 'color',
+                    label: defineMessage({
+                        defaultMessage: 'Bad answer color',
+                        description: 'Field label',
+                    }),
+                }
+            ],
+        },
+
         {
             name: 'background',
             type: 'background',

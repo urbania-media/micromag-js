@@ -5,7 +5,7 @@ export default {
     component: 'field-with-form',
     noValueLabel: defineMessage({
         defaultMessage: 'Edit metadata...',
-        description: 'metadata field placeholder',
+        description: 'No value field label',
     }),
     fields: [
         {
@@ -13,7 +13,7 @@ export default {
             type: 'text',
             label: defineMessage({
                 defaultMessage: 'Title',
-                description: 'field label',
+                description: 'Field label',
             }),
         },
         {
@@ -21,7 +21,7 @@ export default {
             type: 'text',
             label: defineMessage({
                 defaultMessage: 'Description',
-                description: 'field label',
+                description: 'Field label',
             }),
         },
     ]

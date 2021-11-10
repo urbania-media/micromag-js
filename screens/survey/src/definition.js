@@ -50,8 +50,50 @@ export default {
             label: defineMessage({
                 defaultMessage: 'Answers',
                 description: 'Field label',
-            }),
+            })
         },
+
+        {
+            type: 'fields',
+            isList: true,
+            label: defineMessage({
+                defaultMessage: 'Styles',
+                description: 'Field section label',
+            }),
+            fields: [
+                {
+                    name: 'buttonsStyle',
+                    type: 'field-with-form',
+                    label: defineMessage({
+                        defaultMessage: 'Buttons',
+                        description: 'Field label',
+                    }),
+                    noValueLabel: defineMessage({
+                        defaultMessage: 'Edit style...',
+                        description: 'No value field label',
+                    }),
+                    field: {
+                        type: 'button-style',
+                    }
+                },
+                {
+                    name: 'resultsStyle',
+                    type: 'field-with-form',
+                    label: defineMessage({
+                        defaultMessage: 'Results',
+                        description: 'Field label',
+                    }),
+                    noValueLabel: defineMessage({
+                        defaultMessage: 'Edit style...',
+                        description: 'No value field label',
+                    }),
+                    field: {
+                        type: 'graph-bar-style',
+                    }
+                },
+            ],
+        },
+
         {
             name: 'background',
             type: 'background',

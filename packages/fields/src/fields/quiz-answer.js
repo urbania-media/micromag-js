@@ -21,6 +21,11 @@ export default {
                 defaultMessage: 'Good answer',
                 description: 'Field label',
             }),
-        }
+        },
+        {
+            name: 'buttonStyle',
+            type: 'button-style',
+            className: 'mt-4'
+        },
     ]
 };
