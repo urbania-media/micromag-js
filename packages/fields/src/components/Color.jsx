@@ -1,15 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useMemo } from 'react';
+import { Button } from '@micromag/core/components';
+import { getStyleFromColor } from '@micromag/core/utils';
 import PropTypes from 'prop-types';
+import React, { useCallback, useMemo } from 'react';
 // import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-import { getStyleFromColor } from '@micromag/core/utils';
 import tinycolor from 'tinycolor2';
-
-import FieldWithForm from './FieldWithForm';
-import ColorPicker from './ColorPicker';
-
 import styles from '../styles/color.module.scss';
+import ColorPicker from './ColorPicker';
+import FieldWithForm from './FieldWithForm';
 
 const propTypes = {
     value: PropTypes.shape({
@@ -34,9 +33,10 @@ const defaultProps = {
 
 const ColorField = ({ value, onChange, closeForm, ...props }) => {
     const { color = null } = value || {};
-    const hexColor = useMemo(() => (color !== null ? tinycolor(color).toHexString() : null), [
-        color,
-    ]);
+    const hexColor = useMemo(
+        () => (color !== null ? tinycolor(color).toHexString() : null),
+        [color],
+    );
     const previewElement =
         value !== null ? (
             <span className={styles.preview}>
@@ -48,6 +48,14 @@ const ColorField = ({ value, onChange, closeForm, ...props }) => {
                 />
             </span>
         ) : null;
+    const onClickReset = useCallback(() => {
+        if (onChange !== null) {
+            onChange(null);
+        }
+        if (closeForm !== null) {
+            closeForm();
+        }
+    }, [onChange, closeForm]);
 
     return (
         <FieldWithForm
@@ -62,10 +70,21 @@ const ColorField = ({ value, onChange, closeForm, ...props }) => {
         >
             <div className="p-2">
                 <ColorPicker className={styles.picker} value={value} onChange={onChange} />
-                <div className={styles.confirmContainer}>
-                    <button type="button" className="btn btn-light" onClick={closeForm}>
-                        <FormattedMessage defaultMessage="Close" description="Close button label" />
-                    </button>
+                <div className="d-flex mt-4">
+                    <Button theme="light" size="sm" onClick={closeForm}>
+                        <FormattedMessage defaultMessage="Close" description="Button label" />
+                    </Button>
+                    {value !== null ? (
+                        <Button
+                            outline
+                            theme="secondary"
+                            size="sm"
+                            className="ml-auto"
+                            onClick={onClickReset}
+                        >
+                            <FormattedMessage defaultMessage="Clear" description="Button label" />
+                        </Button>
+                    ) : null}
                 </div>
             </div>
         </FieldWithForm>

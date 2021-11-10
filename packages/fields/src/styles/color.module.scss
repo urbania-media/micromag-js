@@ -34,7 +34,7 @@
 
                     &:last-child {
                         margin-right: 1px;
-                        box-shadow: 0 0 0 1px rgba($white, 0.25);                        
+                        box-shadow: 0 0 0 1px rgba($white, 0.25);
                     }
                 }
             }
@@ -52,10 +52,4 @@
             }
         }
     }
-}
-
-.confirmContainer {    
-    padding-top: 10px;
-    border-top: 1px solid rgba(#EEE, 0.2);
-    text-align: center;
 }

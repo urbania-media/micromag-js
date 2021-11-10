@@ -19,6 +19,7 @@ const propTypes = {
     className: PropTypes.string,
     onChange: PropTypes.func,
     inline: PropTypes.bool,
+    withHighlightColors: PropTypes.bool,
     textStyle: PropTypes.shape({}),
     editorConfig: PropTypes.shape({}),
 };
@@ -29,6 +30,7 @@ const defaultProps = {
     className: null,
     onChange: null,
     inline: false,
+    withHighlightColors: false,
     textStyle: null,
     editorConfig: {
         toolbar: ['bold', 'italic', 'highlight', '|', 'link'],
@@ -38,12 +40,24 @@ const defaultProps = {
     },
 };
 
-const TextEditorField = ({ value, size, className, textStyle, editorConfig, inline, onChange }) => {
+const TextEditorField = ({
+    value,
+    size,
+    className,
+    textStyle,
+    editorConfig,
+    inline,
+    withHighlightColors,
+    onChange,
+}) => {
     const { locale } = useIntl();
     const { highlight: highlightStyle = null, link: linkStyle = null } = textStyle || {};
     const Editor = useCKEditor();
     const getColors = useGetColors();
-    const colors = useMemo(() => getColors() || [], [getColors]);
+    const colors = useMemo(
+        () => (withHighlightColors ? getColors() : null) || [],
+        [withHighlightColors, getColors],
+    );
 
     const id = useMemo(() => `editor-${uuidv4()}`, []);
 
