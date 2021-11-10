@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import { CKEditor } from '@ckeditor/ckeditor5-react';
+import { InlinePlugin, MarkerPlugin } from '@micromag/ckeditor';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { HighlightStyle, LinkStyle } from '@micromag/core/components';
 import { useGetColors } from '@micromag/core/contexts';
@@ -31,7 +32,6 @@ const defaultProps = {
     textStyle: null,
     editorConfig: {
         toolbar: ['bold', 'italic', 'highlight', '|', 'link'],
-        // language: 'fr',
         link: {
             addTargetToExternalLinks: true,
         },
@@ -41,47 +41,16 @@ const defaultProps = {
 const TextEditorField = ({ value, size, className, textStyle, editorConfig, inline, onChange }) => {
     const { locale } = useIntl();
     const { highlight: highlightStyle = null, link: linkStyle = null } = textStyle || {};
-    const Editor = useCKEditor({
-        inline,
-    });
+    const Editor = useCKEditor();
     const getColors = useGetColors();
     const colors = useMemo(() => getColors() || [], [getColors]);
 
     const id = useMemo(() => `editor-${uuidv4()}`, []);
 
-    const markers = useMemo(() =>
-        colors.map((color, index) => ({
-            model: `marker_${index}`,
-            color: getColorAsString(color),
-        })),
-    );
-
-    const markerPlugin = useCallback((editor) => {
-        editor.conversion.attributeToElement({
-            model: {
-                key: 'highlight',
-                values: markers.map(({ model }) => model),
-            },
-            view: markers.reduce(
-                (map, { model, color }) => ({
-                    ...map,
-                    [model]: {
-                        name: 'mark',
-                        styles: {
-                            'background-color': color,
-                            'box-shadow': `0.05em 0px 0px ${color}, -0.05em 0px 0px ${color}`,
-                        },
-                    },
-                }),
-                {},
-            ),
-        });
-    }, []);
-
     const finalEditorConfig = useMemo(
         () => ({
             ...editorConfig,
-            extraPlugins: [markerPlugin],
+            extraPlugins: [MarkerPlugin, inline ? InlinePlugin : null].filter((it) => it !== null),
             highlight: {
                 options: [
                     {
@@ -89,16 +58,16 @@ const TextEditorField = ({ value, size, className, textStyle, editorConfig, inli
                         title: 'Marker',
                         type: 'marker',
                     },
-                    ...markers.map(({ model, color }) => ({
-                        model,
+                    ...colors.map((color, index) => ({
+                        model: `marker_${index}`,
                         type: 'marker',
-                        color,
+                        color: getColorAsString(color),
                     })),
                 ],
             },
             language: locale,
         }),
-        [editorConfig, markerPlugin, locale],
+        [editorConfig, inline, locale],
     );
 
     const onEditorReady = useCallback(() => {}, []);

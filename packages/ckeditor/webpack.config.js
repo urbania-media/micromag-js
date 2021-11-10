@@ -4,15 +4,12 @@ const path = require('path');
 const { styles } = require('@ckeditor/ckeditor5-dev-utils');
 
 module.exports = {
-    entry: {
-        index: './src/index.js',
-        inline: './src/inline.js',
-    },
+    entry: './src/build.js',
 
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].js',
-        library: 'Editor',
+        filename: 'ckeditor.js',
+        library: 'MicromagEditor',
 		libraryTarget: 'umd',
 		libraryExport: 'default'
     },

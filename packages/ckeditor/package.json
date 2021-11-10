@@ -29,13 +29,24 @@
         }
     ],
     "license": "ISC",
-    "main": "dist/index.js",
+    "main": "lib/index.js",
+    "module": "es/index.js",
+    "exports": {
+        ".": "./lib/index.js",
+        "./build": "./dist/ckeditor.js"
+    },
+    "browser": {
+        ".": "./es/index.js",
+        "./build": "./dist/ckeditor.js"
+    },
     "files": [
         "dist",
-        "inline.js"
+        "es",
+        "lib"
     ],
     "scripts": {
-        "prepare": "rm -rf dist && ../../node_modules/.bin/webpack --mode production --config webpack.config.js"
+        "build:ckeditor": "../../node_modules/.bin/webpack --mode production --config webpack.config.js",
+        "prepare": "rm -rf dist && ../../scripts/prepare-package.sh && npm run build:ckeditor"
     },
     "devDependencies": {
         "react": "^16.8.0 || ^17.0.0",

@@ -3,14 +3,11 @@ import { useState, useEffect } from 'react';
 /**
  * Locale loader
  */
-let packageCache = {
-    inline: null,
-    normal: null,
-};
-const useCKEditor = ({ inline = false } = {}) => {
+let packageCache = null;
+const useCKEditor = () => {
     // transport
     const [{ package: loadedPackage }, setLoadedPackage] = useState({
-        package: packageCache[inline ? 'inline' : 'normal'],
+        package: packageCache,
     });
     useEffect(() => {
         let canceled = false;
@@ -19,12 +16,9 @@ const useCKEditor = ({ inline = false } = {}) => {
                 canceled = true;
             };
         }
-        (inline ? import('@micromag/ckeditor/inline') : import('@micromag/ckeditor')).then(
+        import('@micromag/ckeditor/build').then(
             ({ default: Editor }) => {
-                packageCache = {
-                    ...packageCache,
-                    [inline ? 'inline' : 'normal']: Editor,
-                };
+                packageCache = Editor;
                 if (!canceled) {
                     setLoadedPackage({
                         package: Editor,
