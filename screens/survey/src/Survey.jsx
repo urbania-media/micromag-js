@@ -221,23 +221,21 @@ const SurveyScreen = ({
     const finalTransitionDuration = showInstantAnswer ? 0 : `${resultTransitionDuration}ms`;
     const [ready, setReady] = useState(false);
     useEffect(() => {
-        let maxWidth = 0;
-
         if (answers === null || isPlaceholder) {
             return;
         }
 
-        answers.forEach((answer, answerI) => {
-            const button = buttonsRefs.current[answerI];
-            const label = labelsRefs.current[answerI];
-
-            if (typeof button !== 'undefined' && button !== null) {
+        const maxWidth = answers.reduce((currentMaxWidth, answer, answerI) => {
+            const button = buttonsRefs.current[answerI] || null;
+            const label = labelsRefs.current[answerI] || null;
+            if (button !== null && label !== null) {
                 const borderWidth = button.offsetWidth - button.clientWidth;
-                const totalWidth = borderWidth + label.offsetWidth + 2;
-                maxWidth = Math.max(maxWidth, totalWidth);
-                setButtonMaxWidth(maxWidth);
+                const totalWidth = borderWidth + label.getBoundingClientRect().width + 20;
+                return Math.max(currentMaxWidth, totalWidth);
             }
-        });
+            return currentMaxWidth;
+        }, 0);
+        setButtonMaxWidth(Math.min(width * 0.75, Math.max(width * 0.2, maxWidth)));
         setReady(true);
     }, [answers, width, height, setButtonMaxWidth, finalTransitionDuration, isPlaceholder]);
 
@@ -315,8 +313,12 @@ const SurveyScreen = ({
                                                         buttonStyle={
                                                             !answered
                                                                 ? {
-                                                                      ...getStyleFromButton(buttonsStyle),
-                                                                      ...getStyleFromButton(answerButtonStyle),
+                                                                      ...getStyleFromButton(
+                                                                          buttonsStyle,
+                                                                      ),
+                                                                      ...getStyleFromButton(
+                                                                          answerButtonStyle,
+                                                                      ),
                                                                   }
                                                                 : null
                                                         }
