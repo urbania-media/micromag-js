@@ -531,10 +531,6 @@
     "defaultMessage": "Markers",
     "description": "Markers field label"
   },
-  "PyDwDF": {
-    "defaultMessage": "Close",
-    "description": "Close button label"
-  },
   "PyxZY2": {
     "defaultMessage": "Cancel",
     "description": "Button label"
@@ -597,6 +593,10 @@
   "TXkHah": {
     "defaultMessage": "Link",
     "description": "CTA field url field label"
+  },
+  "Tol+/U": {
+    "defaultMessage": "Clear",
+    "description": "Button label"
   },
   "Tt4jN1": {
     "defaultMessage": "Add",

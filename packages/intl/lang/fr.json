@@ -395,9 +395,6 @@
     "PbHeHc": {
         "defaultMessage": "Marqueurs"
     },
-    "PyDwDF": {
-        "defaultMessage": "Fermer"
-    },
     "PyxZY2": {
         "defaultMessage": "Annuler"
     },
@@ -445,6 +442,9 @@
     },
     "TXkHah": {
         "defaultMessage": "Lien"
+    },
+    "Tol+/U": {
+        "defaultMessage": "Effacer"
     },
     "Tt4jN1": {
         "defaultMessage": "Ajouter"

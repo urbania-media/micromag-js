@@ -809,12 +809,6 @@ msgctxt "PbHeHc"
 msgid "Markers"
 msgstr "Marqueurs"
 
-# Close button label
-#: PyDwDF
-msgctxt "PyDwDF"
-msgid "Close"
-msgstr "Fermer"
-
 # Button label
 #: PyxZY2
 msgctxt "PyxZY2"
@@ -909,6 +903,12 @@ msgstr "Longitude"
 msgctxt "TXkHah"
 msgid "Link"
 msgstr "Lien"
+
+# Button label
+#: Tol+/U
+msgctxt "Tol+/U"
+msgid "Clear"
+msgstr "Effacer"
 
 # Add button label in Media Gallery
 #: Tt4jN1
