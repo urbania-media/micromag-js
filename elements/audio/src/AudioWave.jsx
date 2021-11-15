@@ -122,7 +122,7 @@ const AudioWave = ({
             return levelsBySamples >= 1
                 ? [
                       ...newAmplitudes,
-                      newValues.reduce((total, value) => total + value, 0) / levelsBySamples,
+                      newValues.reduce((total, value) => total + value, 0) / newValues.length,
                   ]
                 : [...newAmplitudes, ...newValues];
         }, []);
@@ -145,8 +145,10 @@ const AudioWave = ({
         //         // }
         //     // }
         // }
-
-        const normalizedAmplitudes = amplitudes.map((n) => n * Math.max(...amplitudes) ** -1);
+        const minAmplitude = Math.min(...amplitudes);
+        const maxAmplitude = Math.max(...amplitudes);
+        const delta = maxAmplitude - minAmplitude;
+        const normalizedAmplitudes = amplitudes.map((n) => (n - minAmplitude) / delta);
 
         // draw samples
         const canvasBg = canvasBackgroundRef.current;

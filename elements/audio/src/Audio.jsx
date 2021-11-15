@@ -151,9 +151,10 @@ const Audio = ({
                         const leftChannelData = buffer.getChannelData(0);
                         setAudioLevels(
                             leftChannelData.reduce((newArray, level, levelIndex) => {
-                                if (levelIndex % reduceBufferFactor === 0) {
-                                    newArray[newArray.length] = level;
-                                }
+                                // if (levelIndex % reduceBufferFactor === 0) {
+                                //     console.log(level, (level + 1) / 2);
+                                    newArray[newArray.length] = Math.abs(level);
+                                // }
                                 return newArray;
                             }, []),
                         );
