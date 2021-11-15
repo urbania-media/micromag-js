@@ -6,6 +6,7 @@ class Tracking extends BaseTracking {
         super(opts);
         const { variables = null } = this.options;
         this.variables = null;
+        this.screensViewed = [];
         if (variables !== null) {
             this.setVariables(variables);
         }
@@ -23,12 +24,26 @@ class Tracking extends BaseTracking {
     }
 
     trackScreenView(screen, screenIndex) {
-        const { id: screenId = null, type: screenType = null } = screen || {};
+        const { screensCount = null } = this.variables || {};
+        const { id: screenId = null, type: screenType = null, metadata = {} } = screen || {};
+        const { title: screenTitle } = metadata || {};
+        if (this.screensViewed.indexOf(screenId || index) !== -1) {
+            this.screensViewed = [...this.screensViewed, screenId || index];
+        }
+
         const data = {
             event: 'screenView',
             screenId,
             screenType,
             screenIndex,
+            screenTitle,
+            screenProgress:
+                screensCount !== null && screenIndex !== null
+                    ? (screenIndex + 1) / screensCount
+                    : null,
+            screensViewed: this.screensViewed,
+            screensViewedProgress:
+                screensCount !== null ? this.screensViewed.length / screensCount : null,
         };
         this.push(data);
     }
@@ -45,8 +60,20 @@ class Tracking extends BaseTracking {
         this.push(data);
     }
 
-    trackMedia(type, media, action, { value = null, ...opts } = {}) {
-        const { id: mediaId = null, name = null, duration = null, currentTime = null } = media || {};
+    trackMedia(
+        type,
+        media,
+        action,
+        { value = null, currentTime: optsCurrentTime = null, ...opts } = {},
+    ) {
+        const {
+            id: mediaId = null,
+            name = null,
+            duration: rootDuration = null,
+            currentTime = optsCurrentTime,
+            metadata = {},
+        } = media || {};
+        const { duration = rootDuration } = metadata || {};
         const label = name;
         const data = {
             ...opts,
@@ -59,7 +86,7 @@ class Tracking extends BaseTracking {
             mediaCurrentTime: currentTime !== null ? Math.round(currentTime) : null,
             mediaProgress:
                 currentTime !== null && duration !== null && duration > 0
-                    ? Math.round(currentTime / duration * 100)
+                    ? Math.round((currentTime / duration) * 100)
                     : null,
         };
         this.push(data);

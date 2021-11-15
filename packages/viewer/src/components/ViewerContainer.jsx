@@ -72,11 +72,12 @@ const ViewerContainer = ({
         if (story === null && trackingVariables === null) {
             return null;
         }
-        const { id = null, slug = null, title = null } = story;
+        const { id = null, slug = null, title = null, components = [] } = story;
         return {
             storyId: id,
             storySlug: slug,
             storyTitle: title,
+            screensCount: (components || []).length,
             ...trackingVariables,
         };
     }, [story, trackingVariables]);
