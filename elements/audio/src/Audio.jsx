@@ -1,13 +1,11 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign */
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useUserInteracted } from '@micromag/core/contexts';
 import { useMediaApi } from '@micromag/core/hooks';
-
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import AudioWave from './AudioWave';
-
 import styles from './styles/audio.module.scss';
 
 const propTypes = {
@@ -81,7 +79,8 @@ const Audio = ({
     onDurationChanged,
     onVolumeChanged,
 }) => {
-    const { url = null } = media || {};
+    const { url = null, metadata = null } = media || {};
+    const { waveform = null } = metadata || {};
     const userInteracted = useUserInteracted();
     const finalInitialMuted =
         initialMuted === true || (initialMuted === 'auto' && autoPlay && !userInteracted);
@@ -121,11 +120,14 @@ const Audio = ({
 
     useEffect(() => {
         let canceled = false;
-
-        if (url !== null && waveFake) {
+        const AudioContext =
+            typeof window !== 'undefined' ? window.AudioContext || window.webkitAudioContext : null;
+        if (waveform !== null) {
+            setAudioLevels(waveform.map((it) => (it + 256 / 2) / 256));
+        } else if (url !== null && waveFake) {
             const fakeLength = 1000;
             setAudioLevels([...new Array(fakeLength)].map(() => Math.random()));
-        } else if (url !== null && typeof window !== 'undefined') {
+        } else if (url !== null && AudioContext !== null) {
             fetch(url, {
                 mode: 'cors',
             })
@@ -140,7 +142,7 @@ const Audio = ({
                         throw new Error('Audio loading canceled');
                     }
                     setBlobUrl(URL.createObjectURL(new Blob([arrayBuffer])));
-                    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    const audioCtx = new AudioContext();
                     return audioCtx.decodeAudioData(arrayBuffer);
                 })
                 .then((buffer) => {
@@ -167,7 +169,7 @@ const Audio = ({
                 canceled = true;
             }
         };
-    }, [url, setAudioLevels, setBlobUrl, reduceBufferFactor, waveFake]);
+    }, [url, waveform, setAudioLevels, setBlobUrl, reduceBufferFactor, waveFake]);
 
     const ready = waveFake || (audioReady && blobUrl !== null);
 
@@ -180,7 +182,7 @@ const Audio = ({
     useEffect(() => {
         if (autoPlay) {
             play();
-            if (initialMuted === 'auto' && muted && userInteracted){
+            if (initialMuted === 'auto' && muted && userInteracted) {
                 unMute();
             }
         } else {

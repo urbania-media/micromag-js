@@ -189,11 +189,12 @@ export const video360Media = () => ({
     },
 });
 
-export const audioMedia = () => ({
+export const audioMedia = ({ withWaveform = false } = {}) => ({
     type: 'audio',
     url: audioFile,
     metadata: {
         duration: 16000,
+        waveform: withWaveform ? [...Array(100).keys()].map(() => -128 + (256 * Math.random())) : null,
     },
 });
 
