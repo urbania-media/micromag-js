@@ -60,7 +60,7 @@
         "@micromag/element-video": "^0.2.370",
         "@micromag/transforms": "^0.2.370",
         "classnames": "^2.2.6",
-        "lodash": "^4.17.20",
+        "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
         "react-intl": "^5.12.1",
         "three": "^0.123.0",

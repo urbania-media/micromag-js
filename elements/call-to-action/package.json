@@ -57,7 +57,7 @@
         "@react-spring/core": "^9.1.1",
         "@react-spring/web": "^9.1.1",
         "classnames": "^2.2.6",
-        "lodash": "^4.17.20",
+        "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
         "react-intl": "^5.12.1",
         "react-use-gesture": "^9.0.0",
