@@ -11,11 +11,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 3.2.0\n"
 
-msgid ""
-msgstr ""
-
-msgid ""
-msgstr ""
+# Audio and Video screen group
+#: +9akmg
+msgctxt "+9akmg"
+msgid "Audio and Video"
+msgstr "Audio et vidéo"
 
 # Field label
 #: +AEVbJ
