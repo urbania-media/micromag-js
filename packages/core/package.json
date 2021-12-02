@@ -43,7 +43,8 @@
         "./scss/variables": "./scss/_variables.scss",
         "./scss/styles": "./scss/styles.scss",
         "./scss/upload": "./scss/upload.scss",
-        "./scss/vendor": "./scss/vendor.scss"
+        "./scss/vendor": "./scss/vendor.scss",
+        "./assets/css/styles.css": "./assets/css/styles.css"
     },
     "browser": {
         ".": "./es/index.js",
