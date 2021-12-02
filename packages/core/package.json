@@ -36,7 +36,14 @@
         "./components": "./lib/components.js",
         "./contexts": "./lib/contexts.js",
         "./hooks": "./lib/hooks.js",
-        "./utils": "./lib/utils.js"
+        "./utils": "./lib/utils.js",
+        "./scss/mixins": "./scss/_mixins.scss",
+        "./scss/placeholders": "./scss/_placeholders.scss",
+        "./scss/theme": "./scss/_theme.scss",
+        "./scss/variables": "./scss/_variables.scss",
+        "./scss/styles": "./scss/styles.scss",
+        "./scss/upload": "./scss/upload.scss",
+        "./scss/vendor": "./scss/vendor.scss"
     },
     "browser": {
         ".": "./es/index.js",

@@ -33,7 +33,9 @@
     "module": "es/index.js",
     "exports": {
         ".": "./lib/index.js",
-        "./manager": "./lib/manager.js"
+        "./manager": "./lib/manager.js",
+        "./scss/placeholders": "./scss/_placeholders.scss",
+        "./scss/styles": "./scss/styles.scss"
     },
     "browser": {
         ".": "./es/index.js",
