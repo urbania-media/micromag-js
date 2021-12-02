@@ -35,7 +35,8 @@
         ".": "./lib/index.js",
         "./manager": "./lib/manager.js",
         "./scss/placeholders": "./scss/_placeholders.scss",
-        "./scss/styles": "./scss/styles.scss"
+        "./scss/styles": "./scss/styles.scss",
+        "./assets/css/styles.css": "./assets/css/styles.css"
     },
     "browser": {
         ".": "./es/index.js",
