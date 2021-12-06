@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
 import React, { useCallback, useRef, useEffect, useMemo, useState } from 'react';
@@ -50,6 +51,7 @@ const propTypes = {
     onInteraction: PropTypes.func,
     onEnd: PropTypes.func,
     onViewModeChange: PropTypes.func,
+    currentMedia: MicromagPropTypes.ref,
     className: PropTypes.string,
 };
 
@@ -75,6 +77,7 @@ const defaultProps = {
     onInteraction: null,
     onEnd: null,
     onViewModeChange: null,
+    currentMedia: null,
     className: null,
 };
 
@@ -100,6 +103,7 @@ const Viewer = ({
     onInteraction,
     onEnd,
     onViewModeChange,
+    currentMedia,
     className,
 }) => {
     const intl = useIntl();
@@ -130,7 +134,6 @@ const Viewer = ({
     const isCapture = renderContext === 'capture';
 
     const withoutScreensTransforms = isStatic || isCapture;
-    
 
     const trackScreenView = useTrackScreenView();
     const trackEvent = useTrackEvent();
@@ -152,7 +155,7 @@ const Viewer = ({
     } = screenSize || {};
 
     const hasSize = screenWidth > 0 && screenHeight > 0;
-    const ready = hasSize; // && fontsLoaded;    
+    const ready = hasSize; // && fontsLoaded;
 
     useEffect(() => {
         if (ready && onViewModeChange !== null) {
@@ -178,6 +181,8 @@ const Viewer = ({
 
     const { height: menuPreviewContainerHeight = 0 } = menuPreviewContainerRect || {};
 
+    const screensMediaRef = useRef([]);
+
     // Screen index
 
     const screenIndex = useMemo(
@@ -188,6 +193,10 @@ const Viewer = ({
             ),
         [screenId, screens],
     );
+
+    if (currentMedia !== null) {
+        currentMedia.current = screensMediaRef.current[screenIndex];
+    }
 
     const changeIndex = useCallback(
         (index) => {
@@ -237,7 +246,6 @@ const Viewer = ({
     useEffect(() => {
         setScreensInteractionEnabled([...Array(screensCount).keys()].map(() => true));
     }, [screensCount]);
-    
 
     const onEnableInteraction = useCallback(() => {
         if (!screensInteractionEnabled[screenIndex]) {
@@ -415,14 +423,7 @@ const Viewer = ({
                 });
             }
         },
-        [
-            changeIndex,
-            landscape,
-            trackingEnabled,
-            trackEvent,
-            screenType,
-            onInteractionPrivate,
-        ],
+        [changeIndex, landscape, trackingEnabled, trackEvent, screenType, onInteractionPrivate],
     );
 
     // handle preview menu item click
@@ -481,7 +482,7 @@ const Viewer = ({
         },
         [landscape],
     );
-    
+
     const overscrollStyle = (
         <style type="text/css">{`body { overscroll-behavior: contain; }`}</style>
     );
@@ -636,6 +637,9 @@ const Viewer = ({
                                         onNext={onScreenNext}
                                         onEnableInteraction={onEnableInteraction}
                                         onDisableInteraction={onDisableInteraction}
+                                        getMediaRef={(mediaRef) => {
+                                            screensMediaRef.current[i] = mediaRef;
+                                        }}
                                     />
                                 );
                                 const key = `screen-viewer-${scr.id || ''}-${i + 1}`;

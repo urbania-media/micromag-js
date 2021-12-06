@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useCallback, useRef, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
@@ -27,6 +28,7 @@ const propTypes = {
     // active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     spacing: PropTypes.number,
+    getMediaRef: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -39,6 +41,7 @@ const defaultProps = {
     // active: true,
     transitions: null,
     spacing: 20,
+    getMediaRef: null,
     className: null,
 };
 
@@ -51,6 +54,7 @@ const VideoScreen = ({
     // active,
     transitions,
     spacing,
+    getMediaRef,
     className,
 }) => {
     const trackScreenMedia = useTrackScreenMedia('video');
@@ -67,7 +71,14 @@ const VideoScreen = ({
     const backgroundPlaying = current && (isView || isEdit);
 
     const apiRef = useRef();
-    const { togglePlay, toggleMute, seek, play, pause } = apiRef.current || {};
+    const { togglePlay, toggleMute, seek, play, pause, mediaRef: apiMediaRef = null } = apiRef.current || {};
+
+    useEffect(() => {
+        if (apiMediaRef !== null && getMediaRef !== null) {
+            getMediaRef(apiMediaRef.current);
+        }
+    }, [apiMediaRef, getMediaRef]);
+
     // Get api state updates from callback
 
     const [currentTime, setCurrentTime] = useState(null);

@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-param-reassign */
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
 import React, { useState, useRef, useCallback, useEffect, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -26,6 +28,7 @@ const propTypes = {
     callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
+    getMediaRef: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -37,6 +40,7 @@ const defaultProps = {
     callToAction: null,
     current: true,
     transitions: null,
+    getMediaRef: null,
     className: null,
 };
 
@@ -48,6 +52,7 @@ const AudioScreen = ({
     callToAction,
     current,
     transitions,
+    getMediaRef,
     className,
 }) => {
     const trackScreenMedia = useTrackScreenMedia('audio');
@@ -94,7 +99,13 @@ const AudioScreen = ({
     }, [setReady]);
 
     const apiRef = useRef();
-    const { togglePlay, toggleMute, play, pause } = apiRef.current || {};
+    const { togglePlay, toggleMute, play, pause, mediaRef: apiMediaRef = null } = apiRef.current || {};
+    
+    useEffect(() => {
+        if (apiMediaRef !== null && getMediaRef !== null) {
+            getMediaRef(apiMediaRef.current);
+        }
+    }, [apiMediaRef, getMediaRef]);
 
     const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);

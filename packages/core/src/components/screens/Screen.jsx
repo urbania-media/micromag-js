@@ -18,6 +18,7 @@ const propTypes = {
     onNext: PropTypes.func,
     onEnableInteraction: PropTypes.func,
     onDisableInteraction: PropTypes.func,
+    getMediaRef: PropTypes.func,
 };
 
 const defaultProps = {
@@ -31,6 +32,7 @@ const defaultProps = {
     onNext: null,
     onEnableInteraction: null,
     onDisableInteraction: null,
+    getMediaRef: null,
 };
 
 const Screen = ({
@@ -45,6 +47,7 @@ const Screen = ({
     onNext,
     onEnableInteraction,
     onDisableInteraction,
+    getMediaRef,
 }) => {
     const { type } = screen;
     const CustomScreenComponent =
@@ -64,6 +67,7 @@ const Screen = ({
                         onNext={onNext}
                         onEnableInteraction={onEnableInteraction}
                         onDisableInteraction={onDisableInteraction}
+                        getMediaRef={getMediaRef}
                     />
                 </div>
             ) : (
