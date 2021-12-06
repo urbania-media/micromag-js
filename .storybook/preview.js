@@ -1,4 +1,3 @@
-import { withKnobs } from '@storybook/addon-knobs';
 import withIntlProvider from './decorators/withIntlProvider';
 import withScreenSize from './decorators/withScreenSize';
 import withScreenDefinition from './decorators/withScreenDefinition';
@@ -70,4 +69,4 @@ export const parameters = {
     },
 };
 
-export const decorators = [withKnobs, withIntlProvider, withScreenSize, withScreenDefinition, withGoogleKeys];
+export const decorators = [withIntlProvider, withScreenSize, withScreenDefinition, withGoogleKeys];

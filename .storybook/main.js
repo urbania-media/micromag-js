@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 const path = require('path');
-const webpack = require('webpack');
+// const webpack = require('webpack');
 const { styles } = require('@ckeditor/ckeditor5-dev-utils');
 const getPackagesPaths = require('../scripts/lib/getPackagesPaths');
 const getPackagesAliases = require('../scripts/lib/getPackagesAliases');
@@ -34,7 +34,6 @@ module.exports = {
             },
         },
         '@storybook/addon-viewport/register',
-        '@storybook/addon-knobs/register',
         '@storybook/addon-docs',
         '@storybook/addon-actions',
         {
