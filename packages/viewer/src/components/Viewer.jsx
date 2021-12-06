@@ -203,6 +203,9 @@ const Viewer = ({
             if (index === screenIndex) {
                 return;
             }
+            if (currentMedia !== null) {
+                currentMedia.current = screensMediaRef.current[index];
+            }
             if (onScreenChange !== null) {
                 onScreenChange(screens[index], index);
             }
