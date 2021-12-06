@@ -1,10 +1,8 @@
 import { defineMessage } from 'react-intl';
 
-import Images from '../components/Images';
-
 export default {
     id: 'images',
-    component: Images,
+    component: 'images',
     itemsField:{
         type: 'image',
         breadcrumbLabel: defineMessage({

@@ -1,0 +1,73 @@
+{
+    "name": "@micromag/ckeditor",
+    "version": "0.2.362",
+    "description": "",
+    "keywords": [
+        "javascript"
+    ],
+    "homepage": "https://github.com/urbania-media/micromag-js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/urbania-media/micromag-js.git"
+    },
+    "author": {
+        "name": "Folklore",
+        "email": "info@folklore.email"
+    },
+    "contributors": [
+        {
+            "name": "David Mongeau-Petitpas",
+            "email": "dmp@folklore.email"
+        },
+        {
+            "name": "Nicolas Roy-Bourdages",
+            "email": "nrb@folklore.email"
+        },
+        {
+            "name": "Julien Carignan",
+            "email": "jc@folklore.email"
+        }
+    ],
+    "license": "ISC",
+    "main": "lib/index.js",
+    "module": "es/index.js",
+    "exports": {
+        ".": "./lib/index.js",
+        "./build": "./dist/ckeditor.js"
+    },
+    "browser": {
+        ".": "./es/index.js",
+        "./build": "./dist/ckeditor.js"
+    },
+    "files": [
+        "dist",
+        "es",
+        "lib"
+    ],
+    "scripts": {
+        "build:ckeditor": "../../node_modules/.bin/webpack --mode production --config webpack.config.js",
+        "prepare": "rm -rf dist && ../../scripts/prepare-package.sh && npm run build:ckeditor"
+    },
+    "devDependencies": {
+        "react": "^16.8.0 || ^17.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0"
+    },
+    "peerDependencies": {
+        "react": "^16.8.0 || ^17.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0"
+    },
+    "dependencies": {
+        "@babel/runtime": "^7.13.10",
+        "@ckeditor/ckeditor5-basic-styles": "^31.0.0",
+        "@ckeditor/ckeditor5-editor-inline": "^31.0.0",
+        "@ckeditor/ckeditor5-essentials": "^31.0.0",
+        "@ckeditor/ckeditor5-highlight": "^31.0.0",
+        "@ckeditor/ckeditor5-link": "^31.0.0",
+        "@ckeditor/ckeditor5-paragraph": "^31.0.0",
+        "@ckeditor/ckeditor5-react": "^3.0.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "gitHead": "423fa2abe4a70c8c0c26eb98f7bbb941149b678f"
+}

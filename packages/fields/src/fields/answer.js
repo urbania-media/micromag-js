@@ -1,20 +1,31 @@
 import { defineMessage } from 'react-intl';
 
-import FieldWithForm from '../components/FieldWithForm';
-
 export default {
     id: 'answer',
-    component: FieldWithForm,
+    component: 'field-with-form',
     labelPath: 'label.body',
     fields: [
         {
             name: 'label',
             type: 'text-element',
-            textOnly: true,
             label: defineMessage({
                 defaultMessage: 'Label',
                 description: 'Field label',
             }),
-        }
-    ]
+        },
+        {
+            name: 'buttonStyle',
+            type: 'button-style',
+            className: 'mt-4'
+        },
+        {
+            name: 'resultStyle',
+            type: 'graph-bar-style',
+            isList: true,
+            label: defineMessage({
+                defaultMessage: 'Result style',
+                description: 'Field section label',
+            }),
+        },
+    ],
 };

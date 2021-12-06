@@ -1,25 +1,24 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState, useCallback, useEffect } from 'react';
-import { FormattedMessage } from 'react-intl';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { useTrackScreenEvent, useResizeObserver } from '@micromag/core/hooks';
-import { isTextFilled } from '@micromag/core/utils';
+import { useScreenRenderContext, useScreenSize, useViewer } from '@micromag/core/contexts';
+import { useResizeObserver, useTrackScreenEvent } from '@micromag/core/hooks';
+import { getStyleFromButton, getStyleFromColor, isTextFilled } from '@micromag/core/utils';
 import { useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
-import Container from '@micromag/element-container';
-import Layout, { Spacer } from '@micromag/element-layout';
-import Heading from '@micromag/element-heading';
 import Button from '@micromag/element-button';
-import Text from '@micromag/element-text';
 import CallToAction from '@micromag/element-call-to-action';
-
+import Container from '@micromag/element-container';
+import Heading from '@micromag/element-heading';
+import Layout, { Spacer } from '@micromag/element-layout';
+import Text from '@micromag/element-text';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback, useEffect, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -31,6 +30,9 @@ const propTypes = {
         image: MicromagPropTypes.imageElement,
         text: MicromagPropTypes.textElement,
     }),
+    buttonsStyle: MicromagPropTypes.buttonStyle,
+    goodAnswerColor: MicromagPropTypes.color,
+    badAnswerColor: MicromagPropTypes.color,
     spacing: PropTypes.number,
     showResultsDelay: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
@@ -49,6 +51,9 @@ const defaultProps = {
     question: null,
     answers: null,
     result: null,
+    buttonsStyle: null,
+    goodAnswerColor: null,
+    badAnswerColor: null,
     spacing: 20,
     showResultsDelay: 750,
     background: null,
@@ -67,6 +72,9 @@ const QuizScreen = ({
     question,
     answers,
     result,
+    buttonsStyle,
+    goodAnswerColor,
+    badAnswerColor,
     spacing,
     showResultsDelay,
     background,
@@ -82,14 +90,8 @@ const QuizScreen = ({
     const trackScreenEvent = useTrackScreenEvent(type);
     const { width, height, menuOverScreen } = useScreenSize();
     const { menuSize } = useViewer();
-    const {
-        isView,
-        isPreview,
-        isPlaceholder,
-        isEdit,
-        isStatic,
-        isCapture,
-    } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
+        useScreenRenderContext();
 
     const hasQuestion = isTextFilled(question);
     const hasResult = isTextFilled(result);
@@ -192,7 +194,7 @@ const QuizScreen = ({
 
     const [rightAnswerTop, setRightAnswerTop] = useState(0);
 
-    useEffect( () => {
+    useEffect(() => {
         if (rightAnswerRef.current !== null) {
             setRightAnswerTop(rightAnswerRef.current.offsetTop);
         }
@@ -263,9 +265,7 @@ const QuizScreen = ({
                 answered && !answerTransitionComplete && (isView || isEdit)
                     ? {
                           transitionDuration: `${resultsTransitionDuration}ms`,
-                          height: !showResults
-                              ? answerHeight
-                              : rightAnswerHeight + resultHeight,
+                          height: !showResults ? answerHeight : rightAnswerHeight + resultHeight,
                       }
                     : null
             }
@@ -274,7 +274,11 @@ const QuizScreen = ({
                 <div className={styles.items}>
                     {(isPlaceholder ? [...new Array(2)] : answers).map((answer, answerI) => {
                         const userAnswer = answerI === userAnswerIndex;
-                        const { good: rightAnswer = false, label = null } = answer || {};
+                        const {
+                            good: rightAnswer = false,
+                            label = null,
+                            buttonStyle: answerButtonStyle = null,
+                        } = answer || {};
                         const { textStyle = null } = label || {};
                         const { color: labelColor = null } = textStyle || {};
 
@@ -292,9 +296,7 @@ const QuizScreen = ({
                                     },
                                 ])}
                                 style={
-                                    showResults &&
-                                    rightAnswer &&
-                                    !answerTransitionComplete
+                                    showResults && rightAnswer && !answerTransitionComplete
                                         ? {
                                               transform: `translateY(${-rightAnswerTop}px)`,
                                               transitionDuration: `${resultsTransitionDuration}ms`,
@@ -327,33 +329,45 @@ const QuizScreen = ({
                                                     onClick={() => onAnswerClick(answerI)}
                                                     disabled={isPreview}
                                                     focusable={current && isView}
-                                                    buttonStyle={
-                                                        userAnswer || !answered
-                                                            ? {
-                                                                borderWidth: 2,
-                                                                borderStyle: 'solid',
-                                                                borderColor: labelColor,
-                                                            }
-                                                            : null
-                                                    }
+                                                    buttonStyle={{
+                                                        ...getStyleFromButton(buttonsStyle),
+                                                        ...getStyleFromButton(answerButtonStyle),
+                                                    }}
                                                 >
                                                     {rightAnswer ? (
-                                                        <span className={styles.resultIcon}>
+                                                        <span
+                                                            className={styles.resultIcon}
+                                                            style={getStyleFromColor(
+                                                                goodAnswerColor,
+                                                                'backgroundColor',
+                                                            )}
+                                                        >
                                                             <FontAwesomeIcon
                                                                 className={styles.faIcon}
                                                                 icon={faCheck}
                                                             />
                                                         </span>
                                                     ) : null}
-                                                    {answered && !hasUserAnsweredRight && userAnswer ? (
-                                                        <span className={styles.resultIcon}>
+                                                    {answered &&
+                                                    !hasUserAnsweredRight &&
+                                                    userAnswer ? (
+                                                        <span
+                                                            className={styles.resultIcon}
+                                                            style={getStyleFromColor(
+                                                                badAnswerColor,
+                                                                'backgroundColor',
+                                                            )}
+                                                        >
                                                             <FontAwesomeIcon
                                                                 className={styles.faIcon}
                                                                 icon={faTimes}
                                                             />
                                                         </span>
                                                     ) : null}
-                                                    <Text {...label} className={styles.optionLabel} />
+                                                    <Text
+                                                        {...label}
+                                                        className={styles.optionLabel}
+                                                    />
                                                 </Button>
                                             </Transitions>
                                         ) : null}
@@ -415,7 +429,7 @@ const QuizScreen = ({
         >
             {!isPlaceholder ? (
                 <Background
-                    {...background}
+                    background={background}
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
@@ -430,7 +444,8 @@ const QuizScreen = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop: (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
+                                  paddingTop:
+                                      (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
                               }
                             : null
                     }

@@ -22,14 +22,14 @@
             }
 
             &.ck-editor__editable_inline {
-                padding: 0 $input-btn-padding-x;
+                padding: $input-btn-padding-y $input-btn-padding-x;
 
                 > :first-child {
-                    margin-top: $input-btn-padding-y;
+                    margin-top: 0;
                 }
 
                 > :last-child {
-                    margin-bottom: $input-btn-padding-y;
+                    margin-bottom: 0;
                 }
             }
 
@@ -54,15 +54,7 @@
                 }
 
                 &.ck-editor__editable_inline {
-                    padding: 0 $input-btn-padding-x-sm;
-
-                    > :first-child {
-                        margin-top: $input-btn-padding-y-sm;
-                    }
-
-                    > :last-child {
-                        margin-bottom: $input-btn-padding-y-sm;
-                    }
+                    padding: $input-btn-padding-y-sm $input-btn-padding-x-sm;
                 }
 
                 &.ck-content {
@@ -84,13 +76,8 @@
                 }
 
                 &.ck-editor__editable_inline {
-                    > :first-child {
-                        margin-top: $input-btn-padding-y-lg;
-                    }
-
-                    > :last-child {
-                        margin-bottom: $input-btn-padding-y-lg;
-                    }
+                    padding-top: $input-btn-padding-y-lg;
+                    padding-bottom: $input-btn-padding-y-lg;
                 }
 
                 &.ck-content {

@@ -1,10 +1,8 @@
 import { defineMessage } from 'react-intl';
 
-import FieldWithForm from '../components/FieldWithForm';
-
 export default {
     id: 'visual-with-caption',
-    component: FieldWithForm,
+    component: 'field-with-form',
     labelPath: 'caption.body',
     thumbnailPath: 'media.thumbnail_url',
     fields: [

@@ -108,7 +108,7 @@ const useMediaApi = ({
     }, [initialPlay, setPlaying, onPlay]);
 
     const onCustomPause = useCallback(() => {
-        const { current: media } = ref; 
+        const { current: media } = ref;
         setPlaying(false);
 
         if (onPause !== null) {
@@ -117,7 +117,7 @@ const useMediaApi = ({
     }, [setPlaying, onPause]);
 
     const onCustomEnded = useCallback(() => {
-        const { current: media } = ref; 
+        const { current: media } = ref;
         media.currentTime = 0;
         if (onEnded !== null) {
             onEnded();
@@ -213,7 +213,7 @@ const useMediaApi = ({
     }, [setDataReady, onLoadedData]);
 
     useEffect(() => {
-        const { current: media } = ref;
+        const { current: media = null } = ref;
 
         if (media !== null) {
             media.addEventListener('timeupdate', onCustomTimeUpdate);
@@ -230,19 +230,19 @@ const useMediaApi = ({
             media.addEventListener('loadeddata', onCustomLoadedData);
         }
 
-        if (media.readyState > 1) {
+        if (media !== null && media.readyState > 1) {
             setDataReady(true);
         } else {
             setDataReady(false);
         }
 
-        if (media.readyState > 3) {
+        if (media !== null && media.readyState > 3) {
             setReady(true);
         } else {
             setReady(false);
         }
 
-        return () => {            
+        return () => {
             if (media !== null) {
                 media.removeEventListener('timeupdate', onCustomTimeUpdate);
                 media.removeEventListener('durationchange', onCustomDurationChange);

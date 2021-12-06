@@ -1,6 +1,6 @@
 {
     "name": "@micromag/intl",
-    "version": "0.2.341",
+    "version": "0.2.377",
     "description": "",
     "keywords": [
         "javascript"
@@ -33,6 +33,7 @@
     "module": "es/index.js",
     "exports": {
         ".": "./lib/index.js",
+        "./locale": "./locale",
         "./locale/*": "./locale/*.cjs.js"
     },
     "files": [
@@ -44,25 +45,25 @@
     ],
     "scripts": {
         "intl": "./scripts/build-intl.sh",
-        "prepare": "npm run intl && ../../scripts/prepare-package.sh"
+        "prepare": "rm -rf ./locale && npm run intl && ../../scripts/prepare-package.sh"
     },
     "devDependencies": {
-        "react": "^16.8.0",
-        "react-dom": "^16.8.0"
+        "react": "^16.8.0 || ^17.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0"
     },
     "peerDependencies": {
-        "react": "^16.8.0",
-        "react-dom": "^16.8.0"
+        "react": "^16.8.0 || ^17.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0"
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@formatjs/cli": "^2.15.0",
-        "@micromag/core": "^0.2.337",
-        "commander": "^7.2.0",
-        "fs-extra": "^9.1.0",
+        "@formatjs/cli": "^4.4.0",
+        "@micromag/core": "^0.2.375",
+        "commander": "^8.3.0",
+        "fs-extra": "^10.0.0",
         "gettext-parser": "^4.0.4",
         "glob": "^7.1.6",
-        "lodash": "^4.17.20",
+        "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
         "react-intl": "^5.12.1"
     },

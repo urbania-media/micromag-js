@@ -1,10 +1,11 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign */
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useUserInteracted } from '@micromag/core/contexts';
 import { useMediaApi } from '@micromag/core/hooks';
+import { getMediaFilesAsArray } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
@@ -35,6 +36,7 @@ const propTypes = {
     onDurationChanged: PropTypes.func,
     onVolumeChanged: PropTypes.func,
     focusable: PropTypes.bool,
+    supportedMimes: PropTypes.arrayOf(PropTypes.string),
     // onPosterLoaded: PropTypes.func,
 };
 
@@ -60,6 +62,7 @@ const defaultProps = {
     onDurationChanged: null,
     onVolumeChanged: null,
     focusable: true,
+    supportedMimes: ['video/mp4', 'video/webm', 'video/ogg'],
     // onPosterLoaded: null,
 };
 
@@ -85,15 +88,40 @@ const Video = ({
     onDurationChanged,
     onVolumeChanged,
     focusable,
+    supportedMimes,
     // onPosterLoaded,
 }) => {
-    const { url = null, files = null } = media || {};
-    const hasFiles =
-        files !== null && typeof files.h264 !== 'undefined' && typeof files.webm !== 'undefined';
-    const mediaUrl = hasFiles ? files.h264.url : url;
+    const { url: mediaUrl = null, files = null, metadata = null } = media || {};
+    const { description = null, mime: mediaMime = null } = metadata || {};
+    const filesArray = useMemo(() => getMediaFilesAsArray(files), [files]);
+
+    // Get source files with supported mimes
+    const sourceFiles = useMemo(() => {
+        if (filesArray.length === 0) {
+            return null;
+        }
+        const supportVideo = document.createElement('video');
+        const finalSupportedMimes = supportedMimes.filter(
+            (mime) => supportVideo.canPlayType(mime) !== '',
+        );
+        return finalSupportedMimes.length > 0
+            ? filesArray.filter((file) => {
+                  const { mime = `video/${file.id === 'h264' ? 'mp4' : file.id}` } = file;
+                  return finalSupportedMimes.indexOf(mime) !== -1;
+              }, null)
+            : null;
+    }, [filesArray, supportedMimes]);
+
+    // @NOTE: Media is an animated image and doesn't have source files in video formats
+    const { type: originalType = null, mime: originalMime = mediaMime } =
+        filesArray.find(({ handle }) => handle === 'original') || {};
+    const originalFileIsImage =
+        originalType === 'image' || (originalMime !== null && originalMime.indexOf('image/') === 0);
+    const isImageWithoutSourceFile = originalFileIsImage && (sourceFiles === null || sourceFiles.length === 0);
 
     const userInteracted = useUserInteracted();
-    const finalInitialMuted = initialMuted === true || (initialMuted === 'auto' && autoPlay && !userInteracted);
+    const finalInitialMuted =
+        initialMuted === true || (initialMuted === 'auto' && autoPlay && !userInteracted);
 
     const { ref, ...api } = useMediaApi({
         url: mediaUrl,
@@ -166,26 +194,32 @@ const Video = ({
                     : null
             }
         >
-            <video
-                key={mediaUrl}
-                ref={ref}
-                src={!hasFiles ? mediaUrl : null}
-                autoPlay={autoPlay}
-                loop={loop}
-                muted={muted}
-                // poster={thumbnailUrl}
-                preload={preload}
-                playsInline={playsInline}
-                crossOrigin={withoutCors ? 'anonymous' : null}
-                tabIndex={focusable ? '0' : '-1'}
-            >
-                {hasFiles ? (
-                    <>
-                        <source src={files.webm.url} type="video/webm" />
-                        <source src={files.h264.url} type="video/mp4" />
-                    </>
-                ) : null}
-            </video>
+            {isImageWithoutSourceFile ? (
+                <img src={mediaUrl} alt={description} className={styles.video} />
+            ) : (
+                <video
+                    key={mediaUrl}
+                    ref={ref}
+                    src={sourceFiles === null ? mediaUrl : null}
+                    autoPlay={autoPlay}
+                    loop={loop}
+                    muted={muted}
+                    // poster={thumbnailUrl}
+                    preload={preload}
+                    playsInline={playsInline}
+                    crossOrigin={withoutCors ? 'anonymous' : null}
+                    tabIndex={focusable ? '0' : '-1'}
+                    className={styles.video}
+                >
+                    {(sourceFiles || []).map(({ url: sourceUrl, mime: sourceMime }) => (
+                        <source
+                            key={`${sourceUrl}-${sourceMime}`}
+                            src={sourceUrl}
+                            type={sourceMime}
+                        />
+                    ))}
+                </video>
+            )}
         </div>
     );
 };

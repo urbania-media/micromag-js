@@ -1,8 +1,6 @@
-import FieldWithForm from '../components/FieldWithForm';
-
 export default {
     id: 'item-text-style',
-    component: FieldWithForm,
+    component: 'field-with-form',
     fields: [
         {
             name: 'style',

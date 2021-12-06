@@ -1,10 +1,8 @@
 import { defineMessage } from 'react-intl';
 
-import FieldWithForm from '../components/FieldWithForm';
-
 export default {
     id: 'quiz-answer',
-    component: FieldWithForm,
+    component: 'field-with-form',
     labelPath: 'label.body',
     fields: [
         {
@@ -23,6 +21,11 @@ export default {
                 defaultMessage: 'Good answer',
                 description: 'Field label',
             }),
-        }
+        },
+        {
+            name: 'buttonStyle',
+            type: 'button-style',
+            className: 'mt-4'
+        },
     ]
 };

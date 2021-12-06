@@ -1,8 +1,6 @@
-import NumberWithIcon from '../components/NumberWithIcon';
-
 export default {
     id: 'line-height',
-    component: NumberWithIcon,
+    component: 'number-with-icon',
     icon: {
         icon: [
             48,

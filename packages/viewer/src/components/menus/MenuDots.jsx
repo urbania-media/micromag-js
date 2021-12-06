@@ -60,10 +60,16 @@ const ViewerMenuDots = ({
                     [styles.withShadow]: withShadow,
                 },
             ])}
-            // aria-label={intl.formatMessage({
-            //     defaultMessage: 'Screen shortcuts list',
-            //     description: 'Nav label',
-            // })}
+            aria-label={intl.formatMessage(
+                {
+                    defaultMessage: 'You are on screen {current} of {total}.',
+                    description: 'Nav ARIA label',
+                },
+                {
+                    current: current + 1,
+                    total: items.length,
+                },
+            )}
         >
             <ul className={styles.items}>
                 {items.map((item, index) => (
@@ -75,6 +81,7 @@ const ViewerMenuDots = ({
                             },
                         ])}
                         key={`item-${index}`}
+                        aria-hidden="true"
                     >
                         <button
                             type="button"
@@ -84,13 +91,7 @@ const ViewerMenuDots = ({
                                     onClickItem(index);
                                 }
                             }}
-                            aria-label={intl.formatMessage(
-                                {
-                                    defaultMessage: 'Screen {index}',
-                                    description: 'Button label',
-                                },
-                                { index: index + 1 },
-                            )}
+                            tabIndex="-1"
                         >
                             <span
                                 className={styles.dot}

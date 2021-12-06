@@ -1,3 +1,4 @@
+@use 'sass:math';
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 
@@ -9,7 +10,7 @@
     margin-bottom: $spacer * 2;
 
     .title {
-        padding-bottom: $spacer / 4;
+        padding-bottom: math.div($spacer, 4);
         border-bottom: solid 1px $border-color;
         font-size: 0.85rem;
     }

@@ -51,8 +51,11 @@ const withSlideProps = {
         {
             name: 'text',
             type: 'text',
+            label: 'Label',
             required: true,
             settings: true,
+            isHorizontal: true,
+            help: 'This is an help text'
         },
         {
             name: 'logo',

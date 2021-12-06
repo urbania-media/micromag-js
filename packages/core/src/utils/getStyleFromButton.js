@@ -12,16 +12,16 @@ const getStyleFromButton = (value) => {
         borderStyle = null,
         borderColor = null,
     } = value;
-    
+
     const border = {
         width: borderWidth,
         style: borderStyle,
-        color: borderColor
+        color: borderColor,
     };
-    
+
     return {
         ...getStyleFromColor(backgroundColor, 'backgroundColor'),
-        borderRadius: borderRadius || null,
+        ...(borderRadius !== null ? { borderRadius } : null),
         ...getStyleFromBorder(border),
     };
 };

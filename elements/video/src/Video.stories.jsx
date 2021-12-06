@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
-import { videoMedia } from '../../../.storybook/data';
+import { videoMedia, gifVideoMedia } from '../../../.storybook/data';
 import Video from './Video';
 
 export default {
@@ -9,6 +9,14 @@ export default {
     title: 'Elements/Video',
 };
 
-const props = { media: videoMedia(), autoPlay: true, loop: true };
+export const Normal = () => <Video media={videoMedia()} autoPlay loop />;
 
-export const Normal = () => <Video {...props} />;
+export const Gif = () => (
+    <div>
+        <h4>Gif without converted videos</h4>
+        <Video media={gifVideoMedia({ withoutFiles: true })} width={500} height={281} autoPlay loop />
+        <hr />
+        <h4>Gif with converted videos</h4>
+        <Video media={gifVideoMedia()} width={500} height={281} autoPlay loop />
+    </div>
+);

@@ -1,6 +1,6 @@
 import getStyleFromColor from './getStyleFromColor';
 
-const getStyleFromImage = value => {
+const getStyleFromImage = (value) => {
     if (value == null) {
         return null;
     }
@@ -9,9 +9,10 @@ const getStyleFromImage = value => {
     const { axisAlign = null, crossAlign = null } = position;
 
     return {
-        objectFit: size,
-        objectPosition:
-            axisAlign !== null && crossAlign !== null ? `${axisAlign} ${crossAlign}` : null,
+        ...(size !== null ? { objectFit: size } : null),
+        ...(axisAlign !== null && crossAlign !== null
+            ? { objectPosition: `${axisAlign} ${crossAlign}` }
+            : null),
         ...getStyleFromColor(backgroundColor, 'backgroundColor'),
     };
 };

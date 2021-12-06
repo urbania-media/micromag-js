@@ -1,11 +1,9 @@
 import { defineMessage } from 'react-intl';
 
-import CallToAction from '../components/CallToAction';
-
 export default {
     id: 'call-to-action',
     isList: true,
-    component: CallToAction,
+    component: 'call-to-action',
     fields: [
         {
             name: 'active',
@@ -45,7 +43,7 @@ export default {
         {
             name: 'url',
             type: 'url',
-            isHorizontal: true,
+            // isHorizontal: true,
             label: defineMessage({
                 defaultMessage: 'Link',
                 description: 'CTA field url field label',

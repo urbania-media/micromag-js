@@ -108,7 +108,13 @@ export const text = (length = 'normal', style = 'normal') => {
 export const imageUrl = ({ width = 800, height = 800, rand = false, gif = false } = {}) =>
     gif ? gifFile : `https://picsum.photos/${width}/${height}?random=${rand ? Math.random() : 1}`;
 
-export const imageMedia = ({ width = 800, height = 800, rand = false, gif = false, sizes = {large: 0.9, medium: 0.75, small: 0.3} } = {}) => ({
+export const imageMedia = ({
+    width = 800,
+    height = 800,
+    rand = false,
+    gif = false,
+    sizes = { large: 0.9, medium: 0.75, small: 0.3 },
+} = {}) => ({
     type: 'image',
     url: imageUrl({ width, height, rand, gif }),
     thumbnail_url: imageUrl({ width: 100, height: 100, rand }),
@@ -117,19 +123,22 @@ export const imageMedia = ({ width = 800, height = 800, rand = false, gif = fals
         height,
         mime: gif ? 'image/gif' : 'image/jpg',
     },
-    sizes: Object.keys(sizes).reduce((currentSizes, key) => ({
-        ...currentSizes,
-        [key]: {
-            url: imageUrl({
+    sizes: Object.keys(sizes).reduce(
+        (currentSizes, key) => ({
+            ...currentSizes,
+            [key]: {
+                url: imageUrl({
+                    width: Math.round(width * sizes[key]),
+                    height: Math.round(height * sizes[key]),
+                    rand,
+                    gif,
+                }),
                 width: Math.round(width * sizes[key]),
                 height: Math.round(height * sizes[key]),
-                rand,
-                gif
-            }),
-            width: Math.round(width * sizes[key]),
-            height: Math.round(height * sizes[key]),
-        }
-    }), {})
+            },
+        }),
+        {},
+    ),
 });
 
 export const videoMedia = () => ({
@@ -142,6 +151,34 @@ export const videoMedia = () => ({
     },
 });
 
+export const gifVideoMedia = ({ withoutFiles = null } = {}) => ({
+    type: 'video',
+    url: gifFile,
+    thumbnail_url: imageUrl({ width: 500, height: 281, rand: true }),
+    metadata: {
+        width: 500,
+        height: 281,
+        mime: 'image/gif',
+    },
+    ...(!withoutFiles
+        ? {
+              files: {
+                  h264: {
+                      url: videoFile,
+                      mime: 'video/mp4',
+                  },
+              },
+          }
+        : {
+            files: {
+                original: {
+                    url: gifFile,
+                    mime: 'image/gif',
+                },
+            },
+        }),
+});
+
 export const video360Media = () => ({
     type: 'video',
     url: video360File,
@@ -152,11 +189,12 @@ export const video360Media = () => ({
     },
 });
 
-export const audioMedia = () => ({
+export const audioMedia = ({ withWaveform = false } = {}) => ({
     type: 'audio',
     url: audioFile,
     metadata: {
         duration: 16000,
+        waveform: withWaveform ? [...Array(100).keys()].map(() => -128 + (256 * Math.random())) : null,
     },
 });
 
@@ -170,7 +208,13 @@ export const closedCaptionsMedia = () => ({
 export const images = ({ count = 3, width = 800, height = 800, rand = false, gif = false } = {}) =>
     [...Array(count)].map(() => imageMedia({ width, height, rand, gif }));
 
-export const imagesWithCaptions = ({ count = 3, width = 800, height = 800, rand = false, gif = false } = {}) =>
+export const imagesWithCaptions = ({
+    count = 3,
+    width = 800,
+    height = 800,
+    rand = false,
+    gif = false,
+} = {}) =>
     [...Array(count)].map(() => ({
         media: imageMedia({ width, height, rand, gif }),
         caption: text(),

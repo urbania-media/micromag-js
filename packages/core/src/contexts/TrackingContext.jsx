@@ -1,9 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, useMemo } from 'react';
-import PropTypes from 'prop-types';
 import { TrackingContainer, TrackingContext } from '@folklore/tracking';
-
-import { Tracking, PropTypes as MicromagPropTypes } from '../lib';
+import PropTypes from 'prop-types';
+import React, { useContext, useMemo } from 'react';
+import { PropTypes as MicromagPropTypes, Tracking } from '../lib';
 
 export { TrackingContext };
 
@@ -21,15 +20,13 @@ const defaultProps = {
 export const TrackingProvider = ({ variables, children }) => {
     const contextTracking = useTracking() || null;
     const tracking = useMemo(
-        () => {
-            if (contextTracking !== null) {
-                contextTracking.setVariables(variables);
-                return contextTracking;
-            }
-            return new Tracking({
-                variables,
-            });
-        },
+        () =>
+            new Tracking({
+                variables: {
+                    ...(contextTracking !== null ? contextTracking.getVariables() : null),
+                    ...variables,
+                },
+            }),
         [contextTracking, variables],
     );
 

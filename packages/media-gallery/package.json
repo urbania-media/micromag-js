@@ -1,6 +1,6 @@
 {
     "name": "@micromag/media-gallery",
-    "version": "0.2.337",
+    "version": "0.2.378",
     "description": "",
     "keywords": [
         "javascript"
@@ -42,25 +42,25 @@
         "start": "PUBLIC_URL=http://localhost/ react-scripts start"
     },
     "devDependencies": {
-        "react": "^16.8.0",
-        "react-dom": "^16.8.0"
+        "react": "^16.8.0 || ^17.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0"
     },
     "peerDependencies": {
-        "react": "^16.8.0",
-        "react-dom": "^16.8.0"
+        "react": "^16.8.0 || ^17.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0"
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/core": "^0.2.337",
-        "@micromag/data": "^0.2.337",
+        "@micromag/core": "^0.2.375",
+        "@micromag/data": "^0.2.375",
         "bootstrap": "^4.5.3",
         "bootstrap.native": "^3.0.14",
         "change-case": "^4.1.2",
         "classnames": "^2.2.6",
-        "lodash": "^4.17.20",
+        "lodash": "^4.17.21",
         "pretty-bytes": "^5.3.0",
         "prop-types": "^15.7.2",
         "react-intl": "^5.12.1",

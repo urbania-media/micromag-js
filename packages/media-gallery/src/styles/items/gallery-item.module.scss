@@ -1,3 +1,4 @@
+@use 'sass:math';
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 @import '~@micromag/core/scss/mixins';
@@ -54,7 +55,7 @@
     .closeIcon {
         position: absolute;
         top: 0;
-        padding: $spacer / 2;
+        padding: math.div($spacer, 2);
         color: $white;
 
         .icon {

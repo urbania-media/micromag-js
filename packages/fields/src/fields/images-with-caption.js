@@ -1,10 +1,8 @@
 import { defineMessage } from 'react-intl';
 
-import Items from '../components/Items';
-
 export default {
     id: 'images-with-caption',
-    component: Items,
+    component: 'items',
     noItemLabel: defineMessage({
         defaultMessage: 'No image...',
         description: 'Label when there is no item',

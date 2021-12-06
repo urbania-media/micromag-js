@@ -1,4 +1,7 @@
 {
+    "+9akmg": {
+        "defaultMessage": "Audio et vidéo"
+    },
     "+AEVbJ": {
         "defaultMessage": "Titre"
     },
@@ -44,9 +47,6 @@
     "/hupzO": {
         "defaultMessage": "Crédits"
     },
-    "09cd3w": {
-        "defaultMessage": "Titre"
-    },
     "0GT0SI": {
         "defaultMessage": "Annuler"
     },
@@ -64,9 +64,6 @@
     },
     "2/F1Q7": {
         "defaultMessage": "#{index}"
-    },
-    "2Iseff": {
-        "defaultMessage": "Description"
     },
     "2J05S0": {
         "defaultMessage": "Images"
@@ -149,8 +146,17 @@
     "650XRF": {
         "defaultMessage": "Sondage"
     },
+    "65rc70": {
+        "defaultMessage": "Modifier le style..."
+    },
     "6DV50M": {
         "defaultMessage": "Mode"
+    },
+    "6MxaVf": {
+        "defaultMessage": "Style"
+    },
+    "6Q4tcn": {
+        "defaultMessage": "Style des résultats"
     },
     "6ak5YN": {
         "defaultMessage": "Côté"
@@ -254,6 +260,9 @@
     "D0+Cxr": {
         "defaultMessage": "Marqueurs avec image"
     },
+    "DU1qdc": {
+        "defaultMessage": "Couleur du texte"
+    },
     "DWEzCv": {
         "defaultMessage": "Sélectionnez une vidéo..."
     },
@@ -302,11 +311,20 @@
     "HTd98/": {
         "defaultMessage": "Pas de message..."
     },
+    "HWpflq": {
+        "defaultMessage": "Surbrillance"
+    },
     "HseFdk": {
         "defaultMessage": "Modifier"
     },
+    "I2bIHm": {
+        "defaultMessage": "Bonne réponse"
+    },
     "IBjY5r": {
         "defaultMessage": "Dupliquer l'écran"
+    },
+    "ICXTfR": {
+        "defaultMessage": "Liens"
     },
     "JAguka": {
         "defaultMessage": "Votre message"
@@ -325,6 +343,9 @@
     },
     "JoWKee": {
         "defaultMessage": "Créez votre premier écran"
+    },
+    "K1BxIr": {
+        "defaultMessage": "Modifier les métadonnées"
     },
     "KB7N5E": {
         "defaultMessage": "Rechercher un lieu sur Google Maps"
@@ -377,9 +398,6 @@
     "PbHeHc": {
         "defaultMessage": "Marqueurs"
     },
-    "PyDwDF": {
-        "defaultMessage": "Fermer"
-    },
     "PyxZY2": {
         "defaultMessage": "Annuler"
     },
@@ -394,6 +412,9 @@
     },
     "QfpTKK": {
         "defaultMessage": "Sélectionnez un écran..."
+    },
+    "R9DB4a": {
+        "defaultMessage": "Styles"
     },
     "RHMS2f": {
         "defaultMessage": "Couleur de la ligne"
@@ -424,6 +445,9 @@
     },
     "TXkHah": {
         "defaultMessage": "Lien"
+    },
+    "Tol+/U": {
+        "defaultMessage": "Effacer"
     },
     "Tt4jN1": {
         "defaultMessage": "Ajouter"
@@ -482,6 +506,9 @@
     "ZLDmja": {
         "defaultMessage": "Envoyer"
     },
+    "ZMS1Wv": {
+        "defaultMessage": "Texte"
+    },
     "ZqwBOx": {
         "defaultMessage": "Questions"
     },
@@ -505,6 +532,9 @@
     },
     "aovRFH": {
         "defaultMessage": "Nom du fichier"
+    },
+    "bLYuuN": {
+        "defaultMessage": "Vous êtes sur l’écran {current} de {total}."
     },
     "bhEaUt": {
         "defaultMessage": "Audio"
@@ -541,6 +571,9 @@
     },
     "e1I+KU": {
         "defaultMessage": "Question"
+    },
+    "e4UTx9": {
+        "defaultMessage": "Résultats"
     },
     "e6+aGf": {
         "defaultMessage": "Sélectionnez un média..."
@@ -617,6 +650,9 @@
     "l/Y6or": {
         "defaultMessage": "Ajouter une entrée"
     },
+    "l5uLMd": {
+        "defaultMessage": "Boutons"
+    },
     "lGh/NP": {
         "defaultMessage": "Ajouter une réponse"
     },
@@ -689,11 +725,17 @@
     "qKQCxc": {
         "defaultMessage": "Ajouter un marqueur"
     },
+    "qjL/eA": {
+        "defaultMessage": "Barre"
+    },
     "rBPIgw": {
         "defaultMessage": "Conversation"
     },
     "rdFCsN": {
         "defaultMessage": "Aucun marqueur..."
+    },
+    "ru3tjH": {
+        "defaultMessage": "Mauvaise réponse"
     },
     "sESmah": {
         "defaultMessage": "Entrées"
@@ -811,9 +853,6 @@
     },
     "zDH24s": {
         "defaultMessage": "Latitude"
-    },
-    "zU0DaR": {
-        "defaultMessage": "Modifier..."
     },
     "zW7IVm": {
         "defaultMessage": "Quiz"

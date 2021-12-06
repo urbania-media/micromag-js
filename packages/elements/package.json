@@ -1,6 +1,6 @@
 {
     "name": "@micromag/elements",
-    "version": "0.2.341",
+    "version": "0.2.375",
     "description": "",
     "keywords": [
         "javascript"
@@ -33,7 +33,8 @@
     "module": "es/index.js",
     "exports": {
         ".": "./lib/index.js",
-        "./all": "./lib/all.js"
+        "./all": "./lib/all.js",
+        "./scss/styles": "./scss/styles.scss"
     },
     "browser": {
         ".": "./es/index.js",
@@ -50,39 +51,39 @@
         "prepare": "../../scripts/prepare-package.sh --scss"
     },
     "devDependencies": {
-        "react": "^16.8.0",
-        "react-dom": "^16.8.0"
+        "react": "^16.8.0 || ^17.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0"
     },
     "peerDependencies": {
-        "react": "^16.8.0",
-        "react-dom": "^16.8.0"
+        "react": "^16.8.0 || ^17.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0"
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.2.337",
-        "@micromag/element-audio": "^0.2.337",
-        "@micromag/element-background": "^0.2.337",
-        "@micromag/element-button": "^0.2.337",
-        "@micromag/element-call-to-action": "^0.2.337",
-        "@micromag/element-checkbox": "^0.2.337",
-        "@micromag/element-closed-captions": "^0.2.337",
-        "@micromag/element-container": "^0.2.337",
-        "@micromag/element-grid": "^0.2.337",
-        "@micromag/element-heading": "^0.2.337",
-        "@micromag/element-image": "^0.2.337",
-        "@micromag/element-layout": "^0.2.337",
-        "@micromag/element-link": "^0.2.337",
-        "@micromag/element-map": "^0.2.337",
-        "@micromag/element-media-controls": "^0.2.337",
-        "@micromag/element-quote": "^0.2.337",
-        "@micromag/element-scroll": "^0.2.337",
-        "@micromag/element-stack": "^0.2.337",
-        "@micromag/element-text": "^0.2.337",
-        "@micromag/element-text-input": "^0.2.337",
-        "@micromag/element-video": "^0.2.337",
-        "@micromag/element-visual": "^0.2.341",
+        "@micromag/core": "^0.2.375",
+        "@micromag/element-audio": "^0.2.375",
+        "@micromag/element-background": "^0.2.375",
+        "@micromag/element-button": "^0.2.375",
+        "@micromag/element-call-to-action": "^0.2.375",
+        "@micromag/element-checkbox": "^0.2.375",
+        "@micromag/element-closed-captions": "^0.2.375",
+        "@micromag/element-container": "^0.2.375",
+        "@micromag/element-grid": "^0.2.375",
+        "@micromag/element-heading": "^0.2.375",
+        "@micromag/element-image": "^0.2.375",
+        "@micromag/element-layout": "^0.2.375",
+        "@micromag/element-link": "^0.2.375",
+        "@micromag/element-map": "^0.2.375",
+        "@micromag/element-media-controls": "^0.2.375",
+        "@micromag/element-quote": "^0.2.375",
+        "@micromag/element-scroll": "^0.2.375",
+        "@micromag/element-stack": "^0.2.375",
+        "@micromag/element-text": "^0.2.375",
+        "@micromag/element-text-input": "^0.2.375",
+        "@micromag/element-video": "^0.2.375",
+        "@micromag/element-visual": "^0.2.375",
         "classnames": "^2.2.6",
-        "lodash": "^4.17.20",
+        "lodash": "^4.17.21",
         "prop-types": "^15.7.2"
     },
     "publishConfig": {

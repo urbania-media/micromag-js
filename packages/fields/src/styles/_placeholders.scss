@@ -1,3 +1,4 @@
+@use 'sass:math';
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/mixins';
 
@@ -11,7 +12,7 @@
 
     > * {
         display: block;
-        margin-right: $spacer / 2;
+        margin-right: math.div($spacer, 2);
 
         &:last-child {
             margin-right: 0;

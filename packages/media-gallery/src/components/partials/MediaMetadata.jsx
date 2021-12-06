@@ -8,7 +8,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { useApi, useMediaTags, useMediaUpdate } from '@micromag/data'; // useOrganisationTeam
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useFieldsManager } from '@micromag/core/contexts';
+import { useFieldComponent } from '@micromag/core/contexts';
 import { Button } from '@micromag/core/components';
 
 import styles from '../../styles/partials/media-metadata.module.scss';
@@ -44,7 +44,6 @@ const MediaMetadata = ({ media, className }) => {
         tags: mediaTags = [],
     } = metadata || {};
 
-    const fieldsManager = useFieldsManager();
     const api = useApi();
     const { tags: usedTags } = useMediaTags();
     const { update } = useMediaUpdate();
@@ -123,8 +122,8 @@ const MediaMetadata = ({ media, className }) => {
         setChanged(false);
     }, [media, setTags, setName, setDescription, setChanged]);
 
-    const TextField = fieldsManager.getComponent('text');
-    const TokensField = fieldsManager.getComponent('tokens');
+    const TextField = useFieldComponent('text');
+    const TokensField = useFieldComponent('tokens');
 
     return (
         <div

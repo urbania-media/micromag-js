@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screens",
-    "version": "0.2.341",
+    "version": "0.2.375",
     "description": "",
     "keywords": [
         "javascript"
@@ -45,34 +45,34 @@
         "prepare": "../../scripts/prepare-package.sh && npm run scss && npm run css"
     },
     "devDependencies": {
-        "react": "^16.8.0",
-        "react-dom": "^16.8.0"
+        "react": "^16.8.0 || ^17.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0"
     },
     "peerDependencies": {
-        "react": "^16.8.0",
-        "react-dom": "^16.8.0"
+        "react": "^16.8.0 || ^17.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0"
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.2.337",
-        "@micromag/screen-audio": "^0.2.337",
-        "@micromag/screen-contribution": "^0.2.337",
-        "@micromag/screen-conversation": "^0.2.341",
-        "@micromag/screen-gallery": "^0.2.341",
-        "@micromag/screen-gallery-feed": "^0.2.341",
-        "@micromag/screen-image": "^0.2.341",
-        "@micromag/screen-map": "^0.2.337",
-        "@micromag/screen-quiz": "^0.2.337",
-        "@micromag/screen-quote": "^0.2.337",
-        "@micromag/screen-ranking": "^0.2.337",
-        "@micromag/screen-survey": "^0.2.337",
-        "@micromag/screen-text": "^0.2.337",
-        "@micromag/screen-timeline": "^0.2.341",
-        "@micromag/screen-title": "^0.2.337",
-        "@micromag/screen-video": "^0.2.337",
-        "@micromag/screen-video-360": "^0.2.337",
+        "@micromag/core": "^0.2.375",
+        "@micromag/screen-audio": "^0.2.375",
+        "@micromag/screen-contribution": "^0.2.375",
+        "@micromag/screen-conversation": "^0.2.375",
+        "@micromag/screen-gallery": "^0.2.375",
+        "@micromag/screen-gallery-feed": "^0.2.375",
+        "@micromag/screen-image": "^0.2.375",
+        "@micromag/screen-map": "^0.2.375",
+        "@micromag/screen-quiz": "^0.2.375",
+        "@micromag/screen-quote": "^0.2.375",
+        "@micromag/screen-ranking": "^0.2.375",
+        "@micromag/screen-survey": "^0.2.375",
+        "@micromag/screen-text": "^0.2.375",
+        "@micromag/screen-timeline": "^0.2.375",
+        "@micromag/screen-title": "^0.2.375",
+        "@micromag/screen-video": "^0.2.375",
+        "@micromag/screen-video-360": "^0.2.375",
         "classnames": "^2.2.6",
-        "lodash": "^4.17.20",
+        "lodash": "^4.17.21",
         "prop-types": "^15.7.2"
     },
     "publishConfig": {

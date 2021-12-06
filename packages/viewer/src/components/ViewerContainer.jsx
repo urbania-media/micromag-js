@@ -5,7 +5,7 @@ import { MemoryRouter } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import { ScreensProvider } from '@micromag/screens';
 import { IntlProvider } from '@micromag/intl';
-import fieldsManager from '@micromag/fields';
+import fieldsManager from '@micromag/fields/manager';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     GoogleMapsClientProvider,
@@ -72,17 +72,18 @@ const ViewerContainer = ({
         if (story === null && trackingVariables === null) {
             return null;
         }
-        const { id = null, slug = null, title = null } = story;
+        const { id = null, slug = null, title = null, components = [] } = story;
         return {
             storyId: id,
             storySlug: slug,
             storyTitle: title,
+            screensCount: (components || []).length,
             ...trackingVariables,
         };
     }, [story, trackingVariables]);
 
     const { metadata } = story || {};
-    const { language:finalLocale = locale } = metadata || {};
+    const { language: finalLocale = locale } = metadata || {};
 
     const content = (
         <IntlProvider locale={finalLocale} locales={locales} extraMessages={translations}>

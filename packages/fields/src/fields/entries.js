@@ -1,10 +1,8 @@
 import { defineMessage } from 'react-intl';
 
-import Items from '../components/Items';
-
 export default {
     id: 'entries',
-    component: Items,
+    component: 'items',
     noItemLabel: defineMessage({
         defaultMessage: 'No entry...',
         description: 'Label when there is no item',

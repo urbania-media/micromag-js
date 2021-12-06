@@ -1,8 +1,9 @@
+@use 'sass:math';
 @import '~@micromag/core/scss/variables';
 
 .container {
     position: relative;
-    padding: $spacer / 2;
+    padding: math.div($spacer, 2);
 
     .inner {
         display: flex;

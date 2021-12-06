@@ -1,5 +1,13 @@
+@import '~@micromag/core/scss/placeholders';
+
 .container {
+    @extend %text-inner-styles;
     margin: 0;
     padding: 0;
     line-height: 1;
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
 }

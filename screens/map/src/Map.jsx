@@ -8,7 +8,7 @@ import { useGoogleKeys, useScreenSize, useScreenRenderContext } from '@micromag/
 import { PlaceholderMap, Transitions, ScreenElement, Button } from '@micromag/core/components';
 import { useTrackScreenEvent, useResizeObserver } from '@micromag/core/hooks';
 import { getStyleFromColor, isTextFilled } from '@micromag/core/utils';
-import Background from '@micromag/element-background';
+import { Background } from '@micromag/element-background';
 import Container from '@micromag/element-container';
 import Map from '@micromag/element-map';
 import Heading from '@micromag/element-heading';

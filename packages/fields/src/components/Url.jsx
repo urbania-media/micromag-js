@@ -57,7 +57,7 @@ const UrlField = ({ schemes, value, className, onChange }) => {
     );
 
     return (
-        <InputGroup prepend={scheme} className={className} size="sm">
+        <InputGroup prepend={scheme} className={className}>
             <TextField value={valueWithoutScheme} onChange={onFieldChange} />
         </InputGroup>
     );

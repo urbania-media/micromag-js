@@ -1,16 +1,14 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading, jsx-a11y/label-has-associated-control */
-import React, { useCallback } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import { faAngleRight, faSlidersH } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSlidersH, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, Label } from '@micromag/core/components';
-
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback } from 'react';
+import styles from '../styles/field-row.module.scss';
 import FieldErrors from './FieldErrors';
 import FieldHelp from './FieldHelp';
-
-import styles from '../styles/field-row.module.scss';
 
 const propTypes = {
     label: MicromagPropTypes.label,
@@ -97,6 +95,13 @@ const FieldRow = ({
         },
     ]);
 
+    const helpElement = help !== null ? <FieldHelp>{help}</FieldHelp> : null;
+
+    const errorsElement =
+        errors !== null && errors.length > 0 ? <FieldErrors errors={errors} /> : null;
+
+    const hasIndicationsUnder = helpElement !== null || errorsElement !== null;
+
     const labelElement =
         label !== null ? (
             <label
@@ -105,6 +110,8 @@ const FieldRow = ({
                     'col-auto': isHorizontal,
                     col: !isHorizontal && withSettings,
                     'py-0': isHorizontal,
+                    'pt-2': isHorizontal && hasIndicationsUnder,
+                    'align-self-center': isHorizontal && !hasIndicationsUnder,
                     'text-truncate': isHorizontal,
                     'font-weight-normal': !isSection,
                     'font-weight-bold': isSection,
@@ -115,26 +122,31 @@ const FieldRow = ({
             </label>
         ) : null;
 
-    const helpElement = help !== null ? <FieldHelp>{help}</FieldHelp> : null;
-
-    const errorsElement =
-        errors !== null && errors.length > 0 ? <FieldErrors errors={errors} /> : null;
-
     const arrowElement = isClickable ? (
-        <span className="col-auto">
+        <span className="col-auto align-self-middle">
             <FontAwesomeIcon icon={faAngleRight} />
         </span>
     ) : null;
 
     if (isHorizontal) {
         const rowInner = (
-            <span className={classNames(['form-row', 'align-items-center', 'flex-nowrap'])}>
-                {labelElement}
-                <span className={classNames(['col', styles.colValue])}>{children}</span>
-                {arrowElement}
-                {helpElement}
-                {errorsElement}
-            </span>
+            <>
+                <span className={classNames(['form-row', 'flex-nowrap'])}>
+                    {labelElement}
+                    <span className={classNames(['col', styles.colValue, 'align-self-center'])}>
+                        <span className={classNames(['d-flex', 'w-100', 'justify-content-end'])}>
+                            {children}
+                        </span>
+                        {helpElement !== null || errorsElement !== null ? (
+                            <span className={classNames(['d-flex', 'mt-1', 'w-100', 'justify-content-end'])}>
+                                {helpElement}
+                                {errorsElement}
+                            </span>
+                        ) : null}
+                    </span>
+                    {arrowElement}
+                </span>
+            </>
         );
 
         return isClickable ? (
@@ -146,6 +158,7 @@ const FieldRow = ({
                         {
                             [styles.resetButton]: !isListItem,
                             'd-block': !isListItem,
+                            'w-100': isListItem,
                             'p-2': !isListItem,
                         },
                     ])}

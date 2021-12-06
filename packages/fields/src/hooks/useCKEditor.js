@@ -16,14 +16,16 @@ const useCKEditor = () => {
                 canceled = true;
             };
         }
-        import('@ckeditor/ckeditor5-react').then(({ CKEditor }) => {
-            packageCache = CKEditor;
-            if (!canceled) {
-                setLoadedPackage({
-                    package: CKEditor,
-                });
-            }
-        });
+        import('@micromag/ckeditor/build').then(
+            ({ default: Editor }) => {
+                packageCache = Editor;
+                if (!canceled) {
+                    setLoadedPackage({
+                        package: Editor,
+                    });
+                }
+            },
+        );
         return () => {
             canceled = true;
         };

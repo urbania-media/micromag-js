@@ -74,7 +74,7 @@ class POFile {
                 '': this.translations.reduce((map, translation) => ({
                     ...map,
                     [translation.msgctxt]: translation,
-                })),
+                }), {}),
             },
         });
 

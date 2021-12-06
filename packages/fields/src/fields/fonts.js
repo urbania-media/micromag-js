@@ -1,8 +1,6 @@
-import Fonts from '../components/Fonts';
-
 export default {
     id: 'fonts',
-    component: Fonts,
+    component: 'fonts',
     itemsField:{
         type: 'font',
     }

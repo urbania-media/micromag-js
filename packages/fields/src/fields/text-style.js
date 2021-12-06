@@ -1,8 +1,5 @@
 import { defineMessage } from 'react-intl';
 
-import FontStyleWithAlign from '../components/FontStyleWithAlign';
-import FontStyleTransform from '../components/FontStyleTransform';
-
 export default {
     id: 'text-style',
     fields: [
@@ -39,9 +36,64 @@ export default {
                     }),
                 },
                 {
-                    component: FontStyleWithAlign,
+                    component: 'font-style-with-align',
                     fontStyleName: 'fontStyle',
                     alignName: 'align',
+                },
+            ],
+        },
+        {
+            type: 'fields',
+            name: 'highlight',
+            label: defineMessage({
+                defaultMessage: 'Highlight',
+                description: 'Fields section label',
+            }),
+            isList: true,
+            fields: [
+                {
+                    name: 'color',
+                    type: 'color',
+                    label: defineMessage({
+                        defaultMessage: 'Color',
+                        description: 'Field label',
+                    }),
+                },
+                {
+                    name: 'textColor',
+                    type: 'color',
+                    label: defineMessage({
+                        defaultMessage: 'Text color',
+                        description: 'Field label',
+                    }),
+                },
+            ],
+        },
+        {
+            type: 'fields',
+            name: 'link',
+            label: defineMessage({
+                defaultMessage: 'Links',
+                description: 'Fields section label',
+            }),
+            isList: true,
+            fields: [
+                {
+                    name: 'color',
+                    type: 'color',
+                    label: defineMessage({
+                        defaultMessage: 'Color',
+                        description: 'Field label',
+                    }),
+                },
+                {
+                    name: 'fontStyle',
+                    component: 'font-style',
+                    isHorizontal: true,
+                    label: defineMessage({
+                        defaultMessage: 'Style',
+                        description: 'Field label',
+                    }),
                 },
             ],
         },
@@ -70,8 +122,9 @@ export default {
                     }),
                 },
                 {
-                    component: FontStyleTransform,
-                    fontStyleName: 'fontStyle',
+                    component: 'font-style-transform',
+                    name: 'fontStyle',
+                    transformName: 'transform',
                     label: defineMessage({
                         defaultMessage: 'Case',
                         description: 'Field label',

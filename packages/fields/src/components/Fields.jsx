@@ -121,6 +121,7 @@ const Fields = ({
                     onChange: customOnChange = null,
                     isHorizontal = globalIsHorizontal,
                     isSection = false,
+                    className: customClassName = null,
                 } = field;
                 const singleFieldValue =
                     name !== null && typeof (value || {})[name] !== 'undefined'
@@ -159,6 +160,7 @@ const Fields = ({
                                 [fieldClassName]: fieldClassName !== null,
                             },
                         ])}
+                        fieldClassName={customClassName}
                         labelClassName={labelClassName}
                         fieldRowClassName={styles.fieldRow}
                     />

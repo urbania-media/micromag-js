@@ -1,10 +1,9 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import React, { useMemo, useState } from 'react';
+import { useGetColors } from '@micromag/core/contexts';
 import PropTypes from 'prop-types';
-// import classNames from 'classnames';
+import React, { useCallback, useMemo } from 'react';
 import { SketchPicker } from 'react-color';
 import tinycolor from 'tinycolor2';
-import { useGetColors } from '@micromag/core/contexts';
 import { v4 as uuid } from 'uuid';
 
 // import * as AppPropTypes from '../../lib/PropTypes';
@@ -25,13 +24,11 @@ const defaultProps = {
 };
 
 const ColorPickerField = ({ className, value, onChange }) => {
-    const [colors, setColors] = useState([]);
     const getColors = useGetColors();
-
-    useMemo(() => {
-        const newColors = (getColors() || []).map((c) => ({ color: c.color, title: uuid() }));
-        setColors(newColors);
-    }, [setColors]);
+    const colors = useMemo(
+        () => (getColors() || []).map((c) => ({ color: c.color, title: uuid() })),
+        [getColors],
+    );
 
     const color = useMemo(() => {
         if (value !== null) {
@@ -41,6 +38,19 @@ const ColorPickerField = ({ className, value, onChange }) => {
         }
         return '';
     }, [value]);
+
+    const onPickerChange = useCallback(
+        (newValue) => {
+            if (onChange !== null) {
+                onChange({
+                    color: newValue.hex,
+                    alpha: newValue.rgb.a,
+                });
+            }
+        },
+        [onChange],
+    );
+
     return (
         <div className={className}>
             <SketchPicker
@@ -54,14 +64,7 @@ const ColorPickerField = ({ className, value, onChange }) => {
                         color: '#FFF',
                     },
                 }}
-                onChange={(newValue) => {
-                    if (onChange !== null) {
-                        onChange({
-                            color: newValue.hex,
-                            alpha: newValue.rgb.a,
-                        });
-                    }
-                }}
+                onChange={onPickerChange}
             />
         </div>
     );

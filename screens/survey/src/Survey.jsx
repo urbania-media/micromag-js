@@ -1,23 +1,27 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useQuiz, useQuizCreate } from '@micromag/data';
-import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
+import { useScreenRenderContext, useScreenSize, useViewer } from '@micromag/core/contexts';
 import { useTrackScreenEvent } from '@micromag/core/hooks';
-import { isTextFilled, getLargestRemainderRound } from '@micromag/core/utils';
+import {
+    getLargestRemainderRound,
+    getStyleFromButton,
+    getStyleFromColor,
+    isTextFilled,
+} from '@micromag/core/utils';
+import { useQuiz, useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
-import Container from '@micromag/element-container';
-import Layout, { Spacer } from '@micromag/element-layout';
-import Heading from '@micromag/element-heading';
 import Button from '@micromag/element-button';
-import Text from '@micromag/element-text';
 import CallToAction from '@micromag/element-call-to-action';
-
+import Container from '@micromag/element-container';
+import Heading from '@micromag/element-heading';
+import Layout, { Spacer } from '@micromag/element-layout';
+import Text from '@micromag/element-text';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -25,6 +29,11 @@ const propTypes = {
     layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split']),
     question: MicromagPropTypes.textElement,
     answers: MicromagPropTypes.answers,
+    buttonsStyle: MicromagPropTypes.buttonStyle,
+    resultsStyle: PropTypes.shape({
+        barColor: MicromagPropTypes.color,
+        textColor: MicromagPropTypes.color,
+    }),
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
@@ -42,6 +51,8 @@ const defaultProps = {
     layout: 'middle',
     question: null,
     answers: null,
+    buttonsStyle: null,
+    resultsStyle: null,
     spacing: 20,
     background: null,
     callToAction: null,
@@ -59,6 +70,8 @@ const SurveyScreen = ({
     layout,
     question,
     answers,
+    buttonsStyle,
+    resultsStyle,
     spacing,
     background,
     callToAction,
@@ -78,14 +91,8 @@ const SurveyScreen = ({
         screenId,
     });
 
-    const {
-        isView,
-        isPreview,
-        isPlaceholder,
-        isEdit,
-        isStatic,
-        isCapture,
-    } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
+        useScreenRenderContext();
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
 
@@ -214,25 +221,26 @@ const SurveyScreen = ({
     const finalTransitionDuration = showInstantAnswer ? 0 : `${resultTransitionDuration}ms`;
     const [ready, setReady] = useState(false);
     useEffect(() => {
-        let maxWidth = 0;
-
         if (answers === null || isPlaceholder) {
             return;
         }
 
-        answers.forEach((answer, answerI) => {
-            const button = buttonsRefs.current[answerI];
-            const label = labelsRefs.current[answerI];
-
-            if (typeof button !== 'undefined' && button !== null) {
+        const maxWidth = answers.reduce((currentMaxWidth, answer, answerI) => {
+            const button = buttonsRefs.current[answerI] || null;
+            const label = labelsRefs.current[answerI] || null;
+            if (button !== null && label !== null) {
                 const borderWidth = button.offsetWidth - button.clientWidth;
-                const totalWidth = borderWidth + label.offsetWidth + 2;
-                maxWidth = Math.max(maxWidth, totalWidth);
-                setButtonMaxWidth(maxWidth);
+                const totalWidth = borderWidth + label.getBoundingClientRect().width + 20;
+                return Math.max(currentMaxWidth, totalWidth);
             }
-        });
+            return currentMaxWidth;
+        }, 0);
+        setButtonMaxWidth(Math.min(width * 0.75, Math.max(width * 0.2, maxWidth)));
         setReady(true);
     }, [answers, width, height, setButtonMaxWidth, finalTransitionDuration, isPlaceholder]);
+
+    const { barColor: resultsBarColor = null, textColor: resultsTextColor = null } =
+        resultsStyle || {};
 
     items.push(
         <div key="answers" className={styles.answers}>
@@ -240,7 +248,15 @@ const SurveyScreen = ({
                 <div className={styles.items}>
                     {(isPlaceholder ? [...new Array(3)] : answers).map((answer, answerIndex) => {
                         const hasAnswer = answer !== null;
-                        const { label = null } = answer || {};
+                        const {
+                            label = null,
+                            buttonStyle: answerButtonStyle = null,
+                            resultStyle: answerResultStyle = null,
+                        } = answer || {};
+                        const {
+                            barColor: answerResultBarColor = null,
+                            textColor: answerResultTextColor,
+                        } = answerResultStyle || {};
                         const { body = null } = label || {};
                         const { percent = 0 } =
                             body !== null ? quizAnswersComputed[body] || {} : {};
@@ -255,7 +271,7 @@ const SurveyScreen = ({
                                 className={classNames([
                                     styles.item,
                                     {
-                                        // [styles.userAnswer]: userAnswer,
+                                        [styles.userAnswer]: userAnswer,
                                     },
                                 ])}
                             >
@@ -295,11 +311,14 @@ const SurveyScreen = ({
                                                         disabled={isPreview}
                                                         focusable={current && isView}
                                                         buttonStyle={
-                                                            userAnswer || !answered
+                                                            !answered
                                                                 ? {
-                                                                      borderWidth: 2,
-                                                                      borderStyle: 'solid',
-                                                                      borderColor: labelColor,
+                                                                      ...getStyleFromButton(
+                                                                          buttonsStyle,
+                                                                      ),
+                                                                      ...getStyleFromButton(
+                                                                          answerButtonStyle,
+                                                                      ),
                                                                   }
                                                                 : null
                                                         }
@@ -307,20 +326,13 @@ const SurveyScreen = ({
                                                         <span
                                                             className={styles.itemLabel}
                                                             ref={(el) => {
-                                                                labelsRefs.current[
-                                                                    answerIndex
-                                                                ] = el;
+                                                                labelsRefs.current[answerIndex] =
+                                                                    el;
                                                             }}
                                                         >
                                                             <Text
                                                                 {...label}
-                                                                textStyle={{
-                                                                    ...textStyle,
-                                                                    color:
-                                                                        userAnswer || !answered
-                                                                            ? labelColor
-                                                                            : null,
-                                                                }}
+                                                                textStyle={textStyle}
                                                                 inline
                                                                 className={styles.itemText}
                                                             />
@@ -336,26 +348,40 @@ const SurveyScreen = ({
                                                     <div
                                                         className={styles.resultContent}
                                                         style={{
-                                                            transitionDelay: finalTransitionDuration,
-                                                            transitionDuration: finalTransitionDuration,
+                                                            transitionDelay:
+                                                                finalTransitionDuration,
+                                                            transitionDuration:
+                                                                finalTransitionDuration,
                                                         }}
                                                     >
                                                         <div
                                                             className={styles.result}
                                                             style={{
                                                                 width: `${percent}%`,
-                                                                backgroundColor: userAnswer
-                                                                    ? labelColor
-                                                                    : null,
+                                                                ...getStyleFromColor(
+                                                                    answered
+                                                                        ? answerResultBarColor ||
+                                                                              resultsBarColor ||
+                                                                              labelColor
+                                                                        : null,
+                                                                    'backgroundColor',
+                                                                ),
                                                             }}
                                                         >
                                                             {withPercentLabels ? (
                                                                 <div
                                                                     className={styles.resultLabel}
                                                                     style={{
-                                                                        color: userAnswer
-                                                                            ? labelColor
-                                                                            : null,
+                                                                        ...getStyleFromColor(
+                                                                            answered
+                                                                                ? answerResultTextColor ||
+                                                                                      resultsTextColor ||
+                                                                                      answerResultBarColor ||
+                                                                                      resultsBarColor ||
+                                                                                      labelColor
+                                                                                : null,
+                                                                            'color',
+                                                                        ),
                                                                     }}
                                                                 >{`${percent}%`}</div>
                                                             ) : null}
@@ -406,7 +432,7 @@ const SurveyScreen = ({
         >
             {!isPlaceholder ? (
                 <Background
-                    {...background}
+                    background={background}
                     width={width}
                     height={height}
                     playing={backgroundPlaying}

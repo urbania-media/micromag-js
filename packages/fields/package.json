@@ -1,6 +1,6 @@
 {
     "name": "@micromag/fields",
-    "version": "0.2.337",
+    "version": "0.2.378",
     "description": "",
     "keywords": [
         "javascript"
@@ -31,40 +31,51 @@
     "license": "ISC",
     "main": "lib/index.js",
     "module": "es/index.js",
+    "exports": {
+        ".": "./lib/index.js",
+        "./manager": "./lib/manager.js",
+        "./scss/placeholders": "./scss/_placeholders.scss",
+        "./scss/styles": "./scss/styles.scss",
+        "./assets/css/styles.css": "./assets/css/styles.css"
+    },
+    "browser": {
+        ".": "./es/index.js",
+        "./manager": "./es/manager.js"
+    },
     "files": [
         "lib",
         "es",
         "assets",
         "scss",
-        "schemas.js"
+        "manager.js"
     ],
     "scripts": {
         "prepare": "../../scripts/prepare-package.sh --scss",
         "start": "PUBLIC_URL=http://localhost/ react-scripts start"
     },
     "devDependencies": {
-        "react": "^16.8.0",
-        "react-dom": "^16.8.0"
+        "react": "^16.8.0 || ^17.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0"
     },
     "peerDependencies": {
-        "react": "^16.8.0",
-        "react-dom": "^16.8.0"
+        "react": "^16.8.0 || ^17.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0"
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@ckeditor/ckeditor5-build-inline": "^24.0.0",
         "@ckeditor/ckeditor5-react": "^3.0.0",
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/core": "^0.2.337",
-        "@micromag/element-grid": "^0.2.337",
-        "@micromag/element-map": "^0.2.337",
-        "@micromag/media-gallery": "^0.2.337",
+        "@micromag/ckeditor": "^0.2.362",
+        "@micromag/core": "^0.2.375",
+        "@micromag/element-grid": "^0.2.375",
+        "@micromag/element-map": "^0.2.375",
+        "@micromag/media-gallery": "^0.2.378",
         "classnames": "^2.2.6",
         "draft-js": "^0.11.7",
         "fuse.js": "^6.4.3",
-        "lodash": "^4.17.20",
+        "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
         "rc-slider": "^9.6.5",
         "rc-switch": "^3.2.2",

@@ -4,17 +4,12 @@ const getStyleFromBorder = (value) => {
     if (value == null) {
         return null;
     }
-    const { width = null, style = null, color = null } = value;
-    const colorProcessed = getStyleFromColor(color, 'color');
-
-    const validBorder = width !== null && style !== null && color !== null && colorProcessed;
+    const { width = null, style: borderStyle = null, color = null } = value;
 
     return {
-        border: validBorder
-            ? `${width !== null ? `${width}px` : ''} ${style !== null ? style : ''} ${
-                  colorProcessed ? colorProcessed.color : ''
-              }`
-            : null,
+        ...(width !== null ? { borderWidth: width } : null),
+        ...(borderStyle !== null ? { borderStyle } : null),
+        ...getStyleFromColor(color, 'borderColor'),
     };
 };
 

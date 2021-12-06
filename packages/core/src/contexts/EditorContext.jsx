@@ -1,10 +1,8 @@
-import React, { useContext, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
-
+import React, { useCallback, useContext, useMemo } from 'react';
 import { ColorsParser } from '../lib';
-
-import { useScreensManager } from './ScreensContext';
 import { useFieldsManager } from './FieldsContext';
+import { useScreensManager } from './ScreensContext';
 import { useStory } from './StoryContext';
 
 export const EditorContext = React.createContext(null);
@@ -12,7 +10,7 @@ export const EditorContext = React.createContext(null);
 export const useEditor = () => useContext(EditorContext);
 
 export const useGetColors = () => {
-    const { getColors } = useEditor();
+    const { getColors = () => [] } = useEditor() || {};
     return getColors;
 };
 

@@ -1,13 +1,16 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import React, { useCallback, useMemo } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { useIntl } from 'react-intl';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import { InlinePlugin, MarkerPlugin } from '@micromag/ckeditor';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-
+import { HighlightStyle, LinkStyle } from '@micromag/core/components';
+import { useGetColors } from '@micromag/core/contexts';
+import { getColorAsString, getStyleFromHighlight, getStyleFromLink } from '@micromag/core/utils';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback, useMemo } from 'react';
+import { useIntl } from 'react-intl';
+import { v4 as uuidv4 } from 'uuid';
 import useCKEditor from '../hooks/useCKEditor';
-import useCKEditorInline from '../hooks/useCKEditorInline';
-
 import styles from '../styles/text-editor.module.scss';
 
 const propTypes = {
@@ -16,6 +19,8 @@ const propTypes = {
     className: PropTypes.string,
     onChange: PropTypes.func,
     inline: PropTypes.bool,
+    withHighlightColors: PropTypes.bool,
+    textStyle: PropTypes.shape({}),
     editorConfig: PropTypes.shape({}),
 };
 
@@ -25,54 +30,61 @@ const defaultProps = {
     className: null,
     onChange: null,
     inline: false,
+    withHighlightColors: false,
+    textStyle: null,
     editorConfig: {
-        removePlugins: ['Autoformat'],
-        toolbar: ['bold', 'italic', '|', 'link'],
-        language: 'fr',
+        toolbar: ['bold', 'italic', 'highlight', '|', 'link'],
         link: {
             addTargetToExternalLinks: true,
         },
     },
 };
 
-const TextEditorField = ({ value, size, className, editorConfig, inline, onChange }) => {
+const TextEditorField = ({
+    value,
+    size,
+    className,
+    textStyle,
+    editorConfig,
+    inline,
+    withHighlightColors,
+    onChange,
+}) => {
     const { locale } = useIntl();
-    const CKEditor = useCKEditor();
-    const InlineEditor = useCKEditorInline();
+    const { highlight: highlightStyle = null, link: linkStyle = null } = textStyle || {};
+    const Editor = useCKEditor();
+    const getColors = useGetColors();
+    const colors = useMemo(
+        () => (withHighlightColors ? getColors() : null) || [],
+        [withHighlightColors, getColors],
+    );
+
+    const id = useMemo(() => `editor-${uuidv4()}`, []);
 
     const finalEditorConfig = useMemo(
         () => ({
             ...editorConfig,
+            extraPlugins: [MarkerPlugin, inline ? InlinePlugin : null].filter((it) => it !== null),
+            highlight: {
+                options: [
+                    {
+                        model: 'marker',
+                        title: 'Marker',
+                        type: 'marker',
+                    },
+                    ...colors.map((color, index) => ({
+                        model: `marker_${index}`,
+                        type: 'marker',
+                        color: getColorAsString(color),
+                    })),
+                ],
+            },
             language: locale,
         }),
-        [editorConfig, locale],
+        [editorConfig, inline, locale],
     );
 
-    const onEditorReady = useCallback(
-        // eslint-disable-next-line  no-unused-vars
-        (editor) => {
-            // eslint-disable-line  no-unused-vars
-            if (inline) {
-                // editor.model.schema.extend('$root', {
-                //     isBlock: true,
-                //     isLimit: true,
-                // });
-                // editor.model.schema.extend('$block', {
-                //     isLimit: true,
-                // });
-                // editor.model.schema.extend('paragraph', {
-                //     isLimit: true,
-                // });
-                // editor.conversion.for('downcast').elementToElement({
-                //     model: 'paragraph',
-                //     view: 'span',
-                //     // view: (element, { writer }) => writer.createText(),
-                //     converterPriority: 'high',
-                // });
-            }
-        },
-        [inline],
-    );
+    const onEditorReady = useCallback(() => {}, []);
 
     const onEditorChange = useCallback(
         (event, editor) => {
@@ -81,7 +93,7 @@ const TextEditorField = ({ value, size, className, editorConfig, inline, onChang
                 onChange(data);
             }
         },
-        [onChange, inline],
+        [onChange],
     );
 
     return (
@@ -93,14 +105,24 @@ const TextEditorField = ({ value, size, className, editorConfig, inline, onChang
                     [className]: className !== null,
                 },
             ])}
+            id={id}
         >
-            {CKEditor !== null && InlineEditor !== null ? (
+            {Editor !== null ? (
                 <CKEditor
-                    editor={InlineEditor}
+                    editor={Editor}
                     config={finalEditorConfig}
                     data={value || ''}
                     onReady={onEditorReady}
                     onChange={onEditorChange}
+                />
+            ) : null}
+            {linkStyle !== null ? (
+                <LinkStyle selector={`#${id} .ck-content`} style={getStyleFromLink(linkStyle)} />
+            ) : null}
+            {highlightStyle !== null ? (
+                <HighlightStyle
+                    selector={`#${id} .ck-content`}
+                    style={getStyleFromHighlight(highlightStyle)}
                 />
             ) : null}
         </div>

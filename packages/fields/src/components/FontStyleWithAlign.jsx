@@ -1,26 +1,13 @@
-/* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import React, { useMemo, useCallback } from 'react';
+/* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */ import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faBold,
-    faItalic,
-    faUnderline,
-    faAlignLeft,
-    faAlignCenter,
-    faAlignRight,
-} from '@fortawesome/free-solid-svg-icons';
-
-import Checkboxes from './Checkboxes';
-import Radios from './Radios';
+import React, { useCallback } from 'react';
+import FontStyle from './FontStyle';
+import TextAlign from './TextAlign';
 
 const propTypes = {
     value: PropTypes.shape({}),
     fontStyleName: PropTypes.string,
     alignName: PropTypes.string,
-    stylesOptions: PropTypes.arrayOf(PropTypes.object),
-    alignOptions: PropTypes.arrayOf(PropTypes.object),
     className: PropTypes.string,
     onChange: PropTypes.func,
 };
@@ -28,55 +15,25 @@ const propTypes = {
 const defaultProps = {
     fontStyleName: 'fontStyle',
     alignName: 'align',
-    stylesOptions: [
-        { value: 'bold', label: <FontAwesomeIcon icon={faBold} /> },
-        { value: 'italic', label: <FontAwesomeIcon icon={faItalic} /> },
-        { value: 'underline', label: <FontAwesomeIcon icon={faUnderline} /> },
-    ],
-    alignOptions: [
-        { value: 'left', label: <FontAwesomeIcon icon={faAlignLeft} /> },
-        { value: 'center', label: <FontAwesomeIcon icon={faAlignCenter} /> },
-        { value: 'right', label: <FontAwesomeIcon icon={faAlignRight} /> },
-    ],
     value: null,
     className: null,
     onChange: null,
 };
 
-const FontStyles = ({
-    value,
-    fontStyleName,
-    alignName,
-    stylesOptions,
-    alignOptions,
-    className,
-    onChange,
-}) => {
-    const styleKeys = useMemo(() => stylesOptions.map((it) => it.value), [stylesOptions]);
+const FontStyles = ({ value, fontStyleName, alignName, className, onChange }) => {
     const fontStyleValue = value !== null ? value[fontStyleName] || null : null;
     const alignValue = value !== null ? value[alignName] || null : null;
     const onFontStyleChange = useCallback(
         (newFontStyleValue) => {
             const newValue = {
                 ...value,
-                [fontStyleName]: {
-                    ...fontStyleValue,
-                    ...styleKeys.reduce(
-                        (valueMap, styleKey) => ({
-                            ...valueMap,
-                            [styleKey]:
-                                newFontStyleValue !== null &&
-                                newFontStyleValue.indexOf(styleKey) !== -1,
-                        }),
-                        {},
-                    ),
-                },
+                [fontStyleName]: newFontStyleValue,
             };
             if (onChange !== null) {
                 onChange(newValue);
             }
         },
-        [value, styleKeys, fontStyleValue, fontStyleName, onChange],
+        [value, fontStyleValue, fontStyleName, onChange],
     );
     const onAlignChange = useCallback(
         (newAlignValue) => {
@@ -99,29 +56,8 @@ const FontStyles = ({
                 },
             ])}
         >
-            <Checkboxes
-                value={
-                    fontStyleValue !== null
-                        ? Object.keys(fontStyleValue).reduce(
-                              (values, styleKey) =>
-                                  styleKeys.indexOf(styleKey) !== -1 &&
-                                  fontStyleValue[styleKey] === true
-                                      ? [...values, styleKey]
-                                      : values,
-                              [],
-                          )
-                        : null
-                }
-                options={stylesOptions}
-                onChange={onFontStyleChange}
-            />
-            <Radios
-                value={alignValue}
-                options={alignOptions}
-                className="ml-auto"
-                onChange={onAlignChange}
-                uncheckable
-            />
+            <FontStyle value={fontStyleValue} onChange={onFontStyleChange} />
+            <TextAlign value={alignValue} className="ml-auto" onChange={onAlignChange} />
         </div>
     );
 };

@@ -11,11 +11,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 3.2.0\n"
 
-msgid ""
-msgstr ""
-
-msgid ""
-msgstr ""
+# Audio and Video screen group
+#: +9akmg
+msgctxt "+9akmg"
+msgid "Audio and Video"
+msgstr "Audio et vidéo"
 
 # Field label
 #: +AEVbJ
@@ -107,12 +107,6 @@ msgctxt "/hupzO"
 msgid "Credits"
 msgstr "Crédits"
 
-# field label
-#: 09cd3w
-msgctxt "09cd3w"
-msgid "Title"
-msgstr "Titre"
-
 # Cancel button label
 #: 0GT0SI
 msgctxt "0GT0SI"
@@ -148,12 +142,6 @@ msgstr "Description"
 msgctxt "2/F1Q7"
 msgid "#{index}"
 msgstr "#{index}"
-
-# field label
-#: 2Iseff
-msgctxt "2Iseff"
-msgid "Description"
-msgstr "Description"
 
 # Media label
 #: 2J05S0
@@ -317,11 +305,29 @@ msgctxt "650XRF"
 msgid "Survey"
 msgstr "Sondage"
 
+# No value field label
+#: 65rc70
+msgctxt "65rc70"
+msgid "Edit style..."
+msgstr "Modifier le style..."
+
 # Timing field label
 #: 6DV50M
 msgctxt "6DV50M"
 msgid "Timing"
 msgstr "Mode"
+
+# Field label
+#: 6MxaVf
+msgctxt "6MxaVf"
+msgid "Style"
+msgstr "Style"
+
+# Field section label
+#: 6Q4tcn
+msgctxt "6Q4tcn"
+msgid "Result style"
+msgstr "Style des résultats"
 
 # Field label
 #: 6ak5YN
@@ -527,6 +533,12 @@ msgctxt "D0+Cxr"
 msgid "Markers with image"
 msgstr "Marqueurs avec image"
 
+# Field label
+#: DU1qdc
+msgctxt "DU1qdc"
+msgid "Text color"
+msgstr "Couleur du texte"
+
 # Label when no value is provided to Video field
 #: DWEzCv
 msgctxt "DWEzCv"
@@ -623,17 +635,35 @@ msgctxt "HTd98/"
 msgid "No message..."
 msgstr "Pas de message..."
 
+# Fields section label
+#: HWpflq
+msgctxt "HWpflq"
+msgid "Highlight"
+msgstr "Surbrillance"
+
 # Button to edit a screen
 #: HseFdk
 msgctxt "HseFdk"
 msgid "Edit"
 msgstr "Modifier"
 
+# Field label
+#: I2bIHm
+msgctxt "I2bIHm"
+msgid "Good answer color"
+msgstr "Bonne réponse"
+
 # Duplicate screen item
 #: IBjY5r
 msgctxt "IBjY5r"
 msgid "Duplicate screen"
 msgstr "Dupliquer l'écran"
+
+# Fields section label
+#: ICXTfR
+msgctxt "ICXTfR"
+msgid "Links"
+msgstr "Liens"
 
 # Your message placeholder
 #: JAguka
@@ -670,6 +700,12 @@ msgstr "Style du bouton"
 msgctxt "JoWKee"
 msgid "Create your first screen"
 msgstr "Créez votre premier écran"
+
+# No value field label
+#: K1BxIr
+msgctxt "K1BxIr"
+msgid "Edit metadata..."
+msgstr "Modifier les métadonnées"
 
 # Search a place on Google Maps placeholder
 #: KB7N5E
@@ -773,12 +809,6 @@ msgctxt "PbHeHc"
 msgid "Markers"
 msgstr "Marqueurs"
 
-# Close button label
-#: PyDwDF
-msgctxt "PyDwDF"
-msgid "Close"
-msgstr "Fermer"
-
 # Button label
 #: PyxZY2
 msgctxt "PyxZY2"
@@ -807,6 +837,12 @@ msgstr "Ajouter une image"
 msgctxt "QfpTKK"
 msgid "Select a screen..."
 msgstr "Sélectionnez un écran..."
+
+# Field section label
+#: R9DB4a
+msgctxt "R9DB4a"
+msgid "Styles"
+msgstr "Styles"
 
 # Field label
 #: RHMS2f
@@ -867,6 +903,12 @@ msgstr "Longitude"
 msgctxt "TXkHah"
 msgid "Link"
 msgstr "Lien"
+
+# Button label
+#: Tol+/U
+msgctxt "Tol+/U"
+msgid "Clear"
+msgstr "Effacer"
 
 # Add button label in Media Gallery
 #: Tt4jN1
@@ -982,6 +1024,12 @@ msgctxt "ZLDmja"
 msgid "Submit"
 msgstr "Envoyer"
 
+# Field label
+#: ZMS1Wv
+msgctxt "ZMS1Wv"
+msgid "Text"
+msgstr "Texte"
+
 # Questions screen group
 #: ZqwBOx
 msgctxt "ZqwBOx"
@@ -1029,6 +1077,12 @@ msgstr "Ajustement"
 msgctxt "aovRFH"
 msgid "Filename"
 msgstr "Nom du fichier"
+
+# Nav ARIA label
+#: bLYuuN
+msgctxt "bLYuuN"
+msgid "You are on screen {current} of {total}."
+msgstr "Vous êtes sur l’écran {current} de {total}."
 
 # Audio screen title
 #: bhEaUt
@@ -1101,6 +1155,12 @@ msgstr "Légende"
 msgctxt "e1I+KU"
 msgid "Question"
 msgstr "Question"
+
+# Field label
+#: e4UTx9
+msgctxt "e4UTx9"
+msgid "Results"
+msgstr "Résultats"
 
 # Label when no value is provided to Media field
 #: e6+aGf
@@ -1252,6 +1312,12 @@ msgctxt "l/Y6or"
 msgid "Add an entry"
 msgstr "Ajouter une entrée"
 
+# Field label
+#: l5uLMd
+msgctxt "l5uLMd"
+msgid "Buttons"
+msgstr "Boutons"
+
 # Button label
 #: lGh/NP
 msgctxt "lGh/NP"
@@ -1394,6 +1460,12 @@ msgctxt "qKQCxc"
 msgid "Add a marker"
 msgstr "Ajouter un marqueur"
 
+# Field label
+#: qjL/eA
+msgctxt "qjL/eA"
+msgid "Bar"
+msgstr "Barre"
+
 # Conversation screen title
 #: rBPIgw
 msgctxt "rBPIgw"
@@ -1405,6 +1477,12 @@ msgstr "Conversation"
 msgctxt "rdFCsN"
 msgid "No marker..."
 msgstr "Aucun marqueur..."
+
+# Field label
+#: ru3tjH
+msgctxt "ru3tjH"
+msgid "Bad answer color"
+msgstr "Mauvaise réponse"
 
 # Entries field label
 #: sESmah
@@ -1639,12 +1717,6 @@ msgstr "Texte"
 msgctxt "zDH24s"
 msgid "Latitude"
 msgstr "Latitude"
-
-# metadata field placeholder
-#: zU0DaR
-msgctxt "zU0DaR"
-msgid "Edit metadata..."
-msgstr "Modifier..."
 
 # Quiz screen title
 #: zW7IVm

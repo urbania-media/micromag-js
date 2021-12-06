@@ -172,7 +172,16 @@ export const formFields = PropTypes.arrayOf(formField);
 const mediaMetadataShape = {
     filename: PropTypes.string,
     size: PropTypes.number,
+    mime: PropTypes.string,
 };
+
+export const mediaFile = PropTypes.shape({
+    id: PropTypes.string,
+    handle: PropTypes.string,
+    type: PropTypes.string,
+    mime: PropTypes.string,
+    url: PropTypes.string,
+});
 
 const mediaShape = {
     id: PropTypes.string,
@@ -183,6 +192,7 @@ const mediaShape = {
     metadata: PropTypes.shape({
         ...mediaMetadataShape,
     }),
+    files: PropTypes.objectOf(mediaFile),
 };
 
 export const media = PropTypes.shape(mediaShape);

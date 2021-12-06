@@ -1,13 +1,17 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/no-array-index-key, react/no-danger */
-import React, { useMemo } from 'react';
-import PropTypes from 'prop-types';
-import { v1 as uuid } from 'uuid';
-import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { getStyleFromText, getStyleFromMargin } from '@micromag/core/utils';
-import { LinkStyle } from '@micromag/core/components';
-
+import { HighlightStyle, LinkStyle } from '@micromag/core/components';
+import {
+    getStyleFromHighlight,
+    getStyleFromLink,
+    getStyleFromMargin,
+    getStyleFromText,
+} from '@micromag/core/utils';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useMemo } from 'react';
+import { v1 as uuid } from 'uuid';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -34,10 +38,22 @@ const defaultProps = {
     inline: false,
 };
 
-const Text = ({ body, textStyle, linksStyle, margin, lineClamp, showEmpty, className, emptyClassName, inline }) => {
+const Text = ({
+    body,
+    textStyle,
+    linksStyle,
+    margin,
+    lineClamp,
+    showEmpty,
+    className,
+    emptyClassName,
+    inline,
+}) => {
+    const { link: linkStyle = null, highlight: highlightStyle = null } = textStyle || {};
     let finalStyle = {};
-
-    let finalLinkStyle = null;
+    let finalLinkStyle = linkStyle !== null ? getStyleFromLink(linkStyle) : null;
+    const finalHighlightStyle =
+        highlightStyle !== null ? getStyleFromHighlight(highlightStyle) : null;
     if (textStyle !== null) {
         finalStyle = {
             ...finalStyle,
@@ -62,9 +78,8 @@ const Text = ({ body, textStyle, linksStyle, margin, lineClamp, showEmpty, class
         };
     }
 
-    const id = useMemo(() => (finalLinkStyle !== null ? `text-component-${uuid()}` : null), [
-        finalLinkStyle !== null,
-    ]);
+    const needsId = finalLinkStyle !== null || highlightStyle !== null;
+    const id = useMemo(() => (needsId ? `text-component-${uuid()}` : null), [needsId]);
 
     const tagProps = {
         id,
@@ -87,6 +102,9 @@ const Text = ({ body, textStyle, linksStyle, margin, lineClamp, showEmpty, class
         <>
             {finalLinkStyle !== null ? (
                 <LinkStyle selector={`#${id}`} style={finalLinkStyle} />
+            ) : null}
+            {finalHighlightStyle !== null ? (
+                <HighlightStyle selector={`#${id}`} style={finalHighlightStyle} />
             ) : null}
             <Tag {...tagProps} />
         </>
