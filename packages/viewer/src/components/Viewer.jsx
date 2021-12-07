@@ -51,7 +51,8 @@ const propTypes = {
     onInteraction: PropTypes.func,
     onEnd: PropTypes.func,
     onViewModeChange: PropTypes.func,
-    currentMedia: MicromagPropTypes.ref,
+    currentScreenMedia: MicromagPropTypes.ref,
+    screensMedias: MicromagPropTypes.ref,
     className: PropTypes.string,
 };
 
@@ -77,7 +78,8 @@ const defaultProps = {
     onInteraction: null,
     onEnd: null,
     onViewModeChange: null,
-    currentMedia: null,
+    currentScreenMedia: null,
+    screensMedias: null,
     className: null,
 };
 
@@ -103,7 +105,8 @@ const Viewer = ({
     onInteraction,
     onEnd,
     onViewModeChange,
-    currentMedia,
+    currentScreenMedia,
+    screensMedias,
     className,
 }) => {
     const intl = useIntl();
@@ -181,7 +184,7 @@ const Viewer = ({
 
     const { height: menuPreviewContainerHeight = 0 } = menuPreviewContainerRect || {};
 
-    const screensMediaRef = useRef([]);
+    const screensMediasRef = useRef([]);
 
     // Screen index
 
@@ -194,8 +197,12 @@ const Viewer = ({
         [screenId, screens],
     );
 
-    if (currentMedia !== null) {
-        currentMedia.current = screensMediaRef.current[screenIndex];
+    if (currentScreenMedia !== null) {
+        currentScreenMedia.current = screensMediasRef.current[screenIndex];
+    }
+
+    if (screensMedias !== null) {
+        screensMedias.current = screensMediasRef.current;
     }
 
     const changeIndex = useCallback(
@@ -203,8 +210,8 @@ const Viewer = ({
             if (index === screenIndex) {
                 return;
             }
-            if (currentMedia !== null) {
-                currentMedia.current = screensMediaRef.current[index];
+            if (currentScreenMedia !== null) {
+                currentScreenMedia.current = screensMediasRef.current[index];
             }
             if (onScreenChange !== null) {
                 onScreenChange(screens[index], index);
@@ -641,7 +648,7 @@ const Viewer = ({
                                         onEnableInteraction={onEnableInteraction}
                                         onDisableInteraction={onDisableInteraction}
                                         getMediaRef={(mediaRef) => {
-                                            screensMediaRef.current[i] = mediaRef;
+                                            screensMediasRef.current[i] = mediaRef;
                                         }}
                                     />
                                 );
@@ -652,7 +659,7 @@ const Viewer = ({
                                       }px - 50%)) scale(${current ? 1 : 0.9})`
                                     : `translateX(${current ? 0 : '100%'})`;
                                 return (
-                                    <>
+                                    <React.Fragment key={key}>
                                         {current && screenIndex > 0 ? (
                                             <button
                                                 type="button"
@@ -669,8 +676,7 @@ const Viewer = ({
                                         ) : null}
 
                                         <div
-                                            ref={current ? currentScreenRef : null}
-                                            key={key}
+                                            ref={current ? currentScreenRef : null}                                            
                                             style={{
                                                 width: landscape ? screenWidth : null,
                                                 height: landscape ? screenHeight : null,
@@ -718,7 +724,7 @@ const Viewer = ({
                                                 />
                                             </button>
                                         ) : null}
-                                    </>
+                                    </React.Fragment>
                                 );
                             })}
                         </div>

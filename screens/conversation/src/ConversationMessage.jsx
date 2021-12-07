@@ -12,9 +12,9 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    message: MicromagPropTypes.message,
-    previousMessage: MicromagPropTypes.message,
-    nextMessage: MicromagPropTypes.message,
+    message: MicromagPropTypes.conversationMessage,
+    previousMessage: MicromagPropTypes.conversationMessage,
+    nextMessage: MicromagPropTypes.conversationMessage,
     nextMessageState: PropTypes.bool,
     currentSpeaker: MicromagPropTypes.speaker,
     // state: PropTypes.oneOf(['pause', 'typing', 'send']),
