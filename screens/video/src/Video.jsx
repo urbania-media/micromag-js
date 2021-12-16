@@ -162,7 +162,7 @@ const VideoScreen = ({
     const hasCallToAction = callToAction !== null && callToAction.active === true;
 
     const hasVideo = video !== null;
-    const [ready, setReady] = useState(!hasVideo);
+    const [ready, setReady] = useState(hasVideo);// useState(!hasVideo);
     const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
