@@ -249,39 +249,39 @@ const VideoScreen = ({
                         top: resizedVideoTop,
                     }}
                 >
-                    <Transitions
+                    {/* <Transitions
                         playing={transitionPlaying}
                         transitions={transitions}
                         disabled={transitionDisabled}
-                    >
-                        {isPreview || isCapture ? (
-                            <Image
-                                className={styles.image}
-                                media={{
-                                    url: thumbnailUrl,
-                                    metadata: { width: videoWidth, height: videoHeight },
-                                }}
-                                width="100%"
-                                height="100%"
-                            />
-                        ) : (
-                            <Video
-                                {...finalVideo}
-                                ref={apiRef}
-                                className={styles.video}
-                                onReady={onVideoReady}
-                                onPlay={onPlay}
-                                onPause={onPause}
-                                onTimeUpdate={onTimeUpdate}
-                                onProgressStep={onProgressStep}
-                                onDurationChanged={onDurationChanged}
-                                onSeeked={onSeeked}
-                                onVolumeChanged={onVolumeChanged}
-                                focusable={current && isView}
-                                // onPosterLoaded={onPosterLoaded}
-                            />
-                        )}
-                    </Transitions>
+                    > */}
+                    {isPreview || isCapture ? (
+                        <Image
+                            className={styles.image}
+                            media={{
+                                url: thumbnailUrl,
+                                metadata: { width: videoWidth, height: videoHeight },
+                            }}
+                            width="100%"
+                            height="100%"
+                        />
+                    ) : (
+                        <Video
+                            {...finalVideo}
+                            ref={apiRef}
+                            className={styles.video}
+                            onReady={onVideoReady}
+                            onPlay={onPlay}
+                            onPause={onPause}
+                            onTimeUpdate={onTimeUpdate}
+                            onProgressStep={onProgressStep}
+                            onDurationChanged={onDurationChanged}
+                            onSeeked={onSeeked}
+                            onVolumeChanged={onVolumeChanged}
+                            focusable={current && isView}
+                            // onPosterLoaded={onPosterLoaded}
+                        />
+                    )}
+                    {/* </Transitions> */}
                 </div>
             ) : null}
         </ScreenElement>,
