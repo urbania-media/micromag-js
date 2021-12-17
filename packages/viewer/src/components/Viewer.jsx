@@ -1,33 +1,31 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useCallback, useRef, useEffect, useMemo, useState } from 'react';
-import { Helmet } from 'react-helmet';
-import PropTypes from 'prop-types';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { FontFaces, Meta } from '@micromag/core/components';
+import { ScreenSizeProvider, ViewerProvider } from '@micromag/core/contexts';
+import {
+    useFullscreen,
+    useLoadedFonts,
+    useParsedStory,
+    useResizeObserver,
+    useScreenSizeFromElement,
+    useTrackEvent,
+    useTrackScreenView,
+} from '@micromag/core/hooks';
+import { getDeviceScreens } from '@micromag/core/utils';
+import { config, useSpring } from '@react-spring/core';
+import { animated } from '@react-spring/web';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useDrag } from 'react-use-gesture';
-import { useSpring, config } from '@react-spring/core';
-import { animated } from '@react-spring/web';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import {
-    useScreenSizeFromElement,
-    useResizeObserver,
-    useParsedStory,
-    useTrackScreenView,
-    useTrackEvent,
-    useLoadedFonts,
-    useFullscreen,
-} from '@micromag/core/hooks';
-import { ScreenSizeProvider, ViewerProvider } from '@micromag/core/contexts';
-import { getDeviceScreens } from '@micromag/core/utils';
-import { FontFaces, Meta } from '@micromag/core/components';
-
-import ViewerScreen from './ViewerScreen';
+import styles from '../styles/viewer.module.scss';
 import MenuDots from './menus/MenuDots';
 import MenuPreview from './menus/MenuPreview';
-
-import styles from '../styles/viewer.module.scss';
+import ViewerScreen from './ViewerScreen';
 
 const propTypes = {
     story: MicromagPropTypes.story, // .isRequired,
@@ -53,6 +51,11 @@ const propTypes = {
     onViewModeChange: PropTypes.func,
     currentScreenMedia: MicromagPropTypes.ref,
     screensMedias: MicromagPropTypes.ref,
+    screenSizeOptions: PropTypes.shape({
+        withoutMaxSize: PropTypes.bool,
+        desktopHeightRatio: PropTypes.number,
+        screenRatio: PropTypes.number,
+    }),
     className: PropTypes.string,
 };
 
@@ -80,6 +83,7 @@ const defaultProps = {
     onViewModeChange: null,
     currentScreenMedia: null,
     screensMedias: null,
+    screenSizeOptions: null,
     className: null,
 };
 
@@ -107,6 +111,7 @@ const Viewer = ({
     onViewModeChange,
     currentScreenMedia,
     screensMedias,
+    screenSizeOptions,
     className,
 }) => {
     const intl = useIntl();
@@ -149,7 +154,9 @@ const Viewer = ({
         width,
         height,
         screens: deviceScreens,
+        ...screenSizeOptions,
     });
+
     const {
         width: screenWidth = null,
         height: screenHeight = null,
@@ -676,7 +683,7 @@ const Viewer = ({
                                         ) : null}
 
                                         <div
-                                            ref={current ? currentScreenRef : null}                                            
+                                            ref={current ? currentScreenRef : null}
                                             style={{
                                                 width: landscape ? screenWidth : null,
                                                 height: landscape ? screenHeight : null,

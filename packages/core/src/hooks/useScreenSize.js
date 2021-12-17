@@ -1,6 +1,5 @@
-import { useMemo, useState, useEffect } from 'react';
 import { match as matchMediaQuery } from 'css-mediaquery';
-
+import { useEffect, useMemo, useState } from 'react';
 import { useResizeObserver } from './useObserver';
 
 const useScreenSize = ({
@@ -57,7 +56,7 @@ export const useScreenSizeFromElement = ({ width = null, height = null, ...opts 
     const fullHeight = height !== null ? height : calculatedHeight;
 
     const landscape = fullHeight > 0 && fullWidth > fullHeight;
-    const { withoutMaxSize = false } = opts;
+    const { withoutMaxSize = false, desktopHeightRatio = 3 / 4, screenRatio = 2 / 3 } = opts;
     const landscapeWithMaxSize = landscape && !withoutMaxSize;
 
     let finalWidth = fullWidth;
@@ -68,10 +67,10 @@ export const useScreenSizeFromElement = ({ width = null, height = null, ...opts 
         if (fullHeight < 600) {
             menuOverScreen = true;
         } else {
-            finalHeight = Math.round(fullHeight * 3 / 4);
+            finalHeight = Math.round(fullHeight * desktopHeightRatio);
         }
 
-        finalWidth = Math.round(finalHeight * 2 / 3);
+        finalWidth = Math.round(finalHeight * screenRatio);
     }
 
     if (finalWidth % 2 === 1) {
