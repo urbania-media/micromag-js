@@ -39,7 +39,7 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "3e2083810d9a6bbd4c2564b7e59969b471466810",
+    "gitHead": "75b02e0e914a53b6be4f44daec3715db095a6b02",
     "devDependencies": {
         "@micromag/core": "^0.2.385",
         "@micromag/elements": "^0.2.385",
