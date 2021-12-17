@@ -2,21 +2,19 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useCallback, useState } from 'react';
 import {
-    webfontFiles,
+    audioMedia,
+    imageMedia,
+    video360Media,
+    videoMedia,
     webfont2Files,
     webfont3Files,
-    imageMedia,
-    videoMedia,
-    video360Media,
-    audioMedia,
+    webfontFiles,
 } from '../../../../.storybook/data';
-
-import basic from '../../../../.storybook/data/stories/basic.json';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
+import basic from '../../../../.storybook/data/stories/basic.json';
 import faceAFace from '../../../../.storybook/data/stories/faceAFace';
-import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 import viewerTheme from '../../../../.storybook/data/viewerTheme';
-
+import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 import Viewer from '../components/ViewerContainer';
 
 const props = {
@@ -113,82 +111,97 @@ export const AllScreens = () => <Viewer {...props} />;
 export const FaceAFace = () => <Viewer {...faceAFaceProps} />;
 export const Empty = () => <Viewer basePath="/story-path" />;
 export const TwoScreens = () => <Viewer {...twoScreensProps} />;
-export const MultipleAudios = () => <Viewer screenId="1" story={{
-    components: [
-        {
-            id: '1',
-            type: 'audio',
-            audio: {
-                media: audioMedia()
-            },
-        },
-        {
-            id: '2',
-            type: 'audio',
-            audio: {
-                media: audioMedia()
-            },
-        },
-        {
-            id: '3',
-            type: 'audio',
-            audio: {
-                media: audioMedia()
-            },
-        },
-    ],
-}} />
-export const MultipleVideos = () => <Viewer screenId="1" story={{
-    components: [
-        {
-            id: '1',
-            type: 'video',
-            video: {
-                media: videoMedia()
-            },
-        },
-        {
-            id: '2',
-            type: 'video',
-            layout: 'full',
-            video: {
-                media: videoMedia()
-            },
-        },
-        {
-            id: '3',
-            type: 'video',
-            video: {
-                media: videoMedia()
-            },
-        },
-    ],
-}} />
-export const MultipleVideos360 = () => <Viewer screenId="1" story={{
-    components: [
-        {
-            id: '1',
-            type: 'video-360',
-            video: {
-                media: video360Media()
-            },
-        },
-        {
-            id: '2',
-            type: 'video-360',
-            video: {
-                media: video360Media()
-            },
-        },
-        {
-            id: '3',
-            type: 'video-360',
-            video: {
-                media: video360Media()
-            },
-        },
-    ],
-}} />
+export const MultipleAudios = () => (
+    <Viewer
+        screenId="1"
+        story={{
+            components: [
+                {
+                    id: '1',
+                    type: 'audio',
+                    audio: {
+                        media: audioMedia(),
+                    },
+                },
+                {
+                    id: '2',
+                    type: 'audio',
+                    audio: {
+                        media: audioMedia(),
+                    },
+                },
+                {
+                    id: '3',
+                    type: 'audio',
+                    audio: {
+                        media: audioMedia(),
+                    },
+                },
+            ],
+        }}
+    />
+);
+export const MultipleVideos = () => (
+    <Viewer
+        screenId="1"
+        story={{
+            components: [
+                {
+                    id: '1',
+                    type: 'video',
+                    video: {
+                        media: videoMedia(),
+                    },
+                },
+                {
+                    id: '2',
+                    type: 'video',
+                    layout: 'full',
+                    video: {
+                        media: videoMedia(),
+                    },
+                },
+                {
+                    id: '3',
+                    type: 'video',
+                    video: {
+                        media: videoMedia(),
+                    },
+                },
+            ],
+        }}
+    />
+);
+export const MultipleVideos360 = () => (
+    <Viewer
+        screenId="1"
+        story={{
+            components: [
+                {
+                    id: '1',
+                    type: 'video-360',
+                    video: {
+                        media: video360Media(),
+                    },
+                },
+                {
+                    id: '2',
+                    type: 'video-360',
+                    video: {
+                        media: video360Media(),
+                    },
+                },
+                {
+                    id: '3',
+                    type: 'video-360',
+                    video: {
+                        media: video360Media(),
+                    },
+                },
+            ],
+        }}
+    />
+);
 export const CustomFonts = () => (
     <Viewer
         story={{
@@ -281,4 +294,11 @@ export const CustomFonts = () => (
     />
 );
 
-export const WithTheme = () => <Viewer theme={viewerTheme} story={{ title: 'Hello' }} />;
+export const WithTheme = () => <Viewer {...twoScreensProps} theme={viewerTheme} />;
+
+export const WithMenuTheme = () => (
+    <Viewer
+        {...twoScreensProps}
+        theme={{ ...viewerTheme, menuTheme: { colors: { primary: '#F00', secondary: '#00F' } } }}
+    />
+);

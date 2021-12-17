@@ -1,15 +1,13 @@
 /* eslint-disable react/no-array-index-key */
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-
-import MenuIcon from './MenuIcon';
-
 import styles from '../../styles/menus/menu-dots.module.scss';
+import MenuIcon from './MenuIcon';
 
 const propTypes = {
     direction: PropTypes.oneOf(['horizontal', 'vertical']),
@@ -17,8 +15,10 @@ const propTypes = {
     items: MicromagPropTypes.menuItems,
     current: PropTypes.number,
     onClickItem: PropTypes.func,
-    colorAccent: PropTypes.string,
-    colorBackground: PropTypes.string,
+    colors: PropTypes.shape({
+        primary: PropTypes.string,
+        secondary: PropTypes.string,
+    }),
     closeable: PropTypes.bool,
     onClose: PropTypes.func,
     className: PropTypes.string,
@@ -30,8 +30,7 @@ const defaultProps = {
     items: [],
     current: 0,
     onClickItem: null,
-    colorAccent: 'rgba(255, 255, 255, 1)',
-    colorBackground: 'rgba(200, 200, 200, 0.5)',
+    colors: null,
     closeable: false,
     onClose: null,
     className: null,
@@ -43,12 +42,13 @@ const ViewerMenuDots = ({
     items,
     current,
     onClickItem,
-    colorAccent,
-    colorBackground,
+    colors,
     closeable,
     onClose,
     className,
 }) => {
+    const { primary = 'rgba(255, 255, 255, 1)', secondary = 'rgba(200, 200, 200, 0.5)' } =
+        colors || {};
     const intl = useIntl();
     return (
         <nav
@@ -96,15 +96,14 @@ const ViewerMenuDots = ({
                             <span
                                 className={styles.dot}
                                 style={{
-                                    backgroundColor:
-                                        index <= current ? colorAccent : colorBackground,
+                                    backgroundColor: index <= current ? primary : secondary,
                                 }}
                             />
                         </button>
                     </li>
                 ))}
                 <li className={styles.menu}>
-                    <MenuIcon className={styles.menuIcon} color={colorAccent} />
+                    <MenuIcon className={styles.menuIcon} color={primary} />
                     <button
                         type="button"
                         title={intl.formatMessage({
@@ -124,7 +123,7 @@ const ViewerMenuDots = ({
                     />
                 </li>
                 {closeable ? (
-                    <li className={styles.closeButton} style={{ color: colorAccent }}>
+                    <li className={styles.closeButton} style={{ color: primary }}>
                         <button
                             type="button"
                             className={styles.closeButton}

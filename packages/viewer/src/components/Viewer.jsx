@@ -566,6 +566,7 @@ const Viewer = ({
             screenDescription !== null ? { ...metadata, description: screenDescription } : metadata,
         [metadata],
     );
+    const { menuTheme = null } = viewerTheme || {};
 
     return (
         <ScreenSizeProvider size={screenSize}>
@@ -601,6 +602,7 @@ const Viewer = ({
                                 {...menuDragBind()}
                             >
                                 <MenuDots
+                                    {...menuTheme}
                                     direction="horizontal"
                                     withShadow={menuOverScreen}
                                     items={screens}
