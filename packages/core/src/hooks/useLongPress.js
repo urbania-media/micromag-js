@@ -11,11 +11,21 @@ const preventDefault = (event) => {
     return false;
 };
 
+const preventClickDefault = (e) => {
+    if (e.preventDefault) {
+        e.preventDefault();
+    }
+
+    if (e.stopPropagation) {
+        e.stopPropagation();
+    }
+};
+
 const useLongPress = ({
     onLongPress = null,
     onClick = null,
     shouldPreventDefault = true,
-    delay = 300,
+    delay = 350,
 } = {}) => {
     const [longPressTriggered, setLongPressTriggered] = useState(false);
     const timeout = useRef(null);
@@ -29,6 +39,7 @@ const useLongPress = ({
             timeout.current = setTimeout(() => {
                 if (shouldPreventDefault && target.current !== null) {
                     target.current.addEventListener('touchend', preventDefault, { passive: false });
+                    target.current.addEventListener('click', preventClickDefault, { passive: false });
                 }
                 if (onLongPress !== null) {
                     onLongPress(event);
@@ -47,6 +58,9 @@ const useLongPress = ({
             } else if (shouldPreventDefault && target.current !== null) {
                 preventDefault(event);
                 target.current.removeEventListener('touchend', preventDefault);
+                setTimeout(() => {
+                    target.current.removeEventListener('click', preventClickDefault);
+                }, 10);
             }
             if (shouldTriggerClick && !longPressTriggered && onClick !== null) {
                 onClick();
