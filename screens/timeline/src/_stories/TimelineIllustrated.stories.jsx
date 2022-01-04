@@ -5,6 +5,7 @@ import {
     text,
     title,
     imageMedia,
+    videoMedia,
     backgroundColor,
     transitions,
     callToAction,
@@ -14,10 +15,10 @@ import TimelineIllustratedScreen from '../TimelineIllustrated';
 import definition from '../definition';
 
 const props = {
-    items: [...new Array(10)].map(() => ({
+    items: [...new Array(10)].map((_, index) => ({
         title: { body: title() },
         description: text('long'),
-        image: imageMedia(),
+        image: index % 3 === 0 ? videoMedia() : imageMedia(), // use a video for every third item
     })),
     background: backgroundColor(),
     transitions: transitions(),

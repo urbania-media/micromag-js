@@ -208,6 +208,7 @@ const Timeline = ({
                                             {hasElement ? (
                                                 <Visual
                                                     className={styles.image}
+                                                    videoClassName={styles.video}
                                                     media={image}
                                                     width={imageWidth}
                                                     playing={backgroundPlaying}
