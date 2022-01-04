@@ -1040,6 +1040,10 @@
     "defaultMessage": "Bullet color",
     "description": "Field label"
   },
+  "uSpItE": {
+    "defaultMessage": "Add tags...",
+    "description": "Dropdown select label"
+  },
   "upzOTm": {
     "defaultMessage": "Credits",
     "description": "Credits field label"

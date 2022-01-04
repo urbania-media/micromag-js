@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading, react/prop-types */
 import React, { useCallback } from 'react';
+import { FormattedMessage } from 'react-intl';
 import AsyncCreatableSelect from 'react-select/async-creatable';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -77,7 +78,10 @@ const Tokens = ({
                 }}
                 onChange={onTokenChange}
                 value={value}
-                placeholder="Ajouter des étiquettes..."
+                placeholder={<FormattedMessage
+                    defaultMessage="Add tags..."
+                    description="Dropdown select label"
+                /> }
                 theme={selectTheme}
             />
         </div>

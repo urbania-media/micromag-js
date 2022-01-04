@@ -1574,6 +1574,12 @@ msgctxt "uNpHnA"
 msgid "Bullet color"
 msgstr "Bullet color"
 
+# Dropdown select label
+#: uSpItE
+msgctxt "uSpItE"
+msgid "Add tags..."
+msgstr "Add tags..."
+
 # Credits field label
 #: upzOTm
 msgctxt "upzOTm"
