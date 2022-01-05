@@ -2,7 +2,7 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Route, useParams } from 'react-router';
+import { Route } from 'react-router';
 import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -13,6 +13,7 @@ import { useParsedStory } from '@micromag/core/hooks';
 import isString from 'lodash/isString';
 
 import useThemeValue from '../hooks/useThemeValue';
+import useRouteParams from '../hooks/useRouteParams';
 import createScreen from '../utils/createScreen';
 import Screens from './menus/Screens';
 import ScreenTypesModal from './modals/ScreenTypes';
@@ -59,7 +60,7 @@ const EditorScreens = ({
     const routes = useRoutes();
     const push = useRoutePush();
     const url = useUrlGenerator();
-    const { screen: currentScreenId = null } = useParams();
+    const { screen: currentScreenId = null } = useRouteParams({ screenOnly: true });
 
     const createScreenFromDefinition = useCallback(
         (definition) => {
@@ -73,15 +74,16 @@ const EditorScreens = ({
 
             const newScreen = createScreen(definition, themeScreen);
 
-            // const currentScreenIndex = !isTheme
-            //     ? screens.findIndex(({ id }) => id === currentScreenId) || null
-            //     : null;
-
-            // console.log(currentScreenIndex); // eslint-disable-line
+            const foundIndex = screens.findIndex(({ id }) => id === currentScreenId);
+            const currentScreenIndex = !isTheme && foundIndex >= 0 ? (foundIndex + 1) : null;
 
             const newValue = {
                 ...value,
-                components: [...(currentScreens || []), newScreen],
+                components: [
+                    ...currentScreens.slice(0, currentScreenIndex),
+                    newScreen,
+                    ...currentScreens.slice(currentScreenIndex)
+                ],
             };
 
             if (onChange !== null) {
