@@ -680,7 +680,6 @@ const Viewer = ({
                                                     defaultMessage="Go to previous screen"
                                                     description="Button label"
                                                 />
-                                                Go to previous screen
                                             </button>
                                         ) : null}
 
