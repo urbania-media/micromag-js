@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-conversation",
-    "version": "0.2.386",
+    "version": "0.2.390",
     "description": "",
     "keywords": [
         "javascript"
@@ -57,7 +57,7 @@
         "@micromag/element-layout": "^0.2.386",
         "@micromag/element-scroll": "^0.2.386",
         "@micromag/element-text": "^0.2.386",
-        "@micromag/element-visual": "^0.2.386",
+        "@micromag/element-visual": "^0.2.390",
         "@micromag/transforms": "^0.2.386",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
