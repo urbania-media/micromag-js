@@ -19,6 +19,7 @@ const propTypes = {
     videoInitialMuted: PropTypes.bool,
     onLoaded: PropTypes.func,
     className: PropTypes.string,
+    videoClassName: PropTypes.string,
 };
 
 const defaultProps = {
@@ -31,6 +32,7 @@ const defaultProps = {
     videoInitialMuted: true,
     onLoaded: null,
     className: null,
+    videoClassName: null,
 };
 
 const Visual = ({
@@ -43,6 +45,7 @@ const Visual = ({
     videoInitialMuted,
     onLoaded,
     className,
+    videoClassName,
     ...props
 }) => {
     const { type = null, thumbnail_url:thumbnailUrl = null, metadata, url } = media || {};
@@ -50,7 +53,7 @@ const Visual = ({
     const isVideo = type === 'video';
     const isGIF = type === 'image' && mime === 'image/gif';
     const elProps = useMemo( () => ({ ...props, media }), [props, media]);
-    
+
     const imageElProps = useMemo( () => {
         const tmpProps = !playing && (isVideo || isGIF) ? {...elProps, media: { url: thumbnailUrl }} : elProps;
         return isGIF && playing ? {...elProps, media: { url }} : tmpProps
@@ -95,7 +98,10 @@ const Visual = ({
                     className={classNames([styles.container, { [className]: className !== null }])}
                     style={{ width, height }}
                 >
-                    <div style={videoContainerStyle} className={styles.videoContainer}>
+                    <div
+                        className={classNames([styles.videoContainer, { [videoClassName]: videoClassName !== null }])}
+                        style={videoContainerStyle}
+                    >
                         <Video
                             {...elProps}
                             width={objectFit === null ? width : null}

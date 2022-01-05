@@ -61,8 +61,13 @@
         padding: 8px 0;
     }
 
-    .imageContainer {
+    .image,
+    .imageContainer,
+    .video {
         position: relative;
+    }
+
+    .imageContainer {
         overflow: hidden;
     }
 
@@ -76,7 +81,7 @@
     &.isPlaceholder {
         .scroll {
             padding: 10px;
-        }        
+        }
 
         .timeline {
             padding-right: 0;
