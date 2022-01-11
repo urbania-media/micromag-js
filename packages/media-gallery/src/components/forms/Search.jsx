@@ -58,6 +58,7 @@ const Search = ({ value, onChange, onFocus, onBlur, onClickIcon, className }) =>
                     [className]: className !== null,
                 },
             ])}
+            onSubmit={e => e.preventDefault()}
         >
             <div className="input-group">
                 <span type="span" className="input-group-prepend">
