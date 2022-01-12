@@ -41,6 +41,7 @@ module.exports = (api) => {
                 require.resolve('@babel/plugin-transform-runtime'),
                 require.resolve('babel-plugin-dynamic-import-node'),
                 require.resolve('@babel/plugin-proposal-export-namespace-from'),
+                require.resolve('@babel/plugin-proposal-numeric-separator'),
                 [
                     require.resolve('babel-plugin-css-modules-transform'),
                     {
@@ -67,10 +68,24 @@ module.exports = (api) => {
             ],
         };
     }
+
+    console.log('hey', require.resolve('@babel/plugin-proposal-numeric-separator'));
+
     return {
-        presets: [api.env('development') && require.resolve('babel-preset-react-app/dev')].filter(
-            Boolean,
-        ),
+        presets: api.env('development')
+            ? [
+                  require.resolve('babel-preset-react-app/dev'),
+                  [
+                      require('@babel/preset-env'),
+                      {
+                          targets: {
+                              node: 'current',
+                          },
+                      },
+                  ],
+                  // require.resolve('@babel/plugin-proposal-numeric-separator'),
+              ].filter(Boolean)
+            : [],
         plugins: [
             require.resolve('@babel/plugin-proposal-export-namespace-from'),
             [
@@ -79,6 +94,10 @@ module.exports = (api) => {
                     target: 'browser', // defaults to node
                 },
             ],
+            require.resolve('@babel/plugin-proposal-numeric-separator'),
+            [require.resolve('@babel/plugin-proposal-private-property-in-object'), { loose: true }],
+            [require.resolve('@babel/plugin-proposal-class-properties'), { loose: true }],
+            [require.resolve('@babel/plugin-proposal-private-methods'), { loose: true }],
         ].filter(Boolean),
     };
 };

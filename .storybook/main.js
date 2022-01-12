@@ -5,6 +5,7 @@ const { styles } = require('@ckeditor/ckeditor5-dev-utils');
 const getPackagesPaths = require('../scripts/lib/getPackagesPaths');
 const getPackagesAliases = require('../scripts/lib/getPackagesAliases');
 const { idInterpolationPattern } = require('../packages/intl/scripts/config');
+
 require('dotenv').config();
 
 module.exports = {
@@ -45,6 +46,9 @@ module.exports = {
             },
         },
     ],
+    features: {
+        babelModeV7: true,
+    },
     webpackFinal: async (config) => ({
         ...config,
 
@@ -132,6 +136,7 @@ module.exports = {
                                         plugins: [
                                             require.resolve(
                                                 '@babel/plugin-transform-modules-commonjs',
+                                                '@babel/plugin-proposal-numeric-separator',
                                             ),
                                         ],
                                     },

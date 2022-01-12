@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 /**
  * Locale loader
  */
 const packagesCache = {};
 const defaultPackagesMap = {
-    transloadit: () => import('@uppy/transloadit'),
+    transloadit: null, // Disabled for compatibility reasons
     tus: () => import('@uppy/tus'),
     xhr: () => import('@uppy/xhr-upload'),
 };
@@ -23,20 +23,18 @@ const useUppyTransport = (transport, { packagesMap = defaultPackagesMap } = {}) 
             };
         }
 
-        packageLoader().then(
-            ({ default: pack, ...others }) => {
-                const dep = Object.keys(others).reduce((map, key) => {
-                    map[key] = others[key]; // eslint-disable-line no-param-reassign
-                    return map;
-                }, pack);
-                packagesCache[transport] = dep;
-                if (!canceled) {
-                    setLoadedPackage({
-                        package: dep,
-                    });
-                }
-            },
-        );
+        packageLoader().then(({ default: pack, ...others }) => {
+            const dep = Object.keys(others).reduce((map, key) => {
+                map[key] = others[key]; // eslint-disable-line no-param-reassign
+                return map;
+            }, pack);
+            packagesCache[transport] = dep;
+            if (!canceled) {
+                setLoadedPackage({
+                    package: dep,
+                });
+            }
+        });
         return () => {
             canceled = true;
         };

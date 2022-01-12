@@ -94,7 +94,6 @@
         "@uppy/instagram": "^2.0.4",
         "@uppy/locales": "^2.0.3",
         "@uppy/react": "^2.1.1",
-        "@uppy/transloadit": "^2.0.4",
         "@uppy/tus": "^2.1.1",
         "@uppy/webcam": "^2.0.4",
         "@uppy/xhr-upload": "^2.0.5",
