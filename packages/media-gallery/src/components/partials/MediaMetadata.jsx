@@ -1,16 +1,14 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-import React, { useCallback, useState, useEffect, useMemo } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import prettyBytes from 'pretty-bytes';
-import uniqBy from 'lodash/uniqBy';
-import { FormattedMessage } from 'react-intl';
-
-import { useApi, useMediaTags, useMediaUpdate } from '@micromag/data'; // useOrganisationTeam
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useFieldComponent } from '@micromag/core/contexts';
 import { Button } from '@micromag/core/components';
-
+import { useFieldComponent, useStory } from '@micromag/core/contexts';
+import { useMediaAuthors, useMediaTags, useMediaUpdate } from '@micromag/data'; // useOrganisationTeam
+import classNames from 'classnames';
+import uniqBy from 'lodash/uniqBy';
+import prettyBytes from 'pretty-bytes';
+import PropTypes from 'prop-types';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import styles from '../../styles/partials/media-metadata.module.scss';
 
 const propTypes = {
@@ -44,20 +42,26 @@ const MediaMetadata = ({ media, className }) => {
         tags: mediaTags = [],
     } = metadata || {};
 
-    const api = useApi();
+    // const api = useApi();
+    const story = useStory();
+    const { id: documentId = null } = story || {};
     const { tags: usedTags } = useMediaTags();
+    const { authors: usedAuthors } = useMediaAuthors();
     const { update } = useMediaUpdate();
 
-    const loadTags = useCallback(
-        (input) =>
-            api.medias.getTags(
-                {
-                    search: input,
-                },
-                5,
-            ),
-        [api],
-    );
+    console.log(story, documentId);
+
+    // const loadTags = useCallback(
+    //     (input) =>
+    //         api.medias.getTags(
+    //             {
+    //                 search: input,
+    //             },
+    //             5,
+    //         ),
+    //     [api],
+    // );
+
     const getOptionLabel = useCallback(({ name }) => name, []);
     const getOptionValue = useCallback(({ name }) => name, []);
     const getNewOptionData = useCallback(
@@ -198,7 +202,7 @@ const MediaMetadata = ({ media, className }) => {
                         <TokensField
                             value={tags}
                             options={allTags}
-                            loadOptions={loadTags}
+                            // loadOptions={loadTags}
                             getOptionLabel={getOptionLabel}
                             getOptionValue={getOptionValue}
                             getNewOptionData={getNewOptionData}

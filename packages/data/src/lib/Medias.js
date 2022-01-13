@@ -7,6 +7,7 @@ class MediasApi extends Base {
             routes: {
                 index: 'medias',
                 tags: 'medias/tags',
+                authors: 'medias/authors',
                 show: 'medias/:media',
                 store: 'medias',
                 update: 'medias/:media',
@@ -45,6 +46,16 @@ class MediasApi extends Base {
             finalQuery.count = count;
         }
         return this.requestGet(this.route('tags'), finalQuery);
+    }
+
+    getAuthors(query = {}, count = 10) {
+        const finalQuery = {
+            ...query,
+        };
+        if (count !== null) {
+            finalQuery.count = count;
+        }
+        return this.requestGet(this.route('authors'), finalQuery);
     }
 
     create(data) {
