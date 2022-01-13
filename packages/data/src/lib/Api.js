@@ -1,7 +1,6 @@
 import Base from './Base';
-
-import MediasApi from './Medias';
 import ContributionsApi from './Contributions';
+import MediasApi from './Medias';
 import QuizApi from './Quiz';
 
 class Api extends Base {
