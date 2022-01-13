@@ -1,7 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
-import { IntlProvider } from 'react-intl';
-
 import Select from '../components/Select';
 import SelectAdvanced from '../components/SelectAdvanced';
 import Tokens from '../components/Tokens';
@@ -9,6 +7,9 @@ import Tokens from '../components/Tokens';
 export default {
     component: SelectAdvanced,
     title: 'Fields/Select',
+    parameters: {
+        intl: true,
+    },
 };
 
 const props = {
@@ -38,24 +39,18 @@ const TokensFieldContainer = () => {
 
 export const normal = () => (
     <div className="container mt-4">
-        <IntlProvider locale="fr" messages={{}}>
-            <SelectFieldContainer />
-        </IntlProvider>
+        <SelectFieldContainer />
     </div>
 );
 
 export const reactSelect = () => (
     <div className="container mt-4">
-        <IntlProvider locale="fr" messages={{}}>
-            <SelectAdvancedFieldContainer />
-        </IntlProvider>
+        <SelectAdvancedFieldContainer />
     </div>
 );
 
 export const tokens = () => (
     <div className="container mt-4">
-        <IntlProvider locale="fr" messages={{}}>
-            <TokensFieldContainer />
-        </IntlProvider>
+        <TokensFieldContainer />
     </div>
 );

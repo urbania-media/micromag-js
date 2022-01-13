@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
-import { IntlProvider } from 'react-intl';
-
 import FieldWithForm from '../components/FieldWithForm';
 
 export default {
     component: FieldWithForm,
     title: 'Fields/FieldWithForm',
+    parameters: {
+        intl: true,
+    },
 };
 
 const props = {
@@ -27,8 +28,6 @@ const FieldContainer = () => {
 
 export const normal = () => (
     <div className="container mt-4">
-        <IntlProvider locale="fr" messages={{}}>
-            <FieldContainer />
-        </IntlProvider>
+        <FieldContainer />
     </div>
 );

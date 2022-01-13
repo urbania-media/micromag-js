@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import Editor from '../components/EditorContainer';
-import { ApiProvider } from '../../../data/src/contexts/ApiContext';
-import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
-import withUppy from '../../../../.storybook/decorators/withUppy';
-
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import faceAFaceStory from '../../../../.storybook/data/stories/faceAFace';
 import { defaultTheme } from '../../../../.storybook/data/themes/micromag-default';
 import { theme as backgroundTheme } from '../../../../.storybook/data/themes/with-background';
+import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
+import withUppy from '../../../../.storybook/decorators/withUppy';
+import { ApiProvider } from '../../../data/src/contexts/ApiContext';
+import Editor from '../components/EditorContainer';
+
 // import manager from '../../../intl/src/manager';
 
 // import createDefaultStory from '../utils/createDefaultStory';

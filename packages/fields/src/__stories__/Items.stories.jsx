@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { IntlProvider } from 'react-intl';
-
 import ImagesField from '../components/Images';
 // import TextField from '../components/Text';
 
 export default {
     component: ImagesField,
     title: 'Fields/ImagesField',
+    parameters: {
+        intl: true,
+    },
 };
 
 const FieldContainer = () => {
@@ -16,8 +17,6 @@ const FieldContainer = () => {
 
 export const normal = () => (
     <div className="container mt-4">
-        <IntlProvider locale="fr" messages={{}}>
-            <FieldContainer />
-        </IntlProvider>
+        <FieldContainer />
     </div>
 );

@@ -1,10 +1,12 @@
 import React from 'react';
-
 import MediaControls from './MediaControls';
 
 export default {
     component: MediaControls,
     title: 'Elements/MediaControls',
+    parameters: {
+        intl: true,
+    },
 };
 
 export const normal = () => <MediaControls />;

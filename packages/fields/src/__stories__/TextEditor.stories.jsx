@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { IntlProvider } from 'react-intl';
-
 import TextEditor from '../components/TextEditor';
 
 export default {
     component: TextEditor,
     title: 'Fields/TextEditor',
+    parameters: {
+        intl: true,
+    },
 };
 
 const FieldContainer = () => {
@@ -15,8 +16,6 @@ const FieldContainer = () => {
 
 export const normal = () => (
     <div className="container mt-4">
-        <IntlProvider locale="fr" messages={{}}>
-            <FieldContainer />
-        </IntlProvider>
+        <FieldContainer />
     </div>
 );
