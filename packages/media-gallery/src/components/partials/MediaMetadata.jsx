@@ -2,7 +2,7 @@
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button } from '@micromag/core/components';
 import { useFieldComponent, useStory } from '@micromag/core/contexts';
-import { useMediaAuthors, useMediaTags, useMediaUpdate } from '@micromag/data'; // useOrganisationTeam
+import { useMediaTags, useMediaUpdate } from '@micromag/data'; // useOrganisationTeam
 import classNames from 'classnames';
 import uniqBy from 'lodash/uniqBy';
 import prettyBytes from 'pretty-bytes';
@@ -46,10 +46,10 @@ const MediaMetadata = ({ media, className }) => {
     const story = useStory();
     const { id: documentId = null } = story || {};
     const { tags: usedTags } = useMediaTags();
-    const { authors: usedAuthors } = useMediaAuthors();
+    // const { authors: usedAuthors } = useMediaAuthors();
     const { update } = useMediaUpdate();
 
-    console.log(story, documentId);
+    console.log(story, documentId); // eslint-disable-line
 
     // const loadTags = useCallback(
     //     (input) =>

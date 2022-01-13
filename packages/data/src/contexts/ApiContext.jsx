@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
-
+import React, { useContext, useMemo } from 'react';
 import Api from '../lib/Api';
 
 const ApiContext = React.createContext(null);
@@ -27,7 +26,7 @@ export const ApiProvider = ({ api: initialApi, baseUrl, children }) => {
             previousApi ||
             new Api({
                 baseUrl,
-                // baseUrl: 'https://micromag.studio.homestead.flklr.ca/api',
+                // baseUrl: 'https://micromag.studio.test/api',
             }),
         [previousApi, initialApi, baseUrl],
     );
