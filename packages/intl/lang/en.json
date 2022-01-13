@@ -14,9 +14,6 @@
     "+SlKOi": {
         "defaultMessage": "Published message style"
     },
-    "+TT1y6": {
-        "defaultMessage": "Clear"
-    },
     "+VD/9p": {
         "defaultMessage": "Color"
     },
@@ -292,9 +289,6 @@
     },
     "G1Gyjn": {
         "defaultMessage": "Seek"
-    },
-    "G31Yd0": {
-        "defaultMessage": "Cancel"
     },
     "GMCLhn": {
         "defaultMessage": "Case"
@@ -583,6 +577,9 @@
     },
     "ebsPd4": {
         "defaultMessage": "Image"
+    },
+    "eiaIIB": {
+        "defaultMessage": "This Micromag"
     },
     "enFs4g": {
         "defaultMessage": "Advanced"

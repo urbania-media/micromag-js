@@ -41,12 +41,6 @@ msgctxt "+SlKOi"
 msgid "Published message style"
 msgstr "Published message style"
 
-# Clear button label in Media Gallery
-#: +TT1y6
-msgctxt "+TT1y6"
-msgid "Clear"
-msgstr "Clear"
-
 # Color label
 #: +VD/9p
 msgctxt "+VD/9p"
@@ -598,12 +592,6 @@ msgstr "Your name"
 msgctxt "G1Gyjn"
 msgid "Seek"
 msgstr "Seek"
-
-# Cancel button label in Media Gallery
-#: G31Yd0
-msgctxt "G31Yd0"
-msgid "Cancel"
-msgstr "Cancel"
 
 # Field label
 #: GMCLhn
@@ -1179,6 +1167,12 @@ msgstr "Image with title and text"
 msgctxt "ebsPd4"
 msgid "Image"
 msgstr "Image"
+
+# Media gallery source
+#: eiaIIB
+msgctxt "eiaIIB"
+msgid "This Micromag"
+msgstr "This Micromag"
 
 # Name of the section in Fields
 #: enFs4g

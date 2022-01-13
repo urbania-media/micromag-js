@@ -19,10 +19,6 @@
     "defaultMessage": "Published message style",
     "description": "Published message style field label"
   },
-  "+TT1y6": {
-    "defaultMessage": "Clear",
-    "description": "Clear button label in Media Gallery"
-  },
   "+VD/9p": {
     "defaultMessage": "Color",
     "description": "Color label"
@@ -390,10 +386,6 @@
   "G1Gyjn": {
     "defaultMessage": "Seek",
     "description": "Button label"
-  },
-  "G31Yd0": {
-    "defaultMessage": "Cancel",
-    "description": "Cancel button label in Media Gallery"
   },
   "GMCLhn": {
     "defaultMessage": "Case",
@@ -777,6 +769,10 @@
   "ebsPd4": {
     "defaultMessage": "Image",
     "description": "Image placeholder"
+  },
+  "eiaIIB": {
+    "defaultMessage": "This Micromag",
+    "description": "Media gallery source"
   },
   "enFs4g": {
     "defaultMessage": "Advanced",
