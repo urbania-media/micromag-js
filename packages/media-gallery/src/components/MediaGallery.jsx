@@ -155,7 +155,7 @@ const MediaGallery = ({
                 onClickBack={onClickBack}
                 onClickCancel={onClickCancel}
                 withoutTitle={withoutTitle}
-                withoutSource={withoutSource}
+                // withoutSource={withoutSource}
                 withoutType={withoutType}
                 className={navbarClassName}
             />

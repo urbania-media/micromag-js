@@ -93,6 +93,7 @@ const SearchFilters = ({ filters, sections, onChange, className }) => {
                             >
                                 <p className={classNames([styles.title, 'm-0'])}>{label}</p>
                                 <TagSection
+                                    className={classNames([styles.tags])}
                                     tags={items}
                                     parent={value}
                                     onChange={onSectionChange}

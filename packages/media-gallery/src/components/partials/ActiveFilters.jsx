@@ -58,6 +58,7 @@ const ActiveFilters = ({ filters, onChange, onReset, sections, className }) => {
     return (
         <div
             className={classNames([
+                'w-100',
                 styles.container,
                 {
                     [className]: className,

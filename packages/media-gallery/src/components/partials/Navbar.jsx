@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 // import isArray from 'lodash/isArray';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faTimes, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 import { useMediasRecentSearches, useMediaTags } from '@micromag/data';
 // useOrganisationTeam
@@ -152,11 +152,8 @@ const Navbar = ({
     });
 
     const onClear = useCallback(() => {
-        if (onClickCancel !== null) {
-            onClickCancel();
-        }
         setOpen(false);
-    }, [onClickCancel]);
+    }, [setOpen]);
 
     const onToggleMenu = useCallback(() => {
         setOpen(!open);
@@ -174,16 +171,25 @@ const Navbar = ({
             className={classNames([
                 styles.container,
                 'navbar',
-                'small',
                 {
                     [className]: className !== null,
                 },
             ])}
         >
             <div className={styles.inner}>
-                <div className="d-flex flex-nowrap justify-content-between">
+                {!withoutSource && media === null ? (
+                    <div className="d-flex w-100 flex-nowrap justify-content-center">
+                        <DropdownSection
+                            items={sources}
+                            value={filters.source || null}
+                            onChange={onSourceChange}
+                        />
+                    </div>
+                ) : null}
+
+                <div className="w-100 d-flex flex-nowrap justify-content-between">
                     {media !== null ? (
-                        <form className={classNames(['form-inline'])}>
+                        <form className={classNames(['form-inline', 'mr-2'])}>
                             <Button
                                 theme="secondary"
                                 outline
@@ -193,56 +199,45 @@ const Navbar = ({
                             />
                         </form>
                     ) : null}
-                    <strong className="navbar-text ml-2 mr-auto">
+                    <strong className="navbar-text mr-auto w-100 d-flex align-items-center justify-content-between">
                         {media !== null ? media.name : title}
+                        {media === null ? (
+                            <Button
+                                theme="primary"
+                                icon={<FontAwesomeIcon icon={faPlus} />}
+                                onClick={onClickAdd}
+                            >
+                                <FormattedMessage
+                                    defaultMessage="Add"
+                                    description="Add button label in Media Gallery"
+                                />
+                            </Button>
+                        ): null}
                     </strong>
                 </div>
                 {media === null ? (
                     <>
-                        {!withoutSource ? (
-                            <div className="d-flex w-100 flex-nowrap justify-content-center">
-                                <DropdownSection
-                                    items={sources}
-                                    value={filters.source || null}
-                                    onChange={onSourceChange}
-                                />
-                            </div>
-                        ) : null}
                         <div className="d-flex w-100 flex-nowrap justify-content-between">
                             <SearchForm
                                 value={searchValue}
                                 onChange={onSearchChange}
                                 onFocus={onSearchFocus}
                                 onClickIcon={onToggleMenu}
-                                className={classNames(['form-inline', 'mr-2'])}
+                                className={classNames(['form-inline'])}
                             />
-                            <form className={classNames(['form-inline', 'ml-auto'])}>
-                                {open || searchValue || hasFilter ? (
-                                    <Button theme="primary" outline onClick={onClear}>
-                                        {searchValue || hasFilter ? (
-                                            <FormattedMessage
-                                                defaultMessage="Clear"
-                                                description="Clear button label in Media Gallery"
-                                            />
-                                        ) : (
-                                            <FormattedMessage
-                                                defaultMessage="Cancel"
-                                                description="Cancel button label in Media Gallery"
-                                            />
-                                        )}
-                                    </Button>
-                                ) : (
+                            <form className={classNames(['form-inline'])}>
+                                {open ? (
                                     <Button
+                                        className="ml-2"
                                         theme="primary"
-                                        icon={<FontAwesomeIcon icon={faPlus} />}
-                                        onClick={onClickAdd}
-                                    >
-                                        <FormattedMessage
-                                            defaultMessage="Add"
-                                            description="Add button label in Media Gallery"
-                                        />
+                                        icon={<FontAwesomeIcon icon={faTimes} />}
+                                        onClick={onClear}>
+                                        {/* <FormattedMessage
+                                            defaultMessage="Cancel"
+                                            description="Cancel button label in Media Gallery"
+                                        /> */}
                                     </Button>
-                                )}
+                                ) : null}
                             </form>
                         </div>
                         {open ? (

@@ -54,13 +54,14 @@ const Search = ({ value, onChange, onFocus, onBlur, onClickIcon, className }) =>
         <form
             method="post"
             className={classNames([
+                'w-100',
                 {
                     [className]: className !== null,
                 },
             ])}
             onSubmit={e => e.preventDefault()}
         >
-            <div className="input-group">
+            <div className="input-group w-100">
                 <span type="span" className="input-group-prepend">
                     <button
                         type="button"

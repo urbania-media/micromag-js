@@ -15,15 +15,15 @@ export const useSearchSections = ({
             ),
             value: 'all',
         },
-        // {
-        //     label: (
-        //         <FormattedMessage
-        //             defaultMessage="This Micromag"
-        //             description="Media gallery source"
-        //         />
-        //     ),
-        //     value: 'micromag',
-        // },
+        {
+            label: (
+                <FormattedMessage
+                    defaultMessage="This Micromag"
+                    description="Media gallery source"
+                />
+            ),
+            value: 'micromag',
+        },
         ...(team.length > 0
             ? [
                   {
