@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button } from '@micromag/core/components';
-import { useFieldComponent, useStory } from '@micromag/core/contexts';
-import { useMediaTags, useMediaUpdate } from '@micromag/data'; // useOrganisationTeam
+import { useFieldComponent } from '@micromag/core/contexts';
+import { useMediaUpdate } from '@micromag/data'; // useOrganisationTeam
 import classNames from 'classnames';
 import uniqBy from 'lodash/uniqBy';
 import prettyBytes from 'pretty-bytes';
@@ -13,15 +13,17 @@ import styles from '../../styles/partials/media-metadata.module.scss';
 
 const propTypes = {
     media: MicromagPropTypes.media,
+    tags: MicromagPropTypes.tags,
     className: PropTypes.string,
 };
 
 const defaultProps = {
     media: null,
+    tags: [],
     className: null,
 };
 
-const MediaMetadata = ({ media, className }) => {
+const MediaMetadata = ({ media, tags: allTags, className }) => {
     const {
         id: mediaId,
         type,
@@ -42,25 +44,7 @@ const MediaMetadata = ({ media, className }) => {
         tags: mediaTags = [],
     } = metadata || {};
 
-    // const api = useApi();
-    const story = useStory();
-    const { id: documentId = null } = story || {};
-    const { tags: usedTags } = useMediaTags();
-    // const { authors: usedAuthors } = useMediaAuthors();
     const { update } = useMediaUpdate();
-
-    console.log(story, documentId); // eslint-disable-line
-
-    // const loadTags = useCallback(
-    //     (input) =>
-    //         api.medias.getTags(
-    //             {
-    //                 search: input,
-    //             },
-    //             5,
-    //         ),
-    //     [api],
-    // );
 
     const getOptionLabel = useCallback(({ name }) => name, []);
     const getOptionValue = useCallback(({ name }) => name, []);
@@ -71,9 +55,9 @@ const MediaMetadata = ({ media, className }) => {
         [],
     );
 
-    const allTags = useMemo(
-        () => (usedTags !== null ? uniqBy(mediaTags.concat(usedTags), ({ id }) => id) : mediaTags),
-        [mediaTags, usedTags],
+    const finalTags = useMemo(
+        () => (allTags !== null ? uniqBy(mediaTags.concat(allTags), ({ id }) => id) : mediaTags),
+        [mediaTags, allTags],
     );
 
     const [name, setName] = useState(mediaName);
@@ -201,7 +185,7 @@ const MediaMetadata = ({ media, className }) => {
                         </h6>
                         <TokensField
                             value={tags}
-                            options={allTags}
+                            options={finalTags}
                             // loadOptions={loadTags}
                             getOptionLabel={getOptionLabel}
                             getOptionValue={getOptionValue}

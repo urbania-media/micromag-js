@@ -1,35 +1,33 @@
-import React, { useCallback, useState, useMemo, useRef } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
+import { faChevronLeft, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
 // import isArray from 'lodash/isArray';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faTimes, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-
-import { useMediasRecentSearches, useMediaTags } from '@micromag/data';
 // useOrganisationTeam
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button } from '@micromag/core/components';
-
-import DropdownSection from '../forms/DropdownSection';
-import SearchFilters from '../forms/SearchFilters';
-import SearchForm from '../forms/Search';
-import ActiveFilters from './ActiveFilters';
-
-import useSearchFilters from '../../hooks/useSearchFilters';
-
+import { useMediasRecentSearches } from '@micromag/data';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
+import { useSearchFilters } from '../../hooks/useSearchFilters';
 import * as AppPropTypes from '../../lib/PropTypes';
-
 import styles from '../../styles/partials/navbar.module.scss';
+import DropdownSection from '../forms/DropdownSection';
+import SearchForm from '../forms/Search';
+import SearchFilters from '../forms/SearchFilters';
+import ActiveFilters from './ActiveFilters';
 
 const propTypes = {
     filters: AppPropTypes.filtersValue,
     media: MicromagPropTypes.media,
+    storyId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    tags: MicromagPropTypes.tags,
+    authors: MicromagPropTypes.authors,
     withoutTitle: PropTypes.bool,
     withoutSource: PropTypes.bool,
     withoutType: PropTypes.bool,
     onClickAdd: PropTypes.func,
-    onClickCancel: PropTypes.func,
+    // onClickCancel: PropTypes.func,
     onFocusSearch: PropTypes.func,
     onFiltersChange: PropTypes.func,
     onClickBack: PropTypes.func,
@@ -39,11 +37,14 @@ const propTypes = {
 const defaultProps = {
     filters: null,
     media: null,
+    storyId: null,
+    tags: [],
+    authors: [],
     withoutTitle: false,
     withoutSource: false,
     withoutType: true,
     onClickAdd: null,
-    onClickCancel: null,
+    // onClickCancel: null,
     onFocusSearch: null,
     onFiltersChange: null,
     onClickBack: null,
@@ -53,12 +54,15 @@ const defaultProps = {
 const Navbar = ({
     filters,
     media,
+    storyId,
+    tags,
+    authors,
     withoutTitle,
     withoutSource,
     withoutType,
     className,
     onClickAdd,
-    onClickCancel,
+    // onClickCancel,
     onFocusSearch,
     onFiltersChange,
     onClickBack,
@@ -71,14 +75,12 @@ const Navbar = ({
     const { getSearches, createSearch } = useMediasRecentSearches();
     const recent = useMemo(() => getSearches(), [getSearches]);
 
-    const { tags = [] } = useMediaTags();
-    // const { team } = useOrganisationTeam();
-    const team = [];
     const { sources, sections } = useSearchFilters({
         recent: recent.map((val) => ({ value: val, label: val })),
         tags: tags !== null ? tags.map((t) => ({ value: t.name, label: t.name })) : [],
-        team,
+        team: authors || [],
         withType: !withoutType,
+        storyId,
     });
 
     const searchValue = filters !== null ? filters.search || null : null;
@@ -177,7 +179,7 @@ const Navbar = ({
             ])}
         >
             <div className={styles.inner}>
-                {!withoutSource && media === null ? (
+                {!withoutSource ? (
                     <div className="d-flex w-100 flex-nowrap justify-content-center">
                         <DropdownSection
                             items={sources}
@@ -186,7 +188,6 @@ const Navbar = ({
                         />
                     </div>
                 ) : null}
-
                 <div className="w-100 d-flex flex-nowrap justify-content-between">
                     {media !== null ? (
                         <form className={classNames(['form-inline', 'mr-2'])}>
@@ -212,7 +213,7 @@ const Navbar = ({
                                     description="Add button label in Media Gallery"
                                 />
                             </Button>
-                        ): null}
+                        ) : null}
                     </strong>
                 </div>
                 {media === null ? (
@@ -231,7 +232,8 @@ const Navbar = ({
                                         className="ml-2"
                                         theme="primary"
                                         icon={<FontAwesomeIcon icon={faTimes} />}
-                                        onClick={onClear}>
+                                        onClick={onClear}
+                                    >
                                         {/* <FormattedMessage
                                             defaultMessage="Cancel"
                                             description="Cancel button label in Media Gallery"

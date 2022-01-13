@@ -56,11 +56,14 @@
         position: absolute;
         top: 0;
         padding: math.div($spacer, 2);
+
         color: $white;
+        filter: drop-shadow(0 0 0.75rem $black);
 
         .icon {
             width: 1rem;
             height: 1rem;
+            margin-right: 0;
         }
     }
 

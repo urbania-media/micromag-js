@@ -1,30 +1,35 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-export const useSearchSections = ({
+export const useSearchFilters = ({
     recent = [],
     tags = [],
     team = [],
     sources: upstreamSources = [],
     withType = false,
+    storyId = null,
 }) => {
     const sources = [
+        ...(storyId !== null
+            ? [
+                  {
+                      label: (
+                          <FormattedMessage
+                              defaultMessage="This Micromag"
+                              description="Media gallery source"
+                          />
+                      ),
+                      value: storyId,
+                  },
+              ]
+            : []),
         {
             label: (
                 <FormattedMessage defaultMessage="All sources" description="Media gallery source" />
             ),
             value: 'all',
         },
-        {
-            label: (
-                <FormattedMessage
-                    defaultMessage="This Micromag"
-                    description="Media gallery source"
-                />
-            ),
-            value: 'micromag',
-        },
-        ...(team.length > 0
+        ...(team !== null && team.length > 0
             ? [
                   {
                       label: (
@@ -103,4 +108,4 @@ export const useSearchSections = ({
     };
 };
 
-export default useSearchSections;
+export default useSearchFilters;

@@ -1,17 +1,15 @@
-import React, { useState, useCallback, useMemo, useRef } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { useMedias, useMediaCreate } from '@micromag/data';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Spinner, UploadModal } from '@micromag/core/components';
-
-import Navbar from './partials/Navbar';
+import { useStory } from '@micromag/core/contexts';
+import { useMediaAuthors, useMediaCreate, useMedias, useMediaTags } from '@micromag/data';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
+// import list from '../_stories/list.json';
+import styles from '../styles/media-gallery.module.scss';
 import Gallery from './lists/Gallery';
 import MediaMetadata from './partials/MediaMetadata';
-
-// import list from '../_stories/list.json';
-
-import styles from '../styles/media-gallery.module.scss';
+import Navbar from './partials/Navbar';
 
 const propTypes = {
     type: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
@@ -67,6 +65,11 @@ const MediaGallery = ({
     const throttle = useRef(null);
     const [queryValue, setQueryValue] = useState(defaultFilters);
     const [filtersValue, setFiltersValue] = useState(defaultFilters);
+
+    const story = useStory();
+    const { id: storyId = null } = story || {};
+    const { tags } = useMediaTags();
+    const { authors } = useMediaAuthors();
 
     const onFiltersChange = useCallback(
         (value) => {
@@ -133,9 +136,10 @@ const MediaGallery = ({
         },
         [createMedia, addedMedias, setAddedMedias],
     );
-    const onUploadRequestClose = useCallback(() => setUploadModalOpened(false), [
-        setUploadModalOpened,
-    ]);
+    const onUploadRequestClose = useCallback(
+        () => setUploadModalOpened(false),
+        [setUploadModalOpened],
+    );
 
     return (
         <div
@@ -155,8 +159,11 @@ const MediaGallery = ({
                 onClickBack={onClickBack}
                 onClickCancel={onClickCancel}
                 withoutTitle={withoutTitle}
-                // withoutSource={withoutSource}
+                withoutSource={withoutSource}
                 withoutType={withoutType}
+                storyId={storyId}
+                authors={authors}
+                tags={tags}
                 className={navbarClassName}
             />
             <div className={styles.content}>
@@ -175,7 +182,11 @@ const MediaGallery = ({
                     {loading || uploading ? <Spinner className={styles.loading} /> : null}
                 </div>
                 <div className={styles.mediaMetadata}>
-                    <MediaMetadata media={metadataMedia} onClickClose={onMetadataClickClose} />
+                    <MediaMetadata
+                        media={metadataMedia}
+                        tags={tags}
+                        onClickClose={onMetadataClickClose}
+                    />
                 </div>
             </div>
             <UploadModal

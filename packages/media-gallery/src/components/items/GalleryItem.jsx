@@ -1,14 +1,17 @@
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { faPlayCircle, faInfoCircle, faHeadphonesAlt, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import {
+    faHeadphonesAlt,
+    faInfoCircle,
+    faPlayCircle,
+    faTimesCircle,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Card, Button } from '@micromag/core/components';
-
+import { Button, Card } from '@micromag/core/components';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { middleEllipsis } from '../../lib/utils';
-
 import styles from '../../styles/items/gallery-item.module.scss';
 
 const propTypes = {
@@ -81,10 +84,10 @@ const GalleryItem = ({
                         </Button>
                     ) : null}
                     {selected ? (
-                        <div className={classNames(['text-primary', styles.closeIcon])}>
+                        <div className={classNames(['text-danger', styles.closeIcon])}>
                             <FontAwesomeIcon icon={faTimesCircle} className={styles.icon} />
                         </div>
-                    ): null}
+                    ) : null}
                 </>
             }
             footer={

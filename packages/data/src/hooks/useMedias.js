@@ -1,6 +1,5 @@
 import { useCallback } from 'react';
 import { useApi } from '../contexts/ApiContext';
-
 import useItems from './useItems';
 
 const useMedias = (query = null, page = null, count = null, opts) => {
