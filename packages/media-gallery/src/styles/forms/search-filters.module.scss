@@ -11,6 +11,11 @@
     padding: 0 15px;
     overflow: hidden;
 
+    .closeBtn {
+        position: absolute;
+        right: 24px;
+    }
+
     .section {
         border-bottom: 1px solid $gray-500;
 

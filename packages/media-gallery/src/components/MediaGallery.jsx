@@ -154,12 +154,15 @@ const MediaGallery = ({
             <Navbar
                 filters={filtersValue}
                 media={metadataMedia !== null ? metadataMedia : null}
+                selectedMedia={selectedMedia}
                 onFiltersChange={onFiltersChange}
                 onClickAdd={onClickAdd}
+                onClickItem={onClickItem}
                 onClickBack={onClickBack}
                 onClickCancel={onClickCancel}
                 withoutTitle={withoutTitle}
-                withoutSource={withoutSource}
+                // withoutSource={withoutSource}
+                withoutSource={false}
                 withoutType={withoutType}
                 storyId={storyId}
                 authors={authors}
