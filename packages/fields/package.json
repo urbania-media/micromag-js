@@ -1,6 +1,6 @@
 {
     "name": "@micromag/fields",
-    "version": "0.2.396",
+    "version": "0.2.397",
     "description": "",
     "keywords": [
         "javascript"
@@ -71,7 +71,7 @@
         "@micromag/core": "^0.2.396",
         "@micromag/element-grid": "^0.2.396",
         "@micromag/element-map": "^0.2.396",
-        "@micromag/media-gallery": "^0.2.396",
+        "@micromag/media-gallery": "^0.2.397",
         "classnames": "^2.2.6",
         "draft-js": "^0.11.7",
         "fuse.js": "^6.4.3",
