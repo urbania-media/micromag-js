@@ -158,6 +158,7 @@ const MediaGallery = ({
                 onFiltersChange={onFiltersChange}
                 onClickAdd={onClickAdd}
                 onClickItem={onClickItem}
+                onClickItemInfo={onClickItemInfo}
                 onClickBack={onClickBack}
                 onClickCancel={onClickCancel}
                 withoutTitle={withoutTitle}

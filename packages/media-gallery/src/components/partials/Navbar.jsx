@@ -27,6 +27,7 @@ const propTypes = {
     withoutType: PropTypes.bool,
     onClickAdd: PropTypes.func,
     onClickItem: PropTypes.func,
+    onClickItemInfo: PropTypes.func,
     // onClickCancel: PropTypes.func, // TODO: still needed?
     onFocusSearch: PropTypes.func,
     onFiltersChange: PropTypes.func,
@@ -45,6 +46,7 @@ const defaultProps = {
     withoutType: true,
     onClickAdd: null,
     onClickItem: null,
+    onClickItemInfo: null,
     // onClickCancel: null,
     onFocusSearch: null,
     onFiltersChange: null,
@@ -64,6 +66,7 @@ const Navbar = ({
     className,
     onClickAdd,
     onClickItem,
+    onClickItemInfo,
     // onClickCancel,
     onFocusSearch,
     onFiltersChange,
@@ -175,48 +178,60 @@ const Navbar = ({
             ])}
         >
             <div className={styles.inner}>
-                <strong className="list-group-item rounded py-1 px-1 navbar-text d-flex align-items-center justify-content-between">
-                    <div className="d-flex align-items-center">
+                { media === null ? (
+                    <strong className="list-group-item rounded w-100 py-1 px-1 navbar-text d-flex align-items-center justify-content-between">
                         {selectedMedia !== null ? (
-                            <>
+                            <Button
+                                className="d-flex px-0 py-0 align-items-center"
+                                onClick={() => onClickItemInfo(selectedMedia)}
+                            >
                                 <Media
                                     className={styles.mediaPreview}
                                     thumbnail={selectedMedia?.thumbnail_url}
                                 />
-                                <span className="ml-2">{selectedMedia.name || 'untitled'}</span>
-                            </>
+                                <span className="ml-2">
+                                    {selectedMedia.name || (
+                                        <FormattedMessage
+                                            defaultMessage="[no title]"
+                                            description="No title label in Media Gallery"
+                                        />
+                                    )}
+                                </span>
+                            </Button>
                         ) : (
-                            <FormattedMessage
-                                defaultMessage="Upload a new image"
-                                description="Upload button label in Media Gallery"
+                            <span className="pl-2">
+                                <FormattedMessage
+                                    defaultMessage="Upload an image"
+                                    description="Upload button label in Media Gallery"
+                                />
+                            </span>
+                        )}
+
+                        {selectedMedia === null ? (
+                            <Button
+                                theme="primary"
+                                icon={<FontAwesomeIcon icon={faPlus} />}
+                                onClick={onClickAdd}
+                                title={intl.formatMessage({
+                                    defaultMessage: 'Add',
+                                    description: 'Add button label in Media Gallery',
+                                })}
+                            />
+                        ) : (
+                            <Button
+                                theme="primary"
+                                icon={<FontAwesomeIcon icon={faTimes} />}
+                                onClick={() => onClickItem(selectedMedia)}
+                                title={intl.formatMessage({
+                                    defaultMessage: 'Remove',
+                                    description: 'Remove button label in Media Gallery',
+                                })}
                             />
                         )}
-                    </div>
+                    </strong>
+                ): null}
 
-                    {selectedMedia === null ? (
-                        <Button
-                            theme="primary"
-                            icon={<FontAwesomeIcon icon={faPlus} />}
-                            onClick={onClickAdd}
-                            title={ intl.formatMessage({
-                                defaultMessage: 'Add',
-                                description: 'Add button label in Media Gallery'
-                            })}
-                        />
-                    ) : (
-                        <Button
-                            theme="primary"
-                            icon={<FontAwesomeIcon icon={faTimes} />}
-                            onClick={() => onClickItem(selectedMedia)}
-                            title={intl.formatMessage({
-                                defaultMessage: 'Remove',
-                                description: 'Remove button label in Media Gallery'
-                            })}
-                        />
-                    )}
-                </strong>
-
-                {!withoutSource ? (
+                {!withoutSource && media === null ? (
                     <div className="py-2 d-flex w-100 flex-nowrap">
                         <DropdownSection
                             items={sources}
