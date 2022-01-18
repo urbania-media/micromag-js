@@ -671,12 +671,6 @@ msgctxt "JDPMlG"
 msgid "Background color"
 msgstr "Couleur de l'arrière-plan"
 
-# Top nav title for media gallery
-#: JV5hRr
-msgctxt "JV5hRr"
-msgid "Media gallery"
-msgstr "Galerie de médias"
-
 # Button style label
 #: JnCf7K
 msgctxt "JnCf7K"
@@ -910,6 +904,12 @@ msgctxt "UBXIYP"
 msgid "Video"
 msgstr "Vidéo"
 
+# Remove button label in Media Gallery
+#: UG3SXh
+msgctxt "UG3SXh"
+msgid "Remove"
+msgstr ""
+
 # Field label
 #: UUv8FR
 msgctxt "UUv8FR"
@@ -945,6 +945,12 @@ msgstr "Ajouter une image"
 msgctxt "VDu2FA"
 msgid "Google Fonts"
 msgstr "Google Fonts"
+
+# Upload button label in Media Gallery
+#: VspZp9
+msgctxt "VspZp9"
+msgid "Upload an image"
+msgstr ""
 
 # Label when no value
 #: Wb5zY4
@@ -1203,6 +1209,12 @@ msgstr "Messages"
 msgctxt "fIawTr"
 msgid "Text"
 msgstr "Texte"
+
+# No title label in Media Gallery
+#: fVqgfl
+msgctxt "fVqgfl"
+msgid "[no title]"
+msgstr ""
 
 # Square label
 #: fusnxf
@@ -1693,6 +1705,12 @@ msgstr "Modifier"
 msgctxt "y7xsPe"
 msgid "Advanced settings"
 msgstr "Paramètres avancés"
+
+# Close button label in Media Gallery
+#: yCXMzz
+msgctxt "yCXMzz"
+msgid "Close"
+msgstr ""
 
 # Field label
 #: ySApyR

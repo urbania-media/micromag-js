@@ -439,10 +439,6 @@
     "defaultMessage": "Background color",
     "description": "Field label"
   },
-  "JV5hRr": {
-    "defaultMessage": "Media gallery",
-    "description": "Top nav title for media gallery"
-  },
   "JnCf7K": {
     "defaultMessage": "Button style",
     "description": "Button style label"
@@ -598,6 +594,10 @@
     "defaultMessage": "Video",
     "description": "Video screen title"
   },
+  "UG3SXh": {
+    "defaultMessage": "Remove",
+    "description": "Remove button label in Media Gallery"
+  },
   "UUv8FR": {
     "defaultMessage": "Name",
     "description": "Field label"
@@ -621,6 +621,10 @@
   "VDu2FA": {
     "defaultMessage": "Google Fonts",
     "description": "Font family group title"
+  },
+  "VspZp9": {
+    "defaultMessage": "Upload an image",
+    "description": "Upload button label in Media Gallery"
   },
   "Wb5zY4": {
     "defaultMessage": "Select a font file...",
@@ -793,6 +797,10 @@
   "fIawTr": {
     "defaultMessage": "Text",
     "description": "Text screen group"
+  },
+  "fVqgfl": {
+    "defaultMessage": "[no title]",
+    "description": "No title label in Media Gallery"
   },
   "fusnxf": {
     "defaultMessage": "Square",
@@ -1119,6 +1127,10 @@
   "y7xsPe": {
     "defaultMessage": "Advanced settings",
     "description": "Fields section label"
+  },
+  "yCXMzz": {
+    "defaultMessage": "Close",
+    "description": "Close button label in Media Gallery"
   },
   "ySApyR": {
     "defaultMessage": "Background image",

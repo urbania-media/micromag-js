@@ -329,9 +329,6 @@
     "JDPMlG": {
         "defaultMessage": "Background color"
     },
-    "JV5hRr": {
-        "defaultMessage": "Media gallery"
-    },
     "JnCf7K": {
         "defaultMessage": "Button style"
     },
@@ -449,6 +446,9 @@
     "UBXIYP": {
         "defaultMessage": "Video"
     },
+    "UG3SXh": {
+        "defaultMessage": "Remove"
+    },
     "UUv8FR": {
         "defaultMessage": "Name"
     },
@@ -466,6 +466,9 @@
     },
     "VDu2FA": {
         "defaultMessage": "Google Fonts"
+    },
+    "VspZp9": {
+        "defaultMessage": "Upload an image"
     },
     "Wb5zY4": {
         "defaultMessage": "Select a font file..."
@@ -595,6 +598,9 @@
     },
     "fIawTr": {
         "defaultMessage": "Text"
+    },
+    "fVqgfl": {
+        "defaultMessage": "[no title]"
     },
     "fusnxf": {
         "defaultMessage": "Square"
@@ -841,6 +847,9 @@
     },
     "y7xsPe": {
         "defaultMessage": "Advanced settings"
+    },
+    "yCXMzz": {
+        "defaultMessage": "Close"
     },
     "ySApyR": {
         "defaultMessage": "Background image"
