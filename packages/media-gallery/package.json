@@ -38,8 +38,7 @@
         "scss"
     ],
     "scripts": {
-        "prepare": "../../scripts/prepare-package.sh --scss",
-        "start": "PUBLIC_URL=http://localhost/ react-scripts start"
+        "prepare": "../../scripts/prepare-package.sh --scss"
     },
     "devDependencies": {
         "react": "^16.8.0 || ^17.0.0",

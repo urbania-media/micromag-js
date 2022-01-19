@@ -38,9 +38,7 @@
         "scss"
     ],
     "scripts": {
-        "build:app": "cd src/app && NODE_ENV=production react-scripts build && rm -rf ../../public/ && mv ./build/ ../../public/",
-        "prepare": "../../scripts/prepare-package.sh --scss",
-        "start": "PUBLIC_URL=http://localhost/ react-scripts start"
+        "prepare": "../../scripts/prepare-package.sh --scss"
     },
     "devDependencies": {
         "react": "^16.8.0 || ^17.0.0",
