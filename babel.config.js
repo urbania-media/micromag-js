@@ -33,7 +33,7 @@ module.exports = (api) => {
                             'react-router': require.resolve('react-router'),
                             '@react-spring/core': require.resolve('@react-spring/core'),
                             '@react-spring/web': require.resolve('@react-spring/web'),
-                            'react-use-gesture': require.resolve('react-use-gesture'),
+                            '@use-gesture/react': require.resolve('@use-gesture/react'),
                             ...getPackagesAliases({ withoutEndSign: true }),
                         },
                     },

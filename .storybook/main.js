@@ -117,7 +117,7 @@ module.exports = {
                                         babelrc: false,
                                         plugins: [
                                             [
-                                                require.resolve('babel-plugin-react-intl'),
+                                                require.resolve('babel-plugin-formatjs'),
                                                 {
                                                     ast: true,
                                                     extractFromFormatMessageCall: true,

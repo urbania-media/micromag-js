@@ -61,6 +61,7 @@
         "@micromag/screens": "^0.2.402",
         "@react-spring/core": "^9.1.1",
         "@react-spring/web": "^9.1.1",
+        "@use-gesture/react": "^10.2.4",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
@@ -68,8 +69,7 @@
         "react-intl": "^5.12.1",
         "react-router": "^5.2.0",
         "react-router-dom": "^5.2.0",
-        "react-share": "^4.3.1",
-        "react-use-gesture": "^9.0.0"
+        "react-share": "^4.3.1"
     },
     "publishConfig": {
         "access": "public"

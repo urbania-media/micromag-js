@@ -4,10 +4,10 @@
 import { useResizeObserver } from '@micromag/core/hooks';
 import { useSpring } from '@react-spring/core';
 import { animated } from '@react-spring/web';
+import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef } from 'react';
-import { useGesture } from 'react-use-gesture';
 import 'whatwg-fetch';
 import styles from './styles/audio-wave.module.scss';
 
@@ -43,7 +43,7 @@ const defaultProps = {
     onReady: null,
 };
 
-const AudioWave = ({
+function AudioWave({
     currentTime,
     duration,
     playing,
@@ -57,7 +57,7 @@ const AudioWave = ({
     onSeek,
     onResume,
     onReady,
-}) => {
+}) {
     const canvasBackgroundRef = useRef(null);
     const canvasProgressRef = useRef(null);
 
@@ -257,7 +257,7 @@ const AudioWave = ({
             />
         </div>
     );
-};
+}
 
 AudioWave.propTypes = propTypes;
 AudioWave.defaultProps = defaultProps;

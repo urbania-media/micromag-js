@@ -16,12 +16,12 @@ import {
 import { getDeviceScreens } from '@micromag/core/utils';
 import { config, useSpring } from '@react-spring/core';
 import { animated } from '@react-spring/web';
+import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { useDrag } from 'react-use-gesture';
 import styles from '../styles/viewer.module.scss';
 import MenuDots from './menus/MenuDots';
 import MenuPreview from './menus/MenuPreview';
@@ -87,7 +87,7 @@ const defaultProps = {
     className: null,
 };
 
-const Viewer = ({
+function Viewer({
     story,
     basePath,
     theme: viewerTheme,
@@ -113,7 +113,7 @@ const Viewer = ({
     screensMedias,
     screenSizeOptions,
     className,
-}) => {
+}) {
     const intl = useIntl();
     const parsedStory = useParsedStory(story, { disabled: storyIsParsed }) || {};
     const { components: screens = [], title = null, metadata = null, fonts = null } = parsedStory;
@@ -741,7 +741,7 @@ const Viewer = ({
             </ViewerProvider>
         </ScreenSizeProvider>
     );
-};
+}
 
 Viewer.propTypes = propTypes;
 Viewer.defaultProps = defaultProps;

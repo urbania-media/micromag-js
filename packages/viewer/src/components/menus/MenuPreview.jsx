@@ -2,21 +2,19 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/no-array-index-key, jsx-a11y/control-has-associated-label */
 // stylelint-disable stylelint-family-no-missing-generic-family-keyword
+import { faCompress, faExpand, faShare, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { Button, ScreenPreview } from '@micromag/core/components';
+import { getStyleFromColor, getStyleFromText } from '@micromag/core/utils';
+import Scroll from '@micromag/element-scroll';
+import { useDrag } from '@use-gesture/react';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { useDrag } from 'react-use-gesture';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShare, faTimes, faExpand, faCompress } from '@fortawesome/free-solid-svg-icons';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { getStyleFromColor, getStyleFromText } from '@micromag/core/utils';
-import { ScreenPreview, Button } from '@micromag/core/components';
-import Scroll from '@micromag/element-scroll';
-
-import ShareButton from '../partials/ShareButton';
-
 import styles from '../../styles/menus/menu-preview.module.scss';
+import ShareButton from '../partials/ShareButton';
 
 const propTypes = {
     viewerTheme: MicromagPropTypes.viewerTheme,
@@ -54,7 +52,7 @@ const defaultProps = {
     className: null,
 };
 
-const ViewerMenuPreview = ({
+function ViewerMenuPreview({
     viewerTheme,
     screenWidth,
     title,
@@ -70,7 +68,7 @@ const ViewerMenuPreview = ({
     fullscreenActive,
     fullscreenEnabled,
     className,
-}) => {
+}) {
     const intl = useIntl();
     const screenSizeRatio = `${(3 / 2 / thumbsPerLine) * 100}%`;
     const screenRatioHeight = (screenWidth * 3) / 2;
@@ -89,8 +87,12 @@ const ViewerMenuPreview = ({
     }, [screenWidth, hasItems, hasSize]);
 
     // Viewer theme
-    const { colors = null, background = null, textStyles = null, logo: brandLogo = null } =
-        viewerTheme || {};
+    const {
+        colors = null,
+        background = null,
+        textStyles = null,
+        logo: brandLogo = null,
+    } = viewerTheme || {};
     const { title: brandTextStyle = null } = textStyles || {};
     const { primary: brandPrimaryColor = null, secondary: brandSecondaryColor = null } =
         colors || {};
@@ -295,7 +297,7 @@ const ViewerMenuPreview = ({
             </div>
         </div>
     ) : null;
-};
+}
 
 ViewerMenuPreview.propTypes = propTypes;
 ViewerMenuPreview.defaultProps = defaultProps;

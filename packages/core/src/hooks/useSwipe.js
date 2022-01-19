@@ -1,7 +1,7 @@
-import { useRef, useEffect, useCallback } from 'react';
 import { useSprings } from '@react-spring/core';
+import { useDrag } from '@use-gesture/react';
 import clamp from 'lodash/clamp';
-import { useDrag } from 'react-use-gesture';
+import { useCallback, useEffect, useRef } from 'react';
 
 export const useSwipe = ({
     width = null,
