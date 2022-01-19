@@ -1,10 +1,9 @@
 /* eslint-disable react/no-array-index-key */
-import React from 'react';
-import PropTypes from 'prop-types';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import classNames from 'classnames';
 import isArray from 'lodash/isArray';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-
+import PropTypes from 'prop-types';
+import React from 'react';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -31,7 +30,7 @@ const defaultProps = {
     crossClassName: null,
 };
 
-const Grid = ({
+function Grid({
     items,
     layout,
     width,
@@ -41,14 +40,17 @@ const Grid = ({
     className,
     axisClassName,
     crossClassName,
-}) => {
+}) {
     let itemIndex = 0;
-    const finalLayout = isArray(layout) ? layout : [
-        {
-            rows: vertical ? items.map(() => 1) : 1,
-            columns: vertical ? 1 : items.map(() => 1),
-        },
-    ];
+    const finalLayout = isArray(layout)
+        ? layout
+        : [
+              {
+                  rows: vertical ? items.map(() => 1) : 1,
+                  columns: vertical ? 1 : items.map(() => 1),
+              },
+          ];
+
     const crossTotal = finalLayout.reduce(
         (total, { rows = 1, columns = 1 }) => total + (vertical ? columns : rows),
         0,
@@ -75,7 +77,7 @@ const Grid = ({
                 }}
             >
                 {finalLayout.map(({ rows, columns }, crossIndex) => {
-                    const crossSizeRatio = (vertical ? columns : rows) / crossTotal
+                    const crossSizeRatio = (vertical ? columns : rows) / crossTotal;
                     const crossSize = `${100 * crossSizeRatio}%`;
                     const axisItems = vertical ? rows : columns;
                     const finalAxisItems = isArray(axisItems) ? axisItems : [axisItems];
@@ -126,7 +128,7 @@ const Grid = ({
             </div>
         </div>
     );
-};
+}
 
 Grid.propTypes = propTypes;
 Grid.defaultProps = defaultProps;

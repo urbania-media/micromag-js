@@ -1,7 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import PropTypes from 'prop-types';
+import React from 'react';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -16,17 +15,14 @@ const defaultProps = {
     children: null,
 };
 
-const Container = ({
-    width,
-    height,
-    className,
-    children,
-}) => {
+function Container({ width, height, className, children }) {
     const hasSize = width > 0 && height > 0;
-    const containerStyle = hasSize ? {
-        width,
-        height,
-    } : null;
+    const containerStyle = hasSize
+        ? {
+              width,
+              height,
+          }
+        : null;
 
     return (
         <div
@@ -38,10 +34,10 @@ const Container = ({
             ])}
             style={containerStyle}
         >
-            { children }
+            {children}
         </div>
     );
-};
+}
 
 Container.propTypes = propTypes;
 Container.defaultProps = defaultProps;

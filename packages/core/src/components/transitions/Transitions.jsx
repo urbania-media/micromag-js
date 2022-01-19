@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
 import PropTypes from 'prop-types';
-
+import React from 'react';
 import { useScreenSize } from '../../contexts';
 import { PropTypes as MicromagPropTypes } from '../../lib';
 import { getComponentFromName } from '../../utils';
@@ -25,7 +24,7 @@ const defaultProps = {
     children: null,
 };
 
-const Transitions = ({ fullscreen, playing, delay, transitions, disabled, children }) => {
+function Transitions({ fullscreen, playing, delay, transitions, disabled, children }) {
     const { landscape = false } = useScreenSize();
     const finalPlaying = playing || landscape;
 
@@ -33,7 +32,7 @@ const Transitions = ({ fullscreen, playing, delay, transitions, disabled, childr
 
     const defaultTransitions = { in: 'fade', out: 'fade' };
     const transitionsObject = transitions !== null ? transitions : defaultTransitions;
-    
+
     Object.keys(transitionsObject).forEach((transitionKey) => {
         const currentTransition = transitionsObject[transitionKey];
         finalTransitions[transitionKey] =
@@ -86,7 +85,7 @@ const Transitions = ({ fullscreen, playing, delay, transitions, disabled, childr
     ) : (
         renderTransitionOut
     );
-};
+}
 
 Transitions.propTypes = propTypes;
 Transitions.defaultProps = defaultProps;

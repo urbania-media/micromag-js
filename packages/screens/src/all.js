@@ -1,5 +1,4 @@
 import { ScreensManager } from '@micromag/core';
-
 import audio from '@micromag/screen-audio';
 import contribution from '@micromag/screen-contribution';
 import conversation from '@micromag/screen-conversation';
@@ -10,6 +9,7 @@ import map from '@micromag/screen-map';
 import quiz from '@micromag/screen-quiz';
 import quote from '@micromag/screen-quote';
 import ranking from '@micromag/screen-ranking';
+import slideshow from '@micromag/screen-slideshow';
 import survey from '@micromag/screen-survey';
 import text from '@micromag/screen-text';
 import timeline from '@micromag/screen-timeline';
@@ -34,5 +34,6 @@ manager.addDefinition(timeline);
 manager.addDefinition(title);
 manager.addDefinition(video);
 manager.addDefinition(video360);
+manager.addDefinition(slideshow);
 
 export default manager;

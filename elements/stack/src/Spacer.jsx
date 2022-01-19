@@ -1,9 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import PropTypes from 'prop-types';
+import React from 'react';
 import { useStackDirection } from './StackContext';
-
 import styles from './styles/spacer.module.scss';
 
 const propTypes = {
@@ -20,7 +18,7 @@ const defaultProps = {
     className: null,
 };
 
-const Spacer = ({ size, minSize, maxSize, className }) => {
+function Spacer({ size, minSize, maxSize, className }) {
     const direction = useStackDirection();
     return (
         <div
@@ -41,7 +39,7 @@ const Spacer = ({ size, minSize, maxSize, className }) => {
             }}
         />
     );
-};
+}
 
 Spacer.propTypes = propTypes;
 Spacer.defaultProps = defaultProps;
