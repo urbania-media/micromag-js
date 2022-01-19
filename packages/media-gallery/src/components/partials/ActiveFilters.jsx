@@ -1,15 +1,13 @@
 /* eslint-disable react/no-array-index-key, jsx-a11y/label-has-associated-control, react/jsx-indent */
-import React, { useCallback } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from '@micromag/core/components';
-
-import CloseButton from '../buttons/Close';
-
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback } from 'react';
+import { FormattedMessage } from 'react-intl';
 import styles from '../../styles/partials/active-filters.module.scss';
+import CloseButton from '../buttons/Close';
 
 const propTypes = {
     filters: PropTypes.shape({
@@ -32,7 +30,7 @@ const defaultProps = {
     className: null,
 };
 
-const ActiveFilters = ({ filters, onChange, onReset, sections, className }) => {
+function ActiveFilters({ filters, onChange, onReset, sections, className }) {
     const handleReset = useCallback(() => {
         if (onReset !== null) {
             onReset();
@@ -113,7 +111,7 @@ const ActiveFilters = ({ filters, onChange, onReset, sections, className }) => {
                 : null}
         </div>
     );
-};
+}
 
 ActiveFilters.propTypes = propTypes;
 ActiveFilters.defaultProps = defaultProps;

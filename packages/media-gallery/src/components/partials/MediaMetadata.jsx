@@ -23,7 +23,7 @@ const defaultProps = {
     className: null,
 };
 
-const MediaMetadata = ({ media, tags: allTags, className }) => {
+function MediaMetadata({ media, tags: allTags, className }) {
     const {
         id: mediaId,
         type,
@@ -132,17 +132,11 @@ const MediaMetadata = ({ media, tags: allTags, className }) => {
                     },
                 ])}
             >
-                {type === 'video' ? (
-                    <>
-                        <video className={styles.player} controls src={url} />
-                    </>
-                ) : null}
+                {type === 'video' ? <video className={styles.player} controls src={url} /> : null}
                 {type === 'audio' ? (
-                    <>
-                        <div className={styles.audio}>
-                            <audio className={styles.player} controls src={url} />
-                        </div>
-                    </>
+                    <div className={styles.audio}>
+                        <audio className={styles.player} controls src={url} />
+                    </div>
                 ) : null}
                 {type !== 'video' ? (
                     <img src={thumbnail} className={styles.image} alt={filename} />
@@ -320,7 +314,7 @@ const MediaMetadata = ({ media, tags: allTags, className }) => {
             </div>
         </div>
     );
-};
+}
 
 MediaMetadata.propTypes = propTypes;
 
