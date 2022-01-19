@@ -666,7 +666,7 @@ const Viewer = ({
                                     ? `translateX(calc(${
                                           (screenWidth + landscapeScreenMargin) * (i - screenIndex)
                                       }px - 50%)) scale(${current ? 1 : 0.9})`
-                                    : `translateX(${current ? 0 : '100%'})`;
+                                    : `translateX(${current ? 0 : `${active ? '100' : '101'}%`})`;
                                 return (
                                     <React.Fragment key={key}>
                                         {current && screenIndex > 0 ? (
