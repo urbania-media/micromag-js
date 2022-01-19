@@ -475,6 +475,10 @@
     "defaultMessage": "Audio",
     "description": "Audio placeholder"
   },
+  "MhGUaY": {
+    "defaultMessage": "Slideshow",
+    "description": "Slideshow screen title"
+  },
   "MmJQ7o": {
     "defaultMessage": "Gallery with captions",
     "description": "GalleryCaptions screen title"

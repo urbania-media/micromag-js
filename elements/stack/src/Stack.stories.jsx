@@ -1,7 +1,6 @@
 import React from 'react';
-
-import Stack from './Stack';
 import Spacer from './Spacer';
+import Stack from './Stack';
 
 export default {
     component: Stack,

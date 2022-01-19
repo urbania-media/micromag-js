@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useSpring } from '@react-spring/core';
 import { animated } from '@react-spring/web';
 import classNames from 'classnames';
-
+import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 import styles from '../../styles/transitions/transition.module.scss';
 
 const propTypes = {
@@ -36,7 +35,7 @@ const defaultProps = {
     onComplete: null,
 };
 
-const Transition = ({
+function Transition({
     fullscreen,
     from,
     to,
@@ -49,7 +48,7 @@ const Transition = ({
     className,
     onStart,
     onComplete,
-}) => {
+}) {
     const [springProps, setSpringProps] = useSpring(() => ({}));
 
     useEffect(() => {
@@ -65,8 +64,8 @@ const Transition = ({
             onStart,
             onRest: onComplete,
             config: {
-                duration: immediate ? 0 : finalDuration
-            }
+                duration: immediate ? 0 : finalDuration,
+            },
         };
 
         const withDelay = delay > 0 && playing && direction !== 'out';
@@ -111,7 +110,7 @@ const Transition = ({
             {children}
         </animated.div>
     );
-};
+}
 
 Transition.propTypes = propTypes;
 Transition.defaultProps = defaultProps;

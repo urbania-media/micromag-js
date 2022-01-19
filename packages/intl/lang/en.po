@@ -725,6 +725,12 @@ msgctxt "MYZwSA"
 msgid "Audio"
 msgstr "Audio"
 
+# Slideshow screen title
+#: MhGUaY
+msgctxt "MhGUaY"
+msgid "Slideshow"
+msgstr "Slideshow"
+
 # GalleryCaptions screen title
 #: MmJQ7o
 msgctxt "MmJQ7o"

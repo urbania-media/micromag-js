@@ -1,7 +1,11 @@
 {
     "extends": ["airbnb", "prettier"],
     "plugins": ["formatjs"],
-    "parser": "babel-eslint",
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "requireConfigFile": false
+    },
     "env": {
         "browser": true,
         "node": true,
@@ -13,7 +17,8 @@
         "react/jsx-indent-props": ["error", 4],
         "no-console": ["error", { "allow": ["warn", "error"] }],
         "formatjs/enforce-default-message": ["error", "literal"],
-        "formatjs/no-camel-case": ["error"]
+        "formatjs/no-camel-case": ["error"],
+        "import/no-relative-packages": ["off"]
     },
     "overrides": [
         {
@@ -40,9 +45,7 @@
             }
         },
         {
-            "files": [
-                "packages/cli/src/**/*.js"
-            ],
+            "files": ["packages/cli/src/**/*.js"],
             "rules": {
                 "global-require": 0,
                 "import/no-dynamic-require": 0,

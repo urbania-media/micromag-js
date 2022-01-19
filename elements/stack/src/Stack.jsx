@@ -1,14 +1,12 @@
 /* eslint-disable react/no-array-index-key */
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import isString from 'lodash/isString';
+import classNames from 'classnames';
 import isNumber from 'lodash/isNumber';
-
-import { StackProvider } from './StackContext';
+import isString from 'lodash/isString';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Spacer from './Spacer';
-
+import { StackProvider } from './StackContext';
 import styles from './styles/stack.module.scss';
 
 const propTypes = {
@@ -35,7 +33,7 @@ const defaultProps = {
     children: null,
 };
 
-const Stack = ({
+function Stack({
     direction,
     align,
     spacing,
@@ -45,7 +43,7 @@ const Stack = ({
     maxSize,
     className,
     children,
-}) => {
+}) {
     const flexDirection =
         (direction === 'vertical' ? 'column' : 'row') + (reverse ? '-reverse' : '');
     const alignItems = align === 'center' ? align : `flex-${align}`;
@@ -77,14 +75,18 @@ const Stack = ({
                 {React.Children.toArray(children).reduce(
                     (allChildren, child, index) =>
                         child.type !== Spacer && space !== null && index < lastIndex
-                            ? [...allChildren, child, <Spacer key={`spacer-${index}`} size={space} />]
+                            ? [
+                                  ...allChildren,
+                                  child,
+                                  <Spacer key={`spacer-${index}`} size={space} />,
+                              ]
                             : [...allChildren, child],
                     [],
                 )}
             </div>
         </StackProvider>
     );
-};
+}
 
 Stack.propTypes = propTypes;
 Stack.defaultProps = defaultProps;
