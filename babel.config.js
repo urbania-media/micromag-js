@@ -74,7 +74,7 @@ module.exports = (api) => {
     return {
         presets: api.env('development')
             ? [
-                  require.resolve('babel-preset-react-app/dev'),
+                  require.resolve('babel-preset-react-app'),
                   [
                       require('@babel/preset-env'),
                       {
