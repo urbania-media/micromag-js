@@ -1,23 +1,21 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { FormattedMessage } from 'react-intl';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import isPlainObject from 'lodash/isPlainObject';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { isImageFilled, isTextFilled } from '@micromag/core/utils';
+import { useScreenRenderContext, useScreenSize, useViewer } from '@micromag/core/contexts';
 import { useResizeObserver } from '@micromag/core/hooks';
+import { isImageFilled, isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
+import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
 import Grid from '@micromag/element-grid';
-import Visual from '@micromag/element-visual';
 import Text from '@micromag/element-text';
-import CallToAction from '@micromag/element-call-to-action';
-
+import Visual from '@micromag/element-visual';
+import classNames from 'classnames';
+import isPlainObject from 'lodash/isPlainObject';
+import PropTypes from 'prop-types';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import layoutProps from './layouts';
-
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -70,7 +68,7 @@ const defaultProps = {
     className: null,
 };
 
-const GalleryScreen = ({
+function GalleryScreen({
     layout,
     images,
     withCaptions,
@@ -82,18 +80,12 @@ const GalleryScreen = ({
     transitions,
     transitionStagger,
     className,
-}) => {
+}) {
     const { width, height, menuOverScreen } = useScreenSize();
     const { menuSize } = useViewer();
 
-    const {
-        isView,
-        isPreview,
-        isPlaceholder,
-        isEdit,
-        isStatic,
-        isCapture,
-    } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
+        useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
 
     const finalSpacing = isPlaceholder ? 5 : spacing;
@@ -276,7 +268,7 @@ const GalleryScreen = ({
             </Container>
         </div>
     );
-};
+}
 
 GalleryScreen.propTypes = propTypes;
 GalleryScreen.defaultProps = defaultProps;

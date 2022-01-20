@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
 const path = require('path');
 // const webpack = require('webpack');
 const { styles } = require('@ckeditor/ckeditor5-dev-utils');
@@ -7,6 +8,19 @@ const getPackagesAliases = require('../scripts/lib/getPackagesAliases');
 const { idInterpolationPattern } = require('../packages/intl/scripts/config');
 
 require('dotenv').config();
+
+const getAbsolutePath = (filePath, relative = process.cwd()) => {
+    if (filePath === null) {
+        return null;
+    }
+    if (filePath[0] === '~') {
+        return path.join(process.env.HOME, filePath.slice(1));
+    }
+    return path.isAbsolute(filePath) ? filePath : path.join(relative, filePath);
+};
+
+const disableSourceMap = false;
+const absSrcPath = getAbsolutePath('./');
 
 module.exports = {
     stories: getPackagesPaths()
@@ -35,17 +49,17 @@ module.exports = {
         //         },
         //     },
         // },
-        '@storybook/addon-viewport/register',
+        '@storybook/addon-viewport',
         '@storybook/addon-docs',
         '@storybook/addon-actions',
-        {
-            name: '@storybook/addon-postcss',
-            options: {
-                postcssLoaderOptions: {
-                    implementation: require('postcss'),
-                },
-            },
-        },
+        // {
+        //     name: '@storybook/addon-postcss',
+        //     options: {
+        //         postcssLoaderOptions: {
+        //             implementation: require('postcss'),
+        //         },
+        //     },
+        // },
     ],
     features: {
         babelModeV7: true,
@@ -54,7 +68,57 @@ module.exports = {
         builder: 'webpack5',
     },
     webpackFinal: async (config) => {
-        console.log(config.module.rules);
+        const getStyleLoaders = (cssOptions, preProcessor) => {
+            const styleLoaders = [
+                require.resolve('style-loader'),
+                {
+                    loader: require.resolve('css-loader'),
+                    options: cssOptions,
+                },
+                {
+                    loader: require.resolve('postcss-loader'),
+                    options: {
+                        postcssOptions: {
+                            implementation: require('postcss'),
+                            ident: 'postcss',
+                            plugins: [
+                                'postcss-flexbugs-fixes',
+                                [
+                                    'postcss-preset-env',
+                                    {
+                                        autoprefixer: {
+                                            flexbox: 'no-2009',
+                                        },
+                                        stage: 3,
+                                    },
+                                ],
+                                'postcss-normalize',
+                            ],
+                        },
+                        sourceMap: !disableSourceMap,
+                    },
+                },
+            ].filter(Boolean);
+            if (preProcessor) {
+                styleLoaders.push(
+                    {
+                        loader: require.resolve('resolve-url-loader'),
+                        options: {
+                            sourceMap: !disableSourceMap,
+                            root: absSrcPath,
+                        },
+                    },
+                    {
+                        loader: require.resolve(preProcessor),
+                        options: {
+                            sourceMap: !disableSourceMap,
+                        },
+                    },
+                );
+            }
+            return styleLoaders;
+        };
+
         return {
             ...config,
 
@@ -113,60 +177,69 @@ module.exports = {
                             },
                             {
                                 rules: [
-                                    // {
-                                    //     test: /\.module\.(s*)css$/,
-                                    //     use: ['resolve-url-loader'],
-                                    // },
                                     {
-                                        test: /\.scss$/,
-                                        exclude: /\.module\.scss$/,
-                                        use: [
-                                            'style-loader',
-                                            {
-                                                loader: require.resolve('resolve-url-loader'),
-                                                options: {
-                                                    sourceMap: true,
-                                                    // root: absSrcPath,
-                                                },
+                                        test: /\.css$/,
+                                        exclude: /\.module\.css$/,
+                                        use: getStyleLoaders({
+                                            importLoaders: 1,
+                                            sourceMap: !disableSourceMap,
+                                            modules: {
+                                                mode: 'global',
                                             },
-                                            {
-                                                loader: require.resolve('css-loader'),
-                                                options: {
-                                                    importLoaders: 3,
-                                                    sourceMap: true,
-                                                    modules: {
-                                                        mode: 'icss',
-                                                    },
-                                                },
-                                            },
-                                            {
-                                                loader: require.resolve('postcss-loader'),
-                                                options: {
-                                                    postcssOptions: {
-                                                        ident: 'postcss',
-                                                        plugins: [
-                                                            'postcss-flexbugs-fixes',
-                                                            [
-                                                                'postcss-preset-env',
-                                                                {
-                                                                    autoprefixer: {
-                                                                        flexbox: 'no-2009',
-                                                                    },
-                                                                    stage: 3,
-                                                                },
-                                                            ],
-                                                            'postcss-normalize',
-                                                        ],
-                                                    },
-                                                    sourceMap: true,
-                                                },
-                                            },
-                                        ],
+                                        }),
                                         // Don't consider CSS imports dead code even if the
                                         // containing package claims to have no side effects.
                                         // Remove this when webpack adds a warning or an error for this.
                                         // See https://github.com/webpack/webpack/issues/6571
                                         sideEffects: true,
+                                    },
+                                    // Adds support for CSS Modules (https://github.com/css-modules/css-modules)
+                                    // using the extension .module.css
+                                    {
+                                        test: /\.module\.css$/,
+                                        use: getStyleLoaders({
+                                            importLoaders: 1,
+                                            sourceMap: !disableSourceMap,
+                                            modules: {
+                                                mode: 'local',
+                                                getLocalIdent: getCSSModuleLocalIdent,
+                                            },
+                                        }),
+                                    },
+                                    {
+                                        test: /\.scss$/,
+                                        exclude: /\.module\.scss$/,
+                                        use: getStyleLoaders(
+                                            {
+                                                importLoaders: 3,
+                                                sourceMap: !disableSourceMap,
+                                                modules: {
+                                                    mode: 'global',
+                                                },
+                                            },
+                                            'sass-loader',
+                                        ),
+                                        // Don't consider CSS imports dead code even if the
+                                        // containing package claims to have no side effects.
+                                        // Remove this when webpack adds a warning or an error for this.
+                                        // See https://github.com/webpack/webpack/issues/6571
+                                        sideEffects: true,
+                                    },
+                                    // Adds support for CSS Modules, but using SASS
+                                    // using the extension .module.scss or .module.sass
+                                    {
+                                        test: /\.module\.scss$/,
+                                        use: getStyleLoaders(
+                                            {
+                                                importLoaders: 3,
+                                                sourceMap: !disableSourceMap,
+                                                modules: {
+                                                    mode: 'local',
+                                                    getLocalIdent: getCSSModuleLocalIdent,
+                                                },
+                                            },
+                                            'sass-loader',
+                                        ),
                                     },
                                     ...config.module.rules,
                                     ...getPackagesPaths().map((packagePath) => ({
@@ -176,6 +249,23 @@ module.exports = {
                                         exclude: /\/node_modules\//,
                                         options: {
                                             babelrc: false,
+                                            presets: [
+                                                [
+                                                    require.resolve('@babel/preset-env'),
+                                                    {
+                                                        modules: false,
+                                                        useBuiltIns: 'entry',
+                                                        corejs: 3,
+                                                    },
+                                                ],
+                                                [
+                                                    require.resolve('@babel/preset-react'),
+                                                    {
+                                                        runtime: 'automatic',
+                                                        throwIfNamespace: false,
+                                                    },
+                                                ],
+                                            ],
                                             plugins: [
                                                 [
                                                     require.resolve('babel-plugin-formatjs'),
@@ -186,6 +276,9 @@ module.exports = {
                                                     },
                                                 ],
                                             ],
+                                            cacheDirectory: true,
+                                            cacheCompression: false,
+                                            compact: false,
                                         },
                                     })),
                                     {

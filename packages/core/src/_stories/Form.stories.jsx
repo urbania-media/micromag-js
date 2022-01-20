@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-
 import { ApiProvider } from '../../../data/src/contexts/ApiContext';
 import FieldsProvider from '../../../fields/src/FieldsProvider';
 import Form from '../components/forms/Form';
@@ -43,7 +42,7 @@ const withRequiredProps = {
             ],
         },
     ],
-    action: '#'
+    action: '#',
 };
 
 const withSlideProps = {
@@ -55,7 +54,7 @@ const withSlideProps = {
             required: true,
             settings: true,
             isHorizontal: true,
-            help: 'This is an help text'
+            help: 'This is an help text',
         },
         {
             name: 'logo',
@@ -87,11 +86,13 @@ export default {
     },
 };
 
-export const Default = () => (
-    <FieldsProvider>
-        <Form {...props} onCancel={() => {}} />
-    </FieldsProvider>
-);
+export function Default() {
+    return (
+        <FieldsProvider>
+            <Form {...props} onCancel={() => {}} />
+        </FieldsProvider>
+    );
+}
 
 export const withRequired = () => (
     <FieldsProvider>

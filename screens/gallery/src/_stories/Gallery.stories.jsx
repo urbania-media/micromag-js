@@ -1,10 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-
-import { images, backgroundColor, transitions, callToAction } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import GalleryScreen from '../Gallery';
+import { backgroundColor, callToAction, images, transitions } from '../../../../.storybook/data';
 import definition from '../definition';
+import GalleryScreen from '../Gallery';
 
 const props = {
     images: images({ count: 20 }),
@@ -21,18 +20,32 @@ export default {
     },
 };
 
-export const Placeholder = (storyProps) => <GalleryScreen {...storyProps} />;
+export function Placeholder(storyProps) {
+    return <GalleryScreen {...storyProps} />;
+}
 
-export const Preview = (storyProps) => <GalleryScreen {...storyProps} {...props} />;
-export const Static = (storyProps) => <GalleryScreen {...storyProps} {...props} />;
-export const Capture = (storyProps) => <GalleryScreen {...storyProps} {...props} />;
+export function Preview(storyProps) {
+    return <GalleryScreen {...storyProps} {...props} />;
+}
+export function Static(storyProps) {
+    return <GalleryScreen {...storyProps} {...props} />;
+}
+export function Capture(storyProps) {
+    return <GalleryScreen {...storyProps} {...props} />;
+}
 
-export const Edit = (storyProps) => <GalleryScreen {...storyProps} />;
+export function Edit(storyProps) {
+    return <GalleryScreen {...storyProps} />;
+}
 
-export const Normal = (storyProps) => <GalleryScreen {...storyProps} {...props} />;
+export function Normal(storyProps) {
+    return <GalleryScreen {...storyProps} {...props} />;
+}
 
-export const WithCallToAction = (storyProps) => (
-    <GalleryScreen {...storyProps} {...props} callToAction={callToAction()} />
-);
+export function WithCallToAction(storyProps) {
+    return <GalleryScreen {...storyProps} {...props} callToAction={callToAction()} />;
+}
 
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
+export function Definition(storyProps) {
+    return <ScreenDefinition {...storyProps} />;
+}
