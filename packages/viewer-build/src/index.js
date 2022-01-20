@@ -4,7 +4,7 @@ import './public-path';
 import Viewer from '@micromag/viewer';
 import React from 'react';
 import { render } from 'react-dom';
-import '@micromag/viewer/scss/styles.scss';
+import '@micromag/viewer/scss/styles';
 import './index.css';
 
 const initialStory = typeof window.MICROMAG_STORY !== 'undefined' ? window.MICROMAG_STORY : null;
