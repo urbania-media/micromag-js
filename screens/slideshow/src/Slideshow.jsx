@@ -5,21 +5,22 @@ import { useScreenRenderContext, useScreenSize, useViewer } from '@micromag/core
 import { useResizeObserver } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
+import Button from '@micromag/element-button';
 import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
-import Layout from '@micromag/element-layout';
-import Text from '@micromag/element-text';
 import Heading from '@micromag/element-heading';
+import Layout from '@micromag/element-layout';
 import { HStack, VStack } from '@micromag/element-stack';
+import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    layout: PropTypes.oneOf(['top', 'middle', 'bottom']),
+    layout: PropTypes.oneOf(['start', 'center', 'end']),
     title: MicromagPropTypes.headingElement,
     slides: PropTypes.oneOfType([MicromagPropTypes.imageMedias, MicromagPropTypes.imageElements]),
     // withCaptions: PropTypes.bool,
@@ -30,6 +31,8 @@ const propTypes = {
     current: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     // transitionStagger: PropTypes.number,
+    onPrevious: PropTypes.func,
+    onNext: PropTypes.func,
     className: PropTypes.string,
 };
 
@@ -45,6 +48,8 @@ const defaultProps = {
     current: true,
     transitions: null,
     // transitionStagger: 50,
+    onPrevious: null,
+    onNext: null,
     className: null,
 };
 
@@ -60,6 +65,8 @@ function SlideshowScreen({
     captionMaxLines,
     transitions,
     // transitionStagger,
+    onPrevious,
+    onNext,
     className,
 }) {
     const { width, height, menuOverScreen } = useScreenSize();
@@ -95,16 +102,46 @@ function SlideshowScreen({
 
     const { height: callToActionHeight = 0 } = callToActionRect || {};
 
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    const onClickedPrevious = useCallback(
+        (e) => {
+            const previous = currentSlide === 0 ? currentSlide : currentSlide - 1;
+            if ( previous === currentSlide && onPrevious !== null ) {
+                onPrevious();
+                console.log('should go to previous screen');
+            }
+
+            setCurrentSlide(previous);
+        },
+        [currentSlide, setCurrentSlide],
+    );
+    const onClickedNext = useCallback(
+        (e) => {
+            const next = currentSlide >= items.length - 1 ? currentSlide : currentSlide + 1;
+            if ( next === currentSlide && onNext ) {
+                onNext();
+            }
+
+            setCurrentSlide(next);
+        },
+        [currentSlide, setCurrentSlide],
+    );
+
     const items = (slides || []).map((item, itemI) => {
         const { visual = null, caption = null } = item || {};
-        const imageSize = { width: width - (finalSpacing * 2), height: height / 2 };
+        const imageSize = { width: width - finalSpacing * 2, height: height / 2 };
 
         // const { caption = null } = finalImage || {};
         const hasImage = visual !== null;
         const hasCaption = isTextFilled(caption);
 
         return (
-            <div key={`item-${itemI}`} className={styles.slide}>
+            <div
+                key={`item-${itemI}`}
+                className={styles.slide}
+                style={{ transform: `translateX(${currentSlide * -100}%)` }}
+            >
                 <div
                     className={styles.slideContainer}
                     ref={(el) => {
@@ -199,14 +236,19 @@ function SlideshowScreen({
                         style={
                             !isPlaceholder
                                 ? {
-                                    padding: spacing,
-                                }
+                                      padding: spacing,
+                                  }
                                 : null
                         }
                     >
                         <ScreenElement
                             placeholder="title"
-                            emptyLabel={<FormattedMessage defaultMessage="Title" description="Title placeholder" />}
+                            emptyLabel={
+                                <FormattedMessage
+                                    defaultMessage="Title"
+                                    description="Title placeholder"
+                                />
+                            }
                             emptyClassName={styles.emptyTitle}
                             isEmpty={!hasTitle}
                         >
@@ -219,22 +261,29 @@ function SlideshowScreen({
                             ) : null}
                         </ScreenElement>
 
-                        <HStack className={styles.slider} align={layout}>
-                            {items}
-                        </HStack>
-                    </Layout>
-
-                    {!isPlaceholder && hasCallToAction ? (
-                        <div style={{ marginTop: -finalSpacing }}>
-                            <CallToAction
-                                ref={callToActionRef}
-                                className={styles.callToAction}
-                                callToAction={callToAction}
-                                animationDisabled={isPreview}
-                                focusable={current && isView}
+                        <div className={styles.slider}>
+                            <Button
+                                className={styles.sliderPreviousBtn}
+                                onClick={onClickedPrevious}
                             />
+                            <Button className={styles.sliderNextBtn} onClick={onClickedNext} />
+                            <HStack className={styles.sliderTrack} align={layout}>
+                                {items}
+                            </HStack>
                         </div>
-                    ) : null}
+
+                        {!isPlaceholder && hasCallToAction ? (
+                            <div style={{ marginTop: -finalSpacing }}>
+                                <CallToAction
+                                    ref={callToActionRef}
+                                    className={styles.callToAction}
+                                    callToAction={callToAction}
+                                    animationDisabled={isPreview}
+                                    focusable={current && isView}
+                                />
+                            </div>
+                        ) : null}
+                    </Layout>
                 </div>
             </Container>
         </div>

@@ -130,6 +130,18 @@ export const allScreens = [
     },
     {
         id: uuid(),
+        type: 'slideshow',
+        layout: 'center',
+        title: { body: title() },
+        slides: [...Array(3).keys()].map((_, i) => ({ visual: imageMedia({ width: 800 + i }), caption: text() })),
+        background: {
+            color: { alpha: 1, color: '#FF00FF' },
+        },
+        // transitions: transitions(),
+        callToAction: callToAction(),
+    },
+    {
+        id: uuid(),
         type: 'map',
         layout: 'normal',
         title: { body: title() },

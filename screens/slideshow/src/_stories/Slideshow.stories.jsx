@@ -9,15 +9,17 @@ import {
     textStyle as textStyleExample,
     transitions,
     videoMedia,
+    callToAction,
 } from '../../../../.storybook/data';
 import definition from '../definition';
 import SlideshowScreen from '../Slideshow';
 
 const props = {
     title: { body: titleExample(), textStyle: textStyleExample },
-    slides: [...Array(3).keys()].map(() => ({ visual: imageMedia(), caption: text() })),
+    slides: [...Array(3).keys()].map((_, i) => ({ visual: imageMedia({ width: 800 + i }), caption: text() })),
     background: backgroundColor(),
     transitions: transitions(),
+    callToAction: callToAction(),
 };
 
 const videos = [...Array(3).keys()].map(() => ({ visual: videoMedia(), caption: text() }));
