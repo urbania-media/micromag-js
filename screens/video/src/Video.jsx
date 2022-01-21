@@ -278,6 +278,7 @@ const VideoScreen = ({
                             onSeeked={onSeeked}
                             onVolumeChanged={onVolumeChanged}
                             focusable={current && isView}
+                            preload={current || active ? 'auto' : 'metadata'}
                             // onPosterLoaded={onPosterLoaded}
                         />
                     )}
