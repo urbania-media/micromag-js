@@ -38,6 +38,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
+    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     resultsTransitionDuration: PropTypes.number,
@@ -59,6 +60,7 @@ const defaultProps = {
     background: null,
     callToAction: null,
     current: true,
+    active: true,
     transitions: null,
     transitionStagger: 100,
     resultsTransitionDuration: 500,
@@ -80,6 +82,7 @@ const QuizScreen = ({
     background,
     callToAction,
     current,
+    active,
     transitions,
     transitionStagger,
     resultsTransitionDuration,
@@ -393,19 +396,17 @@ const QuizScreen = ({
                         emptyClassName={styles.emptyResult}
                     >
                         {hasResult && answers !== null ? (
-                            <>
-                                <Transitions
-                                    transitions={transitions}
-                                    playing={transitionPlaying}
-                                    delay={(1 + answers.length) * transitionStagger}
-                                    disabled={transitionDisabled}
-                                >
-                                    <Text {...result} className={styles.resultText} />
-                                    {hasCallToAction ? (
-                                        <div style={{ height: callToActionHeight }} />
-                                    ) : null}
-                                </Transitions>
-                            </>
+                            <Transitions
+                                transitions={transitions}
+                                playing={transitionPlaying}
+                                delay={(1 + answers.length) * transitionStagger}
+                                disabled={transitionDisabled}
+                            >
+                                <Text {...result} className={styles.resultText} />
+                                {hasCallToAction ? (
+                                    <div style={{ height: callToActionHeight }} />
+                                ) : null}
+                            </Transitions>
                         ) : null}
                     </ScreenElement>
                 </div>
@@ -433,6 +434,7 @@ const QuizScreen = ({
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
+                    shouldLoad={current || active}
                 />
             ) : null}
             <Container width={width} height={height}>

@@ -1,22 +1,21 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useState, useCallback, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
-import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
-import { useTrackScreenEvent, useResizeObserver } from '@micromag/core/hooks';
-import { isTextFilled, getStyleFromColor } from '@micromag/core/utils';
+import { useScreenRenderContext, useScreenSize, useViewer } from '@micromag/core/contexts';
+import { useResizeObserver, useTrackScreenEvent } from '@micromag/core/hooks';
+import { getStyleFromColor, isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
+import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
+import Heading from '@micromag/element-heading';
 import Layout from '@micromag/element-layout';
+import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
-import Heading from '@micromag/element-heading';
-import Scroll from '@micromag/element-scroll';
-import CallToAction from '@micromag/element-call-to-action';
-
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -36,6 +35,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
+    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     type: PropTypes.string,
@@ -54,6 +54,7 @@ const defaultProps = {
     background: null,
     callToAction: null,
     current: true,
+    active: true,
     transitions: null,
     transitionStagger: 75,
     type: null,
@@ -72,6 +73,7 @@ const Timeline = ({
     background,
     callToAction,
     current,
+    active,
     transitions,
     transitionStagger,
     type,
@@ -81,14 +83,8 @@ const Timeline = ({
     const { width, height, menuOverScreen } = useScreenSize();
     const { menuSize } = useViewer();
 
-    const {
-        isView,
-        isPreview,
-        isPlaceholder,
-        isEdit,
-        isStatic,
-        isCapture,
-    } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
+        useScreenRenderContext();
     const finalItems = isPlaceholder ? [...new Array(5)].map(() => ({})) : items || [null];
 
     const itemsCount = finalItems !== null ? finalItems.length : 0;
@@ -169,27 +165,6 @@ const Timeline = ({
                                     </div>
                                 );
                                 break;
-                            case 'description':
-                            default:
-                                hasElement = hasDescription;
-                                elementContent = (
-                                    <div className={styles.description}>
-                                        <ScreenElement
-                                            placeholder="text"
-                                            emptyLabel={
-                                                <FormattedMessage
-                                                    defaultMessage="Description"
-                                                    description="Description placeholder"
-                                                />
-                                            }
-                                            emptyClassName={styles.empty}
-                                            isEmpty={!hasDescription}
-                                        >
-                                            {hasElement ? <Text {...description} /> : null}
-                                        </ScreenElement>
-                                    </div>
-                                );
-                                break;
                             case 'image':
                                 hasElement = hasImage;
                                 elementContent = (
@@ -215,6 +190,27 @@ const Timeline = ({
                                                     onLoaded={onImageLoaded}
                                                 />
                                             ) : null}
+                                        </ScreenElement>
+                                    </div>
+                                );
+                                break;
+                            case 'description':
+                            default:
+                                hasElement = hasDescription;
+                                elementContent = (
+                                    <div className={styles.description}>
+                                        <ScreenElement
+                                            placeholder="text"
+                                            emptyLabel={
+                                                <FormattedMessage
+                                                    defaultMessage="Description"
+                                                    description="Description placeholder"
+                                                />
+                                            }
+                                            emptyClassName={styles.empty}
+                                            isEmpty={!hasDescription}
+                                        >
+                                            {hasElement ? <Text {...description} /> : null}
                                         </ScreenElement>
                                     </div>
                                 );
@@ -343,6 +339,7 @@ const Timeline = ({
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
+                    shouldLoad={current || active}
                 />
             ) : null}
             <Container width={width} height={height}>

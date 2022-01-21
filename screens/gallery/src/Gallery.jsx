@@ -49,6 +49,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
+    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
@@ -63,24 +64,26 @@ const defaultProps = {
     background: null,
     callToAction: null,
     current: true,
+    active: true,
     transitions: null,
     transitionStagger: 50,
     className: null,
 };
 
-function GalleryScreen({
+const GalleryScreen = ({
     layout,
     images,
     withCaptions,
     background,
     callToAction,
     current,
+    active,
     spacing,
     captionMaxLines,
     transitions,
     transitionStagger,
     className,
-}) {
+}) => {
     const { width, height, menuOverScreen } = useScreenSize();
     const { menuSize } = useViewer();
 
@@ -241,6 +244,7 @@ function GalleryScreen({
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
+                    shouldLoad={current || active}
                 />
             ) : null}
             <Container width={width} height={height}>

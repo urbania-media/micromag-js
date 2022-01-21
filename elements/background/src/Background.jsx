@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { getSizeWithinBounds } from '@folklore/size';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useIntersectionObserver } from '@micromag/core/hooks';
 import { getOptimalImageUrl, getStyleFromColor } from '@micromag/core/utils';
 import Video from '@micromag/element-video';
 import classNames from 'classnames';
@@ -22,6 +21,7 @@ const propTypes = {
     playing: PropTypes.bool,
     children: PropTypes.node,
     loadingMode: PropTypes.string,
+    shouldLoad: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -37,6 +37,7 @@ const defaultProps = {
     playing: false,
     children: null,
     loadingMode: 'lazy',
+    shouldLoad: true,
 };
 
 const Background = ({
@@ -52,6 +53,7 @@ const Background = ({
     playing,
     children,
     loadingMode,
+    shouldLoad,
 }) => {
     const {
         type: mediaType = null,
@@ -63,19 +65,12 @@ const Background = ({
     const isImage = mediaType === 'image';
 
     // Lazy load
-    const {
-        ref: intersectingRef,
-        entry: { isIntersecting },
-    } = useIntersectionObserver({
-        disabled: loadingMode !== 'lazy',
-        rootMargin: '-10px'
-    });
-    const shouldLoadRef = useRef(isIntersecting || loadingMode !== 'lazy');
-    if (isIntersecting && !shouldLoadRef.current) {
-        shouldLoadRef.current = isIntersecting;
+    const newShouldLoad = shouldLoad || loadingMode !== 'lazy';
+    const wasLoadedRef = useRef(newShouldLoad);
+    if (newShouldLoad && !wasLoadedRef.current) {
+        wasLoadedRef.current = newShouldLoad;
     }
-    const { current: shouldLoad } = shouldLoadRef;
-    console.log(shouldLoad, isIntersecting);
+    const { current: finalShouldLoad } = wasLoadedRef;
 
     // color
     const containerStyle = {
@@ -92,7 +87,7 @@ const Background = ({
             height,
         );
         containerStyle.backgroundImage =
-            finalUrl !== null && shouldLoad ? `url("${finalUrl}")` : null;
+            finalUrl !== null && finalShouldLoad ? `url("${finalUrl}")` : null;
         containerStyle.backgroundRepeat = repeat ? 'repeat' : 'no-repeat';
         containerStyle.backgroundPosition = [horizontalAlign, verticalAlign].join(' ');
 
@@ -143,11 +138,11 @@ const Background = ({
                         autoPlay={playing}
                         initialMuted
                         loop
-                        preload={shouldLoad ? 'auto' : 'metadata'}
+                        preload={finalShouldLoad ? 'auto' : 'metadata'}
                     />
                 </div>
             ) : null}
-            <div className={styles.content} ref={intersectingRef}>
+            <div className={styles.content}>
                 {children}
             </div>
         </div>

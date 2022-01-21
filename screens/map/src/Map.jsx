@@ -36,6 +36,7 @@ const propTypes = {
     withMarkerImages: PropTypes.bool,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
+    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     onEnableInteraction: PropTypes.func,
     onDisableInteraction: PropTypes.func,
@@ -54,6 +55,7 @@ const defaultProps = {
     withMarkerImages: false,
     background: null,
     current: true,
+    active: true,
     transitions: null,
     onEnableInteraction: null,
     onDisableInteraction: null,
@@ -72,6 +74,7 @@ const MapScreen = ({
     withMarkerImages,
     background,
     current,
+    active,
     transitions,
     onEnableInteraction,
     onDisableInteraction,
@@ -459,6 +462,7 @@ const MapScreen = ({
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
+                    shouldLoad={current || active}
                 />
             ) : null}
             <Container width={width} height={height}>

@@ -29,6 +29,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
+    active: PropTypes.bool,
     type: PropTypes.string,
     conversation: MicromagPropTypes.conversation,
     transitions: MicromagPropTypes.transitions,
@@ -43,6 +44,7 @@ const defaultProps = {
     background: null,
     callToAction: null,
     current: true,
+    active: true,
     type: null,
     conversation: null,
     transitions: null,
@@ -166,6 +168,7 @@ const ConversationScreen = ({
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
+                    shouldLoad={current || active}
                 />
             ) : null}
 

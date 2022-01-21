@@ -25,6 +25,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
+    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
@@ -39,6 +40,7 @@ const defaultProps = {
     background: null,
     callToAction: null,
     current: true,
+    active: true,
     transitions: null,
     transitionStagger: 100,
     className: null,
@@ -53,6 +55,7 @@ const TextScreen = ({
     background,
     callToAction,
     current,
+    active,
     transitions,
     transitionStagger,
     className,
@@ -154,6 +157,7 @@ const TextScreen = ({
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
+                    shouldLoad={current || active}
                 />
             ) : null}
             <Container width={width} height={height}>

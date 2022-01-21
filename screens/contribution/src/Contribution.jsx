@@ -36,6 +36,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
+    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     resizeTransitionDuration: PropTypes.number,
@@ -56,6 +57,7 @@ const defaultProps = {
     background: null,
     callToAction: null,
     current: true,
+    active: true,
     transitions: null,
     transitionStagger: 100,
     resizeTransitionDuration: 750,
@@ -76,6 +78,7 @@ const ContributionScreen = ({
     background,
     callToAction,
     current,
+    active,
     transitions,
     transitionStagger,
     resizeTransitionDuration,
@@ -434,6 +437,7 @@ const ContributionScreen = ({
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
+                    shouldLoad={current || active}
                 />
             ) : null}
             <Container width={width} height={height}>

@@ -25,7 +25,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
-    // active: PropTypes.bool,
+    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     spacing: PropTypes.number,
     getMediaRef: PropTypes.func,
@@ -38,7 +38,7 @@ const defaultProps = {
     background: null,
     callToAction: null,
     current: true,
-    // active: true,
+    active: true,
     transitions: null,
     spacing: 20,
     getMediaRef: null,
@@ -51,7 +51,7 @@ const VideoScreen = ({
     background,
     callToAction,
     current,
-    // active,
+    active,
     transitions,
     spacing,
     getMediaRef,
@@ -346,6 +346,7 @@ const VideoScreen = ({
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
+                    shouldLoad={current || active}
                 />
             ) : null}
             <Container width={width} height={height}>

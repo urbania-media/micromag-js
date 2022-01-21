@@ -20,6 +20,8 @@ const propTypes = {
     playing: PropTypes.bool,
     children: PropTypes.node,
     className: PropTypes.string,
+    loadingMode: PropTypes.string,
+    shouldLoad: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -29,9 +31,11 @@ const defaultProps = {
     playing: false,
     children: null,
     className: null,
+    loadingMode: 'lazy',
+    shouldLoad: true,
 };
 
-const BackgroundLayers = ({ width, height, background, playing, children, className }) => {
+const BackgroundLayers = ({ width, height, background, playing, children, className, loadingMode, shouldLoad }) => {
     const hasSize = width > 0 && height > 0;
 
     const layers = useMemo(() => getLayersFromBackground(background), [background]);
@@ -83,6 +87,8 @@ const BackgroundLayers = ({ width, height, background, playing, children, classN
                                 playing={playing}
                                 horizontalAlign={horizontalAlign}
                                 verticalAlign={verticalAlign}
+                                loadingMode={loadingMode}
+                                shouldLoad={shouldLoad}
                                 {...layer}
                             />
                         </div>
