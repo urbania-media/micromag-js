@@ -5,6 +5,8 @@ import {
     backgroundColor,
     imageMedia,
     text,
+    title as titleExample,
+    textStyle as textStyleExample,
     transitions,
     videoMedia,
 } from '../../../../.storybook/data';
@@ -12,6 +14,7 @@ import definition from '../definition';
 import SlideshowScreen from '../Slideshow';
 
 const props = {
+    title: { body: titleExample(), textStyle: textStyleExample },
     slides: [...Array(3).keys()].map(() => ({ visual: imageMedia(), caption: text() })),
     background: backgroundColor(),
     transitions: transitions(),

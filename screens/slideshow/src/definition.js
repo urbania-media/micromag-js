@@ -18,16 +18,27 @@ export default [
             description: 'Slideshow screen title',
         }),
         component: SlideshowScreen,
-        layouts: ['top', 'middle', 'bottom'],
+        layouts: ['start', 'center', 'end'],
         // transforms,
         fields: [
             {
                 name: 'layout',
                 type: 'screen-layout',
-                defaultValue: 'two-vertical-equal',
+                defaultValue: 'center',
                 label: defineMessage({
                     defaultMessage: 'Layout',
                     description: 'Layout field label',
+                }),
+            },
+            {
+                name: 'title',
+                type: 'heading-element',
+                theme: {
+                    textStyle: 'heading1',
+                },
+                label: defineMessage({
+                    defaultMessage: 'Title',
+                    description: 'Title field label',
                 }),
             },
             {

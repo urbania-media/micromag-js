@@ -7,7 +7,10 @@ import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
+import Layout from '@micromag/element-layout';
 import Text from '@micromag/element-text';
+import Heading from '@micromag/element-heading';
+import { HStack, VStack } from '@micromag/element-stack';
 import Visual from '@micromag/element-visual';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -17,8 +20,9 @@ import styles from './styles.module.scss';
 
 const propTypes = {
     layout: PropTypes.oneOf(['top', 'middle', 'bottom']),
+    title: MicromagPropTypes.headingElement,
     slides: PropTypes.oneOfType([MicromagPropTypes.imageMedias, MicromagPropTypes.imageElements]),
-    withCaptions: PropTypes.bool,
+    // withCaptions: PropTypes.bool,
     spacing: PropTypes.number,
     captionMaxLines: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
@@ -31,7 +35,8 @@ const propTypes = {
 
 const defaultProps = {
     layout: 'middle',
-    withCaptions: false,
+    // withCaptions: false,
+    title: null,
     slides: [],
     spacing: 20,
     captionMaxLines: 2,
@@ -45,8 +50,9 @@ const defaultProps = {
 
 function SlideshowScreen({
     layout,
+    title,
     slides,
-    withCaptions,
+    // withCaptions,
     background,
     callToAction,
     current,
@@ -71,6 +77,8 @@ function SlideshowScreen({
     const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
+    const hasTitle = title !== null;
+
     const onImageLoaded = useCallback(() => {
         setImagesLoaded(imagesLoaded + 1);
     }, [imagesLoaded, setImagesLoaded]);
@@ -87,21 +95,18 @@ function SlideshowScreen({
 
     const { height: callToActionHeight = 0 } = callToActionRect || {};
 
-    // console.log(transitionDisabled);
-
     const items = (slides || []).map((item, itemI) => {
         const { visual = null, caption = null } = item || {};
-        const imageSize = { width: width / 2, height: height / 2 };
+        const imageSize = { width: width - (finalSpacing * 2), height: height / 2 };
 
         // const { caption = null } = finalImage || {};
-
         const hasImage = visual !== null;
         const hasCaption = isTextFilled(caption);
 
         return (
-            <div key={`item-${itemI}`} className={styles.gridItem}>
+            <div key={`item-${itemI}`} className={styles.slide}>
                 <div
-                    className={styles.imageContainer}
+                    className={styles.slideContainer}
                     ref={(el) => {
                         imagesEl.current[itemI] = el;
                     }}
@@ -111,59 +116,52 @@ function SlideshowScreen({
                         delay={1}
                         playing={transitionPlaying}
                         disabled={transitionDisabled}
-                        fullscreen
                     >
-                        <ScreenElement
-                            placeholder="image"
-                            placeholderProps={{ className: styles.placeholder, height: '100%' }}
-                            emptyLabel={
-                                <FormattedMessage
-                                    defaultMessage="Image"
-                                    description="Image placeholder"
+                        <VStack>
+                            <ScreenElement
+                                placeholder="image"
+                                placeholderProps={{ className: styles.placeholder, height: '100%' }}
+                                emptyLabel={
+                                    <FormattedMessage
+                                        defaultMessage="Image"
+                                        description="Image placeholder"
+                                    />
+                                }
+                                emptyClassName={styles.emptyImage}
+                                isEmpty={!hasImage}
+                            >
+                                <Visual
+                                    className={styles.image}
+                                    media={visual}
+                                    {...imageSize}
+                                    objectFit={{ fit: 'contain' }}
+                                    playing={backgroundPlaying}
+                                    onLoaded={onImageLoaded}
                                 />
-                            }
-                            emptyClassName={styles.emptyImage}
-                            isEmpty={!hasImage}
-                        >
-                            <Visual
-                                className={styles.image}
-                                media={visual}
-                                {...imageSize}
-                                objectFit={{ fit: 'cover' }}
-                                playing={backgroundPlaying}
-                                onLoaded={onImageLoaded}
-                            />
-                        </ScreenElement>
+                            </ScreenElement>
+
+                            <ScreenElement
+                                placeholder="line"
+                                emptyLabel={
+                                    <FormattedMessage
+                                        defaultMessage="Caption"
+                                        description="Caption placeholder"
+                                    />
+                                }
+                                emptyClassName={styles.emptyCaption}
+                                isEmpty={!hasCaption}
+                            >
+                                <div className={styles.caption}>
+                                    <Text
+                                        {...caption}
+                                        className={styles.captionText}
+                                        lineClamp={captionMaxLines}
+                                    />
+                                </div>
+                            </ScreenElement>
+                        </VStack>
                     </Transitions>
                 </div>
-                {withCaptions ? (
-                    <Transitions
-                        transitions={transitions}
-                        delay={1}
-                        playing={transitionPlaying}
-                        disabled={transitionDisabled}
-                    >
-                        <ScreenElement
-                            placeholder="line"
-                            emptyLabel={
-                                <FormattedMessage
-                                    defaultMessage="Caption"
-                                    description="Caption placeholder"
-                                />
-                            }
-                            emptyClassName={styles.emptyCaption}
-                            isEmpty={!hasCaption}
-                        >
-                            <div className={styles.caption}>
-                                <Text
-                                    {...caption}
-                                    className={styles.captionText}
-                                    lineClamp={captionMaxLines}
-                                />
-                            </div>
-                        </ScreenElement>
-                    </Transitions>
-                ) : null}
             </div>
         );
     });
@@ -195,7 +193,37 @@ function SlideshowScreen({
                         paddingBottom: hasCallToAction ? callToActionHeight - finalSpacing : 0,
                     }}
                 >
-                    {items}
+                    <Layout
+                        className={styles.layout}
+                        fullscreen
+                        style={
+                            !isPlaceholder
+                                ? {
+                                    padding: spacing,
+                                }
+                                : null
+                        }
+                    >
+                        <ScreenElement
+                            placeholder="title"
+                            emptyLabel={<FormattedMessage defaultMessage="Title" description="Title placeholder" />}
+                            emptyClassName={styles.emptyTitle}
+                            isEmpty={!hasTitle}
+                        >
+                            {hasTitle ? (
+                                <Heading
+                                    className={classNames([styles.title])}
+                                    {...title}
+                                    size={1}
+                                />
+                            ) : null}
+                        </ScreenElement>
+
+                        <HStack className={styles.slider} align={layout}>
+                            {items}
+                        </HStack>
+                    </Layout>
+
                     {!isPlaceholder && hasCallToAction ? (
                         <div style={{ marginTop: -finalSpacing }}>
                             <CallToAction

@@ -6,4 +6,14 @@
     .content {
         @extend %fullscreen;
     }
+
+    .layout {
+        padding: 1rem;
+    }
+
+    .slider {
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+    }
 }
