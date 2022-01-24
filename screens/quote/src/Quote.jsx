@@ -81,6 +81,7 @@ const QuoteScreen = ({
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const backgroundPlaying = current && (isView || isEdit);
+    const backgroundShouldLoad = current || active || !isView;
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
 
@@ -145,7 +146,7 @@ const QuoteScreen = ({
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
-                    shouldLoad={current || active}
+                    shouldLoad={backgroundShouldLoad}
                 />
             ) : null}
             <Container width={width} height={height}>

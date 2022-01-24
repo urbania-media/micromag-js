@@ -84,6 +84,7 @@ const Video360Screen = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
+    const backgroundShouldLoad = current || active || !isView;
 
     const videoContainerRef = useRef();
     const apiRef = useRef();
@@ -530,7 +531,7 @@ const Video360Screen = ({
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
-                    shouldLoad={current || active}
+                    shouldLoad={backgroundShouldLoad}
                 />
             ) : null}
             <Container width={width} height={height}>

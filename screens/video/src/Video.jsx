@@ -69,6 +69,8 @@ const VideoScreen = ({
         isCapture,
     } = useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
+    const backgroundShouldLoad = current || active || !isView;
+    const videoShouldLoad = current || active || !isView;
 
     const apiRef = useRef();
     const { togglePlay, toggleMute, seek, play, pause, mediaRef: apiMediaRef = null } = apiRef.current || {};
@@ -278,7 +280,7 @@ const VideoScreen = ({
                             onSeeked={onSeeked}
                             onVolumeChanged={onVolumeChanged}
                             focusable={current && isView}
-                            preload={current || active ? 'auto' : 'metadata'}
+                            preload={videoShouldLoad ? 'auto' : 'metadata'}
                             // onPosterLoaded={onPosterLoaded}
                         />
                     )}
@@ -347,7 +349,7 @@ const VideoScreen = ({
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
-                    shouldLoad={current || active}
+                    shouldLoad={backgroundShouldLoad}
                 />
             ) : null}
             <Container width={width} height={height}>

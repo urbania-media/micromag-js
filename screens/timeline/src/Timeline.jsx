@@ -102,6 +102,7 @@ const Timeline = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
     const backgroundPlaying = current && (isView || isEdit);
+    const backgroundShouldLoad = current || active || !isView;
 
     const onImageLoaded = useCallback(() => {
         setImagesLoaded(imagesLoaded + 1);
@@ -339,7 +340,7 @@ const Timeline = ({
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
-                    shouldLoad={current || active}
+                    shouldLoad={backgroundShouldLoad}
                 />
             ) : null}
             <Container width={width} height={height}>

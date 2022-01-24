@@ -78,6 +78,7 @@ const GalleryFeedScreen = ({
         isCapture,
     } = useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
+    const backgroundShouldLoad = current || active || !isView;
     const hasImages = images !== null;
     const imagesCount = hasImages ? images.length : 0;
     const [imagesLoaded, setImagesLoaded] = useState(0);
@@ -226,7 +227,7 @@ const GalleryFeedScreen = ({
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
-                    shouldLoad={current || active}
+                    shouldLoad={backgroundShouldLoad}
                 />
             ) : null}
             <Container width={width} height={height}>

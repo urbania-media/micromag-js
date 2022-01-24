@@ -100,6 +100,7 @@ const ImageScreen = ({
         isCapture,
     } = useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
+    const backgroundShouldLoad = current || active || !isView;
 
     const hasImage = image !== null;
     const hasTitle = isTextFilled(title);
@@ -304,7 +305,7 @@ const ImageScreen = ({
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
-                    shouldLoad={current || active}
+                    shouldLoad={backgroundShouldLoad}
                 />
             ) : null}
             <Container width={width} height={height}>

@@ -109,6 +109,7 @@ const MapScreen = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
     const backgroundPlaying = current && (isView || isEdit);
+    const backgroundShouldLoad = current || active || !isView;
     const [opened, setOpened] = useState(isStatic || isCapture);
 
     const onMapReady = useCallback(() => setReady(true), [setReady]);
@@ -462,7 +463,7 @@ const MapScreen = ({
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
-                    shouldLoad={current || active}
+                    shouldLoad={backgroundShouldLoad}
                 />
             ) : null}
             <Container width={width} height={height}>
