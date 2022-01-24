@@ -29,6 +29,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
+    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     type: PropTypes.string,
@@ -43,6 +44,7 @@ const defaultProps = {
     background: null,
     callToAction: null,
     current: true,
+    active: true,
     transitions: null,
     transitionStagger: 75,
     type: null,
@@ -57,6 +59,7 @@ const GalleryFeedScreen = ({
     background,
     callToAction,
     current,
+    active,
     transitions,
     transitionStagger,
     type,
@@ -75,6 +78,7 @@ const GalleryFeedScreen = ({
         isCapture,
     } = useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
+    const backgroundShouldLoad = current || active || !isView;
     const hasImages = images !== null;
     const imagesCount = hasImages ? images.length : 0;
     const [imagesLoaded, setImagesLoaded] = useState(0);
@@ -223,6 +227,7 @@ const GalleryFeedScreen = ({
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
+                    shouldLoad={backgroundShouldLoad}
                 />
             ) : null}
             <Container width={width} height={height}>

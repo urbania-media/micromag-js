@@ -1,15 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-
-import {
-    imagesWithCaptions,
-    backgroundColor,
-    transitions,
-    callToAction,
-} from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import GalleryCaptionsScreen from '../GalleryCaptions';
+import {
+    backgroundColor,
+    callToAction,
+    imagesWithCaptions,
+    transitions,
+} from '../../../../.storybook/data';
 import definition from '../definition';
+import GalleryCaptionsScreen from '../GalleryCaptions';
 
 const props = {
     images: imagesWithCaptions({ count: 20 }),
@@ -26,18 +25,32 @@ export default {
     },
 };
 
-export const Placeholder = (storyProps) => <GalleryCaptionsScreen {...storyProps} />;
+export function Placeholder(storyProps) {
+    return <GalleryCaptionsScreen {...storyProps} />;
+}
 
-export const Preview = (storyProps) => <GalleryCaptionsScreen {...storyProps} {...props} />;
-export const Static = (storyProps) => <GalleryCaptionsScreen {...storyProps} {...props} />;
-export const Capture = (storyProps) => <GalleryCaptionsScreen {...storyProps} {...props} />;
+export function Preview(storyProps) {
+    return <GalleryCaptionsScreen {...storyProps} {...props} />;
+}
+export function Static(storyProps) {
+    return <GalleryCaptionsScreen {...storyProps} {...props} />;
+}
+export function Capture(storyProps) {
+    return <GalleryCaptionsScreen {...storyProps} {...props} />;
+}
 
-export const Edit = (storyProps) => <GalleryCaptionsScreen {...storyProps} />;
+export function Edit(storyProps) {
+    return <GalleryCaptionsScreen {...storyProps} />;
+}
 
-export const Normal = (storyProps) => <GalleryCaptionsScreen {...storyProps} {...props} />;
+export function Normal(storyProps) {
+    return <GalleryCaptionsScreen {...storyProps} {...props} />;
+}
 
-export const WithCallToAction = (storyProps) => (
-    <GalleryCaptionsScreen {...storyProps} {...props} callToAction={callToAction()} />
-);
+export function WithCallToAction(storyProps) {
+    return <GalleryCaptionsScreen {...storyProps} {...props} callToAction={callToAction()} />;
+}
 
-export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;
+export function Definition(storyProps) {
+    return <ScreenDefinition {...storyProps} />;
+}

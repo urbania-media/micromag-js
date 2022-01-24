@@ -41,6 +41,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
+    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     className: PropTypes.string,
 };
@@ -60,6 +61,7 @@ const defaultProps = {
     background: null,
     callToAction: null,
     current: true,
+    active: true,
     transitions: null,
     className: null,
 };
@@ -79,6 +81,7 @@ const ImageScreen = ({
     background,
     callToAction,
     current,
+    active,
     transitions,
     className,
 }) => {
@@ -97,6 +100,7 @@ const ImageScreen = ({
         isCapture,
     } = useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
+    const backgroundShouldLoad = current || active || !isView;
 
     const hasImage = image !== null;
     const hasTitle = isTextFilled(title);
@@ -301,6 +305,7 @@ const ImageScreen = ({
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
+                    shouldLoad={backgroundShouldLoad}
                 />
             ) : null}
             <Container width={width} height={height}>

@@ -54,7 +54,7 @@ const defaultProps = {
     className: null,
 };
 
-const Navbar = ({
+function Navbar({
     filters,
     media,
     selectedMedia,
@@ -71,7 +71,7 @@ const Navbar = ({
     onFocusSearch,
     onFiltersChange,
     onClickBack,
-}) => {
+}) {
     const intl = useIntl();
     const throttle = useRef(null);
     const [open, setOpen] = useState(false);
@@ -178,7 +178,7 @@ const Navbar = ({
             ])}
         >
             <div className={styles.inner}>
-                { media === null ? (
+                {media === null ? (
                     <strong className="list-group-item rounded w-100 py-1 px-1 navbar-text d-flex align-items-center justify-content-between">
                         {selectedMedia !== null ? (
                             <Button
@@ -206,7 +206,6 @@ const Navbar = ({
                                 />
                             </span>
                         )}
-
                         {selectedMedia === null ? (
                             <Button
                                 theme="primary"
@@ -229,10 +228,10 @@ const Navbar = ({
                             />
                         )}
                     </strong>
-                ): null}
+                ) : null}
 
                 {!withoutSource && media === null ? (
-                    <div className="py-2 d-flex w-100 flex-nowrap">
+                    <div className="mt-1 py-2 d-flex w-100 align-items-center flex-nowrap">
                         <DropdownSection
                             items={sources}
                             value={filters.source || null}
@@ -241,8 +240,8 @@ const Navbar = ({
                     </div>
                 ) : null}
 
-                <div className="w-100 d-flex flex-nowrap justify-content-between">
-                    {media !== null ? (
+                {media !== null ? (
+                    <div className="w-100 d-flex flex-nowrap justify-content-between">
                         <form className={classNames(['form-inline', 'mr-2'])}>
                             <Button
                                 theme="secondary"
@@ -252,11 +251,11 @@ const Navbar = ({
                                 onClick={onClickBack}
                             />
                         </form>
-                    ) : null}
-                    <strong className="navbar-text mr-auto w-100">
-                        {media !== null ? media.name : null}
-                    </strong>
-                </div>
+                        <strong className="navbar-text mr-auto w-100">
+                            {media !== null ? media.name : null}
+                        </strong>
+                    </div>
+                ) : null}
 
                 {media === null ? (
                     <>
@@ -281,6 +280,7 @@ const Navbar = ({
                         ) : null}
                     </>
                 ) : null}
+
                 {hasFilter && !open && media === null ? (
                     <div className="list-group-item py-2 px-2 d-flex w-100 my-2 flex-nowrap justify-content-between">
                         <ActiveFilters
@@ -294,7 +294,7 @@ const Navbar = ({
             </div>
         </nav>
     );
-};
+}
 
 Navbar.propTypes = propTypes;
 Navbar.defaultProps = defaultProps;

@@ -37,7 +37,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
-    // active: PropTypes.bool,
+    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     onPrevious: PropTypes.func,
     onNext: PropTypes.func,
@@ -52,7 +52,7 @@ const defaultProps = {
     background: null,
     callToAction: null,
     current: true,
-    // active: true,
+    active: true,
     transitions: null,
     onPrevious: null,
     onNext: null,
@@ -67,7 +67,7 @@ const Video360Screen = ({
     background,
     callToAction,
     current,
-    // active,
+    active,
     transitions,
     onPrevious,
     onNext,
@@ -84,6 +84,7 @@ const Video360Screen = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
+    const backgroundShouldLoad = current || active || !isView;
 
     const videoContainerRef = useRef();
     const apiRef = useRef();
@@ -530,6 +531,7 @@ const Video360Screen = ({
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
+                    shouldLoad={backgroundShouldLoad}
                 />
             ) : null}
             <Container width={width} height={height}>

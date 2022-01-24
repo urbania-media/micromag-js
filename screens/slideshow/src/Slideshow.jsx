@@ -29,6 +29,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
+    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     // transitionStagger: PropTypes.number,
     onPrevious: PropTypes.func,
@@ -46,6 +47,7 @@ const defaultProps = {
     background: null,
     callToAction: null,
     current: true,
+    active: true,
     transitions: null,
     // transitionStagger: 50,
     onPrevious: null,
@@ -53,7 +55,7 @@ const defaultProps = {
     className: null,
 };
 
-function SlideshowScreen({
+const SlideshowScreen = ({
     layout,
     title,
     slides,
@@ -61,6 +63,7 @@ function SlideshowScreen({
     background,
     callToAction,
     current,
+    active,
     spacing,
     captionMaxLines,
     transitions,
@@ -68,13 +71,14 @@ function SlideshowScreen({
     onPrevious,
     onNext,
     className,
-}) {
+}) => {
     const { width, height, menuOverScreen } = useScreenSize();
     const { menuSize } = useViewer();
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
+    const backgroundShouldLoad = current || active || !isView;
 
     const finalSpacing = isPlaceholder ? 5 : spacing;
 
@@ -220,6 +224,7 @@ function SlideshowScreen({
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
+                    shouldLoad={backgroundShouldLoad}
                 />
             ) : null}
             <Container width={width} height={height}>
@@ -288,7 +293,7 @@ function SlideshowScreen({
             </Container>
         </div>
     );
-}
+};
 
 SlideshowScreen.propTypes = propTypes;
 SlideshowScreen.defaultProps = defaultProps;

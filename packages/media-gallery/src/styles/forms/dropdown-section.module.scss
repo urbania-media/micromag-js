@@ -16,4 +16,9 @@
         @extend %reset-button;
         font-weight: bold;
     }
+
+    .dropdown {
+        left: auto;
+        right: 0;
+    }
 }

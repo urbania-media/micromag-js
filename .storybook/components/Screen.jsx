@@ -1,13 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { getDeviceScreens } from '../../packages/core/src/utils';
-import { useScreenSizeFromElement } from '../../packages/core/src/hooks';
-import * as MicromagPropTypes from '../../packages/core/src/lib/PropTypes';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { ScreenProvider } from '../../packages/core/src/contexts/ScreenContext';
 import { ScreenSizeProvider } from '../../packages/core/src/contexts/ScreenSizeContext';
+import { useScreenSizeFromElement } from '../../packages/core/src/hooks';
+import * as MicromagPropTypes from '../../packages/core/src/lib/PropTypes';
+import { getDeviceScreens } from '../../packages/core/src/utils';
 import { ApiProvider } from '../../packages/data/src/contexts/ApiContext';
-
 import styles from './styles/screen.module.scss';
 
 const propTypes = {
@@ -33,7 +32,7 @@ const defaultProps = {
     withBorder: false,
 };
 
-const Screen = ({
+function Screen({
     width,
     height,
     screen,
@@ -43,7 +42,7 @@ const Screen = ({
     screenClassName,
     withBorder,
     children,
-}) => {
+}) {
     const { ref: refContainer, screenSize } = useScreenSizeFromElement({
         width,
         height,
@@ -90,7 +89,7 @@ const Screen = ({
             </div>
         </div>
     );
-};
+}
 
 Screen.propTypes = propTypes;
 Screen.defaultProps = defaultProps;

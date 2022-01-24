@@ -39,6 +39,7 @@ const propTypes = {
     callToAction: MicromagPropTypes.callToAction,
     withPercentLabels: PropTypes.bool,
     current: PropTypes.bool,
+    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     resultTransitionDuration: PropTypes.number,
@@ -58,6 +59,7 @@ const defaultProps = {
     callToAction: null,
     withPercentLabels: true,
     current: true,
+    active: true,
     transitions: null,
     transitionStagger: 100,
     resultTransitionDuration: 500,
@@ -77,6 +79,7 @@ const SurveyScreen = ({
     callToAction,
     withPercentLabels,
     current,
+    active,
     transitions,
     transitionStagger,
     resultTransitionDuration,
@@ -158,6 +161,7 @@ const SurveyScreen = ({
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const backgroundPlaying = current && (isView || isEdit);
+    const backgroundShouldLoad = current || active || !isView;
 
     const onAnswerClick = useCallback(
         (answerIndex) => {
@@ -436,6 +440,7 @@ const SurveyScreen = ({
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
+                    shouldLoad={backgroundShouldLoad}
                 />
             ) : null}
             <Container width={width} height={height}>

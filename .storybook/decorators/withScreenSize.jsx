@@ -1,16 +1,17 @@
-import React from 'react';
 import isObject from 'lodash/isObject';
-import { getDeviceScreens } from '../../packages/core/src/utils';
-import { useScreenSizeFromElement } from '../../packages/core/src/hooks';
+import React from 'react';
 import { ScreenSizeProvider } from '../../packages/core/src/contexts';
+import { useScreenSizeFromElement } from '../../packages/core/src/hooks';
+import { getDeviceScreens } from '../../packages/core/src/utils';
 
 const withScreenSize = (Story, { parameters: { screenSize: screenSizeOptions = null } }) => {
     const enabled = isObject(screenSizeOptions) || screenSizeOptions === true;
-    const { width = null, height = null, style = null, containerStyle = null } = isObject(
-        screenSizeOptions,
-    )
-        ? screenSizeOptions
-        : {};
+    const {
+        width = null,
+        height = null,
+        style = null,
+        containerStyle = null,
+    } = isObject(screenSizeOptions) ? screenSizeOptions : {};
     const { ref: refContainer, screenSize } = useScreenSizeFromElement({
         width,
         height,

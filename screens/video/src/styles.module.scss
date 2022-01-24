@@ -10,7 +10,7 @@
         @extend %fullscreen;
         top: 50%;
         height: 0;
-        padding-bottom: 56.25%;        
+        padding-bottom: 56.25%;
         transform: translateY(-50%);
     }
 
@@ -28,13 +28,13 @@
     .mediaControls {
         padding: 10px 20px 20px;
     }
-    
+
     .placeholder {
         display: flex;
         flex-direction: column;
         justify-content: center;
         height: 100%;
-    }   
+    }
 
     .videoContainer {
         position: absolute;
@@ -44,7 +44,7 @@
         position: absolute;
         bottom: 0;
         width: 100%;
-    }    
+    }
 
     &.fullscreen {
         .image,

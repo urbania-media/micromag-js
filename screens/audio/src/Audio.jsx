@@ -27,6 +27,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
+    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     getMediaRef: PropTypes.func,
     className: PropTypes.string,
@@ -39,6 +40,7 @@ const defaultProps = {
     background: null,
     callToAction: null,
     current: true,
+    active: true,
     transitions: null,
     getMediaRef: null,
     className: null,
@@ -51,6 +53,7 @@ const AudioScreen = ({
     background,
     callToAction,
     current,
+    active,
     transitions,
     getMediaRef,
     className,
@@ -73,6 +76,7 @@ const AudioScreen = ({
     const [ready, setReady] = useState(isStatic || isPlaceholder);
 
     const backgroundPlaying = current && (isView || isEdit);
+    const backgroundShouldLoad = current || active || !isView;
     const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
@@ -100,7 +104,7 @@ const AudioScreen = ({
 
     const apiRef = useRef();
     const { togglePlay, toggleMute, play, pause, mediaRef: apiMediaRef = null } = apiRef.current || {};
-    
+
     useEffect(() => {
         if (apiMediaRef !== null && getMediaRef !== null) {
             getMediaRef(apiMediaRef.current);
@@ -277,6 +281,7 @@ const AudioScreen = ({
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
+                    shouldLoad={backgroundShouldLoad}
                 />
             ) : null}
             <Container width={width} height={height}>

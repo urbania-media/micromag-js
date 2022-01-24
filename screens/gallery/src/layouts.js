@@ -110,56 +110,56 @@ export default {
                 columns: 1,
                 rows: [1, 2],
             },
-        ]
+        ],
     },
-    // 5 
+    // 5
     'two-one-two': {
         layout: [
             {
                 rows: 2,
-                columns: [1, 1]
+                columns: [1, 1],
             },
             {
                 rows: 3,
-                columns: [1]
+                columns: [1],
             },
             {
                 rows: 2,
-                columns: [1, 1]
+                columns: [1, 1],
             },
-        ]
+        ],
     },
     'one-two-two': {
         layout: [
             {
                 rows: 3,
-                columns: [1]
+                columns: [1],
             },
             {
                 rows: 2,
-                columns: [1, 1]
-            },            
+                columns: [1, 1],
+            },
             {
                 rows: 2,
-                columns: [1, 1]
+                columns: [1, 1],
             },
-        ]
+        ],
     },
     'two-two-one': {
         layout: [
             {
                 rows: 2,
-                columns: [1, 1]
-            },            
+                columns: [1, 1],
+            },
             {
                 rows: 2,
-                columns: [1, 1]
+                columns: [1, 1],
             },
             {
                 rows: 3,
-                columns: [1]
+                columns: [1],
             },
-        ]
+        ],
     },
     // 6
     'two-by-three': {
@@ -215,7 +215,7 @@ export default {
             {
                 rows: 1,
                 columns: [1],
-            },            
+            },
         ],
-    }
+    },
 };

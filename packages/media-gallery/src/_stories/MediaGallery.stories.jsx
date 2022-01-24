@@ -1,18 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { MemoryRouter } from 'react-router';
-
-import { ApiProvider } from '../../../data/src/contexts/ApiContext';
-
-import FieldsProvider from '../../../fields/src/FieldsProvider';
-
-import video from '../../../../.storybook/data/test.mp4';
 import sound from '../../../../.storybook/data/test.mp3';
+import video from '../../../../.storybook/data/test.mp4';
 import withUppy from '../../../../.storybook/decorators/withUppy';
-import list from './list.json';
+import { ApiProvider } from '../../../data/src/contexts/ApiContext';
+import FieldsProvider from '../../../fields/src/FieldsProvider';
 // import { paragraph, image } from '../../../../.storybook/data';
-
 import MediaGallery from '../components/MediaGallery';
+import list from './list.json';
 
 const hasWindow = typeof window !== 'undefined';
 const apiBaseUrl = hasWindow ? `${window.location.protocol}//${window.location.host}/api` : '/api';
@@ -23,8 +19,7 @@ const props = {
             id: '1',
             type: 'video',
             thumbnail_url: 'https://picsum.photos/id/100/300/300',
-            name:
-                'uuuuurbaniaDog1 sdfasdflasd s df adsf asdfasdfgasdf dasgf ads gadsfg adsfg adfg dsfg.mov',
+            name: 'uuuuurbaniaDog1 sdfasdflasd s df adsf asdfasdfgasdf dasgf ads gadsfg adsfg adfg dsfg.mov',
             url: video,
             metadata: {
                 user: { id: 1, name: 'paul ' },
@@ -78,42 +73,50 @@ export default {
     },
 };
 
-export const Normal = () => (
-    <ApiProvider baseUrl={apiBaseUrl}>
-        <FieldsProvider>
-            <MemoryRouter>
-                <MediaGallery />
-            </MemoryRouter>
-        </FieldsProvider>
-    </ApiProvider>
-);
+export function Normal() {
+    return (
+        <ApiProvider baseUrl={apiBaseUrl}>
+            <FieldsProvider>
+                <MemoryRouter>
+                    <MediaGallery />
+                </MemoryRouter>
+            </FieldsProvider>
+        </ApiProvider>
+    );
+}
 
-export const WithTypesRequest = () => (
-    <ApiProvider baseUrl={apiBaseUrl}>
-        <FieldsProvider>
-            <MemoryRouter>
-                <MediaGallery type={['image', 'video']} />
-            </MemoryRouter>
-        </FieldsProvider>
-    </ApiProvider>
-);
+export function WithTypesRequest() {
+    return (
+        <ApiProvider baseUrl={apiBaseUrl}>
+            <FieldsProvider>
+                <MemoryRouter>
+                    <MediaGallery type={['image', 'video']} />
+                </MemoryRouter>
+            </FieldsProvider>
+        </ApiProvider>
+    );
+}
 
-export const WithTestMedia = () => (
-    <ApiProvider baseUrl={apiBaseUrl}>
-        <FieldsProvider>
-            <MemoryRouter>
-                <MediaGallery {...props} type="image" />
-            </MemoryRouter>
-        </FieldsProvider>
-    </ApiProvider>
-);
+export function WithTestMedia() {
+    return (
+        <ApiProvider baseUrl={apiBaseUrl}>
+            <FieldsProvider>
+                <MemoryRouter>
+                    <MediaGallery {...props} type="image" />
+                </MemoryRouter>
+            </FieldsProvider>
+        </ApiProvider>
+    );
+}
 
-export const WithList = () => (
-    <ApiProvider baseUrl={apiBaseUrl}>
-        <FieldsProvider>
-            <MemoryRouter>
-                <MediaGallery medias={list} />
-            </MemoryRouter>
-        </FieldsProvider>
-    </ApiProvider>
-);
+export function WithList() {
+    return (
+        <ApiProvider baseUrl={apiBaseUrl}>
+            <FieldsProvider>
+                <MemoryRouter>
+                    <MediaGallery medias={list} />
+                </MemoryRouter>
+            </FieldsProvider>
+        </ApiProvider>
+    );
+}

@@ -36,6 +36,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
+    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     resizeTransitionDuration: PropTypes.number,
@@ -56,6 +57,7 @@ const defaultProps = {
     background: null,
     callToAction: null,
     current: true,
+    active: true,
     transitions: null,
     transitionStagger: 100,
     resizeTransitionDuration: 750,
@@ -76,6 +78,7 @@ const ContributionScreen = ({
     background,
     callToAction,
     current,
+    active,
     transitions,
     transitionStagger,
     resizeTransitionDuration,
@@ -98,6 +101,7 @@ const ContributionScreen = ({
     } = useScreenRenderContext();
 
     const backgroundPlaying = current && (isView || isEdit);
+    const backgroundShouldLoad = current || active || !isView;
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
@@ -434,6 +438,7 @@ const ContributionScreen = ({
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
+                    shouldLoad={backgroundShouldLoad}
                 />
             ) : null}
             <Container width={width} height={height}>

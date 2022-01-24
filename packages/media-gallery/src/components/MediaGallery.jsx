@@ -41,7 +41,7 @@ const defaultProps = {
     onClickMedia: null,
 };
 
-const MediaGallery = ({
+function MediaGallery({
     type,
     source,
     isPicker,
@@ -54,7 +54,7 @@ const MediaGallery = ({
     className,
     navbarClassName,
     onClickMedia,
-}) => {
+}) {
     // Base state for filters
     const defaultFilters = {
         type,
@@ -162,8 +162,7 @@ const MediaGallery = ({
                 onClickBack={onClickBack}
                 onClickCancel={onClickCancel}
                 withoutTitle={withoutTitle}
-                // withoutSource={withoutSource}
-                withoutSource={false}
+                withoutSource={withoutSource}
                 withoutType={withoutType}
                 storyId={storyId}
                 authors={authors}
@@ -201,7 +200,7 @@ const MediaGallery = ({
             />
         </div>
     );
-};
+}
 
 MediaGallery.propTypes = propTypes;
 MediaGallery.defaultProps = defaultProps;

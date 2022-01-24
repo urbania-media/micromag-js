@@ -1,23 +1,21 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback, useEffect, useMemo, useState, useRef } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
-import { v1 as uuid } from 'uuid';
-
-import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
-import { useResizeObserver, useTrackScreenEvent } from '@micromag/core/hooks';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
+import { useScreenRenderContext, useScreenSize, useViewer } from '@micromag/core/contexts';
+import { useResizeObserver, useTrackScreenEvent } from '@micromag/core/hooks';
+import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
+import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
+import Heading from '@micromag/element-heading';
 import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
-import CallToAction from '@micromag/element-call-to-action';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { isTextFilled } from '@micromag/core/utils';
-import Heading from '@micromag/element-heading';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
+import { v1 as uuid } from 'uuid';
 import ConversationMessage from './ConversationMessage';
-
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -29,6 +27,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
+    active: PropTypes.bool,
     type: PropTypes.string,
     conversation: MicromagPropTypes.conversation,
     transitions: MicromagPropTypes.transitions,
@@ -43,6 +42,7 @@ const defaultProps = {
     background: null,
     callToAction: null,
     current: true,
+    active: true,
     type: null,
     conversation: null,
     transitions: null,
@@ -57,6 +57,7 @@ const ConversationScreen = ({
     background,
     callToAction,
     current,
+    active,
     type,
     conversation,
     transitions,
@@ -70,6 +71,7 @@ const ConversationScreen = ({
         useScreenRenderContext();
 
     const backgroundPlaying = current && (isView || isEdit);
+    const backgroundShouldLoad = current || active || !isView;
     const withAnimation = isView && !isStatic && timingMode === 'sequence';
     const { speakers = null, messages = [], messageStyle, speakerStyle } = conversation || {};
 
@@ -166,6 +168,7 @@ const ConversationScreen = ({
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
+                    shouldLoad={backgroundShouldLoad}
                 />
             ) : null}
 

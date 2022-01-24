@@ -1,6 +1,6 @@
 {
     "name": "@micromag/core",
-    "version": "0.2.401",
+    "version": "0.2.405",
     "description": "",
     "keywords": [
         "javascript"
@@ -38,12 +38,19 @@
         "./hooks": "./lib/hooks.js",
         "./utils": "./lib/utils.js",
         "./scss/mixins": "./scss/_mixins.scss",
+        "./scss/mixins.scss": "./scss/_mixins.scss",
         "./scss/placeholders": "./scss/_placeholders.scss",
+        "./scss/placeholders.scss": "./scss/_placeholders.scss",
         "./scss/theme": "./scss/_theme.scss",
+        "./scss/theme.scss": "./scss/_theme.scss",
         "./scss/variables": "./scss/_variables.scss",
+        "./scss/variables.scss": "./scss/_variables.scss",
         "./scss/styles": "./scss/styles.scss",
+        "./scss/styles.scss": "./scss/styles.scss",
         "./scss/upload": "./scss/upload.scss",
+        "./scss/upload.scss": "./scss/upload.scss",
         "./scss/vendor": "./scss/vendor.scss",
+        "./scss/vendor.scss": "./scss/vendor.scss",
         "./assets/css/styles.css": "./assets/css/styles.css"
     },
     "browser": {
@@ -97,6 +104,7 @@
         "@uppy/tus": "^2.2.0",
         "@uppy/webcam": "^2.0.5",
         "@uppy/xhr-upload": "^2.0.7",
+        "@use-gesture/react": "^10.2.4",
         "bootstrap": "^4.5.3",
         "change-case": "^4.1.2",
         "classnames": "^2.2.6",
@@ -112,7 +120,6 @@
         "react-intl": "^5.12.1",
         "react-router": "^5.2.0",
         "react-router-dom": "^5.2.0",
-        "react-use-gesture": "^9.0.0",
         "screenfull": "^5.1.0",
         "slugify": "^1.4.6",
         "snake-case": "^3.0.4",

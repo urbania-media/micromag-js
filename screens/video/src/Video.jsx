@@ -25,7 +25,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
-    // active: PropTypes.bool,
+    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     spacing: PropTypes.number,
     getMediaRef: PropTypes.func,
@@ -38,7 +38,7 @@ const defaultProps = {
     background: null,
     callToAction: null,
     current: true,
-    // active: true,
+    active: true,
     transitions: null,
     spacing: 20,
     getMediaRef: null,
@@ -51,7 +51,7 @@ const VideoScreen = ({
     background,
     callToAction,
     current,
-    // active,
+    active,
     transitions,
     spacing,
     getMediaRef,
@@ -69,6 +69,8 @@ const VideoScreen = ({
         isCapture,
     } = useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
+    const backgroundShouldLoad = current || active || !isView;
+    const videoShouldLoad = current || active || !isView;
 
     const apiRef = useRef();
     const { togglePlay, toggleMute, seek, play, pause, mediaRef: apiMediaRef = null } = apiRef.current || {};
@@ -278,6 +280,7 @@ const VideoScreen = ({
                             onSeeked={onSeeked}
                             onVolumeChanged={onVolumeChanged}
                             focusable={current && isView}
+                            preload={videoShouldLoad ? 'auto' : 'metadata'}
                             // onPosterLoaded={onPosterLoaded}
                         />
                     )}
@@ -346,6 +349,7 @@ const VideoScreen = ({
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
+                    shouldLoad={backgroundShouldLoad}
                 />
             ) : null}
             <Container width={width} height={height}>

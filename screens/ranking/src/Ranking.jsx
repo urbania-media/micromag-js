@@ -27,6 +27,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
+    active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     type: PropTypes.string,
@@ -42,6 +43,7 @@ const defaultProps = {
     background: null,
     callToAction: null,
     current: true,
+    active: true,
     transitions: null,
     transitionStagger: 75,
     type: null,
@@ -57,6 +59,7 @@ const RankingScreen = ({
     background,
     callToAction,
     current,
+    active,
     transitions,
     transitionStagger,
     type,
@@ -83,6 +86,7 @@ const RankingScreen = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
     const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
     const backgroundPlaying = current && (isView || isEdit);
+    const backgroundShouldLoad = current || active || !isView;
 
     const elements = (finalItems || []).map((item, itemI) => {
         const { title = null, description = null } = item || {};
@@ -218,6 +222,7 @@ const RankingScreen = ({
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
+                    shouldLoad={backgroundShouldLoad}
                 />
             ) : null}
             <Container width={width} height={height}>

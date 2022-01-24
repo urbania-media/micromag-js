@@ -1,11 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback, useState } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import { getSizeWithinBounds } from '@folklore/size';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getOptimalImageUrl } from '@micromag/core/utils';
-import { getSizeWithinBounds } from '@folklore/size';
-
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback, useState } from 'react';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -28,7 +27,7 @@ const defaultProps = {
     width: null,
     height: null,
     objectFit: null,
-    containerStyle: {},//
+    containerStyle: {}, //
     imageStyle: {},
     className: null,
     imageClassName: null,
@@ -50,19 +49,26 @@ const Image = ({
     loadingMode,
 }) => {
     const { url = null, metadata = null } = media || {};
-    const { width: mediaWidth = 0, height: mediaHeight = 0, description = 'image' } =
-        metadata || {};
+    const {
+        width: mediaWidth = 0,
+        height: mediaHeight = 0,
+        description = 'image',
+    } = metadata || {};
     const mediaRatio = mediaWidth / mediaHeight;
 
-    const [realSize, setRealSize] = useState(null);
-    const { realWidth = 0, realHeight = 0 } = realSize || {};
+    const [{ width: realWidth = 0, height: realHeight = 0 }, setRealSize] = useState({
+        width: mediaWidth,
+        height: mediaHeight,
+    });
 
     const onImageLoaded = useCallback(
         (e) => {
             const {
                 target: { naturalWidth = 0, naturalHeight = 0 },
             } = e;
-            setRealSize({ width: naturalWidth, height: naturalHeight });
+            if (naturalWidth !== realWidth || naturalHeight !== realHeight) {
+                setRealSize({ width: naturalWidth || 0, height: naturalHeight || 0 });
+            }
             if (onLoaded !== null) {
                 onLoaded(e);
             }
@@ -70,11 +76,8 @@ const Image = ({
         [onLoaded],
     );
 
-    const finalMediaWidth = realWidth || mediaWidth || 0;
-    const finalMediaHeight = realHeight || mediaHeight || 0;
-
     const withFit = objectFit !== null;
-    const mediaHasSize = finalMediaWidth > 0 && finalMediaHeight > 0;
+    const mediaHasSize = realWidth > 0 && realHeight > 0;
 
     let finalContainerStyle;
     let finalImageStyle;
@@ -87,13 +90,16 @@ const Image = ({
         let imageObjectFit = null;
         let imageObjectPosition = null;
 
-        const { fit = null, horizontalPosition = 'center', verticalPosition = 'center' } =
-            objectFit || {};
+        const {
+            fit = null,
+            horizontalPosition = 'center',
+            verticalPosition = 'center',
+        } = objectFit || {};
 
         if (mediaHasSize) {
             const { width: resizedImageWidth, height: resizedImageHeight } = getSizeWithinBounds(
-                finalMediaWidth,
-                finalMediaHeight,
+                realWidth,
+                realHeight,
                 width,
                 height,
                 {
@@ -145,8 +151,8 @@ const Image = ({
         let finalHeight = height !== null ? height : ratioHeight;
 
         if (finalWidth === null && finalHeight === null) {
-            finalWidth = finalMediaWidth > 0 ? mediaWidth : null;
-            finalHeight = finalMediaHeight > 0 ? mediaHeight : null;
+            finalWidth = realWidth > 0 ? mediaWidth : null;
+            finalHeight = realHeight > 0 ? mediaHeight : null;
         }
 
         finalImageStyle = {
@@ -170,22 +176,6 @@ const Image = ({
     const { width: finalWidth = null, height: finalHeight = null } = finalImageStyle;
     const finalUrl = getOptimalImageUrl(media, finalWidth, finalHeight);
 
-    const img = url ? (
-        <img
-            src={finalUrl}
-            alt={alt || description}
-            className={classNames([
-                styles.img,
-                {
-                    [imageClassName]: imageClassName !== null,
-                },
-            ])}
-            style={finalImageStyle}
-            onLoad={onImageLoaded}
-            loading={loadingMode}
-        />
-    ) : null;
-
     return (
         <div
             className={classNames([
@@ -196,7 +186,21 @@ const Image = ({
             ])}
             style={finalContainerStyle}
         >
-            {img}
+            {finalUrl !== null ? (
+                <img
+                    src={finalUrl}
+                    alt={alt || description}
+                    className={classNames([
+                        styles.img,
+                        {
+                            [imageClassName]: imageClassName !== null,
+                        },
+                    ])}
+                    style={finalImageStyle}
+                    onLoad={onImageLoaded}
+                    loading={loadingMode}
+                />
+            ) : null}
         </div>
     );
 };

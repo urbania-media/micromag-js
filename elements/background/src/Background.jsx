@@ -1,12 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useMemo } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { getStyleFromColor, getOptimalImageUrl } from '@micromag/core/utils';
-import Video from '@micromag/element-video';
 import { getSizeWithinBounds } from '@folklore/size';
-
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { getOptimalImageUrl, getStyleFromColor } from '@micromag/core/utils';
+import Video from '@micromag/element-video';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useRef } from 'react';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -21,6 +20,8 @@ const propTypes = {
     className: PropTypes.string,
     playing: PropTypes.bool,
     children: PropTypes.node,
+    loadingMode: PropTypes.string,
+    shouldLoad: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -35,6 +36,8 @@ const defaultProps = {
     className: null,
     playing: false,
     children: null,
+    loadingMode: 'lazy',
+    shouldLoad: true,
 };
 
 const Background = ({
@@ -49,6 +52,8 @@ const Background = ({
     className,
     playing,
     children,
+    loadingMode,
+    shouldLoad,
 }) => {
     const {
         type: mediaType = null,
@@ -58,6 +63,14 @@ const Background = ({
     const { width: mediaWidth = 0, height: mediaHeight = 0 } = mediaMetadata || {};
     const isVideo = mediaType === 'video';
     const isImage = mediaType === 'image';
+
+    // Lazy load
+    const newShouldLoad = shouldLoad || loadingMode !== 'lazy';
+    const wasLoadedRef = useRef(newShouldLoad);
+    if (newShouldLoad && !wasLoadedRef.current) {
+        wasLoadedRef.current = newShouldLoad;
+    }
+    const { current: finalShouldLoad } = wasLoadedRef;
 
     // color
     const containerStyle = {
@@ -73,7 +86,8 @@ const Background = ({
             width,
             height,
         );
-        containerStyle.backgroundImage = finalUrl !== null ? `url("${finalUrl}")` : null;
+        containerStyle.backgroundImage =
+            finalUrl !== null && finalShouldLoad ? `url("${finalUrl}")` : null;
         containerStyle.backgroundRepeat = repeat ? 'repeat' : 'no-repeat';
         containerStyle.backgroundPosition = [horizontalAlign, verticalAlign].join(' ');
 
@@ -124,10 +138,13 @@ const Background = ({
                         autoPlay={playing}
                         initialMuted
                         loop
+                        preload={finalShouldLoad ? 'auto' : 'metadata'}
                     />
                 </div>
             ) : null}
-            <div className={styles.content}>{children}</div>
+            <div className={styles.content}>
+                {children}
+            </div>
         </div>
     );
 };

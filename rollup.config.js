@@ -1,13 +1,13 @@
-import path from 'path';
-import postcss from 'rollup-plugin-postcss';
 import babel from '@rollup/plugin-babel';
-import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import image from '@rollup/plugin-image';
 // import svgo from 'rollup-plugin-svgo';
 import json from '@rollup/plugin-json';
-import url from '@rollup/plugin-url';
+import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
+import url from '@rollup/plugin-url';
+import path from 'path';
+import postcss from 'rollup-plugin-postcss';
 import generateScopedName from './scripts/lib/generateScopedName';
 
 export const createConfig = ({
@@ -96,7 +96,7 @@ export const createConfig = ({
                         },
                     ],
                     [
-                        require.resolve('babel-plugin-react-intl'),
+                        require.resolve('babel-plugin-formatjs'),
                         {
                             ast: true,
                             extractFromFormatMessageCall: true,
@@ -123,11 +123,11 @@ export const createConfig = ({
                 values: {
                     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
                 },
-                preventAssignment: true
+                preventAssignment: true,
             }),
             ...appendPlugins,
         ].filter(Boolean),
     };
 };
 
-export default [createConfig({ format: 'both' })/* , createConfig({ format: 'cjs' }) */];
+export default [createConfig({ format: 'both' }) /* , createConfig({ format: 'cjs' }) */];

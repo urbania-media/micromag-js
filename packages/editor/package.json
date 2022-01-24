@@ -1,6 +1,6 @@
 {
     "name": "@micromag/editor",
-    "version": "0.2.401",
+    "version": "0.2.408",
     "description": "",
     "keywords": [
         "javascript"
@@ -31,6 +31,11 @@
     "license": "ISC",
     "main": "lib/index.js",
     "module": "es/index.js",
+    "exports": {
+        ".": "./lib/index.js",
+        "./scss/styles": "./scss/styles.scss",
+        "./assets/css/styles.css": "./assets/css/styles.css"
+    },
     "files": [
         "lib",
         "es",
@@ -38,8 +43,7 @@
         "scss"
     ],
     "scripts": {
-        "prepare": "../../scripts/prepare-package.sh --scss",
-        "start": "PUBLIC_URL=http://localhost/ react-scripts start"
+        "prepare": "../../scripts/prepare-package.sh --scss"
     },
     "devDependencies": {
         "react": "^16.8.0 || ^17.0.0",
@@ -55,11 +59,11 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/core": "^0.2.401",
-        "@micromag/elements": "^0.2.401",
-        "@micromag/fields": "^0.2.401",
-        "@micromag/screens": "^0.2.401",
-        "@micromag/viewer": "^0.2.401",
+        "@micromag/core": "^0.2.405",
+        "@micromag/elements": "^0.2.407",
+        "@micromag/fields": "^0.2.405",
+        "@micromag/screens": "^0.2.408",
+        "@micromag/viewer": "^0.2.408",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",

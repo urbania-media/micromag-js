@@ -1,12 +1,11 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign */
-import React, { useEffect, useMemo } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useUserInteracted } from '@micromag/core/contexts';
 import { useMediaApi } from '@micromag/core/hooks';
 import { getMediaFilesAsArray } from '@micromag/core/utils';
-
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useEffect, useMemo, useRef } from 'react';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -23,7 +22,7 @@ const propTypes = {
     autoPlay: PropTypes.bool,
     loop: PropTypes.bool,
     playsInline: PropTypes.bool,
-    preload: PropTypes.string,
+    preload: PropTypes.oneOf(['auto', 'metadata', 'none', null]),
     withoutCors: PropTypes.bool,
     className: PropTypes.string,
     onReady: PropTypes.func,
@@ -117,7 +116,8 @@ const Video = ({
         filesArray.find(({ handle }) => handle === 'original') || {};
     const originalFileIsImage =
         originalType === 'image' || (originalMime !== null && originalMime.indexOf('image/') === 0);
-    const isImageWithoutSourceFile = originalFileIsImage && (sourceFiles === null || sourceFiles.length === 0);
+    const isImageWithoutSourceFile =
+        originalFileIsImage && (sourceFiles === null || sourceFiles.length === 0);
 
     const userInteracted = useUserInteracted();
     const finalInitialMuted =
@@ -174,6 +174,25 @@ const Video = ({
             pause();
         }
     }, [autoPlay]);
+
+    // Ensure load if preload value change over time
+    const firstPreloadRef = useRef(preload);
+    const hasLoadedRef = useRef(preload !== 'none' && preload !== 'metadata');
+    useEffect(() => {
+        const { current: videoElement = null } = ref;
+        const canLoad = preload !== 'none' && preload !== 'metadata';
+        const preloadHasChanged = firstPreloadRef.current !== preload;
+        if (
+            canLoad &&
+            preloadHasChanged &&
+            !hasLoadedRef.current &&
+            videoElement !== null &&
+            typeof videoElement.load !== 'undefined'
+        ) {
+            hasLoadedRef.current = true;
+            videoElement.load();
+        }
+    }, [preload]);
 
     return (
         <div

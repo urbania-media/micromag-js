@@ -1,9 +1,8 @@
-import React, { useState, useCallback } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import styles from '../../styles/forms/dropdown-section.module.scss';
 
 const propTypes = {
@@ -26,7 +25,7 @@ const defaultProps = {
     className: null,
 };
 
-const DropdownSection = ({ value, items, onChange, className }) => {
+function DropdownSection({ value, items, onChange, className }) {
     const [open, setOpen] = useState(false);
     const currentItem = items.find((i) => i.value === value);
 
@@ -114,7 +113,7 @@ const DropdownSection = ({ value, items, onChange, className }) => {
             </div>
         </div>
     ) : null;
-};
+}
 
 DropdownSection.propTypes = propTypes;
 DropdownSection.defaultProps = defaultProps;

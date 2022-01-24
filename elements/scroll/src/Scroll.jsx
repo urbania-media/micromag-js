@@ -1,12 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { useResizeObserver } from '@micromag/core/hooks';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
-import { useScroll } from 'react-use-gesture';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useResizeObserver } from '@micromag/core/hooks';
+import { useScroll } from '@use-gesture/react';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -19,7 +18,7 @@ const propTypes = {
     onScrolledBottom: PropTypes.func,
     onScrolledNotBottom: PropTypes.func,
     contain: PropTypes.bool,
-    scrollContainerRef: PropTypes.any,// eslint-disable-line
+    scrollContainerRef: PropTypes.any, // eslint-disable-line
 };
 
 const defaultProps = {
@@ -35,7 +34,7 @@ const defaultProps = {
     scrollContainerRef: null,
 };
 
-const Scroll = ({
+function Scroll({
     width,
     height,
     disabled,
@@ -46,7 +45,7 @@ const Scroll = ({
     onScrolledNotBottom,
     contain,
     scrollContainerRef,
-}) => {
+}) {
     const finalStyle = {
         width,
         height,
@@ -61,7 +60,7 @@ const Scroll = ({
     const { height: scrollableHeight } = scrollableRect || {};
 
     if (scrollContainerRef !== null) {
-        scrollContainerRef.current = scrollableRef.current;// eslint-disable-line
+        scrollContainerRef.current = scrollableRef.current; // eslint-disable-line
     }
 
     const {
@@ -146,7 +145,7 @@ const Scroll = ({
             ) : null}
         </div>
     );
-};
+}
 
 Scroll.propTypes = propTypes;
 Scroll.defaultProps = defaultProps;
