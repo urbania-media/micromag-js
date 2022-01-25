@@ -15,7 +15,7 @@ import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import styles from './styles.module.scss';
 
@@ -278,7 +278,7 @@ const SlideshowScreen = ({
                         </div>
 
                         {!isPlaceholder && hasCallToAction ? (
-                            <div style={{ marginTop: -finalSpacing }}>
+                            <div style={{ margin: -finalSpacing, marginTop: 0 }}>
                                 <CallToAction
                                     ref={callToActionRef}
                                     className={styles.callToAction}

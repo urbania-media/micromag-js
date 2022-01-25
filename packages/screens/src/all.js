@@ -28,12 +28,12 @@ manager.addDefinition(map);
 manager.addDefinition(quiz);
 manager.addDefinition(quote);
 manager.addDefinition(ranking);
+manager.addDefinition(slideshow);
 manager.addDefinition(survey);
 manager.addDefinition(text);
 manager.addDefinition(timeline);
 manager.addDefinition(title);
 manager.addDefinition(video);
 manager.addDefinition(video360);
-manager.addDefinition(slideshow);
 
 export default manager;
