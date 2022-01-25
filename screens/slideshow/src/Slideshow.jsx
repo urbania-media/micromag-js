@@ -134,9 +134,12 @@ const SlideshowScreen = ({
 
     const items = (slides || []).map((item, itemI) => {
         const { visual = null, caption = null } = item || {};
-        const imageSize = { width: width - finalSpacing * 2, height: height / 2 };
+        const { metadata = null } = visual || {};
+        const { width: originalWidth = null, height: originalHeight } = metadata || {};
+        const imageWidth = width - (finalSpacing * 2);
+        const imageHeight = (imageWidth * originalHeight) / originalWidth; // proportional resize
+        const imageSize = { width: imageWidth, height: imageHeight };
 
-        // const { caption = null } = finalImage || {};
         const hasImage = visual !== null;
         const hasCaption = isTextFilled(caption);
 
