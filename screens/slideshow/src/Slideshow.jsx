@@ -111,10 +111,10 @@ const SlideshowScreen = ({
     const onClickedPrevious = useCallback(
         (e) => {
             const previous = currentSlide === 0 ? currentSlide : currentSlide - 1;
-            if ( previous === currentSlide && onPrevious !== null ) {
-                onPrevious();
-                console.log('should go to previous screen');
-            }
+            // if (previous === currentSlide && onPrevious !== null) {
+            //     onPrevious();
+            //     console.log('should go to previous screen');
+            // }
 
             setCurrentSlide(previous);
         },
@@ -123,9 +123,9 @@ const SlideshowScreen = ({
     const onClickedNext = useCallback(
         (e) => {
             const next = currentSlide >= items.length - 1 ? currentSlide : currentSlide + 1;
-            if ( next === currentSlide && onNext ) {
-                onNext();
-            }
+            // if (next === currentSlide && onNext) {
+            //     onNext();
+            // }
 
             setCurrentSlide(next);
         },
@@ -136,7 +136,7 @@ const SlideshowScreen = ({
         const { visual = null, caption = null } = item || {};
         const { metadata = null } = visual || {};
         const { width: originalWidth = null, height: originalHeight } = metadata || {};
-        const imageWidth = width - (finalSpacing * 2);
+        const imageWidth = width - finalSpacing * 2;
         const imageHeight = (imageWidth * originalHeight) / originalWidth; // proportional resize
         const imageSize = { width: imageWidth, height: imageHeight };
 
@@ -147,7 +147,10 @@ const SlideshowScreen = ({
             <div
                 key={`item-${itemI}`}
                 className={styles.slide}
-                style={{ transform: `translateX(${currentSlide * -100}%)` }}
+                style={{
+                    width: imageWidth,
+                    transform: `translateX(${currentSlide * -100}%)`,
+                }}
             >
                 <div
                     className={styles.slideContainer}
@@ -161,17 +164,21 @@ const SlideshowScreen = ({
                         playing={transitionPlaying}
                         disabled={transitionDisabled}
                     >
-                        <VStack>
+                        <VStack align="start">
                             <ScreenElement
                                 placeholder="image"
-                                placeholderProps={{ className: styles.placeholder, height: '100%' }}
+                                placeholderProps={{
+                                    className: styles.visualPlaceholder,
+                                    width: '100%',
+                                    height: '100%',
+                                }}
                                 emptyLabel={
                                     <FormattedMessage
                                         defaultMessage="Image"
                                         description="Image placeholder"
                                     />
                                 }
-                                emptyClassName={styles.emptyImage}
+                                emptyClassName={styles.emptyVisual}
                                 isEmpty={!hasImage}
                             >
                                 <Visual
@@ -186,6 +193,10 @@ const SlideshowScreen = ({
 
                             <ScreenElement
                                 placeholder="line"
+                                placeholderProps={{
+                                    className: styles.captionPlaceholder,
+                                    width: '100%',
+                                }}
                                 emptyLabel={
                                     <FormattedMessage
                                         defaultMessage="Caption"
@@ -199,7 +210,7 @@ const SlideshowScreen = ({
                                     <Text
                                         {...caption}
                                         className={styles.captionText}
-                                        lineClamp={captionMaxLines}
+                                        // lineClamp={captionMaxLines}
                                     />
                                 </div>
                             </ScreenElement>
@@ -231,13 +242,7 @@ const SlideshowScreen = ({
                 />
             ) : null}
             <Container width={width} height={height}>
-                <div
-                    className={styles.content}
-                    style={{
-                        paddingTop: menuOverScreen && !isPreview ? menuSize : null,
-                        paddingBottom: hasCallToAction ? callToActionHeight - finalSpacing : 0,
-                    }}
-                >
+                <div className={styles.content}>
                     <Layout
                         className={styles.layout}
                         fullscreen
@@ -245,6 +250,9 @@ const SlideshowScreen = ({
                             !isPlaceholder
                                 ? {
                                       padding: spacing,
+                                      paddingTop:
+                                          (menuOverScreen && !isPreview ? menuSize : null) +
+                                          finalSpacing,
                                   }
                                 : null
                         }
@@ -270,12 +278,24 @@ const SlideshowScreen = ({
                         </ScreenElement>
 
                         <div className={styles.slider}>
-                            <Button
-                                className={styles.sliderPreviousBtn}
-                                onClick={onClickedPrevious}
-                            />
-                            <Button className={styles.sliderNextBtn} onClick={onClickedNext} />
+                            {currentSlide === 0 ? null : (
+                                <Button
+                                    className={styles.sliderPreviousBtn}
+                                    onClick={onClickedPrevious}
+                                />
+                            )}
+                            {currentSlide >= items.length - 1 ? null : (
+                                <Button className={styles.sliderNextBtn} onClick={onClickedNext} />
+                            )}
+
                             <HStack className={styles.sliderTrack} align={layout}>
+                                {isPlaceholder ? (
+                                    <div style={{ width: '100%' }}>
+                                        <ScreenElement placeholder="image" />
+                                        <ScreenElement placeholder="line" />
+                                    </div>
+                                ) : null}
+
                                 {items}
                             </HStack>
                         </div>

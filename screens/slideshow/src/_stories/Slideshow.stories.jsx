@@ -15,10 +15,10 @@ import definition from '../definition';
 import SlideshowScreen from '../Slideshow';
 
 const props = {
-    title: { body: titleExample(), textStyle: textStyleExample },
+    title: { body: titleExample(), textStyle: textStyleExample() },
     slides: [...Array(3).keys()].map((_, i) => ({
         visual: imageMedia({ width: 800 + i, height: 500 - i }),
-        caption: textExample()
+        caption: i % 2 === 0 ? textExample() : { body: titleExample() }
     })),
     background: backgroundColor(),
     transitions: transitions(),
@@ -26,7 +26,7 @@ const props = {
 
 const videos = [...Array(3).keys()].map((_, i) => ({
     visual: videoMedia(),
-    caption: textExample()
+    caption: i % 2 === 0 ? textExample() : { body: titleExample() }
 }));
 
 export default {
