@@ -111,11 +111,6 @@ const SlideshowScreen = ({
     const onClickedPrevious = useCallback(
         (e) => {
             const previous = currentSlide === 0 ? currentSlide : currentSlide - 1;
-            // if (previous === currentSlide && onPrevious !== null) {
-            //     onPrevious();
-            //     console.log('should go to previous screen');
-            // }
-
             setCurrentSlide(previous);
         },
         [currentSlide, setCurrentSlide],
@@ -123,17 +118,13 @@ const SlideshowScreen = ({
     const onClickedNext = useCallback(
         (e) => {
             const next = currentSlide >= items.length - 1 ? currentSlide : currentSlide + 1;
-            // if (next === currentSlide && onNext) {
-            //     onNext();
-            // }
-
             setCurrentSlide(next);
         },
         [currentSlide, setCurrentSlide],
     );
 
     const items = (slides || []).map((item, itemI) => {
-        const { visual = null, caption = null } = item || {};
+        const { heading = null, visual = null, caption = null } = item || {};
         const { metadata = null } = visual || {};
         const { width: originalWidth = null, height: originalHeight } = metadata || {};
         const imageWidth = width - finalSpacing * 2;
@@ -165,6 +156,26 @@ const SlideshowScreen = ({
                         disabled={transitionDisabled}
                     >
                         <VStack align="start">
+                            <ScreenElement
+                                placeholder="title"
+                                emptyLabel={
+                                    <FormattedMessage
+                                        defaultMessage="Title"
+                                        description="Title placeholder"
+                                    />
+                                }
+                                emptyClassName={styles.emptyTitle}
+                                isEmpty={!hasTitle}
+                            >
+                                {heading !== null ? (
+                                    <Heading
+                                        className={classNames([styles.title])}
+                                        {...heading}
+                                        size={1}
+                                    />
+                                ) : null}
+                            </ScreenElement>
+
                             <ScreenElement
                                 placeholder="image"
                                 placeholderProps={{
@@ -257,26 +268,6 @@ const SlideshowScreen = ({
                                 : null
                         }
                     >
-                        <ScreenElement
-                            placeholder="title"
-                            emptyLabel={
-                                <FormattedMessage
-                                    defaultMessage="Title"
-                                    description="Title placeholder"
-                                />
-                            }
-                            emptyClassName={styles.emptyTitle}
-                            isEmpty={!hasTitle}
-                        >
-                            {hasTitle ? (
-                                <Heading
-                                    className={classNames([styles.title])}
-                                    {...title}
-                                    size={1}
-                                />
-                            ) : null}
-                        </ScreenElement>
-
                         <div className={styles.slider}>
                             {currentSlide === 0 ? null : (
                                 <Button

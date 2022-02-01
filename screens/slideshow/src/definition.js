@@ -30,23 +30,23 @@ export default [
                     description: 'Layout field label',
                 }),
             },
-            {
-                name: 'title',
-                type: 'heading-element',
-                theme: {
-                    textStyle: 'heading1',
-                },
-                label: defineMessage({
-                    defaultMessage: 'Title',
-                    description: 'Title field label',
-                }),
-            },
+            // {
+            //     name: 'title',
+            //     type: 'heading-element',
+            //     theme: {
+            //         textStyle: 'heading1',
+            //     },
+            //     label: defineMessage({
+            //         defaultMessage: 'Title',
+            //         description: 'Title field label',
+            //     }),
+            // },
             {
                 name: 'slides',
-                type: 'visuals-with-caption',
+                type: 'slides',
                 label: defineMessage({
-                    defaultMessage: 'Images',
-                    description: 'Visuals field label',
+                    defaultMessage: 'Slides',
+                    description: 'Slides field label',
                 }),
             },
             {

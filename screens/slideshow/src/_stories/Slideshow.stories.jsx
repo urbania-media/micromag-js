@@ -15,8 +15,8 @@ import definition from '../definition';
 import SlideshowScreen from '../Slideshow';
 
 const props = {
-    title: { body: titleExample(), textStyle: textStyleExample() },
     slides: [...Array(3).keys()].map((_, i) => ({
+        heading: { body: titleExample(), textStyle: textStyleExample() },
         visual: imageMedia({ width: 800 + i, height: 500 - i }),
         caption: i % 2 === 0 ? textExample() : { body: titleExample() }
     })),
@@ -25,6 +25,7 @@ const props = {
 };
 
 const videos = [...Array(3).keys()].map((_, i) => ({
+    heading: { body: titleExample(), textStyle: textStyleExample() },
     visual: videoMedia(),
     caption: i % 2 === 0 ? textExample() : { body: titleExample() }
 }));
