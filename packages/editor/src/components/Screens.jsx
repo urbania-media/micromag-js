@@ -1,24 +1,22 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useCallback, useState } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { Route } from 'react-router';
-import { FormattedMessage } from 'react-intl';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useRoutes, useRoutePush, useUrlGenerator } from '@micromag/core/contexts';
-import { Empty, Button, Navbar } from '@micromag/core/components';
+import { Button, Empty, Navbar } from '@micromag/core/components';
+import { useRoutePush, useRoutes, useUrlGenerator } from '@micromag/core/contexts';
 import { useParsedStory } from '@micromag/core/hooks';
+import classNames from 'classnames';
 import isString from 'lodash/isString';
-
-import useThemeValue from '../hooks/useThemeValue';
+import PropTypes from 'prop-types';
+import React, { useCallback, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
+import { Route } from 'react-router';
 import useRouteParams from '../hooks/useRouteParams';
-import createScreen from '../utils/createScreen';
-import Screens from './menus/Screens';
-import ScreenTypesModal from './modals/ScreenTypes';
-
+import useThemeValue from '../hooks/useThemeValue';
 import styles from '../styles/screens.module.scss';
+import createScreen from '../utils/createScreen';
+import ScreensMenu from './menus/ScreensMenu';
+import ScreenTypesModal from './modals/ScreenTypes';
 
 const propTypes = {
     value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
@@ -26,6 +24,7 @@ const propTypes = {
     isVertical: PropTypes.bool,
     isCreateOpened: PropTypes.bool,
     isParsed: PropTypes.bool,
+    isTree: PropTypes.bool,
     onClickScreen: PropTypes.func,
     onChange: PropTypes.func,
     className: PropTypes.string,
@@ -37,6 +36,7 @@ const defaultProps = {
     isVertical: false,
     isCreateOpened: false,
     isParsed: false,
+    isTree: false,
     onClickScreen: null,
     onChange: null,
     className: null,
@@ -48,6 +48,7 @@ const EditorScreens = ({
     isVertical,
     isCreateOpened,
     isParsed,
+    isTree,
     onClickScreen,
     onChange,
     className,
@@ -75,14 +76,14 @@ const EditorScreens = ({
             const newScreen = createScreen(definition, themeScreen);
 
             const foundIndex = screens.findIndex(({ id }) => id === currentScreenId);
-            const currentScreenIndex = !isTheme && foundIndex >= 0 ? (foundIndex + 1) : null;
+            const currentScreenIndex = !isTheme && foundIndex >= 0 ? foundIndex + 1 : null;
 
             const newValue = {
                 ...value,
                 components: [
                     ...currentScreens.slice(0, currentScreenIndex),
                     newScreen,
-                    ...currentScreens.slice(currentScreenIndex)
+                    ...currentScreens.slice(currentScreenIndex),
                 ],
             };
 
@@ -97,6 +98,12 @@ const EditorScreens = ({
     const onOrderChange = useCallback(
         (listItems) => {
             const ids = listItems.map(({ id }) => id);
+            const screenProps = listItems.map(({ id, props = null }) => ({
+                id,
+                props,
+            }));
+            const hasScreenProps =
+                (screenProps.filter(({ props }) => props !== null) || []).length > 0;
             const { components: currentScreens = [] } = value || {};
 
             const currentIds = currentScreens.map(({ id }) => id);
@@ -105,17 +112,23 @@ const EditorScreens = ({
                 true,
             );
 
-            if (!sameOrder) {
+            if (!sameOrder || hasScreenProps) {
                 const newValue = {
                     ...value,
-                    components: [...currentScreens].sort(({ id: idA }, { id: idB }) => {
-                        const indexA = ids.indexOf(idA);
-                        const indexB = ids.indexOf(idB);
-                        if (indexA === indexB) {
-                            return 0;
-                        }
-                        return indexA > indexB ? 1 : -1;
-                    }),
+                    components: [...currentScreens]
+                        .sort(({ id: idA }, { id: idB }) => {
+                            const indexA = ids.indexOf(idA);
+                            const indexB = ids.indexOf(idB);
+                            if (indexA === indexB) {
+                                return 0;
+                            }
+                            return indexA > indexB ? 1 : -1;
+                        })
+                        .map(({ id, ...props }) => ({
+                            id,
+                            ...props,
+                            ...screenProps.find(({ id: propsId }) => propsId === id)?.props,
+                        })),
                 };
 
                 if (onChange !== null) {
@@ -147,9 +160,10 @@ const EditorScreens = ({
         [screens, isTheme, createScreenFromDefinition, push, onClickScreen],
     );
     const onClickAdd = useCallback(() => setCreateModalOpened(true), [setCreateModalOpened]);
-    const onCreateModalRequestClose = useCallback(() => setCreateModalOpened(false), [
-        setCreateModalOpened,
-    ]);
+    const onCreateModalRequestClose = useCallback(
+        () => setCreateModalOpened(false),
+        [setCreateModalOpened],
+    );
 
     return (
         <div className={classNames(['d-flex', 'flex-column', styles.container, className])}>
@@ -181,7 +195,7 @@ const EditorScreens = ({
                         },
                     }) =>
                         screens.length > 0 ? (
-                            <Screens
+                            <ScreensMenu
                                 items={screens.map((it) => ({
                                     id: it.id,
                                     screen: it,
@@ -192,10 +206,11 @@ const EditorScreens = ({
                                 }))}
                                 isVertical={isVertical}
                                 withPreview
-                                sortable
+                                sortable={!isTree}
                                 className="w-100"
                                 onClickItem={onClickScreen}
                                 onOrderChange={onOrderChange}
+                                isTree={isTree}
                             />
                         ) : (
                             <Empty className="flex-grow-1 p-2">

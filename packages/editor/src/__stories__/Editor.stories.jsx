@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import faceAFaceStory from '../../../../.storybook/data/stories/faceAFace';
 import { defaultTheme } from '../../../../.storybook/data/themes/micromag-default';
+import treeTheme from '../../../../.storybook/data/themes/tree';
 import { theme as backgroundTheme } from '../../../../.storybook/data/themes/with-background';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 import withUppy from '../../../../.storybook/decorators/withUppy';
@@ -25,7 +26,7 @@ export default {
 const hasWindow = typeof window !== 'undefined';
 const apiBaseUrl = hasWindow ? `${window.location.protocol}//${window.location.host}/api` : '/api';
 
-function EditorContainer({ defaultValue, isTheme, viewerTheme }) {
+const EditorContainer = ({ defaultValue, isTheme, viewerTheme }) => {
     const [value, setValue] = useState(defaultValue);
     return (
         <ApiProvider baseUrl={apiBaseUrl}>
@@ -39,7 +40,7 @@ function EditorContainer({ defaultValue, isTheme, viewerTheme }) {
             />
         </ApiProvider>
     );
-}
+};
 
 const viewerTheme = {
     logo: {
@@ -112,93 +113,72 @@ EditorContainer.defaultProps = {
     viewerTheme: null,
 };
 
-export function Empty() {
-    return <EditorContainer defaultValue={{ title: 'Empty' }} />;
-}
-export function IsTheme() {
-    return <EditorContainer defaultValue={defaultTheme} isTheme />;
-}
-export function AllScreens() {
-    return <EditorContainer defaultValue={allScreensStory} />;
-}
-export function FaceAFace() {
-    return <EditorContainer defaultValue={faceAFaceStory} />;
-}
-export function WithTheme() {
-    return (
-        <EditorContainer
-            defaultValue={{
-                title: 'With theme',
-                theme: defaultTheme,
-            }}
-        />
-    );
-}
-export function IsBackgroundTheme() {
-    return <EditorContainer isTheme defaultValue={backgroundTheme} />;
-}
-export function WithBackgroundTheme() {
-    return (
-        <EditorContainer
-            defaultValue={{
-                title: 'With background theme',
-                theme: backgroundTheme,
-            }}
-        />
-    );
-}
-export function WithThemeAllScreens() {
-    return (
-        <EditorContainer
-            defaultValue={{
-                title: 'With theme (all screens)',
-                theme: defaultTheme,
-                components: allScreensStory.components.map((c) => ({
-                    ...c,
-                })),
-            }}
-        />
-    );
-}
+export const Empty = () => <EditorContainer defaultValue={{ title: 'Empty' }} />;
+export const IsTree = () => <EditorContainer defaultValue={treeTheme} />;
+export const IsTheme = () => <EditorContainer defaultValue={defaultTheme} isTheme />;
+export const AllScreens = () => <EditorContainer defaultValue={allScreensStory} />;
+export const FaceAFace = () => <EditorContainer defaultValue={faceAFaceStory} />;
+export const WithTheme = () => (
+    <EditorContainer
+        defaultValue={{
+            title: 'With theme',
+            theme: defaultTheme,
+        }}
+    />
+);
+export const IsBackgroundTheme = () => <EditorContainer isTheme defaultValue={backgroundTheme} />;
+export const WithBackgroundTheme = () => (
+    <EditorContainer
+        defaultValue={{
+            title: 'With background theme',
+            theme: backgroundTheme,
+        }}
+    />
+);
+export const WithThemeAllScreens = () => (
+    <EditorContainer
+        defaultValue={{
+            title: 'With theme (all screens)',
+            theme: defaultTheme,
+            components: allScreensStory.components.map((c) => ({
+                ...c,
+            })),
+        }}
+    />
+);
 
-export function WithViewerTheme() {
-    return (
-        <EditorContainer
-            viewerTheme={viewerTheme}
-            defaultValue={{
-                title: 'With viewer theme',
-                theme: defaultTheme,
-                components: allScreensStory.components.map((c) => ({
-                    ...c,
-                })),
-            }}
-        />
-    );
-}
+export const WithViewerTheme = () => (
+    <EditorContainer
+        viewerTheme={viewerTheme}
+        defaultValue={{
+            title: 'With viewer theme',
+            theme: defaultTheme,
+            components: allScreensStory.components.map((c) => ({
+                ...c,
+            })),
+        }}
+    />
+);
 
-export function WithSomeScreens() {
-    return (
-        <EditorContainer
-            viewerTheme={viewerTheme}
-            defaultValue={{
-                title: 'With some screens',
-                components: [
-                    { id: '1', type: 'audio' },
-                    { id: '2', type: 'contribution' },
-                    { id: '3', type: 'map-images', draggable: true },
-                ],
-            }}
-        />
-    );
-}
+export const WithSomeScreens = () => (
+    <EditorContainer
+        viewerTheme={viewerTheme}
+        defaultValue={{
+            title: 'With some screens',
+            components: [
+                { id: '1', type: 'audio' },
+                { id: '2', type: 'contribution' },
+                { id: '3', type: 'map-images', draggable: true },
+            ],
+        }}
+    />
+);
 
-export function WithConversation() {
-    return (
-        <EditorContainer
-            defaultValue={{
-                title: 'With conversation',
-                components: [{ id: '1', type: 'conversation' }],
-            }}
-        />
-    );
-}
+export const WithConversation = () => (
+    <EditorContainer
+        defaultValue={{
+            title: 'With conversation',
+            components: [{ id: '1', type: 'conversation' }],
+        }}
+    />
+);

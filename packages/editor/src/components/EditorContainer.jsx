@@ -1,31 +1,28 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-import PropTypes from 'prop-types';
-import { MemoryRouter } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
-import { useIntl } from 'react-intl';
-
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
-    StoryProvider,
-    GoogleMapsClientProvider,
-    GoogleKeysProvider,
-    RoutesProvider,
-    UppyProvider,
-    FontsProvider,
     ComponentsContext,
     EditorProvider,
+    FontsProvider,
     FORMS_NAMESPACE,
+    GoogleKeysProvider,
+    GoogleMapsClientProvider,
+    RoutesProvider,
+    StoryProvider,
+    UppyProvider,
 } from '@micromag/core/contexts';
 import { slug } from '@micromag/core/utils';
-import { ScreensProvider } from '@micromag/screens';
 import { FieldsProvider } from '@micromag/fields';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-
-import * as EditorPropTypes from '../lib/PropTypes';
-import FormsProvider from './forms/FormsProvider';
-import Editor from './Editor';
-
+import { ScreensProvider } from '@micromag/screens';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { useIntl } from 'react-intl';
+import { MemoryRouter } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 import defaultRoutes from '../data/routes.json';
+import * as EditorPropTypes from '../lib/PropTypes';
+import Editor from './Editor';
+import FormsProvider from './forms/FormsProvider';
 
 const propTypes = {
     value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
@@ -71,16 +68,18 @@ const EditorContainer = ({
                 <StoryProvider story={value}>
                     <ScreensProvider>
                         <GoogleKeysProvider apiKey={googleApiKey}>
-                            <GoogleMapsClientProvider locale={locale} libraries={googleMapsLibraries}>
+                            <GoogleMapsClientProvider
+                                locale={locale}
+                                libraries={googleMapsLibraries}
+                            >
                                 <FontsProvider>
                                     <FieldsProvider>
                                         <FormsProvider>
                                             <EditorProvider>
                                                 <ComponentsContext.Consumer>
                                                     {(manager) => {
-                                                        const formComponents = manager.getComponents(
-                                                            FORMS_NAMESPACE,
-                                                        );
+                                                        const formComponents =
+                                                            manager.getComponents(FORMS_NAMESPACE);
                                                         const formRegEx =
                                                             formComponents !== null
                                                                 ? Object.keys(formComponents)

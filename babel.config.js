@@ -69,12 +69,12 @@ module.exports = (api) => {
         };
     }
 
-    console.log('hey', require.resolve('@babel/plugin-proposal-numeric-separator'));
+    console.log('env', api.env('development'));
 
     return {
         presets: api.env('development')
             ? [
-                  require.resolve('babel-preset-react-app'),
+                  '@babel/preset-react',
                   [
                       require('@babel/preset-env'),
                       {

@@ -1,17 +1,15 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useMemo } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import orderBy from 'lodash/orderBy';
-import { useIntl } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { isMessage } from '@micromag/core/utils';
 import { Label } from '@micromag/core/components';
 import { useScreensManager } from '@micromag/core/contexts';
-
-import Screens from './Screens';
-
+import { isMessage } from '@micromag/core/utils';
+import classNames from 'classnames';
+import orderBy from 'lodash/orderBy';
+import PropTypes from 'prop-types';
+import React, { useMemo } from 'react';
+import { useIntl } from 'react-intl';
 import styles from '../../styles/menus/screen-types.module.scss';
+import ScreensMenu from './ScreensMenu';
 
 const propTypes = {
     screens: MicromagPropTypes.screenDefinitions,
@@ -94,7 +92,7 @@ const ScreenTypes = ({ screens, selectedTypes, className, onClickItem }) => {
                     <div key={`group-${id}`} className={styles.row}>
                         <Label>{name}</Label>
                         <div className={styles.layouts}>
-                            <Screens
+                            <ScreensMenu
                                 items={items}
                                 withPlaceholder
                                 itemClassName={classNames([

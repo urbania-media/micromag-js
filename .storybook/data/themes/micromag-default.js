@@ -1,5 +1,3 @@
-import { v1 as uuid } from 'uuid';
-
 const text = {
     color: { color: '#F00', alpha: 0.8 },
     align: 'center',
@@ -46,17 +44,36 @@ export const defaultTheme = {
     },
     components: [
         {
-            id: uuid(),
+            id: '1111111111',
             type: 'text',
             layout: 'middle',
             text: {
-                body: 'Test body',
+                body: 'Test body 1',
             },
+            background: { color: { color: '#FF0', alpha: 1 }, image: null, video: null },
         },
         {
-            id: uuid(),
+            id: '2222222222',
             type: 'timeline',
             bulletShape: 'square',
+        },
+        {
+            id: '333333333',
+            type: 'text',
+            layout: 'bottom',
+            text: {
+                body: 'Test body 3',
+            },
+            background: { color: { color: '#F00', alpha: 1 }, image: null, video: null },
+        },
+        {
+            id: '44444444',
+            type: 'text',
+            layout: 'top',
+            text: {
+                body: 'Test body 4',
+            },
+            background: { color: { color: '#0FF', alpha: 1 }, image: null, video: null },
         },
     ],
 };

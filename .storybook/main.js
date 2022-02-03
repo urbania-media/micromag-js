@@ -68,6 +68,8 @@ module.exports = {
         builder: 'webpack5',
     },
     webpackFinal: async (config) => {
+        console.log('config', config.module.rules);
+
         const getStyleLoaders = (cssOptions, preProcessor) => {
             const styleLoaders = [
                 require.resolve('style-loader'),
@@ -137,7 +139,7 @@ module.exports = {
                     //     __dirname,
                     //     '../packages/ckeditor/dist/inline',
                     // ),
-                    // '@micromag/ckeditor$': path.join(__dirname, '../packages/ckeditor/dist/index'),
+                    '@micromag/ckeditor': path.join(__dirname, '../packages/ckeditor/dist/index'),
                 },
             },
 
@@ -162,16 +164,19 @@ module.exports = {
                                             },
                                         },
                                     },
+                                    'css-loader',
                                     {
                                         loader: 'postcss-loader',
-                                        options: styles.getPostCssConfig({
-                                            themeImporter: {
-                                                themePath: require.resolve(
-                                                    '@ckeditor/ckeditor5-theme-lark',
-                                                ),
-                                            },
-                                            minify: true,
-                                        }),
+                                        options: {
+                                            postcssOptions: styles.getPostCssConfig({
+                                                themeImporter: {
+                                                    themePath: require.resolve(
+                                                        '@ckeditor/ckeditor5-theme-lark',
+                                                    ),
+                                                },
+                                                minify: true,
+                                            }),
+                                        },
                                     },
                                 ],
                             },

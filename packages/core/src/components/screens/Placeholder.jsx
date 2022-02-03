@@ -1,13 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useMemo } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import PropTypes from 'prop-types';
+import React, { useMemo } from 'react';
+import { ScreenProvider, ScreenSizeProvider } from '../../contexts';
 import { PropTypes as MicromagPropTypes } from '../../lib';
-import { ScreenSizeProvider, ScreenProvider } from '../../contexts';
-import Screen from './Screen';
-
 import styles from '../../styles/screens/screen-placeholder.module.scss';
+import Screen from './Screen';
 
 const propTypes = {
     screen: MicromagPropTypes.component.isRequired,

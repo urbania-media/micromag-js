@@ -1,25 +1,23 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useState, useCallback, useRef, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { Button, Modals, Navbar } from '@micromag/core/components';
 import {
-    ScreenSizeProvider,
     ModalsProvider,
     PanelsProvider,
+    ScreenSizeProvider,
     useRoutePush,
 } from '@micromag/core/contexts';
+import { useMediasParser, useParsedStory, useScreenSizeFromElement } from '@micromag/core/hooks';
 import { getDeviceScreens } from '@micromag/core/utils';
-import { useScreenSizeFromElement, useParsedStory, useMediasParser } from '@micromag/core/hooks';
-import { Button, Modals, Navbar } from '@micromag/core/components';
-
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import useRouteParams from '../hooks/useRouteParams';
-import Screens from './Screens';
-import EditorPreview from './Preview';
-import EditorForm from './Form';
-
 import styles from '../styles/editor.module.scss';
+import EditorForm from './Form';
+import EditorPreview from './Preview';
+import Screens from './Screens';
 
 const propTypes = {
     value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
@@ -97,8 +95,11 @@ const Editor = ({
             if (screenSize.screen) {
                 setMobileView('preview');
             }
+            push('screen', {
+                screen: clickedScreenId.current,
+            });
         },
-        [screenSize.screen],
+        [screenSize.screen, push],
     );
 
     const onPreviewScreenChange = useCallback(
@@ -126,6 +127,8 @@ const Editor = ({
                 cnt.offsetTop + item.offsetTop + item.offsetHeight / 2 - screens.clientHeight / 2;
         }
     }, [screenId]);
+
+    // console.log('editor level value', value);
 
     return (
         <ModalsProvider>

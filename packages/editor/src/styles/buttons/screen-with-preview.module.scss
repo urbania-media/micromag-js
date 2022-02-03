@@ -1,0 +1,26 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/mixins';
+
+.button {
+    display: block;
+    position: relative;
+
+    .preview,
+    .placeholder {
+        @extend %fullscreen;
+        transform-origin: 0 0;
+    }
+
+    .screen {
+        @extend %fullscreen;
+    }
+
+    .preview {
+        background: rgba(#000, 0.9);
+    }
+
+    .placeholder {
+        position: relative;
+    }
+}
