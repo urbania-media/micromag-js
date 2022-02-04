@@ -1,3 +1,4 @@
+import React from 'react';
 import { SortableTree } from '../components/sortable/SortableTree';
 
 export default {
@@ -9,22 +10,17 @@ export default {
     },
 };
 
-function SortableContainer({ children }) {
-    return <div style={{ width: 200 }}>{children}</div>;
-}
+// eslint-disable-next-line react/prop-types
+const SortableContainer = ({ children }) => <div style={{ width: 200 }}>{children}</div>;
 
-export function Sortable() {
-    return (
-        <SortableContainer>
-            <SortableTree />
-        </SortableContainer>
-    );
-}
+export const Sortable = () => (
+    <SortableContainer>
+        <SortableTree />
+    </SortableContainer>
+);
 
-export function SortableRemoveable() {
-    return (
-        <SortableContainer>
-            <SortableTree removable />
-        </SortableContainer>
-    );
-}
+export const SortableRemoveable = () => (
+    <SortableContainer>
+        <SortableTree removable />
+    </SortableContainer>
+);

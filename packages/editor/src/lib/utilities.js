@@ -2,11 +2,11 @@ import { arrayMove } from '@dnd-kit/sortable';
 
 export const iOS = /iPad|iPhone|iPod/.test(navigator.platform);
 
-function getDragDepth(offset, indentationWidth) {
+export function getDragDepth(offset, indentationWidth) {
     return Math.round(offset / indentationWidth);
 }
 
-function getMaxDepth({ previousItem }) {
+export function getMaxDepth({ previousItem }) {
     if (previousItem) {
         // return previousItem.depth + 1;
         return 1;
@@ -14,7 +14,7 @@ function getMaxDepth({ previousItem }) {
     return 0;
 }
 
-function getMinDepth({ nextItem }) {
+export function getMinDepth({ nextItem }) {
     if (nextItem) {
         // return nextItem.depth;
         return 0;
@@ -87,48 +87,36 @@ export function flattenTree(items) {
     return flatten(items);
 }
 
-export function buildTree(flattenedItems) {
-    const items = flattenedItems.map((item) => ({ ...item, children: [] }));
-    const nodeList = items.reduce((acc, item) => {
-        const { parentId = null } = item;
-        if (parentId) {
-            let found = false;
-            const newList = acc.map((it) => {
-                if (it.id === parentId) {
-                    found = true;
-                    return {
-                        ...it,
-                        children: [...it.children, { ...item }],
-                    };
-                }
-                return it;
-            });
-            if (found) {
-                return newList;
-            }
-            acc.push({ ...(items.find(({ id }) => id === parentId) || null), children: [item] });
-            return acc;
-        }
-        acc.push(item);
-        return acc;
-    }, []);
-    return nodeList;
-}
-
 export function findItem(items, itemId) {
     return items.find(({ id }) => id === itemId);
 }
 
+export function buildTree(flattenedItems) {
+    const root = { id: 'root', children: [] };
+    const nodes = { [root.id]: root };
+    const items = flattenedItems.map((item) => ({ ...item, children: [] }));
+
+    // eslint-disable-next-line no-restricted-syntax
+    for (const item of items) {
+        const { id, children } = item;
+        const parentId = item.parentId ?? root.id;
+        const parent = nodes[parentId] ?? findItem(items, parentId);
+
+        nodes[id] = { id, children };
+        parent.children.push(item);
+    }
+
+    return root.children;
+}
+
 export function findItemDeep(items, itemId) {
-    for (let i = 0; i < items.length - 1; i += 1) {
+    for (let i = 0; i < items.length; i += 1) {
         const item = items[i] || {};
         const { id, children = [] } = item;
-
         if (id === itemId) {
             return item;
         }
-
-        if (children.length) {
+        if (children.length > 0) {
             const child = findItemDeep(children, itemId);
 
             if (child) {
@@ -136,22 +124,21 @@ export function findItemDeep(items, itemId) {
             }
         }
     }
-
     return undefined;
 }
 
 export function removeItem(items, id) {
     const newItems = [];
 
-    for (let i = 0; i < items.length - 1; i += 1) {
-        const item = items[i] || {};
+    // eslint-disable-next-line no-restricted-syntax
+    for (const item of items) {
         if (item.id === id) {
             // eslint-disable-next-line no-continue
             continue;
         }
 
         if (item.children.length) {
-            item.children = removeItem(item.children || [], id);
+            item.children = removeItem(item.children, id);
         }
 
         newItems.push(item);
@@ -161,39 +148,19 @@ export function removeItem(items, id) {
 }
 
 export function setProperty(items, id, property, setter) {
-    //  console.log('items', items);
-    const newItems = [];
-    // for (let i = 0; i < items.length - 1; i += 1) {
-    //     const item = items[i];
-    //     if (item.id === id) {
-    //         item[property] = setter(item[property]);
-    //         newItems.push({ ...item });
-    //     } else {
-    //         const { children = [] } = item;
-    //         let newChildren = [];
-    //         if (children.length > 0) {
-    //             newChildren = setProperty(children, id, property, setter);
-    //         }
-    //         newItems.push({ ...item, children: newChildren });
-    //     }
-    // }
-
+    // eslint-disable-next-line no-restricted-syntax
     for (const item of items) {
         if (item.id === id) {
             item[property] = setter(item[property]);
+            // eslint-disable-next-line no-continue
             continue;
         }
 
-        const { children = [] } = item;
-
-        if (children.length) {
-            children = setProperty(children, id, property, setter);
+        if (item.children.length) {
+            item.children = setProperty(item.children, id, property, setter);
         }
     }
 
-    // console.log('fubar', items, newItems);
-
-    // return newItems;
     return [...items];
 }
 
@@ -202,7 +169,6 @@ function countChildren(items, count = 0) {
         if (children.length) {
             return countChildren(children, acc + 1);
         }
-
         return acc + 1;
     }, count);
 }
@@ -211,9 +177,7 @@ export function getChildCount(items, id) {
     if (!id) {
         return 0;
     }
-
     const item = findItemDeep(items, id);
-
     return item ? countChildren(item.children || []) : 0;
 }
 

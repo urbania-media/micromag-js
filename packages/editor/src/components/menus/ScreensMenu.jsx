@@ -1,13 +1,14 @@
 /* eslint-disable react/jsx-indent */
+
 /* eslint-disable react/jsx-props-no-spreading */
 import { getSizeWithinBounds } from '@folklore/size';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useResizeObserver } from '@micromag/core/hooks';
 import classNames from 'classnames';
 import isFunction from 'lodash/isFunction';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 import { ReactSortable } from 'react-sortablejs';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useResizeObserver } from '@micromag/core/hooks';
 import styles from '../../styles/menus/screens.module.scss';
 import ScreenWithPreview from '../buttons/ScreenWithPreview';
 import SortableTree from '../sortable/SortableTree';
@@ -112,67 +113,66 @@ const ScreensMenu = ({
     }, [previewMinWidth, columnRect]);
 
     const itemsElements = !isTree
-        ? items.map(({ className: itemCustomClassName = null, screen, type, ...item }, index) => (
-              <li
-                  key={item.id}
-                  className={classNames([
-                      styles.item,
-                      {
-                          [itemClassName]: itemClassName !== null,
-                          [itemCustomClassName]: itemCustomClassName !== null,
-                      },
-                  ])}
-                  data-screen-id={item.id}
-                  ref={index === 0 ? containerRef : null}
-              >
-                  <ScreenWithPreview
-                      index={index}
-                      screen={{ ...screen, ...(withPlaceholder ? { type } : null) }}
-                      buttonClassName={buttonClassName}
-                      previewStyle={previewStyle}
-                      withPreview={withPreview}
-                      withPlaceholder={withPlaceholder}
-                      onClick={onClickItem}
-                  />
-                  {settings !== null ? (
-                      <div
-                          className={classNames([
-                              { [settingsClassName]: settingsClassName !== null },
-                              styles.settings,
-                              'p-2',
-                          ])}
-                      >
-                          {isFunction(settings) ? settings(index) : settings}
-                      </div>
-                  ) : null}
-              </li>
-          ))
+        ? items.map(
+              (
+                  { className: itemCustomClassName = null, screen, type, onClick = null, ...item },
+                  index,
+              ) => (
+                  <li
+                      key={item.id}
+                      className={classNames([
+                          styles.item,
+                          {
+                              [itemClassName]: itemClassName !== null,
+                              [itemCustomClassName]: itemCustomClassName !== null,
+                          },
+                      ])}
+                      data-screen-id={item.id}
+                      ref={index === 0 ? containerRef : null}
+                  >
+                      <ScreenWithPreview
+                          index={index}
+                          screen={{ ...screen, ...(withPlaceholder ? { type } : null) }}
+                          buttonClassName={buttonClassName}
+                          previewStyle={previewStyle}
+                          withPreview={withPreview}
+                          withPlaceholder={withPlaceholder}
+                          onClick={onClick}
+                          onClickItem={onClickItem}
+                      />
+                      {settings !== null ? (
+                          <div
+                              className={classNames([
+                                  { [settingsClassName]: settingsClassName !== null },
+                                  styles.settings,
+                                  'p-2',
+                              ])}
+                          >
+                              {isFunction(settings) ? settings(index) : settings}
+                          </div>
+                      ) : null}
+                  </li>
+              ),
+          )
         : [];
 
     const sortableItems = useMemo(
         () =>
             isTree
-                ? items.reduce((acc, { id, screen = {}, ...props }) => {
-                      const { parentId = null } = screen;
-                      // console.log('hey', id, screen, parentId, props);
-                      //   const children =
-                      //       items.filter(({ screen: { parentId: cpid = null } }) => cpid === id) ||
-                      //       [];
-                      // console.log('children', children);
-                      acc.push({
+                ? items.map(({ id, screen = {}, ...props }) => {
+                      const { parentId = null, group = {} } = screen;
+                      const { collapsed = true } = group || {};
+                      return {
                           id,
                           parentId,
-                          screenValue: { id, screen },
+                          collapsed,
+                          value: { id, screen },
                           ...props,
-                          // ...(children.length > 0 ? { children: [...children] } : null),
-                      });
-                      return acc;
+                      };
                   }, [])
                 : items.map(({ id }) => ({ id })),
         [items, isTree],
     );
-
-    // console.log('screens menu items/sitems', items, sortableItems);
 
     return (
         <div

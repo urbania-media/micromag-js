@@ -9,6 +9,15 @@
     margin-bottom: 3px;
     border-radius: 10px;
 
+    &:hover {
+        .inner {
+            .handle .icon {
+                display: block;
+                visibility: visible;
+            }
+        }
+    }
+
     &.withChildren {
         background-color: $gray-600;
     }
@@ -39,20 +48,8 @@
                 padding: 0;
                 height: 8px;
                 border: 1px solid $primary;
-                border-radius: 10px;
+                border-radius: 6px;
                 background-color: $primary;
-
-                &:before {
-                    position: absolute;
-                    left: -8px;
-                    top: -4px;
-                    display: block;
-                    content: '';
-                    width: 12px;
-                    height: 12px;
-                    border-radius: 50%;
-                    border: 1px solid #2389ff;
-                }
 
                 > * {
                     /* Items are hidden using height and opacity to retain focus */
@@ -85,12 +82,14 @@
         padding: 10px;
 
         color: #222;
+        background-color: transparent;
         box-sizing: border-box;
 
         .button {
             @extend %reset-button;
             background-color: transparent;
-            color: #aaa;
+            color: #fff;
+            mix-blend-mode: difference;
         }
 
         // &.collapsed {
@@ -99,9 +98,19 @@
 
         .handle {
             position: absolute;
-            top: 10px;
-            left: 10px;
             z-index: 1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+            .icon {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                display: none;
+                visibility: hidden;
+            }
         }
 
         .text {

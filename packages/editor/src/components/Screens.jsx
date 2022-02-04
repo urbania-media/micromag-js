@@ -130,7 +130,6 @@ const EditorScreens = ({
                             ...screenProps.find(({ id: propsId }) => propsId === id)?.props,
                         })),
                 };
-
                 if (onChange !== null) {
                     onChange(newValue);
                 }

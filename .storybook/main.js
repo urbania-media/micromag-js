@@ -68,7 +68,7 @@ module.exports = {
         builder: 'webpack5',
     },
     webpackFinal: async (config) => {
-        console.log('config', config.module.rules);
+        // console.log('config', config.module.rules);
 
         const getStyleLoaders = (cssOptions, preProcessor) => {
             const styleLoaders = [

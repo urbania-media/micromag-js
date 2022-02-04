@@ -201,6 +201,7 @@ const Editor = ({
                                     onClickScreen={onClickScreen}
                                     isVertical={!isMobile}
                                     className={styles.inner}
+                                    isTree
                                 />
                             </div>
                             <div

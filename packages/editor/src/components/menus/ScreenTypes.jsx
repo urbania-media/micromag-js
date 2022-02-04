@@ -1,13 +1,13 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Label } from '@micromag/core/components';
-import { useScreensManager } from '@micromag/core/contexts';
-import { isMessage } from '@micromag/core/utils';
 import classNames from 'classnames';
 import orderBy from 'lodash/orderBy';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 import { useIntl } from 'react-intl';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { Label } from '@micromag/core/components';
+import { useScreensManager } from '@micromag/core/contexts';
+import { isMessage } from '@micromag/core/utils';
 import styles from '../../styles/menus/screen-types.module.scss';
 import ScreensMenu from './ScreensMenu';
 

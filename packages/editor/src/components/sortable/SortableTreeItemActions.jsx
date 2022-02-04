@@ -1,11 +1,10 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable jsx-a11y/control-has-associated-label, react/jsx-props-no-spreading */
 import { faAngleDown, faGripLines, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
-import styles from '../../styles/sortable/tree-item-actions.module.scss';
+import styles from '../../styles/sortable/sortable-tree-item-actions.module.scss';
 
 const propTypes = {
     childCount: PropTypes.number,
@@ -107,15 +106,8 @@ export const SortableTreeItemActions = forwardRef(
                     type="button"
                     {...handleProps}
                 >
-                    <FontAwesomeIcon icon={faGripLines} />
+                    <FontAwesomeIcon className={styles.icon} icon={faGripLines} />
                 </button>
-                <button
-                    className={classNames([styles.button, styles.full])}
-                    type="button"
-                    onClick={onClick}
-                    style={{ width: style.width, height: style.height }}
-                />
-                {showId ? <span className={styles.text}>{value}</span> : null}
                 {!clone && onRemove ? (
                     <button type="button" onClick={onRemove}>
                         <FontAwesomeIcon icon={faTimes} />

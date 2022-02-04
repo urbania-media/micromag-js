@@ -2,16 +2,17 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { iOS } from '../../lib/utilities';
 import { SortableTreeItemActions } from './SortableTreeItemActions';
 
 const propTypes = {
     id: PropTypes.string.isRequired,
+    index: PropTypes.number.isRequired,
     depth: PropTypes.number.isRequired,
     component: PropTypes.func,
     // eslint-disable-next-line react/forbid-prop-types
-    screenValue: PropTypes.object,
+    value: PropTypes.object,
     style: PropTypes.shape({
         width: PropTypes.number.isRequired,
         height: PropTypes.number.isRequired,
@@ -20,28 +21,32 @@ const propTypes = {
         transform: PropTypes.string.isRequired,
         scale: PropTypes.number.isRequired,
     }),
+    smallScale: PropTypes.number,
     onCollapse: PropTypes.func,
-    onClick: PropTypes.func,
+    onClickItem: PropTypes.func,
 };
 
 const defaultProps = {
     component: null,
-    screenValue: null,
+    value: null,
     style: null,
+    smallScale: 0.75,
     onCollapse: null,
-    onClick: null,
+    onClickItem: null,
 };
 
 const animateLayoutChanges = ({ isSorting, wasDragging }) => !(isSorting || wasDragging);
 
 export const SortableTreeItem = ({
     id,
+    index,
     depth,
     component: Component,
-    screenValue,
+    value,
     style: itemStyle,
+    smallScale,
     onCollapse,
-    onClick,
+    onClickItem,
     ...props
 }) => {
     const {
@@ -63,8 +68,8 @@ export const SortableTreeItem = ({
     const extraHeight = hasCollapse ? 30 : 0;
 
     const actionsStyle = {
-        width: depth === 0 ? scaledWidth : scaledWidth * 0.75,
-        height: depth === 0 ? scaledHeight + extraHeight : scaledHeight * 0.75,
+        width: depth === 0 ? scaledWidth : scaledWidth * smallScale,
+        height: depth === 0 ? scaledHeight + extraHeight : scaledHeight * smallScale,
         transform: CSS.Translate.toString(transform),
         transition,
     };
@@ -72,9 +77,24 @@ export const SortableTreeItem = ({
     const previewStyle = {
         width: itemStyle.width,
         height: itemStyle.height,
-        transform: depth === 0 ? itemStyle.transform : `scale(${scale * 0.75}, ${scale * 0.75})`,
-        transformOrigin: 'top left',
+        transform:
+            depth === 0
+                ? itemStyle.transform
+                : `scale(${scale * smallScale}, ${scale * smallScale})`,
     };
+
+    const { onPointerDown } = listeners || {};
+    const onClickAction = useCallback(
+        (e) => {
+            if (onClickItem !== null) {
+                onClickItem(value, index);
+            }
+            if (onPointerDown !== null) {
+                onPointerDown(e);
+            }
+        },
+        [value, index, onClickItem, onPointerDown],
+    );
 
     return (
         <SortableTreeItemActions
@@ -88,12 +108,12 @@ export const SortableTreeItem = ({
             handleProps={{
                 ...attributes,
                 ...listeners,
+                onPointerDown: onClickAction,
             }}
             onCollapse={onCollapse}
-            onClick={onClick}
             {...props}
         >
-            {Component !== null ? <Component {...screenValue} previewStyle={previewStyle} /> : null}
+            {Component !== null ? <Component {...value} previewStyle={previewStyle} /> : null}
         </SortableTreeItemActions>
     );
 };

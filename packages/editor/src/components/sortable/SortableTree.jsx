@@ -22,6 +22,7 @@ import {
     removeChildrenOf,
     removeItem,
     setProperty,
+    getMaxDepth,
 } from '../../lib/utilities';
 import { SortableTreeItem } from './SortableTreeItem';
 
@@ -115,7 +116,7 @@ export const SortableTree = ({
         // console.log('yo', items, flattenedTree);
         const collapsedItems =
             flattenedTree.reduce(
-                (acc, { children, collapsed, id }) =>
+                (acc, { children = [], collapsed, id }) =>
                     collapsed && children.length ? [...acc, id] : acc,
                 [],
             ) || null;
@@ -174,12 +175,18 @@ export const SortableTree = ({
                 if (onChange !== null) {
                     onChange(
                         (flattenedItems || []).map(
-                            ({ id: itemId, children = [], parentId = null }) => ({
+                            ({
+                                id: itemId,
+                                children = [],
+                                parentId = null,
+                                collapsed = false,
+                            }) => ({
                                 id: itemId,
                                 props: {
                                     ...((children || []).length > 0
                                         ? {
                                               group: {
+                                                  collapsed,
                                                   mergeNavItems: true,
                                               },
                                           }
@@ -201,12 +208,11 @@ export const SortableTree = ({
         [flattenedItems, onChange],
     );
 
-    // Note: this is quite brutal for perf
+    // Initial tree setup from list
     useEffect(() => {
-        // setItems(defaultItems);
-    }, [defaultItems, setItems]);
-
-    // console.log('render: current id', activeId);
+        // console.log('fuck off');
+        setItems(buildTree(defaultItems));
+    }, []);
 
     return (
         <DndContext
@@ -222,11 +228,10 @@ export const SortableTree = ({
         >
             <SortableContext items={sortedIds} strategy={verticalListSortingStrategy}>
                 {flattenedItems.map(
-                    ({ id, children = [], collapsed, depth, screenValue = null }, idx) => (
+                    ({ id, children = [], collapsed, depth, value = null }, idx) => (
                         <SortableTreeItem
                             key={id}
                             id={id}
-                            value={id}
                             depth={id === activeId && projected ? projected.depth : depth}
                             indentationWidth={indentationWidth}
                             indicator={indicator}
@@ -239,13 +244,10 @@ export const SortableTree = ({
                             onRemove={removable ? () => handleRemove(id) : undefined}
                             childCount={getChildCount(items, id)}
                             component={component}
-                            screenValue={screenValue}
+                            value={value}
                             style={itemStyle}
-                            onClick={() => {
-                                if (onClickItem !== null) {
-                                    onClickItem({ id }, idx);
-                                }
-                            }}
+                            onClickItem={onClickItem}
+                            index={idx}
                         />
                     ),
                 )}
@@ -260,10 +262,11 @@ export const SortableTree = ({
                                 depth={activeItem.depth}
                                 clone
                                 childCount={getChildCount(items, activeId) + 1}
-                                value={activeId}
                                 indentationWidth={indentationWidth}
                                 component={component}
-                                screenValue={activeItem?.screenValue}
+                                value={activeItem?.value}
+                                onClickItem={onClickItem}
+                                index={flattenedItems.findIndex(({ id }) => activeId === id)}
                                 style={itemStyle}
                             />
                         ) : null}
@@ -316,6 +319,23 @@ export const SortableTree = ({
             const overIndex = clonedItems.findIndex(({ id }) => id === over.id);
             const activeIndex = clonedItems.findIndex(({ id }) => id === active.id);
             const activeTreeItem = clonedItems[activeIndex];
+            const maxDepth = getMaxDepth(activeTreeItem);
+
+            // Un-merge and flatten
+            if (
+                depth > 0 &&
+                depth >= maxDepth &&
+                activeTreeItem?.children !== null &&
+                activeTreeItem.children.length > 0
+            ) {
+                for (let i = 0; i < activeTreeItem.children.length; i += 1) {
+                    const { id: childId } = activeTreeItem.children[i];
+                    const childIndex = clonedItems.findIndex(({ id }) => id === childId);
+                    clonedItems[childIndex].parentId = parentId;
+                    clonedItems[childIndex].depth = depth;
+                }
+                activeTreeItem.children = [];
+            }
 
             clonedItems[activeIndex] = { ...activeTreeItem, depth, parentId };
 

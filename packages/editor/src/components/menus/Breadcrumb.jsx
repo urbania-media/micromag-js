@@ -1,17 +1,15 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useMemo, useCallback } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useHistory } from 'react-router';
+import PropTypes from 'prop-types';
+import React, { useMemo, useCallback } from 'react';
 import { useIntl } from 'react-intl';
-import { Breadcrumb as BaseBreadcrumb, BackButton } from '@micromag/core/components';
+import { useHistory } from 'react-router';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { isMessage, getScreenExtraField } from '@micromag/core/utils';
+import { Breadcrumb as BaseBreadcrumb, BackButton } from '@micromag/core/components';
 import { useScreensManager, useFieldsManager } from '@micromag/core/contexts';
-
-import getFieldByName from '../../utils/getFieldByName';
-
+import { isMessage, getScreenExtraField } from '@micromag/core/utils';
 import styles from '../../styles/menus/breadcrumb.module.scss';
+import getFieldByName from '../../utils/getFieldByName';
 
 const propTypes = {
     story: MicromagPropTypes.story,
@@ -45,8 +43,8 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
         const { type } = screens[screenIndex];
         const fieldItems = [];
         if (field !== null) {
-            const { fields:screenFields = [] } = screensManager.getDefinition(type);
-            const fields = [...screenFields, getScreenExtraField(intl)];            
+            const { fields: screenFields = [] } = screensManager.getDefinition(type);
+            const fields = [...screenFields, getScreenExtraField(intl)];
             const fieldPath = field.split('/');
 
             const lastKeyIndex = fieldPath.length - 1;

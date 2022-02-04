@@ -1,13 +1,11 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Tabs } from '@micromag/core/components';
-
-import DeviceButton from '../buttons/Device';
-
 import styles from '../../styles/menus/devices.module.scss';
+import DeviceButton from '../buttons/Device';
 
 const propTypes = {
     items: MicromagPropTypes.menuItems,
@@ -39,7 +37,7 @@ const DevicesMenu = ({ items, className, onClickItem }) => (
                     {...props}
                     {...itemProps}
                     className={styles.button}
-                    onClick={e => (onClickItem !== null ? onClickItem(e, item, index) : null)}
+                    onClick={(e) => (onClickItem !== null ? onClickItem(e, item, index) : null)}
                 />
             );
         }}

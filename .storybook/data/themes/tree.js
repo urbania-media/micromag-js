@@ -11,6 +11,7 @@ export const defaultTheme = {
             },
             group: {
                 mergeNavItems: true,
+                collapsed: false,
             },
             background: { color: { color: '#FF0', alpha: 1 }, image: null, video: null },
         },
@@ -37,7 +38,31 @@ export const defaultTheme = {
             text: {
                 body: 'Test body 4',
             },
+            group: {
+                mergeNavItems: true,
+                collapsed: true,
+            },
             background: { color: { color: '#0FF', alpha: 1 }, image: null, video: null },
+        },
+        {
+            id: '555555',
+            type: 'text',
+            layout: 'top',
+            text: {
+                body: 'Test body 4',
+            },
+            background: { color: { color: '#00F', alpha: 1 }, image: null, video: null },
+            parentId: '44444444',
+        },
+        {
+            id: '666666',
+            type: 'text',
+            layout: 'top',
+            text: {
+                body: 'Test body 4',
+            },
+            background: { color: { color: '#F0F', alpha: 1 }, image: null, video: null },
+            parentId: '44444444',
         },
     ],
 };
