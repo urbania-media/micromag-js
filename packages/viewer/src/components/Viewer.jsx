@@ -1,6 +1,16 @@
 /* eslint-disable no-param-reassign */
+
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
+import { config, useSpring } from '@react-spring/core';
+import { animated } from '@react-spring/web';
+import { useDrag } from '@use-gesture/react';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Helmet } from 'react-helmet';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { FontFaces, Meta } from '@micromag/core/components';
 import { ScreenSizeProvider, ViewerProvider } from '@micromag/core/contexts';
@@ -14,18 +24,10 @@ import {
     useTrackScreenView,
 } from '@micromag/core/hooks';
 import { getDeviceScreens } from '@micromag/core/utils';
-import { config, useSpring } from '@react-spring/core';
-import { animated } from '@react-spring/web';
-import { useDrag } from '@use-gesture/react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Helmet } from 'react-helmet';
-import { FormattedMessage, useIntl } from 'react-intl';
 import styles from '../styles/viewer.module.scss';
+import ViewerScreen from './ViewerScreen';
 import MenuDots from './menus/MenuDots';
 import MenuPreview from './menus/MenuPreview';
-import ViewerScreen from './ViewerScreen';
 
 const propTypes = {
     story: MicromagPropTypes.story, // .isRequired,
@@ -87,7 +89,7 @@ const defaultProps = {
     className: null,
 };
 
-function Viewer({
+const Viewer = ({
     story,
     basePath,
     theme: viewerTheme,
@@ -113,7 +115,7 @@ function Viewer({
     screensMedias,
     screenSizeOptions,
     className,
-}) {
+}) => {
     const intl = useIntl();
     const parsedStory = useParsedStory(story, { disabled: storyIsParsed }) || {};
     const { components: screens = [], title = null, metadata = null, fonts = null } = parsedStory;
@@ -741,7 +743,7 @@ function Viewer({
             </ViewerProvider>
         </ScreenSizeProvider>
     );
-}
+};
 
 Viewer.propTypes = propTypes;
 Viewer.defaultProps = defaultProps;

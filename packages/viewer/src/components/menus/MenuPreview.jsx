@@ -1,18 +1,20 @@
 /* eslint-disable arrow-body-style */
+
 /* eslint-disable react/jsx-props-no-spreading */
+
 /* eslint-disable react/no-array-index-key, jsx-a11y/control-has-associated-label */
 // stylelint-disable stylelint-family-no-missing-generic-family-keyword
 import { faCompress, faExpand, faShare, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Button, ScreenPreview } from '@micromag/core/components';
-import { getStyleFromColor, getStyleFromText } from '@micromag/core/utils';
-import Scroll from '@micromag/element-scroll';
 import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { Button, ScreenPreview } from '@micromag/core/components';
+import { getStyleFromColor, getStyleFromText } from '@micromag/core/utils';
+import Scroll from '@micromag/element-scroll';
 import styles from '../../styles/menus/menu-preview.module.scss';
 import ShareButton from '../partials/ShareButton';
 
@@ -52,7 +54,7 @@ const defaultProps = {
     className: null,
 };
 
-function ViewerMenuPreview({
+const ViewerMenuPreview = ({
     viewerTheme,
     screenWidth,
     title,
@@ -68,7 +70,7 @@ function ViewerMenuPreview({
     fullscreenActive,
     fullscreenEnabled,
     className,
-}) {
+}) => {
     const intl = useIntl();
     const screenSizeRatio = `${(3 / 2 / thumbsPerLine) * 100}%`;
     const screenRatioHeight = (screenWidth * 3) / 2;
@@ -225,7 +227,7 @@ function ViewerMenuPreview({
                                         : '';
                                 const screenAriaLabel = screenIndexLabel + isCurrentScreenLabel;
 
-                                return (
+                                return item.parentId === null ? (
                                     <li
                                         className={classNames([
                                             styles.item,
@@ -289,7 +291,7 @@ function ViewerMenuPreview({
                                             tabIndex={focusable ? '0' : '-1'}
                                         />
                                     </li>
-                                );
+                                ) : null;
                             })}
                         </ul>
                     </nav>
@@ -297,7 +299,7 @@ function ViewerMenuPreview({
             </div>
         </div>
     ) : null;
-}
+};
 
 ViewerMenuPreview.propTypes = propTypes;
 ViewerMenuPreview.defaultProps = defaultProps;

@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useCallback, useState } from 'react';
 import {
@@ -13,6 +14,7 @@ import {
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import basic from '../../../../.storybook/data/stories/basic.json';
 import faceAFace from '../../../../.storybook/data/stories/faceAFace';
+import treeTheme from '../../../../.storybook/data/themes/tree';
 import viewerTheme from '../../../../.storybook/data/viewerTheme';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
 import Viewer from '../components/ViewerContainer';
@@ -87,6 +89,8 @@ export const Integrated = () => {
         />
     );
 };
+
+export const Tree = () => <Viewer story={treeTheme} />;
 
 export const WithScroll = () => (
     <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'scroll' }}>

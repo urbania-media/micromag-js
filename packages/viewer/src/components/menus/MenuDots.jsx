@@ -1,11 +1,11 @@
 /* eslint-disable react/no-array-index-key */
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import styles from '../../styles/menus/menu-dots.module.scss';
 import MenuIcon from './MenuIcon';
 
@@ -72,36 +72,38 @@ const ViewerMenuDots = ({
             )}
         >
             <ul className={styles.items}>
-                {items.map((item, index) => (
-                    <li
-                        className={classNames([
-                            styles.item,
-                            {
-                                [styles.active]: current === index,
-                            },
-                        ])}
-                        key={`item-${index}`}
-                        aria-hidden="true"
-                    >
-                        <button
-                            type="button"
-                            className={styles.button}
-                            onClick={() => {
-                                if (onClickItem !== null) {
-                                    onClickItem(index);
-                                }
-                            }}
-                            tabIndex="-1"
+                {items.map((item, index) =>
+                    item?.parentId === null ? (
+                        <li
+                            className={classNames([
+                                styles.item,
+                                {
+                                    [styles.active]: current === index,
+                                },
+                            ])}
+                            key={`item-${index}`}
+                            aria-hidden="true"
                         >
-                            <span
-                                className={styles.dot}
-                                style={{
-                                    backgroundColor: index <= current ? primary : secondary,
+                            <button
+                                type="button"
+                                className={styles.button}
+                                onClick={() => {
+                                    if (onClickItem !== null) {
+                                        onClickItem(index);
+                                    }
                                 }}
-                            />
-                        </button>
-                    </li>
-                ))}
+                                tabIndex="-1"
+                            >
+                                <span
+                                    className={styles.dot}
+                                    style={{
+                                        backgroundColor: index <= current ? primary : secondary,
+                                    }}
+                                />
+                            </button>
+                        </li>
+                    ) : null,
+                )}
                 <li className={styles.menu}>
                     <MenuIcon className={styles.menuIcon} color={primary} />
                     <button
