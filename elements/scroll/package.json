@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-scroll",
-    "version": "0.2.409",
+    "version": "0.2.412",
     "description": "",
     "keywords": [
         "javascript"
@@ -52,7 +52,7 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "^0.1.13",
-        "@micromag/core": "^0.2.409",
+        "@micromag/core": "^0.2.412",
         "@use-gesture/react": "^10.2.4",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",

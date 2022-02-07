@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-text-input",
-    "version": "0.2.409",
+    "version": "0.2.412",
     "description": "",
     "keywords": [
         "javascript"
@@ -49,7 +49,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.2.409",
+        "@micromag/core": "^0.2.412",
         "classnames": "^2.2.6",
         "prop-types": "^15.7.2"
     },
