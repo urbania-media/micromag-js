@@ -356,6 +356,9 @@
     "MYZwSA": {
         "defaultMessage": "Audio"
     },
+    "MhGUaY": {
+        "defaultMessage": "Diaporama"
+    },
     "MmJQ7o": {
         "defaultMessage": "Galerie avec légendes"
     },
@@ -446,6 +449,9 @@
     "UBXIYP": {
         "defaultMessage": "Vidéo"
     },
+    "UG3SXh": {
+        "defaultMessage": "Enlever"
+    },
     "UUv8FR": {
         "defaultMessage": "Nom"
     },
@@ -463,6 +469,9 @@
     },
     "VDu2FA": {
         "defaultMessage": "Google Fonts"
+    },
+    "VspZp9": {
+        "defaultMessage": "Téléverser une image"
     },
     "Wb5zY4": {
         "defaultMessage": "Sélectionnez un fichier de police..."
@@ -575,6 +584,9 @@
     "ebsPd4": {
         "defaultMessage": "Image"
     },
+    "eiaIIB": {
+        "defaultMessage": "Ce Micromag"
+    },
     "enFs4g": {
         "defaultMessage": "Avancé"
     },
@@ -589,6 +601,9 @@
     },
     "fIawTr": {
         "defaultMessage": "Texte"
+    },
+    "fVqgfl": {
+        "defaultMessage": "[sans titre]"
     },
     "fusnxf": {
         "defaultMessage": "Carré"
@@ -673,6 +688,9 @@
     },
     "n2teag": {
         "defaultMessage": "Ajouter une réponse"
+    },
+    "n8zmLY": {
+        "defaultMessage": "Aller au prochain écran à la fin de la vidéo"
     },
     "nXVNeg": {
         "defaultMessage": "Nom"
@@ -835,6 +853,9 @@
     },
     "y7xsPe": {
         "defaultMessage": "Paramètres avancés"
+    },
+    "yCXMzz": {
+        "defaultMessage": "Fermer"
     },
     "ySApyR": {
         "defaultMessage": "Image d’arrière-plan"

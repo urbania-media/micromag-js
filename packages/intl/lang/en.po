@@ -1388,6 +1388,12 @@ msgctxt "n2teag"
 msgid "Add an answer"
 msgstr "Add an answer"
 
+# Field label
+#: n8zmLY
+msgctxt "n8zmLY"
+msgid "Go to next screen on end"
+msgstr "Go to next screen on end"
+
 # Name field label
 #: nXVNeg
 msgctxt "nXVNeg"

@@ -916,6 +916,10 @@
     "defaultMessage": "Add an answer",
     "description": "Button label in answers field"
   },
+  "n8zmLY": {
+    "defaultMessage": "Go to next screen on end",
+    "description": "Field label"
+  },
   "nXVNeg": {
     "defaultMessage": "Name",
     "description": "Name field label"
