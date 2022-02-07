@@ -156,6 +156,7 @@ export const MultipleVideos = () => (
                     video: {
                         media: videoMedia(),
                     },
+                    gotoNextScreenOnEnd: true,
                 },
                 {
                     id: '2',

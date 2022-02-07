@@ -45,6 +45,15 @@ export default {
             }),
         },
         {
+            name: 'gotoNextScreenOnEnd',
+            type: 'toggle',
+            defaultValue: false,
+            label: defineMessage({
+                defaultMessage: 'Go to next screen on end',
+                description: 'Field label',
+            }),
+        },
+        {
             name: 'background',
             type: 'background',
             label: defineMessage({

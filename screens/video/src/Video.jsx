@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { getSizeWithinBounds } from '@folklore/size';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderVideo, Transitions, ScreenElement, Empty } from '@micromag/core/components';
-import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
+import { useScreenSize, useScreenRenderContext, useViewerNavigation } from '@micromag/core/contexts';
 import { useTrackScreenMedia, useLongPress } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import Container from '@micromag/element-container';
@@ -22,6 +22,7 @@ import styles from './styles.module.scss';
 const propTypes = {
     layout: PropTypes.oneOf(['middle', 'full']),
     video: MicromagPropTypes.videoElement,
+    gotoNextScreenOnEnd: PropTypes.bool,
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
@@ -35,6 +36,7 @@ const propTypes = {
 const defaultProps = {
     layout: 'middle',
     video: null,
+    gotoNextScreenOnEnd: false,
     background: null,
     callToAction: null,
     current: true,
@@ -48,6 +50,7 @@ const defaultProps = {
 const VideoScreen = ({
     layout,
     video,
+    gotoNextScreenOnEnd,
     background,
     callToAction,
     current,
@@ -68,9 +71,11 @@ const VideoScreen = ({
         isStatic,
         isCapture,
     } = useScreenRenderContext();
+    const { gotoNextScreen } = useViewerNavigation();
     const backgroundPlaying = current && (isView || isEdit);
     const backgroundShouldLoad = current || active || !isView;
     const videoShouldLoad = current || active || !isView;
+    const shouldGotoNextScreenOnEnd = gotoNextScreenOnEnd && isView && current;
 
     const apiRef = useRef();
     const { togglePlay, toggleMute, seek, play, pause, mediaRef: apiMediaRef = null } = apiRef.current || {};
@@ -148,6 +153,12 @@ const VideoScreen = ({
         }
         toggleMute();
     }, [muted, toggleMute]);
+
+    const onEnded = useCallback(() => {
+        if (shouldGotoNextScreenOnEnd) {
+            gotoNextScreen();
+        }
+    }, [shouldGotoNextScreenOnEnd, seek, gotoNextScreen]);
 
     useEffect(() => {
         if (!current && playing) {
@@ -278,6 +289,7 @@ const VideoScreen = ({
                             onProgressStep={onProgressStep}
                             onDurationChanged={onDurationChanged}
                             onSeeked={onSeeked}
+                            onEnded={onEnded}
                             onVolumeChanged={onVolumeChanged}
                             focusable={current && isView}
                             preload={videoShouldLoad ? 'auto' : 'metadata'}

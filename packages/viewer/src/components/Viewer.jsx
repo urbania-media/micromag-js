@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+
 /* eslint-disable no-param-reassign */
 
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -245,12 +247,12 @@ const Viewer = ({
     // Handle interaction enable
     const currentScreenRef = useRef(null);
 
-    const onScreenPrevious = useCallback(() => {
+    const gotoPreviousScreen = useCallback(() => {
         changeIndex(Math.max(0, screenIndex - 1));
         currentScreenRef.current.focus();
     }, [changeIndex]);
 
-    const onScreenNext = useCallback(() => {
+    const gotoNextScreen = useCallback(() => {
         changeIndex(Math.min(screens.length - 1, screenIndex + 1));
         currentScreenRef.current.focus();
     }, [changeIndex]);
@@ -539,11 +541,11 @@ const Viewer = ({
                     closePreviewMenu();
                     break;
                 case 'arrowleft':
-                    onScreenPrevious();
+                    gotoPreviousScreen();
                     break;
                 case 'arrowright':
                 case ' ': // spacebar
-                    onScreenNext();
+                    gotoNextScreen();
                     break;
                 default:
                     break;
@@ -556,7 +558,7 @@ const Viewer = ({
         return () => {
             window.removeEventListener('keydown', onKey);
         };
-    }, [renderContext, closePreviewMenu, onScreenPrevious, onScreenNext]);
+    }, [renderContext, closePreviewMenu, gotoPreviousScreen, gotoNextScreen]);
 
     const { parameters: screenParameters } = currentScreen || {};
     const { metadata: screenMetadata } = screenParameters || {};
@@ -572,7 +574,12 @@ const Viewer = ({
 
     return (
         <ScreenSizeProvider size={screenSize}>
-            <ViewerProvider menuVisible={menuVisible} menuSize={menuDotsContainerHeight}>
+            <ViewerProvider
+                menuVisible={menuVisible}
+                menuSize={menuDotsContainerHeight}
+                gotoPreviousScreen={gotoPreviousScreen}
+                gotoNextScreen={gotoNextScreen}
+            >
                 {withMetadata ? (
                     <Meta title={finalTitle} metadata={finalMetadata}>
                         {overscrollStyle}
@@ -654,8 +661,8 @@ const Viewer = ({
                                         index={i}
                                         current={current}
                                         active={active}
-                                        onPrevious={onScreenPrevious}
-                                        onNext={onScreenNext}
+                                        onPrevious={gotoPreviousScreen}
+                                        onNext={gotoNextScreen}
                                         onEnableInteraction={onEnableInteraction}
                                         onDisableInteraction={onDisableInteraction}
                                         getMediaRef={(mediaRef) => {
@@ -675,7 +682,7 @@ const Viewer = ({
                                             <button
                                                 type="button"
                                                 className="sr-only"
-                                                onClick={onScreenPrevious}
+                                                onClick={gotoPreviousScreen}
                                                 tabIndex="-1"
                                             >
                                                 <FormattedMessage
@@ -707,16 +714,12 @@ const Viewer = ({
                                                 },
                                                 { index: i + 1 },
                                             )}
-                                            {...{
-                                                onKeyUp: (e) => {
-                                                    if (e.key === 'Enter') {
-                                                        onScreenClick(e, i);
-                                                    }
-                                                },
-                                                onClick: (e) => {
+                                            onKeyUp={(e) => {
+                                                if (e.key === 'Enter') {
                                                     onScreenClick(e, i);
-                                                },
+                                                }
                                             }}
+                                            onClick={(e) => onScreenClick(e, i)}
                                         >
                                             {viewerScreen}
                                         </div>
@@ -725,7 +728,7 @@ const Viewer = ({
                                             <button
                                                 type="button"
                                                 className="sr-only"
-                                                onClick={onScreenNext}
+                                                onClick={gotoNextScreen}
                                                 tabIndex="-1"
                                             >
                                                 <FormattedMessage
