@@ -12,5 +12,11 @@
                 "message": "Selector should be written in camel-case (selector-class-pattern)"
             }
         ]
-    }
+    },
+    "overrides": [
+        {
+            "files": ["**/*.scss"],
+            "customSyntax": "postcss-scss"
+        }
+    ]
 }

@@ -10,6 +10,7 @@ import {
     useSensors,
 } from '@dnd-kit/core';
 import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -24,6 +25,7 @@ import {
     setProperty,
     getMaxDepth,
 } from '../../lib/utilities';
+import styles from '../../styles/sortable/sortable-tree.module.scss';
 import { SortableTreeItem } from './SortableTreeItem';
 
 const initialItems = [
@@ -214,6 +216,8 @@ export const SortableTree = ({
         setItems(buildTree(defaultItems));
     }, []);
 
+    const activeValue = defaultItems.find(({ id: defaultId = null }) => defaultId === activeId);
+
     return (
         <DndContext
             announcements={announcements}
@@ -227,48 +231,66 @@ export const SortableTree = ({
             onDragCancel={handleDragCancel}
         >
             <SortableContext items={sortedIds} strategy={verticalListSortingStrategy}>
-                {flattenedItems.map(
-                    ({ id, children = [], collapsed, depth, value = null }, idx) => (
-                        <SortableTreeItem
+                {flattenedItems.map(({ id, children = [], collapsed, depth }, idx) => {
+                    const screenValue = defaultItems.find(
+                        ({ id: defaultId = null }) => defaultId === id,
+                    );
+                    const next = flattenedItems[idx + 1]?.parentId || null;
+                    const isCollapsed = collapsed && children.length > 0;
+                    const onCollapse =
+                        collapsible && children.length ? () => handleCollapse(id) : null;
+                    const currentDepth = id === activeId && projected ? projected.depth : depth;
+                    return (
+                        <div
+                            className={classNames([
+                                styles.item,
+                                {
+                                    [styles.parent]: onCollapse !== null && !collapsed,
+                                    [styles.group]: depth === 1,
+                                    [styles.isLastChild]: next === null,
+                                },
+                            ])}
                             key={id}
-                            id={id}
-                            depth={id === activeId && projected ? projected.depth : depth}
-                            indentationWidth={indentationWidth}
-                            indicator={indicator}
-                            collapsed={Boolean(collapsed && children.length)}
-                            onCollapse={
-                                collapsible && children.length
-                                    ? () => handleCollapse(id)
-                                    : undefined
-                            }
-                            onRemove={removable ? () => handleRemove(id) : undefined}
-                            childCount={getChildCount(items, id)}
-                            component={component}
-                            value={value}
-                            style={itemStyle}
-                            onClickItem={onClickItem}
-                            index={idx}
-                        />
-                    ),
-                )}
+                        >
+                            <SortableTreeItem
+                                key={id}
+                                id={id}
+                                depth={currentDepth}
+                                indentationWidth={indentationWidth}
+                                indicator={indicator}
+                                collapsed={isCollapsed}
+                                onCollapse={onCollapse}
+                                onRemove={removable ? () => handleRemove(id) : undefined}
+                                childCount={getChildCount(items, id)}
+                                component={component}
+                                value={screenValue?.value || null}
+                                style={itemStyle}
+                                onClickItem={onClickItem}
+                                index={idx}
+                            />
+                        </div>
+                    );
+                })}
                 {createPortal(
                     <DragOverlay
                         dropAnimation={dropAnimation}
                         modifiers={indicator ? [adjustTranslate] : undefined}
                     >
                         {activeId && activeItem ? (
-                            <SortableTreeItem
-                                id={activeId}
-                                depth={activeItem.depth}
-                                clone
-                                childCount={getChildCount(items, activeId) + 1}
-                                indentationWidth={indentationWidth}
-                                component={component}
-                                value={activeItem?.value}
-                                onClickItem={onClickItem}
-                                index={flattenedItems.findIndex(({ id }) => activeId === id)}
-                                style={itemStyle}
-                            />
+                            <div className={styles.item} key={activeId}>
+                                <SortableTreeItem
+                                    id={activeId}
+                                    depth={activeItem.depth}
+                                    clone
+                                    childCount={getChildCount(items, activeId) + 1}
+                                    indentationWidth={indentationWidth}
+                                    component={component}
+                                    value={activeValue?.value}
+                                    onClickItem={onClickItem}
+                                    index={flattenedItems.findIndex(({ id }) => activeId === id)}
+                                    style={itemStyle}
+                                />
+                            </div>
                         ) : null}
                     </DragOverlay>,
                     document.body,

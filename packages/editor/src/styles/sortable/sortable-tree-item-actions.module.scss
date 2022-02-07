@@ -4,89 +4,24 @@
 
 .wrapper {
     position: relative;
-    list-style: none;
     box-sizing: border-box;
-    margin-bottom: 3px;
     border-radius: 10px;
-
-    &:hover {
-        .inner {
-            .handle .icon {
-                display: block;
-                visibility: visible;
-            }
-        }
-    }
-
-    &.withChildren {
-        background-color: $gray-600;
-    }
-
-    &.clone {
-        display: inline-block;
-        pointer-events: none;
-        padding: 0;
-        margin-left: 10px;
-        margin-top: 5px;
-
-        .inner {
-            padding-right: 24px;
-            border-radius: 10px;
-            box-shadow: 0px 15px 15px 0 rgba(34, 33, 81, 0.1);
-        }
-    }
-
-    &.ghost {
-        &.indicator {
-            opacity: 1;
-            position: relative;
-            z-index: 1;
-            margin-bottom: -1px;
-
-            .inner {
-                position: relative;
-                padding: 0;
-                height: 8px;
-                border: 1px solid $primary;
-                border-radius: 6px;
-                background-color: $primary;
-
-                > * {
-                    /* Items are hidden using height and opacity to retain focus */
-                    opacity: 0;
-                    height: 0;
-                }
-            }
-        }
-
-        &:not(.indicator) {
-            opacity: 0.6;
-        }
-
-        .inner > * {
-            box-shadow: none;
-            background-color: transparent;
-        }
-
-        .inner {
-            border: 1px solid $primary;
-            border-radius: 4px;
-        }
-    }
+    list-style: none;
 
     .inner {
         position: relative;
         z-index: 1;
         display: flex;
-        align-items: center;
-        padding: 10px;
-
-        color: #222;
-        background-color: transparent;
+        width: 100%;
+        height: 100%;
         box-sizing: border-box;
+        align-items: center;
+        background-color: transparent;
+        color: #222;
 
         .button {
             @extend %reset-button;
+
             background-color: transparent;
             color: #fff;
             mix-blend-mode: difference;
@@ -103,6 +38,7 @@
             left: 0;
             width: 100%;
             height: 100%;
+            border-radius: 10px;
 
             .icon {
                 position: absolute;
@@ -114,11 +50,11 @@
         }
 
         .text {
+            overflow: hidden;
             flex-grow: 1;
             padding-left: 0.5rem;
-            white-space: nowrap;
             text-overflow: ellipsis;
-            overflow: hidden;
+            white-space: nowrap;
         }
 
         .count,
@@ -127,21 +63,22 @@
             top: -10px;
             right: -10px;
             display: flex;
-            align-items: center;
-            justify-content: center;
             width: 24px;
             height: 24px;
-            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
             background-color: $primary;
+            border-radius: 50%;
+            color: #fff;
             font-size: 0.8rem;
             font-weight: 600;
-            color: #fff;
         }
 
         .collapsedCount {
             top: auto;
             right: 3px;
-            bottom: 3px;
+            bottom: 2px;
+            background-color: transparent;
         }
 
         .disableInteraction {
@@ -150,21 +87,25 @@
 
         .disableSelection,
         .clone {
-            .Text,
-            .Count {
+            .text,
+            .count {
                 user-select: none;
-                -webkit-user-select: none;
             }
         }
 
         .collapse {
             position: absolute;
-            bottom: 8px;
-            left: 10px;
-            display: flex;
             z-index: 1;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            width: 100%;
+            height: 30px;
+            align-items: center;
+            justify-content: space-between;
 
             svg {
+                margin-left: 10px;
                 transition: transform 250ms ease;
             }
 
@@ -176,9 +117,66 @@
 
     .children {
         position: absolute;
-        width: 100%;
-        height: 100%;
         top: 0;
         left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    &.withChildren {
+        background-color: $gray-700;
+    }
+
+    &.clone {
+        display: inline-block;
+        padding: 0;
+        margin-top: 5px;
+        margin-left: 10px;
+        pointer-events: none;
+
+        .inner {
+            padding-right: 24px;
+            border-radius: 10px;
+            box-shadow: 0 15px 15px 0 rgb(34 33 81 / 10%);
+        }
+    }
+
+    &.ghost {
+        &:not(.indicator) {
+            filter: opacity(0.6);
+        }
+
+        .inner > * {
+            background-color: transparent;
+            box-shadow: none;
+        }
+
+        .inner {
+             border: 1px solid $primary;
+             border-radius: 4px;
+        }
+
+        &.indicator {
+            position: relative;
+            z-index: 1;
+            margin-bottom: -1px;
+            opacity: 100%;
+
+            .inner {
+                position: relative;
+                height: 8px;
+                padding: 0;
+                border: 1px solid $primary;
+                background-color: $primary;
+                border-radius: 10px;
+
+                > * {
+                    height: 0;
+
+                    /* Items are hidden using height and opacity to retain focus */
+                    opacity: 0%;
+                }
+            }
+        }
     }
 }

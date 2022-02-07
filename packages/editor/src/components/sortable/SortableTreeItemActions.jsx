@@ -30,6 +30,7 @@ const propTypes = {
         transform: PropTypes.string.isRequired,
     }),
     showId: PropTypes.bool,
+    showCount: PropTypes.bool,
     children: PropTypes.node,
 };
 
@@ -49,6 +50,7 @@ const defaultProps = {
     wrapperRef: null,
     style: null,
     showId: false,
+    showCount: false,
     children: null,
 };
 
@@ -72,6 +74,7 @@ export const SortableTreeItemActions = forwardRef(
             value,
             wrapperRef,
             showId,
+            showCount,
             children,
             ...props
         },
@@ -96,11 +99,7 @@ export const SortableTreeItemActions = forwardRef(
             }}
             {...props}
         >
-            <div
-                className={styles.inner}
-                ref={ref}
-                style={{ width: style.width, height: style.height }}
-            >
+            <div className={styles.inner} ref={ref}>
                 <button
                     className={classNames([styles.button, styles.handle])}
                     type="button"
@@ -113,10 +112,10 @@ export const SortableTreeItemActions = forwardRef(
                         <FontAwesomeIcon icon={faTimes} />
                     </button>
                 ) : null}
-                {clone && childCount && childCount > 1 ? (
+                {clone && showCount && childCount && childCount > 1 ? (
                     <span className={styles.count}>{childCount}</span>
                 ) : null}
-                {onCollapse && childCount !== null && childCount > 0 ? (
+                {onCollapse && collapsed && childCount !== null && childCount > 0 ? (
                     <span className={styles.collapsedCount}>{childCount}</span>
                 ) : null}
                 {onCollapse && depth === 0 ? (
@@ -128,7 +127,6 @@ export const SortableTreeItemActions = forwardRef(
                             styles.collapse,
                             collapsed && styles.collapsed,
                         )}
-                        style={{ width: style.width }}
                     >
                         <FontAwesomeIcon icon={faAngleDown} />
                     </button>

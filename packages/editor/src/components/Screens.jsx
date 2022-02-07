@@ -1,16 +1,16 @@
 /* eslint-disable react/no-array-index-key */
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Button, Empty, Navbar } from '@micromag/core/components';
-import { useRoutePush, useRoutes, useUrlGenerator } from '@micromag/core/contexts';
-import { useParsedStory } from '@micromag/core/hooks';
 import classNames from 'classnames';
 import isString from 'lodash/isString';
 import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Route } from 'react-router';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { Button, Empty, Navbar } from '@micromag/core/components';
+import { useRoutePush, useRoutes, useUrlGenerator } from '@micromag/core/contexts';
+import { useParsedStory } from '@micromag/core/hooks';
 import useRouteParams from '../hooks/useRouteParams';
 import useThemeValue from '../hooks/useThemeValue';
 import styles from '../styles/screens.module.scss';
@@ -97,7 +97,7 @@ const EditorScreens = ({
 
     const onOrderChange = useCallback(
         (listItems) => {
-            const ids = listItems.map(({ id }) => id);
+            // const ids = listItems.map(({ id }) => id);
             const screenProps = listItems.map(({ id, props = null }) => ({
                 id,
                 props,
@@ -116,14 +116,14 @@ const EditorScreens = ({
                 const newValue = {
                     ...value,
                     components: [...currentScreens]
-                        .sort(({ id: idA }, { id: idB }) => {
-                            const indexA = ids.indexOf(idA);
-                            const indexB = ids.indexOf(idB);
-                            if (indexA === indexB) {
-                                return 0;
-                            }
-                            return indexA > indexB ? 1 : -1;
-                        })
+                        // .sort(({ id: idA }, { id: idB }) => {
+                        //     const indexA = ids.indexOf(idA);
+                        //     const indexB = ids.indexOf(idB);
+                        //     if (indexA === indexB) {
+                        //         return 0;
+                        //     }
+                        //     return indexA > indexB ? 1 : -1;
+                        // })
                         .map(({ id, ...props }) => ({
                             id,
                             ...props,

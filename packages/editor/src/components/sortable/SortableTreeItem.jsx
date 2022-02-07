@@ -1,9 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 import { iOS } from '../../lib/utilities';
+import styles from '../../styles/sortable/sortable-tree-item.module.scss';
 import { SortableTreeItemActions } from './SortableTreeItemActions';
 
 const propTypes = {
@@ -22,8 +24,10 @@ const propTypes = {
         scale: PropTypes.number.isRequired,
     }),
     smallScale: PropTypes.number,
+    collapsed: PropTypes.bool,
     onCollapse: PropTypes.func,
     onClickItem: PropTypes.func,
+    isLastChild: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -31,8 +35,10 @@ const defaultProps = {
     value: null,
     style: null,
     smallScale: 0.75,
+    collapsed: false,
     onCollapse: null,
     onClickItem: null,
+    isLastChild: false,
 };
 
 const animateLayoutChanges = ({ isSorting, wasDragging }) => !(isSorting || wasDragging);
@@ -45,8 +51,10 @@ export const SortableTreeItem = ({
     value,
     style: itemStyle,
     smallScale,
+    collapsed,
     onCollapse,
     onClickItem,
+    isLastChild,
     ...props
 }) => {
     const {
@@ -97,24 +105,27 @@ export const SortableTreeItem = ({
     );
 
     return (
-        <SortableTreeItemActions
-            ref={setDraggableNodeRef}
-            wrapperRef={setDroppableNodeRef}
-            style={actionsStyle}
-            depth={depth}
-            ghost={isDragging}
-            disableSelection={iOS}
-            disableInteraction={isSorting}
-            handleProps={{
-                ...attributes,
-                ...listeners,
-                onPointerDown: onClickAction,
-            }}
-            onCollapse={onCollapse}
-            {...props}
-        >
-            {Component !== null ? <Component {...value} previewStyle={previewStyle} /> : null}
-        </SortableTreeItemActions>
+        <div className={classNames([styles.container])}>
+            <SortableTreeItemActions
+                ref={setDraggableNodeRef}
+                wrapperRef={setDroppableNodeRef}
+                style={actionsStyle}
+                depth={depth}
+                ghost={isDragging}
+                disableSelection={iOS}
+                disableInteraction={isSorting}
+                handleProps={{
+                    ...attributes,
+                    ...listeners,
+                    onPointerDown: onClickAction,
+                }}
+                collapsed={collapsed}
+                onCollapse={onCollapse}
+                {...props}
+            >
+                {Component !== null ? <Component {...value} previewStyle={previewStyle} /> : null}
+            </SortableTreeItemActions>
+        </div>
     );
 };
 

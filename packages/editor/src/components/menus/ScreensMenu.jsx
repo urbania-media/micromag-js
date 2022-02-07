@@ -17,7 +17,7 @@ const propTypes = {
     items: MicromagPropTypes.menuItems,
     withPreview: PropTypes.bool,
     withPlaceholder: PropTypes.bool,
-    settings: PropTypes.node,
+    settings: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
     previewMinWidth: PropTypes.number,
     sortable: PropTypes.bool,
     isTree: PropTypes.bool,
