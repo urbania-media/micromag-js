@@ -63,7 +63,7 @@ const defaultProps = {
     className: null,
 };
 
-const MapScreen = ({
+function MapScreen ({
     layout,
     draggable,
     markers,
@@ -80,7 +80,7 @@ const MapScreen = ({
     onDisableInteraction,
     type,
     className,
-}) => {
+}) {
     const { locale } = useIntl();
     const { apiKey = null } = useGoogleKeys();
 

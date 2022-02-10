@@ -26,6 +26,7 @@ import {
     useTrackScreenView,
 } from '@micromag/core/hooks';
 import { getDeviceScreens } from '@micromag/core/utils';
+import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 import styles from '../styles/viewer.module.scss';
 import ViewerScreen from './ViewerScreen';
 import MenuDots from './menus/MenuDots';
@@ -435,13 +436,16 @@ const Viewer = ({
                 openPreviewMenu();
             }
             if (trackingEnabled) {
-                const trackAction = goToScreen ? 'click_screen_change' : 'click_open';
-                const trackLabel = clickedOnDot ? `Screen ${index + 1}` : 'Menu icon';
-                trackEvent('viewer_menu', trackAction, trackLabel, {
-                    screenId,
-                    screenType,
-                    screenIndex: index,
-                });
+                trackEvent(
+                    'viewer_menu',
+                    goToScreen ? 'click_screen_change' : 'click_open',
+                    clickedOnDot ? `Screen ${index + 1}` : 'Menu icon',
+                    {
+                        screenId,
+                        screenType,
+                        screenIndex: index,
+                    },
+                );
             }
         },
         [changeIndex, landscape, trackingEnabled, trackEvent, screenType, onInteractionPrivate],
@@ -516,49 +520,20 @@ const Viewer = ({
     } = useFullscreen(containerRef.current || null);
 
     // Keyboard Events
-    useEffect(() => {
-        const onKey = (e) => {
-            if (
-                ['input', 'textarea'].reduce(
-                    (foundMatch, match) => foundMatch || e.target.matches(match),
-                    false,
-                )
-            ) {
-                return;
-            }
-
-            const { key } = e;
-            const lowercaseKey = key.toLowerCase();
-
-            switch (lowercaseKey) {
-                case 'f':
-                    toggleFullscreen();
-                    break;
-                case 'm':
-                    setPreviewMenu(!menuOpened.current);
-                    break;
-                case 'escape':
-                    closePreviewMenu();
-                    break;
-                case 'arrowleft':
-                    gotoPreviousScreen();
-                    break;
-                case 'arrowright':
-                case ' ': // spacebar
-                    gotoNextScreen();
-                    break;
-                default:
-                    break;
-            }
-        };
-
-        if (renderContext === 'view') {
-            window.addEventListener('keydown', onKey);
-        }
-        return () => {
-            window.removeEventListener('keydown', onKey);
-        };
-    }, [renderContext, closePreviewMenu, gotoPreviousScreen, gotoNextScreen]);
+    const keyboardShortcuts = useMemo(
+        () => ({
+            f: () => toggleFullscreen(),
+            m: () => setPreviewMenu(!menuOpened.current),
+            escape: () => closePreviewMenu(),
+            arrowleft: () => gotoPreviousScreen(),
+            arrowright: () => gotoNextScreen(),
+            ' ': () => gotoNextScreen(),
+        }),
+        [closePreviewMenu, gotoPreviousScreen, gotoNextScreen],
+    );
+    useKeyboardShortcuts(keyboardShortcuts, {
+        disabled: renderContext !== 'view',
+    });
 
     const { parameters: screenParameters } = currentScreen || {};
     const { metadata: screenMetadata } = screenParameters || {};

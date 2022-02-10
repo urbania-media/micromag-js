@@ -1,18 +1,17 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useState, useCallback, useMemo } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { Route } from 'react-router';
 import { getSizeWithinBounds } from '@folklore/size';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useState, useCallback, useMemo } from 'react';
+import { useRouteMatch } from 'react-router';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useResizeObserver, useParsedStory } from '@micromag/core/hooks';
 import { useScreenSize, useRoutes } from '@micromag/core/contexts';
+import { useResizeObserver, useParsedStory } from '@micromag/core/hooks';
 import { Viewer } from '@micromag/viewer';
-
 import useThemeValue from '../hooks/useThemeValue';
-import DevicesMenu from './menus/Devices';
-
 import styles from '../styles/preview.module.scss';
+import DevicesMenu from './menus/Devices';
+import ScreenStates from './partials/ScreenStates';
 
 const propTypes = {
     value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
@@ -44,7 +43,7 @@ const defaultProps = {
     isTheme: false,
     className: null,
     onScreenChange: null,
-    withoutDevicesSizes: false,
+    withoutDevicesSizes: true,
 };
 
 const EditorPreview = ({
@@ -58,6 +57,11 @@ const EditorPreview = ({
     withoutDevicesSizes,
 }) => {
     const routes = useRoutes();
+    const {
+        params: { screen: screenId = null },
+    } = useRouteMatch({
+        path: [routes.screen, routes.home],
+    });
     const { screen = null, screens = [] } = useScreenSize();
     const valueWithTheme = useThemeValue(value, isTheme);
     // const valueParsed = valueWithTheme;
@@ -95,6 +99,12 @@ const EditorPreview = ({
         };
     }, [device, contentRect, screen, withoutDevicesSizes]);
 
+    const currentScreen = useMemo(() => {
+        const { components = [] } = valueParsed || {};
+        return components.find(({ id }) => id === screenId) || null;
+    }, [valueParsed, screenId]);
+    const { states: screenStates = null } = currentScreen || {};
+
     return (
         <div
             className={classNames([
@@ -118,30 +128,26 @@ const EditorPreview = ({
                         />
                     </div>
                 ) : null}
+                {screenStates !== null ? (
+                    <div className={styles.top}>
+                        <ScreenStates screen={currentScreen} />
+                    </div>
+                ) : null}
                 <div className={styles.bottom}>
                     <div className={styles.inner} ref={bottomRef}>
                         <div className={styles.preview} style={previewStyle}>
-                            <Route
-                                path={[routes.screen, routes.home]}
-                                render={({
-                                    match: {
-                                        params: { screen: screenId = null },
-                                    },
-                                }) => (
-                                    <div className={styles.viewerContainer}>
-                                        <Viewer
-                                            story={valueParsed}
-                                            storyIsParsed
-                                            screen={screenId}
-                                            className={styles.story}
-                                            theme={viewerTheme}
-                                            interactions={null}
-                                            renderContext="edit"
-                                            onScreenChange={onScreenChange}
-                                        />
-                                    </div>
-                                )}
-                            />
+                            <div className={styles.viewerContainer}>
+                                <Viewer
+                                    story={valueParsed}
+                                    storyIsParsed
+                                    screen={screenId}
+                                    className={styles.story}
+                                    theme={viewerTheme}
+                                    interactions={null}
+                                    renderContext="edit"
+                                    onScreenChange={onScreenChange}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

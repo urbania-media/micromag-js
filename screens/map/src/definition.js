@@ -11,60 +11,93 @@ export default [
         group: {
             label: defineMessage({
                 defaultMessage: 'Map',
-                description: 'Map screen group',
+                description: 'Screen group',
             }),
             order: 6,
         },
         title: defineMessage({
             defaultMessage: 'Map',
-            description: 'Map screen title',
+            description: 'Screen title',
         }),
         component: MapScreen,
         layouts: ['normal'],
         transforms,
-        fields: [
+        states: [
             {
-                name: 'title',
-                type: 'heading-element',
-                theme: {
-                    textStyle: 'heading1',
-                },
+                id: 'title',
                 label: defineMessage({
                     defaultMessage: 'Title',
-                    description: 'Title field label',
+                    description: 'State label',
                 }),
+                fields: [
+                    {
+                        name: 'title',
+                        type: 'heading-element',
+                        theme: {
+                            textStyle: 'heading1',
+                        },
+                        label: defineMessage({
+                            defaultMessage: 'Title',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'description',
+                        type: 'text-element',
+                        theme: {
+                            textStyle: 'text',
+                        },
+                        label: defineMessage({
+                            defaultMessage: 'Description',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'button',
+                        type: 'button-element',
+                        theme: {
+                            textStyle: 'button',
+                        },
+                        label: defineMessage({
+                            defaultMessage: 'Button',
+                            description: 'Field label',
+                        }),
+                    },
+                ]
             },
             {
-                name: 'description',
-                type: 'text-element',
-                theme: {
-                    textStyle: 'text',
-                },
+                id: 'map',
                 label: defineMessage({
-                    defaultMessage: 'Description',
-                    description: 'Description field label',
+                    defaultMessage: 'Map',
+                    description: 'State label',
                 }),
+                fields: [
+                    {
+                        name: 'draggable',
+                        type: 'toggle',
+                        defaultValue: true,
+                        label: defineMessage({
+                            defaultMessage: 'Draggable',
+                            description: 'Field label',
+                        }),
+                    },
+                ]
             },
             {
-                name: 'button',
-                type: 'button-element',
-                theme: {
-                    textStyle: 'button',
-                },
+                id: 'markers',
                 label: defineMessage({
-                    defaultMessage: 'Button',
-                    description: 'Button field label',
+                    defaultMessage: 'Markers',
+                    description: 'State label',
                 }),
-            },
-            {
-                name: 'draggable',
-                type: 'toggle',
-                defaultValue: true,
-                label: defineMessage({
-                    defaultMessage: 'Draggable',
-                    description: 'Draggable field label',
-                }),
-            },
+                repeatable: true,
+                fieldName: 'markers',
+                fields: [
+
+                ]
+            }
+        ],
+        fields: [
+
             {
                 name: 'markers',
                 type: 'markers',
@@ -78,7 +111,7 @@ export default [
                 },
                 label: defineMessage({
                     defaultMessage: 'Markers',
-                    description: 'Markers field label',
+                    description: 'Field label',
                 }),
             },
             {
@@ -86,7 +119,7 @@ export default [
                 type: 'background',
                 label: defineMessage({
                     defaultMessage: 'Background',
-                    description: 'Background field label',
+                    description: 'Field label',
                 }),
             },
         ],
@@ -97,13 +130,13 @@ export default [
         group: {
             label: defineMessage({
                 defaultMessage: 'Map',
-                description: 'Map screen group',
+                description: 'Screen group',
             }),
             order: 6,
         },
         title: defineMessage({
             defaultMessage: 'Map with image markers',
-            description: 'MapImages screen title',
+            description: 'Screen title',
         }),
         component: MapImagesScreen,
         layouts: ['normal'],
@@ -117,7 +150,7 @@ export default [
                 },
                 label: defineMessage({
                     defaultMessage: 'Title',
-                    description: 'Title field label',
+                    description: 'Field label',
                 }),
             },
             {
@@ -128,7 +161,7 @@ export default [
                 },
                 label: defineMessage({
                     defaultMessage: 'Description',
-                    description: 'Description field label',
+                    description: 'Field label',
                 }),
             },
             {
@@ -139,7 +172,7 @@ export default [
                 },
                 label: defineMessage({
                     defaultMessage: 'Button',
-                    description: 'Button field label',
+                    description: 'Field label',
                 }),
             },
             {
@@ -148,7 +181,7 @@ export default [
                 defaultValue: true,
                 label: defineMessage({
                     defaultMessage: 'Draggable',
-                    description: 'Draggable field label',
+                    description: 'Field label',
                 }),
             },
             {
@@ -164,7 +197,7 @@ export default [
                 },
                 label: defineMessage({
                     defaultMessage: 'Markers with image',
-                    description: 'Markers field label',
+                    description: 'Field label',
                 }),
             },
             {
@@ -172,7 +205,7 @@ export default [
                 type: 'background',
                 label: defineMessage({
                     defaultMessage: 'Background',
-                    description: 'Background field label',
+                    description: 'Field label',
                 }),
             },
         ],
