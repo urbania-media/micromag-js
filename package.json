@@ -69,7 +69,7 @@
         "lerna": "^3.22.1",
         "lodash": "^4.17.20",
         "mkdirp": "^1.0.4",
-        "node-sass": "^5.0.0",
+        "node-sass": "^7.0.0",
         "node-sass-tilde-importer": "^1.0.2",
         "postcss": "^8.2.1",
         "postcss-cli": "^8.3.0",
