@@ -1,12 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { useIntl } from 'react-intl';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { useIntl } from 'react-intl';
 import SeekBar from './SeekBar';
-
 import styles from './styles/media-controls.module.scss';
 
 const propTypes = {
@@ -64,16 +62,6 @@ const MediaControls = ({
                 },
             ])}
         >
-            {withSeekBar ? (
-                <SeekBar
-                    className={styles.seekBar}
-                    currentTime={currentTime}
-                    duration={duration}
-                    playing={playing}
-                    onSeek={onSeek}
-                    focusable={focusable}
-                />
-            ) : null}
             <div className={styles.toggles}>
                 <button
                     type="button"
@@ -108,6 +96,16 @@ const MediaControls = ({
                     <FontAwesomeIcon className={styles.icon} icon={faVolumeUp} />
                 </button>
             </div>
+            {withSeekBar ? (
+                <SeekBar
+                    className={styles.seekBar}
+                    currentTime={currentTime}
+                    duration={duration}
+                    playing={playing}
+                    onSeek={onSeek}
+                    focusable={focusable}
+                />
+            ) : null}
         </div>
     );
 };

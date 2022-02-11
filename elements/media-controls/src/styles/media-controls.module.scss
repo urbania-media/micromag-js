@@ -9,24 +9,25 @@
     }
 
     .seekBar {
-        margin-bottom: 10px;
+        margin-top : 10px;
     }
 
     .playPauseButton,
     .muteButton {
         @extend %reset-button;
+
         display: flex;
+        width: 50px;
+        height: 50px;
         align-items: center;
         justify-content: center;
-        width: 60px;
-        height: 60px;
     }
 
     .playPauseButton {
-        visibility: hidden;
-        margin: 0 auto;
         border: 2px solid $white;
+        margin: 0 auto;
         border-radius: 50%;
+        visibility: hidden;
 
         .icon {
             display: block;
@@ -37,31 +38,31 @@
     }
 
     .muteButton {
-        visibility: hidden;
         position: absolute;
         top: 50%;
         right: 0;
         width: 40px;
         height: 40px;
         margin-top: -20px;
+        visibility: hidden;
 
         .icon {
             display: block;
-            width: 90%;
-            height: 90%;
+            width: 70%;
+            height: 70%;
         }
 
         &::after {
-            content: '';
-            display: none;
             position: absolute;
             top: 0;
             left: 50%;
+            display: none;
             width: 2px;
             height: 100%;
             margin-left: -1px;
-            transform: rotate(-45deg);
             background-color: $white;
+            content: '';
+            transform: rotate(-45deg);
         }
     }
 
