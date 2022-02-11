@@ -338,7 +338,7 @@ const VideoScreen = ({
                             className={classNames([
                                 styles.mediaControls,
                                 {
-                                    [styles.visible]: showMediaControls,
+                                    [styles.visible]: muted || showMediaControls,
                                 },
                             ])}
                             withSeekBar={withSeekBar}

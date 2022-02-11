@@ -60,10 +60,10 @@
         @extend %focus-outline;
 
         display: flex;
-        opacity: 0%;
+        opacity: 0;
 
         &.current {
-            opacity: 100%;
+            opacity: 1;
         }
     }
 
@@ -79,17 +79,17 @@
             left: 50%;
             margin: auto;
             cursor: pointer;
-            opacity: 20%;
+            opacity: 0.2;
             transition: transform 0.3s ease, opacity 0.3s ease;
 
             &:hover,
             &:focus-visible {
-                opacity: 30%;
+                opacity: 0.3;
             }
 
             &.current {
                 cursor: auto;
-                opacity: 100%;
+                opacity: 1;
             }
         }
     }
@@ -100,7 +100,7 @@
         }
 
         .menuDots {
-            opacity: 0%;
+            opacity: 0;
         }
     }
 

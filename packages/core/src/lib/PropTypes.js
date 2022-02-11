@@ -58,6 +58,11 @@ export const trackingVariables = PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
 );
 
+export const progress = PropTypes.shape({
+    currentTime: PropTypes.number,
+    duration: PropTypes.number,
+});
+
 /**
  * Site
  */

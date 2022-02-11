@@ -155,6 +155,9 @@ export const MultipleVideos = () => (
                     type: 'video',
                     video: {
                         media: videoMedia(),
+                        withSeekBar: true,
+                        withPlayPause: true,
+                        withTime: true,
                     },
                     gotoNextScreenOnEnd: true,
                 },

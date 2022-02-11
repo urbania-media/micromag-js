@@ -7,6 +7,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import styles from '../../styles/menus/menu-dots.module.scss';
+import MenuDot from './MenuDot';
 import MenuIcon from './MenuIcon';
 
 const propTypes = {
@@ -47,8 +48,7 @@ const ViewerMenuDots = ({
     onClose,
     className,
 }) => {
-    const { primary = 'rgba(255, 255, 255, 1)', secondary = 'rgba(200, 200, 200, 0.5)' } =
-        colors || {};
+    const { primary = 'rgba(255, 255, 255, 1)' } = colors || {};
     const intl = useIntl();
     return (
         <nav
@@ -74,34 +74,13 @@ const ViewerMenuDots = ({
             <ul className={styles.items}>
                 {items.map(({ parentId = null }, index) =>
                     parentId === null ? (
-                        <li
-                            className={classNames([
-                                styles.item,
-                                {
-                                    [styles.active]: current === index,
-                                },
-                            ])}
-                            key={`item-${index}`}
-                            aria-hidden="true"
-                        >
-                            <button
-                                type="button"
-                                className={styles.button}
-                                onClick={() => {
-                                    if (onClickItem !== null) {
-                                        onClickItem(index);
-                                    }
-                                }}
-                                tabIndex="-1"
-                            >
-                                <span
-                                    className={styles.dot}
-                                    style={{
-                                        backgroundColor: index <= current ? primary : secondary,
-                                    }}
-                                />
-                            </button>
-                        </li>
+                        <MenuDot
+                            current={current}
+                            index={index}
+                            colors={colors}
+                            onClickItem={onClickItem}
+                            vertical={direction === 'vertical'}
+                        />
                     ) : null,
                 )}
                 <li className={styles.menu}>
