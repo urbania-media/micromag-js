@@ -8,25 +8,27 @@
 
     .items,
     .item {
-        margin: 0;
         padding: 0;
+        margin: 0;
         list-style: none;
     }
 
     .items {
         display: flex;
+        width: 100%;
         flex-direction: row;
         align-items: center;
         justify-content: flex-end;
-        width: 100%;
     }
 
     .item {
         flex: 1 1 0;
+
         // max-width: 20px;
 
         .button {
             @extend %reset-button;
+
             display: block;
             width: 100%;
             padding: 10px 2px;
@@ -45,12 +47,12 @@
     }
 
     .menu {
-        display: flex;
         position: relative;
-        box-sizing: content-box;
-        flex-wrap: wrap;
+        display: flex;
         width: 16px;
         height: 16px;
+        box-sizing: content-box;
+        flex-wrap: wrap;
         padding-left: 10px;
     }
 
@@ -80,9 +82,9 @@
         background: transparent;
 
         .items {
-            flex-direction: column;
             width: auto;
             height: 100%;
+            flex-direction: column;
         }
 
         .item {
@@ -110,6 +112,6 @@
     }
 
     &.withShadow {
-        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
+        background: linear-gradient(rgb(0 0 0 / 40%), rgb(0 0 0 / 0%));
     }
 }

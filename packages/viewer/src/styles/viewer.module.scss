@@ -6,31 +6,32 @@
 
 .container {
     @extend %reset-viewer;
+
     position: relative;
+    overflow: hidden;
     width: 100%;
     height: 100%;
-    overflow: hidden;
     background-color: $black;
     color: $white;
 
     .content {
         position: relative;
         z-index: 1;
+        overflow: hidden;
         width: 100%;
         height: 100%;
-        overflow: hidden;
         user-select: none;
     }
 
     .menuDotsContainer {
-        touch-action: none;
-        visibility: hidden;
         position: absolute;
         z-index: 2;
         top: 0;
         right: 50%;
         width: 100%;
+        touch-action: none;
         transform: translateX(50%);
+        visibility: hidden;
     }
 
     .menuDots {
@@ -42,13 +43,14 @@
     .menuPreviewContainer {
         @extend %fullscreen;
 
-        visibility: hidden;
         z-index: 3;
         top: -100%;
+        visibility: hidden;
     }
 
     .menuPreview {
         @extend %fullscreen;
+
         left: 50%;
         transform: translateX(-50%);
     }
@@ -56,11 +58,12 @@
     .screen {
         @extend %fullscreen;
         @extend %focus-outline;
+
         display: flex;
-        opacity: 0;
+        opacity: 0%;
 
         &.current {
-            opacity: 1;
+            opacity: 100%;
         }
     }
 
@@ -75,18 +78,18 @@
             bottom: 0;
             left: 50%;
             margin: auto;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            opacity: 0.2;
             cursor: pointer;
+            opacity: 20%;
+            transition: transform 0.3s ease, opacity 0.3s ease;
 
             &:hover,
             &:focus-visible {
-                opacity: 0.3;
+                opacity: 30%;
             }
 
             &.current {
-                opacity: 1;
                 cursor: auto;
+                opacity: 100%;
             }
         }
     }
@@ -97,7 +100,7 @@
         }
 
         .menuDots {
-            opacity: 0;
+            opacity: 0%;
         }
     }
 

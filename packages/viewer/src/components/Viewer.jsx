@@ -73,7 +73,7 @@ const defaultProps = {
     deviceScreens: getDeviceScreens(),
     renderContext: 'view',
     onScreenChange: null,
-    tapNextScreenWidthPercent: 0.5,
+    tapNextScreenWidthPercent: 0.66,
     neighborScreensActive: 2,
     storyIsParsed: false,
     landscapeScreenMargin: 50,
@@ -653,7 +653,6 @@ const Viewer = ({
                                 const active =
                                     i > screenIndex - neighborScreensActive &&
                                     i < screenIndex + neighborScreensActive;
-
                                 const viewerScreen = (
                                     <ViewerScreen
                                         screen={scr}
@@ -691,7 +690,6 @@ const Viewer = ({
                                                 />
                                             </button>
                                         ) : null}
-
                                         <div
                                             ref={current ? currentScreenRef : null}
                                             style={{

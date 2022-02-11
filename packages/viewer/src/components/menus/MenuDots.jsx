@@ -72,8 +72,8 @@ const ViewerMenuDots = ({
             )}
         >
             <ul className={styles.items}>
-                {items.map((item, index) =>
-                    item?.parentId === null ? (
+                {items.map(({ parentId = null }, index) =>
+                    parentId === null ? (
                         <li
                             className={classNames([
                                 styles.item,

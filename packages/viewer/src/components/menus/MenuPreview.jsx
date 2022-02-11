@@ -132,6 +132,8 @@ const ViewerMenuPreview = ({
         setScrolledBottom(false);
     }, [setScrolledBottom]);
 
+    console.log(items);
+
     return hasSize ? (
         <div
             className={classNames([
@@ -226,8 +228,8 @@ const ViewerMenuPreview = ({
                                           })}`
                                         : '';
                                 const screenAriaLabel = screenIndexLabel + isCurrentScreenLabel;
-
-                                return item.parentId === null ? (
+                                const { parentId = null } = item || {};
+                                return parentId === null ? (
                                     <li
                                         className={classNames([
                                             styles.item,
