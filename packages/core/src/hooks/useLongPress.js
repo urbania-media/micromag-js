@@ -39,7 +39,9 @@ const useLongPress = ({
             timeout.current = setTimeout(() => {
                 if (shouldPreventDefault && target.current !== null) {
                     target.current.addEventListener('touchend', preventDefault, { passive: false });
-                    target.current.addEventListener('click', preventClickDefault, { passive: false });
+                    target.current.addEventListener('click', preventClickDefault, {
+                        passive: false,
+                    });
                 }
                 if (onLongPress !== null) {
                     onLongPress(event);

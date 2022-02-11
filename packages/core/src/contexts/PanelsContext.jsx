@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, useRef, useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
-
+import React, { useContext, useRef, useCallback, useState, useMemo } from 'react';
 import { getDisplayName } from '../utils';
 
 export const PanelsContext = React.createContext({
@@ -69,11 +68,11 @@ export const PanelsProvider = ({ children, container: initialContainer }) => {
         },
         [panels, setPanels],
     );
-    return (
-        <PanelsContext.Provider value={{ panels, setContainer, container, register, unregister }}>
-            {children}
-        </PanelsContext.Provider>
+    const value = useMemo(
+        () => ({ panels, setContainer, container, register, unregister }),
+        [panels, setContainer, container, register, unregister],
     );
+    return <PanelsContext.Provider value={value}>{children}</PanelsContext.Provider>;
 };
 
 PanelsProvider.propTypes = propTypes;

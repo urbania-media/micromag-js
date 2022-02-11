@@ -12,6 +12,10 @@
         margin-top : 10px;
     }
 
+    .icon {
+        filter: drop-shadow(0 0 6px rgb(0 0 0 / 0.2));
+    }
+
     .playPauseButton,
     .muteButton {
         @extend %reset-button;

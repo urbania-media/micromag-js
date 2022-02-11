@@ -1,22 +1,26 @@
 /* eslint-disable no-param-reassign */
+
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState, useCallback, useRef, useEffect, useMemo } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
 import { getSizeWithinBounds } from '@folklore/size';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useState, useCallback, useRef, useEffect, useMemo } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderVideo, Transitions, ScreenElement, Empty } from '@micromag/core/components';
-import { useScreenSize, useScreenRenderContext, useViewerNavigation } from '@micromag/core/contexts';
+import {
+    useScreenSize,
+    useScreenRenderContext,
+    useViewerNavigation,
+} from '@micromag/core/contexts';
 import { useTrackScreenMedia, useLongPress } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
-import Container from '@micromag/element-container';
-import ClosedCaptions from '@micromag/element-closed-captions';
-import MediaControls from '@micromag/element-media-controls';
-import Image from '@micromag/element-image';
-import Video from '@micromag/element-video';
 import CallToAction from '@micromag/element-call-to-action';
-
+import ClosedCaptions from '@micromag/element-closed-captions';
+import Container from '@micromag/element-container';
+import Image from '@micromag/element-image';
+import MediaControls from '@micromag/element-media-controls';
+import Video from '@micromag/element-video';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -63,14 +67,8 @@ const VideoScreen = ({
     const trackScreenMedia = useTrackScreenMedia('video');
 
     const { width, height } = useScreenSize();
-    const {
-        isView,
-        isPreview,
-        isPlaceholder,
-        isEdit,
-        isStatic,
-        isCapture,
-    } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
+        useScreenRenderContext();
     const { gotoNextScreen } = useViewerNavigation();
     const backgroundPlaying = current && (isView || isEdit);
     const backgroundShouldLoad = current || active || !isView;
@@ -78,7 +76,14 @@ const VideoScreen = ({
     const shouldGotoNextScreenOnEnd = gotoNextScreenOnEnd && isView && current;
 
     const apiRef = useRef();
-    const { togglePlay, toggleMute, seek, play, pause, mediaRef: apiMediaRef = null } = apiRef.current || {};
+    const {
+        togglePlay,
+        toggleMute,
+        seek,
+        play,
+        pause,
+        mediaRef: apiMediaRef = null,
+    } = apiRef.current || {};
 
     useEffect(() => {
         if (apiMediaRef !== null && getMediaRef !== null) {
@@ -86,8 +91,10 @@ const VideoScreen = ({
         }
     }, [apiMediaRef, getMediaRef]);
 
-    // Get api state updates from callback
+    const mouseMoveRef = useRef(null);
+    const [showMediaControls, setShowMediaControls] = useState(false);
 
+    // Get api state updates from callback
     const [currentTime, setCurrentTime] = useState(null);
     const [duration, setDuration] = useState(null);
     const [playing, setPlaying] = useState(false);
@@ -166,16 +173,27 @@ const VideoScreen = ({
         }
     }, [playing, current]);
 
+    const onMouseMove = useCallback(() => {
+        setShowMediaControls(true);
+        if (mouseMoveRef.current !== null) {
+            clearTimeout(mouseMoveRef.current);
+        }
+        mouseMoveRef.current = setTimeout(() => {
+            setShowMediaControls(false);
+            mouseMoveRef.current = null;
+        }, 1800);
+    }, [setShowMediaControls]);
+
     // ------------------------------------
 
-    const longPressBind = useLongPress({ onLongPress: togglePlay });
+    const longPressBind = useLongPress({ onLongPress: togglePlay, onClick: onMouseMove });
 
     const fullscreen = layout === 'full';
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
 
     const hasVideo = video !== null;
-    const [ready, setReady] = useState(hasVideo);// useState(!hasVideo);
+    const [ready, setReady] = useState(hasVideo); // useState(!hasVideo);
     const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
@@ -186,6 +204,7 @@ const VideoScreen = ({
         closedCaptions = null,
         withSeekBar = false,
         withPlayPause = false,
+        withTime = false,
     } = video || {};
 
     const finalVideo = useMemo(
@@ -316,9 +335,15 @@ const VideoScreen = ({
                     ) : null}
                     {hasVideoUrl ? (
                         <MediaControls
-                            className={styles.mediaControls}
+                            className={classNames([
+                                styles.mediaControls,
+                                {
+                                    [styles.visible]: showMediaControls,
+                                },
+                            ])}
                             withSeekBar={withSeekBar}
                             withPlayPause={withPlayPause}
+                            withTime={withTime}
                             playing={playing}
                             muted={muted}
                             currentTime={currentTime}
@@ -352,8 +377,9 @@ const VideoScreen = ({
                     [styles.fullscreen]: fullscreen,
                 },
             ])}
-            data-screen-ready={((isStatic || isCapture) /* && posterReady */) || ready}
+            data-screen-ready={isStatic || isCapture /* && posterReady */ || ready}
             {...longPressBind}
+            onMouseMove={onMouseMove}
         >
             {!isPlaceholder ? (
                 <Background

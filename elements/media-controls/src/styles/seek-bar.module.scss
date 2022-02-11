@@ -3,7 +3,31 @@
 
 .container {
     position: relative;
-    height: 2px;
+
+    .inner {
+        position: relative;
+        height: 16px;
+        flex-grow: 1;
+    }
+
+    .time {
+        font-size: 0.9em;
+        text-shadow: 0 0 6px rgb(0 0 0 / 0.3);
+
+        &:first-child {
+            padding-right: 4px;
+        }
+
+        &:last-child {
+            padding-left: 4px;
+        }
+    }
+
+    .progressBar {
+        position: relative;
+        top: 7px;
+        box-shadow: 0 0 6px rgb(0 0 0 / 0.3);
+    }
 
     .progress,
     .button {
@@ -12,12 +36,19 @@
 
     .progress {
         position: relative;
+        height: 2px;
         transform-origin: left center;
     }
 
     .button {
         @extend %reset-button;
 
-        box-shadow: 1px 1px 6px rgb(0 0 0 / 20%);
+        height: 100%;
+        background-color: transparent;
+    }
+
+    &.withTime {
+        display: flex;
+        align-items:center;
     }
 }

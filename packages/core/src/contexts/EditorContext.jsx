@@ -36,6 +36,7 @@ export const EditorProvider = ({ children }) => {
     const parse = useCallback((currentStory) => parser.parse(currentStory), [parser]);
     const getColors = useCallback(() => parse(story), [parse, story]);
 
+    // eslint-disable-next-line react/jsx-no-constructed-context-values
     return <EditorContext.Provider value={{ getColors }}>{children}</EditorContext.Provider>;
 };
 

@@ -1,9 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, useMemo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-
-import { ComponentsProvider, SCREENS_NAMESPACE } from './ComponentsContext';
+import React, { useContext, useMemo, useState, useEffect } from 'react';
 import { ScreensManager, PropTypes as MicromagPropTypes } from '../lib';
+import { ComponentsProvider, SCREENS_NAMESPACE } from './ComponentsContext';
 
 export const ScreensContext = React.createContext(new ScreensManager());
 

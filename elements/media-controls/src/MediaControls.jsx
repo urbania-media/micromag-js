@@ -17,6 +17,7 @@ const propTypes = {
     onSeek: PropTypes.func,
     withSeekBar: PropTypes.bool,
     withPlayPause: PropTypes.bool,
+    withTime: PropTypes.bool,
     className: PropTypes.string,
     focusable: PropTypes.bool,
 };
@@ -31,6 +32,7 @@ const defaultProps = {
     onSeek: null,
     withSeekBar: false,
     withPlayPause: false,
+    withTime: false,
     className: null,
     focusable: true,
 };
@@ -45,6 +47,7 @@ const MediaControls = ({
     onSeek,
     withSeekBar,
     withPlayPause,
+    withTime,
     className,
     focusable,
 }) => {
@@ -104,6 +107,7 @@ const MediaControls = ({
                     playing={playing}
                     onSeek={onSeek}
                     focusable={focusable}
+                    withTime={withTime}
                 />
             ) : null}
         </div>

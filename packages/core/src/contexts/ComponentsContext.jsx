@@ -1,8 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, useMemo } from 'react';
-import PropTypes from 'prop-types';
 import isString from 'lodash/isString';
-
+import PropTypes from 'prop-types';
+import React, { useContext, useMemo } from 'react';
 import { ComponentsManager } from '../lib';
 
 export const MODALS_NAMESPACE = 'modals';
@@ -36,11 +35,10 @@ export const useComponent = (name, defaultComponent = null, namespace = null) =>
         return name || defaultComponent;
     }
     const manager = useComponentsManager(namespace);
-    return useMemo(() => manager.getComponent(name) || defaultComponent, [
-        manager,
-        name,
-        defaultComponent,
-    ]);
+    return useMemo(
+        () => manager.getComponent(name) || defaultComponent,
+        [manager, name, defaultComponent],
+    );
 };
 
 /**

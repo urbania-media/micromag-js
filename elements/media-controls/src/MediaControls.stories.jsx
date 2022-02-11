@@ -12,4 +12,5 @@ export default {
 export const normal = () => <MediaControls />;
 export const withSeekBar = () => <MediaControls withSeekBar />;
 export const withPlayPause = () => <MediaControls withPlayPause />;
+export const withSeekbarAndTime = () => <MediaControls withSeekBar withPlayPause withTime />;
 export const withAll = () => <MediaControls withPlayPause withSeekBar muted />;

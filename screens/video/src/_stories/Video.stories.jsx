@@ -42,6 +42,10 @@ export const WithSeekbar = (storyProps) => (
     <VideoScreen {...storyProps} {...{ ...props({ withSeekBar: true }) }} />
 );
 
+export const WithSeekbarAndTime = (storyProps) => (
+    <VideoScreen {...storyProps} {...{ ...props({ withSeekBar: true, withTime: true }) }} />
+);
+
 export const WithClosedCaptions = (storyProps) => (
     <VideoScreen {...storyProps} {...{ ...props({ closedCaptions: closedCaptionsMedia() }) }} />
 );
@@ -61,7 +65,23 @@ export const WithAllControls = (storyProps) => (
                 closedCaptions: closedCaptionsMedia(),
                 withSeekBar: true,
                 withPlayPause: true,
+                withTime: true,
             }),
+        }}
+    />
+);
+
+export const WithBadContrast = (storyProps) => (
+    <VideoScreen
+        {...storyProps}
+        {...{
+            ...props({
+                closedCaptions: closedCaptionsMedia(),
+                withSeekBar: true,
+                withPlayPause: true,
+                withTime: true,
+            }),
+            background: { color: '#FFF', alpha: 1 },
         }}
     />
 );

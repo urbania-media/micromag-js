@@ -132,8 +132,6 @@ const ViewerMenuPreview = ({
         setScrolledBottom(false);
     }, [setScrolledBottom]);
 
-    console.log(items);
-
     return hasSize ? (
         <div
             className={classNames([

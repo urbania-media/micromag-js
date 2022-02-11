@@ -301,7 +301,6 @@ export const SortableTree = ({
         setActiveId(null);
         setOffsetLeft(0);
         setCurrentPosition(null);
-
         document.body.style.setProperty('cursor', '');
     }, [setOverId, setActiveId, setOffsetLeft, setCurrentPosition]);
 
