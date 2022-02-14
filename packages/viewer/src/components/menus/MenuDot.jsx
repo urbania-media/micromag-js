@@ -35,6 +35,7 @@ const ViewerMenuDot = ({ index, current, colors, vertical, onClickItem, classNam
     const { primary = 'rgba(255, 255, 255, 1)', secondary = 'rgba(200, 200, 200, 0.5)' } =
         colors || {};
 
+    // TODO: if approved animate progress
     const [springProps, setSpringProps] = useSpring(() => ({
         x: 0,
         config: {

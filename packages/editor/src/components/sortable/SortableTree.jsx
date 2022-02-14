@@ -194,8 +194,13 @@ export const SortableTree = ({
             const nestedVerb = eventName === 'onDragEnd' ? 'dropped' : 'nested';
 
             if (!previousItem) {
-                const nextItem = sortedItems[overIndex + 1];
-                newAnnouncement = `${currentActiveId} was ${movedVerb} before ${nextItem.id}.`;
+                const nextItem =
+                    typeof sortedItems[overIndex + 1] !== 'undefined'
+                        ? sortedItems[overIndex + 1]
+                        : null;
+                if (nextItem !== null) {
+                    newAnnouncement = `${currentActiveId} was ${movedVerb} before ${nextItem.id}.`;
+                }
             } else if (projected.depth > previousItem.depth) {
                 newAnnouncement = `${currentActiveId} was ${nestedVerb} under ${previousItem.id}.`;
             } else {
@@ -261,7 +266,7 @@ export const SortableTree = ({
                 return `Moving was cancelled. ${id} was dropped in its original position.`;
             },
         }),
-        [flattenedItems, onChange],
+        [flattenedItems, onChange, getMovementAnnouncement],
     );
 
     const activeValue = defaultItems.find(({ id: defaultId = null }) => defaultId === activeId);
@@ -281,6 +286,8 @@ export const SortableTree = ({
         },
         [flattenedItems, setActiveId, setOverId, setCurrentPosition],
     );
+
+    console.log(flattenedItems);
 
     const handleDragMove = useCallback(
         ({ delta }) => {
