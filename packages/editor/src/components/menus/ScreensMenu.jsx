@@ -117,7 +117,7 @@ const ScreensMenu = ({
                   >
                       <ScreenWithPreview
                           index={index}
-                          screen={{ ...screen, ...(withPlaceholder ? { type } : null) }}
+                          screen={withPlaceholder ? { ...screen, type } : screen}
                           href={href}
                           buttonClassName={buttonClassName}
                           active={active}
