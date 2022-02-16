@@ -104,7 +104,7 @@ const FieldWithForm = ({
     return (
         <span
             className={classNames([
-                'form-row',
+                'row',
                 'align-items-center',
                 'flex-nowrap',
                 'w-100',
@@ -123,11 +123,11 @@ const FieldWithForm = ({
                             styles.label,
                             'col',
                             'text-monospace',
-                            'text-left',
+                            'text-start',
                             'text-truncate',
                             {
-                                'text-left': !isHorizontal,
-                                'text-right': isHorizontal,
+                                'text-start': !isHorizontal,
+                                'text-end': isHorizontal,
                             },
                         ])}
                     >
@@ -143,8 +143,8 @@ const FieldWithForm = ({
                         'col',
                         'text-muted',
                         {
-                            'text-left': !isHorizontal,
-                            'text-right': isHorizontal,
+                            'text-start': !isHorizontal,
+                            'text-end': isHorizontal,
                         },
                     ])}
                 >

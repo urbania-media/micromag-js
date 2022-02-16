@@ -1,7 +1,7 @@
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 
-.container {    
+.container {
     position: relative;
     overflow: hidden;
 
@@ -50,7 +50,7 @@
     &.active {
         .border {
             z-index: 2;
-            border: solid 4px $primary;
+            border: solid 3px $primary;
         }
     }
 }

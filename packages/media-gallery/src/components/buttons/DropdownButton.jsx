@@ -58,7 +58,7 @@ const DropdownButton = ({ dropdownItems, className }) => {
                 <ul
                     className={classNames([
                         'dropdown-menu',
-                        'dropdown-menu-right',
+                        'dropdown-menu-end',
                         {
                             show: opened,
                         },

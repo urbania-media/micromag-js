@@ -96,6 +96,7 @@ const ScreenTypes = ({ screens, selectedTypes, className, onClickItem }) => {
                                 items={items}
                                 withPlaceholder
                                 itemClassName={classNames([
+                                    styles.screen,
                                     'border',
                                     'rounded',
                                     {
@@ -105,7 +106,6 @@ const ScreenTypes = ({ screens, selectedTypes, className, onClickItem }) => {
                                         'text-secondary': selectedTypes !== null,
                                     },
                                 ])}
-                                previewMinWidth={100}
                                 onClickItem={onClickItem}
                             />
                         </div>

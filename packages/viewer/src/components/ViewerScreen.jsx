@@ -10,6 +10,7 @@ import styles from '../styles/screen.module.scss';
 const propTypes = {
     screen: MicromagPropTypes.screenComponent,
     renderContext: MicromagPropTypes.renderContext,
+    screenState: PropTypes.string,
     current: PropTypes.bool,
     active: PropTypes.bool,
     onPrevious: PropTypes.func,
@@ -22,6 +23,7 @@ const propTypes = {
 const defaultProps = {
     screen: null,
     renderContext: null,
+    screenState: null,
     current: false,
     active: true,
     onPrevious: null,
@@ -34,6 +36,7 @@ const defaultProps = {
 const ViewerScreen = ({
     screen,
     renderContext,
+    screenState,
     active,
     current,
     onPrevious,
@@ -56,6 +59,7 @@ const ViewerScreen = ({
             <Screen
                 screen={screen}
                 renderContext={renderContext}
+                screenState={screenState}
                 active={active}
                 current={current}
                 onPrevious={onPrevious}

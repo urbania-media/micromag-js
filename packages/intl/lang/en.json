@@ -5,6 +5,9 @@
     "+AEVbJ": {
         "defaultMessage": "Title"
     },
+    "+LvOvJ": {
+        "defaultMessage": "Markers"
+    },
     "+MPZRu": {
         "defaultMessage": "Background"
     },
@@ -55,9 +58,6 @@
     },
     "17BMn2": {
         "defaultMessage": "Ranking"
-    },
-    "1ezz2m": {
-        "defaultMessage": "Description"
     },
     "2/F1Q7": {
         "defaultMessage": "#{index}"
@@ -185,9 +185,6 @@
     "8A8cuq": {
         "defaultMessage": "Parameters"
     },
-    "8Dl/S1": {
-        "defaultMessage": "Draggable"
-    },
     "8EI08h": {
         "defaultMessage": "With play/pause button"
     },
@@ -199,9 +196,6 @@
     },
     "8tANs8": {
         "defaultMessage": "Conversation"
-    },
-    "8vroDx": {
-        "defaultMessage": "Map"
     },
     "9DhYaZ": {
         "defaultMessage": "Ascending"
@@ -220,6 +214,9 @@
     },
     "A+a0kL": {
         "defaultMessage": "No answer..."
+    },
+    "A7ncT3": {
+        "defaultMessage": "Draggable"
     },
     "AA8TV9": {
         "defaultMessage": "Image with title"
@@ -248,14 +245,14 @@
     "CJmQeh": {
         "defaultMessage": "Image with text"
     },
+    "CW3KAC": {
+        "defaultMessage": "Markers with image"
+    },
     "CrzYgw": {
         "defaultMessage": "Quote"
     },
     "D/N9gA": {
         "defaultMessage": "Label"
-    },
-    "D0+Cxr": {
-        "defaultMessage": "Markers with image"
     },
     "DU1qdc": {
         "defaultMessage": "Text color"
@@ -329,6 +326,9 @@
     "JDPMlG": {
         "defaultMessage": "Background color"
     },
+    "JOOlxn": {
+        "defaultMessage": "Title"
+    },
     "JnCf7K": {
         "defaultMessage": "Button style"
     },
@@ -349,9 +349,6 @@
     },
     "LkVfwW": {
         "defaultMessage": "Screen {index}"
-    },
-    "MLuvzG": {
-        "defaultMessage": "Map with image markers"
     },
     "MYZwSA": {
         "defaultMessage": "Audio"
@@ -388,9 +385,6 @@
     },
     "PNMMo/": {
         "defaultMessage": "Audios"
-    },
-    "PbHeHc": {
-        "defaultMessage": "Markers"
     },
     "PyxZY2": {
         "defaultMessage": "Cancel"
@@ -497,6 +491,9 @@
     "YWcp4v": {
         "defaultMessage": "Bullet filled"
     },
+    "Z27IP6": {
+        "defaultMessage": "Map"
+    },
     "Z5jrDS": {
         "defaultMessage": "Letter spacing"
     },
@@ -545,6 +542,9 @@
     "c9VwT/": {
         "defaultMessage": "Technical details"
     },
+    "cDj1mZ": {
+        "defaultMessage": "Background"
+    },
     "cGItoy": {
         "defaultMessage": "List"
     },
@@ -554,6 +554,9 @@
     "dFMzBu": {
         "defaultMessage": "No image..."
     },
+    "dPYwJG": {
+        "defaultMessage": "Map"
+    },
     "dVcog7": {
         "defaultMessage": "Title"
     },
@@ -562,9 +565,6 @@
     },
     "dkBBRa": {
         "defaultMessage": "Image fit"
-    },
-    "dmuKH3": {
-        "defaultMessage": "Map"
     },
     "dqnkQk": {
         "defaultMessage": "Legend"
@@ -581,6 +581,9 @@
     "eWIM/8": {
         "defaultMessage": "Image with title and text"
     },
+    "eYHEYe": {
+        "defaultMessage": "Map"
+    },
     "ebsPd4": {
         "defaultMessage": "Image"
     },
@@ -589,9 +592,6 @@
     },
     "enFs4g": {
         "defaultMessage": "Advanced"
-    },
-    "enPTxj": {
-        "defaultMessage": "Button"
     },
     "eoW0tZ": {
         "defaultMessage": "Duration"
@@ -631,6 +631,9 @@
     },
     "i+3ZrF": {
         "defaultMessage": "Select a font family..."
+    },
+    "i6bmbD": {
+        "defaultMessage": "Button"
     },
     "iHV3W3": {
         "defaultMessage": "No entry..."
@@ -742,6 +745,9 @@
     },
     "rdFCsN": {
         "defaultMessage": "No marker..."
+    },
+    "ro6yHS": {
+        "defaultMessage": "Map with image markers"
     },
     "ru3tjH": {
         "defaultMessage": "Bad answer color"

@@ -16,7 +16,7 @@ import { Empty, Navbar, DropdownMenu } from '@micromag/core/components';
 import {
     updateScreen,
     duplicateScreen,
-    deleteScreen,    
+    deleteScreen,
 } from '../utils';
 import useRouteParams from '../hooks/useRouteParams';
 import useFormTransition from '../hooks/useFormTransition';
@@ -161,7 +161,7 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
             ? {
                   id: 'duplicate',
                   type: 'button',
-                  className: 'text-left text-info',
+                  className: 'text-start text-info',
                   label: (
                       <FormattedMessage
                           defaultMessage="Duplicate screen"
@@ -174,7 +174,7 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
         {
             id: 'delete',
             type: 'button',
-            className: 'text-left text-danger',
+            className: 'text-start text-danger',
             label: (
                 <FormattedMessage defaultMessage="Delete screen" description="Delete screen item" />
             ),
@@ -202,7 +202,7 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
                         screenId={screenId}
                         field={fieldParams}
                         form={formParams}
-                        className="mr-auto"
+                        className="me-auto"
                     />
                     {fieldParams === null ? (
                         <>

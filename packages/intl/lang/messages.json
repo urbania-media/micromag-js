@@ -7,6 +7,10 @@
     "defaultMessage": "Title",
     "description": "Field label"
   },
+  "+LvOvJ": {
+    "defaultMessage": "Markers",
+    "description": "State label"
+  },
   "+MPZRu": {
     "defaultMessage": "Background",
     "description": "Background field label"
@@ -74,10 +78,6 @@
   "17BMn2": {
     "defaultMessage": "Ranking",
     "description": "Ranking screen title"
-  },
-  "1ezz2m": {
-    "defaultMessage": "Description",
-    "description": "Description field label"
   },
   "2/F1Q7": {
     "defaultMessage": "#{index}",
@@ -247,10 +247,6 @@
     "defaultMessage": "Parameters",
     "description": "field label"
   },
-  "8Dl/S1": {
-    "defaultMessage": "Draggable",
-    "description": "Draggable field label"
-  },
   "8EI08h": {
     "defaultMessage": "With play/pause button",
     "description": "Field label"
@@ -266,10 +262,6 @@
   "8tANs8": {
     "defaultMessage": "Conversation",
     "description": "Conversation field label"
-  },
-  "8vroDx": {
-    "defaultMessage": "Map",
-    "description": "Map screen group"
   },
   "9DhYaZ": {
     "defaultMessage": "Ascending",
@@ -294,6 +286,10 @@
   "A+a0kL": {
     "defaultMessage": "No answer...",
     "description": "Label when there is no item"
+  },
+  "A7ncT3": {
+    "defaultMessage": "Draggable",
+    "description": "Field label"
   },
   "AA8TV9": {
     "defaultMessage": "Image with title",
@@ -331,6 +327,10 @@
     "defaultMessage": "Image with text",
     "description": "ImageText screen title"
   },
+  "CW3KAC": {
+    "defaultMessage": "Markers with image",
+    "description": "Field label"
+  },
   "CrzYgw": {
     "defaultMessage": "Quote",
     "description": "Quote placeholder"
@@ -338,10 +338,6 @@
   "D/N9gA": {
     "defaultMessage": "Label",
     "description": "CTA field label field label"
-  },
-  "D0+Cxr": {
-    "defaultMessage": "Markers with image",
-    "description": "Markers field label"
   },
   "DU1qdc": {
     "defaultMessage": "Text color",
@@ -439,6 +435,10 @@
     "defaultMessage": "Background color",
     "description": "Field label"
   },
+  "JOOlxn": {
+    "defaultMessage": "Title",
+    "description": "State label"
+  },
   "JnCf7K": {
     "defaultMessage": "Button style",
     "description": "Button style label"
@@ -466,10 +466,6 @@
   "LkVfwW": {
     "defaultMessage": "Screen {index}",
     "description": "Button label"
-  },
-  "MLuvzG": {
-    "defaultMessage": "Map with image markers",
-    "description": "MapImages screen title"
   },
   "MYZwSA": {
     "defaultMessage": "Audio",
@@ -518,10 +514,6 @@
   "PNMMo/": {
     "defaultMessage": "Audios",
     "description": "Media label"
-  },
-  "PbHeHc": {
-    "defaultMessage": "Markers",
-    "description": "Markers field label"
   },
   "PyxZY2": {
     "defaultMessage": "Cancel",
@@ -662,6 +654,10 @@
     "defaultMessage": "Bullet filled",
     "description": "Field label"
   },
+  "Z27IP6": {
+    "defaultMessage": "Map",
+    "description": "Screen group"
+  },
   "Z5jrDS": {
     "defaultMessage": "Letter spacing",
     "description": "Field label"
@@ -726,6 +722,10 @@
     "defaultMessage": "Technical details",
     "description": "Heading in Media Gallery"
   },
+  "cDj1mZ": {
+    "defaultMessage": "Background",
+    "description": "Field label"
+  },
   "cGItoy": {
     "defaultMessage": "List",
     "description": "List screen group"
@@ -738,6 +738,10 @@
     "defaultMessage": "No image...",
     "description": "Label when there is no item"
   },
+  "dPYwJG": {
+    "defaultMessage": "Map",
+    "description": "Screen title"
+  },
   "dVcog7": {
     "defaultMessage": "Title",
     "description": "Title screen title"
@@ -749,10 +753,6 @@
   "dkBBRa": {
     "defaultMessage": "Image fit",
     "description": "Image fit field label"
-  },
-  "dmuKH3": {
-    "defaultMessage": "Map",
-    "description": "Map screen title"
   },
   "dqnkQk": {
     "defaultMessage": "Legend",
@@ -774,6 +774,10 @@
     "defaultMessage": "Image with title and text",
     "description": "ImageTitleText screen title"
   },
+  "eYHEYe": {
+    "defaultMessage": "Map",
+    "description": "State label"
+  },
   "ebsPd4": {
     "defaultMessage": "Image",
     "description": "Image placeholder"
@@ -785,10 +789,6 @@
   "enFs4g": {
     "defaultMessage": "Advanced",
     "description": "Name of the section in Fields"
-  },
-  "enPTxj": {
-    "defaultMessage": "Button",
-    "description": "Button field label"
   },
   "eoW0tZ": {
     "defaultMessage": "Duration",
@@ -841,6 +841,10 @@
   "i+3ZrF": {
     "defaultMessage": "Select a font family...",
     "description": "No value label"
+  },
+  "i6bmbD": {
+    "defaultMessage": "Button",
+    "description": "Field label"
   },
   "iHV3W3": {
     "defaultMessage": "No entry...",
@@ -987,6 +991,10 @@
   "rdFCsN": {
     "defaultMessage": "No marker...",
     "description": "Label when there is no item"
+  },
+  "ro6yHS": {
+    "defaultMessage": "Map with image markers",
+    "description": "Screen title"
   },
   "ru3tjH": {
     "defaultMessage": "Bad answer color",

@@ -57,7 +57,7 @@ const FontStyles = ({ value, fontStyleName, alignName, className, onChange }) =>
             ])}
         >
             <FontStyle value={fontStyleValue} onChange={onFontStyleChange} />
-            <TextAlign value={alignValue} className="ml-auto" onChange={onAlignChange} />
+            <TextAlign value={alignValue} className="ms-auto" onChange={onAlignChange} />
         </div>
     );
 };

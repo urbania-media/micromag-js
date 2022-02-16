@@ -1,13 +1,4 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-
-/* eslint-disable no-param-reassign */
-
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-
-/* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import { config, useSpring } from '@react-spring/core';
-import { animated } from '@react-spring/web';
-import { useDrag } from '@use-gesture/react';
+/* eslint-disable jsx-a11y/no-static-element-interactions, no-param-reassign, jsx-a11y/click-events-have-key-events, react/no-array-index-key, react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -22,15 +13,15 @@ import {
     useParsedStory,
     useResizeObserver,
     useScreenSizeFromElement,
-    useTrackEvent,
     useTrackScreenView,
 } from '@micromag/core/hooks';
 import { getDeviceScreens } from '@micromag/core/utils';
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
+import useScreenInteraction from '../hooks/useScreenInteraction';
+import checkClickable from '../lib/checkClickable';
 import styles from '../styles/viewer.module.scss';
+import ViewerMenu from './ViewerMenu';
 import ViewerScreen from './ViewerScreen';
-import MenuDots from './menus/MenuDots';
-import MenuPreview from './menus/MenuPreview';
 
 const propTypes = {
     story: MicromagPropTypes.story, // .isRequired,
@@ -39,6 +30,7 @@ const propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
     screen: PropTypes.string,
+    screenState: PropTypes.string,
     deviceScreens: MicromagPropTypes.deviceScreens,
     renderContext: MicromagPropTypes.renderContext,
     onScreenChange: PropTypes.func,
@@ -71,6 +63,7 @@ const defaultProps = {
     width: null,
     height: null,
     screen: null,
+    screenState: null,
     deviceScreens: getDeviceScreens(),
     renderContext: 'view',
     onScreenChange: null,
@@ -99,6 +92,7 @@ const Viewer = ({
     width,
     height,
     screen: screenId,
+    screenState,
     deviceScreens,
     renderContext,
     onScreenChange,
@@ -110,7 +104,7 @@ const Viewer = ({
     withoutMenu,
     withoutFullscreen, // eslint-disable-line no-unused-vars
     closeable,
-    onClose,
+    onClose: onCloseViewer,
     onInteraction,
     onEnd,
     onViewModeChange,
@@ -135,13 +129,6 @@ const Viewer = ({
     );
     const { loaded: fontsLoaded } = useLoadedFonts(finalFonts); // eslint-disable-line
 
-    const shareUrl = useMemo(() => {
-        const origin =
-            typeof window !== 'undefined' ? window.location.origin.replace(/\/+$/, '') : '';
-        const path = basePath !== null ? `${origin}${basePath}` : origin;
-        return path;
-    }, [basePath]);
-
     const isView = renderContext === 'view';
     const isStatic = renderContext === 'static';
     const isCapture = renderContext === 'capture';
@@ -149,7 +136,6 @@ const Viewer = ({
     const withoutScreensTransforms = isStatic || isCapture;
 
     const trackScreenView = useTrackScreenView();
-    const trackEvent = useTrackEvent();
 
     const contentRef = useRef(null);
 
@@ -178,24 +164,6 @@ const Viewer = ({
         }
     }, [ready, landscape, onViewModeChange]);
 
-    // Get dots menu height
-
-    const {
-        ref: menuDotsContainerRef,
-        entry: { contentRect: menuDotsContainerRect },
-    } = useResizeObserver();
-
-    const { height: menuDotsContainerHeight = 0 } = menuDotsContainerRect || {};
-
-    // Get preview menu height
-
-    const {
-        ref: menuPreviewContainerRef,
-        entry: { contentRect: menuPreviewContainerRect },
-    } = useResizeObserver();
-
-    const { height: menuPreviewContainerHeight = 0 } = menuPreviewContainerRect || {};
-
     const screensMediasRef = useRef([]);
 
     // Screen index
@@ -204,7 +172,7 @@ const Viewer = ({
         () =>
             Math.max(
                 0,
-                screens.findIndex((it) => String(it.id) === String(screenId)),
+                screens.findIndex((it) => `${it.id}` === `${screenId}`),
             ),
         [screenId, screens],
     );
@@ -235,10 +203,7 @@ const Viewer = ({
     // Track screen view
 
     const trackingEnabled = isView;
-    const validIndex = screens.length > 0 && screenIndex < screens.length;
-    const currentScreen = validIndex ? screens[screenIndex] : null;
-    const { type: screenType = null } = currentScreen || {};
-
+    const currentScreen = screens[screenIndex] || null;
     useEffect(() => {
         if (trackingEnabled && currentScreen !== null) {
             trackScreenView(currentScreen, screenIndex);
@@ -259,33 +224,6 @@ const Viewer = ({
     }, [changeIndex]);
 
     const screensCount = screens.length;
-    const [screensInteractionEnabled, setScreensInteractionEnabled] = useState(
-        screens.map(() => true),
-    );
-    const currentScreenInteractionEnabled = screensInteractionEnabled[screenIndex];
-    const menuVisible = screensCount === 0 || currentScreenInteractionEnabled;
-
-    useEffect(() => {
-        setScreensInteractionEnabled([...Array(screensCount).keys()].map(() => true));
-    }, [screensCount]);
-
-    const onEnableInteraction = useCallback(() => {
-        if (!screensInteractionEnabled[screenIndex]) {
-            const newArray = [...screensInteractionEnabled];
-            newArray[screenIndex] = true;
-            setScreensInteractionEnabled(newArray);
-        }
-    }, [screenIndex, screensInteractionEnabled, setScreensInteractionEnabled]);
-
-    const onDisableInteraction = useCallback(() => {
-        if (screensInteractionEnabled[screenIndex]) {
-            const newArray = [...screensInteractionEnabled];
-            newArray[screenIndex] = false;
-            setScreensInteractionEnabled(newArray);
-        }
-    }, [screenIndex, screensInteractionEnabled, setScreensInteractionEnabled]);
-
-    // handle screenClick
 
     const onInteractionPrivate = useCallback(() => {
         if (onInteraction !== null) {
@@ -293,208 +231,45 @@ const Viewer = ({
         }
     }, [onInteraction]);
 
-    const onScreenClick = useCallback(
-        (e, index) => {
-            onInteractionPrivate();
-
-            const checkClickable = (el, maxDistance = 5, distance = 1) => {
-                const { tagName = null, parentNode = null } = el || {};
-
-                if (tagName === 'BODY') {
-                    return false;
-                }
-
-                const tags = ['BUTTON', 'A', 'INPUT', 'TEXTAREA'];
-
-                if (tags.indexOf(tagName) > -1) {
-                    return true;
-                }
-
-                if (distance < maxDistance) {
-                    return checkClickable(parentNode, maxDistance, distance + 1);
-                }
-
-                return false;
-            };
-
-            const tappedCurrent = screenIndex === index;
-
-            if ((!isView && tappedCurrent) || checkClickable(e.target)) {
-                return;
-            }
-
-            const it = screens[screenIndex] || null;
-            const interactionEnabled = screensInteractionEnabled[screenIndex];
-
-            if (it === null || (tappedCurrent && !interactionEnabled)) {
-                return;
-            }
-
-            let nextIndex = screenIndex;
-
-            const { left: contentX = 0 } = e.currentTarget.getBoundingClientRect();
-            const tapX = e.clientX;
-            const hasTappedLeft = tappedCurrent
-                ? tapX - contentX < screenWidth * (1 - tapNextScreenWidthPercent)
-                : screenIndex > index;
-
-            if (hasTappedLeft) {
-                nextIndex = landscape ? index : Math.max(0, screenIndex - 1);
-            } else {
-                nextIndex = landscape ? index : Math.min(screens.length - 1, screenIndex + 1);
-
-                const isLastScreen = screenIndex === screens.length - 1;
-                if (isLastScreen && onEnd !== null) {
-                    onEnd();
-                }
-            }
-            changeIndex(nextIndex);
-        },
-        [
-            onScreenChange,
-            screenWidth,
-            screens,
-            changeIndex,
-            screenIndex,
-            screensInteractionEnabled,
-            isView,
-            onInteractionPrivate,
-            onEnd,
-        ],
-    );
+    const {
+        onClick: onScreenClick,
+        currentScreenInteractionEnabled,
+        enableInteraction,
+        disableInteraction,
+    } = useScreenInteraction({
+        screens,
+        screenId,
+        screenWidth,
+        isView,
+        landscape,
+        nextScreenWidthPercent: tapNextScreenWidthPercent,
+        onClick: onInteractionPrivate,
+        onEnd,
+        onChangeScreen: changeIndex,
+    });
 
     // swipe menu open
+    const menuVisible = screensCount === 0 || currentScreenInteractionEnabled;
+    const [menuOpened, setMenuOpened] = useState(false);
 
-    const menuOpened = useRef(false);
-    const [previewMenuOpen, setPreviewMenuOpen] = useState(false);
-    const [{ y: menuY }, setMenuSpring] = useSpring(() => ({
-        y: 0,
-        config: { ...config.stiff, clamp: true },
-    }));
-    const menuPreviewStyle = {
-        transform: menuY.to((y) => `translateY(${y * menuPreviewContainerHeight}px)`),
-    };
+    const onMenuRequestOpen = useCallback(() => setMenuOpened(true), [setMenuOpened]);
+    const onMenuRequestClose = useCallback(() => setMenuOpened(false), [setMenuOpened]);
 
-    const menuDragBind = useDrag(
-        ({ movement: [, my], first, last, direction: [, dy], cancel, canceled, tap }) => {
-            if (canceled || tap) {
-                return;
-            }
+    const onClickMenu = useCallback(() => {
+        onInteractionPrivate();
+        setMenuOpened(true);
+    }, [landscape, changeIndex, onInteractionPrivate, setMenuOpened]);
 
-            const isMenuOpened = menuOpened.current;
-
-            if (first) {
-                if (isMenuOpened) {
-                    cancel();
-                    return;
-                }
-            }
-
-            const yProgress = Math.max(
-                0,
-                Math.min(1, my / menuPreviewContainerHeight + (isMenuOpened ? 1 : 0)),
-            );
-
-            if (last) {
-                const menuNowOpened = dy > 0 && yProgress > 0.1;
-                menuOpened.current = menuNowOpened;
-                setMenuSpring.start({ y: menuNowOpened ? 1 : 0 });
-                setPreviewMenuOpen(menuNowOpened);
-            } else {
-                setMenuSpring.start({ y: yProgress });
-            }
-        },
-        { axis: 'y', filterTaps: true },
-    );
-
-    const setPreviewMenu = (opened) => {
-        setMenuSpring.start({ y: opened ? 1 : 0 });
-        menuOpened.current = opened;
-        setPreviewMenuOpen(opened);
-    };
-
-    const openPreviewMenu = useCallback(() => {
-        setPreviewMenu(true);
-    }, [setMenuSpring, setPreviewMenuOpen]);
-
-    const closePreviewMenu = useCallback(() => {
-        setPreviewMenu(false);
-    }, [setMenuSpring, setPreviewMenuOpen]);
-
-    // Handle dot menu item click
-
-    const onClickDotsMenuItem = useCallback(
-        (index) => {
+    const onClickMenuItem = useCallback(
+        ({ screenId: itemScreenId }) => {
             onInteractionPrivate();
-
-            const clickedOnDot = index !== null;
-            const goToScreen = landscape && clickedOnDot;
-
-            if (goToScreen) {
-                changeIndex(index);
-            } else {
-                openPreviewMenu();
-            }
-            if (trackingEnabled) {
-                trackEvent(
-                    'viewer_menu',
-                    goToScreen ? 'click_screen_change' : 'click_open',
-                    clickedOnDot ? `Screen ${index + 1}` : 'Menu icon',
-                    {
-                        screenId,
-                        screenType,
-                        screenIndex: index,
-                    },
-                );
-            }
-        },
-        [changeIndex, landscape, trackingEnabled, trackEvent, screenType, onInteractionPrivate],
-    );
-
-    // handle preview menu item click
-
-    const onClickPreviewMenuItem = useCallback(
-        (index) => {
+            const index = screens.findIndex(({ id }) => id === itemScreenId);
             changeIndex(index);
-            closePreviewMenu();
-
-            if (trackingEnabled) {
-                trackEvent('viewer_menu', 'click_screen_change', `Screen ${index + 1}`, {
-                    screenId,
-                    screenType,
-                    screenIndex: index,
-                });
+            if (menuOpened) {
+                setMenuOpened(false);
             }
         },
-        [changeIndex, trackingEnabled, trackEvent, screenId, screenType],
-    );
-
-    // Handle preview menu close click
-
-    const onClickPreviewMenuClose = useCallback(() => {
-        closePreviewMenu();
-        if (trackingEnabled) {
-            trackEvent('viewer_menu', 'click_close', 'Close icon', {
-                screenId,
-                screenIndex,
-                screenType,
-            });
-        }
-    }, [closePreviewMenu, trackingEnabled, trackEvent, screenId, screenIndex, screenType]);
-
-    // Handle preview menu share click
-
-    const onClickShare = useCallback(
-        (type) => {
-            if (trackingEnabled) {
-                trackEvent('viewer_menu', 'click_share', type, {
-                    screenId,
-                    screenIndex,
-                    screenType,
-                });
-            }
-        },
-        [trackingEnabled, trackEvent, screenId, screenIndex, screenType],
+        [onInteractionPrivate, changeIndex, menuOpened, setMenuOpened],
     );
 
     const onContextMenu = useCallback(
@@ -523,13 +298,13 @@ const Viewer = ({
     const keyboardShortcuts = useMemo(
         () => ({
             f: () => toggleFullscreen(),
-            m: () => setPreviewMenu(!menuOpened.current),
-            escape: () => closePreviewMenu(),
+            m: () => setMenuOpened(!menuOpened),
+            escape: () => setMenuOpened(false),
             arrowleft: () => gotoPreviousScreen(),
             arrowright: () => gotoNextScreen(),
             ' ': () => gotoNextScreen(),
         }),
-        [closePreviewMenu, gotoPreviousScreen, gotoNextScreen],
+        [menuOpened, setMenuOpened, gotoPreviousScreen, gotoNextScreen],
     );
     useKeyboardShortcuts(keyboardShortcuts, {
         disabled: renderContext !== 'view',
@@ -545,7 +320,13 @@ const Viewer = ({
             screenDescription !== null ? { ...metadata, description: screenDescription } : metadata,
         [metadata],
     );
-    const { menuTheme = null } = viewerTheme || {};
+
+    const {
+        ref: menuDotsContainerRef,
+        entry: { contentRect: menuDotsContainerRect },
+    } = useResizeObserver();
+
+    const { height: menuDotsContainerHeight = 0 } = menuDotsContainerRect || {};
 
     return (
         <ScreenSizeProvider size={screenSize}>
@@ -578,48 +359,26 @@ const Viewer = ({
                     onContextMenu={onContextMenu}
                 >
                     {!withoutMenu ? (
-                        <>
-                            <div
-                                className={styles.menuDotsContainer}
-                                ref={menuDotsContainerRef}
-                                style={{ width: screenWidth }}
-                                {...menuDragBind()}
-                            >
-                                <MenuDots
-                                    {...menuTheme}
-                                    direction="horizontal"
-                                    withShadow={menuOverScreen}
-                                    items={screens}
-                                    current={screenIndex}
-                                    onClickItem={onClickDotsMenuItem}
-                                    closeable={closeable}
-                                    onClose={onClose}
-                                    className={styles.menuDots}
-                                />
-                            </div>
-                            <animated.div
-                                className={styles.menuPreviewContainer}
-                                style={menuPreviewStyle}
-                                ref={menuPreviewContainerRef}
-                            >
-                                <MenuPreview
-                                    viewerTheme={viewerTheme}
-                                    title={title}
-                                    shareUrl={shareUrl}
-                                    className={styles.menuPreview}
-                                    screenWidth={screenWidth}
-                                    focusable={previewMenuOpen}
-                                    items={screens}
-                                    current={screenIndex}
-                                    onClickItem={onClickPreviewMenuItem}
-                                    onClose={onClickPreviewMenuClose}
-                                    onShare={onClickShare}
-                                    toggleFullscreen={toggleFullscreen}
-                                    fullscreenActive={fullscreenActive}
-                                    fullscreenEnabled={fullscreenEnabled}
-                                />
-                            </animated.div>
-                        </>
+                        <ViewerMenu
+                            story={parsedStory}
+                            currentScreenIndex={screenIndex}
+                            opened={menuOpened}
+                            withShadow={menuOverScreen}
+                            toggleFullscreen={toggleFullscreen}
+                            fullscreenActive={fullscreenActive}
+                            fullscreenEnabled={fullscreenEnabled}
+                            closeable={closeable}
+                            shareBasePath={basePath}
+                            screenWidth={screenWidth}
+                            trackingEnabled={trackingEnabled}
+                            onClickItem={onClickMenuItem}
+                            onClickMenu={onClickMenu}
+                            onClickCloseViewer={onCloseViewer}
+                            onRequestOpen={onMenuRequestOpen}
+                            onRequestClose={onMenuRequestClose}
+                            withDotItemClick={landscape}
+                            refDots={menuDotsContainerRef}
+                        />
                     ) : null}
                     {ready || withoutScreensTransforms ? (
                         <div ref={contentRef} className={styles.content}>
@@ -632,14 +391,15 @@ const Viewer = ({
                                 const viewerScreen = (
                                     <ViewerScreen
                                         screen={scr}
+                                        screenState={current ? screenState : null}
                                         renderContext={renderContext}
                                         index={i}
                                         current={current}
                                         active={active}
                                         onPrevious={gotoPreviousScreen}
                                         onNext={gotoNextScreen}
-                                        onEnableInteraction={onEnableInteraction}
-                                        onDisableInteraction={onDisableInteraction}
+                                        onEnableInteraction={enableInteraction}
+                                        onDisableInteraction={disableInteraction}
                                         getMediaRef={(mediaRef) => {
                                             screensMediasRef.current[i] = mediaRef;
                                         }}

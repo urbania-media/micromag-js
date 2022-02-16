@@ -50,24 +50,32 @@ export const useScreenRenderContext = () => {
     };
 };
 
+export const useScreenState = () => {
+    const { screenState } = useScreen() || {};
+    return screenState;
+}
+
 const propTypes = {
     children: PropTypes.node.isRequired,
     data: MicromagPropTypes.screen,
     definition: MicromagPropTypes.screenDefinition,
     renderContext: MicromagPropTypes.renderContext,
+    screenState: PropTypes.string,
 };
 
 const defaultProps = {
     data: null,
     definition: null,
     renderContext: null,
+    screenState: null,
 };
 
-export const ScreenProvider = ({ data, definition, renderContext, children }) => {
+export const ScreenProvider = ({ data, definition, renderContext, screenState, children }) => {
     const {
         data: previousData = null,
         definition: previousDefinition = null,
         renderContext: previousContext = null,
+        screenState: previousScreenState = null,
     } = useScreen() || {};
 
     const finalData = data || previousData || null;
@@ -78,14 +86,16 @@ export const ScreenProvider = ({ data, definition, renderContext, children }) =>
     const finalDefinition = definition || contextDefinition || previousDefinition;
 
     const finalRenderContext = renderContext || previousContext || 'view';
+    const finalScreenState = screenState || previousScreenState || null;
 
     const value = useMemo(
         () => ({
             data: finalData,
             definition: finalDefinition,
             renderContext: finalRenderContext,
+            screenState: finalScreenState,
         }),
-        [finalData, finalDefinition, finalRenderContext],
+        [finalData, finalDefinition, finalRenderContext, finalScreenState],
     );
     return <ScreenContext.Provider value={value}>{children}</ScreenContext.Provider>;
 };

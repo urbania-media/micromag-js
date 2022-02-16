@@ -56,9 +56,6 @@
     "17BMn2": {
         "defaultMessage": "Classement"
     },
-    "1ezz2m": {
-        "defaultMessage": "Description"
-    },
     "2/F1Q7": {
         "defaultMessage": "#{index}"
     },
@@ -185,9 +182,6 @@
     "8A8cuq": {
         "defaultMessage": "Paramètres"
     },
-    "8Dl/S1": {
-        "defaultMessage": "Glissable"
-    },
     "8EI08h": {
         "defaultMessage": "Avec bouton Play/Pause"
     },
@@ -199,9 +193,6 @@
     },
     "8tANs8": {
         "defaultMessage": "Conversation"
-    },
-    "8vroDx": {
-        "defaultMessage": "Carte"
     },
     "9DhYaZ": {
         "defaultMessage": "Ordre croissant"
@@ -253,9 +244,6 @@
     },
     "D/N9gA": {
         "defaultMessage": "Libellé"
-    },
-    "D0+Cxr": {
-        "defaultMessage": "Marqueurs avec image"
     },
     "DU1qdc": {
         "defaultMessage": "Couleur du texte"
@@ -350,9 +338,6 @@
     "LkVfwW": {
         "defaultMessage": "Écran {index}"
     },
-    "MLuvzG": {
-        "defaultMessage": "Carte avec images"
-    },
     "MYZwSA": {
         "defaultMessage": "Audio"
     },
@@ -388,9 +373,6 @@
     },
     "PNMMo/": {
         "defaultMessage": "Audios"
-    },
-    "PbHeHc": {
-        "defaultMessage": "Marqueurs"
     },
     "PyxZY2": {
         "defaultMessage": "Annuler"
@@ -563,9 +545,6 @@
     "dkBBRa": {
         "defaultMessage": "Ajustement de l’image"
     },
-    "dmuKH3": {
-        "defaultMessage": "Carte"
-    },
     "dqnkQk": {
         "defaultMessage": "Légende"
     },
@@ -589,9 +568,6 @@
     },
     "enFs4g": {
         "defaultMessage": "Avancé"
-    },
-    "enPTxj": {
-        "defaultMessage": "Bouton"
     },
     "eoW0tZ": {
         "defaultMessage": "Durée"

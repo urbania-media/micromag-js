@@ -100,7 +100,7 @@ const NumberField = ({
         >
             <input
                 type="number"
-                className={classNames([styles.input, 'form-control', 'ml-auto'])}
+                className={classNames([styles.input, 'form-control', 'ms-auto'])}
                 name={name}
                 value={value !== null ? value : ''}
                 min={min}

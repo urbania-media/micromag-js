@@ -91,10 +91,11 @@ const Map = ({
     );
 
     const bounds = useMemo(() => {
-        if (client === null || markers === null || markers.length === 0) {
+        const correctMarkers = (markers || []).filter(it => it !== null && (it.geoPosition || null) !== null);
+        if (client === null || correctMarkers === null || correctMarkers.length === 0) {
             return null;
         }
-        const markersBounds = markers.reduce((newBounds, { geoPosition = null }) => {
+        const markersBounds = correctMarkers.reduce((newBounds, { geoPosition = null }) => {
             const { lat = null, lng = null } = geoPosition || {};
             if (lat !== null && lng !== null) {
                 newBounds.extend(new client.maps.LatLng(lat, lng));

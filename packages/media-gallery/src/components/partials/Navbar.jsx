@@ -177,7 +177,7 @@ function Navbar({
                 },
             ])}
         >
-            <div className={styles.inner}>
+            <div className={classNames(['container-fluid', styles.inner])}>
                 {media === null ? (
                     <strong className="list-group-item rounded w-100 py-1 px-1 navbar-text d-flex align-items-center justify-content-between">
                         {selectedMedia !== null ? (
@@ -189,7 +189,7 @@ function Navbar({
                                     className={styles.mediaPreview}
                                     thumbnail={selectedMedia?.thumbnail_url}
                                 />
-                                <span className="ml-2">
+                                <span className="ms-2">
                                     {selectedMedia.name || (
                                         <FormattedMessage
                                             defaultMessage="[no title]"
@@ -199,7 +199,7 @@ function Navbar({
                                 </span>
                             </Button>
                         ) : (
-                            <span className="pl-2">
+                            <span className="ps-2">
                                 <FormattedMessage
                                     defaultMessage="Upload an image"
                                     description="Upload button label in Media Gallery"
@@ -242,7 +242,7 @@ function Navbar({
 
                 {media !== null ? (
                     <div className="w-100 d-flex flex-nowrap justify-content-between">
-                        <form className={classNames(['form-inline', 'mr-2'])}>
+                        <form className={classNames(['d-flex', 'me-2'])}>
                             <Button
                                 theme="secondary"
                                 outline
@@ -251,7 +251,7 @@ function Navbar({
                                 onClick={onClickBack}
                             />
                         </form>
-                        <strong className="navbar-text mr-auto w-100">
+                        <strong className="navbar-text me-auto w-100">
                             {media !== null ? media.name : null}
                         </strong>
                     </div>
@@ -265,7 +265,7 @@ function Navbar({
                                 onChange={onSearchChange}
                                 onFocus={onSearchFocus}
                                 onClickIcon={onToggleMenu}
-                                className={classNames(['form-inline'])}
+                                className={classNames(['d-flex'])}
                             />
                         </div>
                         {open ? (

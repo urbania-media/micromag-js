@@ -11,18 +11,20 @@ import styles from '../../styles/screens/preview.module.scss';
 
 const propTypes = {
     screen: MicromagPropTypes.component.isRequired,
+    screenState: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number,
     className: PropTypes.string,
 };
 
 const defaultProps = {
+    screenState: null,
     width: null,
     height: null,
     className: null,
 };
 
-const ScreenPreview = ({ screen, width, height, className }) => {
+const ScreenPreview = ({ screen, screenState, width, height, className }) => {
     const screenSize = useMemo(
         () => ({
             screen: 'mobile',
@@ -34,7 +36,7 @@ const ScreenPreview = ({ screen, width, height, className }) => {
     );
     return (
         <ScreenSizeProvider size={screenSize}>
-            <ScreenProvider data={screen} renderContext="preview">
+            <ScreenProvider data={screen} renderContext="preview" screenState={screenState}>
                 <Screen
                     screen={screen}
                     renderContext="preview"

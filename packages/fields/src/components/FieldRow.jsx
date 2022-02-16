@@ -1,11 +1,11 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading, jsx-a11y/label-has-associated-control */
 import { faAngleRight, faSlidersH } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Button, Label } from '@micromag/core/components';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { Button, Label } from '@micromag/core/components';
 import styles from '../styles/field-row.module.scss';
 import FieldErrors from './FieldErrors';
 import FieldHelp from './FieldHelp';
@@ -113,8 +113,8 @@ const FieldRow = ({
                     'pt-2': isHorizontal && hasIndicationsUnder,
                     'align-self-center': isHorizontal && !hasIndicationsUnder,
                     'text-truncate': isHorizontal,
-                    'font-weight-normal': !isSection,
-                    'font-weight-bold': isSection,
+                    'fw-normal': !isSection,
+                    'fw-bold': isSection,
                     [labelClassName]: labelClassName !== null,
                 })}
             >
@@ -130,43 +130,46 @@ const FieldRow = ({
 
     if (isHorizontal) {
         const rowInner = (
-            <>
-                <span className={classNames(['form-row', 'flex-nowrap'])}>
-                    {labelElement}
-                    <span className={classNames(['col', styles.colValue, 'align-self-center'])}>
-                        <span className={classNames(['d-flex', 'w-100', 'justify-content-end'])}>
-                            {children}
-                        </span>
-                        {helpElement !== null || errorsElement !== null ? (
-                            <span className={classNames(['d-flex', 'mt-1', 'w-100', 'justify-content-end'])}>
-                                {helpElement}
-                                {errorsElement}
-                            </span>
-                        ) : null}
+            <span className={classNames(['row', 'flex-nowrap', 'gx-1'])}>
+                {labelElement}
+                <span className={classNames(['col', styles.colValue, 'align-self-center'])}>
+                    <span className={classNames(['d-flex', 'w-100', 'justify-content-end'])}>
+                        {children}
                     </span>
-                    {arrowElement}
+                    {helpElement !== null || errorsElement !== null ? (
+                        <span
+                            className={classNames([
+                                'd-flex',
+                                'mt-1',
+                                'w-100',
+                                'justify-content-end',
+                            ])}
+                        >
+                            {helpElement}
+                            {errorsElement}
+                        </span>
+                    ) : null}
                 </span>
-            </>
+                {arrowElement}
+            </span>
         );
 
         return isClickable ? (
-            <>
-                <button
-                    type="button"
-                    className={classNames([
-                        containerClassName,
-                        {
-                            [styles.resetButton]: !isListItem,
-                            'd-block': !isListItem,
-                            'w-100': isListItem,
-                            'p-2': !isListItem,
-                        },
-                    ])}
-                    onClick={onClickRow}
-                >
-                    {rowInner}
-                </button>
-            </>
+            <button
+                type="button"
+                className={classNames([
+                    containerClassName,
+                    {
+                        [styles.resetButton]: !isListItem,
+                        'd-block': !isListItem,
+                        'w-100': isListItem,
+                        'p-2': !isListItem,
+                    },
+                ])}
+                onClick={onClickRow}
+            >
+                {rowInner}
+            </button>
         ) : (
             <div className={containerClassName}>{rowInner}</div>
         );
@@ -176,7 +179,7 @@ const FieldRow = ({
             {withLabel ? (
                 <>
                     {withSettings ? (
-                        <div className={classNames(['form-row', 'align-items-center'])}>
+                        <div className={classNames(['row', 'align-items-center', 'gx-1'])}>
                             {labelElement}
                             <div className={classNames(['col-auto'])}>
                                 <Button
@@ -210,7 +213,7 @@ const FieldRow = ({
                     outline={buttonOutline}
                     onClick={onClickRow}
                 >
-                    <span className="form-row align-items-center">
+                    <span className="row align-items-center">
                         <span className={classNames(['col', styles.colValue])}>{children}</span>
                         {arrowElement}
                     </span>

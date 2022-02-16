@@ -1,13 +1,11 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import PropTypes from 'prop-types';
+import React from 'react';
 import { PropTypes as MicromagPropTypes } from '../../lib';
-import Label from '../partials/Label';
-import Buttons from '../buttons/Buttons';
-
 import styles from '../../styles/modals/dialog.module.scss';
+import Buttons from '../buttons/Buttons';
+import Label from '../partials/Label';
 
 const propTypes = {
     title: MicromagPropTypes.label,
@@ -69,12 +67,10 @@ const ModalDialog = ({
                     </h5>
                     <button
                         type="button"
-                        className="close text-light"
+                        className="btn-close"
                         aria-label="Close"
                         onClick={onClickClose}
-                    >
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    ></button>
                 </div>
             )}
             <div

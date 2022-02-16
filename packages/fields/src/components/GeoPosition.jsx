@@ -1,18 +1,17 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
+
 /* eslint-disable react/jsx-props-no-spreading */
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useGoogleMapsClient } from '@micromag/core/contexts';
 import Map, { Pin } from '@micromag/element-map';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-
-import NumberField from './Number';
-
 import styles from '../styles/geo-position.module.scss';
+import NumberField from './Number';
 
 const propTypes = {
     value: MicromagPropTypes.geoPosition,
@@ -157,15 +156,9 @@ const GeoPosition = ({ value, defaultCenter, defaultZoom, className, onChange })
             ])}
         >
             <div className={classNames([styles.autoComplete, 'input-group'])}>
-                <span type="span" className="input-group-prepend">
-                    <button
-                        type="button"
-                        className="input-group-text"
-                        onClick={onSearchButtonClick}
-                    >
-                        <FontAwesomeIcon icon={faSearch} />
-                    </button>
-                </span>
+                <button type="button" onClick={onSearchButtonClick} className="btn btn-secondary">
+                    <FontAwesomeIcon icon={faSearch} />
+                </button>
                 <input
                     type="text"
                     ref={addressInputRef}

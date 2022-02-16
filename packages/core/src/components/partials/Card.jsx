@@ -260,7 +260,7 @@ const Card = ({
         return (
             <button
                 type="button"
-                className={classNames(['p-0', 'text-left', cardClassName])}
+                className={classNames(['p-0', 'text-start', cardClassName])}
                 onClick={onClick}
             >
                 {cardInner}

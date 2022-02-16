@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-indent */
-
 /* eslint-disable react/jsx-props-no-spreading */
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
@@ -67,30 +66,9 @@ const ScreensMenu = ({
     onOrderChange,
 }) => {
     const {
-        ref: containerRef,
-        entry: { contentRect },
-    } = useResizeObserver({}, [items]);
-
-    const {
         ref: columnRef,
         entry: { contentRect: columnRect },
     } = useResizeObserver({}, [items]);
-
-    const previewStyle = useMemo(() => {
-        const { width: itemWidth = 0, height: itemHeight = 0 } = contentRect || {};
-        const ratio = itemHeight !== 0 && itemWidth !== 0 ? itemHeight / itemWidth : 2 / 3;
-        const { scale: previewScale } = getSizeWithinBounds(
-            previewMinWidth,
-            previewMinWidth * ratio,
-            itemWidth,
-            itemHeight,
-        );
-        return {
-            width: previewMinWidth,
-            height: previewMinWidth * ratio,
-            transform: `scale(${previewScale}, ${previewScale})`,
-        };
-    }, [previewMinWidth, contentRect]);
 
     const treeStyle = useMemo(() => {
         const { width: itemWidth = 0 } = columnRect || {};
@@ -115,7 +93,15 @@ const ScreensMenu = ({
     const itemsElements = !isTree
         ? items.map(
               (
-                  { className: itemCustomClassName = null, screen, type, onClick = null, ...item },
+                  {
+                      className: itemCustomClassName = null,
+                      screen,
+                      type,
+                      onClick = null,
+                      active,
+                      href,
+                      ...item
+                  },
                   index,
               ) => (
                   <li
@@ -128,13 +114,15 @@ const ScreensMenu = ({
                           },
                       ])}
                       data-screen-id={item.id}
-                      ref={index === 0 ? containerRef : null}
                   >
                       <ScreenWithPreview
                           index={index}
                           screen={{ ...screen, ...(withPlaceholder ? { type } : null) }}
+                          href={href}
                           buttonClassName={buttonClassName}
-                          previewStyle={previewStyle}
+                          active={active}
+                        //   previewWidth={previewWidth}
+                        //   previewHeight={previewHeight}
                           withPreview={withPreview}
                           withPlaceholder={withPlaceholder}
                           onClick={onClick}
@@ -159,15 +147,15 @@ const ScreensMenu = ({
     const sortableItems = useMemo(
         () =>
             isTree
-                ? items.map(({ id, screen = {}, ...props }) => {
+                ? items.map(({ id, screen = {}, href, ...props }) => {
                       const { parentId = null, group = {} } = screen;
                       const { collapsed = true } = group || {};
                       return {
                           id,
                           parentId,
                           collapsed,
-                          value: { id, screen },
-                          ...props,
+                          value: { id, screen, href,
+                            ...props, },
                       };
                   }, [])
                 : items.map(({ id }) => ({ id })),

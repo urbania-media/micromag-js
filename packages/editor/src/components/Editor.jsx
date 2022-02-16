@@ -155,7 +155,7 @@ const Editor = ({
                                     size="sm"
                                     theme="secondary"
                                     onClick={onClickScreens}
-                                    className="mr-auto"
+                                    className="me-auto"
                                 >
                                     <FormattedMessage
                                         defaultMessage="Screens"
@@ -218,6 +218,7 @@ const Editor = ({
                                     viewerTheme={viewerTheme}
                                     className={styles.preview}
                                     onScreenChange={onPreviewScreenChange}
+                                    onChange={onStoryChange}
                                 />
                             </div>
                             <div

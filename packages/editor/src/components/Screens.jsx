@@ -172,7 +172,7 @@ const EditorScreens = ({
                 withoutCollapse
                 className={classNames(['sticky-top', styles.navbar])}
             >
-                <strong className="mb-0 mr-auto">
+                <strong className="mb-0 me-auto">
                     <FormattedMessage
                         defaultMessage="Screens"
                         description="Title of the screens section"

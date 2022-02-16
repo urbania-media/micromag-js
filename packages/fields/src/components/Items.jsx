@@ -180,8 +180,8 @@ const ItemsField = ({
                                     <div
                                         className={classNames([
                                             'btn',
-                                            'pl-2',
-                                            'pr-1',
+                                            'ps-2',
+                                            'pe-1',
                                             'border',
                                             'border-dark',
                                             'border-right-0',
@@ -228,7 +228,7 @@ const ItemsField = ({
                                 {editing ? (
                                     <button
                                         type="button"
-                                        className="btn pl-2 pr-0 py-0 text-danger"
+                                        className="btn ps-2 pe-0 py-0 text-danger"
                                         onClick={() => {
                                             onClickDelete(index);
                                         }}
@@ -258,9 +258,9 @@ const ItemsField = ({
                 {hasItems ? (
                     <Button
                         className={classNames([
-                            'ml-auto',
+                            'ms-auto',
                             {
-                                'pr-0': !editing,
+                                'pe-0': !editing,
                                 'text-reset': !editing,
                             },
                         ])}

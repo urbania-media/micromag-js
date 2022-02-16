@@ -11,7 +11,7 @@ const getFieldFromPath = (path, fields, fieldManager) =>
             const { type = null } = foundField;
             const { fields: subFields = null, settings = null, itemsField = null } =
                 type !== null ? fieldManager.getDefinition(type) : foundField;
-            if (itemsField !== null && key.match(/^[0-9]+$/)) {                
+            if (itemsField !== null && key.match(/^[0-9]+$/)) {
                 return { ...itemsField, name: path.join('/'), listItems: true };
             }
             return getFieldByName([...(subFields || []), ...(settings || [])], key);

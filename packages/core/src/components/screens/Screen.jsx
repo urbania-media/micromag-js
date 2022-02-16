@@ -9,6 +9,7 @@ import { ScreenProvider, useScreenComponent } from '../../contexts';
 const propTypes = {
     screen: MicromagPropTypes.storyComponent.isRequired,
     renderContext: MicromagPropTypes.renderContext,
+    screenState: PropTypes.string,
     active: PropTypes.bool,
     current: PropTypes.bool,
     component: PropTypes.node,
@@ -24,6 +25,7 @@ const propTypes = {
 const defaultProps = {
     active: false,
     renderContext: null,
+    screenState: null,
     current: false,
     component: null,
     components: null,
@@ -38,6 +40,7 @@ const defaultProps = {
 const Screen = ({
     screen,
     renderContext,
+    screenState,
     active,
     current,
     components,
@@ -56,7 +59,7 @@ const Screen = ({
     const ScreenComponent = CustomScreenComponent || ContextScreenComponent;
 
     return (
-        <ScreenProvider data={screen} renderContext={renderContext}>
+        <ScreenProvider data={screen} renderContext={renderContext} screenState={screenState}>
             {ScreenComponent !== null ? (
                 <div className={className}>
                     <ScreenComponent

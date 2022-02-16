@@ -30,7 +30,7 @@ const SelectField = ({ value, options, disabled, className, onChange }) => {
         <select
             className={classNames([
                 styles.container,
-                'custom-select',
+                'form-select',
                 {
                     [className]: className !== null,
                 },

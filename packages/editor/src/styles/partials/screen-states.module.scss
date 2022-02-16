@@ -1,0 +1,16 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/mixins';
+
+.container {
+
+}
+
+.button {
+    width: 50px;
+    height: 75px;
+}
+
+.addButton {
+    border-style: dashed;
+}

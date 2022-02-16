@@ -43,13 +43,37 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
         const { type } = screens[screenIndex];
         const fieldItems = [];
         if (field !== null) {
-            const { fields: screenFields = [] } = screensManager.getDefinition(type);
-            const fields = [...screenFields, getScreenExtraField(intl)];
+            const { fields: screenFields = [], states = null } = screensManager.getDefinition(type);
             const fieldPath = field.split('/');
+            const [stateId = null] = fieldPath;
+            const currentState =
+                states !== null ? states.find(({ id }) => id === stateId) || null : null;
+            const {
+                repeatable = false,
+                fields: stateFields = [],
+                fieldName: stateFieldName,
+            } = currentState;
+            const finalFieldPath =
+                currentState !== null && !repeatable ? fieldPath.slice(1) : fieldPath;
+            const fields =
+                currentState !== null
+                    ? [
+                          ...(repeatable || stateFieldName !== null
+                              ? [
+                                    {
+                                        name: stateFieldName || stateId,
+                                        itemFields: {
+                                            fields: stateFields,
+                                        },
+                                    },
+                                ]
+                              : stateFields),
+                      ]
+                    : [...screenFields, getScreenExtraField(intl)];
 
-            const lastKeyIndex = fieldPath.length - 1;
+            const lastKeyIndex = finalFieldPath.length - 1;
             let parentItem = null;
-            fieldPath.reduce(
+            finalFieldPath.reduce(
                 (currentFields, key, keyIndex) => {
                     const { type: fieldType = null } = currentFields;
 
@@ -161,7 +185,7 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
     const withBack = itemsLength > 1;
     return (
         <>
-            {withBack ? <BackButton onClick={onClickBack} className="mr-2" /> : null}
+            {withBack ? <BackButton onClick={onClickBack} className="me-2" /> : null}
             <BaseBreadcrumb
                 items={items}
                 theme="secondary"

@@ -30,7 +30,7 @@ const BorderStyle = ({ types, value, className, onChange }) => (
             },
         ])}
     >
-        <div className={classNames(['d-inline-flex', 'ml-auto', 'mr-auto'])}>
+        <div className={classNames(['d-inline-flex', 'ms-auto', 'me-auto'])}>
             <Radios
                 options={types.map((type) => ({
                     value: type,

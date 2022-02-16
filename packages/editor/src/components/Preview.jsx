@@ -3,11 +3,12 @@ import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback, useMemo } from 'react';
-import { useRouteMatch } from 'react-router';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useScreenSize, useRoutes } from '@micromag/core/contexts';
+import { useScreenSize } from '@micromag/core/contexts';
 import { useResizeObserver, useParsedStory } from '@micromag/core/hooks';
 import { Viewer } from '@micromag/viewer';
+import useRouteParams from '../hooks/useRouteParams';
+import useScreenStates from '../hooks/useScreenStates';
 import useThemeValue from '../hooks/useThemeValue';
 import styles from '../styles/preview.module.scss';
 import DevicesMenu from './menus/Devices';
@@ -21,6 +22,7 @@ const propTypes = {
     isTheme: PropTypes.bool,
     className: PropTypes.string,
     onScreenChange: PropTypes.func,
+    onChange: PropTypes.func,
     withoutDevicesSizes: PropTypes.bool,
 };
 
@@ -38,11 +40,12 @@ const defaultProps = {
             height: 900,
         },
     ],
-    device: null,
+    device: 'mobile',
     viewerTheme: null,
     isTheme: false,
     className: null,
     onScreenChange: null,
+    onChange: null,
     withoutDevicesSizes: true,
 };
 
@@ -54,14 +57,10 @@ const EditorPreview = ({
     device: initialDevice,
     className,
     onScreenChange,
+    onChange,
     withoutDevicesSizes,
 }) => {
-    const routes = useRoutes();
-    const {
-        params: { screen: screenId = null },
-    } = useRouteMatch({
-        path: [routes.screen, routes.home],
-    });
+    const { screen: screenId = null, field: fieldParam = null } = useRouteParams();
     const { screen = null, screens = [] } = useScreenSize();
     const valueWithTheme = useThemeValue(value, isTheme);
     // const valueParsed = valueWithTheme;
@@ -78,7 +77,7 @@ const EditorPreview = ({
         entry: { contentRect },
     } = useResizeObserver();
     const previewStyle = useMemo(() => {
-        if (withoutDevicesSizes) {
+        if (withoutDevicesSizes && initialDevice === null) {
             return {};
         }
 
@@ -97,13 +96,27 @@ const EditorPreview = ({
             height: maxHeight,
             transform: `scale(${previewScale}, ${previewScale})`,
         };
-    }, [device, contentRect, screen, withoutDevicesSizes]);
+    }, [device, contentRect, screen, withoutDevicesSizes, initialDevice]);
 
     const currentScreen = useMemo(() => {
         const { components = [] } = valueParsed || {};
-        return components.find(({ id }) => id === screenId) || null;
+        return (
+            (screenId !== null ? components.find(({ id }) => id === screenId) : components[0]) ||
+            null
+        );
     }, [valueParsed, screenId]);
-    const { states: screenStates = null } = currentScreen || {};
+    const currentScreenStates = useScreenStates(currentScreen);
+    const [screenStateParam = null] =
+        fieldParam !== null && currentScreenStates !== null ? fieldParam.split('/') : [];
+    const currentScreenState =
+        screenStateParam !== null
+            ? currentScreenStates.find(({ id }) => id === screenStateParam) || null
+            : null;
+    const { id: screenStateId = null, repeatable = false } = currentScreenState || {};
+    const currentScreenStateId =
+        currentScreenState !== null && repeatable
+            ? `${screenStateId}.${fieldParam.split('/')[1] || 0}`
+            : screenStateId;
 
     return (
         <div
@@ -125,12 +138,18 @@ const EditorPreview = ({
                                 active: it.id === deviceId,
                             }))}
                             onClickItem={onClickDeviceItem}
+                            className={styles.devices}
                         />
                     </div>
                 ) : null}
-                {screenStates !== null ? (
-                    <div className={styles.top}>
-                        <ScreenStates screen={currentScreen} />
+                {currentScreenStates !== null && currentScreen !== null ? (
+                    <div className={classNames([styles.top, 'px-1'])}>
+                        <ScreenStates
+                            screen={currentScreen}
+                            screenState={currentScreenStateId}
+                            value={value}
+                            onChange={onChange}
+                        />
                     </div>
                 ) : null}
                 <div className={styles.bottom}>
@@ -141,6 +160,7 @@ const EditorPreview = ({
                                     story={valueParsed}
                                     storyIsParsed
                                     screen={screenId}
+                                    screenState={currentScreenStateId}
                                     className={styles.story}
                                     theme={viewerTheme}
                                     interactions={null}

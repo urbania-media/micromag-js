@@ -54,6 +54,7 @@ const Checkboxes = ({ name, value, options, className, onChange }) => {
                         name={`${name}[]`}
                         autoComplete="off"
                         value={optionValue}
+                        className="btn-check"
                         onChange={e => {
                             let newValue = value || [];
                             if (e.currentTarget.checked) {

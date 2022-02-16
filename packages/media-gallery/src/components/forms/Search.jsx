@@ -1,11 +1,11 @@
 /* eslint-disable no-constant-condition */
-import React, { useCallback } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-
-import { useIntl } from 'react-intl';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback } from 'react';
+import { useIntl } from 'react-intl';
+
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
 
 const propTypes = {
@@ -59,18 +59,12 @@ const Search = ({ value, onChange, onFocus, onBlur, onClickIcon, className }) =>
                     [className]: className !== null,
                 },
             ])}
-            onSubmit={e => e.preventDefault()}
+            onSubmit={(e) => e.preventDefault()}
         >
             <div className="input-group w-100">
-                <span type="span" className="input-group-prepend">
-                    <button
-                        type="button"
-                        className="input-group-text reset-button"
-                        onClick={onClickSearchIcon}
-                    >
-                        <FontAwesomeIcon icon={faSearch} />
-                    </button>
-                </span>
+                <button type="button" className="reset-button" onClick={onClickSearchIcon}>
+                    <FontAwesomeIcon icon={faSearch} />
+                </button>
                 <input
                     className={classNames([
                         'form-control',

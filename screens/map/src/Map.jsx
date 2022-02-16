@@ -1,22 +1,26 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { useState, useCallback, useRef, useMemo, useEffect } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useGoogleKeys, useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { PlaceholderMap, Transitions, ScreenElement, Button } from '@micromag/core/components';
+import {
+    useGoogleKeys,
+    useScreenSize,
+    useScreenRenderContext,
+    useScreenState,
+} from '@micromag/core/contexts';
 import { useTrackScreenEvent, useResizeObserver } from '@micromag/core/hooks';
 import { getStyleFromColor, isTextFilled } from '@micromag/core/utils';
 import { Background } from '@micromag/element-background';
+import ButtonElement from '@micromag/element-button';
 import Container from '@micromag/element-container';
-import Map from '@micromag/element-map';
 import Heading from '@micromag/element-heading';
+import ImageElement from '@micromag/element-image';
+import Map from '@micromag/element-map';
 import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
-import ImageElement from '@micromag/element-image';
-import ButtonElement from '@micromag/element-button';
-
 import styles from './styles.module.scss';
 
 const defaultCenter = {
@@ -63,7 +67,7 @@ const defaultProps = {
     className: null,
 };
 
-function MapScreen ({
+function MapScreen({
     layout,
     draggable,
     markers,
@@ -95,14 +99,9 @@ function MapScreen ({
     const { color: backgroundColor } = background || {};
     const markerOverlayContentStyle = getStyleFromColor(backgroundColor);
 
-    const {
-        isView,
-        isPreview,
-        isPlaceholder,
-        isEdit,
-        isStatic,
-        isCapture,
-    } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
+        useScreenRenderContext();
+    const screenState = useScreenState();
 
     const [ready, setReady] = useState(false);
     const transitionPlaying = current && ready;
@@ -235,214 +234,77 @@ function MapScreen ({
         return () => {};
     }, [withMarkerImages, markers]);
 
-    let element = null;
-    if (isPlaceholder) {
-        element = <PlaceholderMap className={styles.placeholder} withImages={withMarkerImages} />;
-    } else if (isPreview) {
-        if (width > 0 && height > 0 && apiKey !== null) {
-            let staticUrl = `https://maps.googleapis.com/maps/api/staticmap?size=${Math.round(
-                width,
-            )}x${Math.round(height)}`;
-            if (defaultCenter !== null && (markers === null || markers.length === 0)) {
-                const { lat = null, lng = null } = defaultCenter || {};
-                staticUrl += `&center=${lat},${lng}`;
-            }
-            if (defaultZoom !== null) {
-                staticUrl += `&zoom=${defaultZoom}`;
-            }
-            if (apiKey !== null) {
-                staticUrl += `&key=${apiKey}`;
-            }
-            if (locale !== null) {
-                staticUrl += `&language=${locale}`;
-            }
-            if (markers !== null) {
-                staticUrl += markers
-                    .map((marker) => {
-                        const { geoPosition = null } = marker || {};
-                        const { lat = null, lng = null } = geoPosition || {};
-                        const { image = null } = marker || {};
-                        const { url = null } = image || {};
-                        return lat !== null && lng !== null
-                            ? `&markers=${url !== null ? `icon:${url}` : ''}%7C${lat},${lng}`
-                            : '';
-                    })
-                    .join('');
-            }
-            element = (
-                <ImageElement
-                    {...{
-                        media: {
-                            url: staticUrl,
-                            metadata: {
-                                width: Math.min(640, width),
-                                height: Math.min(640, height),
-                            },
-                        },
-                    }}
-                    width={width}
-                    height={height}
-                    objectFit={{ fit: 'cover' }}
-                />
-            );
+    // Switch state
+    useEffect(() => {
+        if (!isEdit && !isPreview) {
+            return;
         }
-    } else {
-        const renderedMarker = hasSelectedMarker
-            ? finalMarkers[selectedMarkerIndex]
-            : lastRenderedMarker.current;
-        const {
-            title: markerTitle = null,
-            subtitle: markerSubtitle = null,
-            description: markerDescription = null,
-            image: markerImage = null,
-        } = renderedMarker || {};
+        const [stateId, markerIndex = null] = screenState !== null ? screenState.split('.') : [];
+        if (stateId === 'title') {
+            setOpened(false);
+            setSelectedMarkerIndex(null);
+        } else if (stateId === 'map') {
+            setOpened(true);
+            setSelectedMarkerIndex(null);
+        } else if (stateId === 'markers') {
+            setOpened(true);
+            setSelectedMarkerIndex(parseInt(markerIndex, 10));
+        }
+    }, [screenState, isEdit, setOpened]);
 
-        const hasMarkerTitle = markerTitle !== null;
-        const hasMarkerSubtitle = markerSubtitle !== null;
-        const hasMarkerDescription = markerDescription !== null;
-        const hasMarkerImage = markerImage !== null;
-
-        const hasTitle = isTextFilled(title);
-        const hasDescription = isTextFilled(description);
-        const hasButton = isTextFilled(button);
-        element = (
-            <Transitions
-                transitions={transitions}
-                playing={transitionPlaying}
-                fullscreen
-                disabled={transitionDisabled}
-            >
-                <Map
-                    key="map"
-                    center={defaultCenter}
-                    zoom={defaultZoom}
-                    draggable={draggable}
-                    markers={finalMarkers}
-                    fitBounds
-                    onClickMarker={onClickMarker}
-                    onReady={onMapReady}
-                    onDragEnd={onMapDragEnd}
-                />
-                <div key="marker-overlay" className={styles.markerOverlayContainer}>
-                    <div className={styles.markerOverlayScrollable}>
-                        <Scroll
-                            fullscreen
-                            disabled={scrollingDisabled}
-                            onScrolledBottom={onScrolledBottom}
-                        >
-                            <Button
-                                className={styles.markerOverlaySafe}
-                                onClick={onClickMap}
-                                withoutStyle
-                                style={{ height: height * openedMarkerSpacerHeight }}
-                                disabled={isPreview}
-                                focusable={current && isView}
-                            />
-                            <div
-                                className={styles.markerOverlay}
-                                style={{ minHeight: height * (1 - openedMarkerSpacerHeight) }}
-                            >
-                                <div
-                                    className={styles.markerOverlayContent}
-                                    style={markerOverlayContentStyle}
-                                >
-                                    <div className={styles.swipeIndicator} />
-                                    <div
-                                        className={styles.markerOverlayContentInner}
-                                        key={`markerContent-${selectedMarkerIndex}`}
-                                        ref={markerOverContentInnerRef}
-                                    >
-                                        {hasMarkerImage ? (
-                                            <ImageElement
-                                                className={styles.markerImage}
-                                                media={markerImage}
-                                                width={markerOverContentInnerWidth}
-                                            />
-                                        ) : null}
-                                        {hasMarkerTitle ? (
-                                            <Heading
-                                                className={styles.markerTitle}
-                                                {...markerTitle}
-                                            />
-                                        ) : null}
-                                        {hasMarkerSubtitle ? (
-                                            <Heading
-                                                size={3}
-                                                className={styles.markerSubtitle}
-                                                {...markerSubtitle}
-                                            />
-                                        ) : null}
-                                        {hasMarkerDescription ? (
-                                            <Text
-                                                className={styles.markerDescription}
-                                                {...markerDescription}
-                                            />
-                                        ) : null}
-                                    </div>
-                                </div>
-                            </div>
-                        </Scroll>
-                    </div>
-                </div>
-                <div key="splash" className={classNames([styles.splash])}>
-                    <ScreenElement
-                        emptyLabel={
-                            <FormattedMessage
-                                defaultMessage="Title"
-                                description="Title placeholder"
-                            />
-                        }
-                        emptyClassName={styles.emptyTitle}
-                        isEmpty={!hasTitle}
-                    >
-                        <Heading className={styles.title} {...title} />
-                    </ScreenElement>
-
-                    <ScreenElement
-                        emptyLabel={
-                            <FormattedMessage
-                                defaultMessage="Description"
-                                description="Description placeholder"
-                            />
-                        }
-                        emptyClassName={styles.emptyDescription}
-                        isEmpty={!hasDescription}
-                    >
-                        <Text className={styles.description} {...description} />
-                    </ScreenElement>
-                    <ScreenElement
-                        emptyLabel={
-                            <FormattedMessage
-                                defaultMessage="Button"
-                                description="Button placeholder"
-                            />
-                        }
-                        emptyClassName={styles.emptyButton}
-                        isEmpty={!hasButton}
-                    >
-                        <ButtonElement
-                            className={styles.splashButton}
-                            onClick={onButtonClick}
-                            buttonStyle={button !== null ? button.buttonStyle : null}
-                            focusable={current && isView}
-                        >
-                            <Text className={styles.button} {...button} />
-                        </ButtonElement>
-                    </ScreenElement>
-                </div>
-                {!isStatic && !isCapture ? (
-                    <Button
-                        key="close-button"
-                        className={styles.closeButton}
-                        onClick={onCloseClick}
-                        focusable={current && isView}
-                    >
-                        &times;
-                    </Button>
-                ) : null}
-            </Transitions>
-        );
+    let staticUrl;
+    if (width > 0 && height > 0 && apiKey !== null) {
+        const correctMarkers = markers !== null ? markers
+        .filter(it => it !== null)
+        .filter(({ geoPosition = null }) => geoPosition !== null) : null;
+        staticUrl = `https://maps.googleapis.com/maps/api/staticmap?size=${Math.round(
+            width,
+        )}x${Math.round(height)}`;
+        if (defaultCenter !== null && (correctMarkers === null || correctMarkers.length === 0)) {
+            const { lat = null, lng = null } = defaultCenter || {};
+            staticUrl += `&center=${lat},${lng}`;
+        }
+        if (defaultZoom !== null) {
+            staticUrl += `&zoom=${defaultZoom}`;
+        }
+        if (apiKey !== null) {
+            staticUrl += `&key=${apiKey}`;
+        }
+        if (locale !== null) {
+            staticUrl += `&language=${locale}`;
+        }
+        if (correctMarkers !== null) {
+            staticUrl += correctMarkers.map((marker) => {
+                    const { geoPosition = null } = marker || {};
+                    const { lat = null, lng = null } = geoPosition || {};
+                    const { image = null } = marker || {};
+                    const { url = null } = image || {};
+                    return lat !== null && lng !== null
+                        ? `&markers=${url !== null ? `icon:${url}` : ''}%7C${lat},${lng}`
+                        : '';
+                })
+                .join('');
+        }
     }
+
+    const renderedMarker = hasSelectedMarker
+        ? finalMarkers[selectedMarkerIndex]
+        : lastRenderedMarker.current;
+    const {
+        title: markerTitle = null,
+        subtitle: markerSubtitle = null,
+        description: markerDescription = null,
+        image: markerImage = null,
+    } = renderedMarker || {};
+
+    const hasMarkerTitle = markerTitle !== null;
+    const hasMarkerSubtitle = markerSubtitle !== null;
+    const hasMarkerDescription = markerDescription !== null;
+    const hasMarkerImage = markerImage !== null;
+
+    const hasTitle = isTextFilled(title);
+    const hasDescription = isTextFilled(description);
+    const hasButton = isTextFilled(button);
 
     return (
         <div
@@ -451,7 +313,7 @@ function MapScreen ({
                 {
                     [className]: className !== null,
                     [styles[`${layout}Layout`]]: layout !== null,
-                    [styles.opened]: opened,
+                    [styles.opened]: opened || (isPreview && screenState !== 'title'),
                     [styles.hasSelectedMarker]: hasSelectedMarker,
                 },
             ])}
@@ -467,11 +329,168 @@ function MapScreen ({
                 />
             ) : null}
             <Container width={width} height={height}>
-                {element}
+                {isPlaceholder ? (
+                    <PlaceholderMap className={styles.placeholder} withImages={withMarkerImages} />
+                ) : (
+                    <Transitions
+                        transitions={transitions}
+                        playing={transitionPlaying}
+                        fullscreen
+                        disabled={transitionDisabled}
+                    >
+                        {isPreview ? (
+                            <ImageElement
+                                media={staticUrl !== null ? {
+                                    url: staticUrl,
+                                    metadata: {
+                                        width: Math.min(640, width),
+                                        height: Math.min(640, height),
+                                    },
+                                } : null}
+                                width={width}
+                                height={height}
+                                objectFit={{ fit: 'cover' }}
+                            />
+                        ) : (
+                            <Map
+                                key="map"
+                                center={defaultCenter}
+                                zoom={defaultZoom}
+                                draggable={draggable}
+                                markers={finalMarkers}
+                                fitBounds
+                                onClickMarker={onClickMarker}
+                                onReady={onMapReady}
+                                onDragEnd={onMapDragEnd}
+                            />
+                        )}
+
+                        <div key="marker-overlay" className={styles.markerOverlayContainer}>
+                            <div className={styles.markerOverlayScrollable}>
+                                <Scroll
+                                    fullscreen
+                                    disabled={scrollingDisabled}
+                                    onScrolledBottom={onScrolledBottom}
+                                >
+                                    <Button
+                                        className={styles.markerOverlaySafe}
+                                        onClick={onClickMap}
+                                        withoutStyle
+                                        style={{ height: height * openedMarkerSpacerHeight }}
+                                        disabled={isPreview}
+                                        focusable={current && isView}
+                                    />
+                                    <div
+                                        className={styles.markerOverlay}
+                                        style={{
+                                            minHeight: height * (1 - openedMarkerSpacerHeight),
+                                        }}
+                                    >
+                                        <div
+                                            className={styles.markerOverlayContent}
+                                            style={markerOverlayContentStyle}
+                                        >
+                                            <div className={styles.swipeIndicator} />
+                                            <div
+                                                className={styles.markerOverlayContentInner}
+                                                key={`markerContent-${selectedMarkerIndex}`}
+                                                ref={markerOverContentInnerRef}
+                                            >
+                                                {hasMarkerImage ? (
+                                                    <ImageElement
+                                                        className={styles.markerImage}
+                                                        media={markerImage}
+                                                        width={markerOverContentInnerWidth}
+                                                    />
+                                                ) : null}
+                                                {hasMarkerTitle ? (
+                                                    <Heading
+                                                        className={styles.markerTitle}
+                                                        {...markerTitle}
+                                                    />
+                                                ) : null}
+                                                {hasMarkerSubtitle ? (
+                                                    <Heading
+                                                        size={3}
+                                                        className={styles.markerSubtitle}
+                                                        {...markerSubtitle}
+                                                    />
+                                                ) : null}
+                                                {hasMarkerDescription ? (
+                                                    <Text
+                                                        className={styles.markerDescription}
+                                                        {...markerDescription}
+                                                    />
+                                                ) : null}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Scroll>
+                            </div>
+                        </div>
+
+                        <div key="splash" className={classNames([styles.splash])}>
+                            <ScreenElement
+                                emptyLabel={
+                                    <FormattedMessage
+                                        defaultMessage="Title"
+                                        description="Title placeholder"
+                                    />
+                                }
+                                emptyClassName={styles.emptyTitle}
+                                isEmpty={!hasTitle}
+                            >
+                                <Heading className={styles.title} {...title} />
+                            </ScreenElement>
+
+                            <ScreenElement
+                                emptyLabel={
+                                    <FormattedMessage
+                                        defaultMessage="Description"
+                                        description="Description placeholder"
+                                    />
+                                }
+                                emptyClassName={styles.emptyDescription}
+                                isEmpty={!hasDescription}
+                            >
+                                <Text className={styles.description} {...description} />
+                            </ScreenElement>
+                            <ScreenElement
+                                emptyLabel={
+                                    <FormattedMessage
+                                        defaultMessage="Button"
+                                        description="Button placeholder"
+                                    />
+                                }
+                                emptyClassName={styles.emptyButton}
+                                isEmpty={!hasButton}
+                            >
+                                <ButtonElement
+                                    className={styles.splashButton}
+                                    onClick={onButtonClick}
+                                    buttonStyle={button !== null ? button.buttonStyle : null}
+                                    focusable={current && isView}
+                                >
+                                    <Text className={styles.button} {...button} />
+                                </ButtonElement>
+                            </ScreenElement>
+                        </div>
+                        {!isStatic && !isCapture && !isPreview && !isEdit ? (
+                            <Button
+                                key="close-button"
+                                className={styles.closeButton}
+                                onClick={onCloseClick}
+                                focusable={current && isView}
+                            >
+                                &times;
+                            </Button>
+                        ) : null}
+                    </Transitions>
+                )}
             </Container>
         </div>
     );
-};
+}
 
 MapScreen.propTypes = propTypes;
 MapScreen.defaultProps = defaultProps;

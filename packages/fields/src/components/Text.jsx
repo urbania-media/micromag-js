@@ -72,9 +72,7 @@ const TextField = ({
 
     return prefix !== null ? (
         <span className="input-group">
-            <div className="input-group-prepend">
-                <span className="input-group-text">{prefix}</span>
-            </div>
+            <span className="input-group-text">{prefix}</span>
             {input}
         </span>
     ) : (

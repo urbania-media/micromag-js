@@ -56,7 +56,7 @@
         "@micromag/core": "^0.2.412",
         "@micromag/editor": "^0.2.413",
         "@micromag/viewer": "^0.2.412",
-        "bootstrap": "^4.5.3"
+        "bootstrap": "^5.1.0"
     },
     "gitHead": "f515323b7d5f7ea27f900103b85e2e0b2ded691a"
 }

@@ -1,22 +1,25 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
+import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenPlaceholder, ScreenPreview } from '@micromag/core/components';
+import { useResizeObserver } from '@micromag/core/hooks';
 import { isMessage } from '@micromag/core/utils';
 import styles from '../../styles/buttons/screen-with-preview.module.scss';
 import ScreenButton from './Screen';
 
 const propTypes = {
     screen: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
+    screenState: PropTypes.string,
     index: PropTypes.number.isRequired,
+    href: PropTypes.string,
     title: PropTypes.string,
-    previewStyle: PropTypes.shape({
-        width: PropTypes.number,
-        height: PropTypes.number,
-    }),
+    active: PropTypes.bool,
+    previewWidth: PropTypes.number,
+    previewHeight: PropTypes.number,
     withPreview: PropTypes.bool,
     withPlaceholder: PropTypes.bool,
     onClick: PropTypes.func,
@@ -27,8 +30,12 @@ const propTypes = {
 
 const defaultProps = {
     screen: null,
+    screenState: null,
     title: null,
-    previewStyle: null,
+    href: null,
+    active: false,
+    previewWidth: 320,
+    previewHeight: 480,
     withPreview: true,
     withPlaceholder: false,
     onClick: null,
@@ -39,21 +46,52 @@ const defaultProps = {
 
 const ScreenWithPreview = ({
     screen,
+    screenState,
     index,
     title,
+    href,
+    active,
     className,
     buttonClassName,
-    previewStyle,
+    previewWidth,
+    previewHeight,
     onClick,
     onClickItem,
     withPreview,
     withPlaceholder,
 }) => {
     const intl = useIntl();
-    const { width = null, height = null } = previewStyle || {};
+    const {
+        ref: refResize,
+        entry: { contentRect },
+    } = useResizeObserver();
+
+    const previewStyle = useMemo(() => {
+        const { width: itemWidth = 0, height: itemHeight = 0 } = contentRect || {};
+        const ratio = itemHeight !== 0 && itemWidth !== 0 ? itemHeight / itemWidth : 2 / 3;
+        const finalWidth = previewWidth;
+        const finalHeight = previewHeight !== null ? previewHeight : previewWidth * ratio;
+        const { scale: previewScale } = getSizeWithinBounds(
+            finalWidth,
+            finalHeight,
+            itemWidth,
+            itemHeight,
+        );
+        return {
+            width: finalWidth,
+            height: finalHeight,
+            transform: `scale(${previewScale}, ${previewScale})`,
+        };
+    }, [previewWidth, previewHeight, contentRect]);
+    const { width: screenWidth, height: screenHeight } = previewStyle;
+
+    const ScreenComponent = withPlaceholder ? ScreenPlaceholder : ScreenPreview;
+
     return (
         <ScreenButton
-            {...screen}
+            href={href}
+            ref={refResize}
+            active={active}
             className={classNames([
                 styles.button,
                 {
@@ -71,26 +109,21 @@ const ScreenWithPreview = ({
                 }
             }}
         >
-            {withPreview && !withPlaceholder ? (
-                <div className={styles.preview} style={previewStyle}>
-                    <ScreenPreview
-                        screen={screen}
-                        width={width}
-                        height={height}
-                        className={styles.screen}
-                    />
-                </div>
-            ) : null}
-            {withPlaceholder && !withPreview ? (
-                <div className={styles.placeholder} style={previewStyle}>
-                    <ScreenPlaceholder
-                        screen={screen}
-                        width={width}
-                        height={height}
-                        className={styles.screen}
-                    />
-                </div>
-            ) : null}
+            <div
+                className={classNames({
+                    [styles.preview]: withPreview && !withPlaceholder,
+                    [styles.placeholder]: withPlaceholder && !withPreview,
+                })}
+                style={previewStyle}
+            >
+                <ScreenComponent
+                    screen={screen}
+                    screenState={screenState}
+                    width={screenWidth}
+                    height={screenHeight}
+                    className={styles.screen}
+                />
+            </div>
         </ScreenButton>
     );
 };

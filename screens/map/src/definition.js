@@ -92,28 +92,34 @@ export default [
                 repeatable: true,
                 fieldName: 'markers',
                 fields: [
-
+                    {
+                        name: 'title',
+                        type: 'heading-element',
+                        label: defineMessage({
+                            defaultMessage: 'Title',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'description',
+                        type: 'text-element',
+                        label: defineMessage({
+                            defaultMessage: 'Description',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'geoPosition',
+                        type: 'geo-position',
+                        label: defineMessage({
+                            defaultMessage: 'Position',
+                            description: 'Field label',
+                        }),
+                    }
                 ]
             }
         ],
         fields: [
-
-            {
-                name: 'markers',
-                type: 'markers',
-                theme: {
-                    title: {
-                        textStyle: 'heading3',
-                    },
-                    description: {
-                        textStyle: 'text',
-                    },
-                },
-                label: defineMessage({
-                    defaultMessage: 'Markers',
-                    description: 'Field label',
-                }),
-            },
             {
                 name: 'background',
                 type: 'background',

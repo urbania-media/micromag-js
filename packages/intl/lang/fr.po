@@ -23,6 +23,12 @@ msgctxt "+AEVbJ"
 msgid "Title"
 msgstr "Titre"
 
+# State label
+#: +LvOvJ
+msgctxt "+LvOvJ"
+msgid "Markers"
+msgstr ""
+
 # Background field label
 #: +MPZRu
 msgctxt "+MPZRu"
@@ -124,12 +130,6 @@ msgstr "Audio"
 msgctxt "17BMn2"
 msgid "Ranking"
 msgstr "Classement"
-
-# Description field label
-#: 1ezz2m
-msgctxt "1ezz2m"
-msgid "Description"
-msgstr "Description"
 
 # Item label in items field
 #: 2/F1Q7
@@ -383,12 +383,6 @@ msgctxt "8A8cuq"
 msgid "Parameters"
 msgstr "Paramètres"
 
-# Draggable field label
-#: 8Dl/S1
-msgctxt "8Dl/S1"
-msgid "Draggable"
-msgstr "Glissable"
-
 # Field label
 #: 8EI08h
 msgctxt "8EI08h"
@@ -412,12 +406,6 @@ msgstr "Ajouter un fichier de polices"
 msgctxt "8tANs8"
 msgid "Conversation"
 msgstr "Conversation"
-
-# Map screen group
-#: 8vroDx
-msgctxt "8vroDx"
-msgid "Map"
-msgstr "Carte"
 
 # Ascending field label
 #: 9DhYaZ
@@ -454,6 +442,12 @@ msgstr "Ajouter une image"
 msgctxt "A+a0kL"
 msgid "No answer..."
 msgstr "Aucune réponse..."
+
+# Field label
+#: A7ncT3
+msgctxt "A7ncT3"
+msgid "Draggable"
+msgstr ""
 
 # ImageTitle screen title
 #: AA8TV9
@@ -509,6 +503,12 @@ msgctxt "CJmQeh"
 msgid "Image with text"
 msgstr "Image avec texte"
 
+# Field label
+#: CW3KAC
+msgctxt "CW3KAC"
+msgid "Markers with image"
+msgstr ""
+
 # Quote placeholder
 #: CrzYgw
 msgctxt "CrzYgw"
@@ -520,12 +520,6 @@ msgstr "Citation"
 msgctxt "D/N9gA"
 msgid "Label"
 msgstr "Libellé"
-
-# Markers field label
-#: D0+Cxr
-msgctxt "D0+Cxr"
-msgid "Markers with image"
-msgstr "Marqueurs avec image"
 
 # Field label
 #: DU1qdc
@@ -671,6 +665,12 @@ msgctxt "JDPMlG"
 msgid "Background color"
 msgstr "Couleur de l'arrière-plan"
 
+# State label
+#: JOOlxn
+msgctxt "JOOlxn"
+msgid "Title"
+msgstr ""
+
 # Button style label
 #: JnCf7K
 msgctxt "JnCf7K"
@@ -712,12 +712,6 @@ msgstr "Réponses"
 msgctxt "LkVfwW"
 msgid "Screen {index}"
 msgstr "Écran {index}"
-
-# MapImages screen title
-#: MLuvzG
-msgctxt "MLuvzG"
-msgid "Map with image markers"
-msgstr "Carte avec images"
 
 # Audio placeholder
 #: MYZwSA
@@ -790,12 +784,6 @@ msgstr "Aucun item..."
 msgctxt "PNMMo/"
 msgid "Audios"
 msgstr "Audios"
-
-# Markers field label
-#: PbHeHc
-msgctxt "PbHeHc"
-msgid "Markers"
-msgstr "Marqueurs"
 
 # Button label
 #: PyxZY2
@@ -1006,6 +994,12 @@ msgctxt "YWcp4v"
 msgid "Bullet filled"
 msgstr "Point rempli"
 
+# Screen group
+#: Z27IP6
+msgctxt "Z27IP6"
+msgid "Map"
+msgstr ""
+
 # Field label
 #: Z5jrDS
 msgctxt "Z5jrDS"
@@ -1102,6 +1096,12 @@ msgctxt "c9VwT/"
 msgid "Technical details"
 msgstr "Détails techniques"
 
+# Field label
+#: cDj1mZ
+msgctxt "cDj1mZ"
+msgid "Background"
+msgstr ""
+
 # List screen group
 #: cGItoy
 msgctxt "cGItoy"
@@ -1120,6 +1120,12 @@ msgctxt "dFMzBu"
 msgid "No image..."
 msgstr "Aucune image..."
 
+# Screen title
+#: dPYwJG
+msgctxt "dPYwJG"
+msgid "Map"
+msgstr ""
+
 # Title screen title
 #: dVcog7
 msgctxt "dVcog7"
@@ -1137,12 +1143,6 @@ msgstr "Fermer"
 msgctxt "dkBBRa"
 msgid "Image fit"
 msgstr "Ajustement de l’image"
-
-# Map screen title
-#: dmuKH3
-msgctxt "dmuKH3"
-msgid "Map"
-msgstr "Carte"
 
 # Legend placeholder
 #: dqnkQk
@@ -1174,6 +1174,12 @@ msgctxt "eWIM/8"
 msgid "Image with title and text"
 msgstr "Image avec titre et texte"
 
+# State label
+#: eYHEYe
+msgctxt "eYHEYe"
+msgid "Map"
+msgstr ""
+
 # Image placeholder
 #: ebsPd4
 msgctxt "ebsPd4"
@@ -1191,12 +1197,6 @@ msgstr "Ce Micromag"
 msgctxt "enFs4g"
 msgid "Advanced"
 msgstr "Avancé"
-
-# Button field label
-#: enPTxj
-msgctxt "enPTxj"
-msgid "Button"
-msgstr "Bouton"
 
 # Label in Media Gallery
 #: eoW0tZ
@@ -1275,6 +1275,12 @@ msgstr "Photo de profil"
 msgctxt "i+3ZrF"
 msgid "Select a font family..."
 msgstr "Sélectionnez une police..."
+
+# Field label
+#: i6bmbD
+msgctxt "i6bmbD"
+msgid "Button"
+msgstr ""
 
 # Label when there is no item
 #: iHV3W3
@@ -1495,6 +1501,12 @@ msgstr "Conversation"
 msgctxt "rdFCsN"
 msgid "No marker..."
 msgstr "Aucun marqueur..."
+
+# Screen title
+#: ro6yHS
+msgctxt "ro6yHS"
+msgid "Map with image markers"
+msgstr ""
 
 # Field label
 #: ru3tjH

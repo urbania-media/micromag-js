@@ -204,7 +204,7 @@ const FontFamily = ({ value, onChange, closeForm, maxFontsVisible, isForm, ...pr
                                         }}
                                     >
                                         <strong
-                                            className="mr-4"
+                                            className="me-4"
                                             style={{ fontFamily: getFontFamilyFromFont(font) }}
                                         >
                                             Aa

@@ -408,8 +408,8 @@ export const SortableTree = ({
             const nestedVerb = eventName === 'onDragEnd' ? 'dropped' : 'nested';
 
             if (!previousItem) {
-                const nextItem = sortedItems[overIndex + 1];
-                newAnnouncement = `${currentActiveId} was ${movedVerb} before ${nextItem.id}.`;
+                const nextItem = sortedItems[overIndex + 1] || null;
+                newAnnouncement = nextItem !== null ? `${currentActiveId} was ${movedVerb} before ${nextItem.id}.` : null;
             } else if (projected.depth > previousItem.depth) {
                 newAnnouncement = `${currentActiveId} was ${nestedVerb} under ${previousItem.id}.`;
             } else {

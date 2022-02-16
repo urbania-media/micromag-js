@@ -79,7 +79,7 @@ const ColorField = ({ value, onChange, closeForm, ...props }) => {
                             outline
                             theme="secondary"
                             size="sm"
-                            className="ml-auto"
+                            className="ms-auto"
                             onClick={onClickReset}
                         >
                             <FormattedMessage defaultMessage="Clear" description="Button label" />

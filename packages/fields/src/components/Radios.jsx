@@ -72,6 +72,7 @@ const Radios = ({
                         name={name}
                         autoComplete="off"
                         value={optionValue || ''}
+                        className="btn-check"
                         onClick={(e) => {
                             if (onChange !== null) {
                                 if (uncheckable && optionValue === value) {

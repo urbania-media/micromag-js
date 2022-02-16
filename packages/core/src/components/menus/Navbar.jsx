@@ -1,10 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState, useCallback } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
-import Link from '../partials/Link';
+import PropTypes from 'prop-types';
+import React, { useState, useCallback } from 'react';
 import Button from '../buttons/Button';
+import Link from '../partials/Link';
 
 const propTypes = {
     brand: PropTypes.node,
@@ -51,10 +50,10 @@ const Navbar = ({
     breadCrumbsClassName,
 }) => {
     const [menuVisible, setMenuVisible] = useState(false);
-    const onClickMenu = useCallback(() => setMenuVisible(!menuVisible), [
-        setMenuVisible,
-        menuVisible,
-    ]);
+    const onClickMenu = useCallback(
+        () => setMenuVisible(!menuVisible),
+        [setMenuVisible, menuVisible],
+    );
     return (
         <nav
             className={classNames([
@@ -71,73 +70,75 @@ const Navbar = ({
                 },
             ])}
         >
-            {brand !== null && brandLink !== null ? (
-                <Link
-                    className={classNames([
-                        'navbar-brand',
-                        {
-                            'py-0': compact,
-                            [brandClassName]: brandClassName !== null,
-                        },
-                    ])}
-                    to={brandLink}
-                >
-                    {brand}
-                </Link>
-            ) : null}
-            {brand !== null && brandLink === null ? (
-                <span
-                    className={classNames([
-                        'navbar-brand',
-                        {
-                            'py-0': compact,
-                            [brandClassName]: brandClassName !== null,
-                        },
-                    ])}
-                >
-                    {brand}
-                </span>
-            ) : null}
-            {breadcrumbs !== null ? (
-                <span
-                    className={classNames([
-                        'navbar-breadcrumbs',
-                        {
-                            'py-0': compact,
-                            [breadCrumbsClassName]: breadCrumbsClassName !== null,
-                        },
-                    ])}
-                >
-                    {breadcrumbs}
-                </span>
-            ) : null}
-            {!withoutCollapse ? (
-                <Button
-                    className="navbar-toggler"
-                    onClick={onClickMenu}
-                    withoutTheme
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <span className="navbar-toggler-icon" />
-                </Button>
-            ) : null}
-            {!withoutCollapse ? (
-                <div
-                    className={classNames([
-                        'navbar-collapse',
-                        'collapse',
-                        {
-                            show: menuVisible,
-                        },
-                    ])}
-                >
-                    {children}
-                </div>
-            ) : (
-                children
-            )}
+            <div className="container-fluid">
+                {brand !== null && brandLink !== null ? (
+                    <Link
+                        className={classNames([
+                            'navbar-brand',
+                            {
+                                'py-0': compact,
+                                [brandClassName]: brandClassName !== null,
+                            },
+                        ])}
+                        to={brandLink}
+                    >
+                        {brand}
+                    </Link>
+                ) : null}
+                {brand !== null && brandLink === null ? (
+                    <span
+                        className={classNames([
+                            'navbar-brand',
+                            {
+                                'py-0': compact,
+                                [brandClassName]: brandClassName !== null,
+                            },
+                        ])}
+                    >
+                        {brand}
+                    </span>
+                ) : null}
+                {breadcrumbs !== null ? (
+                    <span
+                        className={classNames([
+                            'navbar-breadcrumbs',
+                            {
+                                'py-0': compact,
+                                [breadCrumbsClassName]: breadCrumbsClassName !== null,
+                            },
+                        ])}
+                    >
+                        {breadcrumbs}
+                    </span>
+                ) : null}
+                {!withoutCollapse ? (
+                    <Button
+                        className="navbar-toggler"
+                        onClick={onClickMenu}
+                        withoutTheme
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span className="navbar-toggler-icon" />
+                    </Button>
+                ) : null}
+                {!withoutCollapse ? (
+                    <div
+                        className={classNames([
+                            'navbar-collapse',
+                            'collapse',
+                            {
+                                show: menuVisible,
+                            },
+                        ])}
+                    >
+                        {children}
+                    </div>
+                ) : (
+                    children
+                )}
+            </div>
         </nav>
     );
 };

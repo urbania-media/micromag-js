@@ -72,7 +72,14 @@ export const SortableTreeItem = ({
     });
 
     const hasCollapse = onCollapse !== null;
-    const { scaledWidth = 100, scaledHeight = 66, scale = 1 } = itemStyle;
+    const {
+        scaledWidth = 100,
+        scaledHeight = 66,
+        scale = 1,
+        width = null,
+        height = null,
+        transform: itemTransform = null,
+    } = itemStyle || {};
     const extraHeight = hasCollapse ? 30 : 0;
 
     const actionsStyle = {
@@ -83,12 +90,10 @@ export const SortableTreeItem = ({
     };
 
     const previewStyle = {
-        width: itemStyle.width,
-        height: itemStyle.height,
+        width,
+        height,
         transform:
-            depth === 0
-                ? itemStyle.transform
-                : `scale(${scale * smallScale}, ${scale * smallScale})`,
+            depth === 0 ? itemTransform : `scale(${scale * smallScale}, ${scale * smallScale})`,
     };
 
     const { onPointerDown } = listeners || {};

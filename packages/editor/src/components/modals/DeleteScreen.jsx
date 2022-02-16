@@ -45,7 +45,7 @@ const DeleteScreenModal = ({ className, onConfirm, onCancel }) => (
                 </Label>
             </div>
             <div className={styles.actions}>
-                <Button onClick={onCancel} className="btn-outline-secondary mr-2">
+                <Button onClick={onCancel} className="btn-outline-secondary me-2">
                     <Label>
                         <FormattedMessage
                             defaultMessage="Cancel"

@@ -42,7 +42,7 @@ const Media = ({
 }) => (
     <div
         className={classNames([
-            'media',
+            'card',
             styles.container,
             {
                 [className]: className !== null,
@@ -54,7 +54,7 @@ const Media = ({
                 src={thumbnail}
                 alt={title}
                 className={classNames([
-                    'mr-3',
+                    'me-3',
                     styles.thumbnail,
                     {
                         'align-self-start': thumbnailAlign === 'top',
@@ -69,7 +69,7 @@ const Media = ({
         )}
         <div
             className={classNames([
-                'media-body',
+                'card-body',
                 styles.body,
                 {
                     [bodyClassName]: bodyClassName !== null,

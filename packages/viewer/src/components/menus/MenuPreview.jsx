@@ -24,7 +24,6 @@ const propTypes = {
     title: PropTypes.string,
     shareUrl: PropTypes.string,
     items: MicromagPropTypes.menuItems,
-    current: PropTypes.number,
     focusable: PropTypes.bool,
     onClickItem: PropTypes.func,
     onClose: PropTypes.func,
@@ -42,7 +41,6 @@ const defaultProps = {
     title: null,
     shareUrl: null,
     items: [],
-    current: 0,
     focusable: true,
     onClickItem: null,
     onClose: null,
@@ -60,7 +58,6 @@ const ViewerMenuPreview = ({
     title,
     shareUrl,
     items,
-    current,
     focusable,
     onClickItem,
     onClose,
@@ -211,28 +208,29 @@ const ViewerMenuPreview = ({
                     <nav className={styles.nav}>
                         <ul className={styles.items}>
                             {items.map((item, index) => {
-                                const screenIndexLabel = intl.formatMessage(
+                                const { current = false, screen } = item;
+
+                                const screenAriaLabel = `${intl.formatMessage(
                                     {
                                         defaultMessage: 'Screen {index}',
                                         description: 'Button label',
                                     },
                                     { index: index + 1 },
-                                );
-                                const isCurrentScreenLabel =
-                                    current === index
+                                )}${
+                                    current
                                         ? ` ${intl.formatMessage({
                                               defaultMessage: '(current screen)',
                                               description: 'Button label',
                                           })}`
-                                        : '';
-                                const screenAriaLabel = screenIndexLabel + isCurrentScreenLabel;
+                                        : ''
+                                }`;
 
-                                return item.parentId === null ? (
+                                return (
                                     <li
                                         className={classNames([
                                             styles.item,
                                             {
-                                                [styles.active]: current === index,
+                                                [styles.active]: current,
                                             },
                                         ])}
                                         key={`item-${index}`}
@@ -264,11 +262,11 @@ const ViewerMenuPreview = ({
                                                     <ScreenPreview
                                                         width={screenWidth}
                                                         height={screenRatioHeight}
-                                                        screen={item}
+                                                        screen={screen}
                                                         focusable={false}
                                                     />
                                                 </div>
-                                                {current === index ? (
+                                                {current ? (
                                                     <div
                                                         className={styles.activeScreenBorder}
                                                         style={borderPrimaryColorStyle}
@@ -280,18 +278,20 @@ const ViewerMenuPreview = ({
                                             type="button"
                                             className={styles.screenButton}
                                             onClick={() => {
-                                                onClickItem(index);
+                                                if (onClickItem !== null) {
+                                                    onClickItem(item);
+                                                }
                                             }}
                                             aria-label={screenAriaLabel}
                                             onKeyUp={(e) => {
-                                                if (e.key === 'Enter') {
-                                                    onClickItem(index);
+                                                if (e.key === 'Enter' && onClickItem !== null) {
+                                                    onClickItem(item);
                                                 }
                                             }}
                                             tabIndex={focusable ? '0' : '-1'}
                                         />
                                     </li>
-                                ) : null;
+                                );
                             })}
                         </ul>
                     </nav>

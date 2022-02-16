@@ -13,13 +13,14 @@ const propTypes = {
     direction: PropTypes.oneOf(['horizontal', 'vertical']),
     withShadow: PropTypes.bool,
     items: MicromagPropTypes.menuItems,
-    current: PropTypes.number,
     onClickItem: PropTypes.func,
+    onClickMenu: PropTypes.func,
     colors: PropTypes.shape({
         primary: PropTypes.string,
         secondary: PropTypes.string,
     }),
     closeable: PropTypes.bool,
+    withItemClick: PropTypes.bool,
     onClose: PropTypes.func,
     className: PropTypes.string,
 };
@@ -28,10 +29,11 @@ const defaultProps = {
     direction: 'horizontal',
     withShadow: false,
     items: [],
-    current: 0,
     onClickItem: null,
+    onClickMenu: null,
     colors: null,
     closeable: false,
+    withItemClick: false,
     onClose: null,
     className: null,
 };
@@ -40,16 +42,18 @@ const ViewerMenuDots = ({
     direction,
     withShadow,
     items,
-    current,
     onClickItem,
+    onClickMenu,
     colors,
     closeable,
+    withItemClick,
     onClose,
     className,
 }) => {
     const { primary = 'rgba(255, 255, 255, 1)', secondary = 'rgba(200, 200, 200, 0.5)' } =
         colors || {};
     const intl = useIntl();
+    const currentIndex = items.findIndex(({ current = false }) => current);
     return (
         <nav
             className={classNames([
@@ -66,19 +70,20 @@ const ViewerMenuDots = ({
                     description: 'Nav ARIA label',
                 },
                 {
-                    current: current + 1,
+                    current: currentIndex + 1,
                     total: items.length,
                 },
             )}
         >
             <ul className={styles.items}>
-                {items.map((item, index) =>
-                    item?.parentId === null ? (
+                {items.map((item, index) => {
+                    const { current = false } = item;
+                    return (
                         <li
                             className={classNames([
                                 styles.item,
                                 {
-                                    [styles.active]: current === index,
+                                    [styles.active]: current,
                                 },
                             ])}
                             key={`item-${index}`}
@@ -88,8 +93,10 @@ const ViewerMenuDots = ({
                                 type="button"
                                 className={styles.button}
                                 onClick={() => {
-                                    if (onClickItem !== null) {
-                                        onClickItem(index);
+                                    if (withItemClick && onClickItem !== null) {
+                                        onClickItem(item);
+                                    } else if (!withItemClick && onClickMenu !== null) {
+                                        onClickMenu();
                                     }
                                 }}
                                 tabIndex="-1"
@@ -97,13 +104,13 @@ const ViewerMenuDots = ({
                                 <span
                                     className={styles.dot}
                                     style={{
-                                        backgroundColor: index <= current ? primary : secondary,
+                                        backgroundColor: index <= currentIndex ? primary : secondary,
                                     }}
                                 />
                             </button>
                         </li>
-                    ) : null,
-                )}
+                    );
+                })}
                 <li className={styles.menu}>
                     <MenuIcon className={styles.menuIcon} color={primary} />
                     <button
@@ -117,11 +124,7 @@ const ViewerMenuDots = ({
                             description: 'Button label',
                         })}
                         className={styles.menuButton}
-                        onClick={() => {
-                            if (onClickItem !== null) {
-                                onClickItem(null);
-                            }
-                        }}
+                        onClick={onClickMenu}
                     />
                 </li>
                 {closeable ? (

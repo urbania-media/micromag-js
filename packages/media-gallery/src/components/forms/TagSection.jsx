@@ -46,7 +46,7 @@ const TagSection = ({ tags, parent, onChange, className }) => {
                           'btn',
                           'btn-sm',
                           'mb-1',
-                          'mr-1',
+                          'me-1',
                           'btn-dark',
                           {
                               'btn-primary': active === true,

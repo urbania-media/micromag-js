@@ -14,7 +14,6 @@
     .top {
         display: none;
         padding: 20px 0;
-        text-align: center;
     }
 
     .bottom {
@@ -56,25 +55,17 @@
 
     .story {
         @extend %fullscreen;
-    }    
+    }
 }
 
 @include match-screen('medium') {
     .top {
-        display: block;
+        display: flex;
+        width: 100%;
+        justify-content: center;
     }
 
     .bottom {
         padding: 50px 20px;
-    }
-}
-
-@media only screen and (min-width: 1398px) {
-    .container {
-        &.withoutDevicesSizes {
-            .bottom {
-                padding: 200px 20px;
-            }
-        }        
     }
 }
