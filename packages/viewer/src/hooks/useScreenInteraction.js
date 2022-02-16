@@ -6,7 +6,7 @@ function useScreenInteraction({
     screenId,
     screenWidth,
     isView = false,
-    landscape = false,
+    clickOnSiblings = false,
     nextScreenWidthPercent = 0.5,
     onClick = null,
     onEnd = null,
@@ -76,9 +76,9 @@ function useScreenInteraction({
                 : screenIndex > index;
 
             if (hasTappedLeft) {
-                nextIndex = landscape ? index : Math.max(0, screenIndex - 1);
+                nextIndex = clickOnSiblings ? index : Math.max(0, screenIndex - 1);
             } else {
-                nextIndex = landscape ? index : Math.min(screensCount - 1, screenIndex + 1);
+                nextIndex = clickOnSiblings ? index : Math.min(screensCount - 1, screenIndex + 1);
 
                 const isLastScreen = screenIndex === screensCount - 1;
                 if (isLastScreen && onEnd !== null) {
@@ -99,7 +99,7 @@ function useScreenInteraction({
             currentScreenInteractionEnabled,
             nextScreenWidthPercent,
             isView,
-            landscape,
+            clickOnSiblings,
         ],
     );
 
