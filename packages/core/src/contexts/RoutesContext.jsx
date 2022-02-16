@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, useCallback } from 'react';
-import PropTypes from 'prop-types';
-import { generatePath, useHistory } from 'react-router';
 import isString from 'lodash/isString';
+import PropTypes from 'prop-types';
+import React, { useContext, useCallback, useMemo } from 'react';
+import { generatePath, useHistory } from 'react-router';
 
 export const RoutesContext = React.createContext(null);
 
@@ -60,9 +60,10 @@ const defaultProps = {
     basePath: null,
 };
 
-export const RoutesProvider = ({ routes, basePath, children }) => (
-    <RoutesContext.Provider value={{ routes, basePath }}>{children}</RoutesContext.Provider>
-);
+export const RoutesProvider = ({ routes, basePath, children }) => {
+    const value = useMemo(() => ({ routes, basePath }), []);
+    return <RoutesContext.Provider value={value}>{children}</RoutesContext.Provider>;
+};
 
 RoutesProvider.propTypes = propTypes;
 RoutesProvider.defaultProps = defaultProps;

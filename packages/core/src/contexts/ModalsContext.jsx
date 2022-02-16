@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, useRef, useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
-
+import React, { useContext, useRef, useCallback, useState, useMemo } from 'react';
 import { getDisplayName } from '../utils';
 
 export const ModalsContext = React.createContext({
@@ -69,11 +68,18 @@ export const ModalsProvider = ({ children, container: initialContainer }) => {
         },
         [modals, setModals],
     );
-    return (
-        <ModalsContext.Provider value={{ modals, container, setContainer, register, unregister }}>
-            {children}
-        </ModalsContext.Provider>
+
+    const value = useMemo(
+        () => ({
+            modals,
+            container,
+            setContainer,
+            register,
+            unregister,
+        }),
+        [modals, container, setContainer, register, unregister],
     );
+    return <ModalsContext.Provider value={value}>{children}</ModalsContext.Provider>;
 };
 
 ModalsProvider.propTypes = propTypes;

@@ -8,6 +8,7 @@
 
     .emptyContainer {
         @extend %fullscreen;
+
         top: 50%;
         height: 0;
         padding-bottom: 56.25%;
@@ -17,23 +18,31 @@
     .empty {
         @extend %empty;
         @extend %fullscreen;
+
         margin: 0;
     }
 
     .content {
         @extend %fullscreen;
+
         overflow: hidden;
     }
 
     .mediaControls {
         padding: 10px 20px 20px;
+        opacity: 0;
+        transition: opacity 0.3s linear;
+
+        &.visible {
+            opacity: 1;
+        }
     }
 
     .placeholder {
         display: flex;
+        height: 100%;
         flex-direction: column;
         justify-content: center;
-        height: 100%;
     }
 
     .videoContainer {

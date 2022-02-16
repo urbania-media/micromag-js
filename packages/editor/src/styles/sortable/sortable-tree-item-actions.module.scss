@@ -24,7 +24,6 @@
 
             background-color: transparent;
             color: #fff;
-            mix-blend-mode: difference;
         }
 
         // &.collapsed {
@@ -172,8 +171,6 @@
 
                 > * {
                     height: 0;
-
-                    /* Items are hidden using height and opacity to retain focus */
                     opacity: 0%;
                 }
             }

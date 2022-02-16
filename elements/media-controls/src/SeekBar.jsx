@@ -1,10 +1,9 @@
-import React, { useEffect, useCallback } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { useIntl } from 'react-intl';
 import { useSpring } from '@react-spring/core';
 import { animated } from '@react-spring/web';
-
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useEffect, useCallback, useMemo } from 'react';
+import { useIntl } from 'react-intl';
 import styles from './styles/seek-bar.module.scss';
 
 const propTypes = {
@@ -13,9 +12,10 @@ const propTypes = {
     playing: PropTypes.bool,
     backgroundColor: PropTypes.string,
     progressColor: PropTypes.string,
-    className: PropTypes.string,
+    withTime: PropTypes.bool,
     onSeek: PropTypes.func,
     focusable: PropTypes.bool,
+    className: PropTypes.string,
 };
 
 const defaultProps = {
@@ -24,9 +24,10 @@ const defaultProps = {
     playing: false,
     backgroundColor: 'white',
     progressColor: 'lightblue',
-    className: null,
+    withTime: false,
     onSeek: null,
     focusable: true,
+    className: null,
 };
 
 const SeekBar = ({
@@ -35,13 +36,12 @@ const SeekBar = ({
     playing,
     backgroundColor,
     progressColor,
-    className,
+    withTime,
     onSeek,
     focusable,
+    className,
 }) => {
     const intl = useIntl();
-
-    // exact same spring than SeekBar
 
     const [springProps, setSpringProps] = useSpring(() => ({
         x: 0,
@@ -83,37 +83,66 @@ const SeekBar = ({
         [duration],
     );
 
+    const maxTime = useMemo(
+        () => (currentTime > 3600 || duration > 3600 ? 11 : 14),
+        [currentTime, duration],
+    );
+
+    const formattedCurrrentTime = useMemo(() => {
+        if (withTime) {
+            const date = new Date(null);
+            date.setSeconds(currentTime); // specify value for SECONDS here
+            return date.toISOString().substring(maxTime, 19);
+        }
+        return null;
+    }, [currentTime, maxTime, withTime]);
+
+    const formattedDuration = useMemo(() => {
+        if (withTime) {
+            const date = new Date(null);
+            date.setSeconds(duration); // specify value for SECONDS here
+            return date.toISOString().substring(maxTime, 19);
+        }
+        return null;
+    }, [duration, maxTime, withTime]);
+
     return (
         <div
             className={classNames([
                 styles.container,
                 {
+                    [styles.withTime]: withTime,
                     [className]: className !== null,
                 },
             ])}
-            style={{ backgroundColor }}
         >
-            <animated.div
-                className={styles.progress}
-                style={{
-                    transform: springProps.x.to((x) => `scaleX(${x}`),
-                    backgroundColor: progressColor,
-                }}
-            />
-            <button
-                type="button"
-                className={styles.button}
-                onClick={onSeekClick}
-                title={intl.formatMessage({
-                    defaultMessage: 'Seek',
-                    description: 'Button label',
-                })}
-                aria-label={intl.formatMessage({
-                    defaultMessage: 'Seek',
-                    description: 'Button label',
-                })}
-                tabIndex={focusable ? '0' : '-1'}
-            />
+            {withTime ? <div className={styles.time}>{formattedCurrrentTime}</div> : null}
+            <div className={styles.inner}>
+                <div className={styles.progressBar} style={{ backgroundColor }}>
+                    <animated.div
+                        className={styles.progress}
+                        style={{
+                            transform: springProps.x.to((x) => `scaleX(${x})`),
+                            backgroundColor: progressColor,
+                        }}
+                    />
+                </div>
+                <button
+                    type="button"
+                    className={styles.button}
+                    onClick={onSeekClick}
+                    title={intl.formatMessage({
+                        defaultMessage: 'Seek',
+                        description: 'Button label',
+                    })}
+                    aria-label={intl.formatMessage({
+                        defaultMessage: 'Seek',
+                        description: 'Button label',
+                    })}
+                    tabIndex={focusable ? '0' : '-1'}
+                />
+            </div>
+            {withTime ? <div className={styles.time}>{formattedDuration}</div> : null}
         </div>
     );
 };

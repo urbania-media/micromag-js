@@ -26,41 +26,7 @@ module.exports = {
     stories: getPackagesPaths()
         .filter((it) => it.match(/\/cli$/) === null)
         .map((packagePath) => path.join(packagePath, './src/**/*.stories.@(jsx|mdx)')),
-    addons: [
-        // {
-        //     name: '@storybook/preset-scss',
-        //     options: {
-        //         rule: {
-        //             test: /\.module\.s[ca]ss$/,
-        //             exclude: /\.module\.s[ca]ss$/,
-        //         },
-        //         cssLoaderOptions: {
-        //             modules: {
-        //                 localIdentName: '[path][name]__[local]--[hash:base64:5]',
-        //             },
-        //         },
-        //     },
-        // },
-        // {
-        //     name: '@storybook/preset-scss',
-        //     options: {
-        //         rule: {
-        //             exclude: /\.module\.s[ca]ss$/,
-        //         },
-        //     },
-        // },
-        '@storybook/addon-viewport',
-        '@storybook/addon-docs',
-        '@storybook/addon-actions',
-        // {
-        //     name: '@storybook/addon-postcss',
-        //     options: {
-        //         postcssLoaderOptions: {
-        //             implementation: require('postcss'),
-        //         },
-        //     },
-        // },
-    ],
+    addons: ['@storybook/addon-viewport', '@storybook/addon-docs', '@storybook/addon-actions'],
     features: {
         babelModeV7: true,
     },
@@ -133,7 +99,9 @@ module.exports = {
                     'react-intl': require.resolve('react-intl'),
                     // '@uppy/core/dist/style.css': require.resolve('@uppy/core/dist/style.css'),
                     // '@uppy/core': require.resolve('@uppy/core'),
+                    // '@uppy/tus': require.resolve('@uppy/tus'),
                     // '@uppy/react': require.resolve('@uppy/react'),
+                    // '@uppy/xhr-upload': require.resolve('@uppy/xhr-upload'),
                     ...getPackagesAliases(),
                     // '@micromag/ckeditor/inline$': path.join(
                     //     __dirname,

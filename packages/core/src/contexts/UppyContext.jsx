@@ -1,15 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, useEffect, useMemo } from 'react';
-import PropTypes from 'prop-types';
-import isString from 'lodash/isString';
 import isObject from 'lodash/isObject';
-import { v1 as uuid } from 'uuid';
+import isString from 'lodash/isString';
+import PropTypes from 'prop-types';
+import React, { useContext, useEffect, useMemo } from 'react';
 import { useIntl } from 'react-intl';
-
+import { v1 as uuid } from 'uuid';
 import useUppyCore from '../hooks/useUppyCore';
 import useUppyLocale from '../hooks/useUppyLocale';
-import useUppyTransport from '../hooks/useUppyTransport';
 import useUppySources from '../hooks/useUppySources';
+import useUppyTransport from '../hooks/useUppyTransport';
 import getTransloaditMediasFromResponse from '../utils/getTransloaditMediasFromResponse';
 
 export const UppyContext = React.createContext(null);
@@ -214,13 +213,11 @@ export const UppyProvider = ({
                     if (source === null) {
                         return currentUppy;
                     }
-                    const {
-                        url: companionUrl,
-                        allowedHosts: companionAllowedHosts,
-                    } = companion || {
-                        url: uppyTransport.COMPANION || null,
-                        allowedHosts: uppyTransport.COMPANION_PATTERN || null,
-                    };
+                    const { url: companionUrl, allowedHosts: companionAllowedHosts } =
+                        companion || {
+                            url: uppyTransport.COMPANION || null,
+                            allowedHosts: uppyTransport.COMPANION_PATTERN || null,
+                        };
                     return newUppy.use(source, {
                         id: sourceId,
                         companionUrl,
@@ -245,27 +242,38 @@ export const UppyProvider = ({
         xhr,
     ]);
 
-    return (
-        <UppyContext.Provider
-            value={{
-                transport,
-                locale,
-                sources,
-                transloadit,
-                companion,
-                tus,
-                xhr,
-
-                Uppy,
-                uppyTransport,
-                uppySources,
-                uppyLocale,
-                buildUppy,
-            }}
-        >
-            {children}
-        </UppyContext.Provider>
+    const value = useMemo(
+        () => ({
+            transport,
+            locale,
+            sources,
+            transloadit,
+            companion,
+            tus,
+            xhr,
+            Uppy,
+            uppyTransport,
+            uppySources,
+            uppyLocale,
+            buildUppy,
+        }),
+        [
+            transport,
+            locale,
+            sources,
+            transloadit,
+            companion,
+            tus,
+            xhr,
+            Uppy,
+            uppyTransport,
+            uppySources,
+            uppyLocale,
+            buildUppy,
+        ],
     );
+
+    return <UppyContext.Provider value={value}>{children}</UppyContext.Provider>;
 };
 
 UppyProvider.propTypes = propTypes;

@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-
+import React, { useContext } from 'react';
 import { PropTypes as MicromagPropTypes } from '../lib';
 
 export const StoryContext = React.createContext(null);

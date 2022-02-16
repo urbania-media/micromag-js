@@ -53,8 +53,6 @@
         "@storybook/preset-scss": "^1.0.3",
         "@storybook/react": "^6.4.19",
         "@trivago/prettier-plugin-sort-imports": "^3.2.0",
-        "@uppy/core": "^2.1.4",
-        "@uppy/react": "^2.1.2",
         "@use-gesture/react": "^10.2.4",
         "babel-loader": "8.1.0",
         "babel-plugin-css-modules-transform": "^1.6.2",

@@ -11,7 +11,8 @@
             {
                 "message": "Selector should be written in camel-case (selector-class-pattern)"
             }
-        ]
+        ],
+        "alpha-value-notation": "number"
     },
     "overrides": [
         {

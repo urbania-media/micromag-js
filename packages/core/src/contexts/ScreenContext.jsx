@@ -1,8 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
+import React, { useContext, useMemo } from 'react';
 import { useIntl } from 'react-intl';
-
 import { PropTypes as MicromagPropTypes } from '../lib';
 import { getScreenExtraField } from '../utils';
 import { useScreensManager } from './ScreensContext';
@@ -19,9 +18,9 @@ export const useScreenDefinition = () => {
     const intl = useIntl();
     const { definition } = useScreen() || {};
     const { fields } = definition || {};
-    const finalFields = useMemo( () => [...fields, getScreenExtraField(intl)],[fields]);
+    const finalFields = useMemo(() => [...fields, getScreenExtraField(intl)], [fields]);
 
-    return {...definition, fields: finalFields};
+    return { ...definition, fields: finalFields };
 };
 
 export const useScreenData = () => {

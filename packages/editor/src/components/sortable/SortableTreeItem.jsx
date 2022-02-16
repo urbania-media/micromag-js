@@ -89,6 +89,7 @@ export const SortableTreeItem = ({
         transition,
     };
 
+    // TODO: remove this whenever
     const previewStyle = {
         width,
         height,

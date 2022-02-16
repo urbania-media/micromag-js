@@ -97,7 +97,7 @@ const EditorScreens = ({
 
     const onOrderChange = useCallback(
         (listItems) => {
-            // const ids = listItems.map(({ id }) => id);
+            const ids = listItems.map(({ id }) => id);
             const screenProps = listItems.map(({ id, props = null }) => ({
                 id,
                 props,
@@ -116,14 +116,14 @@ const EditorScreens = ({
                 const newValue = {
                     ...value,
                     components: [...currentScreens]
-                        // .sort(({ id: idA }, { id: idB }) => {
-                        //     const indexA = ids.indexOf(idA);
-                        //     const indexB = ids.indexOf(idB);
-                        //     if (indexA === indexB) {
-                        //         return 0;
-                        //     }
-                        //     return indexA > indexB ? 1 : -1;
-                        // })
+                        .sort(({ id: idA }, { id: idB }) => {
+                            const indexA = ids.indexOf(idA);
+                            const indexB = ids.indexOf(idB);
+                            if (indexA === indexB) {
+                                return 0;
+                            }
+                            return indexA > indexB ? 1 : -1;
+                        })
                         .map(({ id, ...props }) => ({
                             id,
                             ...props,

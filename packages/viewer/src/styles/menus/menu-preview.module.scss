@@ -5,21 +5,21 @@
 @import '~@micromag/core/scss/placeholders';
 
 .container {
-    display: flex;
     position: relative;
-    flex-direction: column;
+    display: flex;
     height: 100%;
+    flex-direction: column;
     padding: 10px;
-
     background-color: #000;
-    background-repeat: no-repeat;
     background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
     color: #fff;
 
     .screenButton {
         @extend %reset-button;
         @extend %fullscreen;
+
         display: block;
 
         &:focus-visible {
@@ -45,22 +45,22 @@
 
             display: inline-block;
             border: 0;
-            border-radius: 0;
             background-color: transparent;
+            border-radius: 0;
             color: inherit;
+            cursor: pointer;
             font-size: 0.9rem;
             font-weight: 600;
             line-height: 1.4;
             text-align: center;
-            vertical-align: middle;
-            cursor: pointer;
             user-select: none;
+            vertical-align: middle;
         }
 
         .button {
             width: 20px;
-            margin-left: 10px;
             padding: 0;
+            margin-left: 10px;
 
             &:first-child {
                 margin-left: 0;
@@ -84,15 +84,15 @@
     }
 
     .organisation {
-        flex-shrink: 0;
         width: 30px;
         height: 30px;
+        flex-shrink: 0;
         margin-right: 10px;
-        border-radius: 50%;
         background-color: #fff;
-        background-repeat: no-repeat;
         background-position: center;
+        background-repeat: no-repeat;
         background-size: contain;
+        border-radius: 50%;
     }
 
     .title {
@@ -112,20 +112,20 @@
 
     .nav {
         position: relative;
-        flex-grow: 1;
         overflow: hidden;
+        flex-grow: 1;
     }
 
     .items,
     .item {
-        margin: 0;
         padding: 0;
+        margin: 0;
         list-style: none;
     }
 
     .items {
-        display: flex;
         position: relative;
+        display: flex;
         flex-wrap: wrap;
     }
 
@@ -142,6 +142,7 @@
 
     .itemContent {
         @extend %fullscreen;
+
         padding: 2px;
     }
 
@@ -152,11 +153,12 @@
 
     .activeScreenBorder {
         @extend %fullscreen;
+
         border: 2px solid #fff;
     }
 
     .screenContent {
-        transform-origin: left top;
         background-color: $gray-900;
+        transform-origin: left top;
     }
 }

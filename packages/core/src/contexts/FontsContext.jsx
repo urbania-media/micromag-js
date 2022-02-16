@@ -1,12 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, useMemo, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import uniqBy from 'lodash/uniqBy';
-import isObject from 'lodash/isObject';
 import { getJSON } from '@folklore/fetch';
-
+import isObject from 'lodash/isObject';
+import uniqBy from 'lodash/uniqBy';
+import PropTypes from 'prop-types';
+import React, { useContext, useMemo, useState, useEffect } from 'react';
 import { PropTypes as MicromagPropTypes } from '../lib';
-
 import { useGoogleKeys } from './GoogleKeysContext';
 
 export const FontsContext = React.createContext({
@@ -21,22 +19,22 @@ export const useGoogleFonts = ({ disabled = false, setFonts = null } = {}) => {
     useEffect(() => {
         let canceled = false;
         if (apiKey !== null && !disabled) {
-            getJSON(`https://www.googleapis.com/webfonts/v1/webfonts?key=${apiKey}&sort=popularity`).then(
-                ({ items = [] }) => {
-                    if (!canceled) {
-                        const newFonts = items.map((it) => ({
-                            type: 'google',
-                            name: it.family,
-                            variants: it.variants,
-                        }));
-                        if (setFonts !== null) {
-                            setFonts(newFonts);
-                        } else {
-                            setGoogleFonts(newFonts);
-                        }
+            getJSON(
+                `https://www.googleapis.com/webfonts/v1/webfonts?key=${apiKey}&sort=popularity`,
+            ).then(({ items = [] }) => {
+                if (!canceled) {
+                    const newFonts = items.map((it) => ({
+                        type: 'google',
+                        name: it.family,
+                        variants: it.variants,
+                    }));
+                    if (setFonts !== null) {
+                        setFonts(newFonts);
+                    } else {
+                        setGoogleFonts(newFonts);
                     }
-                },
-            );
+                }
+            });
         }
         return () => {
             canceled = true;
