@@ -77,12 +77,15 @@ const ScreenWithPreview = ({
             itemWidth,
             itemHeight,
         );
-        return {
+        return !withPlaceholder ? {
             width: finalWidth,
             height: finalHeight,
             transform: `scale(${previewScale}, ${previewScale})`,
+        } : {
+            width: itemWidth,
+            height: itemHeight,
         };
-    }, [previewWidth, previewHeight, contentRect]);
+    }, [withPlaceholder, previewWidth, previewHeight, contentRect]);
     const { width: screenWidth, height: screenHeight } = previewStyle;
 
     const ScreenComponent = withPlaceholder ? ScreenPlaceholder : ScreenPreview;
