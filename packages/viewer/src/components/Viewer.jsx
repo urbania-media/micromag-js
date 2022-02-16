@@ -18,7 +18,6 @@ import {
 import { getDeviceScreens } from '@micromag/core/utils';
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 import useScreenInteraction from '../hooks/useScreenInteraction';
-import checkClickable from '../lib/checkClickable';
 import styles from '../styles/viewer.module.scss';
 import ViewerMenu from './ViewerMenu';
 import ViewerScreen from './ViewerScreen';
@@ -41,6 +40,7 @@ const propTypes = {
     withMetadata: PropTypes.bool,
     withoutMenu: PropTypes.bool,
     withoutFullscreen: PropTypes.bool,
+    withLandscapeSiblingsScreens: PropTypes.bool,
     closeable: PropTypes.bool,
     onClose: PropTypes.func,
     onInteraction: PropTypes.func,
@@ -70,10 +70,11 @@ const defaultProps = {
     tapNextScreenWidthPercent: 0.66,
     neighborScreensActive: 2,
     storyIsParsed: false,
-    landscapeScreenMargin: 50,
+    landscapeScreenMargin: 20,
     withMetadata: false,
     withoutMenu: false,
     withoutFullscreen: false,
+    withLandscapeSiblingsScreens: true,
     closeable: false,
     onClose: null,
     onInteraction: null,
@@ -103,6 +104,7 @@ const Viewer = ({
     withMetadata,
     withoutMenu,
     withoutFullscreen, // eslint-disable-line no-unused-vars
+    withLandscapeSiblingsScreens,
     closeable,
     onClose: onCloseViewer,
     onInteraction,
@@ -241,7 +243,7 @@ const Viewer = ({
         screenId,
         screenWidth,
         isView,
-        landscape,
+        clickOnSiblings: landscape && withLandscapeSiblingsScreens,
         nextScreenWidthPercent: tapNextScreenWidthPercent,
         onClick: onInteractionPrivate,
         onEnd,
@@ -258,7 +260,7 @@ const Viewer = ({
     const onClickMenu = useCallback(() => {
         onInteractionPrivate();
         setMenuOpened(true);
-    }, [landscape, changeIndex, onInteractionPrivate, setMenuOpened]);
+    }, [changeIndex, onInteractionPrivate, setMenuOpened]);
 
     const onClickMenuItem = useCallback(
         ({ screenId: itemScreenId }) => {
@@ -350,6 +352,7 @@ const Viewer = ({
                         screenSize.screens.map((screenName) => `story-screen-${screenName}`),
                         {
                             [styles.landscape]: landscape,
+                            [styles.withSibblings]: withLandscapeSiblingsScreens,
                             [styles.hideMenu]: !menuVisible,
                             [styles.ready]: ready || withoutScreensTransforms,
                             [className]: className,
@@ -376,7 +379,7 @@ const Viewer = ({
                             onClickCloseViewer={onCloseViewer}
                             onRequestOpen={onMenuRequestOpen}
                             onRequestClose={onMenuRequestClose}
-                            withDotItemClick={landscape}
+                            withDotItemClick={screenWidth > 400}
                             refDots={menuDotsContainerRef}
                         />
                     ) : null}
@@ -405,11 +408,17 @@ const Viewer = ({
                                     />
                                 );
                                 const key = `screen-viewer-${scr.id || ''}-${i + 1}`;
-                                const screenTransform = landscape
-                                    ? `translateX(calc(${
-                                          (screenWidth + landscapeScreenMargin) * (i - screenIndex)
-                                      }px - 50%)) scale(${current ? 1 : 0.9})`
-                                    : `translateX(${current ? 0 : '100%'})`;
+                                let screenTransform = null;
+                                if (landscape) {
+                                    screenTransform = withLandscapeSiblingsScreens
+                                        ? `translateX(calc(${
+                                              (screenWidth + landscapeScreenMargin) *
+                                              (i - screenIndex)
+                                          }px - 50%)) scale(${current ? 1 : 0.9})`
+                                        : null;
+                                } else {
+                                    screenTransform = `translateX(${current ? 0 : '100%'})`;
+                                }
                                 return (
                                     <React.Fragment key={key}>
                                         {current && screenIndex > 0 ? (
@@ -436,7 +445,10 @@ const Viewer = ({
                                             }}
                                             className={classNames([
                                                 styles.screen,
-                                                { [styles.current]: current },
+                                                {
+                                                    [styles.current]: current,
+                                                    [styles.visible]: current || withLandscapeSiblingsScreens,
+                                                },
                                             ])}
                                             tabIndex={active ? '0' : '-1'} /* eslint-disable-line */
                                             aria-hidden={current ? null : 'true'}

@@ -55,13 +55,14 @@ export const useScreenSizeFromElement = ({ width = null, height = null, ...opts 
     const fullWidth = width !== null ? width : calculatedWidth;
     const fullHeight = height !== null ? height : calculatedHeight;
 
-    const landscape = fullHeight > 0 && fullWidth > fullHeight;
     const {
         withoutMaxSize = false,
-        desktopHeightThreshold = 600,
-        desktopHeightRatio = 3 / 4,
-        screenRatio = 2 / 3,
+        landscapeMinHeight = 600,
+        landscapeHeightRatio = 3 / 4,
+        screenRatio = 320 / 480,
     } = opts || {};
+    const elementRatio = fullWidth / fullHeight;
+    const landscape = fullHeight > 0 && elementRatio > screenRatio;
     const landscapeWithMaxSize = landscape && !withoutMaxSize;
 
     let finalWidth = fullWidth;
@@ -69,10 +70,10 @@ export const useScreenSizeFromElement = ({ width = null, height = null, ...opts 
     let menuOverScreen = !landscape;
 
     if (landscapeWithMaxSize) {
-        if (fullHeight < desktopHeightThreshold) {
+        if (fullHeight < landscapeMinHeight) {
             menuOverScreen = true;
         } else {
-            finalHeight = Math.round(fullHeight * desktopHeightRatio);
+            finalHeight = Math.round(fullHeight * landscapeHeightRatio);
         }
 
         finalWidth = Math.round(finalHeight * screenRatio);

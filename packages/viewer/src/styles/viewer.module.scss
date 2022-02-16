@@ -76,21 +76,29 @@
             top: 0;
             right: auto;
             bottom: 0;
-            left: 50%;
+            left: 100%;
             margin: auto;
             cursor: pointer;
             opacity: 0.2;
-            transition: transform 0.3s ease, opacity 0.3s ease;
 
             &:hover,
             &:focus-visible {
                 opacity: 0.3;
             }
 
+            &.visible {
+                left: 50%;
+            }
+
             &.current {
                 cursor: auto;
                 opacity: 1;
+                transform: translate(-50%);
             }
+        }
+
+        &.withSibblings .screen {
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
     }
 
