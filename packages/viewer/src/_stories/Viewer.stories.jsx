@@ -59,6 +59,15 @@ export default {
     },
 };
 
+const customScreen = () => <div>Custom</div>;
+
+export const Custom = () => (
+    <Viewer
+        story={{ components: [{ id: '1324', type: 'custom' }] }}
+        screenComponents={{ custom: customScreen }}
+    />
+);
+
 export const Basic = () => <Viewer story={basic} />;
 
 export const Integrated = () => {
