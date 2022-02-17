@@ -67,14 +67,14 @@ const defaultProps = {
     deviceScreens: getDeviceScreens(),
     renderContext: 'view',
     onScreenChange: null,
-    tapNextScreenWidthPercent: 0.66,
+    tapNextScreenWidthPercent: 0.8,
     neighborScreensActive: 2,
     storyIsParsed: false,
     landscapeScreenMargin: 20,
     withMetadata: false,
     withoutMenu: false,
     withoutFullscreen: false,
-    withLandscapeSiblingsScreens: true,
+    withLandscapeSiblingsScreens: false,
     closeable: false,
     onClose: null,
     onInteraction: null,
@@ -372,7 +372,8 @@ const Viewer = ({
                             fullscreenEnabled={fullscreenEnabled}
                             closeable={closeable}
                             shareBasePath={basePath}
-                            screenWidth={screenWidth}
+                            screenSize={screenSize}
+                            menuWidth={screenWidth}
                             trackingEnabled={trackingEnabled}
                             onClickItem={onClickMenuItem}
                             onClickMenu={onClickMenu}

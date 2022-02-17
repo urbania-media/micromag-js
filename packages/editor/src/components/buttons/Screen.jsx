@@ -1,10 +1,9 @@
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button } from '@micromag/core/components';
-
 import styles from '../../styles/buttons/screen.module.scss';
 
 const propTypes = {
@@ -47,24 +46,26 @@ const ScreenButton = ({
     onClick,
     refButton,
 }) => (
-    <div className={classNames([
-        styles.container,
-        'rounded',
-        {
-            [styles.active]: active,
-            [className]: className !== null,
-        },
-    ])}>
-        <div className={styles.screen}>
-            {children !== null ? (
-                children
-            ) : (
+    <div
+        className={classNames([
+            styles.container,
+            'rounded',
+            {
+                [styles.active]: active,
+                [className]: className !== null,
+            },
+        ])}
+    >
+        {children !== null ? (
+            children
+        ) : (
+            <div className={styles.screen}>
                 <div className={styles.inner}>
                     {icon !== null ? <div className={styles.icon}>{icon}</div> : null}
                     {label !== null ? <div className={styles.label}>{label}</div> : null}
                 </div>
-            )}
-        </div>
+            </div>
+        )}
         <Button
             className={styles.button}
             withoutStyle

@@ -602,6 +602,7 @@ export const screenSize = PropTypes.shape({
     screens: PropTypes.arrayOf(PropTypes.string),
     width: PropTypes.number,
     height: PropTypes.number,
+    landscape: PropTypes.number,
 });
 
 export const renderContext = PropTypes.oneOf([

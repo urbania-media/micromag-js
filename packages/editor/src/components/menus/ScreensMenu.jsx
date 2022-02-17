@@ -72,7 +72,7 @@ const ScreensMenu = ({
 
     const treeStyle = useMemo(() => {
         const { width: itemWidth = 0 } = columnRect || {};
-        const itemHeight = (itemWidth * 3) / 2;
+        const itemHeight = (itemWidth * 4) / 3;
         const ratio = itemHeight !== 0 && itemWidth !== 0 ? itemHeight / itemWidth : 0;
         const {
             width: scaledWidth,
@@ -119,7 +119,7 @@ const ScreensMenu = ({
                           index={index}
                           screen={withPlaceholder ? { ...screen, type } : screen}
                           href={href}
-                          buttonClassName={buttonClassName}
+                          className={buttonClassName}
                           active={active}
                           withPreview={withPreview}
                           withPlaceholder={withPlaceholder}

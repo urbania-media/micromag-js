@@ -12,7 +12,7 @@ import styles from '../../styles/buttons/screen-with-preview.module.scss';
 import ScreenButton from './Screen';
 
 const propTypes = {
-    screen: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
+    screen: MicromagPropTypes.screenComponent,
     screenState: PropTypes.string,
     index: PropTypes.number.isRequired,
     href: PropTypes.string,
@@ -40,7 +40,6 @@ const defaultProps = {
     withPlaceholder: false,
     onClick: null,
     onClickItem: null,
-    buttonClassName: null,
     className: null,
 };
 
@@ -52,7 +51,6 @@ const ScreenWithPreview = ({
     href,
     active,
     className,
-    buttonClassName,
     previewWidth,
     previewHeight,
     onClick,
@@ -66,27 +64,20 @@ const ScreenWithPreview = ({
         entry: { contentRect },
     } = useResizeObserver();
 
-    const previewStyle = useMemo(() => {
-        const { width: itemWidth = 0, height: itemHeight = 0 } = contentRect || {};
-        const ratio = itemHeight !== 0 && itemWidth !== 0 ? itemHeight / itemWidth : 2 / 3;
+    const { width, height, screenWidth, screenHeight, scale } = useMemo(() => {
+        const { width: itemWidth = 0 } = contentRect || {};
+        const ratio = 3 / 4;
         const finalWidth = previewWidth;
         const finalHeight = previewHeight !== null ? previewHeight : previewWidth * ratio;
-        const { scale: previewScale } = getSizeWithinBounds(
-            finalWidth,
-            finalHeight,
-            itemWidth,
-            itemHeight,
-        );
-        return !withPlaceholder ? {
-            width: finalWidth,
-            height: finalHeight,
-            transform: `scale(${previewScale}, ${previewScale})`,
-        } : {
+        const previewScale = itemWidth / previewWidth;
+        return {
             width: itemWidth,
-            height: itemHeight,
+            height: finalHeight * previewScale,
+            screenWidth: finalWidth,
+            screenHeight: finalHeight,
+            scale: previewScale,
         };
     }, [withPlaceholder, previewWidth, previewHeight, contentRect]);
-    const { width: screenWidth, height: screenHeight } = previewStyle;
 
     const ScreenComponent = withPlaceholder ? ScreenPlaceholder : ScreenPreview;
 
@@ -98,7 +89,6 @@ const ScreenWithPreview = ({
             className={classNames([
                 styles.button,
                 {
-                    [buttonClassName]: buttonClassName !== null,
                     [className]: className !== null,
                 },
             ])}
@@ -113,19 +103,31 @@ const ScreenWithPreview = ({
             }}
         >
             <div
-                className={classNames({
-                    [styles.preview]: withPreview && !withPlaceholder,
-                    [styles.placeholder]: withPlaceholder && !withPreview,
-                })}
-                style={previewStyle}
+                className={styles.frame}
+                style={{
+                    width,
+                    height,
+                }}
             >
-                <ScreenComponent
-                    screen={screen}
-                    screenState={screenState}
-                    width={screenWidth}
-                    height={screenHeight}
-                    className={styles.screen}
-                />
+                <div
+                    className={classNames({
+                        [styles.preview]: withPreview && !withPlaceholder,
+                        [styles.placeholder]: withPlaceholder && !withPreview,
+                    })}
+                    style={{
+                        width: withPlaceholder ? width : screenWidth,
+                        height: withPlaceholder ? height : screenHeight,
+                        transform: withPlaceholder ? null : `scale(${scale})`,
+                    }}
+                >
+                    <ScreenComponent
+                        screen={screen}
+                        screenState={screenState}
+                        width={withPlaceholder ? width : screenWidth}
+                        height={withPlaceholder ? height : screenHeight}
+                        className={styles.screen}
+                    />
+                </div>
             </div>
         </ScreenButton>
     );

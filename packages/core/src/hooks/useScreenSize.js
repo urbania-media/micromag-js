@@ -11,39 +11,31 @@ const useScreenSize = ({
     mediaType = 'screen',
     media: providedMedia = null,
 }) => {
-    // Get media
-    const media = useMemo(
-        () =>
+    const screenSize = useMemo(() => {
+        const media =
             providedMedia !== null
                 ? providedMedia
                 : {
                       type: mediaType,
                       width: `${width}px`,
                       height: `${height}px`,
-                  },
-        [providedMedia, mediaType, width, height],
-    );
-
-    // Get matching screens
-    const matchingScreens = useMemo(
-        () =>
-            [...screens]
-                .reverse()
-                .filter(
-                    ({ mediaQuery = null }) =>
-                        mediaQuery === null || matchMediaQuery(mediaQuery, media),
-                ),
-        [screens, media],
-    );
-
-    return {
-        screen: matchingScreens.length > 0 ? matchingScreens[0].name : null,
-        screens: [...matchingScreens].reverse().map(({ name }) => name),
-        width,
-        height,
-        landscape,
-        menuOverScreen,
-    };
+                  };
+        const matchingScreens = [...screens]
+            .reverse()
+            .filter(
+                ({ mediaQuery = null }) =>
+                    mediaQuery === null || matchMediaQuery(mediaQuery, media),
+            );
+        return {
+            screen: matchingScreens.length > 0 ? matchingScreens[0].name : null,
+            screens: [...matchingScreens].reverse().map(({ name }) => name),
+            width,
+            height,
+            landscape,
+            menuOverScreen,
+        };
+    }, [screens, providedMedia, mediaType, width, height, landscape, menuOverScreen]);
+    return screenSize;
 };
 
 export const useScreenSizeFromElement = ({ width = null, height = null, ...opts } = {}) => {
@@ -59,10 +51,11 @@ export const useScreenSizeFromElement = ({ width = null, height = null, ...opts 
         withoutMaxSize = false,
         landscapeMinHeight = 600,
         landscapeHeightRatio = 3 / 4,
-        screenRatio = 320 / 480,
+        screenRatio = 360 / 480,
+        landscapeMinRatio = null,
     } = opts || {};
     const elementRatio = fullWidth / fullHeight;
-    const landscape = fullHeight > 0 && elementRatio > screenRatio;
+    const landscape = fullHeight > 0 && elementRatio > (landscapeMinRatio || screenRatio);
     const landscapeWithMaxSize = landscape && !withoutMaxSize;
 
     let finalWidth = fullWidth;

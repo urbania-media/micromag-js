@@ -22,7 +22,8 @@ const propTypes = {
     trackingEnabled: PropTypes.bool,
     shareBasePath: PropTypes.string,
     theme: MicromagPropTypes.viewerTheme,
-    screenWidth: PropTypes.number,
+    screenSize: MicromagPropTypes.screenSize,
+    menuWidth: PropTypes.number,
     withDotItemClick: PropTypes.bool,
     onRequestOpen: PropTypes.func,
     onRequestClose: PropTypes.func,
@@ -45,7 +46,8 @@ const defaultProps = {
     trackingEnabled: false,
     shareBasePath: null,
     theme: null,
-    screenWidth: null,
+    screenSize: null,
+    menuWidth: null,
     withDotItemClick: false,
     onRequestOpen: null,
     onRequestClose: null,
@@ -67,7 +69,8 @@ const ViewerMenu = ({
     shareBasePath,
     trackingEnabled,
     theme: viewerTheme,
-    screenWidth,
+    screenSize,
+    menuWidth,
     withDotItemClick,
     onRequestOpen,
     onRequestClose,
@@ -214,7 +217,7 @@ const ViewerMenu = ({
             <div
                 className={styles.menuDotsContainer}
                 ref={refDots}
-                style={{ width: screenWidth }}
+                style={{ width: menuWidth }}
                 {...menuDragBind()}
             >
                 <MenuDots
@@ -240,7 +243,8 @@ const ViewerMenu = ({
                     title={title}
                     shareUrl={shareUrl}
                     className={styles.menuPreview}
-                    screenWidth={screenWidth}
+                    screenSize={screenSize}
+                    menuWidth={menuWidth}
                     focusable={opened}
                     items={items}
                     onClickItem={onClickItem}

@@ -96,7 +96,7 @@ const ViewerContainer = ({
                         <ScreensProvider>
                             <ComponentsProvider
                                 namespace={SCREENS_NAMESPACE}
-                                components={screenComponents}
+                                components={screenComponents || {}}
                             >
                                 <UserInteractionProvider>
                                     <TrackingProvider variables={finalTrackingVariables}>

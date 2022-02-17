@@ -9,10 +9,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, ScreenPreview } from '@micromag/core/components';
+import { useResizeObserver } from '@micromag/core/hooks';
 import { getStyleFromColor, getStyleFromText } from '@micromag/core/utils';
 import Scroll from '@micromag/element-scroll';
 import styles from '../../styles/menus/menu-preview.module.scss';
@@ -20,7 +21,8 @@ import ShareButton from '../partials/ShareButton';
 
 const propTypes = {
     viewerTheme: MicromagPropTypes.viewerTheme,
-    screenWidth: PropTypes.number,
+    screenSize: MicromagPropTypes.screenSize,
+    menuWidth: PropTypes.number,
     title: PropTypes.string,
     shareUrl: PropTypes.string,
     items: MicromagPropTypes.menuItems,
@@ -37,7 +39,8 @@ const propTypes = {
 
 const defaultProps = {
     viewerTheme: null,
-    screenWidth: null,
+    screenSize: null,
+    menuWidth: null,
     title: null,
     shareUrl: null,
     items: [],
@@ -54,7 +57,8 @@ const defaultProps = {
 
 const ViewerMenuPreview = ({
     viewerTheme,
-    screenWidth,
+    screenSize,
+    menuWidth,
     title,
     shareUrl,
     items,
@@ -69,21 +73,13 @@ const ViewerMenuPreview = ({
     className,
 }) => {
     const intl = useIntl();
-    const screenSizeRatio = `${(3 / 2 / thumbsPerLine) * 100}%`;
-    const screenRatioHeight = (screenWidth * 3) / 2;
-
-    const hasSize = screenWidth > 0;
-    const hasItems = items !== null && items.length > 0;
-
-    const [thumbSize, setThumbSize] = useState(null);
-    const firstScreenContainerRef = useRef(null);
-
-    useEffect(() => {
-        if (hasItems && hasSize && firstScreenContainerRef.current !== null) {
-            const { offsetWidth, offsetHeight } = firstScreenContainerRef.current;
-            setThumbSize({ width: offsetWidth, height: offsetHeight });
-        }
-    }, [screenWidth, hasItems, hasSize]);
+    const { width: screenWidth, height: screenHeight } = screenSize || {};
+    const {
+        ref: firstScreenContainerRef,
+        entry: { contentRect: firstScreenContentRect },
+    } = useResizeObserver();
+    const { width: thumbWidth = 0 } = firstScreenContentRect || {};
+    const screenScale = thumbWidth / screenWidth;
 
     // Viewer theme
     const {
@@ -129,7 +125,7 @@ const ViewerMenuPreview = ({
         setScrolledBottom(false);
     }, [setScrolledBottom]);
 
-    return hasSize ? (
+    return (
         <div
             className={classNames([
                 styles.container,
@@ -137,7 +133,7 @@ const ViewerMenuPreview = ({
                     [className]: className !== null,
                 },
             ])}
-            style={{ ...backgroundColorStyle, ...brandImageStyle, width: screenWidth }}
+            style={{ ...backgroundColorStyle, ...brandImageStyle, width: menuWidth }}
             aria-hidden={focusable ? null : 'true'}
             {...dragBind()}
         >
@@ -235,7 +231,6 @@ const ViewerMenuPreview = ({
                                         ])}
                                         key={`item-${index}`}
                                         style={{
-                                            paddingBottom: screenSizeRatio,
                                             width: `${100 / thumbsPerLine}%`,
                                         }}
                                     >
@@ -243,29 +238,28 @@ const ViewerMenuPreview = ({
                                             <div
                                                 className={styles.screenContainer}
                                                 ref={index === 0 ? firstScreenContainerRef : null}
+                                                style={{
+                                                    height: screenHeight * screenScale,
+                                                }}
                                             >
-                                                <div
-                                                    className={styles.screenContent}
-                                                    style={
-                                                        thumbSize !== null
-                                                            ? {
-                                                                  width: screenWidth,
-                                                                  height: screenRatioHeight,
-                                                                  transform: `scale(${
-                                                                      thumbSize.width / screenWidth
-                                                                  }`,
-                                                              }
-                                                            : null
-                                                    }
-                                                    aria-hidden="true"
-                                                >
-                                                    <ScreenPreview
-                                                        width={screenWidth}
-                                                        height={screenRatioHeight}
-                                                        screen={screen}
-                                                        focusable={false}
-                                                    />
-                                                </div>
+                                                {screenWidth > 0 && screenHeight > 0 ? (
+                                                    <div
+                                                        className={styles.screenContent}
+                                                        style={{
+                                                            width: screenWidth,
+                                                            height: screenHeight,
+                                                            transform: `scale(${screenScale}`,
+                                                        }}
+                                                        aria-hidden="true"
+                                                    >
+                                                        <ScreenPreview
+                                                            width={screenWidth}
+                                                            height={screenHeight}
+                                                            screen={screen}
+                                                            focusable={false}
+                                                        />
+                                                    </div>
+                                                ) : null}
                                                 {current ? (
                                                     <div
                                                         className={styles.activeScreenBorder}
@@ -298,7 +292,7 @@ const ViewerMenuPreview = ({
                 </Scroll>
             </div>
         </div>
-    ) : null;
+    );
 };
 
 ViewerMenuPreview.propTypes = propTypes;

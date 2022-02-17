@@ -6,6 +6,11 @@
     display: block;
     position: relative;
 
+    .frame {
+        position: relative;
+        overflow: hidden;
+    }
+
     .preview,
     .placeholder {
         @extend %fullscreen;
