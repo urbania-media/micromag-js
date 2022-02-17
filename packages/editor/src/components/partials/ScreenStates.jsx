@@ -45,10 +45,16 @@ function ScreenStates({ screen, value, className, onChange }) {
                 },
             ])}
         >
-            <div className="row gx-2 align-items-end">
-                <div className="col-auto">
+            <div className="d-flex align-items-end mx-n1">
+                <div className="px-1 align-self-stretch d-flex flex-column">
+                    <h6 className="small fw-normal invisible">Settings</h6>
                     <Button
-                        className={classNames([styles.button, 'p-0', 'justify-content-center'])}
+                        className={classNames([
+                            styles.button,
+                            'p-0',
+                            'flex-grow-1',
+                            'justify-content-center',
+                        ])}
                         theme={screenParam !== null && field === null ? 'primary' : 'secondary'}
                         outline={screenParam === null || field !== null}
                         size="lg"
@@ -80,18 +86,17 @@ function ScreenStates({ screen, value, className, onChange }) {
                                 ...currentComponentsValue.slice(currentScreenIndex + 1),
                             ],
                         };
-                        console.log(newValue);
                         if (onChange !== null) {
                             onChange(newValue);
                         }
                     };
                     return (
-                        <div className="col-auto">
+                        <div className="px-1 align-self-stretch d-flex flex-column">
                             <h6 className="small fw-normal">
                                 <FormattedMessage {...label} />
                             </h6>
                             {repeatable ? (
-                                <ul className="d-flex list-unstyled m-0">
+                                <ul className="d-flex list-unstyled m-0 flex-grow-1">
                                     {repeatableItems.map((item, index) => (
                                         <li className="me-2">
                                             <ScreenWithPreview
@@ -108,11 +113,6 @@ function ScreenStates({ screen, value, className, onChange }) {
                                                     screen: screen.id,
                                                     field: [id, index],
                                                 })}
-                                                // onClick={() => {
-                                                //     if (onStateChange !== null) {
-                                                //         onStateChange(`${id}.${index}`);
-                                                //     }
-                                                // }}
                                             />
                                         </li>
                                     ))}
@@ -120,6 +120,7 @@ function ScreenStates({ screen, value, className, onChange }) {
                                         <Button
                                             className={classNames([
                                                 styles.button,
+                                                'h-100',
                                                 'p-0',
                                                 'justify-content-center',
                                             ])}

@@ -6,6 +6,7 @@ $container-small-max-widths: (
     lg: 540px,
     xl: 540px,
 ) !default;
+$enable-negative-margins: true;
 
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
