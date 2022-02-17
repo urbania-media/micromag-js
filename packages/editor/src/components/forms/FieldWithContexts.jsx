@@ -4,6 +4,7 @@ import React from 'react';
 import { FieldForm } from '@micromag/core/components';
 import { useScreenDefinition, useFormsComponents } from '@micromag/core/contexts';
 import { Fields } from '@micromag/fields';
+import getScreenFieldsWithStates from '../../lib/getScreenFieldsWithStates';
 
 const propTypes = {
     name: PropTypes.string,
@@ -17,35 +18,56 @@ const defaultProps = {
 
 const FieldWithContexts = ({ name, ...props }) => {
     // Get definitions
-    const { fields = [], states = null } = useScreenDefinition();
-    const [stateId = null] = name.split('.');
+    const definition = useScreenDefinition();
+    const { states = null } = definition;
+    const screenFields = getScreenFieldsWithStates(definition);
+    // const [stateId = null] = name.split('.');
+    // const currentState = states !== null ? states.find(({ id }) => id === stateId) || null : null;
+
+    const nameParts = name.split('.');
+    const [stateId = null] = nameParts;
     const currentState = states !== null ? states.find(({ id }) => id === stateId) || null : null;
-    const {
-        repeatable = false,
-        fieldName: stateFieldName = null,
-        fields: stateFields = null,
-    } = currentState || {};
-    const formComponents = useFormsComponents();
-    if (currentState !== null && !repeatable && stateFieldName === null) {
-        return (
-            <div className="p-2">
-                <Fields fields={stateFields} {...props} />
-            </div>
-        );
+    let finalNameParts = nameParts;
+    const { repeatable = false, fieldName = null, fields: stateFields = [] } = currentState || {};
+    if (currentState !== null) {
+        finalNameParts =
+            repeatable || fieldName !== null
+                ? [fieldName || stateId, ...nameParts.slice(1)]
+                : nameParts.slice(1);
     }
-    const finalFields =
-        repeatable || stateFieldName !== null
-            ? [{
-                  name: stateFieldName || stateId,
-                  itemsField: {
-                      type: 'fields',
-                      fields: stateFields,
-                      className: 'p-2'
-                  },
-              }]
-            : fields;
+
+    const formComponents = useFormsComponents();
+    // if (currentState !== null && !repeatable && stateFieldName === null) {
+    //     return (
+    //         <div className="p-2">
+    //             <Fields fields={stateFields} {...props} />
+    //         </div>
+    //     );
+    // }
+    // const finalFields =
+    //     repeatable || stateFieldName !== null
+    //         ? [{
+    //               name: stateFieldName || stateId,
+    //               itemsField: {
+    //                   type: 'fields',
+    //                   fields: stateFields,
+    //                   className: 'p-2'
+    //               },
+    //           }]
+    // : fields;
     return (
-        <FieldForm fields={finalFields} formComponents={formComponents} name={name} {...props} />
+        <div className="p-2">
+            {finalNameParts.length > 0 ? (
+                <FieldForm
+                    fields={screenFields}
+                    formComponents={formComponents}
+                    name={finalNameParts.join('.')}
+                    {...props}
+                />
+            ) : (
+                <Fields fields={stateFields} {...props} />
+            )}
+        </div>
     );
 };
 

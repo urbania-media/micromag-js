@@ -1,5 +1,4 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
@@ -24,7 +23,6 @@ const propTypes = {
     withPlaceholder: PropTypes.bool,
     onClick: PropTypes.func,
     onClickItem: PropTypes.func,
-    buttonClassName: PropTypes.string,
     className: PropTypes.string,
 };
 

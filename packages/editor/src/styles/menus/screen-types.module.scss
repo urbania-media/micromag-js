@@ -4,23 +4,23 @@
 
 .container {
     position: relative;
-}
 
-.row {
-    margin-bottom: $spacer * 2;
+    .row {
+        margin-bottom: $spacer * 2;
 
-    .title {
-        padding-bottom: math.div($spacer, 4);
-        border-bottom: solid 1px $border-color;
-        font-size: 0.85rem;
+        .title {
+            padding-bottom: math.div($spacer, 4);
+            border-bottom: solid 1px $border-color;
+            font-size: 0.85rem;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
 
-    &:last-child {
-        margin-bottom: 0;
+    .screen {
+        width: 100%;
+        max-width: 100px;
     }
-}
-
-.screen {
-    width: 100%;
-    max-width: 100px;
 }

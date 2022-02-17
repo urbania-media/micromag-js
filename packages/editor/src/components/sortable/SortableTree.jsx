@@ -26,34 +26,7 @@ import {
     getMaxDepth,
 } from '../../lib/utilities';
 import styles from '../../styles/sortable/sortable-tree.module.scss';
-import { SortableTreeItem } from './SortableTreeItem';
-
-const initialItems = [
-    {
-        id: 'Home',
-        children: [],
-    },
-    {
-        id: 'Collections',
-        children: [
-            { id: 'Spring', children: [] },
-            { id: 'Summer', children: [] },
-            { id: 'Fall', children: [] },
-            { id: 'Winter', children: [] },
-        ],
-    },
-    {
-        id: 'About Us',
-        children: [],
-    },
-    {
-        id: 'My Account',
-        children: [
-            { id: 'Addresses', children: [] },
-            { id: 'Order History', children: [] },
-        ],
-    },
-];
+import SortableTreeItem from './SortableTreeItem';
 
 const measuring = {
     droppable: {
@@ -86,7 +59,7 @@ const propTypes = {
 
 const defaultProps = {
     collapsible: true,
-    items: initialItems,
+    items: [],
     indentationWidth: 30,
     indicator: false,
     removable: false,
@@ -96,7 +69,7 @@ const defaultProps = {
     onChange: null,
 };
 
-export const SortableTree = ({
+const SortableTree = ({
     collapsible,
     items: defaultItems,
     indicator,
@@ -157,7 +130,7 @@ export const SortableTree = ({
     // Initial tree setup from list
     useEffect(() => {
         setItems(buildTree(defaultItems));
-    }, []);
+    }, [defaultItems]);
 
     useEffect(() => {
         sensorContext.current = {
@@ -286,8 +259,6 @@ export const SortableTree = ({
         },
         [flattenedItems, setActiveId, setOverId, setCurrentPosition],
     );
-
-    console.log(flattenedItems);
 
     const handleDragMove = useCallback(
         ({ delta }) => {
