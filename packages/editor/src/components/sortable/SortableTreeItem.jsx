@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 import { iOS } from '../../lib/utilities';
 import styles from '../../styles/sortable/sortable-tree-item.module.scss';
-import SortableTreeItemActions from './SortableTreeItemActions';
+import { SortableTreeItemActions } from './SortableTreeItemActions';
 
 const propTypes = {
     id: PropTypes.string.isRequired,
@@ -43,7 +43,7 @@ const defaultProps = {
 
 const animateLayoutChanges = ({ isSorting, wasDragging }) => !(isSorting || wasDragging);
 
-const SortableTreeItem = ({
+export const SortableTreeItem = ({
     id,
     index,
     depth,
@@ -72,10 +72,7 @@ const SortableTreeItem = ({
     });
 
     const hasCollapse = onCollapse !== null;
-    const {
-        scaledWidth = 100,
-        scaledHeight = 66,
-    } = itemStyle || {};
+    const { scaledWidth = 100, scaledHeight = 66, scale = 1 } = itemStyle;
     const extraHeight = hasCollapse ? 30 : 0;
 
     const actionsStyle = {
@@ -83,6 +80,16 @@ const SortableTreeItem = ({
         height: depth === 0 ? scaledHeight + extraHeight : scaledHeight * smallScale,
         transform: CSS.Translate.toString(transform),
         transition,
+    };
+
+    // TODO: remove this whenever
+    const previewStyle = {
+        width: itemStyle.width,
+        height: itemStyle.height,
+        transform:
+            depth === 0
+                ? itemStyle.transform
+                : `scale(${scale * smallScale}, ${scale * smallScale})`,
     };
 
     const { onPointerDown } = listeners || {};
@@ -117,7 +124,7 @@ const SortableTreeItem = ({
                 onCollapse={onCollapse}
                 {...props}
             >
-                {Component !== null ? <Component {...value} /> : null}
+                {Component !== null ? <Component {...value} previewStyle={previewStyle} /> : null}
             </SortableTreeItemActions>
         </div>
     );
