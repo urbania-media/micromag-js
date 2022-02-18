@@ -31,6 +31,7 @@ const propTypes = {
     }),
     showId: PropTypes.bool,
     showCount: PropTypes.bool,
+    showCollapsedCount: PropTypes.bool,
     children: PropTypes.node,
 };
 
@@ -51,6 +52,7 @@ const defaultProps = {
     style: null,
     showId: false,
     showCount: false,
+    showCollapsedCount: false,
     children: null,
 };
 
@@ -75,6 +77,7 @@ export const SortableTreeItemActions = forwardRef(
             wrapperRef,
             showId,
             showCount,
+            showCollapsedCount,
             children,
             ...props
         },
@@ -114,7 +117,11 @@ export const SortableTreeItemActions = forwardRef(
                 {clone && showCount && childCount && childCount > 1 ? (
                     <span className={styles.count}>{childCount}</span>
                 ) : null}
-                {onCollapse && collapsed && childCount !== null && childCount > 0 ? (
+                {showCollapsedCount &&
+                onCollapse &&
+                collapsed &&
+                childCount !== null &&
+                childCount > 0 ? (
                     <span className={styles.collapsedCount}>{childCount}</span>
                 ) : null}
                 {onCollapse && depth === 0 ? (

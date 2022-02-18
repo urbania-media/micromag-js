@@ -27,6 +27,8 @@ const propTypes = {
     collapsed: PropTypes.bool,
     onCollapse: PropTypes.func,
     onClickItem: PropTypes.func,
+    // eslint-disable-next-line react/forbid-prop-types
+    childValue: PropTypes.object,
     isLastChild: PropTypes.bool,
 };
 
@@ -38,6 +40,7 @@ const defaultProps = {
     collapsed: false,
     onCollapse: null,
     onClickItem: null,
+    childValue: null,
     isLastChild: false,
 };
 
@@ -54,6 +57,7 @@ export const SortableTreeItem = ({
     collapsed,
     onCollapse,
     onClickItem,
+    childValue,
     isLastChild,
     ...props
 }) => {
@@ -124,7 +128,16 @@ export const SortableTreeItem = ({
                 onCollapse={onCollapse}
                 {...props}
             >
-                {Component !== null ? <Component {...value} /> : null}
+                {Component !== null ? (
+                    <div className={styles.parent}>
+                        <Component {...value} />
+                    </div>
+                ) : null}
+                {childValue !== null ? (
+                    <div className={styles.child}>
+                        <Component {...childValue} />
+                    </div>
+                ) : null}
             </SortableTreeItemActions>
         </div>
     );

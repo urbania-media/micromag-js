@@ -390,7 +390,10 @@ export const SortableTree = ({
 
                     const childCount = getChildCount(items, id);
 
-                    console.log(childCount);
+                    const childValue =
+                        childCount > 0 && collapsed
+                            ? defaultItems.reverse().find(({ parentId = null }) => parentId === id)
+                            : null;
 
                     return (
                         <div
@@ -419,6 +422,7 @@ export const SortableTree = ({
                                 // style={itemStyle}
                                 onClickItem={onClickItem}
                                 index={idx}
+                                childValue={childValue?.value || null}
                             />
                         </div>
                     );
