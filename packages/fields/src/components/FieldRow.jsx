@@ -107,6 +107,7 @@ const FieldRow = ({
             <label
                 className={classNames({
                     'col-form-label': isHorizontal || withSettings,
+                    'form-label': !isHorizontal && !withSettings,
                     'col-auto': isHorizontal,
                     col: !isHorizontal && withSettings,
                     'py-0': isHorizontal,

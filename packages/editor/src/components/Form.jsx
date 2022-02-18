@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useHistory } from 'react-router';
@@ -10,6 +10,7 @@ import { slug } from '@micromag/core/utils';
 import {
     useRoutePush,
     ScreenProvider,
+    useScreensManager,
 } from '@micromag/core/contexts';
 import { Empty, Navbar, DropdownMenu } from '@micromag/core/components';
 
@@ -20,6 +21,7 @@ import {
 } from '../utils';
 import useRouteParams from '../hooks/useRouteParams';
 import useFormTransition from '../hooks/useFormTransition';
+import getScreenFieldsWithStates from '../lib/getScreenFieldsWithStates';
 import SettingsButton from './buttons/Settings';
 import Breadcrumb from './menus/Breadcrumb';
 import ScreenForm from './forms/Screen';
@@ -57,6 +59,12 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
     const { components: screens = [] } = value || {};
     const screenIndex = screens.findIndex((it) => it.id === screenId);
     const screen = screenIndex !== -1 ? screens[screenIndex] : null;
+    const screensManager = useScreensManager();
+    const screenFields = useMemo(() => {
+        const { type } = screen || {};
+        const definition = type !== null ? screensManager.getDefinition(type) : null;
+        return definition != null ? getScreenFieldsWithStates(definition) : [];
+    }, [screensManager, screen])
 
 
     // Get transition value
@@ -76,9 +84,12 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
         (field = null, formName = null, context = null) => {
             const hasField = field !== null;
             const fieldRoute = formName !== null ? 'screen.field.form' : 'screen.field';
+            const [rootFieldName = null] = field !== null ? field.split('.') : [];
+            const { stateId = null } = (rootFieldName !== null ? screenFields.find(({ name }) => name === rootFieldName) || null : null) || {};
+            console.log(field, stateId);
             routePush(hasField ? fieldRoute : 'screen', {
                 screen: screenId,
-                field: field !== null ? field.split('.') : null,
+                field: field !== null ? [stateId, ...field.split('.')].filter(it => it !== null) : null,
                 form: formName !== null ? slug(formName) : null,
             });
             setFieldForms({
@@ -87,7 +98,7 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
             });
             setFieldContext(context);
         },
-        [routePush, screenId, url, fieldForms, setFieldForms, fieldContext, setFieldContext],
+        [routePush, screenId, screenFields, url, fieldForms, setFieldForms, fieldContext, setFieldContext],
     );
 
     const closeFieldForm = useCallback(

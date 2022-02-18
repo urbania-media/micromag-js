@@ -63,22 +63,24 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
                 screenStates !== null
                     ? screenStates.find(({ id }) => id === stateId) || null
                     : null;
-            let finalFieldPath = fieldPath
+            let finalFieldPath = fieldPath;
             if (currentState !== null) {
                 const { repeatable = false, fieldName = null } = currentState || {};
-                finalFieldPath = repeatable || fieldName !== null ? [
-                    fieldName || stateId,
-                    ...fieldPath.slice(1),
-                ] : fieldPath.slice(1);
+                finalFieldPath =
+                    (repeatable || fieldName !== null) && fieldPath.length <= (repeatable ? 2 : 1)
+                        ? [fieldName || stateId, ...fieldPath.slice(1)]
+                        : fieldPath.slice(1);
             }
 
             const lastKeyIndex = finalFieldPath.length - 1;
             let parentItem = null;
             finalFieldPath.reduce(
                 (currentFields, key, keyIndex) => {
-                    console.log(key, currentFields);
-                    const { type: fieldType = null, fields: currentSubFields = null, itemsField: currentItemsField = null } =
-                        currentFields;
+                    const {
+                        type: fieldType = null,
+                        fields: currentSubFields = null,
+                        itemsField: currentItemsField = null,
+                    } = currentFields;
 
                     const fieldsDef =
                         fieldType !== null ? fieldsManager.getDefinition(fieldType) : currentFields;
@@ -103,7 +105,10 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
 
                     const pathPrefix = route('screen.field', {
                         screen: screenId,
-                        field: fieldPath.slice(0, keyIndex + 1),
+                        field: [
+                            currentState !== null ? currentState.id : null,
+                            ...finalFieldPath.slice(0, keyIndex + 1),
+                        ].filter((it) => it !== null),
                     });
                     const pathSuffix = isLastIndex && form !== null ? `/${form}` : '';
 
@@ -122,7 +127,10 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
                                 ...parentItem,
                                 url: route('screen.field.form', {
                                     screen: screenId,
-                                    field: fieldPath.slice(0, keyIndex),
+                                    field: [
+                                        currentState !== null ? currentState.id : null,
+                                        ...finalFieldPath.slice(0, keyIndex),
+                                    ].filter((it) => it !== null),
                                     form: 'settings',
                                 }),
                             });

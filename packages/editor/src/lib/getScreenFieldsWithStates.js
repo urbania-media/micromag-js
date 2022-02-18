@@ -13,6 +13,7 @@ function getScreenFieldsWithStates(definition) {
                               type: 'items',
                               name: fieldName || id,
                               label,
+                              stateId: id,
                               itemsField: {
                                   label,
                                   type: 'fields',
@@ -26,11 +27,17 @@ function getScreenFieldsWithStates(definition) {
                           {
                               type: 'fields',
                               name: fieldName,
+                              stateId: id,
                               fields,
                           },
                       ]
                     : []),
-                ...(!repeatable && fieldName === null ? fields : []),
+                ...(!repeatable && fieldName === null
+                    ? fields.map((it) => ({
+                          ...it,
+                          stateId: id,
+                      }))
+                    : []),
             ],
             [],
         ),
