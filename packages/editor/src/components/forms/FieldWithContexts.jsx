@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FieldForm } from '@micromag/core/components';
@@ -8,15 +9,17 @@ import getScreenFieldsWithStates from '../../lib/getScreenFieldsWithStates';
 
 const propTypes = {
     name: PropTypes.string,
+    form: PropTypes.string,
     children: PropTypes.node,
 };
 
 const defaultProps = {
     name: null,
+    form: null,
     children: null,
 };
 
-const FieldWithContexts = ({ name, ...props }) => {
+const FieldWithContexts = ({ name, form, ...props }) => {
     // Get definitions
     const definition = useScreenDefinition();
     const { states = null } = definition;
@@ -31,10 +34,12 @@ const FieldWithContexts = ({ name, ...props }) => {
     const { repeatable = false, fieldName = null, fields: stateFields = [] } = currentState || {};
     if (currentState !== null) {
         finalNameParts =
-            repeatable || fieldName !== null
+            (repeatable || fieldName !== null) && nameParts.length <= (repeatable ? 2 : 1)
                 ? [fieldName || stateId, ...nameParts.slice(1)]
                 : nameParts.slice(1);
     }
+
+    console.log(finalNameParts, currentState);
 
     const formComponents = useFormsComponents();
     // if (currentState !== null && !repeatable && stateFieldName === null) {
@@ -56,12 +61,17 @@ const FieldWithContexts = ({ name, ...props }) => {
     //           }]
     // : fields;
     return (
-        <div className="p-2">
+        <div
+            className={classNames({
+                'p-2': form === null,
+            })}
+        >
             {finalNameParts.length > 0 ? (
                 <FieldForm
                     fields={screenFields}
                     formComponents={formComponents}
                     name={finalNameParts.join('.')}
+                    form={form}
                     {...props}
                 />
             ) : (

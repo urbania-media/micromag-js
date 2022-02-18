@@ -5,7 +5,6 @@ import getFieldByName from './getFieldByName';
 const getFieldFromPath = (path, fields, fieldManager) =>
     (isArray(path) ? path : [path]).reduce(
         (foundField, key) => {
-            console.log(key, foundField);
             if (foundField === null) {
                 return null;
             }

@@ -24,9 +24,9 @@ export default [
         transforms,
         states: [
             {
-                id: 'title',
+                id: 'intro',
                 label: defineMessage({
-                    defaultMessage: 'Title',
+                    defaultMessage: 'Intro',
                     description: 'State label',
                 }),
                 fields: [
