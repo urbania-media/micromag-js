@@ -65,30 +65,30 @@ const ScreensMenu = ({
     onClickItem,
     onOrderChange,
 }) => {
-    const {
-        ref: columnRef,
-        entry: { contentRect: columnRect },
-    } = useResizeObserver({}, [items]);
+    // const {
+    //     ref: columnRef,
+    //     entry: { contentRect: columnRect },
+    // } = useResizeObserver({}, [items]);
 
-    const treeStyle = useMemo(() => {
-        const { width: itemWidth = 0 } = columnRect || {};
-        const itemHeight = (itemWidth * 3) / 2;
-        const ratio = itemHeight !== 0 && itemWidth !== 0 ? itemHeight / itemWidth : 0;
-        const {
-            width: scaledWidth,
-            height: scaledHeight,
-            scale: previewScale,
-        } = getSizeWithinBounds(previewMinWidth, previewMinWidth * ratio, itemWidth, itemHeight);
+    // const treeStyle = useMemo(() => {
+    //     const { width: itemWidth = 0 } = columnRect || {};
+    //     const itemHeight = (itemWidth * 3) / 2;
+    //     const ratio = itemHeight !== 0 && itemWidth !== 0 ? itemHeight / itemWidth : 0;
+    //     const {
+    //         width: scaledWidth,
+    //         height: scaledHeight,
+    //         scale: previewScale,
+    //     } = getSizeWithinBounds(previewMinWidth, previewMinWidth * ratio, itemWidth, itemHeight);
 
-        return {
-            width: previewMinWidth,
-            height: previewMinWidth * ratio,
-            transform: `scale(${previewScale}, ${previewScale})`,
-            scale: previewScale,
-            scaledWidth,
-            scaledHeight,
-        };
-    }, [previewMinWidth, columnRect]);
+    //     return {
+    //         width: previewMinWidth,
+    //         height: previewMinWidth * ratio,
+    //         transform: `scale(${previewScale}, ${previewScale})`,
+    //         scale: previewScale,
+    //         scaledWidth,
+    //         scaledHeight,
+    //     };
+    // }, [previewMinWidth, columnRect]);
 
     const itemsElements = !isTree
         ? items.map(
@@ -172,13 +172,11 @@ const ScreensMenu = ({
                     [className]: className,
                 },
             ])}
-            ref={columnRef}
         >
             {isTree && !sortable ? (
                 <SortableTree
                     items={sortableItems}
                     component={ScreenWithPreview}
-                    itemStyle={treeStyle}
                     onClickItem={onClickItem}
                     onChange={onOrderChange}
                 />

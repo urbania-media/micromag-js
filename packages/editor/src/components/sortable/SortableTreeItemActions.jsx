@@ -80,7 +80,7 @@ export const SortableTreeItemActions = forwardRef(
         },
         ref,
     ) => (
-        <li
+        <div
             className={classNames([
                 styles.wrapper,
                 {
@@ -95,11 +95,10 @@ export const SortableTreeItemActions = forwardRef(
             ref={wrapperRef}
             style={{
                 marginLeft: `${indentationWidth * depth}px`,
-                ...style,
             }}
             {...props}
         >
-            <div className={styles.inner} ref={ref}>
+            <div className={styles.inner} ref={ref} style={style}>
                 <button
                     className={classNames([styles.button, styles.handle])}
                     type="button"
@@ -131,9 +130,9 @@ export const SortableTreeItemActions = forwardRef(
                         <FontAwesomeIcon icon={faAngleDown} />
                     </button>
                 ) : null}
+                <div className={styles.children}>{children}</div>
             </div>
-            <div className={styles.children}>{children}</div>
-        </li>
+        </div>
     ),
 );
 
