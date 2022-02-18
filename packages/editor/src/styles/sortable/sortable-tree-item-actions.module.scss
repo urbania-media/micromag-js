@@ -4,7 +4,7 @@
 
 .wrapper {
     box-sizing: border-box;
-    border-radius: 10px;
+    border-radius: 4px;
     list-style: none;
 
     .inner {
@@ -24,10 +24,6 @@
             background-color: transparent;
             color: #fff;
         }
-
-        // &.collapsed {
-        //     margin-bottom: 80px;
-        // }
 
         .handle {
             position: absolute;
@@ -117,11 +113,6 @@
         position: relative;
         z-index: 0;
         width: 100%;
-        // position: absolute;
-        // top: 0;
-        // left: 0;
-        // width: 100%;
-        // height: 100%;
     }
 
     &.withChildren {

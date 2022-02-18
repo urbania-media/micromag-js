@@ -113,6 +113,7 @@ const EditorScreens = ({
             );
 
             if (!sameOrder || hasScreenProps) {
+                console.log('yosh', ids);
                 const newValue = {
                     ...value,
                     components: [...currentScreens]

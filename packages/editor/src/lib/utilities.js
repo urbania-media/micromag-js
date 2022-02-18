@@ -196,3 +196,23 @@ export function removeChildrenOf(items, ids) {
         return true;
     });
 }
+
+export const arrayEquals = (arrayA, arrayB) => {
+    // if the other array is a falsy value, return
+    if (!arrayA || arrayB) return false;
+
+    // compare lengths - can save a lot of time
+    if (arrayB.length !== arrayA.length) return false;
+
+    for (let i = 0, l = arrayB.length; i < l; i += 1) {
+        // Check if we have nested arrays
+        if (arrayB[i] instanceof Array && arrayA[i] instanceof Array) {
+            // recurse into the nested arrays
+            if (!arrayB[i].equals(arrayA[i])) return false;
+        } else if (arrayB[i] !== arrayA[i]) {
+            // Warning - two different object instances will never be equal: {x:20} != {x:20}
+            return false;
+        }
+    }
+    return true;
+};

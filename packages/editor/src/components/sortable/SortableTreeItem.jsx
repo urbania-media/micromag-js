@@ -82,7 +82,7 @@ export const SortableTreeItem = ({
         transition,
     };
 
-    const { onPointerDown, onPointerUp } = listeners || {};
+    const { onPointerDown = null, onPointerUp = null } = listeners || {};
     const onClickAction = useCallback(
         (e) => {
             if (onClickItem !== null) {
@@ -91,7 +91,9 @@ export const SortableTreeItem = ({
             if (onPointerDown !== null) {
                 e.persist();
                 timeout.current = setTimeout(() => {
-                    onPointerDown(e);
+                    if (onPointerDown !== null) {
+                        onPointerDown(e);
+                    }
                     timeout.current = null;
                 }, 200);
             }
@@ -103,7 +105,9 @@ export const SortableTreeItem = ({
             if (timeout.current !== null) {
                 clearTimeout(timeout.current);
             }
-            onPointerUp(e);
+            if (onPointerUp !== null) {
+                onPointerUp(e);
+            }
         },
         [onPointerUp],
     );

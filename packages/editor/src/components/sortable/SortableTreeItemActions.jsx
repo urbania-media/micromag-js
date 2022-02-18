@@ -98,6 +98,7 @@ export const SortableTreeItemActions = forwardRef(
             ref={wrapperRef}
             style={{
                 marginLeft: `${indentationWidth * depth}px`,
+                marginRight: `${5 * depth}px`,
             }}
             {...props}
         >

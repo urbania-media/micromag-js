@@ -24,6 +24,7 @@ import {
     removeItem,
     setProperty,
     getMaxDepth,
+    arrayEquals,
 } from '../../lib/utilities';
 import styles from '../../styles/sortable/sortable-tree.module.scss';
 import { SortableTreeItem } from './SortableTreeItem';
@@ -40,17 +41,6 @@ const initialItems = [
             { id: 'Summer', children: [] },
             { id: 'Fall', children: [] },
             { id: 'Winter', children: [] },
-        ],
-    },
-    {
-        id: 'About Us',
-        children: [],
-    },
-    {
-        id: 'My Account',
-        children: [
-            { id: 'Addresses', children: [] },
-            { id: 'Order History', children: [] },
         ],
     },
 ];
@@ -113,11 +103,20 @@ export const SortableTree = ({
     const [offsetLeft, setOffsetLeft] = useState(0);
     const [currentPosition, setCurrentPosition] = useState(null);
 
+    const changed = useMemo(
+        () =>
+            defaultItems.length !== items.length ||
+            !arrayEquals(
+                items.map((i) => i.id),
+                defaultItems.map((i) => i.id),
+            ),
+        [defaultItems, items],
+    );
     // Initial tree setup from list
     useEffect(() => {
-        // console.log('hey');
+        console.log('changed');
         setItems(buildTree(defaultItems));
-    }, [defaultItems.length]);
+    }, [changed]);
 
     const flattenedItems = useMemo(() => {
         const flattenedTree = flattenTree(items);
@@ -365,6 +364,8 @@ export const SortableTree = ({
         [setItems, setProperty],
     );
 
+    console.log(defaultItems);
+
     return (
         <DndContext
             announcements={announcements}
@@ -389,7 +390,6 @@ export const SortableTree = ({
                     const currentDepth = id === activeId && projected ? projected.depth : depth;
 
                     const childCount = getChildCount(items, id);
-
                     const childValue =
                         childCount > 0 && collapsed
                             ? defaultItems.reverse().find(({ parentId = null }) => parentId === id)
