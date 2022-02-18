@@ -3,7 +3,7 @@ import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { iOS } from '../../lib/utilities';
 import styles from '../../styles/sortable/sortable-tree-item.module.scss';
 import { SortableTreeItemActions } from './SortableTreeItemActions';
@@ -71,22 +71,37 @@ export const SortableTreeItem = ({
         animateLayoutChanges,
     });
 
+    const timeout = useRef(null);
+
     const actionsStyle = {
         transform: CSS.Translate.toString(transform),
         transition,
     };
 
-    const { onPointerDown } = listeners || {};
+    const { onPointerDown, onPointerUp } = listeners || {};
     const onClickAction = useCallback(
         (e) => {
             if (onClickItem !== null) {
                 onClickItem(value, index);
             }
             if (onPointerDown !== null) {
-                onPointerDown(e);
+                e.persist();
+                timeout.current = setTimeout(() => {
+                    onPointerDown(e);
+                    timeout.current = null;
+                }, 200);
             }
         },
         [value, index, onClickItem, onPointerDown],
+    );
+    const cancellingPointerUp = useCallback(
+        (e) => {
+            if (timeout.current !== null) {
+                clearTimeout(timeout.current);
+            }
+            onPointerUp(e);
+        },
+        [onPointerUp],
     );
 
     return (
@@ -103,6 +118,7 @@ export const SortableTreeItem = ({
                     ...attributes,
                     ...listeners,
                     onPointerDown: onClickAction,
+                    onPointerUp: cancellingPointerUp,
                 }}
                 collapsed={collapsed}
                 onCollapse={onCollapse}

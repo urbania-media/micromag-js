@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-indent */
+
 /* eslint-disable react/jsx-props-no-spreading */
 import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
@@ -17,7 +18,7 @@ const propTypes = {
     withPreview: PropTypes.bool,
     withPlaceholder: PropTypes.bool,
     settings: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-    previewMinWidth: PropTypes.number,
+    // previewMinWidth: PropTypes.number,
     sortable: PropTypes.bool,
     isTree: PropTypes.bool,
     isVertical: PropTypes.bool,
@@ -35,7 +36,7 @@ const defaultProps = {
     withPreview: false,
     withPlaceholder: false,
     settings: null,
-    previewMinWidth: 320,
+    // previewMinWidth: 320,
     sortable: false,
     isTree: false,
     isVertical: false,
@@ -53,7 +54,7 @@ const ScreensMenu = ({
     withPreview,
     withPlaceholder,
     settings,
-    previewMinWidth,
+    // previewMinWidth,
     isVertical,
     noWrap,
     className,
@@ -152,8 +153,7 @@ const ScreensMenu = ({
                           id,
                           parentId,
                           collapsed,
-                          value: { id, screen, href,
-                            ...props, },
+                          value: { id, screen, href, ...props },
                       };
                   }, [])
                 : items.map(({ id }) => ({ id })),

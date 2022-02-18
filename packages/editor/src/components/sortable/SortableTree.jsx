@@ -79,7 +79,7 @@ const propTypes = {
     indicator: PropTypes.bool,
     removable: PropTypes.bool,
     component: PropTypes.func,
-    itemStyle: PropTypes.shape({}),
+    // itemStyle: PropTypes.shape({}),
     onClickItem: PropTypes.func,
     onChange: PropTypes.func,
 };
@@ -91,7 +91,7 @@ const defaultProps = {
     indicator: false,
     removable: false,
     component: null,
-    itemStyle: null,
+    // itemStyle: null,
     onClickItem: null,
     onChange: null,
 };
@@ -103,7 +103,7 @@ export const SortableTree = ({
     indentationWidth,
     removable,
     component,
-    itemStyle,
+    // itemStyle,
     onClickItem,
     onChange,
 }) => {
@@ -112,6 +112,12 @@ export const SortableTree = ({
     const [overId, setOverId] = useState(null);
     const [offsetLeft, setOffsetLeft] = useState(0);
     const [currentPosition, setCurrentPosition] = useState(null);
+
+    // Initial tree setup from list
+    useEffect(() => {
+        // console.log('hey');
+        setItems(buildTree(defaultItems));
+    }, [defaultItems.length]);
 
     const flattenedItems = useMemo(() => {
         const flattenedTree = flattenTree(items);
@@ -151,13 +157,7 @@ export const SortableTree = ({
     );
 
     const sortedIds = useMemo(() => flattenedItems.map(({ id }) => id), [flattenedItems]);
-
     const activeItem = activeId ? flattenedItems.find(({ id }) => id === activeId) : null;
-
-    // Initial tree setup from list
-    useEffect(() => {
-        setItems(buildTree(defaultItems));
-    }, []);
 
     useEffect(() => {
         sensorContext.current = {
@@ -387,6 +387,11 @@ export const SortableTree = ({
                     const onCollapse =
                         collapsible && children.length ? () => handleCollapse(id) : null;
                     const currentDepth = id === activeId && projected ? projected.depth : depth;
+
+                    const childCount = getChildCount(items, id);
+
+                    console.log(childCount);
+
                     return (
                         <div
                             className={classNames([
@@ -408,10 +413,10 @@ export const SortableTree = ({
                                 collapsed={isCollapsed}
                                 onCollapse={onCollapse}
                                 onRemove={removable ? () => handleRemove(id) : undefined}
-                                childCount={getChildCount(items, id)}
+                                childCount={childCount}
                                 component={component}
                                 value={screenValue?.value || null}
-                                style={itemStyle}
+                                // style={itemStyle}
                                 onClickItem={onClickItem}
                                 index={idx}
                             />
@@ -435,7 +440,7 @@ export const SortableTree = ({
                                     value={activeValue?.value}
                                     onClickItem={onClickItem}
                                     index={flattenedItems.findIndex(({ id }) => activeId === id)}
-                                    style={itemStyle}
+                                    // style={itemStyle}
                                 />
                             </div>
                         ) : null}

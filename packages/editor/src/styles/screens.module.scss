@@ -2,7 +2,11 @@
 
 .container {
     .navbar {
-        background-color: $black;
         z-index: 999;
+        background-color: $black;
+
+        > div {
+            padding: 0;
+        }
     }
 }
