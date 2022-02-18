@@ -287,7 +287,7 @@ export const SortableTree = ({
         [flattenedItems, setActiveId, setOverId, setCurrentPosition],
     );
 
-    console.log(flattenedItems);
+    // console.log(flattenedItems);
 
     const handleDragMove = useCallback(
         ({ delta }) => {
