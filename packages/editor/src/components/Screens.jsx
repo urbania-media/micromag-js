@@ -113,7 +113,7 @@ const EditorScreens = ({
             );
 
             if (!sameOrder || hasScreenProps) {
-                console.log('yosh', ids);
+                console.log('order', ids);
                 const newValue = {
                     ...value,
                     components: [...currentScreens]
@@ -164,6 +164,8 @@ const EditorScreens = ({
         () => setCreateModalOpened(false),
         [setCreateModalOpened],
     );
+
+    // console.log(screens);
 
     return (
         <div className={classNames(['d-flex', 'flex-column', styles.container, className])}>

@@ -1,14 +1,14 @@
 /* eslint-disable react/jsx-indent */
 
 /* eslint-disable react/jsx-props-no-spreading */
-import { getSizeWithinBounds } from '@folklore/size';
+// import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import isFunction from 'lodash/isFunction';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 import { ReactSortable } from 'react-sortablejs';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useResizeObserver } from '@micromag/core/hooks';
+// import { useResizeObserver } from '@micromag/core/hooks';
 import styles from '../../styles/menus/screens.module.scss';
 import ScreenWithPreview from '../buttons/ScreenWithPreview';
 import SortableTree from '../sortable/SortableTree';
@@ -54,7 +54,6 @@ const ScreensMenu = ({
     withPreview,
     withPlaceholder,
     settings,
-    // previewMinWidth,
     isVertical,
     noWrap,
     className,
@@ -66,31 +65,6 @@ const ScreensMenu = ({
     onClickItem,
     onOrderChange,
 }) => {
-    // const {
-    //     ref: columnRef,
-    //     entry: { contentRect: columnRect },
-    // } = useResizeObserver({}, [items]);
-
-    // const treeStyle = useMemo(() => {
-    //     const { width: itemWidth = 0 } = columnRect || {};
-    //     const itemHeight = (itemWidth * 3) / 2;
-    //     const ratio = itemHeight !== 0 && itemWidth !== 0 ? itemHeight / itemWidth : 0;
-    //     const {
-    //         width: scaledWidth,
-    //         height: scaledHeight,
-    //         scale: previewScale,
-    //     } = getSizeWithinBounds(previewMinWidth, previewMinWidth * ratio, itemWidth, itemHeight);
-
-    //     return {
-    //         width: previewMinWidth,
-    //         height: previewMinWidth * ratio,
-    //         transform: `scale(${previewScale}, ${previewScale})`,
-    //         scale: previewScale,
-    //         scaledWidth,
-    //         scaledHeight,
-    //     };
-    // }, [previewMinWidth, columnRect]);
-
     const itemsElements = !isTree
         ? items.map(
               (
@@ -157,8 +131,10 @@ const ScreensMenu = ({
                       };
                   }, [])
                 : items.map(({ id }) => ({ id })),
-        [items, isTree],
+        [items, isTree, items.length],
     );
+
+    // console.log('current items', sortableItems);
 
     return (
         <div

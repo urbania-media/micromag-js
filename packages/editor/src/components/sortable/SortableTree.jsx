@@ -97,30 +97,40 @@ export const SortableTree = ({
     onClickItem,
     onChange,
 }) => {
-    const [items, setItems] = useState(() => defaultItems);
+    const [items, setItems] = useState(() => buildTree(defaultItems));
     const [activeId, setActiveId] = useState(null);
     const [overId, setOverId] = useState(null);
     const [offsetLeft, setOffsetLeft] = useState(0);
     const [currentPosition, setCurrentPosition] = useState(null);
 
-    const changed = useMemo(
-        () =>
-            defaultItems.length !== items.length ||
-            !arrayEquals(
-                items.map((i) => i.id),
-                defaultItems.map((i) => i.id),
-            ),
-        [defaultItems, items],
-    );
+    // const changed = useMemo(
+    //     () =>
+    //         defaultItems.length !== flatStuff.length ||
+    //         !arrayEquals(
+    //             flatStuff.map((i) => i.id),
+    //             defaultItems.map((i) => i.id),
+    //         ),
+    //     [defaultItems, flatStuff],
+    // );
+
+    // const flatStuff = flattenTree(items);
+
     // Initial tree setup from list
-    useEffect(() => {
-        console.log('changed');
-        setItems(buildTree(defaultItems));
-    }, [changed]);
+    // useEffect(() => {
+    //     const flat = flattenTree(items);
+    //     const merged = defaultItems.map((t1) => ({
+    //         ...flat.find((t2) => t2.id === t1.id),
+    //         ...t1,
+    //     }));
+    //     console.log('fuck off', flat, defaultItems, merged);
+    //     setItems(buildTree(merged));
+    // }, [defaultItems, defaultItems.length]);
+
+    // console.log('render', defaultItems, defaultItems.length, flatStuff, flatStuff.length);
 
     const flattenedItems = useMemo(() => {
         const flattenedTree = flattenTree(items);
-        // console.log('yo', items, flattenedTree);
+        // console.log('yo', flattenedTree);
         const collapsedItems =
             flattenedTree.reduce(
                 (acc, { children = [], collapsed, id }) =>
@@ -132,7 +142,7 @@ export const SortableTree = ({
             flattenedTree,
             activeId ? [activeId, ...collapsedItems] : collapsedItems,
         );
-    }, [activeId, items]);
+    }, [activeId, items, items.length]);
 
     const projected =
         activeId && overId
@@ -364,7 +374,7 @@ export const SortableTree = ({
         [setItems, setProperty],
     );
 
-    console.log(defaultItems);
+    // console.log(defaultItems);
 
     return (
         <DndContext
@@ -392,9 +402,11 @@ export const SortableTree = ({
                     const childCount = getChildCount(items, id);
                     const childValue =
                         childCount > 0 && collapsed
-                            ? defaultItems.reverse().find(({ parentId = null }) => parentId === id)
+                            ? defaultItems
+                                  .slice()
+                                  .reverse()
+                                  .find(({ parentId = null }) => parentId === id)
                             : null;
-
                     return (
                         <div
                             className={classNames([
@@ -419,7 +431,6 @@ export const SortableTree = ({
                                 childCount={childCount}
                                 component={component}
                                 value={screenValue?.value || null}
-                                // style={itemStyle}
                                 onClickItem={onClickItem}
                                 index={idx}
                                 childValue={childValue?.value || null}
@@ -444,7 +455,6 @@ export const SortableTree = ({
                                     value={activeValue?.value}
                                     onClickItem={onClickItem}
                                     index={flattenedItems.findIndex(({ id }) => activeId === id)}
-                                    // style={itemStyle}
                                 />
                             </div>
                         ) : null}
