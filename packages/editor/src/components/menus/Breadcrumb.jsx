@@ -76,7 +76,8 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
             let parentItem = null;
             finalFieldPath.reduce(
                 (currentFields, key, keyIndex) => {
-                    const { type: fieldType = null, fields: currentSubFields = null } =
+                    console.log(key, currentFields);
+                    const { type: fieldType = null, fields: currentSubFields = null, itemsField: currentItemsField = null } =
                         currentFields;
 
                     const fieldsDef =
@@ -84,9 +85,10 @@ const Breadcrumb = ({ story, screenId, field, form, url, className }) => {
                     const {
                         fields: defSubFields = null,
                         settings = null,
-                        itemsField = null,
+                        itemsField: defItemsField = null,
                     } = fieldsDef;
 
+                    const itemsField = currentItemsField || defItemsField;
                     const subFields = currentSubFields || defSubFields;
 
                     const currentSubfields =
