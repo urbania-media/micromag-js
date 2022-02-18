@@ -71,25 +71,9 @@ export const SortableTreeItem = ({
         animateLayoutChanges,
     });
 
-    const hasCollapse = onCollapse !== null;
-    const { scaledWidth = 100, scaledHeight = 66, scale = 1 } = itemStyle;
-    const extraHeight = hasCollapse ? 30 : 0;
-
     const actionsStyle = {
-        width: depth === 0 ? scaledWidth : scaledWidth * smallScale,
-        height: depth === 0 ? scaledHeight + extraHeight : scaledHeight * smallScale,
         transform: CSS.Translate.toString(transform),
         transition,
-    };
-
-    // TODO: remove this whenever
-    const previewStyle = {
-        width: itemStyle.width,
-        height: itemStyle.height,
-        transform:
-            depth === 0
-                ? itemStyle.transform
-                : `scale(${scale * smallScale}, ${scale * smallScale})`,
     };
 
     const { onPointerDown } = listeners || {};
@@ -124,7 +108,7 @@ export const SortableTreeItem = ({
                 onCollapse={onCollapse}
                 {...props}
             >
-                {Component !== null ? <Component {...value} previewStyle={previewStyle} /> : null}
+                {Component !== null ? <Component {...value} /> : null}
             </SortableTreeItemActions>
         </div>
     );
