@@ -227,10 +227,10 @@ export const SortableTree = ({
                 return getMovementAnnouncement('onDragOver', id, currentOverId);
             },
             onDragEnd(id, currentOverId) {
-                // console.log('drag end', flattenedItems);
+                const flat = flattenTree(items);
                 if (onChange !== null) {
                     onChange(
-                        (flattenedItems || []).map(
+                        (flat || []).map(
                             ({
                                 id: itemId,
                                 children = [],
