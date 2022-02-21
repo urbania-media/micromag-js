@@ -18,7 +18,6 @@ const propTypes = {
     withPreview: PropTypes.bool,
     withPlaceholder: PropTypes.bool,
     settings: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-    // previewMinWidth: PropTypes.number,
     sortable: PropTypes.bool,
     isTree: PropTypes.bool,
     isVertical: PropTypes.bool,
@@ -36,7 +35,6 @@ const defaultProps = {
     withPreview: false,
     withPlaceholder: false,
     settings: null,
-    // previewMinWidth: 320,
     sortable: false,
     isTree: false,
     isVertical: false,
@@ -133,8 +131,6 @@ const ScreensMenu = ({
                 : items.map(({ id }) => ({ id })),
         [items, isTree, items.length],
     );
-
-    // console.log('current items', sortableItems);
 
     return (
         <div

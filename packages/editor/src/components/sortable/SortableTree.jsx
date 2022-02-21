@@ -24,7 +24,6 @@ import {
     removeItem,
     setProperty,
     getMaxDepth,
-    arrayEquals,
 } from '../../lib/utilities';
 import styles from '../../styles/sortable/sortable-tree.module.scss';
 import { SortableTreeItem } from './SortableTreeItem';
@@ -69,7 +68,6 @@ const propTypes = {
     indicator: PropTypes.bool,
     removable: PropTypes.bool,
     component: PropTypes.func,
-    // itemStyle: PropTypes.shape({}),
     onClickItem: PropTypes.func,
     onChange: PropTypes.func,
 };
@@ -81,19 +79,17 @@ const defaultProps = {
     indicator: false,
     removable: false,
     component: null,
-    // itemStyle: null,
     onClickItem: null,
     onChange: null,
 };
 
-export const SortableTree = ({
+const SortableTree = ({
     collapsible,
     items: defaultItems,
     indicator,
     indentationWidth,
     removable,
     component,
-    // itemStyle,
     onClickItem,
     onChange,
 }) => {
@@ -103,20 +99,18 @@ export const SortableTree = ({
     const [offsetLeft, setOffsetLeft] = useState(0);
     const [currentPosition, setCurrentPosition] = useState(null);
 
-    // Initial tree setup from list
+    // Tree setup from list
     useEffect(() => {
         const flat = flattenTree(items);
         const merged = defaultItems.map((t1) => ({
             ...flat.find((t2) => t2.id === t1.id),
             ...t1,
         }));
-        // console.log('new items', flat, defaultItems, merged);
         setItems(buildTree(merged));
     }, [defaultItems.length]);
 
     const flattenedItems = useMemo(() => {
         const flattenedTree = flattenTree(items);
-        // console.log('yo', flattenedTree);
         const collapsedItems =
             flattenedTree.reduce(
                 (acc, { children = [], collapsed, id }) =>
@@ -359,8 +353,6 @@ export const SortableTree = ({
         },
         [setItems, setProperty],
     );
-
-    // console.log(defaultItems);
 
     return (
         <DndContext

@@ -25,6 +25,7 @@ const propTypes = {
     screenSize: MicromagPropTypes.screenSize,
     menuWidth: PropTypes.number,
     withDotItemClick: PropTypes.bool,
+    withoutScreensMenu: PropTypes.bool,
     onRequestOpen: PropTypes.func,
     onRequestClose: PropTypes.func,
     onClickItem: PropTypes.func,
@@ -49,6 +50,7 @@ const defaultProps = {
     screenSize: null,
     menuWidth: null,
     withDotItemClick: false,
+    withoutScreensMenu: false,
     onRequestOpen: null,
     onRequestClose: null,
     onClickItem: null,
@@ -72,6 +74,7 @@ const ViewerMenu = ({
     screenSize,
     menuWidth,
     withDotItemClick,
+    withoutScreensMenu,
     onRequestOpen,
     onRequestClose,
     onClickItem: customOnClickItem,
@@ -229,6 +232,7 @@ const ViewerMenu = ({
                     onClickMenu={onClickMenu}
                     closeable={closeable}
                     withItemClick={withDotItemClick}
+                    withoutScreensMenu={withoutScreensMenu}
                     onClose={onClickCloseViewer}
                     className={styles.menuDots}
                 />

@@ -22,6 +22,7 @@ const propTypes = {
     }),
     closeable: PropTypes.bool,
     withItemClick: PropTypes.bool,
+    withoutScreensMenu: PropTypes.bool,
     onClose: PropTypes.func,
     className: PropTypes.string,
 };
@@ -35,6 +36,7 @@ const defaultProps = {
     colors: null,
     closeable: false,
     withItemClick: false,
+    withoutScreensMenu: false,
     onClose: null,
     className: null,
 };
@@ -48,6 +50,7 @@ const ViewerMenuDots = ({
     colors,
     closeable,
     withItemClick,
+    withoutScreensMenu,
     onClose,
     className,
 }) => {
@@ -85,7 +88,7 @@ const ViewerMenuDots = ({
                             active={index <= currentIndex}
                             colors={colors}
                             onClick={() => {
-                                if (withItemClick && onClickItem !== null) {
+                                if ((withItemClick || withoutScreensMenu) && onClickItem !== null) {
                                     onClickItem(item);
                                 } else if (!withItemClick && onClickMenu !== null) {
                                     onClickMenu();
@@ -95,22 +98,24 @@ const ViewerMenuDots = ({
                         />
                     );
                 })}
-                <li className={styles.menu}>
-                    <MenuIcon className={styles.menuIcon} color={primary} />
-                    <button
-                        type="button"
-                        title={intl.formatMessage({
-                            defaultMessage: 'Menu',
-                            description: 'Button label',
-                        })}
-                        aria-label={intl.formatMessage({
-                            defaultMessage: 'Menu',
-                            description: 'Button label',
-                        })}
-                        className={styles.menuButton}
-                        onClick={onClickMenu}
-                    />
-                </li>
+                {!withoutScreensMenu ? (
+                    <li className={styles.menu}>
+                        <MenuIcon className={styles.menuIcon} color={primary} />
+                        <button
+                            type="button"
+                            title={intl.formatMessage({
+                                defaultMessage: 'Menu',
+                                description: 'Button label',
+                            })}
+                            aria-label={intl.formatMessage({
+                                defaultMessage: 'Menu',
+                                description: 'Button label',
+                            })}
+                            className={styles.menuButton}
+                            onClick={onClickMenu}
+                        />
+                    </li>
+                ) : null}
                 {closeable ? (
                     <li className={styles.closeButton} style={{ color: primary }}>
                         <button
