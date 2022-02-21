@@ -3,7 +3,7 @@ import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { iOS } from '../../lib/utilities';
 import styles from '../../styles/sortable/sortable-tree-item.module.scss';
 import SortableTreeItemActions from './SortableTreeItemActions';
@@ -27,6 +27,8 @@ const propTypes = {
     collapsed: PropTypes.bool,
     onCollapse: PropTypes.func,
     onClickItem: PropTypes.func,
+    // eslint-disable-next-line react/forbid-prop-types
+    childValue: PropTypes.object,
     isLastChild: PropTypes.bool,
 };
 
@@ -38,6 +40,7 @@ const defaultProps = {
     collapsed: false,
     onCollapse: null,
     onClickItem: null,
+    childValue: null,
     isLastChild: false,
 };
 
@@ -54,6 +57,7 @@ const SortableTreeItem = ({
     collapsed,
     onCollapse,
     onClickItem,
+    childValue,
     isLastChild,
     ...props
 }) => {
@@ -71,22 +75,41 @@ const SortableTreeItem = ({
         animateLayoutChanges,
     });
 
+    const timeout = useRef(null);
+
     const actionsStyle = {
         transform: CSS.Translate.toString(transform),
         transition,
     };
 
-    const { onPointerDown } = listeners || {};
+    const { onPointerDown = null, onPointerUp = null } = listeners || {};
     const onClickAction = useCallback(
         (e) => {
             if (onClickItem !== null) {
                 onClickItem(value, index);
             }
             if (onPointerDown !== null) {
-                onPointerDown(e);
+                e.persist();
+                timeout.current = setTimeout(() => {
+                    if (onPointerDown !== null) {
+                        onPointerDown(e);
+                    }
+                    timeout.current = null;
+                }, 200);
             }
         },
         [value, index, onClickItem, onPointerDown],
+    );
+    const cancellingPointerUp = useCallback(
+        (e) => {
+            if (timeout.current !== null) {
+                clearTimeout(timeout.current);
+            }
+            if (onPointerUp !== null) {
+                onPointerUp(e);
+            }
+        },
+        [onPointerUp],
     );
 
     return (
@@ -103,12 +126,22 @@ const SortableTreeItem = ({
                     ...attributes,
                     ...listeners,
                     onPointerDown: onClickAction,
+                    onPointerUp: cancellingPointerUp,
                 }}
                 collapsed={collapsed}
                 onCollapse={onCollapse}
                 {...props}
             >
-                {Component !== null ? <Component {...value} /> : null}
+                {Component !== null ? (
+                    <div className={styles.parent}>
+                        <Component {...value} />
+                    </div>
+                ) : null}
+                {childValue !== null ? (
+                    <div className={styles.child}>
+                        <Component {...childValue} />
+                    </div>
+                ) : null}
             </SortableTreeItemActions>
         </div>
     );

@@ -39,6 +39,7 @@ const propTypes = {
     landscapeScreenMargin: PropTypes.number,
     withMetadata: PropTypes.bool,
     withoutMenu: PropTypes.bool,
+    withoutScreensMenu: PropTypes.bool,
     withoutFullscreen: PropTypes.bool,
     withLandscapeSiblingsScreens: PropTypes.bool,
     closeable: PropTypes.bool,
@@ -73,6 +74,7 @@ const defaultProps = {
     landscapeScreenMargin: 20,
     withMetadata: false,
     withoutMenu: false,
+    withoutScreensMenu: false,
     withoutFullscreen: false,
     withLandscapeSiblingsScreens: false,
     closeable: false,
@@ -103,6 +105,7 @@ const Viewer = ({
     landscapeScreenMargin,
     withMetadata,
     withoutMenu,
+    withoutScreensMenu,
     withoutFullscreen, // eslint-disable-line no-unused-vars
     withLandscapeSiblingsScreens,
     closeable,
@@ -169,7 +172,6 @@ const Viewer = ({
     const screensMediasRef = useRef([]);
 
     // Screen index
-
     const screenIndex = useMemo(
         () =>
             Math.max(
@@ -203,7 +205,6 @@ const Viewer = ({
     );
 
     // Track screen view
-
     const trackingEnabled = isView;
     const currentScreen = screens[screenIndex] || null;
     useEffect(() => {
@@ -381,6 +382,7 @@ const Viewer = ({
                             onRequestOpen={onMenuRequestOpen}
                             onRequestClose={onMenuRequestClose}
                             withDotItemClick={screenWidth > 400}
+                            withoutScreensMenu={withoutScreensMenu}
                             refDots={menuDotsContainerRef}
                         />
                     ) : null}
@@ -448,7 +450,8 @@ const Viewer = ({
                                                 styles.screen,
                                                 {
                                                     [styles.current]: current,
-                                                    [styles.visible]: current || withLandscapeSiblingsScreens,
+                                                    [styles.visible]:
+                                                        current || withLandscapeSiblingsScreens,
                                                 },
                                             ])}
                                             tabIndex={active ? '0' : '-1'} /* eslint-disable-line */

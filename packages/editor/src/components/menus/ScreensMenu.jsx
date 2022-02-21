@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-indent */
+
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import isFunction from 'lodash/isFunction';
@@ -15,7 +16,6 @@ const propTypes = {
     withPreview: PropTypes.bool,
     withPlaceholder: PropTypes.bool,
     settings: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-    previewMinWidth: PropTypes.number,
     sortable: PropTypes.bool,
     isTree: PropTypes.bool,
     isVertical: PropTypes.bool,
@@ -33,7 +33,6 @@ const defaultProps = {
     withPreview: false,
     withPlaceholder: false,
     settings: null,
-    previewMinWidth: 320,
     sortable: false,
     isTree: false,
     isVertical: false,
@@ -51,7 +50,6 @@ const ScreensMenu = ({
     withPreview,
     withPlaceholder,
     settings,
-    previewMinWidth,
     isVertical,
     noWrap,
     className,
@@ -63,31 +61,6 @@ const ScreensMenu = ({
     onClickItem,
     onOrderChange,
 }) => {
-    // const {
-    //     ref: columnRef,
-    //     entry: { contentRect: columnRect },
-    // } = useResizeObserver({}, [items]);
-
-    // const treeStyle = useMemo(() => {
-    //     const { width: itemWidth = 0 } = columnRect || {};
-    //     const itemHeight = (itemWidth * 3) / 2;
-    //     const ratio = itemHeight !== 0 && itemWidth !== 0 ? itemHeight / itemWidth : 0;
-    //     const {
-    //         width: scaledWidth,
-    //         height: scaledHeight,
-    //         scale: previewScale,
-    //     } = getSizeWithinBounds(previewMinWidth, previewMinWidth * ratio, itemWidth, itemHeight);
-
-    //     return {
-    //         width: previewMinWidth,
-    //         height: previewMinWidth * ratio,
-    //         transform: `scale(${previewScale}, ${previewScale})`,
-    //         scale: previewScale,
-    //         scaledWidth,
-    //         scaledHeight,
-    //     };
-    // }, [previewMinWidth, columnRect]);
-
     const itemsElements = !isTree
         ? items.map(
               (
@@ -150,12 +123,11 @@ const ScreensMenu = ({
                           id,
                           parentId,
                           collapsed,
-                          value: { id, screen, href,
-                            ...props, },
+                          value: { id, screen, href, ...props },
                       };
                   }, [])
                 : items.map(({ id }) => ({ id })),
-        [items, isTree],
+        [items, isTree, items.length],
     );
 
     return (

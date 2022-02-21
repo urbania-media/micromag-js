@@ -1,3 +1,22 @@
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 @import '~@micromag/core/scss/mixins';
+
+.container {
+    display: block;
+
+    .parent {
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    }
+
+    .child {
+        position: absolute;
+        z-index: 0;
+        right: 5px;
+        bottom: -25px;
+        width: 75%;
+        filter: brightness(60%);
+    }
+}

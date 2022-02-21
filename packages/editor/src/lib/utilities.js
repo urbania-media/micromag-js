@@ -101,7 +101,6 @@ export function buildTree(flattenedItems) {
         const { id, children } = item;
         const parentId = item.parentId ?? root.id;
         const parent = nodes[parentId] ?? findItem(items, parentId);
-
         nodes[id] = { id, children };
         parent.children.push(item);
     }
@@ -192,7 +191,24 @@ export function removeChildrenOf(items, ids) {
             }
             return false;
         }
-
         return true;
     });
 }
+
+export const arrayEquals = (arrayA, arrayB) => {
+    if (!arrayA || !arrayB) return false;
+
+    if (arrayA.length !== arrayB.length) return false;
+
+    for (let i = 0, l = arrayA.length; i < l; i += 1) {
+        if (arrayA[i] instanceof Array && arrayB[i] instanceof Array) {
+            // recurse into the nested arrays
+            if (!arrayEquals(arrayA[i], arrayB[i])) {
+                return false;
+            }
+        } else if (arrayA[i] !== arrayB[i]) {
+            return false;
+        }
+    }
+    return true;
+};
