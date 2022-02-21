@@ -33,7 +33,7 @@ const propTypes = {
 const defaultProps = {
     center: null,
     zoom: null,
-    maxZoom: 18,
+    maxZoom: 16,
     bounds: null,
     events: null,
     fitBounds: false,

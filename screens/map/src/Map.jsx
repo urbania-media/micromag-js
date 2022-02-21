@@ -38,6 +38,9 @@ const propTypes = {
     button: MicromagPropTypes.textElement,
     openedMarkerSpacerHeight: PropTypes.number,
     withMarkerImages: PropTypes.bool,
+    center: MicromagPropTypes.geoPosition,
+    zoom: PropTypes.number,
+    fitBounds: PropTypes.bool,
     background: MicromagPropTypes.backgroundElement,
     current: PropTypes.bool,
     active: PropTypes.bool,
@@ -52,6 +55,9 @@ const defaultProps = {
     layout: 'normal',
     draggable: true,
     markers: [],
+    center: defaultCenter,
+    zoom: defaultZoom,
+    fitBounds: true,
     title: null,
     description: null,
     button: null,
@@ -76,6 +82,9 @@ function MapScreen({
     button,
     openedMarkerSpacerHeight,
     withMarkerImages,
+    zoom,
+    center,
+    fitBounds,
     background,
     current,
     active,
@@ -171,8 +180,8 @@ function MapScreen({
     }, [setOpened, onEnableInteraction, trackScreenEvent]);
 
     const onMapDragEnd = useCallback(
-        (center) => {
-            const coords = center.toJSON();
+        (newCenter) => {
+            const coords = newCenter.toJSON();
             trackScreenEvent(
                 'drag_map',
                 `Latitude: ${coords.lat.toFixed(4)}, Longitude: ${coords.lng.toFixed(4)}`,
@@ -260,12 +269,12 @@ function MapScreen({
         staticUrl = `https://maps.googleapis.com/maps/api/staticmap?size=${Math.round(
             width,
         )}x${Math.round(height)}`;
-        if (defaultCenter !== null && (correctMarkers === null || correctMarkers.length === 0)) {
-            const { lat = null, lng = null } = defaultCenter || {};
+        if (center !== null && (correctMarkers === null || correctMarkers.length === 0)) {
+            const { lat = null, lng = null } = center || {};
             staticUrl += `&center=${lat},${lng}`;
         }
-        if (defaultZoom !== null) {
-            staticUrl += `&zoom=${defaultZoom}`;
+        if (zoom !== null) {
+            staticUrl += `&zoom=${zoom}`;
         }
         if (apiKey !== null) {
             staticUrl += `&key=${apiKey}`;
@@ -354,11 +363,11 @@ function MapScreen({
                         ) : (
                             <Map
                                 key="map"
-                                center={defaultCenter}
-                                zoom={defaultZoom}
+                                center={center}
+                                zoom={zoom}
                                 draggable={draggable}
                                 markers={finalMarkers}
-                                fitBounds
+                                fitBounds={fitBounds}
                                 onClickMarker={onClickMarker}
                                 onReady={onMapReady}
                                 onDragEnd={onMapDragEnd}

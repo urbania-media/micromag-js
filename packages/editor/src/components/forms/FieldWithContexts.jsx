@@ -5,7 +5,7 @@ import React from 'react';
 import { FieldForm } from '@micromag/core/components';
 import { useScreenDefinition, useFormsComponents } from '@micromag/core/contexts';
 import { Fields } from '@micromag/fields';
-import getScreenFieldsWithStates from '../../lib/getScreenFieldsWithStates';
+import getScreenFieldsWithStates from '../../utils/getScreenFieldsWithStates';
 
 const propTypes = {
     name: PropTypes.string,
@@ -38,8 +38,6 @@ const FieldWithContexts = ({ name, form, ...props }) => {
                 ? [fieldName || stateId, ...nameParts.slice(1)]
                 : nameParts.slice(1);
     }
-
-    console.log(finalNameParts, currentState);
 
     const formComponents = useFormsComponents();
     // if (currentState !== null && !repeatable && stateFieldName === null) {

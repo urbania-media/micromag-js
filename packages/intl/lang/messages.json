@@ -315,6 +315,10 @@
     "defaultMessage": "Select a closed-captions file...",
     "description": "Label when no value is provided to Closed-captions field"
   },
+  "BgrRxZ": {
+    "defaultMessage": "Intro",
+    "description": "State label"
+  },
   "BpZoQZ": {
     "defaultMessage": "Success",
     "description": "Success form message"
@@ -435,10 +439,6 @@
     "defaultMessage": "Background color",
     "description": "Field label"
   },
-  "JOOlxn": {
-    "defaultMessage": "Title",
-    "description": "State label"
-  },
   "JnCf7K": {
     "defaultMessage": "Button style",
     "description": "Button style label"
@@ -482,6 +482,10 @@
   "N25iDO": {
     "defaultMessage": "Title",
     "description": "Title field label"
+  },
+  "NVUpOG": {
+    "defaultMessage": "Map fit markers",
+    "description": "Field label"
   },
   "NmCfTO": {
     "defaultMessage": "Conversation",
@@ -621,6 +625,10 @@
   "VspZp9": {
     "defaultMessage": "Upload an image",
     "description": "Upload button label in Media Gallery"
+  },
+  "W5qWPj": {
+    "defaultMessage": "Center",
+    "description": "Field label"
   },
   "Wb5zY4": {
     "defaultMessage": "Select a font file...",
@@ -1082,6 +1090,10 @@
   },
   "vERejo": {
     "defaultMessage": "Video",
+    "description": "Field label"
+  },
+  "vRzzo6": {
+    "defaultMessage": "Zoom",
     "description": "Field label"
   },
   "vYunz+": {

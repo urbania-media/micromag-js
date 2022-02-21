@@ -26,7 +26,7 @@ import {
     getMaxDepth,
 } from '../../lib/utilities';
 import styles from '../../styles/sortable/sortable-tree.module.scss';
-import { SortableTreeItem } from './SortableTreeItem';
+import SortableTreeItem from './SortableTreeItem';
 
 const initialItems = [
     {
@@ -96,7 +96,7 @@ const defaultProps = {
     onChange: null,
 };
 
-export const SortableTree = ({
+const SortableTree = ({
     collapsible,
     items: defaultItems,
     indicator,

@@ -54,7 +54,7 @@ const defaultProps = {
     children: null,
 };
 
-export const SortableTreeItemActions = forwardRef(
+const SortableTreeItemActions = forwardRef(
     (
         {
             childCount,

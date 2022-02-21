@@ -236,6 +236,9 @@
     "B6cvYv": {
         "defaultMessage": "Select a closed-captions file..."
     },
+    "BgrRxZ": {
+        "defaultMessage": "Intro"
+    },
     "BpZoQZ": {
         "defaultMessage": "Success"
     },
@@ -326,9 +329,6 @@
     "JDPMlG": {
         "defaultMessage": "Background color"
     },
-    "JOOlxn": {
-        "defaultMessage": "Title"
-    },
     "JnCf7K": {
         "defaultMessage": "Button style"
     },
@@ -361,6 +361,9 @@
     },
     "N25iDO": {
         "defaultMessage": "Title"
+    },
+    "NVUpOG": {
+        "defaultMessage": "Map fit markers"
     },
     "NmCfTO": {
         "defaultMessage": "Conversation"
@@ -466,6 +469,9 @@
     },
     "VspZp9": {
         "defaultMessage": "Upload an image"
+    },
+    "W5qWPj": {
+        "defaultMessage": "Center"
     },
     "Wb5zY4": {
         "defaultMessage": "Select a font file..."
@@ -814,6 +820,9 @@
     },
     "vERejo": {
         "defaultMessage": "Video"
+    },
+    "vRzzo6": {
+        "defaultMessage": "Zoom"
     },
     "vYunz+": {
         "defaultMessage": "Recent searches"

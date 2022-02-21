@@ -485,6 +485,12 @@ msgctxt "B6cvYv"
 msgid "Select a closed-captions file..."
 msgstr "Select a closed-captions file..."
 
+# State label
+#: BgrRxZ
+msgctxt "BgrRxZ"
+msgid "Intro"
+msgstr "Intro"
+
 # Success form message
 #: BpZoQZ
 msgctxt "BpZoQZ"
@@ -665,12 +671,6 @@ msgctxt "JDPMlG"
 msgid "Background color"
 msgstr "Background color"
 
-# State label
-#: JOOlxn
-msgctxt "JOOlxn"
-msgid "Title"
-msgstr "Title"
-
 # Button style label
 #: JnCf7K
 msgctxt "JnCf7K"
@@ -736,6 +736,12 @@ msgstr "Gallery with captions"
 msgctxt "N25iDO"
 msgid "Title"
 msgstr "Title"
+
+# Field label
+#: NVUpOG
+msgctxt "NVUpOG"
+msgid "Map fit markers"
+msgstr "Map fit markers"
 
 # Conversation placeholder
 #: NmCfTO
@@ -945,6 +951,12 @@ msgstr "Google Fonts"
 msgctxt "VspZp9"
 msgid "Upload an image"
 msgstr "Upload an image"
+
+# Field label
+#: W5qWPj
+msgctxt "W5qWPj"
+msgid "Center"
+msgstr "Center"
 
 # Label when no value
 #: Wb5zY4
@@ -1639,6 +1651,12 @@ msgstr "Border"
 msgctxt "vERejo"
 msgid "Video"
 msgstr "Video"
+
+# Field label
+#: vRzzo6
+msgctxt "vRzzo6"
+msgid "Zoom"
+msgstr "Zoom"
 
 # Media label
 #: vYunz+

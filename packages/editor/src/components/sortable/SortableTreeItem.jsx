@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 import { iOS } from '../../lib/utilities';
 import styles from '../../styles/sortable/sortable-tree-item.module.scss';
-import { SortableTreeItemActions } from './SortableTreeItemActions';
+import SortableTreeItemActions from './SortableTreeItemActions';
 
 const propTypes = {
     id: PropTypes.string.isRequired,
@@ -43,7 +43,7 @@ const defaultProps = {
 
 const animateLayoutChanges = ({ isSorting, wasDragging }) => !(isSorting || wasDragging);
 
-export const SortableTreeItem = ({
+const SortableTreeItem = ({
     id,
     index,
     depth,

@@ -1,13 +1,11 @@
 /* eslint-disable react/jsx-indent */
 /* eslint-disable react/jsx-props-no-spreading */
-import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import isFunction from 'lodash/isFunction';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 import { ReactSortable } from 'react-sortablejs';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useResizeObserver } from '@micromag/core/hooks';
 import styles from '../../styles/menus/screens.module.scss';
 import ScreenWithPreview from '../buttons/ScreenWithPreview';
 import SortableTree from '../sortable/SortableTree';

@@ -81,6 +81,34 @@ export default [
                             description: 'Field label',
                         }),
                     },
+                    {
+                        name: 'fitBounds',
+                        type: 'toggle',
+                        defaultValue: true,
+                        label: defineMessage({
+                            defaultMessage: 'Map fit markers',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'zoom',
+                        type: 'slider',
+                        defaultValue: 9,
+                        min: 0,
+                        max: 16,
+                        label: defineMessage({
+                            defaultMessage: 'Zoom',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'center',
+                        type: 'geo-position',
+                        label: defineMessage({
+                            defaultMessage: 'Center',
+                            description: 'Field label',
+                        }),
+                    },
                 ]
             },
             {

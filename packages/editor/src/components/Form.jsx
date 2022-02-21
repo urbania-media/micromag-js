@@ -21,7 +21,7 @@ import {
 } from '../utils';
 import useRouteParams from '../hooks/useRouteParams';
 import useFormTransition from '../hooks/useFormTransition';
-import getScreenFieldsWithStates from '../lib/getScreenFieldsWithStates';
+import getScreenFieldsWithStates from '../utils/getScreenFieldsWithStates';
 import SettingsButton from './buttons/Settings';
 import Breadcrumb from './menus/Breadcrumb';
 import ScreenForm from './forms/Screen';
