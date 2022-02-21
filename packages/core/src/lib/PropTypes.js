@@ -307,7 +307,7 @@ export const borderStyle = PropTypes.shape({
     color,
 });
 
-export const buttonStyle = PropTypes.shape({
+export const boxStyle = PropTypes.shape({
     backgroundColor: color,
     borderRadius: PropTypes.number,
     borderWidth: PropTypes.number,

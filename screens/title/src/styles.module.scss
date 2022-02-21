@@ -34,9 +34,17 @@
         }
     }
 
+    .box {
+        padding: 0.5em;
+    }
+
     &.isPlaceholder {
         .layout {
             padding: 10px;
+        }
+
+        .box {
+            border: solid 2px rgba($black, 0.5);
         }
     }
 }

@@ -3,6 +3,7 @@ import { defineMessage } from 'react-intl';
 import TitleScreen from './Title';
 import TitleSubtitleScreen from './TitleSubtitle';
 import TitleSubtitleCreditsScreen from './TitleSubtitleCredits';
+import TitleWithBoxScreen from './TitleWithBox';
 import * as transforms from './transforms/index';
 
 export default [
@@ -190,6 +191,89 @@ export default [
                     defaultMessage: 'Credits',
                     description: 'Credits field label',
                 }),
+            },
+            {
+                name: 'background',
+                type: 'background',
+                label: defineMessage({
+                    defaultMessage: 'Background',
+                    description: 'Background field label',
+                }),
+            },
+            {
+                name: 'callToAction',
+                type: 'call-to-action',
+                theme: {
+                    label: {
+                        textStyle: 'heading2',
+                    },
+                },
+            },
+        ],
+    },
+    {
+        id: 'title-with-box',
+        type: 'screen',
+        group: {
+            label: defineMessage({
+                defaultMessage: 'Title',
+                description: 'Title screen group',
+            }),
+            order: 1,
+        },
+        title: defineMessage({
+            defaultMessage: 'Title with box',
+            description: 'Dcreen title',
+        }),
+        component: TitleWithBoxScreen,
+        layouts: ['top', 'middle', 'bottom', 'split-top', 'split-bottom'],
+        transforms,
+        fields: [
+            {
+                name: 'layout',
+                type: 'screen-layout',
+                defaultValue: 'top',
+                label: defineMessage({
+                    defaultMessage: 'Layout',
+                    description: 'Layout field label',
+                }),
+            },
+            {
+                name: 'title',
+                type: 'heading-element',
+                theme: {
+                    textStyle: 'heading1',
+                },
+                label: defineMessage({
+                    defaultMessage: 'Title',
+                    description: 'Title field label',
+                }),
+            },
+            {
+                name: 'subtitle',
+                type: 'heading-element',
+                theme: {
+                    textStyle: 'heading2',
+                },
+                label: defineMessage({
+                    defaultMessage: 'Subtitle',
+                    description: 'Subtitle field label',
+                }),
+            },
+            {
+                name: 'description',
+                type: 'text-element',
+                theme: {
+                    textStyle: 'text',
+                },
+                label: defineMessage({
+                    defaultMessage: 'Description',
+                    description: 'Field label',
+                }),
+            },
+            {
+                name: 'boxStyle',
+                type: 'box-style',
             },
             {
                 name: 'background',

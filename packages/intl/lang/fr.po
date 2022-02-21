@@ -431,6 +431,12 @@ msgctxt "9ZdD+Q"
 msgid "Library for"
 msgstr "Bibliothèque pour"
 
+# Dcreen title
+#: 9a5s+m
+msgctxt "9a5s+m"
+msgid "Title with box"
+msgstr ""
+
 # Button label in images with caption field
 #: 9n9+yP
 msgctxt "9n9+yP"
@@ -671,12 +677,6 @@ msgctxt "JDPMlG"
 msgid "Background color"
 msgstr "Couleur de l'arrière-plan"
 
-# Button style label
-#: JnCf7K
-msgctxt "JnCf7K"
-msgid "Button style"
-msgstr "Style du bouton"
-
 # Button to create your first screen
 #: JoWKee
 msgctxt "JoWKee"
@@ -885,6 +885,12 @@ msgstr "Longitude"
 msgctxt "TXkHah"
 msgid "Link"
 msgstr "Lien"
+
+# Fields label
+#: TkRMbW
+msgctxt "TkRMbW"
+msgid "Box style"
+msgstr ""
 
 # Button label
 #: Tol+/U
@@ -1215,6 +1221,12 @@ msgstr "Avancé"
 msgctxt "eoW0tZ"
 msgid "Duration"
 msgstr "Durée"
+
+# Field label
+#: f5Yipd
+msgctxt "f5Yipd"
+msgid "Box"
+msgstr ""
 
 # Field label
 #: f68O+0

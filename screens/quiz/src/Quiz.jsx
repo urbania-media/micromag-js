@@ -6,7 +6,7 @@ import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenRenderContext, useScreenSize, useViewer } from '@micromag/core/contexts';
 import { useResizeObserver, useTrackScreenEvent } from '@micromag/core/hooks';
-import { getStyleFromButton, getStyleFromColor, isTextFilled } from '@micromag/core/utils';
+import { getStyleFromBox, getStyleFromColor, isTextFilled } from '@micromag/core/utils';
 import { useQuizCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
@@ -30,7 +30,7 @@ const propTypes = {
         image: MicromagPropTypes.imageElement,
         text: MicromagPropTypes.textElement,
     }),
-    buttonsStyle: MicromagPropTypes.buttonStyle,
+    buttonsStyle: MicromagPropTypes.boxStyle,
     goodAnswerColor: MicromagPropTypes.color,
     badAnswerColor: MicromagPropTypes.color,
     spacing: PropTypes.number,
@@ -334,8 +334,8 @@ const QuizScreen = ({
                                                     disabled={isPreview}
                                                     focusable={current && isView}
                                                     buttonStyle={{
-                                                        ...getStyleFromButton(buttonsStyle),
-                                                        ...getStyleFromButton(answerButtonStyle),
+                                                        ...getStyleFromBox(buttonsStyle),
+                                                        ...getStyleFromBox(answerButtonStyle),
                                                     }}
                                                 >
                                                     {rightAnswer ? (

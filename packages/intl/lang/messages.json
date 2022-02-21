@@ -279,6 +279,10 @@
     "defaultMessage": "Library for",
     "description": "Library source menu"
   },
+  "9a5s+m": {
+    "defaultMessage": "Title with box",
+    "description": "Dcreen title"
+  },
   "9n9+yP": {
     "defaultMessage": "Add an image",
     "description": "Button label in images with caption field"
@@ -439,10 +443,6 @@
     "defaultMessage": "Background color",
     "description": "Field label"
   },
-  "JnCf7K": {
-    "defaultMessage": "Button style",
-    "description": "Button style label"
-  },
   "JoWKee": {
     "defaultMessage": "Create your first screen",
     "description": "Button to create your first screen"
@@ -581,6 +581,10 @@
   "TXkHah": {
     "defaultMessage": "Link",
     "description": "CTA field url field label"
+  },
+  "TkRMbW": {
+    "defaultMessage": "Box style",
+    "description": "Fields label"
   },
   "Tol+/U": {
     "defaultMessage": "Clear",
@@ -801,6 +805,10 @@
   "eoW0tZ": {
     "defaultMessage": "Duration",
     "description": "Label in Media Gallery"
+  },
+  "f5Yipd": {
+    "defaultMessage": "Box",
+    "description": "Field label"
   },
   "f68O+0": {
     "defaultMessage": "Messages",

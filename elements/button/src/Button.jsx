@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button as CoreButton } from '@micromag/core/components';
-import { getStyleFromText, getStyleFromButton } from '@micromag/core/utils';
+import { getStyleFromText, getStyleFromBox } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
 const propTypes = {
     textStyle: MicromagPropTypes.textStyle,
-    buttonStyle: MicromagPropTypes.buttonStyle,
+    buttonStyle: MicromagPropTypes.boxStyle,
     type: PropTypes.oneOf(['button', 'submit']),
     disabled: PropTypes.bool,
     focusable: PropTypes.bool,
@@ -60,7 +60,7 @@ const Button = ({
     if (buttonStyle !== null) {
         finalStyle = {
             ...finalStyle,
-            ...getStyleFromButton(buttonStyle),
+            ...getStyleFromBox(buttonStyle),
         };
     }
 

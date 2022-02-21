@@ -15,11 +15,11 @@ const style = {
             italic: true,
         },
     },
-    borderStyle: {
-        width: 2,
-        style: 'dashed',
-        color: { color: 'yellow' },
-    },
+    buttonStyle: {
+        borderWidth: 2,
+        borderStyle: 'dashed',
+        borderColor: { color: 'yellow' },
+    }
 };
 
 export const Default = () => <Button>Button</Button>;

@@ -1,13 +1,13 @@
 import { defineMessage } from 'react-intl';
 
 export default {
-    id: 'button-style',
+    id: 'box-style',
     fields: [
         {
             type: 'fields',
             label: defineMessage({
-                defaultMessage: 'Button style',
-                description: 'Button style label',
+                defaultMessage: 'Box style',
+                description: 'Fields label',
             }),
             isList: true,
             fields: [
@@ -27,6 +27,16 @@ export default {
                     label: defineMessage({
                         defaultMessage: 'Rounded corners',
                         description: 'Rounded corners label',
+                    }),
+                },
+                {
+                    name: 'padding',
+                    type: 'number',
+                    isHorizontal: true,
+                    dataList: [5, 10, 20, 30, 40],
+                    label: defineMessage({
+                        defaultMessage: 'Padding',
+                        description: 'Field label',
                     }),
                 },
             ],

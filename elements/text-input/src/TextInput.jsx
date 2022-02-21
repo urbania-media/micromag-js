@@ -5,7 +5,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { getStyleFromText, getStyleFromMargin, getStyleFromButton } from '@micromag/core/utils';
+import { getStyleFromText, getStyleFromMargin, getStyleFromBox } from '@micromag/core/utils';
 
 import styles from './styles.module.scss';
 
@@ -14,7 +14,7 @@ const propTypes = {
     labelOutside: PropTypes.bool,
     labelClassName: PropTypes.string,
     textStyle: MicromagPropTypes.textStyle,
-    buttonStyle: MicromagPropTypes.buttonStyle,
+    buttonStyle: MicromagPropTypes.boxStyle,
     labelOutsideStyle: MicromagPropTypes.textStyle,
     margin: MicromagPropTypes.margin,
     multiline: PropTypes.bool,
@@ -94,7 +94,7 @@ const TextInput = ({
     if (buttonStyle !== null) {
         elementStyle = {
             ...elementStyle,
-            ...getStyleFromButton(buttonStyle),
+            ...getStyleFromBox(buttonStyle),
         };
     }
 

@@ -6,7 +6,7 @@ import { useScreenRenderContext, useScreenSize, useViewer } from '@micromag/core
 import { useTrackScreenEvent } from '@micromag/core/hooks';
 import {
     getLargestRemainderRound,
-    getStyleFromButton,
+    getStyleFromBox,
     getStyleFromColor,
     isTextFilled,
 } from '@micromag/core/utils';
@@ -29,7 +29,7 @@ const propTypes = {
     layout: PropTypes.oneOf(['top', 'middle', 'bottom', 'split']),
     question: MicromagPropTypes.textElement,
     answers: MicromagPropTypes.answers,
-    buttonsStyle: MicromagPropTypes.buttonStyle,
+    buttonsStyle: MicromagPropTypes.boxStyle,
     resultsStyle: PropTypes.shape({
         barColor: MicromagPropTypes.color,
         textColor: MicromagPropTypes.color,
@@ -317,10 +317,10 @@ const SurveyScreen = ({
                                                         buttonStyle={
                                                             !answered
                                                                 ? {
-                                                                      ...getStyleFromButton(
+                                                                      ...getStyleFromBox(
                                                                           buttonsStyle,
                                                                       ),
-                                                                      ...getStyleFromButton(
+                                                                      ...getStyleFromBox(
                                                                           answerButtonStyle,
                                                                       ),
                                                                   }

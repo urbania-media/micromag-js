@@ -73,7 +73,7 @@ export default {
                         description: 'No value field label',
                     }),
                     field: {
-                        type: 'button-style',
+                        type: 'box-style',
                     }
                 },
                 {

@@ -1,19 +1,18 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
-import { isTextFilled } from '@micromag/core/utils';
+import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
+import { isTextFilled, getStyleFromBox } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
-import Container from '@micromag/element-container';
-import Layout, { Spacer } from '@micromag/element-layout';
-import Heading from '@micromag/element-heading';
-import Text from '@micromag/element-text';
 import CallToAction from '@micromag/element-call-to-action';
-
+import Container from '@micromag/element-container';
+import Heading from '@micromag/element-heading';
+import Layout, { Spacer } from '@micromag/element-layout';
+import Text from '@micromag/element-text';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -21,8 +20,10 @@ const propTypes = {
     title: MicromagPropTypes.headingElement,
     subtitle: MicromagPropTypes.headingElement,
     description: MicromagPropTypes.textElement,
+    boxStyle: MicromagPropTypes.boxStyle,
     withSubtitle: PropTypes.bool,
     withDescription: PropTypes.bool,
+    withBox: PropTypes.bool,
     spacing: PropTypes.number,
     descriptionEmptyLabel: MicromagPropTypes.label,
     background: MicromagPropTypes.backgroundElement,
@@ -39,8 +40,10 @@ const defaultProps = {
     title: null,
     subtitle: null,
     description: null,
+    boxStyle: null,
     withSubtitle: false,
     withDescription: false,
+    withBox: false,
     spacing: 20,
     descriptionEmptyLabel: (
         <FormattedMessage defaultMessage="Description" description="Description placeholder" />
@@ -59,8 +62,10 @@ const TitleScreen = ({
     title,
     subtitle,
     description,
+    boxStyle,
     withSubtitle,
     withDescription,
+    withBox, // eslint-disable-line
     spacing,
     descriptionEmptyLabel,
     background,
@@ -74,14 +79,8 @@ const TitleScreen = ({
     const { width, height, menuOverScreen } = useScreenSize();
     const { menuSize } = useViewer();
 
-    const {
-        isView,
-        isPreview,
-        isPlaceholder,
-        isEdit,
-        isStatic,
-        isCapture,
-    } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
+        useScreenRenderContext();
 
     const hasTitle = isTextFilled(title);
     const hasSubtitle = isTextFilled(subtitle);
@@ -105,11 +104,7 @@ const TitleScreen = ({
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
 
-    // Create elements
-    const items = [
-        !isPlaceholder && hasCallToAction && isMiddleLayout ? (
-            <Spacer key="spacer-cta-top" />
-        ) : null,
+    const titleElement = (
         <ScreenElement
             key="title"
             placeholder="title"
@@ -124,61 +119,43 @@ const TitleScreen = ({
                     size={1}
                 />
             ) : null}
-        </ScreenElement>,
-        isSplitted && (!withDescription || verticalAlign === 'bottom') && <Spacer key="spacer1" />,
+        </ScreenElement>
+    );
 
-        withSubtitle && (
-            <ScreenElement
-                key="subtitle"
-                placeholder="subtitle"
-                emptyLabel={
-                    <FormattedMessage
-                        defaultMessage="Subtitle"
-                        description="Subtitle placeholder"
-                    />
-                }
-                emptyClassName={styles.emptySubtitle}
-                isEmpty={!hasSubtitle}
-            >
-                {hasSubtitle ? (
-                    <Heading
-                        className={classNames([
-                            styles.subtitle,
-                            { [styles.withMargin]: subtitleWithMargin },
-                        ])}
-                        {...subtitle}
-                        size={2}
-                    />
-                ) : null}
-            </ScreenElement>
-        ),
-
-        isSplitted && withDescription && verticalAlign === 'top' && <Spacer key="spacer2" />,
-
-        withDescription && (
-            <ScreenElement
-                key="description"
-                placeholder="shortText"
-                emptyLabel={descriptionEmptyLabel}
-                emptyClassName={styles.emptyDescription}
-                isEmpty={!hasDescription}
-            >
-                {hasDescription ? <Text {...description} /> : null}
-            </ScreenElement>
-        ),
-        !isPlaceholder && hasCallToAction && (isTopLayout || isMiddleLayout) ? (
-            <Spacer key="spacer-cta-bottom" />
-        ) : null,
-        !isPlaceholder && hasCallToAction ? (
-            <div style={{ margin: -spacing, marginTop: 0 }} key="call-to-action">
-                <CallToAction
-                    callToAction={callToAction}
-                    animationDisabled={isPreview}
-                    focusable={current && isView}
+    const subtitleElement = withSubtitle ? (
+        <ScreenElement
+            key="subtitle"
+            placeholder="subtitle"
+            emptyLabel={
+                <FormattedMessage defaultMessage="Subtitle" description="Subtitle placeholder" />
+            }
+            emptyClassName={styles.emptySubtitle}
+            isEmpty={!hasSubtitle}
+        >
+            {hasSubtitle ? (
+                <Heading
+                    className={classNames([
+                        styles.subtitle,
+                        { [styles.withMargin]: subtitleWithMargin },
+                    ])}
+                    {...subtitle}
+                    size={2}
                 />
-            </div>
-        ) : null,
-    ];
+            ) : null}
+        </ScreenElement>
+    ) : null;
+
+    const descriptionElement = withDescription ? (
+        <ScreenElement
+            key="description"
+            placeholder="shortText"
+            emptyLabel={descriptionEmptyLabel}
+            emptyClassName={styles.emptyDescription}
+            isEmpty={!hasDescription}
+        >
+            {hasDescription ? <Text {...description} /> : null}
+        </ScreenElement>
+    ) : null;
 
     return (
         <div
@@ -209,20 +186,91 @@ const TitleScreen = ({
                         !isPlaceholder
                             ? {
                                   padding: spacing,
-                                  paddingTop: (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
+                                  paddingTop:
+                                      (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
                               }
                             : null
                     }
                 >
-                    <TransitionsStagger
-                        transitions={transitions}
-                        stagger={transitionStagger}
-                        disabled={transitionDisabled}
-                        playing={transitionPlaying}
-                        focusable={current && isView}
-                    >
-                        {items}
-                    </TransitionsStagger>
+                    {!isPlaceholder && hasCallToAction && isMiddleLayout ? (
+                        <Spacer key="spacer-cta-top" />
+                    ) : null}
+
+                    {withBox && !isSplitted ? (
+                        <div className={styles.box} style={getStyleFromBox(boxStyle)}>
+                            <TransitionsStagger
+                                transitions={transitions}
+                                stagger={transitionStagger}
+                                disabled={transitionDisabled}
+                                playing={transitionPlaying}
+                                focusable={current && isView}
+                            >
+                                {[titleElement, subtitleElement, descriptionElement]}
+                            </TransitionsStagger>
+                        </div>
+                    ) : null}
+
+                    {withBox && isSplitted ? (
+                        <TransitionsStagger
+                            transitions={transitions}
+                            stagger={transitionStagger}
+                            disabled={transitionDisabled}
+                            playing={transitionPlaying}
+                            focusable={current && isView}
+                        >
+                            <div className={styles.box} key="top" style={getStyleFromBox(boxStyle)}>
+                                {titleElement}
+                                {withDescription && verticalAlign === 'top'
+                                    ? subtitleElement
+                                    : null}
+                            </div>
+                            <Spacer key="spacer1" />
+                            <div
+                                className={styles.box}
+                                key="bottom"
+                                style={getStyleFromBox(boxStyle)}
+                            >
+                                {!withDescription || verticalAlign === 'bottom'
+                                    ? subtitleElement
+                                    : null}
+                                {descriptionElement}
+                            </div>
+                        </TransitionsStagger>
+                    ) : null}
+
+                    {!withBox ? (
+                        <TransitionsStagger
+                            transitions={transitions}
+                            stagger={transitionStagger}
+                            disabled={transitionDisabled}
+                            playing={transitionPlaying}
+                            focusable={current && isView}
+                        >
+                            {titleElement}
+                            {isSplitted && (!withDescription || verticalAlign === 'bottom') && (
+                                <Spacer key="spacer1" />
+                            )}
+                            {subtitleElement}
+                            {isSplitted && withDescription && verticalAlign === 'top' && (
+                                <Spacer key="spacer2" />
+                            )}
+                            {descriptionElement}
+                        </TransitionsStagger>
+                    ) : null}
+
+                    {!isPlaceholder && hasCallToAction && (isTopLayout || isMiddleLayout) ? (
+                        <Spacer key="spacer-cta-bottom" />
+                    ) : null}
+
+                    {!isPlaceholder && hasCallToAction ? (
+                        <div style={{ margin: -spacing, marginTop: 0 }} key="call-to-action">
+                            <CallToAction
+                                callToAction={callToAction}
+                                animationDisabled={isPreview}
+                                focusable={current && isView}
+                            />
+                        </div>
+                    ) : null}
                 </Layout>
             </Container>
         </div>

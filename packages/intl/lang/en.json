@@ -209,6 +209,9 @@
     "9ZdD+Q": {
         "defaultMessage": "Library for"
     },
+    "9a5s+m": {
+        "defaultMessage": "Title with box"
+    },
     "9n9+yP": {
         "defaultMessage": "Add an image"
     },
@@ -329,9 +332,6 @@
     "JDPMlG": {
         "defaultMessage": "Background color"
     },
-    "JnCf7K": {
-        "defaultMessage": "Button style"
-    },
     "JoWKee": {
         "defaultMessage": "Create your first screen"
     },
@@ -436,6 +436,9 @@
     },
     "TXkHah": {
         "defaultMessage": "Link"
+    },
+    "TkRMbW": {
+        "defaultMessage": "Box style"
     },
     "Tol+/U": {
         "defaultMessage": "Clear"
@@ -601,6 +604,9 @@
     },
     "eoW0tZ": {
         "defaultMessage": "Duration"
+    },
+    "f5Yipd": {
+        "defaultMessage": "Box"
     },
     "f68O+0": {
         "defaultMessage": "Messages"

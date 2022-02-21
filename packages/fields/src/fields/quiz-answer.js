@@ -24,7 +24,7 @@ export default {
         },
         {
             name: 'buttonStyle',
-            type: 'button-style',
+            type: 'box-style',
             className: 'mt-4'
         },
     ]
