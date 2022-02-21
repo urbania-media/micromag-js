@@ -103,30 +103,16 @@ export const SortableTree = ({
     const [offsetLeft, setOffsetLeft] = useState(0);
     const [currentPosition, setCurrentPosition] = useState(null);
 
-    // const changed = useMemo(
-    //     () =>
-    //         defaultItems.length !== flatStuff.length ||
-    //         !arrayEquals(
-    //             flatStuff.map((i) => i.id),
-    //             defaultItems.map((i) => i.id),
-    //         ),
-    //     [defaultItems, flatStuff],
-    // );
-
-    // const flatStuff = flattenTree(items);
-
     // Initial tree setup from list
-    // useEffect(() => {
-    //     const flat = flattenTree(items);
-    //     const merged = defaultItems.map((t1) => ({
-    //         ...flat.find((t2) => t2.id === t1.id),
-    //         ...t1,
-    //     }));
-    //     console.log('fuck off', flat, defaultItems, merged);
-    //     setItems(buildTree(merged));
-    // }, [defaultItems, defaultItems.length]);
-
-    // console.log('render', defaultItems, defaultItems.length, flatStuff, flatStuff.length);
+    useEffect(() => {
+        const flat = flattenTree(items);
+        const merged = defaultItems.map((t1) => ({
+            ...flat.find((t2) => t2.id === t1.id),
+            ...t1,
+        }));
+        // console.log('new items', flat, defaultItems, merged);
+        setItems(buildTree(merged));
+    }, [defaultItems, defaultItems.length]);
 
     const flattenedItems = useMemo(() => {
         const flattenedTree = flattenTree(items);
