@@ -112,7 +112,7 @@ export const SortableTree = ({
         }));
         // console.log('new items', flat, defaultItems, merged);
         setItems(buildTree(merged));
-    }, [defaultItems, defaultItems.length]);
+    }, [defaultItems.length]);
 
     const flattenedItems = useMemo(() => {
         const flattenedTree = flattenTree(items);
