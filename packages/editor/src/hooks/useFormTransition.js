@@ -23,17 +23,17 @@ const useFormTransition = (url, screenIndex, styles) => {
 
         let currentPartsCount = urlSplit.length;
         let previousPartsCount = lastUrlSplit.length;
-        
+
         const isSettings = urlSplit[currentPartsCount - 1] === 'settings';
         const wasSettings = lastUrlSplit[previousPartsCount - 1] === 'settings';
-        
+
         currentPartsCount -= isSettings ? 1 : 0;
         previousPartsCount -= wasSettings ? 1 : 0;
 
         return currentPartsCount >= previousPartsCount ? 'right' : 'left';
     }, [url, screenIndex]);
 
-    const name = useMemo(
+    const transitionClassNames = useMemo(
         () => ({
             enter:
                 classNames({
@@ -47,13 +47,13 @@ const useFormTransition = (url, screenIndex, styles) => {
                     [styles.enterActiveHorizontal]: direction === 'left' || direction === 'right',
                     [styles.enterActiveVertical]: direction === 'top' || direction === 'bottom',
                 }) || 'none',
-            leave: styles.leave || 'none',
-            leaveActive:
+            exit: styles.exit || 'none',
+            exitActive:
                 classNames({
-                    [styles.leaveActiveRight]: direction === 'right',
-                    [styles.leaveActiveLeft]: direction === 'left',
-                    [styles.leaveActiveTop]: direction === 'top',
-                    [styles.leaveActiveBottom]: direction === 'bottom',
+                    [styles.exitActiveRight]: direction === 'right',
+                    [styles.exitActiveLeft]: direction === 'left',
+                    [styles.exitActiveTop]: direction === 'top',
+                    [styles.exitActiveBottom]: direction === 'bottom',
                 }) || 'none',
         }),
         [direction, screenIndex],
@@ -61,7 +61,7 @@ const useFormTransition = (url, screenIndex, styles) => {
 
     return {
         direction,
-        name,
+        classNames: transitionClassNames,
         timeout: direction === 'left' || direction === 'right' ? 300 : 10,
     };
 };

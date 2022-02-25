@@ -7,7 +7,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button } from '@micromag/core/components';
-import { useUrlGenerator } from '@micromag/core/contexts';
+import { useUrlGenerator, useRoutePush } from '@micromag/core/contexts';
 import useRouteParams from '../../hooks/useRouteParams';
 import useScreenStates from '../../hooks/useScreenStates';
 import styles from '../../styles/partials/screen-states.module.scss';
@@ -29,6 +29,7 @@ const defaultProps = {
 
 function ScreenStates({ screen, value, className, onChange }) {
     const url = useUrlGenerator();
+    const push = useRoutePush();
     const { screen: screenParam = null, field = null } = useRouteParams();
     const states = useScreenStates(screen);
     const [stateParam = null, stateIndex = null] = field !== null ? field.split('/') : [];
@@ -89,6 +90,10 @@ function ScreenStates({ screen, value, className, onChange }) {
                         if (onChange !== null) {
                             onChange(newValue);
                         }
+                        push('screen.field', {
+                            screen: screen.id,
+                            field: [id, currentFieldValue.length],
+                        });
                     };
                     return (
                         <div className="px-1 align-self-stretch d-flex flex-column">
@@ -120,6 +125,7 @@ function ScreenStates({ screen, value, className, onChange }) {
                                         <Button
                                             className={classNames([
                                                 styles.button,
+                                                styles.addButton,
                                                 'h-100',
                                                 'p-0',
                                                 'justify-content-center',

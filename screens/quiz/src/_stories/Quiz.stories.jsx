@@ -26,7 +26,7 @@ export default {
     component: QuizScreen,
     parameters: {
         intl: true,
-        screenDefinition: definition,
+        screenDefinition: definition[0],
     },
 };
 

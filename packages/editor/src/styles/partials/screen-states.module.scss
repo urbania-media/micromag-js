@@ -8,6 +8,14 @@
 
 .button {
     width: 50px;
+    border-color: $gray-600;
+    color: $gray-600;
+
+    &:hover {
+        border-color: $gray-200;
+        background: transparent;
+        color: $gray-200;
+    }
 }
 
 .addButton {

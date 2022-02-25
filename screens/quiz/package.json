@@ -66,6 +66,7 @@
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
         "react-intl": "^5.12.1",
+        "react-transition-group": "^4.4.2",
         "uuid": "^8.3.2"
     },
     "publishConfig": {

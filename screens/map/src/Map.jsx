@@ -248,8 +248,8 @@ function MapScreen({
         if (!isEdit && !isPreview) {
             return;
         }
-        const [stateId, markerIndex = null] = screenState !== null ? screenState.split('.') : [];
-        if (stateId === 'title') {
+        const [stateId = null, markerIndex = null] = screenState !== null ? screenState.split('.') : [];
+        if (stateId === 'intro') {
             setOpened(false);
             setSelectedMarkerIndex(null);
         } else if (stateId === 'map') {
@@ -322,7 +322,7 @@ function MapScreen({
                 {
                     [className]: className !== null,
                     [styles[`${layout}Layout`]]: layout !== null,
-                    [styles.opened]: opened || (isPreview && screenState !== 'title'),
+                    [styles.opened]: opened || (isPreview && screenState !== 'intro'),
                     [styles.hasSelectedMarker]: hasSelectedMarker,
                 },
             ])}

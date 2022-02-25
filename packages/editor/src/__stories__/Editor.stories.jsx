@@ -118,6 +118,9 @@ export const IsTree = () => <EditorContainer defaultValue={treeTheme} />;
 export const Map = () => (
     <EditorContainer defaultValue={{ components: [{ id: 'map', type: 'map' }] }} />
 );
+export const Quiz = () => (
+    <EditorContainer defaultValue={{ components: [{ id: 'quiz-multiple', type: 'quiz-multiple' }] }} />
+);
 export const IsTheme = () => <EditorContainer defaultValue={defaultTheme} isTheme />;
 export const AllScreens = () => <EditorContainer defaultValue={allScreensStory} />;
 export const FaceAFace = () => <EditorContainer defaultValue={faceAFaceStory} />;

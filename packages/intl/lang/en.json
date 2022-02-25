@@ -224,6 +224,9 @@
     "AA8TV9": {
         "defaultMessage": "Image with title"
     },
+    "ACkeH6": {
+        "defaultMessage": "Quiz with multiple questions"
+    },
     "AHvHaY": {
         "defaultMessage": "Parameters"
     },
@@ -470,6 +473,9 @@
     "VDu2FA": {
         "defaultMessage": "Google Fonts"
     },
+    "VMd1oG": {
+        "defaultMessage": "Questions"
+    },
     "VspZp9": {
         "defaultMessage": "Upload an image"
     },
@@ -515,7 +521,7 @@
     "ZMS1Wv": {
         "defaultMessage": "Text"
     },
-    "ZqwBOx": {
+    "ZiWlL6": {
         "defaultMessage": "Questions"
     },
     "ZvKOEb": {
@@ -604,9 +610,6 @@
     },
     "eoW0tZ": {
         "defaultMessage": "Duration"
-    },
-    "f5Yipd": {
-        "defaultMessage": "Box"
     },
     "f68O+0": {
         "defaultMessage": "Messages"
@@ -749,6 +752,9 @@
     "qKQCxc": {
         "defaultMessage": "Add a marker"
     },
+    "qhjeuO": {
+        "defaultMessage": "Padding"
+    },
     "qjL/eA": {
         "defaultMessage": "Bar"
     },
@@ -811,6 +817,9 @@
     },
     "uSpItE": {
         "defaultMessage": "Add tags..."
+    },
+    "uiTxd7": {
+        "defaultMessage": "Results"
     },
     "upzOTm": {
         "defaultMessage": "Credits"

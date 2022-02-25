@@ -58,37 +58,37 @@
         transition: transform 0.5s ease-out, opacity 0.5s ease-out;
     }
 
-    &.leave {
+    &.exit {
         @extend %disabled;
         transform: translate(0, 0);
         opacity: 1;
     }
 
-    &.leaveActiveRight,
-    &.leaveActiveLeft {
+    &.exitActiveRight,
+    &.exitActiveLeft {
         transition: transform 0.2s ease-out, opacity 0.2s ease-out;
         opacity: 0.5;
     }
 
-    &.leaveActiveTop,
-    &.leaveActiveBottom {
+    &.exitActiveTop,
+    &.exitActiveBottom {
         transition: transform 0.5s ease-out, opacity 0.5s ease-out;
         opacity: 0.5;
     }
 
-    &.leaveActiveRight {
+    &.exitActiveRight {
         transform: translate(-100%, 0);
     }
 
-    &.leaveActiveLeft {
+    &.exitActiveLeft {
         transform: translate(100%, 0);
     }
 
-    &.leaveActiveTop {
+    &.exitActiveTop {
         transform: translate(0, 100%);
     }
 
-    &.leaveActiveBottom {
+    &.exitActiveBottom {
         transform: translate(0, -100%);
     }
 }

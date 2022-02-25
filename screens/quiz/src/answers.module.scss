@@ -1,0 +1,118 @@
+// stylelint-disable max-nesting-depth
+// stylelint-disable no-descending-specificity
+
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/mixins';
+
+.container {
+    position: relative;
+}
+
+.items {
+    position: relative;
+}
+
+.item {
+    transition-property: opacity;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+
+    &.rightAnswer {
+        transition-property: transform;
+        transition-duration: 1s;
+    }
+
+    .hasGoodAnswer & {
+        &.userAnswer {
+            transition-duration: 0.2s;
+        }
+
+        &.rightAnswer {
+            transition-duration: 1s;
+        }
+    }
+
+    .answered & {
+        opacity: 0.3;
+
+        &.rightAnswer,
+        &.userAnswer {
+            opacity: 0.99;
+        }
+    }
+
+    .answered.hasGoodAnswer & {
+        opacity: 0;
+
+        &.rightAnswer,
+        &.userAnswer {
+            opacity: 0.99;
+        }
+    }
+
+    .willCollapse & {
+        &.userAnswer {
+            opacity: 0;
+        }
+
+        &.rightAnswer {
+            opacity: 1;
+        }
+    }
+
+    .didCollapsed & {
+        &.rightAnswer {
+            transition: none;
+        }
+    }
+
+    .isPlaceholder & {
+        padding: 1px 0;
+    }
+}
+
+.button {
+    @extend %focus-outline;
+
+    position: relative;
+    width: 100%;
+    padding: 10px 42px;
+    border: 2px solid $white;
+    border-radius: 10px;
+
+    &:disabled {
+        opacity: 1;
+        pointer-events: none;
+    }
+}
+
+.resultIcon {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin-top: -16px;
+    padding: 5px;
+    transition: opacity 0.15s ease;
+    border: 2px solid $black;
+    border-radius: 50%;
+    opacity: 0;
+    background-color: $red;
+
+    .answered & {
+        opacity: 1;
+    }
+
+    .rightAnswer & {
+        background-color: $green;
+    }
+}
+
+.itemContent {
+    padding: 5px 0;
+}

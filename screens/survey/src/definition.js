@@ -8,7 +8,7 @@ export default {
     group: {
         label: defineMessage({
             defaultMessage: 'Questions',
-            description: 'Questions screen group',
+            description: 'Screen group',
         }),
         order: 7,
     },

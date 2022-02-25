@@ -8,7 +8,7 @@ export default {
     group: {
         label: defineMessage({
             defaultMessage: 'Questions',
-            description: 'Questions screen group',
+            description: 'Screen group',
         }),
         order: 7,
     },
@@ -74,12 +74,12 @@ export default {
         },
         {
             name: 'nameStyle',
-            type: 'item-text-style',  
+            type: 'item-text-style',
             theme: {
                 style: {
                     textStyle: 'heading2',
                 },
-            },          
+            },
             label: defineMessage({
                 defaultMessage: 'Published name style',
                 description: 'Published name style field label',

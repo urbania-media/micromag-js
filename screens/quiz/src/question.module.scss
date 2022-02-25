@@ -1,0 +1,56 @@
+// stylelint-disable max-nesting-depth
+// stylelint-disable no-descending-specificity
+
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/mixins';
+
+.container {
+    .question {
+        margin-bottom: 10px;
+    }
+
+    .result {
+        position: absolute;
+        transition: opacity 0.5s ease;
+        transition-delay: 0.3s;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .resultContent {
+        padding: 20px 0;
+    }
+
+    .emptyTitle,
+    .emptyAnswer,
+    .emptyResult {
+        @extend %empty;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .emptyTitle {
+        height: 60px;
+    }
+
+    .emptyAnswer {
+        height: 50px;
+    }
+
+    .emptyResult {
+        height: 100px;
+    }
+
+    &.resultVisible {
+        .result {
+            position: relative;
+            opacity: 1;
+            pointer-events: all;
+        }
+    }
+
+    &.isPlaceholder {
+        padding: 10px;
+    }
+}

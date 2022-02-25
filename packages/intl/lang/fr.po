@@ -461,6 +461,12 @@ msgctxt "AA8TV9"
 msgid "Image with title"
 msgstr "Image avec titre"
 
+# Screen title
+#: ACkeH6
+msgctxt "ACkeH6"
+msgid "Quiz with multiple questions"
+msgstr ""
+
 # Screen label in the breadcrumb
 #: AHvHaY
 msgctxt "AHvHaY"
@@ -952,6 +958,12 @@ msgctxt "VDu2FA"
 msgid "Google Fonts"
 msgstr "Google Fonts"
 
+# State label
+#: VMd1oG
+msgctxt "VMd1oG"
+msgid "Questions"
+msgstr ""
+
 # Upload button label in Media Gallery
 #: VspZp9
 msgctxt "VspZp9"
@@ -1042,11 +1054,11 @@ msgctxt "ZMS1Wv"
 msgid "Text"
 msgstr "Texte"
 
-# Questions screen group
-#: ZqwBOx
-msgctxt "ZqwBOx"
+# Screen group
+#: ZiWlL6
+msgctxt "ZiWlL6"
 msgid "Questions"
-msgstr "Questions"
+msgstr ""
 
 # CTA field type subfield label
 #: ZvKOEb
@@ -1221,12 +1233,6 @@ msgstr "Avancé"
 msgctxt "eoW0tZ"
 msgid "Duration"
 msgstr "Durée"
-
-# Field label
-#: f5Yipd
-msgctxt "f5Yipd"
-msgid "Box"
-msgstr ""
 
 # Field label
 #: f68O+0
@@ -1509,6 +1515,12 @@ msgid "Add a marker"
 msgstr "Ajouter un marqueur"
 
 # Field label
+#: qhjeuO
+msgctxt "qhjeuO"
+msgid "Padding"
+msgstr ""
+
+# Field label
 #: qjL/eA
 msgctxt "qjL/eA"
 msgid "Bar"
@@ -1633,6 +1645,12 @@ msgstr "Couleur du point"
 msgctxt "uSpItE"
 msgid "Add tags..."
 msgstr "Ajouter des étiquettes..."
+
+# State label
+#: uiTxd7
+msgctxt "uiTxd7"
+msgid "Results"
+msgstr ""
 
 # Credits field label
 #: upzOTm

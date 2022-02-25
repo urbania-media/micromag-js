@@ -1,34 +1,24 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useCallback, useState, useMemo } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useHistory } from 'react-router';
+import PropTypes from 'prop-types';
+import React, { useCallback, useState, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { CSSTransitionGroup } from 'react-transition-group';
+import { useHistory } from 'react-router';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { slug } from '@micromag/core/utils';
-import {
-    useRoutePush,
-    ScreenProvider,
-    useScreensManager,
-} from '@micromag/core/contexts';
 import { Empty, Navbar, DropdownMenu } from '@micromag/core/components';
-
-import {
-    updateScreen,
-    duplicateScreen,
-    deleteScreen,
-} from '../utils';
-import useRouteParams from '../hooks/useRouteParams';
+import { useRoutePush, ScreenProvider, useScreensManager } from '@micromag/core/contexts';
+import { slug } from '@micromag/core/utils';
 import useFormTransition from '../hooks/useFormTransition';
+import useRouteParams from '../hooks/useRouteParams';
+import styles from '../styles/form.module.scss';
+import { updateScreen, duplicateScreen, deleteScreen } from '../utils';
 import getScreenFieldsWithStates from '../utils/getScreenFieldsWithStates';
 import SettingsButton from './buttons/Settings';
-import Breadcrumb from './menus/Breadcrumb';
-import ScreenForm from './forms/Screen';
 import FieldWithContexts from './forms/FieldWithContexts';
+import ScreenForm from './forms/Screen';
+import Breadcrumb from './menus/Breadcrumb';
 import DeleteScreenModal from './modals/DeleteScreen';
-
-import styles from '../styles/form.module.scss';
 
 const propTypes = {
     value: PropTypes.oneOfType([MicromagPropTypes.story, MicromagPropTypes.theme]),
@@ -64,11 +54,10 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
         const { type } = screen || {};
         const definition = type !== null ? screensManager.getDefinition(type) : null;
         return definition != null ? getScreenFieldsWithStates(definition) : [];
-    }, [screensManager, screen])
-
+    }, [screensManager, screen]);
 
     // Get transition value
-    const { name: transitionName, timeout: transitionTimeout } = useFormTransition(
+    const { classNames: transitionClassNames, timeout: transitionTimeout } = useFormTransition(
         url,
         screenIndex,
         styles,
@@ -85,11 +74,17 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
             const hasField = field !== null;
             const fieldRoute = formName !== null ? 'screen.field.form' : 'screen.field';
             const [rootFieldName = null] = field !== null ? field.split('.') : [];
-            const { stateId = null } = (rootFieldName !== null ? screenFields.find(({ name }) => name === rootFieldName) || null : null) || {};
+            const { stateId = null } =
+                (rootFieldName !== null
+                    ? screenFields.find(({ name }) => name === rootFieldName) || null
+                    : null) || {};
             console.log(field, stateId);
             routePush(hasField ? fieldRoute : 'screen', {
                 screen: screenId,
-                field: field !== null ? [stateId, ...field.split('.')].filter(it => it !== null) : null,
+                field:
+                    field !== null
+                        ? [stateId, ...field.split('.')].filter((it) => it !== null)
+                        : null,
                 form: formName !== null ? slug(formName) : null,
             });
             setFieldForms({
@@ -98,7 +93,16 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
             });
             setFieldContext(context);
         },
-        [routePush, screenId, screenFields, url, fieldForms, setFieldForms, fieldContext, setFieldContext],
+        [
+            routePush,
+            screenId,
+            screenFields,
+            url,
+            fieldForms,
+            setFieldForms,
+            fieldContext,
+            setFieldContext,
+        ],
     );
 
     const closeFieldForm = useCallback(
@@ -193,6 +197,8 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
         },
     ].filter((it) => it !== null);
 
+    console.log(transitionClassNames);
+
     return (
         <div className={classNames(['d-flex', 'flex-column', className])}>
             {screenId !== null ? (
@@ -230,47 +236,57 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
             ) : null}
             <div className={classNames(['flex-grow-1', 'd-flex', 'w-100', styles.content])}>
                 {screen !== null ? (
-                    <CSSTransitionGroup
-                        transitionName={transitionName}
-                        transitionEnterTimeout={transitionTimeout}
-                        transitionLeaveTimeout={transitionTimeout}
+                    <TransitionGroup
                         className="w-100 flex-grow-1"
+                        childFactory={(child) =>
+                            React.cloneElement(child, {
+                                classNames: transitionClassNames,
+                            })
+                        }
                     >
                         {fieldParams !== null ? (
-                            <div
-                                className={classNames(['w-100', styles.panel])}
+                            <CSSTransition
+                                timeout={transitionTimeout}
                                 key={`field-${fieldParams}-${formParams}`}
                             >
-                                <ScreenProvider data={screen}>
-                                    <FieldWithContexts
-                                        name={fieldParams.replace(/\//g, '.')}
-                                        value={screen}
-                                        form={formParams}
-                                        className={styles.form}
-                                        gotoFieldForm={gotoFieldForm}
-                                        closeFieldForm={closeFieldForm}
-                                        fieldContext={fieldContext}
-                                        onChange={onScreenFormChange}
-                                    />
-                                </ScreenProvider>
-                            </div>
+                                <div className={classNames(['w-100', styles.panel])}>
+                                    <ScreenProvider data={screen}>
+                                        <FieldWithContexts
+                                            name={fieldParams.replace(/\//g, '.')}
+                                            value={screen}
+                                            form={formParams}
+                                            className={styles.form}
+                                            gotoFieldForm={gotoFieldForm}
+                                            closeFieldForm={closeFieldForm}
+                                            fieldContext={fieldContext}
+                                            onChange={onScreenFormChange}
+                                        />
+                                    </ScreenProvider>
+                                </div>
+                            </CSSTransition>
                         ) : (
-                            <div
-                                className={classNames(['w-100', styles.panel])}
+                            <CSSTransition
+                                classNames={transitionClassNames}
+                                timeout={transitionTimeout}
                                 key={`screen-${screen.id}`}
                             >
-                                <ScreenProvider data={screen}>
-                                    <ScreenForm
-                                        value={screen}
-                                        className={styles.form}
-                                        onChange={onScreenFormChange}
-                                        gotoFieldForm={gotoFieldForm}
-                                        closeFieldForm={closeFieldForm}
-                                    />
-                                </ScreenProvider>
-                            </div>
+                                <div
+                                    className={classNames(['w-100', styles.panel])}
+                                    key={`screen-${screen.id}`}
+                                >
+                                    <ScreenProvider data={screen}>
+                                        <ScreenForm
+                                            value={screen}
+                                            className={styles.form}
+                                            onChange={onScreenFormChange}
+                                            gotoFieldForm={gotoFieldForm}
+                                            closeFieldForm={closeFieldForm}
+                                        />
+                                    </ScreenProvider>
+                                </div>
+                            </CSSTransition>
                         )}
-                    </CSSTransitionGroup>
+                    </TransitionGroup>
                 ) : (
                     <Empty className="w-100 m-2">
                         <FormattedMessage

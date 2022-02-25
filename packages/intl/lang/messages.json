@@ -299,6 +299,10 @@
     "defaultMessage": "Image with title",
     "description": "ImageTitle screen title"
   },
+  "ACkeH6": {
+    "defaultMessage": "Quiz with multiple questions",
+    "description": "Screen title"
+  },
   "AHvHaY": {
     "defaultMessage": "Parameters",
     "description": "Screen label in the breadcrumb"
@@ -626,6 +630,10 @@
     "defaultMessage": "Google Fonts",
     "description": "Font family group title"
   },
+  "VMd1oG": {
+    "defaultMessage": "Questions",
+    "description": "State label"
+  },
   "VspZp9": {
     "defaultMessage": "Upload an image",
     "description": "Upload button label in Media Gallery"
@@ -686,9 +694,9 @@
     "defaultMessage": "Text",
     "description": "Field label"
   },
-  "ZqwBOx": {
+  "ZiWlL6": {
     "defaultMessage": "Questions",
-    "description": "Questions screen group"
+    "description": "Screen group"
   },
   "ZvKOEb": {
     "defaultMessage": "Type",
@@ -805,10 +813,6 @@
   "eoW0tZ": {
     "defaultMessage": "Duration",
     "description": "Label in Media Gallery"
-  },
-  "f5Yipd": {
-    "defaultMessage": "Box",
-    "description": "Field label"
   },
   "f68O+0": {
     "defaultMessage": "Messages",
@@ -996,6 +1000,10 @@
     "defaultMessage": "Add a marker",
     "description": "Button label in markers field"
   },
+  "qhjeuO": {
+    "defaultMessage": "Padding",
+    "description": "Field label"
+  },
   "qjL/eA": {
     "defaultMessage": "Bar",
     "description": "Field label"
@@ -1079,6 +1087,10 @@
   "uSpItE": {
     "defaultMessage": "Add tags...",
     "description": "Dropdown select label"
+  },
+  "uiTxd7": {
+    "defaultMessage": "Results",
+    "description": "State label"
   },
   "upzOTm": {
     "defaultMessage": "Credits",
