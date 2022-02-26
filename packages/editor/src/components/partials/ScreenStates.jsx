@@ -46,8 +46,8 @@ function ScreenStates({ screen, value, className, onChange }) {
                 },
             ])}
         >
-            <div className="d-flex align-items-end mx-n1">
-                <div className="px-1 align-self-stretch d-flex flex-column">
+            <div className="d-flex align-items-end flex-wrap m-n1">
+                <div className="p-1 align-self-stretch d-flex flex-column">
                     <h6 className="small fw-normal invisible">Settings</h6>
                     <Button
                         className={classNames([
@@ -96,12 +96,12 @@ function ScreenStates({ screen, value, className, onChange }) {
                         });
                     };
                     return (
-                        <div className="px-1 align-self-stretch d-flex flex-column">
+                        <div className="p-1 align-self-stretch d-flex flex-column">
                             <h6 className="small fw-normal">
                                 <FormattedMessage {...label} />
                             </h6>
                             {repeatable ? (
-                                <ul className="d-flex list-unstyled m-0 flex-grow-1">
+                                <ul className="d-flex list-unstyled flex-wrap m-0 flex-grow-1">
                                     {repeatableItems.map((item, index) => (
                                         <li className="me-2">
                                             <ScreenWithPreview
