@@ -3,9 +3,10 @@
 .container {
     width: 100%;
     padding: 2px;
+    mix-blend-mode: difference;
 
     .line {
         height: 16px;
-        background-color: rgba($black, 0.5);
+        background-color: rgba($white, 0.6);
     }
 }

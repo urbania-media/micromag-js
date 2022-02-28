@@ -5,20 +5,21 @@
 .container {
     padding: 10px;
     text-align: center;
+    mix-blend-mode: difference;
 
     .icon {
         width: 25px;
         height: auto;
         margin: auto;
         margin-top: 3px;
-        color: #828282;
+        color: rgba($white, 0.6);
     }
 
     .message {
         width: 80%;
         height: 23px;
         margin: 3px 1px 0;
-        background-color: rgb(130, 130, 130);
+        background-color: rgb($white, 0.6);
     }
 
     .placeholderMessage0 {

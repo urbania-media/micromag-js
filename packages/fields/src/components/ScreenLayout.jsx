@@ -37,6 +37,7 @@ const ScreenLayoutField = ({ value, className, onChange }) => {
                             }}
                             width={80}
                             height={120}
+                            className={styles.screen}
                         />
                     </div>
                 ),
@@ -50,7 +51,6 @@ const ScreenLayoutField = ({ value, className, onChange }) => {
             ])}
             buttonClassName={styles.button}
             onChange={onChange}
-            withBackground
         />
     );
 };

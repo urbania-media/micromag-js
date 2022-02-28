@@ -3,16 +3,18 @@
 @import '../mixins';
 
 .container {
-    
+
     .box {
         flex-direction: column;
     }
 
     .icon {
         margin-bottom: 5px;
+        color: $black;
     }
 
     .label {
         font-size: 0.75em;
+        color: $black;
     }
 }

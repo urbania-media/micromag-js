@@ -115,7 +115,7 @@ const EditorPreview = ({
     const { id: screenStateId = null, repeatable = false } = currentScreenState || {};
     const currentScreenStateId =
         currentScreenState !== null && repeatable
-            ? `${screenStateId}.${fieldParam.split('/')[1] || 0}`
+            ? `${screenStateId}.${fieldParam.split('/').find(it => it.match(/^[0-9]+$/) !== null) || 0}`
             : screenStateId;
 
     return (

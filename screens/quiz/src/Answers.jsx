@@ -96,21 +96,29 @@ const Answers = ({
         entry: { contentRect: rightAnswerContentRect },
     } = useResizeObserver();
     const { height: rightAnswerHeight } = rightAnswerContentRect || {};
-    const rightAnswerTop = useMemo(() => (rightAnswerRef.current !== null ? rightAnswerRef.current.offsetTop : 0), [rightAnswerHeight]);
+    const rightAnswerTop = useMemo(
+        () => (rightAnswerRef.current !== null ? rightAnswerRef.current.offsetTop : 0),
+        [rightAnswerHeight],
+    );
 
     const shouldCollapse = !withoutGoodAnswer;
     const [answersCollapsed, setAnswersCollapsed] = useState(answeredIndex !== null);
-    const [answersDidCollapsed, setAnswersDidCollapsed] = useState(initialCollapsed || answeredIndex !== null);
+    const [answersDidCollapsed, setAnswersDidCollapsed] = useState(
+        initialCollapsed || answeredIndex !== null,
+    );
 
     useEffect(() => {
         let timeout = null;
         if (answeredIndex !== null && shouldCollapse) {
-            timeout = setTimeout(() => {
-                setAnswersCollapsed(true);
-                if (onCollapse !== null) {
-                    onCollapse();
-                }
-            }, hasAnsweredRight ? 500 : answersCollapseDelay);
+            timeout = setTimeout(
+                () => {
+                    setAnswersCollapsed(true);
+                    if (onCollapse !== null) {
+                        onCollapse();
+                    }
+                },
+                hasAnsweredRight ? 500 : answersCollapseDelay,
+            );
         }
 
         return () => {
@@ -118,10 +126,16 @@ const Answers = ({
                 clearTimeout(timeout);
             }
         };
-    }, [answeredIndex, withoutGoodAnswer, setAnswersCollapsed, onCollapse, answersCollapseDelay, hasAnsweredRight]);
+    }, [
+        answeredIndex,
+        withoutGoodAnswer,
+        setAnswersCollapsed,
+        onCollapse,
+        answersCollapseDelay,
+        hasAnsweredRight,
+    ]);
 
     const onAnswerTransitionEnd = useCallback(() => {
-        console.log('END');
         if (onTransitionEnd !== null) {
             onTransitionEnd();
         }
@@ -132,7 +146,14 @@ const Answers = ({
                 onCollapsed();
             }
         }
-    }, [shouldCollapse, answersCollapsed, answersDidCollapsed, setAnswersCollapsed, onCollapsed, onTransitionEnd]);
+    }, [
+        shouldCollapse,
+        answersCollapsed,
+        answersDidCollapsed,
+        setAnswersCollapsed,
+        onCollapsed,
+        onTransitionEnd,
+    ]);
 
     return (
         <div
@@ -184,13 +205,20 @@ const Answers = ({
                                     },
                                 ])}
                                 style={
-                                    answersCollapsed && rightAnswer && !answersDidCollapsed && shouldCollapse
+                                    answersCollapsed &&
+                                    rightAnswer &&
+                                    !answersDidCollapsed &&
+                                    shouldCollapse
                                         ? {
                                               transform: `translateY(${-rightAnswerTop}px)`,
                                           }
                                         : null
                                 }
-                                onTransitionEnd={rightAnswer || (withoutGoodAnswer && userAnswer) ? onAnswerTransitionEnd : null}
+                                onTransitionEnd={
+                                    rightAnswer || (withoutGoodAnswer && userAnswer)
+                                        ? onAnswerTransitionEnd
+                                        : null
+                                }
                             >
                                 <div className={styles.itemContent}>
                                     <ScreenElement
@@ -236,7 +264,10 @@ const Answers = ({
                                                             />
                                                         </span>
                                                     ) : null}
-                                                    {!withoutGoodAnswer && answered && !hasAnsweredRight && userAnswer ? (
+                                                    {!withoutGoodAnswer &&
+                                                    answered &&
+                                                    !hasAnsweredRight &&
+                                                    userAnswer ? (
                                                         <span
                                                             className={styles.resultIcon}
                                                             style={getStyleFromColor(

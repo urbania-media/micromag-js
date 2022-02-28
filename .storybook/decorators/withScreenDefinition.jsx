@@ -10,7 +10,7 @@ const withScreenDefinition = (
         parameters: {
             screenDefinition = null,
             defaultScreen = null,
-            screenOptions: { gridWidth = 100, gridHeight = 200 } = {}
+            screenOptions: { gridWidth = 100, gridHeight = 150 } = {}
         },
         args,
     },

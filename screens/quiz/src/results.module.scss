@@ -1,0 +1,31 @@
+// stylelint-disable max-nesting-depth
+// stylelint-disable no-descending-specificity
+
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/mixins';
+
+.container {
+    .title {
+        margin-bottom: 10px;
+    }
+
+    .emptyTitle,
+    .emptyDescription {
+        @extend %empty;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .emptyTitle {
+        height: 60px;
+    }
+
+    .emptyDescription {
+        height: 100px;
+    }
+
+    &.isPlaceholder {
+        padding: 10px;
+    }
+}

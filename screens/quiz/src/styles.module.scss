@@ -7,45 +7,80 @@
 
 .container {
     @extend %screen;
+}
 
-    .layout {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
+.layout {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.callToAction {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.transition {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.question,
+.results,
+.intro {
+    overflow: hidden;
+
+    &.enter {
+        transform: translateX(100%);
+
+        .left & {
+            transform: translateX(-100%);
+        }
     }
 
-    .callToAction {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
+    &.enterActive,
+    .left &.enterActive {
+        transform: translateX(0);
+        transition: transform 1s ease;
     }
 
-    .transition {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
+    &.exit {
+        transform: translateX(0);
     }
 
-    .question {
-        &.enter {
+    &.exitActive {
+        transform: translateX(-100%);
+        transition: transform 1s ease;
+
+        .left & {
             transform: translateX(100%);
         }
-        &.enterActive {
-            transform: translateX(0);
-            transition: transform 1s ease;
-        }
+    }
+}
 
-        &.exit {
-            transform: translateX(0);
-        }
-        &.exitActive {
-            transform: translateX(-100%);
-            transition: transform 1s ease;
-        }
+.background {
+    &.enter {
+        opacity: 0;
+    }
+
+    &.enterActive {
+        transition: opacity 1s ease;
+        opacity: 1;
+    }
+
+    &.exit {
+        opacity: 1;
+    }
+
+    &.exitActive {
+        transition: opacity 1s ease;
+        opacity: 0;
     }
 }

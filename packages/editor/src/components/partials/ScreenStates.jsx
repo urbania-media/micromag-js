@@ -32,7 +32,8 @@ function ScreenStates({ screen, value, className, onChange }) {
     const push = useRoutePush();
     const { screen: screenParam = null, field = null } = useRouteParams();
     const states = useScreenStates(screen);
-    const [stateParam = null, stateIndex = null] = field !== null ? field.split('/') : [];
+    const [stateParam = null, ...stateIndexes] = field !== null ? field.split('/') : [];
+    const stateIndex = stateIndexes.find((it) => it.match(/^[0-9]+$/) !== null) || null;
     const currentState =
         stateParam !== null && states.findIndex(({ id }) => id === stateParam) !== -1
             ? stateParam

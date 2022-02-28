@@ -5,6 +5,7 @@
 .container {
     display: flex;
     align-items: center;
+    mix-blend-mode: difference;
 
     .block {
         flex-grow: 1;
@@ -16,6 +17,6 @@
 
     .percentIcon {
         padding: 1px;
-        color: rgba($black, 0.5);
+        color: rgb($white, 0.6);
     }
 }

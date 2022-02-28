@@ -78,7 +78,6 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
                 (rootFieldName !== null
                     ? screenFields.find(({ name }) => name === rootFieldName) || null
                     : null) || {};
-            console.log(field, stateId);
             routePush(hasField ? fieldRoute : 'screen', {
                 screen: screenId,
                 field:
@@ -196,8 +195,6 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
             onClick: onClickDelete,
         },
     ].filter((it) => it !== null);
-
-    console.log(transitionClassNames);
 
     return (
         <div className={classNames(['d-flex', 'flex-column', className])}>

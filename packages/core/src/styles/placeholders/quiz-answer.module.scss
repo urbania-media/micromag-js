@@ -5,6 +5,7 @@
 .container {
     display: flex;
     align-items: center;
+    mix-blend-mode: difference;
 
     .block {
         flex-grow: 1;
@@ -14,13 +15,14 @@
         width: 12px;
         margin-right: 6px;
         padding: 0 1px;
-        color: rgba($black, 0.5);
+        color: rgba($white, 0.6);
     }
 
     .answerIcon {
         display: block;
         width: 100%;
         height: 100%;
+        color: rgb($white, 0.6);
     }
 
     &.good {

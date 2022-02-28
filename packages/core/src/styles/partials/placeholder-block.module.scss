@@ -2,6 +2,7 @@
 
 .container {
     padding: 2px;
+    mix-blend-mode: difference;
 
     .box {
         display: flex;
@@ -9,12 +10,12 @@
         align-items: center;
         justify-content: center;
         margin: 0 auto;
-        background-color: rgba($black, 0.5);
+        background-color: rgba($white, 0.6);
     }
 
     &.outline {
         margin: 2px 0;
-        border: 2px solid rgba($black, 0.5);
+        border: 2px solid rgba($white, 0.6);
 
         .box {
             background-color: transparent;

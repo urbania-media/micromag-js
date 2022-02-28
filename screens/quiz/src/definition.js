@@ -149,6 +149,47 @@ export default [
                     defaultMessage: 'Intro',
                     description: 'State label',
                 }),
+                fields: [
+                    {
+                        name: 'introLayout',
+                        type: 'screen-layout',
+                        defaultValue: 'top',
+                        label: defineMessage({
+                            defaultMessage: 'Layout',
+                            description: 'Layout field label',
+                        }),
+                    },
+                    {
+                        name: 'title',
+                        type: 'heading-element',
+                        theme: {
+                            textStyle: 'heading2',
+                        },
+                        label: defineMessage({
+                            defaultMessage: 'Title',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'description',
+                        type: 'text-element',
+                        theme: {
+                            textStyle: 'text',
+                        },
+                        label: defineMessage({
+                            defaultMessage: 'Description',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'introBackground',
+                        type: 'background',
+                        label: defineMessage({
+                            defaultMessage: 'Background',
+                            description: 'Field label',
+                        }),
+                    },
+                ]
             },
             {
                 id: 'questions',
@@ -183,7 +224,15 @@ export default [
                             description: 'Field label',
                         }),
                     },
-                ]
+                    {
+                        name: 'background',
+                        type: 'background',
+                        label: defineMessage({
+                            defaultMessage: 'Background',
+                            description: 'Field label',
+                        }),
+                    },
+                ],
             },
             {
                 id: 'results',
@@ -193,10 +242,58 @@ export default [
                 }),
                 repeatable: true,
                 fields: [
-                ]
-            }
+                    {
+                        name: 'layout',
+                        type: 'screen-layout',
+                        defaultValue: 'top',
+                        label: defineMessage({
+                            defaultMessage: 'Layout',
+                            description: 'Layout field label',
+                        }),
+                    },
+                    {
+                        name: 'title',
+                        type: 'heading-element',
+                        theme: {
+                            textStyle: 'heading2',
+                        },
+                        label: defineMessage({
+                            defaultMessage: 'Title',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'description',
+                        type: 'text-element',
+                        theme: {
+                            textStyle: 'text',
+                        },
+                        label: defineMessage({
+                            defaultMessage: 'Description',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'background',
+                        type: 'background',
+                        label: defineMessage({
+                            defaultMessage: 'Background',
+                            description: 'Field label',
+                        }),
+                    },
+                ],
+            },
         ],
         fields: [
+            {
+                name: 'layout',
+                type: 'screen-layout',
+                defaultValue: 'top',
+                label: defineMessage({
+                    defaultMessage: 'Layout',
+                    description: 'Layout field label',
+                }),
+            },
             {
                 name: 'background',
                 type: 'background',

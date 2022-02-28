@@ -8,9 +8,11 @@ function useScreenInteraction({
     isView = false,
     clickOnSiblings = false,
     nextScreenWidthPercent = 0.5,
+    eventsManager = null,
     onClick = null,
     onEnd = null,
     onChangeScreen = null,
+
 } = {}) {
     const [screensInteractionEnabled, setScreensInteractionEnabled] = useState(
         screens.reduce(
@@ -59,6 +61,8 @@ function useScreenInteraction({
             const screensCount = screens.length;
             const tappedCurrent = screenIndex === index;
 
+            eventsManager.emit('tap', e, index);
+
             if (
                 (!isView && tappedCurrent) ||
                 checkClickable(e.target) ||
@@ -77,20 +81,26 @@ function useScreenInteraction({
 
             if (hasTappedLeft) {
                 nextIndex = clickOnSiblings ? index : Math.max(0, screenIndex - 1);
+                eventsManager.emit('tap_previous', nextIndex);
             } else {
                 nextIndex = clickOnSiblings ? index : Math.min(screensCount - 1, screenIndex + 1);
 
                 const isLastScreen = screenIndex === screensCount - 1;
                 if (isLastScreen && onEnd !== null) {
+                    eventsManager.emit('tap_end');
                     onEnd();
+                } else {
+                    eventsManager.emit('tap_next', nextIndex);
                 }
             }
+            eventsManager.emit('change_screen', nextIndex);
             onChangeScreen(nextIndex);
         },
         [
             screenWidth,
             screens,
             screenIndex,
+            eventsManager,
             onClick,
             onEnd,
             onChangeScreen,

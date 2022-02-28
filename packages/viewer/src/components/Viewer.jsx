@@ -21,6 +21,7 @@ import useScreenInteraction from '../hooks/useScreenInteraction';
 import styles from '../styles/viewer.module.scss';
 import ViewerMenu from './ViewerMenu';
 import ViewerScreen from './ViewerScreen';
+import EventEmitter from 'wolfy87-eventemitter';
 
 const propTypes = {
     story: MicromagPropTypes.story, // .isRequired,
@@ -121,6 +122,8 @@ const Viewer = ({
     const intl = useIntl();
     const parsedStory = useParsedStory(story, { disabled: storyIsParsed }) || {};
     const { components: screens = [], title = null, metadata = null, fonts = null } = parsedStory;
+
+    const eventsManager = useMemo(() => new EventEmitter(), [parsedStory]);
 
     // Viewer Theme
     const { textStyles } = viewerTheme || {};
@@ -246,6 +249,7 @@ const Viewer = ({
         isView,
         clickOnSiblings: landscape && withLandscapeSiblingsScreens,
         nextScreenWidthPercent: tapNextScreenWidthPercent,
+        events: eventsManager,
         onClick: onInteractionPrivate,
         onEnd,
         onChangeScreen: changeIndex,
@@ -334,10 +338,13 @@ const Viewer = ({
     return (
         <ScreenSizeProvider size={screenSize}>
             <ViewerProvider
+                events={eventsManager}
                 menuVisible={menuVisible}
                 menuSize={menuDotsContainerHeight}
                 gotoPreviousScreen={gotoPreviousScreen}
                 gotoNextScreen={gotoNextScreen}
+                disableInteraction={disableInteraction}
+                enableInteraction={enableInteraction}
             >
                 {withMetadata ? (
                     <Meta title={finalTitle} metadata={finalMetadata}>

@@ -24,7 +24,20 @@ const props = {
                 { id: 2, label: { body: subtitle() }, points: 1 },
                 { id: 3, label: { body: subtitle() }, points: 2 },
                 { id: 4, label: { body: subtitle() }, points: 3 },
-            ]
+            ],
+            background: backgroundColor(),
+        }
+    ],
+    results: [
+        {
+            title: { body: subtitle() },
+            description: { body: subtitle() },
+            points: 3
+        },
+        {
+            title: { body: subtitle() },
+            description: { body: subtitle() },
+            points: 8
         }
     ],
     background: backgroundColor(),
