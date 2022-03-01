@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-video-360",
-    "version": "0.2.412",
+    "version": "0.3.0",
     "description": "",
     "keywords": [
         "javascript"
@@ -50,15 +50,15 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@folklore/size": "^0.1.15",
-        "@micromag/core": "^0.2.412",
-        "@micromag/element-background": "^0.2.412",
-        "@micromag/element-call-to-action": "^0.2.412",
-        "@micromag/element-closed-captions": "^0.2.412",
-        "@micromag/element-container": "^0.2.412",
-        "@micromag/element-image": "^0.2.412",
-        "@micromag/element-media-controls": "^0.2.412",
-        "@micromag/element-video": "^0.2.412",
-        "@micromag/transforms": "^0.2.412",
+        "@micromag/core": "^0.3.0",
+        "@micromag/element-background": "^0.3.0",
+        "@micromag/element-call-to-action": "^0.3.0",
+        "@micromag/element-closed-captions": "^0.3.0",
+        "@micromag/element-container": "^0.3.0",
+        "@micromag/element-image": "^0.3.0",
+        "@micromag/element-media-controls": "^0.3.0",
+        "@micromag/element-video": "^0.3.0",
+        "@micromag/transforms": "^0.3.0",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2",
