@@ -545,6 +545,12 @@ msgctxt "FJygXH"
 msgid "Result"
 msgstr "Résultat"
 
+# Placeholder label
+#: FOmgqv
+msgctxt "FOmgqv"
+msgid "Question"
+msgstr "Question"
+
 # Your name placeholder
 #: G/ITGY
 msgctxt "G/ITGY"
@@ -645,7 +651,7 @@ msgstr "Créez votre premier écran"
 #: K1BxIr
 msgctxt "K1BxIr"
 msgid "Edit metadata..."
-msgstr "Modifier les métadonnées"
+msgstr "Modifier les métadonnées..."
 
 # Search a place on Google Maps placeholder
 #: KB7N5E

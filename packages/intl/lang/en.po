@@ -545,6 +545,12 @@ msgctxt "FJygXH"
 msgid "Result"
 msgstr "Result"
 
+# Placeholder label
+#: FOmgqv
+msgctxt "FOmgqv"
+msgid "Question"
+msgstr "Question"
+
 # Your name placeholder
 #: G/ITGY
 msgctxt "G/ITGY"

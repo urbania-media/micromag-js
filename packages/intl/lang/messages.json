@@ -355,6 +355,10 @@
     "defaultMessage": "Result",
     "description": "Field label"
   },
+  "FOmgqv": {
+    "defaultMessage": "Question",
+    "description": "Placeholder label"
+  },
   "G/ITGY": {
     "defaultMessage": "Your name",
     "description": "Your name placeholder"

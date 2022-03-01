@@ -266,6 +266,9 @@
     "FJygXH": {
         "defaultMessage": "Résultat"
     },
+    "FOmgqv": {
+        "defaultMessage": "Question"
+    },
     "G/ITGY": {
         "defaultMessage": "Votre nom"
     },
@@ -315,7 +318,7 @@
         "defaultMessage": "Créez votre premier écran"
     },
     "K1BxIr": {
-        "defaultMessage": "Modifier les métadonnées"
+        "defaultMessage": "Modifier les métadonnées..."
     },
     "KB7N5E": {
         "defaultMessage": "Rechercher un lieu sur Google Maps"
