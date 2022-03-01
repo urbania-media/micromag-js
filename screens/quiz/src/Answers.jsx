@@ -155,6 +155,8 @@ const Answers = ({
         onTransitionEnd,
     ]);
 
+    console.log(items);
+
     return (
         <div
             className={classNames([
@@ -162,6 +164,7 @@ const Answers = ({
                 {
                     [styles.answered]: answered,
                     [styles.withoutGoodAnswer]: withoutGoodAnswer,
+                    [styles.withGoodAnswer]: !withoutGoodAnswer,
                     [styles.willCollapse]: shouldCollapse && answersCollapsed,
                     [styles.didCollapsed]: shouldCollapse && answersDidCollapsed,
                     [styles.isPlaceholder]: isPlaceholder,
@@ -179,7 +182,7 @@ const Answers = ({
         >
             {items !== null || isPlaceholder ? (
                 <div className={styles.items}>
-                    {(isPlaceholder ? [...new Array(2)] : items).map((answer, answerI) => {
+                    {(isPlaceholder || (isEdit && items.length === 0) ? [...new Array(2)] : items).map((answer, answerI) => {
                         const userAnswer = answerI === answeredIndex;
                         const {
                             good: rightAnswer = false,

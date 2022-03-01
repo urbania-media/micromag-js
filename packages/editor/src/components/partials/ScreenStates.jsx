@@ -1,5 +1,5 @@
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
-import { faPlus, faCog } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faCogs } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -49,7 +49,7 @@ function ScreenStates({ screen, value, className, onChange }) {
         >
             <div className="d-flex align-items-end flex-wrap m-n1">
                 <div className="p-1 align-self-stretch d-flex flex-column">
-                    <h6 className="small fw-normal invisible">Settings</h6>
+                    <h6 className={classNames(['fw-normal', 'invisible', styles.title])}>Settings</h6>
                     <Button
                         className={classNames([
                             styles.button,
@@ -60,7 +60,7 @@ function ScreenStates({ screen, value, className, onChange }) {
                         theme={screenParam !== null && field === null ? 'primary' : 'secondary'}
                         outline={screenParam === null || field !== null}
                         size="lg"
-                        icon={<FontAwesomeIcon icon={faCog} />}
+                        icon={<FontAwesomeIcon icon={faCogs} />}
                         href={url('screen', {
                             screen: screen.id,
                         })}
@@ -98,13 +98,13 @@ function ScreenStates({ screen, value, className, onChange }) {
                     };
                     return (
                         <div className="p-1 align-self-stretch d-flex flex-column">
-                            <h6 className="small fw-normal">
+                            <h6 className={classNames(['fw-normal', 'text-muted', styles.title])}>
                                 <FormattedMessage {...label} />
                             </h6>
                             {repeatable ? (
-                                <ul className="d-flex list-unstyled flex-wrap m-0 flex-grow-1">
+                                <ul className="d-flex list-unstyled flex-wrap m-n1 flex-grow-1">
                                     {repeatableItems.map((item, index) => (
-                                        <li className="me-2">
+                                        <li className="p-1">
                                             <ScreenWithPreview
                                                 screen={screen}
                                                 screenState={`${id}.${index}`}
@@ -122,7 +122,7 @@ function ScreenStates({ screen, value, className, onChange }) {
                                             />
                                         </li>
                                     ))}
-                                    <li>
+                                    <li className="p-1">
                                         <Button
                                             className={classNames([
                                                 styles.button,

@@ -76,7 +76,6 @@ class ColorsParser {
     static getColorsFromPath(data, patterns, colors = null, keyPrefix = null) {
         const dataIsArray = isArray(data);
         const keys = dataIsArray ? [...data.keys()] : Object.keys(data);
-
         return keys.reduce(
             ({ data: currentData, colors: currentColors = null }, key) => {
                 const path = [keyPrefix, key].filter((it) => it !== null).join('.');
@@ -127,7 +126,7 @@ class ColorsParser {
                 };
             },
             {
-                data: null,
+                data: keys.length === 0 ? data : null,
                 colors,
             },
         );

@@ -7,6 +7,7 @@
 
 .button {
     width: 50px;
+    min-height: 75px;
 
     &:global(.btn-outline-secondary) {
         border-color: $gray-600;
@@ -22,4 +23,8 @@
 
 .addButton {
     border-style: dashed;
+}
+
+.title {
+    font-size: 0.75em;
 }

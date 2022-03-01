@@ -10,6 +10,13 @@
         margin-bottom: 10px;
     }
 
+    .index {
+        display: block;
+        width: 100%;
+        margin-bottom: 1em;
+        text-align: center;
+    }
+
     .result {
         position: absolute;
         transition: opacity 0.5s ease;
@@ -22,20 +29,16 @@
         padding: 20px 0;
     }
 
-    .emptyTitle,
-    .emptyAnswer,
+    .emptyQuestion,
     .emptyResult {
         @extend %empty;
         width: 100%;
         margin: 0 auto;
     }
 
-    .emptyTitle {
+    .emptyQuestion {
         height: 60px;
-    }
-
-    .emptyAnswer {
-        height: 50px;
+        margin-bottom: 10px;
     }
 
     .emptyResult {

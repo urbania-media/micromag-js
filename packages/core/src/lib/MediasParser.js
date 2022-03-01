@@ -1,5 +1,5 @@
-import isObject from 'lodash/isObject';
 import isArray from 'lodash/isArray';
+import isObject from 'lodash/isObject';
 import isString from 'lodash/isString';
 
 class MediasParser {
@@ -185,7 +185,8 @@ class MediasParser {
 
     static replaceMediasWithPaths(data, patterns, medias = null, keyPrefix = null) {
         const dataIsArray = isArray(data);
-        return MediasParser.keys(data).reduce(
+        const dataKeys = MediasParser.keys(data);
+        return dataKeys.reduce(
             ({ data: currentData, medias: currentMedias }, key) => {
                 const path = [keyPrefix, key].filter((it) => it !== null).join('.');
                 const patternMatch = patterns.reduce(
@@ -233,7 +234,7 @@ class MediasParser {
                 };
             },
             {
-                data: null,
+                data: dataKeys.length === 0 ? data : null,
                 medias,
             },
         );

@@ -124,12 +124,12 @@ const QuizMultipleScreen = ({
 
     const showInstantAnswer = isStatic || isCapture;
 
-    const hasIntro = title !== null || description !== null || isEdit;
+    const hasIntro = title !== null || description !== null || isEdit || stateId === 'intro';
 
     const [userAnswers, setUserAnswers] = useState(null);
     const initialQuestionIndex = stateId === 'questions' ? parseInt(stateIndex, 10) : stateId;
     const [questionIndex, setQuestionIndex] = useState(
-        initialQuestionIndex !== null || !hasIntro ? initialQuestionIndex || 0 : 'intro',
+        initialQuestionIndex !== null || !hasIntro || isPlaceholder ? initialQuestionIndex || 0 : 'intro',
     );
 
     const onAnswerClick = useCallback(
@@ -208,6 +208,7 @@ const QuizMultipleScreen = ({
             return (results || [])[parseInt(stateIndex, 10)] || null;
         }
 
+        console.log(results);
         return (results || [])
             .sort(({ points: pointsA = 0 }, { points: pointsB = 0 }) => {
                 if (pointsA === pointsB) {
@@ -338,6 +339,8 @@ const QuizMultipleScreen = ({
                                 timeout={1000}
                             >
                                 <Question
+                                    index={questionIndex}
+                                    totalCount={(questions || []).length}
                                     question={text}
                                     answers={answers}
                                     answeredIndex={currentAnsweredIndex}

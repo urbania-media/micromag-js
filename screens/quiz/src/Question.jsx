@@ -23,6 +23,8 @@ const propTypes = {
         image: MicromagPropTypes.imageElement,
         text: MicromagPropTypes.textElement,
     }),
+    index: PropTypes.number,
+    totalCount: PropTypes.number,
     answeredIndex: PropTypes.number,
     buttonsStyle: MicromagPropTypes.boxStyle,
     goodAnswerColor: MicromagPropTypes.color,
@@ -33,6 +35,7 @@ const propTypes = {
     showInstantAnswer: PropTypes.bool,
     withResult: PropTypes.bool,
     withoutGoodAnswer: PropTypes.bool,
+    withoutIndex: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionPlaying: PropTypes.bool,
     transitionStagger: PropTypes.number,
@@ -47,6 +50,8 @@ const defaultProps = {
     question: null,
     answers: null,
     result: null,
+    index: null,
+    totalCount: null,
     answeredIndex: null,
     buttonsStyle: null,
     goodAnswerColor: null,
@@ -57,6 +62,7 @@ const defaultProps = {
     showInstantAnswer: false,
     withResult: false,
     withoutGoodAnswer: false,
+    withoutIndex: false,
     transitions: null,
     transitionPlaying: false,
     transitionStagger: 100,
@@ -71,6 +77,8 @@ const Question = ({
     question,
     answers,
     result,
+    index,
+    totalCount,
     answeredIndex,
     buttonsStyle,
     goodAnswerColor,
@@ -79,6 +87,7 @@ const Question = ({
     showInstantAnswer,
     withResult,
     withoutGoodAnswer,
+    withoutIndex,
     layout,
     callToActionHeight,
     transitions,
@@ -112,6 +121,8 @@ const Question = ({
         setResultVisible(true);
     }, [setResultVisible]);
 
+    const hasIndex = index !== null && totalCount !== null;
+
     return (
         <Layout
             className={classNames([
@@ -127,16 +138,29 @@ const Question = ({
             style={style}
         >
             {[
+                !withoutIndex && hasIndex ? (
+                    <ScreenElement key="stats" placeholder="title">
+                        <Transitions
+                            transitions={transitions}
+                            playing={transitionPlaying}
+                            disabled={transitionDisabled}
+                        >
+                            <div className={styles.index}>
+                                {index + 1} / {totalCount}
+                            </div>
+                        </Transitions>
+                    </ScreenElement>
+                ) : null,
                 <ScreenElement
                     key="question"
                     placeholder="title"
                     emptyLabel={
                         <FormattedMessage
                             defaultMessage="Question"
-                            description="Question placeholder"
+                            description="Placeholder label"
                         />
                     }
-                    emptyClassName={styles.emptyTitle}
+                    emptyClassName={styles.emptyQuestion}
                     isEmpty={!hasQuestion}
                 >
                     {hasQuestion ? (
@@ -151,7 +175,8 @@ const Question = ({
                 </ScreenElement>,
                 isSplitted ? <Spacer key="spacer" /> : null,
                 <Answers
-                    items={answers}
+                    key="answers"
+                    items={answers || []}
                     answeredIndex={answeredIndex}
                     goodAnswerColor={goodAnswerColor}
                     badAnswerColor={badAnswerColor}
@@ -167,7 +192,7 @@ const Question = ({
                     onTransitionEnd={onAnswerTransitionEnd}
                 />,
                 withResult ? (
-                    <div className={styles.result} ref={resultRef}>
+                    <div className={styles.result} key="results" ref={resultRef}>
                         <div className={styles.resultContent}>
                             <ScreenElement
                                 emptyLabel={
