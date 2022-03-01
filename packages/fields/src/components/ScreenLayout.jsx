@@ -11,17 +11,19 @@ import styles from '../styles/layout.module.scss';
 
 const propTypes = {
     value: PropTypes.string,
+    screenState: PropTypes.string,
     className: PropTypes.string,
     onChange: PropTypes.func,
 };
 
 const defaultProps = {
     value: null,
+    screenState: null,
     className: null,
     onChange: null,
 };
 
-const ScreenLayoutField = ({ value, className, onChange }) => {
+const ScreenLayoutField = ({ value, screenState, className, onChange }) => {
     const { id, layouts = [] } = useScreenDefinition();
 
     return (
@@ -35,6 +37,7 @@ const ScreenLayoutField = ({ value, className, onChange }) => {
                                 type: id,
                                 layout,
                             }}
+                            screenState={screenState}
                             width={80}
                             height={120}
                             className={styles.screen}

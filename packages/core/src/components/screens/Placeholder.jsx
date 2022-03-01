@@ -10,6 +10,7 @@ import Screen from './Screen';
 const propTypes = {
     screen: MicromagPropTypes.component.isRequired,
     layout: PropTypes.string,
+    screenState: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number,
     className: PropTypes.string,
@@ -17,12 +18,13 @@ const propTypes = {
 
 const defaultProps = {
     layout: undefined,
+    screenState: null,
     width: null,
     height: null,
     className: null,
 };
 
-const ScreenPlaceholder = ({ screen, layout, width, height, className }) => {
+const ScreenPlaceholder = ({ screen, layout, width, height, screenState, className }) => {
     const screenSize = useMemo(
         () => ({
             screen: 'mobile',
@@ -34,7 +36,7 @@ const ScreenPlaceholder = ({ screen, layout, width, height, className }) => {
     );
     return (
         <ScreenSizeProvider size={screenSize}>
-            <ScreenProvider data={screen} renderContext="placeholder">
+            <ScreenProvider data={screen} renderContext="placeholder" screenState={screenState}>
                 <Screen
                     screen={screen}
                     layout={layout}

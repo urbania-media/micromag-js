@@ -139,7 +139,10 @@ const Question = ({
         >
             {[
                 !withoutIndex && hasIndex ? (
-                    <ScreenElement key="stats" placeholder="title">
+                    <ScreenElement
+                        key="stats"
+                        placeholder={<div className={styles.index}>1 / 10</div>}
+                    >
                         <Transitions
                             transitions={transitions}
                             playing={transitionPlaying}

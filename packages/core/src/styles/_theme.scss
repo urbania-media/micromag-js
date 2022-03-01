@@ -64,6 +64,7 @@ $input-btn-padding-y: .5rem;
 $btn-padding-x: 1rem;
 $input-btn-padding-x-lg: 1.3rem;
 $input-btn-padding-x-sm: .75rem;
+$list-group-color: $body-color;
 $list-group-action-color: $body-color;
 $list-group-hover-bg: rgba($body-color, 0.2);
 $dropdown-bg: $gray-800;
@@ -71,6 +72,7 @@ $dropdown-divider-bg: rgba($white, .13);
 $dropdown-link-color: $body-color;
 $dropdown-link-hover-bg: $primary;
 $dropdown-link-hover-color: $body-color;
+$btn-close-color: $body-color;
 
 
 $btn-active-bg-shade-amount:      50% !default;

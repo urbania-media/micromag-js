@@ -5,7 +5,7 @@ import getScreenFieldsWithStates from './getScreenFieldsWithStates';
 const createScreen = (definition, data = {}) => {
     const finalDefinition = isString(definition) ? { id: definition } : definition;
     const { id } = finalDefinition;
-    const screenFields = getScreenFieldsWithStates(finalDefinition)
+    const screenFields = getScreenFieldsWithStates(finalDefinition);
 
     const defaultValueFields = screenFields.reduce((all, curr) => {
         const { name = null, defaultValue = null } = curr || {};

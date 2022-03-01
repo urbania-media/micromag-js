@@ -55,5 +55,11 @@
 
     &.isPlaceholder {
         padding: 10px;
+
+        .index {
+            color: rgba($white, 0.6);
+            mix-blend-mode: difference;
+            font-size: 8px;
+        }
     }
 }

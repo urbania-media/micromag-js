@@ -208,7 +208,6 @@ const QuizMultipleScreen = ({
             return (results || [])[parseInt(stateIndex, 10)] || null;
         }
 
-        console.log(results);
         return (results || [])
             .sort(({ points: pointsA = 0 }, { points: pointsB = 0 }) => {
                 if (pointsA === pointsB) {

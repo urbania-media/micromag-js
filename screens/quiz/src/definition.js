@@ -153,7 +153,8 @@ export default [
                     {
                         name: 'introLayout',
                         type: 'screen-layout',
-                        defaultValue: 'top',
+                        defaultValue: 'middle',
+                        screenState: 'intro',
                         label: defineMessage({
                             defaultMessage: 'Layout',
                             description: 'Layout field label',
@@ -246,6 +247,7 @@ export default [
                         name: 'layout',
                         type: 'screen-layout',
                         defaultValue: 'top',
+                        screenState: 'results',
                         label: defineMessage({
                             defaultMessage: 'Layout',
                             description: 'Layout field label',
