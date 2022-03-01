@@ -23,16 +23,6 @@
         transition-duration: 1s;
     }
 
-    .hasGoodAnswer & {
-        &.userAnswer {
-            transition-duration: 0.2s;
-        }
-
-        &.rightAnswer {
-            transition-duration: 1s;
-        }
-    }
-
     .answered & {
         opacity: 0.3;
 
@@ -42,21 +32,17 @@
         }
     }
 
-    .answered.hasGoodAnswer & {
+    .willCollapse & {
+        transition-duration: 0.2s;
         opacity: 0;
 
-        &.rightAnswer,
         &.userAnswer {
-            opacity: 0.99;
-        }
-    }
-
-    .willCollapse & {
-        &.userAnswer {
+            transition-duration: 0.2s;
             opacity: 0;
         }
 
         &.rightAnswer {
+            transition-duration: 1s;
             opacity: 1;
         }
     }
@@ -64,6 +50,12 @@
     .didCollapsed & {
         &.rightAnswer {
             transition: none;
+        }
+    }
+
+    .withoutGoodAnswer & {
+        &.userAnswer {
+            transition-duration: 1s;
         }
     }
 

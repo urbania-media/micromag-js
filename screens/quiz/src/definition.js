@@ -213,7 +213,7 @@ export default [
                     },
                     {
                         name: 'answers',
-                        type: 'quiz-answers',
+                        type: 'quiz-points-answers',
                         theme: {
                             label: {
                                 textStyle: 'button',

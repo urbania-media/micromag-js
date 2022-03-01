@@ -161,7 +161,7 @@ const Answers = ({
                 styles.container,
                 {
                     [styles.answered]: answered,
-                    [styles.hasGoodAnswer]: !withoutGoodAnswer,
+                    [styles.withoutGoodAnswer]: withoutGoodAnswer,
                     [styles.willCollapse]: shouldCollapse && answersCollapsed,
                     [styles.didCollapsed]: shouldCollapse && answersDidCollapsed,
                     [styles.isPlaceholder]: isPlaceholder,
