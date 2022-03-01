@@ -7,7 +7,7 @@ export default {
         type: 'image',
         breadcrumbLabel: defineMessage({
             defaultMessage: 'Image',
-            description: 'Images item field label',
+            description: 'Breadcrumb field label',
         }),
     }
 };

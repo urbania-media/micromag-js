@@ -6,6 +6,7 @@ export { default as Autocomplete } from './Autocomplete';
 export { default as BorderRadius } from './BorderRadius';
 export { default as BorderStyle } from './BorderStyle';
 export { default as BorderWidth } from './BorderWidth';
+export { default as BoxStyle } from './BoxStyle';
 export { default as CallToAction } from './CallToAction';
 export { default as Checkboxes } from './Checkboxes';
 export { default as ClosedCaptions } from './ClosedCaptions';

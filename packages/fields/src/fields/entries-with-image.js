@@ -9,7 +9,7 @@ export default {
         type: 'entry-with-image',
         breadcrumbLabel: defineMessage({
             defaultMessage: 'Entry',
-            description: 'Entries item field label',
+            description: 'Breadcrumb field label',
         }),
     },
 };

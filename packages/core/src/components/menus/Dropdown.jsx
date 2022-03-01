@@ -1,14 +1,15 @@
 /* eslint-disable react/no-array-index-key */
-/* eslint-disable react/jsx-props-no-spreading */
-import React, { useRef, useCallback } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
-import { PropTypes as MicromagPropTypes } from '../../lib';
+/* eslint-disable react/jsx-props-no-spreading */
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useRef, useCallback } from 'react';
 import { useDocumentEvent } from '../../hooks';
-import Link from '../partials/Link';
-import Label from '../partials/Label';
+import { PropTypes as MicromagPropTypes } from '../../lib';
+import styles from '../../styles/menus/dropdown.module.scss';
 import Button from '../buttons/Button';
+import Label from '../partials/Label';
+import Link from '../partials/Link';
 
 const propTypes = {
     items: MicromagPropTypes.menuItems,
@@ -61,7 +62,7 @@ const Dropdown = ({
             className={classNames([
                 'dropdown-menu',
                 {
-                    [`dropdown-menu-${align}`]: align !== null,
+                    [styles[align]]: align !== null,
                     show: visible,
                     [className]: className !== null,
                 },
@@ -85,10 +86,11 @@ const Dropdown = ({
                       if (type === 'link') {
                           ItemComponent = Link;
                       } else if (type === 'button') {
-                          ItemComponent = Button;
-                          itemProps.type = 'button';
+                          ItemComponent = 'button';
                       } else if (type === 'header') {
                           ItemComponent = 'h6';
+                      } else if (type === 'divider') {
+                          ItemComponent = 'hr';
                       }
                       const finalOnClickItem =
                           customOnClick !== null || (type === 'link' && onClickItem !== null)
@@ -102,25 +104,25 @@ const Dropdown = ({
                                 }
                               : null;
                       return ItemComponent !== null ? (
-                          <ItemComponent
-                              key={`item-${index}`}
-                              className={classNames([
-                                  'd-block',
-                                  'w-100',
-                                  {
-                                      'dropdown-item': type === 'link',
-                                      'dropdown-divider': type === 'divider',
-                                      'dropdown-header': type === 'header',
-                                      active,
-                                      [itemClassName]: itemClassName !== null,
-                                      [customClassName]: customClassName !== null,
-                                  },
-                              ])}
-                              onClick={finalOnClickItem}
-                              {...itemProps}
-                          >
-                              {label !== null ? <Label>{label}</Label> : itemChildren}
-                          </ItemComponent>
+                          <li>
+                              <ItemComponent
+                                  key={`item-${index}`}
+                                  className={classNames([
+                                      {
+                                          'dropdown-item': type === 'link' || type === 'button',
+                                          'dropdown-divider': type === 'divider',
+                                          'dropdown-header': type === 'header',
+                                          active,
+                                          [itemClassName]: itemClassName !== null,
+                                          [customClassName]: customClassName !== null,
+                                      },
+                                  ])}
+                                  onClick={finalOnClickItem}
+                                  {...itemProps}
+                              >
+                                  {label !== null ? <Label>{label}</Label> : itemChildren}
+                              </ItemComponent>
+                          </li>
                       ) : null;
                   })}
         </div>

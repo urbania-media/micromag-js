@@ -47,12 +47,6 @@ msgctxt "+SlKOi"
 msgid "Published message style"
 msgstr "Published message style"
 
-# Color label
-#: +VD/9p
-msgctxt "+VD/9p"
-msgid "Color"
-msgstr "Color"
-
 # Label when there is no item
 #: +nhSvj
 msgctxt "+nhSvj"
@@ -71,12 +65,6 @@ msgctxt "/62oe4"
 msgid "My files"
 msgstr "My files"
 
-# Field label
-#: /MeuM1
-msgctxt "/MeuM1"
-msgid "Background video"
-msgstr "Background video"
-
 # Media label
 #: /OM5UY
 msgctxt "/OM5UY"
@@ -88,12 +76,6 @@ msgstr "Tags"
 msgctxt "/T/UDH"
 msgid "Remove all"
 msgstr "Remove all"
-
-# Images item field label
-#: /UoxuB
-msgctxt "/UoxuB"
-msgid "Image"
-msgstr "Image"
 
 # Media label
 #: /ca7BX
@@ -112,6 +94,12 @@ msgstr "Credits"
 msgctxt "0GT0SI"
 msgid "Cancel"
 msgstr "Cancel"
+
+# Breadcrumb field label
+#: 0GzLBc
+msgctxt "0GzLBc"
+msgid "Message"
+msgstr "Message"
 
 # Dropdown default all items label
 #: 15GBmG
@@ -221,12 +209,6 @@ msgctxt "4H2n5r"
 msgid "Closed captions"
 msgstr "Closed captions"
 
-# Size label
-#: 4HlSsf
-msgctxt "4HlSsf"
-msgid "Size"
-msgstr "Size"
-
 # Button to view a screen
 #: 4POR3B
 msgctxt "4POR3B"
@@ -251,12 +233,6 @@ msgctxt "4bHvRS"
 msgid "Gallery Feed"
 msgstr "Gallery Feed"
 
-# Markers with image item field label
-#: 4cCMV4
-msgctxt "4cCMV4"
-msgid "Marker"
-msgstr "Marker"
-
 # Tags in Media Gallery
 #: 4fHMVj
 msgctxt "4fHMVj"
@@ -274,12 +250,6 @@ msgstr "Layout"
 msgctxt "507VAi"
 msgid "Description"
 msgstr "Description"
-
-# CTA field active subfield label
-#: 52tY6n
-msgctxt "52tY6n"
-msgid "Call to Action"
-msgstr "Call to Action"
 
 # visualsWithCaptions field label
 #: 59f2bg
@@ -347,18 +317,6 @@ msgctxt "73hxYw"
 msgid "Author"
 msgstr "Author"
 
-# Messages field label
-#: 7cGi3J
-msgctxt "7cGi3J"
-msgid "Message"
-msgstr "Message"
-
-# Rounded corners label
-#: 7j/LQ6
-msgctxt "7j/LQ6"
-msgid "Rounded corners"
-msgstr "Rounded corners"
-
 # Button label
 #: 7tw6U2
 msgctxt "7tw6U2"
@@ -370,6 +328,12 @@ msgstr "Share"
 msgctxt "7uyslu"
 msgid "Description"
 msgstr "Description"
+
+# Field label
+#: 862eE3
+msgctxt "862eE3"
+msgid "Border"
+msgstr "Border"
 
 # Quote field label
 #: 88/Ge8
@@ -412,12 +376,6 @@ msgstr "Conversation"
 msgctxt "9DhYaZ"
 msgid "Ascending"
 msgstr "Ascending"
-
-# Speakers field label
-#: 9Nk11Y
-msgctxt "9Nk11Y"
-msgid "Speaker"
-msgstr "Speaker"
 
 # Field label
 #: 9PfjeE
@@ -497,6 +455,12 @@ msgctxt "B6cvYv"
 msgid "Select a closed-captions file..."
 msgstr "Select a closed-captions file..."
 
+# Placeholder label
+#: BSTWf8
+msgctxt "BSTWf8"
+msgid "Title"
+msgstr "Title"
+
 # State label
 #: BgrRxZ
 msgctxt "BgrRxZ"
@@ -508,12 +472,6 @@ msgstr "Intro"
 msgctxt "BpZoQZ"
 msgid "Success"
 msgstr "Success"
-
-# Quiz answers item field label
-#: Bv/pu7
-msgctxt "Bv/pu7"
-msgid "Answer"
-msgstr "Answer"
 
 # ImageText screen title
 #: CJmQeh
@@ -532,12 +490,6 @@ msgstr "Markers with image"
 msgctxt "CrzYgw"
 msgid "Quote"
 msgstr "Quote"
-
-# CTA field label field label
-#: D/N9gA
-msgctxt "D/N9gA"
-msgid "Label"
-msgstr "Label"
 
 # Field label
 #: DU1qdc
@@ -713,6 +665,18 @@ msgctxt "KHWeV7"
 msgid "Answers"
 msgstr "Answers"
 
+# Breadcrumb field label
+#: KuzZbb
+msgctxt "KuzZbb"
+msgid "Background color"
+msgstr "Background color"
+
+# Field label
+#: LOknw0
+msgctxt "LOknw0"
+msgid "Styles"
+msgstr "Styles"
+
 # Button label
 #: LkVfwW
 msgctxt "LkVfwW"
@@ -766,6 +730,18 @@ msgstr "Left"
 msgctxt "OJi+eg"
 msgid "Label"
 msgstr "Label"
+
+# Field label
+#: OPxJx/
+msgctxt "OPxJx/"
+msgid "Layout"
+msgstr "Layout"
+
+# Field label
+#: OSl7A6
+msgctxt "OSl7A6"
+msgid "Swipe up"
+msgstr "Swipe up"
 
 # Label when there is no item in slides field
 #: OdcEna
@@ -850,12 +826,6 @@ msgctxt "S/mavZ"
 msgid "Text and Images"
 msgstr "Text and Images"
 
-# Images with caption item field label
-#: S3gGiD
-msgctxt "S3gGiD"
-msgid "Image"
-msgstr "Image"
-
 # Text screen title
 #: S9YpbV
 msgctxt "S9YpbV"
@@ -885,18 +855,6 @@ msgstr "Images"
 msgctxt "THKV4v"
 msgid "Longitude"
 msgstr "Longitude"
-
-# CTA field url field label
-#: TXkHah
-msgctxt "TXkHah"
-msgid "Link"
-msgstr "Link"
-
-# Fields label
-#: TkRMbW
-msgctxt "TkRMbW"
-msgid "Box style"
-msgstr "Box style"
 
 # Button label
 #: Tol+/U
@@ -994,17 +952,23 @@ msgctxt "Wr9olU"
 msgid "Typography"
 msgstr "Typography"
 
+# Breadcrumb field label
+#: X97njD
+msgctxt "X97njD"
+msgid "Entry"
+msgstr "Entry"
+
+# Breadcrumb field label
+#: XJ2Xc+
+msgctxt "XJ2Xc+"
+msgid "Answer"
+msgstr "Answer"
+
 # GalleryFeedCaptions screen title
 #: XTJGzY
 msgctxt "XTJGzY"
 msgid "Gallery feed with captions"
 msgstr "Gallery feed with captions"
-
-# Answers item field label
-#: Xdsq3k
-msgctxt "Xdsq3k"
-msgid "Answer"
-msgstr "Answer"
 
 # Move the map to position the place description
 #: XhgKcw
@@ -1059,12 +1023,6 @@ msgstr "Text"
 msgctxt "ZiWlL6"
 msgid "Questions"
 msgstr "Questions"
-
-# CTA field type subfield label
-#: ZvKOEb
-msgctxt "ZvKOEb"
-msgid "Type"
-msgstr "Type"
 
 # Button label in items field
 #: ZxgNge
@@ -1144,6 +1102,12 @@ msgctxt "d60tSn"
 msgid "Subtitle"
 msgstr "Subtitle"
 
+# Breadcrumb field label
+#: dCG1T1
+msgctxt "dCG1T1"
+msgid "Background video"
+msgstr "Background video"
+
 # Label when there is no item
 #: dFMzBu
 msgctxt "dFMzBu"
@@ -1198,6 +1162,12 @@ msgctxt "e6+aGf"
 msgid "Select a media..."
 msgstr "Select a media..."
 
+# Field label
+#: eBFxNl
+msgctxt "eBFxNl"
+msgid "Call to Action"
+msgstr "Call to Action"
+
 # ImageTitleText screen title
 #: eWIM/8
 msgctxt "eWIM/8"
@@ -1235,6 +1205,12 @@ msgid "Duration"
 msgstr "Duration"
 
 # Field label
+#: f5Yipd
+msgctxt "f5Yipd"
+msgid "Box"
+msgstr "Box"
+
+# Field label
 #: f68O+0
 msgctxt "f68O+0"
 msgid "Messages"
@@ -1258,11 +1234,11 @@ msgctxt "fusnxf"
 msgid "Square"
 msgstr "Square"
 
-# CTA field type subfield button option label
-#: fxfV+l
-msgctxt "fxfV+l"
-msgid "Button"
-msgstr "Button"
+# Field label
+#: g2CRt5
+msgctxt "g2CRt5"
+msgid "Size"
+msgstr "Size"
 
 # Contribution screen title
 #: g6b9Lg
@@ -1287,6 +1263,12 @@ msgstr "Search..."
 msgctxt "hVE7TA"
 msgid "Question"
 msgstr "Question"
+
+# Placeholder label
+#: hoDz0O
+msgctxt "hoDz0O"
+msgid "Description"
+msgstr "Description"
 
 # Delete screen item
 #: hpiKce
@@ -1318,6 +1300,18 @@ msgctxt "iHV3W3"
 msgid "No entry..."
 msgstr "No entry..."
 
+# Field label
+#: iipV5Q
+msgctxt "iipV5Q"
+msgid "Type"
+msgstr "Type"
+
+# Field label
+#: jWAJW4
+msgctxt "jWAJW4"
+msgid "Points"
+msgstr "Points"
+
 # Gallery screen title
 #: jaFXki
 msgctxt "jaFXki"
@@ -1335,12 +1329,6 @@ msgstr "Screens"
 msgctxt "jnww6n"
 msgid "Select an image..."
 msgstr "Select an image..."
-
-# CTA field type subfield swipe-up option label
-#: jvvJbk
-msgctxt "jvvJbk"
-msgid "Swipe up"
-msgstr "Swipe up"
 
 # Field label
 #: k81FRn
@@ -1389,6 +1377,12 @@ msgstr "Size"
 msgctxt "mOSkbf"
 msgid "Usage"
 msgstr "Usage"
+
+# Field label
+#: mXeSkg
+msgctxt "mXeSkg"
+msgid "Link"
+msgstr "Link"
 
 #: menus.pagination.next
 msgctxt "menus.pagination.next"
@@ -1441,6 +1435,12 @@ msgstr "Name"
 msgctxt "nc8LF0"
 msgid "Metadata"
 msgstr "Metadata"
+
+# Field label
+#: nno1Pq
+msgctxt "nno1Pq"
+msgid "Button style"
+msgstr "Button style"
 
 # TextTitle screen title
 #: oCBQKV
@@ -1526,6 +1526,12 @@ msgctxt "qjL/eA"
 msgid "Bar"
 msgstr "Bar"
 
+# Breadcrumb field label
+#: qroLmS
+msgctxt "qroLmS"
+msgid "Marker"
+msgstr "Marker"
+
 # Conversation screen title
 #: rBPIgw
 msgctxt "rBPIgw"
@@ -1550,6 +1556,12 @@ msgctxt "ru3tjH"
 msgid "Bad answer color"
 msgstr "Bad answer color"
 
+# Breadcrumb field label
+#: rzdds2
+msgctxt "rzdds2"
+msgid "Speaker"
+msgstr "Speaker"
+
 # Entries field label
 #: sESmah
 msgctxt "sESmah"
@@ -1573,12 +1585,6 @@ msgstr "No image..."
 msgctxt "t2cFdl"
 msgid "Active filters"
 msgstr "Active filters"
-
-# Markers item field label
-#: t7FVa4
-msgctxt "t7FVa4"
-msgid "Marker"
-msgstr "Marker"
 
 # Button label in slides field
 #: tAYwqp
@@ -1658,6 +1664,12 @@ msgctxt "upzOTm"
 msgid "Credits"
 msgstr "Credits"
 
+# Breadcrumb field label
+#: uwcXzb
+msgctxt "uwcXzb"
+msgid "Image"
+msgstr "Image"
+
 # Today date message
 #: v4Qtl9
 msgctxt "v4Qtl9"
@@ -1669,12 +1681,6 @@ msgstr "Today"
 msgctxt "v9bqYj"
 msgid "Go to next screen"
 msgstr "Go to next screen"
-
-# Border label
-#: vA+9dU
-msgctxt "vA+9dU"
-msgid "Border"
-msgstr "Border"
 
 # Field label
 #: vERejo
@@ -1706,11 +1712,11 @@ msgctxt "vmrJ8U"
 msgid "(current screen)"
 msgstr "(current screen)"
 
-# Background color label
-#: vzW/wd
-msgctxt "vzW/wd"
-msgid "Background color"
-msgstr "Background color"
+# Breadcrumb field label
+#: vxEtY1
+msgctxt "vxEtY1"
+msgid "Background image"
+msgstr "Background image"
 
 # Button label
 #: vzg8Es
@@ -1718,17 +1724,17 @@ msgctxt "vzg8Es"
 msgid "Mute"
 msgstr "Mute"
 
+# No value label
+#: wChc+A
+msgctxt "wChc+A"
+msgid "Edit style..."
+msgstr "Edit style..."
+
 # Button to show screens
 #: wkysUu
 msgctxt "wkysUu"
 msgid "Screens"
 msgstr "Screens"
-
-# Entries item field label
-#: wsNfYo
-msgctxt "wsNfYo"
-msgid "Entry"
-msgstr "Entry"
 
 # Label when no value is provided to Audio field
 #: wt1+dM
@@ -1747,6 +1753,12 @@ msgstr "All sources"
 msgctxt "xCj1gI"
 msgid "Add a message"
 msgstr "Add a message"
+
+# Field label
+#: xKG76H
+msgctxt "xKG76H"
+msgid "Rounded corners"
+msgstr "Rounded corners"
 
 # Field label
 #: xT/onn
@@ -1783,12 +1795,6 @@ msgstr "Advanced settings"
 msgctxt "yCXMzz"
 msgid "Close"
 msgstr "Close"
-
-# Field label
-#: ySApyR
-msgctxt "ySApyR"
-msgid "Background image"
-msgstr "Background image"
 
 # Call to action default label
 #: z/VBX0

@@ -17,9 +17,6 @@
     "+SlKOi": {
         "defaultMessage": "Published message style"
     },
-    "+VD/9p": {
-        "defaultMessage": "Color"
-    },
     "+nhSvj": {
         "defaultMessage": "No speaker..."
     },
@@ -29,17 +26,11 @@
     "/62oe4": {
         "defaultMessage": "My files"
     },
-    "/MeuM1": {
-        "defaultMessage": "Background video"
-    },
     "/OM5UY": {
         "defaultMessage": "Tags"
     },
     "/T/UDH": {
         "defaultMessage": "Remove all"
-    },
-    "/UoxuB": {
-        "defaultMessage": "Image"
     },
     "/ca7BX": {
         "defaultMessage": "Types"
@@ -49,6 +40,9 @@
     },
     "0GT0SI": {
         "defaultMessage": "Cancel"
+    },
+    "0GzLBc": {
+        "defaultMessage": "Message"
     },
     "15GBmG": {
         "defaultMessage": "All"
@@ -104,9 +98,6 @@
     "4H2n5r": {
         "defaultMessage": "Closed captions"
     },
-    "4HlSsf": {
-        "defaultMessage": "Size"
-    },
     "4POR3B": {
         "defaultMessage": "View screen"
     },
@@ -119,9 +110,6 @@
     "4bHvRS": {
         "defaultMessage": "Gallery Feed"
     },
-    "4cCMV4": {
-        "defaultMessage": "Marker"
-    },
     "4fHMVj": {
         "defaultMessage": "Tags"
     },
@@ -130,9 +118,6 @@
     },
     "507VAi": {
         "defaultMessage": "Description"
-    },
-    "52tY6n": {
-        "defaultMessage": "Call to Action"
     },
     "59f2bg": {
         "defaultMessage": "Images"
@@ -167,17 +152,14 @@
     "73hxYw": {
         "defaultMessage": "Author"
     },
-    "7cGi3J": {
-        "defaultMessage": "Message"
-    },
-    "7j/LQ6": {
-        "defaultMessage": "Rounded corners"
-    },
     "7tw6U2": {
         "defaultMessage": "Share"
     },
     "7uyslu": {
         "defaultMessage": "Description"
+    },
+    "862eE3": {
+        "defaultMessage": "Border"
     },
     "88/Ge8": {
         "defaultMessage": "Quote"
@@ -199,9 +181,6 @@
     },
     "9DhYaZ": {
         "defaultMessage": "Ascending"
-    },
-    "9Nk11Y": {
-        "defaultMessage": "Speaker"
     },
     "9PfjeE": {
         "defaultMessage": "Speaker style"
@@ -242,14 +221,14 @@
     "B6cvYv": {
         "defaultMessage": "Select a closed-captions file..."
     },
+    "BSTWf8": {
+        "defaultMessage": "Title"
+    },
     "BgrRxZ": {
         "defaultMessage": "Intro"
     },
     "BpZoQZ": {
         "defaultMessage": "Success"
-    },
-    "Bv/pu7": {
-        "defaultMessage": "Answer"
     },
     "CJmQeh": {
         "defaultMessage": "Image with text"
@@ -259,9 +238,6 @@
     },
     "CrzYgw": {
         "defaultMessage": "Quote"
-    },
-    "D/N9gA": {
-        "defaultMessage": "Label"
     },
     "DU1qdc": {
         "defaultMessage": "Text color"
@@ -350,6 +326,12 @@
     "KHWeV7": {
         "defaultMessage": "Answers"
     },
+    "KuzZbb": {
+        "defaultMessage": "Background color"
+    },
+    "LOknw0": {
+        "defaultMessage": "Styles"
+    },
     "LkVfwW": {
         "defaultMessage": "Screen {index}"
     },
@@ -376,6 +358,12 @@
     },
     "OJi+eg": {
         "defaultMessage": "Label"
+    },
+    "OPxJx/": {
+        "defaultMessage": "Layout"
+    },
+    "OSl7A6": {
+        "defaultMessage": "Swipe up"
     },
     "OdcEna": {
         "defaultMessage": "No slide..."
@@ -419,9 +407,6 @@
     "S/mavZ": {
         "defaultMessage": "Text and Images"
     },
-    "S3gGiD": {
-        "defaultMessage": "Image"
-    },
     "S9YpbV": {
         "defaultMessage": "Text"
     },
@@ -436,12 +421,6 @@
     },
     "THKV4v": {
         "defaultMessage": "Longitude"
-    },
-    "TXkHah": {
-        "defaultMessage": "Link"
-    },
-    "TkRMbW": {
-        "defaultMessage": "Box style"
     },
     "Tol+/U": {
         "defaultMessage": "Clear"
@@ -491,11 +470,14 @@
     "Wr9olU": {
         "defaultMessage": "Typography"
     },
+    "X97njD": {
+        "defaultMessage": "Entry"
+    },
+    "XJ2Xc+": {
+        "defaultMessage": "Answer"
+    },
     "XTJGzY": {
         "defaultMessage": "Gallery feed with captions"
-    },
-    "Xdsq3k": {
-        "defaultMessage": "Answer"
     },
     "XhgKcw": {
         "defaultMessage": "Move the map to position the place"
@@ -523,9 +505,6 @@
     },
     "ZiWlL6": {
         "defaultMessage": "Questions"
-    },
-    "ZvKOEb": {
-        "defaultMessage": "Type"
     },
     "ZxgNge": {
         "defaultMessage": "Add an item"
@@ -566,6 +545,9 @@
     "d60tSn": {
         "defaultMessage": "Subtitle"
     },
+    "dCG1T1": {
+        "defaultMessage": "Background video"
+    },
     "dFMzBu": {
         "defaultMessage": "No image..."
     },
@@ -593,6 +575,9 @@
     "e6+aGf": {
         "defaultMessage": "Select a media..."
     },
+    "eBFxNl": {
+        "defaultMessage": "Call to Action"
+    },
     "eWIM/8": {
         "defaultMessage": "Image with title and text"
     },
@@ -611,6 +596,9 @@
     "eoW0tZ": {
         "defaultMessage": "Duration"
     },
+    "f5Yipd": {
+        "defaultMessage": "Box"
+    },
     "f68O+0": {
         "defaultMessage": "Messages"
     },
@@ -623,8 +611,8 @@
     "fusnxf": {
         "defaultMessage": "Square"
     },
-    "fxfV+l": {
-        "defaultMessage": "Button"
+    "g2CRt5": {
+        "defaultMessage": "Size"
     },
     "g6b9Lg": {
         "defaultMessage": "Contribution"
@@ -637,6 +625,9 @@
     },
     "hVE7TA": {
         "defaultMessage": "Question"
+    },
+    "hoDz0O": {
+        "defaultMessage": "Description"
     },
     "hpiKce": {
         "defaultMessage": "Delete screen"
@@ -653,6 +644,12 @@
     "iHV3W3": {
         "defaultMessage": "No entry..."
     },
+    "iipV5Q": {
+        "defaultMessage": "Type"
+    },
+    "jWAJW4": {
+        "defaultMessage": "Points"
+    },
     "jaFXki": {
         "defaultMessage": "Gallery"
     },
@@ -661,9 +658,6 @@
     },
     "jnww6n": {
         "defaultMessage": "Select an image..."
-    },
-    "jvvJbk": {
-        "defaultMessage": "Swipe up"
     },
     "k81FRn": {
         "defaultMessage": "Message style"
@@ -688,6 +682,9 @@
     },
     "mOSkbf": {
         "defaultMessage": "Usage"
+    },
+    "mXeSkg": {
+        "defaultMessage": "Link"
     },
     "menus.pagination.next": {
         "defaultMessage": "next"
@@ -715,6 +712,9 @@
     },
     "nc8LF0": {
         "defaultMessage": "Metadata"
+    },
+    "nno1Pq": {
+        "defaultMessage": "Button style"
     },
     "oCBQKV": {
         "defaultMessage": "Text with title"
@@ -758,6 +758,9 @@
     "qjL/eA": {
         "defaultMessage": "Bar"
     },
+    "qroLmS": {
+        "defaultMessage": "Marker"
+    },
     "rBPIgw": {
         "defaultMessage": "Conversation"
     },
@@ -770,6 +773,9 @@
     "ru3tjH": {
         "defaultMessage": "Bad answer color"
     },
+    "rzdds2": {
+        "defaultMessage": "Speaker"
+    },
     "sESmah": {
         "defaultMessage": "Entries"
     },
@@ -781,9 +787,6 @@
     },
     "t2cFdl": {
         "defaultMessage": "Active filters"
-    },
-    "t7FVa4": {
-        "defaultMessage": "Marker"
     },
     "tAYwqp": {
         "defaultMessage": "Add a slide"
@@ -824,14 +827,14 @@
     "upzOTm": {
         "defaultMessage": "Credits"
     },
+    "uwcXzb": {
+        "defaultMessage": "Image"
+    },
     "v4Qtl9": {
         "defaultMessage": "Today"
     },
     "v9bqYj": {
         "defaultMessage": "Go to next screen"
-    },
-    "vA+9dU": {
-        "defaultMessage": "Border"
     },
     "vERejo": {
         "defaultMessage": "Video"
@@ -848,17 +851,17 @@
     "vmrJ8U": {
         "defaultMessage": "(current screen)"
     },
-    "vzW/wd": {
-        "defaultMessage": "Background color"
+    "vxEtY1": {
+        "defaultMessage": "Background image"
     },
     "vzg8Es": {
         "defaultMessage": "Mute"
     },
+    "wChc+A": {
+        "defaultMessage": "Edit style..."
+    },
     "wkysUu": {
         "defaultMessage": "Screens"
-    },
-    "wsNfYo": {
-        "defaultMessage": "Entry"
     },
     "wt1+dM": {
         "defaultMessage": "Select an audio file..."
@@ -868,6 +871,9 @@
     },
     "xCj1gI": {
         "defaultMessage": "Add a message"
+    },
+    "xKG76H": {
+        "defaultMessage": "Rounded corners"
     },
     "xT/onn": {
         "defaultMessage": "Image"
@@ -886,9 +892,6 @@
     },
     "yCXMzz": {
         "defaultMessage": "Close"
-    },
-    "ySApyR": {
-        "defaultMessage": "Background image"
     },
     "z/VBX0": {
         "defaultMessage": "Learn more"

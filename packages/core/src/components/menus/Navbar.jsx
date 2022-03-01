@@ -70,7 +70,14 @@ const Navbar = ({
                 },
             ])}
         >
-            <div className="container-fluid">
+            <div
+                className={classNames([
+                    'container-fluid',
+                    {
+                        'px-0': true,
+                    },
+                ])}
+            >
                 {brand !== null && brandLink !== null ? (
                     <Link
                         className={classNames([

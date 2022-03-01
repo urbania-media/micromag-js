@@ -274,6 +274,15 @@ export default [
                         }),
                     },
                     {
+                        name: 'points',
+                        type: 'number',
+                        isHorizontal: true,
+                        label: defineMessage({
+                            defaultMessage: 'Points',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
                         name: 'background',
                         type: 'background',
                         label: defineMessage({
@@ -291,8 +300,26 @@ export default [
                 defaultValue: 'top',
                 label: defineMessage({
                     defaultMessage: 'Layout',
-                    description: 'Layout field label',
+                    description: 'Field label',
                 }),
+            },
+            {
+                type: 'fields',
+                label: defineMessage({
+                    defaultMessage: 'Styles',
+                    description: 'Field label',
+                }),
+                isList: true,
+                fields: [
+                    {
+                        name: 'buttonsStyle',
+                        type: 'box-style',
+                        label: defineMessage({
+                            defaultMessage: 'Buttons',
+                            description: 'Field label',
+                        })
+                    },
+                ]
             },
             {
                 name: 'background',

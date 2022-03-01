@@ -13,7 +13,7 @@ export default {
             }),
             breadcrumbLabel: defineMessage({
                 defaultMessage: 'Background color',
-                description: 'Field label',
+                description: 'Breadcrumb field label',
             }),
         },
         {
@@ -25,7 +25,7 @@ export default {
             }),
             breadcrumbLabel: defineMessage({
                 defaultMessage: 'Background image',
-                description: 'Field label',
+                description: 'Breadcrumb field label',
             }),
         },
         {
@@ -37,7 +37,7 @@ export default {
             }),
             breadcrumbLabel: defineMessage({
                 defaultMessage: 'Background video',
-                description: 'Field label',
+                description: 'Breadcrumb field label',
             }),
         },
     ],

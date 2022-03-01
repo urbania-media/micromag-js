@@ -175,7 +175,6 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
             ? {
                   id: 'duplicate',
                   type: 'button',
-                  className: 'text-start text-info',
                   label: (
                       <FormattedMessage
                           defaultMessage="Duplicate screen"
@@ -188,7 +187,6 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
         {
             id: 'delete',
             type: 'button',
-            className: 'text-start text-danger',
             label: (
                 <FormattedMessage defaultMessage="Delete screen" description="Delete screen item" />
             ),
@@ -219,15 +217,20 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
                         className="me-auto"
                     />
                     {fieldParams === null ? (
-                        <>
-                            <SettingsButton onClick={onSettingsClick} />
+                        <div className="dropdown">
+                            <SettingsButton
+                                onClick={onSettingsClick}
+                                dots
+                                className="py-0"
+                                theme="default"
+                            />
                             <DropdownMenu
+                                align="end"
                                 items={dropdownItems}
                                 visible={screenSettingsOpened}
-                                align="right"
                                 onClickOutside={onDropdownClickOutside}
                             />
-                        </>
+                        </div>
                     ) : null}
                 </Navbar>
             ) : null}

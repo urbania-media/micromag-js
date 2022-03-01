@@ -1,0 +1,25 @@
+/* stylelint-disable max-nesting-depth, selector-max-compound-selectors, no-descending-specificity */
+
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/mixins';
+@import 'placeholders';
+
+$scale: 4;
+
+.preview {
+    display: block;
+    position: relative;
+    width: 1rem;
+    height: 1rem;
+
+    .box {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100% * $scale;
+        height: 100% * $scale;
+        transform: scale(1 / $scale);
+        transform-origin: 0 0;
+    }
+}

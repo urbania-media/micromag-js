@@ -15,7 +15,7 @@ export default {
         type: 'image-with-caption',
         breadcrumbLabel: defineMessage({
             defaultMessage: 'Image',
-            description: 'Images with caption item field label',
+            description: 'Breadcrumb field label',
         }),
     },
 };

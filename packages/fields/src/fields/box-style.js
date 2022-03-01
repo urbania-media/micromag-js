@@ -2,20 +2,21 @@ import { defineMessage } from 'react-intl';
 
 export default {
     id: 'box-style',
+    component: 'box-style',
     fields: [
         {
             type: 'fields',
-            label: defineMessage({
-                defaultMessage: 'Box style',
-                description: 'Fields label',
-            }),
             isList: true,
+            label: defineMessage({
+                defaultMessage: 'Box',
+                description: 'Field label',
+            }),
             fields: [
                 {
                     name: 'backgroundColor',
                     label: defineMessage({
                         defaultMessage: 'Background color',
-                        description: 'Background color label',
+                        description: 'Field label',
                     }),
                     type: 'color',
                 },
@@ -26,7 +27,7 @@ export default {
                     dataList: [0, 2, 4, 6, 8, 10],
                     label: defineMessage({
                         defaultMessage: 'Rounded corners',
-                        description: 'Rounded corners label',
+                        description: 'Field label',
                     }),
                 },
                 {
@@ -45,7 +46,7 @@ export default {
             type: 'fields',
             label: defineMessage({
                 defaultMessage: 'Border',
-                description: 'Border label',
+                description: 'Field label',
             }),
             isList: true,
             fields: [
@@ -56,7 +57,7 @@ export default {
                     dataList: [0, 1, 2, 3, 4, 5],
                     label: defineMessage({
                         defaultMessage: 'Size',
-                        description: 'Size label',
+                        description: 'Field label',
                     }),
                 },
                 {
@@ -64,7 +65,7 @@ export default {
                     type: 'color',
                     label: defineMessage({
                         defaultMessage: 'Color',
-                        description: 'Color label',
+                        description: 'Field label',
                     }),
                 },
                 {

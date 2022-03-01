@@ -17,7 +17,7 @@ export default {
         type: 'speaker',
         breadcrumbLabel: defineMessage({
             defaultMessage: 'Speaker',
-            description: 'Speakers field label',
+            description: 'Breadcrumb field label',
         }),
     },
 };

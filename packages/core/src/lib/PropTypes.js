@@ -142,7 +142,7 @@ export const buttonSize = PropTypes.oneOf(['lg', 'sm', null]);
 
 export const formControlSize = PropTypes.oneOf(['lg', 'sm', null]);
 
-export const dropdownAlign = PropTypes.oneOf(['left', 'right']);
+export const dropdownAlign = PropTypes.oneOf(['start', 'end']);
 
 export const componentNames = (Components) =>
     PropTypes.oneOf(Object.keys(Components).map((it) => snakeCase(it)));

@@ -15,7 +15,7 @@ export default {
         type: 'answer',
         breadcrumbLabel: defineMessage({
             defaultMessage: 'Answer',
-            description: 'Answers item field label',
+            description: 'Breadcrumb field label',
         }),
     }
 };

@@ -24,9 +24,24 @@ export default {
             }),
         },
         {
-            name: 'buttonStyle',
-            type: 'box-style',
-            className: 'mt-4'
+            type: 'fields',
+            isList: true,
+            fields: [
+                {
+                    type: 'box-style',
+                    name: 'buttonStyle',
+                    label: defineMessage({
+                        defaultMessage: 'Button style',
+                        description: 'Field label',
+                    })
+                },
+            ]
         },
+
+        // {
+        //     name: 'buttonStyle',
+        //     type: 'box-style',
+        //     className: 'mt-4'
+        // },
     ]
 };

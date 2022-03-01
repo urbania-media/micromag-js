@@ -27,7 +27,7 @@ msgstr "Titre"
 #: +LvOvJ
 msgctxt "+LvOvJ"
 msgid "Markers"
-msgstr ""
+msgstr "Marqueurs"
 
 # Background field label
 #: +MPZRu
@@ -47,12 +47,6 @@ msgctxt "+SlKOi"
 msgid "Published message style"
 msgstr "Style message publié"
 
-# Color label
-#: +VD/9p
-msgctxt "+VD/9p"
-msgid "Color"
-msgstr "Couleur"
-
 # Label when there is no item
 #: +nhSvj
 msgctxt "+nhSvj"
@@ -71,12 +65,6 @@ msgctxt "/62oe4"
 msgid "My files"
 msgstr "Mes fichiers"
 
-# Field label
-#: /MeuM1
-msgctxt "/MeuM1"
-msgid "Background video"
-msgstr "Vidéo d'arrière-plan"
-
 # Media label
 #: /OM5UY
 msgctxt "/OM5UY"
@@ -88,12 +76,6 @@ msgstr "Mots-clés"
 msgctxt "/T/UDH"
 msgid "Remove all"
 msgstr "Tout effacer"
-
-# Images item field label
-#: /UoxuB
-msgctxt "/UoxuB"
-msgid "Image"
-msgstr "Image"
 
 # Media label
 #: /ca7BX
@@ -112,6 +94,12 @@ msgstr "Crédits"
 msgctxt "0GT0SI"
 msgid "Cancel"
 msgstr "Annuler"
+
+# Breadcrumb field label
+#: 0GzLBc
+msgctxt "0GzLBc"
+msgid "Message"
+msgstr "Message"
 
 # Dropdown default all items label
 #: 15GBmG
@@ -221,12 +209,6 @@ msgctxt "4H2n5r"
 msgid "Closed captions"
 msgstr "Sous-titres"
 
-# Size label
-#: 4HlSsf
-msgctxt "4HlSsf"
-msgid "Size"
-msgstr "Taille"
-
 # Button to view a screen
 #: 4POR3B
 msgctxt "4POR3B"
@@ -251,12 +233,6 @@ msgctxt "4bHvRS"
 msgid "Gallery Feed"
 msgstr "Galerie (fil)"
 
-# Markers with image item field label
-#: 4cCMV4
-msgctxt "4cCMV4"
-msgid "Marker"
-msgstr "Marqueur"
-
 # Tags in Media Gallery
 #: 4fHMVj
 msgctxt "4fHMVj"
@@ -274,12 +250,6 @@ msgstr "Disposition"
 msgctxt "507VAi"
 msgid "Description"
 msgstr "Description"
-
-# CTA field active subfield label
-#: 52tY6n
-msgctxt "52tY6n"
-msgid "Call to Action"
-msgstr "Action"
 
 # visualsWithCaptions field label
 #: 59f2bg
@@ -347,18 +317,6 @@ msgctxt "73hxYw"
 msgid "Author"
 msgstr "Auteur"
 
-# Messages field label
-#: 7cGi3J
-msgctxt "7cGi3J"
-msgid "Message"
-msgstr "Message"
-
-# Rounded corners label
-#: 7j/LQ6
-msgctxt "7j/LQ6"
-msgid "Rounded corners"
-msgstr "Coins arrondis"
-
 # Button label
 #: 7tw6U2
 msgctxt "7tw6U2"
@@ -370,6 +328,12 @@ msgstr "Partager"
 msgctxt "7uyslu"
 msgid "Description"
 msgstr "Description"
+
+# Field label
+#: 862eE3
+msgctxt "862eE3"
+msgid "Border"
+msgstr "Bordure"
 
 # Quote field label
 #: 88/Ge8
@@ -413,12 +377,6 @@ msgctxt "9DhYaZ"
 msgid "Ascending"
 msgstr "Ordre croissant"
 
-# Speakers field label
-#: 9Nk11Y
-msgctxt "9Nk11Y"
-msgid "Speaker"
-msgstr "Interlocuteur"
-
 # Field label
 #: 9PfjeE
 msgctxt "9PfjeE"
@@ -435,7 +393,7 @@ msgstr "Bibliothèque pour"
 #: 9a5s+m
 msgctxt "9a5s+m"
 msgid "Title with box"
-msgstr ""
+msgstr "Titre avec encadré"
 
 # Button label in images with caption field
 #: 9n9+yP
@@ -453,7 +411,7 @@ msgstr "Aucune réponse..."
 #: A7ncT3
 msgctxt "A7ncT3"
 msgid "Draggable"
-msgstr ""
+msgstr "Déplaçable"
 
 # ImageTitle screen title
 #: AA8TV9
@@ -465,7 +423,7 @@ msgstr "Image avec titre"
 #: ACkeH6
 msgctxt "ACkeH6"
 msgid "Quiz with multiple questions"
-msgstr ""
+msgstr "Quiz avec plusieurs questions"
 
 # Screen label in the breadcrumb
 #: AHvHaY
@@ -497,23 +455,23 @@ msgctxt "B6cvYv"
 msgid "Select a closed-captions file..."
 msgstr "Sélectionnez un fichier de sous-titres..."
 
+# Placeholder label
+#: BSTWf8
+msgctxt "BSTWf8"
+msgid "Title"
+msgstr "Titre"
+
 # State label
 #: BgrRxZ
 msgctxt "BgrRxZ"
 msgid "Intro"
-msgstr ""
+msgstr "Intro"
 
 # Success form message
 #: BpZoQZ
 msgctxt "BpZoQZ"
 msgid "Success"
 msgstr "Succès"
-
-# Quiz answers item field label
-#: Bv/pu7
-msgctxt "Bv/pu7"
-msgid "Answer"
-msgstr "Réponse"
 
 # ImageText screen title
 #: CJmQeh
@@ -525,19 +483,13 @@ msgstr "Image avec texte"
 #: CW3KAC
 msgctxt "CW3KAC"
 msgid "Markers with image"
-msgstr ""
+msgstr "Marqueurs avec image"
 
 # Quote placeholder
 #: CrzYgw
 msgctxt "CrzYgw"
 msgid "Quote"
 msgstr "Citation"
-
-# CTA field label field label
-#: D/N9gA
-msgctxt "D/N9gA"
-msgid "Label"
-msgstr "Libellé"
 
 # Field label
 #: DU1qdc
@@ -713,6 +665,18 @@ msgctxt "KHWeV7"
 msgid "Answers"
 msgstr "Réponses"
 
+# Breadcrumb field label
+#: KuzZbb
+msgctxt "KuzZbb"
+msgid "Background color"
+msgstr "Couleur de l'arrière-plan"
+
+# Field label
+#: LOknw0
+msgctxt "LOknw0"
+msgid "Styles"
+msgstr "Styles"
+
 # Button label
 #: LkVfwW
 msgctxt "LkVfwW"
@@ -747,7 +711,7 @@ msgstr "Titre"
 #: NVUpOG
 msgctxt "NVUpOG"
 msgid "Map fit markers"
-msgstr ""
+msgstr "Ajuster la carte selon les marqueurs"
 
 # Conversation placeholder
 #: NmCfTO
@@ -766,6 +730,18 @@ msgstr "Gauche"
 msgctxt "OJi+eg"
 msgid "Label"
 msgstr "Libellé"
+
+# Field label
+#: OPxJx/
+msgctxt "OPxJx/"
+msgid "Layout"
+msgstr "Disposition"
+
+# Field label
+#: OSl7A6
+msgctxt "OSl7A6"
+msgid "Swipe up"
+msgstr "Swipe up"
 
 # Label when there is no item in slides field
 #: OdcEna
@@ -850,12 +826,6 @@ msgctxt "S/mavZ"
 msgid "Text and Images"
 msgstr "Texte et images"
 
-# Images with caption item field label
-#: S3gGiD
-msgctxt "S3gGiD"
-msgid "Image"
-msgstr "Image"
-
 # Text screen title
 #: S9YpbV
 msgctxt "S9YpbV"
@@ -885,18 +855,6 @@ msgstr "Images"
 msgctxt "THKV4v"
 msgid "Longitude"
 msgstr "Longitude"
-
-# CTA field url field label
-#: TXkHah
-msgctxt "TXkHah"
-msgid "Link"
-msgstr "Lien"
-
-# Fields label
-#: TkRMbW
-msgctxt "TkRMbW"
-msgid "Box style"
-msgstr ""
 
 # Button label
 #: Tol+/U
@@ -962,7 +920,7 @@ msgstr "Google Fonts"
 #: VMd1oG
 msgctxt "VMd1oG"
 msgid "Questions"
-msgstr ""
+msgstr "Questions"
 
 # Upload button label in Media Gallery
 #: VspZp9
@@ -974,7 +932,7 @@ msgstr "Téléverser une image"
 #: W5qWPj
 msgctxt "W5qWPj"
 msgid "Center"
-msgstr ""
+msgstr "Centrer"
 
 # Label when no value
 #: Wb5zY4
@@ -994,17 +952,23 @@ msgctxt "Wr9olU"
 msgid "Typography"
 msgstr "Typographie"
 
+# Breadcrumb field label
+#: X97njD
+msgctxt "X97njD"
+msgid "Entry"
+msgstr "Entrée"
+
+# Breadcrumb field label
+#: XJ2Xc+
+msgctxt "XJ2Xc+"
+msgid "Answer"
+msgstr "Réponse"
+
 # GalleryFeedCaptions screen title
 #: XTJGzY
 msgctxt "XTJGzY"
 msgid "Gallery feed with captions"
 msgstr "Galerie (fil) avec légendes"
-
-# Answers item field label
-#: Xdsq3k
-msgctxt "Xdsq3k"
-msgid "Answer"
-msgstr "Réponse"
 
 # Move the map to position the place description
 #: XhgKcw
@@ -1028,7 +992,7 @@ msgstr "Point rempli"
 #: Z27IP6
 msgctxt "Z27IP6"
 msgid "Map"
-msgstr ""
+msgstr "Carte"
 
 # Field label
 #: Z5jrDS
@@ -1058,13 +1022,7 @@ msgstr "Texte"
 #: ZiWlL6
 msgctxt "ZiWlL6"
 msgid "Questions"
-msgstr ""
-
-# CTA field type subfield label
-#: ZvKOEb
-msgctxt "ZvKOEb"
-msgid "Type"
-msgstr "Type"
+msgstr "Questions"
 
 # Button label in items field
 #: ZxgNge
@@ -1130,7 +1088,7 @@ msgstr "Détails techniques"
 #: cDj1mZ
 msgctxt "cDj1mZ"
 msgid "Background"
-msgstr ""
+msgstr "Arrière-plan"
 
 # List screen group
 #: cGItoy
@@ -1144,6 +1102,12 @@ msgctxt "d60tSn"
 msgid "Subtitle"
 msgstr "Sous-titre"
 
+# Breadcrumb field label
+#: dCG1T1
+msgctxt "dCG1T1"
+msgid "Background video"
+msgstr "Vidéo d'arrière-plan"
+
 # Label when there is no item
 #: dFMzBu
 msgctxt "dFMzBu"
@@ -1154,7 +1118,7 @@ msgstr "Aucune image..."
 #: dPYwJG
 msgctxt "dPYwJG"
 msgid "Map"
-msgstr ""
+msgstr "Carte"
 
 # Title screen title
 #: dVcog7
@@ -1198,6 +1162,12 @@ msgctxt "e6+aGf"
 msgid "Select a media..."
 msgstr "Sélectionnez un média..."
 
+# Field label
+#: eBFxNl
+msgctxt "eBFxNl"
+msgid "Call to Action"
+msgstr "Action"
+
 # ImageTitleText screen title
 #: eWIM/8
 msgctxt "eWIM/8"
@@ -1208,7 +1178,7 @@ msgstr "Image avec titre et texte"
 #: eYHEYe
 msgctxt "eYHEYe"
 msgid "Map"
-msgstr ""
+msgstr "Carte"
 
 # Image placeholder
 #: ebsPd4
@@ -1235,6 +1205,12 @@ msgid "Duration"
 msgstr "Durée"
 
 # Field label
+#: f5Yipd
+msgctxt "f5Yipd"
+msgid "Box"
+msgstr "Boîte"
+
+# Field label
 #: f68O+0
 msgctxt "f68O+0"
 msgid "Messages"
@@ -1258,11 +1234,11 @@ msgctxt "fusnxf"
 msgid "Square"
 msgstr "Carré"
 
-# CTA field type subfield button option label
-#: fxfV+l
-msgctxt "fxfV+l"
-msgid "Button"
-msgstr "Bouton"
+# Field label
+#: g2CRt5
+msgctxt "g2CRt5"
+msgid "Size"
+msgstr "Taille"
 
 # Contribution screen title
 #: g6b9Lg
@@ -1288,6 +1264,12 @@ msgctxt "hVE7TA"
 msgid "Question"
 msgstr "Question"
 
+# Placeholder label
+#: hoDz0O
+msgctxt "hoDz0O"
+msgid "Description"
+msgstr "Description"
+
 # Delete screen item
 #: hpiKce
 msgctxt "hpiKce"
@@ -1310,13 +1292,25 @@ msgstr "Sélectionnez une police..."
 #: i6bmbD
 msgctxt "i6bmbD"
 msgid "Button"
-msgstr ""
+msgstr "Bouton"
 
 # Label when there is no item
 #: iHV3W3
 msgctxt "iHV3W3"
 msgid "No entry..."
 msgstr "Aucune d’entrée..."
+
+# Field label
+#: iipV5Q
+msgctxt "iipV5Q"
+msgid "Type"
+msgstr "Type"
+
+# Field label
+#: jWAJW4
+msgctxt "jWAJW4"
+msgid "Points"
+msgstr "Points"
 
 # Gallery screen title
 #: jaFXki
@@ -1335,12 +1329,6 @@ msgstr "Écrans"
 msgctxt "jnww6n"
 msgid "Select an image..."
 msgstr "Sélectionnez une image..."
-
-# CTA field type subfield swipe-up option label
-#: jvvJbk
-msgctxt "jvvJbk"
-msgid "Swipe up"
-msgstr "Swipe up"
 
 # Field label
 #: k81FRn
@@ -1389,6 +1377,12 @@ msgstr "Taille"
 msgctxt "mOSkbf"
 msgid "Usage"
 msgstr "Utilisation"
+
+# Field label
+#: mXeSkg
+msgctxt "mXeSkg"
+msgid "Link"
+msgstr "Lien"
 
 #: menus.pagination.next
 msgctxt "menus.pagination.next"
@@ -1441,6 +1435,12 @@ msgstr "Nom"
 msgctxt "nc8LF0"
 msgid "Metadata"
 msgstr "Métadonnées"
+
+# Field label
+#: nno1Pq
+msgctxt "nno1Pq"
+msgid "Button style"
+msgstr "Style du bouton"
 
 # TextTitle screen title
 #: oCBQKV
@@ -1518,13 +1518,19 @@ msgstr "Ajouter un marqueur"
 #: qhjeuO
 msgctxt "qhjeuO"
 msgid "Padding"
-msgstr ""
+msgstr "Marges"
 
 # Field label
 #: qjL/eA
 msgctxt "qjL/eA"
 msgid "Bar"
 msgstr "Barre"
+
+# Breadcrumb field label
+#: qroLmS
+msgctxt "qroLmS"
+msgid "Marker"
+msgstr "Marqueur"
 
 # Conversation screen title
 #: rBPIgw
@@ -1542,13 +1548,19 @@ msgstr "Aucun marqueur..."
 #: ro6yHS
 msgctxt "ro6yHS"
 msgid "Map with image markers"
-msgstr ""
+msgstr "Carte avec images"
 
 # Field label
 #: ru3tjH
 msgctxt "ru3tjH"
 msgid "Bad answer color"
 msgstr "Mauvaise réponse"
+
+# Breadcrumb field label
+#: rzdds2
+msgctxt "rzdds2"
+msgid "Speaker"
+msgstr "Interlocuteur"
 
 # Entries field label
 #: sESmah
@@ -1573,12 +1585,6 @@ msgstr "Pas d’image..."
 msgctxt "t2cFdl"
 msgid "Active filters"
 msgstr "Filtres actifs"
-
-# Markers item field label
-#: t7FVa4
-msgctxt "t7FVa4"
-msgid "Marker"
-msgstr "Marqueur"
 
 # Button label in slides field
 #: tAYwqp
@@ -1650,13 +1656,19 @@ msgstr "Ajouter des étiquettes..."
 #: uiTxd7
 msgctxt "uiTxd7"
 msgid "Results"
-msgstr ""
+msgstr "Résultats"
 
 # Credits field label
 #: upzOTm
 msgctxt "upzOTm"
 msgid "Credits"
 msgstr "Crédits"
+
+# Breadcrumb field label
+#: uwcXzb
+msgctxt "uwcXzb"
+msgid "Image"
+msgstr "Image"
 
 # Today date message
 #: v4Qtl9
@@ -1670,12 +1682,6 @@ msgctxt "v9bqYj"
 msgid "Go to next screen"
 msgstr "Aller à l'écran suivant"
 
-# Border label
-#: vA+9dU
-msgctxt "vA+9dU"
-msgid "Border"
-msgstr "Bordure"
-
 # Field label
 #: vERejo
 msgctxt "vERejo"
@@ -1686,7 +1692,7 @@ msgstr "Vidéo"
 #: vRzzo6
 msgctxt "vRzzo6"
 msgid "Zoom"
-msgstr ""
+msgstr "Zoom"
 
 # Media label
 #: vYunz+
@@ -1706,11 +1712,11 @@ msgctxt "vmrJ8U"
 msgid "(current screen)"
 msgstr "(écran en cours)"
 
-# Background color label
-#: vzW/wd
-msgctxt "vzW/wd"
-msgid "Background color"
-msgstr "Couleur de fond"
+# Breadcrumb field label
+#: vxEtY1
+msgctxt "vxEtY1"
+msgid "Background image"
+msgstr "Image d’arrière-plan"
 
 # Button label
 #: vzg8Es
@@ -1718,17 +1724,17 @@ msgctxt "vzg8Es"
 msgid "Mute"
 msgstr "Sans son"
 
+# No value label
+#: wChc+A
+msgctxt "wChc+A"
+msgid "Edit style..."
+msgstr "Modifier le style..."
+
 # Button to show screens
 #: wkysUu
 msgctxt "wkysUu"
 msgid "Screens"
 msgstr "Écrans"
-
-# Entries item field label
-#: wsNfYo
-msgctxt "wsNfYo"
-msgid "Entry"
-msgstr "Entrée"
 
 # Label when no value is provided to Audio field
 #: wt1+dM
@@ -1747,6 +1753,12 @@ msgstr "Toutes les sources"
 msgctxt "xCj1gI"
 msgid "Add a message"
 msgstr "Ajouter un message"
+
+# Field label
+#: xKG76H
+msgctxt "xKG76H"
+msgid "Rounded corners"
+msgstr "Coins arrondis"
 
 # Field label
 #: xT/onn
@@ -1783,12 +1795,6 @@ msgstr "Paramètres avancés"
 msgctxt "yCXMzz"
 msgid "Close"
 msgstr "Fermer"
-
-# Field label
-#: ySApyR
-msgctxt "ySApyR"
-msgid "Background image"
-msgstr "Image d’arrière-plan"
 
 # Call to action default label
 #: z/VBX0

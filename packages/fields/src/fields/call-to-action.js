@@ -11,7 +11,7 @@ export default {
             isHorizontal: true,
             label: defineMessage({
                 defaultMessage: 'Call to Action',
-                description: 'CTA field active subfield label',
+                description: 'Field label',
             }),
         },
         {
@@ -22,14 +22,14 @@ export default {
                     value: 'swipe-up',
                     label: defineMessage({
                         defaultMessage: 'Swipe up',
-                        description: 'CTA field type subfield swipe-up option label',
+                        description: 'Field label',
                     }),
                 },
                 {
                     value: 'button',
                     label: defineMessage({
                         defaultMessage: 'Button',
-                        description: 'CTA field type subfield button option label',
+                        description: 'Field label',
                     }),
                 },
             ],
@@ -37,7 +37,7 @@ export default {
             isHorizontal: true,
             label: defineMessage({
                 defaultMessage: 'Type',
-                description: 'CTA field type subfield label',
+                description: 'Field label',
             }),
         },
         {
@@ -46,7 +46,7 @@ export default {
             // isHorizontal: true,
             label: defineMessage({
                 defaultMessage: 'Link',
-                description: 'CTA field url field label',
+                description: 'Field label',
             }),
         },
         {
@@ -55,7 +55,7 @@ export default {
             textOnly: true,
             label: defineMessage({
                 defaultMessage: 'Label',
-                description: 'CTA field label field label',
+                description: 'Field label',
             }),
         },
     ],
