@@ -19,7 +19,7 @@ $scale: 4;
         left: 0;
         width: 100% * $scale;
         height: 100% * $scale;
-        transform: scale(#{math.div(1 / $scale)});
+        transform: scale(#{math.div(1, $scale)});
         transform-origin: 0 0;
     }
 }
