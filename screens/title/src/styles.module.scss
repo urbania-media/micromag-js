@@ -44,7 +44,8 @@
         }
 
         .box {
-            border: solid 2px rgba($black, 0.5);
+            border: solid 2px rgba($white, 0.5);
+            mix-blend-mode: difference;
         }
     }
 }

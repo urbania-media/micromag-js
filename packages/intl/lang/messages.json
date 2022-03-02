@@ -968,6 +968,10 @@
     "defaultMessage": "Add a speaker",
     "description": "Button label"
   },
+  "p1pghO": {
+    "defaultMessage": "Box style",
+    "description": "Field label"
+  },
   "p6n6vY": {
     "defaultMessage": "No answer...",
     "description": "Label when there is no item in answers field"
