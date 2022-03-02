@@ -1,9 +1,8 @@
 /* stylelint-disable max-nesting-depth, selector-max-compound-selectors, no-descending-specificity */
-
+@use 'sass:math';
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/mixins';
 @import 'placeholders';
-@use "sass:math";
 
 $scale: 4;
 
