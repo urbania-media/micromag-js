@@ -7,6 +7,7 @@ export { default as borderRadius } from './border-radius';
 export { default as borderStyle } from './border-style';
 export { default as borderWidth } from './border-width';
 export { default as boxStyle } from './box-style';
+export { default as boxStyleForm } from './box-style-form';
 export { default as buttonElement } from './button-element';
 export { default as callToAction } from './call-to-action';
 export { default as checkboxes } from './checkboxes';

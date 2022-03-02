@@ -63,18 +63,11 @@ export default {
             fields: [
                 {
                     name: 'buttonsStyle',
-                    type: 'field-with-form',
+                    type: 'box-style-form',
                     label: defineMessage({
                         defaultMessage: 'Buttons',
                         description: 'Field label',
-                    }),
-                    noValueLabel: defineMessage({
-                        defaultMessage: 'Edit style...',
-                        description: 'No value field label',
-                    }),
-                    field: {
-                        type: 'box-style',
-                    }
+                    })
                 },
                 {
                     name: 'resultsStyle',

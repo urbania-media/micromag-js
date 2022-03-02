@@ -7,7 +7,9 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
+import { useScreenRenderContext } from '@micromag/core/contexts';
 import { isTextFilled } from '@micromag/core/utils';
+import Button from '@micromag/element-button';
 import Heading from '@micromag/element-heading';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Text from '@micromag/element-text';
@@ -16,43 +18,54 @@ import styles from './title.module.scss';
 const propTypes = {
     title: MicromagPropTypes.textElement,
     description: MicromagPropTypes.textElement,
+    button: MicromagPropTypes.textElement,
     layout: PropTypes.string,
+    focusable: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionPlaying: PropTypes.bool,
     transitionStagger: PropTypes.number,
     transitionDisabled: PropTypes.bool,
     className: PropTypes.string,
     style: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+    onClickButton: PropTypes.func,
 };
 
 const defaultProps = {
     title: null,
     description: null,
     layout: null,
+    button: null,
+    focusable: false,
     transitions: null,
     transitionPlaying: false,
     transitionStagger: 100,
     transitionDisabled: false,
     className: null,
     style: null,
+    onClickButton: null,
 };
 
 const Title = ({
     layout,
     title,
     description,
+    button,
+    focusable,
     transitions,
     transitionPlaying,
     transitionStagger,
     transitionDisabled,
     className,
     style,
+    onClickButton,
 }) => {
+    const { isPreview, isEdit } = useScreenRenderContext();
     const isSplitted = layout === 'split';
     const verticalAlign = isSplitted ? null : layout;
 
     const hasTitle = isTextFilled(title);
     const hasDescription = isTextFilled(description);
+    const hasButton = isTextFilled(button);
 
     return (
         <Layout
@@ -86,7 +99,6 @@ const Title = ({
                         </Transitions>
                     ) : null}
                 </ScreenElement>,
-                isSplitted ? <Spacer key="spacer" /> : null,
                 <ScreenElement
                     key="description"
                     placeholder="text"
@@ -99,7 +111,7 @@ const Title = ({
                     emptyClassName={styles.emptyDescription}
                     isEmpty={!hasDescription}
                 >
-                    {hasTitle ? (
+                    {hasDescription ? (
                         <Transitions
                             transitions={transitions}
                             playing={transitionPlaying}
@@ -109,6 +121,32 @@ const Title = ({
                             <Text {...description} className={styles.description} />
                         </Transitions>
                     ) : null}
+                </ScreenElement>,
+                isSplitted ? <Spacer key="spacer" /> : null,
+                <ScreenElement key="button" placeholder="button">
+                    <Transitions
+                        transitions={transitions}
+                        playing={transitionPlaying}
+                        disabled={transitionDisabled}
+                        delay={transitionStagger * 2}
+                    >
+                        <Button
+                            disabled={isPreview || isEdit}
+                            focusable={focusable}
+                            buttonStyle={button !== null ? button.buttonStyle : null}
+                            className={styles.button}
+                            onClick={onClickButton}
+                        >
+                            {hasButton ? (
+                                <Text {...button} className={styles.label} />
+                            ) : (
+                                <FormattedMessage
+                                    defaultMessage="Enter"
+                                    description="Quiz button label"
+                                />
+                            )}
+                        </Button>
+                    </Transitions>
                 </ScreenElement>,
             ]}
         </Layout>

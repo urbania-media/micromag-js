@@ -75,18 +75,11 @@ export default [
                 fields: [
                     {
                         name: 'buttonsStyle',
-                        type: 'field-with-form',
+                        type: 'box-style-form',
                         label: defineMessage({
                             defaultMessage: 'Buttons',
                             description: 'Field label',
                         }),
-                        noValueLabel: defineMessage({
-                            defaultMessage: 'Edit style...',
-                            description: 'No value field label',
-                        }),
-                        field: {
-                            type: 'box-style',
-                        },
                     },
                     {
                         name: 'goodAnswerColor',
@@ -179,6 +172,17 @@ export default [
                         },
                         label: defineMessage({
                             defaultMessage: 'Description',
+                            description: 'Field label',
+                        }),
+                    },
+                    {
+                        name: 'introButton',
+                        type: 'button-element',
+                        theme: {
+                            textStyle: 'button',
+                        },
+                        label: defineMessage({
+                            defaultMessage: 'Button',
                             description: 'Field label',
                         }),
                     },
@@ -315,7 +319,7 @@ export default [
                 fields: [
                     {
                         name: 'buttonsStyle',
-                        type: 'box-style',
+                        type: 'box-style-form',
                         label: defineMessage({
                             defaultMessage: 'Buttons',
                             description: 'Field label',

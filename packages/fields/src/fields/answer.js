@@ -14,18 +14,27 @@ export default {
             }),
         },
         {
-            name: 'buttonStyle',
-            type: 'box-style',
-            className: 'mt-4'
-        },
-        {
-            name: 'resultStyle',
-            type: 'graph-bar-style',
+            type: 'fields',
             isList: true,
-            label: defineMessage({
-                defaultMessage: 'Result style',
-                description: 'Field section label',
-            }),
+            fields: [
+                {
+                    type: 'box-style-form',
+                    name: 'buttonStyle',
+                    label: defineMessage({
+                        defaultMessage: 'Button style',
+                        description: 'Field label',
+                    })
+                },
+                {
+                    name: 'resultStyle',
+                    type: 'graph-bar-style',
+                    isList: true,
+                    label: defineMessage({
+                        defaultMessage: 'Result style',
+                        description: 'Field section label',
+                    }),
+                },
+            ]
         },
     ],
 };

@@ -155,8 +155,6 @@ const Answers = ({
         onTransitionEnd,
     ]);
 
-    console.log(items);
-
     return (
         <div
             className={classNames([

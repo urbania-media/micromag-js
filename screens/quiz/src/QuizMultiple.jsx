@@ -43,6 +43,7 @@ const propTypes = {
     badAnswerColor: MicromagPropTypes.color,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
+    introButton: MicromagPropTypes.textElement,
     introBackground: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
@@ -66,6 +67,7 @@ const defaultProps = {
     badAnswerColor: null,
     spacing: 20,
     background: null,
+    introButton: null,
     introBackground: null,
     callToAction: null,
     current: true,
@@ -90,6 +92,7 @@ const QuizMultipleScreen = ({
     spacing,
     background,
     introBackground,
+    introButton,
     callToAction,
     current,
     active,
@@ -171,6 +174,10 @@ const QuizMultipleScreen = ({
             setQuestionIndex('results');
         }
     }, [questions, questionIndex, setQuestionIndex]);
+
+    const onClickIntroButton = useCallback(() => {
+        setQuestionIndex(0);
+    }, [setQuestionIndex]);
 
     useEffect(() => {
         if (!current && isEdit && userAnswers !== null) {
@@ -321,6 +328,8 @@ const QuizMultipleScreen = ({
                                     title={title}
                                     description={description}
                                     layout={introLayout || layout}
+                                    button={introButton}
+                                    focusable={current && isView}
                                     transitions={transitions}
                                     transitionPlaying={transitionPlaying}
                                     transitionStagger={transitionStagger}
@@ -337,6 +346,7 @@ const QuizMultipleScreen = ({
                                               }
                                             : null
                                     }
+                                    onClickButton={onClickIntroButton}
                                 />
                             </CSSTransition>
                         ) : null,

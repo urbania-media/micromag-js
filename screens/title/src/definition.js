@@ -281,7 +281,7 @@ export default [
                 fields: [
                     {
                         name: 'boxStyle',
-                        type: 'box-style',
+                        type: 'box-style-form',
                         label: defineMessage({
                             defaultMessage: 'Box',
                             description: 'Field label',

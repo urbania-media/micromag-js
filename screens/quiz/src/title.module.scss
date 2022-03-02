@@ -6,7 +6,8 @@
 @import '~@micromag/core/scss/mixins';
 
 .container {
-    .title {
+    .title,
+    .description {
         margin-bottom: 10px;
     }
 
@@ -15,6 +16,7 @@
         @extend %empty;
         width: 100%;
         margin: 0 auto;
+        margin-bottom: 10px;
     }
 
     .emptyTitle {
