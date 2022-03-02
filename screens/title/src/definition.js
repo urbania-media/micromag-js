@@ -274,12 +274,16 @@ export default [
             {
                 type: 'fields',
                 isList: true,
+                label: defineMessage({
+                    defaultMessage: 'Styles',
+                    description: 'Field label',
+                }),
                 fields: [
                     {
                         name: 'boxStyle',
                         type: 'box-style',
                         label: defineMessage({
-                            defaultMessage: 'Box style',
+                            defaultMessage: 'Box',
                             description: 'Field label',
                         })
                     },
@@ -290,7 +294,7 @@ export default [
                 type: 'background',
                 label: defineMessage({
                     defaultMessage: 'Background',
-                    description: 'Background field label',
+                    description: 'Field label',
                 }),
             },
             {

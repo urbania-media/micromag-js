@@ -197,7 +197,14 @@ const TitleScreen = ({
                     ) : null}
 
                     {withBox && !isSplitted ? (
-                        <div className={styles.box} style={getStyleFromBox(boxStyle)}>
+                        <div
+                            className={styles.box}
+                            style={
+                                isEdit || isPlaceholder || hasTitle || hasSubtitle || hasDescription
+                                    ? getStyleFromBox(boxStyle)
+                                    : null
+                            }
+                        >
                             <TransitionsStagger
                                 transitions={transitions}
                                 stagger={transitionStagger}
@@ -218,7 +225,18 @@ const TitleScreen = ({
                             playing={transitionPlaying}
                             focusable={current && isView}
                         >
-                            <div className={styles.box} key="top" style={getStyleFromBox(boxStyle)}>
+                            <div
+                                className={styles.box}
+                                key="top"
+                                style={
+                                    isEdit ||
+                                    isPlaceholder ||
+                                    hasTitle ||
+                                    (withDescription && verticalAlign === 'top' && hasSubtitle)
+                                        ? getStyleFromBox(boxStyle)
+                                        : null
+                                }
+                            >
                                 {titleElement}
                                 {withDescription && verticalAlign === 'top'
                                     ? subtitleElement
@@ -228,7 +246,15 @@ const TitleScreen = ({
                             <div
                                 className={styles.box}
                                 key="bottom"
-                                style={getStyleFromBox(boxStyle)}
+                                style={
+                                    isEdit ||
+                                    isPlaceholder ||
+                                    hasDescription ||
+                                    ((!withDescription || verticalAlign === 'bottom') &&
+                                        hasSubtitle)
+                                        ? getStyleFromBox(boxStyle)
+                                        : null
+                                }
                             >
                                 {!withDescription || verticalAlign === 'bottom'
                                     ? subtitleElement

@@ -1466,12 +1466,6 @@ msgctxt "opcGwP"
 msgid "Add a speaker"
 msgstr "Ajouter un interlocuteur"
 
-# Field label
-#: p1pghO
-msgctxt "p1pghO"
-msgid "Box style"
-msgstr "Style de la boîte"
-
 # Label when there is no item in answers field
 #: p6n6vY
 msgctxt "p6n6vY"
