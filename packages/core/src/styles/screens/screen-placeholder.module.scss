@@ -5,5 +5,6 @@
 .container {
     @extend %fullscreen;
     overflow: hidden;
+    background-color: transparent;
     user-select: none;
 }

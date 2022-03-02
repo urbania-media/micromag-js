@@ -143,15 +143,17 @@ const Question = ({
                         key="stats"
                         placeholder={<div className={styles.index}>1 / 10</div>}
                     >
-                        <Transitions
-                            transitions={transitions}
-                            playing={transitionPlaying}
-                            disabled={transitionDisabled}
-                        >
-                            <div className={styles.index}>
-                                {index + 1} / {totalCount}
-                            </div>
-                        </Transitions>
+                        {totalCount > 1 ? (
+                            <Transitions
+                                transitions={transitions}
+                                playing={transitionPlaying}
+                                disabled={transitionDisabled}
+                            >
+                                <div className={styles.index}>
+                                    {index + 1} / {totalCount}
+                                </div>
+                            </Transitions>
+                        ) : null}
                     </ScreenElement>
                 ) : null,
                 <ScreenElement

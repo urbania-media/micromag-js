@@ -127,10 +127,19 @@ const QuizMultipleScreen = ({
     const hasIntro = title !== null || description !== null || isEdit || stateId === 'intro';
 
     const [userAnswers, setUserAnswers] = useState(null);
-    const initialQuestionIndex = stateId === 'questions' ? parseInt(stateIndex, 10) : stateId;
-    const [questionIndex, setQuestionIndex] = useState(
-        initialQuestionIndex !== null || !hasIntro || isPlaceholder ? initialQuestionIndex || 0 : 'intro',
-    );
+    let initialQuestionIndex = 'intro';
+    if (stateId !== null) {
+        initialQuestionIndex = stateId === 'questions' ? parseInt(stateIndex, 10) : stateId;
+    } else if (isPlaceholder || !hasIntro) {
+        initialQuestionIndex = 0;
+    }
+    const [questionIndex, setQuestionIndex] = useState(initialQuestionIndex);
+
+    useEffect(() => {
+        if (isPreview && hasIntro && questionIndex !== 'intro') {
+            setQuestionIndex('intro');
+        }
+    }, [isPreview, hasIntro, questionIndex, setQuestionIndex]);
 
     const onAnswerClick = useCallback(
         (answer, answerIndex) => {

@@ -1,10 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
-
-import { PropTypes as MicromagPropTypes } from '../../lib';
-import { getComponentFromName } from '../../utils';
+import React from 'react';
 import { ScreenProvider, useScreenComponent } from '../../contexts';
+import { PropTypes as MicromagPropTypes } from '../../lib';
+import styles from '../../styles/screens/screen.module.scss';
+import { getComponentFromName } from '../../utils';
 
 const propTypes = {
     screen: MicromagPropTypes.storyComponent.isRequired,
@@ -61,7 +62,14 @@ const Screen = ({
     return (
         <ScreenProvider data={screen} renderContext={renderContext} screenState={screenState}>
             {ScreenComponent !== null ? (
-                <div className={className}>
+                <div
+                    className={classNames([
+                        styles.container,
+                        {
+                            [className]: className !== null,
+                        },
+                    ])}
+                >
                     <ScreenComponent
                         {...screen}
                         active={active}

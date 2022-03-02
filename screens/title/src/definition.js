@@ -272,8 +272,18 @@ export default [
                 }),
             },
             {
-                name: 'boxStyle',
-                type: 'box-style',
+                type: 'fields',
+                isList: true,
+                fields: [
+                    {
+                        name: 'boxStyle',
+                        type: 'box-style',
+                        label: defineMessage({
+                            defaultMessage: 'Box style',
+                            description: 'Field label',
+                        })
+                    },
+                ]
             },
             {
                 name: 'background',
