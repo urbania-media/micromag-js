@@ -55,9 +55,9 @@ export { default as PlaceholderVideo } from './placeholders/Video';
 export { default as PlaceholderVideo360 } from './placeholders/Video360';
 export { default as PlaceholderVideoLoop } from './placeholders/VideoLoop';
 
+export { default as Screen } from './screens/Screen';
 export { default as ScreenPlaceholder } from './screens/Placeholder';
 export { default as ScreenPreview } from './screens/Preview';
-export { default as Screen } from './screens/Screen';
 export { default as ScreenElement } from './screens/ScreenElement';
 export { default as Screens } from './screens/Screens';
 
