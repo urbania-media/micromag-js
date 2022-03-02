@@ -75,7 +75,7 @@ const Navbar = ({
                 className={classNames([
                     'container-fluid',
                     {
-                        'px-0': true,
+                        'px-0': compact,
                     },
                 ])}
             >
