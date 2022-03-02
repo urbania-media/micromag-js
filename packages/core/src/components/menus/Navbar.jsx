@@ -63,6 +63,7 @@ const Navbar = ({
                     [`navbar-${theme === 'light' ? 'light' : 'dark'}`]: theme !== null,
                     [`text-${theme === 'light' ? 'dark' : 'light'}`]: theme !== null,
                     [`navbar-expand-${size}`]: !withoutCollapse,
+                    'navbar-expand': withoutCollapse,
                     'py-2': compact,
                     'px-2': compact,
                     'flex-nowrap': noWrap,
