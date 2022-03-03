@@ -35,7 +35,6 @@ const ScreenSizer = ({ width, height, fit, screenWidth, screenHeight, className,
         entry: { contentRect },
     } = useResizeObserver();
     const { width: calculatedWidth = 0, height: calculatedHeight = 0 } = contentRect || {};
-    console.log(contentRect);
 
     const {
         width: frameWidth = null,
