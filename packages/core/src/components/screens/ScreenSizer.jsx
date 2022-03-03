@@ -47,8 +47,8 @@ const ScreenSizer = ({ width, height, fit, screenWidth, screenHeight, className,
             return {};
         }
         const screenRatio = screenWidth / screenHeight;
-        const finalContainerWidth = containerWidth || containerHeight * screenRatio;
-        const finalContainerHeight = containerHeight || containerWidth / screenRatio;
+        const finalContainerWidth = hasSize ? width || (containerHeight * screenRatio) : containerWidth;
+        const finalContainerHeight = hasSize ? height || (containerWidth / screenRatio) : (containerWidth / screenRatio);
         if (fit === null) {
             const screenScale = finalContainerWidth / screenWidth;
             return {
@@ -80,7 +80,7 @@ const ScreenSizer = ({ width, height, fit, screenWidth, screenHeight, className,
             height: finalContainerHeight,
             transform: `scale(${screenScale}) translate(${x}px, ${y}px)`,
         };
-    }, [screenWidth, screenHeight, width, height, fit, calculatedWidth, calculatedHeight]);
+    }, [screenWidth, screenHeight, width, height, fit, calculatedWidth, calculatedHeight, hasSize]);
 
     const screenSize = useMemo(
         () => ({
