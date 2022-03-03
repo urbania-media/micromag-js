@@ -12,7 +12,6 @@ function useScreenInteraction({
     onClick = null,
     onEnd = null,
     onChangeScreen = null,
-
 } = {}) {
     const [screensInteractionEnabled, setScreensInteractionEnabled] = useState(
         screens.reduce(
@@ -26,28 +25,31 @@ function useScreenInteraction({
     const screenIndex = screens.findIndex(({ id }) => id === screenId);
     const { [screenId]: currentScreenInteractionEnabled = true } = screensInteractionEnabled;
 
-    const updateInteraction = useCallback((newValue) => {
-        const { [screenId]: currentValue = true } = screensInteractionEnabled;
-        if (currentValue !== newValue) {
-            setScreensInteractionEnabled(
-                screens.reduce(
-                    (map, { id }) =>
-                        screenId === id
-                            ? {
-                                  ...map,
-                                  [id]: newValue,
-                              }
-                            : {
-                                  ...map,
-                                  [id]:
-                                      typeof screensInteractionEnabled[id] === 'undefined' ||
-                                      screensInteractionEnabled[id] === true,
-                              },
-                    {},
-                ),
-            );
-        }
-    }, [screens, screenId, screensInteractionEnabled, setScreensInteractionEnabled]);
+    const updateInteraction = useCallback(
+        (newValue) => {
+            const { [screenId]: currentValue = true } = screensInteractionEnabled;
+            if (currentValue !== newValue) {
+                setScreensInteractionEnabled(
+                    screens.reduce(
+                        (map, { id }) =>
+                            screenId === id
+                                ? {
+                                      ...map,
+                                      [id]: newValue,
+                                  }
+                                : {
+                                      ...map,
+                                      [id]:
+                                          typeof screensInteractionEnabled[id] === 'undefined' ||
+                                          screensInteractionEnabled[id] === true,
+                                  },
+                        {},
+                    ),
+                );
+            }
+        },
+        [screens, screenId, screensInteractionEnabled, setScreensInteractionEnabled],
+    );
 
     const enableInteraction = useCallback(() => updateInteraction(true), [updateInteraction]);
     const disableInteraction = useCallback(() => updateInteraction(false), [updateInteraction]);
@@ -61,7 +63,9 @@ function useScreenInteraction({
             const screensCount = screens.length;
             const tappedCurrent = screenIndex === index;
 
-            eventsManager.emit('tap', e, index);
+            if (eventsManager !== null) {
+                eventsManager.emit('tap', e, index);
+            }
 
             if (
                 (!isView && tappedCurrent) ||
@@ -81,19 +85,27 @@ function useScreenInteraction({
 
             if (hasTappedLeft) {
                 nextIndex = clickOnSiblings ? index : Math.max(0, screenIndex - 1);
-                eventsManager.emit('tap_previous', nextIndex);
+                if (eventsManager !== null) {
+                    eventsManager.emit('tap_previous', nextIndex);
+                }
             } else {
                 nextIndex = clickOnSiblings ? index : Math.min(screensCount - 1, screenIndex + 1);
 
                 const isLastScreen = screenIndex === screensCount - 1;
                 if (isLastScreen && onEnd !== null) {
-                    eventsManager.emit('tap_end');
                     onEnd();
-                } else {
+                    if (eventsManager !== null) {
+                        eventsManager.emit('tap_end');
+                    }
+                } else if (eventsManager) {
                     eventsManager.emit('tap_next', nextIndex);
                 }
             }
-            eventsManager.emit('change_screen', nextIndex);
+
+            if (eventsManager !== null) {
+                eventsManager.emit('change_screen', nextIndex);
+            }
+
             onChangeScreen(nextIndex);
         },
         [

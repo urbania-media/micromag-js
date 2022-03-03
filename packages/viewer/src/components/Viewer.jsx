@@ -249,7 +249,7 @@ const Viewer = ({
         isView,
         clickOnSiblings: landscape && withLandscapeSiblingsScreens,
         nextScreenWidthPercent: tapNextScreenWidthPercent,
-        events: eventsManager,
+        eventsManager,
         onClick: onInteractionPrivate,
         onEnd,
         onChangeScreen: changeIndex,
