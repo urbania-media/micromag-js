@@ -106,6 +106,7 @@ const ScreenTypes = ({ screens, selectedTypes, className, onClickItem }) => {
                                         'text-secondary': selectedTypes !== null,
                                     },
                                 ])}
+                                buttonClassName={styles.button}
                                 onClickItem={onClickItem}
                             />
                         </div>

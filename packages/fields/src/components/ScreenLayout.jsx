@@ -38,8 +38,7 @@ const ScreenLayoutField = ({ value, screenState, className, onChange }) => {
                                 layout,
                             }}
                             screenState={screenState}
-                            width={80}
-                            height={120}
+                            withSize
                             className={styles.screen}
                         />
                     </div>

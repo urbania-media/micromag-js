@@ -319,6 +319,10 @@
     "defaultMessage": "Quote",
     "description": "Quote placeholder"
   },
+  "D7LIZQ": {
+    "defaultMessage": "Start",
+    "description": "Screen button label"
+  },
   "DU1qdc": {
     "defaultMessage": "Text color",
     "description": "Field label"
@@ -1043,6 +1047,10 @@
   "sUR1xV": {
     "defaultMessage": "Author",
     "description": "Label in Media Gallery"
+  },
+  "sXfFFw": {
+    "defaultMessage": "Enter",
+    "description": "Screen button label"
   },
   "t+L1J/": {
     "defaultMessage": "No image...",

@@ -248,7 +248,8 @@ function MapScreen({
         if (!isEdit && !isPreview) {
             return;
         }
-        const [stateId = null, markerIndex = null] = screenState !== null ? screenState.split('.') : [];
+        const [stateId = null, markerIndex = null] =
+            screenState !== null ? screenState.split('.') : [];
         if (stateId === 'intro') {
             setOpened(false);
             setSelectedMarkerIndex(null);
@@ -263,9 +264,12 @@ function MapScreen({
 
     let staticUrl;
     if (width > 0 && height > 0 && apiKey !== null) {
-        const correctMarkers = markers !== null ? markers
-        .filter(it => it !== null)
-        .filter(({ geoPosition = null }) => geoPosition !== null) : null;
+        const correctMarkers =
+            markers !== null
+                ? markers
+                      .filter((it) => it !== null)
+                      .filter(({ geoPosition = null }) => geoPosition !== null)
+                : null;
         staticUrl = `https://maps.googleapis.com/maps/api/staticmap?size=${Math.round(
             width,
         )}x${Math.round(height)}`;
@@ -283,7 +287,8 @@ function MapScreen({
             staticUrl += `&language=${locale}`;
         }
         if (correctMarkers !== null) {
-            staticUrl += correctMarkers.map((marker) => {
+            staticUrl += correctMarkers
+                .map((marker) => {
                     const { geoPosition = null } = marker || {};
                     const { lat = null, lng = null } = geoPosition || {};
                     const { image = null } = marker || {};
@@ -349,13 +354,17 @@ function MapScreen({
                     >
                         {isPreview ? (
                             <ImageElement
-                                media={staticUrl !== null ? {
-                                    url: staticUrl,
-                                    metadata: {
-                                        width: Math.min(640, width),
-                                        height: Math.min(640, height),
-                                    },
-                                } : null}
+                                media={
+                                    staticUrl !== null
+                                        ? {
+                                              url: staticUrl,
+                                              metadata: {
+                                                  width: Math.min(640, width),
+                                                  height: Math.min(640, height),
+                                              },
+                                          }
+                                        : null
+                                }
                                 width={width}
                                 height={height}
                                 objectFit={{ fit: 'cover' }}
@@ -480,7 +489,14 @@ function MapScreen({
                                     buttonStyle={button !== null ? button.buttonStyle : null}
                                     focusable={current && isView}
                                 >
-                                    <Text className={styles.button} {...button} />
+                                    {hasButton ? (
+                                        <Text {...button} className={styles.button} />
+                                    ) : (
+                                        <FormattedMessage
+                                            defaultMessage="Enter"
+                                            description="Screen button label"
+                                        />
+                                    )}
                                 </ButtonElement>
                             </ScreenElement>
                         </div>

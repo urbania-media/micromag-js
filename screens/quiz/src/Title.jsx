@@ -141,8 +141,8 @@ const Title = ({
                                 <Text {...button} className={styles.label} />
                             ) : (
                                 <FormattedMessage
-                                    defaultMessage="Enter"
-                                    description="Quiz button label"
+                                    defaultMessage="Start"
+                                    description="Screen button label"
                                 />
                             )}
                         </Button>

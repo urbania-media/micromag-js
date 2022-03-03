@@ -49,19 +49,20 @@
         .content {
             display: table-cell;
             padding: 10px 0;
-            vertical-align: top;            
+            vertical-align: top;
         }
-        
-        .rank {            
+
+        .rank {
             padding-right: 20px;
         }
     }
 
     &.isPlaceholder {
         .rank {
-            color: rgba($black, 0.5);
+            color: rgba($white, 0.6);
+            mix-blend-mode: difference;
             font-size: 16px;
-            text-align: left;            
+            text-align: left;
         }
 
         .scroll {

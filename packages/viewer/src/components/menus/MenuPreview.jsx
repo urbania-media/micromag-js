@@ -79,7 +79,6 @@ const ViewerMenuPreview = ({
         entry: { contentRect: firstScreenContentRect },
     } = useResizeObserver();
     const { width: thumbWidth = 0 } = firstScreenContentRect || {};
-    const screenScale = thumbWidth / screenWidth;
 
     // Viewer theme
     const {
@@ -238,27 +237,16 @@ const ViewerMenuPreview = ({
                                             <div
                                                 className={styles.screenContainer}
                                                 ref={index === 0 ? firstScreenContainerRef : null}
-                                                style={{
-                                                    height: screenHeight * screenScale,
-                                                }}
                                             >
                                                 {screenWidth > 0 && screenHeight > 0 ? (
-                                                    <div
-                                                        className={styles.screenContent}
-                                                        style={{
-                                                            width: screenWidth,
-                                                            height: screenHeight,
-                                                            transform: `scale(${screenScale}`,
-                                                        }}
-                                                        aria-hidden="true"
-                                                    >
-                                                        <ScreenPreview
-                                                            width={screenWidth}
-                                                            height={screenHeight}
-                                                            screen={screen}
-                                                            focusable={false}
-                                                        />
-                                                    </div>
+                                                    <ScreenPreview
+                                                        screenWidth={screenWidth}
+                                                        screenHeight={screenHeight}
+                                                        width={thumbWidth}
+                                                        screen={screen}
+                                                        focusable={false}
+                                                        withSize
+                                                    />
                                                 ) : null}
                                                 {current ? (
                                                     <div

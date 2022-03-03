@@ -87,6 +87,7 @@
         "@folklore/fetch": "^0.1.10",
         "@folklore/forms": "^0.0.10",
         "@folklore/services": "^0.1.24",
+        "@folklore/size": "^0.1.20",
         "@folklore/tracking": "^0.0.9",
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",

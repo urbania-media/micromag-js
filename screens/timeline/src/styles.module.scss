@@ -90,8 +90,9 @@
         .bullet {
             width: 10px;
             height: 10px;
-            border-color: rgba($black, 0.5);
-            background-color: rgba($black, 0.5);
+            border-color: rgba($white, 0.6);
+            background-color: rgba($white, 0.6);
+            mix-blend-mode: difference;
         }
 
         .content {
@@ -111,7 +112,8 @@
         }
 
         .line {
-            background-color: rgba($black, 0.5);
+            background-color: rgba($white, 0.6);
+            mix-blend-mode: difference;
         }
     }
 

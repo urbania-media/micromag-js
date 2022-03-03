@@ -88,12 +88,12 @@ const Background = ({
         );
         containerStyle.backgroundImage =
             finalUrl !== null && finalShouldLoad ? `url("${finalUrl}")` : null;
-        containerStyle.backgroundRepeat = repeat ? 'repeat' : 'no-repeat';
+        containerStyle.backgroundRepeat = repeat && !isVideo ? 'repeat' : 'no-repeat';
         containerStyle.backgroundPosition = [horizontalAlign, verticalAlign].join(' ');
 
         if (fit !== null) {
             containerStyle.backgroundSize = fit;
-        } else if (!repeat) {
+        } else if (!repeat || isVideo) {
             containerStyle.backgroundSize = 'cover';
         }
     }

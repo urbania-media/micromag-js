@@ -491,6 +491,12 @@ msgctxt "CrzYgw"
 msgid "Quote"
 msgstr "Quote"
 
+# Screen button label
+#: D7LIZQ
+msgctxt "D7LIZQ"
+msgid "Start"
+msgstr "Start"
+
 # Field label
 #: DU1qdc
 msgctxt "DU1qdc"
@@ -1579,6 +1585,12 @@ msgstr "Entries"
 msgctxt "sUR1xV"
 msgid "Author"
 msgstr "Author"
+
+# Screen button label
+#: sXfFFw
+msgctxt "sXfFFw"
+msgid "Enter"
+msgstr "Enter"
 
 # Label when there is no item in images field
 #: t+L1J/

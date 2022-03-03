@@ -1,54 +1,72 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useMemo } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import PropTypes from 'prop-types';
+import React from 'react';
 import { PropTypes as MicromagPropTypes } from '../../lib';
-import { ScreenSizeProvider, ScreenProvider } from '../../contexts';
-import Screen from './Screen';
-
 import styles from '../../styles/screens/preview.module.scss';
+import Screen from './Screen';
+import ScreenSizer from './ScreenSizer';
 
 const propTypes = {
     screen: MicromagPropTypes.component.isRequired,
     screenState: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number,
+    screenWidth: PropTypes.number,
+    screenHeight: PropTypes.number,
     className: PropTypes.string,
+    withSize: PropTypes.bool,
 };
 
 const defaultProps = {
     screenState: null,
-    width: null,
-    height: null,
+    width: undefined,
+    height: undefined,
+    screenWidth: undefined,
+    screenHeight: undefined,
     className: null,
+    withSize: false,
 };
 
-const ScreenPreview = ({ screen, screenState, width, height, className }) => {
-    const screenSize = useMemo(
-        () => ({
-            screen: 'mobile',
-            screens: ['mobile'],
-            width,
-            height,
-        }),
-        [width, height],
+const ScreenPreview = ({
+    screen,
+    screenState,
+    width,
+    height,
+    screenWidth,
+    screenHeight,
+    className,
+    withSize,
+    ...props
+}) => {
+    const screenElement = (
+        <Screen
+            screen={screen}
+            renderContext="preview"
+            screenState={screenState}
+            width={!withSize ? width : undefined}
+            height={!withSize ? height : undefined}
+            className={classNames([
+                styles.screen,
+                {
+                    [className]: !withSize,
+                },
+            ])}
+            {...props}
+        />
     );
-    return (
-        <ScreenSizeProvider size={screenSize}>
-            <ScreenProvider data={screen} renderContext="preview" screenState={screenState}>
-                <Screen
-                    screen={screen}
-                    renderContext="preview"
-                    className={classNames([
-                        styles.container,
-                        {
-                            [className]: className !== null,
-                        },
-                    ])}
-                />
-            </ScreenProvider>
-        </ScreenSizeProvider>
+    return withSize ? (
+        <ScreenSizer
+            className={className}
+            screenWidth={screenWidth}
+            screenHeight={screenHeight}
+            width={width}
+            height={height}
+        >
+            {screenElement}
+        </ScreenSizer>
+    ) : (
+        screenElement
     );
 };
 

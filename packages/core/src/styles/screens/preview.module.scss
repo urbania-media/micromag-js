@@ -2,8 +2,7 @@
 @import '../placeholders';
 @import '../mixins';
 
-.container {
-    @extend %fullscreen;
+.screen {
     overflow: hidden;
     user-select: none;
 }
