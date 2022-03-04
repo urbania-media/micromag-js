@@ -62,7 +62,7 @@ const Dropdown = ({
             className={classNames([
                 'dropdown-menu',
                 {
-                    [styles[align]]: align !== null,
+                    [`dropdown-menu-${align}`]: align !== null,
                     show: visible,
                     [className]: className !== null,
                 },
