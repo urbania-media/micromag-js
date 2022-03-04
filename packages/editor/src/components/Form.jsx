@@ -154,8 +154,8 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
     }, [setScreenSettingsOpened, setDeleteScreenModalOpened]);
 
     const onSettingsClick = useCallback(() => {
-        setScreenSettingsOpened((opened) => !opened);
-    }, [setScreenSettingsOpened]);
+        setScreenSettingsOpened(!screenSettingsOpened);
+    }, [screenSettingsOpened, setScreenSettingsOpened]);
 
     const onDropdownClickOutside = useCallback(() => {
         setScreenSettingsOpened(false);
