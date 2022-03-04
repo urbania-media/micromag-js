@@ -1,6 +1,6 @@
 {
     "name": "@micromag/intl",
-    "version": "0.3.11",
+    "version": "0.3.14",
     "description": "",
     "keywords": [
         "javascript"
@@ -58,7 +58,7 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@formatjs/cli": "^4.4.0",
-        "@micromag/core": "^0.3.11",
+        "@micromag/core": "^0.3.14",
         "commander": "^8.3.0",
         "fs-extra": "^10.0.0",
         "gettext-parser": "^4.0.4",
