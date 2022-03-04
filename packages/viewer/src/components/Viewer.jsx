@@ -244,7 +244,7 @@ const Viewer = ({
         disableInteraction,
     } = useScreenInteraction({
         screens,
-        screenId,
+        screenIndex,
         screenWidth,
         isView,
         clickOnSiblings: landscape && withLandscapeSiblingsScreens,

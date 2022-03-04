@@ -3,7 +3,7 @@ import checkClickable from '../lib/checkClickable';
 
 function useScreenInteraction({
     screens,
-    screenId,
+    screenIndex,
     screenWidth,
     isView = false,
     clickOnSiblings = false,
@@ -22,7 +22,7 @@ function useScreenInteraction({
             {},
         ),
     );
-    const screenIndex = screens.findIndex(({ id }) => id === screenId);
+    const { id: screenId = screenIndex } = screens[screenIndex] || {};
     const { [screenId]: currentScreenInteractionEnabled = true } = screensInteractionEnabled;
 
     const updateInteraction = useCallback(
@@ -56,6 +56,7 @@ function useScreenInteraction({
 
     const onScreenClick = useCallback(
         (e, index) => {
+
             if (onClick !== null) {
                 onClick(e, index);
             }
