@@ -8,24 +8,24 @@
 
     .content {
         padding: 5px;
-        background-color: $white;
-        border-radius: 10px;
-        opacity: 0%;
         transform: scale(0.8);
         transform-origin: center top;
         transition: all .2s ease;
+        border-radius: 10px;
+        opacity: 0;
+        background-color: $white;
 
         &::before {
+            content: '';
             position: absolute;
             bottom: 100%;
             left: 50%;
             width: 0;
             height: 0;
+            transform: translateX(-50%);
             border-right: 8px solid transparent;
             border-bottom: 8px solid $white;
             border-left: 8px solid transparent;
-            content: '';
-            transform: translateX(-50%);
         }
     }
 
@@ -38,8 +38,8 @@
         pointer-events: auto;
 
         .content {
-            opacity: 100%;
             transform: scale(1);
+            opacity: 1;
         }
     }
 }

@@ -6,6 +6,7 @@ import React, { useState, useCallback, useMemo } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useScreenSize } from '@micromag/core/contexts';
 import { useResizeObserver, useParsedStory } from '@micromag/core/hooks';
+// import { getDeviceScreens } from '@micromag/core/utils';
 import { Viewer } from '@micromag/viewer';
 import useRouteParams from '../hooks/useRouteParams';
 import useScreenStates from '../hooks/useScreenStates';
@@ -76,6 +77,7 @@ const EditorPreview = ({
         ref: bottomRef,
         entry: { contentRect },
     } = useResizeObserver();
+
     const previewStyle = useMemo(() => {
         if (withoutDevicesSizes && initialDevice === null) {
             return {};
@@ -115,7 +117,9 @@ const EditorPreview = ({
     const { id: screenStateId = null, repeatable = false } = currentScreenState || {};
     const currentScreenStateId =
         currentScreenState !== null && repeatable
-            ? `${screenStateId}.${fieldParam.split('/').find(it => it.match(/^[0-9]+$/) !== null) || 0}`
+            ? `${screenStateId}.${
+                  fieldParam.split('/').find((it) => it.match(/^[0-9]+$/) !== null) || 0
+              }`
             : screenStateId;
 
     return (

@@ -5,14 +5,14 @@
 @import '~@micromag/core/scss/placeholders';
 
 .container {
-    position: relative;
     display: flex;
-    height: 100%;
+    position: relative;
     flex-direction: column;
+    height: 100%;
     padding: 10px;
     background-color: #000;
-    background-position: center;
     background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
     color: #fff;
 
@@ -45,22 +45,22 @@
 
             display: inline-block;
             border: 0;
-            background-color: transparent;
             border-radius: 0;
+            background-color: transparent;
             color: inherit;
-            cursor: pointer;
             font-size: 0.9rem;
             font-weight: 600;
             line-height: 1.4;
             text-align: center;
-            user-select: none;
             vertical-align: middle;
+            cursor: pointer;
+            user-select: none;
         }
 
         .button {
             width: 20px;
-            padding: 0;
             margin-left: 10px;
+            padding: 0;
 
             &:first-child {
                 margin-left: 0;
@@ -84,15 +84,15 @@
     }
 
     .organisation {
+        flex-shrink: 0;
         width: 30px;
         height: 30px;
-        flex-shrink: 0;
         margin-right: 10px;
-        background-color: #fff;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
         border-radius: 50%;
+        background-color: #fff;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
     }
 
     .title {
@@ -112,20 +112,20 @@
 
     .nav {
         position: relative;
-        overflow: hidden;
         flex-grow: 1;
+        overflow: hidden;
     }
 
     .items,
     .item {
-        padding: 0;
         margin: 0;
+        padding: 0;
         list-style: none;
     }
 
     .items {
-        position: relative;
         display: flex;
+        position: relative;
         flex-wrap: wrap;
     }
 
@@ -155,7 +155,7 @@
     }
 
     .screenContent {
-        background-color: $gray-900;
         transform-origin: left top;
+        background-color: $gray-900;
     }
 }

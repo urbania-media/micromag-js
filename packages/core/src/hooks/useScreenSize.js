@@ -50,9 +50,9 @@ export const useScreenSizeFromElement = ({ width = null, height = null, ...opts 
     const {
         withoutMaxSize = false,
         landscapeMinHeight = 600,
-        landscapeHeightRatio = 3 / 4,
-        screenRatio = 360 / 480,
-        landscapeMinRatio = 3 / 4,
+        landscapeHeightRatio = 2 / 3,
+        screenRatio = 320 / 480,
+        landscapeMinRatio = 2 / 3,
     } = opts || {};
     const elementRatio = fullWidth / fullHeight;
     const landscape = fullHeight > 0 && elementRatio > (landscapeMinRatio || screenRatio);

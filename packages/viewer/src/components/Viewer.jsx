@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage, useIntl } from 'react-intl';
+import EventEmitter from 'wolfy87-eventemitter';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { FontFaces, Meta } from '@micromag/core/components';
 import { ScreenSizeProvider, ViewerProvider } from '@micromag/core/contexts';
@@ -21,7 +22,6 @@ import useScreenInteraction from '../hooks/useScreenInteraction';
 import styles from '../styles/viewer.module.scss';
 import ViewerMenu from './ViewerMenu';
 import ViewerScreen from './ViewerScreen';
-import EventEmitter from 'wolfy87-eventemitter';
 
 const propTypes = {
     story: MicromagPropTypes.story, // .isRequired,
@@ -148,7 +148,6 @@ const Viewer = ({
     const contentRef = useRef(null);
 
     // Get screen size
-
     const { ref: containerRef, screenSize } = useScreenSizeFromElement({
         width,
         height,
