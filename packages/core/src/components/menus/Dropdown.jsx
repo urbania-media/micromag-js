@@ -6,8 +6,7 @@ import PropTypes from 'prop-types';
 import React, { useRef, useCallback } from 'react';
 import { useDocumentEvent } from '../../hooks';
 import { PropTypes as MicromagPropTypes } from '../../lib';
-import styles from '../../styles/menus/dropdown.module.scss';
-import Button from '../buttons/Button';
+// import Button from '../buttons/Button';
 import Label from '../partials/Label';
 import Link from '../partials/Link';
 
@@ -57,13 +56,16 @@ const Dropdown = ({
         [refContainer.current, onClickOutside],
     );
     useDocumentEvent('click', onDocumentClick, visible);
+
+    console.log('visible', visible); // eslint-disable-line
+
     return (
         <div
             className={classNames([
                 'dropdown-menu',
                 {
                     [`dropdown-menu-${align}`]: align !== null,
-                    show: visible,
+                    [`show`]: visible,
                     [className]: className !== null,
                 },
             ])}
@@ -73,7 +75,7 @@ const Dropdown = ({
                 ? children
                 : items.map((it, index) => {
                       const {
-                          id = null,
+                          // id = null,
                           type = 'link',
                           className: customClassName = null,
                           label = null,
