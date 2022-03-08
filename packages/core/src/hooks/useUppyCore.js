@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 let packageCache = null;
 const useUppyCore = () => {
     // transport
-    const [{ package: loadedPackage }, setLoadedPackage] = useState({
+    const [{ package: loadedPackage = null }, setLoadedPackage] = useState({
         package: packageCache,
     });
     useEffect(() => {

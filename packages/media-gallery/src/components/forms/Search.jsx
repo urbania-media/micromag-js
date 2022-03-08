@@ -62,7 +62,7 @@ const Search = ({ value, onChange, onFocus, onBlur, onClickIcon, className }) =>
             onSubmit={(e) => e.preventDefault()}
         >
             <div className="input-group w-100">
-                <button type="button" className="reset-button" onClick={onClickSearchIcon}>
+                <button type="button" className="btn" onClick={onClickSearchIcon}>
                     <FontAwesomeIcon icon={faSearch} />
                 </button>
                 <input

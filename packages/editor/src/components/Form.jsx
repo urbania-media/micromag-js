@@ -154,7 +154,6 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
     }, [setScreenSettingsOpened, setDeleteScreenModalOpened]);
 
     const onSettingsClick = useCallback(() => {
-        console.log('screenSettingsOpened', screenSettingsOpened); // eslint-disable-line
         setScreenSettingsOpened(!screenSettingsOpened);
     }, [screenSettingsOpened, setScreenSettingsOpened]);
 
@@ -204,8 +203,6 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
             onClick: onClickDelete,
         },
     ].filter((it) => it !== null);
-
-    console.log(screenSettingsOpened); // eslint-disable-line
 
     return (
         <div className={classNames(['d-flex', 'flex-column', className])}>

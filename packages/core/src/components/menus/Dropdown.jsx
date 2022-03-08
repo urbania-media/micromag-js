@@ -69,8 +69,6 @@ const Dropdown = ({
         };
     }, [visible, setEnabled]);
 
-    console.log('visible', visible); // eslint-disable-line
-
     return (
         <div
             className={classNames([
@@ -120,7 +118,7 @@ const Dropdown = ({
                       return ItemComponent !== null ? (
                           <li>
                               <ItemComponent
-                                  key={`item-${index}`}
+                                  key={`item-${index}-${label}`}
                                   className={classNames([
                                       {
                                           'dropdown-item': type === 'link' || type === 'button',

@@ -11,7 +11,7 @@ const defaultPackagesMap = {
 };
 const useUppyTransport = (transport, { packagesMap = defaultPackagesMap } = {}) => {
     // transport
-    const [{ package: loadedPackage }, setLoadedPackage] = useState({
+    const [{ package: loadedPackage = null }, setLoadedPackage] = useState({
         package: packagesCache[transport] || null,
     });
     const packageLoader = packagesMap[transport] || null;

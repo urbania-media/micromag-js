@@ -9,8 +9,8 @@ const defaultPackagesMap = {
     en: () => import('@uppy/locales/lib/en_US'),
 };
 const useUppyLocale = (locale, { packagesMap = defaultPackagesMap } = {}) => {
-    const [{ package: loadedPackage }, setLoadedPackage] = useState({
-        package: packagesCache[locale] || null
+    const [{ package: loadedPackage = null }, setLoadedPackage] = useState({
+        package: packagesCache[locale] || null,
     });
     const packageLoader = packagesMap[locale] || null;
     useEffect(() => {
@@ -20,17 +20,14 @@ const useUppyLocale = (locale, { packagesMap = defaultPackagesMap } = {}) => {
                 canceled = true;
             };
         }
-
-        packageLoader().then(
-            ({ default: dep }) => {
-                // packagesCache[locale] = dep;
-                if (!canceled) {
-                    setLoadedPackage({
-                        package: dep,
-                    });
-                }
-            },
-        );
+        packageLoader().then(({ default: dep }) => {
+            // packagesCache[locale] = dep;
+            if (!canceled) {
+                setLoadedPackage({
+                    package: dep,
+                });
+            }
+        });
         return () => {
             canceled = true;
         };

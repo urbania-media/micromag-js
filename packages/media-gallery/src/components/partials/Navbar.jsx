@@ -1,13 +1,13 @@
 import { faChevronLeft, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// useOrganisationTeam
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Button, Media } from '@micromag/core/components';
-import { useMediasRecentSearches } from '@micromag/data';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+// useOrganisationTeam
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { Button, Media } from '@micromag/core/components';
+import { useMediasRecentSearches } from '@micromag/data';
 import { useSearchFilters } from '../../hooks/useSearchFilters';
 import * as AppPropTypes from '../../lib/PropTypes';
 import styles from '../../styles/partials/navbar.module.scss';
@@ -177,7 +177,7 @@ function Navbar({
                 },
             ])}
         >
-            <div className={classNames(['container-fluid', styles.inner])}>
+            <div className={classNames([styles.inner])}>
                 {media === null ? (
                     <strong className="list-group-item rounded w-100 py-1 px-1 navbar-text d-flex align-items-center justify-content-between">
                         {selectedMedia !== null ? (
@@ -251,7 +251,7 @@ function Navbar({
                                 onClick={onClickBack}
                             />
                         </form>
-                        <strong className="navbar-text me-auto w-100">
+                        <strong className="navbar-text me-auto w-100 text-truncate">
                             {media !== null ? media.name : null}
                         </strong>
                     </div>

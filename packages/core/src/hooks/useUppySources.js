@@ -13,7 +13,7 @@ const defaultPackagesMap = {
 };
 const useUppySources = (sources, { packagesMap = defaultPackagesMap } = {}) => {
     // transport
-    const [{ packages: loadedPackages }, setLoadedPackages] = useState({
+    const [{ packages: loadedPackages = [] }, setLoadedPackages] = useState({
         packages: sources.reduce((map, source) => {
             const sourcePackage = packagesCache[source] || null;
             if (sourcePackage === null) {
