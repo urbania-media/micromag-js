@@ -49,6 +49,16 @@
         height: 100%;
     }
 
+    .deviceMenu {
+        //
+    }
+
+    .devices {
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+    }
+
     .noStory {
         @extend %fullscreen;
     }
@@ -61,8 +71,8 @@
 @include match-screen('medium') {
     .top {
         display: flex;
-        width: 100%;
         justify-content: center;
+        width: 100%;
     }
 
     .bottom {

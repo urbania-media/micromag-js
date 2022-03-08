@@ -47,7 +47,7 @@ const defaultProps = {
     className: null,
     onScreenChange: null,
     onChange: null,
-    withoutDevicesSizes: true,
+    withoutDevicesSizes: false,
 };
 
 const EditorPreview = ({
@@ -134,18 +134,6 @@ const EditorPreview = ({
             ])}
         >
             <div className={styles.inner}>
-                {!withoutDevicesSizes ? (
-                    <div className={styles.top}>
-                        <DevicesMenu
-                            items={devices.map((it) => ({
-                                ...it,
-                                active: it.id === deviceId,
-                            }))}
-                            onClickItem={onClickDeviceItem}
-                            className={styles.devices}
-                        />
-                    </div>
-                ) : null}
                 {currentScreenStates !== null && currentScreen !== null ? (
                     <div className={classNames([styles.top, 'px-1'])}>
                         <ScreenStates
@@ -175,6 +163,18 @@ const EditorPreview = ({
                         </div>
                     </div>
                 </div>
+                {!withoutDevicesSizes ? (
+                    <div className={styles.deviceMenu}>
+                        <DevicesMenu
+                            items={devices.map((it) => ({
+                                ...it,
+                                active: it.id === deviceId,
+                            }))}
+                            onClickItem={onClickDeviceItem}
+                            className={styles.devices}
+                        />
+                    </div>
+                ) : null}
             </div>
         </div>
     );
