@@ -3,7 +3,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, useState, useEffect } from 'react';
 import { useDocumentEvent } from '../../hooks';
 import { PropTypes as MicromagPropTypes } from '../../lib';
 // import Button from '../buttons/Button';
@@ -43,6 +43,8 @@ const Dropdown = ({
     onClickOutside,
 }) => {
     const refContainer = useRef(null);
+    const [enabled, setEnabled] = useState(visible);
+
     const onDocumentClick = useCallback(
         (e) => {
             if (
@@ -55,7 +57,17 @@ const Dropdown = ({
         },
         [refContainer.current, onClickOutside],
     );
-    useDocumentEvent('click', onDocumentClick, visible);
+    useDocumentEvent('click', onDocumentClick, enabled);
+
+    // Delay the outside click detection
+    useEffect(() => {
+        const id = setTimeout(() => {
+            setEnabled(visible);
+        }, 100);
+        return () => {
+            clearTimeout(id);
+        };
+    }, [visible, setEnabled]);
 
     console.log('visible', visible); // eslint-disable-line
 
