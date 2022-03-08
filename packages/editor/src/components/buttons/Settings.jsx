@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-import PropTypes from 'prop-types';
+import { faCogs, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 // import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCogs, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { Button } from '@micromag/core/components';
 
 const propTypes = {

@@ -53,7 +53,7 @@ const Screen = ({
     onDisableInteraction,
     getMediaRef,
 }) => {
-    const { type } = screen;
+    const { type = null } = screen || {};
     const CustomScreenComponent =
         components !== null ? getComponentFromName(type, components) || null : null;
     const ContextScreenComponent = useScreenComponent(type);

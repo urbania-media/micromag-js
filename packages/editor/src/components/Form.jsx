@@ -154,6 +154,7 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
     }, [setScreenSettingsOpened, setDeleteScreenModalOpened]);
 
     const onSettingsClick = useCallback(() => {
+        console.log('screenSettingsOpened', screenSettingsOpened); // eslint-disable-line
         setScreenSettingsOpened(!screenSettingsOpened);
     }, [screenSettingsOpened, setScreenSettingsOpened]);
 
@@ -162,9 +163,19 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
     }, [setScreenSettingsOpened]);
 
     const onDeleteScreenConfirm = useCallback(() => {
+        const current = screens.findIndex(({ id: scrId = null }) => scrId === screenId) || 0;
+        const previous =
+            screens.find(
+                ({ id: scrId = null }, i) =>
+                    scrId !== screenId && (i === current - 1 || current === 0),
+            ) || null;
+        if (previous !== null) {
+            const { id: firstScreenId = null } = previous || {};
+            routePush('screen', { screen: firstScreenId });
+        }
         triggerOnChange(deleteScreen(value, screenId));
         setDeleteScreenModalOpened(false);
-    }, [value, triggerOnChange, screenId, setScreenSettingsOpened]);
+    }, [value, triggerOnChange, screenId, setScreenSettingsOpened, routePush, screens]);
 
     const onDeleteScreenCancel = useCallback(() => {
         setDeleteScreenModalOpened(false);
@@ -193,6 +204,8 @@ const EditForm = ({ value, isTheme, className, onChange }) => {
             onClick: onClickDelete,
         },
     ].filter((it) => it !== null);
+
+    console.log(screenSettingsOpened); // eslint-disable-line
 
     return (
         <div className={classNames(['d-flex', 'flex-column', className])}>
