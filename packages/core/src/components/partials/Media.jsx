@@ -1,12 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import PropTypes from 'prop-types';
+import React from 'react';
 import { PropTypes as MicromagPropTypes } from '../../lib';
-import Label from './Label';
-
 import styles from '../../styles/partials/media.module.scss';
+import Label from './Label';
 
 const propTypes = {
     thumbnail: PropTypes.node,
@@ -67,30 +65,32 @@ const Media = ({
         ) : (
             thumbnail
         )}
-        <div
-            className={classNames([
-                'card-body',
-                styles.body,
-                {
-                    [bodyClassName]: bodyClassName !== null,
-                },
-            ])}
-        >
-            {title !== null ? (
-                <h5
-                    className={classNames([
-                        'mt-0',
-                        styles.title,
-                        {
-                            [titleClassName]: titleClassName !== null,
-                        },
-                    ])}
-                >
-                    <Label>{title}</Label>
-                </h5>
-            ) : null}
-            {children}
-        </div>
+        {title !== null || children !== null ? (
+            <div
+                className={classNames([
+                    'card-body',
+                    styles.body,
+                    {
+                        [bodyClassName]: bodyClassName !== null,
+                    },
+                ])}
+            >
+                {title !== null ? (
+                    <h5
+                        className={classNames([
+                            'mt-0',
+                            styles.title,
+                            {
+                                [titleClassName]: titleClassName !== null,
+                            },
+                        ])}
+                    >
+                        <Label>{title}</Label>
+                    </h5>
+                ) : null}
+                {children}
+            </div>
+        ) : null}
     </div>
 );
 

@@ -1,8 +1,9 @@
-/* eslint-disable react/jsx-props-no-spreading, react/no-array-index-key */
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+/* eslint-disable no-nested-ternary */
 
+/* eslint-disable react/jsx-props-no-spreading, react/no-array-index-key */
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { PropTypes as MicromagPropTypes } from '../../lib';
 import Label from './Label';
 import Link from './Link';
@@ -176,64 +177,60 @@ const Card = ({
             )}
             {beforeBody}
             {bodyInner !== null ? (
-                <>
-                    {onClickBody !== null ? (
-                        <button
-                            type="button"
-                            className={classNames({
-                                'card-body': !imageOverlay,
-                                'card-img-overlay': imageOverlay,
-                                [bodyClassName]: bodyClassName !== null,
-                            })}
-                            onClick={onClickBody}
-                        >
-                            {bodyInner}
-                        </button>
-                    ) : (
-                        <div
-                            className={classNames({
-                                'card-body': !imageOverlay,
-                                'card-img-overlay': imageOverlay,
-                                [bodyClassName]: bodyClassName !== null,
-                            })}
-                        >
-                            {bodyInner}
-                        </div>
-                    )}
-                </>
+                onClickBody !== null ? (
+                    <button
+                        type="button"
+                        className={classNames({
+                            'card-body': !imageOverlay,
+                            'card-img-overlay': imageOverlay,
+                            [bodyClassName]: bodyClassName !== null,
+                        })}
+                        onClick={onClickBody}
+                    >
+                        {bodyInner}
+                    </button>
+                ) : (
+                    <div
+                        className={classNames({
+                            'card-body': !imageOverlay,
+                            'card-img-overlay': imageOverlay,
+                            [bodyClassName]: bodyClassName !== null,
+                        })}
+                    >
+                        {bodyInner}
+                    </div>
+                )
             ) : null}
             {afterBody}
-            {links !== null && !linksInSameBody ? (
+            {links !== null && linksElements !== null && !linksInSameBody ? (
                 <div className="card-body">{linksElements}</div>
             ) : null}
             {footer !== null ? (
-                <>
-                    {onClickFooter !== null ? (
-                        <button
-                            type="button"
-                            className={classNames([
-                                'card-footer',
-                                {
-                                    [footerClassName]: footerClassName !== null,
-                                },
-                            ])}
-                            onClick={onClickFooter}
-                        >
-                            <Label>{footer}</Label>
-                        </button>
-                    ) : (
-                        <div
-                            className={classNames([
-                                'card-footer',
-                                {
-                                    [footerClassName]: footerClassName !== null,
-                                },
-                            ])}
-                        >
-                            <Label>{footer}</Label>
-                        </div>
-                    )}
-                </>
+                onClickFooter !== null ? (
+                    <button
+                        type="button"
+                        className={classNames([
+                            'card-footer',
+                            {
+                                [footerClassName]: footerClassName !== null,
+                            },
+                        ])}
+                        onClick={onClickFooter}
+                    >
+                        <Label>{footer}</Label>
+                    </button>
+                ) : (
+                    <div
+                        className={classNames([
+                            'card-footer',
+                            {
+                                [footerClassName]: footerClassName !== null,
+                            },
+                        ])}
+                    >
+                        <Label>{footer}</Label>
+                    </div>
+                )
             ) : null}
         </>
     );
