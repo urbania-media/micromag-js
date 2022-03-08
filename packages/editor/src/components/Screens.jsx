@@ -113,8 +113,8 @@ const EditorScreens = ({
             );
 
             if (!sameOrder || hasScreenProps) {
-                console.log('order', ids);
-                const newValue = {ç
+                // console.log('order', ids); // eslint-disable-line
+                const newValue = {
                     ...value,
                     components: [...currentScreens]
                         .sort(({ id: idA }, { id: idB }) => {
