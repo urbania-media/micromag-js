@@ -85,15 +85,22 @@ const ViewerMenu = ({
     const { components: screens = [], title = null } = story;
     const currentScreen = screens !== null ? screens[currentScreenIndex] || null : null;
     const { id: screenId = null, type: screenType = null } = currentScreen || {};
+
     const items = useMemo(
         () =>
             screens
-                .filter(({ parentId = null }) => parentId === null)
-                .map((it) => ({
-                    screen: it,
-                    screenId: it.id,
-                    current: screenId === it.id,
-                })),
+                .map((it) => {
+                    const children = screens.filter((s) => s.parentId === it.id);
+                    return {
+                        screen: it,
+                        screenId: it.id,
+                        current:
+                            screenId === it.id ||
+                            (children.find((c) => c.id === screenId) || null) !== null,
+                        visible: (it?.parentId || null) === null,
+                    };
+                })
+                .filter(({ visible = true }) => visible),
         [screens, screenId],
     );
     const trackEvent = useTrackEvent();

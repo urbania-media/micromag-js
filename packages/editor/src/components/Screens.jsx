@@ -114,7 +114,7 @@ const EditorScreens = ({
 
             if (!sameOrder || hasScreenProps) {
                 console.log('order', ids);
-                const newValue = {
+                const newValue = {ç
                     ...value,
                     components: [...currentScreens]
                         .sort(({ id: idA }, { id: idB }) => {

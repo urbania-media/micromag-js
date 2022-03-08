@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDrag } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button, ScreenPreview } from '@micromag/core/components';
@@ -219,7 +219,6 @@ const ViewerMenuPreview = ({
                                           })}`
                                         : ''
                                 }`;
-
                                 return (
                                     <li
                                         className={classNames([
