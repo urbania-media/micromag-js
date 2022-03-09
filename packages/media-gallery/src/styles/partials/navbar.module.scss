@@ -4,6 +4,7 @@
 
 .container {
     position: relative;
+    max-width: 100%;
     padding: 0.5rem;
 
     .inner {
@@ -15,10 +16,18 @@
     }
 
     .mediaPreview {
-        width: 25%;
+        display: block;
+        width: 100px;
+        padding-right: 5px;
 
         img {
+            display: block;
             width: 100%;
         }
+    }
+
+    .mediaLabel {
+        display: block;
+        min-width: 0;
     }
 }

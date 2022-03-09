@@ -19,7 +19,7 @@ const props = {
             id: '1',
             type: 'video',
             thumbnail_url: 'https://picsum.photos/id/100/300/300',
-            name: 'uuuuurbaniaDog1 sdfasdflasd s df adsf asdfasdfgasdf dasgf ads gadsfg adsfg adfg dsfg.mov',
+            name: 'uuuuurbaniaDog1sdfasdflasd s df adsf asdfasdfgasdf dasgf ads gadsfg adsfg adfg dsfg.mov',
             url: video,
             metadata: {
                 user: { id: 1, name: 'paul ' },
@@ -103,6 +103,31 @@ export function WithTestMedia() {
             <FieldsProvider>
                 <MemoryRouter>
                     <MediaGallery {...props} type="image" />
+                </MemoryRouter>
+            </FieldsProvider>
+        </ApiProvider>
+    );
+}
+
+export function WithSelectedMedia() {
+    return (
+        <ApiProvider baseUrl={apiBaseUrl}>
+            <FieldsProvider>
+                <MemoryRouter>
+                    <MediaGallery
+                        {...props}
+                        type="image"
+                        selectedMedia={{
+                            id: '1',
+                            type: 'video',
+                            thumbnail_url: 'https://picsum.photos/id/100/300/300',
+                            name: 'uuuuurbaniaDog1sdfasdflasdsdfadsfasdfasdfgasdf dasgf ads gadsfg adsfg adfg dsfg.mov',
+                            url: video,
+                            metadata: {
+                                user: { id: 1, name: 'paul ' },
+                            },
+                        }}
+                    />
                 </MemoryRouter>
             </FieldsProvider>
         </ApiProvider>

@@ -79,6 +79,7 @@ const Media = ({
                     <h5
                         className={classNames([
                             'mt-0',
+                            'text-truncate',
                             styles.title,
                             {
                                 [titleClassName]: titleClassName !== null,

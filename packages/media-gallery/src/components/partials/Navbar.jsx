@@ -178,17 +178,26 @@ function Navbar({
         >
             <div className={classNames([styles.inner])}>
                 {media === null ? (
-                    <strong className="list-group-item rounded w-100 py-1 px-1 navbar-text d-flex align-items-center justify-content-between">
+                    <div className="list-group-item rounded w-100 mw-100 py-1 px-1 navbar-text d-flex align-items-center justify-content-between">
                         {selectedMedia !== null ? (
                             <Button
-                                className="d-flex px-0 py-0 align-items-center"
+                                className={classNames([
+                                    styles.mediaLabel,
+                                    'd-flex px-0 py-0 align-items-center',
+                                ])}
                                 onClick={() => onClickItemInfo(selectedMedia)}
                             >
                                 <Media
                                     className={styles.mediaPreview}
                                     thumbnail={selectedMedia?.thumbnail_url}
                                 />
-                                <span className="ms-2">
+                                <span
+                                    className={classNames([
+                                        styles.mediaLabel,
+                                        'd-inline-block',
+                                        'text-truncate',
+                                    ])}
+                                >
                                     {selectedMedia.name || (
                                         <FormattedMessage
                                             defaultMessage="[no title]"
@@ -226,7 +235,7 @@ function Navbar({
                                 })}
                             />
                         )}
-                    </strong>
+                    </div>
                 ) : null}
 
                 {!withoutSource && media === null ? (
