@@ -91,13 +91,15 @@ const ViewerMenu = ({
             screens
                 .map((it) => {
                     const children = screens.filter((s) => s.parentId === it.id);
+                    const currentChild = children.find((c) => c.id === screenId) || null;
+                    const subIndex = children.findIndex((c) => c.id === screenId) + 1;
                     return {
                         screen: it,
                         screenId: it.id,
-                        current:
-                            screenId === it.id ||
-                            (children.find((c) => c.id === screenId) || null) !== null,
+                        current: screenId === it.id || currentChild !== null,
                         visible: (it?.parentId || null) === null,
+                        count: children.length + 1 || 1,
+                        subIndex: subIndex || 0,
                     };
                 })
                 .filter(({ visible = true }) => visible),

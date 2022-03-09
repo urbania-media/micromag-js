@@ -1,18 +1,16 @@
 /* eslint-disable arrow-body-style */
+
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback, useMemo } from 'react';
-import PropTypes from 'prop-types';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button } from '@micromag/core/components';
-import { useIntl } from 'react-intl';
 import classNames from 'classnames';
-
-// import { PropTypes as MicromagPropTypes } from '@micromag/core';
-
-import TagSection from './TagSection';
-
+import PropTypes from 'prop-types';
+import React, { useCallback, useMemo } from 'react';
+import { useIntl } from 'react-intl';
+import { Button } from '@micromag/core/components';
 import styles from '../../styles/forms/search-filters.module.scss';
+// import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import TagSection from './TagSection';
 
 const propTypes = {
     filters: PropTypes.object, // eslint-disable-line
@@ -93,20 +91,14 @@ const SearchFilters = ({ filters, sections, onChange, onClose, className }) => {
                     ])}
                 >
                     <Button
-                        className={classNames([
-                            styles.closeBtn,
-                            'py-1',
-                            'px-1',
-                            'text-dark',
-                        ])}
+                        className={classNames([styles.closeBtn, 'py-1', 'px-1', 'text-dark'])}
                         icon={<FontAwesomeIcon icon={faTimes} />}
                         onClick={onClose}
                         title={intl.formatMessage({
                             defaultMessage: 'Close',
-                            description: 'Close button label in Media Gallery'
+                            description: 'Close button label in Media Gallery',
                         })}
                     />
-
                     {activeSections.map(({ value, label, items }) => {
                         return items.length > 0 ? (
                             <div

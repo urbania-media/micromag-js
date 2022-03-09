@@ -19,7 +19,7 @@ export const useSearchFilters = ({
                               description="Media gallery source"
                           />
                       ),
-                      value: `document:${storyId}`,
+                      value: `document-${storyId}`,
                   },
               ]
             : []),

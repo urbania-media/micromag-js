@@ -156,8 +156,7 @@ function Navbar({
         if (onFocusSearch !== null) {
             onFocusSearch();
         }
-        setOpen(true);
-    });
+    }, [onFocusSearch]);
 
     const onCloseFilters = useCallback(() => {
         setOpen(false);

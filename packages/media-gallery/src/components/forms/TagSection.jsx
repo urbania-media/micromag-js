@@ -1,6 +1,7 @@
-import React, { useCallback } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback } from 'react';
+import styles from '../../styles/forms/tag-section.module.scss';
 
 const propTypes = {
     tags: PropTypes.arrayOf(
@@ -33,6 +34,7 @@ const TagSection = ({ tags, parent, onChange, className }) => {
     return (
         <div
             className={classNames([
+                styles.container,
                 'd-flex',
                 'mt-1',
                 {
@@ -43,17 +45,18 @@ const TagSection = ({ tags, parent, onChange, className }) => {
             {tags !== null
                 ? tags.map(({ label, value, active }) => {
                       const itemClassNames = classNames([
+                          styles.tag,
                           'btn',
                           'btn-sm',
                           'mb-1',
                           'me-1',
+                          'p-1',
                           'btn-dark',
                           {
                               'btn-primary': active === true,
                               // 'btn-outline-light': active === false,
                           },
                       ]);
-
                       return (
                           <button
                               className={itemClassNames}

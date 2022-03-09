@@ -6,11 +6,11 @@ import {
     faTimesCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Button, Card } from '@micromag/core/components';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { Button, Card } from '@micromag/core/components';
 import { middleEllipsis } from '../../lib/utils';
 import styles from '../../styles/items/gallery-item.module.scss';
 
@@ -112,7 +112,7 @@ const GalleryItem = ({
                     [className]: className !== null,
                 },
             ])}
-            footerClassName={classNames(['p-2', styles.footer])}
+            footerClassName={classNames(['p-1', styles.footer])}
             onClickFooter={onClick}
         />
     );

@@ -81,13 +81,15 @@ const ViewerMenuDots = ({
         >
             <ul className={styles.items}>
                 {items.map((item, index) => {
-                    const { current = false } = item;
+                    const { current = false, count = 1, subIndex = 0 } = item || {};
                     return (
                         <MenuDot
                             key={`item-${index + 1}`}
                             current={current}
                             active={index <= currentIndex}
                             colors={colors}
+                            count={count}
+                            subIndex={subIndex}
                             onClick={() => {
                                 if ((withItemClick || withoutScreensMenu) && onClickItem !== null) {
                                     onClickItem(item);

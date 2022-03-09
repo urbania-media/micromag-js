@@ -1,0 +1,10 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+@import '~@micromag/core/scss/mixins';
+
+.container {
+    .tag {
+        font-size: 0.75rem;
+        line-height: 1.1;
+    }
+}

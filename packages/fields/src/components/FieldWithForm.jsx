@@ -1,18 +1,16 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import get from 'lodash/get';
-import isString from 'lodash/isString';
 import isObject from 'lodash/isObject';
+import isString from 'lodash/isString';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Label } from '@micromag/core/components';
-
-import Fields from './Fields';
-import Field from './Field';
-
 import styles from '../styles/field-with-form.module.scss';
+import Field from './Field';
+import Fields from './Fields';
 
 const propTypes = {
     // value: MicromagPropTypes.media,
@@ -145,6 +143,7 @@ const FieldWithForm = ({
                         {
                             'text-start': !isHorizontal,
                             'text-end': isHorizontal,
+                            'text-truncate': isHorizontal,
                         },
                     ])}
                 >

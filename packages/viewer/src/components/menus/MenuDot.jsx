@@ -12,6 +12,8 @@ const propTypes = {
         primary: PropTypes.string,
         secondary: PropTypes.string,
     }),
+    count: PropTypes.number,
+    subIndex: PropTypes.number,
     vertical: PropTypes.bool,
     onClick: PropTypes.func,
     className: PropTypes.string,
@@ -21,12 +23,23 @@ const defaultProps = {
     current: false,
     active: false,
     colors: null,
+    count: 1,
+    subIndex: 0,
     vertical: false,
     onClick: null,
     className: null,
 };
 
-const ViewerMenuDot = ({ current, active, colors, vertical, onClick, className }) => {
+const ViewerMenuDot = ({
+    current,
+    active,
+    colors,
+    count,
+    subIndex,
+    vertical,
+    onClick,
+    className,
+}) => {
     const currentTime = 0;
     const duration = 1;
     const playing = true;
@@ -63,6 +76,30 @@ const ViewerMenuDot = ({ current, active, colors, vertical, onClick, className }
         });
     }, [playing, duration, currentTime, setSpringProps]);
 
+    console.log(current, count, subIndex, [...Array(count).keys()]);
+
+    const inner =
+        current && count > 1 ? (
+            <span className={styles.dots}>
+                {[...Array(count).keys()].map((i) => (
+                    <span
+                        className={classNames([styles.dot, styles.subDot])}
+                        style={{
+                            width: `${parseFloat((1 / count) * 100).toFixed(2)}%`,
+                            backgroundColor: active && i <= subIndex ? primary : secondary,
+                        }}
+                    />
+                ))}
+            </span>
+        ) : (
+            <span
+                className={styles.dot}
+                style={{
+                    backgroundColor: active ? primary : secondary,
+                }}
+            />
+        );
+
     return (
         <li
             className={classNames([
@@ -85,12 +122,7 @@ const ViewerMenuDot = ({ current, active, colors, vertical, onClick, className }
                         }}
                     />
                 ) : (
-                    <span
-                        className={styles.dot}
-                        style={{
-                            backgroundColor: active ? primary : secondary,
-                        }}
-                    />
+                    inner
                 )}
             </button>
         </li>
