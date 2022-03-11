@@ -6,7 +6,7 @@ export default {
         {
             name: 'media',
             type: 'video',
-        }
+        },
     ],
     settings: [
         {
@@ -40,7 +40,15 @@ export default {
                 defaultMessage: 'With seek bar',
                 description: 'Field label',
             }),
-        },        
+        },
+        {
+            name: 'withTime',
+            type: 'toggle',
+            label: defineMessage({
+                defaultMessage: 'With time',
+                description: 'Field label',
+            }),
+        },
         {
             name: 'closedCaptions',
             type: 'closed-captions',
@@ -49,5 +57,5 @@ export default {
                 description: 'Field label',
             }),
         },
-    ]
+    ],
 };

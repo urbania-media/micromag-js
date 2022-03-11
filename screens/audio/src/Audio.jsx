@@ -1,23 +1,24 @@
 /* eslint-disable no-unused-vars */
+
 /* eslint-disable no-param-reassign */
+
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading */
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { useState, useRef, useCallback, useEffect, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { isIos } from '@micromag/core/utils';
+import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { useTrackScreenMedia, useLongPress } from '@micromag/core/hooks';
-import { ScreenElement, Transitions } from '@micromag/core/components';
+import { isIos } from '@micromag/core/utils';
 import Audio from '@micromag/element-audio';
-import ClosedCaptions from '@micromag/element-closed-captions';
-import MediaControls from '@micromag/element-media-controls';
 import Background from '@micromag/element-background';
+import CallToAction from '@micromag/element-call-to-action';
+import ClosedCaptions from '@micromag/element-closed-captions';
 import Container from '@micromag/element-container';
 import Layout, { Spacer } from '@micromag/element-layout';
-import CallToAction from '@micromag/element-call-to-action';
-
+import MediaControls from '@micromag/element-media-controls';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -61,14 +62,8 @@ const AudioScreen = ({
     const trackScreenMedia = useTrackScreenMedia('audio');
 
     const { width, height, menuOverScreen } = useScreenSize();
-    const {
-        isPlaceholder,
-        isPreview,
-        isView,
-        isEdit,
-        isStatic,
-        isCapture,
-    } = useScreenRenderContext();
+    const { isPlaceholder, isPreview, isView, isEdit, isStatic, isCapture } =
+        useScreenRenderContext();
 
     const { menuSize } = useViewer();
     const hasCallToAction = callToAction !== null && callToAction.active === true;
@@ -86,7 +81,10 @@ const AudioScreen = ({
         autoPlay = true,
         closedCaptions = null,
         withPlayPause = false,
+        color = null,
+        progressColor = null,
     } = audio || {};
+
     const { url: audioUrl = null } = audioMedia || {};
     const hasAudioUrl = audioUrl !== null;
 
@@ -103,7 +101,13 @@ const AudioScreen = ({
     }, [setReady]);
 
     const apiRef = useRef();
-    const { togglePlay, toggleMute, play, pause, mediaRef: apiMediaRef = null } = apiRef.current || {};
+    const {
+        togglePlay,
+        toggleMute,
+        play,
+        pause,
+        mediaRef: apiMediaRef = null,
+    } = apiRef.current || {};
 
     useEffect(() => {
         if (apiMediaRef !== null && getMediaRef !== null) {
@@ -185,8 +189,6 @@ const AudioScreen = ({
         }
     }, [playing, current]);
 
-    // ------------------------------------
-
     const longPressBind = useLongPress({ onLongPress: togglePlay });
 
     const elements = [
@@ -213,8 +215,10 @@ const AudioScreen = ({
                                   sampleWidth: 10,
                                   sampleMargin: 5,
                                   minSampleHeight: 5,
+                                  backgroundColor: color,
+                                  progressColor,
                               }
-                            : null
+                            : { backgroundColor: color, progressColor }
                     }
                     className={styles.audio}
                     onReady={onAudioReady}

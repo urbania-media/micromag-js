@@ -14,6 +14,7 @@ import {
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import basic from '../../../../.storybook/data/stories/basic.json';
 import faceAFace from '../../../../.storybook/data/stories/faceAFace';
+import videoAudio from '../../../../.storybook/data/stories/videoAudio';
 import treeTheme from '../../../../.storybook/data/themes/tree';
 import viewerTheme from '../../../../.storybook/data/viewerTheme';
 import withGoogleMaps from '../../../../.storybook/decorators/withGoogleMaps';
@@ -100,6 +101,8 @@ export const Integrated = () => {
 };
 
 export const Tree = () => <Viewer story={treeTheme} />;
+
+export const VideoAudio = () => <Viewer story={videoAudio} />;
 
 export const WithScroll = () => (
     <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'scroll' }}>

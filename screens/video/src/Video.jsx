@@ -75,6 +75,16 @@ const VideoScreen = ({
     const videoShouldLoad = current || active || !isView;
     const shouldGotoNextScreenOnEnd = gotoNextScreenOnEnd && isView && current;
 
+    // get resized video style props
+    const {
+        autoPlay = true,
+        media: videoMedia = null,
+        closedCaptions = null,
+        withSeekBar = false,
+        withPlayPause = false,
+        withTime = false,
+    } = video || {};
+
     const apiRef = useRef();
     const {
         togglePlay,
@@ -145,6 +155,14 @@ const VideoScreen = ({
         [trackScreenMedia, video],
     );
 
+    const onSeek = useCallback(
+        (e) => {
+            seek(e);
+            play();
+        },
+        [seek, play],
+    );
+
     const onSeeked = useCallback(
         (time) => {
             if (time > 0) {
@@ -173,20 +191,31 @@ const VideoScreen = ({
         }
     }, [playing, current]);
 
-    const onMouseMove = useCallback(() => {
-        setShowMediaControls(true);
-        if (mouseMoveRef.current !== null) {
-            clearTimeout(mouseMoveRef.current);
+    const onMouseMove = useCallback(
+        (e, time = 1800) => {
+            setShowMediaControls(true);
+            if (mouseMoveRef.current !== null) {
+                clearTimeout(mouseMoveRef.current);
+            }
+            mouseMoveRef.current = setTimeout(() => {
+                setShowMediaControls(false);
+                mouseMoveRef.current = null;
+            }, time);
+        },
+        [setShowMediaControls],
+    );
+
+    const onLongPress = useCallback(() => {
+        if (!playing) {
+            play();
+        } else if (withPlayPause) {
+            onMouseMove(null, 3000);
+        } else {
+            pause();
         }
-        mouseMoveRef.current = setTimeout(() => {
-            setShowMediaControls(false);
-            mouseMoveRef.current = null;
-        }, 1800);
-    }, [setShowMediaControls]);
+    }, [play, playing, pause, onMouseMove, withPlayPause, setShowMediaControls]);
 
-    // ------------------------------------
-
-    const longPressBind = useLongPress({ onLongPress: togglePlay, onClick: onMouseMove });
+    const longPressBind = useLongPress({ onLongPress, onClick: onMouseMove });
 
     const fullscreen = layout === 'full';
 
@@ -196,16 +225,6 @@ const VideoScreen = ({
     const [ready, setReady] = useState(hasVideo); // useState(!hasVideo);
     const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
-
-    // get resized video style props
-    const {
-        autoPlay = true,
-        media: videoMedia = null,
-        closedCaptions = null,
-        withSeekBar = false,
-        withPlayPause = false,
-        withTime = false,
-    } = video || {};
 
     const finalVideo = useMemo(
         () =>
@@ -351,7 +370,7 @@ const VideoScreen = ({
                             duration={duration}
                             onTogglePlay={togglePlay}
                             onToggleMute={onToggleMute}
-                            onSeek={seek}
+                            onSeek={onSeek}
                             focusable={current && isView}
                         />
                     ) : null}

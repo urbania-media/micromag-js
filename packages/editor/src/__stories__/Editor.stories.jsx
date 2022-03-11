@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import allScreensStory from '../../../../.storybook/data/stories/allScreens';
 import faceAFaceStory from '../../../../.storybook/data/stories/faceAFace';
+import videoAudio from '../../../../.storybook/data/stories/videoAudio';
 import { defaultTheme } from '../../../../.storybook/data/themes/micromag-default';
 import treeTheme from '../../../../.storybook/data/themes/tree';
 import { theme as backgroundTheme } from '../../../../.storybook/data/themes/with-background';
@@ -114,12 +115,18 @@ EditorContainer.defaultProps = {
 };
 
 export const Empty = () => <EditorContainer defaultValue={{ title: 'Empty' }} />;
+
+export const VideoAudio = () => <EditorContainer defaultValue={videoAudio} />;
+
 export const IsTree = () => <EditorContainer defaultValue={treeTheme} />;
+
 export const Map = () => (
     <EditorContainer defaultValue={{ components: [{ id: 'map', type: 'map' }] }} />
 );
 export const Quiz = () => (
-    <EditorContainer defaultValue={{ components: [{ id: 'quiz-multiple', type: 'quiz-multiple' }] }} />
+    <EditorContainer
+        defaultValue={{ components: [{ id: 'quiz-multiple', type: 'quiz-multiple' }] }}
+    />
 );
 export const IsTheme = () => <EditorContainer defaultValue={defaultTheme} isTheme />;
 export const AllScreens = () => <EditorContainer defaultValue={allScreensStory} />;

@@ -6,7 +6,7 @@ export default {
         {
             name: 'media',
             type: 'audio',
-        }
+        },
     ],
     settings: [
         {
@@ -41,5 +41,5 @@ export default {
                 description: 'Field label',
             }),
         },
-    ]
+    ],
 };

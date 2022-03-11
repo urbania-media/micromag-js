@@ -62,7 +62,8 @@
         "prop-types": "^15.7.2",
         "react-intl": "^5.12.1",
         "uuid": "^8.3.2",
-        "whatwg-fetch": "^3.6.1"
+        "whatwg-fetch": "^3.6.1",
+        "tinycolor2": "^1.4.2"
     },
     "publishConfig": {
         "access": "public"

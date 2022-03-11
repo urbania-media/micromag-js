@@ -1,5 +1,4 @@
 import { defineMessage } from 'react-intl';
-
 import VideoScreen from './Video';
 import * as transforms from './transforms/index';
 

@@ -1,15 +1,17 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
+import React, { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getFileName } from '@micromag/core/utils';
 import MediaGallery from '@micromag/media-gallery';
-
 import FieldWithForm from './FieldWithForm';
 
 const propTypes = {
-    type: PropTypes.oneOfType([MicromagPropTypes.mediaTypes, PropTypes.arrayOf(MicromagPropTypes.mediaTypes)]),
+    type: PropTypes.oneOfType([
+        MicromagPropTypes.mediaTypes,
+        PropTypes.arrayOf(MicromagPropTypes.mediaTypes),
+    ]),
     value: MicromagPropTypes.media,
     noValueLabel: MicromagPropTypes.label,
     withoutThumbnail: PropTypes.bool,

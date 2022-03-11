@@ -76,8 +76,6 @@ const ViewerMenuDot = ({
         });
     }, [playing, duration, currentTime, setSpringProps]);
 
-    console.log(current, count, subIndex, [...Array(count).keys()]);
-
     const inner =
         current && count > 1 ? (
             <span className={styles.dots}>

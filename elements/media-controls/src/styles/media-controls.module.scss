@@ -3,9 +3,11 @@
 @import '~@micromag/core/scss/placeholders';
 
 .container {
+    color: $white;
+
     .toggles {
         position: relative;
-        color: $white;
+        color: currentColor;
     }
 
     .seekBar {
@@ -21,17 +23,17 @@
         @extend %reset-button;
 
         display: flex;
-        width: 50px;
-        height: 50px;
         align-items: center;
         justify-content: center;
+        width: 50px;
+        height: 50px;
     }
 
     .playPauseButton {
-        border: 2px solid $white;
-        margin: 0 auto;
-        border-radius: 50%;
         visibility: hidden;
+        margin: 0 auto;
+        border: 2px solid currentColor;
+        border-radius: 50%;
 
         .icon {
             display: block;
@@ -42,13 +44,13 @@
     }
 
     .muteButton {
+        visibility: hidden;
         position: absolute;
         top: 50%;
         right: 0;
         width: 40px;
         height: 40px;
         margin-top: -20px;
-        visibility: hidden;
 
         .icon {
             display: block;
@@ -57,16 +59,16 @@
         }
 
         &::after {
+            content: '';
+            display: none;
             position: absolute;
             top: 0;
             left: 50%;
-            display: none;
             width: 2px;
             height: 100%;
             margin-left: -1px;
-            background-color: $white;
-            content: '';
             transform: rotate(-45deg);
+            background-color: currentColor;
         }
     }
 

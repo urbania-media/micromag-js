@@ -1,9 +1,12 @@
 import { faPlay, faPause, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
+import isString from 'lodash/isString';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useIntl } from 'react-intl';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { getContrastingColor } from '@micromag/core/utils';
 import SeekBar from './SeekBar';
 import styles from './styles/media-controls.module.scss';
 
@@ -18,6 +21,8 @@ const propTypes = {
     withSeekBar: PropTypes.bool,
     withPlayPause: PropTypes.bool,
     withTime: PropTypes.bool,
+    color: MicromagPropTypes.color,
+    progressColor: MicromagPropTypes.color,
     className: PropTypes.string,
     focusable: PropTypes.bool,
 };
@@ -33,6 +38,8 @@ const defaultProps = {
     withSeekBar: false,
     withPlayPause: false,
     withTime: false,
+    color: null,
+    progressColor: null,
     className: null,
     focusable: true,
 };
@@ -48,10 +55,20 @@ const MediaControls = ({
     withSeekBar,
     withPlayPause,
     withTime,
+    color,
+    progressColor,
     className,
     focusable,
 }) => {
     const intl = useIntl();
+    const fullColor = isString(color) ? { color, alpha: 1 } : color;
+    const { color: finalColor = 'white' } = fullColor || {};
+    const fullProgressColor = isString(color) ? { progressColor, alpha: 1 } : color;
+
+    const alternateColor = useMemo(
+        () => fullProgressColor || getContrastingColor(fullColor),
+        [fullProgressColor, fullColor],
+    );
 
     return (
         <div
@@ -64,6 +81,7 @@ const MediaControls = ({
                     [styles.withPlayPause]: withPlayPause,
                 },
             ])}
+            style={{ color: finalColor }}
         >
             <div className={styles.toggles}>
                 <button
@@ -108,6 +126,8 @@ const MediaControls = ({
                     onSeek={onSeek}
                     focusable={focusable}
                     withTime={withTime}
+                    backgroundColor={finalColor}
+                    progressColor={alternateColor}
                 />
             ) : null}
         </div>

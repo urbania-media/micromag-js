@@ -1,14 +1,17 @@
 /* eslint-disable no-multi-assign */
+
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign, react/no-array-index-key */
 // import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useResizeObserver } from '@micromag/core/hooks';
 import { useSpring } from '@react-spring/core';
 import { animated } from '@react-spring/web';
 import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useMemo } from 'react';
 import 'whatwg-fetch';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useResizeObserver } from '@micromag/core/hooks';
+import { getContrastingColor } from '@micromag/core/utils';
 import styles from './styles/audio-wave.module.scss';
 
 const propTypes = {
@@ -18,8 +21,8 @@ const propTypes = {
     sampleWidth: PropTypes.number,
     sampleMargin: PropTypes.number,
     minSampleHeight: PropTypes.number,
-    backgroundColor: PropTypes.string,
-    progressColor: PropTypes.string,
+    backgroundColor: MicromagPropTypes.color,
+    progressColor: MicromagPropTypes.color,
     audioLevels: PropTypes.arrayOf(PropTypes.number),
     className: PropTypes.string,
     onSeek: PropTypes.func,
@@ -35,7 +38,7 @@ const defaultProps = {
     sampleMargin: 1,
     minSampleHeight: 2,
     backgroundColor: 'white',
-    progressColor: 'lightblue',
+    progressColor: null,
     audioLevels: null,
     className: null,
     onSeek: null,
@@ -60,6 +63,16 @@ function AudioWave({
 }) {
     const canvasBackgroundRef = useRef(null);
     const canvasProgressRef = useRef(null);
+
+    const mainColor = useMemo(() => {
+        const { color = 'white' } = backgroundColor || {};
+        return color;
+    }, [backgroundColor]);
+
+    const alternateColor = useMemo(
+        () => getContrastingColor(backgroundColor, progressColor),
+        [progressColor, backgroundColor],
+    );
 
     const {
         ref: elRef,
@@ -168,8 +181,8 @@ function AudioWave({
         ctxBG.clearRect(0, 0, elWidth, elHeight);
         ctxProgress.clearRect(0, 0, elWidth, elHeight);
 
-        ctxBG.fillStyle = backgroundColor;
-        ctxProgress.fillStyle = progressColor;
+        ctxBG.fillStyle = mainColor;
+        ctxProgress.fillStyle = alternateColor;
 
         const offsetLeft = (elWidth - samplesCount * sampleOuterWidth) / 2;
 
@@ -202,8 +215,8 @@ function AudioWave({
         minSampleHeight,
         elWidth,
         elHeight,
-        backgroundColor,
-        progressColor,
+        mainColor,
+        alternateColor,
         onReady,
     ]);
 
@@ -215,13 +228,13 @@ function AudioWave({
             if (onSeek !== null && duration !== null) {
                 onSeek(progress * duration);
             }
-
             if (!playing) {
                 onResume();
             }
         },
         [duration, playing, onSeek, onResume],
     );
+
     const bind = useGesture(
         {
             onDrag: ({ xy: [x], elapsedTime, active }) => {

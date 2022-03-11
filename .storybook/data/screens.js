@@ -1,5 +1,4 @@
 import { v1 as uuid } from 'uuid';
-
 import {
     images,
     imageMedia,
@@ -9,14 +8,12 @@ import {
     title,
     subtitle,
     audioMedia,
-    videoMedia,
-    // video360Media,
+    videoMedia, // video360Media,
     markers,
     quote,
     author,
     callToAction,
-    conversation,
-    // color,
+    conversation, // color,
 } from '../data';
 
 export const allScreens = [
@@ -295,6 +292,8 @@ export const allScreens = [
             loop: true,
             closedCaptions: closedCaptionsMedia(),
             withSeekBar: true,
+            withPlayPause: true,
+            withTime: true,
         },
         background: {
             color: { alpha: 1, color: '#FF00FF' },
