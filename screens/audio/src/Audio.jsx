@@ -31,6 +31,7 @@ const propTypes = {
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     getMediaRef: PropTypes.func,
+    showWave: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -44,6 +45,7 @@ const defaultProps = {
     active: true,
     transitions: null,
     getMediaRef: null,
+    showWave: false,
     className: null,
 };
 
@@ -57,6 +59,7 @@ const AudioScreen = ({
     active,
     transitions,
     getMediaRef,
+    showWave,
     className,
 }) => {
     const trackScreenMedia = useTrackScreenMedia('audio');
@@ -106,6 +109,7 @@ const AudioScreen = ({
         toggleMute,
         play,
         pause,
+        seek,
         mediaRef: apiMediaRef = null,
     } = apiRef.current || {};
 
@@ -157,6 +161,14 @@ const AudioScreen = ({
             trackScreenMedia(audio, midway ? 'pause' : 'ended');
         },
         [trackScreenMedia, audio],
+    );
+
+    const onSeek = useCallback(
+        (e) => {
+            seek(e);
+            play();
+        },
+        [seek, play],
     );
 
     const onVolumeChanged = useCallback(
@@ -229,6 +241,7 @@ const AudioScreen = ({
                     onDurationChanged={onDurationChanged}
                     onSeeked={onSeeked}
                     onVolumeChanged={onVolumeChanged}
+                    showWave={showWave}
                 />
             </Transitions>
         </ScreenElement>,
@@ -251,6 +264,10 @@ const AudioScreen = ({
                         onTogglePlay={togglePlay}
                         onToggleMute={onToggleMute}
                         focusable={current && isView}
+                        withSeekBar={!showWave}
+                        duration={duration}
+                        currentTime={currentTime}
+                        onSeek={onSeek}
                     />
                 ) : null}
             </div>

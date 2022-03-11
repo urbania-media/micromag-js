@@ -1635,6 +1635,12 @@ msgid "Bullet shape"
 msgstr "Forme du point"
 
 # Field label
+#: u/LEHI
+msgctxt "u/LEHI"
+msgid "With time"
+msgstr ""
+
+# Field label
 #: u3ok54
 msgctxt "u3ok54"
 msgid "Position"

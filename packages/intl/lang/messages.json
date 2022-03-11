@@ -1080,6 +1080,10 @@
     "defaultMessage": "Bullet shape",
     "description": "Field label"
   },
+  "u/LEHI": {
+    "defaultMessage": "With time",
+    "description": "Field label"
+  },
   "u3ok54": {
     "defaultMessage": "Position",
     "description": "Field label"

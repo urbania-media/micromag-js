@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign */
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useUserInteracted } from '@micromag/core/contexts';
-import { useMediaApi } from '@micromag/core/hooks';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useUserInteracted } from '@micromag/core/contexts';
+import { useMediaApi } from '@micromag/core/hooks';
 import AudioWave from './AudioWave';
 import styles from './styles/audio.module.scss';
 
@@ -25,6 +25,7 @@ const propTypes = {
         sampleMargin: PropTypes.number,
         minSampleHeight: PropTypes.number,
     }),
+    showWave: PropTypes.bool,
     reduceBufferFactor: PropTypes.number,
     className: PropTypes.string,
     onReady: PropTypes.func,
@@ -46,6 +47,7 @@ const defaultProps = {
     loop: false,
     waveFake: false,
     waveProps: null,
+    showWave: false,
     reduceBufferFactor: 100,
     className: null,
     onReady: null,
@@ -67,6 +69,7 @@ const Audio = ({
     loop,
     waveFake,
     waveProps,
+    showWave,
     reduceBufferFactor,
     className,
     onReady,
@@ -153,7 +156,7 @@ const Audio = ({
                             leftChannelData.reduce((newArray, level, levelIndex) => {
                                 // if (levelIndex % reduceBufferFactor === 0) {
                                 //     console.log(level, (level + 1) / 2);
-                                    newArray[newArray.length] = Math.abs(level);
+                                newArray[newArray.length] = Math.abs(level);
                                 // }
                                 return newArray;
                             }, []),
@@ -210,17 +213,19 @@ const Audio = ({
                 crossOrigin="anonymous"
                 preload="none"
             />
-            <AudioWave
-                className={styles.wave}
-                media={media}
-                currentTime={currentTime}
-                {...waveProps}
-                duration={duration}
-                playing={playing}
-                onSeek={seek}
-                onResume={play}
-                audioLevels={audioLevels}
-            />
+            {showWave ? (
+                <AudioWave
+                    className={styles.wave}
+                    media={media}
+                    currentTime={currentTime}
+                    {...waveProps}
+                    duration={duration}
+                    playing={playing}
+                    onSeek={seek}
+                    onResume={play}
+                    audioLevels={audioLevels}
+                />
+            ) : null}
         </div>
     );
 };
