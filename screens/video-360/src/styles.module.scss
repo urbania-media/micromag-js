@@ -39,7 +39,7 @@
     .mediaControls {
         padding: 10px 20px 20px;
     }
-    
+
     .placeholder {
         @extend %fullscreen;
         display: flex;
@@ -51,7 +51,7 @@
     .bottomContent {
         position: absolute;
         bottom: 0;
-        width: 100%;        
+        width: 100%;
     }
 
     &.showVideo {

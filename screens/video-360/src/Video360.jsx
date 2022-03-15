@@ -1,9 +1,4 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import 'whatwg-fetch';
-import React, { useState, useCallback, useRef, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
 // import {
 //     Scene,
 //     PerspectiveCamera,
@@ -15,21 +10,24 @@ import { FormattedMessage } from 'react-intl';
 //     MathUtils,
 // } from 'three';
 import { getSizeWithinBounds } from '@folklore/size';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
+import { FormattedMessage } from 'react-intl';
+import 'whatwg-fetch';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { PlaceholderVideo360, Transitions, ScreenElement } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext } from '@micromag/core/contexts';
 import { useAnimationFrame, useTrackScreenEvent, useTrackScreenMedia } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
-import Container from '@micromag/element-container';
-import ClosedCaptions from '@micromag/element-closed-captions';
-import MediaControls from '@micromag/element-media-controls';
-import Image from '@micromag/element-image';
-import Video from '@micromag/element-video';
 import CallToAction from '@micromag/element-call-to-action';
-
-import useThree from './useThree';
-
+import ClosedCaptions from '@micromag/element-closed-captions';
+import Container from '@micromag/element-container';
+import Image from '@micromag/element-image';
+import MediaControls from '@micromag/element-media-controls';
+import Video from '@micromag/element-video';
 import styles from './styles.module.scss';
+import useThree from './useThree';
 
 const propTypes = {
     layout: PropTypes.oneOf(['full']),

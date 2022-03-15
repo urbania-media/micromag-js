@@ -3,6 +3,7 @@
 @import '~@micromag/core/scss/placeholders';
 
 .container {
+    // filter: drop-shadow(0 0 6px rgb(0 0 0 / 0.2));
     color: $white;
 
     .toggles {
@@ -15,7 +16,7 @@
     }
 
     .icon {
-        filter: drop-shadow(0 0 6px rgb(0 0 0 / 0.2));
+        //
     }
 
     .playPauseButton,

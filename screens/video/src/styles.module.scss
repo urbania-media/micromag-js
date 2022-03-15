@@ -28,21 +28,25 @@
         overflow: hidden;
     }
 
-    .mediaControls {
-        padding: 10px 20px 20px;
+    .bottom {
+        transition: opacity 0.15s linear;
         opacity: 0;
-        transition: opacity 0.3s linear;
+        background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.4));
 
         &.visible {
             opacity: 1;
         }
     }
 
+    .mediaControls {
+        padding: 10px 20px 20px;
+    }
+
     .placeholder {
         display: flex;
-        height: 100%;
         flex-direction: column;
         justify-content: center;
+        height: 100%;
     }
 
     .videoContainer {

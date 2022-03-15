@@ -277,6 +277,8 @@ const VideoScreen = ({
     //     setPosterReady(true);
     // }, [isStatic, isCapture, setPosterReady]);
 
+    const visibleControls = (!autoPlay && !playing) || muted || showMediaControls;
+
     const items = [
         <ScreenElement
             key="video"
@@ -352,37 +354,45 @@ const VideoScreen = ({
                             currentTime={currentTime}
                         />
                     ) : null}
-                    {hasVideoUrl ? (
-                        <MediaControls
-                            className={classNames([
-                                styles.mediaControls,
-                                {
-                                    [styles.visible]:
-                                        (!autoPlay && !playing) || muted || showMediaControls,
-                                },
-                            ])}
-                            withSeekBar={withSeekBar}
-                            withPlayPause={withPlayPause}
-                            withTime={withTime}
-                            playing={playing}
-                            muted={muted}
-                            currentTime={currentTime}
-                            duration={duration}
-                            onTogglePlay={togglePlay}
-                            onToggleMute={onToggleMute}
-                            onSeek={onSeek}
-                            focusable={current && isView}
-                        />
-                    ) : null}
-                    {hasCallToAction ? (
-                        <div style={{ marginTop: -spacing }}>
-                            <CallToAction
-                                callToAction={callToAction}
-                                animationDisabled={isPreview}
+                    <div
+                        className={classNames([
+                            styles.bottom,
+                            {
+                                [styles.visible]: visibleControls,
+                            },
+                        ])}
+                    >
+                        {hasVideoUrl ? (
+                            <MediaControls
+                                className={classNames([
+                                    styles.mediaControls,
+                                    {
+                                        [styles.visible]: visibleControls,
+                                    },
+                                ])}
+                                withSeekBar={withSeekBar}
+                                withPlayPause={withPlayPause}
+                                withTime={withTime}
+                                playing={playing}
+                                muted={muted}
+                                currentTime={currentTime}
+                                duration={duration}
+                                onTogglePlay={togglePlay}
+                                onToggleMute={onToggleMute}
+                                onSeek={onSeek}
                                 focusable={current && isView}
                             />
-                        </div>
-                    ) : null}
+                        ) : null}
+                        {hasCallToAction ? (
+                            <div style={{ marginTop: -spacing }}>
+                                <CallToAction
+                                    callToAction={callToAction}
+                                    animationDisabled={isPreview}
+                                    focusable={current && isView}
+                                />
+                            </div>
+                        ) : null}
+                    </div>
                 </Transitions>
             </div>
         ) : null,
