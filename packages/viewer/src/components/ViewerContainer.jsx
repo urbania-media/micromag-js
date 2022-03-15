@@ -76,6 +76,7 @@ const ViewerContainer = ({
             return null;
         }
         const { id = null, slug = null, title = null, components = [] } = story;
+
         return {
             storyId: id,
             storySlug: slug,

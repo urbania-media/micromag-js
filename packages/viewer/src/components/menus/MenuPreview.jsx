@@ -1,8 +1,4 @@
-/* eslint-disable arrow-body-style */
-
-/* eslint-disable react/jsx-props-no-spreading */
-
-/* eslint-disable react/no-array-index-key, jsx-a11y/control-has-associated-label */
+/* eslint-disable react/no-array-index-key, jsx-a11y/control-has-associated-label, react/jsx-props-no-spreading, arrow-body-style */
 // stylelint-disable stylelint-family-no-missing-generic-family-keyword
 import { faCompress, faExpand, faShare, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

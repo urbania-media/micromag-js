@@ -20,32 +20,33 @@ const convertToMedia = (it) => {
     };
 };
 
-const getTransloaditMediasFromResponse = (response) => response.successful
-    .map((it) => {
-        const transloadit =
-            response.transloadit.find(
-                (subIt) => subIt.assembly_id === it.transloadit.assembly,
-            ) || null;
-        const results = transloadit !== null ? transloadit.results || null : null;
-        return {
-            ...it,
-            transloadit:
-                results !== null
-                    ? Object.keys(results).reduce((map, resultKey) => {
-                          const result = results[resultKey].find(
-                              (itResult) => itResult.name === it.name,
-                          );
-                          return result !== null
-                              ? {
-                                    ...map,
-                                    [resultKey]: result,
-                                }
-                              : map;
-                      }, null)
-                    : null,
-        };
-    })
-    .filter((it) => it.transloadit !== null)
-    .map((it) => convertToMedia(it))
+const getTransloaditMediasFromResponse = (response) =>
+    response.successful
+        .map((it) => {
+            const transloadit =
+                response.transloadit.find(
+                    (subIt) => subIt.assembly_id === it.transloadit.assembly,
+                ) || null;
+            const results = transloadit !== null ? transloadit.results || null : null;
+            return {
+                ...it,
+                transloadit:
+                    results !== null
+                        ? Object.keys(results).reduce((map, resultKey) => {
+                              const result = results[resultKey].find(
+                                  (itResult) => itResult.name === it.name,
+                              );
+                              return result !== null
+                                  ? {
+                                        ...map,
+                                        [resultKey]: result,
+                                    }
+                                  : map;
+                          }, null)
+                        : null,
+            };
+        })
+        .filter((it) => it.transloadit !== null)
+        .map((it) => convertToMedia(it));
 
 export default getTransloaditMediasFromResponse;

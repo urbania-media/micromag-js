@@ -27,8 +27,8 @@ class Tracking extends BaseTracking {
         const { screensCount = null } = this.variables || {};
         const { id: screenId = null, type: screenType = null, metadata = {} } = screen || {};
         const { title: screenTitle } = metadata || {};
-        if (this.screensViewed.indexOf(screenId || index) !== -1) {
-            this.screensViewed = [...this.screensViewed, screenId || index];
+        if (this.screensViewed.indexOf(screenId || screenIndex) !== -1) {
+            this.screensViewed = [...this.screensViewed, screenId || screenIndex];
         }
 
         const data = {

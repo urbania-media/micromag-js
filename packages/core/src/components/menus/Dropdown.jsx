@@ -116,7 +116,7 @@ const Dropdown = ({
                                 }
                               : null;
                       return ItemComponent !== null ? (
-                          <li>
+                          <div>
                               <ItemComponent
                                   key={`item-${index}-${label}`}
                                   className={classNames([
@@ -134,7 +134,7 @@ const Dropdown = ({
                               >
                                   {label !== null ? <Label>{label}</Label> : itemChildren}
                               </ItemComponent>
-                          </li>
+                          </div>
                       ) : null;
                   })}
         </div>

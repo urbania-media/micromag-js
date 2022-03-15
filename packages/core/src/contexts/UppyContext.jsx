@@ -177,7 +177,7 @@ export const UppyProvider = ({
         ) {
             return null;
         }
-        console.log('up', Uppy);
+
         return (opts = {}) => {
             const { sources: customSources = sources, ...uppyOpts } = opts || {};
             const newUppy = new Uppy({
