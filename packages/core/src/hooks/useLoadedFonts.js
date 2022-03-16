@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
 import isObject from 'lodash/isObject';
+import { useState, useEffect } from 'react';
 
 const fontsMap = {
     loading: [],
@@ -31,6 +31,7 @@ const useLoadedFonts = (fonts) => {
                       type: 'system',
                       name: font,
                   };
+
             if (
                 (type === 'google' || type === 'custom') &&
                 !isFontLoading(name) &&
@@ -41,7 +42,7 @@ const useLoadedFonts = (fonts) => {
                     [type]: {
                         families: [
                             ...(newConfig !== null ? (newConfig[type] || {}).families || [] : []),
-                            name,
+                            type === 'google' ? `${name}:400,700` : name,
                         ],
                     },
                 };
@@ -52,14 +53,16 @@ const useLoadedFonts = (fonts) => {
         const hasConfig = config !== null;
 
         if (hasConfig && typeof window !== 'undefined') {
-            import('webfontloader').then(({ default: WebFont }) => WebFont.load({
-                ...config,
-                timeout: 3000,
-                active: () => setLoaded(true),
-                fontloading: (name) => addFontLoading(name),
-                fontactive: (name) => addFontActive(name),
-                fontinactive: (name) => removeFontLoading(name),
-            }));
+            import('webfontloader').then(({ default: WebFont }) =>
+                WebFont.load({
+                    ...config,
+                    timeout: 3000,
+                    active: () => setLoaded(true),
+                    fontloading: (name) => addFontLoading(name),
+                    fontactive: (name) => addFontActive(name),
+                    fontinactive: (name) => removeFontLoading(name),
+                }),
+            );
         } else {
             setLoaded(true);
         }

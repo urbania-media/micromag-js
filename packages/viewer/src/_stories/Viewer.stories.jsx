@@ -231,12 +231,12 @@ export const CustomFonts = () => (
                     type: 'title-subtitle-credits',
                     layout: 'middle',
                     title: {
-                        body: 'MonumentExtended Black',
+                        body: 'Monument Extended Black',
                         textStyle: {
                             align: 'center',
                             fontStyle: { bold: true, italic: true },
                             fontSize: 26,
-                            lineHeight: 4,
+                            lineHeight: 2,
                             fontFamily: {
                                 type: 'custom',
                                 name: 'MonumentExtended Black',
@@ -257,14 +257,15 @@ export const CustomFonts = () => (
                         },
                     },
                     credits: {
-                        body: 'Roboto',
+                        body: 'Heebo',
                         textStyle: {
                             align: 'center',
-                            fontStyle: { bold: true, italic: true, underline: true },
+                            fontStyle: { bold: true, italic: false, underline: true },
                             fontFamily: {
                                 type: 'google',
-                                name: 'Roboto',
+                                name: 'Heebo',
                             },
+                            fontSize: 32,
                         },
                     },
                 },
@@ -274,11 +275,11 @@ export const CustomFonts = () => (
                     layout: 'card-reverse',
                     image: imageMedia(600, 800),
                     text: {
-                        body: 'MonumentExtended Black',
+                        body: 'Monument Extended Black',
                         textStyle: {
                             align: 'center',
                             fontStyle: { bold: true, italic: true },
-                            fontSize: 30,
+                            fontSize: 32,
                             lineHeight: 1,
                             // fontFamily: {
                             //     type: 'custom',
