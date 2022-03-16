@@ -1,8 +1,7 @@
-import React from 'react';
 import addons, { makeDecorator } from '@storybook/addons';
 import { useAddonState } from '@storybook/api';
+import React from 'react';
 import LayoutGrid from '../../components/LayoutGrid';
-
 import { ADDON_ID, PARAM_KEY } from './register';
 
 export default makeDecorator({
@@ -13,7 +12,7 @@ export default makeDecorator({
         const [state, setState] = useAddonState(ADDON_ID, {
             layout: layouts.length > 0 ? layouts[0] : null,
         });
-        console.log(state);
+        // console.log(state);
         return getStory({
             ...context,
             screenLayout: null,

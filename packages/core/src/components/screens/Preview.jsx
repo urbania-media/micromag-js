@@ -55,7 +55,8 @@ const ScreenPreview = ({
             {...props}
         />
     );
-    return withSize ? (
+
+    const screenWithSize = withSize ? (
         <ScreenSizer
             className={className}
             screenWidth={screenWidth}
@@ -68,6 +69,8 @@ const ScreenPreview = ({
     ) : (
         screenElement
     );
+
+    return screenWithSize;
 };
 
 ScreenPreview.propTypes = propTypes;

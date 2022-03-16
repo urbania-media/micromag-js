@@ -1,13 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react';
 import isArray from 'lodash/isArray';
+import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
-
-import * as MicromagPropTypes from '../../packages/core/src/lib/PropTypes';
-import { ScreensProvider } from '../../packages/core/src/contexts/ScreensContext';
 import { ScreenProvider } from '../../packages/core/src/contexts/ScreenContext';
-import ScreenFields from './ScreenFields';
+import { ScreensProvider } from '../../packages/core/src/contexts/ScreensContext';
+import * as MicromagPropTypes from '../../packages/core/src/lib/PropTypes';
 import Screen from './Screen';
+import ScreenFields from './ScreenFields';
 
 const propTypes = {
     definition: MicromagPropTypes.screenDefinition.isRequired,

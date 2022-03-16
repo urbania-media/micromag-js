@@ -1,7 +1,7 @@
 /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
-import React, { useCallback, useMemo, useRef } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback, useMemo, useRef } from 'react';
 import {
     EmailShareButton,
     EmailIcon,
@@ -11,7 +11,6 @@ import {
     TwitterIcon,
 } from 'react-share';
 import { useDocumentEvent } from '@micromag/core/hooks';
-
 import styles from '../../styles/partials/share-modal.module.scss';
 
 const propTypes = {

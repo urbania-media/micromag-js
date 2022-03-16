@@ -199,7 +199,7 @@ const ViewerMenuPreview = ({
                     <nav className={styles.nav}>
                         <ul className={styles.items}>
                             {items.map((item, index) => {
-                                const { current = false, screen } = item;
+                                const { current = false, screen, count = 1 } = item;
 
                                 const screenAriaLabel = `${intl.formatMessage(
                                     {
@@ -241,6 +241,8 @@ const ViewerMenuPreview = ({
                                                         screen={screen}
                                                         focusable={false}
                                                         withSize
+                                                        // withStack
+                                                        // stackCount={count}
                                                     />
                                                 ) : null}
                                                 {current ? (
