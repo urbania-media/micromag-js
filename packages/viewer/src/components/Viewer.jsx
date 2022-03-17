@@ -148,7 +148,11 @@ const Viewer = ({
     const contentRef = useRef(null);
 
     // Get screen size
-    const { ref: containerRef, screenSize } = useScreenSizeFromElement({
+    const {
+        ref: containerRef,
+        screenSize,
+        scale: screenScale,
+    } = useScreenSizeFromElement({
         width,
         height,
         screens: deviceScreens,
@@ -161,6 +165,8 @@ const Viewer = ({
         landscape = false,
         menuOverScreen = false,
     } = screenSize || {};
+    const screenContainerWidth = screenScale !== null ? screenWidth * screenScale : screenWidth;
+    const screenContainerHeight = screenScale !== null ? screenHeight * screenScale : screenHeight;
 
     const hasSize = screenWidth > 0 && screenHeight > 0;
     const ready = hasSize; // && fontsLoaded;
@@ -380,14 +386,14 @@ const Viewer = ({
                             closeable={closeable}
                             shareBasePath={basePath}
                             screenSize={screenSize}
-                            menuWidth={screenWidth}
+                            menuWidth={screenContainerWidth}
                             trackingEnabled={trackingEnabled}
                             onClickItem={onClickMenuItem}
                             onClickMenu={onClickMenu}
                             onClickCloseViewer={onCloseViewer}
                             onRequestOpen={onMenuRequestOpen}
                             onRequestClose={onMenuRequestClose}
-                            withDotItemClick={screenWidth > 400}
+                            withDotItemClick={screenContainerWidth > 400}
                             withoutScreensMenu={withoutScreensMenu}
                             refDots={menuDotsContainerRef}
                         />
@@ -421,7 +427,7 @@ const Viewer = ({
                                 if (landscape) {
                                     screenTransform = withLandscapeSiblingsScreens
                                         ? `translateX(calc(${
-                                              (screenWidth + landscapeScreenMargin) *
+                                              (screenContainerWidth + landscapeScreenMargin) *
                                               (i - screenIndex)
                                           }px - 50%)) scale(${current ? 1 : 0.9})`
                                         : null;
@@ -446,8 +452,10 @@ const Viewer = ({
                                         <div
                                             ref={current ? currentScreenRef : null}
                                             style={{
-                                                width: landscape ? screenWidth : null,
-                                                height: landscape ? screenHeight : null,
+                                                // width: landscape ? screenWidth : null,
+                                                // height: landscape ? screenHeight : null,
+                                                width: screenContainerWidth,
+                                                height: screenContainerHeight,
                                                 transform: !withoutScreensTransforms
                                                     ? screenTransform
                                                     : null,
@@ -476,7 +484,21 @@ const Viewer = ({
                                             }}
                                             onClick={(e) => onScreenClick(e, i)}
                                         >
-                                            {viewerScreen}
+                                            <div
+                                                className={styles.scaler}
+                                                style={{
+                                                    width: screenWidth,
+                                                    height: screenHeight,
+                                                    transform:
+                                                        screenScale !== null
+                                                            ? `scale(${screenScale})`
+                                                            : null,
+                                                    transformOrigin:
+                                                        screenScale !== null ? '0 0' : null,
+                                                }}
+                                            >
+                                                {viewerScreen}
+                                            </div>
                                         </div>
 
                                         {current && screenIndex < screens.length ? (

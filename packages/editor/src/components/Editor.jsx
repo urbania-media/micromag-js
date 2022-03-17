@@ -64,6 +64,7 @@ const Editor = ({
     const { ref: refContainer, screenSize } = useScreenSizeFromElement({
         screens: deviceScreens,
         withoutMaxSize: true,
+        withoutScale: true,
     });
     const isMobile = screenSize !== null && screenSize.screens.indexOf('medium') === -1;
 

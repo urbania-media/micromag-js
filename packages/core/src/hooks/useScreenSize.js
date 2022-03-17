@@ -48,12 +48,15 @@ export const useScreenSizeFromElement = ({ width = null, height = null, ...opts 
     const fullHeight = height !== null ? height : calculatedHeight;
 
     const {
+        screenWidth = 320,
+        screenHeight = 480,
         withoutMaxSize = false,
         landscapeMinHeight = 600,
-        landscapeHeightRatio = 2 / 3,
-        screenRatio = 320 / 480,
+        // screenRatio = 320 / 480,
         landscapeMinRatio = 2 / 3,
+        withoutScale = false,
     } = opts || {};
+    const screenRatio = screenWidth / screenHeight;
     const elementRatio = fullWidth / fullHeight;
     const landscape = fullHeight > 0 && elementRatio > (landscapeMinRatio || screenRatio);
     const landscapeWithMaxSize = landscape && !withoutMaxSize;
@@ -66,7 +69,7 @@ export const useScreenSizeFromElement = ({ width = null, height = null, ...opts 
         if (fullHeight < landscapeMinHeight) {
             menuOverScreen = true;
         } else {
-            finalHeight = Math.round(fullHeight * landscapeHeightRatio);
+            finalHeight = fullHeight - 100;
         }
 
         finalWidth = Math.round(finalHeight * screenRatio);
@@ -80,9 +83,11 @@ export const useScreenSizeFromElement = ({ width = null, height = null, ...opts 
         finalHeight -= 1;
     }
 
+    const scale = finalWidth / screenWidth;
+
     const screenSize = useScreenSize({
-        width: finalWidth,
-        height: finalHeight,
+        width: withoutScale ? finalWidth : screenWidth,
+        height: withoutScale ? finalHeight : finalHeight / scale,
         landscape,
         menuOverScreen,
         ...opts,
@@ -91,6 +96,7 @@ export const useScreenSizeFromElement = ({ width = null, height = null, ...opts 
     return {
         ref,
         screenSize,
+        scale: !withoutScale ? scale : null,
     };
 };
 
