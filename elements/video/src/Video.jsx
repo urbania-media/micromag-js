@@ -124,7 +124,7 @@ const Video = ({
         initialMuted === true || (initialMuted === 'auto' && autoPlay && !userInteracted);
 
     const { ref, ...api } = useMediaApi({
-        url: mediaUrl,
+        url: !isImageWithoutSourceFile ? mediaUrl : null,
         initialMuted: finalInitialMuted,
         onPlay,
         onPause,

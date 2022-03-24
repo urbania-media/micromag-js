@@ -44,7 +44,7 @@ const defaultProps = {
     onClickItem: null,
     onClose: null,
     onShare: null,
-    thumbsPerLine: 4,
+    thumbsPerLine: 3,
     toggleFullscreen: null,
     fullscreenActive: false,
     fullscreenEnabled: false,
