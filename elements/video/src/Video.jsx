@@ -116,7 +116,7 @@ const Video = ({
                 const { mime = `video/${file.id === 'h264' ? 'mp4' : file.id}` } = file;
                 const currentMimeFile = filesMap[mime] || null;
                 const { id: currentMimeId = null } = currentMimeFile || {};
-                return currentMimeFile === null || currentMimeId === 'original'
+                return currentMimeFile === null || currentMimeId !== 'original'
                     ? {
                           ...filesMap,
                           [mime]: file,
