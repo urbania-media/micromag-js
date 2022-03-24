@@ -28,7 +28,7 @@ function useKeyboardShortcuts(shortcuts = {}, { disabled = false } = {}) {
                 window.removeEventListener('keydown', onKey);
             }
         };
-    }, [disabled]);
+    }, [disabled, shortcuts]);
 }
 
 export default useKeyboardShortcuts;

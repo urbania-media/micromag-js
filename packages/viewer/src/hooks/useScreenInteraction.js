@@ -80,6 +80,7 @@ function useScreenInteraction({
 
             const { left: contentX = 0 } = e.currentTarget.getBoundingClientRect();
             const tapX = e.clientX;
+            console.log(e.clientX, contentX, screenWidth);
             const hasTappedLeft = tappedCurrent
                 ? tapX - contentX < screenWidth * (1 - nextScreenWidthPercent)
                 : screenIndex > index;
