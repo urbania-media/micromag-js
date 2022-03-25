@@ -288,17 +288,17 @@ export const allScreens = [
         layout: 'full',
         video: {
             media: videoMedia(),
-            autoPlay: false,
+            autoPlay: true,
             loop: true,
             closedCaptions: closedCaptionsMedia(),
             withSeekBar: true,
             withPlayPause: true,
-            withTime: true,
+            withTime: false,
         },
         background: {
             color: { alpha: 1, color: '#FF00FF' },
         },
-        callToAction: callToAction(),
+        // callToAction: callToAction(),
     },
     // {
     //     id: uuid(),

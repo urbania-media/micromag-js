@@ -54,6 +54,7 @@
         "@fortawesome/react-fontawesome": "^0.1.13",
         "@micromag/core": "^0.3.35",
         "@micromag/element-text": "^0.3.35",
+        "@micromag/element-button": "^0.3.35",
         "@react-spring/core": "^9.1.1",
         "@react-spring/web": "^9.1.1",
         "@use-gesture/react": "^10.2.4",

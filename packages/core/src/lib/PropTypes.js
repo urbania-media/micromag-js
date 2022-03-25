@@ -460,6 +460,7 @@ export const callToAction = PropTypes.shape({
     type: callToActionTypes,
     url: PropTypes.string,
     label: textElement,
+    buttonStyle: boxStyle,
 });
 
 export const speaker = PropTypes.shape({

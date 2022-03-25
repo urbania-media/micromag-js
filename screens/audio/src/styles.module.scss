@@ -4,7 +4,7 @@
     @extend %screen;
 
     .mediaControls {
-        padding: 10px 20px 0;
+        padding: 10px 20px 20px;
     }
 
     .audio {
@@ -16,7 +16,10 @@
     }
 
     .bottomContent {
-        position: relative;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
     }
 
     .empty {

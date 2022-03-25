@@ -1,30 +1,26 @@
 import Chance from 'chance';
-
 import authors from './data/authors';
 import companies from './data/companies';
-import randomWords from './data/words';
-import titles from './data/titles';
 import subtitles from './data/subtitles';
-
+import video360File from './data/test-360.mp4';
 import gifFile from './data/test.gif';
 import audioFile from './data/test.mp3';
 import videoFile from './data/test.mp4';
-import video360File from './data/test-360.mp4';
 import closedCaptionsFile from './data/test.srt';
-
-import webFontEOT from './data/webfont.eot';
-import webFontSVG from './data/webfont.svg';
-import webFontTTF from './data/webfont.ttf';
-import webFontWOFF from './data/webfont.woff';
-import webFontWOFF2 from './data/webfont.woff2';
-
+import titles from './data/titles';
 import webFont2EOT from './data/webfont2.eot';
 import webFont2SVG from './data/webfont2.svg';
 import webFont2TTF from './data/webfont2.ttf';
 import webFont2WOFF from './data/webfont2.woff';
 import webFont2WOFF2 from './data/webfont2.woff2';
-
 import webFont3OTF from './data/webfont3.otf';
+import webFontEOT from './data/webfont.eot';
+import webFontSVG from './data/webfont.svg';
+import webFontTTF from './data/webfont.ttf';
+import webFontWOFF from './data/webfont.woff';
+import webFontWOFF2 from './data/webfont.woff2';
+import randomWords from './data/words';
+
 // import { color, image } from '../packages/fields/src/fields';
 
 const chance = new Chance();
@@ -170,13 +166,13 @@ export const gifVideoMedia = ({ withoutFiles = null } = {}) => ({
               },
           }
         : {
-            files: {
-                original: {
-                    url: gifFile,
-                    mime: 'image/gif',
-                },
-            },
-        }),
+              files: {
+                  original: {
+                      url: gifFile,
+                      mime: 'image/gif',
+                  },
+              },
+          }),
 });
 
 export const video360Media = () => ({
@@ -194,7 +190,9 @@ export const audioMedia = ({ withWaveform = false } = {}) => ({
     url: audioFile,
     metadata: {
         duration: 16000,
-        waveform: withWaveform ? [...Array(100).keys()].map(() => -128 + (256 * Math.random())) : null,
+        waveform: withWaveform
+            ? [...Array(100).keys()].map(() => -128 + 256 * Math.random())
+            : null,
     },
 });
 
@@ -262,8 +260,11 @@ export const callToAction = () => ({
     active: true,
     url: 'https://google.com',
     label: {
-        body: 'Learn more',
+        body: 'Learn moar',
     },
+    // buttonStyle: {
+    //     backgroundColor: { alpha: 1, color: '#F00' },
+    // },
 });
 
 export const transitions = ({ transitionIn = 'fade', transitionOut = 'fade' } = {}) => ({

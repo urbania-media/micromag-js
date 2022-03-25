@@ -47,7 +47,7 @@ const defaultProps = {
     className: null,
     onScreenChange: null,
     onChange: null,
-    withoutDevicesSizes: false,
+    withoutDevicesSizes: true,
 };
 
 const EditorPreview = ({

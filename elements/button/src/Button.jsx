@@ -1,11 +1,10 @@
 /* eslint-disable react/no-array-index-key, react/no-danger, react/button-has-type */
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Button as CoreButton } from '@micromag/core/components';
 import { getStyleFromText, getStyleFromBox } from '@micromag/core/utils';
-
 import styles from './styles.module.scss';
 
 const propTypes = {

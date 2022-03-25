@@ -203,6 +203,17 @@ const AudioScreen = ({
 
     const longPressBind = useLongPress({ onLongPress: togglePlay });
 
+    const cta =
+        !isPlaceholder && hasCallToAction ? (
+            <div style={{ marginTop: -spacing / 2 }} key="call-to-action">
+                <CallToAction
+                    callToAction={callToAction}
+                    animationDisabled={isPreview}
+                    focusable={current && isView}
+                />
+            </div>
+        ) : null;
+
     const elements = [
         <Spacer key="spacer-top" />,
         <ScreenElement
@@ -270,15 +281,7 @@ const AudioScreen = ({
                         onSeek={onSeek}
                     />
                 ) : null}
-            </div>
-        ) : null,
-        !isPlaceholder && hasCallToAction ? (
-            <div style={{ margin: -spacing, marginTop: 0 }} key="call-to-action">
-                <CallToAction
-                    callToAction={callToAction}
-                    animationDisabled={isPreview}
-                    focusable={current && isView}
-                />
+                {cta}
             </div>
         ) : null,
     ].filter((el) => el !== null);

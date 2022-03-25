@@ -8,7 +8,8 @@
         transform: scale(0);
         opacity: 0;
     }
-    to {        
+
+    to {
         transform: scale(1);
         opacity: 1;
     }
@@ -31,10 +32,11 @@
     .button {
         display: block;
         margin: 0 auto;
-        padding: 20px 0;
+        padding: 10px 20px;
+        background-color: rgba(0,0,0,0);
+        user-select: none;
         touch-action: none;
         -webkit-user-drag: none;
-        user-select: none;
 
         &:hover {
             text-decoration: none;
@@ -51,7 +53,7 @@
         left: 0;
         width: 100vw;
         height: 100vh;
-        transform: scale(0);        
+        transform: scale(0);
         animation: appear 0.5s ease both;
         opacity: 0;
         background-color: #FFF;

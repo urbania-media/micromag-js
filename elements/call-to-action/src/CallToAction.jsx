@@ -1,16 +1,15 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable jsx-a11y/anchor-has-content, react/jsx-props-no-spreading, jsx-a11y/control-has-associated-label */
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Button } from '@micromag/core/components';
-import { getStyleFromColor, isIos, isValidUrl } from '@micromag/core/utils';
-import Text from '@micromag/element-text';
 import { useGesture } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { getStyleFromBox, getStyleFromColor, isIos, isValidUrl } from '@micromag/core/utils';
+// import { Button } from '@micromag/core/components';
+import Button from '@micromag/element-button';
+import Text from '@micromag/element-text';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -47,7 +46,13 @@ function CallToAction({
     className,
     focusable,
 }) {
-    const { active = false, type = null, url = null, label = null } = callToAction || {};
+    const {
+        active = false,
+        type = null,
+        url = null,
+        label = null,
+        buttonStyle = null,
+    } = callToAction || {};
 
     const swipeUpEnabled = type === null || type === 'swipe-up';
     const validUrl = useMemo(() => isValidUrl(url), [url]);
@@ -80,6 +85,7 @@ function CallToAction({
             }
         },
     });
+
     useEffect(() => {
         const onPageHide = () => {
             setLeaving(false);
@@ -89,6 +95,8 @@ function CallToAction({
             window.removeEventListener('pagehide', onPageHide);
         };
     }, [setLeaving]);
+
+    // console.log(callToAction, buttonStyle);
 
     return active ? (
         <div
@@ -110,22 +118,22 @@ function CallToAction({
                 ref={selfTargetLinkRef}
                 tabIndex={focusable ? '0' : '-1'}
             />
+            {swipeUpEnabled ? (
+                <FontAwesomeIcon className={styles.arrow} style={arrowStyle} icon={faChevronUp} />
+            ) : null}
             <Button
                 href={url}
                 external
                 className={styles.button}
-                withoutStyle
+                // withoutStyle
                 refButton={buttonRef}
                 focusable={focusable}
+                buttonStyle={{
+                    marginBottom: 10,
+                    ...getStyleFromBox(buttonStyle),
+                }}
                 {...(swipeUpEnabled && !disabled ? bind() : null)}
             >
-                {swipeUpEnabled ? (
-                    <FontAwesomeIcon
-                        className={styles.arrow}
-                        style={arrowStyle}
-                        icon={faChevronUp}
-                    />
-                ) : null}
                 <span className={styles.label}>
                     <Text {...label} inline />
                 </span>

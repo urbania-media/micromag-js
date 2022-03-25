@@ -384,7 +384,7 @@ const VideoScreen = ({
                             />
                         ) : null}
                         {hasCallToAction ? (
-                            <div style={{ marginTop: -spacing }}>
+                            <div style={{ marginTop: -spacing / 2 }}>
                                 <CallToAction
                                     callToAction={callToAction}
                                     animationDisabled={isPreview}
