@@ -1,11 +1,12 @@
 /* eslint-disable jsx-a11y/media-has-caption, react/jsx-props-no-spreading, react/forbid-prop-types, no-param-reassign */
+import classNames from 'classnames';
+import { map } from 'lodash';
+import PropTypes from 'prop-types';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { useUserInteracted } from '@micromag/core/contexts';
 import { useMediaApi } from '@micromag/core/hooks';
 import { getMediaFilesAsArray } from '@micromag/core/utils';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import React, { useEffect, useMemo, useRef } from 'react';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -103,12 +104,26 @@ const Video = ({
         const finalSupportedMimes = supportedMimes.filter(
             (mime) => supportVideo.canPlayType(mime) !== '',
         );
-        return finalSupportedMimes.length > 0
-            ? filesArray.filter((file) => {
-                  const { mime = `video/${file.id === 'h264' ? 'mp4' : file.id}` } = file;
-                  return finalSupportedMimes.indexOf(mime) !== -1;
-              }, null)
-            : null;
+        if (finalSupportedMimes.length === 0) {
+            return null;
+        }
+        const sourceFilesMap = filesArray
+            .filter((file) => {
+                const { mime = `video/${file.id === 'h264' ? 'mp4' : file.id}` } = file;
+                return finalSupportedMimes.indexOf(mime) !== -1;
+            })
+            .reduce((filesMap, file) => {
+                const { mime = `video/${file.id === 'h264' ? 'mp4' : file.id}` } = file;
+                const currentMimeFile = filesMap[mime] || null;
+                const { id: currentMimeId = null } = currentMimeFile || {};
+                return currentMimeFile === null || currentMimeId !== 'original'
+                    ? {
+                          ...filesMap,
+                          [mime]: file,
+                      }
+                    : filesMap;
+            }, {});
+        return Object.keys(sourceFilesMap).map((mime) => sourceFilesMap[mime]);
     }, [filesArray, supportedMimes]);
 
     // @NOTE: Media is an animated image and doesn't have source files in video formats
@@ -124,7 +139,7 @@ const Video = ({
         initialMuted === true || (initialMuted === 'auto' && autoPlay && !userInteracted);
 
     const { ref, ...api } = useMediaApi({
-        url: mediaUrl,
+        url: !isImageWithoutSourceFile ? mediaUrl : null,
         initialMuted: finalInitialMuted,
         onPlay,
         onPause,

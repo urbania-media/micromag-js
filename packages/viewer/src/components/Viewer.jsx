@@ -250,7 +250,7 @@ const Viewer = ({
     } = useScreenInteraction({
         screens,
         screenIndex,
-        screenWidth,
+        screenWidth: screenContainerWidth,
         isView,
         clickOnSiblings: landscape && withLandscapeSiblingsScreens,
         nextScreenWidthPercent: tapNextScreenWidthPercent,

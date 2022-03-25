@@ -47,8 +47,12 @@ const ScreenSizer = ({ width, height, fit, screenWidth, screenHeight, className,
             return {};
         }
         const screenRatio = screenWidth / screenHeight;
-        const finalContainerWidth = hasSize ? width || (containerHeight * screenRatio) : containerWidth;
-        const finalContainerHeight = hasSize ? height || (containerWidth / screenRatio) : (containerWidth / screenRatio);
+        const finalContainerWidth = hasSize
+            ? width || containerHeight * screenRatio
+            : containerWidth;
+        const finalContainerHeight = hasSize
+            ? height || containerWidth / screenRatio
+            : containerWidth / screenRatio;
         if (fit === null) {
             const screenScale = finalContainerWidth / screenWidth;
             return {
