@@ -1,3 +1,5 @@
+/* eslint-disable no-nested-ternary */
+
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading, jsx-a11y/label-has-associated-control */
 import { faAngleRight, faSlidersH } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -178,25 +180,23 @@ const FieldRow = ({
     return (
         <div className={containerClassName}>
             {withLabel ? (
-                <>
-                    {withSettings ? (
-                        <div className={classNames(['row', 'align-items-center', 'gx-1'])}>
-                            {labelElement}
-                            <div className={classNames(['col-auto'])}>
-                                <Button
-                                    className={styles.settingsButton}
-                                    withoutStyle
-                                    onClick={gotoSettings}
-                                    disabled={!withValue}
-                                >
-                                    <FontAwesomeIcon icon={faSlidersH} />
-                                </Button>
-                            </div>
+                withSettings ? (
+                    <div className={classNames(['row', 'align-items-center', 'gx-1'])}>
+                        {labelElement}
+                        <div className={classNames(['col-auto'])}>
+                            <Button
+                                className={styles.settingsButton}
+                                withoutStyle
+                                onClick={gotoSettings}
+                                disabled={!withValue}
+                            >
+                                <FontAwesomeIcon icon={faSlidersH} />
+                            </Button>
                         </div>
-                    ) : (
-                        labelElement
-                    )}
-                </>
+                    </div>
+                ) : (
+                    labelElement
+                )
             ) : null}
             {isClickable ? (
                 <Button

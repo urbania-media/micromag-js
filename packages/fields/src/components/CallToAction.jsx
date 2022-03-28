@@ -1,13 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback } from 'react';
 import { useIntl, defineMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-
-import Fields from './Fields';
-
 import styles from '../styles/call-to-action.module.scss';
+import Fields from './Fields';
 
 const propTypes = {
     value: MicromagPropTypes.callToAction,
@@ -43,8 +41,8 @@ const CallToAction = ({ value, className, onChange, ...props }) => {
                                 defaultMessage: 'Learn more',
                                 description: 'Call to action default label',
                             }),
-                        )
-                    }
+                        ),
+                    };
                 }
             }
 

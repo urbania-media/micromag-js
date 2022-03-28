@@ -212,6 +212,9 @@
     "AQ8Aig": {
         "defaultMessage": "Used"
     },
+    "AV6gfh": {
+        "defaultMessage": "Edit call to action..."
+    },
     "AuxqcG": {
         "defaultMessage": "Fullscreen"
     },
@@ -763,6 +766,9 @@
     },
     "qjL/eA": {
         "defaultMessage": "Bar"
+    },
+    "qmIJjc": {
+        "defaultMessage": "Pop-up window"
     },
     "qroLmS": {
         "defaultMessage": "Marker"

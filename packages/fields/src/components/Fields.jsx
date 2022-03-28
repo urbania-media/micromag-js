@@ -1,15 +1,13 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import React, { useCallback, useMemo } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { createNullableOnChange } from '@micromag/core/utils';
-
+import styles from '../styles/fields.module.scss';
 import Field from './Field';
 import FieldRow from './FieldRow';
-
-import styles from '../styles/fields.module.scss';
 
 const propTypes = {
     name: PropTypes.string,
@@ -134,6 +132,7 @@ const Fields = ({
                 const fieldValue = name !== null ? singleFieldValue : value;
                 const fieldErrors = name !== null ? singleFieldErrors : errors;
                 const fieldOnChange = (newFieldValue) => onFieldChange(name, newFieldValue);
+
                 return (
                     <Field
                         {...field}

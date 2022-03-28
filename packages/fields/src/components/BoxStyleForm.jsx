@@ -28,7 +28,7 @@ const defaultProps = {
     closeForm: null,
 };
 
-const BoxStyleField = ({ value, onChange, closeForm, ...props }) => {
+const BoxStyleForm = ({ value, onChange, closeForm, ...props }) => {
     const previewElement =
         value !== null ? (
             <span className={styles.preview}>
@@ -36,16 +36,16 @@ const BoxStyleField = ({ value, onChange, closeForm, ...props }) => {
                     className={styles.box}
                     style={{
                         ...getStyleFromBox(value),
+                        padding: 0,
                     }}
                 />
             </span>
         ) : null;
-
     return (
         <FieldWithForm
+            isForm
             value={value}
             onChange={onChange}
-            label={null}
             thumbnail={previewElement}
             noValueLabel={
                 <FormattedMessage defaultMessage="Edit style..." description="No value label" />
@@ -55,8 +55,8 @@ const BoxStyleField = ({ value, onChange, closeForm, ...props }) => {
     );
 };
 
-BoxStyleField.propTypes = propTypes;
-BoxStyleField.defaultProps = defaultProps;
-BoxStyleField.withForm = true;
+BoxStyleForm.propTypes = propTypes;
+BoxStyleForm.defaultProps = defaultProps;
+BoxStyleForm.withForm = true;
 
-export default BoxStyleField;
+export default BoxStyleForm;

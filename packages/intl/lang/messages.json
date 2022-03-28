@@ -283,6 +283,10 @@
     "defaultMessage": "Used",
     "description": "Media label"
   },
+  "AV6gfh": {
+    "defaultMessage": "Edit call to action...",
+    "description": "No value label"
+  },
   "AuxqcG": {
     "defaultMessage": "Fullscreen",
     "description": "Button label"
@@ -1014,6 +1018,10 @@
   },
   "qjL/eA": {
     "defaultMessage": "Bar",
+    "description": "Field label"
+  },
+  "qmIJjc": {
+    "defaultMessage": "Pop-up window",
     "description": "Field label"
   },
   "qroLmS": {

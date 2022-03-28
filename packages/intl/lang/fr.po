@@ -437,6 +437,12 @@ msgctxt "AQ8Aig"
 msgid "Used"
 msgstr "Utilisé"
 
+# No value label
+#: AV6gfh
+msgctxt "AV6gfh"
+msgid "Edit call to action..."
+msgstr ""
+
 # Button label
 #: AuxqcG
 msgctxt "AuxqcG"
@@ -1537,6 +1543,12 @@ msgstr "Marges"
 msgctxt "qjL/eA"
 msgid "Bar"
 msgstr "Barre"
+
+# Field label
+#: qmIJjc
+msgctxt "qmIJjc"
+msgid "Pop-up window"
+msgstr ""
 
 # Breadcrumb field label
 #: qroLmS

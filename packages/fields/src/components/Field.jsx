@@ -1,9 +1,9 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useFieldComponent, useFieldContext, useFieldsManager } from '@micromag/core/contexts';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { useFieldComponent, useFieldContext, useFieldsManager } from '@micromag/core/contexts';
 import FieldRow from './FieldRow';
 
 const propTypes = {
@@ -84,7 +84,9 @@ const Field = ({
         component: providedComponent,
     };
     const FieldComponent = useFieldComponent(fieldComponent);
-    // console.log(fieldsManager, fieldComponent, FieldComponent);
+
+    // console.log(fieldsManager, fieldComponent, FieldComponent); // ok
+
     const isFields = FieldComponent === FieldsComponent;
     const context = useFieldContext();
 

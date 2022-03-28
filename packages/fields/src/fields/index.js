@@ -10,6 +10,7 @@ export { default as boxStyle } from './box-style';
 export { default as boxStyleForm } from './box-style-form';
 export { default as buttonElement } from './button-element';
 export { default as callToAction } from './call-to-action';
+export { default as callToActionForm } from './call-to-action-form';
 export { default as checkboxes } from './checkboxes';
 export { default as closedCaptions } from './closed-captions';
 export { default as color } from './color';

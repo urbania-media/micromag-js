@@ -8,6 +8,7 @@ export { default as BorderStyle } from './BorderStyle';
 export { default as BorderWidth } from './BorderWidth';
 export { default as BoxStyleForm } from './BoxStyleForm';
 export { default as CallToAction } from './CallToAction';
+export { default as CallToActionForm } from './CallToActionForm';
 export { default as Checkboxes } from './Checkboxes';
 export { default as ClosedCaptions } from './ClosedCaptions';
 export { default as Color } from './Color';

@@ -359,6 +359,7 @@ const VideoScreen = ({
                             styles.bottom,
                             {
                                 [styles.visible]: visibleControls,
+                                [styles.withGradient]: withSeekBar || withPlayPause || muted,
                             },
                         ])}
                     >
@@ -386,9 +387,11 @@ const VideoScreen = ({
                         {hasCallToAction ? (
                             <div style={{ marginTop: -spacing / 2 }}>
                                 <CallToAction
+                                    className={styles.callToAction}
                                     callToAction={callToAction}
                                     animationDisabled={isPreview}
                                     focusable={current && isView}
+                                    screenSize={{ width, height }}
                                 />
                             </div>
                         ) : null}

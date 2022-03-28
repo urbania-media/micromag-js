@@ -1,4 +1,4 @@
-import { defineMessage } from "react-intl";
+import { defineMessage } from 'react-intl';
 
 export default {
     id: 'parameters',

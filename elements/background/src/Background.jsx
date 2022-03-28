@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { getSizeWithinBounds } from '@folklore/size';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { getOptimalImageUrl, getStyleFromColor } from '@micromag/core/utils';
-import Video from '@micromag/element-video';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { getOptimalImageUrl, getStyleFromColor } from '@micromag/core/utils';
+import Video from '@micromag/element-video';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -142,9 +142,7 @@ const Background = ({
                     />
                 </div>
             ) : null}
-            <div className={styles.content}>
-                {children}
-            </div>
+            <div className={styles.content}>{children}</div>
         </div>
     );
 };

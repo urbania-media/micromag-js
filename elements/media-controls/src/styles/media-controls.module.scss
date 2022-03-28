@@ -3,7 +3,6 @@
 @import '~@micromag/core/scss/placeholders';
 
 .container {
-    // filter: drop-shadow(0 0 6px rgb(0 0 0 / 0.2));
     color: $white;
 
     .toggles {
@@ -31,6 +30,7 @@
     }
 
     .playPauseButton {
+        display: none;
         visibility: hidden;
         margin: 0 auto;
         border: 2px solid currentColor;
@@ -45,13 +45,13 @@
     }
 
     .muteButton {
+        display: none;
         visibility: hidden;
         position: absolute;
-        top: 50%;
         right: 0;
+        bottom: 5px;
         width: 40px;
         height: 40px;
-        margin-top: -20px;
 
         .icon {
             display: block;
@@ -83,6 +83,7 @@
 
     &.muted {
         .muteButton {
+            display: flex;
             visibility: visible;
 
             &::after {
@@ -91,9 +92,20 @@
         }
     }
 
+    &.withSeekBar {
+        //
+    }
+
     &.withPlayPause {
         .playPauseButton {
+            display: flex;
             visibility: visible;
+        }
+
+        .muteButton {
+            top: 0;
+            bottom: auto;
+            margin-top: 5px;
         }
     }
 }

@@ -41,6 +41,15 @@ export default {
             }),
         },
         {
+            name: 'inWebView',
+            type: 'toggle',
+            isHorizontal: true,
+            label: defineMessage({
+                defaultMessage: 'Pop-up window',
+                description: 'Field label',
+            }),
+        },
+        {
             name: 'url',
             type: 'url',
             // isHorizontal: true,

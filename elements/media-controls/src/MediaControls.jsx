@@ -79,50 +79,44 @@ const MediaControls = ({
                     [styles.playing]: playing,
                     [styles.muted]: muted,
                     [styles.withPlayPause]: withPlayPause,
+                    [styles.withSeekBar]: withSeekBar,
                 },
             ])}
             style={{ color: finalColor }}
         >
             <div className={styles.toggles}>
-                {withPlayPause ? (
-                    <button
-                        type="button"
-                        className={styles.playPauseButton}
-                        onClick={onTogglePlay}
-                        title={intl.formatMessage({
-                            defaultMessage: 'Play',
-                            description: 'Button label',
-                        })}
-                        aria-label={intl.formatMessage({
-                            defaultMessage: 'Play',
-                            description: 'Button label',
-                        })}
-                        tabIndex={focusable ? '0' : '-1'}
-                    >
-                        <FontAwesomeIcon
-                            className={styles.icon}
-                            icon={playing ? faPause : faPlay}
-                        />
-                    </button>
-                ) : null}
-                {muted ? (
-                    <button
-                        type="button"
-                        className={styles.muteButton}
-                        onClick={onToggleMute}
-                        title={intl.formatMessage({
-                            defaultMessage: 'Mute',
-                            description: 'Button label',
-                        })}
-                        aria-label={intl.formatMessage({
-                            defaultMessage: 'Mute',
-                            description: 'Button label',
-                        })}
-                        tabIndex={focusable ? '0' : '-1'}
-                    >
-                        <FontAwesomeIcon className={styles.icon} icon={faVolumeUp} />
-                    </button>
-                ) : null}
+                <button
+                    type="button"
+                    className={styles.playPauseButton}
+                    onClick={onTogglePlay}
+                    title={intl.formatMessage({
+                        defaultMessage: 'Play',
+                        description: 'Button label',
+                    })}
+                    aria-label={intl.formatMessage({
+                        defaultMessage: 'Play',
+                        description: 'Button label',
+                    })}
+                    tabIndex={focusable ? '0' : '-1'}
+                >
+                    <FontAwesomeIcon className={styles.icon} icon={playing ? faPause : faPlay} />
+                </button>
+                <button
+                    type="button"
+                    className={styles.muteButton}
+                    onClick={onToggleMute}
+                    title={intl.formatMessage({
+                        defaultMessage: 'Mute',
+                        description: 'Button label',
+                    })}
+                    aria-label={intl.formatMessage({
+                        defaultMessage: 'Mute',
+                        description: 'Button label',
+                    })}
+                    tabIndex={focusable ? '0' : '-1'}
+                >
+                    <FontAwesomeIcon className={styles.icon} icon={faVolumeUp} />
+                </button>
             </div>
             {withSeekBar ? (
                 <SeekBar
