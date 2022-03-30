@@ -30,7 +30,7 @@
     }
 
     .playPauseButton {
-        display: none;
+        // display: none;
         visibility: hidden;
         margin: 0 auto;
         border: 2px solid currentColor;
@@ -45,7 +45,7 @@
     }
 
     .muteButton {
-        display: none;
+        // display: none;
         visibility: hidden;
         position: absolute;
         right: 0;
@@ -61,7 +61,7 @@
 
         &::after {
             content: '';
-            display: none;
+            // display: none;
             position: absolute;
             top: 0;
             left: 50%;

@@ -46,9 +46,11 @@ function WebView({ iframeRef, src, width, height, closeable, onClose, className 
             style={{ ...size }}
         >
             {closeable ? (
-                <Button className={styles.close} onClick={onClose}>
-                    <FontAwesomeIcon className={styles.icon} icon={faTimes} />
-                </Button>
+                <div className={styles.top}>
+                    <Button className={styles.close} onClick={onClose}>
+                        <FontAwesomeIcon className={styles.icon} icon={faTimes} />
+                    </Button>
+                </div>
             ) : null}
             <iframe className={styles.iframe} ref={iframeRef} title="Popup" src={src} {...size} />
         </div>
