@@ -89,7 +89,7 @@
 }
 
 .webView {
-    position: absolute;
+    position: fixed;
     z-index: 9999;
     top: 100%;
     width: 100%;
@@ -97,7 +97,7 @@
     transition: transform 0.3s ease;
 
     &.visible {
-        transform: translateY(-92%);
+        transform: translateY(-90%);
     }
 }
 
