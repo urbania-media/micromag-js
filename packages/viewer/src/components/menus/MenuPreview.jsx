@@ -26,7 +26,7 @@ const propTypes = {
     onClickItem: PropTypes.func,
     onClose: PropTypes.func,
     onShare: PropTypes.func,
-    thumbsPerLine: PropTypes.number,
+    maxThumbsWidth: PropTypes.number,
     toggleFullscreen: PropTypes.func,
     fullscreenActive: PropTypes.bool,
     fullscreenEnabled: PropTypes.bool,
@@ -44,7 +44,7 @@ const defaultProps = {
     onClickItem: null,
     onClose: null,
     onShare: null,
-    thumbsPerLine: 3,
+    maxThumbsWidth: 140,
     toggleFullscreen: null,
     fullscreenActive: false,
     fullscreenEnabled: false,
@@ -62,7 +62,7 @@ const ViewerMenuPreview = ({
     onClickItem,
     onClose,
     onShare,
-    thumbsPerLine,
+    maxThumbsWidth,
     toggleFullscreen,
     fullscreenActive,
     fullscreenEnabled,
@@ -74,7 +74,13 @@ const ViewerMenuPreview = ({
         ref: firstScreenContainerRef,
         entry: { contentRect: firstScreenContentRect },
     } = useResizeObserver();
+    const {
+        ref: containerRef,
+        entry: { contentRect: containerRect },
+    } = useResizeObserver();
     const { width: thumbWidth = 0 } = firstScreenContentRect || {};
+    const { width: contentWidth = 0 } = containerRect || {};
+    const thumbsPerLine = Math.max(Math.floor(contentWidth / maxThumbsWidth), 3);
 
     // Viewer theme
     const {
@@ -190,7 +196,7 @@ const ViewerMenuPreview = ({
                     </Button>
                 </div>
             </div>
-            <div className={styles.content}>
+            <div className={styles.content} ref={containerRef}>
                 <Scroll
                     className={styles.scroll}
                     onScrolledBottom={onScrolledBottom}

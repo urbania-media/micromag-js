@@ -114,8 +114,6 @@ function CallToAction({
         setShowWebView(false);
     }, [setShowWebView]);
 
-    console.log(callToAction, inWebView, showWebView);
-
     return active ? (
         <>
             <div
