@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-audio",
-    "version": "0.3.39",
+    "version": "0.3.41",
     "description": "",
     "keywords": [
         "javascript"
@@ -54,7 +54,7 @@
         "@fortawesome/react-fontawesome": "^0.1.13",
         "@micromag/core": "^0.3.39",
         "@micromag/element-closed-captions": "^0.3.39",
-        "@micromag/element-media-controls": "^0.3.39",
+        "@micromag/element-media-controls": "^0.3.41",
         "@react-spring/core": "^9.1.1",
         "@react-spring/web": "^9.1.1",
         "@use-gesture/react": "^10.2.4",
@@ -67,5 +67,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "1e4c6648b86abe2f1e81f597450489cdb2258eb0"
+    "gitHead": "e01aeffe6b4ad2c57098a79dcd62ee09fae43650"
 }

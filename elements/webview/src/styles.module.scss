@@ -14,10 +14,27 @@
         height: 100%;
     }
 
-    .close {
+    .top {
+        display: flex;
         position: absolute;
-        top: 10px;
-        right: 10px;
+        top: 0;
+        align-items: flex-end;
+        width: 100%;
+    }
+
+    .close {
+        display: block;
+        position: relative;
+        right: 0;
+        // top: 20px;
+        // right: 10px;
+        // right: 90%;
+        border: 2px solid $white;
         border-radius: 50%;
+        background-color: $gray-800;
+    }
+
+    .icon {
+        line-height: 1;
     }
 }

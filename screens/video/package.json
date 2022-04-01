@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screen-video",
-    "version": "0.3.39",
+    "version": "0.3.41",
     "description": "",
     "keywords": [
         "javascript"
@@ -51,13 +51,13 @@
         "@babel/runtime": "^7.13.10",
         "@folklore/size": "^0.1.15",
         "@micromag/core": "^0.3.39",
-        "@micromag/element-background": "^0.3.39",
-        "@micromag/element-call-to-action": "^0.3.39",
+        "@micromag/element-background": "^0.3.41",
+        "@micromag/element-call-to-action": "^0.3.41",
         "@micromag/element-closed-captions": "^0.3.39",
         "@micromag/element-container": "^0.3.39",
         "@micromag/element-image": "^0.3.39",
-        "@micromag/element-media-controls": "^0.3.39",
-        "@micromag/element-video": "^0.3.39",
+        "@micromag/element-media-controls": "^0.3.41",
+        "@micromag/element-video": "^0.3.41",
         "@micromag/transforms": "^0.3.39",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
@@ -68,5 +68,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "1e4c6648b86abe2f1e81f597450489cdb2258eb0"
+    "gitHead": "e01aeffe6b4ad2c57098a79dcd62ee09fae43650"
 }

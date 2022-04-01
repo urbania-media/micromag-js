@@ -1,6 +1,6 @@
 {
     "name": "@micromag/screens",
-    "version": "0.3.39",
+    "version": "0.3.41",
     "description": "",
     "keywords": [
         "javascript"
@@ -55,23 +55,23 @@
     "dependencies": {
         "@babel/runtime": "^7.13.10",
         "@micromag/core": "^0.3.39",
-        "@micromag/screen-audio": "^0.3.39",
-        "@micromag/screen-contribution": "^0.3.39",
-        "@micromag/screen-conversation": "^0.3.39",
-        "@micromag/screen-gallery": "^0.3.39",
-        "@micromag/screen-gallery-feed": "^0.3.39",
-        "@micromag/screen-image": "^0.3.39",
-        "@micromag/screen-map": "^0.3.39",
-        "@micromag/screen-quiz": "^0.3.39",
-        "@micromag/screen-quote": "^0.3.39",
-        "@micromag/screen-ranking": "^0.3.39",
-        "@micromag/screen-slideshow": "^0.3.39",
-        "@micromag/screen-survey": "^0.3.39",
-        "@micromag/screen-text": "^0.3.39",
-        "@micromag/screen-timeline": "^0.3.39",
-        "@micromag/screen-title": "^0.3.39",
-        "@micromag/screen-video": "^0.3.39",
-        "@micromag/screen-video-360": "^0.3.39",
+        "@micromag/screen-audio": "^0.3.41",
+        "@micromag/screen-contribution": "^0.3.41",
+        "@micromag/screen-conversation": "^0.3.41",
+        "@micromag/screen-gallery": "^0.3.41",
+        "@micromag/screen-gallery-feed": "^0.3.41",
+        "@micromag/screen-image": "^0.3.41",
+        "@micromag/screen-map": "^0.3.41",
+        "@micromag/screen-quiz": "^0.3.41",
+        "@micromag/screen-quote": "^0.3.41",
+        "@micromag/screen-ranking": "^0.3.41",
+        "@micromag/screen-slideshow": "^0.3.41",
+        "@micromag/screen-survey": "^0.3.41",
+        "@micromag/screen-text": "^0.3.41",
+        "@micromag/screen-timeline": "^0.3.41",
+        "@micromag/screen-title": "^0.3.41",
+        "@micromag/screen-video": "^0.3.41",
+        "@micromag/screen-video-360": "^0.3.41",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2"
@@ -79,5 +79,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "1e4c6648b86abe2f1e81f597450489cdb2258eb0"
+    "gitHead": "e01aeffe6b4ad2c57098a79dcd62ee09fae43650"
 }
