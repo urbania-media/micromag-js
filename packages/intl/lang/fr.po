@@ -1544,6 +1544,12 @@ msgctxt "qjL/eA"
 msgid "Bar"
 msgstr "Barre"
 
+# Field label
+#: qmIJjc
+msgctxt "qmIJjc"
+msgid "Pop-up window"
+msgstr ""
+
 # Breadcrumb field label
 #: qroLmS
 msgctxt "qroLmS"
