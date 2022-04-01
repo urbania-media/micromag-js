@@ -52,6 +52,7 @@ export const useScreenSizeFromElement = ({ width = null, height = null, ...opts 
         screenHeight = 480,
         withoutMaxSize = false,
         landscapeMinHeight = 600,
+        menuAlwaysOverScreen = true,
         // screenRatio = 320 / 480,
         landscapeMinRatio = 2 / 3,
         withoutScale = false,
@@ -66,7 +67,7 @@ export const useScreenSizeFromElement = ({ width = null, height = null, ...opts 
     let menuOverScreen = !landscape;
 
     if (landscapeWithMaxSize) {
-        if (fullHeight < landscapeMinHeight) {
+        if (fullHeight < landscapeMinHeight || menuAlwaysOverScreen) {
             menuOverScreen = true;
         } else {
             finalHeight = fullHeight - 100;

@@ -49,6 +49,7 @@ const propTypes = {
     onEnd: PropTypes.func,
     onViewModeChange: PropTypes.func,
     currentScreenMedia: MicromagPropTypes.ref,
+    menuIsScreenWidth: PropTypes.bool,
     screensMedias: MicromagPropTypes.ref,
     screenSizeOptions: PropTypes.shape({
         withoutMaxSize: PropTypes.bool,
@@ -78,6 +79,7 @@ const defaultProps = {
     withoutScreensMenu: false,
     withoutFullscreen: false,
     withLandscapeSiblingsScreens: false,
+    menuIsScreenWidth: false,
     closeable: false,
     onClose: null,
     onInteraction: null,
@@ -109,6 +111,7 @@ const Viewer = ({
     withoutScreensMenu,
     withoutFullscreen, // eslint-disable-line no-unused-vars
     withLandscapeSiblingsScreens,
+    menuIsScreenWidth,
     closeable,
     onClose: onCloseViewer,
     onInteraction,
@@ -386,7 +389,7 @@ const Viewer = ({
                             closeable={closeable}
                             shareBasePath={basePath}
                             screenSize={screenSize}
-                            menuWidth={screenContainerWidth}
+                            menuWidth={menuIsScreenWidth ? screenContainerWidth : null}
                             trackingEnabled={trackingEnabled}
                             onClickItem={onClickMenuItem}
                             onClickMenu={onClickMenu}
