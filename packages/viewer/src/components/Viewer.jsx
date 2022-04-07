@@ -41,6 +41,7 @@ const propTypes = {
     withMetadata: PropTypes.bool,
     withoutMenu: PropTypes.bool,
     withoutScreensMenu: PropTypes.bool,
+    withoutMenuShadow: PropTypes.bool,
     withoutFullscreen: PropTypes.bool,
     withLandscapeSiblingsScreens: PropTypes.bool,
     closeable: PropTypes.bool,
@@ -77,6 +78,7 @@ const defaultProps = {
     withMetadata: false,
     withoutMenu: false,
     withoutScreensMenu: false,
+    withoutMenuShadow: false,
     withoutFullscreen: false,
     withLandscapeSiblingsScreens: false,
     menuIsScreenWidth: false,
@@ -109,6 +111,7 @@ const Viewer = ({
     withMetadata,
     withoutMenu,
     withoutScreensMenu,
+    withoutMenuShadow,
     withoutFullscreen, // eslint-disable-line no-unused-vars
     withLandscapeSiblingsScreens,
     menuIsScreenWidth,
@@ -382,7 +385,7 @@ const Viewer = ({
                             story={parsedStory}
                             currentScreenIndex={screenIndex}
                             opened={menuOpened}
-                            withShadow={menuOverScreen}
+                            withShadow={menuOverScreen && !withoutMenuShadow}
                             toggleFullscreen={toggleFullscreen}
                             fullscreenActive={fullscreenActive}
                             fullscreenEnabled={fullscreenEnabled}
