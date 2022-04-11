@@ -32,6 +32,7 @@
             },
             "layout": "middle",
             "callToAction": {
+                "inWebView": false,
                 "active": true,
                 "url": "https://google.com",
                 "label": {

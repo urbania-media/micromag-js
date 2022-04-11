@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-props-no-spreading */
+
 /* eslint-disable react/no-array-index-key, react/no-danger, react/button-has-type */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -46,6 +48,7 @@ const Button = ({
     children,
     className,
     refButton,
+    ...buttonProps
 }) => {
     let finalStyle = null;
 
@@ -77,6 +80,7 @@ const Button = ({
             refButton={refButton}
             type={type}
             focusable={focusable}
+            {...buttonProps}
         >
             {children}
         </CoreButton>

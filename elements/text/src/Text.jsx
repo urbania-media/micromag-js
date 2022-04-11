@@ -1,5 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
+
 /* eslint-disable react/no-array-index-key, react/no-danger */
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useMemo } from 'react';
+import { v1 as uuid } from 'uuid';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { HighlightStyle, LinkStyle } from '@micromag/core/components';
 import {
@@ -8,10 +13,6 @@ import {
     getStyleFromMargin,
     getStyleFromText,
 } from '@micromag/core/utils';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import React, { useMemo } from 'react';
-import { v1 as uuid } from 'uuid';
 import styles from './styles.module.scss';
 
 const propTypes = {
