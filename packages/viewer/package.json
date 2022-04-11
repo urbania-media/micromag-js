@@ -1,6 +1,6 @@
 {
     "name": "@micromag/viewer",
-    "version": "0.3.44",
+    "version": "0.3.45",
     "description": "",
     "keywords": [
         "javascript"
@@ -61,10 +61,10 @@
         "@fortawesome/react-fontawesome": "^0.1.13",
         "@micromag/core": "^0.3.42",
         "@micromag/element-scroll": "^0.3.42",
-        "@micromag/elements": "^0.3.43",
+        "@micromag/elements": "^0.3.45",
         "@micromag/fields": "^0.3.42",
         "@micromag/intl": "^0.3.42",
-        "@micromag/screens": "^0.3.43",
+        "@micromag/screens": "^0.3.45",
         "@react-spring/core": "^9.1.1",
         "@react-spring/web": "^9.1.1",
         "@use-gesture/react": "^10.2.4",
