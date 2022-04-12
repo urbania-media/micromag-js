@@ -33,7 +33,8 @@ const defaultProps = {
 };
 
 function WebView({ iframeRef, src, width, height, closeable, onClose, className }) {
-    const size = { width, height };
+    console.log(src, width, height);
+
     return (
         <div
             className={classNames([
@@ -43,16 +44,16 @@ function WebView({ iframeRef, src, width, height, closeable, onClose, className 
                     [className]: className !== null,
                 },
             ])}
-            style={{ ...size }}
+            style={{ width, height }}
         >
             {closeable ? (
                 <div className={styles.top}>
                     <Button className={styles.close} onClick={onClose}>
-                        <FontAwesomeIcon className={styles.icon} icon={faTimes} size="md" />
+                        <FontAwesomeIcon className={styles.icon} icon={faTimes} size="lg" />
                     </Button>
                 </div>
             ) : null}
-            <iframe className={styles.iframe} ref={iframeRef} title="Popup" src={src} {...size} />
+            <iframe className={styles.iframe} ref={iframeRef} title="Popup" src={src} />
         </div>
     );
 }

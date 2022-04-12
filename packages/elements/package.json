@@ -82,6 +82,7 @@
         "@micromag/element-text-input": "^0.3.42",
         "@micromag/element-video": "^0.3.42",
         "@micromag/element-visual": "^0.3.42",
+        "@micromag/element-webview": "^0.3.42",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2"

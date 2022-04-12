@@ -1,8 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { ComponentsProvider, ELEMENTS_NAMESPACE } from '@micromag/core/contexts';
-
 import * as ElementComponents from './all';
 
 const propTypes = {
@@ -13,7 +12,7 @@ const defaultProps = {
     children: null,
 };
 
-const ElementsProvider = props => (
+const ElementsProvider = (props) => (
     <ComponentsProvider namespace={ELEMENTS_NAMESPACE} components={ElementComponents} {...props} />
 );
 
