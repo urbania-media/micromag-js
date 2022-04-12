@@ -1,4 +1,8 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback, useRef, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenRenderContext, useScreenSize, useViewer } from '@micromag/core/contexts';
@@ -9,10 +13,6 @@ import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import React, { useCallback, useRef, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -209,6 +209,7 @@ const SlideshowScreen = ({
                                 callToAction={callToAction}
                                 animationDisabled={isPreview}
                                 focusable={current && isView}
+                                screenSize={{ width, height }}
                             />
                         </div>
                     ) : null}

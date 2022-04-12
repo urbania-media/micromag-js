@@ -1,4 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
+import { v1 as uuid } from 'uuid';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenRenderContext, useScreenSize, useViewer } from '@micromag/core/contexts';
@@ -10,11 +15,6 @@ import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
-import { v1 as uuid } from 'uuid';
 import ConversationMessage from './ConversationMessage';
 import styles from './styles.module.scss';
 
@@ -271,6 +271,7 @@ const ConversationScreen = ({
                                                 animationDisabled={isPreview}
                                                 callToAction={callToAction}
                                                 focusable={current && isView}
+                                                screenSize={{ width, height }}
                                             />
                                         </div>
                                     ) : null}

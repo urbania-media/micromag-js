@@ -1,22 +1,22 @@
 /* eslint-disable no-nested-ternary */
+
 /* eslint-disable react/jsx-props-no-spreading */
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { useState, useCallback, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { ScreenElement, Transitions } from '@micromag/core/components';
+import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { useResizeObserver } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
-import Container from '@micromag/element-container';
-import Layout from '@micromag/element-layout';
-import Visual from '@micromag/element-visual';
-import Heading from '@micromag/element-heading';
-import Text from '@micromag/element-text';
 import CallToAction from '@micromag/element-call-to-action';
-
+import Container from '@micromag/element-container';
+import Heading from '@micromag/element-heading';
+import Layout from '@micromag/element-layout';
+import Text from '@micromag/element-text';
+import Visual from '@micromag/element-visual';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -85,20 +85,17 @@ const ImageScreen = ({
     transitions,
     className,
 }) => {
-    const finalImageFit = useMemo( () => ({ fit: imageFit || defaultImageFit }), [imageFit, defaultImageFit]);
+    const finalImageFit = useMemo(
+        () => ({ fit: imageFit || defaultImageFit }),
+        [imageFit, defaultImageFit],
+    );
 
     const { width, height, menuOverScreen } = useScreenSize();
 
     const { menuSize } = useViewer();
 
-    const {
-        isView,
-        isPreview,
-        isPlaceholder,
-        isEdit,
-        isStatic,
-        isCapture,
-    } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
+        useScreenRenderContext();
     const backgroundPlaying = current && (isView || isEdit);
     const backgroundShouldLoad = current || active || !isView;
 
@@ -267,6 +264,7 @@ const ImageScreen = ({
                     callToAction={callToAction}
                     animationDisabled={isPreview}
                     focusable={current && isView}
+                    screenSize={{ width, height }}
                 />
             </div>,
         );

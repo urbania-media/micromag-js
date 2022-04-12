@@ -1,4 +1,9 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
+import classNames from 'classnames';
+import isPlainObject from 'lodash/isPlainObject';
+import PropTypes from 'prop-types';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenRenderContext, useScreenSize, useViewer } from '@micromag/core/contexts';
@@ -10,11 +15,6 @@ import Container from '@micromag/element-container';
 import Grid from '@micromag/element-grid';
 import Text from '@micromag/element-text';
 import Visual from '@micromag/element-visual';
-import classNames from 'classnames';
-import isPlainObject from 'lodash/isPlainObject';
-import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
 import layoutProps from './layouts';
 import styles from './styles.module.scss';
 
@@ -266,6 +266,7 @@ const GalleryScreen = ({
                                 callToAction={callToAction}
                                 animationDisabled={isPreview}
                                 focusable={current && isView}
+                                screenSize={{ width, height }}
                             />
                         </div>
                     ) : null}

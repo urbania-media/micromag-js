@@ -16,8 +16,8 @@ import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
 import Question from './Question';
-import Title from './Title';
 import Results from './Results';
+import Title from './Title';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -286,13 +286,16 @@ const QuizMultipleScreen = ({
         }
         const { current: lastQuestionIndex } = lastQuestionIndexRef;
         lastQuestionIndexRef.current = questionIndex;
-        if (questionIndex === 'intro' || lastQuestionIndex === 'results' || lastQuestionIndex > questionIndex) {
+        if (
+            questionIndex === 'intro' ||
+            lastQuestionIndex === 'results' ||
+            lastQuestionIndex > questionIndex
+        ) {
             return 'left';
         }
         lastQuestionIndexRef.current = questionIndex;
         return 'right';
-
-    }, [questionIndex])
+    }, [questionIndex]);
 
     return (
         <div
@@ -424,6 +427,7 @@ const QuizMultipleScreen = ({
                         callToAction={callToAction}
                         animationDisabled={isPreview}
                         focusable={current && isView}
+                        screenSize={{ width, height }}
                     />
                 ) : null}
             </Container>

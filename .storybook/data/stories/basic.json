@@ -32,15 +32,15 @@
             },
             "layout": "middle",
             "callToAction": {
-                "inWebView": false,
+                "inWebView": true,
                 "active": true,
-                "url": "https://google.com",
+                "url": "https://urbania.ca",
                 "label": {
-                    "body": "Learn more"
+                    "body": "En apprendre plusse"
                 }
             },
             "quote": {
-                "body": "<p>Coolos</p>",
+                "body": "<p>Une citation</p>",
                 "textStyle": {
                     "color": {
                         "color": "#FFF",

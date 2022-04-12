@@ -1,5 +1,10 @@
 /* eslint-disable react/no-array-index-key */
+
 /* eslint-disable react/jsx-props-no-spreading */
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenRenderContext, useScreenSize, useViewer } from '@micromag/core/contexts';
@@ -18,10 +23,6 @@ import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Layout, { Spacer } from '@micromag/element-layout';
 import Text from '@micromag/element-text';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -417,6 +418,7 @@ const SurveyScreen = ({
                     disabled={!answered}
                     animationDisabled={isPreview}
                     focusable={current && isView}
+                    screenSize={{ width, height }}
                 />
             </div>,
         );

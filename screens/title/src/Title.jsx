@@ -294,6 +294,7 @@ const TitleScreen = ({
                                 callToAction={callToAction}
                                 animationDisabled={isPreview}
                                 focusable={current && isView}
+                                screenSize={{ width, height }}
                             />
                         </div>
                     ) : null}

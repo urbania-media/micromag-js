@@ -1,26 +1,26 @@
 /* eslint-disable react/no-array-index-key */
+
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState, useCallback, useRef, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { ScreenElement, Transitions } from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
 import { useTrackScreenEvent, useResizeObserver } from '@micromag/core/hooks';
-import { ScreenElement, Transitions } from '@micromag/core/components';
 import { isTextFilled, isLabelFilled, getStyleFromColor } from '@micromag/core/utils';
 import { useContributions, useContributionCreate } from '@micromag/data';
 import Background from '@micromag/element-background';
 import Button from '@micromag/element-button';
+import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Scroll from '@micromag/element-scroll';
-import CallToAction from '@micromag/element-call-to-action';
 import Text from '@micromag/element-text';
 import TextInput from '@micromag/element-text-input';
-
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -91,14 +91,8 @@ const ContributionScreen = ({
     const { width, height, menuOverScreen } = useScreenSize();
     const { menuSize } = useViewer();
 
-    const {
-        isView,
-        isPreview,
-        isPlaceholder,
-        isEdit,
-        isStatic,
-        isCapture,
-    } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
+        useScreenRenderContext();
 
     const backgroundPlaying = current && (isView || isEdit);
     const backgroundShouldLoad = current || active || !isView;
@@ -470,6 +464,7 @@ const ContributionScreen = ({
                             animationDisabled={isPreview}
                             callToAction={callToAction}
                             focusable={current && isView}
+                            screenSize={{ width, height }}
                         />
                     ) : null}
                 </div>

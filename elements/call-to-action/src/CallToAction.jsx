@@ -105,6 +105,8 @@ function CallToAction({
         };
     }, [setLeaving]);
 
+    console.log(screenSize);
+
     const onOpenWebView = useCallback(() => {
         setShowWebView(true);
     }, [setShowWebView]);

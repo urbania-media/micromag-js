@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useState, useCallback } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useState, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, Transitions } from '@micromag/core/components';
@@ -9,13 +9,12 @@ import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core
 import { useTrackScreenEvent, useResizeObserver } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
-import Container from '@micromag/element-container';
-import Layout from '@micromag/element-layout';
-import Text from '@micromag/element-text';
-import Heading from '@micromag/element-heading';
-import Scroll from '@micromag/element-scroll';
 import CallToAction from '@micromag/element-call-to-action';
-
+import Container from '@micromag/element-container';
+import Heading from '@micromag/element-heading';
+import Layout from '@micromag/element-layout';
+import Scroll from '@micromag/element-scroll';
+import Text from '@micromag/element-text';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -69,14 +68,8 @@ const RankingScreen = ({
     const { width, height, menuOverScreen } = useScreenSize();
     const { menuSize } = useViewer();
 
-    const {
-        isView,
-        isPreview,
-        isPlaceholder,
-        isEdit,
-        isStatic,
-        isCapture,
-    } = useScreenRenderContext();
+    const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
+        useScreenRenderContext();
 
     const finalItems = isPlaceholder ? [...new Array(10)].map(() => ({})) : items || [null];
 
@@ -256,6 +249,7 @@ const RankingScreen = ({
                         animationDisabled={isPreview}
                         callToAction={callToAction}
                         focusable={current && isView}
+                        screenSize={{ width, height }}
                     />
                 ) : null}
             </Container>
