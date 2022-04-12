@@ -6,8 +6,8 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Button } from '@micromag/core/components';
-import { getStyleFromBox, getStyleFromColor, isIos, isValidUrl } from '@micromag/core/utils';
+import { getStyleFromColor, isIos, isValidUrl } from '@micromag/core/utils';
+import Button from '@micromag/element-button';
 import Text from '@micromag/element-text';
 import WebView from '@micromag/element-webview';
 import styles from './styles.module.scss';
@@ -148,7 +148,7 @@ function CallToAction({
                     focusable={focusable}
                     buttonStyle={{
                         marginBottom: 10,
-                        ...getStyleFromBox(buttonStyle),
+                        ...buttonStyle,
                     }}
                     {...(swipeUpEnabled && !disabled ? bind() : null)}
                     {...(inWebView
