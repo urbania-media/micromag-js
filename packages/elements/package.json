@@ -1,6 +1,6 @@
 {
     "name": "@micromag/elements",
-    "version": "0.3.50",
+    "version": "0.3.51",
     "description": "",
     "keywords": [
         "javascript"
@@ -64,7 +64,7 @@
         "@micromag/element-audio": "^0.3.42",
         "@micromag/element-background": "^0.3.42",
         "@micromag/element-button": "^0.3.45",
-        "@micromag/element-call-to-action": "^0.3.50",
+        "@micromag/element-call-to-action": "^0.3.51",
         "@micromag/element-checkbox": "^0.3.42",
         "@micromag/element-closed-captions": "^0.3.42",
         "@micromag/element-container": "^0.3.42",
