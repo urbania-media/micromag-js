@@ -77,6 +77,30 @@
                     "letterSpacing": 0
                 }
             }
+        },
+        {
+            "id": "1cb80860-5c1a-11eb-985f-ad6fce99d848",
+            "background": {
+                "color": { "alpha": 1, "color": "#FF00FF" }
+            },
+            "type": "image",
+            "layout": "normal",
+            "image": {
+                "url": "https://picsum.photos/800/800?random=1",
+                "thumbnail_url": "https://picsum.photos/100/100?random=1",
+                "metadata": {
+                    "width": 800,
+                    "height": 800
+                }
+            },
+            "callToAction": {
+                "inWebView": true,
+                "active": true,
+                "url": "https://urbania.ca",
+                "label": {
+                    "body": "En apprendre plusse"
+                }
+            }
         }
     ],
     "medias": [],

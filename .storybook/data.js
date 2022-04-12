@@ -258,7 +258,8 @@ export const markers = ({
 
 export const callToAction = () => ({
     active: true,
-    url: 'https://google.com',
+    inWebView: true,
+    url: 'https://urbania.ca',
     label: {
         body: 'Learn moar',
     },
