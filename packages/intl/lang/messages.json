@@ -507,6 +507,10 @@
     "defaultMessage": "Type",
     "description": "Type Label in Media Gallery"
   },
+  "Oqks/j": {
+    "defaultMessage": "Urbania article screen",
+    "description": "Urbania screen title"
+  },
   "P1dwGU": {
     "defaultMessage": "Title with subtitle",
     "description": "TitleSubtitle screen title"
@@ -971,6 +975,10 @@
   "oLtEu6": {
     "defaultMessage": "Video 360",
     "description": "Video 360 placeholder"
+  },
+  "oPjl8f": {
+    "defaultMessage": "Urbania",
+    "description": "Urbania screen group"
   },
   "opcGwP": {
     "defaultMessage": "Add a speaker",

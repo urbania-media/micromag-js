@@ -773,6 +773,12 @@ msgctxt "OkNUmk"
 msgid "Type"
 msgstr "Type"
 
+# Urbania screen title
+#: Oqks/j
+msgctxt "Oqks/j"
+msgid "Urbania article screen"
+msgstr "Urbania article screen"
+
 # TitleSubtitle screen title
 #: P1dwGU
 msgctxt "P1dwGU"
@@ -1471,6 +1477,12 @@ msgstr "Text with title"
 msgctxt "oLtEu6"
 msgid "Video 360"
 msgstr "Video 360"
+
+# Urbania screen group
+#: oPjl8f
+msgctxt "oPjl8f"
+msgid "Urbania"
+msgstr "Urbania"
 
 # Button label
 #: opcGwP
