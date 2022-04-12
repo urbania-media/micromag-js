@@ -1,6 +1,6 @@
 {
     "name": "@micromag/element-call-to-action",
-    "version": "0.3.49",
+    "version": "0.3.50",
     "description": "",
     "keywords": [
         "javascript"
@@ -55,7 +55,7 @@
         "@micromag/core": "^0.3.42",
         "@micromag/element-button": "^0.3.45",
         "@micromag/element-text": "^0.3.45",
-        "@micromag/element-webview": "^0.3.48",
+        "@micromag/element-webview": "^0.3.50",
         "@react-spring/core": "^9.1.1",
         "@react-spring/web": "^9.1.1",
         "@use-gesture/react": "^10.2.4",
