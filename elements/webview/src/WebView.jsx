@@ -33,8 +33,6 @@ const defaultProps = {
 };
 
 function WebView({ iframeRef, src, width, height, closeable, onClose, className }) {
-    console.log(src, width, height);
-
     return (
         <div
             className={classNames([
