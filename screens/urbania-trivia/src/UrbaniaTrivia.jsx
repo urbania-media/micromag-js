@@ -2,6 +2,10 @@
 
 /* eslint-disable react/jsx-props-no-spreading */
 import { getSizeWithinBounds } from '@folklore/size';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { Empty, PlaceholderVideo, ScreenElement, Transitions } from '@micromag/core/components';
 import {
@@ -17,10 +21,6 @@ import Container from '@micromag/element-container';
 import Image from '@micromag/element-image';
 import MediaControls from '@micromag/element-media-controls';
 import Video from '@micromag/element-video';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
 import styles from './styles.module.scss';
 
 const propTypes = {
