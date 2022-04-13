@@ -2,6 +2,7 @@
 import React from 'react';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
 import { backgroundColor, transitions, videoMedia } from '../../../../.storybook/data';
+import '../../../../.storybook/fonts/fonts.scss';
 import UrbaniaTrivia from '../UrbaniaTrivia';
 import definition from '../definition';
 

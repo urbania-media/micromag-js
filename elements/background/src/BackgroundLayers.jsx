@@ -1,13 +1,12 @@
 /* eslint-disable react/no-array-index-key */
+
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useMemo } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useMemo } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getLayersFromBackground } from '@micromag/core/utils';
-
 import Background from './Background';
-
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -35,7 +34,16 @@ const defaultProps = {
     shouldLoad: true,
 };
 
-const BackgroundLayers = ({ width, height, background, playing, children, className, loadingMode, shouldLoad }) => {
+const BackgroundLayers = ({
+    width,
+    height,
+    background,
+    playing,
+    children,
+    className,
+    loadingMode,
+    shouldLoad,
+}) => {
     const hasSize = width > 0 && height > 0;
 
     const layers = useMemo(() => getLayersFromBackground(background), [background]);

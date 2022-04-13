@@ -1,6 +1,6 @@
 import { defineMessage } from 'react-intl';
-import * as transforms from './transforms/index';
 import UrbaniaTriviaScreen from './UrbaniaTrivia';
+import * as transforms from './transforms/index';
 
 export default {
     id: 'urbania-trivia',
