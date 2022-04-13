@@ -2,8 +2,19 @@
 
 /* eslint-disable react/jsx-props-no-spreading */
 import { getSizeWithinBounds } from '@folklore/size';
+import classNames from 'classnames';
+import isArray from 'lodash/isArray';
+import PropTypes from 'prop-types';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Empty, PlaceholderVideo, ScreenElement, Transitions } from '@micromag/core/components';
+import {
+    Empty,
+    PlaceholderTitle,
+    PlaceholderVideo,
+    ScreenElement,
+    Transitions,
+} from '@micromag/core/components';
 import {
     useScreenRenderContext,
     useScreenSize,
@@ -14,17 +25,16 @@ import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import ClosedCaptions from '@micromag/element-closed-captions';
 import Container from '@micromag/element-container';
+import Heading from '@micromag/element-heading';
 import Image from '@micromag/element-image';
 import MediaControls from '@micromag/element-media-controls';
 import Video from '@micromag/element-video';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
+import AnimeLines from './images/anime-lines-02.svg';
 import styles from './styles.module.scss';
 
 const propTypes = {
     layout: PropTypes.oneOf(['middle', 'full']),
+    title: MicromagPropTypes.headingElement,
     video: MicromagPropTypes.videoElement,
     gotoNextScreenOnEnd: PropTypes.bool,
     background: MicromagPropTypes.backgroundElement,
@@ -39,6 +49,7 @@ const propTypes = {
 
 const defaultProps = {
     layout: 'middle',
+    title: null,
     video: null,
     gotoNextScreenOnEnd: false,
     background: null,
@@ -53,6 +64,7 @@ const defaultProps = {
 
 const UrbaniaTrivia = ({
     layout,
+    title,
     video,
     gotoNextScreenOnEnd,
     background,
@@ -74,6 +86,8 @@ const UrbaniaTrivia = ({
     const backgroundShouldLoad = current || active || !isView;
     const videoShouldLoad = current || active || !isView;
     const shouldGotoNextScreenOnEnd = gotoNextScreenOnEnd && isView && current;
+
+    const { body = 'Les cristaux' } = title || {};
 
     // get resized video style props
     const {
@@ -221,6 +235,14 @@ const UrbaniaTrivia = ({
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
 
+    const { image: backgroundImage = null, video: backgroundVideo = null } = background || {};
+
+    const isCustomBackground =
+        background === null || (backgroundImage === null && backgroundVideo === null);
+
+    // console.log(background?.image);
+    // console.log(isCustomBackground);
+
     const hasVideo = video !== null;
     const [ready, setReady] = useState(hasVideo); // useState(!hasVideo);
     const transitionPlaying = current && ready;
@@ -280,125 +302,153 @@ const UrbaniaTrivia = ({
     const visibleControls = (!autoPlay && !playing) || muted || showMediaControls;
 
     const items = [
-        <ScreenElement
-            key="video"
-            placeholder={<PlaceholderVideo className={styles.placeholder} {...placeholderProps} />}
-            empty={
-                <div className={styles.emptyContainer}>
-                    <Empty className={styles.empty}>
-                        <FormattedMessage defaultMessage="Video" description="Video placeholder" />
-                    </Empty>
-                </div>
-            }
-            isEmpty={!hasVideoUrl}
-        >
-            {hasVideoUrl ? (
-                <div
-                    className={styles.videoContainer}
-                    style={{
-                        width: resizedVideoWidth,
-                        height: resizedVideoHeight,
-                        left: resizedVideoLeft,
-                        top: resizedVideoTop,
-                    }}
-                >
-                    {/* <Transitions
+        <Container className={styles.itemsContainer}>
+            <ScreenElement
+                key="heading"
+                className={styles.headingScreenElement}
+                placeholder={
+                    <PlaceholderTitle className={styles.placeholder} {...placeholderProps} />
+                }
+                empty={
+                    <div className={styles.emptyContainer}>
+                        <Empty className={styles.empty}>
+                            <FormattedMessage
+                                defaultMessage="Heading"
+                                description="Header placeholder"
+                            />
+                        </Empty>
+                    </div>
+                }
+                isEmpty={!body}
+            >
+                <Heading className={styles.heading} body={body} {...title} />
+            </ScreenElement>
+            <ScreenElement
+                key="video"
+                className={styles.videoScreenElement}
+                placeholder={
+                    <PlaceholderVideo className={styles.placeholder} {...placeholderProps} />
+                }
+                empty={
+                    <div className={styles.emptyContainer}>
+                        <Empty className={styles.empty}>
+                            <FormattedMessage
+                                defaultMessage="Video"
+                                description="Video placeholder"
+                            />
+                        </Empty>
+                    </div>
+                }
+                isEmpty={!hasVideoUrl}
+            >
+                {hasVideoUrl ? (
+                    <div
+                        className={styles.videoContainer}
+                        style={{
+                            width: resizedVideoWidth,
+                            height: resizedVideoHeight,
+                            left: resizedVideoLeft,
+                            top: resizedVideoTop,
+                        }}
+                    >
+                        {/* <Transitions
                         playing={transitionPlaying}
                         transitions={transitions}
                         disabled={transitionDisabled}
                     > */}
-                    {isPreview || isCapture ? (
-                        <Image
-                            className={styles.image}
-                            media={{
-                                url: thumbnailUrl,
-                                metadata: { width: videoWidth, height: videoHeight },
-                            }}
-                            width="100%"
-                            height="100%"
-                        />
-                    ) : (
-                        <Video
-                            {...finalVideo}
-                            ref={apiRef}
-                            className={styles.video}
-                            onReady={onVideoReady}
-                            onPlay={onPlay}
-                            onPause={onPause}
-                            onTimeUpdate={onTimeUpdate}
-                            onProgressStep={onProgressStep}
-                            onDurationChanged={onDurationChanged}
-                            onSeeked={onSeeked}
-                            onEnded={onEnded}
-                            onVolumeChanged={onVolumeChanged}
-                            focusable={current && isView}
-                            preload={videoShouldLoad ? 'auto' : 'metadata'}
-                            // onPosterLoaded={onPosterLoaded}
-                        />
-                    )}
-                    {/* </Transitions> */}
-                </div>
-            ) : null}
-        </ScreenElement>,
-        !isPlaceholder ? (
-            <div key="bottom-content" className={styles.bottomContent}>
-                <Transitions
-                    playing={transitionPlaying}
-                    transitions={transitions}
-                    disabled={transitionDisabled}
-                >
-                    {closedCaptions !== null && !isPreview && !isCapture && !isStatic ? (
-                        <ClosedCaptions
-                            className={styles.closedCaptions}
-                            media={closedCaptions}
-                            currentTime={currentTime}
-                        />
-                    ) : null}
-                    <div
-                        className={classNames([
-                            styles.bottom,
-                            {
-                                [styles.visible]: visibleControls,
-                                [styles.withGradient]: withSeekBar || withPlayPause || muted,
-                            },
-                        ])}
-                    >
-                        {hasVideoUrl ? (
-                            <MediaControls
-                                className={classNames([
-                                    styles.mediaControls,
-                                    {
-                                        [styles.visible]: visibleControls,
-                                    },
-                                ])}
-                                withSeekBar={withSeekBar}
-                                withPlayPause={withPlayPause}
-                                withTime={withTime}
-                                playing={playing}
-                                muted={muted}
-                                currentTime={currentTime}
-                                duration={duration}
-                                onTogglePlay={togglePlay}
-                                onToggleMute={onToggleMute}
-                                onSeek={onSeek}
+                        {isPreview || isCapture ? (
+                            <Image
+                                className={styles.image}
+                                media={{
+                                    url: thumbnailUrl,
+                                    metadata: { width: videoWidth, height: videoHeight },
+                                }}
+                                width="100%"
+                                height="100%"
+                            />
+                        ) : (
+                            <Video
+                                {...finalVideo}
+                                ref={apiRef}
+                                className={styles.video}
+                                onReady={onVideoReady}
+                                onPlay={onPlay}
+                                onPause={onPause}
+                                onTimeUpdate={onTimeUpdate}
+                                onProgressStep={onProgressStep}
+                                onDurationChanged={onDurationChanged}
+                                onSeeked={onSeeked}
+                                onEnded={onEnded}
+                                onVolumeChanged={onVolumeChanged}
                                 focusable={current && isView}
+                                preload={videoShouldLoad ? 'auto' : 'metadata'}
+                                // onPosterLoaded={onPosterLoaded}
+                            />
+                        )}
+                        {/* </Transitions> */}
+                    </div>
+                ) : null}
+            </ScreenElement>
+            {!isPlaceholder ? (
+                <div key="bottom-content" className={styles.bottomContent}>
+                    <Transitions
+                        playing={transitionPlaying}
+                        transitions={transitions}
+                        disabled={transitionDisabled}
+                    >
+                        {closedCaptions !== null && !isPreview && !isCapture && !isStatic ? (
+                            <ClosedCaptions
+                                className={styles.closedCaptions}
+                                media={closedCaptions}
+                                currentTime={currentTime}
                             />
                         ) : null}
-                        {hasCallToAction ? (
-                            <div style={{ marginTop: -spacing / 2 }}>
-                                <CallToAction
-                                    className={styles.callToAction}
-                                    callToAction={callToAction}
-                                    animationDisabled={isPreview}
+                        <div
+                            className={classNames([
+                                styles.bottom,
+                                {
+                                    [styles.visible]: visibleControls,
+                                    [styles.withGradient]: withSeekBar || withPlayPause || muted,
+                                },
+                            ])}
+                        >
+                            {hasVideoUrl ? (
+                                <MediaControls
+                                    className={classNames([
+                                        styles.mediaControls,
+                                        {
+                                            [styles.visible]: visibleControls,
+                                        },
+                                    ])}
+                                    withSeekBar={withSeekBar}
+                                    withPlayPause={withPlayPause}
+                                    withTime={withTime}
+                                    playing={playing}
+                                    muted={muted}
+                                    currentTime={currentTime}
+                                    duration={duration}
+                                    onTogglePlay={togglePlay}
+                                    onToggleMute={onToggleMute}
+                                    onSeek={onSeek}
                                     focusable={current && isView}
-                                    screenSize={{ width, height }}
                                 />
-                            </div>
-                        ) : null}
-                    </div>
-                </Transitions>
-            </div>
-        ) : null,
+                            ) : null}
+                            {hasCallToAction ? (
+                                <div style={{ marginTop: -spacing / 2 }}>
+                                    <CallToAction
+                                        className={styles.callToAction}
+                                        callToAction={callToAction}
+                                        animationDisabled={isPreview}
+                                        focusable={current && isView}
+                                        screenSize={{ width, height }}
+                                    />
+                                </div>
+                            ) : null}
+                        </div>
+                    </Transitions>
+                </div>
+            ) : null}
+        </Container>,
     ];
 
     return (
@@ -416,7 +466,27 @@ const UrbaniaTrivia = ({
         >
             {!isPlaceholder ? (
                 <Background
-                    background={background}
+                    background={
+                        isArray(background) && background.length > 0
+                            ? background
+                            : {
+                                  image: {
+                                      type: 'image',
+                                      url: background?.src || AnimeLines,
+                                      width: 1083,
+                                      height: 1919,
+                                  },
+                                  color: '#00f',
+                                  ...background,
+                              }
+                    }
+                    className={classNames([
+                        styles.background,
+                        {
+                            [className]: className !== null,
+                            [styles.isCustomBackground]: isCustomBackground,
+                        },
+                    ])}
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
