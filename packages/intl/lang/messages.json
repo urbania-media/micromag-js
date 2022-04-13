@@ -782,6 +782,10 @@
     "defaultMessage": "Select a media...",
     "description": "Label when no value is provided to Media field"
   },
+  "eA6lME": {
+    "defaultMessage": "Urbania trivia screen",
+    "description": "Urbania screen title"
+  },
   "eBFxNl": {
     "defaultMessage": "Call to Action",
     "description": "Field label"

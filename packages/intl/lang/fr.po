@@ -1186,6 +1186,12 @@ msgctxt "e6+aGf"
 msgid "Select a media..."
 msgstr "Sélectionnez un média..."
 
+# Urbania screen title
+#: eA6lME
+msgctxt "eA6lME"
+msgid "Urbania trivia screen"
+msgstr ""
+
 # Field label
 #: eBFxNl
 msgctxt "eBFxNl"

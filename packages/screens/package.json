@@ -71,6 +71,7 @@
         "@micromag/screen-timeline": "^0.3.51",
         "@micromag/screen-title": "^0.3.51",
         "@micromag/screen-urbania-article": "^0.3.51",
+        "@micromag/screen-urbania-trivia": "^0.3.51",
         "@micromag/screen-video": "^0.3.51",
         "@micromag/screen-video-360": "^0.3.51",
         "classnames": "^2.2.6",
