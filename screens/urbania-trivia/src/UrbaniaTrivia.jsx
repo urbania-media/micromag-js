@@ -29,7 +29,7 @@ import Heading from '@micromag/element-heading';
 import Image from '@micromag/element-image';
 import MediaControls from '@micromag/element-media-controls';
 import Video from '@micromag/element-video';
-import AnimeLines from './images/anime-lines-02.svg';
+import AnimeLines from './images/anime-lines.svg';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -476,7 +476,7 @@ const UrbaniaTrivia = ({
                                       width: 1083,
                                       height: 1919,
                                   },
-                                  color: '#00f',
+                                  color: '#00cbff',
                                   ...background,
                               }
                     }
@@ -485,6 +485,7 @@ const UrbaniaTrivia = ({
                         {
                             [className]: className !== null,
                             [styles.isCustomBackground]: isCustomBackground,
+                            [styles.isAnimated]: !isStatic && !isPreview && isCustomBackground,
                         },
                     ])}
                     width={width}
