@@ -20,6 +20,8 @@ const propTypes = {
     title: MicromagPropTypes.headingElement,
     category: MicromagPropTypes.textElement,
     date: MicromagPropTypes.textElement,
+    sponsor: MicromagPropTypes.textElement,
+    description: MicromagPropTypes.textElement,
     withTitle: PropTypes.bool,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
@@ -36,6 +38,8 @@ const defaultProps = {
     title: null,
     category: null,
     date: null,
+    sponsor: null,
+    description: null,
     withTitle: false,
     spacing: 20,
     background: null,
@@ -52,6 +56,8 @@ const Recommendation = ({
     title,
     category,
     date,
+    sponsor,
+    description,
     withTitle,
     spacing,
     background,
@@ -127,6 +133,7 @@ const Recommendation = ({
         >
             <Text className={styles.text} {...category} />
         </ScreenElement>,
+
         // DATE
         <ScreenElement
             key="date"
@@ -136,6 +143,32 @@ const Recommendation = ({
             isEmpty={!hasText}
         >
             <Text className={styles.text} {...date} />
+        </ScreenElement>,
+
+        // SPONSOR
+        <ScreenElement
+            key="sponsor"
+            placeholder="text"
+            emptyLabel={
+                <FormattedMessage defaultMessage="Sponsor" description="Text placeholder" />
+            }
+            emptyClassName={styles.emptyText}
+            isEmpty={!hasText}
+        >
+            <Text className={styles.text} {...sponsor} />
+        </ScreenElement>,
+
+        // DESCRIPTION
+        <ScreenElement
+            key="description"
+            placeholder="text"
+            emptyLabel={
+                <FormattedMessage defaultMessage="Description" description="Text placeholder" />
+            }
+            emptyClassName={styles.emptyText}
+            isEmpty={!hasText}
+        >
+            <Text className={styles.text} {...description} />
         </ScreenElement>,
         !isPlaceholder && hasCallToAction ? <Spacer key="spacer-cta-bottom" /> : null,
         !isPlaceholder && hasCallToAction ? (

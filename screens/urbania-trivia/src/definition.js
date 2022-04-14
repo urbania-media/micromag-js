@@ -17,7 +17,6 @@ export default {
         description: 'Urbania screen title',
     }),
     component: UrbaniaTriviaScreen,
-    // layouts: [],
     transforms,
     fields: [
         {
