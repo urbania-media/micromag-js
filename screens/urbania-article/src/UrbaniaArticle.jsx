@@ -28,10 +28,6 @@ const UrbaniaArticle = ({ url, video, article: initialArticle, ...props }) => {
     // get resized video style props
     const { media: videoMedia = null } = video || {};
 
-    if (isPlaceholder) {
-        return <div className={styles.placeholder}>Placeholder</div>;
-    }
-
     useEffect(() => {
         if (url !== null) {
             // TODO: fix cors on urbania.ca
@@ -44,12 +40,13 @@ const UrbaniaArticle = ({ url, video, article: initialArticle, ...props }) => {
     const values = useMemo(() => {
         console.log(article);
         const { title = null, metadata = {} } = article || {};
-        const { authors = [], sponsors = [] } = metadata || {};
+        const { authors = [], sponsors = [], site = 'urbania' } = metadata || {};
 
         return {
             title,
             authors,
             sponsors,
+            site,
         };
     }, [article]);
 

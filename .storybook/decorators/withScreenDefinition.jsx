@@ -10,7 +10,7 @@ const withScreenDefinition = (
         parameters: {
             screenDefinition = null,
             defaultScreen = null,
-            screenOptions: { gridWidth = 100, gridHeight = 150 } = {}
+            screenOptions: { gridWidth = 320, gridHeight = 480 } = {},
         },
         args,
     },
@@ -20,7 +20,7 @@ const withScreenDefinition = (
     }
 
     if (story === 'Definition') {
-        return <Story args={{ ...args, definition: screenDefinition, defaultScreen, }} />;
+        return <Story args={{ ...args, definition: screenDefinition, defaultScreen }} />;
     }
 
     const { layouts = null } = screenDefinition || {};
@@ -34,6 +34,7 @@ const withScreenDefinition = (
                         width={gridWidth}
                         height={gridHeight}
                         withBorder
+                        withScaling
                         renderContext="placeholder"
                     >
                         <Story args={{ ...args, layout }} />
@@ -47,10 +48,7 @@ const withScreenDefinition = (
         return (
             <LayoutSwitcher layouts={layouts}>
                 {(layout) => (
-                    <Screen
-                        definition={screenDefinition}
-                        renderContext={story.toLowerCase()}
-                    >
+                    <Screen definition={screenDefinition} renderContext={story.toLowerCase()}>
                         <Story args={{ ...args, layout }} />
                     </Screen>
                 )}

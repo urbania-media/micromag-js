@@ -18,6 +18,7 @@ const propTypes = {
     className: PropTypes.string,
     screenClassName: PropTypes.string,
     withBorder: PropTypes.bool,
+    withScaling: PropTypes.bool,
     children: PropTypes.node.isRequired,
 };
 
@@ -30,6 +31,7 @@ const defaultProps = {
     className: null,
     screenClassName: null,
     withBorder: false,
+    withScaling: false,
 };
 
 function Screen({
@@ -41,6 +43,7 @@ function Screen({
     className,
     screenClassName,
     withBorder,
+    withScaling,
     children,
 }) {
     const { ref: refContainer, screenSize } = useScreenSizeFromElement({
@@ -49,12 +52,15 @@ function Screen({
         screens: getDeviceScreens(),
     });
 
+    console.log(width, height, screenSize);
+
     return (
         <div
             className={classNames([
                 styles.container,
                 {
                     [styles.withBorder]: withBorder,
+                    [styles.withScaling]: withScaling,
                     [styles.withSize]: width !== null || height !== null,
                     [className]: className !== null,
                 },

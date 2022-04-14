@@ -7,7 +7,15 @@ import PropTypes from 'prop-types';
 import React, { useState, useCallback, useRef, useEffect, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Transitions, ScreenElement, Empty } from '@micromag/core/components';
+import {
+    Transitions,
+    ScreenElement,
+    Empty,
+    PlaceholderText,
+    PlaceholderImage,
+    PlaceholderSubtitle,
+    PlaceholderTitle,
+} from '@micromag/core/components';
 import {
     useScreenSize,
     useScreenRenderContext, // useViewerNavigation,
@@ -92,6 +100,7 @@ const UrbaniaArticleText = ({
     const items = [
         <ScreenElement
             key="overTitle"
+            placeholder={<PlaceholderSubtitle className={styles.placeholder} />}
             empty={
                 <div className={styles.emptyContainer}>
                     <Empty className={styles.empty}>
@@ -110,6 +119,7 @@ const UrbaniaArticleText = ({
         </ScreenElement>,
         <ScreenElement
             key="title"
+            placeholder={<PlaceholderTitle className={styles.placeholder} />}
             empty={
                 <div className={styles.emptyContainer}>
                     <Empty className={styles.empty}>
@@ -199,6 +209,7 @@ const UrbaniaArticleText = ({
                     >
                         <ScreenElement
                             key="image"
+                            placeholder={<PlaceholderImage className={styles.placeholder} />}
                             empty={
                                 <div className={styles.emptyContainer}>
                                     <Empty className={styles.empty}>
