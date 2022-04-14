@@ -1,2 +1,2 @@
 export { default } from './definition';
-export { default as UrbaniaArticle } from './UrbaniaArticle';
+export { default as UrbaniaArticle } from './UrbaniaLoader';

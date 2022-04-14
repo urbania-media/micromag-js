@@ -1,12 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useMemo } from 'react';
+import { getSizeWithinBounds } from '@folklore/size';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { getSizeWithinBounds } from '@folklore/size';
+import React, { useMemo } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import Image from '@micromag/element-image';
 import Video from '@micromag/element-video';
-
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -48,15 +47,16 @@ const Visual = ({
     videoClassName,
     ...props
 }) => {
-    const { type = null, thumbnail_url:thumbnailUrl = null, metadata, url } = media || {};
+    const { type = null, thumbnail_url: thumbnailUrl = null, metadata, url } = media || {};
     const { mime } = metadata || {};
     const isVideo = type === 'video';
     const isGIF = type === 'image' && mime === 'image/gif';
-    const elProps = useMemo( () => ({ ...props, media }), [props, media]);
+    const elProps = useMemo(() => ({ ...props, media }), [props, media]);
 
-    const imageElProps = useMemo( () => {
-        const tmpProps = !playing && (isVideo || isGIF) ? {...elProps, media: { url: thumbnailUrl }} : elProps;
-        return isGIF && playing ? {...elProps, media: { url }} : tmpProps
+    const imageElProps = useMemo(() => {
+        const tmpProps =
+            !playing && (isVideo || isGIF) ? { ...elProps, media: { url: thumbnailUrl } } : elProps;
+        return isGIF && playing ? { ...elProps, media: { url } } : tmpProps;
     }, [isVideo, isGIF, elProps, thumbnailUrl, url, playing]);
 
     let videoContainerStyle = null;
@@ -65,10 +65,13 @@ const Visual = ({
         const { fit = 'cover' } = objectFit || {};
         const { metadata: videoMetadata = null } = media || {};
         const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
-        const {
-            width: resizedVideoWidth,
-            height: resizedVideoHeight,
-        } = getSizeWithinBounds(videoWidth, videoHeight, width, height, { cover: fit === 'cover' });
+        const { width: resizedVideoWidth, height: resizedVideoHeight } = getSizeWithinBounds(
+            videoWidth,
+            videoHeight,
+            width,
+            height,
+            { cover: fit === 'cover' },
+        );
 
         const resizedVideoLeft = -(resizedVideoWidth - width) / 2;
         const resizedVideoTop = -(resizedVideoHeight - height) / 2;
@@ -99,7 +102,10 @@ const Visual = ({
                     style={{ width, height }}
                 >
                     <div
-                        className={classNames([styles.videoContainer, { [videoClassName]: videoClassName !== null }])}
+                        className={classNames([
+                            styles.videoContainer,
+                            { [videoClassName]: videoClassName !== null },
+                        ])}
                         style={videoContainerStyle}
                     >
                         <Video

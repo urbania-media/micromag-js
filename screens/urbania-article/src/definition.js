@@ -1,6 +1,7 @@
 import { defineMessage } from 'react-intl';
 import UrbaniaArticleScreen from './UrbaniaArticle';
-import * as transforms from './transforms/index';
+
+// import * as transforms from './transforms/index';
 
 export default {
     id: 'urbania-article',
@@ -17,19 +18,14 @@ export default {
         description: 'Urbania screen title',
     }),
     component: UrbaniaArticleScreen,
-    layouts: [],
-    transforms,
+    // transforms,
     fields: [
         {
-            name: 'overtitle',
-            type: 'heading-element',
-            theme: {
-                textStyle: 'heading2',
-            },
-            defaultValue: { body: 'En vedette' },
+            name: 'url',
+            type: 'url',
             label: defineMessage({
-                defaultMessage: 'Overtitle',
-                description: 'Title field label',
+                defaultMessage: 'Url',
+                description: 'Url field label',
             }),
         },
         {
@@ -40,6 +36,18 @@ export default {
             },
             label: defineMessage({
                 defaultMessage: 'Title',
+                description: 'Title field label',
+            }),
+        },
+        {
+            name: 'overTitle',
+            type: 'heading-element',
+            theme: {
+                textStyle: 'heading2',
+            },
+            defaultValue: { body: 'En vedette' },
+            label: defineMessage({
+                defaultMessage: 'Overtitle',
                 description: 'Title field label',
             }),
         },

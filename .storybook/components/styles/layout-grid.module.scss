@@ -8,7 +8,7 @@
     display: grid;
     grid-column-gap: 10px;
     grid-row-gap: 10px;
-    grid-template-columns: repeat(2, minmax(220px, 1fr));
+    grid-template-columns: repeat(2, minmax(320px, 1fr));
 }
 
 .item {
@@ -17,14 +17,14 @@
     h4 {
         font-size: 1rem;
     }
+}
 
-    .screen {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+.screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-        & > * {
-            background: $gray-600;
-        }
+    & > * {
+        background: $gray-600;
     }
 }
