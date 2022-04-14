@@ -8,7 +8,7 @@ import definition from '../definition';
 
 const video = (props) => ({
     ...props,
-    media: videoMedia({ vertical: true }),
+    media: videoMedia({ vertical: false }),
     autoPlay: true,
     loop: false,
 });
@@ -18,7 +18,7 @@ const props = (videoProps = {}) => ({
     background: backgroundColor(),
     transitions: transitions(),
     title: { body: title() },
-    layout: 'full',
+    layout: 'middle',
     padding: 80,
 });
 
