@@ -299,6 +299,12 @@ msgctxt "6ak5YN"
 msgid "Side"
 msgstr "Side"
 
+# Authors placeholder
+#: 6jX5Tb
+msgctxt "6jX5Tb"
+msgid "Authors"
+msgstr "Authors"
+
 # Images screen group
 #: 6mX2ya
 msgctxt "6mX2ya"
@@ -1360,6 +1366,12 @@ msgctxt "jnww6n"
 msgid "Select an image..."
 msgstr "Select an image..."
 
+# Visuals field label
+#: k+coTi
+msgctxt "k+coTi"
+msgid "Image"
+msgstr "Image"
+
 # Field label
 #: k81FRn
 msgctxt "k81FRn"
@@ -1472,6 +1484,12 @@ msgctxt "nno1Pq"
 msgid "Button style"
 msgstr "Button style"
 
+# Header placeholder
+#: oAtOlP
+msgctxt "oAtOlP"
+msgid "Heading"
+msgstr "Heading"
+
 # TextTitle screen title
 #: oCBQKV
 msgctxt "oCBQKV"
@@ -1519,6 +1537,12 @@ msgstr "Caption"
 msgctxt "pJgYyE"
 msgid "AutoPlay"
 msgstr "AutoPlay"
+
+# Title placeholder
+#: pRzSQ7
+msgctxt "pRzSQ7"
+msgid "Overtitle"
+msgstr "Overtitle"
 
 # Media label
 #: pfvDzR
@@ -1856,6 +1880,12 @@ msgctxt "z/VBX0"
 msgid "Learn more"
 msgstr "Learn more"
 
+# Title field label
+#: z2I2bJ
+msgctxt "z2I2bJ"
+msgid "Overtitle"
+msgstr "Overtitle"
+
 # Text placeholder
 #: z4CiV1
 msgctxt "z4CiV1"
@@ -1867,6 +1897,12 @@ msgstr "Text"
 msgctxt "zDH24s"
 msgid "Latitude"
 msgstr "Latitude"
+
+# Sponsors placeholder
+#: zGIcdn
+msgctxt "zGIcdn"
+msgid "Sponsors"
+msgstr "Sponsors"
 
 # Quiz screen title
 #: zW7IVm

@@ -143,6 +143,9 @@
     "6ak5YN": {
         "defaultMessage": "Side"
     },
+    "6jX5Tb": {
+        "defaultMessage": "Authors"
+    },
     "6mX2ya": {
         "defaultMessage": "Images"
     },
@@ -674,6 +677,9 @@
     "jnww6n": {
         "defaultMessage": "Select an image..."
     },
+    "k+coTi": {
+        "defaultMessage": "Image"
+    },
     "k81FRn": {
         "defaultMessage": "Message style"
     },
@@ -731,6 +737,9 @@
     "nno1Pq": {
         "defaultMessage": "Button style"
     },
+    "oAtOlP": {
+        "defaultMessage": "Heading"
+    },
     "oCBQKV": {
         "defaultMessage": "Text with title"
     },
@@ -754,6 +763,9 @@
     },
     "pJgYyE": {
         "defaultMessage": "AutoPlay"
+    },
+    "pRzSQ7": {
+        "defaultMessage": "Overtitle"
     },
     "pfvDzR": {
         "defaultMessage": "Added by"
@@ -923,11 +935,17 @@
     "z/VBX0": {
         "defaultMessage": "Learn more"
     },
+    "z2I2bJ": {
+        "defaultMessage": "Overtitle"
+    },
     "z4CiV1": {
         "defaultMessage": "Text"
     },
     "zDH24s": {
         "defaultMessage": "Latitude"
+    },
+    "zGIcdn": {
+        "defaultMessage": "Sponsors"
     },
     "zW7IVm": {
         "defaultMessage": "Quiz"

@@ -191,6 +191,10 @@
     "defaultMessage": "Side",
     "description": "Field label"
   },
+  "6jX5Tb": {
+    "defaultMessage": "Authors",
+    "description": "Authors placeholder"
+  },
   "6mX2ya": {
     "defaultMessage": "Images",
     "description": "Images screen group"
@@ -898,6 +902,10 @@
     "defaultMessage": "Select an image...",
     "description": "Label when no value is provided to Visual field"
   },
+  "k+coTi": {
+    "defaultMessage": "Image",
+    "description": "Visuals field label"
+  },
   "k81FRn": {
     "defaultMessage": "Message style",
     "description": "Field label"
@@ -972,6 +980,10 @@
     "defaultMessage": "Button style",
     "description": "Field label"
   },
+  "oAtOlP": {
+    "defaultMessage": "Heading",
+    "description": "Header placeholder"
+  },
   "oCBQKV": {
     "defaultMessage": "Text with title",
     "description": "TextTitle screen title"
@@ -1003,6 +1015,10 @@
   "pJgYyE": {
     "defaultMessage": "AutoPlay",
     "description": "Field label"
+  },
+  "pRzSQ7": {
+    "defaultMessage": "Overtitle",
+    "description": "Title placeholder"
   },
   "pfvDzR": {
     "defaultMessage": "Added by",
@@ -1228,6 +1244,10 @@
     "defaultMessage": "Learn more",
     "description": "Call to action default label"
   },
+  "z2I2bJ": {
+    "defaultMessage": "Overtitle",
+    "description": "Title field label"
+  },
   "z4CiV1": {
     "defaultMessage": "Text",
     "description": "Text placeholder"
@@ -1235,6 +1255,10 @@
   "zDH24s": {
     "defaultMessage": "Latitude",
     "description": "Latitude description"
+  },
+  "zGIcdn": {
+    "defaultMessage": "Sponsors",
+    "description": "Sponsors placeholder"
   },
   "zW7IVm": {
     "defaultMessage": "Quiz",
