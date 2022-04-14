@@ -21,6 +21,37 @@ export default {
     transforms,
     fields: [
         {
+            name: 'overtitle',
+            type: 'heading-element',
+            theme: {
+                textStyle: 'heading2',
+            },
+            defaultValue: { body: 'En vedette' },
+            label: defineMessage({
+                defaultMessage: 'Overtitle',
+                description: 'Title field label',
+            }),
+        },
+        {
+            name: 'title',
+            type: 'heading-element',
+            theme: {
+                textStyle: 'heading1',
+            },
+            label: defineMessage({
+                defaultMessage: 'Title',
+                description: 'Title field label',
+            }),
+        },
+        {
+            name: 'image',
+            type: 'visual',
+            label: defineMessage({
+                defaultMessage: 'Image',
+                description: 'Visuals field label',
+            }),
+        },
+        {
             name: 'video',
             type: 'video-element',
             theme: {

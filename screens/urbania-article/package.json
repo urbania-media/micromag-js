@@ -49,6 +49,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
+        "@folklore/fetch": "^0.1.15",
         "@folklore/size": "^0.1.15",
         "@micromag/core": "^0.3.42",
         "@micromag/element-background": "^0.3.42",
@@ -58,7 +59,8 @@
         "@micromag/element-image": "^0.3.42",
         "@micromag/element-media-controls": "^0.3.42",
         "@micromag/element-video": "^0.3.42",
-        "@micromag/element-text": "^0.3.42",
+        "@micromag/element-visual": "^0.3.42",
+        "@micromag/element-heading": "^0.3.42",
         "@micromag/transforms": "^0.3.42",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",

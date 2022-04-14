@@ -26,6 +26,9 @@ import styles from './styles.module.scss';
 const propTypes = {
     layout: PropTypes.oneOf(['middle', 'full']),
     video: MicromagPropTypes.videoElement,
+    title: MicromagPropTypes.headingElement,
+    overTitle: MicromagPropTypes.headingElement,
+    sponsor: PropTypes.string,
     gotoNextScreenOnEnd: PropTypes.bool,
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
@@ -40,6 +43,9 @@ const propTypes = {
 const defaultProps = {
     layout: 'middle',
     video: null,
+    title: null,
+    overTitle: null,
+    sponsor: null,
     gotoNextScreenOnEnd: false,
     background: null,
     callToAction: null,
@@ -51,9 +57,12 @@ const defaultProps = {
     className: null,
 };
 
-const UrbaniaArticle = ({
+const UrbaniaArticleVideo = ({
     layout,
     video,
+    title,
+    overTitle,
+    sponsor,
     gotoNextScreenOnEnd,
     background,
     callToAction,
@@ -430,7 +439,7 @@ const UrbaniaArticle = ({
     );
 };
 
-UrbaniaArticle.propTypes = propTypes;
-UrbaniaArticle.defaultProps = defaultProps;
+UrbaniaArticleVideo.propTypes = propTypes;
+UrbaniaArticleVideo.defaultProps = defaultProps;
 
-export default React.memo(UrbaniaArticle);
+export default React.memo(UrbaniaArticleVideo);

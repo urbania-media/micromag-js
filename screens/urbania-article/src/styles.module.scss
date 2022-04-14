@@ -3,15 +3,18 @@
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 
+.placeholder {
+    @extend %screen;
+    background-color: $gray-600;
+}
+
 .container {
     @extend %screen;
 
     .emptyContainer {
-        @extend %fullscreen;
-
-        top: 50%;
+        width: 100%;
         height: 0;
-        padding-bottom: 56.25%;
+        padding-bottom: 25%;
         transform: translateY(-50%);
     }
 
@@ -24,7 +27,6 @@
 
     .content {
         @extend %fullscreen;
-
         overflow: hidden;
     }
 
@@ -35,7 +37,6 @@
     .bottom {
         transition: opacity 0.15s linear;
         opacity: 0;
-
 
         &.visible {
             opacity: 1;
@@ -68,9 +69,7 @@
     }
 
     &.fullscreen {
-        .image,
-        .video,
-        .placeholder {
+        .video {
             @extend %fullscreen;
         }
 

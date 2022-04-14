@@ -4,11 +4,14 @@ import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition
 import { videoMedia, backgroundColor, transitions } from '../../../../.storybook/data';
 import UrbaniaArticleScreen from '../UrbaniaArticle';
 import definition from '../definition';
+import articleArticle from './article.json';
+import videoArticle from './video.json';
 
 const video = (props) => ({ ...props, media: videoMedia(), autoPlay: true, loop: false });
 
 const props = (videoProps = {}) => ({
     video: video(videoProps),
+    article: articleArticle,
     background: backgroundColor(),
     transitions: transitions(),
 });
