@@ -298,7 +298,6 @@ const UrbaniaTrivia = ({
     } = useResizeObserver();
 
     const { height: titleHeight = 0 } = contentRect || {};
-    // console.log(titleHeight);
 
     const videoMaxHeight = height - titleHeight - (padding ? padding * 2 : 40);
     const { width: resizedVideoWidth, height: resizedVideoHeight } = getSizeWithinBounds(
@@ -327,17 +326,9 @@ const UrbaniaTrivia = ({
         setReady(!hasVideoUrl);
     }, [videoUrl, hasVideoUrl, setReady]);
 
-    // useEffect(() => {
-    //     setPosterReady(!hasThumbnail);
-    // }, [thumbnailUrl, hasThumbnail, setPosterReady]);
-
     const onVideoReady = useCallback(() => {
         setReady(true);
     }, [setReady]);
-
-    // const onPosterLoaded = useCallback(() => {
-    //     setPosterReady(true);
-    // }, [isStatic, isCapture, setPosterReady]);
 
     const visibleControls = (!autoPlay && !playing) || muted || showMediaControls;
     const items = [
@@ -405,7 +396,6 @@ const UrbaniaTrivia = ({
                             height: resizedVideoHeight,
                             left: resizedVideoLeft > 0 ? resizedVideoLeft : null,
                             maxHeight: videoMaxHeight,
-                            // top: resizedVideoTop,
                         }}
                     >
                         {/* <Transitions
@@ -441,7 +431,6 @@ const UrbaniaTrivia = ({
                                 onVolumeChanged={onVolumeChanged}
                                 focusable={current && isView}
                                 preload={videoShouldLoad ? 'auto' : 'metadata'}
-                                // onPosterLoaded={onPosterLoaded}
                             />
                         )}
                         {/* </Transitions> */}
@@ -523,7 +512,7 @@ const UrbaniaTrivia = ({
                     [styles.fullscreen]: fullscreen,
                 },
             ])}
-            data-screen-ready={isStatic || isCapture /* && posterReady */ || ready}
+            data-screen-ready={isStatic || isCapture || ready}
             {...longPressBind}
             onMouseMove={onMouseMove}
         >
