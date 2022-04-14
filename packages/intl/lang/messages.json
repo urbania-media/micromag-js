@@ -71,6 +71,10 @@
     "defaultMessage": "Ranking",
     "description": "Ranking screen title"
   },
+  "18XpuL": {
+    "defaultMessage": "Urbania recommendation screen",
+    "description": "Urbania screen title"
+  },
   "2/F1Q7": {
     "defaultMessage": "#{index}",
     "description": "Item label in items field"

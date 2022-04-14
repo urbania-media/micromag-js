@@ -1,17 +1,25 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { backgroundColor, transitions, videoMedia } from '../../../../.storybook/data';
+import { backgroundColor, transitions, videoMedia, title } from '../../../../.storybook/data';
 import '../../../../.storybook/fonts/fonts.scss';
 import UrbaniaTrivia from '../UrbaniaTrivia';
 import definition from '../definition';
 
-const video = (props) => ({ ...props, media: videoMedia(), autoPlay: true, loop: false });
+const video = (props) => ({
+    ...props,
+    media: videoMedia({ vertical: false }),
+    autoPlay: true,
+    loop: false,
+});
 
 const props = (videoProps = {}) => ({
     video: video(videoProps),
     background: backgroundColor(),
     transitions: transitions(),
+    title: { body: title() },
+    layout: 'middle',
+    padding: 80,
 });
 
 export default {

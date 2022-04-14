@@ -20,7 +20,7 @@ import {
     useScreenSize,
     useViewerNavigation,
 } from '@micromag/core/contexts';
-import { useLongPress, useTrackScreenMedia } from '@micromag/core/hooks';
+import { useLongPress, useTrackScreenMedia, useResizeObserver } from '@micromag/core/hooks';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import ClosedCaptions from '@micromag/element-closed-captions';
@@ -29,8 +29,29 @@ import Heading from '@micromag/element-heading';
 import Image from '@micromag/element-image';
 import MediaControls from '@micromag/element-media-controls';
 import Video from '@micromag/element-video';
+import AnimeLinesGrey from './images/anime-lines-grey.svg';
 import AnimeLines from './images/anime-lines.svg';
 import styles from './styles.module.scss';
+
+const defaultBackground = {
+    image: {
+        type: 'image',
+        url: AnimeLines,
+        width: 1083,
+        height: 1919,
+    },
+    color: '#00cbff',
+};
+
+const placeholderBackground = {
+    image: {
+        type: 'image',
+        url: AnimeLinesGrey,
+        width: 1083,
+        height: 1919,
+    },
+    color: null,
+};
 
 const propTypes = {
     layout: PropTypes.oneOf(['middle', 'full']),
@@ -43,12 +64,13 @@ const propTypes = {
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     spacing: PropTypes.number,
+    padding: PropTypes.number,
     getMediaRef: PropTypes.func,
     className: PropTypes.string,
 };
 
 const defaultProps = {
-    layout: 'middle',
+    layout: 'full',
     title: null,
     video: null,
     gotoNextScreenOnEnd: false,
@@ -58,6 +80,7 @@ const defaultProps = {
     active: true,
     transitions: null,
     spacing: 20,
+    padding: 20,
     getMediaRef: null,
     className: null,
 };
@@ -73,6 +96,7 @@ const UrbaniaTrivia = ({
     active,
     transitions,
     spacing,
+    padding,
     getMediaRef,
     className,
 }) => {
@@ -87,7 +111,7 @@ const UrbaniaTrivia = ({
     const videoShouldLoad = current || active || !isView;
     const shouldGotoNextScreenOnEnd = gotoNextScreenOnEnd && isView && current;
 
-    const { body = 'Les cristaux' } = title || {};
+    const { body = '' } = title || {};
 
     // get resized video style props
     const {
@@ -240,11 +264,8 @@ const UrbaniaTrivia = ({
     const isCustomBackground =
         background === null || (backgroundImage === null && backgroundVideo === null);
 
-    // console.log(background?.image);
-    // console.log(isCustomBackground);
-
     const hasVideo = video !== null;
-    const [ready, setReady] = useState(hasVideo); // useState(!hasVideo);
+    const [ready, setReady] = useState(hasVideo);
     const transitionPlaying = current && ready;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
@@ -271,15 +292,33 @@ const UrbaniaTrivia = ({
 
     const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
 
+    const {
+        ref: titleRef,
+        entry: { contentRect = null },
+    } = useResizeObserver();
+
+    const { height: titleHeight = 0 } = contentRect || {};
+
+    const videoMaxHeight = height - titleHeight - (padding ? padding * 2 : 40);
     const { width: resizedVideoWidth, height: resizedVideoHeight } = getSizeWithinBounds(
         videoWidth,
         videoHeight,
         width,
-        height,
+        videoMaxHeight,
         { cover: fullscreen },
     );
     const resizedVideoLeft = -(resizedVideoWidth - width) / 2;
-    const resizedVideoTop = -(resizedVideoHeight - height) / 2;
+    // const resizedVideoTop = -(resizedVideoHeight - videoMaxHeight) / 2;
+
+    const finalBackground = useMemo(() => {
+        if (isArray(background) && background.length > 0) {
+            return background;
+        }
+        if (background !== null) {
+            return { ...defaultBackground, ...background };
+        }
+        return defaultBackground;
+    }, [background]);
 
     const placeholderProps = fullscreen ? { width: '100%', height: '100%' } : { width: '100%' };
 
@@ -287,20 +326,11 @@ const UrbaniaTrivia = ({
         setReady(!hasVideoUrl);
     }, [videoUrl, hasVideoUrl, setReady]);
 
-    // useEffect(() => {
-    //     setPosterReady(!hasThumbnail);
-    // }, [thumbnailUrl, hasThumbnail, setPosterReady]);
-
     const onVideoReady = useCallback(() => {
         setReady(true);
     }, [setReady]);
 
-    // const onPosterLoaded = useCallback(() => {
-    //     setPosterReady(true);
-    // }, [isStatic, isCapture, setPosterReady]);
-
     const visibleControls = (!autoPlay && !playing) || muted || showMediaControls;
-
     const items = [
         <Container className={styles.itemsContainer}>
             <ScreenElement
@@ -319,15 +349,31 @@ const UrbaniaTrivia = ({
                         </Empty>
                     </div>
                 }
-                isEmpty={!body}
+                isEmpty={body.length === 0}
             >
-                <Heading className={styles.heading} body={body} {...title} />
+                <div ref={titleRef}>
+                    <Heading
+                        className={classNames([
+                            styles.heading,
+                            {
+                                [className]: className !== null,
+                                [styles.hideHeading]: body.length === 0,
+                            },
+                        ])}
+                        body={body}
+                        {...title}
+                    />
+                </div>
             </ScreenElement>
             <ScreenElement
                 key="video"
                 className={styles.videoScreenElement}
                 placeholder={
-                    <PlaceholderVideo className={styles.placeholder} {...placeholderProps} />
+                    <PlaceholderVideo
+                        className={styles.placeholder}
+                        height="300px"
+                        {...placeholderProps}
+                    />
                 }
                 empty={
                     <div className={styles.emptyContainer}>
@@ -345,10 +391,11 @@ const UrbaniaTrivia = ({
                     <div
                         className={styles.videoContainer}
                         style={{
-                            width: resizedVideoWidth,
+                            width: Math.min(width, resizedVideoWidth),
+
                             height: resizedVideoHeight,
-                            left: resizedVideoLeft,
-                            top: resizedVideoTop,
+                            left: resizedVideoLeft > 0 ? resizedVideoLeft : null,
+                            maxHeight: videoMaxHeight,
                         }}
                     >
                         {/* <Transitions
@@ -370,6 +417,8 @@ const UrbaniaTrivia = ({
                             <Video
                                 {...finalVideo}
                                 ref={apiRef}
+                                width={resizedVideoWidth}
+                                height={resizedVideoHeight}
                                 className={styles.video}
                                 onReady={onVideoReady}
                                 onPlay={onPlay}
@@ -382,72 +431,75 @@ const UrbaniaTrivia = ({
                                 onVolumeChanged={onVolumeChanged}
                                 focusable={current && isView}
                                 preload={videoShouldLoad ? 'auto' : 'metadata'}
-                                // onPosterLoaded={onPosterLoaded}
                             />
                         )}
                         {/* </Transitions> */}
+                        {!isPlaceholder ? (
+                            <div key="bottom-content" className={styles.bottomContent}>
+                                <Transitions
+                                    playing={transitionPlaying}
+                                    transitions={transitions}
+                                    disabled={transitionDisabled}
+                                >
+                                    {closedCaptions !== null &&
+                                    !isPreview &&
+                                    !isCapture &&
+                                    !isStatic ? (
+                                        <ClosedCaptions
+                                            className={styles.closedCaptions}
+                                            media={closedCaptions}
+                                            currentTime={currentTime}
+                                        />
+                                    ) : null}
+                                    <div
+                                        className={classNames([
+                                            styles.bottom,
+                                            {
+                                                [styles.visible]: visibleControls,
+                                                [styles.withGradient]:
+                                                    withSeekBar || withPlayPause || muted,
+                                            },
+                                        ])}
+                                    >
+                                        {hasVideoUrl ? (
+                                            <MediaControls
+                                                className={classNames([
+                                                    styles.mediaControls,
+                                                    {
+                                                        [styles.visible]: visibleControls,
+                                                    },
+                                                ])}
+                                                withSeekBar={withSeekBar}
+                                                withPlayPause={withPlayPause}
+                                                withTime={withTime}
+                                                playing={playing}
+                                                muted={muted}
+                                                currentTime={currentTime}
+                                                duration={duration}
+                                                onTogglePlay={togglePlay}
+                                                onToggleMute={onToggleMute}
+                                                onSeek={onSeek}
+                                                focusable={current && isView}
+                                            />
+                                        ) : null}
+                                        {hasCallToAction ? (
+                                            <div style={{ marginTop: -spacing / 2 }}>
+                                                <CallToAction
+                                                    className={styles.callToAction}
+                                                    callToAction={callToAction}
+                                                    animationDisabled={isPreview}
+                                                    focusable={current && isView}
+                                                    screenSize={{ width, height }}
+                                                />
+                                            </div>
+                                        ) : null}
+                                    </div>
+                                </Transitions>
+                            </div>
+                        ) : null}
                     </div>
                 ) : null}
             </ScreenElement>
-            {!isPlaceholder ? (
-                <div key="bottom-content" className={styles.bottomContent}>
-                    <Transitions
-                        playing={transitionPlaying}
-                        transitions={transitions}
-                        disabled={transitionDisabled}
-                    >
-                        {closedCaptions !== null && !isPreview && !isCapture && !isStatic ? (
-                            <ClosedCaptions
-                                className={styles.closedCaptions}
-                                media={closedCaptions}
-                                currentTime={currentTime}
-                            />
-                        ) : null}
-                        <div
-                            className={classNames([
-                                styles.bottom,
-                                {
-                                    [styles.visible]: visibleControls,
-                                    [styles.withGradient]: withSeekBar || withPlayPause || muted,
-                                },
-                            ])}
-                        >
-                            {hasVideoUrl ? (
-                                <MediaControls
-                                    className={classNames([
-                                        styles.mediaControls,
-                                        {
-                                            [styles.visible]: visibleControls,
-                                        },
-                                    ])}
-                                    withSeekBar={withSeekBar}
-                                    withPlayPause={withPlayPause}
-                                    withTime={withTime}
-                                    playing={playing}
-                                    muted={muted}
-                                    currentTime={currentTime}
-                                    duration={duration}
-                                    onTogglePlay={togglePlay}
-                                    onToggleMute={onToggleMute}
-                                    onSeek={onSeek}
-                                    focusable={current && isView}
-                                />
-                            ) : null}
-                            {hasCallToAction ? (
-                                <div style={{ marginTop: -spacing / 2 }}>
-                                    <CallToAction
-                                        className={styles.callToAction}
-                                        callToAction={callToAction}
-                                        animationDisabled={isPreview}
-                                        focusable={current && isView}
-                                        screenSize={{ width, height }}
-                                    />
-                                </div>
-                            ) : null}
-                        </div>
-                    </Transitions>
-                </div>
-            ) : null}
         </Container>,
     ];
 
@@ -460,26 +512,13 @@ const UrbaniaTrivia = ({
                     [styles.fullscreen]: fullscreen,
                 },
             ])}
-            data-screen-ready={isStatic || isCapture /* && posterReady */ || ready}
+            data-screen-ready={isStatic || isCapture || ready}
             {...longPressBind}
             onMouseMove={onMouseMove}
         >
             {!isPlaceholder ? (
                 <Background
-                    background={
-                        isArray(background) && background.length > 0
-                            ? background
-                            : {
-                                  image: {
-                                      type: 'image',
-                                      url: background?.src || AnimeLines,
-                                      width: 1083,
-                                      height: 1919,
-                                  },
-                                  color: '#00cbff',
-                                  ...background,
-                              }
-                    }
+                    background={finalBackground}
                     className={classNames([
                         styles.background,
                         {
@@ -493,7 +532,15 @@ const UrbaniaTrivia = ({
                     playing={backgroundPlaying}
                     shouldLoad={backgroundShouldLoad}
                 />
-            ) : null}
+            ) : (
+                <Background
+                    background={placeholderBackground}
+                    className={styles.background}
+                    width={width}
+                    height={height}
+                    styles={{ backgroundColor: 'red' }}
+                />
+            )}
             <Container width={width} height={height}>
                 <div className={styles.content}>{items}</div>
             </Container>

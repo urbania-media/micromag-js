@@ -119,6 +119,12 @@ msgctxt "17BMn2"
 msgid "Ranking"
 msgstr "Ranking"
 
+# Urbania screen title
+#: 18XpuL
+msgctxt "18XpuL"
+msgid "Urbania recommendation screen"
+msgstr "Urbania recommendation screen"
+
 # Item label in items field
 #: 2/F1Q7
 msgctxt "2/F1Q7"
