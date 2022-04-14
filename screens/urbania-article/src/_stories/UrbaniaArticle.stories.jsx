@@ -1,24 +1,27 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
-import { videoMedia, backgroundColor, transitions } from '../../../../.storybook/data';
-import UrbaniaArticleScreen from '../UrbaniaArticle';
+import { backgroundColor, transitions } from '../../../../.storybook/data';
+//  videoMedia,
+import Article from '../UrbaniaLoader';
 import definition from '../definition';
-import articleArticle from './article.json';
-import videoArticle from './video.json';
+import testArticle from './video.json';
 
-const video = (props) => ({ ...props, media: videoMedia(), autoPlay: true, loop: false });
+// import videoArticle from './video.json';
 
-const props = (videoProps = {}) => ({
-    video: video(videoProps),
-    article: articleArticle,
+// const video = (props) => ({ ...props, media: videoMedia(), autoPlay: true, loop: false });
+
+const props = () => ({
+    //  video: video(videoProps),
+    video: null,
+    article: testArticle,
     background: backgroundColor(),
     transitions: transitions(),
 });
 
 export default {
     title: 'Urbania Screens/Article',
-    component: UrbaniaArticleScreen,
+    component: Article,
     parameters: {
         intl: true,
         screenDefinition: definition,
@@ -27,16 +30,18 @@ export default {
 
 export const Cool = () => <p>Hello</p>;
 
-export const Placeholder = (storyProps) => <UrbaniaArticleScreen {...storyProps} />;
+export const Placeholder = (storyProps) => <Article {...storyProps} />;
 
-export const Preview = (storyProps) => <UrbaniaArticleScreen {...storyProps} {...props()} />;
+export const Preview = (storyProps) => <Article {...storyProps} {...props()} />;
 
-export const Static = (storyProps) => <UrbaniaArticleScreen {...storyProps} {...props()} />;
+export const Static = (storyProps) => <Article {...storyProps} {...props()} />;
 
-export const Capture = (storyProps) => <UrbaniaArticleScreen {...storyProps} {...props()} />;
+export const Capture = (storyProps) => <Article {...storyProps} {...props()} />;
 
-export const Edit = (storyProps) => <UrbaniaArticleScreen {...storyProps} />;
+export const Edit = (storyProps) => <Article {...storyProps} />;
 
-export const Normal = (storyProps) => <UrbaniaArticleScreen {...storyProps} {...props()} />;
+export const Normal = (storyProps) => <Article {...storyProps} {...props()} />;
+
+export const Video = (storyProps) => <Article {...storyProps} {...props()} article={testVideo} />;
 
 export const Definition = (storyProps) => <ScreenDefinition {...storyProps} />;

@@ -564,3 +564,19 @@
     src: url('./agrandir/Agrandir-WideHeavyItalic.woff2') format('woff2'),
         url('./agrandir/Agrandir-WideHeavyItalic.woff') format('woff');
 }
+
+@font-face {
+    font-display: swap;
+    font-family: 'AgrandirTight';
+    font-weight: 400;
+    src: url('./agrandir/Agrandir-Tight.woff2') format('woff2'),
+        url('./agrandir/Agrandir-Tight.woff') format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'AgrandirTight';
+    font-weight: 700;
+    src: url('./agrandir/Agrandir-TightBold.woff2') format('woff2'),
+        url('./agrandir/Agrandir-TightBold.woff') format('woff');
+}

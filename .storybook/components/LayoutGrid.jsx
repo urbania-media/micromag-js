@@ -7,11 +7,13 @@ import styles from './styles/layout-grid.module.scss';
 const propTypes = {
     layouts: PropTypes.arrayOf(
         PropTypes.oneOfType([PropTypes.string, PropTypes.shape({ name: PropTypes.string })]),
-    ).isRequired,
+    ),
     children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
 };
 
-const defaultProps = {};
+const defaultProps = {
+    layouts: null,
+};
 
 const LayoutGrid = ({ layouts, children }) => (
     <div className={styles.container}>
@@ -24,7 +26,9 @@ const LayoutGrid = ({ layouts, children }) => (
                     </div>
                 ))
             ) : (
-                <div className={styles.screen}>{children(null)}</div>
+                <div className={styles.item}>
+                    <div className={styles.screen}>{children(null)}</div>
+                </div>
             )}
         </div>
     </div>
