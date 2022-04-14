@@ -15,6 +15,7 @@ import text from '@micromag/screen-text';
 import timeline from '@micromag/screen-timeline';
 import title from '@micromag/screen-title';
 import urbaniaArticle from '@micromag/screen-urbania-article';
+import urbaniaRecommendation from '@micromag/screen-urbania-recommendation';
 import urbaniaTrivia from '@micromag/screen-urbania-trivia';
 import video from '@micromag/screen-video';
 import video360 from '@micromag/screen-video-360';
@@ -40,5 +41,6 @@ manager.addDefinition(slideshow);
 
 manager.addDefinition(urbaniaArticle);
 manager.addDefinition(urbaniaTrivia);
+manager.addDefinition(urbaniaRecommendation);
 
 export default manager;
