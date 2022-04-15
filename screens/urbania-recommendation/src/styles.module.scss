@@ -21,10 +21,87 @@
         height: 50px;
     }
 
+    .textCard {
+        display: flex;
+        flex-direction: column;
+        max-height: 90%;
+        overflow: none;
+        border: 2px solid #000;
+        border-radius: 17px;
+        box-shadow: 0 3px 34px rgba(0, 0, 0, 0.43);
+        color: #000;
+        text-align: center;
+    }
+
+    .category {
+        padding: 12px 5px;
+        border-bottom: 2px solid #000;
+        background-color: #ff3b41;
+        color: #fff;
+        font-family: 'AgrandirTight', sans-serif;
+        font-weight: 900;
+        text-transform: uppercase;
+
+        &.noBottomBorder {
+            border-bottom: 0;
+        }
+    }
+
+    .dateTitleRow {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        background-color: #fff;
+
+        &.bottomBorder {
+            border-bottom: 2px solid #000;
+        }
+    }
+
+    .date {
+        padding: 5px;
+        background-color: #fff;
+        color: #ff4f46;
+        font-family: 'Agrandir', sans-serif;
+        font-size: 14px;
+
+        &.rightBorder {
+            border-right: 2px solid #000;
+        }
+    }
+
     .title {
+        padding: 7px 20px 5px;
+        background-color: #fff;
+        font-family: 'AgrandirNarrow', sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        text-transform: uppercase;
+
         &.withMargin {
             margin-bottom: 20px;
         }
+    }
+
+    .sponsor {
+        padding: 0.2rem 0.2rem 0.1rem;
+        // border-top: 2px solid #000;
+        background-color: #ff0;
+        font-family: 'Agrandir', sans-serif;
+        font-size: 10px;
+        text-transform: uppercase;
+
+        &.bottomBorder {
+            border-bottom: 2px solid #000;
+        }
+    }
+
+    .description {
+        padding: 5px;
+        background-color: #fff;
+        font-family: 'Roboto', sans-serif;
+        font-size: 12px;
+        text-align: left;
     }
 
     &.isPlaceholder {

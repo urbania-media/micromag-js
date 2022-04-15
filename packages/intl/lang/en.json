@@ -17,6 +17,9 @@
     "+SlKOi": {
         "defaultMessage": "Published message style"
     },
+    "+TPjd4": {
+        "defaultMessage": "Presented by"
+    },
     "+nhSvj": {
         "defaultMessage": "No speaker..."
     },
@@ -64,6 +67,9 @@
     },
     "2ZOPe+": {
         "defaultMessage": "Title"
+    },
+    "2pO2Cj": {
+        "defaultMessage": "Url"
     },
     "31zuCS": {
         "defaultMessage": "Line height"
@@ -239,6 +245,12 @@
     "BpZoQZ": {
         "defaultMessage": "Success"
     },
+    "Bv1Q38": {
+        "defaultMessage": "Sponsor"
+    },
+    "C0PdMc": {
+        "defaultMessage": "Category"
+    },
     "CJmQeh": {
         "defaultMessage": "Image with text"
     },
@@ -259,6 +271,9 @@
     },
     "EDFyUp": {
         "defaultMessage": "Alternative text (accessibility)"
+    },
+    "EQdIAR": {
+        "defaultMessage": "Description"
     },
     "ET527E": {
         "defaultMessage": "Font family"
@@ -307,6 +322,9 @@
     },
     "HseFdk": {
         "defaultMessage": "Edit"
+    },
+    "I0rciL": {
+        "defaultMessage": "Title"
     },
     "I2bIHm": {
         "defaultMessage": "Good answer color"
@@ -458,6 +476,9 @@
     "UdrdRF": {
         "defaultMessage": "Numbers style"
     },
+    "UkZY6Z": {
+        "defaultMessage": "et"
+    },
     "UlZIP8": {
         "defaultMessage": "OK"
     },
@@ -479,6 +500,9 @@
     "W5qWPj": {
         "defaultMessage": "Center"
     },
+    "WY14Zu": {
+        "defaultMessage": "Sponsor"
+    },
     "Wb5zY4": {
         "defaultMessage": "Select a font file..."
     },
@@ -499,6 +523,9 @@
     },
     "XhgKcw": {
         "defaultMessage": "Move the map to position the place"
+    },
+    "Y7bs1v": {
+        "defaultMessage": "Description"
     },
     "YJZtWR": {
         "defaultMessage": "Description"
@@ -641,6 +668,9 @@
     "gRxcTc": {
         "defaultMessage": "Delete screen"
     },
+    "giwFEg": {
+        "defaultMessage": "Date"
+    },
     "gprXiG": {
         "defaultMessage": "Search..."
     },
@@ -706,6 +736,9 @@
     },
     "mOSkbf": {
         "defaultMessage": "Usage"
+    },
+    "mTqU7F": {
+        "defaultMessage": "Category"
     },
     "mXeSkg": {
         "defaultMessage": "Link"
@@ -796,6 +829,9 @@
     },
     "qroLmS": {
         "defaultMessage": "Marker"
+    },
+    "r7IM7J": {
+        "defaultMessage": "Par"
     },
     "rBPIgw": {
         "defaultMessage": "Conversation"
@@ -934,6 +970,9 @@
     },
     "yCXMzz": {
         "defaultMessage": "Close"
+    },
+    "yEG9zh": {
+        "defaultMessage": "Date"
     },
     "z/VBX0": {
         "defaultMessage": "Learn more"

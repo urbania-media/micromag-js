@@ -23,6 +23,10 @@
     "defaultMessage": "Published message style",
     "description": "Published message style field label"
   },
+  "+TPjd4": {
+    "defaultMessage": "Presented by",
+    "description": "Sponsor label"
+  },
   "+nhSvj": {
     "defaultMessage": "No speaker...",
     "description": "Label when there is no item"
@@ -86,6 +90,10 @@
   "2ZOPe+": {
     "defaultMessage": "Title",
     "description": "Title placeholder"
+  },
+  "2pO2Cj": {
+    "defaultMessage": "Url",
+    "description": "Url field label"
   },
   "31zuCS": {
     "defaultMessage": "Line height",
@@ -319,6 +327,14 @@
     "defaultMessage": "Success",
     "description": "Success form message"
   },
+  "Bv1Q38": {
+    "defaultMessage": "Sponsor",
+    "description": "Text placeholder"
+  },
+  "C0PdMc": {
+    "defaultMessage": "Category",
+    "description": "Text field label"
+  },
   "CJmQeh": {
     "defaultMessage": "Image with text",
     "description": "ImageText screen title"
@@ -346,6 +362,10 @@
   "EDFyUp": {
     "defaultMessage": "Alternative text (accessibility)",
     "description": "Media Gallery"
+  },
+  "EQdIAR": {
+    "defaultMessage": "Description",
+    "description": "Text placeholder"
   },
   "ET527E": {
     "defaultMessage": "Font family",
@@ -410,6 +430,10 @@
   "HseFdk": {
     "defaultMessage": "Edit",
     "description": "Button to edit a screen"
+  },
+  "I0rciL": {
+    "defaultMessage": "Title",
+    "description": "Text field label"
   },
   "I2bIHm": {
     "defaultMessage": "Good answer color",
@@ -610,6 +634,10 @@
     "defaultMessage": "Numbers style",
     "description": "Numbers style field label"
   },
+  "UkZY6Z": {
+    "defaultMessage": "et",
+    "description": "Author"
+  },
   "UlZIP8": {
     "defaultMessage": "OK",
     "description": "Items finish edit button label"
@@ -638,6 +666,10 @@
     "defaultMessage": "Center",
     "description": "Field label"
   },
+  "WY14Zu": {
+    "defaultMessage": "Sponsor",
+    "description": "Text field label"
+  },
   "Wb5zY4": {
     "defaultMessage": "Select a font file...",
     "description": "Label when no value"
@@ -665,6 +697,10 @@
   "XhgKcw": {
     "defaultMessage": "Move the map to position the place",
     "description": "Move the map to position the place description"
+  },
+  "Y7bs1v": {
+    "defaultMessage": "Description",
+    "description": "Text field label"
   },
   "YJZtWR": {
     "defaultMessage": "Description",
@@ -854,6 +890,10 @@
     "defaultMessage": "Delete screen",
     "description": "Delete screen button label"
   },
+  "giwFEg": {
+    "defaultMessage": "Date",
+    "description": "Text placeholder"
+  },
   "gprXiG": {
     "defaultMessage": "Search...",
     "description": "Input placeholder"
@@ -941,6 +981,10 @@
   "mOSkbf": {
     "defaultMessage": "Usage",
     "description": "Media label"
+  },
+  "mTqU7F": {
+    "defaultMessage": "Category",
+    "description": "Text placeholder"
   },
   "mXeSkg": {
     "defaultMessage": "Link",
@@ -1059,6 +1103,10 @@
   "qroLmS": {
     "defaultMessage": "Marker",
     "description": "Breadcrumb field label"
+  },
+  "r7IM7J": {
+    "defaultMessage": "Par",
+    "description": "Author"
   },
   "rBPIgw": {
     "defaultMessage": "Conversation",
@@ -1243,6 +1291,10 @@
   "yCXMzz": {
     "defaultMessage": "Close",
     "description": "Close button label in Media Gallery"
+  },
+  "yEG9zh": {
+    "defaultMessage": "Date",
+    "description": "Text field label"
   },
   "z/VBX0": {
     "defaultMessage": "Learn more",

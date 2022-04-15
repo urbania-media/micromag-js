@@ -47,6 +47,12 @@ msgctxt "+SlKOi"
 msgid "Published message style"
 msgstr "Published message style"
 
+# Sponsor label
+#: +TPjd4
+msgctxt "+TPjd4"
+msgid "Presented by"
+msgstr "Presented by"
+
 # Label when there is no item
 #: +nhSvj
 msgctxt "+nhSvj"
@@ -142,6 +148,12 @@ msgstr "Images"
 msgctxt "2ZOPe+"
 msgid "Title"
 msgstr "Title"
+
+# Url field label
+#: 2pO2Cj
+msgctxt "2pO2Cj"
+msgid "Url"
+msgstr "Url"
 
 # Field label
 #: 31zuCS
@@ -491,6 +503,18 @@ msgctxt "BpZoQZ"
 msgid "Success"
 msgstr "Success"
 
+# Text placeholder
+#: Bv1Q38
+msgctxt "Bv1Q38"
+msgid "Sponsor"
+msgstr "Sponsor"
+
+# Text field label
+#: C0PdMc
+msgctxt "C0PdMc"
+msgid "Category"
+msgstr "Category"
+
 # ImageText screen title
 #: CJmQeh
 msgctxt "CJmQeh"
@@ -532,6 +556,12 @@ msgstr "Select a video..."
 msgctxt "EDFyUp"
 msgid "Alternative text (accessibility)"
 msgstr "Alternative text (accessibility)"
+
+# Text placeholder
+#: EQdIAR
+msgctxt "EQdIAR"
+msgid "Description"
+msgstr "Description"
 
 # Field label
 #: ET527E
@@ -628,6 +658,12 @@ msgstr "Highlight"
 msgctxt "HseFdk"
 msgid "Edit"
 msgstr "Edit"
+
+# Text field label
+#: I0rciL
+msgctxt "I0rciL"
+msgid "Title"
+msgstr "Title"
 
 # Field label
 #: I2bIHm
@@ -928,6 +964,12 @@ msgctxt "UdrdRF"
 msgid "Numbers style"
 msgstr "Numbers style"
 
+# Author
+#: UkZY6Z
+msgctxt "UkZY6Z"
+msgid "et"
+msgstr "et"
+
 # Items finish edit button label
 #: UlZIP8
 msgctxt "UlZIP8"
@@ -970,6 +1012,12 @@ msgctxt "W5qWPj"
 msgid "Center"
 msgstr "Center"
 
+# Text field label
+#: WY14Zu
+msgctxt "WY14Zu"
+msgid "Sponsor"
+msgstr "Sponsor"
+
 # Label when no value
 #: Wb5zY4
 msgctxt "Wb5zY4"
@@ -1011,6 +1059,12 @@ msgstr "Gallery feed with captions"
 msgctxt "XhgKcw"
 msgid "Move the map to position the place"
 msgstr "Move the map to position the place"
+
+# Text field label
+#: Y7bs1v
+msgctxt "Y7bs1v"
+msgid "Description"
+msgstr "Description"
 
 # Description in Media Gallery
 #: YJZtWR
@@ -1294,6 +1348,12 @@ msgctxt "gRxcTc"
 msgid "Delete screen"
 msgstr "Delete screen"
 
+# Text placeholder
+#: giwFEg
+msgctxt "giwFEg"
+msgid "Date"
+msgstr "Date"
+
 # Input placeholder
 #: gprXiG
 msgctxt "gprXiG"
@@ -1425,6 +1485,12 @@ msgstr "Size"
 msgctxt "mOSkbf"
 msgid "Usage"
 msgstr "Usage"
+
+# Text placeholder
+#: mTqU7F
+msgctxt "mTqU7F"
+msgid "Category"
+msgstr "Category"
 
 # Field label
 #: mXeSkg
@@ -1603,6 +1669,12 @@ msgstr "Pop-up window"
 msgctxt "qroLmS"
 msgid "Marker"
 msgstr "Marker"
+
+# Author
+#: r7IM7J
+msgctxt "r7IM7J"
+msgid "Par"
+msgstr "Par"
 
 # Conversation screen title
 #: rBPIgw
@@ -1879,6 +1951,12 @@ msgstr "Advanced settings"
 msgctxt "yCXMzz"
 msgid "Close"
 msgstr "Close"
+
+# Text field label
+#: yEG9zh
+msgctxt "yEG9zh"
+msgid "Date"
+msgstr "Date"
 
 # Call to action default label
 #: z/VBX0

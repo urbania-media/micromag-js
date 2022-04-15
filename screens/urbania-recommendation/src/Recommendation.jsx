@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
@@ -16,13 +16,11 @@ import Text from '@micromag/element-text';
 import styles from './styles.module.scss';
 
 const propTypes = {
-    text: MicromagPropTypes.textElement,
-    title: MicromagPropTypes.headingElement,
-    category: MicromagPropTypes.textElement,
+    category: MicromagPropTypes.headingElement,
     date: MicromagPropTypes.textElement,
+    title: MicromagPropTypes.headingElement,
     sponsor: MicromagPropTypes.textElement,
     description: MicromagPropTypes.textElement,
-    withTitle: PropTypes.bool,
     spacing: PropTypes.number,
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
@@ -34,13 +32,11 @@ const propTypes = {
 };
 
 const defaultProps = {
-    text: null,
-    title: null,
     category: null,
     date: null,
+    title: null,
     sponsor: null,
     description: null,
-    withTitle: false,
     spacing: 20,
     background: null,
     callToAction: null,
@@ -52,13 +48,11 @@ const defaultProps = {
 };
 
 const Recommendation = ({
-    text,
-    title,
     category,
     date,
+    title,
     sponsor,
     description,
-    withTitle,
     spacing,
     background,
     callToAction,
@@ -74,10 +68,17 @@ const Recommendation = ({
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
 
+    const hasCategory = isTextFilled(category);
+    const hasDate = isTextFilled(date);
     const hasTitle = isTextFilled(title);
-    const hasText = isTextFilled(text);
+    const hasSponsor = isTextFilled(sponsor);
+    const hasDescription = isTextFilled(description);
 
-    const titleWithMargin = hasTitle && hasText;
+    const onlyCategory = hasCategory && !hasDate && !hasTitle && !hasSponsor && !hasDescription;
+
+    const hasTextCard = hasCategory || hasDate || hasTitle || hasSponsor || hasDescription;
+
+    // const titleWithMargin = hasTitle && hasText;
 
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
@@ -85,92 +86,150 @@ const Recommendation = ({
     const backgroundShouldLoad = current || active || !isView;
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
+    useMemo(() => {
+        console.log(
+            `hasCategory: ${hasCategory}, hasDate: ${hasDate}, hasTitle ${hasTitle}, hasSponsor: ${hasSponsor}, hasDescription: ${hasDescription}, hasTextCard: ${hasTextCard}`,
+        );
+    }, [hasCategory, hasDate, hasTitle, hasSponsor, hasDescription, hasTextCard]);
 
     // Create elements
     const items = [
         !isPlaceholder && hasCallToAction ? <Spacer key="spacer-cta-top" /> : null,
-        withTitle ? (
-            <ScreenElement
-                key="title"
-                placeholder="title"
-                emptyLabel={
-                    <FormattedMessage defaultMessage="Title" description="Title placeholder" />
-                }
-                emptyClassName={styles.emptyTitle}
-                isEmpty={!hasTitle}
-            >
-                {hasTitle ? (
-                    <Heading
-                        className={classNames([
-                            styles.title,
-                            { [styles.withMargin]: titleWithMargin },
-                        ])}
-                        {...title}
-                    />
+        <Spacer key="spacer-cta-top" />,
+        hasTextCard ? (
+            <Container className={styles.textCard} style={{ border: '1px solid red' }}>
+                {/* // CATEGORY */}
+                {hasCategory ? (
+                    <ScreenElement
+                        key="category"
+                        placeholder="text"
+                        emptyLabel={
+                            <FormattedMessage
+                                defaultMessage="Category"
+                                description="Text placeholder"
+                            />
+                        }
+                        emptyClassName={styles.emptyText}
+                        isEmpty={!hasCategory}
+                    >
+                        <Heading
+                            className={classNames([
+                                styles.category,
+                                {
+                                    [className]: className !== null,
+                                    [styles.noBottomBorder]: onlyCategory,
+                                },
+                            ])}
+                            {...category}
+                        />
+                    </ScreenElement>
                 ) : null}
-            </ScreenElement>
+                {hasDate || hasTitle ? (
+                    <div
+                        className={classNames([
+                            styles.dateTitleRow,
+                            {
+                                [className]: className !== null,
+                                [styles.bottomBorder]:
+                                    hasSponsor || (!hasSponsor && hasDescription),
+                            },
+                        ])}
+                    >
+                        {/* // DATE */}
+                        {hasDate ? (
+                            <ScreenElement
+                                key="date"
+                                placeholder="text"
+                                emptyLabel={
+                                    <FormattedMessage
+                                        defaultMessage="Date"
+                                        description="Text placeholder"
+                                    />
+                                }
+                                emptyClassName={styles.emptyText}
+                                isEmpty={!hasDate}
+                            >
+                                <Text
+                                    className={classNames([
+                                        styles.date,
+                                        {
+                                            [className]: className !== null,
+                                            [styles.rightBorder]: hasTitle,
+                                        },
+                                    ])}
+                                    {...date}
+                                />
+                            </ScreenElement>
+                        ) : null}
+                        {/* // TITLE */}
+                        <ScreenElement
+                            key="title"
+                            placeholder="title"
+                            emptyLabel={
+                                <FormattedMessage
+                                    defaultMessage="Title"
+                                    description="Title placeholder"
+                                />
+                            }
+                            emptyClassName={styles.emptyTitle}
+                            isEmpty={!hasTitle}
+                        >
+                            <Heading
+                                // className={classNames([styles.title, { [styles.withMargin]: titleWithMargin }])}
+                                className={styles.title}
+                                {...title}
+                            />
+                        </ScreenElement>
+                    </div>
+                ) : null}
+                {/* // SPONSOR */}
+                {hasSponsor ? (
+                    <ScreenElement
+                        key="sponsor"
+                        placeholder="text"
+                        emptyLabel={
+                            <FormattedMessage
+                                defaultMessage="Sponsor"
+                                description="Text placeholder"
+                            />
+                        }
+                        emptyClassName={styles.emptyText}
+                        isEmpty={!hasSponsor}
+                    >
+                        <Text
+                            className={classNames([
+                                styles.sponsor,
+                                {
+                                    [className]: className !== null,
+                                    [styles.bottomBorder]: hasDescription,
+                                },
+                            ])}
+                            {...sponsor}
+                        />
+                    </ScreenElement>
+                ) : null}
+
+                {/* // DESCRIPTION */}
+                {hasDescription ? (
+                    <ScreenElement
+                        key="description"
+                        placeholder="text"
+                        emptyLabel={
+                            <FormattedMessage
+                                defaultMessage="Description"
+                                description="Text placeholder"
+                            />
+                        }
+                        emptyClassName={styles.emptyText}
+                        isEmpty={!hasDescription}
+                    >
+                        <Text className={styles.description} {...description} />
+                    </ScreenElement>
+                ) : null}
+            </Container>
         ) : null,
-
-        <ScreenElement
-            key="description"
-            placeholder="text"
-            emptyLabel={<FormattedMessage defaultMessage="Text" description="Text placeholder" />}
-            emptyClassName={styles.emptyText}
-            isEmpty={!hasText}
-        >
-            {hasText ? <Text className={styles.text} {...text} /> : null}
-        </ScreenElement>,
-
-        // CATEGORY
-        <ScreenElement
-            key="category"
-            placeholder="text"
-            emptyLabel={
-                <FormattedMessage defaultMessage="Category" description="Text placeholder" />
-            }
-            emptyClassName={styles.emptyText}
-            isEmpty={!hasText}
-        >
-            <Text className={styles.text} {...category} />
-        </ScreenElement>,
-
-        // DATE
-        <ScreenElement
-            key="date"
-            placeholder="text"
-            emptyLabel={<FormattedMessage defaultMessage="Date" description="Text placeholder" />}
-            emptyClassName={styles.emptyText}
-            isEmpty={!hasText}
-        >
-            <Text className={styles.text} {...date} />
-        </ScreenElement>,
-
-        // SPONSOR
-        <ScreenElement
-            key="sponsor"
-            placeholder="text"
-            emptyLabel={
-                <FormattedMessage defaultMessage="Sponsor" description="Text placeholder" />
-            }
-            emptyClassName={styles.emptyText}
-            isEmpty={!hasText}
-        >
-            <Text className={styles.text} {...sponsor} />
-        </ScreenElement>,
-
-        // DESCRIPTION
-        <ScreenElement
-            key="description"
-            placeholder="text"
-            emptyLabel={
-                <FormattedMessage defaultMessage="Description" description="Text placeholder" />
-            }
-            emptyClassName={styles.emptyText}
-            isEmpty={!hasText}
-        >
-            <Text className={styles.text} {...description} />
-        </ScreenElement>,
         !isPlaceholder && hasCallToAction ? <Spacer key="spacer-cta-bottom" /> : null,
+        <Spacer key="spacer-cta-bottom" />,
         !isPlaceholder && hasCallToAction ? (
             <div style={{ margin: -spacing, marginTop: 0 }} key="call-to-action">
                 <CallToAction
@@ -231,7 +290,6 @@ const Recommendation = ({
     );
 };
 
-Recommendation.propTypes = propTypes;
 Recommendation.defaultProps = defaultProps;
 
 export default React.memo(Recommendation);

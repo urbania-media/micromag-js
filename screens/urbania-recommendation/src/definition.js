@@ -20,13 +20,13 @@ export default [
         fields: [
             {
                 name: 'category',
-                type: 'text-element',
+                type: 'heading-element',
                 theme: {
-                    textStyle: 'text',
+                    textStyle: 'heading1',
                 },
                 label: defineMessage({
                     defaultMessage: 'Category',
-                    description: 'Text field label',
+                    description: 'Title field label',
                 }),
             },
             {
@@ -42,13 +42,13 @@ export default [
             },
             {
                 name: 'title',
-                type: 'text-element',
+                type: 'heading-element',
                 theme: {
-                    textStyle: 'text',
+                    textStyle: 'heading1',
                 },
                 label: defineMessage({
                     defaultMessage: 'Title',
-                    description: 'Text field label',
+                    description: 'Title field label',
                 }),
             },
             {
