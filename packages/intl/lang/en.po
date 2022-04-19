@@ -257,6 +257,12 @@ msgctxt "4fHMVj"
 msgid "Tags"
 msgstr "Tags"
 
+# Title field label
+#: 4grcMU
+msgctxt "4grcMU"
+msgid "Category"
+msgstr "Category"
+
 # Layout field label
 #: 4iBXj2
 msgctxt "4iBXj2"
@@ -509,12 +515,6 @@ msgctxt "Bv1Q38"
 msgid "Sponsor"
 msgstr "Sponsor"
 
-# Text field label
-#: C0PdMc
-msgctxt "C0PdMc"
-msgid "Category"
-msgstr "Category"
-
 # ImageText screen title
 #: CJmQeh
 msgctxt "CJmQeh"
@@ -658,12 +658,6 @@ msgstr "Highlight"
 msgctxt "HseFdk"
 msgid "Edit"
 msgstr "Edit"
-
-# Text field label
-#: I0rciL
-msgctxt "I0rciL"
-msgid "Title"
-msgstr "Title"
 
 # Field label
 #: I2bIHm

@@ -24,21 +24,25 @@
     .textCard {
         display: flex;
         flex-direction: column;
-        max-height: 90%;
-        overflow: none;
         border: 2px solid #000;
         border-radius: 17px;
         box-shadow: 0 3px 34px rgba(0, 0, 0, 0.43);
         color: #000;
         text-align: center;
+
+        &.isPlaceholder {
+            height: 200px;
+            background-color: $gray-500;
+        }
     }
 
     .category {
-        padding: 12px 5px;
+        padding: 14px 10px 12px;
         border-bottom: 2px solid #000;
         background-color: #ff3b41;
         color: #fff;
         font-family: 'AgrandirTight', sans-serif;
+        font-size: 28px;
         font-weight: 900;
         text-transform: uppercase;
 
@@ -47,8 +51,14 @@
         }
     }
 
+    .categoryPlaceholder {
+        padding: 10px;
+        background-color: $gray-800;
+    }
+
     .dateTitleRow {
         display: flex;
+        align-items: center;
         justify-content: center;
         width: 100%;
         background-color: #fff;
@@ -56,36 +66,58 @@
         &.bottomBorder {
             border-bottom: 2px solid #000;
         }
+
+        &.isPlaceholder {
+            margin-left: 2px;
+            padding: 10px;
+            background-color: $gray-200;
+        }
     }
 
-    .date {
-        padding: 5px;
-        background-color: #fff;
-        color: #ff4f46;
-        font-family: 'Agrandir', sans-serif;
-        font-size: 14px;
+    .dateContainer {
+        min-width: 25%;
+        max-width: 50%;
+        height: inherit;
+        padding: 15px 10px;
+        text-align: left;
 
         &.rightBorder {
             border-right: 2px solid #000;
         }
     }
 
+    .date {
+        color: #ff4f46;
+        font-family: 'Agrandir', sans-serif;
+        font-size: 12px;
+
+        &.centerDate {
+            text-align: center;
+        }
+    }
+
+    .titleContainer {
+        // padding: 15px 10px;
+        max-width: 75%;
+        overflow-wrap: break-word;
+
+        &.leftBorder {
+            margin-right: -2px;
+            margin-left: -2px;
+            border-left: 2px solid #000;
+        }
+    }
+
     .title {
-        padding: 7px 20px 5px;
-        background-color: #fff;
+        padding: 15px 30px 13px;
         font-family: 'AgrandirNarrow', sans-serif;
         font-size: 24px;
         font-weight: 700;
         text-transform: uppercase;
-
-        &.withMargin {
-            margin-bottom: 20px;
-        }
     }
 
     .sponsor {
-        padding: 0.2rem 0.2rem 0.1rem;
-        // border-top: 2px solid #000;
+        padding: 5px 10px;
         background-color: #ff0;
         font-family: 'Agrandir', sans-serif;
         font-size: 10px;
@@ -96,12 +128,21 @@
         }
     }
 
+    .sponsorPlaceholder {
+        padding: 10px;
+    }
+
     .description {
-        padding: 5px;
+        padding: 10px;
         background-color: #fff;
         font-family: 'Roboto', sans-serif;
         font-size: 12px;
         text-align: left;
+    }
+
+    .descriptionPlaceholder {
+        padding: 10px;
+        padding-bottom: 30px;
     }
 
     &.isPlaceholder {

@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useResizeObserver } from '@micromag/core/hooks';
 import { useScroll } from '@use-gesture/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
+import { useResizeObserver } from '@micromag/core/hooks';
 import styles from './styles.module.scss';
 
 const propTypes = {

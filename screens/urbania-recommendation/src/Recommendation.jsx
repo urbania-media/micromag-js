@@ -1,17 +1,24 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useMemo } from 'react';
+import React, { useState, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { ScreenElement, TransitionsStagger } from '@micromag/core/components';
+import {
+    PlaceholderText,
+    PlaceholderTitle,
+    ScreenElement,
+    TransitionsStagger,
+} from '@micromag/core/components';
 import { useScreenSize, useScreenRenderContext, useViewer } from '@micromag/core/contexts';
+import { useTrackScreenEvent } from '@micromag/core/hooks';
 import { isTextFilled } from '@micromag/core/utils';
 import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Layout, { Spacer } from '@micromag/element-layout';
+import Scroll from '@micromag/element-scroll';
 import Text from '@micromag/element-text';
 import styles from './styles.module.scss';
 
@@ -62,6 +69,8 @@ const Recommendation = ({
     transitionStagger,
     className,
 }) => {
+    const trackScreenEvent = useTrackScreenEvent();
+
     const { width, height, menuOverScreen } = useScreenSize();
     const { menuSize } = useViewer();
 
@@ -78,40 +87,57 @@ const Recommendation = ({
 
     const hasTextCard = hasCategory || hasDate || hasTitle || hasSponsor || hasDescription;
 
-    // const titleWithMargin = hasTitle && hasText;
-
     const transitionPlaying = current;
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
+    const scrollingDisabled = (!isEdit && transitionDisabled) || !current;
+
     const backgroundPlaying = current && (isView || isEdit);
     const backgroundShouldLoad = current || active || !isView;
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
-    useMemo(() => {
-        console.log(
-            `hasCategory: ${hasCategory}, hasDate: ${hasDate}, hasTitle ${hasTitle}, hasSponsor: ${hasSponsor}, hasDescription: ${hasDescription}, hasTextCard: ${hasTextCard}`,
-        );
-    }, [hasCategory, hasDate, hasTitle, hasSponsor, hasDescription, hasTextCard]);
+    const [scrolledBottom, setScrolledBottom] = useState(false);
+
+    const onScrolledBottom = useCallback(
+        ({ initial }) => {
+            if (initial) {
+                trackScreenEvent('scroll', 'Screen');
+            }
+            setScrolledBottom(true);
+        },
+        [trackScreenEvent],
+    );
+
+    const onScrolledNotBottom = useCallback(() => {
+        setScrolledBottom(false);
+    }, [setScrolledBottom]);
 
     // Create elements
     const items = [
-        !isPlaceholder && hasCallToAction ? <Spacer key="spacer-cta-top" /> : null,
-        <Spacer key="spacer-cta-top" />,
-        hasTextCard ? (
-            <Container className={styles.textCard} style={{ border: '1px solid red' }}>
+        !isPlaceholder ? <Spacer key="spacer-cta-top" /> : null,
+        hasTextCard || isPlaceholder ? (
+            <Container
+                className={classNames([
+                    styles.textCard,
+                    {
+                        [className]: className !== null,
+                        [styles.isPlaceholder]: isPlaceholder,
+                    },
+                ])}
+            >
                 {/* // CATEGORY */}
-                {hasCategory ? (
-                    <ScreenElement
-                        key="category"
-                        placeholder="text"
-                        emptyLabel={
-                            <FormattedMessage
-                                defaultMessage="Category"
-                                description="Text placeholder"
-                            />
-                        }
-                        emptyClassName={styles.emptyText}
-                        isEmpty={!hasCategory}
-                    >
+                <ScreenElement
+                    key="category"
+                    placeholder={<PlaceholderTitle className={styles.categoryPlaceholder} />}
+                    emptyLabel={
+                        <FormattedMessage
+                            defaultMessage="Category"
+                            description="Category placeholder"
+                        />
+                    }
+                    emptyClassName={styles.emptyText}
+                    isEmpty={!hasCategory}
+                >
+                    {hasCategory ? (
                         <Heading
                             className={classNames([
                                 styles.category,
@@ -122,9 +148,9 @@ const Recommendation = ({
                             ])}
                             {...category}
                         />
-                    </ScreenElement>
-                ) : null}
-                {hasDate || hasTitle ? (
+                    ) : null}
+                </ScreenElement>
+                {hasDate || hasTitle || isPlaceholder ? (
                     <div
                         className={classNames([
                             styles.dateTitleRow,
@@ -132,35 +158,46 @@ const Recommendation = ({
                                 [className]: className !== null,
                                 [styles.bottomBorder]:
                                     hasSponsor || (!hasSponsor && hasDescription),
+                                [styles.isPlaceholder]: isPlaceholder,
                             },
                         ])}
                     >
                         {/* // DATE */}
-                        {hasDate ? (
-                            <ScreenElement
-                                key="date"
-                                placeholder="text"
-                                emptyLabel={
-                                    <FormattedMessage
-                                        defaultMessage="Date"
-                                        description="Text placeholder"
-                                    />
-                                }
-                                emptyClassName={styles.emptyText}
-                                isEmpty={!hasDate}
-                            >
-                                <Text
+                        <ScreenElement
+                            key="date"
+                            placeholder={<PlaceholderText className={styles.datePlaceholder} />}
+                            emptyLabel={
+                                <FormattedMessage
+                                    defaultMessage="Date"
+                                    description="Date placeholder"
+                                />
+                            }
+                            emptyClassName={styles.emptyText}
+                            isEmpty={!hasDate}
+                        >
+                            {hasDate ? (
+                                <div
                                     className={classNames([
-                                        styles.date,
+                                        styles.dateContainer,
                                         {
                                             [className]: className !== null,
                                             [styles.rightBorder]: hasTitle,
                                         },
                                     ])}
-                                    {...date}
-                                />
-                            </ScreenElement>
-                        ) : null}
+                                >
+                                    <Text
+                                        className={classNames([
+                                            styles.date,
+                                            {
+                                                [className]: className !== null,
+                                                [styles.centerDate]: !hasTitle,
+                                            },
+                                        ])}
+                                        {...date}
+                                    />
+                                </div>
+                            ) : null}
+                        </ScreenElement>
                         {/* // TITLE */}
                         <ScreenElement
                             key="title"
@@ -174,28 +211,33 @@ const Recommendation = ({
                             emptyClassName={styles.emptyTitle}
                             isEmpty={!hasTitle}
                         >
-                            <Heading
-                                // className={classNames([styles.title, { [styles.withMargin]: titleWithMargin }])}
-                                className={styles.title}
-                                {...title}
-                            />
+                            {hasTitle ? (
+                                <div
+                                    className={classNames([
+                                        styles.titleContainer,
+                                        {
+                                            [className]: className !== null,
+                                            [styles.leftBorder]: hasDate,
+                                        },
+                                    ])}
+                                >
+                                    <Heading className={styles.title} {...title} />
+                                </div>
+                            ) : null}
                         </ScreenElement>
                     </div>
                 ) : null}
                 {/* // SPONSOR */}
-                {hasSponsor ? (
-                    <ScreenElement
-                        key="sponsor"
-                        placeholder="text"
-                        emptyLabel={
-                            <FormattedMessage
-                                defaultMessage="Sponsor"
-                                description="Text placeholder"
-                            />
-                        }
-                        emptyClassName={styles.emptyText}
-                        isEmpty={!hasSponsor}
-                    >
+                <ScreenElement
+                    key="sponsor"
+                    placeholder={<PlaceholderText className={styles.sponsorPlaceholder} />}
+                    emptyLabel={
+                        <FormattedMessage defaultMessage="Sponsor" description="Text placeholder" />
+                    }
+                    emptyClassName={styles.emptyText}
+                    isEmpty={!hasSponsor}
+                >
+                    {hasSponsor ? (
                         <Text
                             className={classNames([
                                 styles.sponsor,
@@ -206,34 +248,34 @@ const Recommendation = ({
                             ])}
                             {...sponsor}
                         />
-                    </ScreenElement>
-                ) : null}
+                    ) : null}
+                </ScreenElement>
 
                 {/* // DESCRIPTION */}
-                {hasDescription ? (
-                    <ScreenElement
-                        key="description"
-                        placeholder="text"
-                        emptyLabel={
-                            <FormattedMessage
-                                defaultMessage="Description"
-                                description="Text placeholder"
-                            />
-                        }
-                        emptyClassName={styles.emptyText}
-                        isEmpty={!hasDescription}
-                    >
+                <ScreenElement
+                    key="description"
+                    placeholder={<PlaceholderText className={styles.descriptionPlaceholder} />}
+                    emptyLabel={
+                        <FormattedMessage
+                            defaultMessage="Description"
+                            description="Text placeholder"
+                        />
+                    }
+                    emptyClassName={styles.emptyText}
+                    isEmpty={!hasDescription}
+                >
+                    {hasDescription ? (
                         <Text className={styles.description} {...description} />
-                    </ScreenElement>
-                ) : null}
+                    ) : null}
+                </ScreenElement>
             </Container>
         ) : null,
-        !isPlaceholder && hasCallToAction ? <Spacer key="spacer-cta-bottom" /> : null,
-        <Spacer key="spacer-cta-bottom" />,
+        !isPlaceholder ? <Spacer key="spacer-cta-bottom" /> : null,
         !isPlaceholder && hasCallToAction ? (
-            <div style={{ margin: -spacing, marginTop: 0 }} key="call-to-action">
+            <div style={{ margin: -spacing, marginTop: '10px' }} key="call-to-action">
                 <CallToAction
                     callToAction={callToAction}
+                    disabled={!scrolledBottom}
                     animationDisabled={isPreview}
                     focusable={current && isView}
                     screenSize={{ width, height }}
@@ -263,33 +305,40 @@ const Recommendation = ({
                 />
             ) : null}
             <Container width={width} height={height}>
-                <Layout
-                    className={styles.layout}
-                    fullscreen
-                    style={
-                        !isPlaceholder
-                            ? {
-                                  padding: spacing,
-                                  paddingTop:
-                                      (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
-                              }
-                            : null
-                    }
+                <Scroll
+                    disabled={scrollingDisabled}
+                    onScrolledBottom={onScrolledBottom}
+                    onScrolledNotBottom={onScrolledNotBottom}
+                    verticalAlign="middle"
                 >
-                    <TransitionsStagger
-                        transitions={transitions}
-                        stagger={transitionStagger}
-                        disabled={transitionDisabled}
-                        playing={transitionPlaying}
+                    <Layout
+                        className={styles.layout}
+                        style={
+                            !isPlaceholder
+                                ? {
+                                      padding: spacing,
+                                      paddingTop:
+                                          (menuOverScreen && !isPreview ? menuSize : 0) + spacing,
+                                  }
+                                : null
+                        }
                     >
-                        {items}
-                    </TransitionsStagger>
-                </Layout>
+                        <TransitionsStagger
+                            transitions={transitions}
+                            stagger={transitionStagger}
+                            disabled={transitionDisabled}
+                            playing={transitionPlaying}
+                        >
+                            {items}
+                        </TransitionsStagger>
+                    </Layout>
+                </Scroll>
             </Container>
         </div>
     );
 };
 
+Recommendation.propTypes = propTypes;
 Recommendation.defaultProps = defaultProps;
 
 export default React.memo(Recommendation);

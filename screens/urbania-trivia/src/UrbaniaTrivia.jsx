@@ -370,7 +370,7 @@ const UrbaniaTrivia = ({
                 className={styles.videoScreenElement}
                 placeholder={
                     <PlaceholderVideo
-                        className={styles.placeholder}
+                        className={styles.videoPlaceholder}
                         height="300px"
                         {...placeholderProps}
                     />

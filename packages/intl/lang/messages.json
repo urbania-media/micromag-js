@@ -163,6 +163,10 @@
     "defaultMessage": "Tags",
     "description": "Tags in Media Gallery"
   },
+  "4grcMU": {
+    "defaultMessage": "Category",
+    "description": "Title field label"
+  },
   "4iBXj2": {
     "defaultMessage": "Layout",
     "description": "Layout field label"
@@ -331,10 +335,6 @@
     "defaultMessage": "Sponsor",
     "description": "Text placeholder"
   },
-  "C0PdMc": {
-    "defaultMessage": "Category",
-    "description": "Text field label"
-  },
   "CJmQeh": {
     "defaultMessage": "Image with text",
     "description": "ImageText screen title"
@@ -430,10 +430,6 @@
   "HseFdk": {
     "defaultMessage": "Edit",
     "description": "Button to edit a screen"
-  },
-  "I0rciL": {
-    "defaultMessage": "Title",
-    "description": "Text field label"
   },
   "I2bIHm": {
     "defaultMessage": "Good answer color",

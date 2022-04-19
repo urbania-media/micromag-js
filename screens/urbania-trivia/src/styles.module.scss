@@ -113,6 +113,12 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        mix-blend-mode: normal;
+    }
+
+    .videoPlaceholder {
+        mix-blend-mode: normal;
+        background-color: $gray-500;
     }
 
     .bottomContent {
