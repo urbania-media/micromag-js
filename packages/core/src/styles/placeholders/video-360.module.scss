@@ -3,7 +3,6 @@
 @import '../mixins';
 
 .container {
-
     .box {
         flex-direction: column;
     }
@@ -14,7 +13,7 @@
     }
 
     .label {
-        font-size: 0.75em;
         color: $black;
+        font-size: 0.75em;
     }
 }

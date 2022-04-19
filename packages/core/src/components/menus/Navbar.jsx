@@ -2,6 +2,7 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState, useCallback } from 'react';
+import styles from '../../styles/menus/navbar.module.scss';
 import Button from '../buttons/Button';
 import Link from '../partials/Link';
 
@@ -136,6 +137,7 @@ const Navbar = ({
                         className={classNames([
                             'navbar-collapse',
                             'collapse',
+                            styles.collapse,
                             {
                                 show: menuVisible,
                             },

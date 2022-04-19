@@ -60,7 +60,7 @@ const defaultProps = {
     background: null,
     callToAction: null,
     withPercentLabels: true,
-    withoutResults: true,
+    withoutResults: false,
     current: true,
     active: true,
     transitions: null,

@@ -1,0 +1,9 @@
+.collapse {
+    flex-basis: initial;
+    flex-grow: initial;
+
+    @media screen and (min-width: 768px) {
+        flex-basis: 100%;
+        flex-grow: 1;
+    }
+}
