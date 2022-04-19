@@ -947,6 +947,12 @@ msgid "Upload an image"
 msgstr "Téléverser une image"
 
 # Field label
+#: W3aj7x
+msgctxt "W3aj7x"
+msgid "Without results"
+msgstr "Sans résultats"
+
+# Field label
 #: W5qWPj
 msgctxt "W5qWPj"
 msgid "Center"
@@ -1548,7 +1554,7 @@ msgstr "Barre"
 #: qmIJjc
 msgctxt "qmIJjc"
 msgid "Pop-up window"
-msgstr ""
+msgstr "Fenêtre pop-up"
 
 # Breadcrumb field label
 #: qroLmS
@@ -1650,7 +1656,7 @@ msgstr "Forme du point"
 #: u/LEHI
 msgctxt "u/LEHI"
 msgid "With time"
-msgstr ""
+msgstr "Avec temps"
 
 # Field label
 #: u3ok54

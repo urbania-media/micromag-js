@@ -15,10 +15,12 @@ const propTypes = {
     compact: PropTypes.bool,
     noWrap: PropTypes.bool,
     withoutCollapse: PropTypes.bool,
+    withoutCollapseToggle: PropTypes.bool,
     children: PropTypes.node,
     className: PropTypes.string,
     brandClassName: PropTypes.string,
     breadCrumbsClassName: PropTypes.string,
+    collapseClassName: PropTypes.string,
 };
 
 const defaultProps = {
@@ -30,10 +32,12 @@ const defaultProps = {
     compact: false,
     noWrap: false,
     withoutCollapse: false,
+    withoutCollapseToggle: false,
     children: null,
     className: null,
     brandClassName: null,
     breadCrumbsClassName: null,
+    collapseClassName: null,
 };
 
 const Navbar = ({
@@ -45,10 +49,12 @@ const Navbar = ({
     compact,
     noWrap,
     withoutCollapse,
+    withoutCollapseToggle,
     children,
     className,
     brandClassName,
     breadCrumbsClassName,
+    collapseClassName,
 }) => {
     const [menuVisible, setMenuVisible] = useState(false);
     const onClickMenu = useCallback(
@@ -120,7 +126,7 @@ const Navbar = ({
                         {breadcrumbs}
                     </span>
                 ) : null}
-                {!withoutCollapse ? (
+                {!withoutCollapse && !withoutCollapseToggle ? (
                     <Button
                         className="navbar-toggler"
                         onClick={onClickMenu}
@@ -139,6 +145,7 @@ const Navbar = ({
                             'collapse',
                             styles.collapse,
                             {
+                                [collapseClassName]: collapseClassName !== null,
                                 show: menuVisible,
                             },
                         ])}

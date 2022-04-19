@@ -622,6 +622,10 @@
     "defaultMessage": "Upload an image",
     "description": "Upload button label in Media Gallery"
   },
+  "W3aj7x": {
+    "defaultMessage": "Without results",
+    "description": "Field label"
+  },
   "W5qWPj": {
     "defaultMessage": "Center",
     "description": "Field label"

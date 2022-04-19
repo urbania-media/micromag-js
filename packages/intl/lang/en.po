@@ -947,6 +947,12 @@ msgid "Upload an image"
 msgstr "Upload an image"
 
 # Field label
+#: W3aj7x
+msgctxt "W3aj7x"
+msgid "Without results"
+msgstr "Without results"
+
+# Field label
 #: W5qWPj
 msgctxt "W5qWPj"
 msgid "Center"
