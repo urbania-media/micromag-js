@@ -19,6 +19,7 @@ const propTypes = {
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     closeable: PropTypes.bool,
     onClose: PropTypes.func,
+    hidden: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -29,10 +30,11 @@ const defaultProps = {
     height: null,
     closeable: false,
     onClose: null,
+    hidden: false,
     className: null,
 };
 
-function WebView({ iframeRef, src, width, height, closeable, onClose, className }) {
+function WebView({ iframeRef, src, width, height, closeable, onClose, hidden, className }) {
     return (
         <div
             className={classNames([
@@ -51,7 +53,9 @@ function WebView({ iframeRef, src, width, height, closeable, onClose, className 
                     </Button>
                 </div>
             ) : null}
-            <iframe className={styles.iframe} ref={iframeRef} title="Popup" src={src} />
+            {!hidden ? (
+                <iframe className={styles.iframe} ref={iframeRef} title="Popup" src={src} />
+            ) : null}
         </div>
     );
 }

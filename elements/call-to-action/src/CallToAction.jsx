@@ -62,6 +62,8 @@ function CallToAction({
     } = callToAction || {};
 
     const [showWebView, setShowWebView] = useState(false);
+    const [disableWebView, setDisabledWebView] = useState(true);
+
     const swipeUpEnabled = type === null || type === 'swipe-up';
     const validUrl = useMemo(() => isValidUrl(url), [url]);
     const buttonRef = useRef(null);
@@ -85,6 +87,7 @@ function CallToAction({
             if (my < -dragAmount) {
                 if (inWebView) {
                     setShowWebView(true);
+                    setDisabledWebView(false);
                 } else if (isIos()) {
                     selfTargetLinkRef.current.click();
                     setLeaving(true);
@@ -105,9 +108,26 @@ function CallToAction({
         };
     }, [setLeaving]);
 
+    useEffect(() => {
+        let id = null;
+        if (inWebView) {
+            if (showWebView) {
+                setDisabledWebView(false);
+            } else {
+                id = setTimeout(() => {
+                    setDisabledWebView(true);
+                }, 300);
+            }
+        }
+        return () => {
+            clearTimeout(id);
+        };
+    }, [showWebView, setDisabledWebView]);
+
     const onOpenWebView = useCallback(() => {
         setShowWebView(true);
-    }, [setShowWebView]);
+        setDisabledWebView(false);
+    }, [setShowWebView, setDisabledWebView]);
 
     const onCloseWebView = useCallback(() => {
         setShowWebView(false);
@@ -173,6 +193,7 @@ function CallToAction({
                     ])}
                     src={url}
                     closeable
+                    hidden={disableWebView}
                     onClose={onCloseWebView}
                     {...screenSize}
                 />

@@ -1,5 +1,4 @@
 import { defineMessage } from 'react-intl';
-
 import SurveyScreen from './Survey';
 
 export default {
@@ -50,9 +49,17 @@ export default {
             label: defineMessage({
                 defaultMessage: 'Answers',
                 description: 'Field label',
-            })
+            }),
         },
-
+        {
+            name: 'withoutResult',
+            type: 'toggle',
+            defaultValue: false,
+            label: defineMessage({
+                defaultMessage: 'Without results',
+                description: 'Field label',
+            }),
+        },
         {
             type: 'fields',
             isList: true,
@@ -67,7 +74,7 @@ export default {
                     label: defineMessage({
                         defaultMessage: 'Buttons',
                         description: 'Field label',
-                    })
+                    }),
                 },
                 {
                     name: 'resultsStyle',
@@ -82,7 +89,7 @@ export default {
                     }),
                     field: {
                         type: 'graph-bar-style',
-                    }
+                    },
                 },
             ],
         },

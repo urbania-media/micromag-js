@@ -98,12 +98,12 @@
     }
 
     .button {
-        position: relative;
         display: flex;
+        position: relative;
         width: 100%;
         padding: 0;
-        border: 2px solid $gray-600;
         transition: opacity 500ms ease-out;
+        border: 2px solid $gray-600;
 
         &:disabled {
             opacity: 1;
@@ -113,10 +113,10 @@
 
     .itemLabel {
         display: inline-block;
-        padding: 10px;
         margin-left: 50%;
-        transition: margin-left 300ms ease-out, transform 300ms ease-out;
+        padding: 10px;
         transform: translate(-50%, 0);
+        transition: margin-left 300ms ease-out, transform 300ms ease-out;
     }
 
     .emptyQuestion,
@@ -158,8 +158,8 @@
 
         .itemLabel {
             margin-left: 0;
-            text-align: left;
             transform: translate(-10px, 0);
+            text-align: left;
         }
     }
 

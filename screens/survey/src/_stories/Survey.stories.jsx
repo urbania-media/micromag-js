@@ -1,8 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-
-import { backgroundColor, transitions, callToAction } from '../../../../.storybook/data';
 import ScreenDefinition from '../../../../.storybook/components/ScreenDefinition';
+import { backgroundColor, transitions, callToAction } from '../../../../.storybook/data';
 import SurveyScreen from '../Survey';
 import definition from '../definition';
 
@@ -34,7 +33,9 @@ export default {
 export const Placeholder = (storyProps) => <SurveyScreen {...storyProps} />;
 
 export const Preview = (storyProps) => <SurveyScreen {...storyProps} {...props} />;
+
 export const Static = (storyProps) => <SurveyScreen {...storyProps} {...props} />;
+
 export const Capture = (storyProps) => <SurveyScreen {...storyProps} {...props} />;
 
 export const Edit = (storyProps) => <SurveyScreen {...storyProps} />;

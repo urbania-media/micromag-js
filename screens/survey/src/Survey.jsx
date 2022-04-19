@@ -39,6 +39,7 @@ const propTypes = {
     background: MicromagPropTypes.backgroundElement,
     callToAction: MicromagPropTypes.callToAction,
     withPercentLabels: PropTypes.bool,
+    withoutResults: PropTypes.bool,
     current: PropTypes.bool,
     active: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
@@ -59,6 +60,7 @@ const defaultProps = {
     background: null,
     callToAction: null,
     withPercentLabels: true,
+    withoutResults: true,
     current: true,
     active: true,
     transitions: null,
@@ -79,6 +81,7 @@ const SurveyScreen = ({
     background,
     callToAction,
     withPercentLabels,
+    withoutResults,
     current,
     active,
     transitions,
@@ -303,7 +306,10 @@ const SurveyScreen = ({
                                                 <div
                                                     className={styles.itemInner}
                                                     style={{
-                                                        width: answered ? buttonMaxWidth : null,
+                                                        width:
+                                                            answered && !withoutResults
+                                                                ? buttonMaxWidth
+                                                                : null,
                                                         transitionDuration: finalTransitionDuration,
                                                     }}
                                                 >
@@ -362,7 +368,9 @@ const SurveyScreen = ({
                                                         <div
                                                             className={styles.result}
                                                             style={{
-                                                                width: `${percent}%`,
+                                                                width: !withoutResults
+                                                                    ? `${percent}%`
+                                                                    : null,
                                                                 ...getStyleFromColor(
                                                                     answered
                                                                         ? answerResultBarColor ||
@@ -373,7 +381,8 @@ const SurveyScreen = ({
                                                                 ),
                                                             }}
                                                         >
-                                                            {withPercentLabels ? (
+                                                            {withPercentLabels &&
+                                                            !withoutResults ? (
                                                                 <div
                                                                     className={styles.resultLabel}
                                                                     style={{
@@ -406,7 +415,6 @@ const SurveyScreen = ({
     );
 
     // Call to Action
-
     if (!isPlaceholder && hasCallToAction) {
         if (isTopLayout || isMiddleLayout) {
             items.push(<Spacer key="spacer-cta-bottom" />);
