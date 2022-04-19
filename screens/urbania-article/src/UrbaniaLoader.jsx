@@ -2,6 +2,7 @@
 import { getJSON } from '@folklore/fetch';
 import PropTypes from 'prop-types';
 import React, { useState, useEffect, useMemo } from 'react';
+import { FormattedMessage } from 'react-intl';
 import UrbaniaArticle from './UrbaniaArticle';
 
 const propTypes = {
@@ -29,35 +30,53 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
 
     const values = useMemo(() => {
         console.log('article', article);
-        // From the top baby
 
         const {
             title = {},
             overTitle = {},
+            sponsor = {},
             image = {},
             video = {},
             callToAction = null,
         } = props || {};
         const { body: titleBody = null } = title || {};
         const { body: overTitleBody = null } = overTitle || {};
+        const { body: sponsorBody = null } = sponsor || {};
         const { url: imageUrl = null } = image || {};
         const { media: videoMedia = null } = video || {};
 
-        // From article
+        // Straight from article
         const {
+            type = null,
             title: articleTitle = null,
             image: articleImage = null,
             metadata = {},
         } = article || {};
-        const { authors = [], sponsors = [], site = 'urbania', canonical = null } = metadata || {};
+        const { authors = [], sponsors = [], site = null, canonical = null } = metadata || {};
         const { sizes = {} } = articleImage || {};
         const { medium, large } = sizes || {};
 
+        // Sponsors
+        const sponsorPrefix =
+            sponsorBody === null ? (
+                <FormattedMessage defaultMessage="Presented by" description="Sponsor label" />
+            ) : null;
+        const defaultSponsor =
+            (sponsors || []).length > 0
+                ? (sponsors || [])
+                      .map(({ name = null }) => name)
+                      .filter((name) => name !== null)
+                      .join(', ')
+                      .trim()
+                : null;
+
         return {
+            type,
             title: titleBody !== null ? title : { ...title, body: articleTitle },
             overTitle: overTitleBody !== null ? overTitle : { ...overTitle, body: 'En vedette' },
             authors,
-            sponsors,
+            sponsor: { ...sponsor, body: defaultSponsor || sponsorBody },
+            sponsorPrefix,
             site,
             image:
                 imageUrl !== null
@@ -68,18 +87,16 @@ const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
                 active: true,
                 type: 'swipe-up',
                 url: videoMedia !== null ? videoMedia.url : canonical,
-                label: videoMedia !== null ? { body: 'Regarder' } : { body: 'Lire' },
+                label: type === 'video' ? { body: 'Regarder' } : { body: 'Lire' },
+                inWebView: true,
                 ...callToAction,
             },
         };
     }, [article, props]);
 
-    const { video: currentVideo = null } = values || {};
-    const { media: currentMedia = null } = currentVideo || {};
-
     console.log('values', values);
 
-    return <UrbaniaArticle {...props} {...values} isFullScreen={currentMedia !== null} />;
+    return <UrbaniaArticle {...props} {...values} />;
 };
 
 UrbaniaLoader.propTypes = propTypes;

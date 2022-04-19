@@ -122,6 +122,9 @@
     "4fHMVj": {
         "defaultMessage": "Tags"
     },
+    "4grcMU": {
+        "defaultMessage": "Category"
+    },
     "4iBXj2": {
         "defaultMessage": "Layout"
     },
@@ -248,9 +251,6 @@
     "Bv1Q38": {
         "defaultMessage": "Sponsor"
     },
-    "C0PdMc": {
-        "defaultMessage": "Category"
-    },
     "CJmQeh": {
         "defaultMessage": "Image with text"
     },
@@ -322,9 +322,6 @@
     },
     "HseFdk": {
         "defaultMessage": "Edit"
-    },
-    "I0rciL": {
-        "defaultMessage": "Title"
     },
     "I2bIHm": {
         "defaultMessage": "Good answer color"
