@@ -1,6 +1,6 @@
 {
     "name": "@micromag/cli",
-    "version": "0.3.52",
+    "version": "0.3.53",
     "description": "",
     "keywords": [
         "javascript"
@@ -44,13 +44,13 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.10",
-        "@micromag/core": "^0.3.42",
-        "@micromag/elements": "^0.3.52",
-        "@micromag/fields": "^0.3.42",
-        "@micromag/screens": "^0.3.52",
-        "@micromag/transforms": "^0.3.42",
-        "@micromag/viewer": "^0.3.52",
-        "@micromag/viewer-build": "^0.3.52",
+        "@micromag/core": "^0.3.53",
+        "@micromag/elements": "^0.3.53",
+        "@micromag/fields": "^0.3.53",
+        "@micromag/screens": "^0.3.53",
+        "@micromag/transforms": "^0.3.53",
+        "@micromag/viewer": "^0.3.53",
+        "@micromag/viewer-build": "^0.3.53",
         "change-case": "^4.1.2",
         "classnames": "^2.2.6",
         "commander": "^8.3.0",
