@@ -5,10 +5,10 @@ import { backgroundColor, transitions } from '../../../../.storybook/data';
 //  videoMedia,
 import Article from '../UrbaniaLoader';
 import definition from '../definition';
-import testArticle from './video.json';
+import testArticle from './article.json';
+import testVideo from './video.json';
 
 // import videoArticle from './video.json';
-
 // const video = (props) => ({ ...props, media: videoMedia(), autoPlay: true, loop: false });
 
 const props = () => ({
@@ -27,8 +27,6 @@ export default {
         screenDefinition: definition,
     },
 };
-
-export const Cool = () => <p>Hello</p>;
 
 export const Placeholder = (storyProps) => <Article {...storyProps} />;
 

@@ -52,6 +52,14 @@ export default {
             }),
         },
         {
+            name: 'sponsor',
+            type: 'heading-element',
+            label: defineMessage({
+                defaultMessage: 'Sponsor',
+                description: 'Title field label',
+            }),
+        },
+        {
             name: 'image',
             type: 'visual',
             label: defineMessage({

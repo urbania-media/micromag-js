@@ -22,11 +22,17 @@
     text-align: center;
 
     .arrow {
+        display: block;
+        margin: 0 auto;
         animation: upAndDown 0.5s ease-in-out infinite alternate;
     }
 
+    .icon {
+        display: inline-block;
+    }
+
     .label {
-        display: block;
+        display: inline-block;
     }
 
     .button {
@@ -79,12 +85,12 @@
         pointer-events: none;
     }
 
-    &.withMargin {
-        margin-bottom: 5px;
+    &.inWebView {
+        width: 100%;
     }
 
-    &.withWebView {
-        width: 100%;
+    &.withMargin {
+        margin-bottom: 5px;
     }
 }
 

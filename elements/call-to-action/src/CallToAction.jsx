@@ -22,12 +22,17 @@ const propTypes = {
     disabled: PropTypes.bool,
     animationDisabled: PropTypes.bool,
     callToAction: MicromagPropTypes.callToAction,
+    iconComponent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+    arrowComponent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
     screenSize: PropTypes.shape({
         width: PropTypes.number,
         height: PropTypes.number,
     }),
     dragAmount: PropTypes.number,
     className: PropTypes.string,
+    buttonClassName: PropTypes.string,
+    labelClassName: PropTypes.string,
+    arrowClassName: PropTypes.string,
     focusable: PropTypes.bool,
 };
 
@@ -36,9 +41,14 @@ const defaultProps = {
     disabled: false,
     animationDisabled: false,
     callToAction: null,
+    iconComponent: null,
+    arrowComponent: null,
     screenSize: null,
     dragAmount: 50,
     className: null,
+    buttonClassName: null,
+    labelClassName: null,
+    arrowClassName: null,
     focusable: true,
 };
 
@@ -47,9 +57,14 @@ function CallToAction({
     disabled,
     animationDisabled,
     callToAction,
+    iconComponent: IconComponent,
+    arrowComponent: ArrowComponent,
     screenSize,
     dragAmount,
     className,
+    buttonClassName,
+    labelClassName,
+    arrowClassName,
     focusable,
 }) {
     const {
@@ -113,6 +128,29 @@ function CallToAction({
         setShowWebView(false);
     }, [setShowWebView]);
 
+    const ArrowElement =
+        ArrowComponent !== null ? (
+            <ArrowComponent
+                className={classNames([
+                    styles.arrow,
+                    {
+                        [arrowClassName]: arrowClassName !== null,
+                    },
+                ])}
+            />
+        ) : (
+            <FontAwesomeIcon
+                className={classNames([
+                    styles.arrow,
+                    {
+                        [arrowClassName]: arrowClassName !== null,
+                    },
+                ])}
+                style={arrowStyle}
+                icon={faChevronUp}
+            />
+        );
+
     return active ? (
         <>
             <div
@@ -123,7 +161,7 @@ function CallToAction({
                         [styles.disabled]: disabled,
                         [styles.animationDisabled]: animationDisabled,
                         [styles.invalidUrl]: !validUrl,
-                        [styles.withWebView]: inWebView,
+                        [styles.inWebView]: inWebView,
                     },
                 ])}
                 ref={elRef}
@@ -135,15 +173,14 @@ function CallToAction({
                     ref={selfTargetLinkRef}
                     tabIndex={focusable ? '0' : '-1'}
                 />
-                {swipeUpEnabled ? (
-                    <FontAwesomeIcon
-                        className={styles.arrow}
-                        style={arrowStyle}
-                        icon={faChevronUp}
-                    />
-                ) : null}
+                {swipeUpEnabled ? ArrowElement : null}
                 <Button
-                    className={styles.button}
+                    className={classNames([
+                        styles.button,
+                        {
+                            [buttonClassName]: buttonClassName !== null,
+                        },
+                    ])}
                     refButton={buttonRef}
                     focusable={focusable}
                     buttonStyle={{
@@ -158,7 +195,15 @@ function CallToAction({
                               external: true,
                           })}
                 >
-                    <span className={styles.label}>
+                    <span
+                        className={classNames([
+                            styles.label,
+                            {
+                                [labelClassName]: labelClassName !== null,
+                            },
+                        ])}
+                    >
+                        {IconComponent !== null ? <IconComponent className={styles.icon} /> : null}
                         <Text {...label} inline />
                     </span>
                 </Button>
@@ -172,6 +217,7 @@ function CallToAction({
                         },
                     ])}
                     src={url}
+                    disabled={!showWebView}
                     closeable
                     onClose={onCloseWebView}
                     {...screenSize}
