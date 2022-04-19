@@ -1,4 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import PropTypes from 'prop-types';
+import React from 'react';
+import { useIntl } from 'react-intl';
+import { MemoryRouter } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
     ComponentsContext,
@@ -14,11 +19,6 @@ import {
 import { slug } from '@micromag/core/utils';
 import { FieldsProvider } from '@micromag/fields';
 import { ScreensProvider } from '@micromag/screens';
-import PropTypes from 'prop-types';
-import React from 'react';
-import { useIntl } from 'react-intl';
-import { MemoryRouter } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
 import defaultRoutes from '../data/routes.json';
 import * as EditorPropTypes from '../lib/PropTypes';
 import Editor from './Editor';
@@ -34,6 +34,7 @@ const propTypes = {
     }),
     googleApiKey: PropTypes.string,
     googleMapsLibraries: PropTypes.arrayOf(PropTypes.string),
+    customScreens: PropTypes.arrayOf(PropTypes.string),
 };
 
 const defaultProps = {
@@ -44,6 +45,7 @@ const defaultProps = {
     uppy: null,
     googleApiKey: null,
     googleMapsLibraries: ['places'],
+    customScreens: null,
 };
 
 const EditorContainer = ({
@@ -54,6 +56,7 @@ const EditorContainer = ({
     uppy,
     googleApiKey,
     googleMapsLibraries,
+    customScreens,
     ...props
 }) => {
     const Router = memoryRouter ? MemoryRouter : BrowserRouter;
@@ -66,7 +69,7 @@ const EditorContainer = ({
         <Router basename={!memoryRouter ? basePath : null}>
             <UppyProvider {...uppy}>
                 <StoryProvider story={value}>
-                    <ScreensProvider>
+                    <ScreensProvider withoutCustomScreens customScreens={customScreens}>
                         <GoogleKeysProvider apiKey={googleApiKey}>
                             <GoogleMapsClientProvider
                                 locale={locale}

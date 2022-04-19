@@ -10,6 +10,10 @@ class ScreensManager extends DefinitionsManager {
         const { layouts = null } = this.getDefinition(id) || {};
         return layouts;
     }
+
+    filter(filter) {
+        return new ScreensManager(this.definitions.filter(filter));
+    }
 }
 
 export default ScreensManager;

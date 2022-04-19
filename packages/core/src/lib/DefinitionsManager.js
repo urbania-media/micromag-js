@@ -1,11 +1,10 @@
-import EventEmitter from 'wolfy87-eventemitter';
 import isArray from 'lodash/isArray';
 import uniqBy from 'lodash/uniqBy';
+import EventEmitter from 'wolfy87-eventemitter';
 
 class DefinitionsManager extends EventEmitter {
     constructor(definitions = []) {
         super();
-
         this.definitions = definitions || [];
     }
 
@@ -23,6 +22,10 @@ class DefinitionsManager extends EventEmitter {
 
     merge(manager) {
         return this.addDefinitions(manager.getDefinitions());
+    }
+
+    filter(filter) {
+        return new DefinitionsManager(this.definitions.filter(filter));
     }
 
     getDefinition(id) {

@@ -10,24 +10,40 @@ export const useScreensManager = () => useContext(ScreensContext);
 
 const propTypes = {
     screens: MicromagPropTypes.screenDefinitions,
+    withoutCustomScreens: PropTypes.bool,
+    customScreens: PropTypes.arrayOf(PropTypes.string),
     manager: PropTypes.instanceOf(ScreensManager),
     children: PropTypes.node.isRequired,
 };
 
 const defaultProps = {
     screens: null,
+    withoutCustomScreens: false,
+    customScreens: null,
     manager: null,
 };
 
-export const ScreensProvider = ({ screens, manager, children }) => {
+export const ScreensProvider = ({
+    screens,
+    customScreens,
+    withoutCustomScreens,
+    manager,
+    children,
+}) => {
     const previousManager = useScreensManager();
     const finalManager = useMemo(() => {
-        const newManager = manager !== null ? manager : new ScreensManager(screens);
+        let newManager = manager !== null ? manager : new ScreensManager(screens);
         if ((previousManager || null) !== null) {
-            return previousManager.merge(newManager);
+            newManager = previousManager.merge(newManager);
+        }
+        if (withoutCustomScreens) {
+            newManager = previousManager.filter(
+                ({ id, custom = false }) =>
+                    !custom || (customScreens !== null && customScreens.indexOf(id) !== -1),
+            );
         }
         return newManager;
-    }, [manager, screens, previousManager]);
+    }, [manager, screens, customScreens, withoutCustomScreens, previousManager]);
 
     const initialComponents = useMemo(() => finalManager.getComponents(), [finalManager]);
     const [components, setComponents] = useState(initialComponents);
