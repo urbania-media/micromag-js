@@ -34,7 +34,7 @@ const propTypes = {
     }),
     googleApiKey: PropTypes.string,
     googleMapsLibraries: PropTypes.arrayOf(PropTypes.string),
-    customScreens: PropTypes.arrayOf(PropTypes.string),
+    screenNamespaces: PropTypes.arrayOf(PropTypes.string),
 };
 
 const defaultProps = {
@@ -45,7 +45,7 @@ const defaultProps = {
     uppy: null,
     googleApiKey: null,
     googleMapsLibraries: ['places'],
-    customScreens: null,
+    screenNamespaces: null,
 };
 
 const EditorContainer = ({
@@ -56,7 +56,7 @@ const EditorContainer = ({
     uppy,
     googleApiKey,
     googleMapsLibraries,
-    customScreens,
+    screenNamespaces,
     ...props
 }) => {
     const Router = memoryRouter ? MemoryRouter : BrowserRouter;
@@ -69,7 +69,7 @@ const EditorContainer = ({
         <Router basename={!memoryRouter ? basePath : null}>
             <UppyProvider {...uppy}>
                 <StoryProvider story={value}>
-                    <ScreensProvider withoutCustomScreens customScreens={customScreens}>
+                    <ScreensProvider filterNamespaces namespaces={screenNamespaces}>
                         <GoogleKeysProvider apiKey={googleApiKey}>
                             <GoogleMapsClientProvider
                                 locale={locale}

@@ -1,10 +1,9 @@
 import { defineMessage } from 'react-intl';
-
 import ImageScreen from './Image';
-import ImageTitleScreen from './ImageTitle';
-import ImageTextScreen from './ImageText';
-import ImageTitleTextScreen from './ImageTitleText';
 import ImageLegendScreen from './ImageLegend';
+import ImageTextScreen from './ImageText';
+import ImageTitleScreen from './ImageTitle';
+import ImageTitleTextScreen from './ImageTitleText';
 import * as transforms from './transforms/index';
 
 export default [
