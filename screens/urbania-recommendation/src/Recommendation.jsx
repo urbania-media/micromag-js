@@ -50,7 +50,7 @@ const defaultProps = {
     callToAction: null,
     current: true,
     active: true,
-    animateBackground: true,
+    animateBackground: false,
     transitions: null,
     transitionStagger: 100,
     className: null,
