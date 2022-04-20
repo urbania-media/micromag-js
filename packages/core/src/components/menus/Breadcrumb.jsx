@@ -1,14 +1,12 @@
 /* eslint-disable react/no-array-index-key, jsx-a11y/control-has-associated-label */
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { Link } from 'react-router-dom';
-
 import { PropTypes as MicromagPropTypes } from '../../lib';
-import Label from '../partials/Label';
-import Button from '../buttons/Button';
-
 import styles from '../../styles/menus/breadcrumb.module.scss';
+import Button from '../buttons/Button';
+import Label from '../partials/Label';
 
 const propTypes = {
     items: MicromagPropTypes.menuItems,
@@ -60,9 +58,13 @@ const Breadcrumb = ({ items, theme, separator, withoutBar, noWrap, className }) 
                         <Link
                             to={url}
                             onClick={onClick}
-                            className={classNames({
-                                [`text-${theme}`]: theme !== null,
-                            })}
+                            className={classNames([
+                                'font-weight-bold',
+                                'text-decoration-none',
+                                {
+                                    [`text-${theme}`]: theme !== null,
+                                },
+                            ])}
                         >
                             <Label>{label}</Label>
                         </Link>
@@ -70,9 +72,13 @@ const Breadcrumb = ({ items, theme, separator, withoutBar, noWrap, className }) 
                     {!active && onClick ? (
                         <Button
                             onClick={onClick}
-                            className={classNames({
-                                [`text-${theme}`]: theme !== null,
-                            })}
+                            className={classNames([
+                                'font-weight-bold',
+                                'text-decoration-none',
+                                {
+                                    [`text-${theme}`]: theme !== null,
+                                },
+                            ])}
                         >
                             <Label>{label}</Label>
                         </Button>
