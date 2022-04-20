@@ -1,0 +1,168 @@
+// stylelint-disable max-nesting-depth
+
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+.container {
+    @extend %screen;
+
+    .emptyTitle,
+    .emptyText {
+        @extend %empty;
+        width: 100%;
+        margin: 10px auto;
+    }
+
+    .emptyTitle {
+        height: 100px;
+    }
+
+    .emptyText {
+        height: 50px;
+    }
+
+    .textCard {
+        display: flex;
+        flex-direction: column;
+        border: 2px solid #000;
+        border-radius: 17px;
+        // opacity: 0.1;
+        box-shadow: 0 3px 34px rgba(0, 0, 0, 0.43);
+        color: #000;
+        text-align: center;
+
+        &.isPlaceholder {
+            height: 200px;
+            background-color: $gray-500;
+        }
+    }
+
+    .category {
+        padding: 14px 10px 12px;
+        border-bottom: 2px solid #000;
+        background-color: #ff3b41;
+        color: #fff;
+        font-family: 'AgrandirTight', sans-serif;
+        font-size: 28px;
+        font-weight: 900;
+        text-transform: uppercase;
+
+        &.noBottomBorder {
+            border-bottom: 0;
+        }
+    }
+
+    .categoryPlaceholder {
+        padding: 10px;
+        background-color: $gray-800;
+    }
+
+    .dateTitleRow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        background-color: #fff;
+
+        &.bottomBorder {
+            border-bottom: 2px solid #000;
+        }
+
+        &.isPlaceholder {
+            margin-left: 2px;
+            padding: 10px;
+            background-color: $gray-200;
+        }
+    }
+
+    .dateContainer {
+        min-width: 25%;
+        max-width: 50%;
+        height: inherit;
+        padding: 15px 10px;
+        text-align: left;
+
+        &.rightBorder {
+            border-right: 2px solid #000;
+        }
+    }
+
+    .date {
+        color: #ff4f46;
+        font-family: 'Agrandir', sans-serif;
+        font-size: 12px;
+
+        &.centerDate {
+            text-align: center;
+        }
+    }
+
+    .titleContainer {
+        max-width: 75%;
+        overflow-wrap: break-word;
+
+        &.leftBorder {
+            margin-right: -2px;
+            margin-left: -2px;
+            border-left: 2px solid #000;
+        }
+    }
+
+    .title {
+        padding: 15px 30px 13px;
+        font-family: 'AgrandirNarrow', sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .sponsor {
+        padding: 5px 10px;
+        background-color: #ff0;
+        font-family: 'Agrandir', sans-serif;
+        font-size: 10px;
+        text-transform: uppercase;
+
+        &.bottomBorder {
+            border-bottom: 2px solid #000;
+        }
+    }
+
+    .sponsorPlaceholder {
+        padding: 10px;
+    }
+
+    .description {
+        padding: 10px;
+        background-color: #fff;
+        font-family: 'Roboto', sans-serif;
+        font-size: 12px;
+        text-align: left;
+    }
+
+    .descriptionPlaceholder {
+        padding: 10px;
+        padding-bottom: 30px;
+    }
+
+    .background {
+        animation: roll 3s ease-out;
+        animation-fill-mode: forwards;
+    }
+
+    &.isPlaceholder {
+        .layout {
+            padding: 10px;
+        }
+    }
+}
+
+@keyframes roll {
+    0% {
+        background-position-y: 0;
+    }
+
+    100% {
+        background-position-y: 9000px;
+    }
+}

@@ -1,0 +1,50 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+.container {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: 'Agrandir';
+    font-size: 12px;
+
+    .avatar {
+        min-width: 3em;
+        max-width: 60px;
+    }
+
+    .conjunction {
+        background-color: $gray-200;
+        white-space: nowrap;
+    }
+
+    .name {
+        margin-left: -4px;
+        padding: 6px 8px 4px 12px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .by {
+        margin-right: -4px;
+        padding: 6px 12px 4px 8px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    .name, .by {
+        background-color: $gray-200;
+        white-space: nowrap;
+    }
+
+    &.isSmall {
+        font-size: 10px;
+
+        .name {
+            white-space: normal;
+        }
+    }
+}

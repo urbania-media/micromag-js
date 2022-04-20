@@ -3,6 +3,7 @@ import authors from './data/authors';
 import companies from './data/companies';
 import subtitles from './data/subtitles';
 import video360File from './data/test-360.mp4';
+import videoFileVertical from './data/test-vertical.mp4';
 import gifFile from './data/test.gif';
 import audioFile from './data/test.mp3';
 import videoFile from './data/test.mp4';
@@ -137,14 +138,16 @@ export const imageMedia = ({
     ),
 });
 
-export const videoMedia = () => ({
+export const videoMedia = ({ vertical = false } = {}) => ({
     type: 'video',
-    url: videoFile,
+    url: vertical ? videoFileVertical : videoFile,
     thumbnail_url: imageUrl({ width: 1920, height: 1080, rand: true }),
-    metadata: {
-        width: 1920,
-        height: 1080,
-    },
+    metadata: vertical
+        ? { width: 720, height: 1280 }
+        : {
+              width: 1920,
+              height: 1080,
+          },
 });
 
 export const gifVideoMedia = ({ withoutFiles = null } = {}) => ({

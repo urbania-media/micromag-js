@@ -1,0 +1,143 @@
+// stylelint-disable max-nesting-depth
+
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+.container {
+    @extend %screen;
+
+    .emptyContainer {
+        @extend %fullscreen;
+
+        // top: 50%;
+        // height: 0;
+        // padding-bottom: 56.25%;
+        // transform: translateY(-50%);
+    }
+
+    .empty {
+        @extend %empty;
+        @extend %fullscreen;
+
+        margin: 0;
+    }
+
+    .itemsContainer {
+        display: flex;
+        flex-direction: column;
+        min-width: 80%;
+    }
+
+    .content {
+        @extend %fullscreen;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        overflow: hidden;
+    }
+
+    .videoContainer {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .isCustomBackground {
+        transform-origin: center;
+    }
+
+    .isAnimated {
+        transform: scale(3);
+        animation: spin 9000ms linear 0ms infinite;
+    }
+
+    @keyframes spin {
+        from {
+            transform: scale(3) rotate(0deg);
+        }
+
+        to {
+            transform: scale(3) rotate(360deg);
+        }
+    }
+
+    .heading {
+        width: 320px;
+        padding: 16px 5px 10px;
+        border-top: 1px solid #000;
+        border-bottom: 1px solid #000;
+        background-color: #fff800;
+        color: #000;
+        font-family: 'AgrandirWide', sans-serif;
+        font-size: 26px;
+        font-weight: 800;
+        text-align: center;
+        text-shadow: -2px -2px 0 #fff;
+        text-transform: uppercase;
+
+        &.hideHeading {
+            display: none;
+        }
+    }
+
+    .callToAction {
+        padding-bottom: 5px;
+    }
+
+    .bottom {
+        transition: opacity 0.15s linear;
+        opacity: 0;
+
+        &.visible {
+            opacity: 1;
+        }
+
+        &.withGradient {
+            background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+        }
+    }
+
+    .mediaControls {
+        padding: 10px 20px 20px;
+    }
+
+    .placeholder {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        mix-blend-mode: normal;
+    }
+
+    .videoPlaceholder {
+        mix-blend-mode: normal;
+        background-color: $gray-500;
+    }
+
+    .bottomContent {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+
+    &.fullscreen {
+        .image,
+        .placeholder {
+            @extend %fullscreen;
+        }
+
+        .emptyContainer {
+            top: 0;
+            height: 100%;
+            padding-bottom: 0;
+            transform: none;
+        }
+    }
+}

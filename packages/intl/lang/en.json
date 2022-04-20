@@ -17,6 +17,9 @@
     "+SlKOi": {
         "defaultMessage": "Published message style"
     },
+    "+TPjd4": {
+        "defaultMessage": "Presented by"
+    },
     "+nhSvj": {
         "defaultMessage": "No speaker..."
     },
@@ -25,6 +28,9 @@
     },
     "/62oe4": {
         "defaultMessage": "My files"
+    },
+    "/MsgWe": {
+        "defaultMessage": "Date"
     },
     "/OM5UY": {
         "defaultMessage": "Tags"
@@ -53,6 +59,9 @@
     "17BMn2": {
         "defaultMessage": "Ranking"
     },
+    "18XpuL": {
+        "defaultMessage": "Urbania recommendation screen"
+    },
     "2/F1Q7": {
         "defaultMessage": "#{index}"
     },
@@ -61,6 +70,9 @@
     },
     "2ZOPe+": {
         "defaultMessage": "Title"
+    },
+    "2pO2Cj": {
+        "defaultMessage": "Url"
     },
     "31zuCS": {
         "defaultMessage": "Line height"
@@ -113,6 +125,9 @@
     "4fHMVj": {
         "defaultMessage": "Tags"
     },
+    "4grcMU": {
+        "defaultMessage": "Category"
+    },
     "4iBXj2": {
         "defaultMessage": "Layout"
     },
@@ -143,6 +158,9 @@
     "6ak5YN": {
         "defaultMessage": "Side"
     },
+    "6jX5Tb": {
+        "defaultMessage": "Authors"
+    },
     "6mX2ya": {
         "defaultMessage": "Images"
     },
@@ -151,6 +169,9 @@
     },
     "73hxYw": {
         "defaultMessage": "Author"
+    },
+    "7YE/VU": {
+        "defaultMessage": "Sponsor"
     },
     "7tw6U2": {
         "defaultMessage": "Share"
@@ -233,6 +254,9 @@
     "BpZoQZ": {
         "defaultMessage": "Success"
     },
+    "Bv1Q38": {
+        "defaultMessage": "Sponsor"
+    },
     "CJmQeh": {
         "defaultMessage": "Image with text"
     },
@@ -253,6 +277,9 @@
     },
     "EDFyUp": {
         "defaultMessage": "Alternative text (accessibility)"
+    },
+    "EQdIAR": {
+        "defaultMessage": "Description"
     },
     "ET527E": {
         "defaultMessage": "Font family"
@@ -304,6 +331,9 @@
     },
     "I2bIHm": {
         "defaultMessage": "Good answer color"
+    },
+    "I5+AHN": {
+        "defaultMessage": "Category"
     },
     "IBjY5r": {
         "defaultMessage": "Duplicate screen"
@@ -380,6 +410,9 @@
     "OkNUmk": {
         "defaultMessage": "Type"
     },
+    "Oqks/j": {
+        "defaultMessage": "Urbania article screen"
+    },
     "P1dwGU": {
         "defaultMessage": "Title with subtitle"
     },
@@ -449,6 +482,9 @@
     "UdrdRF": {
         "defaultMessage": "Numbers style"
     },
+    "UkZY6Z": {
+        "defaultMessage": "et"
+    },
     "UlZIP8": {
         "defaultMessage": "OK"
     },
@@ -473,6 +509,9 @@
     "W5qWPj": {
         "defaultMessage": "Center"
     },
+    "WY14Zu": {
+        "defaultMessage": "Sponsor"
+    },
     "Wb5zY4": {
         "defaultMessage": "Select a font file..."
     },
@@ -493,6 +532,9 @@
     },
     "XhgKcw": {
         "defaultMessage": "Move the map to position the place"
+    },
+    "Y7bs1v": {
+        "defaultMessage": "Description"
     },
     "YJZtWR": {
         "defaultMessage": "Description"
@@ -587,6 +629,9 @@
     "e6+aGf": {
         "defaultMessage": "Select a media..."
     },
+    "eA6lME": {
+        "defaultMessage": "Urbania trivia screen"
+    },
     "eBFxNl": {
         "defaultMessage": "Call to Action"
     },
@@ -671,6 +716,9 @@
     "jnww6n": {
         "defaultMessage": "Select an image..."
     },
+    "k+coTi": {
+        "defaultMessage": "Image"
+    },
     "k81FRn": {
         "defaultMessage": "Message style"
     },
@@ -728,11 +776,17 @@
     "nno1Pq": {
         "defaultMessage": "Button style"
     },
+    "oAtOlP": {
+        "defaultMessage": "Heading"
+    },
     "oCBQKV": {
         "defaultMessage": "Text with title"
     },
     "oLtEu6": {
         "defaultMessage": "Video 360"
+    },
+    "oPjl8f": {
+        "defaultMessage": "Urbania"
     },
     "opcGwP": {
         "defaultMessage": "Add a speaker"
@@ -748,6 +802,9 @@
     },
     "pJgYyE": {
         "defaultMessage": "AutoPlay"
+    },
+    "pRzSQ7": {
+        "defaultMessage": "Overtitle"
     },
     "pfvDzR": {
         "defaultMessage": "Added by"
@@ -775,6 +832,9 @@
     },
     "qroLmS": {
         "defaultMessage": "Marker"
+    },
+    "r7IM7J": {
+        "defaultMessage": "Par"
     },
     "rBPIgw": {
         "defaultMessage": "Conversation"
@@ -914,14 +974,23 @@
     "yCXMzz": {
         "defaultMessage": "Close"
     },
+    "yEG9zh": {
+        "defaultMessage": "Date"
+    },
     "z/VBX0": {
         "defaultMessage": "Learn more"
+    },
+    "z2I2bJ": {
+        "defaultMessage": "Overtitle"
     },
     "z4CiV1": {
         "defaultMessage": "Text"
     },
     "zDH24s": {
         "defaultMessage": "Latitude"
+    },
+    "zGIcdn": {
+        "defaultMessage": "Sponsors"
     },
     "zW7IVm": {
         "defaultMessage": "Quiz"

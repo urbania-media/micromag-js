@@ -23,6 +23,10 @@
     "defaultMessage": "Published message style",
     "description": "Published message style field label"
   },
+  "+TPjd4": {
+    "defaultMessage": "Presented by",
+    "description": "Sponsor label"
+  },
   "+nhSvj": {
     "defaultMessage": "No speaker...",
     "description": "Label when there is no item"
@@ -34,6 +38,10 @@
   "/62oe4": {
     "defaultMessage": "My files",
     "description": "Media gallery source"
+  },
+  "/MsgWe": {
+    "defaultMessage": "Date",
+    "description": "Date placeholder"
   },
   "/OM5UY": {
     "defaultMessage": "Tags",
@@ -71,6 +79,10 @@
     "defaultMessage": "Ranking",
     "description": "Ranking screen title"
   },
+  "18XpuL": {
+    "defaultMessage": "Urbania recommendation screen",
+    "description": "Urbania screen title"
+  },
   "2/F1Q7": {
     "defaultMessage": "#{index}",
     "description": "Item label in items field"
@@ -82,6 +94,10 @@
   "2ZOPe+": {
     "defaultMessage": "Title",
     "description": "Title placeholder"
+  },
+  "2pO2Cj": {
+    "defaultMessage": "Url",
+    "description": "Url field label"
   },
   "31zuCS": {
     "defaultMessage": "Line height",
@@ -151,6 +167,10 @@
     "defaultMessage": "Tags",
     "description": "Tags in Media Gallery"
   },
+  "4grcMU": {
+    "defaultMessage": "Category",
+    "description": "Title field label"
+  },
   "4iBXj2": {
     "defaultMessage": "Layout",
     "description": "Layout field label"
@@ -191,6 +211,10 @@
     "defaultMessage": "Side",
     "description": "Field label"
   },
+  "6jX5Tb": {
+    "defaultMessage": "Authors",
+    "description": "Authors placeholder"
+  },
   "6mX2ya": {
     "defaultMessage": "Images",
     "description": "Images screen group"
@@ -202,6 +226,10 @@
   "73hxYw": {
     "defaultMessage": "Author",
     "description": "Author field label"
+  },
+  "7YE/VU": {
+    "defaultMessage": "Sponsor",
+    "description": "Title field label"
   },
   "7tw6U2": {
     "defaultMessage": "Share",
@@ -311,6 +339,10 @@
     "defaultMessage": "Success",
     "description": "Success form message"
   },
+  "Bv1Q38": {
+    "defaultMessage": "Sponsor",
+    "description": "Text placeholder"
+  },
   "CJmQeh": {
     "defaultMessage": "Image with text",
     "description": "ImageText screen title"
@@ -338,6 +370,10 @@
   "EDFyUp": {
     "defaultMessage": "Alternative text (accessibility)",
     "description": "Media Gallery"
+  },
+  "EQdIAR": {
+    "defaultMessage": "Description",
+    "description": "Text placeholder"
   },
   "ET527E": {
     "defaultMessage": "Font family",
@@ -406,6 +442,10 @@
   "I2bIHm": {
     "defaultMessage": "Good answer color",
     "description": "Field label"
+  },
+  "I5+AHN": {
+    "defaultMessage": "Category",
+    "description": "Category placeholder"
   },
   "IBjY5r": {
     "defaultMessage": "Duplicate screen",
@@ -507,6 +547,10 @@
     "defaultMessage": "Type",
     "description": "Type Label in Media Gallery"
   },
+  "Oqks/j": {
+    "defaultMessage": "Urbania article screen",
+    "description": "Urbania screen title"
+  },
   "P1dwGU": {
     "defaultMessage": "Title with subtitle",
     "description": "TitleSubtitle screen title"
@@ -598,6 +642,10 @@
     "defaultMessage": "Numbers style",
     "description": "Numbers style field label"
   },
+  "UkZY6Z": {
+    "defaultMessage": "et",
+    "description": "Author"
+  },
   "UlZIP8": {
     "defaultMessage": "OK",
     "description": "Items finish edit button label"
@@ -630,6 +678,10 @@
     "defaultMessage": "Center",
     "description": "Field label"
   },
+  "WY14Zu": {
+    "defaultMessage": "Sponsor",
+    "description": "Text field label"
+  },
   "Wb5zY4": {
     "defaultMessage": "Select a font file...",
     "description": "Label when no value"
@@ -657,6 +709,10 @@
   "XhgKcw": {
     "defaultMessage": "Move the map to position the place",
     "description": "Move the map to position the place description"
+  },
+  "Y7bs1v": {
+    "defaultMessage": "Description",
+    "description": "Text field label"
   },
   "YJZtWR": {
     "defaultMessage": "Description",
@@ -782,6 +838,10 @@
     "defaultMessage": "Select a media...",
     "description": "Label when no value is provided to Media field"
   },
+  "eA6lME": {
+    "defaultMessage": "Urbania trivia screen",
+    "description": "Urbania screen title"
+  },
   "eBFxNl": {
     "defaultMessage": "Call to Action",
     "description": "Field label"
@@ -894,6 +954,10 @@
     "defaultMessage": "Select an image...",
     "description": "Label when no value is provided to Visual field"
   },
+  "k+coTi": {
+    "defaultMessage": "Image",
+    "description": "Visuals field label"
+  },
   "k81FRn": {
     "defaultMessage": "Message style",
     "description": "Field label"
@@ -968,6 +1032,10 @@
     "defaultMessage": "Button style",
     "description": "Field label"
   },
+  "oAtOlP": {
+    "defaultMessage": "Heading",
+    "description": "Header placeholder"
+  },
   "oCBQKV": {
     "defaultMessage": "Text with title",
     "description": "TextTitle screen title"
@@ -975,6 +1043,10 @@
   "oLtEu6": {
     "defaultMessage": "Video 360",
     "description": "Video 360 placeholder"
+  },
+  "oPjl8f": {
+    "defaultMessage": "Urbania",
+    "description": "Urbania screen group"
   },
   "opcGwP": {
     "defaultMessage": "Add a speaker",
@@ -995,6 +1067,10 @@
   "pJgYyE": {
     "defaultMessage": "AutoPlay",
     "description": "Field label"
+  },
+  "pRzSQ7": {
+    "defaultMessage": "Overtitle",
+    "description": "Title placeholder"
   },
   "pfvDzR": {
     "defaultMessage": "Added by",
@@ -1031,6 +1107,10 @@
   "qroLmS": {
     "defaultMessage": "Marker",
     "description": "Breadcrumb field label"
+  },
+  "r7IM7J": {
+    "defaultMessage": "Par",
+    "description": "Author"
   },
   "rBPIgw": {
     "defaultMessage": "Conversation",
@@ -1216,9 +1296,17 @@
     "defaultMessage": "Close",
     "description": "Close button label in Media Gallery"
   },
+  "yEG9zh": {
+    "defaultMessage": "Date",
+    "description": "Text field label"
+  },
   "z/VBX0": {
     "defaultMessage": "Learn more",
     "description": "Call to action default label"
+  },
+  "z2I2bJ": {
+    "defaultMessage": "Overtitle",
+    "description": "Title field label"
   },
   "z4CiV1": {
     "defaultMessage": "Text",
@@ -1227,6 +1315,10 @@
   "zDH24s": {
     "defaultMessage": "Latitude",
     "description": "Latitude description"
+  },
+  "zGIcdn": {
+    "defaultMessage": "Sponsors",
+    "description": "Sponsors placeholder"
   },
   "zW7IVm": {
     "defaultMessage": "Quiz",

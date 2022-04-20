@@ -47,6 +47,12 @@ msgctxt "+SlKOi"
 msgid "Published message style"
 msgstr "Published message style"
 
+# Sponsor label
+#: +TPjd4
+msgctxt "+TPjd4"
+msgid "Presented by"
+msgstr "Presented by"
+
 # Label when there is no item
 #: +nhSvj
 msgctxt "+nhSvj"
@@ -64,6 +70,12 @@ msgstr "Circle"
 msgctxt "/62oe4"
 msgid "My files"
 msgstr "My files"
+
+# Date placeholder
+#: /MsgWe
+msgctxt "/MsgWe"
+msgid "Date"
+msgstr "Date"
 
 # Media label
 #: /OM5UY
@@ -119,6 +131,12 @@ msgctxt "17BMn2"
 msgid "Ranking"
 msgstr "Ranking"
 
+# Urbania screen title
+#: 18XpuL
+msgctxt "18XpuL"
+msgid "Urbania recommendation screen"
+msgstr "Urbania recommendation screen"
+
 # Item label in items field
 #: 2/F1Q7
 msgctxt "2/F1Q7"
@@ -136,6 +154,12 @@ msgstr "Images"
 msgctxt "2ZOPe+"
 msgid "Title"
 msgstr "Title"
+
+# Url field label
+#: 2pO2Cj
+msgctxt "2pO2Cj"
+msgid "Url"
+msgstr "Url"
 
 # Field label
 #: 31zuCS
@@ -239,6 +263,12 @@ msgctxt "4fHMVj"
 msgid "Tags"
 msgstr "Tags"
 
+# Title field label
+#: 4grcMU
+msgctxt "4grcMU"
+msgid "Category"
+msgstr "Category"
+
 # Layout field label
 #: 4iBXj2
 msgctxt "4iBXj2"
@@ -299,6 +329,12 @@ msgctxt "6ak5YN"
 msgid "Side"
 msgstr "Side"
 
+# Authors placeholder
+#: 6jX5Tb
+msgctxt "6jX5Tb"
+msgid "Authors"
+msgstr "Authors"
+
 # Images screen group
 #: 6mX2ya
 msgctxt "6mX2ya"
@@ -316,6 +352,12 @@ msgstr "Caption"
 msgctxt "73hxYw"
 msgid "Author"
 msgstr "Author"
+
+# Title field label
+#: 7YE/VU
+msgctxt "7YE/VU"
+msgid "Sponsor"
+msgstr "Sponsor"
 
 # Button label
 #: 7tw6U2
@@ -479,6 +521,12 @@ msgctxt "BpZoQZ"
 msgid "Success"
 msgstr "Success"
 
+# Text placeholder
+#: Bv1Q38
+msgctxt "Bv1Q38"
+msgid "Sponsor"
+msgstr "Sponsor"
+
 # ImageText screen title
 #: CJmQeh
 msgctxt "CJmQeh"
@@ -520,6 +568,12 @@ msgstr "Select a video..."
 msgctxt "EDFyUp"
 msgid "Alternative text (accessibility)"
 msgstr "Alternative text (accessibility)"
+
+# Text placeholder
+#: EQdIAR
+msgctxt "EQdIAR"
+msgid "Description"
+msgstr "Description"
 
 # Field label
 #: ET527E
@@ -622,6 +676,12 @@ msgstr "Edit"
 msgctxt "I2bIHm"
 msgid "Good answer color"
 msgstr "Good answer color"
+
+# Category placeholder
+#: I5+AHN
+msgctxt "I5+AHN"
+msgid "Category"
+msgstr "Category"
 
 # Duplicate screen item
 #: IBjY5r
@@ -773,6 +833,12 @@ msgctxt "OkNUmk"
 msgid "Type"
 msgstr "Type"
 
+# Urbania screen title
+#: Oqks/j
+msgctxt "Oqks/j"
+msgid "Urbania article screen"
+msgstr "Urbania article screen"
+
 # TitleSubtitle screen title
 #: P1dwGU
 msgctxt "P1dwGU"
@@ -910,6 +976,12 @@ msgctxt "UdrdRF"
 msgid "Numbers style"
 msgstr "Numbers style"
 
+# Author
+#: UkZY6Z
+msgctxt "UkZY6Z"
+msgid "et"
+msgstr "et"
+
 # Items finish edit button label
 #: UlZIP8
 msgctxt "UlZIP8"
@@ -958,6 +1030,12 @@ msgctxt "W5qWPj"
 msgid "Center"
 msgstr "Center"
 
+# Text field label
+#: WY14Zu
+msgctxt "WY14Zu"
+msgid "Sponsor"
+msgstr "Sponsor"
+
 # Label when no value
 #: Wb5zY4
 msgctxt "Wb5zY4"
@@ -999,6 +1077,12 @@ msgstr "Gallery feed with captions"
 msgctxt "XhgKcw"
 msgid "Move the map to position the place"
 msgstr "Move the map to position the place"
+
+# Text field label
+#: Y7bs1v
+msgctxt "Y7bs1v"
+msgid "Description"
+msgstr "Description"
 
 # Description in Media Gallery
 #: YJZtWR
@@ -1186,6 +1270,12 @@ msgctxt "e6+aGf"
 msgid "Select a media..."
 msgstr "Select a media..."
 
+# Urbania screen title
+#: eA6lME
+msgctxt "eA6lME"
+msgid "Urbania trivia screen"
+msgstr "Urbania trivia screen"
+
 # Field label
 #: eBFxNl
 msgctxt "eBFxNl"
@@ -1354,6 +1444,12 @@ msgctxt "jnww6n"
 msgid "Select an image..."
 msgstr "Select an image..."
 
+# Visuals field label
+#: k+coTi
+msgctxt "k+coTi"
+msgid "Image"
+msgstr "Image"
+
 # Field label
 #: k81FRn
 msgctxt "k81FRn"
@@ -1466,6 +1562,12 @@ msgctxt "nno1Pq"
 msgid "Button style"
 msgstr "Button style"
 
+# Header placeholder
+#: oAtOlP
+msgctxt "oAtOlP"
+msgid "Heading"
+msgstr "Heading"
+
 # TextTitle screen title
 #: oCBQKV
 msgctxt "oCBQKV"
@@ -1477,6 +1579,12 @@ msgstr "Text with title"
 msgctxt "oLtEu6"
 msgid "Video 360"
 msgstr "Video 360"
+
+# Urbania screen group
+#: oPjl8f
+msgctxt "oPjl8f"
+msgid "Urbania"
+msgstr "Urbania"
 
 # Button label
 #: opcGwP
@@ -1507,6 +1615,12 @@ msgstr "Caption"
 msgctxt "pJgYyE"
 msgid "AutoPlay"
 msgstr "AutoPlay"
+
+# Title placeholder
+#: pRzSQ7
+msgctxt "pRzSQ7"
+msgid "Overtitle"
+msgstr "Overtitle"
 
 # Media label
 #: pfvDzR
@@ -1561,6 +1675,12 @@ msgstr "Pop-up window"
 msgctxt "qroLmS"
 msgid "Marker"
 msgstr "Marker"
+
+# Author
+#: r7IM7J
+msgctxt "r7IM7J"
+msgid "Par"
+msgstr "Par"
 
 # Conversation screen title
 #: rBPIgw
@@ -1838,11 +1958,23 @@ msgctxt "yCXMzz"
 msgid "Close"
 msgstr "Close"
 
+# Text field label
+#: yEG9zh
+msgctxt "yEG9zh"
+msgid "Date"
+msgstr "Date"
+
 # Call to action default label
 #: z/VBX0
 msgctxt "z/VBX0"
 msgid "Learn more"
 msgstr "Learn more"
+
+# Title field label
+#: z2I2bJ
+msgctxt "z2I2bJ"
+msgid "Overtitle"
+msgstr "Overtitle"
 
 # Text placeholder
 #: z4CiV1
@@ -1855,6 +1987,12 @@ msgstr "Text"
 msgctxt "zDH24s"
 msgid "Latitude"
 msgstr "Latitude"
+
+# Sponsors placeholder
+#: zGIcdn
+msgctxt "zGIcdn"
+msgid "Sponsors"
+msgstr "Sponsors"
 
 # Quiz screen title
 #: zW7IVm

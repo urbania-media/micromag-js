@@ -1,4 +1,8 @@
 /* eslint-disable react/no-array-index-key */
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useMemo } from 'react';
+import { v1 as uuid } from 'uuid';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { HighlightStyle, LinkStyle } from '@micromag/core/components';
 import {
@@ -7,10 +11,6 @@ import {
     getStyleFromMargin,
     getStyleFromText,
 } from '@micromag/core/utils';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import React, { useMemo } from 'react';
-import { v1 as uuid } from 'uuid';
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -20,6 +20,7 @@ const propTypes = {
     linksStyle: MicromagPropTypes.textStyle,
     margin: MicromagPropTypes.margin,
     className: PropTypes.string,
+    headingRef: PropTypes.shape({}),
 };
 
 const defaultProps = {
@@ -29,9 +30,10 @@ const defaultProps = {
     linksStyle: null,
     margin: null,
     className: null,
+    headingRef: null,
 };
 
-const Heading = ({ size, body, textStyle, linksStyle, margin, className }) => {
+const Heading = ({ size, body, textStyle, linksStyle, margin, className, headingRef }) => {
     const HeadingComponent = `h${size}`;
     const { link: linkStyle = null, highlight: highlightStyle = null } = textStyle || {};
     let finalStyle = null;
@@ -76,6 +78,7 @@ const Heading = ({ size, body, textStyle, linksStyle, margin, className }) => {
                 ])}
                 style={finalStyle}
                 dangerouslySetInnerHTML={{ __html: body }}
+                ref={headingRef}
             />
         </>
     );
@@ -84,4 +87,5 @@ const Heading = ({ size, body, textStyle, linksStyle, margin, className }) => {
 Heading.propTypes = propTypes;
 Heading.defaultProps = defaultProps;
 
-export default Heading;
+// eslint-disable-next-line react/jsx-props-no-spreading
+export default React.forwardRef((props, ref) => <Heading headingRef={ref} {...props} />);

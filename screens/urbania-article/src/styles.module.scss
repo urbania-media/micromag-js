@@ -1,0 +1,277 @@
+// stylelint-disable max-nesting-depth
+
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+$color-video-title: #FFF;
+$color-video-outline: #222;
+
+$color-urbania-background: #FF0;
+$color-urbania-text: #222;
+
+$color-quatre95-background: #FFF;
+$color-quatre95-text: #5E79FF;
+
+$color-dehors-background: #00C693;
+$color-dehors-text: #FFEADA;
+
+.container {
+    @extend %screen;
+
+    .placeholder {
+        background-color: $gray-600;
+    }
+
+    .emptyContainer {
+        width: 100%;
+        height: 0;
+        margin-bottom: 10px;
+        padding-bottom: 20%;
+        transform: translateY(0);
+
+        &.small {
+            padding-bottom: 15%;
+        }
+    }
+
+    .empty {
+        @extend %empty;
+        @extend %fullscreen;
+
+        margin: 0;
+    }
+
+    .inner {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+    }
+
+    .image {
+        //
+    }
+
+    .video {
+        @extend %fullscreen;
+    }
+
+    .content {
+        display: flex;
+        z-index: 1;
+        flex-direction: column;
+        // flex-grow: 1;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        // background-color: $color-urbania-background;
+        color: $color-urbania-text;
+        text-align: center;
+
+        .title, .overTitle, .authors {
+            padding: 10px;
+        }
+
+        .overTitle {
+            font-family: 'AgrandirGrand';
+            font-size: 10px;
+            font-weight: 500;
+            text-decoration: underline;
+            text-transform: uppercase;
+        }
+
+        .title {
+            font-family: 'GarageGothic-Bold';
+            text-transform: uppercase;
+        }
+
+        .authors {
+            margin-bottom: 10px;
+        }
+
+        .sponsors {
+            display: inline-block;
+            width: 100%;
+            margin-top: auto;
+            padding: 5px 10px;
+            background-color: $color-urbania-text;
+            color: $color-urbania-background;
+        }
+
+        .sponsor {
+            display: inline;
+            font-family: 'Agrandir';
+            font-size: 9px;
+            font-weight: 400;
+            line-height: 1;
+            text-transform: uppercase;
+
+            &:last-child {
+                font-weight: bold;
+            }
+        }
+
+        &.quatre95 {
+            background-color: $color-quatre95-background;
+            color: $color-quatre95-text;
+
+            .sponsors {
+                background-color: $color-urbania-background;
+                color: $color-urbania-text;
+            }
+        }
+
+        &.urbania {
+            background-color: $color-urbania-background;
+            color: $color-urbania-text;
+        }
+
+        &.dehors {
+            background-color: $color-dehors-background;
+            color: $color-dehors-text;
+        }
+    }
+
+    .callToAction {
+        position: absolute;
+        z-index : 1;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding-bottom: 5px;
+
+        .button {
+            display: inline-block;
+            min-width: 100px;
+            margin: 0 auto;
+            padding: 0;
+            transition: border 0.2s ease-in-out;
+            border: 4px solid rgba(255, 255, 0, 0.5);
+            border-radius: 20px;
+
+            &:hover {
+                border-color: transparent;
+            }
+
+            .label {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 6px 15px 4px;
+                border-radius: 20px;
+                background-color: $color-urbania-background;
+
+                svg {
+                    display: block;
+                    margin-bottom: 2px;
+                }
+
+                span {
+                    display: block;
+                    margin: 0 5px;
+                    color: $color-urbania-text;
+                    font-family: 'AgrandirTight';
+                    font-size: 18px;
+                    font-weight: 700;
+                    line-height: 1;
+
+                    &:last-child {
+                        margin-top: 2px;
+                    }
+                }
+            }
+        }
+
+        .arrow {
+            margin-bottom: 5px;
+            opacity: 0.95;
+            color: $color-urbania-background;
+        }
+    }
+
+    .mediaControls {
+        padding: 10px 20px 20px;
+    }
+
+    .placeholder {
+        display: block;
+    }
+
+    .videoContainer {
+        position: absolute;
+    }
+
+    .bottomContent {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .bottom {
+        transition: opacity 0.15s linear;
+        opacity: 0;
+
+        &.visible {
+            opacity: 1;
+        }
+
+        &.withGradient {
+            background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.4));
+        }
+    }
+
+    &.isPlaceholder {
+        .content {
+            width: 80%;
+            height: 35%;
+            margin: 5px auto;
+            background-color: transparent;
+            background-color: $gray-900;
+        }
+
+        .visual {
+            position: relative;
+            flex-grow: 1;
+            width: 80%;
+            height: 50%;
+            margin: 5px auto;
+        }
+    }
+
+    &.isVideo {
+        .video {
+            @extend %fullscreen;
+        }
+
+        .content {
+            flex-grow: 1;
+            justify-content: flex-end;
+            margin-bottom: 10px;
+            background-color: transparent;
+
+            .overTitle {
+                margin-bottom: auto;
+            }
+
+            .title {
+                color: $color-video-title;
+                text-shadow: 2px 2px 0 $color-video-outline;
+            }
+
+            .sponsors {
+                margin-top: 0;
+            }
+        }
+
+        .emptyContainer {
+            top: 0;
+            height: 100%;
+            padding-bottom: 0;
+            transform: none;
+        }
+
+        .callToAction {
+            position: relative;
+        }
+    }
+}

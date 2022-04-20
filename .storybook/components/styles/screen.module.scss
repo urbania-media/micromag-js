@@ -5,6 +5,10 @@
     &.withSize {
         position: relative;
     }
+
+    &.withScaling {
+        transform: scale(0.33);
+    }
 }
 
 .screen {
@@ -14,7 +18,7 @@
     overflow: hidden;
 
     .withBorder & {
-        border: solid 1px $gray-200;        
+        border: solid 1px $gray-200;
     }
 }
 

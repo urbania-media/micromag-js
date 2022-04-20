@@ -1,13 +1,12 @@
 /* eslint-disable react/no-array-index-key */
+
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useMemo } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useMemo } from 'react';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import { getLayersFromBackground } from '@micromag/core/utils';
-
 import Background from './Background';
-
 import styles from './styles.module.scss';
 
 const propTypes = {
@@ -20,6 +19,8 @@ const propTypes = {
     playing: PropTypes.bool,
     children: PropTypes.node,
     className: PropTypes.string,
+    layerClassName: PropTypes.string,
+    backgroundClassName: PropTypes.string,
     loadingMode: PropTypes.string,
     shouldLoad: PropTypes.bool,
 };
@@ -31,11 +32,24 @@ const defaultProps = {
     playing: false,
     children: null,
     className: null,
+    layerClassName: null,
+    backgroundClassName: null,
     loadingMode: 'lazy',
     shouldLoad: true,
 };
 
-const BackgroundLayers = ({ width, height, background, playing, children, className, loadingMode, shouldLoad }) => {
+const BackgroundLayers = ({
+    width,
+    height,
+    background,
+    playing,
+    children,
+    className,
+    layerClassName,
+    backgroundClassName,
+    loadingMode,
+    shouldLoad,
+}) => {
     const hasSize = width > 0 && height > 0;
 
     const layers = useMemo(() => getLayersFromBackground(background), [background]);
@@ -74,6 +88,7 @@ const BackgroundLayers = ({ width, height, background, playing, children, classN
                                 {
                                     [styles.bottom]: verticalAlign === 'bottom',
                                     [styles.right]: horizontalAlign === 'right',
+                                    [layerClassName]: layerClassName !== null,
                                 },
                             ])}
                             style={{
@@ -83,7 +98,12 @@ const BackgroundLayers = ({ width, height, background, playing, children, classN
                             <Background
                                 width={width}
                                 height={height}
-                                className={styles.background}
+                                className={classNames([
+                                    styles.background,
+                                    {
+                                        [backgroundClassName]: backgroundClassName !== null,
+                                    },
+                                ])}
                                 playing={playing}
                                 horizontalAlign={horizontalAlign}
                                 verticalAlign={verticalAlign}
