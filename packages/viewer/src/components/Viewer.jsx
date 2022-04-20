@@ -515,13 +515,13 @@ const Viewer = ({
                                             >
                                                 {viewerScreen}
                                             </div>
+                                            {withNavigationHint &&
+                                            !withLandscapeSiblingsScreens &&
+                                            current &&
+                                            screenIndex === 0 ? (
+                                                <HandTap className={styles.handTap} />
+                                            ) : null}
                                         </div>
-                                        {withNavigationHint &&
-                                        !withLandscapeSiblingsScreens &&
-                                        current &&
-                                        screenIndex < 2 ? (
-                                            <HandTap className={styles.handTap} />
-                                        ) : null}
                                         {current && screenIndex < screens.length ? (
                                             <button
                                                 type="button"

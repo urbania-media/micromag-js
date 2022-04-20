@@ -8,21 +8,21 @@
 
     .circle {
         position: absolute;
-        top: -20px;
+        top: -10px;
         left: 0;
-        width: 42px;
-        height: 42px;
+        width: 21px;
+        height: 21px;
         animation-name: pulse;
         animation-duration: 1.2s;
         animation-timing-function: linear;
         animation-iteration-count: infinite;
-        border: 2px solid #fff;
+        border: 1px solid #fff;
         border-radius: 50%;
         animation-fill-mode: both;
     }
 
     .hand {
-        width: 60px;
+        width: 30px;
         height: auto;
         animation-name: panY;
         animation-duration: 0.6s;
@@ -55,7 +55,7 @@
         }
 
         to {
-            transform: translateY(20px);
+            transform: translateY(10px);
         }
     }
 }

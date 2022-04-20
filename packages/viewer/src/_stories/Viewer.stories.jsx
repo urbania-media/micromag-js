@@ -69,7 +69,7 @@ export const Custom = () => (
     />
 );
 
-export const Basic = () => <Viewer story={basic} withNavigationHint />;
+export const Basic = () => <Viewer story={basic} ç />;
 
 export const Integrated = () => {
     const [fullscreen, setFullscreen] = useState(false);
@@ -124,7 +124,7 @@ export const WithScroll = () => (
 );
 
 export const AllScreens = () => <Viewer {...props} />;
-export const FaceAFace = () => <Viewer {...faceAFaceProps} />;
+export const FaceAFace = () => <Viewer {...faceAFaceProps} withNavigationHint />;
 export const Empty = () => <Viewer basePath="/story-path" />;
 export const TwoScreens = () => <Viewer {...twoScreensProps} />;
 export const MultipleAudios = () => (
@@ -190,6 +190,7 @@ export const MultipleVideos = () => (
                 },
             ],
         }}
+        withNavigationHint
     />
 );
 export const MultipleVideos360 = () => (
