@@ -69,7 +69,7 @@ export const Custom = () => (
     />
 );
 
-export const Basic = () => <Viewer story={basic} />;
+export const Basic = () => <Viewer story={basic} withNavigationHint />;
 
 export const Integrated = () => {
     const [fullscreen, setFullscreen] = useState(false);
@@ -100,7 +100,7 @@ export const Integrated = () => {
     );
 };
 
-export const Tree = () => <Viewer story={treeTheme} />;
+export const Tree = () => <Viewer story={treeTheme} withNavigationHint />;
 
 export const VideoAudio = () => <Viewer story={videoAudio} />;
 

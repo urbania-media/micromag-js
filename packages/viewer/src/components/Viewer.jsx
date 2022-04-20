@@ -22,6 +22,7 @@ import useScreenInteraction from '../hooks/useScreenInteraction';
 import styles from '../styles/viewer.module.scss';
 import ViewerMenu from './ViewerMenu';
 import ViewerScreen from './ViewerScreen';
+import HandTap from './partials/HandTap';
 
 const propTypes = {
     story: MicromagPropTypes.story, // .isRequired,
@@ -44,6 +45,7 @@ const propTypes = {
     withoutMenuShadow: PropTypes.bool,
     withoutFullscreen: PropTypes.bool,
     withLandscapeSiblingsScreens: PropTypes.bool,
+    withNavigationHint: PropTypes.bool,
     closeable: PropTypes.bool,
     onClose: PropTypes.func,
     onInteraction: PropTypes.func,
@@ -81,6 +83,7 @@ const defaultProps = {
     withoutMenuShadow: false,
     withoutFullscreen: false,
     withLandscapeSiblingsScreens: false,
+    withNavigationHint: false,
     menuIsScreenWidth: false,
     closeable: false,
     onClose: null,
@@ -114,6 +117,7 @@ const Viewer = ({
     withoutMenuShadow,
     withoutFullscreen, // eslint-disable-line no-unused-vars
     withLandscapeSiblingsScreens,
+    withNavigationHint,
     menuIsScreenWidth,
     closeable,
     onClose: onCloseViewer,
@@ -242,11 +246,16 @@ const Viewer = ({
 
     const screensCount = screens.length;
 
+    const [hasInteracted, setHasInteracted] = useState(false);
+
     const onInteractionPrivate = useCallback(() => {
         if (onInteraction !== null) {
             onInteraction();
         }
-    }, [onInteraction]);
+        if (!hasInteracted) {
+            setHasInteracted(true);
+        }
+    }, [onInteraction, hasInteracted, setHasInteracted]);
 
     const {
         onClick: onScreenClick,
@@ -371,9 +380,10 @@ const Viewer = ({
                         screenSize.screens.map((screenName) => `story-screen-${screenName}`),
                         {
                             [styles.landscape]: landscape,
-                            [styles.withSibblings]: withLandscapeSiblingsScreens,
+                            [styles.blings]: withLandscapeSiblingsScreens,
                             [styles.hideMenu]: !menuVisible,
                             [styles.ready]: ready || withoutScreensTransforms,
+                            [styles.hasInteracted]: hasInteracted,
                             [className]: className,
                         },
                     ])}
@@ -506,7 +516,12 @@ const Viewer = ({
                                                 {viewerScreen}
                                             </div>
                                         </div>
-
+                                        {withNavigationHint &&
+                                        !withLandscapeSiblingsScreens &&
+                                        current &&
+                                        screenIndex < 2 ? (
+                                            <HandTap className={styles.handTap} />
+                                        ) : null}
                                         {current && screenIndex < screens.length ? (
                                             <button
                                                 type="button"

@@ -1,0 +1,61 @@
+@import '~@micromag/core/scss/variables';
+@import '~@micromag/core/scss/placeholders';
+
+.container {
+    position: relative;
+    // transition: opacity 0.25s ease;
+    // opacity: 0;
+
+    .circle {
+        position: absolute;
+        top: -20px;
+        left: 0;
+        width: 42px;
+        height: 42px;
+        animation-name: pulse;
+        animation-duration: 1.2s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        animation-fill-mode: both;
+    }
+
+    .hand {
+        width: 60px;
+        height: auto;
+        animation-name: panY;
+        animation-duration: 0.6s;
+        animation-timing-function: ease;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-fill-mode: both;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(0.5);
+            opacity: 0;
+        }
+
+        50% {
+            transform: scale(1.5);
+            opacity: 0.5;
+        }
+
+        100% {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+
+    @keyframes panY {
+        from {
+            transform: translateY(0);
+        }
+
+        to {
+            transform: translateY(20px);
+        }
+    }
+}
