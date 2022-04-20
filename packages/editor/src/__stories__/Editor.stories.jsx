@@ -38,6 +38,7 @@ const EditorContainer = ({ defaultValue, isTheme, viewerTheme }) => {
                 onChange={setValue}
                 memoryRouter
                 viewerTheme={viewerTheme}
+                // screenNamespaces={['urbania']}
             />
         </ApiProvider>
     );
