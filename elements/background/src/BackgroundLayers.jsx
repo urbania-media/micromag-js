@@ -19,6 +19,8 @@ const propTypes = {
     playing: PropTypes.bool,
     children: PropTypes.node,
     className: PropTypes.string,
+    layerClassName: PropTypes.string,
+    backgroundClassName: PropTypes.string,
     loadingMode: PropTypes.string,
     shouldLoad: PropTypes.bool,
 };
@@ -30,6 +32,8 @@ const defaultProps = {
     playing: false,
     children: null,
     className: null,
+    layerClassName: null,
+    backgroundClassName: null,
     loadingMode: 'lazy',
     shouldLoad: true,
 };
@@ -41,6 +45,8 @@ const BackgroundLayers = ({
     playing,
     children,
     className,
+    layerClassName,
+    backgroundClassName,
     loadingMode,
     shouldLoad,
 }) => {
@@ -82,6 +88,7 @@ const BackgroundLayers = ({
                                 {
                                     [styles.bottom]: verticalAlign === 'bottom',
                                     [styles.right]: horizontalAlign === 'right',
+                                    [layerClassName]: layerClassName !== null,
                                 },
                             ])}
                             style={{
@@ -91,7 +98,12 @@ const BackgroundLayers = ({
                             <Background
                                 width={width}
                                 height={height}
-                                className={styles.background}
+                                className={classNames([
+                                    styles.background,
+                                    {
+                                        [backgroundClassName]: backgroundClassName !== null,
+                                    },
+                                ])}
                                 playing={playing}
                                 horizontalAlign={horizontalAlign}
                                 verticalAlign={verticalAlign}

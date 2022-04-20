@@ -26,6 +26,7 @@
         flex-direction: column;
         border: 2px solid #000;
         border-radius: 17px;
+        // opacity: 0.1;
         box-shadow: 0 3px 34px rgba(0, 0, 0, 0.43);
         color: #000;
         text-align: center;
@@ -97,7 +98,6 @@
     }
 
     .titleContainer {
-        // padding: 15px 10px;
         max-width: 75%;
         overflow-wrap: break-word;
 
@@ -145,9 +145,24 @@
         padding-bottom: 30px;
     }
 
+    .background {
+        animation: roll 3s ease-out;
+        animation-fill-mode: forwards;
+    }
+
     &.isPlaceholder {
         .layout {
             padding: 10px;
         }
+    }
+}
+
+@keyframes roll {
+    0% {
+        background-position-y: 0;
+    }
+
+    100% {
+        background-position-y: 9000px;
     }
 }

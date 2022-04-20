@@ -287,9 +287,6 @@ const UrbaniaTrivia = ({
     } = videoMedia || {};
     const hasVideoUrl = videoUrl !== null;
 
-    // const hasThumbnail = thumbnailUrl !== null;
-    // const [posterReady, setPosterReady] = useState(!hasThumbnail);
-
     const { width: videoWidth = 0, height: videoHeight = 0 } = videoMetadata || {};
 
     const {

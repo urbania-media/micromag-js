@@ -52,7 +52,7 @@ function Screen({
         screens: getDeviceScreens(),
     });
 
-    console.log(width, height, screenSize);
+    // console.log(width, height, screenSize);
 
     return (
         <div

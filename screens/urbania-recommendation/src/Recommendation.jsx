@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import {
@@ -33,6 +33,7 @@ const propTypes = {
     callToAction: MicromagPropTypes.callToAction,
     current: PropTypes.bool,
     active: PropTypes.bool,
+    animateBackground: PropTypes.bool,
     transitions: MicromagPropTypes.transitions,
     transitionStagger: PropTypes.number,
     className: PropTypes.string,
@@ -49,6 +50,7 @@ const defaultProps = {
     callToAction: null,
     current: true,
     active: true,
+    animateBackground: true,
     transitions: null,
     transitionStagger: 100,
     className: null,
@@ -65,6 +67,7 @@ const Recommendation = ({
     callToAction,
     current,
     active,
+    animateBackground,
     transitions,
     transitionStagger,
     className,
@@ -93,6 +96,7 @@ const Recommendation = ({
 
     const backgroundPlaying = current && (isView || isEdit);
     const backgroundShouldLoad = current || active || !isView;
+    const finalAnimateBackground = animateBackground && !isPlaceholder && !isStatic && !isPreview;
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
     const [scrolledBottom, setScrolledBottom] = useState(false);
@@ -110,6 +114,17 @@ const Recommendation = ({
     const onScrolledNotBottom = useCallback(() => {
         setScrolledBottom(false);
     }, [setScrolledBottom]);
+
+    const finalBackground = useMemo(
+        () => ({
+            fit: 'contain',
+            horizontalAlign: 'left',
+            verticalAlign: '-20%',
+            repeat: true,
+            ...background,
+        }),
+        [background],
+    );
 
     // Create elements
     const items = [
@@ -297,11 +312,12 @@ const Recommendation = ({
         >
             {!isPlaceholder ? (
                 <Background
-                    background={background}
+                    background={finalBackground}
                     width={width}
                     height={height}
                     playing={backgroundPlaying}
                     shouldLoad={backgroundShouldLoad}
+                    backgroundClassName={finalAnimateBackground ? styles.background : null}
                 />
             ) : null}
             <Container width={width} height={height}>
