@@ -23,6 +23,8 @@ const propTypes = {
     itemsField: MicromagPropTypes.formField,
     className: PropTypes.string,
     withoutSort: PropTypes.bool,
+    withoutAddItem: PropTypes.bool,
+    withoutDeleteItem: PropTypes.bool,
     isFieldForm: PropTypes.bool,
     gotoFieldForm: PropTypes.func,
     closeFieldForm: PropTypes.func,
@@ -54,6 +56,8 @@ const defaultProps = {
     itemsField: null,
     className: null,
     withoutSort: false,
+    withoutAddItem: false,
+    withoutDeleteItem: false,
     isFieldForm: false,
     gotoFieldForm: null,
     closeFieldForm: null,
@@ -71,6 +75,8 @@ const ItemsField = ({
     itemsField,
     className,
     withoutSort,
+    withoutAddItem,
+    withoutDeleteItem,
     onChange,
     isFieldForm,
     gotoFieldForm,
@@ -79,7 +85,6 @@ const ItemsField = ({
 }) => {
     // const finalIsFieldForm =
     //     isFieldForm || (itemComponent !== null ? itemComponent.withForm || false : false);
-
     const [editing, setEditing] = useState(false);
     const idMap = useRef((value || []).map(() => uuid()));
 
@@ -246,16 +251,18 @@ const ItemsField = ({
                 </Empty>
             )}
             <div className="d-flex mt-1">
-                <Button
-                    theme="primary"
-                    size="sm"
-                    disabled={editing}
-                    icon={<FontAwesomeIcon icon={faPlus} />}
-                    onClick={onClickAdd}
-                >
-                    <Label>{addItemLabel}</Label>
-                </Button>
-                {hasItems ? (
+                {!withoutAddItem ? (
+                    <Button
+                        theme="primary"
+                        size="sm"
+                        disabled={editing}
+                        icon={<FontAwesomeIcon icon={faPlus} />}
+                        onClick={onClickAdd}
+                    >
+                        <Label>{addItemLabel}</Label>
+                    </Button>
+                ) : null}
+                {hasItems && !withoutDeleteItem ? (
                     <Button
                         className={classNames([
                             'ms-auto',

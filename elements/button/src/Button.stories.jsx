@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-
 import Button from './Button';
 
 export default {
@@ -19,7 +18,7 @@ const style = {
         borderWidth: 2,
         borderStyle: 'dashed',
         borderColor: { color: 'yellow' },
-    }
+    },
 };
 
 export const Default = () => <Button>Button</Button>;

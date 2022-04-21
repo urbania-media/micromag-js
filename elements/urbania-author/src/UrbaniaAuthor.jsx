@@ -4,7 +4,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { PropTypes as MicromagPropTypes } from '@micromag/core';
 import Avatar from './Avatar';
-import styles from './author.module.scss';
+import styles from './styles.module.scss';
 
 const propTypes = {
     author: PropTypes.shape({
@@ -31,7 +31,7 @@ const defaultProps = {
     className: null,
 };
 
-const Author = ({
+const UrbaniaAuthor = ({
     author,
     withAvatar,
     withConjunction,
@@ -40,24 +40,26 @@ const Author = ({
     linkUnderlineColor,
     className,
 }) => {
-    const { slug = '', name = '', avatar = null, url = null } = author || {};
+    const { name = '', avatar = null, url = null } = author || {};
+
     let prefix = (
         <span className={styles.by}>
-            <FormattedMessage defaultMessage="Par" description="Author" />
+            <FormattedMessage defaultMessage="By" description="Author label" />
         </span>
     );
+
     if (withConjunction) {
         prefix = (
             <span className={styles.conjunction}>
-                <FormattedMessage defaultMessage="et" description="Author" />
+                <FormattedMessage defaultMessage="and" description="Author label" />
             </span>
         );
     }
+
     return (
         <div
             className={classNames([
                 styles.container,
-
                 { [styles.isSmall]: isSmall, [className]: className !== null },
             ])}
         >
@@ -84,7 +86,7 @@ const Author = ({
     );
 };
 
-Author.propTypes = propTypes;
-Author.defaultProps = defaultProps;
+UrbaniaAuthor.propTypes = propTypes;
+UrbaniaAuthor.defaultProps = defaultProps;
 
-export default Author;
+export default UrbaniaAuthor;

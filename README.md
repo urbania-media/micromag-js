@@ -4,10 +4,10 @@
 
 ### Prerequisites
 
-* [nodejs](https://nodejs.org/en/)
-* [composer](https://getcomposer.org/doc/00-intro.md)
-* [lerna](https://lerna.js.org/)
-* [envoy](https://laravel.com/docs/8.x/envoy)
+-   [nodejs](https://nodejs.org/en/)
+-   [composer](https://getcomposer.org/doc/00-intro.md)
+-   [lerna](https://lerna.js.org/)
+-   [envoy](https://laravel.com/docs/8.x/envoy)
 
 ### Installation
 
@@ -24,6 +24,6 @@ Every element of the Micromag interface should be available as [Storybook](https
 
 ### Deployment
 
-* Development server: `envoy run deploy`
-* Production server: `envoy run deploy-prod`
-* Both: `envoy run deploy-all`
+-   Development server: `envoy run deploy`
+-   Production server: `envoy run deploy-prod`
+-   Both: `envoy run deploy-all`

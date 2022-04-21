@@ -24,7 +24,9 @@ export default {
         intl: true,
     },
 };
+
 const hasWindow = typeof window !== 'undefined';
+
 const apiBaseUrl = hasWindow ? `${window.location.protocol}//${window.location.host}/api` : '/api';
 
 const EditorContainer = ({ defaultValue, isTheme, viewerTheme }) => {
@@ -38,7 +40,7 @@ const EditorContainer = ({ defaultValue, isTheme, viewerTheme }) => {
                 onChange={setValue}
                 memoryRouter
                 viewerTheme={viewerTheme}
-                // screenNamespaces={['urbania']}
+                screenNamespaces={['urbania']}
             />
         </ApiProvider>
     );
@@ -114,6 +116,38 @@ EditorContainer.defaultProps = {
     isTheme: false,
     viewerTheme: null,
 };
+
+export const Test = () => (
+    <EditorContainer
+        defaultValue={{
+            title: 'Test',
+            components: [
+                {
+                    id: '1cb8a4be-5c1a-11eb-985f-ad6fce99d848',
+                    type: 'urbania-horoscope',
+                    title: {
+                        body: 'ASTROLOGIE',
+                        textStyle: {
+                            fontFamily: {
+                                name: 'Garage Gothic',
+                                fallback: 'Arial',
+                                type: 'sans-serif',
+                            },
+                            fontSize: 60,
+                            fontStyle: {
+                                bold: true,
+                                transform: 'uppercase',
+                            },
+                            lineHeight: 0.2,
+                            align: 'center',
+                            color: '#ff4dff',
+                        },
+                    },
+                },
+            ],
+        }}
+    />
+);
 
 export const Empty = () => <EditorContainer defaultValue={{ title: 'Empty' }} />;
 

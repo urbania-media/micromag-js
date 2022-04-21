@@ -22,8 +22,8 @@ const propTypes = {
     disabled: PropTypes.bool,
     animationDisabled: PropTypes.bool,
     callToAction: MicromagPropTypes.callToAction,
-    iconComponent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-    arrowComponent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+    icon: PropTypes.node,
+    arrow: PropTypes.node,
     screenSize: PropTypes.shape({
         width: PropTypes.number,
         height: PropTypes.number,
@@ -31,6 +31,7 @@ const propTypes = {
     dragAmount: PropTypes.number,
     className: PropTypes.string,
     buttonClassName: PropTypes.string,
+    buttonBorderClassName: PropTypes.string,
     labelClassName: PropTypes.string,
     arrowClassName: PropTypes.string,
     focusable: PropTypes.bool,
@@ -41,12 +42,13 @@ const defaultProps = {
     disabled: false,
     animationDisabled: false,
     callToAction: null,
-    iconComponent: null,
-    arrowComponent: null,
+    icon: null,
+    arrow: null,
     screenSize: null,
     dragAmount: 50,
     className: null,
     buttonClassName: null,
+    buttonBorderClassName: null,
     labelClassName: null,
     arrowClassName: null,
     focusable: true,
@@ -57,12 +59,13 @@ function CallToAction({
     disabled,
     animationDisabled,
     callToAction,
-    iconComponent: IconComponent,
-    arrowComponent: ArrowComponent,
+    icon,
+    arrow,
     screenSize,
     dragAmount,
     className,
     buttonClassName,
+    buttonBorderClassName,
     labelClassName,
     arrowClassName,
     focusable,
@@ -88,6 +91,8 @@ function CallToAction({
         () => ({ ...{ fontSize }, ...getStyleFromColor(color, 'color') }),
         [fontSize, color],
     );
+
+    console.log(buttonStyle);
 
     // MobileSafari blocks popup no matter what
     const selfTargetLinkRef = useRef(null);
@@ -149,15 +154,17 @@ function CallToAction({
     }, [setShowWebView]);
 
     const ArrowElement =
-        ArrowComponent !== null ? (
-            <ArrowComponent
+        arrow !== null ? (
+            <div
                 className={classNames([
                     styles.arrow,
                     {
                         [arrowClassName]: arrowClassName !== null,
                     },
                 ])}
-            />
+            >
+                {arrow}
+            </div>
         ) : (
             <FontAwesomeIcon
                 className={classNames([
@@ -194,39 +201,48 @@ function CallToAction({
                     tabIndex={focusable ? '0' : '-1'}
                 />
                 {swipeUpEnabled ? ArrowElement : null}
-                <Button
+                <div
                     className={classNames([
-                        styles.button,
+                        styles.buttonBorder,
                         {
-                            [buttonClassName]: buttonClassName !== null,
+                            [buttonBorderClassName]: buttonBorderClassName !== null,
                         },
                     ])}
-                    refButton={buttonRef}
-                    focusable={focusable}
-                    buttonStyle={{
-                        marginBottom: 10,
-                        ...buttonStyle,
-                    }}
-                    {...(swipeUpEnabled && !disabled ? bind() : null)}
-                    {...(inWebView
-                        ? { onClick: onOpenWebView }
-                        : {
-                              href: url,
-                              external: true,
-                          })}
                 >
-                    <span
+                    <Button
                         className={classNames([
-                            styles.label,
+                            styles.button,
                             {
-                                [labelClassName]: labelClassName !== null,
+                                [buttonClassName]: buttonClassName !== null,
                             },
                         ])}
+                        refButton={buttonRef}
+                        focusable={focusable}
+                        buttonStyle={{
+                            marginBottom: 10,
+                            ...buttonStyle,
+                        }}
+                        {...(swipeUpEnabled && !disabled ? bind() : null)}
+                        {...(inWebView
+                            ? { onClick: onOpenWebView }
+                            : {
+                                  href: url,
+                                  external: true,
+                              })}
                     >
-                        {IconComponent !== null ? <IconComponent className={styles.icon} /> : null}
-                        <Text {...label} inline />
-                    </span>
-                </Button>
+                        <span
+                            className={classNames([
+                                styles.label,
+                                {
+                                    [labelClassName]: labelClassName !== null,
+                                },
+                            ])}
+                        >
+                            {icon !== null ? <div className={styles.icon}>{icon}</div> : null}
+                            <Text {...label} inline />
+                        </span>
+                    </Button>
+                </div>
             </div>
             {inWebView ? (
                 <WebView

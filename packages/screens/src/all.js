@@ -39,7 +39,6 @@ manager.addDefinition(title);
 manager.addDefinition(video);
 manager.addDefinition(video360);
 // manager.addDefinition(slideshow);
-
 manager.addDefinition(urbaniaArticle);
 manager.addDefinition(urbaniaTrivia);
 manager.addDefinition(urbaniaRecommendation);

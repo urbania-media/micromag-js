@@ -1,7 +1,6 @@
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
-
-$color-black: #222;
+@import './variables';
 
 .container {
     display: inline-block;

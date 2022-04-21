@@ -2,6 +2,7 @@ export { default as audio } from './audio';
 export { default as audioElement } from './audio-element';
 export { default as answer } from './answer';
 export { default as answers } from './answers';
+export { default as authorElement } from './author-element';
 export { default as background } from './background';
 export { default as borderRadius } from './border-radius';
 export { default as borderStyle } from './border-style';

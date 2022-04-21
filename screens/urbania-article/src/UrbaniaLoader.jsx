@@ -17,7 +17,6 @@ const defaultProps = {
 
 const UrbaniaLoader = ({ url, article: initialArticle, ...props }) => {
     const [article, setArticle] = useState(initialArticle);
-    console.log('fuuuu');
 
     useEffect(() => {
         if (url !== null) {

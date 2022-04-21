@@ -24,8 +24,8 @@ import Background from '@micromag/element-background';
 import CallToAction from '@micromag/element-call-to-action';
 import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
+import UrbaniaAuthor from '@micromag/element-urbania-author';
 import Visual from '@micromag/element-visual';
-import Author from './Author';
 import ArrowIcon from './icons/ArrowIcon';
 import WatchIcon from './icons/WatchIcon';
 import styles from './styles.module.scss';
@@ -104,7 +104,7 @@ const UrbaniaArticle = ({
 
     const { media: currentVideo = null } = video || {};
 
-    console.log('cv', type, currentVideo, video);
+    // console.log('cv', type, currentVideo, video);
 
     const { isView, isPreview, isPlaceholder, isEdit, isStatic, isCapture } =
         useScreenRenderContext();
@@ -131,8 +131,6 @@ const UrbaniaArticle = ({
     const transitionDisabled = isStatic || isCapture || isPlaceholder || isPreview || isEdit;
 
     const hasCallToAction = callToAction !== null && callToAction.active === true;
-
-    // console.log(authors);
 
     const items = [
         <ScreenElement
@@ -186,7 +184,7 @@ const UrbaniaArticle = ({
                 {hasAuthors ? (
                     <div className={classNames([styles.authors])}>
                         {authors.map((author) => (
-                            <Author author={author} />
+                            <UrbaniaAuthor author={author} />
                         ))}
                     </div>
                 ) : null}
@@ -300,8 +298,8 @@ const UrbaniaArticle = ({
                                         animationDisabled={isPreview}
                                         focusable={current && isView}
                                         screenSize={{ width, height }}
-                                        arrowComponent={ArrowIcon}
-                                        iconComponent={WatchIcon}
+                                        arrow={<ArrowIcon />}
+                                        icon={<WatchIcon />}
                                     />
                                 </div>
                             ) : null}
@@ -313,6 +311,7 @@ const UrbaniaArticle = ({
     );
 };
 
+UrbaniaArticle.propTypes = propTypes;
 UrbaniaArticle.defaultProps = defaultProps;
 
 export default React.memo(UrbaniaArticle);

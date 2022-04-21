@@ -12,16 +12,17 @@ import Horoscope from '../Horoscope';
 import definition from '../definition';
 
 const props = {
-    // category: { body: title() },
-    // date: text('short'),
-    // title: { body: title() },
-    // sponsor: text('short'),
-    // description: text('medium'),
-    // category: { body: 'HOROSCOPE' },
     title: { body: 'Astrologie' },
     description: {
         body: 'Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac Zodiac ',
     },
+    author: {
+        name: 'Paul le fermier',
+    },
+    button: {
+        label: 'Découvrir',
+    },
+    signs: [],
     background: backgroundImage(),
     transitions: transitions(),
 };
@@ -38,7 +39,9 @@ export default {
 export const Placeholder = (storyProps) => <Horoscope {...storyProps} />;
 
 export const Preview = (storyProps) => <Horoscope {...storyProps} {...props} />;
+
 export const Static = (storyProps) => <Horoscope {...storyProps} {...props} />;
+
 export const Capture = (storyProps) => <Horoscope {...storyProps} {...props} />;
 
 export const Edit = (storyProps) => <Horoscope {...storyProps} />;

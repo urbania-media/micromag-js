@@ -95,7 +95,7 @@ $color-dehors-text: #ffeada;
             display: inline-block;
             width: 100%;
             margin-top: auto;
-            padding: 5px 10px;
+            padding: 3px 10px 4px;
             background-color: $color-urbania-text;
             color: $color-urbania-background;
         }
@@ -115,7 +115,10 @@ $color-dehors-text: #ffeada;
 
         &.quatre95 {
             background-color: $color-quatre95-background;
-            color: $color-quatre95-text;
+
+            .author {
+                color: $color-quatre95-text;
+            }
 
             .sponsors {
                 background-color: $color-urbania-background;
@@ -126,11 +129,19 @@ $color-dehors-text: #ffeada;
         &.urbania {
             background-color: $color-urbania-background;
             color: $color-urbania-text;
+
+            .author {
+                color: $color-urbania-text;
+            }
         }
 
         &.dehors {
             background-color: $color-dehors-background;
             color: $color-dehors-text;
+
+            .author {
+                color: $color-dehors-text;
+            }
         }
     }
 

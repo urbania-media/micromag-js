@@ -15,6 +15,7 @@ const propTypes = {
     type: PropTypes.oneOf(['button', 'submit']),
     disabled: PropTypes.bool,
     focusable: PropTypes.bool,
+    separateBorder: PropTypes.bool,
     onClick: PropTypes.func,
     children: PropTypes.node,
     className: PropTypes.string,
@@ -32,6 +33,7 @@ const defaultProps = {
     type: 'button',
     disabled: false,
     focusable: true,
+    separateBorder: true,
     onClick: null,
     children: null,
     className: null,
@@ -44,29 +46,56 @@ const Button = ({
     type,
     disabled,
     focusable,
+    separateBorder,
     onClick,
     children,
     className,
     refButton,
     ...buttonProps
 }) => {
-    let finalStyle = null;
+    let finalStyles = null;
+    let borderStyles = null;
 
     if (textStyle !== null) {
-        finalStyle = {
-            ...finalStyle,
+        finalStyles = {
+            ...finalStyles,
             ...getStyleFromText(textStyle),
         };
     }
 
     if (buttonStyle !== null) {
-        finalStyle = {
-            ...finalStyle,
+        finalStyles = {
+            ...finalStyles,
             ...getStyleFromBox(buttonStyle),
         };
     }
 
-    return (
+    if (separateBorder) {
+        const {
+            borderRadius = null,
+            borderWidth = null,
+            borderColor = null,
+            borderStyle = null,
+            ...otherStyles
+        } = finalStyles || {};
+
+        finalStyles = {
+            ...otherStyles,
+            borderRadius,
+        };
+
+        borderStyles = {
+            borderRadius,
+            borderWidth,
+            borderColor,
+            borderStyle,
+            // width: `calc(100% - ${borderWidth || 0}px)`,
+        };
+    }
+
+    console.log('yo');
+
+    const button = (
         <CoreButton
             className={classNames([
                 styles.container,
@@ -75,7 +104,7 @@ const Button = ({
                 },
             ])}
             disabled={disabled}
-            style={finalStyle}
+            style={finalStyles}
             onClick={onClick}
             refButton={refButton}
             type={type}
@@ -84,6 +113,14 @@ const Button = ({
         >
             {children}
         </CoreButton>
+    );
+
+    return borderStyles !== null ? (
+        <div className={styles.border} style={borderStyles}>
+            {button}
+        </div>
+    ) : (
+        button
     );
 };
 

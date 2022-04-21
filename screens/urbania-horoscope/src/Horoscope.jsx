@@ -19,10 +19,27 @@ import Container from '@micromag/element-container';
 import Heading from '@micromag/element-heading';
 import Layout from '@micromag/element-layout';
 import Scroll from '@micromag/element-scroll';
+// import Button from '@micromag/element-button';
 import Text from '@micromag/element-text';
+import signsImages from './images';
+import signsList from './signs';
 import styles from './styles.module.scss';
 
 const propTypes = {
+    defaultSigns: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string,
+            label: PropTypes.string,
+        }),
+    ),
+    signs: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string,
+            label: PropTypes.string,
+            word: MicromagPropTypes.headingElement,
+            description: MicromagPropTypes.textElement,
+        }),
+    ),
     category: MicromagPropTypes.headingElement,
     title: MicromagPropTypes.headingElement,
     description: MicromagPropTypes.textElement,
@@ -37,6 +54,8 @@ const propTypes = {
 };
 
 const defaultProps = {
+    defaultSigns: signsList,
+    signs: null,
     category: null,
     title: null,
     description: null,
@@ -51,6 +70,8 @@ const defaultProps = {
 };
 
 const Horoscope = ({
+    defaultSigns,
+    signs: signsValue,
     category,
     title,
     description,
@@ -63,6 +84,14 @@ const Horoscope = ({
     transitionStagger,
     className,
 }) => {
+    const signs = defaultSigns.map((sign, index) => ({
+        ...sign,
+        ...(signsValue !== null && signsValue[index] ? signsValue[index] || null : null),
+        image: signsImages[sign.id] ? signsImages[sign.id] : null,
+    }));
+
+    console.log(signs);
+
     const trackScreenEvent = useTrackScreenEvent();
 
     const { width, height, menuOverScreen } = useScreenSize();
@@ -110,7 +139,7 @@ const Horoscope = ({
             placeholder={<PlaceholderTitle className={styles.categoryPlaceholder} />}
             emptyLabel={<FormattedMessage defaultMessage="Title" description="Title placeholder" />}
             emptyClassName={styles.emptyText}
-            isEmpty={!hasCategory}
+            isEmpty={!hasTitle}
         >
             <Heading
                 className={classNames([
@@ -123,7 +152,6 @@ const Horoscope = ({
                 {...title}
             />
         </ScreenElement>,
-
         <ScreenElement
             key="description"
             placeholder={<PlaceholderText className={styles.descriptionPlaceholder} />}

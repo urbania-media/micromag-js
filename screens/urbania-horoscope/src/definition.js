@@ -1,5 +1,6 @@
 import { defineMessage } from 'react-intl';
 import Horoscope from './Horoscope';
+import signs from './signs';
 
 export default [
     {
@@ -31,28 +32,6 @@ export default [
                 }),
             },
             {
-                name: 'date',
-                type: 'text-element',
-                theme: {
-                    textStyle: 'text',
-                },
-                label: defineMessage({
-                    defaultMessage: 'Date',
-                    description: 'Text field label',
-                }),
-            },
-            {
-                name: 'sponsor',
-                type: 'text-element',
-                theme: {
-                    textStyle: 'text',
-                },
-                label: defineMessage({
-                    defaultMessage: 'Sponsor',
-                    description: 'Text field label',
-                }),
-            },
-            {
                 name: 'description',
                 type: 'text-element',
                 theme: {
@@ -61,6 +40,69 @@ export default [
                 label: defineMessage({
                     defaultMessage: 'Description',
                     description: 'Text field label',
+                }),
+            },
+            {
+                name: 'author',
+                type: 'author-element',
+                theme: {
+                    textStyle: 'text',
+                },
+                label: defineMessage({
+                    defaultMessage: 'Author',
+                    description: 'Author field label',
+                }),
+            },
+            {
+                name: 'signs',
+                component: 'items',
+                theme: {
+                    textStyle: 'text',
+                },
+                label: defineMessage({
+                    defaultMessage: 'Signs',
+                    description: 'State label',
+                }),
+                defaultValue: signs,
+                withoutSort: true,
+                withoutAddItem: true,
+                withoutDeleteItem: true,
+                itemsField: {
+                    type: 'field-with-form',
+                    breadcrumbLabel: defineMessage({
+                        defaultMessage: 'Sign',
+                        description: 'Breadcrumb field label',
+                    }),
+                    labelPath: 'id',
+                    fields: [
+                        {
+                            name: 'word',
+                            type: 'heading-element',
+                            label: defineMessage({
+                                defaultMessage: 'Word of the week',
+                                description: 'Field label',
+                            }),
+                        },
+                        {
+                            name: 'description',
+                            type: 'text-element',
+                            label: defineMessage({
+                                defaultMessage: 'Description',
+                                description: 'Field label',
+                            }),
+                        },
+                    ],
+                },
+            },
+            {
+                name: 'button',
+                type: 'button-element',
+                theme: {
+                    textStyle: 'button',
+                },
+                label: defineMessage({
+                    defaultMessage: 'Button',
+                    description: 'Field label',
                 }),
             },
             {
