@@ -145,3 +145,15 @@ export function WithList() {
         </ApiProvider>
     );
 }
+
+export function WithFontType() {
+    return (
+        <ApiProvider baseUrl={apiBaseUrl}>
+            <FieldsProvider>
+                <MemoryRouter>
+                    <MediaGallery type="font" />
+                </MemoryRouter>
+            </FieldsProvider>
+        </ApiProvider>
+    );
+}

@@ -1,11 +1,10 @@
 /* eslint-disable react/no-array-index-key, react/jsx-props-no-spreading */
-import React, { useCallback } from 'react';
-import PropTypes from 'prop-types';
 import get from 'lodash/get';
-
+import PropTypes from 'prop-types';
+import React, { useCallback } from 'react';
+import { useFieldsManager, useFieldComponent, FieldContextProvider } from '../../contexts';
 import { PropTypes as MicromagPropTypes } from '../../lib';
 import { getComponentFromName, setFieldValue, getFieldFromPath } from '../../utils';
-import { useFieldsManager, useFieldComponent, FieldContextProvider } from '../../contexts';
 
 const propTypes = {
     name: PropTypes.string, // .isRequired,
@@ -48,30 +47,33 @@ const FieldForm = ({
     const field = getFieldFromPath(name.split('.'), fields, fieldsManager);
 
     const { type = null, ...fieldProps } = field || {};
-    const { component: fieldComponent = null, id, settings, ...definitionProps } = (type !== null
-        ? fieldsManager.getDefinition(type) || null
-        : null) || {
+    const {
+        component: fieldComponent = null,
+        id,
+        settings,
+        ...definitionProps
+    } = (type !== null ? fieldsManager.getDefinition(type) || null : null) || {
         ...field,
     };
+
     const FieldComponent = useFieldComponent(fieldComponent);
+
+    const FormComponent = getComponentFromName(form, formComponents);
 
     const fieldValue = get(value, name, null);
 
-    const onFieldChange = useCallback(
-        (newFieldValue) => {
-            // const { name, fields: subFields = null } = field || {};
-            const newValue = setFieldValue(
-                value,
-                name.split('.'),
-                newFieldValue,
-                // field === null || subFields !== null ? newFieldValue : newFieldValue[name],
-            );
-            if (onChange !== null) {
-                onChange(newValue);
-            }
-        },
-        [value, name, onChange],
-    );
+    const onFieldChange = (newFieldValue) => {
+        // const { name, fields: subFields = null } = field || {};
+        const newValue = setFieldValue(
+            value,
+            name.split('.'),
+            newFieldValue,
+            // field === null || subFields !== null ? newFieldValue : newFieldValue[name],
+        );
+        if (onChange !== null) {
+            onChange(newValue);
+        }
+    };
 
     const closeForm = useCallback(() => closeFieldForm(name, form), [name, form, closeFieldForm]);
 
@@ -85,7 +87,6 @@ const FieldForm = ({
     };
 
     if (form !== null) {
-        const FormComponent = getComponentFromName(form, formComponents);
         return FormComponent !== null ? (
             <FieldContextProvider context={fieldContext}>
                 <FormComponent field={field} {...formProps} className={className} />

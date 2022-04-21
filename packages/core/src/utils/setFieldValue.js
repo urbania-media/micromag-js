@@ -1,6 +1,7 @@
 const setValue = (value, keyParts, fieldValue) => {
     const key = keyParts.shift();
     const isArray = key.match(/^[0-9]+$/) !== null;
+
     if (value !== null || fieldValue !== null) {
         if (isArray) {
             const index = parseInt(key, 10);

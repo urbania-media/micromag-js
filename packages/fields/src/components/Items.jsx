@@ -1,8 +1,6 @@
 /* eslint-disable react/no-array-index-key, react/button-has-type, react/jsx-props-no-spreading */
 import { faBars, faCheck, faList, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { PropTypes as MicromagPropTypes } from '@micromag/core';
-import { Button, Empty, Label } from '@micromag/core/components';
 import classNames from 'classnames';
 import isFunction from 'lodash/isFunction';
 import PropTypes from 'prop-types';
@@ -10,6 +8,8 @@ import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { ReactSortable } from 'react-sortablejs';
 import { v4 as uuid } from 'uuid';
+import { PropTypes as MicromagPropTypes } from '@micromag/core';
+import { Button, Empty, Label } from '@micromag/core/components';
 import Field from './Field';
 
 const propTypes = {
@@ -95,7 +95,7 @@ const ItemsField = ({
         if (gotoFieldForm !== null) {
             gotoFieldForm(`${name}.${newValue.length - 1}`);
         }
-    }, [value, onChange, getDefaultValue, gotoFieldForm, name /* gotoFieldForm */]);
+    }, [value, onChange, getDefaultValue, gotoFieldForm, name]);
 
     const onClickEdit = useCallback(() => {
         setEditing((old) => !old);

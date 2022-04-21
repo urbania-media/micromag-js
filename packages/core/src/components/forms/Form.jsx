@@ -1,22 +1,19 @@
 /* eslint-disable no-lone-blocks */
+
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useEffect, useState, useCallback } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
-
-import { PropTypes as MicromagPropTypes } from '../../lib';
-import { useForm } from '../../hooks';
 import { useFieldComponent } from '../../contexts';
-
-import FieldForm from './Field';
+import { useForm } from '../../hooks';
+import { PropTypes as MicromagPropTypes } from '../../lib';
+import styles from '../../styles/forms/form.module.scss';
+import { validateFields } from '../../utils';
+import BackButton from '../buttons/Back';
 import Button from '../buttons/Button';
 import Buttons from '../buttons/Buttons';
-import BackButton from '../buttons/Back';
-
-import { validateFields } from '../../utils';
-
-import styles from '../../styles/forms/form.module.scss';
+import FieldForm from './Field';
 
 const propTypes = {
     action: PropTypes.string.isRequired,
@@ -175,6 +172,7 @@ const Form = ({
 
     // The last path
     const fieldParams = fieldPaths.length > 0 ? fieldPaths[fieldPaths.length - 1] : null;
+    const fieldName = fieldParams !== null ? fieldParams.replace(/\//g, '.') : null;
 
     // Get transition value
     // const { name: transitionName, timeout: transitionTimeout } = useFormTransition(
@@ -200,10 +198,10 @@ const Form = ({
                     <BackButton theme="secondary" outline onClick={closeFieldForm} />
                 </div>
             ) : null}
-            {fields && fields.length > 0 && fieldParams !== null ? (
+            {fields !== null && fields.length > 0 && fieldParams !== null ? (
                 <div className={classNames(['w-100', styles.panel])} key="field">
                     <FieldForm
-                        name={fieldParams.replace(/\//g, '.')}
+                        name={fieldName}
                         fields={fields}
                         value={value}
                         onChange={setValue}
