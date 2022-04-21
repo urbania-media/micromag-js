@@ -3,17 +3,17 @@
 @import '~@micromag/core/scss/variables';
 @import '~@micromag/core/scss/placeholders';
 
-$color-video-title: #FFF;
+$color-video-title: #fff;
 $color-video-outline: #222;
 
-$color-urbania-background: #FF0;
+$color-urbania-background: #ff0;
 $color-urbania-text: #222;
 
-$color-quatre95-background: #FFF;
-$color-quatre95-text: #5E79FF;
+$color-quatre95-background: #fff;
+$color-quatre95-text: #5e79ff;
 
-$color-dehors-background: #00C693;
-$color-dehors-text: #FFEADA;
+$color-dehors-background: #00c693;
+$color-dehors-text: #ffeada;
 
 .container {
     @extend %screen;
@@ -68,12 +68,14 @@ $color-dehors-text: #FFEADA;
         color: $color-urbania-text;
         text-align: center;
 
-        .title, .overTitle, .authors {
+        .title,
+        .overTitle,
+        .authors {
             padding: 10px;
         }
 
         .overTitle {
-            font-family: 'AgrandirGrand';
+            font-family: 'Agrandir Grand';
             font-size: 10px;
             font-weight: 500;
             text-decoration: underline;
@@ -134,7 +136,7 @@ $color-dehors-text: #FFEADA;
 
     .callToAction {
         position: absolute;
-        z-index : 1;
+        z-index: 1;
         right: 0;
         bottom: 0;
         left: 0;
@@ -170,7 +172,7 @@ $color-dehors-text: #FFEADA;
                     display: block;
                     margin: 0 5px;
                     color: $color-urbania-text;
-                    font-family: 'AgrandirTight';
+                    font-family: 'Agrandir Tight';
                     font-size: 18px;
                     font-weight: 700;
                     line-height: 1;
@@ -216,7 +218,7 @@ $color-dehors-text: #FFEADA;
         }
 
         &.withGradient {
-            background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.4));
+            background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
         }
     }
 

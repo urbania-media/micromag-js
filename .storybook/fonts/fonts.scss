@@ -237,7 +237,7 @@
 }
 
 /**
- * Font slab
+ * Agrandir
  */
 @font-face {
     font-display: swap;
@@ -307,9 +307,12 @@
         url('./agrandir/Agrandir-BlackItalic.woff') format('woff');
 }
 
+/**
+* Agrandir Narrow
+**/
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirNarrow';
+    font-family: 'Agrandir Narrow';
     font-weight: 300;
     src: url('./agrandir/Agrandir-NarrowLight.woff2') format('woff2'),
         url('./agrandir/Agrandir-NarrowLight.woff') format('woff');
@@ -317,7 +320,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirNarrow';
+    font-family: 'Agrandir Narrow';
     font-style: italic;
     font-weight: 300;
     src: url('./agrandir/Agrandir-NarrowLightItalic.woff2') format('woff2'),
@@ -326,7 +329,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirNarrow';
+    font-family: 'Agrandir Narrow';
     font-weight: 400;
     src: url('./agrandir/Agrandir-Narrow.woff2') format('woff2'),
         url('./agrandir/Agrandir-Narrow.woff') format('woff');
@@ -334,7 +337,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirNarrow';
+    font-family: 'Agrandir Narrow';
     font-style: italic;
     font-weight: 400;
     src: url('./agrandir/Agrandir-Narrow.woff2') format('woff2'),
@@ -343,7 +346,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirNarrow';
+    font-family: 'Agrandir Narrow';
     font-weight: 500;
     src: url('./agrandir/Agrandir-NarrowMedium.woff2') format('woff2'),
         url('./agrandir/Agrandir-NarrowMedium.woff') format('woff');
@@ -351,7 +354,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirNarrow';
+    font-family: 'Agrandir Narrow';
     font-style: italic;
     font-weight: 500;
     src: url('./agrandir/Agrandir-NarrowMediumItalic.woff2') format('woff2'),
@@ -360,7 +363,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirNarrow';
+    font-family: 'Agrandir Narrow';
     font-weight: 700;
     src: url('./agrandir/Agrandir-NarrowBold.woff2') format('woff2'),
         url('./agrandir/Agrandir-NarrowBold.woff') format('woff');
@@ -368,7 +371,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirNarrow';
+    font-family: 'Agrandir Narrow';
     font-style: italic;
     font-weight: 700;
     src: url('./agrandir/Agrandir-NarrowBoldItalic.woff2') format('woff2'),
@@ -376,7 +379,7 @@
 }
 
 @font-face {
-    font-family: 'AgrandirNarrow';
+    font-family: 'Agrandir Narrow';
     font-weight: 900;
     font-display: swap;
     src: url('./agrandir/Agrandir-NarrowHeavy.woff2') format('woff2'),
@@ -384,11 +387,11 @@
 }
 
 /**
-* Slab-grand
+* Agrandir Grand
 **/
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirGrand';
+    font-family: 'Agrandir Grand';
     font-weight: 300;
     src: url('./agrandir/Agrandir-GrandLight.woff2') format('woff2'),
         url('./agrandir/Agrandir-GrandLight.woff') format('woff');
@@ -396,7 +399,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirGrand';
+    font-family: 'Agrandir Grand';
     font-style: italic;
     font-weight: 300;
     src: url('./agrandir/Agrandir-GrandLightItalic.woff2') format('woff2'),
@@ -405,7 +408,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirGrand';
+    font-family: 'Agrandir Grand';
     font-weight: 400;
     src: url('./agrandir/Agrandir-Grand.woff2') format('woff2'),
         url('./agrandir/Agrandir-Grand.woff') format('woff');
@@ -413,7 +416,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirGrand';
+    font-family: 'Agrandir Grand';
     font-style: italic;
     font-weight: 400;
     src: url('./agrandir/Agrandir-Grand.woff2') format('woff2'),
@@ -422,7 +425,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirGrand';
+    font-family: 'Agrandir Grand';
     font-weight: 500;
     src: url('./agrandir/Agrandir-GrandMedium.woff2') format('woff2'),
         url('./agrandir/Agrandir-GrandMedium.woff') format('woff');
@@ -430,7 +433,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirGrand';
+    font-family: 'Agrandir Grand';
     font-style: italic;
     font-weight: 500;
     src: url('./agrandir/Agrandir-GrandMediumItalic.woff2') format('woff2'),
@@ -439,7 +442,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirGrand';
+    font-family: 'Agrandir Grand';
     font-weight: 700;
     src: url('./agrandir/Agrandir-GrandBold.woff2') format('woff2'),
         url('./agrandir/Agrandir-GrandBold.woff') format('woff');
@@ -447,7 +450,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirGrand';
+    font-family: 'Agrandir Grand';
     font-style: italic;
     font-weight: 700;
     src: url('./agrandir/Agrandir-GrandBoldItalic.woff2') format('woff2'),
@@ -455,7 +458,7 @@
 }
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirGrand';
+    font-family: 'Agrandir Grand';
     font-weight: 800;
     src: url('./agrandir/Agrandir-GrandHeavy.woff2') format('woff2'),
         url('./agrandir/Agrandir-GrandHeavy.woff') format('woff');
@@ -463,7 +466,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirGrand';
+    font-family: 'Agrandir Grand';
     font-style: italic;
     font-weight: 800;
     src: url('./agrandir/Agrandir-GrandHeavyItalic.woff2') format('woff2'),
@@ -471,7 +474,7 @@
 }
 
 @font-face {
-    font-family: 'AgrandirGrand';
+    font-family: 'Agrandir Grand';
     font-weight: 900;
     font-display: swap;
     src: url('./agrandir/Agrandir-GrandHeavy.woff2') format('woff2'),
@@ -479,11 +482,11 @@
 }
 
 /**
-* Slab-wide
+* Agrandir Wide
 **/
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirWide';
+    font-family: 'Agrandir Wide';
     font-weight: 300;
     src: url('./agrandir/Agrandir-WideLight.woff2') format('woff2'),
         url('./agrandir/Agrandir-WideLight.woff') format('woff');
@@ -491,7 +494,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirWide';
+    font-family: 'Agrandir Wide';
     font-style: italic;
     font-weight: 300;
     src: url('./agrandir/Agrandir-WideLightItalic.woff2') format('woff2'),
@@ -500,7 +503,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirWide';
+    font-family: 'Agrandir Wide';
     font-weight: 400;
     src: url('./agrandir/Agrandir-Wide.woff2') format('woff2'),
         url('./agrandir/Agrandir-Wide.woff') format('woff');
@@ -508,7 +511,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirWide';
+    font-family: 'Agrandir Wide';
     font-style: italic;
     font-weight: 400;
     src: url('./agrandir/Agrandir-Wide.woff2') format('woff2'),
@@ -517,7 +520,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirWide';
+    font-family: 'Agrandir Wide';
     font-weight: 500;
     src: url('./agrandir/Agrandir-WideMedium.woff2') format('woff2'),
         url('./agrandir/Agrandir-WideMedium.woff') format('woff');
@@ -525,7 +528,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirWide';
+    font-family: 'Agrandir Wide';
     font-style: italic;
     font-weight: 500;
     src: url('./agrandir/Agrandir-WideMediumItalic.woff2') format('woff2'),
@@ -534,7 +537,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirWide';
+    font-family: 'Agrandir Wide';
     font-weight: 700;
     src: url('./agrandir/Agrandir-WideBold.woff2') format('woff2'),
         url('./agrandir/Agrandir-WideBold.woff') format('woff');
@@ -542,7 +545,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirWide';
+    font-family: 'Agrandir Wide';
     font-style: italic;
     font-weight: 700;
     src: url('./agrandir/Agrandir-WideBoldItalic.woff2') format('woff2'),
@@ -550,7 +553,7 @@
 }
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirWide';
+    font-family: 'Agrandir Wide';
     font-weight: 800;
     src: url('./agrandir/Agrandir-WideHeavy.woff2') format('woff2'),
         url('./agrandir/Agrandir-WideHeavy.woff') format('woff');
@@ -558,16 +561,20 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirWide';
+    font-family: 'Agrandir Wide';
     font-style: italic;
     font-weight: 800;
     src: url('./agrandir/Agrandir-WideHeavyItalic.woff2') format('woff2'),
         url('./agrandir/Agrandir-WideHeavyItalic.woff') format('woff');
 }
 
+/**
+* Agrandir Tight
+**/
+
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirTight';
+    font-family: 'Agrandir Tight';
     font-weight: 300;
     src: url('./agrandir/Agrandir-TightLight.woff2') format('woff2'),
         url('./agrandir/Agrandir-TightLight.woff') format('woff');
@@ -575,7 +582,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirTight';
+    font-family: 'Agrandir Tight';
     font-style: italic;
     font-weight: 300;
     src: url('./agrandir/Agrandir-TightLightItalic.woff2') format('woff2'),
@@ -584,7 +591,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirTight';
+    font-family: 'Agrandir Tight';
     font-weight: 400;
     src: url('./agrandir/Agrandir-Tight.woff2') format('woff2'),
         url('./agrandir/Agrandir-Tight.woff') format('woff');
@@ -592,7 +599,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirTight';
+    font-family: 'Agrandir Tight';
     font-style: italic;
     font-weight: 400;
     src: url('./agrandir/Agrandir-Tight.woff2') format('woff2'),
@@ -601,7 +608,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirTight';
+    font-family: 'Agrandir Tight';
     font-weight: 500;
     src: url('./agrandir/Agrandir-TightMedium.woff2') format('woff2'),
         url('./agrandir/Agrandir-TightMedium.woff') format('woff');
@@ -609,7 +616,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirTight';
+    font-family: 'Agrandir Tight';
     font-style: italic;
     font-weight: 500;
     src: url('./agrandir/Agrandir-TightMediumItalic.woff2') format('woff2'),
@@ -618,7 +625,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirTight';
+    font-family: 'Agrandir Tight';
     font-weight: 700;
     src: url('./agrandir/Agrandir-TightBold.woff2') format('woff2'),
         url('./agrandir/Agrandir-TightBold.woff') format('woff');
@@ -626,7 +633,7 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'AgrandirTight';
+    font-family: 'Agrandir Tight';
     font-style: italic;
     font-weight: 700;
     src: url('./agrandir/Agrandir-TightBoldItalic.woff2') format('woff2'),
@@ -634,7 +641,7 @@
 }
 
 @font-face {
-    font-family: 'AgrandirTight';
+    font-family: 'Agrandir Tight';
     font-weight: 900;
     font-display: swap;
     src: url('./agrandir/Agrandir-TightHeavy.woff2') format('woff2'),

@@ -71,6 +71,12 @@
         @extend %fullscreen;
     }
 
+    .handTap {
+        position: absolute;
+        top: 50%;
+        right: 10%;
+    }
+
     &.landscape {
         .screen {
             top: 0;
@@ -97,7 +103,7 @@
             }
         }
 
-        &.withSibblings .screen {
+        &.withSiblings .screen {
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
     }
@@ -116,6 +122,12 @@
         .menuDotsContainer,
         .menuPreviewContainer {
             visibility: visible;
+        }
+    }
+
+    &.hasInteracted {
+        .handTap {
+            display: none;
         }
     }
 }
