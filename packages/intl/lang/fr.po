@@ -395,6 +395,12 @@ msgctxt "8EI08h"
 msgid "With play/pause button"
 msgstr "Avec bouton de lecture"
 
+# Urbania screen title
+#: 8bYfFG
+msgctxt "8bYfFG"
+msgid "Urbania horoscope screen"
+msgstr ""
+
 # Button label
 #: 8oczXQ
 msgctxt "8oczXQ"
