@@ -83,6 +83,7 @@
         "@micromag/element-video": "^0.3.59",
         "@micromag/element-visual": "^0.3.59",
         "@micromag/element-webview": "^0.3.59",
+        "@micromag/element-urbania-author": "^0.3.59",
         "classnames": "^2.2.6",
         "lodash": "^4.17.21",
         "prop-types": "^15.7.2"
@@ -90,5 +91,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "e01aeffe6b4ad2c57098a79dcd62ee09fae43650"
+    "gitHead": "5b43d41045725c8e9b4e167d320fac0f8422eafc"
 }
