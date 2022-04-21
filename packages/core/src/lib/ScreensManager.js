@@ -12,7 +12,9 @@ class ScreensManager extends DefinitionsManager {
     }
 
     filter(filter) {
-        return new ScreensManager(this.definitions.filter(filter));
+        // return new ScreensManager(this.definitions.filter(filter));
+        this.definitions = this.definitions.filter(filter);
+        return this;
     }
 }
 

@@ -25,7 +25,9 @@ class DefinitionsManager extends EventEmitter {
     }
 
     filter(filter) {
-        return new DefinitionsManager(this.definitions.filter(filter));
+        this.definitions = this.definitions.filter(filter);
+        return this;
+        // return new DefinitionsManager(this.definitions.filter(filter));
     }
 
     getDefinition(id) {
