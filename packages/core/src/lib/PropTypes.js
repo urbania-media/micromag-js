@@ -719,3 +719,10 @@ export const pageMetadata = PropTypes.shape({
     atomUrl: PropTypes.string,
     microformats: PropTypes.arrayOf(PropTypes.shape({})),
 });
+
+export const authorElement = PropTypes.shape({
+    name: PropTypes.string,
+    avatar: PropTypes.shape({
+        url: PropTypes.string,
+    }),
+});

@@ -1,6 +1,5 @@
 import { defineMessage } from 'react-intl';
 import UrbaniaTriviaScreen from './UrbaniaTrivia';
-import * as transforms from './transforms/index';
 
 export default {
     id: 'urbania-trivia',
@@ -18,7 +17,6 @@ export default {
         description: 'Urbania screen title',
     }),
     component: UrbaniaTriviaScreen,
-    transforms,
     fields: [
         {
             name: 'title',

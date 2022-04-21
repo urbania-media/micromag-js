@@ -51,7 +51,7 @@ msgstr "Style message publié"
 #: +TPjd4
 msgctxt "+TPjd4"
 msgid "Presented by"
-msgstr ""
+msgstr "Présenté par"
 
 # Label when there is no item
 #: +nhSvj
@@ -75,13 +75,19 @@ msgstr "Mes fichiers"
 #: /MsgWe
 msgctxt "/MsgWe"
 msgid "Date"
-msgstr ""
+msgstr "Date"
 
 # Media label
 #: /OM5UY
 msgctxt "/OM5UY"
 msgid "Tags"
 msgstr "Mots-clés"
+
+# Horoscope sign
+#: /PJA/1
+msgctxt "/PJA/1"
+msgid "Aries"
+msgstr "Bélier"
 
 # Remove all button label
 #: /T/UDH
@@ -113,6 +119,24 @@ msgctxt "0GzLBc"
 msgid "Message"
 msgstr "Message"
 
+# Author label
+#: 0UxdOa
+msgctxt "0UxdOa"
+msgid "and"
+msgstr "et"
+
+# Horoscope sign
+#: 0acGK7
+msgctxt "0acGK7"
+msgid "Cancer"
+msgstr "Cancer"
+
+# Breadcrumb field label
+#: 12wlTR
+msgctxt "12wlTR"
+msgid "Sign"
+msgstr "Signe"
+
 # Dropdown default all items label
 #: 15GBmG
 msgctxt "15GBmG"
@@ -135,7 +159,7 @@ msgstr "Classement"
 #: 18XpuL
 msgctxt "18XpuL"
 msgid "Urbania recommendation screen"
-msgstr ""
+msgstr "Écran de recommandation Urbania"
 
 # Item label in items field
 #: 2/F1Q7
@@ -159,7 +183,7 @@ msgstr "Titre"
 #: 2pO2Cj
 msgctxt "2pO2Cj"
 msgid "Url"
-msgstr ""
+msgstr "Url"
 
 # Field label
 #: 31zuCS
@@ -263,11 +287,17 @@ msgctxt "4fHMVj"
 msgid "Tags"
 msgstr "Mots-clés"
 
+# Horoscope sign
+#: 4g35M0
+msgctxt "4g35M0"
+msgid "Gemini"
+msgstr "Gémeaux"
+
 # Title field label
 #: 4grcMU
 msgctxt "4grcMU"
 msgid "Category"
-msgstr ""
+msgstr "Catégorie"
 
 # Layout field label
 #: 4iBXj2
@@ -329,11 +359,17 @@ msgctxt "6ak5YN"
 msgid "Side"
 msgstr "Côté"
 
+# Horoscope sign
+#: 6bd963
+msgctxt "6bd963"
+msgid "Virgo"
+msgstr "Vierge"
+
 # Authors placeholder
 #: 6jX5Tb
 msgctxt "6jX5Tb"
 msgid "Authors"
-msgstr ""
+msgstr "Auteurs"
 
 # Images screen group
 #: 6mX2ya
@@ -357,7 +393,13 @@ msgstr "Auteur"
 #: 7YE/VU
 msgctxt "7YE/VU"
 msgid "Sponsor"
-msgstr ""
+msgstr "Présentateur"
+
+# Horoscope sign
+#: 7mMPO4
+msgctxt "7mMPO4"
+msgid "Sagittarius"
+msgstr "Sagittaire"
 
 # Button label
 #: 7tw6U2
@@ -399,7 +441,7 @@ msgstr "Avec bouton de lecture"
 #: 8bYfFG
 msgctxt "8bYfFG"
 msgid "Urbania horoscope screen"
-msgstr ""
+msgstr "Écran Urbania Horoscope"
 
 # Button label
 #: 8oczXQ
@@ -489,7 +531,7 @@ msgstr "Utilisé"
 #: AV6gfh
 msgctxt "AV6gfh"
 msgid "Edit call to action..."
-msgstr ""
+msgstr "Modifier l'action..."
 
 # Button label
 #: AuxqcG
@@ -531,7 +573,7 @@ msgstr "Succès"
 #: Bv1Q38
 msgctxt "Bv1Q38"
 msgid "Sponsor"
-msgstr ""
+msgstr "Présentateur"
 
 # ImageText screen title
 #: CJmQeh
@@ -575,11 +617,17 @@ msgctxt "EDFyUp"
 msgid "Alternative text (accessibility)"
 msgstr "Texte alternatif (accessibilité)"
 
+# Horoscope sign
+#: EEUc6n
+msgctxt "EEUc6n"
+msgid "Leo"
+msgstr "Lion"
+
 # Text placeholder
 #: EQdIAR
 msgctxt "EQdIAR"
 msgid "Description"
-msgstr ""
+msgstr "Description"
 
 # Field label
 #: ET527E
@@ -687,7 +735,7 @@ msgstr "Bonne réponse"
 #: I5+AHN
 msgctxt "I5+AHN"
 msgid "Category"
-msgstr ""
+msgstr "Catégorie"
 
 # Duplicate screen item
 #: IBjY5r
@@ -700,6 +748,12 @@ msgstr "Dupliquer l'écran"
 msgctxt "ICXTfR"
 msgid "Links"
 msgstr "Liens"
+
+# State label
+#: J6cnbt
+msgctxt "J6cnbt"
+msgid "Signs"
+msgstr ""
 
 # Your message placeholder
 #: JAguka
@@ -767,6 +821,12 @@ msgctxt "LkVfwW"
 msgid "Screen {index}"
 msgstr "Écran {index}"
 
+# Horoscope sign
+#: M/FGRs
+msgctxt "M/FGRs"
+msgid "Libra"
+msgstr "Balance"
+
 # Audio placeholder
 #: MYZwSA
 msgctxt "MYZwSA"
@@ -802,6 +862,12 @@ msgstr "Ajuster la carte selon les marqueurs"
 msgctxt "NmCfTO"
 msgid "Conversation"
 msgstr "Conversation"
+
+# Horoscope sign
+#: NumcrW
+msgctxt "NumcrW"
+msgid "Capricorn"
+msgstr "Capricorne"
 
 # Field left label
 #: O2JVA+
@@ -843,7 +909,7 @@ msgstr "Type"
 #: Oqks/j
 msgctxt "Oqks/j"
 msgid "Urbania article screen"
-msgstr ""
+msgstr "Écran Urbania Article"
 
 # TitleSubtitle screen title
 #: P1dwGU
@@ -982,12 +1048,6 @@ msgctxt "UdrdRF"
 msgid "Numbers style"
 msgstr "Style des numéros"
 
-# Author
-#: UkZY6Z
-msgctxt "UkZY6Z"
-msgid "et"
-msgstr ""
-
 # Items finish edit button label
 #: UlZIP8
 msgctxt "UlZIP8"
@@ -1040,7 +1100,7 @@ msgstr "Centrer"
 #: WY14Zu
 msgctxt "WY14Zu"
 msgid "Sponsor"
-msgstr ""
+msgstr "Présentateur"
 
 # Label when no value
 #: Wb5zY4
@@ -1072,6 +1132,12 @@ msgctxt "XJ2Xc+"
 msgid "Answer"
 msgstr "Réponse"
 
+# Horoscope sign
+#: XKcyqx
+msgctxt "XKcyqx"
+msgid "Taurus"
+msgstr "Taureau"
+
 # GalleryFeedCaptions screen title
 #: XTJGzY
 msgctxt "XTJGzY"
@@ -1088,7 +1154,7 @@ msgstr "Déplacez la carte pour positionner"
 #: Y7bs1v
 msgctxt "Y7bs1v"
 msgid "Description"
-msgstr ""
+msgstr "Description"
 
 # Description in Media Gallery
 #: YJZtWR
@@ -1101,6 +1167,12 @@ msgstr "Description"
 msgctxt "YWcp4v"
 msgid "Bullet filled"
 msgstr "Point rempli"
+
+# Horoscope sign
+#: YyPYHk
+msgctxt "YyPYHk"
+msgid "Scorpio"
+msgstr "Scorpion"
 
 # Screen group
 #: Z27IP6
@@ -1258,6 +1330,12 @@ msgctxt "dqnkQk"
 msgid "Legend"
 msgstr "Légende"
 
+# Horoscope sign
+#: dxAumJ
+msgctxt "dxAumJ"
+msgid "Pisces"
+msgstr "Poissons"
+
 # Question placeholder
 #: e1I+KU
 msgctxt "e1I+KU"
@@ -1280,7 +1358,7 @@ msgstr "Sélectionnez un média..."
 #: eA6lME
 msgctxt "eA6lME"
 msgid "Urbania trivia screen"
-msgstr ""
+msgstr "Écran Urbania Faits Insolites"
 
 # Field label
 #: eBFxNl
@@ -1336,11 +1414,23 @@ msgctxt "f68O+0"
 msgid "Messages"
 msgstr "Messages"
 
+# Horoscope sign
+#: fBii8l
+msgctxt "fBii8l"
+msgid "Aquarius"
+msgstr "Verseau"
+
 # Text screen group
 #: fIawTr
 msgctxt "fIawTr"
 msgid "Text"
 msgstr "Texte"
+
+# Field label
+#: fLdjGi
+msgctxt "fLdjGi"
+msgid "Word of the week"
+msgstr "Mot de la semaine"
 
 # No title label in Media Gallery
 #: fVqgfl
@@ -1426,6 +1516,12 @@ msgctxt "iipV5Q"
 msgid "Type"
 msgstr "Type"
 
+# Author label
+#: jEK6B8
+msgctxt "jEK6B8"
+msgid "By"
+msgstr "Par"
+
 # Field label
 #: jWAJW4
 msgctxt "jWAJW4"
@@ -1454,7 +1550,7 @@ msgstr "Sélectionnez une image..."
 #: k+coTi
 msgctxt "k+coTi"
 msgid "Image"
-msgstr ""
+msgstr "Image"
 
 # Field label
 #: k81FRn
@@ -1572,7 +1668,7 @@ msgstr "Style du bouton"
 #: oAtOlP
 msgctxt "oAtOlP"
 msgid "Heading"
-msgstr ""
+msgstr "En-tête"
 
 # TextTitle screen title
 #: oCBQKV
@@ -1590,7 +1686,7 @@ msgstr "Vidéo 360"
 #: oPjl8f
 msgctxt "oPjl8f"
 msgid "Urbania"
-msgstr ""
+msgstr "Urbania"
 
 # Button label
 #: opcGwP
@@ -1626,7 +1722,7 @@ msgstr "Lecture automatique"
 #: pRzSQ7
 msgctxt "pRzSQ7"
 msgid "Overtitle"
-msgstr ""
+msgstr "Surtitre"
 
 # Media label
 #: pfvDzR
@@ -1681,12 +1777,6 @@ msgstr "Fenêtre pop-up"
 msgctxt "qroLmS"
 msgid "Marker"
 msgstr "Marqueur"
-
-# Author
-#: r7IM7J
-msgctxt "r7IM7J"
-msgid "Par"
-msgstr ""
 
 # Conversation screen title
 #: rBPIgw
@@ -1968,7 +2058,7 @@ msgstr "Fermer"
 #: yEG9zh
 msgctxt "yEG9zh"
 msgid "Date"
-msgstr ""
+msgstr "Date"
 
 # Call to action default label
 #: z/VBX0
@@ -1980,7 +2070,7 @@ msgstr "En savoir plus"
 #: z2I2bJ
 msgctxt "z2I2bJ"
 msgid "Overtitle"
-msgstr ""
+msgstr "Surtitre"
 
 # Text placeholder
 #: z4CiV1
@@ -1998,7 +2088,7 @@ msgstr "Latitude"
 #: zGIcdn
 msgctxt "zGIcdn"
 msgid "Sponsors"
-msgstr ""
+msgstr "Présentateurs"
 
 # Quiz screen title
 #: zW7IVm

@@ -17,6 +17,9 @@
     "+SlKOi": {
         "defaultMessage": "Style message publié"
     },
+    "+TPjd4": {
+        "defaultMessage": "Présenté par"
+    },
     "+nhSvj": {
         "defaultMessage": "Pas d'interlocuteur..."
     },
@@ -26,8 +29,14 @@
     "/62oe4": {
         "defaultMessage": "Mes fichiers"
     },
+    "/MsgWe": {
+        "defaultMessage": "Date"
+    },
     "/OM5UY": {
         "defaultMessage": "Mots-clés"
+    },
+    "/PJA/1": {
+        "defaultMessage": "Bélier"
     },
     "/T/UDH": {
         "defaultMessage": "Tout effacer"
@@ -44,6 +53,15 @@
     "0GzLBc": {
         "defaultMessage": "Message"
     },
+    "0UxdOa": {
+        "defaultMessage": "et"
+    },
+    "0acGK7": {
+        "defaultMessage": "Cancer"
+    },
+    "12wlTR": {
+        "defaultMessage": "Signe"
+    },
     "15GBmG": {
         "defaultMessage": "Tout"
     },
@@ -53,6 +71,9 @@
     "17BMn2": {
         "defaultMessage": "Classement"
     },
+    "18XpuL": {
+        "defaultMessage": "Écran de recommandation Urbania"
+    },
     "2/F1Q7": {
         "defaultMessage": "#{index}"
     },
@@ -61,6 +82,9 @@
     },
     "2ZOPe+": {
         "defaultMessage": "Titre"
+    },
+    "2pO2Cj": {
+        "defaultMessage": "Url"
     },
     "31zuCS": {
         "defaultMessage": "Hauteur de ligne"
@@ -113,6 +137,12 @@
     "4fHMVj": {
         "defaultMessage": "Mots-clés"
     },
+    "4g35M0": {
+        "defaultMessage": "Gémeaux"
+    },
+    "4grcMU": {
+        "defaultMessage": "Catégorie"
+    },
     "4iBXj2": {
         "defaultMessage": "Disposition"
     },
@@ -143,6 +173,12 @@
     "6ak5YN": {
         "defaultMessage": "Côté"
     },
+    "6bd963": {
+        "defaultMessage": "Vierge"
+    },
+    "6jX5Tb": {
+        "defaultMessage": "Auteurs"
+    },
     "6mX2ya": {
         "defaultMessage": "Images"
     },
@@ -151,6 +187,12 @@
     },
     "73hxYw": {
         "defaultMessage": "Auteur"
+    },
+    "7YE/VU": {
+        "defaultMessage": "Présentateur"
+    },
+    "7mMPO4": {
+        "defaultMessage": "Sagittaire"
     },
     "7tw6U2": {
         "defaultMessage": "Partager"
@@ -169,6 +211,9 @@
     },
     "8EI08h": {
         "defaultMessage": "Avec bouton de lecture"
+    },
+    "8bYfFG": {
+        "defaultMessage": "Écran Urbania Horoscope"
     },
     "8oczXQ": {
         "defaultMessage": "Ajouter un marqueur"
@@ -212,6 +257,9 @@
     "AQ8Aig": {
         "defaultMessage": "Utilisé"
     },
+    "AV6gfh": {
+        "defaultMessage": "Modifier l'action..."
+    },
     "AuxqcG": {
         "defaultMessage": "Plein écran"
     },
@@ -229,6 +277,9 @@
     },
     "BpZoQZ": {
         "defaultMessage": "Succès"
+    },
+    "Bv1Q38": {
+        "defaultMessage": "Présentateur"
     },
     "CJmQeh": {
         "defaultMessage": "Image avec texte"
@@ -250,6 +301,12 @@
     },
     "EDFyUp": {
         "defaultMessage": "Texte alternatif (accessibilité)"
+    },
+    "EEUc6n": {
+        "defaultMessage": "Lion"
+    },
+    "EQdIAR": {
+        "defaultMessage": "Description"
     },
     "ET527E": {
         "defaultMessage": "Police"
@@ -302,6 +359,9 @@
     "I2bIHm": {
         "defaultMessage": "Bonne réponse"
     },
+    "I5+AHN": {
+        "defaultMessage": "Catégorie"
+    },
     "IBjY5r": {
         "defaultMessage": "Dupliquer l'écran"
     },
@@ -341,6 +401,9 @@
     "LkVfwW": {
         "defaultMessage": "Écran {index}"
     },
+    "M/FGRs": {
+        "defaultMessage": "Balance"
+    },
     "MYZwSA": {
         "defaultMessage": "Audio"
     },
@@ -359,6 +422,9 @@
     "NmCfTO": {
         "defaultMessage": "Conversation"
     },
+    "NumcrW": {
+        "defaultMessage": "Capricorne"
+    },
     "O2JVA+": {
         "defaultMessage": "Gauche"
     },
@@ -376,6 +442,9 @@
     },
     "OkNUmk": {
         "defaultMessage": "Type"
+    },
+    "Oqks/j": {
+        "defaultMessage": "Écran Urbania Article"
     },
     "P1dwGU": {
         "defaultMessage": "Titre avec sous-titre"
@@ -470,6 +539,9 @@
     "W5qWPj": {
         "defaultMessage": "Centrer"
     },
+    "WY14Zu": {
+        "defaultMessage": "Présentateur"
+    },
     "Wb5zY4": {
         "defaultMessage": "Sélectionnez un fichier de police..."
     },
@@ -485,17 +557,26 @@
     "XJ2Xc+": {
         "defaultMessage": "Réponse"
     },
+    "XKcyqx": {
+        "defaultMessage": "Taureau"
+    },
     "XTJGzY": {
         "defaultMessage": "Galerie (fil) avec légendes"
     },
     "XhgKcw": {
         "defaultMessage": "Déplacez la carte pour positionner"
     },
+    "Y7bs1v": {
+        "defaultMessage": "Description"
+    },
     "YJZtWR": {
         "defaultMessage": "Description"
     },
     "YWcp4v": {
         "defaultMessage": "Point rempli"
+    },
+    "YyPYHk": {
+        "defaultMessage": "Scorpion"
     },
     "Z27IP6": {
         "defaultMessage": "Carte"
@@ -575,6 +656,9 @@
     "dqnkQk": {
         "defaultMessage": "Légende"
     },
+    "dxAumJ": {
+        "defaultMessage": "Poissons"
+    },
     "e1I+KU": {
         "defaultMessage": "Question"
     },
@@ -583,6 +667,9 @@
     },
     "e6+aGf": {
         "defaultMessage": "Sélectionnez un média..."
+    },
+    "eA6lME": {
+        "defaultMessage": "Écran Urbania Faits Insolites"
     },
     "eBFxNl": {
         "defaultMessage": "Action"
@@ -611,8 +698,14 @@
     "f68O+0": {
         "defaultMessage": "Messages"
     },
+    "fBii8l": {
+        "defaultMessage": "Verseau"
+    },
     "fIawTr": {
         "defaultMessage": "Texte"
+    },
+    "fLdjGi": {
+        "defaultMessage": "Mot de la semaine"
     },
     "fVqgfl": {
         "defaultMessage": "[sans titre]"
@@ -656,6 +749,9 @@
     "iipV5Q": {
         "defaultMessage": "Type"
     },
+    "jEK6B8": {
+        "defaultMessage": "Par"
+    },
     "jWAJW4": {
         "defaultMessage": "Points"
     },
@@ -667,6 +763,9 @@
     },
     "jnww6n": {
         "defaultMessage": "Sélectionnez une image..."
+    },
+    "k+coTi": {
+        "defaultMessage": "Image"
     },
     "k81FRn": {
         "defaultMessage": "Style du texte"
@@ -725,11 +824,17 @@
     "nno1Pq": {
         "defaultMessage": "Style du bouton"
     },
+    "oAtOlP": {
+        "defaultMessage": "En-tête"
+    },
     "oCBQKV": {
         "defaultMessage": "Texte avec titre"
     },
     "oLtEu6": {
         "defaultMessage": "Vidéo 360"
+    },
+    "oPjl8f": {
+        "defaultMessage": "Urbania"
     },
     "opcGwP": {
         "defaultMessage": "Ajouter un interlocuteur"
@@ -745,6 +850,9 @@
     },
     "pJgYyE": {
         "defaultMessage": "Lecture automatique"
+    },
+    "pRzSQ7": {
+        "defaultMessage": "Surtitre"
     },
     "pfvDzR": {
         "defaultMessage": "Ajouté par"
@@ -911,14 +1019,23 @@
     "yCXMzz": {
         "defaultMessage": "Fermer"
     },
+    "yEG9zh": {
+        "defaultMessage": "Date"
+    },
     "z/VBX0": {
         "defaultMessage": "En savoir plus"
+    },
+    "z2I2bJ": {
+        "defaultMessage": "Surtitre"
     },
     "z4CiV1": {
         "defaultMessage": "Texte"
     },
     "zDH24s": {
         "defaultMessage": "Latitude"
+    },
+    "zGIcdn": {
+        "defaultMessage": "Présentateurs"
     },
     "zW7IVm": {
         "defaultMessage": "Quiz"

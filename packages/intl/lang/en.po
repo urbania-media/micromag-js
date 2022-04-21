@@ -83,6 +83,12 @@ msgctxt "/OM5UY"
 msgid "Tags"
 msgstr "Tags"
 
+# Horoscope sign
+#: /PJA/1
+msgctxt "/PJA/1"
+msgid "Aries"
+msgstr "Aries"
+
 # Remove all button label
 #: /T/UDH
 msgctxt "/T/UDH"
@@ -112,6 +118,24 @@ msgstr "Cancel"
 msgctxt "0GzLBc"
 msgid "Message"
 msgstr "Message"
+
+# Author label
+#: 0UxdOa
+msgctxt "0UxdOa"
+msgid "and"
+msgstr "and"
+
+# Horoscope sign
+#: 0acGK7
+msgctxt "0acGK7"
+msgid "Cancer"
+msgstr "Cancer"
+
+# Breadcrumb field label
+#: 12wlTR
+msgctxt "12wlTR"
+msgid "Sign"
+msgstr "Sign"
 
 # Dropdown default all items label
 #: 15GBmG
@@ -263,6 +287,12 @@ msgctxt "4fHMVj"
 msgid "Tags"
 msgstr "Tags"
 
+# Horoscope sign
+#: 4g35M0
+msgctxt "4g35M0"
+msgid "Gemini"
+msgstr "Gemini"
+
 # Title field label
 #: 4grcMU
 msgctxt "4grcMU"
@@ -329,6 +359,12 @@ msgctxt "6ak5YN"
 msgid "Side"
 msgstr "Side"
 
+# Horoscope sign
+#: 6bd963
+msgctxt "6bd963"
+msgid "Virgo"
+msgstr "Virgo"
+
 # Authors placeholder
 #: 6jX5Tb
 msgctxt "6jX5Tb"
@@ -358,6 +394,12 @@ msgstr "Author"
 msgctxt "7YE/VU"
 msgid "Sponsor"
 msgstr "Sponsor"
+
+# Horoscope sign
+#: 7mMPO4
+msgctxt "7mMPO4"
+msgid "Sagittarius"
+msgstr "Sagittarius"
 
 # Button label
 #: 7tw6U2
@@ -575,6 +617,12 @@ msgctxt "EDFyUp"
 msgid "Alternative text (accessibility)"
 msgstr "Alternative text (accessibility)"
 
+# Horoscope sign
+#: EEUc6n
+msgctxt "EEUc6n"
+msgid "Leo"
+msgstr "Leo"
+
 # Text placeholder
 #: EQdIAR
 msgctxt "EQdIAR"
@@ -701,6 +749,12 @@ msgctxt "ICXTfR"
 msgid "Links"
 msgstr "Links"
 
+# State label
+#: J6cnbt
+msgctxt "J6cnbt"
+msgid "Signs"
+msgstr "Signs"
+
 # Your message placeholder
 #: JAguka
 msgctxt "JAguka"
@@ -767,6 +821,12 @@ msgctxt "LkVfwW"
 msgid "Screen {index}"
 msgstr "Screen {index}"
 
+# Horoscope sign
+#: M/FGRs
+msgctxt "M/FGRs"
+msgid "Libra"
+msgstr "Libra"
+
 # Audio placeholder
 #: MYZwSA
 msgctxt "MYZwSA"
@@ -802,6 +862,12 @@ msgstr "Map fit markers"
 msgctxt "NmCfTO"
 msgid "Conversation"
 msgstr "Conversation"
+
+# Horoscope sign
+#: NumcrW
+msgctxt "NumcrW"
+msgid "Capricorn"
+msgstr "Capricorn"
 
 # Field left label
 #: O2JVA+
@@ -982,12 +1048,6 @@ msgctxt "UdrdRF"
 msgid "Numbers style"
 msgstr "Numbers style"
 
-# Author
-#: UkZY6Z
-msgctxt "UkZY6Z"
-msgid "et"
-msgstr "et"
-
 # Items finish edit button label
 #: UlZIP8
 msgctxt "UlZIP8"
@@ -1072,6 +1132,12 @@ msgctxt "XJ2Xc+"
 msgid "Answer"
 msgstr "Answer"
 
+# Horoscope sign
+#: XKcyqx
+msgctxt "XKcyqx"
+msgid "Taurus"
+msgstr "Taurus"
+
 # GalleryFeedCaptions screen title
 #: XTJGzY
 msgctxt "XTJGzY"
@@ -1101,6 +1167,12 @@ msgstr "Description"
 msgctxt "YWcp4v"
 msgid "Bullet filled"
 msgstr "Bullet filled"
+
+# Horoscope sign
+#: YyPYHk
+msgctxt "YyPYHk"
+msgid "Scorpio"
+msgstr "Scorpio"
 
 # Screen group
 #: Z27IP6
@@ -1258,6 +1330,12 @@ msgctxt "dqnkQk"
 msgid "Legend"
 msgstr "Legend"
 
+# Horoscope sign
+#: dxAumJ
+msgctxt "dxAumJ"
+msgid "Pisces"
+msgstr "Pisces"
+
 # Question placeholder
 #: e1I+KU
 msgctxt "e1I+KU"
@@ -1336,11 +1414,23 @@ msgctxt "f68O+0"
 msgid "Messages"
 msgstr "Messages"
 
+# Horoscope sign
+#: fBii8l
+msgctxt "fBii8l"
+msgid "Aquarius"
+msgstr "Aquarius"
+
 # Text screen group
 #: fIawTr
 msgctxt "fIawTr"
 msgid "Text"
 msgstr "Text"
+
+# Field label
+#: fLdjGi
+msgctxt "fLdjGi"
+msgid "Word of the week"
+msgstr "Word of the week"
 
 # No title label in Media Gallery
 #: fVqgfl
@@ -1425,6 +1515,12 @@ msgstr "No entry..."
 msgctxt "iipV5Q"
 msgid "Type"
 msgstr "Type"
+
+# Author label
+#: jEK6B8
+msgctxt "jEK6B8"
+msgid "By"
+msgstr "By"
 
 # Field label
 #: jWAJW4
@@ -1681,12 +1777,6 @@ msgstr "Pop-up window"
 msgctxt "qroLmS"
 msgid "Marker"
 msgstr "Marker"
-
-# Author
-#: r7IM7J
-msgctxt "r7IM7J"
-msgid "Par"
-msgstr "Par"
 
 # Conversation screen title
 #: rBPIgw

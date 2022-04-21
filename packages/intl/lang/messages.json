@@ -47,6 +47,10 @@
     "defaultMessage": "Tags",
     "description": "Media label"
   },
+  "/PJA/1": {
+    "defaultMessage": "Aries",
+    "description": "Horoscope sign"
+  },
   "/T/UDH": {
     "defaultMessage": "Remove all",
     "description": "Remove all button label"
@@ -65,6 +69,18 @@
   },
   "0GzLBc": {
     "defaultMessage": "Message",
+    "description": "Breadcrumb field label"
+  },
+  "0UxdOa": {
+    "defaultMessage": "and",
+    "description": "Author label"
+  },
+  "0acGK7": {
+    "defaultMessage": "Cancer",
+    "description": "Horoscope sign"
+  },
+  "12wlTR": {
+    "defaultMessage": "Sign",
     "description": "Breadcrumb field label"
   },
   "15GBmG": {
@@ -167,6 +183,10 @@
     "defaultMessage": "Tags",
     "description": "Tags in Media Gallery"
   },
+  "4g35M0": {
+    "defaultMessage": "Gemini",
+    "description": "Horoscope sign"
+  },
   "4grcMU": {
     "defaultMessage": "Category",
     "description": "Title field label"
@@ -211,6 +231,10 @@
     "defaultMessage": "Side",
     "description": "Field label"
   },
+  "6bd963": {
+    "defaultMessage": "Virgo",
+    "description": "Horoscope sign"
+  },
   "6jX5Tb": {
     "defaultMessage": "Authors",
     "description": "Authors placeholder"
@@ -230,6 +254,10 @@
   "7YE/VU": {
     "defaultMessage": "Sponsor",
     "description": "Title field label"
+  },
+  "7mMPO4": {
+    "defaultMessage": "Sagittarius",
+    "description": "Horoscope sign"
   },
   "7tw6U2": {
     "defaultMessage": "Share",
@@ -375,6 +403,10 @@
     "defaultMessage": "Alternative text (accessibility)",
     "description": "Media Gallery"
   },
+  "EEUc6n": {
+    "defaultMessage": "Leo",
+    "description": "Horoscope sign"
+  },
   "EQdIAR": {
     "defaultMessage": "Description",
     "description": "Text placeholder"
@@ -459,6 +491,10 @@
     "defaultMessage": "Links",
     "description": "Fields section label"
   },
+  "J6cnbt": {
+    "defaultMessage": "Signs",
+    "description": "State label"
+  },
   "JAguka": {
     "defaultMessage": "Your message",
     "description": "Your message placeholder"
@@ -503,6 +539,10 @@
     "defaultMessage": "Screen {index}",
     "description": "Button label"
   },
+  "M/FGRs": {
+    "defaultMessage": "Libra",
+    "description": "Horoscope sign"
+  },
   "MYZwSA": {
     "defaultMessage": "Audio",
     "description": "Audio placeholder"
@@ -526,6 +566,10 @@
   "NmCfTO": {
     "defaultMessage": "Conversation",
     "description": "Conversation placeholder"
+  },
+  "NumcrW": {
+    "defaultMessage": "Capricorn",
+    "description": "Horoscope sign"
   },
   "O2JVA+": {
     "defaultMessage": "Left",
@@ -646,10 +690,6 @@
     "defaultMessage": "Numbers style",
     "description": "Numbers style field label"
   },
-  "UkZY6Z": {
-    "defaultMessage": "et",
-    "description": "Author"
-  },
   "UlZIP8": {
     "defaultMessage": "OK",
     "description": "Items finish edit button label"
@@ -706,6 +746,10 @@
     "defaultMessage": "Answer",
     "description": "Breadcrumb field label"
   },
+  "XKcyqx": {
+    "defaultMessage": "Taurus",
+    "description": "Horoscope sign"
+  },
   "XTJGzY": {
     "defaultMessage": "Gallery feed with captions",
     "description": "GalleryFeedCaptions screen title"
@@ -725,6 +769,10 @@
   "YWcp4v": {
     "defaultMessage": "Bullet filled",
     "description": "Field label"
+  },
+  "YyPYHk": {
+    "defaultMessage": "Scorpio",
+    "description": "Horoscope sign"
   },
   "Z27IP6": {
     "defaultMessage": "Map",
@@ -830,6 +878,10 @@
     "defaultMessage": "Legend",
     "description": "Legend placeholder"
   },
+  "dxAumJ": {
+    "defaultMessage": "Pisces",
+    "description": "Horoscope sign"
+  },
   "e1I+KU": {
     "defaultMessage": "Question",
     "description": "Question placeholder"
@@ -882,9 +934,17 @@
     "defaultMessage": "Messages",
     "description": "Field label"
   },
+  "fBii8l": {
+    "defaultMessage": "Aquarius",
+    "description": "Horoscope sign"
+  },
   "fIawTr": {
     "defaultMessage": "Text",
     "description": "Text screen group"
+  },
+  "fLdjGi": {
+    "defaultMessage": "Word of the week",
+    "description": "Field label"
   },
   "fVqgfl": {
     "defaultMessage": "[no title]",
@@ -941,6 +1001,10 @@
   "iipV5Q": {
     "defaultMessage": "Type",
     "description": "Field label"
+  },
+  "jEK6B8": {
+    "defaultMessage": "By",
+    "description": "Author label"
   },
   "jWAJW4": {
     "defaultMessage": "Points",
@@ -1111,10 +1175,6 @@
   "qroLmS": {
     "defaultMessage": "Marker",
     "description": "Breadcrumb field label"
-  },
-  "r7IM7J": {
-    "defaultMessage": "Par",
-    "description": "Author"
   },
   "rBPIgw": {
     "defaultMessage": "Conversation",

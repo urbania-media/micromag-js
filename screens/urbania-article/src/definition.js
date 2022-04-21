@@ -19,7 +19,6 @@ export default {
         description: 'Urbania screen title',
     }),
     component: UrbaniaArticleScreen,
-    // transforms,
     fields: [
         {
             name: 'url',
@@ -27,6 +26,18 @@ export default {
             label: defineMessage({
                 defaultMessage: 'Url',
                 description: 'Url field label',
+            }),
+        },
+        {
+            name: 'overTitle',
+            type: 'heading-element',
+            theme: {
+                textStyle: 'heading2',
+            },
+            defaultValue: { body: 'En vedette' },
+            label: defineMessage({
+                defaultMessage: 'Overtitle',
+                description: 'Title field label',
             }),
         },
         {
@@ -41,15 +52,14 @@ export default {
             }),
         },
         {
-            name: 'overTitle',
-            type: 'heading-element',
+            name: 'author',
+            type: 'author-element',
             theme: {
-                textStyle: 'heading2',
+                textStyle: 'text',
             },
-            defaultValue: { body: 'En vedette' },
             label: defineMessage({
-                defaultMessage: 'Overtitle',
-                description: 'Title field label',
+                defaultMessage: 'Author',
+                description: 'Author field label',
             }),
         },
         {

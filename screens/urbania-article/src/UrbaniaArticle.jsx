@@ -37,6 +37,7 @@ const propTypes = {
     title: MicromagPropTypes.headingElement,
     overTitle: MicromagPropTypes.headingElement,
     authors: PropTypes.arrayOf(PropTypes.shape({})),
+    author: MicromagPropTypes.authorElement,
     sponsor: PropTypes.arrayOf(PropTypes.shape({})),
     sponsorPrefix: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
     site: PropTypes.string,
@@ -56,6 +57,7 @@ const defaultProps = {
     title: null,
     overTitle: null,
     authors: null,
+    author: null,
     sponsor: null,
     sponsorPrefix: null,
     site: null,
@@ -75,8 +77,9 @@ const UrbaniaArticle = ({
     title,
     overTitle,
     authors,
+    author,
     sponsor,
-    sponsorPrefix: SponsorPrefix,
+    sponsorPrefix,
     site,
     background,
     callToAction,
@@ -120,7 +123,7 @@ const UrbaniaArticle = ({
     const { body: sponsorText = null } = sponsor || {};
     const hasSponsor = sponsorText !== null;
 
-    const hasAuthors = (authors || []).length > 0;
+    const hasAuthors = (authors || []).length > 0 || author !== null;
 
     const { url = null } = image || {};
     const hasImage = url !== null;
@@ -206,8 +209,8 @@ const UrbaniaArticle = ({
         >
             {hasSponsor ? (
                 <div className={styles.sponsors}>
-                    {SponsorPrefix !== null ? (
-                        <span className={styles.sponsor}>{SponsorPrefix}</span>
+                    {sponsorPrefix !== null ? (
+                        <span className={styles.sponsor}>{sponsorPrefix}</span>
                     ) : null}
                     &nbsp;
                     <Heading className={styles.sponsor} size="6" {...sponsor} />

@@ -35,6 +35,9 @@
     "/OM5UY": {
         "defaultMessage": "Tags"
     },
+    "/PJA/1": {
+        "defaultMessage": "Aries"
+    },
     "/T/UDH": {
         "defaultMessage": "Remove all"
     },
@@ -49,6 +52,15 @@
     },
     "0GzLBc": {
         "defaultMessage": "Message"
+    },
+    "0UxdOa": {
+        "defaultMessage": "and"
+    },
+    "0acGK7": {
+        "defaultMessage": "Cancer"
+    },
+    "12wlTR": {
+        "defaultMessage": "Sign"
     },
     "15GBmG": {
         "defaultMessage": "All"
@@ -125,6 +137,9 @@
     "4fHMVj": {
         "defaultMessage": "Tags"
     },
+    "4g35M0": {
+        "defaultMessage": "Gemini"
+    },
     "4grcMU": {
         "defaultMessage": "Category"
     },
@@ -158,6 +173,9 @@
     "6ak5YN": {
         "defaultMessage": "Side"
     },
+    "6bd963": {
+        "defaultMessage": "Virgo"
+    },
     "6jX5Tb": {
         "defaultMessage": "Authors"
     },
@@ -172,6 +190,9 @@
     },
     "7YE/VU": {
         "defaultMessage": "Sponsor"
+    },
+    "7mMPO4": {
+        "defaultMessage": "Sagittarius"
     },
     "7tw6U2": {
         "defaultMessage": "Share"
@@ -281,6 +302,9 @@
     "EDFyUp": {
         "defaultMessage": "Alternative text (accessibility)"
     },
+    "EEUc6n": {
+        "defaultMessage": "Leo"
+    },
     "EQdIAR": {
         "defaultMessage": "Description"
     },
@@ -344,6 +368,9 @@
     "ICXTfR": {
         "defaultMessage": "Links"
     },
+    "J6cnbt": {
+        "defaultMessage": "Signs"
+    },
     "JAguka": {
         "defaultMessage": "Your message"
     },
@@ -377,6 +404,9 @@
     "LkVfwW": {
         "defaultMessage": "Screen {index}"
     },
+    "M/FGRs": {
+        "defaultMessage": "Libra"
+    },
     "MYZwSA": {
         "defaultMessage": "Audio"
     },
@@ -394,6 +424,9 @@
     },
     "NmCfTO": {
         "defaultMessage": "Conversation"
+    },
+    "NumcrW": {
+        "defaultMessage": "Capricorn"
     },
     "O2JVA+": {
         "defaultMessage": "Left"
@@ -485,9 +518,6 @@
     "UdrdRF": {
         "defaultMessage": "Numbers style"
     },
-    "UkZY6Z": {
-        "defaultMessage": "et"
-    },
     "UlZIP8": {
         "defaultMessage": "OK"
     },
@@ -530,6 +560,9 @@
     "XJ2Xc+": {
         "defaultMessage": "Answer"
     },
+    "XKcyqx": {
+        "defaultMessage": "Taurus"
+    },
     "XTJGzY": {
         "defaultMessage": "Gallery feed with captions"
     },
@@ -544,6 +577,9 @@
     },
     "YWcp4v": {
         "defaultMessage": "Bullet filled"
+    },
+    "YyPYHk": {
+        "defaultMessage": "Scorpio"
     },
     "Z27IP6": {
         "defaultMessage": "Map"
@@ -623,6 +659,9 @@
     "dqnkQk": {
         "defaultMessage": "Legend"
     },
+    "dxAumJ": {
+        "defaultMessage": "Pisces"
+    },
     "e1I+KU": {
         "defaultMessage": "Question"
     },
@@ -662,8 +701,14 @@
     "f68O+0": {
         "defaultMessage": "Messages"
     },
+    "fBii8l": {
+        "defaultMessage": "Aquarius"
+    },
     "fIawTr": {
         "defaultMessage": "Text"
+    },
+    "fLdjGi": {
+        "defaultMessage": "Word of the week"
     },
     "fVqgfl": {
         "defaultMessage": "[no title]"
@@ -706,6 +751,9 @@
     },
     "iipV5Q": {
         "defaultMessage": "Type"
+    },
+    "jEK6B8": {
+        "defaultMessage": "By"
     },
     "jWAJW4": {
         "defaultMessage": "Points"
@@ -835,9 +883,6 @@
     },
     "qroLmS": {
         "defaultMessage": "Marker"
-    },
-    "r7IM7J": {
-        "defaultMessage": "Par"
     },
     "rBPIgw": {
         "defaultMessage": "Conversation"
